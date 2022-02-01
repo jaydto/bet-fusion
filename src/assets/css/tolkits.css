@@ -406,6 +406,7 @@ header, li a, .thedate span {
 .matches {
     display: inline-block;
 }
+
 .matches .top-matches .match-detail button {
     cursor: pointer;
     border: 1px solid #3c5a6c !important;
@@ -478,6 +479,7 @@ header, li a, .thedate span {
     font-size: 15px;
     font-family: inherit;
 }
+
 .match-header {
     background: #63b9e4;
     color: #3b4367;
@@ -510,7 +512,7 @@ header, li a, .thedate span {
 
 .events-header {
     background: #101B25;
-    opacity:0.9;
+    opacity: 0.9;
     padding: 0;
 }
 
@@ -584,6 +586,7 @@ button {
 .matches .top-matches .pad:after {
 
 }
+
 #live_matches .match-div-col {
     padding: 10px 2px 0 0px !important;
 }
@@ -910,7 +913,7 @@ button {
 }
 
 .shrink-header .second-nav {
-    padding:5px 0;
+    padding: 5px 0;
 }
 
 .shrink-header .competitive {
@@ -934,7 +937,7 @@ button {
 
 .shrink-header .cg {
     font-size: 12px;
-    border-radius:2px;
+    border-radius: 2px;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -1243,6 +1246,7 @@ header {
         line-height: 13px;
         z-index: 100;
     }
+
     .live-placeholder-game {
         font-size: 15px !important;
     }
@@ -1250,6 +1254,7 @@ header {
     .live-header b {
         font-size: 10px !important;
     }
+
     .shrink-header .second-nav {
         top: 72px !important;
     }
@@ -1348,7 +1353,7 @@ header {
 header {
     background: #0e131b;
     color: #fff;
-    opacity:0.7;
+    opacity: 0.7;
     font-weight: 100;
     text-transform: capitalize;
     padding: 0;
@@ -1566,7 +1571,7 @@ events-header {
 
 .second-nav {
     background: #1f2f38 !important;
-    font-size:12px;
+    font-size: 12px;
     box-shadow: 0 1px 2px #16202c;
     -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
     -webkit-box-shadow: 0 1px 2px #16202c;
@@ -1998,7 +2003,7 @@ body {
     font-family: 'Montserrat', sans-serif;
     font-size: 14px;
     line-height: 1.6;
-    background: #16202c; 
+    background: #16202c;
 }
 
 input,
@@ -2019,16 +2024,18 @@ a {
 .top-matches a {
     color: #ffffff;
 }
+
 .one_game_wrapper.top-matches a {
     color: #6C6A6A;
 }
 
 .one_game_wrapper.top-matches a.side {
     color: #fff;
-    margin-top:10px;
-    text-decoration:none;
-    cursor:pointer;
+    margin-top: 10px;
+    text-decoration: none;
+    cursor: pointer;
 }
+
 a:hover,
 a:focus {
     text-decoration: inherit;
@@ -2048,6 +2055,7 @@ img {
     vertical-align: middle;
     max-width: 100%;
 }
+
 .panel-header {
     background: #454545;
     color: #ffffff;
@@ -2062,11 +2070,12 @@ img {
 }
 
 .panel-header .header-text, .panel-header .start-time {
-   text-align:center;
-   font-size:14px;
-   font-weight:normal;
-   opacity:0.7;
+    text-align: center;
+    font-size: 14px;
+    font-weight: normal;
+    opacity: 0.7;
 }
+
 .match-detail .picked {
     background: #fdd835 !important;
     color: #000 !important;
@@ -2223,13 +2232,35 @@ a:focus, a:hover {
     text-align: center;
 }
 
+.footer-custom {
+    color: #ffffff;
+    border-bottom: 0px solid #fff;
+    font-family: arial;
+    font-size: 15px;
+    background: #16202c;
+    padding: 30px;
+}
+
+.footer-custom ul {
+    list-style: none;
+}
+
+.footer-custom ul li {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-custom ul li a {
+    color: white;
+}
+
 .footer-upper {
     color: #1e1c1c;
     border-bottom: 0px solid #fff;
     padding: 30px 0;
     font-family: arial;
     font-size: 15px;
-    background:#A9A9A9;
+    background: #A9A9A9;
 }
 
 .footer-info {
@@ -2572,17 +2603,18 @@ h3,
     margin-bottom: 11px;
 }
 
-h3.events{
-margin-top:0px;
-margin-bottom:0px;
-padding-left:10px;
-font-size:14px;
-font-weight:bold;
+h3.events {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-left: 10px;
+    font-size: 14px;
+    font-weight: bold;
 }
 
-table.bd{
-margin-bottom:0px;
+table.bd {
+    margin-bottom: 0px;
 }
+
 h1 small,
 .cy small,
 h2 small,
@@ -2974,7 +3006,8 @@ address {
 code,
 kbd,
 pre,
-samp {font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+samp {
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 code {
@@ -3373,9 +3406,9 @@ input[type="checkbox"]:focus {
     font-family: 'GothamBold', sans-serif;
     margin-top: 15px;
     overflow: hidden;
-    opacity:0.8;
-    color:#fff;
-    font-weight:normal;
+    opacity: 0.8;
+    color: #fff;
+    font-weight: normal;
 }
 
 #search-event form {
@@ -6068,7 +6101,7 @@ select[multiple].eq > .fj > .cg {
     display: block;
     padding: 5px 15px;
     background: #1f2f38;
-    opacity:0.8;
+    opacity: 0.8;
 }
 
 .web-element .nav > li {
@@ -6076,7 +6109,7 @@ select[multiple].eq > .fj > .cg {
     display: block;
     overflow: hidden;
     border-bottom: 1px solid #181e30;
-    width:100%;
+    width: 100%;
 }
 
 .web-element .nav > li:last-child {
@@ -6948,30 +6981,30 @@ fieldset[disabled] .pa .fu:focus {
     padding: 10px;
     margin-right: 10px;
     margin-left: 10px;
-    letter-spacing:1px;
+    letter-spacing: 1px;
 }
 
 
 .pc .navbar-nav > .active > a,
 .pc .navbar-nav > .active > a:hover,
 .pc .navbar-nav > .active > a:focus {
-color: #ffffff;
-background-color: #000033;
+    color: #ffffff;
+    background-color: #000033;
 }
 
 .pc .navbar-nav .active {
-background: #d96189;
-color: #000;
+    background: #d96189;
+    color: #000;
 }
 
 .carousel-control {
 
-width: 10%;
+    width: 10%;
 }
 
 .carousel-control .fa-chevron-left, .carousel-control .fa-chevron-right, .carousel-control .icon-next, .carousel-control .icon-prev {
-position: absolute;
-top: 50%;
+    position: absolute;
+    top: 50%;
     z-index: 5;
     display: inline-block;
 }
@@ -9380,12 +9413,14 @@ button.close {
     .ss {
         display: none !important;
     }
-    table.bdd{
-        font-size:10px;
-   }
-   table.basic-table.bd{
-       font-size:10px;
-   }
+
+    table.bdd {
+        font-size: 10px;
+    }
+
+    table.basic-table.bd {
+        font-size: 10px;
+    }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
@@ -12768,7 +12803,7 @@ img.zoom-img {
     position: relative;
     /* background-size: cover; */
     /* width: 715px; */
-   scroll-margin-top: 150px;
+    scroll-margin-top: 150px;
 }
 
 .bet-pick .odd-value {
@@ -13036,15 +13071,16 @@ img.zoom-img {
     cursor: pointer;
 }
 
-.jp-mobi button.odds{
+.jp-mobi button.odds {
     border-radius: 2px;
     margin-left: 1px;
 }
 
-.empty-list{
+.empty-list {
     padding: 10px;
 }
-.nopadding{
+
+.nopadding {
     padding: 0 !important;
 }
 
@@ -13060,33 +13096,35 @@ img.zoom-img {
 }
 
 .top-matches.live-match button.market-butt {
-        font-size: 12px;
+    font-size: 12px;
     text-transform: none;
 }
 
 
-.live-match .match-header{
-     background-image: url("../img/field.jpeg");
-     background-size: cover;
-     background-repeat: no-repeat;
-     height: 200px;
-     width: 100%;
-     background-position: center center;
+.live-match .match-header {
+    background-image: url("../img/field.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 200px;
+    width: 100%;
+    background-position: center center;
 }
 
-.live-placeholder-game{
+.live-placeholder-game {
     font-size: 24px;
     font-weight: bold;
     text-align: center;
 }
-.ll .match-d h4, .ll .comp-detail h4{
+
+.ll .match-d h4, .ll .comp-detail h4 {
     font-size: 14px;
     padding: 2px;
     margin: 5px;
     color: #fbd702;
     text-align: center;
 }
-.spacerlive{
+
+.spacerlive {
     height: 5px;
 }
 
@@ -13099,34 +13137,36 @@ img.zoom-img {
     padding: 3px;
 }
 
-#live_matches.full{
+#live_matches.full {
     width: 100% !important;
     margin-left: 0;
-    margin-right:0;
+    margin-right: 0;
     padding: 0;
 }
-#live_matches.full .one-live{
+
+#live_matches.full .one-live {
     padding-bottom: 5px;
 }
 
-.one-live-head{
+.one-live-head {
     background-color: #C79797;
     padding-left: 10px;
 }
-.one-live-head .live-competition{
+
+.one-live-head .live-competition {
     color: #fff;
     font-weight: bold;
     opacity: 0.86;
 }
 
 
-#live_matches.top-matches a{
+#live_matches.top-matches a {
     color: #6C6A6A;
     text-decoration: none;
 }
 
 
-#live_matches.top-matches a:hove{
+#live_matches.top-matches a:hove {
     text-decoration: none;
     cursor: pointer;
 }
@@ -13141,10 +13181,11 @@ img.zoom-img {
     margin-right: 10px;
 }
 
-h4.live-header{
+h4.live-header {
     background-color: transparent;
 }
-.live-header b{
+
+.live-header b {
     color: #004d00;
     background: #e3e3e3;
     padding: 5px;
@@ -13152,86 +13193,86 @@ h4.live-header{
     font-size: 12px;
 }
 
-#live_matches .cmp-d{
+#live_matches .cmp-d {
     font-size: 13px;
     display: block;
     display: block;
 
 }
 
-li a.live-game.active, .navbar-nav li a.live-game.active, li a.live-game{
+li a.live-game.active, .navbar-nav li a.live-game.active, li a.live-game {
     color: #fff;
     background-color: red;
 }
 
-li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-game:hover{
+li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-game:hover {
     color: #fff;
     background-color: #C00000 !important;
 }
 
 
-#live_matches a.active{
+#live_matches a.active {
     background: #f4f4c7;
 }
 
 
-.minus-odds{
+.minus-odds {
     color: #0d0309 !important;
     font-weight: bold;
 }
 
 
-.plus-odds{
+.plus-odds {
     color: #ffffff;
     font-weight: bold;
 }
 
-.neut-odds{
+.neut-odds {
     color: #6d676b;
     font-weight: bold;
 
 }
 
-.minus-odds-white{
+.minus-odds-white {
     color: #FF0000 !important;;
     font-weight: bold;
 }
 
-.plus-odds-white{
-    color: #32CD32 ;
+.plus-odds-white {
+    color: #32CD32;
     font-weight: bold;
 }
 
-.top-matches div.gametime{
+.top-matches div.gametime {
     float: right;
     color: #a3a300;
     font-size: 12px;
 }
 
-.gametime{
+.gametime {
     color: #a3a300;
     font-size: 12px;
 }
 
-.home-team.disabled, .disabled, .draw.disabled, .away_team.disabled, .market-butt.disabled{
+.home-team.disabled, .disabled, .draw.disabled, .away_team.disabled, .market-butt.disabled {
     background-color: #999999 !important;
     color: #000 !important;
 }
 
 .live-stats {
-  background-color: #005130;;
-  opacity: 0.5;
-  margin-top: 5px;
-  filter: alpha(opacity=50); /* For IE8 and earlier */
+    background-color: #005130;;
+    opacity: 0.5;
+    margin-top: 5px;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
 }
 
 .live-stats:hover {
-  opacity: 0.8;
-  margin-top: 5px;
-  filter: alpha(opacity=70); /* For IE8 and earlier */
+    opacity: 0.8;
+    margin-top: 5px;
+    filter: alpha(opacity=70); /* For IE8 and earlier */
 }
 
-.live-stats div{
+.live-stats div {
     line-height: 20px;
     padding-left: 5px !important;
     padding-top: 1px !important;
@@ -13239,22 +13280,23 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     font-size: 12px;
 }
 
-.red-card{
+.red-card {
     color: red;
     opacity: 1.0 !important;
 }
-.yellow-card{
+
+.yellow-card {
     color: yellow;
     opacity: 1.0 !important;
 }
 
 
-.center{
+.center {
     text-align: center;
     display: block;
 }
 
-.no-data{
+.no-data {
     margin: 0px;
     margin-top: 5px;
     padding-top: 10px;
@@ -13264,11 +13306,11 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     color: #cecece;
 }
 
-.panel-header.liveg{
+.panel-header.liveg {
     height: 40px;
 }
 
-.panel-header.liveg .livelink a{
+.panel-header.liveg .livelink a {
     color: #fff;
     opacity: 0.9;
     font-size: 11px;

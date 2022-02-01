@@ -1,11 +1,11 @@
-import React,  { useContext, useEffect } from "react";
+import React, {useContext, useEffect} from "react";
 
-import { render } from "react-dom";
+import {render} from "react-dom";
 
-import { 
-    BrowserRouter, 
-    Route, Routes, 
-    Navigate 
+import {
+    BrowserRouter,
+    Route, Routes,
+    Navigate
 } from 'react-router-dom'
 
 import reportWebVitals from './reportWebVitals';
@@ -16,25 +16,25 @@ import './assets/css/sidebar-menu.css';
 import './index.css';
 
 
-import Store, { Context }  from './context/store';
-import Index  from './components/index';
-import CompetitionsMatches  from './components/competition-matches';
-import MatchAllMarkets  from './components/all-markets';
+import Store, {Context} from './context/store';
+import Index from './components/index';
+import CompetitionsMatches from './components/competition-matches';
+import MatchAllMarkets from './components/all-markets';
 
 
 const container = document.getElementById("app");
 render((
     <Store>
-    <BrowserRouter>
-        <Routes>
-           <Route exact path = "/" element = { <Index /> }  />
-           <Route exact path = "/highlights" element = { <Index /> }  />
-           <Route exact path = "/upcoming" element = { <Index /> }  />
-           <Route exact path = "/tomorrow" element = { <Index /> }  />
-           <Route exact path = "/competition/:id" element = { <CompetitionsMatches /> }  />
-           <Route exact path = "/match/:id" element = { <MatchAllMarkets /> }  />
-       </Routes>
-    </BrowserRouter>
+        <BrowserRouter>
+            <Routes>
+                <Route exact path="/" element={<Index/>}/>
+                <Route exact path="/highlights" element={<Index/>}/>
+                <Route exact path="/upcoming" element={<Index/>}/>
+                <Route exact path="/tomorrow" element={<Index/>}/>
+                <Route exact path="/competition/:id" element={<CompetitionsMatches/>}/>
+                <Route exact path="/match/:id" element={<MatchAllMarkets/>}/>
+            </Routes>
+        </BrowserRouter>
     </Store>
 ), container);
 

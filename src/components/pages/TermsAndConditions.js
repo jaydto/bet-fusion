@@ -19,7 +19,7 @@ import {
 } from 'react-accessible-accordion';
 import 'react-accessible-accordion/dist/fancy-example.css';
 
-const HowToPlay = (props) => {
+const TermsAndConditions = (props) => {
     return (
         <>
             <Header/>
@@ -1436,4 +1436,4 @@ const HowToPlay = (props) => {
     )
 }
 
-export default HowToPlay
+export default TermsAndConditions

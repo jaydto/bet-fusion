@@ -79,7 +79,31 @@ header, li a, .thedate span {
     border: 1px solid #9f9f9f;
     font-size: 13px;
 }
+.accordion-button:not(.collapsed){
+    color: white;
+    border: none;
+}
+.accordion-button{
+    outline: none;
+    border: none;
+    color: whitesmoke;
+    background: #101B25 !important;
+    padding: 20px;
+    font-size: 16px;
+    color: whitesmoke;
+}
 
+.accordion-button:focus{
+    border: none;
+    outline: none;
+}
+.accordion-container{
+    /*background: #1E3948 !important;*/
+}
+.accordion-item-panel {
+    background: #1E3948 !important;
+    padding: 20px;
+}
 #quick-login p {
     font-size: 14px;
     font-weight: normal;

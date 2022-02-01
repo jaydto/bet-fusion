@@ -20,6 +20,7 @@ import Store, {Context} from './context/store';
 import Index from './components/index';
 import CompetitionsMatches from './components/competition-matches';
 import MatchAllMarkets from './components/all-markets';
+import HowToPlay from './components/pages/HowToPlay'
 
 
 const container = document.getElementById("app");
@@ -27,6 +28,7 @@ render((
     <Store>
         <BrowserRouter>
             <Routes>
+                <Route exact path="/how-to-play" element={<HowToPlay/>}/>
                 <Route exact path="/" element={<Index/>}/>
                 <Route exact path="/highlights" element={<Index/>}/>
                 <Route exact path="/upcoming" element={<Index/>}/>

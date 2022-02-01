@@ -12,7 +12,8 @@ import {
     clearSlip,
 } from '../utils/betslip';
 
-import 'react-loading-skeleton/dist/skeleton.css'
+import 'react-loading-skeleton/dist/skeleton.css';
+import CurrencyFormat from 'react-currency-format';
 
 
 const clean = (_str) => {
@@ -250,10 +251,11 @@ const MarketRow = (props) => {
 
 const MatchRow = (props) => {
     const [betslip, setBetslip] = useState([]);
-    const {match} = props;
+    const {match, jackpot} = props;
+    
 
     useEffect(() => {
-     
+       console.log("Jackpot matche reading", match); 
     }, []);
 
     return (
@@ -266,7 +268,7 @@ const MatchRow = (props) => {
                     {match.away_team}
                 </div>
             </div>
-            <Row className="col-3 m-0 p-0">
+            <Row className={`${jackpot ? 'col-4' : 'col-3'} m-0 p-0`}>
                 <div className="col-sm-4 match-div-col" style={{padding:0}}>
                     { match?.odds?.home_odd 
                         ?  <OddButton match={match}  mkt="home_team" /> 
@@ -286,7 +288,7 @@ const MatchRow = (props) => {
                     }
                 </div>
             </Row>
-            <SideBets  match={match} style={{d:"inline"}}/>
+            { !jackpot && <SideBets  match={match} style={{d:"inline"}}/> }
         </Row>
     )
 
@@ -351,6 +353,91 @@ export const MarketList = (props) => {
         </div>
     )
 
+}
+
+export const JackpotHeader = (props) => {
+   
+    const [state, dispatch] = useContext(Context);                              
+    const [jackpot, setJackpot] = useState();
+    useEffect(()=>{
+        if(state?.jackpotmatches) {
+            setJackpot(state.jackpotmatches?.meta);
+        }
+    }, [state?.jackpotmatches])
+
+   return (
+        <Container >
+        <Row className="top-matches">                                     
+           <Row className="jp-header-text">
+               <div className="jp-header-top">
+                  {jackpot?.type} - {jackpot?.total_games } GAMES {jackpot?.name} 
+               </div>
+           </Row>
+           <Row className="jp-header-text">
+               <div className="jp-header-amount">
+               <CurrencyFormat 
+                        value={jackpot?.jackpot_amount} 
+                        displayType={'text'} 
+                        thousandSeparator={true} prefix={'KES'} />
+               </div>
+           </Row>
+            
+        </Row>      
+       </Container>
+   )
+
+}
+export const JackpotMatchList = (props) => {
+    const [state, dispatch] = useContext(Context);                              
+    const [matches, setMatches] = useState();
+    useEffect(()=>{
+        if(state?.jackpotmatches) {
+            setMatches(state.jackpotmatches);
+        }
+    }, [state?.jackpotmatches])
+
+    return (
+        <div className="matches full-width">
+
+            <MatchHeaderRow  />
+
+            <Container className="web-element">
+                { matches && Object.entries(matches?.data).map(([key, match]) => (
+                        <MatchRow match={match}  jackpot key={key}/>
+                   ))
+                }
+               { !matches && [...Array(10).keys()].map((index, n) => (
+                   <div className="react-loading" key={n}  >
+                      <Container className=" top-matches">
+                          <Row style={{height:40, opacity:0.7}}>
+                           <Col lg="1" >
+                               <Skeleton className="pad left-text"></Skeleton>
+                           </Col>
+                           <Col className="col-sm-7">
+                               <Skeleton className="compt-detail"></Skeleton>
+                               <Skeleton className="compt-teams"></Skeleton>
+                           </Col>
+
+                           <Col className="col-sm-1 match-div-col" >
+                                <Skeleton className="home-team" ></Skeleton>
+                            </Col>
+
+                           <Col className="col-sm-1 events-odd match-div-col">
+                                <Skeleton className="home-team" ></Skeleton>
+                           </Col>
+                           <Col className="col-sm-1 match-div-col" >
+                                <Skeleton className="awy-team" ></Skeleton>
+                           </Col>
+                           <Col className="col-sm-1 events-odd pad" >
+                               <Skeleton className="side" />
+                           </Col>
+                          </Row>
+                       </Container>
+                  </div>) )
+               }
+            </Container>
+        </div>
+    )
 }
 
 const MatchList = (props) => {

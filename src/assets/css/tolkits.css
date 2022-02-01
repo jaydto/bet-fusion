@@ -410,10 +410,6 @@ header, li a, .thedate span {
 .matches .top-matches .match-detail button {
     cursor: pointer;
     border: 1px solid #3c5a6c !important;
-    box-shadow: none !important;
-    -moz-box-shadow: none !important;
-    -webkit-box-shadow: none !important;
-    border-radius: 1px !important;
     color: #fff !important;
     float: left;
     min-width: 100%;
@@ -421,7 +417,7 @@ header, li a, .thedate span {
     background: #334c5c;
     border-top: none !important;
     border-radius: 0px !important;
-    color: #fff !important;
+    text-align:left;
 }
 
 .match-detail button .label {
@@ -478,6 +474,7 @@ header, li a, .thedate span {
     color: #fff !important;
     font-size: 15px;
     font-family: inherit;
+    text-transform:uppercase;
 }
 
 .match-header {
@@ -13320,4 +13317,18 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     padding: 5px;
     border-radius: 2px;
     float: right;
+}
+.jp-header-text{
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 18px;
+}
+.jp-header-text .jp-header-amount{
+    padding:5px 0;
+    font-weight:bord;
+    color:#cc5500;
+}
+.jp-header-text .jp-header-top{
+    padding:5px 0 0;
 }

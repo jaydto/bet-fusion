@@ -14,27 +14,27 @@ import './assets/css/application.css';
 import './assets/css/tolkits.css';
 import './assets/css/sidebar-menu.css';
 import './index.css';
-
-
-import Store, {Context} from './context/store';
-import Index from './components/index';
-import CompetitionsMatches from './components/competition-matches';
-import MatchAllMarkets from './components/all-markets';
+import Store, { Context }  from './context/store';
+import Index  from './components/index';
+import CompetitionsMatches  from './components/competition-matches';
+import MatchAllMarkets  from './components/all-markets';
+import Jackpot  from './components/jackpot';
 
 
 const container = document.getElementById("app");
 render((
     <Store>
-        <BrowserRouter>
-            <Routes>
-                <Route exact path="/" element={<Index/>}/>
-                <Route exact path="/highlights" element={<Index/>}/>
-                <Route exact path="/upcoming" element={<Index/>}/>
-                <Route exact path="/tomorrow" element={<Index/>}/>
-                <Route exact path="/competition/:id" element={<CompetitionsMatches/>}/>
-                <Route exact path="/match/:id" element={<MatchAllMarkets/>}/>
-            </Routes>
-        </BrowserRouter>
+    <BrowserRouter>
+        <Routes>
+           <Route exact path = "/" element = { <Index /> }  />
+           <Route exact path = "/highlights" element = { <Index /> }  />
+           <Route exact path = "/upcoming" element = { <Index /> }  />
+           <Route exact path = "/tomorrow" element = { <Index /> }  />
+           <Route exact path = "/competition/:id" element = { <CompetitionsMatches /> }  />
+           <Route exact path = "/match/:id" element = { <MatchAllMarkets /> }  />
+           <Route exact path = "/jackpot" element = { <Jackpot /> }  />
+       </Routes>
+    </BrowserRouter>
     </Store>
 ), container);
 

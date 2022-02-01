@@ -2233,12 +2233,13 @@ a:focus, a:hover {
 }
 
 .footer-custom {
-    color: #ffffff;
+    color: whitesmoke;
     border-bottom: 0px solid #fff;
     font-family: arial;
     font-size: 15px;
-    background: #16202c;
+    background: #1f2f38 !important;
     padding: 30px;
+    opacity: 0.75;
 }
 
 .footer-custom ul {
@@ -2246,12 +2247,13 @@ a:focus, a:hover {
 }
 
 .footer-custom ul li {
-    color: white;
+    color: whitesmoke;
     text-decoration: none;
+    opacity: 0.75;
 }
 
 .footer-custom ul li a {
-    color: white;
+    color: whitesmoke;
 }
 
 .footer-upper {

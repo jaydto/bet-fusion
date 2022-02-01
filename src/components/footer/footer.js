@@ -46,7 +46,7 @@ const Footer = (props) => {
                     <h5>TERMS AND CONDITIONS</h5>
                     <ul>
                         <li className="">
-                            P.O.BOX 25675-00100 NAIROBI
+                            P.O.BOX 00100 NAIROBI
                         </li>
                     </ul>
                 </div>

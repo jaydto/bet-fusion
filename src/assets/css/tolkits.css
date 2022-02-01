@@ -91,10 +91,10 @@ header, li a, .thedate span {
     padding: 20px;
     font-size: 16px;
     color: whitesmoke;
+    border-bottom: thin solid white;
 }
 
 .accordion-button:focus{
-    border: none;
     outline: none;
 }
 .accordion-container{

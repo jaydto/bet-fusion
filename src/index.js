@@ -21,6 +21,7 @@ import Index from './components/index';
 import CompetitionsMatches from './components/competition-matches';
 import MatchAllMarkets from './components/all-markets';
 import HowToPlay from './components/pages/HowToPlay'
+import TermsAndConditions from './components/pages/TermsAndConditions'
 
 
 const container = document.getElementById("app");
@@ -28,6 +29,7 @@ render((
     <Store>
         <BrowserRouter>
             <Routes>
+                <Route exact path="/terms-and-conditions" element={<TermsAndConditions/>}/>
                 <Route exact path="/how-to-play" element={<HowToPlay/>}/>
                 <Route exact path="/" element={<Index/>}/>
                 <Route exact path="/highlights" element={<Index/>}/>

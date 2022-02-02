@@ -21,7 +21,7 @@ import Index from './components/index';
 import CompetitionsMatches from './components/competition-matches';
 import MatchAllMarkets from './components/all-markets';
 import HowToPlay from './components/pages/HowToPlay'
-import TermsAndConditions from './components/pages/TermsAndConditions'
+import TermsAndConditions from './components/pages/terms-and-conditions/index'
 
 
 const container = document.getElementById("app");

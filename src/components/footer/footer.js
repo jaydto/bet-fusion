@@ -48,6 +48,18 @@ const Footer = (props) => {
                         <li className="">
                             <a href="/terms-and-conditions">Terms and Conditions</a>
                         </li>
+                        <li className="">
+                            <a href="/responsible-gambling">Responsible Gambling</a>
+                        </li>
+                        <li className="">
+                            <a href="/privacy-policy">Privacy Policy</a>
+                        </li>
+                        <li className="">
+                            <a href="/cookie-policy">Cookie Policy</a>
+                        </li>
+                        <li className="">
+                            <a href="/how-to-play">How To Play</a>
+                        </li>
                     </ul>
                 </div>
                 <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3">
@@ -55,6 +67,12 @@ const Footer = (props) => {
                     <ul>
                         <li className="text-danger">
                             You must be 18 Years+ to use this website.
+                        </li>
+                        <li className="">
+                            <a href="/dispute-resolution">Dispute Resolution</a>
+                        </li>
+                        <li className="">
+                            <a href="/anti-money-laundering">Anti-money Laundering</a>
                         </li>
                     </ul>
                 </div>

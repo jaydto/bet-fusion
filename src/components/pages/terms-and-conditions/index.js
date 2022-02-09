@@ -56,10 +56,10 @@ const TermsAndConditions = (props) => {
                                     TERMS AND CONDITIONS
                                 </h4>
                             </div>
-                            <div className="col-md-12 mt-2 text-white p-2 text-center">
+                            <div className="col-md-12 mt-2 text-white p-2">
                                 These General Terms and Conditions are effective from 01.12.2021
                             </div>
-                            <div className="col-md-12 mt-2 p-5 text-white accordion-container">
+                            <div className="col-md-12 mt-2 text-white accordion-container">
                                 <Accordion allowMultipleExpanded={false} allowZeroExpanded={true}>
                                     <General/>
                                     <AccountUsage/>

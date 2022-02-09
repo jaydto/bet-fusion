@@ -21,12 +21,12 @@ const CookiePolicy = () => {
                     <SideBar/>
                     <div className="gz home">
                         <div className="homepage">
-                            <div className='col-md-12 primary-bg p-4 text-center fa-border'>
+                            <div className='col-md-12 primary-bg p-4 text-center'>
                                 <h4 className="inline-block">
                                     COOKIE POLICY
                                 </h4>
                             </div>
-                            <div className="col-md-12 mt-2 text-white p-2 text-center">
+                            <div className="col-md-12 mt-2 text-white p-2 ">
                                 <p>
                                     BetNare uses cookies on our website. By using our services, you consent to the use
                                     of
@@ -35,7 +35,7 @@ const CookiePolicy = () => {
                                     regarding cookies and further information about cookies
                                 </p>
                             </div>
-                            <div className="col-md-12 mt-2 p-5 text-white accordion-container">
+                            <div className="col-md-12 mt-2 text-white accordion-container">
                                 <Accordion allowMultipleExpanded={false} allowZeroExpanded={true}>
                                     <AccordionItem>
                                         <AccordionItemHeading>

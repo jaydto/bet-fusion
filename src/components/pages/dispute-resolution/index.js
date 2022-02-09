@@ -26,11 +26,11 @@ const DisputeResolution = () => {
                                     DISPUTE RESOLUTION POLICY
                                 </h4>
                             </div>
-                            <div className="col-md-12 mt-2 text-white p-2 text-center">
-                            </div>
-                            <div className="col-md-12 mt-2 p-5 text-white accordion-container">
-                                <Accordion allowMultipleExpanded={false} allowZeroExpanded={true}>
-                                    <AccordionItem>
+                            <div className="col-md-12 mt-2 text-white accordion-container ">
+                                <Accordion allowMultipleExpanded={false} 
+                                    allowZeroExpanded={true}
+                                     preExpanded = {["only-child-1"]}>
+                                    <AccordionItem uuid="only-child-1">
                                         <AccordionItemHeading>
                                             <AccordionItemButton className='accordion-button'>
                                                 DISPUTE RESOLUTION

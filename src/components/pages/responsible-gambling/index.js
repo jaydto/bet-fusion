@@ -26,7 +26,7 @@ const ResponsibleGambling = () => {
                                     RESPONSIBLE GAMBLING POLICY
                                 </h4>
                             </div>
-                            <div className="col-md-12 mt-2 text-white p-2 text-center">
+                            <div className="col-md-12 mt-2 text-white p-2 ">
                                 Responsible Gambling is a key corporate strategy endorsed by BetNare and championed by
                                 all staff. BetNare recognizes the importance of putting in place practices and processes
                                 to achieve a high standard of gaming.
@@ -37,7 +37,7 @@ const ResponsibleGambling = () => {
                                 on products are always made available for our customers to assist them in making
                                 informed decisions. Other means are as follows
                             </div>
-                            <div className="col-md-12 mt-2 p-5 text-white accordion-container">
+                            <div className="col-md-12 mt-2 text-white accordion-container">
                                 <Accordion allowMultipleExpanded={false} allowZeroExpanded={true}>
                                     <AccordionItem>
                                         <AccordionItemHeading>

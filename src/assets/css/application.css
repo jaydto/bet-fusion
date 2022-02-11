@@ -397,9 +397,9 @@ display: none;
 }
 .react-loading, .react-loading span{
     width:100%;
-   background: #212931;
    --base-color: #2b3640;
    --highlight-color: #404f5f;
+   --animation-duration:3.2s;
 }
 .react-loading-image, .react-loading-image span{
    background: #212931;

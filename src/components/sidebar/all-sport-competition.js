@@ -56,10 +56,6 @@ export const SportItem = (props) => {
                        className="side-icon" 
                        src={sport_image} 
                        onLoad={onImageLoaded} /> 
-                   { !imageLoaded && (<div className="react-loading-image">
-                       <Skeleton circle width={16} />
-                      </div>) 
-                   }
                 </span>
                 <span className="topl"> { sport.sport_name } </span>
                 <img className="down-arrow pull-right" src={downArrow} />
@@ -186,7 +182,7 @@ const AllSportCompetitions = (props) => {
                       )
             }
             { !categories &&  (< div className="react-loading">
-                       <Skeleton count={20} height={20} className="react-loading"></Skeleton>
+                       <Skeleton count={20} height={35} className="react-loading"></Skeleton>
                     </div>
                   )
             }

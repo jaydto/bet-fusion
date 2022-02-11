@@ -59,12 +59,7 @@ const SideBar = (props) => {
                           alt="-"
                           onLoad={onImageLoaded}
                           />
-                           { !imageLoaded && (<div className="react-loading-image">
-                               <Skeleton circle width={14} />
-                              </div>) 
-                           }
                         </span>
-             
                     </div>
                 </header>
                 <Competitions />
@@ -73,7 +68,9 @@ const SideBar = (props) => {
                 <header>
                     <div className="header-holder">
                         <span className="col-sm-10">Other Sports (A-Z)</span>
-                        <span className="col-sm-2 header-icon"><i className="icon-football fa fa-gamepad" aria-hidden="true"></i></span>
+                        <span className="col-sm-2 header-icon">
+                            <i className="icon-football fa fa-gamepad" aria-hidden="true"></i>
+                        </span>
                     </div>
                 </header>
                 <AllSportCompetitions />

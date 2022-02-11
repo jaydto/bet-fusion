@@ -40,10 +40,6 @@ const Competitions = (props) => {
                                    src={require(`../../assets/img/flags-1-1/${competition.flag}.svg`) }
                                    onLoad={onImageLoaded} /> 
                             }
-                           { !imageLoaded && (<div className="react-loading-image">
-                               <Skeleton circle width={16} />
-                              </div>) 
-                           }
                         </Col>
                         <Col lg="11" className="topl" >
                             <Row style={{color:"#69819a"}}>{competition.category}</Row> 
@@ -56,7 +52,7 @@ const Competitions = (props) => {
             }
 
             { !topSoccer &&  (< div className="react-loading">
-                       <Skeleton count={7} height={20} className="react-loading"></Skeleton>
+                       <Skeleton count={7} height={50} className="react-loading"></Skeleton>
                     </div>
                   )
             }

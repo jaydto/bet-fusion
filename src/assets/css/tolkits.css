@@ -13362,3 +13362,13 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 .jp-header-text .jp-header-top{
     padding:5px 0 0;
 }
+.btn-square{
+    border-radius: 0px !important;
+    border: unset !important;
+}
+.deposit-input::placeholder{
+    color: gray;
+}
+.deposit-input{
+    border: 2px solid gray;
+}

@@ -26,7 +26,8 @@ import DisputeResolution from './components/pages/dispute-resolution/index'
 import ResponsibleGambling from './components/pages/responsible-gambling'
 import AntimoneyLaundering from './components/pages/anti-money-laundering'
 import PrivacyPolicy from './components/pages/privacy-policy/index'
-
+import Withdraw from './components/pages/deposit-withraw/Withdraw'
+import Deposit from './components/pages/deposit-withraw/Deposit'
 
 const container = document.getElementById("app");
 render((
@@ -47,6 +48,8 @@ render((
                <Route exact path="/cookie-policy" element={<CookiePolicy/>}/>
                <Route exact path="/terms-and-conditions" element={<TermsAndConditions/>}/>
                <Route exact path="/how-to-play" element={<HowToPlay/>}/>
+               <Route exact path="/deposit" element={<Deposit/>}/>
+               <Route exact path="/withdraw" element={<Withdraw/>}/>
             </Routes>
         </BrowserRouter>
     </Store>

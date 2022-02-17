@@ -8,16 +8,24 @@ import useAxios from "../../../hooks/axios.hook";
 import mpesa from '../../../assets/img/mpesa.png'
 
 const Deposit = (props) => {
+    //todo get the phone number from logged in user ....
+
+    const {response, makeRequest} = useAxios()
 
     console.log("Props are ", props)
 
     const initialValues = {
-        amount: ''
+        amount: '',
+        msisdn: '254726738394'
     }
 
     const onSubmit = values => {
         console.log("Form Data : ", values)
         // call api here to initiate STK Push to logged in user...
+        let endpoint = '/stk/depost'
+        makeRequest({url: endpoint, method: 'POST', data: values}).then((response) => {
+            console.log(response)
+        })
     }
 
     const validate = values => {

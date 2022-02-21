@@ -13,7 +13,6 @@ const Competitions = (props) => {
     const [topSoccer, setTopSoccer] = useState(null);
 
     useEffect(() => {
-        console.log("all sport competitions reading categories", state?.categories?.top_soccer);
         if(state?.categories){
             setTopSoccer(state?.categories?.top_soccer)
         }

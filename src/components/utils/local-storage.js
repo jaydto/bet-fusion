@@ -6,7 +6,6 @@ export const getFromLocalStorage = (key) => {
         return null;
     }
     let entry_data = JSON.parse(entry);
-    console.log("Reading etry from local storage", entry_data.now);
     let expiry = entry_data.now  + entry_data.ttl;
 
     if (entry_data.ttl && expiry < now()) {

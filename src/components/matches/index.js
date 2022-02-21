@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext, useRef} from 'react';
+import React, {useState, useEffect, useMemo, useContext, useRef} from 'react';
 import padlock from '../../assets/img/padlock.png';
 import { Context }  from '../../context/store';
 import Row from 'react-bootstrap/Row';
@@ -33,11 +33,15 @@ const EmptyTextRow = () =>{
 }
 
 const MatchHeaderRow = (props) => {
+    const {live} = props;
+
     return (
         <Container>
         <Row className="events-header">
             <div className="col-sm-8 left-text">
-                <h3 className="main-heading-1">Soccer</h3>
+                <h3 className="main-heading-1">
+                   { live && <span className="live-header">LIVE </span> } Soccer 
+                 </h3>
             </div>
             <div className="col-sm-1">1</div>
             <div className="col-sm-1 events-odd">X</div>
@@ -49,17 +53,38 @@ const MatchHeaderRow = (props) => {
 }
 
 const MoreMarketsHeaderRow = (props) => {
-    const {home_team, away_team, game_id, category, competition, start_time} = props;
+    const {
+        home_team, 
+        away_team, 
+        game_id, 
+        category, 
+        competition,
+        start_time, 
+        match_time,
+        score,
+        live
+    } = props;
+
     return (
         <Container>
           <Row className="panel-header primary-bg">
              
-            <h4 className="inline-block"> {home_team} <small>VS</small> {away_team} </h4>
+            <h4 className="inline-block"> 
+                {home_team} <small>VS</small> {away_team} 
+            </h4>
+            { live && 
+                <Row className="header-text">
+                   <Col style={{color:"#cc5500", marginBottom:"5px"}}>{score}</Col>
+                </Row>
+            }
             <Row className="header-text">
                <Col>{category} {competition}</Col>
             </Row>
             <Row className="start-time">
-                 <Col>Start: {start_time }</Col>
+            { live 
+               ?  <Col>Live: <span style={{color:"#cc5500"}}>{ match_time }'</span></Col>
+               : <Col>Start: { start_time }</Col> }
+
                  <Col>Game ID: {game_id} </Col> 
             </Row>
           </Row>
@@ -68,14 +93,16 @@ const MoreMarketsHeaderRow = (props) => {
 }
 
 const SideBets = (props) => {
-    const {match} = props;
+    const {match, live} = props;
     const [picked, setPicked] = useState();
 
     return (
 
         <div className={`col-sm-1 events-odd pad ${picked}`} >
             <a className="side" 
-                href={`match/${match.match_id}`}>+{match.side_bets}
+                href={`match/${ live ? 'live/' : '' }${
+                    live ? match.parent_match_id : match?.match_id}`
+                }>+{match.side_bets}
             </a>
         </div>
     )
@@ -83,7 +110,7 @@ const SideBets = (props) => {
 }
 
 const OddButton = (props) => {
-    const {match, mkt, detail} = props
+    const {match, mkt, detail, live} = props
     const [ucn, setUcn] = useState('');
     const [picked, setPicked] = useState('');
     const [oddValue, setOddValue] = useState(null);
@@ -91,7 +118,7 @@ const OddButton = (props) => {
     const ref = useRef();
     let reference = match.match_id + "_selected";
 
-    useEffect(() => {
+    useMemo(() => {
         let betslip = state?.betslip;
         let uc = clean(
             match.match_id 
@@ -104,7 +131,7 @@ const OddButton = (props) => {
         }
     }, [state?.betslip])
 
-    useEffect(() => {
+    useMemo(() => {
         if(match){
             let uc = clean(
                 match.match_id 
@@ -124,7 +151,7 @@ const OddButton = (props) => {
         }
     }, []);
 
-    useEffect(() => {
+    useMemo(() => {
         if(state?.[reference] ){
             if(state?.[reference].startsWith('remove.')){
                 setPicked('');
@@ -169,7 +196,6 @@ const OddButton = (props) => {
            "ucn":cstm,
        }
        
-       console.log("Handling on click", cstm, ucn);
        if(cstm == ucn) {
            let betslip;
            if(picked == 'picked') {
@@ -177,7 +203,6 @@ const OddButton = (props) => {
                 setPicked('');
            } else {
                betslip = addToSlip(slip);
-               console.log("on add bet", reference, cstm);
                dispatch({type:"SET", key:reference, payload:cstm});
            }
            dispatch({type:"SET", key:"betslip", payload:betslip});
@@ -190,7 +215,7 @@ const OddButton = (props) => {
             className={`home-team ${match.match_id} ${ucn} ${picked}`}
             home_team={match.home_team}
             odd_type={match?.name||"1x2"} 
-            bet_type='prematch'
+            bet_type={live ? 'live': 'prematch' }
             away_team={match.away_team}
             odd_value={oddValue}
             odd_key={match?.[mkt] || match?.odd_key || 'draw'}
@@ -200,7 +225,14 @@ const OddButton = (props) => {
             sub_type_id={match.sub_type_id}
             special_bet_value={match?.special_bet_value || ''}
             onClick={handleButtonOnClick} >
-                { !detail && (<span className="theodds">{oddValue}</span>)}
+                { !detail && 
+                    (
+                        <span className="theodds">
+                            <i className="caret fas fa-caret-down"></i>
+                            {oddValue}
+                        </span>
+                    )
+                }
                 { detail && 
                     (<>
                       <span 
@@ -218,7 +250,7 @@ const OddButton = (props) => {
 
 
 const MarketRow = (props) => {
-  const { markets, match, market_id, width} = props;
+  const { markets, match, market_id, width, live} = props;
   
 
   const ucn = clean(
@@ -228,19 +260,21 @@ const MarketRow = (props) => {
         );
 
  const MktOddsButton = (props) => {
-    const { match, mktodds} = props;
+    const { match, mktodds, live} = props;
     let fullmatch = {...match, ...mktodds};
-    return <OddButton match={fullmatch} detail mkt={"detail"}/>
+    return <OddButton match={fullmatch} detail mkt={"detail"} live={live}/>
  }
 
   return (
         <div className="top-matches match">
-          <Row className="top-matches header">{market_id}</Row>
+          <Row className="top-matches header">
+              { live && <div style={{width:"2px", marginTop:"-5px", marginRight:"5px", opacity:0.6}}><ColoredCircle color="#cc5500" /> </div> } {market_id} 
+          </Row>
           
           { markets && markets.map((mkt_odds) =>{
             return (<>
                   <Col className="match-detail" style={{width:width, float:"left"}}>
-                      <MktOddsButton  match={match} mktodds={mkt_odds}/>
+                      <MktOddsButton  match={match} mktodds={mkt_odds} live={live}/>
                   </Col>
               </>)
           }) 
@@ -249,46 +283,58 @@ const MarketRow = (props) => {
     )
 }
 
+const ColoredCircle = ({ color }) => {
+  const styles = { backgroundColor: color };
+  return color ? (
+          <>
+            <span className="colored-circle" style={styles} />
+          </>
+        ) : null;
+};
+
 const MatchRow = (props) => {
     const [betslip, setBetslip] = useState([]);
-    const {match, jackpot} = props;
-    
-
-    useEffect(() => {
-       console.log("Jackpot matche reading", match); 
-    }, []);
+    const {match, jackpot, live} = props;
 
     return (
         <Row className="top-matches">
-            <div className="col-sm-1 pad left-text">{match.start_time}</div>
+            <div className="col-sm-1 pad left-text">
+                { live && <> <small style={{color:"green"}} > {match?.match_status} </small><br/></> }
+                {match?.match_time && <>{`${match.match_time}'`}</> || match?.start_time}
+            </div>
             <div className="col-sm-7">
                 <div className="compt-detail"> {match.category} | {match.competition_name}</div>
-                <div className="compt-teams">{match.home_team}
-                    <span className="opacity-reduce-txt vs-styling">vs</span>
+                <div className="compt-teams">
+				    { live && (match?.match_status !== 'ended') && <ColoredCircle color="red" /> }
+				    {match.home_team} 
+                    <span className="opacity-reduce-txt vs-styling">
+                        { live && match?.score }
+                        { !live && 'VS'}
+                    </span>
                     {match.away_team}
                 </div>
             </div>
             <Row className={`${jackpot ? 'col-4' : 'col-3'} m-0 p-0`}>
                 <div className="col-sm-4 match-div-col" style={{padding:0}}>
                     { match?.odds?.home_odd 
-                        ?  <OddButton match={match}  mkt="home_team" /> 
+                        ?  <OddButton match={match}  mkt="home_team" live={live}/> 
                         :  <EmptyTextRow /> 
                     }
                 </div>
                 <div className="col-sm-4 events-odd match-div-col" style={{padding:0}}>
                     { match?.odds?.neutral_odd 
-                        ?  <OddButton match={match}  mkt="draw" /> 
+                        ?  <OddButton match={match}  mkt="draw" live={live}/> 
                         :  <EmptyTextRow /> 
                     }
                 </div>
                 <div className="col-sm-4 match-div-col" style={{padding:0}}>
                     { match?.odds?.away_odd 
-                        ?  <OddButton match={match}  mkt="away_team" /> 
+                        ?  <OddButton match={match}  mkt="away_team" live={live}/> 
                         :  <EmptyTextRow /> 
                     }
                 </div>
             </Row>
-            { !jackpot && <SideBets  match={match} style={{d:"inline"}}/> }
+            { !jackpot && (match?.side_bets > 1 ) && <SideBets  match={match} live={live} style={{d:"inline"}}/> }
         </Row>
     )
 
@@ -298,6 +344,7 @@ export const MarketList = (props) => {
 
     const [state, dispatch] = useContext(Context);                              
     const [matchWithMarkets, setMatchWithMarkets] = useState();
+    const { live }  = props;
     useEffect(()=>{
         if(state?.matchwithmarkets) {
             setMatchWithMarkets(state.matchwithmarkets);
@@ -307,7 +354,11 @@ export const MarketList = (props) => {
     return (
         <div className="matches full-width">
 
-            <MoreMarketsHeaderRow {...matchWithMarkets?.data?.match}   />
+            <MoreMarketsHeaderRow 
+                {...matchWithMarkets?.data?.match}  
+                score={matchWithMarkets?.data?.match?.score}
+                live={live} 
+            />
 
             <Container className="web-element">
                 { matchWithMarkets?.data && 
@@ -317,7 +368,9 @@ export const MarketList = (props) => {
                             markets={markets} 
                             width={markets.length === 3 ? "33.333%" : "50%"}
                             match={matchWithMarkets?.data?.match}
-                            key={mkt_id}/>
+                            key={mkt_id}
+                            live={live}
+                            />
                     })
                 }
                { !matchWithMarkets && [...Array(10).keys()].map((index, n) => (
@@ -387,6 +440,7 @@ export const JackpotHeader = (props) => {
    )
 
 }
+
 export const JackpotMatchList = (props) => {
     const [state, dispatch] = useContext(Context);                              
     const [matches, setMatches] = useState();
@@ -443,6 +497,7 @@ export const JackpotMatchList = (props) => {
 const MatchList = (props) => {
     const [state, dispatch] = useContext(Context);                              
     const [matches, setMatches] = useState();
+    const { live} = props;
     useEffect(()=>{
         if(state?.matches) {
             setMatches(state.matches);
@@ -452,11 +507,11 @@ const MatchList = (props) => {
     return (
         <div className="matches full-width">
 
-            <MatchHeaderRow  />
+            <MatchHeaderRow  live={live} />
 
             <Container className="web-element">
                 { matches && Object.entries(matches).map(([key, match]) => (
-                        <MatchRow match={match}  key={key}/>
+                        <MatchRow match={match}  key={key} live={live} />
                    ))
                 }
                { !matches && [...Array(10).keys()].map((index, n) => (

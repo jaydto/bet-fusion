@@ -55,7 +55,7 @@ const Index = (props) => {
                         <div className="homepage">
                             <CarouselLoader/>
                             <MainTabs tab={location.pathname.replace("/", "")}/>
-                            <MatchList/>
+                            <MatchList live={false}/>
                         </div>
                     </div>
                     <Right/>

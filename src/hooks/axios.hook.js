@@ -19,18 +19,15 @@ const useAxios = () => {
         if(token){
             headers = { ...headers, ...{Authorization : "Bearer " + token}}
         }
-        console.log("Axios call url", url);
         try {
             const res = await axios({method:method, url:url, data:data, headers:headers});
             setResponse({'data':res.data.data, 'status':res.status, 'errors':null});
-            console.log("server ok response", res.data);
             let status = res?.status,
                 result = res?.data,
                 errors = false;
             return {status, result};
         } catch(err){
             setResponse({'errors':err.response?.data, 'status':err.response?.status, 'data':null});
-            console.log("server error response", err.response);
             let status = err.response?.status,
                 result = err.response?.data,
                 meta = null,

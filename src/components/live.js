@@ -1,54 +1,48 @@
-import React,  { useContext, useEffect, useLayoutEffect, useState } from "react";
-import { useParams } from 'react-router-dom';
+import React,  { useContext, useLayoutEffect, useState } from "react";
+import { useLocation } from 'react-router-dom';
 
 import Header from './header/header';
 import Footer from './footer/footer';
 import SideBar from './sidebar/sidebar';
 import banner from '../assets/img/banner.jpg';
 import CarouselLoader from './carousel/index';
-import MainTabs from './header/main-tabs';
 import SearchBar from './header/search-bar';
-import { MarketList } from './matches/index';
+import MatchList from './matches/index';
 import Right from './right/index';
+
+import { getJackpotBetslip } from './utils/betslip' ;
 
 import useAxios from "../hooks/axios.hook";
 import useInterval from "../hooks/set-interval.hook";
 import { Context }  from '../context/store';
 
-const MatchAllMarkets = (props) => {
+const Live = (props) => {
     const [page, setPage] = useState(1);
-    const { live } = props;
     const [state, dispatch] = useContext(Context);                              
-    const {response, makeRequest} = useAxios();
-    const params = useParams();
-
+    const {response, makeRequest} = useAxios()
+    const location = useLocation();
 	useInterval(() => {
-		let endpoint = live 
-			? "/v1/matches/live?id="+params.id
-			: "/v1/matches?id="+params.id;
-
+        let endpoint = "/v1/matches/live";     
 		makeRequest({url:endpoint, method:"get", data:null }).then((response) => {
 			let {status, result} = response;                      
-			dispatch({type:"SET", key:"matchwithmarkets", payload:result});
+            dispatch({type:"SET", key:"matches", payload:result});
 		});                                                                     
-    }, (live ? 2000: null));
+    }, 2000);
 
     useLayoutEffect(()=>{                                                             
         const abortController = new AbortController();                          
-        if(!isNaN(+params.id)) {
-            let endpoint = live 
-                ? "/v1/matches/live?id="+params.id
-                : "/v1/matches?id="+params.id;
-                                                                                    
-            makeRequest({url:endpoint, method:"get", data:null }).then((response) => {
-                let {status, result} = response;                      
-                dispatch({type:"SET", key:"matchwithmarkets", payload:result});
-            });                                                                     
-        }
+        let endpoint = "/v1/matches/live";     
+                                                                                
+        makeRequest({url:endpoint, method:"get", data:null }).then((response) => {
+            let {status, result} = response;                      
+            dispatch({type:"SET", key:"matches", payload:result});
+        });                                                                     
+                                                                                
         return () => {                                                          
             abortController.abort();                                            
         };                                                                      
-    }, []);
+    }, [state?.page]);
+
 
    return (
        <>
@@ -58,7 +52,8 @@ const MatchAllMarkets = (props) => {
             <SideBar />
             <div className="gz home">
                 <div className="homepage">
-                    <MarketList live={live} />
+                    <CarouselLoader />
+                    <MatchList live />
                 </div> 
             </div>  
             <Right />
@@ -68,4 +63,4 @@ const MatchAllMarkets = (props) => {
    )
 }
 
-export default MatchAllMarkets;
+export default Live

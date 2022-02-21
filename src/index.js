@@ -19,6 +19,7 @@ import Index  from './components/index';
 import CompetitionsMatches  from './components/competition-matches';
 import MatchAllMarkets  from './components/all-markets';
 import Jackpot  from './components/jackpot';
+import Live  from './components/live';
 import HowToPlay from './components/pages/HowToPlay'
 import TermsAndConditions from './components/pages/terms-and-conditions/index'
 import CookiePolicy from './components/pages/cookie-policy/index'
@@ -26,7 +27,6 @@ import DisputeResolution from './components/pages/dispute-resolution/index'
 import ResponsibleGambling from './components/pages/responsible-gambling'
 import AntimoneyLaundering from './components/pages/anti-money-laundering'
 import PrivacyPolicy from './components/pages/privacy-policy/index'
-
 
 const container = document.getElementById("app");
 render((
@@ -39,7 +39,9 @@ render((
                <Route exact path = "/tomorrow" element = { <Index /> }  />
                <Route exact path = "/competition/:id" element = { <CompetitionsMatches /> }  />
                <Route exact path = "/match/:id" element = { <MatchAllMarkets /> }  />
+               <Route exact path = "/match/live/:id" element = { <MatchAllMarkets live /> }  />
                <Route exact path = "/jackpot" element = { <Jackpot /> }  />
+               <Route exact path = "/live" element = { <Live /> }  />
                <Route exact path="/privacy-policy" element={<PrivacyPolicy/>}/>
                <Route exact path="/anti-money-laundering" element={<AntimoneyLaundering/>}/>
                <Route exact path="/responsible-gambling" element={<ResponsibleGambling/>}/>

@@ -137,8 +137,6 @@ export const CategoryItem = (props) => {
 export const CompetitionItem = (props) => {
     const { competition, competition_id } = props;
     const [active, setActive] = useState('');
-    //console.log("This is the competiton", competition);
-    
     const {cmid} = useParams('cmid');
     const {spid} = useParams('sp');
 
@@ -161,7 +159,6 @@ const AllSportCompetitions = (props) => {
     const [state, dispatch] = useContext(Context);                              
     const [categories, setCategories] = useState(null);
     useEffect(() => {
-        console.log("all sport competitions reading categories", state?.categories?.all_sports);
         if(state?.categories) {
             setCategories(state.categories)
         }

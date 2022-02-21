@@ -1,7 +1,7 @@
 import React,{ useState, useEffect, useContext} from 'react';
 import BetslipSubmitForm from './betslip-submit-form';
 import { Context }  from '../../context/store';
-import { removeFromSlip }  from '../utils/betslip';
+import { removeFromSlip, getBetslip, removeFromJackpotSlip}  from '../utils/betslip';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 
 const clean_rep = (_str) => {
@@ -13,20 +13,28 @@ const BetSlip = (props) => {
     const {betslip, setBetSlip} = useState();
     const [bonusAmout, setBonusAmount] = useState(0);
     const [state, dispatch] = useContext(Context);                              
+    const {jackpot } = props;
+
+    const betslip_key =  jackpot === true ? "jackpotbetslip" : "betslip";
+    console.log("betslip_key", betslip_key);
 
     const [totalOdds, setTotalOdds] = useState(1);
     useEffect(() => {
-        if(state?.betslip){
+        if(state?.[betslip_key]){
             let odds = 1;
-            Object.entries(state.betslip).map(([match_id, slip]) => {
+            Object.entries(state[betslip_key]).map(([match_id, slip]) => {
                 odds = Math.round(odds*slip.odd_value, 2);
             });
             setTotalOdds(odds);
         }
-    }, [state?.betslip]);
+    }, [state?.[betslip_key]]);
 
     const handledRemoveSlip = (match) => {
-       let betslip = removeFromSlip(match.match_id); 
+       console.log("jp", jackpot)
+       let betslip = jackpot !== true 
+            ? removeFromSlip(match.match_id)
+            : removeFromJackpotSlip(match.match_id);
+
        let match_selector = match.match_id + "_selected";
        let ucn = clean_rep(                                                         
                        match.match_id                                                      
@@ -34,15 +42,16 @@ const BetSlip = (props) => {
                        + (match.bet_pick)                                          
                    );   
        
-       dispatch({type:"SET", key:"betslip", payload:betslip});
+       dispatch({type:"SET", key:betslip_key, payload:betslip});
        dispatch({type:"SET", key:match_selector, payload:"remove."+ucn});
     }
+
     return (
         <div className="bet-body">
 
           <PerfectScrollbar style={{ maxHeight: "60vh" }}> 
            <ul>
-            { state?.betslip && Object.entries(state.betslip).map(([match_id, slip]) => {
+            { state?.[betslip_key] && Object.entries(state[betslip_key]).map(([match_id, slip]) => {
                 let odd = slip.odd_value;
                 let no_odd_bg = odd == 1 ? '#f29f7a' : '';
 
@@ -56,7 +65,7 @@ const BetSlip = (props) => {
                         <div className="bet-value">{`${slip.home_team} v ${slip.away_team}`}
                             <br /><span className="sp_sport" ></span>
                         </div>
-                        <div className="clearfix row">{!slip?.live && <>LIVE: </>} {slip.bet_type}</div>
+                        <div className="clearfix row">{!slip?.live && <span style={{float:"left", width:"auto",marginLeft:"-7px",fontWeight:"bold"}}>Live: </span>} {slip.bet_type}</div>
                         <div className="bet-pick" >Pick : {slip.bet_pick}
                             <span className="bet-odd">{slip.odd_value}
                                { slip.odd_value == 1 &&

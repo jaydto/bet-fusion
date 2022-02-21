@@ -1,4 +1,4 @@
-import React,  { useContext, useLayoutEffect, useState } from "react";
+import React,  { useContext, useLayoutEffect, useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom';
 
 import Header from './header/header';
@@ -10,7 +10,7 @@ import SearchBar from './header/search-bar';
 import MatchList from './matches/index';
 import Right from './right/index';
 
-import { getJackpotBetslip } from './utils/betslip' ;
+import { getJackpotBetslip, getBetslip } from './utils/betslip' ;
 
 import useAxios from "../hooks/axios.hook";
 import useInterval from "../hooks/set-interval.hook";
@@ -28,6 +28,13 @@ const Live = (props) => {
             dispatch({type:"SET", key:"matches", payload:result});
 		});                                                                     
     }, 2000);
+
+    useEffect(() => {
+        let betslip = getBetslip();
+        if (betslip) {
+            dispatch({type: "SET", key: "betslip", payload: betslip});
+        }
+    }, []);
 
     useLayoutEffect(()=>{                                                             
         const abortController = new AbortController();                          

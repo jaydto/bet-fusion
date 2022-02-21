@@ -56,7 +56,7 @@ const Jackpot = (props) => {
                     <JackpotMatchList />
                 </div> 
             </div>  
-            <Right />
+            <Right jackpot={true} />
           </div>
         </div>
        </>

@@ -10,6 +10,8 @@ import {
     addToSlip, 
     removeFromSlip, 
     clearSlip,
+    removeFromJackpotSlip,
+    addToJackpotSlip,
 } from '../utils/betslip';
 
 import 'react-loading-skeleton/dist/skeleton.css';
@@ -21,11 +23,13 @@ const clean = (_str) => {
     return _str.replace(/-+/g, '-');
 }
 
-const EmptyTextRow = () =>{
+const EmptyTextRow = (props) =>{
+    const { odd_key } = props;
     return (
-        <div className="btn btn-disabled draw" 
-         style={{width:"100%", height:"30px", padding:"2px"}}>
-         <span className="label label-inverse">
+        <div className="btn btn-disabled " 
+         style={{width:"100%", height:"30px", height:"30px", padding:"2px"}}>
+         { odd_key && <span className="et label btn-disabled ">{odd_key}</span>}
+         <span className="label label-inverse odd-value">
              <img style={{opacity:"0.3", width:"15px"}} src={padlock} alt="--" />
          </span>
         </div>
@@ -110,16 +114,17 @@ const SideBets = (props) => {
 }
 
 const OddButton = (props) => {
-    const {match, mkt, detail, live} = props
+    const {match, mkt, detail, live, jackpot} = props
     const [ucn, setUcn] = useState('');
     const [picked, setPicked] = useState('');
     const [oddValue, setOddValue] = useState(null);
     const [state, dispatch] = useContext(Context);                              
     const ref = useRef();
     let reference = match.match_id + "_selected";
+    const betslip_key =  jackpot === true ? "jackpotbetslip" : "betslip";
 
     useMemo(() => {
-        let betslip = state?.betslip;
+        let betslip = state?.[betslip_key];
         let uc = clean(
             match.match_id 
             + "" + match.sub_type_id 
@@ -129,7 +134,7 @@ const OddButton = (props) => {
             && uc === betslip?.[match.match_id]?.ucn){
             setPicked('picked');
         }
-    }, [state?.betslip])
+    }, [state?.[betslip_key]])
 
     useMemo(() => {
         if(match){
@@ -199,13 +204,19 @@ const OddButton = (props) => {
        if(cstm == ucn) {
            let betslip;
            if(picked == 'picked') {
-                betslip = removeFromSlip(mid);
+                betslip = jackpot !== true 
+                   ? removeFromSlip(mid)
+                   : removeFromJackpotSlip(mid);
+
                 setPicked('');
            } else {
-               betslip = addToSlip(slip);
+               betslip = jackpot !== true 
+                   ? addToSlip(slip)
+                   : addToJackpotSlip(slip);
+
                dispatch({type:"SET", key:reference, payload:cstm});
            }
-           dispatch({type:"SET", key:"betslip", payload:betslip});
+           dispatch({type:"SET", key:betslip_key, payload:betslip});
        }
     }
 
@@ -214,7 +225,7 @@ const OddButton = (props) => {
             ref={ref}
             className={`home-team ${match.match_id} ${ucn} ${picked}`}
             home_team={match.home_team}
-            odd_type={match?.name||"1x2"} 
+            odd_type={match?.name || match?.market_name || "1X2"} 
             bet_type={live ? 'live': 'prematch' }
             away_team={match.away_team}
             odd_value={oddValue}
@@ -250,22 +261,24 @@ const OddButton = (props) => {
 
 
 const MarketRow = (props) => {
-  const { markets, match, market_id, width, live} = props;
+    const { markets, match, market_id, width, live} = props;
   
 
-  const ucn = clean(
+    const ucn = clean(
             match.match_id 
             + "" + match.sub_type_id 
-            + (match.display) 
+            + (match.odd_key) 
         );
 
- const MktOddsButton = (props) => {
-    const { match, mktodds, live} = props;
-    let fullmatch = {...match, ...mktodds};
-    return <OddButton match={fullmatch} detail mkt={"detail"} live={live}/>
- }
+    const MktOddsButton = (props) => {
+        const { match, mktodds, live} = props;
+        let fullmatch = {...match, ...mktodds};
+        return fullmatch?.odd_value !== 'NaN'
+             ? <OddButton match={fullmatch} detail mkt={"detail"} live={live}/>
+             :  <EmptyTextRow odd_key={fullmatch?.odd_key}/> ; 
+    }
 
-  return (
+    return (
         <div className="top-matches match">
           <Row className="top-matches header">
               { live && <div style={{width:"2px", marginTop:"-5px", marginRight:"5px", opacity:0.6}}><ColoredCircle color="#cc5500" /> </div> } {market_id} 
@@ -295,7 +308,6 @@ const ColoredCircle = ({ color }) => {
 const MatchRow = (props) => {
     const [betslip, setBetslip] = useState([]);
     const {match, jackpot, live} = props;
-
     return (
         <Row className="top-matches">
             <div className="col-sm-1 pad left-text">
@@ -316,21 +328,21 @@ const MatchRow = (props) => {
             </div>
             <Row className={`${jackpot ? 'col-4' : 'col-3'} m-0 p-0`}>
                 <div className="col-sm-4 match-div-col" style={{padding:0}}>
-                    { match?.odds?.home_odd 
-                        ?  <OddButton match={match}  mkt="home_team" live={live}/> 
-                        :  <EmptyTextRow /> 
+                    { (match?.odds?.home_odd && match.odds.home_odd !== 'NaN')
+                        ?  <OddButton match={match}  mkt="home_team" live={live} jackpot = {jackpot} /> 
+                        :  <EmptyTextRow odd_key={match?.odd_key}/> 
                     }
                 </div>
                 <div className="col-sm-4 events-odd match-div-col" style={{padding:0}}>
-                    { match?.odds?.neutral_odd 
-                        ?  <OddButton match={match}  mkt="draw" live={live}/> 
-                        :  <EmptyTextRow /> 
+                    { (match?.odds?.neutral_odd && match.odds.neutral_odd !== 'NaN')
+                        ?  <OddButton match={match}  mkt="draw" live={live} jackpot={jackpot}/> 
+                        :  <EmptyTextRow odd_key={match?.odd_key}/> 
                     }
                 </div>
                 <div className="col-sm-4 match-div-col" style={{padding:0}}>
-                    { match?.odds?.away_odd 
-                        ?  <OddButton match={match}  mkt="away_team" live={live}/> 
-                        :  <EmptyTextRow /> 
+                    { (match?.odds?.away_odd && match.odds.away_odd !== 'NaN')
+                        ?  <OddButton match={match}  mkt="away_team" live={live} jackpot={jackpot}/> 
+                        :  <EmptyTextRow odd_key={match?.odd_key}/> 
                     }
                 </div>
             </Row>

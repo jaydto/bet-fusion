@@ -14,6 +14,7 @@ import Right from './right/index';
 import useAxios from "../hooks/axios.hook";
 import useInterval from "../hooks/set-interval.hook";
 import { Context }  from '../context/store';
+import { getBetslip } from './utils/betslip' ;
 
 const MatchAllMarkets = (props) => {
     const [page, setPage] = useState(1);
@@ -22,7 +23,7 @@ const MatchAllMarkets = (props) => {
     const {response, makeRequest} = useAxios();
     const params = useParams();
 
-	useInterval(() => {
+    useInterval(() => {
 		let endpoint = live 
 			? "/v1/matches/live?id="+params.id
 			: "/v1/matches?id="+params.id;
@@ -48,6 +49,14 @@ const MatchAllMarkets = (props) => {
         return () => {                                                          
             abortController.abort();                                            
         };                                                                      
+    }, []);
+
+
+    useEffect(() => {
+        let betslip = getBetslip();
+        if (betslip) {
+            dispatch({type: "SET", key: "betslip", payload: betslip});
+        }
     }, []);
 
    return (

@@ -36,7 +36,6 @@ export const getJackpotBetslip =  () =>{
 
 export const addToJackpotSlip = (slip) => {
     let current_slip = getFromLocalStorage('jackpotbetslip');
-    console.log("current slip", current_slip);
     if(current_slip){
         current_slip[slip.match_id] = slip;
     } else {

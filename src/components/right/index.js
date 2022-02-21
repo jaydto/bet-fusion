@@ -15,6 +15,7 @@ const AlertMessage = (props) => {
 }
 
 const Right = (props) => {
+    const { jackpot } = props;
 
     return (
         <div className="gn" id="right-generic">
@@ -31,7 +32,7 @@ const Right = (props) => {
                     <button id="slip-button-close" type="button" className="close mobi" aria-hidden="true">×</button>
                     <div id="betslip" className="betslip">
                         
-                        <BetSlip />
+                        <BetSlip jackpot={jackpot} />
                     </div>
                     <QuickLogin />
 

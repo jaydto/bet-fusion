@@ -65,7 +65,7 @@ const BetSlip = (props) => {
                         <div className="bet-value">{`${slip.home_team} v ${slip.away_team}`}
                             <br /><span className="sp_sport" ></span>
                         </div>
-                        <div className="clearfix row">{!slip?.live && <span style={{float:"left", width:"auto",marginLeft:"-7px",fontWeight:"bold"}}>Live: </span>} {slip.bet_type}</div>
+                        <div className="clearfix row">{slip?.live && <span style={{float:"left", width:"auto",marginLeft:"-7px",fontWeight:"bold"}}>Live: </span>} {slip.bet_type}</div>
                         <div className="bet-pick" >Pick : {slip.bet_pick}
                             <span className="bet-odd">{slip.odd_value}
                                { slip.odd_value == 1 &&

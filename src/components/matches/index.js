@@ -198,6 +198,7 @@ const OddButton = (props) => {
            "home_team":home_team,
            "away_team":away_team,
            "bet_type":bet_type,
+           "live":live,
            "ucn":cstm,
        }
        

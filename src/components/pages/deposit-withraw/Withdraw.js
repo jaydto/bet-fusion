@@ -125,7 +125,8 @@ const Deposit = (props) => {
                                                 <hr/>
                                                 <label className='text-info'>Withdrawal Instructions</label>
                                                 <ul>
-                                                    <li>1. Enter the phone M-Pesa phone number to receive the funds.</li>
+                                                    <li>1. Enter the phone M-Pesa phone number to receive the funds.
+                                                    </li>
                                                     <li>2. Enter the amount you wish to withdraw.</li>
                                                     <li>3. Click on the withdraw funds button.</li>
                                                     <li>4. Check your phone for an M-Pesa Confirmation.</li>

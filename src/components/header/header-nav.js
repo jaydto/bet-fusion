@@ -29,6 +29,9 @@ const HeaderNav = (props) => {
                 <li>
                      <a className="url-link" href="/deposit" title="Deposit"> Deposit</a>
                 </li>
+                <li>
+                     <a className="url-link" href="/withdraw" title="Withdraw"> Withdraw</a>
+                </li>
                 { props?.user && 
                     (<li>
                         <a className="url-link" href="/mybets" title="My bets">My Bets</a>

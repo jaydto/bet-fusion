@@ -13372,3 +13372,26 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 .deposit-input{
     border: 2px solid gray;
 }
+
+.input-field{
+    height: 40px;
+    line-height: 40px;
+    border: none;
+}
+
+.deposit-withdraw-button{
+    height: 40px;
+    line-height: 20px;
+    border: none;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+.input-square{
+    border-radius: 0 !important;
+}
+
+.deposit-funds-icon{
+    height: 60px;
+    width: 250px !important;
+    max-width: unset !important;
+}

@@ -65,38 +65,51 @@ const Deposit = (props) => {
                                         <div className="pt-0">
                                             <div className="row">
                                                 <div className="col-md-12">
-                                                    <div className='col-md-2'>
-                                                        <img src={mpesa} alt=""/>
+                                                    <div className='col-md-6 text-center'>
+                                                        <img src={mpesa} alt="" className='deposit-funds-icon'/>
                                                     </div>
                                                     <hr/>
-                                                    <div>
-                                                        <label>Enter amount to deposit:</label>
+                                                    <div className="form-group row d-flex justify-content-center">
+                                                        <div className="col-md-6">
+                                                            <label>Enter amount to deposit:</label>
+                                                            <div className="d-flex flex-row">
+                                                                <input
+                                                                    onChange={formik.handleChange}
+                                                                    value={formik.values.amount}
+                                                                    onBlur={formik.handleBlur}
+                                                                    className="text-dark deposit-input input-field form-control input-square"
+                                                                    id="amount"
+                                                                    name="amount"
+                                                                    type="number"
+                                                                    placeholder='Enter Amount'
+                                                                />
+                                                                <button type="submit"
+                                                                        className='btn btn-primary btn-lg btn-square'>
+                                                                    DEPOSIT
+                                                                </button>
+                                                            </div>
+                                                            {formik.errors.amount ?
+                                                                <div
+                                                                    className='text-danger'>
+                                                                    {formik.touched.amount && formik.errors.amount}
+                                                                </div> : ''
+                                                            }
+                                                            <label className='text-info'>
+                                                                Minimum amount Ksh. 10.00, Maximum amount Ksh. 50,000.00
+                                                            </label>
+                                                        </div>
                                                     </div>
-                                                    <div className="d-flex flex-row">
-                                                        <input
-                                                            onChange={formik.handleChange}
-                                                            value={formik.values.amount}
-                                                            onBlur={formik.handleBlur}
-                                                            className="text-dark deposit-input"
-                                                            id="amount"
-                                                            name="amount"
-                                                            type="number"
-                                                            placeholder='Enter Amount'
-                                                        />
-                                                        <button type="submit"
-                                                                className='btn btn-primary btn-lg btn-square'>
-                                                            DEPOSIT
-                                                        </button>
-                                                    </div>
-                                                    {formik.errors.amount ?
-                                                        <div
-                                                            className='text-danger'>
-                                                            {formik.touched.amount && formik.errors.amount}
-                                                        </div> : ''
-                                                    }
-                                                    <label className='text-info'>
-                                                        Minimum amount Ksh. 10.00, Maximum amount Ksh. 50,000.00
-                                                    </label>
+                                                    <hr/>
+                                                    <label className='text-info'>Deposit Instructions</label>
+                                                    <ul>
+                                                        <li>1. Enter the amount you want to deposit.</li>
+                                                        <li>2. Click on the deposit button.</li>
+                                                        <li>3. Check your phone for an M-Pesa Request.</li>
+                                                        <li>4. Enter your M-Pesa Pin to confirm the transaction.</li>
+                                                        <li>5. On successful payment, you will receive an M-Pesa
+                                                            Confirmation.
+                                                        </li>
+                                                    </ul>
                                                 </div>
                                             </div>
                                         </div>

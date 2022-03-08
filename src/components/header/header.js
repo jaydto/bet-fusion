@@ -10,7 +10,6 @@ const HeaderLogin = React.lazy(()=>import('./top-login'));
 const HeaderNav = React.lazy(()=>import('./header-nav'));
 
 const Header = (props) => {
-
     return (
        <Container className="shrink-header" id="shrink-header">
             <Row className="ck pc os app-navbar top-nav">

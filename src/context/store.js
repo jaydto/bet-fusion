@@ -3,7 +3,8 @@ import Reducer from './reducer'
 
 
 const initialState = {
-    error: null
+    error: null,
+    user:localStorage.getItem('auth_token')
 };
 
 const Store = ({children}) => {

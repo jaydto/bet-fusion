@@ -66,8 +66,8 @@ const Deposit = (props) => {
     }, []);
 
     const initialValues = {
-        amount: '',
-        msisdn: ''
+        amount: "",
+        msisdn: ""
     }
 
     const onSubmit = values => {

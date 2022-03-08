@@ -89,7 +89,7 @@ const Index = (props) => {
 
     return (
         <>
-            <Header/>
+            <Header user={state.user}/>
             <div className="by amt">
                 <div className="gc">
                     <SideBar competitions={competitions}/>

@@ -10,7 +10,8 @@ import mpesa from '../../../assets/img/mpesa-3.png'
 const Deposit = (props) => {
     //todo get the phone number from logged in user ....
     console.log("Props are ", props)
-
+    const [competitions, setCompetitions] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
     const initialValues = {
         amount: '',
         phone_number: ''
@@ -52,7 +53,7 @@ const Deposit = (props) => {
             <Header/>
             <div className="by amt">
                 <div className="gc">
-                    <SideBar/>
+                    <SideBar competitions={competitions}/>
                     <div className="gz home">
                         <div className="homepage">
                             <div className='col-md-12 primary-bg p-4 text-center'>

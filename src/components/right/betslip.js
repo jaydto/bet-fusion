@@ -1,4 +1,4 @@
-import React,{ useState, useEffect, useContext} from 'react';
+import React,{ useState, useEffect, useContext, useCallback} from 'react';
 import BetslipSubmitForm from './betslip-submit-form';
 import { Context }  from '../../context/store';
 import { removeFromSlip, getBetslip, removeFromJackpotSlip}  from '../utils/betslip';
@@ -14,20 +14,30 @@ const BetSlip = (props) => {
     const [bonusAmout, setBonusAmount] = useState(0);
     const [state, dispatch] = useContext(Context);                              
     const {jackpot } = props;
-
-    const betslip_key =  jackpot === true ? "jackpotbetslip" : "betslip";
-    console.log("betslip_key", betslip_key);
+    const [betslipKey, setBetslipKey] = useState("betslip");
 
     const [totalOdds, setTotalOdds] = useState(1);
-    useEffect(() => {
-        if(state?.[betslip_key]){
+
+    const updateBetslip = useCallback(()=> {
+       if(state?.[betslipKey]){
             let odds = 1;
-            Object.entries(state[betslip_key]).map(([match_id, slip]) => {
+            Object.entries(state[betslipKey]).map(([match_id, slip]) => {
                 odds = Math.round(odds*slip.odd_value, 2);
             });
             setTotalOdds(odds);
         }
-    }, [state?.[betslip_key]]);
+    }, []);
+
+    useEffect(() => {
+        console.log("Updating betslip key again");
+        if(jackpot == true ) {
+            setBetslipKey("jackpotbetslip");
+        }
+    }, [jackpot]);
+
+    useEffect(() => {
+        updateBetslip();
+    }, [updateBetslip]);
 
     const handledRemoveSlip = (match) => {
        console.log("jp", jackpot)
@@ -42,7 +52,7 @@ const BetSlip = (props) => {
                        + (match.bet_pick)                                          
                    );   
        
-       dispatch({type:"SET", key:betslip_key, payload:betslip});
+       dispatch({type:"SET", key:betslipKey, payload:betslip});
        dispatch({type:"SET", key:match_selector, payload:"remove."+ucn});
     }
 
@@ -51,7 +61,7 @@ const BetSlip = (props) => {
 
           <PerfectScrollbar style={{ maxHeight: "60vh" }}> 
            <ul>
-            { state?.[betslip_key] && Object.entries(state[betslip_key]).map(([match_id, slip]) => {
+            { state?.[betslipKey] && Object.entries(state[betslipKey]).map(([match_id, slip]) => {
                 let odd = slip.odd_value;
                 let no_odd_bg = odd == 1 ? '#f29f7a' : '';
 

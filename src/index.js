@@ -52,6 +52,9 @@ const Deposit = React.lazy(
     () => import('./components/pages/deposit-withraw/Deposit')
 );
 
+const Signup = React.lazy(
+    () => import('./components/pages/signup')
+);
 const container = document.getElementById("app");
 render((
     <Store>
@@ -76,6 +79,7 @@ render((
                <Route exact path="/how-to-play" element={<HowToPlay/>}/>
                <Route exact path="/deposit" element={<Deposit/>}/>
                <Route exact path="/withdraw" element={<Withdraw/>}/>
+               <Route exact path="/signup" element={<Signup />}/>
             </Routes>
            </Suspense>
         </BrowserRouter>

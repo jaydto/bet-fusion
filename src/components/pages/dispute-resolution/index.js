@@ -18,7 +18,7 @@ const DisputeResolution = () => {
             <Header/>
             <div className="by amt">
                 <div className="gc">
-                    <SideBar/>
+                    <SideBar loadCompetitions />
                     <div className="gz home">
                         <div className="homepage">
                             <div className='col-md-12 primary-bg p-4 text-center'>

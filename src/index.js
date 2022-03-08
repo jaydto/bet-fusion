@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from "react";
+import React, {useContext, useEffect, Suspense} from "react";
 
 import {render} from "react-dom";
 
@@ -15,25 +15,48 @@ import './assets/css/tolkits.css';
 import './assets/css/sidebar-menu.css';
 import './index.css';
 import Store, { Context }  from './context/store';
-import Index  from './components/index';
-import CompetitionsMatches  from './components/competition-matches';
-import MatchAllMarkets  from './components/all-markets';
-import Jackpot  from './components/jackpot';
-import Live  from './components/live';
-import HowToPlay from './components/pages/HowToPlay'
-import TermsAndConditions from './components/pages/terms-and-conditions/index'
-import CookiePolicy from './components/pages/cookie-policy/index'
-import DisputeResolution from './components/pages/dispute-resolution/index'
-import ResponsibleGambling from './components/pages/responsible-gambling'
-import AntimoneyLaundering from './components/pages/anti-money-laundering'
-import PrivacyPolicy from './components/pages/privacy-policy/index'
-import Withdraw from './components/pages/deposit-withraw/Withdraw'
-import Deposit from './components/pages/deposit-withraw/Deposit'
+const Index = React.lazy(()=>import('./components/index'));
+const CompetitionsMatches = React.lazy(
+    () => import('./components/competition-matches')
+);
+const MatchAllMarkets = React.lazy(()=>import('./components/all-markets'));
+const Jackpot = React.lazy(()=>import('./components/jackpot'));
+const Live = React.lazy(
+    ()=>import('./components/live')
+);
+const HowToPlay = React.lazy(
+    () => import('./components/pages/HowToPlay')
+);
+const TermsAndConditions = React.lazy(
+    () => import('./components/pages/terms-and-conditions/index')
+);
+const CookiePolicy = React.lazy(
+    () => import('./components/pages/cookie-policy/index')
+);
+const DisputeResolution = React.lazy(
+    () => import('./components/pages/dispute-resolution/index')
+);
+const ResponsibleGambling = React.lazy(
+    () => import('./components/pages/responsible-gambling')
+);
+const AntimoneyLaundering = React.lazy(
+    () => import('./components/pages/anti-money-laundering')
+);
+const PrivacyPolicy = React.lazy(
+    () => import('./components/pages/privacy-policy/index')
+);
+const Withdraw = React.lazy(
+    () => import('./components/pages/deposit-withraw/Withdraw'))
+;
+const Deposit = React.lazy(
+    () => import('./components/pages/deposit-withraw/Deposit')
+);
 
 const container = document.getElementById("app");
 render((
     <Store>
         <BrowserRouter>
+            <Suspense fallback={<p>Loading</p>}>
             <Routes>
                <Route exact path = "/" element = { <Index /> }  />
                <Route exact path = "/highlights" element = { <Index /> }  />
@@ -54,6 +77,7 @@ render((
                <Route exact path="/deposit" element={<Deposit/>}/>
                <Route exact path="/withdraw" element={<Withdraw/>}/>
             </Routes>
+           </Suspense>
         </BrowserRouter>
     </Store>
 ), container);

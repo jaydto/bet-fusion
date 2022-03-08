@@ -1,10 +1,11 @@
 import React from 'react';
-import logo from '../../assets/img/logo.png';
-import ProfileMenu from './profile-menu';
-import HeaderLogin from './top-login';
-import HeaderNav from './header-nav';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
+
+const logo = React.lazy(()=>import('../../assets/img/logo.png'));
+const ProfileMenu = React.lazy(()=>import('./profile-menu'));
+const HeaderLogin = React.lazy(()=>import('./top-login'));
+const HeaderNav = React.lazy(()=>import('./header-nav'));
 
 const Header = (props) => {
 

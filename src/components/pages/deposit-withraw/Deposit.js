@@ -1,30 +1,81 @@
-import React, {useState} from 'react';
-import Header from '../../header/header'
-import SideBar from '../../sidebar/sidebar'
-import Right from '../../right/index'
-import Footer from '../../footer/footer'
+import React, {useState, useCallback, useContext, useEffect} from 'react';
 import {useFormik, Formik, Field, Form} from 'formik';
-import useAxios from "../../../hooks/axios.hook";
+import makeRequest from "../../utils/fetch-request";
 import mpesa from '../../../assets/img/mpesa.png'
 
+import { 
+    getFromLocalStorage,
+    setLocalStorage
+} from '../../utils/local-storage';
+
+import banner from '../../../assets/img/banner.jpg';
+import { getBetslip } from '../../utils/betslip' ;
+import { Context }  from '../../../context/store';
+
+const Header = React.lazy(()=>import('../../header/header'));
+const Footer = React.lazy(()=>import('../../footer/footer'));
+const SideBar = React.lazy(()=>import('../../sidebar/sidebar'));
+const CarouselLoader = React.lazy(()=>import('../../carousel/index'));
+const SearchBar = React.lazy(()=>import('../../header/search-bar'));
+const Right = React.lazy(()=>import('../../right/index'));
+
+
 const Deposit = (props) => {
-    //todo get the phone number from logged in user ....
+    
+    const [state, dispatch] = useContext(Context);                              
+    const [competitions, setCompetitions] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
 
-    const {response, makeRequest} = useAxios()
+    const fetchData = useCallback(async() => {
+        let cached_categories = getFromLocalStorage('categories');
+        let endpoint = "/v1/categories";     
+        
+        if(!cached_categories) {
+            console.log("Fetching data from API");
+            const [competition_result] =  await Promise.all([
+                makeRequest({url:endpoint, method:"get", data:null }),
+            ]);
+            let [c_status, c_result] = competition_result
 
-    console.log("Props are ", props)
+            if(c_status == 200){
+                setCompetitions(c_result);
+            }
+            setLocalStorage('categories', c_result);
+        } else {
+            console.log("Fetching data from cached localstorage");
+            setCompetitions(cached_categories);
+        }
+
+    }, []);
+
+    useEffect(() => {
+
+       const abortController = new AbortController();                          
+       fetchData();
+
+       return () => {                                                          
+            abortController.abort();                                            
+        };                                                                      
+    }, [fetchData]);
+
+    useEffect(() => {
+        let betslip = getBetslip();
+        if (betslip) {
+            dispatch({type: "SET", key: "betslip", payload: betslip});
+        }
+    }, []);
 
     const initialValues = {
         amount: '',
-        msisdn: '254726738394'
+        msisdn: ''
     }
 
     const onSubmit = values => {
         console.log("Form Data : ", values)
         // call api here to initiate STK Push to logged in user...
         let endpoint = '/stk/depost'
-        makeRequest({url: endpoint, method: 'POST', data: values}).then((response) => {
-            console.log(response)
+        makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
+            console.log("Status", status, "response", response);
         })
     }
 
@@ -51,7 +102,7 @@ const Deposit = (props) => {
             <Header/>
             <div className="by amt">
                 <div className="gc">
-                    <SideBar/>
+                    <SideBar competitions={competitions}/>
                     <div className="gz home">
                         <div className="homepage">
                             <div className='col-md-12 primary-bg p-4 text-center'>

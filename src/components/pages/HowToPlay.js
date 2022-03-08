@@ -1,15 +1,7 @@
-import React from "react";
+import React, {useCallback, useEffect, useState, useContext} from "react";
 
-import Header from '../header/header';
-import Footer from '../footer/footer';
-import SideBar from '../sidebar/sidebar';
-import banner from '../../assets/img/banner.jpg';
-import CarouselLoader from '../carousel/index';
-import MainTabs from '../header/main-tabs';
-import SearchBar from '../header/search-bar';
-import {MarketList} from '../matches/index';
-import Right from '../right/index';
 import Row from 'react-bootstrap/Row';
+
 import {
     Accordion,
     AccordionItem,
@@ -19,13 +11,75 @@ import {
 } from 'react-accessible-accordion';
 import 'react-accessible-accordion/dist/fancy-example.css';
 
+import makeRequest from "../utils/fetch-request";
+import { 
+    getFromLocalStorage,
+    setLocalStorage
+} from '../utils/local-storage';
+
+import banner from '../../assets/img/banner.jpg';
+import { getBetslip } from '../utils/betslip' ;
+import { Context }  from '../../context/store';
+
+const Header = React.lazy(()=>import('../header/header'));
+const Footer = React.lazy(()=>import('../footer/footer'));
+const SideBar = React.lazy(()=>import('../sidebar/sidebar'));
+const CarouselLoader = React.lazy(()=>import('../carousel/index'));
+const MainTabs = React.lazy(()=>import('../header/main-tabs'));
+const SearchBar = React.lazy(()=>import('../header/search-bar'));
+const Right = React.lazy(()=>import('../right/index'));
+
+
 const HowToPlay = (props) => {
+    
+    const [state, dispatch] = useContext(Context);                              
+    const [competitions, setCompetitions] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
+
+    const fetchData = useCallback(async() => {
+        let cached_categories = getFromLocalStorage('categories');
+        let endpoint = "/v1/categories";     
+        
+        if(!cached_categories) {
+            console.log("Fetching data from API");
+            const [competition_result] =  await Promise.all([
+                makeRequest({url:endpoint, method:"get", data:null }),
+            ]);
+            let [c_status, c_result] = competition_result
+
+            if(c_status == 200){
+                setCompetitions(c_result);
+            }
+            setLocalStorage('categories', c_result);
+        } else {
+            console.log("Fetching data from cached localstorage");
+            setCompetitions(cached_categories);
+        }
+
+    }, []);
+
+    useEffect(() => {
+
+       const abortController = new AbortController();                          
+       fetchData();
+
+       return () => {                                                          
+            abortController.abort();                                            
+        };                                                                      
+    }, [fetchData]);
+
+    useEffect(() => {
+        let betslip = getBetslip();
+        if (betslip) {
+            dispatch({type: "SET", key: "betslip", payload: betslip});
+        }
+    }, []);
     return (
         <>
             <Header/>
             <div className="by amt">
                 <div className="gc">
-                    <SideBar/>
+                    <SideBar competitions={competitions}/>
                     <div className="gz home">
                         <div className="homepage">
                             <div className='col-md-12 primary-bg p-4 text-center'>

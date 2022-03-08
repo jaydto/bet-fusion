@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext }from 'react';
-import useAxios from "../../hooks/axios.hook";
 import { Context }  from '../../context/store';
 import { removeFromSlip, getBetslip }  from '../utils/betslip';
 

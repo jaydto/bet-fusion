@@ -3,10 +3,9 @@ import {
   useParams,
 } from "react-router-dom";
 import downArrow from '../../assets/img/down-arrow.svg';
-import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
-import useAxios from "../../hooks/axios.hook";
 import { Context }  from '../../context/store';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 
 export const SportItem = (props) => {
@@ -109,12 +108,15 @@ export const CategoryItem = (props) => {
     return (
         <li className={`treeview ${active}`} >
            <a href="#" onClick={handleMenuToggle}>
-                { category?.cat_flag && <img className="side-icon" 
-                                style={{display: imageLoaded ? 'inline':'none'}}
-                                src={require(`../../assets/img/flags-1-1/${category.cat_flag}.svg`)} 
-                                onLoad={onImageLoaded } />
+                { category?.cat_flag && 
+                    <LazyLoadImage 
+                         className="side-icon" 
+                        style={{display: imageLoaded ? 'inline':'none'}}
+                        src={require(`../../assets/img/flags-1-1/${category.cat_flag}.svg`)} 
+                        onLoad={onImageLoaded } 
+                        effect="blur"
+                    />
                 }
-                { !imageLoaded && category?.cat_flag &&  (<div className="react-loading-image"><Skeleton circle width={16} /></div>) }
                 <span className="topl"> {category.category_name} </span>
             </a>
             <ul className={`treeview-menu second-child ${activeClass}`}>
@@ -158,17 +160,13 @@ const AllSportCompetitions = (props) => {
 
     const [state, dispatch] = useContext(Context);                              
     const [categories, setCategories] = useState(null);
-    useEffect(() => {
-        if(state?.categories) {
-            setCategories(state.categories)
-        }
-    }, [state?.categories])
+    const { competitions } =  props;
+
 
     return (
         <ul className="sidebar-menu aoi nav base-bg">
             {
-                categories &&
-                    categories?.all_sports.map(
+               competitions.map(
                           sport => ( 
                                <SportItem 
                                   sport={sport} 
@@ -178,11 +176,7 @@ const AllSportCompetitions = (props) => {
                           
                       )
             }
-            { !categories &&  (< div className="react-loading">
-                       <Skeleton count={20} height={35} className="react-loading"></Skeleton>
-                    </div>
-                  )
-            }
+
         </ul>
     )
 }

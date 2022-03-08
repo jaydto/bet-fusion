@@ -1,3 +1,4 @@
+import React from "react";
 import {
     Accordion,
     AccordionItem,
@@ -6,11 +7,10 @@ import {
     AccordionItemPanel,
 } from 'react-accessible-accordion';
 import 'react-accessible-accordion/dist/fancy-example.css';
-import React from "react";
-import Header from '../../header/header'
-import SideBar from '../../sidebar/sidebar'
-import Footer from '../../footer/footer'
-import Right from '../../right/index'
+const Header = React.lazy(()=>import('../../header/header'));
+const SideBar = React.lazy(()=>import('../../sidebar/sidebar'));
+const Footer = React.lazy(()=>import('../../footer/footer'));
+const Right = React.lazy(()=>import('../../right/index'));
 
 const CookiePolicy = () => {
     return (
@@ -18,7 +18,7 @@ const CookiePolicy = () => {
             <Header/>
             <div className="by amt">
                 <div className="gc">
-                    <SideBar/>
+                    <SideBar  loadCompetitions/>
                     <div className="gz home">
                         <div className="homepage">
                             <div className='col-md-12 primary-bg p-4 text-center'>

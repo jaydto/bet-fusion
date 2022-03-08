@@ -1,6 +1,6 @@
 import React, { useEffect, useState,useContext } from 'react';
 import * as Yup from 'yup';
-import useAxios from "../../hooks/axios.hook";
+import makeRequest from "./fetch-request";
 import { Context }  from '../../context/store';
 import Select, { Option, ReactSelectProps } from 'react-select'
 import moment from 'moment'
@@ -158,8 +158,6 @@ export const SelectField = (props) => {
 
 export const DatabaeSelectField = (props) => {
     const { name, label, placeholder, options, model, model_display_col } = props;
-    const {response, makeRequest} = useAxios();
-
     let _props = {
         name: name,
         id:name,
@@ -185,7 +183,7 @@ export const DatabaeSelectField = (props) => {
        const abortController = new AbortController();
        let endpoint = "/"+model+"/get?"+query_params;
         
-        makeRequest({url:endpoint, method:"get", data:null }).then((response) => {
+        makeRequest({url:endpoint, method:"get", data:null }).then(([_status, response]) => {
             let {status, result, meta, errors} = response;
             if(status == 200){
                 setNewProps(props);

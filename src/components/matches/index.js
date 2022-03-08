@@ -1,11 +1,8 @@
 import React, {useState, useEffect, useMemo, useContext, useRef} from 'react';
-import padlock from '../../assets/img/padlock.png';
 import { Context }  from '../../context/store';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
-
-import Skeleton from 'react-loading-skeleton'
 import {
     addToSlip, 
     removeFromSlip, 
@@ -13,9 +10,11 @@ import {
     removeFromJackpotSlip,
     addToJackpotSlip,
 } from '../utils/betslip';
-
-import 'react-loading-skeleton/dist/skeleton.css';
 import CurrencyFormat from 'react-currency-format';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+
+import padlock from '../../assets/img/padlock.png';
 
 
 const clean = (_str) => {
@@ -30,7 +29,11 @@ const EmptyTextRow = (props) =>{
          style={{width:"100%", height:"30px", height:"30px", padding:"2px"}}>
          { odd_key && <span className="et label btn-disabled ">{odd_key}</span>}
          <span className="label label-inverse odd-value">
-             <img style={{opacity:"0.3", width:"15px"}} src={padlock} alt="--" />
+             <LazyLoadImage 
+                style={{opacity:"0.3", width:"15px"}} 
+                src={padlock} 
+                effect="blur"
+                alt="--" />
          </span>
         </div>
     );
@@ -104,7 +107,7 @@ const SideBets = (props) => {
 
         <div className={`col-sm-1 events-odd pad ${picked}`} >
             <a className="side" 
-                href={`match/${ live ? 'live/' : '' }${
+                href={`/match/${ live ? 'live/' : '' }${
                     live ? match.parent_match_id : match?.match_id}`
                 }>+{match.side_bets}
             </a>
@@ -282,7 +285,18 @@ const MarketRow = (props) => {
     return (
         <div className="top-matches match">
           <Row className="top-matches header">
-              { live && <div style={{width:"2px", marginTop:"-5px", marginRight:"5px", opacity:0.6}}><ColoredCircle color="#cc5500" /> </div> } {market_id} 
+              { live && 
+                  <div 
+                      style={{
+                          width:"2px", 
+                          marginTop:"-5px", 
+                          marginRight:"5px", 
+                          opacity:0.6
+                      }}>
+                      <ColoredCircle color="#cc5500" /> 
+                  </div> 
+              } 
+              {market_id} 
           </Row>
           
           { markets && markets.map((mkt_odds) =>{
@@ -313,7 +327,7 @@ const MatchRow = (props) => {
         <Row className="top-matches">
             <div className="col-sm-1 pad left-text">
                 { live && <> <small style={{color:"green"}} > {match?.match_status} </small><br/></> }
-                {match?.match_time && <>{`${match.match_time}'`}</> || match?.start_time}
+                {live && match?.match_time && <>{`${match.match_time}'`}</> || match?.start_time}
             </div>
             <div className="col-sm-7">
                 <div className="compt-detail"> {match.category} | {match.competition_name}</div>
@@ -358,6 +372,7 @@ export const MarketList = (props) => {
     const [state, dispatch] = useContext(Context);                              
     const [matchWithMarkets, setMatchWithMarkets] = useState();
     const { live }  = props;
+
     useEffect(()=>{
         if(state?.matchwithmarkets) {
             setMatchWithMarkets(state.matchwithmarkets);
@@ -386,35 +401,6 @@ export const MarketList = (props) => {
                             />
                     })
                 }
-               { !matchWithMarkets && [...Array(10).keys()].map((index, n) => (
-                   <div className="react-loading" key={n}  >
-                      <Container className=" top-matches">
-                          <Row style={{height:40, opacity:0.7}}>
-                           <Col lg="1" >
-                               <Skeleton className="pad left-text"></Skeleton>
-                           </Col>
-                           <Col className="col-sm-7">
-                               <Skeleton className="compt-detail"></Skeleton>
-                               <Skeleton className="compt-teams"></Skeleton>
-                           </Col>
-
-                           <Col className="col-sm-1 match-div-col" >
-                                <Skeleton className="home-team" ></Skeleton>
-                            </Col>
-
-                           <Col className="col-sm-1 events-odd match-div-col">
-                                <Skeleton className="home-team" ></Skeleton>
-                           </Col>
-                           <Col className="col-sm-1 match-div-col" >
-                                <Skeleton className="awy-team" ></Skeleton>
-                           </Col>
-                           <Col className="col-sm-1 events-odd pad" >
-                               <Skeleton className="side" />
-                           </Col>
-                          </Row>
-                       </Container>
-                  </div>) )
-               }
             </Container>
         </div>
     )
@@ -473,35 +459,6 @@ export const JackpotMatchList = (props) => {
                         <MatchRow match={match}  jackpot key={key}/>
                    ))
                 }
-               { !matches && [...Array(10).keys()].map((index, n) => (
-                   <div className="react-loading" key={n}  >
-                      <Container className=" top-matches">
-                          <Row style={{height:40, opacity:0.7}}>
-                           <Col lg="1" >
-                               <Skeleton className="pad left-text"></Skeleton>
-                           </Col>
-                           <Col className="col-sm-7">
-                               <Skeleton className="compt-detail"></Skeleton>
-                               <Skeleton className="compt-teams"></Skeleton>
-                           </Col>
-
-                           <Col className="col-sm-1 match-div-col" >
-                                <Skeleton className="home-team" ></Skeleton>
-                            </Col>
-
-                           <Col className="col-sm-1 events-odd match-div-col">
-                                <Skeleton className="home-team" ></Skeleton>
-                           </Col>
-                           <Col className="col-sm-1 match-div-col" >
-                                <Skeleton className="awy-team" ></Skeleton>
-                           </Col>
-                           <Col className="col-sm-1 events-odd pad" >
-                               <Skeleton className="side" />
-                           </Col>
-                          </Row>
-                       </Container>
-                  </div>) )
-               }
             </Container>
         </div>
     )
@@ -509,8 +466,8 @@ export const JackpotMatchList = (props) => {
 
 const MatchList = (props) => {
     const [state, dispatch] = useContext(Context);                              
-    const [matches, setMatches] = useState();
-    const { live} = props;
+    const [matches, setMatches] = useState([]);
+    const { live } = props;
     useEffect(()=>{
         if(state?.matches) {
             setMatches(state.matches);
@@ -523,39 +480,11 @@ const MatchList = (props) => {
             <MatchHeaderRow  live={live} />
 
             <Container className="web-element">
-                { matches && Object.entries(matches).map(([key, match]) => (
+                {  
+                    Object.entries(matches).map(([key, match]) => (
                         <MatchRow match={match}  key={key} live={live} />
                    ))
                 }
-               { !matches && [...Array(10).keys()].map((index, n) => (
-                   <div className="react-loading" key={n}  >
-                      <Container className=" top-matches">
-                          <Row style={{height:40, opacity:0.7}}>
-                           <Col lg="1" >
-                               <Skeleton className="pad left-text"></Skeleton>
-                           </Col>
-                           <Col className="col-sm-7">
-                               <Skeleton className="compt-detail"></Skeleton>
-                               <Skeleton className="compt-teams"></Skeleton>
-                           </Col>
-
-                           <Col className="col-sm-1 match-div-col" >
-                                <Skeleton className="home-team" ></Skeleton>
-                            </Col>
-
-                           <Col className="col-sm-1 events-odd match-div-col">
-                                <Skeleton className="home-team" ></Skeleton>
-                           </Col>
-                           <Col className="col-sm-1 match-div-col" >
-                                <Skeleton className="awy-team" ></Skeleton>
-                           </Col>
-                           <Col className="col-sm-1 events-odd pad" >
-                               <Skeleton className="side" />
-                           </Col>
-                          </Row>
-                       </Container>
-                  </div>) )
-               }
             </Container>
         </div>
     )

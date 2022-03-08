@@ -1,47 +1,67 @@
-import React, { useState, useEffect, useContext} from 'react';
+import React, { useState, useEffect, useCallback, useContext} from 'react';
 import football from '../../assets/svg/football.svg'
 import Competitions from './competitions';
 import AllSportCompetitions from './all-sport-competition';
-import Skeleton from 'react-loading-skeleton'
 import { Context }  from '../../context/store';
 
-import useAxios from "../../hooks/axios.hook";
 import { 
     getFromLocalStorage, 
     setLocalStorage 
 } from '../utils/local-storage';
 import PerfectScrollbar from 'react-perfect-scrollbar';
+import makeRequest from "../utils/fetch-request";
 
 
 import 'react-perfect-scrollbar/dist/css/styles.css';
-import 'react-loading-skeleton/dist/skeleton.css';
 
 const SideBar = (props) => {
 
     const [state, dispatch] = useContext(Context);                              
-    const {response, makeRequest} = useAxios();
-
     const [imageLoaded, setImageLoaded] = useState(false);
+    const [competitions, setCompetitions ] = useState();
+    const { loadCompetitions } = props;
+
+
     const onImageLoaded = () => {
         setImageLoaded(true);
     }
 
+    const fetchData = useCallback(async() => {
+        let cached_categories = getFromLocalStorage('categories');
+        let endpoint = "/v1/categories";     
+        
+        if(!cached_categories) {
+            console.log("Fetching data from API");
+            const [competition_result] =  await Promise.all([
+                makeRequest({url:endpoint, method:"get", data:null }),
+            ]);
+            let [c_status, c_result] = competition_result
+
+            if(c_status == 200){
+                setCompetitions(c_result);
+            }
+            setLocalStorage('categories', c_result);
+        } else {
+            console.log("Fetching data from cached localstorage");
+            setCompetitions(cached_categories);
+        }
+
+    }, []);
+
     useEffect(() => {
 
-        let result = getFromLocalStorage('categories');
-        if(result){
-             dispatch({type:"SET", key:"categories", payload:result});
-        } else { 
-            let endpoint = "/v1/categories";     
-            makeRequest({url:endpoint, method:"get", data:null }).then((response) => {
-                let {status, result} = response;                     
-                if(status = 200) {
-                    dispatch({type:"SET", key:"categories", payload:result});
-                    setLocalStorage('categories', result, 5*60*1000);
-                } 
-            });                                                                    
+       const abortController = new AbortController();                          
+        if(loadCompetitions) {
+            fetchData();
+        } else {
+            setCompetitions(props?.competitions);
         }
-    }, []);
+
+       return () => {                                                          
+            abortController.abort();                                            
+        };                                                                      
+    }, [fetchData]);
+
 
     return (
         <div className="gn">
@@ -62,7 +82,7 @@ const SideBar = (props) => {
                         </span>
                     </div>
                 </header>
-                <Competitions />
+                <Competitions  competitions={competitions?.top_soccer || []} /> }
             </div>
             <div className="web-element block-shadow bottom-std-margin-spacing">
                 <header>
@@ -73,7 +93,7 @@ const SideBar = (props) => {
                         </span>
                     </div>
                 </header>
-                <AllSportCompetitions />
+                <AllSportCompetitions competitions={competitions?.all_sports || []}/>
             </div>
           </PerfectScrollbar>
         </div>

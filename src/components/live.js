@@ -9,21 +9,20 @@ import CarouselLoader from './carousel/index';
 import SearchBar from './header/search-bar';
 import MatchList from './matches/index';
 import Right from './right/index';
-
+import makeRequest from './utils/fetch-request';
 import { getJackpotBetslip, getBetslip } from './utils/betslip' ;
 
-import useAxios from "../hooks/axios.hook";
+import matches from "./utils/fetch-request";
 import useInterval from "../hooks/set-interval.hook";
 import { Context }  from '../context/store';
 
 const Live = (props) => {
     const [page, setPage] = useState(1);
     const [state, dispatch] = useContext(Context);                              
-    const {response, makeRequest} = useAxios()
     const location = useLocation();
 	useInterval(() => {
         let endpoint = "/v1/matches/live";     
-		makeRequest({url:endpoint, method:"get", data:null }).then((response) => {
+		makeRequest({url:endpoint, method:"get", data:null }).then(([_status, response]) => {
 			let {status, result} = response;                      
             dispatch({type:"SET", key:"matches", payload:result});
 		});                                                                     
@@ -40,7 +39,7 @@ const Live = (props) => {
         const abortController = new AbortController();                          
         let endpoint = "/v1/matches/live";     
                                                                                 
-        makeRequest({url:endpoint, method:"get", data:null }).then((response) => {
+        makeRequest({url:endpoint, method:"get", data:null }).then(([_status, response]) => {
             let {status, result} = response;                      
             dispatch({type:"SET", key:"matches", payload:result});
         });                                                                     

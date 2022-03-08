@@ -1,37 +1,6 @@
 import React from "react";
-
-import Header from '../../header/header';
-import Footer from '../../footer/footer';
-import SideBar from '../../sidebar/sidebar';
-import banner from '../../../assets/img/banner.jpg';
-import CarouselLoader from '../../carousel/index';
-import MainTabs from '../../header/main-tabs';
-import SearchBar from '../../header/search-bar';
-import {MarketList} from '../../matches/index';
-import Right from '../../right/index';
 import Row from 'react-bootstrap/Row';
-
-import General from './general'
-import AccountUsage from './account-usage'
-import Deposits from './deposits'
-import Withdrawals from './withdrawals'
-import LiveBetting from './live-betting'
-import BonusesAndPromotions from './bonuses-and-promotions'
-import Complaints from './complaints'
-import Misconduct from './misconduct'
-import ErrorsOrOmissions from './errors-or-omissions'
-import IntellectualProperty from './intellectual-property'
-import ThirdPartyLinking from './third-party-linking'
-import Assignment from './assignment'
-import Indemnification from './indemnification'
-import Waiver from './waiver'
-import Severability from './severability'
-import DisputeResolution from './dispute-resolution'
-import Ammendments from './ammendments'
-import CommunicationsAndNotices from './communications-and-notices'
-import ApplicableLaw from './applicable-law'
-import TermAndTermination from './term-and-termination'
-
+import banner from '../../../assets/img/banner.jpg';
 
 import {
     Accordion,
@@ -42,13 +11,42 @@ import {
 } from 'react-accessible-accordion';
 import 'react-accessible-accordion/dist/fancy-example.css';
 
+const Header = React.lazy(()=>import('../../header/header'));
+const Footer = React.lazy(()=>import('../../footer/footer'));
+const SideBar = React.lazy(()=>import('../../sidebar/sidebar'));
+const CarouselLoader = React.lazy(()=>import('../../carousel/index'));
+const SearchBar = React.lazy(()=>import('../../header/search-bar'));
+const Right = React.lazy(()=>import('../../right/index'));
+
+const General = React.lazy(()=>import('./general'));
+const AccountUsage = React.lazy(()=>import('./account-usage'));
+const Deposits = React.lazy(()=>import('./deposits'));
+const Withdrawals = React.lazy(()=>import('./withdrawals'));
+const LiveBetting = React.lazy(()=>import('./live-betting'));
+const BonusesAndPromotions = React.lazy(()=>import('./bonuses-and-promotions'));
+const Complaints = React.lazy(()=>import('./complaints'));
+const Misconduct = React.lazy(()=>import('./misconduct'));
+const ErrorsOrOmissions = React.lazy(()=>import('./errors-or-omissions'));
+const IntellectualProperty = React.lazy(()=>import('./intellectual-property'));
+const ThirdPartyLinking = React.lazy(()=>import('./third-party-linking'));
+const Assignment = React.lazy(()=>import('./assignment'));
+const Indemnification = React.lazy(()=>import('./indemnification'));
+const Waiver = React.lazy(()=>import('./waiver'));
+const Severability = React.lazy(()=>import('./severability'));
+const DisputeResolution = React.lazy(()=>import('./dispute-resolution'));
+const Ammendments = React.lazy(()=>import('./ammendments'));
+const CommunicationsAndNotices = React.lazy(()=>import('./communications-and-notices'));
+const ApplicableLaw = React.lazy(()=>import('./applicable-law'));
+const TermAndTermination = React.lazy(()=>import('./term-and-termination'));
+
+
 const TermsAndConditions = (props) => {
     return (
         <>
             <Header/>
             <div className="by amt">
                 <div className="gc">
-                    <SideBar/>
+                    <SideBar loadCompetitions/>
                     <div className="gz home">
                         <div className="homepage">
                             <div className='col-md-12 primary-bg p-4 text-center'>

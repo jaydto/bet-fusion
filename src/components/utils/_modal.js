@@ -1,6 +1,6 @@
 import React, {useState, useContext, useEffect, useRef} from 'react';
 import { Context }  from '../../context/store';
-import useAxios from "../../hooks/axios.hook";
+import makeRequest from "./fetch-request";
 
 export const GenericDeleteModal = (props) => {
   const [ state, dispatch ] =  useContext(Context);
@@ -8,7 +8,6 @@ export const GenericDeleteModal = (props) => {
   const [ id, setId ] =  useState();
   const [ errorMessage, setErrorMessage ] =  useState(null);
   const [ message, setMessage ] =  useState(null);
-  const { response, makeRequest } =  useAxios();
   const modalDeleteButtonRef = useRef();
 
   const cancelDeleteRecord = () => {
@@ -21,9 +20,8 @@ export const GenericDeleteModal = (props) => {
       let url = "/" + model + "/delete/"+id;
       setErrorMessage(null);
       setMessage(null);
-      makeRequest({url:url, method:"delete", data:null}).then((response) => {
-           let {status, result, errors} = response;
-           console.log(status, result, errors);
+      makeRequest({url:url, method:"delete", data:null}).then(([status, result]) => {
+           console.log(status, result);
            if(errors){
                if(status < 500) { 
                    setErrorMessage(result.message);

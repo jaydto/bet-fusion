@@ -28,6 +28,7 @@ const CarouselLoader = (props) => {
                   src={banner}
                   onLoad={onImageLoaded}
                   alt="Batnare"
+                  effects="blur"
                 />
               </Carousel.Item>
            ))

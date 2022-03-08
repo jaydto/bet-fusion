@@ -8,7 +8,7 @@ const HeaderLogin = (props) => {
            <Row className="" style={{float:"right", marginRight:"15px"}}>
                 <div className="col-12">
                     <a className="" href="/signup" title="Join now">
-                        <span className="">Register now!</span>
+                        <span className="register-label">Register now!</span>
                     </a>
                 </div>
            </Row>

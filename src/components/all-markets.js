@@ -125,6 +125,7 @@ const MatchAllMarkets = (props) => {
             <Right />
           </div>
         </div>
+       <Footer />
        </>
    )
 }

@@ -59,9 +59,9 @@ const Jackpot = (props) => {
             }
             setLocalStorage('categories', c_result);
         } else {
-            console.log("Fetching data from cached localstorage");
-            fetchPagedData();
+            console.log("Fetching data from cached localstorage", cached_categories);
             setCompetitions(cached_categories);
+            fetchPagedData();
         }
 
     }, []);
@@ -76,9 +76,6 @@ const Jackpot = (props) => {
         };                                                                      
     }, [fetchData]);
 
-    useEffect(() => {
-       fetchPagedData();
-    }, [state?.page]);
 
     useEffect(() => {
         let jackpotbetslip = getJackpotBetslip();
@@ -92,7 +89,7 @@ const Jackpot = (props) => {
         <Header />        
         <div className="by amt">
           <div className="gc">
-            <SideBar  competitions={competitions}/>
+            <SideBar competitions={competitions}/>
             <div className="gz home">
                 <div className="homepage">
                     <CarouselLoader />

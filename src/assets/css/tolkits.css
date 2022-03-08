@@ -2142,10 +2142,6 @@ footer a {
     width: 100%;
 }
 
-a:focus, a:hover {
-    color: inherit;
-    text-decoration: underline;
-}
 
 .teams p {
     margin: 0;

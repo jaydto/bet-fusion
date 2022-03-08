@@ -431,3 +431,7 @@ display: none;
     width: 7px;
     opacity: 1;
 }
+.register-label {
+    color:#fff;
+    text-decoration:none;
+}

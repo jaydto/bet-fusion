@@ -18,8 +18,8 @@ const SideBar = (props) => {
 
     const [state, dispatch] = useContext(Context);                              
     const [imageLoaded, setImageLoaded] = useState(false);
-    const [competitions, setCompetitions ] = useState();
     const { loadCompetitions } = props;
+    const [competitions, setCompetitions] = useState(props?.competitions);
 
 
     const onImageLoaded = () => {
@@ -27,10 +27,10 @@ const SideBar = (props) => {
     }
 
     const fetchData = useCallback(async() => {
-        let cached_categories = getFromLocalStorage('categories');
+        let cached_competitions = getFromLocalStorage('categories');
         let endpoint = "/v1/categories";     
         
-        if(!cached_categories) {
+        if(!cached_competitions) {
             console.log("Fetching data from API");
             const [competition_result] =  await Promise.all([
                 makeRequest({url:endpoint, method:"get", data:null }),
@@ -42,25 +42,25 @@ const SideBar = (props) => {
             }
             setLocalStorage('categories', c_result);
         } else {
-            console.log("Fetching data from cached localstorage");
-            setCompetitions(cached_categories);
+            setCompetitions(cached_competitions);
         }
 
     }, []);
 
-    useEffect(() => {
 
+
+    useEffect(() => {
+       console.log("Found loadCompetitions ", loadCompetitions);
        const abortController = new AbortController();                          
         if(loadCompetitions) {
+            console.log("loading categorirs from this this side");
             fetchData();
-        } else {
-            setCompetitions(props?.competitions);
-        }
+        } 
 
        return () => {                                                          
             abortController.abort();                                            
         };                                                                      
-    }, [fetchData]);
+    }, [fetchData, props?.competitions]);
 
 
     return (

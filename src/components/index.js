@@ -75,10 +75,6 @@ const Index = (props) => {
        fetchData();
     }, [fetchData]);
 
-    useEffect(() => {
-       fetchPagedData();
-    }, [state?.page]);
-
 
     useEffect(() => {
         let betslip = getBetslip();

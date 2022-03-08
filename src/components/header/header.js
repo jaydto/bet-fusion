@@ -1,8 +1,10 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
-const logo = React.lazy(()=>import('../../assets/img/logo.png'));
+import logo from '../../assets/img/logo.png';
 const ProfileMenu = React.lazy(()=>import('./profile-menu'));
 const HeaderLogin = React.lazy(()=>import('./top-login'));
 const HeaderNav = React.lazy(()=>import('./header-nav'));
@@ -15,7 +17,7 @@ const Header = (props) => {
                 <div className=" col-sm-3">
                   <div>
                       <a className="e logo" href="/" title="Betnare">
-                      <img src={logo} alt="Betnare" title="Betnare" />
+                      <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects ="blur"/>
                       </a>
                   </div>
                 </div>

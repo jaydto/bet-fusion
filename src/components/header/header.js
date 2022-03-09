@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext, useEffect }from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import { Context } from '../../context/store';
+import { getFromLocalStorage }  from  '../utils/local-storage';
 
 import logo from '../../assets/img/logo.png';
 const ProfileMenu = React.lazy(()=>import('./profile-menu'));
@@ -10,6 +12,20 @@ const HeaderLogin = React.lazy(()=>import('./top-login'));
 const HeaderNav = React.lazy(()=>import('./header-nav'));
 
 const Header = (props) => {
+    const [state, dispatch] = useContext(Context);
+
+    useEffect(() => {
+        console.log("Header loading state user ...", state?.user);
+       if(!state?.user) {
+           console.log("Will fetch user from local storage");
+           let user = getFromLocalStorage("user");
+           console.log("Found user in local storage", user);
+           if(user) {
+               dispatch({type:"SET", key:"user", payload:user});
+           }
+       }
+    }, []);
+
     return (
        <Container className="shrink-header" id="shrink-header">
             <Row className="ck pc os app-navbar top-nav">
@@ -21,7 +37,7 @@ const Header = (props) => {
                   </div>
                 </div>
                 <div className="col-sm-9" id="navbar-collapse-main">
-                    { props?.user ?  <ProfileMenu /> : <HeaderLogin /> }
+                    { state?.user ?  <ProfileMenu /> : <HeaderLogin /> }
                 </div>
             </Row>
             <Row className="second-nav ck pc os app-navbar ">

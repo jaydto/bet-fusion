@@ -1,10 +1,36 @@
+import { setLocalStorage, getFromLocalStorage } from './local-storage';
+const ENC_KEY = '2bdVweTeI42s5mkLdYHyklTMxQS5gLA7MDS6FA9cs1uobDXeruACDic0YSU3si04JGZe4Y';
 const BASE_URL = 'https://api.betnare.com';
 
-const makeRequest = async ({ url, method, data = null}) => {
+const makeRequest = async ({ url, method, data = null, use_jwt = false }) => {
+    
+    url = BASE_URL + url;
     let headers = {
-       "content-type": "application/json",
        "accept": "*/*"
     };
+
+    const updateUserSession = () => {
+        let user = getFromLocalStorage('user');
+        if(user){
+           setLocalStorage('user', user);
+        }
+    }
+    let jwt  = null;
+
+    if(use_jwt) {
+       const sign = require('jwt-encode');
+       const payload = {
+           ...data,
+          iat:Math.floor(Date.now() / 1000) + (1 * 60)
+       };
+       jwt  = sign(payload, ENC_KEY);
+
+       url += (url.match(/\?/g) ?  '&' : '?' ) + 'token='+jwt;
+       data = null;
+       console.log("using token on URL ", url);
+    } else {
+        headers = { ...headers, ...{"content-type": "application/json"} }
+    }
 
     const token = localStorage.getItem("auth_token");
 
@@ -24,7 +50,6 @@ const makeRequest = async ({ url, method, data = null}) => {
           if(data) {
               request['body'] = JSON.stringify(data)
           }
-          url = BASE_URL + url;
 
           console.log("making req", url,  request);
           const response = await fetch(url, request);
@@ -35,6 +60,8 @@ const makeRequest = async ({ url, method, data = null}) => {
         let status = err.response?.status,
             result = err.response?.data;
         return [status, result]
+    } finally  {
+        updateUserSession();
     }
 };
 

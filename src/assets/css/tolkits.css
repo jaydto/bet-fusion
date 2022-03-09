@@ -869,9 +869,6 @@ button {
     transition: all 0.5s ease;
 }
 
-.shrink-header .profile a {
-    display: none;
-}
 
 .shrink-header .e img {
     max-width: 200px !important;
@@ -4229,6 +4226,8 @@ fieldset[disabled] .fm.fl {
 .ss.profile {
     padding-bottom: 7px;
     padding-top: 10px;
+    margin-right:40px !important;
+    width:auto;
 }
 
 .light-bg {
@@ -7529,6 +7528,22 @@ a.cq.active {
 .cq .pq {
     padding: 9px;
     color: #1e3948;
+}
+
+input.text-danger::placeholder {
+  color: #842029 !important;
+  opacity: 1; /* Firefox */
+}
+
+input.text-danger:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #842029 !important;
+}
+
+input.text-danger::-ms-input-placeholder { /* Microsoft Edge */
+  color: #842029 !important;
+}
+
+.text-danger { 
 }
 .alert-danger {
     color: #842029;
@@ -13405,4 +13420,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     height: 60px;
     width: 250px !important;
     max-width: unset !important;
+}
+.right {
+    float:right !important;
 }

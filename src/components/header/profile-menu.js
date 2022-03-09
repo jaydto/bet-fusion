@@ -1,14 +1,26 @@
-import React from 'react';
+import React, { useContext} from 'react';
+import { Context } from '../../context/store';
 
 const ProfileMenu = (props) =>{
-
+    
+    const [state, dispatch] = useContext(Context);
+    
     return (
-        <div className="og ale ss profile">
-            <i className="fa fa-user" aria-hidden="true"></i>{props?.user?.msisdn} <br/>Balance: KES {props.balance} | Bonus: KES {props.bonus_balance}
-            <a href="/withdraw"> Withdraw </a> |
-            <a href="/deposit" title="Deposit"> Deposit </a> | 
-            <a href="/logout">Logout<i className="fa fa-sign-out" aria-hidden="true"></i> </a>
-        </div>
+        <>
+        { state?.user && 
+            <div className="container og ale ss profile">
+                <div className="row right">
+                    <i className="fa fa-user" aria-hidden="true"></i>
+                    {state?.user?.msisdn} 
+                </div>
+                <div className="row right">
+                    <div className="col">Balance: KES {state.user.balance || 0} </div>
+                    <div className="col"> | Bonus: KES {state.user.bonus_balance || 0 } </div>
+                    <div className="col"><a href="/logout">Logout<i className="fa fa-sign-out" aria-hidden="true"></i> </a></div>
+                </div>
+            </div> 
+        }
+        </>
 
     )
 }

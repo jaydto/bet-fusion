@@ -1,8 +1,9 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import mpesa from '../../../assets/img/mpesa-3.png';
 import makeRequest from "../../utils/fetch-request";
 import { Formik,  Form} from 'formik';
 import { Context } from '../../../context/store';
+import {getBetslip} from '../../utils/betslip'
 
 
 const Header = React.lazy(()=>import('../../header/header'));
@@ -13,7 +14,7 @@ const Footer = React.lazy(()=>import('../../footer/footer'));
 const Withdrawal = (props) => {
     //todo get the phone number from logged in user ....
     console.log("Props are ", props)
-    const [state, ] = useContext(Context);
+    const [state, dispatch] = useContext(Context);
    
     const [success, setSuccess] = useState(false);
     const [message, setMessage] = useState(null);
@@ -57,6 +58,12 @@ const Withdrawal = (props) => {
             </div>
        )
     }
+    useEffect(() => {
+        let betslip = getBetslip();
+        if (betslip) {
+            dispatch({type: "SET", key: "betslip", payload: betslip});
+        }
+    }, [])
 
 
     const WithdrawFormFields = (props) => {

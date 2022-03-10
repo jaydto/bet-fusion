@@ -1,9 +1,10 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 
 import {Formik,  Form} from 'formik';
 import makeRequest from "../../utils/fetch-request";
 import mpesa from '../../../assets/img/mpesa.png'
 import { Context }  from '../../../context/store';
+import {getBetslip} from '../../utils/betslip'
 
 const Header = React.lazy(()=>import('../../header/header'));
 const Footer = React.lazy(()=>import('../../footer/footer'));
@@ -14,7 +15,7 @@ const Right = React.lazy(()=>import('../../right/index'));
 const Deposit = (props) => {
     
     console.log("Props are ", props)
-    const [state, ] = useContext(Context);                              
+    const [state, dispatch] = useContext(Context);
     const [success, setSuccess] = useState(false);
     const [message, setMessage] = useState(null);
 
@@ -47,6 +48,13 @@ const Deposit = (props) => {
         console.log(values);
         return errors
     }
+
+    useEffect(() => {
+        let betslip = getBetslip();
+        if (betslip) {
+            dispatch({type: "SET", key: "betslip", payload: betslip});
+        }
+    }, [])
 
     const FormTitle = () => {
        return (
@@ -81,7 +89,7 @@ const Deposit = (props) => {
             </div>
             <div className="form-group row d-flex justify-content-center mt-5">
                 <div className="col-md-12">
-                    <label>Amount to Withdraw</label>
+                    <label>Amount to Deposit</label>
                     <input
                         onChange={ev => onFieldChanged(ev) }
                         className="text-dark deposit-input form-control col-md-12 input-field"

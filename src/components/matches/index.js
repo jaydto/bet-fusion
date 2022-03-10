@@ -425,11 +425,11 @@ export const JackpotHeader = (props) => {
                   {jackpot?.type} - {jackpot?.total_games } GAMES {jackpot?.name} 
                </div>
            </Row>
-           <Row className="jp-header-text">
-               <div className="jp-header-amount">
-               <CurrencyFormat 
+           <Row className="jp-header-text mb-2">
+               <div className="jackpot-amount mt-3">
+               <CurrencyFormat
                         value={jackpot?.jackpot_amount} 
-                        displayType={'text'} 
+                        displayType={'text'}
                         thousandSeparator={true} prefix={'KES'} />
                </div>
            </Row>
@@ -450,7 +450,7 @@ export const JackpotMatchList = (props) => {
     }, [state?.jackpotmatches])
 
     return (
-        <div className="matches full-width">
+        <div className="matches full-width mt-5">
 
             <MatchHeaderRow  />
 

@@ -1,11 +1,10 @@
 import React, { useContext } from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
 import { Context } from '../../context/store';
 
 const HeaderNav = (props) => {
-    const [state, dispatch] = useContext(Context);
+    const [state, ] = useContext(Context);
     return (
           <Container  id="navbar-collapse-main">
             <ListGroup as="ul" xs="9" horizontal className="nav navbar-nav og ale ss">
@@ -37,7 +36,7 @@ const HeaderNav = (props) => {
                          <a className="url-link" href="/withdraw" title="Withdraw"> Withdraw</a>
                     </li>
                     <li>
-                         <a className="url-link" href="/mybets" title="My bets">My Bets</a>
+                         <a className="url-link" href="/my-bets" title="My bets">My Bets</a>
                     </li>
                 </>
                 }

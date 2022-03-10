@@ -9,8 +9,9 @@ const makeRequest = async ({ url, method, data = null, use_jwt = false }) => {
        "accept": "*/*"
     };
 
+    let user = getFromLocalStorage('user');
+
     const updateUserSession = () => {
-        let user = getFromLocalStorage('user');
         if(user){
            setLocalStorage('user', user);
         }
@@ -32,7 +33,7 @@ const makeRequest = async ({ url, method, data = null, use_jwt = false }) => {
         headers = { ...headers, ...{"content-type": "application/json"} }
     }
 
-    const token = localStorage.getItem("auth_token");
+    const token = user?.token;
 
     if(token){
         headers = { ...headers, ...{Authorization : "Bearer " + token}}

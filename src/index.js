@@ -1,11 +1,11 @@
-import React, {useContext, useEffect, Suspense} from "react";
-
+import React, { useEffect,  Suspense} from "react";
 import {render} from "react-dom";
 
 import {
     BrowserRouter,
-    Route, Routes,
-    Navigate
+    Route, 
+	Routes,
+	useNavigate,
 } from 'react-router-dom'
 
 import reportWebVitals from './reportWebVitals';
@@ -14,7 +14,7 @@ import './assets/css/application.css';
 import './assets/css/tolkits.css';
 import './assets/css/sidebar-menu.css';
 import './index.css';
-import Store, { Context }  from './context/store';
+import Store from './context/store';
 const Index = React.lazy(()=>import('./components/index'));
 const CompetitionsMatches = React.lazy(
     () => import('./components/competition-matches')
@@ -23,6 +23,9 @@ const MatchAllMarkets = React.lazy(()=>import('./components/all-markets'));
 const Jackpot = React.lazy(()=>import('./components/jackpot'));
 const Live = React.lazy(
     ()=>import('./components/live')
+);
+const MyBets = React.lazy(
+    ()=>import('./components/my-bets')
 );
 const HowToPlay = React.lazy(
     () => import('./components/pages/HowToPlay')
@@ -55,6 +58,16 @@ const Deposit = React.lazy(
 const Signup = React.lazy(
     () => import('./components/pages/signup')
 );
+
+const Logout = () => {
+    let navigate = useNavigate();
+	useEffect(() => {
+		localStorage.clear();
+		navigate("/");
+	}, []);
+	return null;
+}
+
 const container = document.getElementById("app");
 render((
     <Store>
@@ -64,6 +77,7 @@ render((
                <Route exact path = "/" element = { <Index /> }  />
                <Route exact path = "/highlights" element = { <Index /> }  />
                <Route exact path = "/upcoming" element = { <Index /> }  />
+               <Route exact path = "/my-bets" element = { <MyBets /> }  />
                <Route exact path = "/tomorrow" element = { <Index /> }  />
                <Route exact path = "/competition/:id" element = { <CompetitionsMatches /> }  />
                <Route exact path = "/match/:id" element = { <MatchAllMarkets /> }  />
@@ -80,6 +94,7 @@ render((
                <Route exact path="/deposit" element={<Deposit/>}/>
                <Route exact path="/withdraw" element={<Withdraw/>}/>
                <Route exact path="/signup" element={<Signup />}/>
+               <Route exact path="/logout" element={<Logout />}/>
             </Routes>
            </Suspense>
         </BrowserRouter>

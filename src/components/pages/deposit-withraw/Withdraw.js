@@ -1,7 +1,7 @@
-import React, {useState, useEffect, useCallback, useContext} from 'react';
+import React, {useState, useContext} from 'react';
 import mpesa from '../../../assets/img/mpesa-3.png';
 import makeRequest from "../../utils/fetch-request";
-import { Formik, Field, Form} from 'formik';
+import { Formik,  Form} from 'formik';
 import { Context } from '../../../context/store';
 
 
@@ -13,10 +13,8 @@ const Footer = React.lazy(()=>import('../../footer/footer'));
 const Withdrawal = (props) => {
     //todo get the phone number from logged in user ....
     console.log("Props are ", props)
-    const [state, dispatch] = useContext(Context);
-    const [competitions, setCompetitions] = useState({});
+    const [state, ] = useContext(Context);
    
-    const [isLoading, setIsLoading] = useState(false);
     const [success, setSuccess] = useState(false);
     const [message, setMessage] = useState(null);
 
@@ -30,7 +28,7 @@ const Withdrawal = (props) => {
         let endpoint = '/withdraw';
         makeRequest({url: endpoint, method: 'POST', data: {user:values}, use_jwt:true}).then(([status, response]) => {
             setSuccess(status === 200 || status === 201);
-            setMessage(response.message || response);
+            setMessage(response);
 			console.log("This are your values ", response,  status);
         })
     }
@@ -123,7 +121,7 @@ const Withdrawal = (props) => {
         );
     }
     const MyWithdrawalForm = (props) => {
-        const {isValid, errors, values, submitForm, setFieldValue } = props;
+        const {errors, values, setFieldValue } = props;
 
         const onFieldChanged = (ev)=>{
             let field = ev.target.name;

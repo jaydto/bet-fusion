@@ -26,42 +26,16 @@ const Jackpot = (props) => {
     const [competitions, setCompetitions] = useState({});
     const [isLoading, setIsLoading] = useState(false);
 
-    const fetchPagedData =useCallback(() => {
-        if(!isLoading) {
-            setIsLoading(true);
-            let endpoint = "/v1/matches/jackpot";     
-            makeRequest({url: endpoint, method: "get", data: null}).then(([status, result]) => {
-                dispatch({type: "SET", key: "jackpotmatches", payload: result});
-                setIsLoading(false);
-            });
-        }
-    }, []);
-
     const fetchData = useCallback(async() => {
-        let cached_categories = getFromLocalStorage('categories');
-        let endpoint = "/v1/categories";     
         let match_endpoint = "/v1/matches/jackpot";     
         
-        if(!cached_categories) {
-            console.log("Fetching data from API");
-            const [competition_result, match_result] =  await Promise.all([
-                makeRequest({url:endpoint, method:"get", data:null }),
-                makeRequest({url: match_endpoint, method: "get", data: null})
-            ]);
-            let [c_status, c_result] = competition_result
-
-            if(c_status == 200){
-                setCompetitions(c_result);
-            }
-            let [m_status, m_result] = match_result;
-            if(m_status == 200){
-                dispatch({type: "SET", key: "jackpotmatches", payload: m_result});
-            }
-            setLocalStorage('categories', c_result);
-        } else {
-            console.log("Fetching data from cached localstorage", cached_categories);
-            setCompetitions(cached_categories);
-            fetchPagedData();
+        console.log("Fetching data from API");
+        const [match_result] =  await Promise.all([
+            makeRequest({url: match_endpoint, method: "get", data: null})
+        ]);
+        let [m_status, m_result] = match_result;
+        if(m_status == 200){
+            dispatch({type: "SET", key: "jackpotmatches", payload: m_result});
         }
 
     }, []);
@@ -89,7 +63,7 @@ const Jackpot = (props) => {
         <Header />        
         <div className="by amt">
           <div className="gc">
-            <SideBar competitions={competitions}/>
+            <SideBar loadCompetitions />
             <div className="gz home">
                 <div className="homepage">
                     <CarouselLoader />

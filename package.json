@@ -16,6 +16,7 @@
     "formik": "^2.2.9",
     "jsonwebtoken": "^8.5.1",
     "jwt-encode": "^1.0.1",
+    "mini-css-extract-plugin": "^2.6.0",
     "react": "^17.0.2",
     "react-accessible-accordion": "^4.0.0",
     "react-bootstrap": "^2.1.1",

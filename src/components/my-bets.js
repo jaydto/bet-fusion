@@ -43,7 +43,7 @@ const MyBets = (props) => {
     const fetchData = useCallback(async() => {
         if(isLoading) return;
         setIsLoading(true);
-        let endpoint = "/v1/mybets";
+        let endpoint = "/v1/full/betdetails";
         makeRequest({url: endpoint, method: "POST", data: null}).then(([status, result]) => {
             dispatch({type: "SET", key: "mybets", payload: result});
             setIsLoading(false);
@@ -79,12 +79,31 @@ const MyBets = (props) => {
                     <div className="col">{ bet.total_matches}</div>
                     <div className="col">{ bet.bet_amount}</div>
                     <div className="col">{ bet.possible_win}</div>
+                    <div className="col">{ bet.tax}</div>
                     <div className="col">{ bet.status }</div>
                 </div>
             </div>
         );
     }
 
+    const BetslipHeader = () => {
+        
+        return (
+            <div className={`container slipheader`} >
+                <div className="row">
+                    <div className="col">Start</div>
+                    <div className="col">Home</div>
+                    <div className="col">Away</div>
+                    <div className="col">Market</div>
+                    <div className="col">Odds</div>
+                    <div className="col">Pick</div>
+                    <div className="col">Outcome</div>
+                    <div className="col">FT</div>
+                    <div className="col">Won</div>
+                </div>
+            </div>
+        )
+    }
 
     const BetslipItem = (props) => {
         const { betslip } = props;
@@ -99,32 +118,18 @@ const MyBets = (props) => {
                     <div className="col">{ betslip.market}</div>
                     <div className="col">{ betslip.odd_value}</div>
                     <div className="col">{ betslip.bet_pick}</div>
-                    <div className="col">{ betslip.winning_outcome}</div>
-                    <div className="col">{ betslip.win }</div>
+                    <div className="col">{ betslip.outcomes}</div>
+                    <div className="col">{ betslip.ft_result}</div>
+                    <div className="col">{ betslip.win}</div>
                 </div>
             </div>
         )
     }
 
-	const handleBetClicked = useCallback(([bet_id]) => {
-        console.log("Handle bet clicked recived ", bet_id);
-        let endpoint = "/v1/betdetails";
-        let data = {bet_id: bet_id}
-        let key = "betdetails_" + bet_id;
-	    if(state?.[key]) return;
-
-        makeRequest({url: endpoint, method: "POST", data: data}).then(([status, result]) => {
-			console.log("bet details result", result)
-            dispatch({type: "SET", key: key, payload: result.data});
-        });
-		console.log("State value in bet_id", state["betdetails_"+bet_id]);
-	}, [state]);
-
     const MyBetsList = (props) => {
         console.log("MyBetsList ...");
 		return (
-         <Accordion 
-            onChange = {handleBetClicked} >
+         <Accordion >
 			{state?.mybets && state.mybets.map((bet) => (
 				<AccordionItem 
                     key = {bet.bet_id} 
@@ -136,8 +141,8 @@ const MyBets = (props) => {
 						</AccordionItemButton>
 					</AccordionItemHeading>
 					<AccordionItemPanel>
-					{ state?.["betdetails_" + bet.bet_id] &&  
-                       state?.["betdetails_"+bet.bet_id]?.map((betslip) => (
+                     <BetslipHeader />
+					{  bet.betslip?.map((betslip) => (
                          <BetslipItem betslip={betslip} />  
                        ))
                     }

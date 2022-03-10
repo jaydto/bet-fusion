@@ -1413,7 +1413,6 @@ events-header {
 
 .header-holder {
     clear: both;
-    overflow: auto;
 }
 
 .matches .label, .top-matches .label {
@@ -2235,7 +2234,6 @@ footer a {
 .betslip-header {
     clear: both;
     background: #4c372a;
-    overflow: auto;
     color: #fff;
     text-shadow: 0px 0px 1px #fbe2a4;
     font-family: arial;

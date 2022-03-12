@@ -1,21 +1,13 @@
 import React from "react";
-import Row from 'react-bootstrap/Row';
-import banner from '../../../assets/img/banner.jpg';
 
 import {
     Accordion,
-    AccordionItem,
-    AccordionItemHeading,
-    AccordionItemButton,
-    AccordionItemPanel,
 } from 'react-accessible-accordion';
 import 'react-accessible-accordion/dist/fancy-example.css';
 
 const Header = React.lazy(()=>import('../../header/header'));
 const Footer = React.lazy(()=>import('../../footer/footer'));
 const SideBar = React.lazy(()=>import('../../sidebar/sidebar'));
-const CarouselLoader = React.lazy(()=>import('../../carousel/index'));
-const SearchBar = React.lazy(()=>import('../../header/search-bar'));
 const Right = React.lazy(()=>import('../../right/index'));
 
 const General = React.lazy(()=>import('./general'));

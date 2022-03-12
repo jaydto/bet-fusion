@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useCallback, useContext} from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import football from '../../assets/svg/football.svg'
 import Competitions from './competitions';
 import AllSportCompetitions from './all-sport-competition';
-import { Context }  from '../../context/store';
 
 import { 
     getFromLocalStorage, 
@@ -16,7 +15,6 @@ import 'react-perfect-scrollbar/dist/css/styles.css';
 
 const SideBar = (props) => {
 
-    const [state, dispatch] = useContext(Context);                              
     const [imageLoaded, setImageLoaded] = useState(false);
     const { loadCompetitions } = props;
     const [competitions, setCompetitions] = useState(props?.competitions);
@@ -37,7 +35,7 @@ const SideBar = (props) => {
             ]);
             let [c_status, c_result] = competition_result
 
-            if(c_status == 200){
+            if(c_status === 200){
                 setCompetitions(c_result);
             }
             setLocalStorage('categories', c_result);
@@ -47,10 +45,7 @@ const SideBar = (props) => {
 
     }, []);
 
-
-
     useEffect(() => {
-       console.log("Found loadCompetitions ", loadCompetitions);
        const abortController = new AbortController();                          
         if(loadCompetitions) {
             console.log("loading categorirs from this this side");
@@ -60,7 +55,7 @@ const SideBar = (props) => {
        return () => {                                                          
             abortController.abort();                                            
         };                                                                      
-    }, [fetchData, props?.competitions]);
+    }, [fetchData, props?.competitions, loadCompetitions]);
 
 
     return (
@@ -99,4 +94,4 @@ const SideBar = (props) => {
         </div>
     )
 }
-export default SideBar;
+export default React.memo(SideBar);

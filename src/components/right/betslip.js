@@ -1,17 +1,15 @@
 import React,{ useState, useEffect, useContext, useCallback} from 'react';
 import BetslipSubmitForm from './betslip-submit-form';
 import { Context }  from '../../context/store';
-import { removeFromSlip, getBetslip, removeFromJackpotSlip}  from '../utils/betslip';
+import { removeFromSlip, removeFromJackpotSlip}  from '../utils/betslip';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 
-const clean_rep = (_str) => {
-    _str = _str.replace(/[^A-Za-z0-9\-]/g, '');
-    return _str.replace(/-+/g, '-');
+const clean_rep = (str) => {
+    str = str.replace(/[^A-Za-z0-9\-]/g, '');
+    return str.replace(/-+/g, '-');
 }
 
 const BetSlip = (props) => {
-    const {betslip, setBetSlip} = useState();
-    const [bonusAmout, setBonusAmount] = useState(0);
     const [state, dispatch] = useContext(Context);                              
     const {jackpot } = props;
     const [betslipKey, setBetslipKey] = useState("betslip");
@@ -20,20 +18,23 @@ const BetSlip = (props) => {
 
     const updateBetslip = useCallback(()=> {
        if(state?.[betslipKey]){
-            let odds = 1;
-            Object.entries(state[betslipKey]).map(([match_id, slip]) => {
-                odds = Math.round(odds*slip.odd_value, 2);
+            let odds= Object.entries(state[betslipKey]).reduce(([a, b]) => {
+                return Math.round(a.odd_value * b.odd_value, 2);
             });
             setTotalOdds(odds);
         }
-    }, []);
+    }, [state?.[betslipKey]]);
 
-    useEffect(() => {
+    const setJackpotSlipkey = useCallback(()=>{
         console.log("Updating betslip key again");
-        if(jackpot == true ) {
+        if(jackpot === true ) {
             setBetslipKey("jackpotbetslip");
         }
     }, [jackpot]);
+
+    useEffect(() => {
+        setJackpotSlipkey();
+    }, [setJackpotSlipkey]);
 
     useEffect(() => {
         updateBetslip();
@@ -63,7 +64,7 @@ const BetSlip = (props) => {
            <ul>
             { state?.[betslipKey] && Object.entries(state[betslipKey]).map(([match_id, slip]) => {
                 let odd = slip.odd_value;
-                let no_odd_bg = odd == 1 ? '#f29f7a' : '';
+                let no_odd_bg = odd === 1 ? '#f29f7a' : '';
 
                 return (
                     <li className="bet-option hide-on-affix" key={match_id} 
@@ -78,7 +79,7 @@ const BetSlip = (props) => {
                         <div className="clearfix row">{slip?.live && <span style={{float:"left", width:"auto",marginLeft:"-7px",fontWeight:"bold"}}>Live: </span>} {slip.bet_type}</div>
                         <div className="bet-pick" >Pick : {slip.bet_pick}
                             <span className="bet-odd">{slip.odd_value}
-                               { slip.odd_value == 1 &&
+                               { slip.odd_value === 1 &&
                                         (<span style={{color:"#cc0000", fontSize:"11px", display:"block"}}>Market Disabled</span>)
                                }
                             </span>
@@ -93,4 +94,4 @@ const BetSlip = (props) => {
     </div>
     )
 }
-export default BetSlip;
+export default React.memo(BetSlip);

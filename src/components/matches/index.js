@@ -6,7 +6,6 @@ import Col from 'react-bootstrap/Col';
 import {
     addToSlip, 
     removeFromSlip, 
-    clearSlip,
     removeFromJackpotSlip,
     addToJackpotSlip,
 } from '../utils/betslip';
@@ -26,7 +25,7 @@ const EmptyTextRow = (props) =>{
     const { odd_key } = props;
     return (
         <div className="btn btn-disabled " 
-         style={{width:"100%", height:"30px", height:"30px", padding:"2px"}}>
+         style={{width:"100%", height:"30px", padding:"2px"}}>
          { odd_key && <span className="et label btn-disabled ">{odd_key}</span>}
          <span className="label label-inverse odd-value">
              <LazyLoadImage 
@@ -101,7 +100,7 @@ const MoreMarketsHeaderRow = (props) => {
 
 const SideBets = (props) => {
     const {match, live} = props;
-    const [picked, setPicked] = useState();
+    const [picked, ] = useState();
 
     return (
 
@@ -133,7 +132,7 @@ const OddButton = (props) => {
             + "" + match.sub_type_id 
             + (match?.[mkt] ||match?.odd_key || 'draw') 
         );
-        if((betslip?.[match.match_id]?.match_id == match.match_id) 
+        if((betslip?.[match.match_id]?.match_id === match.match_id) 
             && uc === betslip?.[match.match_id]?.ucn){
             setPicked('picked');
         }
@@ -170,7 +169,7 @@ const OddButton = (props) => {
                     + "" + match.sub_type_id 
                     + (match?.[mkt] ||match?.odd_key || 'draw') 
                 );
-                if(state?.[reference] == uc){
+                if(state?.[reference] === uc){
                     setPicked('picked')
                 } else {
                     setPicked('');
@@ -205,9 +204,9 @@ const OddButton = (props) => {
            "ucn":cstm,
        }
        
-       if(cstm == ucn) {
+       if(cstm === ucn) {
            let betslip;
-           if(picked == 'picked') {
+           if(picked === 'picked') {
                 betslip = jackpot !== true 
                    ? removeFromSlip(mid)
                    : removeFromJackpotSlip(mid);
@@ -267,13 +266,6 @@ const OddButton = (props) => {
 const MarketRow = (props) => {
     const { markets, match, market_id, width, live} = props;
   
-
-    const ucn = clean(
-            match.match_id 
-            + "" + match.sub_type_id 
-            + (match.odd_key) 
-        );
-
     const MktOddsButton = (props) => {
         const { match, mktodds, live} = props;
         let fullmatch = {...match, ...mktodds};
@@ -321,13 +313,18 @@ const ColoredCircle = ({ color }) => {
 };
 
 const MatchRow = (props) => {
-    const [betslip, setBetslip] = useState([]);
     const {match, jackpot, live} = props;
     return (
         <Row className="top-matches">
             <div className="col-sm-1 pad left-text">
-                { live && <> <small style={{color:"green"}} > {match?.match_status} </small><br/></> }
-                {live && match?.match_time && <>{`${match.match_time}'`}</> || match?.start_time}
+                { live && 
+                    <> 
+                    <small style={{color:"green"}} > {match?.match_status} </small>
+                    <br/>
+                    </> 
+                }
+                {(live && match?.match_time) ?  
+                        <>{`${match.match_time}'`}</> : match?.start_time}
             </div>
             <div className="col-sm-7">
                 <div className="compt-detail"> {match.category} | {match.competition_name}</div>
@@ -369,7 +366,7 @@ const MatchRow = (props) => {
 
 export const MarketList = (props) => {
 
-    const [state, dispatch] = useContext(Context);                              
+    const [state,] = useContext(Context);                              
     const [matchWithMarkets, setMatchWithMarkets] = useState();
     const { live }  = props;
 
@@ -409,7 +406,7 @@ export const MarketList = (props) => {
 
 export const JackpotHeader = (props) => {
    
-    const [state, dispatch] = useContext(Context);                              
+    const [state, ] = useContext(Context);                              
     const [jackpot, setJackpot] = useState();
     useEffect(()=>{
         if(state?.jackpotmatches) {
@@ -441,7 +438,7 @@ export const JackpotHeader = (props) => {
 }
 
 export const JackpotMatchList = (props) => {
-    const [state, dispatch] = useContext(Context);                              
+    const [state, ] = useContext(Context);                              
     const [matches, setMatches] = useState();
     useEffect(()=>{
         if(state?.jackpotmatches) {
@@ -465,7 +462,7 @@ export const JackpotMatchList = (props) => {
 }
 
 const MatchList = (props) => {
-    const [state, dispatch] = useContext(Context);                              
+    const [state, ] = useContext(Context);                              
     const [matches, setMatches] = useState([]);
     const { live } = props;
     useEffect(()=>{

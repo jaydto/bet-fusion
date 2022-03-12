@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext }from 'react';
+import React, { useState, useEffect, useContext, useCallback }from 'react';
 import { Context }  from '../../context/store';
 import { removeFromSlip, getBetslip }  from '../utils/betslip';
 
@@ -13,9 +13,9 @@ const Float = (equation, precision=4) => {
     return Math.round(equation * (10 ** precision)) / (10 ** precision);
 }
 
-const clean_rep = (_str) => {
-    _str = _str.replace(/[^A-Za-z0-9\-]/g, '');
-    return _str.replace(/-+/g, '-');
+const clean_rep = (str) => {
+    str = str.replace(/[^A-Za-z0-9\-]/g, '');
+    return str.replace(/-+/g, '-');
 }
 const Form = (props) => {
     return (
@@ -42,22 +42,19 @@ const BetslipSubmitForm = (props) =>{
     } 
 
     const [state, dispatch] = useContext(Context);                              
-    const [acceptOddsChange, setAcceptOddsChange] = useState(1);
     const [stake, setStake] = useState(100);
     const [exciseTax, setExciseTax] = useState(0);
     const [withholdingTax, setWithholdingTax] = useState(0);
     const [possibleWin, setPossibleWin] = useState(0);
     const [netWin, setNetWin] = useState(0);
-    const [userId, setUserId] = useState(null);
     const [totalOdd, setTotalOdds] = useState(1);
     const [totalGames, setTotalGames] = useState(0);
 
 
-    const updateWinnings = () => {
+    const updateWinnings = useCallback(() => {
         if( state?.betslip) { 
-            let tOdd = 1;
-            Object.entries(state.betslip).map(([match_id, slip]) => {
-                tOdd *= slip.odd_value;
+            let tOdd = Object.entries(state.betslip).reduce(([a, b]) => {
+                return a.odd_value= b.odd_value;
             });
             let stake_after_tax = Float(stake)/Float(107.5)*100
 
@@ -81,12 +78,12 @@ const BetslipSubmitForm = (props) =>{
           setTotalGames(0);
           setTotalOdds(0)
        }
-    } 
+    }, [state?.betslip, stake]);
 
-    const handleRemoveAll = () => {
+    const handleRemoveAll = useCallback(() => {
         let betslips = getBetslip();
         Object.entries(betslips).map(([match_id, match]) => {
-           let betslip = removeFromSlip(match_id); 
+           removeFromSlip(match_id); 
            let match_selector = match.match_id + "_selected";
            let ucn = clean_rep(                                                         
                            match.match_id                                                      
@@ -97,21 +94,23 @@ const BetslipSubmitForm = (props) =>{
            dispatch({type:"SET", key:match_selector, payload:"remove."+ucn});
         });
         dispatch({type:"SET", key:"betslip", payload:{}});
-    }
-    const handleStakeAmountChange = (event, setFieldValue) => {
+    }, []);
+
+    const handleStakeAmountChange = useCallback((event, setFieldValue) => {
         let bamount = event.target.value;
         setStake(bamount);
-    }
+    }, {})
+
     useEffect(() => {
         updateWinnings();
-    }, [state?.betslip, stake]);
+    }, [updateWinnings]);
 
     const initialValues = {
-        bet_amount: stake ?? 100,
-        accept_all_odds_change: acceptOddsChange ?? 1,
-        user_id:userId ?? "",
-        total_games:totalGames ?? 0,
-        total_odd:totalOdd ?? 0,
+        bet_amount: 100,
+        accept_all_odds_change:  1,
+        user_id:state?.user?.profile_id,
+        total_games:0,
+        total_odd: 0,
     };
     return (
         <Form enableReinitialize={true} 
@@ -191,7 +190,7 @@ const BetslipSubmitForm = (props) =>{
                 type="hidden"
                 name={"user_id"}
                 id={"user_id"}
-                value={userId}
+                value={state?.user?.profile_id}
             />
             <Field
                 type="hidden"
@@ -208,4 +207,4 @@ const BetslipSubmitForm = (props) =>{
         </Form>
     )
 }
-export default BetslipSubmitForm;
+export default React.memo(BetslipSubmitForm);

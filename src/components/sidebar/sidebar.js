@@ -20,10 +20,6 @@ const SideBar = (props) => {
     const [competitions, setCompetitions] = useState(props?.competitions);
 
 
-    const onImageLoaded = () => {
-        setImageLoaded(true);
-    }
-
     const fetchData = useCallback(async() => {
         let cached_competitions = getFromLocalStorage('categories');
         let endpoint = "/v1/categories";     
@@ -72,7 +68,6 @@ const SideBar = (props) => {
                           style={{display: imageLoaded ? 'inline' : 'none'}}
                           src={football} 
                           alt="-"
-                          onLoad={onImageLoaded}
                           />
                         </span>
                     </div>

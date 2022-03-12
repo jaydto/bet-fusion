@@ -99,7 +99,7 @@ const BetslipSubmitForm = (props) =>{
     const handleStakeAmountChange = useCallback((event, setFieldValue) => {
         let bamount = event.target.value;
         setStake(bamount);
-    }, {})
+    }, [])
 
     useEffect(() => {
         updateWinnings();

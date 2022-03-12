@@ -9,8 +9,6 @@ import {
 	useNavigate,
 } from 'react-router-dom'
 
-import ClipLoader from "react-spinners/ClipLoader";
-
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/css/application.css';
@@ -80,16 +78,12 @@ const Logout = () => {
 	return null;
 }
 
-const Loader = () => {
-
-    return  <ClipLoader  size={50} />;
-}
 LogRocket.init('ctvt6n/react-betnare');
 const container = document.getElementById("app");
 render((
     <Store>
         <BrowserRouter>
-            <Suspense fallback={<Loader />}>
+            <Suspense fallback={<p> Loading ... </p>}>
             <Routes>
                <Route exact path = "/" element = { <Index /> }  />
                <Route exact path = "/highlights" element = { <Index /> }  />

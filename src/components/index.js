@@ -18,6 +18,7 @@ const Index = (props) => {
 
 
     const fetchData = useCallback(async() => {
+        if(state?.matches) return;
         let tab = location.pathname.replace("/", "") || 'highlights';
         
         let match_endpoint = "/v1/matches?page=" 
@@ -40,7 +41,7 @@ const Index = (props) => {
 
     return (
         <>
-            <Header user={state.user}/>
+            <Header />
             <div className="by amt">
                 <div className="gc">
                     <SideBar loadCompetitions />

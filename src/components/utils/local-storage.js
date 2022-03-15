@@ -18,7 +18,7 @@ export const getFromLocalStorage = (key) => {
 export const setLocalStorage = (key, value, ttl) => {
 
     window.localStorage.setItem( key, JSON.stringify({
-        ttl   : ttl || 10*60*1000,
+        ttl   : ttl || 60*60*1000,
         now   : now(),
         value : value
     }));

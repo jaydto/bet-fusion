@@ -9,7 +9,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { setLocalStorage } from '../utils/local-storage';
 
 const HeaderLogin = (props) => {
-    console.log("This is a re render ...");
     const [state, dispatch] = useContext(Context);
     const [isLoading, setLoading] = useState(false)
     const [user, setUser] = useState(localStorage.getItem('auth_token'))
@@ -42,7 +41,6 @@ const HeaderLogin = (props) => {
 
     const dispatchUser = useCallback(() => {
        if(message !== null) {
-           console.log("message is not null", message)
            Notify(message);
 
            if( message.status == 200 ) {
@@ -53,15 +51,21 @@ const HeaderLogin = (props) => {
     }, [message])
 
     useEffect(() => {
-        console.log("Dispatching login success message");
         dispatchUser();
     }, [dispatchUser]);
 
     const handleSubmit = values => {
-        console.log("Form Data posting to api", values)
         let endpoint = '/v1/login';
         makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
-            setMessage(response);
+            if(status === 200 || status == 201 || status == 204){
+                setMessage(response);
+            } else {
+                let message = {
+                    status : status,
+                    message:response?.message || "Error attempting to login" 
+                };
+                Notify(message);
+            }
         })
     }
 

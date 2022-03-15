@@ -6,7 +6,6 @@ import {
 
 export const addToSlip = (slip) => {
     let current_slip = getFromLocalStorage('betslip');
-    console.log("current slip", current_slip);
     if(current_slip){
         current_slip[slip.match_id] = slip;
     } else {

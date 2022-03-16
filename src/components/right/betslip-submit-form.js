@@ -1,6 +1,10 @@
-import React, { useState, useEffect, useContext, useCallback }from 'react';
+import React, { useState, useEffect, useContext, useCallback, useMemo }from 'react';
 import { Context }  from '../../context/store';
 import { removeFromSlip, getBetslip }  from '../utils/betslip';
+import { toast } from 'react-toastify';
+import publicIp from 'public-ip';
+import makeRequest from '../utils/fetch-request'; 
+import 'react-toastify/dist/ReactToastify.css';
 
 import {
     Formik,
@@ -13,72 +17,106 @@ const Float = (equation, precision=4) => {
     return Math.round(equation * (10 ** precision)) / (10 ** precision);
 }
 
-const clean_rep = (str) => {
-    str = str.replace(/[^A-Za-z0-9\-]/g, '');
-    return str.replace(/-+/g, '-');
-}
-const Form = (props) => {
-    return (
-        <Formik {...props} >
-            <FormikForm className="needs-validation" noValidate="">
-                {props.children}
-            </FormikForm>
-        </Formik>
-    );
-};
-
-const SubmitButton = (props) => {
-    const { title, ...rest } = props;
-    const { isSubmitting } = useFormikContext();
-    return (
-         <button type="submit" {...rest} disabled={isSubmitting}>{isSubmitting ? "wait..." : title}</button>
-    );
-};
 
 
 const BetslipSubmitForm = (props) =>{
-    const handlePlaceBet =  (values, { setSubmitting,  resetForm, setStatus, setErrors})  => {
-       console.log("Place net hanling here", values);
-    } 
+
+    const { jackpot, totalGames, totalOdds, betslip } = props;
+    const [betslipKey, setBetslipKey] = useState("betslip");
+    const [ipv4, setIpv4] = useState(null);
+    const [message, setMessage] = useState(null);
+
+    const ipAddress = useCallback(async () => {
+        let ip = await publicIp.v4({
+            fallbackUrls: [ 'https://ifconfig.co/ip' ]
+        }).then((result) => { return result});
+
+        setIpv4(ip);
+    }, [ipv4]);
+
+    const Alert = (props) => {
+        let c = message?.status == 201  ? 'success' : 'danger';
+        return (<>{ message?.status  && <div role="alert" className={`fade alert alert-${c} show`}>{message.message}</div> } </>) ;
+
+    };
+    useEffect(() => {
+        ipAddress();
+    }, [ipAddress])
+
+    const setJackpotSlipkey = useCallback(()=>{
+        if(jackpot) {
+            setBetslipKey("jackpotbetslip");
+        }
+    }, [jackpot]);
+
+
+    useEffect(() => {
+        setJackpotSlipkey();
+    }, [setJackpotSlipkey]);
+
+    const handlePlaceBet =  (values, 
+        { setSubmitting,  resetForm, setStatus, setErrors})  => {
+        let payload = {                                                         
+            bet_string : 'web',                                  
+            app_name : 'desktop',                                 
+            possible_win: possibleWin,                          
+            profile_id: values.user_id,                               
+            stake_amount : values.bet_amount,                            
+            bet_total_odds : totalOdds,                             
+            endCustomerIP: ipv4,                         
+            channelID: 'web',
+            slip: Object.values(betslip || []),
+            account:1,                               
+            msisdn: state?.user?.msisdn,           
+        }; 
+        let endpoint = '/bet';
+        makeRequest({url: endpoint, method: 'GET', data: payload, use_jwt:true})
+            .then(([status, response]) => {
+                setMessage(response);
+                if(status === 200 || status == 201 || status == 204){
+                    //all is good am be quiet
+                } else {
+                    let qmessage = {
+                        status : status,
+                        message:response?.message || "Error attempting to login" 
+                    };
+                    Notify(qmessage);
+                }
+                setSubmitting(false);
+            })
+    }
 
     const [state, dispatch] = useContext(Context);                              
+
     const [stake, setStake] = useState(100);
+    const [stakeAfterTax, setStakeAfterTax] = useState(0);
     const [exciseTax, setExciseTax] = useState(0);
     const [withholdingTax, setWithholdingTax] = useState(0);
     const [possibleWin, setPossibleWin] = useState(0);
     const [netWin, setNetWin] = useState(0);
-    const [totalOdd, setTotalOdds] = useState(1);
-    const [totalGames, setTotalGames] = useState(0);
-
 
     const updateWinnings = useCallback(() => {
-        if( state?.betslip) { 
-            let tOdd = Object.entries(state.betslip).reduce(([a, b]) => {
-                return a.odd_value= b.odd_value;
-            });
+        if( state?.[betslipKey]) { 
             let stake_after_tax = Float(stake)/Float(107.5)*100
-
             let ext = Float(stake) - Float(stake_after_tax);
-            let raw_possible_win = Float(stake_after_tax) * Float(tOdd);
+            let raw_possible_win = Float(stake_after_tax) * Float(totalOdds);
             let taxable_amount = Float(raw_possible_win)-Float(stake_after_tax);
             let wint = taxable_amount*0.2;
             let nw = raw_possible_win - wint;
-
             setExciseTax(Float(ext,2));
+            setStakeAfterTax(stake_after_tax);
             setNetWin(Float(nw,2));
             setPossibleWin(Float(raw_possible_win,2));
             setWithholdingTax(Float(wint,2));
-            setTotalOdds(Float(tOdd,2));
        } else {
-          setTotalOdds(1);
           setNetWin(0);
           setWithholdingTax(0);
           setExciseTax(0);
           setPossibleWin(0);
-          setTotalGames(0);
-          setTotalOdds(0)
+          setStakeAfterTax(0);
        }
-    }, [state?.betslip, stake]);
+       setMessage(null);
+    }, [betslip, stake, totalOdds]);
 
     const handleRemoveAll = useCallback(() => {
         let betslips = getBetslip();
@@ -94,12 +132,8 @@ const BetslipSubmitForm = (props) =>{
            dispatch({type:"SET", key:match_selector, payload:"remove."+ucn});
         });
         dispatch({type:"SET", key:"betslip", payload:{}});
+        setMessage(null);
     }, []);
-
-    const handleStakeAmountChange = useCallback((event, setFieldValue) => {
-        let bamount = event.target.value;
-        setStake(bamount);
-    }, [])
 
     useEffect(() => {
         updateWinnings();
@@ -107,104 +141,192 @@ const BetslipSubmitForm = (props) =>{
 
     const initialValues = {
         bet_amount: 100,
-        accept_all_odds_change:  1,
+        accept_all_odds_change:  true,
         user_id:state?.user?.profile_id,
-        total_games:0,
-        total_odd: 0,
+        total_games:totalGames,
+        total_odd: totalOdds,
     };
+
+    const validate = values => {
+
+        let errors = {}
+
+        if (!values.user_id  ) {
+            errors.user_id = 'Kindly login to proceed';
+            Notify({status:400, message:errors.user_id});
+            return errors;
+        }
+
+        if (!values.bet_amount || values.bet_amount < 1) {
+            errors.bet_amount = 'Enter valid bet amount';
+            Notify({status:400, message:errors.bet_amount});
+            return errors;
+        }
+        if (!betslip || Object.keys(betslip).length === 0) {
+            errors.user_id = "No betlip selected";
+            Notify({status:400, message:errors.user_id});
+            return errors;
+        }
+        return errors;
+    };
+
+
+    const Notify = (message) => {
+        let options =  { 
+           position: "top-right", 
+           autoClose: 5000, 
+           hideProgressBar: true, 
+           closeOnClick: true, 
+           pauseOnHover: true, 
+           draggable: true, 
+           progress: undefined, 
+           toastId:676737/* this is hack to prevent multiple toasts */
+        }
+        if(message.status == 201){
+           toast.success(`🚀 ${message.message}`,options);
+        } else {
+           toast.error(`🦄 ${message.message}`,options);
+        }
+
+    };
+
+    const clean_rep = (str) => {
+        str = str.replace(/[^A-Za-z0-9\-]/g, '');
+        return str.replace(/-+/g, '-');
+    }
+
+    const SubmitButton = (props) => {
+        const { title, ...rest } = props;
+        const { isSubmitting } = useFormikContext();
+        return (
+             <button type="submit" {...rest} disabled={isSubmitting}>{isSubmitting ? " WAIT ... " : title}</button>
+        );
+    };
+
     return (
-        <Form enableReinitialize={true} 
-          name="betslip-submit-form"
-          initialValues={initialValues}
-          onSubmit={handlePlaceBet}
-          >
-            <table className="bet-table">
-             <tbody>
-                <tr className="hide-on-affix">
-                    <td>TOTAL ODDS</td>
-                    <td><b>{props?.totalOdds}</b></td>
-                </tr>
-                <tr id="odd-change-text">
-                    <td colSpan="2">
-                        <label className="checkbox">
-                            
-                            <Field type="checkbox"
-                                className="odds-change-box"
-                                name={"accept-all-odds-change"}
-                                id={"accept-all-odds-change"}
-                            /> Accept any odds change
-                        </label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Stake</td>
-                    <td>
-                        <div id="betting">
-                            <Field type="text"
-                                className="bet-select"
-                                name="bet_amount"
-                                id="bet_amount"
-                                onKeyUp = {(e) => handleStakeAmountChange(e)}
-                            /> 
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td colSpan="2"></td>
-                </tr>
-                <tr className="bet-win-tr hide-on-affix">
-                    <td>Possible winnings</td>
-                    <td>
-                        KES. <span
-                                id="pos_win">{possibleWin}</span>
-                    </td>
-                </tr>
-                <tr className="bet-win-tr hide-on-affix">
-                    <td> Excise Tax (7.5%)</td>
-                    <td>KES. <span id="tax">{exciseTax}</span></td>
-                </tr>
-                <tr className="bet-win-tr hide-on-affix">
-                    <td> Withholding (20%)</td>
-                    <td>KES. <span id="tax">{withholdingTax}</span></td>
-                </tr>
-                <tr className="bet-win-tr hide-on-affix">
-                    <td>Net Amount</td>
-                    <td>KES. <span id="net-amount">{netWin}</span></td>
-                </tr>
-                <tr>
-                    <td>
-                        <button className="place-bet-btn" 
-                            type="button" 
-                            onClick={()=> handleRemoveAll()}>REMOVE ALL</button>
-                    </td>
-                    <td>
-                        <SubmitButton id="place_bet_button" 
-                           className="place-bet-btn" 
-                           title="PLACE BET"/>
-                    </td>
-                </tr>
-            </tbody>
-            </table>
-                
-            <Field
-                type="hidden"
-                name={"user_id"}
-                id={"user_id"}
-                value={state?.user?.profile_id}
-            />
-            <Field
-                type="hidden"
-                name={"total_odd"}
-                id={"total_odd"}
-                value={totalOdd}
-            />
-            <Field
-                type="hidden"
-                name={"total_games"}
-                id={"total_games"}
-                value={totalGames}
-            />
-        </Form>
-    )
+
+        <Formik 
+              initialValues={initialValues}
+              onSubmit={handlePlaceBet}
+              validate={validate}
+              validateOnChange={false}
+              validateOnBlur={false}
+              enableReinitialize={true} 
+              >{(props) =>  {
+
+            const {isValid, errors, values, submitForm, setFieldValue } = props;
+
+            const onFieldChanged = (ev)=>{
+                let field = ev.target.name;
+                let value = ev.target.type === 'checkbox' 
+                    ? ev.target.checked 
+                    : ev.target.value;
+                if(field == 'bet_amount'){
+                    value = value.replace(/[^\d]/g, '');
+                    setFieldValue(field, value);
+                    setStake(value);
+                } else {
+                    setFieldValue(field, value);
+                }
+            }
+
+            return (<FormikForm name="betslip-submit-form" >
+                <Alert />
+                <table className="bet-table">
+                 <tbody>
+                    <tr className="hide-on-affix">
+                        <td>TOTAL ODDS</td>
+                        <td>
+                          <b>{Float(totalOdds, 2)}</b>
+            
+                        </td>
+                        
+                    </tr>
+                    <tr id="odd-change-text">
+                        <td colSpan="2">
+                            <label className="checkbox">
+                                
+                                <input type="checkbox"
+                                    className="odds-change-box"
+                                    name={"accept_all_odds_change"}
+                                    id={"accept-all-odds-change"}
+                                    checked = {values?.accept_all_odds_change}
+                                    onChange={(e) => onFieldChanged(e) }
+                                /> Accept any odds change
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Stake</td>
+                        <td>
+                            <div id="betting">
+                                <input type="text"
+                                    className="bet-select"
+                                    name="bet_amount"
+                                    id="bet_amount"
+                                    value={values.bet_amount}
+                                    onChange = {(e) => onFieldChanged(e)}
+                                /> 
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colSpan="2"></td>
+                    </tr>
+                    <tr className="bet-win-tr hide-on-affix">
+                        <td>Possible winnings</td>
+                        <td>
+                            KES. <span
+                                    id="pos_win">{possibleWin}</span>
+                        </td>
+                    </tr>
+                    <tr className="bet-win-tr hide-on-affix">
+                        <td> Excise Tax (7.5%)</td>
+                        <td>KES. <span id="tax">{exciseTax}</span></td>
+                    </tr>
+                    <tr className="bet-win-tr hide-on-affix">
+                        <td> Withholding (20%)</td>
+                        <td>KES. <span id="tax">{withholdingTax}</span></td>
+                    </tr>
+                    <tr className="bet-win-tr hide-on-affix">
+                        <td>Net Amount</td>
+                        <td>KES. <span id="net-amount">{netWin}</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button className="place-bet-btn" 
+                                type="button" 
+                                onClick={()=> handleRemoveAll()}>REMOVE ALL</button>
+                        </td>
+                        <td>
+                            <SubmitButton id="place_bet_button" 
+                               className="place-bet-btn" 
+                               title="PLACE BET"/>
+                        </td>
+                    </tr>
+                </tbody>
+                </table>
+                    
+                <input
+                    type="hidden"
+                    name={"user_id"}
+                    id={"user_id"}
+                    value={state?.user?.profile_id}
+                />
+                <input
+                    type="hidden"
+                    name={"total_odd"}
+                    id={"total_odd"}
+                    value={totalOdds}
+                />
+                <input
+                    type="hidden"
+                    name={"total_games"}
+                    id={"total_games"}
+                    value={totalGames}
+                />
+            </FormikForm>)
+        }}
+    </Formik>)
 }
 export default React.memo(BetslipSubmitForm);

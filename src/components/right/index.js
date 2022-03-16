@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useContext, useEffect, useCallback  } from 'react';
 import QuickLogin from './quick-login';
 import CompanyInfo from './company-info';
+import { Context }  from '../../context/store';
 import BetSlip from './betslip';
 
 const AlertMessage = (props) => {
@@ -15,6 +16,20 @@ const AlertMessage = (props) => {
 
 const Right = (props) => {
     const { jackpot } = props;
+    const [state,] = useContext(Context);                              
+
+    const [betslipKey, setBetslipKey] = useState("betslip");
+
+    const setJackpotSlipkey = useCallback(()=>{
+        if(jackpot === true ) {
+            setBetslipKey("jackpotbetslip");
+        }
+    }, [jackpot]);
+
+
+    useEffect(() => {
+        setBetslipKey();
+    }, [setBetslipKey]);
 
     return (
         <div className="gn" id="right-generic">
@@ -25,7 +40,7 @@ const Right = (props) => {
                         <div className="betslip-header">
                             <span className="col-sm-2 bkmrk"><i className="fa fa-bookmark" aria-hidden="true"></i></span>
                             <span className="col-sm-8 slp">BETSLIP</span>
-                            <span className="col-sm-2 slip-counter">{props.betslip_count}</span>
+                            <span className="col-sm-2 slip-counter">{state?.[betslipKey] ? state[betslipKey].length : " " }</span>
                         </div>
                     </header>
                     <button id="slip-button-close" type="button" className="close mobi" aria-hidden="true">×</button>

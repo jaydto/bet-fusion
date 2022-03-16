@@ -1,7 +1,13 @@
 import React,{ useState, useEffect, useContext, useCallback} from 'react';
 import BetslipSubmitForm from './betslip-submit-form';
 import { Context }  from '../../context/store';
-import { removeFromSlip, removeFromJackpotSlip}  from '../utils/betslip';
+import { 
+    removeFromSlip, 
+    removeFromJackpotSlip, 
+    getBetslip, 
+    getJackpotBetslip
+}  from '../utils/betslip';
+
 import PerfectScrollbar from 'react-perfect-scrollbar';
 
 const clean_rep = (str) => {
@@ -13,24 +19,36 @@ const BetSlip = (props) => {
     const [state, dispatch] = useContext(Context);                              
     const {jackpot } = props;
     const [betslipKey, setBetslipKey] = useState("betslip");
-
     const [totalOdds, setTotalOdds] = useState(1);
 
     const updateBetslip = useCallback(()=> {
        if(state?.[betslipKey]){
-            let odds= Object.entries(state[betslipKey]).reduce(([a, b]) => {
-                return Math.round(a.odd_value * b.odd_value, 2);
-            });
+            let odds= Object.values(state[betslipKey]).reduce((previous, {odd_value}) => {
+                return previous * odd_value;
+            }, 1 );
             setTotalOdds(odds);
         }
     }, [state?.[betslipKey]]);
 
     const setJackpotSlipkey = useCallback(()=>{
-        console.log("Updating betslip key again");
         if(jackpot === true ) {
             setBetslipKey("jackpotbetslip");
         }
     }, [jackpot]);
+
+
+    const loadBetslip = useCallback(() => {
+        if(!state[betslipKey]) {
+            let b = jackpot === true 
+                ? getJackpotBetslip()
+                : getBetslip();
+            dispatch({type:"SET", key:betslipKey, payload:b});
+        }
+    }, []);
+
+    useEffect(() => {
+        loadBetslip();
+    }, [loadBetslip]);
 
     useEffect(() => {
         setJackpotSlipkey();
@@ -41,7 +59,6 @@ const BetSlip = (props) => {
     }, [updateBetslip]);
 
     const handledRemoveSlip = (match) => {
-       console.log("jp", jackpot)
        let betslip = jackpot !== true 
             ? removeFromSlip(match.match_id)
             : removeFromJackpotSlip(match.match_id);
@@ -90,7 +107,14 @@ const BetSlip = (props) => {
             }
             </ul>
           </PerfectScrollbar>
-        <BetslipSubmitForm />
+        <BetslipSubmitForm 
+            totalOdds={totalOdds}
+            betslip = {state?.[betslipKey]}
+            totalGames = { state?.[betslipKey] 
+                ? Object.keys(state[betslipKey]).length :  0 } 
+            jackpot={jackpot} 
+        />
+
     </div>
     )
 }

@@ -28,7 +28,6 @@ const makeRequest = async ({ url, method, data = null, use_jwt = false }) => {
 
        url += (url.match(/\?/g) ?  '&' : '?' ) + 'token='+jwt;
        data = null;
-       console.log("using token on URL ", url);
     } else {
         headers = { ...headers, ...{"content-type": "application/json"} }
     }
@@ -52,7 +51,6 @@ const makeRequest = async ({ url, method, data = null, use_jwt = false }) => {
               request['body'] = JSON.stringify(data)
           }
 
-          console.log("making req", url,  request);
           const response = await fetch(url, request);
           let result = await response.json();
           let status = response?.status;

@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useMemo, useContext, useRef} from 'react';
+import React, {useState, useEffect, useMemo, useContext, useCallback, useRef} from 'react';
 import { Context }  from '../../context/store';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
@@ -123,20 +123,35 @@ const OddButton = (props) => {
     const [state, dispatch] = useContext(Context);                              
     const ref = useRef();
     let reference = match.match_id + "_selected";
-    const betslip_key =  jackpot === true ? "jackpotbetslip" : "betslip";
+    const [betslip_key, setBetslipKey] = useState('betslip');
 
-    useMemo(() => {
+    const updateBeslipKey = useCallback(() => {
+        if(jackpot) {
+            setBetslipKey("jackpotbetslip");
+        }
+    }, [jackpot]);
+
+    useEffect(() => {
+        updateBeslipKey();
+    }, [updateBeslipKey])
+
+    const updatePickedChoices = useCallback(() => {
         let betslip = state?.[betslip_key];
         let uc = clean(
             match.match_id 
             + "" + match.sub_type_id 
             + (match?.[mkt] ||match?.odd_key || 'draw') 
         );
-        if((betslip?.[match.match_id]?.match_id === match.match_id) 
-            && uc === betslip?.[match.match_id]?.ucn){
+        if((betslip?.[match.match_id]?.match_id == match.match_id) 
+            && uc == betslip?.[match.match_id]?.ucn){
             setPicked('picked');
         }
-    }, [state?.[betslip_key]])
+    }, [state[betslip_key]]);
+
+    useEffect(() => {
+        updatePickedChoices();
+    }, [updatePickedChoices]);
+
 
     useMemo(() => {
         if(match){
@@ -158,7 +173,7 @@ const OddButton = (props) => {
         }
     }, []);
 
-    useMemo(() => {
+    const updateMatchPicked = useCallback(() => {
         if(state?.[reference] ){
             if(state?.[reference].startsWith('remove.')){
                 setPicked('');
@@ -177,6 +192,10 @@ const OddButton = (props) => {
             }
         } 
     }, [state?.[reference]])
+
+    useEffect(()=> {
+        updateMatchPicked();
+    }, [updateMatchPicked])
     
     const handleButtonOnClick = (event) => {
        let pmid = event.currentTarget.getAttribute("parent_match_id");
@@ -219,6 +238,7 @@ const OddButton = (props) => {
 
                dispatch({type:"SET", key:reference, payload:cstm});
            }
+           console.log("Setting betslip to ", betslip_key, betslip);
            dispatch({type:"SET", key:betslip_key, payload:betslip});
        }
     }

@@ -1,5 +1,5 @@
-import React, {useState, useEffect, } from 'react';
-import {Formik, Field, Form} from 'formik';
+import React, {useState} from 'react';
+import {Formik, Form} from 'formik';
 import makeRequest from "../utils/fetch-request";
 import mpesa from '../../assets/img/mpesa-3.png'
 
@@ -14,7 +14,6 @@ const Signup = (props) => {
     const [success, setSuccess] = useState(false);
     const [message, setMessage] = useState(null);
 
-    const [isLoading, setIsLoading] = useState(false);
     const initialValues = {
         msisdn: '',
         password: ''
@@ -56,7 +55,7 @@ const Signup = (props) => {
     }
 
     const MySignupForm = (props) => {
-        const {isValid, errors, values, submitForm, setFieldValue } = props;
+        const {errors, values, submitForm, setFieldValue } = props;
 
         const onFieldChanged = (ev)=>{
             let field = ev.target.name;

@@ -2,7 +2,6 @@ import React from 'react';
 import QuickLogin from './quick-login';
 import CompanyInfo from './company-info';
 import BetSlip from './betslip';
-import loader from '../../assets/img/loader.gif';
 
 const AlertMessage = (props) => {
     return (

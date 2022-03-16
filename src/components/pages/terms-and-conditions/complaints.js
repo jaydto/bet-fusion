@@ -1,5 +1,4 @@
 import {
-    Accordion,
     AccordionItem,
     AccordionItemHeading,
     AccordionItemButton,

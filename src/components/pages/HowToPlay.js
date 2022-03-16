@@ -1,6 +1,5 @@
 import React, {useCallback, useEffect, useState, useContext} from "react";
 
-import Row from 'react-bootstrap/Row';
 
 import {
     Accordion,
@@ -17,24 +16,19 @@ import {
     setLocalStorage
 } from '../utils/local-storage';
 
-import banner from '../../assets/img/banner.jpg';
 import { getBetslip } from '../utils/betslip' ;
 import { Context }  from '../../context/store';
 
 const Header = React.lazy(()=>import('../header/header'));
 const Footer = React.lazy(()=>import('../footer/footer'));
 const SideBar = React.lazy(()=>import('../sidebar/sidebar'));
-const CarouselLoader = React.lazy(()=>import('../carousel/index'));
-const MainTabs = React.lazy(()=>import('../header/main-tabs'));
-const SearchBar = React.lazy(()=>import('../header/search-bar'));
 const Right = React.lazy(()=>import('../right/index'));
 
 
 const HowToPlay = (props) => {
     
-    const [state, dispatch] = useContext(Context);                              
+    const [, dispatch] = useContext(Context);                              
     const [competitions, setCompetitions] = useState({});
-    const [isLoading, setIsLoading] = useState(false);
 
     const fetchData = useCallback(async() => {
         let cached_categories = getFromLocalStorage('categories');
@@ -47,7 +41,7 @@ const HowToPlay = (props) => {
             ]);
             let [c_status, c_result] = competition_result
 
-            if(c_status == 200){
+            if(c_status === 200){
                 setCompetitions(c_result);
             }
             setLocalStorage('categories', c_result);

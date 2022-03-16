@@ -1,4 +1,4 @@
-import React, {useParams} from 'react';
+import React  from 'react';
 
 
 const QuickLogin = (props) => {
@@ -24,4 +24,4 @@ const QuickLogin = (props) => {
         </div>
     )
 }
-export default QuickLogin;
+export default React.memo(QuickLogin);

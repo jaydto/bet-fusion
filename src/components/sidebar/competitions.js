@@ -1,20 +1,11 @@
-import React, {useState, useContext, useEffect} from 'react';
-import { Context }  from '../../context/store';
+import React from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const Competitions = (props) => {
-
-    const [imageLoaded, setImageLoaded] = useState(false);
-    const [state, dispatch] = useContext(Context);                              
     const {competitions } = props;
-
-
-    const onImageLoaded = () => {
-        setImageLoaded(true);
-    }
 
     return (
 
@@ -27,10 +18,9 @@ const Competitions = (props) => {
                         <Col lg="1" style={{padding:0}}>
                             { competition?.flag && 
                                 <LazyLoadImage  
-                                   style={{display: imageLoaded? 'inline': 'none', width:"16px"}}
                                    className="side-icon" 
                                    src={require(`../../assets/img/flags-1-1/${competition.flag}.svg`) }
-                                   onLoad={onImageLoaded} /> 
+                                   /> 
                             }
                         </Col>
                         <Col lg="11" className="topl" >
@@ -45,4 +35,4 @@ const Competitions = (props) => {
             </ul>
     )
 }
-export default Competitions;
+export default React.memo(Competitions);

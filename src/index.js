@@ -1,5 +1,6 @@
-import React, { useEffect,  Suspense} from "react";
+import React, { useEffect,  useCallback, Suspense} from "react";
 import {render} from "react-dom";
+import LogRocket from 'logrocket';
 
 import {
     BrowserRouter,
@@ -59,25 +60,34 @@ const Signup = React.lazy(
     () => import('./components/pages/signup')
 );
 
+const ProtectedRoute = React.lazy(
+    () => import('./components/utils/protected-route')
+);
+
 const Logout = () => {
     let navigate = useNavigate();
-	useEffect(() => {
+
+    const out = useCallback(()=> {
 		localStorage.clear();
 		navigate("/");
-	}, []);
+    }, [navigate]);
+
+	useEffect(() => {
+        out();
+	}, [out]);
 	return null;
 }
 
+LogRocket.init('ctvt6n/react-betnare');
 const container = document.getElementById("app");
 render((
     <Store>
         <BrowserRouter>
-            <Suspense fallback={<p>Loading</p>}>
+            <Suspense fallback={<p> Loading ... </p>}>
             <Routes>
                <Route exact path = "/" element = { <Index /> }  />
                <Route exact path = "/highlights" element = { <Index /> }  />
                <Route exact path = "/upcoming" element = { <Index /> }  />
-               <Route exact path = "/my-bets" element = { <MyBets /> }  />
                <Route exact path = "/tomorrow" element = { <Index /> }  />
                <Route exact path = "/competition/:id" element = { <CompetitionsMatches /> }  />
                <Route exact path = "/match/:id" element = { <MatchAllMarkets /> }  />
@@ -91,10 +101,15 @@ render((
                <Route exact path="/cookie-policy" element={<CookiePolicy/>}/>
                <Route exact path="/terms-and-conditions" element={<TermsAndConditions/>}/>
                <Route exact path="/how-to-play" element={<HowToPlay/>}/>
-               <Route exact path="/deposit" element={<Deposit/>}/>
-               <Route exact path="/withdraw" element={<Withdraw/>}/>
                <Route exact path="/signup" element={<Signup />}/>
                <Route exact path="/logout" element={<Logout />}/>
+
+               <Route exact path="/deposit" 
+                   element={<ProtectedRoute><Deposit/> </ProtectedRoute>}/>
+               <Route exact path="/withdraw" 
+                   element={<ProtectedRoute><Withdraw/></ProtectedRoute>}/>
+               <Route exact path = "/my-bets" 
+                   element = { <ProtectedRoute><MyBets /> </ProtectedRoute>}  />
             </Routes>
            </Suspense>
         </BrowserRouter>

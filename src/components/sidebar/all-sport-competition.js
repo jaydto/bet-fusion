@@ -1,9 +1,9 @@
-import React, { usePrams, useEffect, useState, useContext} from 'react';
+import React, { useEffect, useState, useCallback} from 'react';
 import {
   useParams,
 } from "react-router-dom";
+
 import downArrow from '../../assets/img/down-arrow.svg';
-import { Context }  from '../../context/store';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
@@ -17,25 +17,24 @@ export const SportItem = (props) => {
     const {spid} = useParams('sp');
     const [activeClass, setActiveClass] = useState('');
 
-    const [imageLoaded, setImageLoaded] = useState(false);
 
-    const onImageLoaded = () => {
-        setImageLoaded(true);
-    }
-
-    const handleMenuToggle = () => {
+    const handleMenuToggle = useCallback(() => {
         if(activeClass === ''){
             setActiveClass("active");
         } else {
             setActiveClass('');
         }
-    }
+    }, [activeClass]);
 
-    useEffect(() => {
-        if (sport_id == spid) {
+    const inintActiveClass = useCallback(() => {
+        if (sport_id === spid) {
             setActiveClass('active');
         }
-    }, []);
+    }, [sport_id, spid]);
+
+    useEffect(() => {
+        inintActiveClass();
+    }, [inintActiveClass]);
 
     const default_img = 'default_sport';
     let sport_image = null;
@@ -51,13 +50,13 @@ export const SportItem = (props) => {
             <a href="#" onClick={handleMenuToggle}>
                 <span style={{"padding":0}}>
                   <img  
-                       style={{display: imageLoaded? 'inline': 'none'}}
                        className="side-icon" 
                        src={sport_image} 
-                       onLoad={onImageLoaded} /> 
+                       alt=""
+                        /> 
                 </span>
                 <span className="topl"> { sport.sport_name } </span>
-                <img className="down-arrow pull-right" src={downArrow} />
+                <img className="down-arrow pull-right" alt="" src={downArrow} />
             </a>
             <ul className="treeview-menu">
               {
@@ -82,13 +81,8 @@ export const CategoryItem = (props) => {
     const {ctid} = useParams('id');
     const [activeClass, setActiveClass] = useState('');
     const [active, setActive] = useState('');
-    const [imageLoaded, setImageLoaded] = useState(false);
 
-    const onImageLoaded = () => {
-        setImageLoaded(true);
-    }
-
-    const handleMenuToggle = () => {
+    const handleMenuToggle = useCallback(() => {
         if(activeClass === ''){
             setActiveClass('menu-open');
             setActive('active');
@@ -97,13 +91,18 @@ export const CategoryItem = (props) => {
             setActiveClass('');
             setActive('');
         }
-    }
-    useEffect(() => {
-        if(ctid == category_id){
+    }, [activeClass]);
+    
+    const initActiveMenuClass = useCallback(() => {
+        if(ctid === category_id){
             setActive('active');
             setActiveClass('menu-open');
         }
-    }, [])
+    }, [ctid, category_id]);
+
+    useEffect(() => {
+        initActiveMenuClass();
+    }, [initActiveMenuClass])
 
     return (
         <li className={`treeview ${active}`} >
@@ -111,9 +110,7 @@ export const CategoryItem = (props) => {
                 { category?.cat_flag && 
                     <LazyLoadImage 
                          className="side-icon" 
-                        style={{display: imageLoaded ? 'inline':'none'}}
                         src={require(`../../assets/img/flags-1-1/${category.cat_flag}.svg`)} 
-                        onLoad={onImageLoaded } 
                         effect="blur"
                     />
                 }
@@ -139,12 +136,17 @@ export const CategoryItem = (props) => {
 export const CompetitionItem = (props) => {
     const { competition, competition_id } = props;
     const [active, setActive] = useState('');
+    
     const {cmid} = useParams('cmid');
     const {spid} = useParams('sp');
 
+    const updateActiveStatus = useCallback(() => {
+        setActive(cmid === competition_id ? 'selected': '');
+    }, [competition_id, cmid]);
+
     useEffect(() => {
-      setActive(cmid == competition_id ? 'selected': '');
-    }, [])
+        updateActiveStatus();
+    }, [updateActiveStatus])
 
     return (
         <li className={active}>
@@ -158,10 +160,7 @@ export const CompetitionItem = (props) => {
 
 const AllSportCompetitions = (props) => {
 
-    const [state, dispatch] = useContext(Context);                              
-    const [categories, setCategories] = useState(null);
     const { competitions } =  props;
-
 
     return (
         <ul className="sidebar-menu aoi nav base-bg">
@@ -180,4 +179,4 @@ const AllSportCompetitions = (props) => {
         </ul>
     )
 }
-export default AllSportCompetitions;
+export default React.memo(AllSportCompetitions);

@@ -1,6 +1,11 @@
 import React, { useState, useEffect, useContext, useCallback, useMemo }from 'react';
 import { Context }  from '../../context/store';
-import { removeFromSlip, getBetslip }  from '../utils/betslip';
+import { 
+    removeFromSlip, 
+    getBetslip,
+    clearSlip,
+    clearJackpotSlip
+}  from '../utils/betslip';
 import { toast } from 'react-toastify';
 import publicIp from 'public-ip';
 import makeRequest from '../utils/fetch-request'; 
@@ -25,6 +30,14 @@ const BetslipSubmitForm = (props) =>{
     const [betslipKey, setBetslipKey] = useState("betslip");
     const [ipv4, setIpv4] = useState(null);
     const [message, setMessage] = useState(null);
+    const [state, dispatch] = useContext(Context);                              
+
+    const [stake, setStake] = useState(100);
+    const [stakeAfterTax, setStakeAfterTax] = useState(0);
+    const [exciseTax, setExciseTax] = useState(0);
+    const [withholdingTax, setWithholdingTax] = useState(0);
+    const [possibleWin, setPossibleWin] = useState(0);
+    const [netWin, setNetWin] = useState(0);
 
     const ipAddress = useCallback(async () => {
         let ip = await publicIp.v4({
@@ -36,7 +49,21 @@ const BetslipSubmitForm = (props) =>{
 
     const Alert = (props) => {
         let c = message?.status == 201  ? 'success' : 'danger';
-        return (<>{ message?.status  && <div role="alert" className={`fade alert alert-${c} show`}>{message.message}</div> } </>) ;
+        let x_style= {
+            float: "right",
+            display: "block",
+            fontSize: "22px",
+            color: "orangered",
+            cursor:"pointer",
+            padding:"3px"
+        }
+        return (<>{ message?.status  && 
+            <div role="alert" 
+                className={`fade alert alert-${c} show alert-dismissible`}>
+                    {message.message}
+                    <span aria-hidden="true" style={x_style} onClick={()=> setMessage(null)}>&times;</span>
+            </div> } 
+        </>) ;
 
     };
     useEffect(() => {
@@ -75,6 +102,13 @@ const BetslipSubmitForm = (props) =>{
                 setMessage(response);
                 if(status === 200 || status == 201 || status == 204){
                     //all is good am be quiet
+                    if(jackpot) {
+                        clearJackpotSlip();
+                    } else {
+                        clearSlip();
+                    }
+                   dispatch({type:"DEL", key:betslipKey});
+
                 } else {
                     let qmessage = {
                         status : status,
@@ -85,15 +119,6 @@ const BetslipSubmitForm = (props) =>{
                 setSubmitting(false);
             })
     }
-
-    const [state, dispatch] = useContext(Context);                              
-
-    const [stake, setStake] = useState(100);
-    const [stakeAfterTax, setStakeAfterTax] = useState(0);
-    const [exciseTax, setExciseTax] = useState(0);
-    const [withholdingTax, setWithholdingTax] = useState(0);
-    const [possibleWin, setPossibleWin] = useState(0);
-    const [netWin, setNetWin] = useState(0);
 
     const updateWinnings = useCallback(() => {
         if( state?.[betslipKey]) { 
@@ -115,7 +140,9 @@ const BetslipSubmitForm = (props) =>{
           setPossibleWin(0);
           setStakeAfterTax(0);
        }
-       setMessage(null);
+       if(message && message.status > 299){
+           setMessage(null);
+       }
     }, [betslip, stake, totalOdds]);
 
     const handleRemoveAll = useCallback(() => {

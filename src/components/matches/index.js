@@ -135,7 +135,7 @@ const OddButton = (props) => {
         updateBeslipKey();
     }, [updateBeslipKey])
 
-    const updatePickedChoices = useCallback(() => {
+    const updatePickedChoices = () => {
         let betslip = state?.[betslip_key];
         let uc = clean(
             match.match_id 
@@ -145,12 +145,14 @@ const OddButton = (props) => {
         if((betslip?.[match.match_id]?.match_id == match.match_id) 
             && uc == betslip?.[match.match_id]?.ucn){
             setPicked('picked');
+        } else {
+            setPicked('');
         }
-    }, [state[betslip_key]]);
+    };
 
     useEffect(() => {
         updatePickedChoices();
-    }, [updatePickedChoices]);
+    }, [picked]);
 
 
     useMemo(() => {
@@ -173,6 +175,7 @@ const OddButton = (props) => {
         }
     }, []);
 
+
     const updateMatchPicked = useCallback(() => {
         if(state?.[reference] ){
             if(state?.[reference].startsWith('remove.')){
@@ -184,6 +187,7 @@ const OddButton = (props) => {
                     + "" + match.sub_type_id 
                     + (match?.[mkt] ||match?.odd_key || 'draw') 
                 );
+
                 if(state?.[reference] === uc){
                     setPicked('picked')
                 } else {
@@ -204,7 +208,8 @@ const OddButton = (props) => {
        let sbv = event.currentTarget.getAttribute("special_bet_value"); 
        let oddk = event.currentTarget.getAttribute("odd_key"); 
        let  odd_value = event.currentTarget.getAttribute("odd_value"); 
-       let  bet_type = event.currentTarget.getAttribute("odd_type"); 
+       let  bet_type = event.currentTarget.getAttribute("bet_type"); 
+       let  odd_type = event.currentTarget.getAttribute("odd_type"); 
        let  home_team = event.currentTarget.getAttribute("home_team"); 
        let  away_team = event.currentTarget.getAttribute("away_team"); 
        let cstm = clean(mid + "" + stid + oddk)
@@ -219,6 +224,7 @@ const OddButton = (props) => {
            "home_team":home_team,
            "away_team":away_team,
            "bet_type":bet_type,
+           "odd_type":odd_type,
            "live":live,
            "ucn":cstm,
        }
@@ -238,7 +244,6 @@ const OddButton = (props) => {
 
                dispatch({type:"SET", key:reference, payload:cstm});
            }
-           console.log("Setting betslip to ", betslip_key, betslip);
            dispatch({type:"SET", key:betslip_key, payload:betslip});
        }
     }
@@ -249,7 +254,7 @@ const OddButton = (props) => {
             className={`home-team ${match.match_id} ${ucn} ${picked}`}
             home_team={match.home_team}
             odd_type={match?.name || match?.market_name || "1X2"} 
-            bet_type={live ? 'live': 'prematch' }
+            bet_type={live ? 1: 0 }
             away_team={match.away_team}
             odd_value={oddValue}
             odd_key={match?.[mkt] || match?.odd_key || 'draw'}

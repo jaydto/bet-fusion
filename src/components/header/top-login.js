@@ -166,7 +166,7 @@ const HeaderLogin = (props) => {
     }
 
     return (
-        <Container >
+        <Container  className="top-login-section">
            <Row className="" style={{float:"right", marginRight:"15px"}}>
                 <div className="col-12">
                     <a className="" href="/signup" title="Join now">

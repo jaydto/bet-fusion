@@ -912,7 +912,7 @@ button {
 }
 
 .shrink-header .second-nav {
-    top: 84px !important;
+    top: 68px !important;
 }
 
 
@@ -1146,9 +1146,6 @@ header {
 }
 
 @media (max-width: 768px) {
-    .web-element {
-        display: none !important;
-    }
 
     .mobi {
         display: block !important;
@@ -1223,10 +1220,6 @@ header {
         padding-top: 115px !important;
     }
 
-    .shrink-header .second-nav {
-        position: relative;
-        background: #26408a !important;
-    }
 
     .shrink-header .icon-holder img {
         display: none;
@@ -6677,18 +6670,6 @@ ul.sport {
     }
 }
 
-.ow {
-    margin-left: -15px;
-    margin-right: -15px;
-    padding: 10px 15px;
-    border-top: 1px solid transparent;
-    border-bottom: 1px solid transparent;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.1);
-    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.1);
-    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.1);
-    margin-top: 13px;
-    margin-bottom: 7px;
-}
 
 .navbar-nav .ow {
     padding: 10px 0px !important;
@@ -7061,10 +7042,6 @@ fieldset[disabled] .pa .fu:focus {
     background-color: #27357F;
 }
 
-.pc .f,
-.pc .ow {
-    border-color: #26408A;
-}
 
 .pc .navbar-nav > .open > a,
 .pc .navbar-nav > .open > a:hover,
@@ -9461,10 +9438,10 @@ button.close {
     }
 }
 
-@media (max-width: 767px) {
-    .ss {
-        display: none !important;
-    }
+.scrollbar-container{
+    height:100vh;
+}
+@media (max-width: 768px) {
 
     table.bdd {
         font-size: 10px;
@@ -9472,6 +9449,22 @@ button.close {
 
     table.basic-table.bd {
         font-size: 10px;
+    }
+    .top-login-section {
+        display:none;
+
+    }
+    .shrink-header .second-nav {
+        top: 62px !important;
+    }
+    .by.amt {
+        margin-top:30px !important;
+    }
+    .scrollbar-container{
+        height:auto;
+    }
+    .pad.left-text {
+        margin-left:10px;
     }
 }
 
@@ -13093,14 +13086,6 @@ img.zoom-img {
 
     .hidden-mobile {
         display: none;
-    }
-
-    .amt {
-        padding-top: 131px !important;
-    }
-
-    .second-nav {
-        background: #26408a !important;
     }
 
     .app-navbar .e img {

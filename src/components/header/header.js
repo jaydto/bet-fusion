@@ -34,14 +34,14 @@ const Header = (props) => {
     return (
        <Container className="shrink-header" id="shrink-header">
             <Row className="ck pc os app-navbar top-nav">
-                <div className=" col-sm-3">
+                <div className=" col-3">
                   <div>
                       <a className="e logo" href="/" title="Betnare">
                       <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects ="blur"/>
                       </a>
                   </div>
                 </div>
-                <div className="col-sm-9" id="navbar-collapse-main">
+                <div className="col-9" id="navbar-collapse-main">
                     { state?.user ?  <ProfileMenu /> : <HeaderLogin /> }
                 </div>
             </Row>

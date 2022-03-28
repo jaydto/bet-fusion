@@ -44,15 +44,15 @@ const MatchHeaderRow = (props) => {
     return (
         <Container>
         <Row className="events-header">
-            <div className="col-sm-8 left-text">
+            <div className="col-8 left-text">
                 <h3 className="main-heading-1">
                    { live && <span className="live-header">LIVE </span> } Soccer 
                  </h3>
             </div>
-            <div className="col-sm-1">1</div>
-            <div className="col-sm-1 events-odd">X</div>
-            <div className="col-sm-1">2</div>
-            <div className="col-sm-1 events-odd"></div>
+            <div className="col-1">1</div>
+            <div className="col-1 events-odd">X</div>
+            <div className="col-1">2</div>
+            <div className="col-1 events-odd"></div>
         </Row>
         </Container>
     )
@@ -104,7 +104,7 @@ const SideBets = (props) => {
 
     return (
 
-        <div className={`col-sm-1 events-odd pad ${picked}`} >
+        <div className={`col-lg-1 col-sm-1 col-md-1 col-xs-1 events-odd pad ${picked}`} >
             <a className="side" 
                 href={`/match/${ live ? 'live/' : '' }${
                     live ? match.parent_match_id : match?.match_id}`
@@ -341,7 +341,7 @@ const MatchRow = (props) => {
     const {match, jackpot, live} = props;
     return (
         <Row className="top-matches">
-            <div className="col-sm-1 pad left-text">
+            <div className="col-sm-1 col-xs-12 pad left-text">
                 { live && 
                     <> 
                     <small style={{color:"green"}} > {match?.match_status} </small>
@@ -351,7 +351,7 @@ const MatchRow = (props) => {
                 {(live && match?.match_time) ?  
                         <>{`${match.match_time}'`}</> : match?.start_time}
             </div>
-            <div className="col-sm-7">
+            <div className="col-sm-7 col-xs-12">
                 <div className="compt-detail"> {match.category} | {match.competition_name}</div>
                 <div className="compt-teams">
 				    { live && (match?.match_status !== 'ended') && <ColoredCircle color="red" /> }
@@ -363,20 +363,20 @@ const MatchRow = (props) => {
                     {match.away_team}
                 </div>
             </div>
-            <Row className={`${jackpot ? 'col-4' : 'col-3'} m-0 p-0`}>
-                <div className="col-sm-4 match-div-col" style={{padding:0}}>
+            <Row className={`${jackpot ? 'col-4' : 'col-lg-3 col-xs-12'} m-0 p-0`}>
+                <div className="col-4 match-div-col" style={{padding:0}}>
                     { (match?.odds?.home_odd && match.odds.home_odd !== 'NaN')
                         ?  <OddButton match={match}  mkt="home_team" live={live} jackpot = {jackpot} /> 
                         :  <EmptyTextRow odd_key={match?.odd_key}/> 
                     }
                 </div>
-                <div className="col-sm-4 events-odd match-div-col" style={{padding:0}}>
+                <div className="col-4 events-odd match-div-col" style={{padding:0}}>
                     { (match?.odds?.neutral_odd && match.odds.neutral_odd !== 'NaN')
                         ?  <OddButton match={match}  mkt="draw" live={live} jackpot={jackpot}/> 
                         :  <EmptyTextRow odd_key={match?.odd_key}/> 
                     }
                 </div>
-                <div className="col-sm-4 match-div-col" style={{padding:0}}>
+                <div className="col-4 match-div-col" style={{padding:0}}>
                     { (match?.odds?.away_odd && match.odds.away_odd !== 'NaN')
                         ?  <OddButton match={match}  mkt="away_team" live={live} jackpot={jackpot}/> 
                         :  <EmptyTextRow odd_key={match?.odd_key}/> 

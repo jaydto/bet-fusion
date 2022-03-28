@@ -57,7 +57,7 @@ const SideBar = (props) => {
     return (
         <div className="gn">
 
-          <PerfectScrollbar style={{ height: "100vh" }}>
+          <PerfectScrollbar >
             <div className="qv rc aog alu web-element block-shadow bottom-std-margin-spacing">
                 <header>
                     <div className="header-holder">

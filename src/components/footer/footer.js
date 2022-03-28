@@ -8,8 +8,8 @@ const Footer = (props) => {
 
     return (
         <footer className="footer-custom">
-            <div className="col-md-12 d-flex">
-                <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3 text-white">
+            <div className="row">
+                <div className="col-xs-12 col-sm-6 col-md-6 col-lg-4 text-white">
                     <h5>BETNARE</h5>
                     <ul>
                         <li className="">
@@ -42,7 +42,7 @@ const Footer = (props) => {
                         </li>
                     </ul>
                 </div>
-                <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                <div className="col-xs-12 col-sm-6 col-md-6 col-lg-4">
                     <h5>TERMS AND CONDITIONS</h5>
                     <ul>
                         <li className="">
@@ -62,7 +62,7 @@ const Footer = (props) => {
                         </li>
                     </ul>
                 </div>
-                <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                <div className="col-xs-12 col-sm-6 col-md-6 col-lg-4">
                     <h5>LEGAL</h5>
                     <ul>
                         <li className="text-danger">

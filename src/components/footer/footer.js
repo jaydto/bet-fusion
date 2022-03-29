@@ -81,7 +81,7 @@ const Footer = (props) => {
                     <hr/>
                     <p>
                         We are licensed and regulated by the Betting Control and Licensing
-                        Board.
+                        Board BCLB 0000397
                     </p>
                 </div>
             </div>

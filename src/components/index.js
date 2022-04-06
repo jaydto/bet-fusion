@@ -22,7 +22,7 @@ const Index = (props) => {
         let tab = location.pathname.replace("/", "") || 'highlights';
         
         let match_endpoint = "/v1/matches?page=" 
-            + (state?.page || 1) + "&limit=15&tab=" + tab;
+            + (state?.page || 1) + "&limit=100&tab=" + tab;
         console.log("Fetching data from API");
         const [match_result] =  await Promise.all([
             makeRequest({url: match_endpoint, method: "get", data: null})

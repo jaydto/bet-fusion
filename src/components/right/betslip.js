@@ -90,16 +90,29 @@ const BetSlip = (props) => {
                         <div className="bet-cancel">
                             <input id={slip.match_id} type="submit" value="X" onClick={() => handledRemoveSlip(slip)} />
                         </div>
-                        <div className="bet-value">{`${slip.home_team} v ${slip.away_team}`}
-                            <br /><span className="sp_sport" ></span>
+                        <div className="bet-value">
+                          <b>
+                            {<span style={{float:"left", width:"auto",fontWeight:"bold"}}>{slip.sport_name},&nbsp;</span>} 
+                            {slip.bet_type == 0  && ' Pre-match'}
+                            {slip.bet_type == 1  && ' Live'}
+                           </b>
+                         </div>
+                        <div className="row">
+                            <div className="bet-value">{`${slip.home_team} - ${slip.away_team}`}
+                                <br /><span className="sp_sport" ></span>
+                            </div>
                         </div>
-                        <div className="clearfix row">{slip?.live && <span style={{float:"left", width:"auto",marginLeft:"-7px",fontWeight:"bold"}}>Live: </span>} {slip.bet_type}</div>
-                        <div className="bet-pick" >Pick : {slip.bet_pick}
+                        <div className="row">
+                        <div className="bet-value">
+                            Market - {slip.odd_type }
+                         </div>
+                        </div>
+                        <div className="bet-pick" ><b>Your Pick - {slip.bet_pick}
                             <span className="bet-odd">{slip.odd_value}
                                { slip.odd_value === 1 &&
                                         (<span style={{color:"#cc0000", fontSize:"11px", display:"block"}}>Market Disabled</span>)
                                }
-                            </span>
+                            </span></b>
                         </div>
 
                     </li>)

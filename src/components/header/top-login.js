@@ -180,4 +180,4 @@ const HeaderLogin = (props) => {
         </Container >
     )
 }
-export default HeaderLogin;
+export default React.memo(HeaderLogin);

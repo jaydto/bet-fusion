@@ -7,7 +7,7 @@ const MainTabs = (props) => {
    const {tab} = props;
 
    const u_class = tab == 'upcoming' ? "home-tabs-active" : "home-tabs";
-   const h_class = tab == 'highlights' ? "home-tabs-active" : "home-tabs";
+   const h_class = (!tab || tab == 'highlights') ? "home-tabs-active" : "home-tabs";
    const t_class = tab == 'tomorrow' ? "home-tabs-active" : "home-tabs";
    
    return (

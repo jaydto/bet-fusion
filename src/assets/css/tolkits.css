@@ -73,7 +73,13 @@ header, li a, .thedate span {
 .gothb {
     font-family: 'GothamBold';
 }
-
+.header-menu li.active{
+    background-color: #3f6878;
+    border-bottom: 2px solid #dfbc64;
+}
+.header-menu a.active{
+    border-bottom: 2px solid #dfbc64;
+}
 .betslip input[type="number"] {
     color: #333;
     border: 1px solid #9f9f9f;
@@ -6131,7 +6137,6 @@ select[multiple].eq > .fj > .cg {
 
 .nav > li > a:hover, .nav > li > a:active, nav > li > a:focus, .aoi > li:nth-child(2n) a:hover {
     text-decoration: none;
-    background-color: #1f2b3d !important;
     color: #fff !important;
 }
 
@@ -6990,12 +6995,6 @@ fieldset[disabled] .pa .fu:focus {
 .pc .navbar-nav > .active > a:hover,
 .pc .navbar-nav > .active > a:focus {
     color: #ffffff;
-    background-color: #000033;
-}
-
-.pc .navbar-nav .active {
-    background: #d96189;
-    color: #000;
 }
 
 .carousel-control {

@@ -22,7 +22,6 @@ const Right = React.lazy(()=>import('./right/index'));
 const CompetitionMatches = (props) => {
     const [page, setPage] = useState(1);
     const [state, dispatch] = useContext(Context);                              
-    const [tab, setTab] = useState('highlights');
     const params = useParams();
     const [competitions, setCompetitions] = useState({});
     const [isLoading, setIsLoading] = useState(false);
@@ -38,63 +37,23 @@ const CompetitionMatches = (props) => {
         }
     }, []);
 
-    const fetchData = useCallback(async() => {
-        let cached_categories = getFromLocalStorage('categories');
-        let endpoint = "/v1/categories";     
-        let match_endpoint = "/v1/sports/competition?id="+params.id+"&page="+ (state?.page|| 1); 
-        
-        if(!cached_categories) {
-            console.log("Fetching data from API");
-            const [competition_result, match_result] =  await Promise.all([
-                makeRequest({url:endpoint, method:"get", data:null }),
-                makeRequest({url: match_endpoint, method: "get", data: null})
-            ]);
-            let [c_status, c_result] = competition_result
-
-            if(c_status == 200){
-                setCompetitions(c_result);
-            }
-            let [m_status, m_result] = match_result;
-            if(m_status == 200){
-                dispatch({type: "SET", key: "matches", payload: m_result});
-            }
-            setLocalStorage('categories', c_result);
-        } else {
-            console.log("Fetching data from cached localstorage");
-            fetchPagedData();
-            setCompetitions(cached_categories);
-        }
-
-    }, []);
 
     useEffect(() => {
 
        const abortController = new AbortController();                          
-       fetchData();
+       fetchPagedData();
 
        return () => {                                                          
             abortController.abort();                                            
         };                                                                      
-    }, [fetchData]);
-
-    useEffect(() => {
-       fetchPagedData();
-    }, [state?.page]);
-
-
-    useEffect(() => {
-        let betslip = getBetslip();
-        if (betslip) {
-            dispatch({type: "SET", key: "betslip", payload: betslip});
-        }
-    }, []);
+    }, [fetchPagedData]);
 
    return (
        <>
         <Header />        
         <div className="by amt">
           <div className="gc">
-            <SideBar competitions={competitions}/>
+            <SideBar loadCompetitions />
             <div className="gz home">
                 <div className="homepage">
                     <CarouselLoader />

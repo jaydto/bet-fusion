@@ -34,7 +34,6 @@ const MatchAllMarkets = (props) => {
     const [state, dispatch] = useContext(Context);                              
     const params = useParams();
     const [isLoading, setIsLoading] = useState(false);
-    const [competitions, setCompetitions] = useState([]);
 
     useInterval(() => {
 		let endpoint = live 
@@ -60,63 +59,22 @@ const MatchAllMarkets = (props) => {
                 setIsLoading(false);
             });
         }
-    }, []);
+    }, [isLoading]);
 
-    const fetchData = useCallback(async() => {
-        let cached_categories = getFromLocalStorage('categories');
-        let endpoint = "/v1/categories";     
-
-        let games_endpoint = live 
-            ? "/v1/matches/live?id="+params.id
-            : "/v1/matches?id="+params.id;
-
-        if(!cached_categories && !isNaN(+params.id)) {
-            console.log("Fetching data from API");
-            const [competition_result, match_result] =  await Promise.all([
-                makeRequest({url:endpoint, method:"get", data:null }),
-                makeRequest({url: games_endpoint, method: "get", data: null})
-            ]);
-            let [c_status, c_result] = competition_result
-
-            if(c_status == 200){
-                setCompetitions(c_result);
-            }
-            let [m_status, m_result] = match_result;
-
-            if(m_status == 200){
-                dispatch({type: "SET", key: "matchwithmarkets", payload: m_result});
-            }
-            setLocalStorage('categories', c_result);
-        } else {
-            console.log("Fetching data from cached localstorage");
-            fetchPagedData();
-            setCompetitions(cached_categories);
-        }
-
-    }, []);
-
-    useEffect(() => {
+    useLayoutEffect(() => {
         const abortController = new AbortController();                          
-        fetchData();
+        fetchPagedData();
         return () => {                                                          
             abortController.abort();                                            
         };                                                                      
-    }, [fetchData]);
-
-
-    useEffect(() => {
-        let betslip = getBetslip();
-        if (betslip) {
-            dispatch({type: "SET", key: "betslip", payload: betslip});
-        }
-    }, []);
+    }, [fetchPagedData]);
 
    return (
        <>
         <Header />        
         <div className="by amt">
           <div className="gc">
-            <SideBar competitions={competitions} />
+            <SideBar loadCompetitions />
             <div className="gz home">
                 <div className="homepage">
                     <MarketList live={live} />

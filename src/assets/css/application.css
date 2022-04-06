@@ -248,14 +248,6 @@ li.bet-option {
 .capitalize {
   text-transform: capitalize;
 }
-.bet-value {
-  width: 70%;
-  height: 16px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
 
 .bet-body .clearfix {
   float: left;
@@ -434,4 +426,16 @@ display: none;
 .register-label {
     color:#fff;
     text-decoration:none;
+}
+.caret {
+    width: 0;
+    height: 0;
+    display: inline-block;
+    border: 5px solid transparent;
+}
+.caret.down{
+    border-top-color: orange;
+}
+.caret.up{
+    border-bottom-color: green;
 }

@@ -24,6 +24,7 @@ const Live = (props) => {
 	useInterval(() => {
         let endpoint = "/v1/matches/live";     
 		makeRequest({url:endpoint, method:"get", data:null }).then(([status, result]) => {
+            console.log(result);
             dispatch({type:"SET", key:"matches", payload:result});
 		});                                                                     
     }, 2000);

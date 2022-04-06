@@ -22,7 +22,7 @@ const clean = (_str) => {
     return _str.replace(/-+/g, '-');
 }
 
-const EmptyTextRow = React.memo((props) =>{
+const EmptyTextRow = (props) =>{
     const { odd_key } = props;
 
     return (
@@ -45,7 +45,7 @@ const EmptyTextRow = React.memo((props) =>{
          </span>
         </div>
     );
-}, []);
+};
 
 const MatchHeaderRow = (props) => {
     const {live} = props;

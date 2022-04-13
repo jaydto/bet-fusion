@@ -5,7 +5,8 @@ import {
     removeFromSlip, 
     removeFromJackpotSlip, 
     getBetslip, 
-    getJackpotBetslip
+    getJackpotBetslip,
+    addToSlip,
 }  from '../utils/betslip';
 
 import PerfectScrollbar from 'react-perfect-scrollbar';
@@ -16,47 +17,108 @@ const clean_rep = (str) => {
 }
 
 const BetSlip = (props) => {
-    const [state, dispatch] = useContext(Context);                              
-    const {jackpot } = props;
+    const {jackpot, betslipValidationData, setSlipCount} = props;
     const [betslipKey, setBetslipKey] = useState("betslip");
+    const [betslipsData, setBetslipsData] = useState(null);
+    const [state, dispatch] = useContext(Context);
+
     const [totalOdds, setTotalOdds] = useState(1);
 
-    const updateBetslip = useCallback(()=> {
-       if(state?.[betslipKey]){
-            let odds= Object.values(state[betslipKey]).reduce((previous, {odd_value}) => {
-                return previous * odd_value;
-            }, 1 );
-            setTotalOdds(odds);
-        }
-    }, [state?.[betslipKey]]);
-
-    const setJackpotSlipkey = useCallback(()=>{
-        if(jackpot === true ) {
-            setBetslipKey("jackpotbetslip");
-        }
-    }, [jackpot]);
-
-
+    //initial betslip loading
     const loadBetslip = useCallback(() => {
-        if(!state[betslipKey]) {
+        if(!betslipsData) {
             let b = jackpot === true 
                 ? getJackpotBetslip()
                 : getBetslip();
-            dispatch({type:"SET", key:betslipKey, payload:b});
+            setBetslipsData(b);
+            // update total slip count from this child
+            setSlipCount(Object.keys(b||{}).length || 0 ) 
         }
     }, []);
 
     useEffect(() => {
         loadBetslip();
     }, [loadBetslip]);
+    
+
+    useEffect(() => {
+        if(state[betslipKey]){
+            setBetslipsData(state[betslipKey]);
+        }
+    }, [state[betslipKey]]);
+
+    //Handle db validation of betslip
+    const validateBetslipwithDbData = useCallback(()=> {
+       if(betslipValidationData && betslipsData){
+            let clone_slip = betslipsData;
+            Object.entries(betslipValidationData).map(([key, slipdata]) => {
+               let match_id = slipdata.match_id;
+               let slip = clone_slip[match_id];
+               if(slip) {
+                   if (slipdata.odd_active !== 1) {
+                       slip.comment = 'Option not active for betting';
+                       slip.disable = true;
+                   } 
+                   else if(slipdata.market_active !== 'Active'){
+                       slip.comment = 'Betting on this market is '+ slipdata.market_active;
+                       slip.disable = true;
+                   } 
+                   else if (slipdata.event_status == 'Suspended' 
+                       || slipdata.event_status == 'Deacticated'  
+                       || slipdata.event_status == 'Ended' 
+                       || slipdata.event_status == 'Abandoned' 
+                       || slipdata.event_status == 'Finished'){
+                       slip.comment = 'This event is  '+ slipdata.event_status;
+                       slip.disable = true;
+                   } else if(slipdata.active !== 1){
+                       slip.comment = 'Market not active for betting';
+                       slip.disable = true;
+                   } else if (slip.odd_value !== slipdata.odd_value){
+                       slip.odd_value = slipdata.odd_value;
+                       slip.comment = 'The odds for this event have changed';
+                       slip.disable = false;
+                   } else {
+                       slip.comment = null;
+                       slip.disable = false;
+                   }
+                   
+                   clone_slip[match_id] = slip;
+                   addToSlip(slip);
+               }
+            });
+            setBetslipsData(clone_slip);
+            dispatch({type:"SET", key:betslipKey, payload: clone_slip});
+       }
+    }, [loadBetslip, betslipValidationData]);
+
+    useEffect(() => {
+        validateBetslipwithDbData();
+    }, [validateBetslipwithDbData]);
+
+    //betslip update
+    const updateBetslip = useCallback(()=> {
+       if(betslipsData){
+            let odds= Object.values(betslipsData).reduce((previous, {odd_value}) => {
+                return previous * odd_value;
+            }, 1 );
+            setTotalOdds(odds);
+        }
+    }, [betslipsData]);
+    
+    useEffect(() => {
+        updateBetslip();
+    }, [updateBetslip]);
+
+    // betslip key watch
+    const setJackpotSlipkey = useCallback(()=>{
+        if(jackpot === true ) {
+            setBetslipKey("jackpotbetslip");
+        }
+    }, [jackpot]);
 
     useEffect(() => {
         setJackpotSlipkey();
     }, [setJackpotSlipkey]);
-
-    useEffect(() => {
-        updateBetslip();
-    }, [updateBetslip]);
 
     const handledRemoveSlip = (match) => {
        let betslip = jackpot !== true 
@@ -70,7 +132,10 @@ const BetSlip = (props) => {
                        + (match.bet_pick)                                          
                    );   
        
-       dispatch({type:"SET", key:betslipKey, payload:betslip});
+       setSlipCount(Object.keys(betslipsData).length || 0);
+       setBetslipsData(betslip);
+
+       dispatch({type:"SET", key:betslipKey, payload: betslip});
        dispatch({type:"SET", key:match_selector, payload:"remove."+ucn});
     }
 
@@ -79,12 +144,12 @@ const BetSlip = (props) => {
 
           <PerfectScrollbar style={{ maxHeight: "60vh" }}> 
            <ul>
-            { state?.[betslipKey] && Object.entries(state[betslipKey]).map(([match_id, slip]) => {
+            { Object.entries(betslipsData||{}).map(([match_id, slip]) => {
                 let odd = slip.odd_value;
                 let no_odd_bg = odd === 1 ? '#f29f7a' : '';
 
                 return (
-                    <li className="bet-option hide-on-affix" key={match_id} 
+                    <li className={`bet-option hide-on-affix ${slip?.disable ?  'warn' : ''}`} key={match_id} 
                         style={{background:no_odd_bg}} >
                                 
                         <div className="bet-cancel">
@@ -114,6 +179,9 @@ const BetSlip = (props) => {
                                }
                             </span></b>
                         </div>
+                        <div className="row">
+                           <div className="warn">{ slip?.comment } </div>
+                        </div>
 
                     </li>)
                 })
@@ -122,9 +190,10 @@ const BetSlip = (props) => {
           </PerfectScrollbar>
         <BetslipSubmitForm 
             totalOdds={totalOdds}
-            betslip = {state?.[betslipKey]}
-            totalGames = { state?.[betslipKey] 
-                ? Object.keys(state[betslipKey]).length :  0 } 
+            betslip = {betslipsData}
+            setBetslipsData={setBetslipsData}
+            totalGames = { betslipsData 
+                ? Object.keys(betslipsData).length :  0 } 
             jackpot={jackpot} 
         />
 

@@ -1,4 +1,4 @@
-import React, {useContext, useEffect,  useCallback} from "react";
+import React, {useContext, useEffect,  useCallback, useState} from "react";
 import {useLocation} from 'react-router-dom';
 import {Context} from '../context/store';
 import makeRequest from './utils/fetch-request';
@@ -13,23 +13,25 @@ const Right = React.lazy(()=>import('./right/index'));
 
 
 const Index = (props) => {
-    const [state, dispatch] = useContext(Context);
+    //const [state, dispatch] = useContext(Context);
     const location = useLocation();
+    const [matches, setMatches] = useState(null);
+    const [page, setPage] = useState(1);
 
 
     const fetchData = useCallback(async() => {
-        if(state?.matches) return;
+        if(matches) return;
         let tab = location.pathname.replace("/", "") || 'highlights';
         
         let match_endpoint = "/v1/matches?page=" 
-            + (state?.page || 1) + "&limit=100&tab=" + tab;
+            + (page || 1) + "&limit=100&tab=" + tab;
         console.log("Fetching data from API");
         const [match_result] =  await Promise.all([
             makeRequest({url: match_endpoint, method: "get", data: null})
         ]);
         let [m_status, m_result] = match_result;
         if(m_status === 200){
-            dispatch({type: "SET", key: "matches", payload: m_result});
+            setMatches(m_result)
         }
 
     }, []);
@@ -49,7 +51,7 @@ const Index = (props) => {
                         <div className="homepage">
                             <CarouselLoader/>
                             <MainTabs tab={location.pathname.replace("/", "")}/>
-                            <MatchList live={false} />
+                            <MatchList live={false}  matches ={matches}/> 
                         </div>
                     </div>
                     <Right/>

@@ -9,11 +9,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import { setLocalStorage } from '../utils/local-storage';
 
 const HeaderLogin = (props) => {
-    const [state, dispatch] = useContext(Context);
-    const [isLoading, setLoading] = useState(false)
-    const [user, setUser] = useState(localStorage.getItem('auth_token'))
-
+    const [isLoading, setIsLoading] = useState(null)
     const [message, setMessage] = useState(null);
+    const { setUser } = props;
 
     const initialValues = {
         msisdn:"",
@@ -45,8 +43,9 @@ const HeaderLogin = (props) => {
 
            if( message.status == 200 ) {
                setLocalStorage('user', message.user);
-               dispatch({type:"SET", key:"user", payload:message.user});
+               setUser(message.user);
            }
+           
        }
     }, [message])
 
@@ -56,7 +55,9 @@ const HeaderLogin = (props) => {
 
     const handleSubmit = values => {
         let endpoint = '/v1/login';
+        setIsLoading(true)
         makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
+            setIsLoading(false)
             if(status === 200 || status == 201 || status == 204){
                 setMessage(response);
             } else {
@@ -154,6 +155,7 @@ const HeaderLogin = (props) => {
     }
 
     const LoginForm = (props) => {
+        console.log("Login form is called again ...");
         return (
              <Formik
                 initialValues={initialValues}
@@ -165,6 +167,7 @@ const HeaderLogin = (props) => {
             );
     }
 
+    console.log("Header loging reloading ...");
     return (
         <Container  className="top-login-section">
            <Row className="" style={{float:"right", marginRight:"15px"}}>

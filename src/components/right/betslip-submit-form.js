@@ -26,8 +26,7 @@ const Float = (equation, precision=4) => {
 
 const BetslipSubmitForm = (props) =>{
 
-    const { jackpot, totalGames, totalOdds, betslip } = props;
-    const [betslipKey, setBetslipKey] = useState("betslip");
+    const { jackpot, totalGames, totalOdds, betslip, setBetslipsData } = props;
     const [ipv4, setIpv4] = useState(null);
     const [message, setMessage] = useState(null);
     const [state, dispatch] = useContext(Context);                              
@@ -38,6 +37,14 @@ const BetslipSubmitForm = (props) =>{
     const [withholdingTax, setWithholdingTax] = useState(0);
     const [possibleWin, setPossibleWin] = useState(0);
     const [netWin, setNetWin] = useState(0);
+
+    const [betslipKey, setBetslipKey] = useState("betslip");
+
+    useEffect(()=>{
+        if(jackpot){
+            setBetslipKey("jackpotbetslip");
+        }
+    }, [jackpot])
 
     const ipAddress = useCallback(async () => {
         let ip = await publicIp.v4({
@@ -70,16 +77,6 @@ const BetslipSubmitForm = (props) =>{
         ipAddress();
     }, [ipAddress])
 
-    const setJackpotSlipkey = useCallback(()=>{
-        if(jackpot) {
-            setBetslipKey("jackpotbetslip");
-        }
-    }, [jackpot]);
-
-
-    useEffect(() => {
-        setJackpotSlipkey();
-    }, [setJackpotSlipkey]);
 
     const handlePlaceBet =  (values, 
         { setSubmitting,  resetForm, setStatus, setErrors})  => {
@@ -95,6 +92,7 @@ const BetslipSubmitForm = (props) =>{
             slip: Object.values(betslip || []),
             account:1,                               
             msisdn: state?.user?.msisdn,           
+            accept_all_odds_change:values.accept_all_odds_change
         }; 
         let endpoint = '/bet';
         makeRequest({url: endpoint, method: 'GET', data: payload, use_jwt:true})
@@ -107,8 +105,8 @@ const BetslipSubmitForm = (props) =>{
                     } else {
                         clearSlip();
                     }
-                   dispatch({type:"DEL", key:betslipKey});
-
+                   setBetslipsData(null);
+                   dispatch({type:"SET", key:"betslip", payload:{}});
                 } else {
                     let qmessage = {
                         status : status,
@@ -121,7 +119,7 @@ const BetslipSubmitForm = (props) =>{
     }
 
     const updateWinnings = useCallback(() => {
-        if( state?.[betslipKey]) { 
+        if( betslip ) { 
             let stake_after_tax = Float(stake)/Float(107.5)*100
             let ext = Float(stake) - Float(stake_after_tax);
             let raw_possible_win = Float(stake_after_tax) * Float(totalOdds);

@@ -15,21 +15,9 @@ const AlertMessage = (props) => {
 }
 
 const Right = (props) => {
-    const { jackpot } = props;
-    const [state,] = useContext(Context);                              
+    const { jackpot, betslipValidationData } = props;
 
-    const [betslipKey, setBetslipKey] = useState("betslip");
-
-    const setJackpotSlipkey = useCallback(()=>{
-        if(jackpot === true ) {
-            setBetslipKey("jackpotbetslip");
-        }
-    }, [jackpot]);
-
-
-    useEffect(() => {
-        setBetslipKey();
-    }, [setBetslipKey]);
+    const [slipCount, setSlipCount] = useState(0);
 
     return (
         <div className="gn" id="right-generic">
@@ -40,13 +28,15 @@ const Right = (props) => {
                         <div className="betslip-header">
                             <span className="col-sm-2 bkmrk"><i className="fa fa-bookmark" aria-hidden="true"></i></span>
                             <span className="col-sm-8 slp">BETSLIP</span>
-                            <span className="col-sm-2 slip-counter">{state?.[betslipKey] ? state[betslipKey].length : " " }</span>
+                            <span className="col-sm-2 slip-counter">{slipCount}</span>
                         </div>
                     </header>
                     <button id="slip-button-close" type="button" className="close mobi" aria-hidden="true">×</button>
                     <div id="betslip" className="betslip">
                         
-                        <BetSlip jackpot={jackpot} />
+                        <BetSlip jackpot={jackpot} 
+                            setSlipCount={setSlipCount}  
+                            betslipValidationData={betslipValidationData} />
                     </div>
                     <QuickLogin />
 

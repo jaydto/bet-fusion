@@ -1,4 +1,4 @@
-import React,  { useContext, useEffect, useCallback } from "react";
+import React,  { useEffect, useCallback, useState } from "react";
 
 import Header from './header/header';
 import Footer from './footer/footer';
@@ -10,21 +10,19 @@ import Right from './right/index';
 import { getJackpotBetslip } from './utils/betslip' ;
 
 import makeRequest from "./utils/fetch-request";
-import { Context }  from '../context/store';
 
 const Jackpot = (props) => {
-    const [, dispatch] = useContext(Context);                              
+    const [matches, setMatches] = useState(null);
 
     const fetchData = useCallback(async() => {
         let match_endpoint = "/v1/matches/jackpot";     
         
-        console.log("Fetching data from API");
         const [match_result] =  await Promise.all([
             makeRequest({url: match_endpoint, method: "get", data: null})
         ]);
         let [m_status, m_result] = match_result;
         if(m_status === 200){
-            dispatch({type: "SET", key: "jackpotmatches", payload: m_result});
+            setMatches(m_result);
         }
 
     }, []);
@@ -39,14 +37,6 @@ const Jackpot = (props) => {
         };                                                                      
     }, [fetchData]);
 
-
-    useEffect(() => {
-        let jackpotbetslip = getJackpotBetslip();
-        if(jackpotbetslip){
-            dispatch({type:"SET", key:"jackpotbetslip", payload:jackpotbetslip});
-        }
-    }, []);
-
    return (
        <>
         <Header />        
@@ -56,8 +46,8 @@ const Jackpot = (props) => {
             <div className="gz home">
                 <div className="homepage">
                     <CarouselLoader />
-                    <JackpotHeader />
-                    <JackpotMatchList />
+                    <JackpotHeader jackpot ={matches?.meta}/>
+                    <JackpotMatchList matches = {matches}/>
                 </div> 
             </div>  
             <Right jackpot={true} />

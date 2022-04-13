@@ -1,4 +1,4 @@
-import React,  { useContext, useLayoutEffect, useEffect, useCallback, useState } from "react";
+import React,  { useContext, useLayoutEffect, useEffect, useCallback, useState, useMemo } from "react";
 import { useLocation } from 'react-router-dom';
 import makeRequest from './utils/fetch-request';
 import { getJackpotBetslip, getBetslip } from './utils/betslip' ;
@@ -19,45 +19,61 @@ const Right = React.lazy(()=>import('./right/index'));
 
 const Live = (props) => {
     const [page, setPage] = useState(1);
-    const [state, dispatch] = useContext(Context);                              
+    const [matches, setMatches] = useState(null); 
+    const [state, dispatch] = useContext(Context);
+
     const location = useLocation();
+    const [userSlipsValidation, setUserSlipsValidation] = useState();
+
+    const findPostableSlip = () => {
+        let betslips = getBetslip() || {};
+        var values = Object.keys(betslips).map(function(key){
+            return betslips[key];
+        });
+        return values;
+    };
 	useInterval(() => {
         let endpoint = "/v1/matches/live";     
-		makeRequest({url:endpoint, method:"get", data:null }).then(([status, result]) => {
-            console.log(result);
-            dispatch({type:"SET", key:"matches", payload:result});
-		});                                                                     
+        let betslip = findPostableSlip();
+        let method = betslip ? "POST" : "GET";
+		makeRequest({url:endpoint, method:method, data:betslip}).then(([status, result]) => {
+            if(status == 200) {
+                setMatches(result?.data||result)
+                if(result?.slip_data) {
+                    setUserSlipsValidation(result?.slip_data)
+                }
+            }
+		});                                                
     }, 2000);
-
-    useEffect(() => {
-        let betslip = getBetslip();
-        if (betslip) {
-            dispatch({type: "SET", key: "betslip", payload: betslip});
-        }
-    }, []);
-
 
     const fetchData = useCallback(async() => {
         let endpoint = "/v1/matches/live";     
+        let betslip = findPostableSlip();
+        let method = betslip ? "POST" : "GET";
         const [match_result] =  await Promise.all([
-            makeRequest({url:endpoint, method:"get", data:null })
+            makeRequest({url:endpoint, method:method, data:betslip })
         ]);
         let [m_status, m_result] = match_result;
         if(m_status == 200){
-            dispatch({type: "SET", key: "matches", payload: m_result});
+            setMatches(m_result?.data||m_result)
+            if(m_result?.slip_data) {
+                setUserSlipsValidation(m_result?.slip_data);
+            }
         }
 
     }, []);
 
 
-    useLayoutEffect(()=>{                                                             
-        const abortController = new AbortController();                          
+    useMemo(()=>{                                                             
         fetchData();
+        let cachedSlips = getBetslip("betslip");
+        if(cachedSlips){
+            dispatch({type:"SET", key:"betslip", payload:cachedSlips}); 
+        }
         return () => {                                                          
-            abortController.abort();                                            
+            setMatches(null); 
         };                                                                      
     }, [fetchData]);
-
 
    return (
        <>
@@ -68,10 +84,10 @@ const Live = (props) => {
             <div className="gz home">
                 <div className="homepage">
                     <CarouselLoader />
-                    <MatchList live />
+                    <MatchList live  matches={matches} />
                 </div> 
             </div>  
-            <Right />
+            <Right betslipValidationData={userSlipsValidation} />
           </div>
         </div>
        <Footer />

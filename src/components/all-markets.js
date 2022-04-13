@@ -31,7 +31,8 @@ const Right = React.lazy(()=>import('./right/index'));
 const MatchAllMarkets = (props) => {
     const [page, setPage] = useState(1);
     const { live } = props;
-    const [state, dispatch] = useContext(Context);                              
+    const [matchwithmarkets, setMatchWithMarkets] = useState();
+
     const params = useParams();
     const [isLoading, setIsLoading] = useState(false);
 
@@ -42,7 +43,7 @@ const MatchAllMarkets = (props) => {
 
 		makeRequest({url:endpoint, method:"get", data:null }).then(([_status, response]) => {
 			let {status, result} = response;                      
-			dispatch({type:"SET", key:"matchwithmarkets", payload:result});
+			setMatchWithMarkets(result);
 		});                                                                     
     }, (live ? 2000: null));
 
@@ -55,11 +56,11 @@ const MatchAllMarkets = (props) => {
                 : "/v1/matches?id="+params.id;
 
             makeRequest({url: endpoint, method: "get", data: null}).then(([status, result]) => {
-                dispatch({type: "SET", key: "matchwithmarkets", payload: result});
+                setMatchWithMarkets(result)
                 setIsLoading(false);
             });
         }
-    }, [isLoading]);
+    }, []);
 
     useLayoutEffect(() => {
         const abortController = new AbortController();                          
@@ -77,7 +78,7 @@ const MatchAllMarkets = (props) => {
             <SideBar loadCompetitions />
             <div className="gz home">
                 <div className="homepage">
-                    <MarketList live={live} />
+                    <MarketList live={live}  matchwithmarkets={matchwithmarkets}/>
                 </div> 
             </div>  
             <Right />

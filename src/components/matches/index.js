@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useMemo, useContext, useCallback, useRef, useLayoutEffect} from 'react';
+import React, {useState, useEffect, useContext, useCallback, useRef, useLayoutEffect} from 'react';
 import { Context }  from '../../context/store';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
@@ -9,7 +9,9 @@ import {
     removeFromSlip, 
     removeFromJackpotSlip,
     addToJackpotSlip,
+    getBetslip
 } from '../utils/betslip';
+
 import CurrencyFormat from 'react-currency-format';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
@@ -48,23 +50,23 @@ const EmptyTextRow = (props) =>{
 };
 
 const MatchHeaderRow = (props) => {
-    const {live} = props;
-    const [state, ]  = useContext(Context);;
+    const {live,  first_match} = props;
+    //const [state, ]  = useContext(Context);;
     const [sportName, setSportName]  = useState('Soccer');
     const [showX, setShowX]  = useState(true);
     const [market, setMarket]  = useState('1x2');
 
     useEffect(() => {
-       if(state?.matches){
-           setSportName(state.matches[0]?.sport_name);
-           setMarket(state.matches[0]?.market_name);
+       if(first_match){
+           setSportName(first_match.sport_name);
+           setMarket(first_match.market_name);
            /**
             * I blew the shiet here someone help recoil this to API call results
             */
-           setShowX(!["186", "340"].includes(state.matches[0]?.sub_type_id));
+           setShowX(!["186", "340"].includes(first_match.sub_type_id));
 
        }
-    }, [state?.matches])
+    }, [first_match?.parent_match_id])
 
     return (
         <Container>
@@ -153,7 +155,6 @@ const OddButton = (props) => {
     const [picked, setPicked] = useState('');
     const [oddValue, setOddValue] = useState(null);
 
-    //const previousOdd = usePrevious(match.match_id + "." + match.sub_type_id, oddValue);
     const [state, dispatch] = useContext(Context);                              
     const ref = useRef();
     let reference = match.match_id + "_selected";
@@ -169,7 +170,7 @@ const OddButton = (props) => {
         updateBeslipKey();
     }, [updateBeslipKey])
 
-    const updatePickedChoices = () => {
+    const updatePickedChoices = useCallback(() => {
         let betslip = state?.[betslip_key];
         let uc = clean(
             match.match_id 
@@ -182,11 +183,12 @@ const OddButton = (props) => {
         } else {
             setPicked('');
         }
-    };
+    }, [picked, state[betslip_key]])
 
     useEffect(() => {
         updatePickedChoices();
-    }, [picked]);
+    }, [updatePickedChoices]);
+
     const updateOddValue = useCallback(()=> {
         if(match){
             let uc = clean(
@@ -216,7 +218,7 @@ const OddButton = (props) => {
             if(state?.[reference].startsWith('remove.')){
                 setPicked('');
             } else {
-                
+                console.log("I am forced to pick the else route")
                 let uc = clean(
                     match.match_id 
                     + "" + match.sub_type_id 
@@ -441,33 +443,24 @@ const MatchRow = (props) => {
 
 export const MarketList = (props) => {
 
-    const [state,] = useContext(Context);                              
-    const [matchWithMarkets, setMatchWithMarkets] = useState();
-    const { live }  = props;
-
-    useEffect(()=>{
-        if(state?.matchwithmarkets) {
-            setMatchWithMarkets(state.matchwithmarkets);
-        }
-    }, [state?.matchwithmarkets])
+    const { live, matchwithmarkets}  = props;
 
     return (
         <div className="matches full-width">
 
             <MoreMarketsHeaderRow 
-                {...matchWithMarkets?.data?.match}  
-                score={matchWithMarkets?.data?.match?.score}
+                {...matchwithmarkets?.data?.match}  
+                score={matchwithmarkets?.data?.match?.score}
                 live={live} 
             />
 
             <Container className="web-element">
-                { matchWithMarkets?.data && 
-                    Object.entries(matchWithMarkets?.data?.odds).map(([mkt_id, markets]) => {
+                { Object.entries(matchwithmarkets?.data?.odds||{}).map(([mkt_id, markets]) => {
                         return <MarketRow 
                             market_id={mkt_id}
                             markets={markets} 
                             width={markets.length === 3 ? "33.333%" : "50%"}
-                            match={matchWithMarkets?.data?.match}
+                            match={matchwithmarkets?.data?.match}
                             key={mkt_id}
                             live={live}
                             />
@@ -480,14 +473,7 @@ export const MarketList = (props) => {
 }
 
 export const JackpotHeader = (props) => {
-   
-    const [state, ] = useContext(Context);                              
-    const [jackpot, setJackpot] = useState();
-    useEffect(()=>{
-        if(state?.jackpotmatches) {
-            setJackpot(state.jackpotmatches?.meta);
-        }
-    }, [state?.jackpotmatches])
+    const { jackpot } = props 
 
    return (
         <Container >
@@ -513,18 +499,12 @@ export const JackpotHeader = (props) => {
 }
 
 export const JackpotMatchList = (props) => {
-    const [state, ] = useContext(Context);                              
-    const [matches, setMatches] = useState(null);
-    useEffect(()=>{
-        if(state?.jackpotmatches) {
-            setMatches(state.jackpotmatches);
-        }
-    }, [state?.jackpotmatches])
+    const { matches } = props; 
 
     return (
         <div className="matches full-width mt-5">
 
-            <MatchHeaderRow  />
+            <MatchHeaderRow  first_match = {matches[0]} />
 
             <Container className="web-element">
                 { matches && Object.entries(matches?.data).map(([key, match]) => (
@@ -542,19 +522,12 @@ export const JackpotMatchList = (props) => {
 }
 
 const MatchList = (props) => {
-    const [state, ] = useContext(Context);                              
-    const [matches, setMatches] = useState(null);
-    const { live } = props;
-    useEffect(()=>{
-        if(state?.matches) {
-            setMatches(state.matches);
-        }
-    }, [state?.matches])
+    const { live, matches } = props;
 
     return (
         <div className="matches full-width">
 
-            <MatchHeaderRow  live={live} />
+            <MatchHeaderRow  live={live}  first_match={matches ? matches[0] : {}}/>
 
             <Container className="web-element">
                 {  matches && 
@@ -571,4 +544,4 @@ const MatchList = (props) => {
         </div>
     )
 }
-export default MatchList;
+export default React.memo(MatchList);

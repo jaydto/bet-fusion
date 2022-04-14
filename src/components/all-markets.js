@@ -36,14 +36,23 @@ const MatchAllMarkets = (props) => {
     const params = useParams();
     const [isLoading, setIsLoading] = useState(false);
 
+    const findPostableSlip = () => {
+        let betslips = getBetslip() || {};
+        var values = Object.keys(betslips).map(function(key){
+            return betslips[key];
+        });
+        return values;
+    };
     useInterval(() => {
 		let endpoint = live 
 			? "/v1/matches/live?id="+params.id
 			: "/v1/matches?id="+params.id;
 
-		makeRequest({url:endpoint, method:"get", data:null }).then(([_status, response]) => {
-			let {status, result} = response;                      
-			setMatchWithMarkets(result);
+        let betslip = findPostableSlip();
+        let method = betslip ? "POST" : "GET";
+
+		makeRequest({url:endpoint, method:method, data:betslip}).then(([_status, response]) => {
+			setMatchWithMarkets(response?.data || response );
 		});                                                                     
     }, (live ? 2000: null));
 
@@ -54,9 +63,8 @@ const MatchAllMarkets = (props) => {
             let endpoint = live 
                 ? "/v1/matches/live?id="+params.id
                 : "/v1/matches?id="+params.id;
-
             makeRequest({url: endpoint, method: "get", data: null}).then(([status, result]) => {
-                setMatchWithMarkets(result)
+                setMatchWithMarkets(result?.data||result)
                 setIsLoading(false);
             });
         }
@@ -78,7 +86,7 @@ const MatchAllMarkets = (props) => {
             <SideBar loadCompetitions />
             <div className="gz home">
                 <div className="homepage">
-                    <MarketList live={live}  matchwithmarkets={matchwithmarkets}/>
+                    <MarketList live={live}  matchwithmarkets={matchwithmarkets} />
                 </div> 
             </div>  
             <Right />

@@ -61,6 +61,7 @@ const MyBets = (props) => {
             <div className={`container`} style={Styles.headers}>
                 <div className="row">
                     <div className="col">ID</div>
+                    <div className="col">ID</div>
                     <div className="col">GAMES</div>
                     <div className="col">BET AMOUNT</div>
                     <div className="col">POSSIBLE WIN</div>
@@ -75,6 +76,7 @@ const MyBets = (props) => {
         return (
             <div className={`container`} style={Styles.bet} key={bet.bet_id}>
                 <div className="row">
+                    <div className="col">{ bet.created}</div>
                     <div className="col">{ bet.bet_id}</div>
                     <div className="col">{ bet.total_matches}</div>
                     <div className="col">{ bet.bet_amount}</div>

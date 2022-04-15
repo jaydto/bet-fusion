@@ -60,7 +60,7 @@ const MyBets = (props) => {
         return (
             <div className={`container`} style={Styles.headers}>
                 <div className="row">
-                    <div className="col">ID</div>
+                    <div className="col">CREATED</div>
                     <div className="col">ID</div>
                     <div className="col">GAMES</div>
                     <div className="col">BET AMOUNT</div>
@@ -73,6 +73,7 @@ const MyBets = (props) => {
     }
     const BetItem = (props) => {
         const { bet } = props;
+
         return (
             <div className={`container`} style={Styles.bet} key={bet.bet_id}>
                 <div className="row">
@@ -82,7 +83,7 @@ const MyBets = (props) => {
                     <div className="col">{ bet.bet_amount}</div>
                     <div className="col">{ bet.possible_win}</div>
                     <div className="col">{ bet.tax}</div>
-                    <div className="col">{ bet.status }</div>
+                    <div className="col">{ bet.status_desc }</div>
                 </div>
             </div>
         );
@@ -96,7 +97,6 @@ const MyBets = (props) => {
                     <div className="col">Start</div>
                     <div className="col">Home</div>
                     <div className="col">Away</div>
-                    <div className="col">Market</div>
                     <div className="col">Odds</div>
                     <div className="col">Pick</div>
                     <div className="col">Outcome</div>
@@ -117,12 +117,11 @@ const MyBets = (props) => {
                     <div className="col">{ betslip.start_time}</div>
                     <div className="col">{ betslip.home_team}</div>
                     <div className="col">{ betslip.away_team}</div>
-                    <div className="col">{ betslip.market}</div>
                     <div className="col">{ betslip.odd_value}</div>
                     <div className="col">{ betslip.bet_pick}</div>
                     <div className="col">{ betslip.outcomes}</div>
                     <div className="col">{ betslip.ft_result}</div>
-                    <div className="col">{ betslip.win}</div>
+                    <div className="col">{ betslip.status}</div>
                 </div>
             </div>
         )

@@ -32,6 +32,7 @@ const MatchAllMarkets = (props) => {
     const [page, setPage] = useState(1);
     const { live } = props;
     const [matchwithmarkets, setMatchWithMarkets] = useState();
+    const [userSlipsValidation, setUserSlipsValidation] = useState();
 
     const params = useParams();
     const [isLoading, setIsLoading] = useState(false);
@@ -53,6 +54,9 @@ const MatchAllMarkets = (props) => {
 
 		makeRequest({url:endpoint, method:method, data:betslip}).then(([_status, response]) => {
 			setMatchWithMarkets(response?.data || response );
+            if(response?.slip_data) {
+                setUserSlipsValidation(response?.slip_data);
+            }
 		});                                                                     
     }, (live ? 2000: null));
 
@@ -89,7 +93,7 @@ const MatchAllMarkets = (props) => {
                     <MarketList live={live}  matchwithmarkets={matchwithmarkets} />
                 </div> 
             </div>  
-            <Right />
+            <Right betslipValidationData={userSlipsValidation} />
           </div>
         </div>
        <Footer />

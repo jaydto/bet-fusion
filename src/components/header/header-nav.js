@@ -7,9 +7,12 @@ const HeaderNav = (props) => {
     const [state, ] = useContext(Context);
     const pathname = window.location.pathname;
 
+
     return (
           <Container  id="navbar-collapse-main" className="header-menu">
+
             <ListGroup as="ul" xs="9" horizontal className="nav navbar-nav og ale ss">
+
                 <li className={pathname === '/' ? "active": ''}>
                     <a className="cg fm ox anl url-link not-selectable" href="/"  title="Home">Home</a>
                 </li>

@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 import { Formik, Field, Form } from 'formik';
 import makeRequest from "../utils/fetch-request";
 import { Context } from '../../context/store';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { setLocalStorage } from '../utils/local-storage';
 
@@ -87,19 +87,6 @@ const HeaderLogin = (props) => {
     }
 
 
-    const NotifyToastContaner = () => {
-       return <ToastContainer
-                   position="top-right"
-                   autoClose={5000}
-                   hideProgressBar={false}
-                   newestOnTop={false}
-                   closeOnClick
-                   rtl={false}
-                   pauseOnFocusLoss
-                   draggable
-                   pauseOnHover
-                   />
-    };
 
     const MyLoginForm = (props) => {
         const {isValid, errors, values, submitForm, setFieldValue } = props;
@@ -111,7 +98,6 @@ const HeaderLogin = (props) => {
         }
         return (
            <>
-           <NotifyToastContaner />
            <Form className="ow og i web-element" >
                <Row>
                     <div className="col-5">

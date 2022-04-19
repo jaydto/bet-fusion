@@ -6,7 +6,6 @@ import {
     removeFromJackpotSlip, 
     getBetslip, 
     getJackpotBetslip,
-    addToSlip,
 }  from '../utils/betslip';
 
 import PerfectScrollbar from 'react-perfect-scrollbar';
@@ -51,7 +50,7 @@ const BetSlip = (props) => {
     const validateBetslipwithDbData = useCallback(()=> {
        if(betslipValidationData && betslipsData){
             let clone_slip = betslipsData;
-            Object.entries(betslipValidationData).map(([key, slipdata]) => {
+            Object.entries(betslipValidationData).forEach(([key,slipdata]) => {
                let match_id = slipdata.match_id;
                let slip = clone_slip[match_id];
                if(slip) {
@@ -63,30 +62,30 @@ const BetSlip = (props) => {
                        slip.comment = 'Betting on this market is '+ slipdata.market_active;
                        slip.disable = true;
                    } 
-                   else if (slipdata.event_status == 'Suspended' 
-                       || slipdata.event_status == 'Deacticated'  
-                       || slipdata.event_status == 'Ended' 
-                       || slipdata.event_status == 'Abandoned' 
-                       || slipdata.event_status == 'Finished'){
+                   else if (slipdata.event_status === 'Suspended' 
+                       || slipdata.event_status === 'Deacticated'  
+                       || slipdata.event_status === 'Ended' 
+                       || slipdata.event_status === 'Abandoned' 
+                       || slipdata.event_status === 'Finished'){
                        slip.comment = 'This event is  '+ slipdata.event_status;
                        slip.disable = true;
                    } else if(slipdata.active !== 1){
                        slip.comment = 'Market not active for betting';
                        slip.disable = true;
                    } else if (slip.odd_value !== slipdata.odd_value){
+                       slip.prev_odds = slip.odd_value;
                        slip.odd_value = slipdata.odd_value;
                        slip.comment = 'The odds for this event have changed';
                        slip.disable = false;
                    } else {
-                       slip.comment = null;
+                       if(slip.disable !== false){
+                           slip.comment = null;
+                       }
                        slip.disable = false;
                    }
-                   
                    clone_slip[match_id] = slip;
-                   addToSlip(slip);
                }
             });
-            setBetslipsData(clone_slip);
             dispatch({type:"SET", key:betslipKey, payload: clone_slip});
        }
     }, [loadBetslip, betslipValidationData]);
@@ -158,8 +157,8 @@ const BetSlip = (props) => {
                         <div className="bet-value">
                           <b>
                             {<span style={{float:"left", width:"auto",fontWeight:"bold"}}>{slip.sport_name},&nbsp;</span>} 
-                            {slip.bet_type == 0  && ' Pre-match'}
-                            {slip.bet_type == 1  && ' Live'}
+                            {slip.bet_type === 0  && ' Pre-match'}
+                            {slip.bet_type === 1  && ' Live'}
                            </b>
                          </div>
                         <div className="row">

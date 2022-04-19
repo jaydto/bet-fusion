@@ -80,6 +80,42 @@ const BetslipSubmitForm = (props) =>{
 
     const handlePlaceBet =  (values, 
         { setSubmitting,  resetForm, setStatus, setErrors})  => {
+        let bs = Object.values(betslip || []);
+
+        if(!bs) {
+            Notify({
+                status:400, 
+                message: "Kindly choose events then submit your bet"
+            });
+            setSubmitting(false);
+            return false;
+        }
+        console.log("This is the bs", bs);
+        let slipHasOddsChange = false;
+
+        for(let slip of bs) {
+            console.log("This is a single slip", slip);
+            if(slip.prev_odds 
+                && slip.prev_odds != slip.odd_value 
+                && values.accept_all_odds_change === false) 
+            {
+                console.log("For each found slip with odds chnage");
+                slipHasOddsChange = true;
+                break;
+            }
+        };
+
+        if(slipHasOddsChange === true){
+            console.log("slip has odds change", slipHasOddsChange);
+            Notify( {
+                    status:400, 
+                    message: "Slip has events with changed odds, tick "
+                    + " accept odds all odds change box to accept and place bet"
+            });
+            setSubmitting(false);
+            return false;
+        }
+
         let payload = {                                                         
             bet_string : 'web',                                  
             app_name : 'desktop',                                 
@@ -89,7 +125,7 @@ const BetslipSubmitForm = (props) =>{
             bet_total_odds : totalOdds,                             
             endCustomerIP: ipv4,                         
             channelID: 'web',
-            slip: Object.values(betslip || []),
+            slip: bs,
             account:1,                               
             msisdn: state?.user?.msisdn,           
             accept_all_odds_change:values.accept_all_odds_change

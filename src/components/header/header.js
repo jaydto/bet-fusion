@@ -4,6 +4,7 @@ import Row from 'react-bootstrap/Row';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Context }  from '../../context/store';
 import { getFromLocalStorage } from '../utils/local-storage';
+import { ToastContainer} from 'react-toastify';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import logo from '../../assets/img/logo.png';
@@ -15,6 +16,20 @@ const Header = (props) => {
     const [user, setUser] = useState(getFromLocalStorage("user"));
     const [, dispatch] = useContext(Context);
 
+    const NotifyToastContaner = () => {
+       return <ToastContainer
+                   position="top-right"
+                   autoClose={5000}
+                   hideProgressBar={false}
+                   newestOnTop={false}
+                   closeOnClick
+                   rtl={false}
+                   pauseOnFocusLoss
+                   draggable
+                   pauseOnHover
+                   />
+    };
+
     const updateUserOnLogin = useCallback(() => {
         dispatch({type:"SET", key:"user", payload:user});
     }, [user]);
@@ -25,6 +40,8 @@ const Header = (props) => {
 
     return (
        <Container className="shrink-header" id="shrink-header">
+
+            <NotifyToastContaner />
             <Row className="ck pc os app-navbar top-nav">
                 <div className=" col-3">
                   <div>
@@ -38,6 +55,7 @@ const Header = (props) => {
                 </div>
             </Row>
             <Row className="second-nav ck pc os app-navbar ">
+               
               <HeaderNav />
             </Row>
        </Container>

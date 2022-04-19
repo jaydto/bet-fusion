@@ -78,7 +78,7 @@ const BetslipSubmitForm = (props) =>{
     }, [ipAddress])
 
 
-    const handlePlaceBet =  (values, 
+    const handlePlaceBet =  useCallback((values, 
         { setSubmitting,  resetForm, setStatus, setErrors})  => {
         let bs = Object.values(betslip || []);
 
@@ -141,7 +141,7 @@ const BetslipSubmitForm = (props) =>{
                 }
                 setSubmitting(false);
             })
-    }
+    });
 
     const updateWinnings = useCallback(() => {
         if( betslip ) { 

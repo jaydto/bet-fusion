@@ -82,19 +82,9 @@ const BetslipSubmitForm = (props) =>{
         { setSubmitting,  resetForm, setStatus, setErrors})  => {
         let bs = Object.values(betslip || []);
 
-        if(!bs) {
-            Notify({
-                status:400, 
-                message: "Kindly choose events then submit your bet"
-            });
-            setSubmitting(false);
-            return false;
-        }
-        console.log("This is the bs", bs);
         let slipHasOddsChange = false;
 
         for(let slip of bs) {
-            console.log("This is a single slip", slip);
             if(slip.prev_odds 
                 && slip.prev_odds != slip.odd_value 
                 && values.accept_all_odds_change === false) 
@@ -106,7 +96,6 @@ const BetslipSubmitForm = (props) =>{
         };
 
         if(slipHasOddsChange === true){
-            console.log("slip has odds change", slipHasOddsChange);
             Notify( {
                     status:400, 
                     message: "Slip has events with changed odds, tick "

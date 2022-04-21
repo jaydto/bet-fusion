@@ -62,13 +62,15 @@ const MatchAllMarkets = (props) => {
 
 
     const fetchPagedData =useCallback(() => {
+        console.log("Fetching data")
         if(!isLoading && !isNaN(+params.id)) {
             setIsLoading(true);
             let endpoint = live 
                 ? "/v1/matches/live?id="+params.id
                 : "/v1/matches?id="+params.id;
             makeRequest({url: endpoint, method: "get", data: null}).then(([status, result]) => {
-                setMatchWithMarkets(result?.data||result)
+                console.log("Received message ", result?.data || result);
+                setMatchWithMarkets(result)
                 setIsLoading(false);
             });
         }

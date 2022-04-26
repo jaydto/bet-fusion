@@ -149,7 +149,7 @@ const SideBets = (props) => {
 
 }
 
-const OddButton = (props) => {
+const OddButton = React.memo((props) => {
     const {match, mkt, detail, live, jackpot} = props
     const [ucn, setUcn] = useState('');
     const [picked, setPicked] = useState('');
@@ -287,6 +287,7 @@ const OddButton = (props) => {
        }
     }
 
+    console.log("I am reredering this button again ...");
     return (
         <button 
             ref={ref}
@@ -307,8 +308,6 @@ const OddButton = (props) => {
                 { !detail && 
                     (
                         <span className="theodds">
-                        { /**(live && oddValue && previousOdd < oddValue) && <i className="caret down"></i> **/}
-                        { /**(live && oddValue && previousOdd > oddValue) && <i className="caret up"></i> **/}
                             {oddValue}
                         </span>
                     )
@@ -321,14 +320,27 @@ const OddButton = (props) => {
                       </span>
                       <span 
                         className="label label-inverse blueish odd-value">
-                            {/** (live && oddValue && previousOdd < oddValue) && <i className="caret down"></i> **/}
-                            {/** (live && oddValue && previousOdd > oddValue) && <i className="caret up"></i> **/}
                             {oddValue}
                      </span>
                     </> ) }
         </button>
     )
-}
+}, (prevProps, nextProps) => { 
+    if (
+        (prevProps.match.odd_value === nextProps.match.odd_value                
+            || (prevProps.mkt === 'home_team' && (prevProps.match.home_odd === nextProps.match.home_odd))
+            || (prevProps.mkt === 'away_team' && (prevProps.match.away_odd === nextProps.match.away_odd))
+            || (prevProps.mkt === 'draw' && (prevProps.match.neutral_odd === nextProps.match.neutral_odd))
+        )             
+    )                                                                           
+    {                                                                           
+        return true;                                                            
+                                                                                
+    } else  {                                                                   
+        return false;                                                           
+    }               
+
+});
 
 
 const MarketRow = (props) => {
@@ -386,7 +398,7 @@ const ColoredCircle = ({ color }) => {
         ) : null;
 };
 
-const MatchRow = (props) => {
+const MatchRow = React.memo((props) => {
     const {match, jackpot, live} = props;
     return (
         <Row className="top-matches">
@@ -439,7 +451,22 @@ const MatchRow = (props) => {
         </Row>
     )
 
-} 
+}, (prevProps, nextProps) => { 
+    if (
+        (prevProps.match.odd_value === nextProps.match.odd_value                
+            || (prevProps.mkt === 'home_team' && (prevProps.match.home_odd === nextProps.match.home_odd))
+            || (prevProps.mkt === 'away_team' && (prevProps.match.away_odd === nextProps.match.away_odd))
+            || (prevProps.mkt === 'draw' && (prevProps.match.neutral_odd === nextProps.match.neutral_odd))
+        )             
+    )                                                                           
+    {                                                                           
+        return true;                                                            
+                                                                                
+    } else  {                                                                   
+        return false;                                                           
+    }               
+
+});
 
 export const MarketList = (props) => {
 

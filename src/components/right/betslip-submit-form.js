@@ -96,7 +96,7 @@ const BetslipSubmitForm = (props) =>{
         };
 
         if(slipHasOddsChange === true){
-            Notify( {
+            setMessage( {
                     status:400, 
                     message: "Slip has events with changed odds, tick "
                     + " accept odds all odds change box to accept and place bet"
@@ -137,7 +137,7 @@ const BetslipSubmitForm = (props) =>{
                         status : status,
                         message:response?.message || "Error attempting to login" 
                     };
-                    Notify(qmessage);
+                    setMessage(qmessage);
                 }
                 setSubmitting(false);
             })
@@ -203,42 +203,23 @@ const BetslipSubmitForm = (props) =>{
 
         if (!values.user_id  ) {
             errors.user_id = 'Kindly login to proceed';
-            Notify({status:400, message:errors.user_id});
+            setMessage({status:400, message:errors.user_id});
             return errors;
         }
 
         if (!values.bet_amount || values.bet_amount < 1) {
             errors.bet_amount = 'Enter valid bet amount';
-            Notify({status:400, message:errors.bet_amount});
+            setMessage({status:400, message:errors.bet_amount});
             return errors;
         }
         if (!betslip || Object.keys(betslip).length === 0) {
             errors.user_id = "No betlip selected";
-            Notify({status:400, message:errors.user_id});
+            setMessage({status:400, message:errors.user_id});
             return errors;
         }
         return errors;
     };
 
-
-    const Notify = (message) => {
-        let options =  { 
-           position: "top-right", 
-           autoClose: 5000, 
-           hideProgressBar: true, 
-           closeOnClick: true, 
-           pauseOnHover: true, 
-           draggable: true, 
-           progress: undefined, 
-           toastId:676737/* this is hack to prevent multiple toasts */
-        }
-        if(message.status == 201){
-           toast.success(`🚀 ${message.message}`,options);
-        } else {
-           toast.error(`🦄 ${message.message}`,options);
-        }
-
-    };
 
     const clean_rep = (str) => {
         str = str.replace(/[^A-Za-z0-9\-]/g, '');

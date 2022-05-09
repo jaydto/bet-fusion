@@ -1,5 +1,4 @@
 import React  from 'react';
-import { ToastContainer} from 'react-toastify';
 
 const ProfileMenu = (props) =>{
     
@@ -9,7 +8,6 @@ const ProfileMenu = (props) =>{
         <>
         { user && 
             <>
-            <ToastContainer enableMultiContainer />
             <div className="container og ale ss profile">
                 
                 <div className="row right">

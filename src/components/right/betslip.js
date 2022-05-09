@@ -16,7 +16,7 @@ const clean_rep = (str) => {
 }
 
 const BetSlip = (props) => {
-    const {jackpot, betslipValidationData, setSlipCount} = props;
+    const {jackpot, betslipValidationData } = props;
     const [betslipKey, setBetslipKey] = useState("betslip");
     const [betslipsData, setBetslipsData] = useState(null);
     const [state, dispatch] = useContext(Context);
@@ -30,8 +30,6 @@ const BetSlip = (props) => {
                 ? getJackpotBetslip()
                 : getBetslip();
             setBetslipsData(b);
-            // update total slip count from this child
-            setSlipCount(Object.keys(b||{}).length || 0 ) 
         }
     }, []);
 
@@ -131,7 +129,6 @@ const BetSlip = (props) => {
                        + (match.bet_pick)                                          
                    );   
        
-       setSlipCount(Object.keys(betslipsData).length || 0);
        setBetslipsData(betslip);
 
        dispatch({type:"SET", key:betslipKey, payload: betslip});

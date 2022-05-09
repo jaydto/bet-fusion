@@ -32,7 +32,8 @@ const Header = (props) => {
 
     const updateUserOnLogin = useCallback(() => {
         dispatch({type:"SET", key:"user", payload:user});
-    }, [user]);
+        console.log("Loading user", user);
+    }, [user?.msisdn, user?.balance]);
 
     useEffect(() => {
         updateUserOnLogin()
@@ -40,7 +41,6 @@ const Header = (props) => {
 
     return (
        <Container className="shrink-header" id="shrink-header">
-
             <NotifyToastContaner />
             <Row className="ck pc os app-navbar top-nav">
                 <div className=" col-3">
@@ -55,7 +55,6 @@ const Header = (props) => {
                 </div>
             </Row>
             <Row className="second-nav ck pc os app-navbar ">
-               
               <HeaderNav />
             </Row>
        </Container>

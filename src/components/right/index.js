@@ -17,8 +17,6 @@ const AlertMessage = (props) => {
 const Right = (props) => {
     const { jackpot, betslipValidationData } = props;
 
-    const [slipCount, setSlipCount] = useState(0);
-
     return (
         <div className="gn" id="right-generic">
             {props?.message && <AlertMessage classname={props.classname} message={props.message} /> }
@@ -28,14 +26,13 @@ const Right = (props) => {
                         <div className="betslip-header">
                             <span className="col-sm-2 bkmrk"><i className="fa fa-bookmark" aria-hidden="true"></i></span>
                             <span className="col-sm-8 slp">BETSLIP</span>
-                            <span className="col-sm-2 slip-counter">{slipCount}</span>
+                            <span className="col-sm-2 slip-counter"></span>
                         </div>
                     </header>
                     <button id="slip-button-close" type="button" className="close mobi" aria-hidden="true">×</button>
                     <div id="betslip" className="betslip">
                         
                         <BetSlip jackpot={jackpot} 
-                            setSlipCount={setSlipCount}  
                             betslipValidationData={betslipValidationData} />
                     </div>
                     <QuickLogin />

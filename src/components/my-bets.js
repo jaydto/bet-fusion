@@ -97,6 +97,7 @@ const MyBets = (props) => {
                     <div className="col">Start</div>
                     <div className="col">Home</div>
                     <div className="col">Away</div>
+                    <div className="col">MKT</div>
                     <div className="col">Odds</div>
                     <div className="col">Pick</div>
                     <div className="col">Outcome</div>
@@ -117,6 +118,7 @@ const MyBets = (props) => {
                     <div className="col">{ betslip.start_time}</div>
                     <div className="col">{ betslip.home_team}</div>
                     <div className="col">{ betslip.away_team}</div>
+                    <div className="col">{ betslip.market}</div>
                     <div className="col">{ betslip.odd_value}</div>
                     <div className="col">{ betslip.bet_pick}</div>
                     <div className="col">{ betslip.outcomes}</div>

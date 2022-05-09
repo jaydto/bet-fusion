@@ -121,7 +121,7 @@ const MoreMarketsHeaderRow = (props) => {
             { match_status !== 'Ended' && 
                 <Row className="start-time">
                 { live 
-                   ?  <Col>Live: <span style={{color:"#cc5500"}}>{ match_time }'</span></Col>
+                   ?  <Col>Live: <span style={{color:"#cc5500"}}>{ match_time || match_status}</span></Col>
                    : <Col>Start: { start_time }</Col> }
 
                      <Col>Game ID: {game_id} </Col> 
@@ -218,7 +218,6 @@ const OddButton = React.memo((props) => {
             if(state?.[reference].startsWith('remove.')){
                 setPicked('');
             } else {
-                console.log("I am forced to pick the else route")
                 let uc = clean(
                     match.match_id 
                     + "" + match.sub_type_id 
@@ -285,9 +284,8 @@ const OddButton = React.memo((props) => {
            }
            dispatch({type:"SET", key:betslip_key, payload:betslip});
        }
-    }
+    };
 
-    console.log("I am reredering this button again ...");
     return (
         <button 
             ref={ref}
@@ -346,10 +344,9 @@ const OddButton = React.memo((props) => {
 const MarketRow = (props) => {
     const { markets, match, market_id, width, live} = props;
   
-    const MktOddsButton = (props) => {
+    const MktOddsButton = useCallback((props) => {
         const { match, mktodds, live} = props;
         const fullmatch = {...match, ...mktodds};
-        const [showOddButton, setShowOddButton] = useState();
 
         return (
                 fullmatch?.odd_value !== 'NaN' 
@@ -358,7 +355,7 @@ const MarketRow = (props) => {
              )
              ? <OddButton match={fullmatch} detail mkt={"detail"} live={live}/>
              :  <EmptyTextRow odd_key={fullmatch?.odd_key}/> ; 
-    }
+    }, [])
 
     return (
         <div className="top-matches match">
@@ -474,13 +471,14 @@ export const MarketList = (props) => {
 
     return (
         <div className="matches full-width">
-
-            <MoreMarketsHeaderRow 
-                {...matchwithmarkets?.data?.match}  
-                score={matchwithmarkets?.data?.match?.score}
-                live={live} 
-            />
-
+            { !matchwithmarkets 
+                ? <div className="top-matches">Event not available for betting.</div>       
+                : <MoreMarketsHeaderRow 
+                    {...matchwithmarkets?.data?.match}  
+                    score={matchwithmarkets?.data?.match?.score}
+                    live={live} 
+                    />
+            }
             <Container className="web-element">
                 { Object.entries(matchwithmarkets?.data?.odds||{}).map(([mkt_id, markets]) => {
                         return <MarketRow 

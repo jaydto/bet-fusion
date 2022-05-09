@@ -18,8 +18,7 @@ const Right = React.lazy(()=>import('./right/index'));
 
 
 const Live = (props) => {
-    const [page, setPage] = useState(1);
-    const [matches, setMatches] = useState(null); 
+    const [matches, setMatches] = useState(); 
     const [state, dispatch] = useContext(Context);
 
     const location = useLocation();
@@ -32,11 +31,12 @@ const Live = (props) => {
         });
         return values;
     };
-	useInterval(() => {
+
+	useInterval(async () => {
         let endpoint = "/v1/matches/live";     
         let betslip = findPostableSlip();
         let method = betslip ? "POST" : "GET";
-		makeRequest({url:endpoint, method:method, data:betslip}).then(([status, result]) => {
+		await makeRequest({url:endpoint, method:method, data:betslip}).then(([status, result]) => {
             if(status == 200) {
                 setMatches(result?.data||result)
                 if(result?.slip_data) {
@@ -64,7 +64,7 @@ const Live = (props) => {
     }, []);
 
 
-    useMemo(()=>{                                                             
+    useEffect(()=>{                                                             
         fetchData();
         let cachedSlips = getBetslip("betslip");
         if(cachedSlips){
@@ -84,7 +84,7 @@ const Live = (props) => {
             <div className="gz home">
                 <div className="homepage">
                     <CarouselLoader />
-                    <MatchList live  matches={matches} />
+                     { matches && <MatchList live  matches={matches} /> }
                 </div> 
             </div>  
             <Right betslipValidationData={userSlipsValidation} />

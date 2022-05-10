@@ -21,6 +21,7 @@ const Live = (props) => {
     const [matches, setMatches] = useState(); 
     const [state, dispatch] = useContext(Context);
 
+    const [producerDown, setProducerDown] = useState(false);
     const location = useLocation();
     const [userSlipsValidation, setUserSlipsValidation] = useState();
 
@@ -42,6 +43,7 @@ const Live = (props) => {
                 if(result?.slip_data) {
                     setUserSlipsValidation(result?.slip_data)
                 }
+               setProducerDown(result?.producer_status === 1);
             }
 		});                                                
     }, 2000);
@@ -59,6 +61,7 @@ const Live = (props) => {
             if(m_result?.slip_data) {
                 setUserSlipsValidation(m_result?.slip_data);
             }
+            setProducerDown(m_result?.producer_status === 1);
         }
 
     }, []);
@@ -84,7 +87,7 @@ const Live = (props) => {
             <div className="gz home">
                 <div className="homepage">
                     <CarouselLoader />
-                     { matches && <MatchList live  matches={matches} /> }
+                     { matches && <MatchList live  matches={matches}  pdown={producerDown}/> }
                 </div> 
             </div>  
             <Right betslipValidationData={userSlipsValidation} />

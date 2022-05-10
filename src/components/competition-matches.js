@@ -22,31 +22,47 @@ const Right = React.lazy(()=>import('./right/index'));
 const CompetitionMatches = (props) => {
     const [page, setPage] = useState(1);
     const [matches, setMatches] = useState(null);
-    //const [state, dispatch] = useContext(Context);                              
+    const [state, dispatch] = useContext(Context);                              
     const params = useParams();
     const [isLoading, setIsLoading] = useState(false);
+    const [producerDown, setProducerDown] = useState(false);
+    const [userSlipsValidation, setUserSlipsValidation] = useState();
 
+    const findPostableSlip = () => {
+        let betslips = getBetslip() || {};
+        var values = Object.keys(betslips).map(function(key){
+            return betslips[key];
+        });
+        return values;
+    };
     const fetchPagedData =useCallback(() => {
         if(!isLoading) {
             setIsLoading(true);
+            let betslip = findPostableSlip(); 
             let endpoint = "/v1/sports/competition?id="+params.id+"&page="+ (page|| 1); 
-            makeRequest({url: endpoint, method: "get", data: null}).then(([status, result]) => {
-                setMatches(result);
+            makeRequest({url: endpoint, method: "post", data: betslip}).then(([status, result]) => {
+                setMatches(result?.data || result);
+                if(result?.slip_data) {
+                    setUserSlipsValidation(result?.slip_data)
+                }
+               setProducerDown(result?.producer_status === 1);
                 setIsLoading(false);
             });
         }
     }, []);
 
 
-    useEffect(() => {
-
-       const abortController = new AbortController();                          
-       fetchPagedData();
-
-       return () => {                                                          
-            abortController.abort();                                            
+    useEffect(()=>{                                                             
+        fetchPagedData();
+        let cachedSlips = getBetslip("betslip");
+        if(cachedSlips){
+            dispatch({type:"SET", key:"betslip", payload:cachedSlips}); 
+        }
+        return () => {                                                          
+            setMatches(null); 
         };                                                                      
     }, [fetchPagedData]);
+
 
    return (
        <>
@@ -57,10 +73,14 @@ const CompetitionMatches = (props) => {
             <div className="gz home">
                 <div className="homepage">
                     <CarouselLoader />
-                    { matches && <MatchList live={false} matches={matches} /> }
+                    { matches && <MatchList 
+                        live={false} 
+                        matches={matches} 
+                        pdown={producerDown}
+                        /> }
                 </div> 
             </div>  
-            <Right />
+            <Right betslipValidationData={userSlipsValidation} />
           </div>
         </div>
        <Footer />

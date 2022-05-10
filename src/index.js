@@ -1,6 +1,5 @@
 import React, { useEffect,  useCallback, Suspense} from "react";
 import {render} from "react-dom";
-//import LogRocket from 'logrocket';
 
 import {
     BrowserRouter,
@@ -78,7 +77,6 @@ const Logout = () => {
 	return null;
 }
 
-//LogRocket.init('ctvt6n/react-betnare');
 const container = document.getElementById("app");
 render((
     <Store>

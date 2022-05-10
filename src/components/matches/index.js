@@ -327,20 +327,21 @@ const OddButton = (props) => {
 
 
 const MarketRow = (props) => {
-    const { markets, match, market_id, width, live} = props;
+    const { markets, match, market_id, width, live, pdown} = props;
   
-    const MktOddsButton = useCallback((props) => {
-        const { match, mktodds, live} = props;
+    const MktOddsButton = (props) => {
+        const { match, mktodds, live, pdown} = props;
         const fullmatch = {...match, ...mktodds};
 
         return (
-                fullmatch?.odd_value !== 'NaN' 
+                !pdown 
+                && fullmatch?.odd_value !== 'NaN' 
                 && fullmatch.market_active == 1 
                 && fullmatch.odd_active == 1 
              )
              ? <OddButton match={fullmatch} detail mkt={"detail"} live={live}/>
              :  <EmptyTextRow odd_key={fullmatch?.odd_key}/> ; 
-    }, [])
+    }
 
     return (
         <div className="top-matches match">
@@ -362,7 +363,12 @@ const MarketRow = (props) => {
           { markets && markets.map((mkt_odds) =>{
             return (<>
                   <Col className="match-detail" style={{width:width, float:"left"}}>
-                      <MktOddsButton  match={match} mktodds={mkt_odds} live={live}/>
+                      <MktOddsButton  
+                         match={match} 
+                         mktodds={mkt_odds} 
+                         live={live} 
+                         pdown={pdown}
+                      />
                   </Col>
               </>)
           }) 
@@ -381,7 +387,7 @@ const ColoredCircle = ({ color }) => {
 };
 
 const MatchRow = (props) => {
-    const {match, jackpot, live} = props;
+    const {match, jackpot, live, pdown} = props;
     return (
         <Row className="top-matches">
             <div className="col-sm-1 col-xs-12 pad left-text">
@@ -408,28 +414,28 @@ const MatchRow = (props) => {
             </div>
             <Row className={`${jackpot ? 'col-4' : 'col-lg-3 col-xs-12'} m-0 p-0`}>
                 <div className="col-4 match-div-col" style={{padding:0}}>
-                    { (match?.odds?.home_odd && match.odds.home_odd !== 'NaN' && 
+                    { (!pdown && match?.odds?.home_odd && match.odds.home_odd !== 'NaN' && 
                         match.market_active == 1  && match.odds.home_odd_active == 1)
                         ?  <OddButton match={match}  mkt="home_team" live={live} jackpot = {jackpot} /> 
                         :  <EmptyTextRow odd_key={match?.odd_key}/> 
                     }
                 </div>
                 <div className="col-4 events-odd match-div-col" style={{padding:0}}>
-                    { (match?.odds?.neutral_odd && match.odds.neutral_odd !== 'NaN' &&
-                       match.market_active == 1 && match.odds.neutral_odd_active == 1)
+                    { (!pdown && match?.odds?.neutral_odd && match.odds.neutral_odd !== 'NaN' &&
+                       match.market_active == 1 && match.odds.neutral_odd_active == 1 )
                         ?  <OddButton match={match}  mkt="draw" live={live} jackpot={jackpot}/> 
                         :  <EmptyTextRow odd_key={match?.odd_key}/> 
                     }
                 </div>
                 <div className="col-4 match-div-col" style={{padding:0}}>
-                    { (match?.odds?.away_odd && match.odds.away_odd !== 'NaN' && 
+                    { (!pdown && match?.odds?.away_odd && match.odds.away_odd !== 'NaN' && 
                         match.market_active == 1 && match.odds.away_odd_active == 1  )
                         ?  <OddButton match={match}  mkt="away_team" live={live} jackpot={jackpot}/> 
                         :  <EmptyTextRow odd_key={match?.odd_key}/> 
                     }
                 </div>
             </Row>
-            { !jackpot && (match?.side_bets > 1 ) && <SideBets  match={match} live={live} style={{d:"inline"}}/> }
+            { !pdown && !jackpot && (match?.side_bets > 1 ) && <SideBets  match={match} live={live} style={{d:"inline"}}/> }
         </Row>
     )
 
@@ -437,7 +443,7 @@ const MatchRow = (props) => {
 
 export const MarketList = (props) => {
 
-    const { live, matchwithmarkets}  = props;
+    const { live, matchwithmarkets, pdown}  = props;
 
     return (
         <div className="matches full-width">
@@ -458,6 +464,7 @@ export const MarketList = (props) => {
                             match={matchwithmarkets?.data?.match}
                             key={mkt_id}
                             live={live}
+                            pdown={pdown}
                             />
                     })
                 }
@@ -517,17 +524,17 @@ export const JackpotMatchList = (props) => {
 }
 
 const MatchList = (props) => {
-    const { live, matches } = props;
+    const { live, matches, pdown } = props;
 
     return (
         <div className="matches full-width">
 
-            <MatchHeaderRow  live={live}  first_match={matches ? matches[0] : {}}/>
+            { matches && <MatchHeaderRow  live={live}  first_match={matches ? matches[0] : {}}/> }
 
             <Container className="web-element">
                 {  matches && 
                     Object.entries(matches).map(([key, match]) => (
-                        <MatchRow match={match}  key={key} live={live} />
+                        <MatchRow match={match}  key={key} live={live} pdown={pdown} />
                    ))
                 }
                 {  (matches !== null && matches.length === 0) &&

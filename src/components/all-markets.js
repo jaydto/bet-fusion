@@ -30,6 +30,7 @@ const Right = React.lazy(()=>import('./right/index'));
 
 const MatchAllMarkets = (props) => {
     const [page, setPage] = useState(1);
+    const [producerDown, setProducerDown] = useState(false);
     const { live } = props;
     const [matchwithmarkets, setMatchWithMarkets] = useState();
     const [userSlipsValidation, setUserSlipsValidation] = useState();
@@ -57,20 +58,23 @@ const MatchAllMarkets = (props) => {
             if(response?.slip_data) {
                 setUserSlipsValidation(response?.slip_data);
             }
+            setProducerDown(response?.producer_status === 1);
 		});                                                                     
     }, (live ? 2000: null));
 
 
-    const fetchPagedData =useCallback(() => {
+    const fetchPagedData =useCallback(async() => {
         console.log("Fetching data")
         if(!isLoading && !isNaN(+params.id)) {
             setIsLoading(true);
+            let betslip = findPostableSlip();
             let endpoint = live 
                 ? "/v1/matches/live?id="+params.id
                 : "/v1/matches?id="+params.id;
-            makeRequest({url: endpoint, method: "get", data: null}).then(([status, result]) => {
-                console.log("Received message ", result?.data || result);
-                setMatchWithMarkets(result)
+
+            await makeRequest({url: endpoint, method: "POST", data: betslip}).then(([status, result]) => {
+                setMatchWithMarkets(result?.data|| result)
+                setProducerDown(result?.producer_status === 1);
                 setIsLoading(false);
             });
         }
@@ -92,7 +96,9 @@ const MatchAllMarkets = (props) => {
             <SideBar loadCompetitions />
             <div className="gz home">
                 <div className="homepage">
-                    <MarketList live={live}  matchwithmarkets={matchwithmarkets} />
+                    <MarketList live={live}  
+                        matchwithmarkets={matchwithmarkets} 
+                        pdown={producerDown} />
                 </div> 
             </div>  
             <Right betslipValidationData={userSlipsValidation} />

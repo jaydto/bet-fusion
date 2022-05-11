@@ -3,6 +3,7 @@ import {useLocation} from 'react-router-dom';
 import {Context} from '../context/store';
 import makeRequest from './utils/fetch-request';
 import { getBetslip } from './utils/betslip' ;
+import useInterval from "../hooks/set-interval.hook";
 
 const Header = React.lazy(()=>import('./header/header'));
 const Footer = React.lazy(()=>import('./footer/footer'));
@@ -28,6 +29,21 @@ const Index = (props) => {
         });
         return values;
     };
+
+	useInterval(async () => {
+        let endpoint = "/v1/matches";     
+        let betslip = findPostableSlip();
+        let method = betslip ? "POST" : "GET";
+		await makeRequest({url:endpoint, method:method, data:betslip}).then(([status, result]) => {
+            if(status == 200) {
+                setMatches(result?.data||result)
+                if(result?.slip_data) {
+                    setUserSlipsValidation(result?.slip_data)
+                }
+               setProducerDown(result?.producer_status === 1);
+            }
+		});                                                
+    }, 3000);
 
     const fetchData = useCallback(async() => {
         if(matches) return;

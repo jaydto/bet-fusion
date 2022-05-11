@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import banner from '../assets/img/banner.jpg';
 import makeRequest from "./utils/fetch-request";
 import { Context }  from '../context/store';
+import useInterval from "../hooks/set-interval.hook";
 import { 
     getFromLocalStorage,
     setLocalStorage
@@ -35,6 +36,22 @@ const CompetitionMatches = (props) => {
         });
         return values;
     };
+
+	useInterval(async () => {
+        let endpoint = "/v1/sports/competition?id="+params.id+"&page="+ (page|| 1); 
+        let betslip = findPostableSlip();
+        let method = betslip ? "POST" : "GET";
+		await makeRequest({url:endpoint, method:method, data:betslip}).then(([status, result]) => {
+            if(status == 200) {
+                setMatches(result?.data||result)
+                if(result?.slip_data) {
+                    setUserSlipsValidation(result?.slip_data)
+                }
+               setProducerDown(result?.producer_status === 1);
+            }
+		});                                                
+    }, 3000);
+
     const fetchPagedData =useCallback(() => {
         if(!isLoading) {
             setIsLoading(true);

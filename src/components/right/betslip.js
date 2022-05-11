@@ -56,8 +56,10 @@ const BetSlip = (props) => {
                        slip.comment = 'Option not active for betting';
                        slip.disable = true;
                    } 
-                   else if(slipdata.market_active !== 'Active'){
-                       slip.comment = 'Betting on this market is '+ slipdata.market_active;
+                   else if(slipdata.market_active === 0 || 
+                         (slipdata.market_active !== 'Active' && slipdata.market_active !== 1)  ){
+                       slip.comment = 'Betting on this market is '
+                           + (slipdata.market_active === 0 ? "suspended" : slipdata.market_active) ;
                        slip.disable = true;
                    } 
                    else if (slipdata.event_status === 'Suspended' 

@@ -1,10 +1,13 @@
-import React, { useEffect, useCallback, useState, useContext }from 'react';
+import React, { useEffect, useCallback, useState, useContext, useRef} from 'react';
+import { useNavigate } from "react-router-dom"
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Context }  from '../../context/store';
 import { getFromLocalStorage } from '../utils/local-storage';
 import { ToastContainer} from 'react-toastify';
+import makeRequest from '../utils/fetch-request';
+import { setLocalStorage } from '../utils/local-storage';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import logo from '../../assets/img/logo.png';
@@ -15,6 +18,10 @@ const HeaderNav = React.lazy(()=>import('./header-nav'));
 const Header = (props) => {
     const [user, setUser] = useState(getFromLocalStorage("user"));
     const [, dispatch] = useContext(Context);
+    const history = useNavigate();
+    const containerRef = useRef();
+    const { current } = containerRef;
+
 
     const NotifyToastContaner = () => {
        return <ToastContainer
@@ -29,11 +36,35 @@ const Header = (props) => {
                    pauseOnHover
                    />
     };
+    const updateUserOnHistory = useCallback(() => {
+        if(!user){
+            return false;
+        }
+        let endpoint = "/v1/balance";     
+        let udata = {
+            token:user.token
+        }
+        makeRequest({url:endpoint, method:"post", data:udata }).then(([_status, response]) => {
+            if(_status == 200){
+                let u = { ...user, ...response.user };
+                setLocalStorage('user', u);
+                setUser(u)
+                dispatch({type:"SET", key:"user", payload:user});
+            }
+        });
+
+    }, [current]);
 
     const updateUserOnLogin = useCallback(() => {
         dispatch({type:"SET", key:"user", payload:user});
-        console.log("Loading user", user);
     }, [user?.msisdn, user?.balance]);
+
+
+    
+    useEffect(() => {
+        updateUserOnHistory()
+    }, [updateUserOnHistory])
+
 
     useEffect(() => {
         updateUserOnLogin()

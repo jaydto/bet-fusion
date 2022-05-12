@@ -14,7 +14,6 @@ const Right = React.lazy(()=>import('../../right/index'));
 
 const Deposit = (props) => {
     
-    console.log("Props are ", props)
     const [state, dispatch] = useContext(Context);
     const [success, setSuccess] = useState(false);
     const [message, setMessage] = useState(null);
@@ -25,12 +24,10 @@ const Deposit = (props) => {
     }
 
     const handleSubmit = values => {
-        console.log("Form Data posting to api", values)
         let endpoint = '/stk/deposit';
         makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
             setSuccess(status === 200 || status === 201);
             setMessage(response);
-			console.log("This are your values ", response,  status);
         })
     }
 
@@ -45,7 +42,6 @@ const Deposit = (props) => {
         if (!values.amount || values.amount < 50 || values.amount > 70000) {
             errors.amount = "Please enter amount between KES 50 and KES 70, 000";
         }
-        console.log(values);
         return errors
     }
 

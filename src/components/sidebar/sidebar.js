@@ -25,7 +25,6 @@ const SideBar = (props) => {
         let endpoint = "/v1/categories";     
         
         if(!cached_competitions) {
-            console.log("Fetching data from API");
             const [competition_result] =  await Promise.all([
                 makeRequest({url:endpoint, method:"get", data:null }),
             ]);
@@ -44,7 +43,6 @@ const SideBar = (props) => {
     useEffect(() => {
        const abortController = new AbortController();                          
         if(loadCompetitions) {
-            console.log("loading categorirs from this this side");
             fetchData();
         } 
 

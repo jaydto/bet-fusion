@@ -35,7 +35,6 @@ const HowToPlay = (props) => {
         let endpoint = "/v1/categories";     
         
         if(!cached_categories) {
-            console.log("Fetching data from API");
             const [competition_result] =  await Promise.all([
                 makeRequest({url:endpoint, method:"get", data:null }),
             ]);
@@ -46,7 +45,6 @@ const HowToPlay = (props) => {
             }
             setLocalStorage('categories', c_result);
         } else {
-            console.log("Fetching data from cached localstorage");
             setCompetitions(cached_categories);
         }
 

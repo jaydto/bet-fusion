@@ -141,7 +141,6 @@ const HeaderLogin = (props) => {
     }
 
     const LoginForm = (props) => {
-        console.log("Login form is called again ...");
         return (
              <Formik
                 initialValues={initialValues}
@@ -153,7 +152,6 @@ const HeaderLogin = (props) => {
             );
     }
 
-    console.log("Header loging reloading ...");
     return (
         <Container  className="top-login-section">
            <Row className="" style={{float:"right", marginRight:"15px"}}>

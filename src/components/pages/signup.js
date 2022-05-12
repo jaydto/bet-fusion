@@ -9,7 +9,6 @@ const Right = React.lazy(()=>import('../right/index'));
 const Footer = React.lazy(()=>import('../footer/footer'));
 
 const Signup = (props) => {
-    console.log("Props are ", props)
 
     const [success, setSuccess] = useState(false);
     const [message, setMessage] = useState(null);
@@ -20,12 +19,10 @@ const Signup = (props) => {
     }
 
     const handleSubmit = values => {
-        console.log("Form Data posting to api", values)
         let endpoint = '/v1/signup';
         makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
             setSuccess(status === 200 || status === 201);
             setMessage(response.message);
-			console.log("This are your values ", response,  status);
         })
     }
 

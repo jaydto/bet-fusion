@@ -13,7 +13,6 @@ const Footer = React.lazy(()=>import('../../footer/footer'));
 
 const Withdrawal = (props) => {
     //todo get the phone number from logged in user ....
-    console.log("Props are ", props)
     const [state, dispatch] = useContext(Context);
    
     const [success, setSuccess] = useState(false);
@@ -25,12 +24,10 @@ const Withdrawal = (props) => {
     }
 
     const handleSubmit = values => {
-        console.log("Form Data posting to api", values)
         let endpoint = '/withdraw';
         makeRequest({url: endpoint, method: 'POST', data: {user:values}, use_jwt:true}).then(([status, response]) => {
             setSuccess(status === 200 || status === 201);
             setMessage(response);
-			console.log("This are your values ", response,  status);
         })
     }
 
@@ -45,7 +42,6 @@ const Withdrawal = (props) => {
         if (!values.amount || values.amount < 50 || values.amount > 70000) {
             errors.amount = "Please enter amount between KES 50 and KES 70, 000";
         }
-        console.log(values);
         return errors
     }
 

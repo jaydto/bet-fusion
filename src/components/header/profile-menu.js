@@ -1,9 +1,7 @@
-import React  from 'react';
+import React from 'react';
 
 const ProfileMenu = (props) =>{
-    
-    const { user } = props;
-    
+    const { user }= props;
     return (
         <>
         { user && 

@@ -89,7 +89,6 @@ const BetslipSubmitForm = (props) =>{
                 && slip.prev_odds != slip.odd_value 
                 && values.accept_all_odds_change === false) 
             {
-                console.log("For each found slip with odds chnage");
                 slipHasOddsChange = true;
                 break;
             }

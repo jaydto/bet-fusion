@@ -21,7 +21,6 @@ export const GenericDeleteModal = (props) => {
       setErrorMessage(null);
       setMessage(null);
       makeRequest({url:url, method:"delete", data:null}).then(([status, result]) => {
-           console.log(status, result);
            if(errors){
                if(status < 500) { 
                    setErrorMessage(result.message);
@@ -36,10 +35,6 @@ export const GenericDeleteModal = (props) => {
            } 
        });
   }
-
-  useEffect(() => {
-      console.log("This is delete  modal pane");
-  }, []);
 
   useEffect(() => {
       if(state?.deleterecord){

@@ -53,7 +53,6 @@ const MyBets = (props) => {
 
     useEffect(() => {
        fetchData();
-       console.log("state.mybets", state?.mybets);
     }, [fetchData]);
 
     const BetItemHeader = (props) => {
@@ -111,7 +110,6 @@ const MyBets = (props) => {
     const BetslipItem = (props) => {
         const { betslip } = props;
 		
-	    console.log("Reloading betslip again", betslip.bet_id, betslip.game_id);
         return (
             <div className={`container kumbafu`}  key={betslip.game_id}>
                 <div className="row">
@@ -130,7 +128,6 @@ const MyBets = (props) => {
     }
 
     const MyBetsList = (props) => {
-        console.log("MyBetsList ...");
 		return (
          <Accordion >
 			{state?.mybets && state.mybets.map((bet) => (

@@ -33,7 +33,6 @@ const TdActions = (props) => {
     };
 
     const deleteItem = (model, id) => {
-       console.log("Someone called delete recod", model, id);
        dispatch({type:"SET", key:"deleterecord", payload:{id:id, model:model}});
     };
 

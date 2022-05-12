@@ -64,7 +64,6 @@ const MatchAllMarkets = (props) => {
 
 
     const fetchPagedData =useCallback(async() => {
-        console.log("Fetching data")
         if(!isLoading && !isNaN(+params.id)) {
             setIsLoading(true);
             let betslip = findPostableSlip();

@@ -18,6 +18,7 @@ const SideBar = (props) => {
     const [imageLoaded, setImageLoaded] = useState(false);
     const { loadCompetitions } = props;
     const [competitions, setCompetitions] = useState(props?.competitions);
+    const [show] = useState(props?.override_display)
 
 
     const fetchData = useCallback(async() => {
@@ -53,7 +54,7 @@ const SideBar = (props) => {
 
 
     return (
-        <div className="gn">
+        <div className={`gn d-md-block ${show?'d-block':'d-none'}`}>
 
           <PerfectScrollbar >
             <div className="qv rc aog alu web-element block-shadow bottom-std-margin-spacing">

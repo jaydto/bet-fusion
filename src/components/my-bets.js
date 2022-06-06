@@ -65,13 +65,44 @@ const MyBets = (props) => {
                     <div className="col">BET AMOUNT</div>
                     <div className="col">POSSIBLE WIN</div>
                     <div className="col">TAX</div>
-                    <div className="col">WON</div>
+                    <div className="col">State</div>
                 </div>
             </div>
         );
     }
     const BetItem = (props) => {
         const { bet } = props;
+
+        const [betStatus, setBetStatus] = useState(bet.status_desc);
+        const [canCancel, setCanCancel] = useState(bet.can_cancel === 1);
+
+        const cancelBet = () => {
+            let endpoint = '/bet-cancel';
+            let data = {
+                    bet_id:bet.bet_id,
+                    cancel_code:101,
+            }
+            makeRequest({url: endpoint, method: "POST", data: data, use_jwt:true}).then(([status, result]) => {
+                if(status === 201){
+                   setBetStatus('CANCEL RQ');
+                   setCanCancel(false);
+                }
+            });
+        };
+
+        const cancelBetMarkup = () => {
+            return (
+                <div className="col">
+                    <button
+                         title="Cancel Bet"
+                         className="col btn btn-sm place-bet-btn "
+                         onClick={()=> cancelBet()} 
+                         >
+                         Cancel
+                    </button>
+                </div>
+            )
+        }
 
         return (
             <div className={`container`} style={Styles.bet} key={bet.bet_id}>
@@ -82,7 +113,10 @@ const MyBets = (props) => {
                     <div className="col">{ bet.bet_amount}</div>
                     <div className="col">{ bet.possible_win}</div>
                     <div className="col">{ bet.tax}</div>
-                    <div className="col">{ bet.status_desc }</div>
+                    { canCancel == false 
+                        ? <div className="col">{ betStatus}</div>
+                        : cancelBetMarkup() 
+                    }
                 </div>
             </div>
         );
@@ -101,7 +135,7 @@ const MyBets = (props) => {
                     <div className="col">Pick</div>
                     <div className="col">Outcome</div>
                     <div className="col">FT</div>
-                    <div className="col">Won</div>
+                    <div className="col">Status</div>
                 </div>
             </div>
         )
@@ -109,6 +143,7 @@ const MyBets = (props) => {
 
     const BetslipItem = (props) => {
         const { betslip } = props;
+
 		
         return (
             <div className={`container kumbafu`}  key={betslip.game_id}>
@@ -137,13 +172,16 @@ const MyBets = (props) => {
 					>
 					<AccordionItemHeading>
 						<AccordionItemButton>
-							<BetItem bet={bet} />
+							<BetItem bet={bet}  key={bet.id}/>
 						</AccordionItemButton>
 					</AccordionItemHeading>
 					<AccordionItemPanel>
                      <BetslipHeader />
 					{  bet.betslip?.map((betslip) => (
-                         <BetslipItem betslip={betslip} />  
+                         <BetslipItem 
+                            betslip={betslip}  
+                            key={betslip.bet_slip_id}
+                         />  
                        ))
                     }
                     { isLoading && <p>Loading ... </p>}

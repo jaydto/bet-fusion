@@ -194,9 +194,13 @@ h4.inline-block{display: inline-block;
   border: none;
   font-weight: normal !important;
 }
-
+.theodds{
+    font-size: 15px;
+    font-weight: 400;
+}
 .picked .theodds {
   color: #000000;
+    font-weight: bold;
 }
 .betslip {
     background: #1c313b;

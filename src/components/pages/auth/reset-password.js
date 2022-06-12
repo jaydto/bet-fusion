@@ -14,39 +14,39 @@ const ResetPassword = (props) => {
     const [otp_sent, setOtpSent] = useState(false)
 
     const initialValues = {
-        msisdn: '',
+        mobile: '',
     }
 
     const initialResetFormValues = {
-        otp: '',
+        id: '',
+        reset_code: '',
         password: '',
-        password_confirmation: ''
+        repeat_password: ''
     }
 
     const handleSubmit = values => {
-        setOtpSent(true)
-        let endpoint = '/v1/password-otp';
-        // makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
-        //     setSuccess(status === 200 || status === 201);
-        //     setMessage(response.message);
-        //     setOtpSent(true)
-        // })
+        let endpoint = '/v1/code';
+        makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
+            setSuccess(status === 200 || status === 201);
+            setMessage(response.success.message);
+            setOtpSent(true)
+            initialResetFormValues.id = response.success.id
+        })
     }
     const handleSubmitPasswordReset = values => {
-        let endpoint = '/v1/reset-password';
-        // makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
-        //     setSuccess(status === 200 || status === 201);
-        //     setMessage(response.message);
-        //     setOtpSent(true)
-        // })
+        let endpoint = '/v1/reset';
+        makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
+            setSuccess(status === 200 || status === 201);
+            setMessage(response.message);
+        })
     }
 
     const validate = values => {
 
         let errors = {}
 
-        if (!values.msisdn || !values.msisdn.match(/(254|0|)?[71]\d{8}/g)) {
-            errors.msisdn = 'Please enter a valid phone number'
+        if (!values.mobile || !values.mobile.match(/(254|0|)?[71]\d{8}/g)) {
+            errors.mobile = 'Please enter a valid phone number'
         }
 
         return errors
@@ -56,20 +56,24 @@ const ResetPassword = (props) => {
 
         let password_reset_errors = {}
 
-        if (!password_reset_values.otp) {
-            password_reset_errors.otp = "Please enter your One Time Pin (OTP)"
+        if (!password_reset_values.reset_code) {
+            password_reset_errors.reset_code = "Please enter your One Time Pin (OTP)"
+        }
+
+        if (password_reset_values.reset_code.length < 4) {
+            password_reset_errors.reset_code = "Your OTP should be greater than 4 numbers."
         }
 
         if (!password_reset_values.password) {
             password_reset_errors.password = "Please enter your new password"
         }
 
-        if (!password_reset_values.password_confirmation) {
-            password_reset_errors.password_confirmation = "Please enter your password confirmation"
+        if (!password_reset_values.repeat_password) {
+            password_reset_errors.repeat_password = "Please enter your password confirmation"
         }
 
-        if (password_reset_values.password !== password_reset_values.password_confirmation) {
-            password_reset_errors.password_confirmation = "The passwords do not match. Please enter the password you entered above."
+        if (password_reset_values.password !== password_reset_values.repeat_password) {
+            password_reset_errors.repeat_password = "The passwords do not match. Please enter the password you entered above."
         }
 
         return password_reset_errors
@@ -102,15 +106,15 @@ const ResetPassword = (props) => {
                             <div className="col-md-12">
                                 <label>Mobile Number</label>
                                 <input
-                                    value={values.msisdn}
+                                    value={values.mobile}
                                     className="text-dark deposit-input form-control col-md-12 input-field"
-                                    id="msisdn"
-                                    name="msisdn"
+                                    id="mobile"
+                                    name="mobile"
                                     type="text"
                                     placeholder='Phone number'
                                     onChange={ev => onFieldChanged(ev)}
                                 />
-                                {errors.msisdn && <div className='text-danger'> {errors.msisdn} </div>}
+                                {errors.mobile && <div className='text-danger'> {errors.mobile} </div>}
                             </div>
                         </div>
 
@@ -119,7 +123,7 @@ const ResetPassword = (props) => {
                                 <button type="submit"
                                         onClick={submitForm}
                                         className='btn btn-lg btn-primary mt-5 col-md-12 deposit-withdraw-button'>
-                                    Send Reset Code
+                                    Send OTP
                                 </button>
                             </div>
                         </div>
@@ -131,7 +135,7 @@ const ResetPassword = (props) => {
 
     const MyPasswordResetForm = (props) => {
 
-        const {errors, values, submitPasswordResetForm, setFieldValue} = props;
+        const {errors, values, submitForm, setFieldValue} = props;
 
         const onFieldChanged = (ev) => {
             let field = ev.target.name;
@@ -152,16 +156,16 @@ const ResetPassword = (props) => {
                                 <div className="form-group row d-flex justify-content-center mt-5">
                                     <label>OTP</label>
                                     <input
-                                        value={values.otp}
+                                        value={values.reset_code}
                                         className="text-dark deposit-input form-control col-md-12 input-field"
                                         id="otp"
-                                        name="otp"
+                                        name="reset_code"
                                         type="text"
                                         placeholder='OTP'
                                         onChange={ev => onFieldChanged(ev)}
                                     />
-                                    {errors.otp && <div className='text-danger'>
-                                        {errors.otp}
+                                    {errors.reset_code && <div className='text-danger'>
+                                        {errors.reset_code}
                                     </div>}
                                 </div>
                             </div>
@@ -186,17 +190,17 @@ const ResetPassword = (props) => {
                                 <div className="col-md-12">
                                     <label>Confirm Password</label>
                                     <input
-                                        value={values.password_confirmation}
+                                        value={values.repeat_password}
                                         className="text-dark deposit-input form-control col-md-12 input-field"
                                         id="confirm_password"
-                                        name="password_confirmation"
+                                        name="repeat_password"
                                         type="password"
                                         placeholder='Password'
                                         onChange={ev => onFieldChanged(ev)}
                                     />
-                                    {errors.password_confirmation &&
+                                    {errors.repeat_password &&
                                         <div className='text-danger'>
-                                            {errors.password_confirmation}
+                                            {errors.repeat_password}
                                         </div>}
                                 </div>
                             </div>
@@ -205,7 +209,7 @@ const ResetPassword = (props) => {
                         <div className="form-group row d-flex justify-content-left mb-4">
                             <div className="col-md-3">
                                 <button type="submit"
-                                        onClick={submitPasswordResetForm}
+                                        onClick={submitForm}
                                         className='btn btn-lg btn-primary mt-5 col-md-12 deposit-withdraw-button'>
                                     Reset Password
                                 </button>
@@ -225,7 +229,7 @@ const ResetPassword = (props) => {
                 validateOnChange={false}
                 validateOnBlur={false}
                 validate={validate}
-                render={(props) => <MyOtpForm {...props} />}/>
+            >{(props) => <MyOtpForm {...props} />}</Formik>
         );
     }
     const PasswordResetForm = (props) => {

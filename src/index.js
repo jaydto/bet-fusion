@@ -1,11 +1,11 @@
-import React, { useEffect,  useCallback, Suspense} from "react";
+import React, {useEffect, useCallback, Suspense} from "react";
 import {render} from "react-dom";
 
 import {
     BrowserRouter,
-    Route, 
-	Routes,
-	useNavigate,
+    Route,
+    Routes,
+    useNavigate,
 } from 'react-router-dom'
 
 import reportWebVitals from './reportWebVitals';
@@ -15,17 +15,18 @@ import './assets/css/tolkits.css';
 import './assets/css/sidebar-menu.css';
 import './index.css';
 import Store from './context/store';
-const Index = React.lazy(()=>import('./components/index'));
+
+const Index = React.lazy(() => import('./components/index'));
 const CompetitionsMatches = React.lazy(
     () => import('./components/competition-matches')
 );
-const MatchAllMarkets = React.lazy(()=>import('./components/all-markets'));
-const Jackpot = React.lazy(()=>import('./components/jackpot'));
+const MatchAllMarkets = React.lazy(() => import('./components/all-markets'));
+const Jackpot = React.lazy(() => import('./components/jackpot'));
 const Live = React.lazy(
-    ()=>import('./components/live')
+    () => import('./components/live')
 );
 const MyBets = React.lazy(
-    ()=>import('./components/my-bets')
+    () => import('./components/my-bets')
 );
 const HowToPlay = React.lazy(
     () => import('./components/pages/HowToPlay')
@@ -59,6 +60,10 @@ const Signup = React.lazy(
     () => import('./components/pages/signup')
 );
 
+const ResetPassword = React.lazy(
+    () => import('./components/pages/auth/reset-password')
+)
+
 const ProtectedRoute = React.lazy(
     () => import('./components/utils/protected-route')
 );
@@ -66,15 +71,15 @@ const ProtectedRoute = React.lazy(
 const Logout = () => {
     let navigate = useNavigate();
 
-    const out = useCallback(()=> {
-		localStorage.clear();
-		navigate("/");
+    const out = useCallback(() => {
+        localStorage.clear();
+        navigate("/");
     }, [navigate]);
 
-	useEffect(() => {
+    useEffect(() => {
         out();
-	}, [out]);
-	return null;
+    }, [out]);
+    return null;
 }
 
 const container = document.getElementById("app");
@@ -82,34 +87,35 @@ render((
     <Store>
         <BrowserRouter>
             <Suspense fallback={<p> Loading ... </p>}>
-            <Routes>
-               <Route exact path = "/" element = { <Index /> }  />
-               <Route exact path = "/highlights" element = { <Index /> }  />
-               <Route exact path = "/upcoming" element = { <Index /> }  />
-               <Route exact path = "/tomorrow" element = { <Index /> }  />
-               <Route exact path = "/competition/:id" element = { <CompetitionsMatches /> }  />
-               <Route exact path = "/match/:id" element = { <MatchAllMarkets /> }  />
-               <Route exact path = "/match/live/:id" element = { <MatchAllMarkets live /> }  />
-               <Route exact path = "/jackpot" element = { <Jackpot /> }  />
-               <Route exact path = "/live" element = { <Live /> }  />
-               <Route exact path="/privacy-policy" element={<PrivacyPolicy/>}/>
-               <Route exact path="/anti-money-laundering" element={<AntimoneyLaundering/>}/>
-               <Route exact path="/responsible-gambling" element={<ResponsibleGambling/>}/>
-               <Route exact path="/dispute-resolution" element={<DisputeResolution/>}/>
-               <Route exact path="/cookie-policy" element={<CookiePolicy/>}/>
-               <Route exact path="/terms-and-conditions" element={<TermsAndConditions/>}/>
-               <Route exact path="/how-to-play" element={<HowToPlay/>}/>
-               <Route exact path="/signup" element={<Signup />}/>
-               <Route exact path="/logout" element={<Logout />}/>
+                <Routes>
+                    <Route exact path="/" element={<Index/>}/>
+                    <Route exact path="/highlights" element={<Index/>}/>
+                    <Route exact path="/upcoming" element={<Index/>}/>
+                    <Route exact path="/tomorrow" element={<Index/>}/>
+                    <Route exact path="/competition/:id" element={<CompetitionsMatches/>}/>
+                    <Route exact path="/match/:id" element={<MatchAllMarkets/>}/>
+                    <Route exact path="/match/live/:id" element={<MatchAllMarkets live/>}/>
+                    <Route exact path="/jackpot" element={<Jackpot/>}/>
+                    <Route exact path="/live" element={<Live/>}/>
+                    <Route exact path="/privacy-policy" element={<PrivacyPolicy/>}/>
+                    <Route exact path="/anti-money-laundering" element={<AntimoneyLaundering/>}/>
+                    <Route exact path="/responsible-gambling" element={<ResponsibleGambling/>}/>
+                    <Route exact path="/dispute-resolution" element={<DisputeResolution/>}/>
+                    <Route exact path="/cookie-policy" element={<CookiePolicy/>}/>
+                    <Route exact path="/terms-and-conditions" element={<TermsAndConditions/>}/>
+                    <Route exact path="/how-to-play" element={<HowToPlay/>}/>
+                    <Route exact path="/signup" element={<Signup/>}/>
+                    <Route exact path="/reset-password" element={<ResetPassword/>}/>
+                    <Route exact path="/logout" element={<Logout/>}/>
 
-               <Route exact path="/deposit" 
-                   element={<ProtectedRoute><Deposit/> </ProtectedRoute>}/>
-               <Route exact path="/withdraw" 
-                   element={<ProtectedRoute><Withdraw/></ProtectedRoute>}/>
-               <Route exact path = "/my-bets" 
-                   element = { <ProtectedRoute><MyBets /> </ProtectedRoute>}  />
-            </Routes>
-           </Suspense>
+                    <Route exact path="/deposit"
+                           element={<ProtectedRoute><Deposit/> </ProtectedRoute>}/>
+                    <Route exact path="/withdraw"
+                           element={<ProtectedRoute><Withdraw/></ProtectedRoute>}/>
+                    <Route exact path="/my-bets"
+                           element={<ProtectedRoute><MyBets/> </ProtectedRoute>}/>
+                </Routes>
+            </Suspense>
         </BrowserRouter>
     </Store>
 ), container);

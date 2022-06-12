@@ -19,14 +19,14 @@ const HeaderLogin = (props) => {
     }
 
     const Notify = (message) => {
-        let options =  { 
-           position: "top-right", 
-           autoClose: 5000, 
-           hideProgressBar: true, 
-           closeOnClick: true, 
-           pauseOnHover: true, 
-           draggable: true, 
-           progress: undefined, 
+        let options =  {
+           position: "top-right",
+           autoClose: 5000,
+           hideProgressBar: true,
+           closeOnClick: true,
+           pauseOnHover: true,
+           draggable: true,
+           progress: undefined,
            toastId:673738 /* this is hack to prevent multiple toasts */
         }
         if(message.status == 200){
@@ -45,7 +45,7 @@ const HeaderLogin = (props) => {
                setLocalStorage('user', message.user);
                setUser(message.user);
            }
-           
+
        }
     }, [message])
 
@@ -63,7 +63,7 @@ const HeaderLogin = (props) => {
             } else {
                 let message = {
                     status : status,
-                    message:response?.message || "Error attempting to login" 
+                    message:response?.message || "Error attempting to login"
                 };
                 Notify(message);
             }
@@ -101,10 +101,10 @@ const HeaderLogin = (props) => {
            <Form className="ow og i web-element" >
                <Row>
                     <div className="col-5">
-                        <input type="text" 
-                            name="msisdn" 
-                            className={`form-control ${ errors.msisdn && 'text-danger' }` }
-                            data-action="grow" 
+                        <input type="text"
+                            name="msisdn"
+                            className={`top-login-input-field ${ errors.msisdn && 'text-danger' }` }
+                            data-action="grow"
                             placeholder={ errors.msisdn || "+254........." }
                             onChange={ev => onFieldChanged(ev)}
                             value={values.msisdn}
@@ -115,10 +115,10 @@ const HeaderLogin = (props) => {
                         </span>
                     </div>
                     <div className="col-5">
-                       <input type="password" 
-                           name="password" 
-                           className={ `form-control ${ errors.password && 'text-danger'} ` }
-                           data-action="grow" 
+                       <input type="password"
+                           name="password"
+                           className={`top-login-input-field ${ errors.password && 'text-danger'} ` }
+                           data-action="grow"
                            placeholder={ errors.password || "Password" }
                            onChange={ev => onFieldChanged(ev)}
                            value={ values.password}
@@ -130,7 +130,7 @@ const HeaderLogin = (props) => {
                        </a>
                     </div>
                     <div className="col-sm-2">
-                        <button className="cg fp " type="submit" >
+                        <button className="cg fp btn" type="submit" >
                             { isLoading ? <span>Logging In ...</span>:<span>Login</span>}
                         </button>
                     </div>
@@ -148,7 +148,7 @@ const HeaderLogin = (props) => {
                 validateOnChange={false}
                 validateOnBlur={false}
                 validate={validate}
-                >{(props) => <MyLoginForm {...props} />  }</Formik> 
+                >{(props) => <MyLoginForm {...props} />  }</Formik>
             );
     }
 

@@ -1,5 +1,5 @@
 .app-header-nav{
-    margin-top: 110px;
+    margin-top: 120px;
 }
 /*
  * Copyright (c) Murwa 2018.
@@ -53,7 +53,6 @@ video {
 }
 
 header, li a, .thedate span {
-    font-family: 'GothamBold';
 }
 
 .gn li a {
@@ -3394,7 +3393,6 @@ label {
     display: inline-block;
     max-width: 100%;
     margin-bottom: 5px;
-    font-weight: bold;
 }
 
 input[type="search"] {
@@ -13448,4 +13446,14 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     color:transparent;
     -webkit-background-clip:text;
 
+}
+.login-button {
+    color: #ffffff;
+    background-color: #527994;
+    border-color: #24367e;
+    height: 29px;
+    padding: 0px 10px;
+    margin-top: 1px;
+    border-radius: 0px;
+    font-size: 14px !important;
 }

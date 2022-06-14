@@ -25,7 +25,6 @@
     .sidebar-menu > li > a {
   padding: 5px 5px 5px 15px;
   display: block;
-  border-left: 3px solid transparent;
 }
 .sidebar-menu > li:hover > a, .sidebar-menu > li.active > a {
   color: #fff;
@@ -81,7 +80,7 @@
     .sidebar-menu .treeview-menu > li {
       margin: 0; }
 .sidebar-menu .treeview-menu > li > a {
-  padding: 5px 5px 5px 30px;
+  padding: 5px 5px 5px 15px;
   display: block;
   font-size: 12px;
   border-bottom: 1px solid #28372f;
@@ -97,10 +96,11 @@
 
 }
 .sidebar-menu .treeview-menu > li.active > a {
-    background:#0f4357 !important;
+    font-weight: bold;
+    font-size: 15px;
 }
 .sidebar-menu .treeview-menu > li.selected > a{
-   background:#cce6ff !important;
+   background:#cc5500 !important;
    color: #000;
    opacity:1;
 }

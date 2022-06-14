@@ -24,7 +24,7 @@ const CompetitionMatches = (props) => {
     const [page, setPage] = useState(1);
     const [matches, setMatches] = useState(null);
     const [state, dispatch] = useContext(Context);                              
-    const params = useParams();
+    const {sportid, categoryid, competitionid} = useParams();
     const [isLoading, setIsLoading] = useState(false);
     const [producerDown, setProducerDown] = useState(false);
     const [userSlipsValidation, setUserSlipsValidation] = useState();
@@ -38,7 +38,7 @@ const CompetitionMatches = (props) => {
     };
 
 	useInterval(async () => {
-        let endpoint = "/v1/sports/competition?id="+params.id+"&page="+ (page|| 1); 
+        let endpoint = "/v1/sports/competition?id="+competitionid+"&page="+ (page|| 1); 
         let betslip = findPostableSlip();
         let method = betslip ? "POST" : "GET";
 		await makeRequest({url:endpoint, method:method, data:betslip}).then(([status, result]) => {
@@ -56,7 +56,7 @@ const CompetitionMatches = (props) => {
         if(!isLoading) {
             setIsLoading(true);
             let betslip = findPostableSlip(); 
-            let endpoint = "/v1/sports/competition?id="+params.id+"&page="+ (page|| 1); 
+            let endpoint = "/v1/sports/competition?id="+competitionid+"&page="+ (page|| 1); 
             makeRequest({url: endpoint, method: "post", data: betslip}).then(([status, result]) => {
                 setMatches(result?.data || result);
                 if(result?.slip_data) {

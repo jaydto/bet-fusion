@@ -93,6 +93,7 @@ render((
                     <Route exact path="/upcoming" element={<Index/>}/>
                     <Route exact path="/tomorrow" element={<Index/>}/>
                     <Route exact path="/competition/:id" element={<CompetitionsMatches/>}/>
+                    <Route exact path="/competition/:sportid/:categoryid/:competitionid" element={<CompetitionsMatches/>}/>
                     <Route exact path="/match/:id" element={<MatchAllMarkets/>}/>
                     <Route exact path="/match/live/:id" element={<MatchAllMarkets live/>}/>
                     <Route exact path="/jackpot" element={<Jackpot/>}/>

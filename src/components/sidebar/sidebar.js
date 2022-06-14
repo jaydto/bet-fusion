@@ -16,7 +16,6 @@ import 'react-perfect-scrollbar/dist/css/styles.css';
 const SideBar = (props) => {
 
     const [imageLoaded, setImageLoaded] = useState(false);
-    const { loadCompetitions } = props;
     const [competitions, setCompetitions] = useState(props?.competitions);
     const [show] = useState(props?.override_display)
 
@@ -43,14 +42,12 @@ const SideBar = (props) => {
 
     useEffect(() => {
        const abortController = new AbortController();                          
-        if(loadCompetitions) {
-            fetchData();
-        } 
+       fetchData();
 
        return () => {                                                          
             abortController.abort();                                            
         };                                                                      
-    }, [fetchData, props?.competitions, loadCompetitions]);
+    }, [fetchData]);
 
 
     return (

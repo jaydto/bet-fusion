@@ -240,7 +240,7 @@ header, li a, .thedate span {
 }
 
 #betting input {
-    max-width: 100%;
+    max-width: 100px;
     color: #000;
     padding: 3px;
     border-radius: 5.2px;
@@ -824,7 +824,6 @@ button {
 }
 
 .bet {
-    font-family: 'Montserrat', sans-serif;
     font-size: 14px;
 }
 
@@ -1628,10 +1627,8 @@ events-header {
 .opacity-reduce-txt.vs-styling {
     padding-left: 10px;
     padding-right: 10px;
-    letter-spacing:3px;
-    font-size: 13px;
+    font-size: 10px;
     color:rgb(105, 129, 154);
-    font-weight:bold;
 }
 
 .std-side-pads {
@@ -1689,7 +1686,6 @@ events-header {
 
 .compt-teams {
     font-size: 12px;
-    font-family: arial;
     text-transform: uppercase !important;
 }
 
@@ -2028,9 +2024,8 @@ html {
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
     font-size: 14px;
-    line-height: 1.6;
+    line-height: 1.8;
     background: #16202c;
 }
 
@@ -3437,10 +3432,8 @@ input[type="checkbox"]:focus {
 
 .by form {
     font-size: 12px;
-    font-family: 'GothamBold', sans-serif;
     margin-top: 15px;
     overflow: hidden;
-    opacity: 0.8;
     color: #fff;
     font-weight: normal;
 }
@@ -9563,7 +9556,6 @@ button.close {
 }
 
 body {
-    font-weight: 300;
     letter-spacing: 0;
 }
 

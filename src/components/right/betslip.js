@@ -88,7 +88,7 @@ const BetSlip = (props) => {
             });
             dispatch({type:"SET", key:betslipKey, payload: clone_slip});
        }
-    }, [loadBetslip, betslipValidationData]);
+    }, []);
 
     useEffect(() => {
         validateBetslipwithDbData();

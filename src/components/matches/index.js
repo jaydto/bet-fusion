@@ -252,6 +252,7 @@ const OddButton = (props) => {
         let home_team = event.currentTarget.getAttribute("home_team");
         let away_team = event.currentTarget.getAttribute("away_team");
         let sport_name = event.currentTarget.getAttribute("sport_name");
+        let market_active = event.currentTarget.getAttribute("market_active");
         let cstm = clean(mid + "" + stid + oddk)
 
         let slip = {
@@ -268,6 +269,7 @@ const OddButton = (props) => {
             "sport_name": sport_name,
             "live": live,
             "ucn": cstm,
+            "market_active":market_active,
         }
 
         if (cstm === ucn) {
@@ -297,6 +299,7 @@ const OddButton = (props) => {
             odd_type={match?.name || match?.market_name || "1X2"}
             bet_type={live ? 1 : 0}
             away_team={match.away_team}
+            market_active={match.market_active}
             odd_value={oddValue}
             odd_key={match?.[mkt] || match?.odd_key || 'draw'}
             parent_match_id={match.parent_match_id}

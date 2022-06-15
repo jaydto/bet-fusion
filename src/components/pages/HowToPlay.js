@@ -11,36 +11,36 @@ import {
 import 'react-accessible-accordion/dist/fancy-example.css';
 
 import makeRequest from "../utils/fetch-request";
-import { 
+import {
     getFromLocalStorage,
     setLocalStorage
 } from '../utils/local-storage';
 
-import { getBetslip } from '../utils/betslip' ;
-import { Context }  from '../../context/store';
+import {getBetslip} from '../utils/betslip' ;
+import {Context} from '../../context/store';
 
-const Header = React.lazy(()=>import('../header/header'));
-const Footer = React.lazy(()=>import('../footer/footer'));
-const SideBar = React.lazy(()=>import('../sidebar/sidebar'));
-const Right = React.lazy(()=>import('../right/index'));
+const Header = React.lazy(() => import('../header/header'));
+const Footer = React.lazy(() => import('../footer/footer'));
+const SideBar = React.lazy(() => import('../sidebar/sidebar'));
+const Right = React.lazy(() => import('../right/index'));
 
 
 const HowToPlay = (props) => {
-    
-    const [, dispatch] = useContext(Context);                              
+
+    const [, dispatch] = useContext(Context);
     const [competitions, setCompetitions] = useState({});
 
-    const fetchData = useCallback(async() => {
+    const fetchData = useCallback(async () => {
         let cached_categories = getFromLocalStorage('categories');
-        let endpoint = "/v1/categories";     
-        
-        if(!cached_categories) {
-            const [competition_result] =  await Promise.all([
-                makeRequest({url:endpoint, method:"get", data:null }),
+        let endpoint = "/v1/categories";
+
+        if (!cached_categories) {
+            const [competition_result] = await Promise.all([
+                makeRequest({url: endpoint, method: "get", data: null}),
             ]);
             let [c_status, c_result] = competition_result
 
-            if(c_status === 200){
+            if (c_status === 200) {
                 setCompetitions(c_result);
             }
             setLocalStorage('categories', c_result);
@@ -52,12 +52,12 @@ const HowToPlay = (props) => {
 
     useEffect(() => {
 
-       const abortController = new AbortController();                          
-       fetchData();
+        const abortController = new AbortController();
+        fetchData();
 
-       return () => {                                                          
-            abortController.abort();                                            
-        };                                                                      
+        return () => {
+            abortController.abort();
+        };
     }, [fetchData]);
 
     useEffect(() => {
@@ -89,8 +89,9 @@ const HowToPlay = (props) => {
                                         <AccordionItemPanel className='accordion-item-panel'>
                                             <p>
                                                 Before you can play, you need an account with Betnare. To create your
-                                                account, please click on <a href="">Create Account</a>. We need your
-                                                account to process your payments and your bets.
+                                                account, please click on <a href="/signup" target="_blank">
+                                                Create Account</a>. We need your account to process your payments and
+                                                your bets.
                                             </p>
                                         </AccordionItemPanel>
                                     </AccordionItem>
@@ -104,6 +105,7 @@ const HowToPlay = (props) => {
                                             <p>
                                                 Before you can place a bet, you need sufficient funds in your account.
                                                 To deposit, send money to the Paybill number
+                                                <strong className='text-success'> 4087777</strong>
                                             </p>
                                         </AccordionItemPanel>
                                     </AccordionItem>
@@ -116,7 +118,7 @@ const HowToPlay = (props) => {
                                         <AccordionItemPanel className='accordion-item-panel'>
                                             <p>
                                                 You can place a bet from our <a href="">MOBILE APP</a> or online on our
-                                                website at <a href="/">betnare.com</a>
+                                                website at <a href="https://betnare.com">betnare.com</a>
                                             </p>
                                         </AccordionItemPanel>
                                     </AccordionItem>
@@ -130,7 +132,7 @@ const HowToPlay = (props) => {
                                             <p>
                                                 You will have an alltime access to your money and you can withdraw
                                                 easily through your mobile money vendors. Please click on &nbsp;
-                                                <a href="">Withdrawals</a> to initiate a withdrawal request.
+                                                <a href="/withdraw">Withdrawals</a> to initiate a withdrawal request.
                                             </p>
                                         </AccordionItemPanel>
                                     </AccordionItem>

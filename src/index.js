@@ -68,6 +68,8 @@ const VerifyAccount = React.lazy(
     () => import('./components/pages/auth/verify-account')
 )
 
+const MobileApp = React.lazy(() => import('./components/pages/app'))
+
 const ProtectedRoute = React.lazy(
     () => import('./components/utils/protected-route')
 );
@@ -113,6 +115,7 @@ render((
                     <Route exact path="/signup" element={<Signup/>}/>
                     <Route exact path="/reset-password" element={<ResetPassword/>}/>
                     <Route exact path="/verify-account" element={<VerifyAccount/>}/>
+                    <Route exact path="/app" element={<MobileApp/>}/>
                     <Route exact path="/logout" element={<Logout/>}/>
 
                     <Route exact path="/deposit"

@@ -13,7 +13,7 @@ const VerifyAccount = (props) => {
     const [message, setMessage] = useState(null);
 
     const initialValues = {
-        msisdn: '',
+        mobile: '',
         code: ''
     }
 
@@ -32,8 +32,8 @@ const VerifyAccount = (props) => {
 
         let errors = {}
 
-        if (!values.msisdn || !values.msisdn.match(/(254|0|)?[71]\d{8}/g)) {
-            errors.msisdn = 'Please enter a valid phone number'
+        if (!values.mobile || !values.mobile.match(/(254|0|)?[71]\d{8}/g)) {
+            errors.mobile = 'Please enter a valid phone number'
         }
 
         if (!values.code || values.code.length < 4) {
@@ -70,15 +70,15 @@ const VerifyAccount = (props) => {
                             <div className="col-md-12">
                                 <label>Mobile Number</label>
                                 <input
-                                    value={values.msisdn}
+                                    value={values.mobile}
                                     className="text-dark deposit-input form-control col-md-12 input-field"
-                                    id="msisdn"
-                                    name="msisdn"
+                                    id="mobile"
+                                    name="mobile"
                                     type="text"
                                     placeholder='Phone number'
                                     onChange={ev => onFieldChanged(ev)}
                                 />
-                                {errors.msisdn && <div className='text-danger'> {errors.msisdn} </div>}
+                                {errors.mobile && <div className='text-danger'> {errors.mobile} </div>}
                             </div>
                         </div>
 

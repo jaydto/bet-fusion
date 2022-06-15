@@ -12,6 +12,7 @@ const ResetPassword = (props) => {
     const [success, setSuccess] = useState(false);
     const [message, setMessage] = useState(null);
     const [otp_sent, setOtpSent] = useState(false)
+    const [resetID, setResetID] = useState('')
 
     const initialValues = {
         mobile: '',
@@ -30,11 +31,12 @@ const ResetPassword = (props) => {
             setSuccess(status === 200 || status === 201);
             setMessage(response.success.message);
             setOtpSent(true)
-            initialResetFormValues.id = response.success.id
+            setResetID(response.success.id)
         })
     }
     const handleSubmitPasswordReset = values => {
-        let endpoint = '/v1/reset';
+        values.id = resetID;
+        let endpoint = '/v1/verify';
         makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
             setSuccess(status === 200 || status === 201);
             setMessage(response.message);

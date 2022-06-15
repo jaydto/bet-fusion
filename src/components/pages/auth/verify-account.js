@@ -20,8 +20,11 @@ const VerifyAccount = (props) => {
     const handleSubmit = values => {
         let endpoint = '/v1/verify';
         makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
-            setSuccess(status === 200 || status === 201);
-            setMessage(response.message);
+            setSuccess(status === 200 || status === 201)
+            setMessage(response.message ?? response.error.message);
+            response.message ? setSuccess(true) : setSuccess(false)
+        }).catch((err) => {
+            console.log(err)
         })
     }
 

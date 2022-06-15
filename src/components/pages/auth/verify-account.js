@@ -1,32 +1,30 @@
 import React, {useState} from 'react';
 import {Formik, Form} from 'formik';
-import makeRequest from "../utils/fetch-request";
-import mpesa from '../../assets/img/mpesa-3.png'
+import makeRequest from "../../utils/fetch-request";
 
-const Header = React.lazy(() => import('../header/header'));
-const SideBar = React.lazy(() => import('../sidebar/sidebar'));
-const Right = React.lazy(() => import('../right/index'));
-const Footer = React.lazy(() => import('../footer/footer'));
+const Header = React.lazy(() => import('../../header/header'));
+const SideBar = React.lazy(() => import('../../sidebar/sidebar'));
+const Right = React.lazy(() => import('../../right/index'));
+const Footer = React.lazy(() => import('../../footer/footer'));
 
-const Signup = (props) => {
+const VerifyAccount = (props) => {
 
     const [success, setSuccess] = useState(false);
     const [message, setMessage] = useState(null);
 
     const initialValues = {
         msisdn: '',
-        password: ''
+        code: ''
     }
 
     const handleSubmit = values => {
-        let endpoint = '/v1/signup';
+        let endpoint = '/v1/verify';
         makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
-            setSuccess(status === 200 || status === 201);
-            setMessage(response.message);
-            let timer = setInterval(() => {
-                window.location.href = "/verify-account"
-                clearInterval(timer)
-            }, 3000)
+            setSuccess(status === 200 || status === 201)
+            setMessage(response.message ?? response.error.message);
+            response.message ? setSuccess(true) : setSuccess(false)
+        }).catch((err) => {
+            console.log(err)
         })
     }
 
@@ -38,8 +36,8 @@ const Signup = (props) => {
             errors.msisdn = 'Please enter a valid phone number'
         }
 
-        if (!values.password || values.password.length < 4) {
-            errors.password = "Please enter four or more characters for password";
+        if (!values.code || values.code.length < 4) {
+            errors.code = "Please enter four or more characters for code";
         }
 
         return errors
@@ -49,13 +47,13 @@ const Signup = (props) => {
         return (
             <div className='col-md-12 primary-bg p-4 text-center'>
                 <h4 className="inline-block">
-                    SIGNUP | CREATE A NEW ACCOUNT
+                    VERIFY YOUR PHONE NUMBER
                 </h4>
             </div>
         )
     }
 
-    const MySignupForm = (props) => {
+    const MyVerifyAccountForm = (props) => {
         const {errors, values, submitForm, setFieldValue} = props;
 
         const onFieldChanged = (ev) => {
@@ -67,9 +65,6 @@ const Signup = (props) => {
             <Form>
                 <div className="pt-0">
                     <div className="row">
-                        <div className='col-md-6 text-center'>
-                            <img src={mpesa} alt=""/>
-                        </div>
                         <hr/>
                         <div className="form-group row d-flex justify-content-center mt-5">
                             <div className="col-md-12">
@@ -89,17 +84,17 @@ const Signup = (props) => {
 
                         <div className="form-group row d-flex justify-content-center mt-5">
                             <div className="col-md-12">
-                                <label>Password</label>
+                                <label>Code (OTP)</label>
                                 <input
-                                    value={values.password}
+                                    value={values.code}
                                     className="text-dark deposit-input form-control col-md-12 input-field"
-                                    id="password"
-                                    name="password"
-                                    type="password"
-                                    placeholder='Password'
+                                    id="code"
+                                    name="code"
+                                    type="code"
+                                    placeholder='Code'
                                     onChange={ev => onFieldChanged(ev)}
                                 />
-                                {errors.password && <div className='text-danger'> {errors.password} </div>}
+                                {errors.code && <div className='text-danger'> {errors.code} </div>}
                             </div>
                         </div>
                         <div className="form-group row d-flex justify-content-left mb-4">
@@ -107,7 +102,7 @@ const Signup = (props) => {
                                 <button type="submit"
                                         onClick={submitForm}
                                         className='btn btn-lg btn-primary mt-5 col-md-12 deposit-withdraw-button'>
-                                    Signup
+                                    Verify Account
                                 </button>
                             </div>
                         </div>
@@ -117,7 +112,7 @@ const Signup = (props) => {
         );
     }
 
-    const SignupForm = (props) => {
+    const VerifyAccountForm = (props) => {
         return (
             <Formik
                 initialValues={initialValues}
@@ -125,7 +120,7 @@ const Signup = (props) => {
                 validateOnChange={false}
                 validateOnBlur={false}
                 validate={validate}
-                render={(props) => <MySignupForm {...props} />}/>
+                render={(props) => <MyVerifyAccountForm {...props} />}/>
         );
     }
 
@@ -147,7 +142,7 @@ const Signup = (props) => {
                             <div className="col-md-12 mt-2 text-white p-2">
                                 {message && <Alert/>}
                                 <div className="modal-body pb-0" data-backdrop="static">
-                                    <SignupForm/>
+                                    <VerifyAccountForm/>
                                 </div>
                             </div>
                         </div>
@@ -160,4 +155,4 @@ const Signup = (props) => {
     );
 }
 
-export default Signup;
+export default VerifyAccount;

@@ -21,7 +21,7 @@ const ResetPassword = (props) => {
 
     const initialResetFormValues = {
         id: '',
-        reset_code: '',
+        code: '',
         password: '',
         repeat_password: ''
     }
@@ -39,10 +39,10 @@ const ResetPassword = (props) => {
     const handleSubmitPasswordReset = values => {
         values.mobile = mobile
         values.id = resetID;
-        let endpoint = '/v1/verify';
+        let endpoint = '/v1/reset-password';
         makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
             setSuccess(status === 200 || status === 201);
-            setMessage(response.error ? response.error.message : response.message);
+            setMessage(response.error ? response.error.message : response.success.message);
             response.error ? setSuccess(false) : setSuccess(true)
         })
     }
@@ -62,12 +62,12 @@ const ResetPassword = (props) => {
 
         let password_reset_errors = {}
 
-        if (!password_reset_values.reset_code) {
-            password_reset_errors.reset_code = "Please enter your One Time Pin (OTP)"
+        if (!password_reset_values.code) {
+            password_reset_errors.code = "Please enter your One Time Pin (OTP)"
         }
 
-        if (password_reset_values.reset_code.length < 4) {
-            password_reset_errors.reset_code = "Your OTP should be greater than 4 numbers."
+        if (password_reset_values.code.length < 4) {
+            password_reset_errors.code = "Your OTP should be greater than 4 numbers."
         }
 
         if (!password_reset_values.password) {
@@ -158,16 +158,16 @@ const ResetPassword = (props) => {
                                 <div className="form-group row d-flex justify-content-center mt-5">
                                     <label>OTP</label>
                                     <input
-                                        value={values.reset_code}
+                                        value={values.code}
                                         className="text-dark deposit-input form-control col-md-12 input-field"
                                         id="otp"
-                                        name="reset_code"
+                                        name="code"
                                         type="text"
                                         placeholder='OTP'
                                         onChange={ev => onFieldChanged(ev)}
                                     />
-                                    {errors.reset_code && <div className='text-danger'>
-                                        {errors.reset_code}
+                                    {errors.code && <div className='text-danger'>
+                                        {errors.code}
                                     </div>}
                                 </div>
                             </div>

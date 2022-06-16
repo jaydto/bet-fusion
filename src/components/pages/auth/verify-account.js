@@ -24,6 +24,11 @@ const VerifyAccount = (props) => {
             setSuccess(status === 200 || status === 201)
             setMessage(response.success ? response.success.message : response.error.message);
             response.success ? setSuccess(true) : setSuccess(false)
+
+            let timer = setInterval(() => {
+                clearInterval(timer)
+                window.location.reload()
+            }, 3000)
         }).catch((err) => {
             console.log(err)
         })

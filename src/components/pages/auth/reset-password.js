@@ -44,6 +44,11 @@ const ResetPassword = (props) => {
             setSuccess(status === 200 || status === 201);
             setMessage(response.error ? response.error.message : response.success.message);
             response.error ? setSuccess(false) : setSuccess(true)
+
+            let timer = setInterval(() => {
+                clearInterval(timer)
+                window.location.href = "/"
+            }, 3000)
         })
     }
 

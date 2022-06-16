@@ -54,7 +54,8 @@ const VerifyAccount = (props) => {
 
         makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
             setSuccess(status === 200 || status === 201);
-            setMessage(response.success.message);
+            setMessage(response.success ? response.success.message : response.error.message);
+            response.error ? setSuccess(false) : setSuccess(true)
         })
     }
 

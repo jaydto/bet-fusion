@@ -27,7 +27,7 @@ const VerifyAccount = (props) => {
 
             let timer = setInterval(() => {
                 clearInterval(timer)
-                window.location.reload()
+                window.location.href = "/"
             }, 3000)
         }).catch((err) => {
             console.log(err)

@@ -13,6 +13,7 @@ const ResetPassword = (props) => {
     const [message, setMessage] = useState(null);
     const [otp_sent, setOtpSent] = useState(false)
     const [resetID, setResetID] = useState('')
+    const [mobile, setMobile] = useState('')
 
     const initialValues = {
         mobile: '',
@@ -26,6 +27,7 @@ const ResetPassword = (props) => {
     }
 
     const handleSubmit = values => {
+        setMobile(values.mobile)
         let endpoint = '/v1/code';
         makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
             setSuccess(status === 200 || status === 201);
@@ -35,11 +37,13 @@ const ResetPassword = (props) => {
         })
     }
     const handleSubmitPasswordReset = values => {
+        values.mobile = mobile
         values.id = resetID;
         let endpoint = '/v1/verify';
         makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
             setSuccess(status === 200 || status === 201);
-            setMessage(response.message);
+            setMessage(response.error ? response.error.message : response.message);
+            response.error ? setSuccess(false) : setSuccess(true)
         })
     }
 
@@ -150,10 +154,6 @@ const ResetPassword = (props) => {
                     <div className="row">
                         <hr/>
                         <div className="col-md-12">
-                            <div className="alert alert-info">
-                                We have sent a One Time Pin (OTP) to your phone. Please enter it below with your new
-                                password.
-                            </div>
                             <div className="col-md-12">
                                 <div className="form-group row d-flex justify-content-center mt-5">
                                     <label>OTP</label>

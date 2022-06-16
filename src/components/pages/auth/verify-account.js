@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {Formik, Form} from 'formik';
 import makeRequest from "../../utils/fetch-request";
 
@@ -11,6 +11,7 @@ const VerifyAccount = (props) => {
 
     const [success, setSuccess] = useState(false);
     const [message, setMessage] = useState(null);
+    const verifyRef = useRef()
 
     const initialValues = {
         mobile: '',
@@ -21,8 +22,8 @@ const VerifyAccount = (props) => {
         let endpoint = '/v1/verify';
         makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
             setSuccess(status === 200 || status === 201)
-            setMessage(response.message ?? response.error.message);
-            response.message ? setSuccess(true) : setSuccess(false)
+            setMessage(response.success ? response.success.message : response.error.message);
+            response.success ? setSuccess(true) : setSuccess(false)
         }).catch((err) => {
             console.log(err)
         })
@@ -41,6 +42,20 @@ const VerifyAccount = (props) => {
         }
 
         return errors
+    }
+
+    const resendOTP = () => {
+
+        let endpoint = '/v1/code';
+
+        let values = {
+            mobile: verifyRef.current.values.mobile
+        }
+
+        makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
+            setSuccess(status === 200 || status === 201);
+            setMessage(response.success.message);
+        })
     }
 
     const FormTitle = () => {
@@ -69,21 +84,34 @@ const VerifyAccount = (props) => {
                         <div className="form-group row d-flex justify-content-center mt-5">
                             <div className="col-md-12">
                                 <label>Mobile Number</label>
-                                <input
-                                    value={values.mobile}
-                                    className="text-dark deposit-input form-control col-md-12 input-field"
-                                    id="mobile"
-                                    name="mobile"
-                                    type="text"
-                                    placeholder='Phone number'
-                                    onChange={ev => onFieldChanged(ev)}
-                                />
-                                {errors.mobile && <div className='text-danger'> {errors.mobile} </div>}
+                                <div className="row">
+                                    <div className="col-md-8">
+                                        <input
+                                            value={values.mobile}
+                                            className="h-100 text-dark deposit-input form-control col-md-12 input-field"
+                                            id="mobile"
+                                            name="mobile"
+                                            type="text"
+                                            placeholder='Phone number'
+                                            onChange={ev => onFieldChanged(ev)}
+                                        />
+                                        {errors.mobile && <div className='text-danger'> {errors.mobile} </div>}
+                                    </div>
+                                    <div className="col-md-4">
+                                        <span className=''>
+                                            Didn't receive code? Resend Code
+                                        </span>
+                                        <button onClick={() => resendOTP()} type={"button"}
+                                                className='btn btn-primary btn-sm'>Resend OTP
+                                        </button>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
 
-                        <div className="form-group row d-flex justify-content-center mt-5">
-                            <div className="col-md-12">
+                        <div className="form-group row d-flex  mt-5">
+                            <div className="col-md-8">
                                 <label>Code (OTP)</label>
                                 <input
                                     value={values.code}
@@ -115,6 +143,7 @@ const VerifyAccount = (props) => {
     const VerifyAccountForm = (props) => {
         return (
             <Formik
+                innerRef={verifyRef}
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
                 validateOnChange={false}

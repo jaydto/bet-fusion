@@ -77,7 +77,7 @@ header, li a, .thedate span {
 }
 .header-menu li.active{
     background-color: #3f6878;
-    border-bottom: 2px solid #dfbc64;
+    border-bottom: 2px solid #FFC428;
 }
 .header-menu a.active{
     border-bottom: 2px solid #dfbc64;
@@ -166,7 +166,7 @@ header, li a, .thedate span {
     width: 33.33333333%;
     float: left;
     text-align: center;
-    border-bottom: 1px solid #ffc428;
+    border-bottom: 1px solid #FFC428;
 }
 
 .cancel {
@@ -385,15 +385,15 @@ header, li a, .thedate span {
 }
 
 .jackpot #place_bet_button {
-    background: #ffc428;
+    background: #FFC428;
     color: #333;
     padding: 10px 15px;
     font-weight: bold;
     font-size: 14px;
     float: right;
-    background-image: linear-gradient(#e6cf4c 30%, #ffc428 70%) !important;
-    background-image: -webkit-linear-gradient(#e6cf4c 30%, #ffc428 70%) !important;
-    background-image: -moz-linear-gradient(#e6cf4c 30%, #ffc428 70%) !important;
+    background-image: linear-gradient(#e6cf4c 30%, #FFC428 70%) !important;
+    background-image: -webkit-linear-gradient(#e6cf4c 30%, #FFC428 70%) !important;
+    background-image: -moz-linear-gradient(#e6cf4c 30%, #FFC428 70%) !important;
     border-radius: 4px !important;
     border: 1px solid #ddd !important;
 }
@@ -467,7 +467,7 @@ header, li a, .thedate span {
 }
 
 .yellow {
-    background-color: #ffc428;
+    background-color: #FFC428;
     color: #000000;
 }
 
@@ -1731,12 +1731,12 @@ events-header {
 }
 
 .top-matches button.picked {
-    background: #ffc428 !important
+    background: #FFC428 !important
 }
 
 @media (hover: hover) {
     .top-matches button:hover {
-        background: #ffc428 !important;
+        background: #FFC428 !important;
     }
 }
 
@@ -2738,7 +2738,7 @@ p {
 }
 
 div#quick-login form input.cg.fm {
-    background: #ffc428;
+    background: #FFC428;
     color: #000000;
 }
 
@@ -13074,7 +13074,7 @@ img.zoom-img {
 }
 
 .password-change {
-    background: #ffc428;
+    background: #FFC428;
     color: #201f1f;
     margin-top: -8px;
     padding: 5px;
@@ -13172,7 +13172,7 @@ img.zoom-img {
     font-size: 14px;
     padding: 2px;
     margin: 5px;
-    color: #ffc428;
+    color: #FFC428;
     text-align: center;
 }
 
@@ -13380,7 +13380,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 .jp-header-text .jp-header-amount{
     padding:5px 0;
     font-weight:bord;
-    color:#ffc428;
+    color:#FFC428;
 }
 .jp-header-text .jp-header-top{
     padding:5px 0 0;

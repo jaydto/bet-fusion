@@ -177,7 +177,7 @@ const OddButton = (props) => {
     }, [updateBeslipKey])
 
     const updatePickedChoices = useCallback(() => {
-
+        // let betslip = state?.[betslip_key];
         let betslip = getBetslip() || {};
         let uc = clean(
             match.match_id

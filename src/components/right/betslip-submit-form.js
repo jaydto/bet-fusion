@@ -330,7 +330,7 @@ const BetslipSubmitForm = (props) =>{
                         </td>
                         <td>
                             <SubmitButton id="place_bet_button" 
-                               className="place-bet-btn" 
+                               className="place-bet-btn bold"
                                title="PLACE BET"/>
                         </td>
                     </tr>

@@ -1,5 +1,5 @@
 import React,  { useContext, useLayoutEffect, useEffect, useCallback, useState, useMemo } from "react";
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import makeRequest from './utils/fetch-request';
 import { getJackpotBetslip, getBetslip } from './utils/betslip' ;
 
@@ -10,7 +10,7 @@ import banner from '../assets/img/banner.jpg';
 
 const Header = React.lazy(()=>import('./header/header'));
 const Footer = React.lazy(()=>import('./footer/footer'));
-const SideBar = React.lazy(()=>import('./sidebar/sidebar'));
+const LiveSideBar = React.lazy(()=>import('./sidebar/live-sidebar'));
 const CarouselLoader = React.lazy(()=>import('./carousel/index'));
 const SearchBar = React.lazy(()=>import('./header/search-bar'));
 const MatchList = React.lazy(()=>import('./matches/index'));
@@ -20,6 +20,7 @@ const Right = React.lazy(()=>import('./right/index'));
 const Live = (props) => {
     const [matches, setMatches] = useState(); 
     const [state, dispatch] = useContext(Context);
+    const {spid} = useParams();
 
     const [producerDown, setProducerDown] = useState(false);
     const location = useLocation();
@@ -35,6 +36,9 @@ const Live = (props) => {
 
 	useInterval(async () => {
         let endpoint = "/v1/matches/live";     
+        if(spid) {
+            endpoint += "?spid="+spid;
+        }
         let betslip = findPostableSlip();
         let method = betslip ? "POST" : "GET";
 		await makeRequest({url:endpoint, method:method, data:betslip}).then(([status, result]) => {
@@ -50,6 +54,9 @@ const Live = (props) => {
 
     const fetchData = useCallback(async() => {
         let endpoint = "/v1/matches/live";     
+        if(spid) {
+            endpoint += "?spid="+spid;
+        }
         let betslip = findPostableSlip();
         let method = betslip ? "POST" : "GET";
         const [match_result] =  await Promise.all([
@@ -83,7 +90,7 @@ const Live = (props) => {
         <Header />        
         <div className="by amt">
           <div className="gc">
-            <SideBar  loadCompetitions />
+            <LiveSideBar  />
             <div className="gz home">
                 <div className="homepage">
                     <CarouselLoader />

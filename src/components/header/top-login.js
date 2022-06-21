@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 import {Formik, Field, Form} from 'formik';
 import makeRequest from "../utils/fetch-request";
 import {Context} from '../../context/store';
-import {toast} from 'react-toastify';
+import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {setLocalStorage} from '../utils/local-storage';
 
@@ -20,7 +20,7 @@ const HeaderLogin = (props) => {
 
     const Notify = (message) => {
         let options = {
-            position: "top-right",
+            position: toast.POSITION.TOP_RIGHT,
             autoClose: 5000,
             hideProgressBar: true,
             closeOnClick: true,
@@ -29,7 +29,7 @@ const HeaderLogin = (props) => {
             progress: undefined,
             toastId: 673738 /* this is hack to prevent multiple toasts */
         }
-        if (message.status == 200) {
+        if (message.status === 200) {
             toast.success(`🚀 ${message.message}`, options);
         } else {
             toast.error(`🦄 ${message.message}`, options);
@@ -57,6 +57,7 @@ const HeaderLogin = (props) => {
         let endpoint = '/v1/login';
         setIsLoading(true)
         makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
+
             setIsLoading(false)
             if (status === 200 || status == 201 || status == 204) {
                 setMessage(response);
@@ -158,9 +159,13 @@ const HeaderLogin = (props) => {
                     <a className="" href="/signup" title="Join now">
                         <span className="register-label">Register now!</span>
                     </a>
+                    <a className="m-lg-2 badge bg-success" href="/verify-account" title="Verify Account">
+                        <span className="register-label">Verify Account</span>
+                    </a>
                 </div>
             </Row>
             <Row style={{float: "right"}}>
+                <ToastContainer/>
                 <LoginForm/>
             </Row>
         </Container>

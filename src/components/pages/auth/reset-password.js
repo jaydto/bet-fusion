@@ -12,6 +12,8 @@ const ResetPassword = (props) => {
     const [success, setSuccess] = useState(false);
     const [message, setMessage] = useState(null);
     const [otp_sent, setOtpSent] = useState(false)
+    const [resetID, setResetID] = useState('')
+    const [mobile, setMobile] = useState('')
 
     const initialValues = {
         mobile: '',
@@ -19,25 +21,34 @@ const ResetPassword = (props) => {
 
     const initialResetFormValues = {
         id: '',
-        reset_code: '',
+        code: '',
         password: '',
         repeat_password: ''
     }
 
     const handleSubmit = values => {
+        setMobile(values.mobile)
         let endpoint = '/v1/code';
         makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
             setSuccess(status === 200 || status === 201);
             setMessage(response.success.message);
             setOtpSent(true)
-            initialResetFormValues.id = response.success.id
+            setResetID(response.success.id)
         })
     }
     const handleSubmitPasswordReset = values => {
-        let endpoint = '/v1/reset';
+        values.mobile = mobile
+        values.id = resetID;
+        let endpoint = '/v1/reset-password';
         makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
             setSuccess(status === 200 || status === 201);
-            setMessage(response.message);
+            setMessage(response.error ? response.error.message : response.success.message);
+            response.error ? setSuccess(false) : setSuccess(true)
+
+            let timer = setInterval(() => {
+                clearInterval(timer)
+                window.location.href = "/"
+            }, 3000)
         })
     }
 
@@ -56,12 +67,12 @@ const ResetPassword = (props) => {
 
         let password_reset_errors = {}
 
-        if (!password_reset_values.reset_code) {
-            password_reset_errors.reset_code = "Please enter your One Time Pin (OTP)"
+        if (!password_reset_values.code) {
+            password_reset_errors.code = "Please enter your One Time Pin (OTP)"
         }
 
-        if (password_reset_values.reset_code.length < 4) {
-            password_reset_errors.reset_code = "Your OTP should be greater than 4 numbers."
+        if (password_reset_values.code.length < 4) {
+            password_reset_errors.code = "Your OTP should be greater than 4 numbers."
         }
 
         if (!password_reset_values.password) {
@@ -148,24 +159,20 @@ const ResetPassword = (props) => {
                     <div className="row">
                         <hr/>
                         <div className="col-md-12">
-                            <div className="alert alert-info">
-                                We have sent a One Time Pin (OTP) to your phone. Please enter it below with your new
-                                password.
-                            </div>
                             <div className="col-md-12">
                                 <div className="form-group row d-flex justify-content-center mt-5">
                                     <label>OTP</label>
                                     <input
-                                        value={values.reset_code}
+                                        value={values.code}
                                         className="text-dark deposit-input form-control col-md-12 input-field"
                                         id="otp"
-                                        name="reset_code"
+                                        name="code"
                                         type="text"
                                         placeholder='OTP'
                                         onChange={ev => onFieldChanged(ev)}
                                     />
-                                    {errors.reset_code && <div className='text-danger'>
-                                        {errors.reset_code}
+                                    {errors.code && <div className='text-danger'>
+                                        {errors.code}
                                     </div>}
                                 </div>
                             </div>

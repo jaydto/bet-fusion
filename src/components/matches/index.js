@@ -154,8 +154,11 @@ const SideBets = (props) => {
 
 const OddButton = (props) => {
     const {match, mkt, detail, live, jackpot} = props
+    // console.log("Props are ",props)
     const [ucn, setUcn] = useState('');
+    // console.log(ucn)
     const [picked, setPicked] = useState('');
+    // console.log("Picked", picked?picked:'na')
     const [oddValue, setOddValue] = useState(null);
 
     const [state, dispatch] = useContext(Context);
@@ -174,7 +177,8 @@ const OddButton = (props) => {
     }, [updateBeslipKey])
 
     const updatePickedChoices = useCallback(() => {
-        let betslip = state?.[betslip_key];
+        // let betslip = state?.[betslip_key];
+        let betslip = getBetslip() || {};
         let uc = clean(
             match.match_id
             + "" + match.sub_type_id

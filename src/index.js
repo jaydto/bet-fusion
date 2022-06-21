@@ -64,6 +64,12 @@ const ResetPassword = React.lazy(
     () => import('./components/pages/auth/reset-password')
 )
 
+const VerifyAccount = React.lazy(
+    () => import('./components/pages/auth/verify-account')
+)
+
+const MobileApp = React.lazy(() => import('./components/pages/app'))
+
 const ProtectedRoute = React.lazy(
     () => import('./components/utils/protected-route')
 );
@@ -93,7 +99,8 @@ render((
                     <Route exact path="/upcoming" element={<Index/>}/>
                     <Route exact path="/tomorrow" element={<Index/>}/>
                     <Route exact path="/competition/:id" element={<CompetitionsMatches/>}/>
-                    <Route exact path="/competition/:sportid/:categoryid/:competitionid" element={<CompetitionsMatches/>}/>
+                    <Route exact path="/competition/:sportid/:categoryid/:competitionid"
+                           element={<CompetitionsMatches/>}/>
                     <Route exact path="/match/:id" element={<MatchAllMarkets/>}/>
                     <Route exact path="/match/live/:id" element={<MatchAllMarkets live/>}/>
                     <Route exact path="/jackpot" element={<Jackpot/>}/>
@@ -108,6 +115,8 @@ render((
                     <Route exact path="/how-to-play" element={<HowToPlay/>}/>
                     <Route exact path="/signup" element={<Signup/>}/>
                     <Route exact path="/reset-password" element={<ResetPassword/>}/>
+                    <Route exact path="/verify-account" element={<VerifyAccount/>}/>
+                    <Route exact path="/app" element={<MobileApp/>}/>
                     <Route exact path="/logout" element={<Logout/>}/>
 
                     <Route exact path="/deposit"

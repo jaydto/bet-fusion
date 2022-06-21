@@ -3,10 +3,10 @@ import {Formik, Form} from 'formik';
 import makeRequest from "../utils/fetch-request";
 import mpesa from '../../assets/img/mpesa-3.png'
 
-const Header = React.lazy(()=>import('../header/header'));
-const SideBar = React.lazy(()=>import('../sidebar/sidebar'));
-const Right = React.lazy(()=>import('../right/index'));
-const Footer = React.lazy(()=>import('../footer/footer'));
+const Header = React.lazy(() => import('../header/header'));
+const SideBar = React.lazy(() => import('../sidebar/sidebar'));
+const Right = React.lazy(() => import('../right/index'));
+const Footer = React.lazy(() => import('../footer/footer'));
 
 const Signup = (props) => {
 
@@ -23,6 +23,10 @@ const Signup = (props) => {
         makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
             setSuccess(status === 200 || status === 201);
             setMessage(response.message);
+            let timer = setInterval(() => {
+                window.location.href = "/verify-account"
+                clearInterval(timer)
+            }, 3000)
         })
     }
 
@@ -30,7 +34,7 @@ const Signup = (props) => {
 
         let errors = {}
 
-        if (!values.msisdn || !values.msisdn.match(/(254|0|)?[71]\d{8}/g) ) {
+        if (!values.msisdn || !values.msisdn.match(/(254|0|)?[71]\d{8}/g)) {
             errors.msisdn = 'Please enter a valid phone number'
         }
 
@@ -42,87 +46,87 @@ const Signup = (props) => {
     }
 
     const FormTitle = () => {
-       return (
-        <div className='col-md-12 primary-bg p-4 text-center'>
-            <h4 className="inline-block">
-                SIGNUP | CREATE A NEW ACCOUNT
-            </h4>
-        </div>
-       )
+        return (
+            <div className='col-md-12 primary-bg p-4 text-center'>
+                <h4 className="inline-block">
+                    SIGNUP | CREATE A NEW ACCOUNT
+                </h4>
+            </div>
+        )
     }
 
     const MySignupForm = (props) => {
-        const {errors, values, submitForm, setFieldValue } = props;
+        const {errors, values, submitForm, setFieldValue} = props;
 
-        const onFieldChanged = (ev)=>{
+        const onFieldChanged = (ev) => {
             let field = ev.target.name;
             let value = ev.target.value;
             setFieldValue(field, value);
         }
         return (
-            <Form > 
-              <div className="pt-0">
-                <div className="row">
-                    <div className='col-md-6 text-center'>
-                        <img src={mpesa} alt=""/>
-                    </div>
-                    <hr/>
-                    <div className="form-group row d-flex justify-content-center mt-5">
-                        <div className="col-md-12">
-                            <label>Mobile Number</label>
-                            <input
-                                value={values.msisdn}
-                                className="text-dark deposit-input form-control col-md-12 input-field"
-                                id="msisdn"
-                                name="msisdn"
-                                type="text"
-                                placeholder='Phone number'
-                                onChange={ev => onFieldChanged(ev)}
-                            />
-                            {errors.msisdn && <div className='text-danger'> {errors.msisdn} </div> }
+            <Form>
+                <div className="pt-0">
+                    <div className="row">
+                        <div className='col-md-6 text-center'>
+                            <img src={mpesa} alt=""/>
                         </div>
-                    </div>
+                        <hr/>
+                        <div className="form-group row d-flex justify-content-center mt-5">
+                            <div className="col-md-12">
+                                <label>Mobile Number</label>
+                                <input
+                                    value={values.msisdn}
+                                    className="text-dark deposit-input form-control col-md-12 input-field"
+                                    id="msisdn"
+                                    name="msisdn"
+                                    type="text"
+                                    placeholder='Phone number'
+                                    onChange={ev => onFieldChanged(ev)}
+                                />
+                                {errors.msisdn && <div className='text-danger'> {errors.msisdn} </div>}
+                            </div>
+                        </div>
 
-                    <div className="form-group row d-flex justify-content-center mt-5">
-                        <div className="col-md-12">
-                            <label>Password</label>
-                            <input
-                                value={values.password}
-                                className="text-dark deposit-input form-control col-md-12 input-field"
-                                id="password"
-                                name="password"
-                                type="password"
-                                placeholder='Password'
-                                onChange={ev => onFieldChanged(ev)}
-                            />
-                            {errors.password && <div className='text-danger'> {errors.password} </div> }
+                        <div className="form-group row d-flex justify-content-center mt-5">
+                            <div className="col-md-12">
+                                <label>Password</label>
+                                <input
+                                    value={values.password}
+                                    className="text-dark deposit-input form-control col-md-12 input-field"
+                                    id="password"
+                                    name="password"
+                                    type="password"
+                                    placeholder='Password'
+                                    onChange={ev => onFieldChanged(ev)}
+                                />
+                                {errors.password && <div className='text-danger'> {errors.password} </div>}
+                            </div>
                         </div>
-                    </div>
-                    <div className="form-group row d-flex justify-content-left mb-4">
-                        <div className="col-md-3">
-                            <button type="submit" 
-                                onClick={submitForm}
-                                className='btn btn-lg btn-primary mt-5 col-md-12 deposit-withdraw-button'>
-                                Signup
-                            </button>
+                        <div className="form-group row d-flex justify-content-left mb-4">
+                            <div className="col-md-3">
+                                <button type="submit"
+                                        onClick={submitForm}
+                                        className='btn btn-lg btn-primary mt-5 col-md-12 deposit-withdraw-button'>
+                                    Signup
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
-              </div>
             </Form>
         );
     }
 
     const SignupForm = (props) => {
         return (
-             <Formik
+            <Formik
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
                 validateOnChange={false}
                 validateOnBlur={false}
                 validate={validate}
-                render = {(props) => <MySignupForm {...props} /> } />
-            );
+                render={(props) => <MySignupForm {...props} />}/>
+        );
     }
 
     const Alert = (props) => {
@@ -132,28 +136,28 @@ const Signup = (props) => {
     };
 
     return (
-            <React.Fragment>
+        <React.Fragment>
             <Header/>
-              <div className="by amt">
+            <div className="by amt">
                 <div className="gc">
-                    <SideBar loadCompetitions />
+                    <SideBar loadCompetitions/>
                     <div className="gz home">
-                       <div className="homepage">
-                         <FormTitle />
-                           <div className="col-md-12 mt-2 text-white p-2">
-                             { message && <Alert /> }
-                               <div className="modal-body pb-0" data-backdrop="static">
-                                    <SignupForm />
-                               </div>
-                           </div>
-                       </div>
+                        <div className="homepage">
+                            <FormTitle/>
+                            <div className="col-md-12 mt-2 text-white p-2">
+                                {message && <Alert/>}
+                                <div className="modal-body pb-0" data-backdrop="static">
+                                    <SignupForm/>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <Right/>
                 </div>
-              </div>
-              <Footer/>
-            </React.Fragment>
-        );
+            </div>
+            <Footer/>
+        </React.Fragment>
+    );
 }
 
 export default Signup;

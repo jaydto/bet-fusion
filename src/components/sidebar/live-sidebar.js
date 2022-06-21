@@ -57,7 +57,10 @@ const LiveSideBar = (props) => {
                                 href={`/live/${livesport.sport_id}`}>
                                 <Row>
                                 <Col lg="11" md="11" sm="11" xs="11" className="topl" >
-                                    <Row style={{color:"#69819a"}}>{livesport.sport_name}</Row> 
+                                    <Row style={{color:"#69819a"}}>
+                                        <Col>{livesport.sport_name} </Col>
+                                        <Col><span style={{float:"right", color:"#fff"}}>{livesport.count }</span></Col>
+                                    </Row> 
                                 </Col>
                                </Row>
                             </a>

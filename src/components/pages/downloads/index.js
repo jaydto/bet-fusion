@@ -84,7 +84,7 @@ export default function MatchesList() {
                                     </div>
                                     <div className="col-md-12 mt-5 text-start">
                                         <PDFDownloadLink
-                                            className={`btn btn-primary text-white btn-lg p-4 col-md-4 ${matches.data?.length === 0 ? 'disabled' : ''}`}
+                                            className={`btn btn-primary text-white btn-lg p-4 col-md-4`}
                                             document={<PdfDocument data={matches}/>}
                                             fileName="matches.pdf">
                                             {({blob, url, loading, error}) =>

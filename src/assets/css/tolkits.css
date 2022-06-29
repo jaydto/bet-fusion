@@ -148,6 +148,13 @@ header, li a, .thedate span {
     color: gray;
 }
 
+
+.pdf-app{
+    display: table;
+    margin: 0 auto;
+}
+
+
 .home-tabs {
     background: #05070a;
     border-right: 3px solid transparent;

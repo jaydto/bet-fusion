@@ -11,14 +11,16 @@ const Right = React.lazy(() => import('../../right/index'));
 
 export default function MatchesList() {
     const [matches, setMatches] = useState([]);
-    const [show, setHide] = useState(false);
-    useEffect(() => {
-        fetchMatches('highlights')
-    }, [])
+    const [section, setSection] = useState('highlights');
+    const [events, setEvents] = useState(0);
 
-    const fetchMatches = async (tab) => {
+    useEffect(() => {
+        fetchMatches()
+    }, [section, events])
+
+    const fetchMatches = async () => {
         let method = "POST"
-        let endpoint = "/v1/matches?page=" + (1) + "&limit=10&tab=" + tab;
+        let endpoint = "/v1/matches?page=" + (1) + `&limit=${events}&tab=` + section;
         await makeRequest({url: endpoint, method: method, data: []}).then(([status, result]) => {
             if (status == 200) {
                 setMatches(result?.data || result)
@@ -26,6 +28,9 @@ export default function MatchesList() {
         });
     };
 
+    const getPDFDocument = async () => {
+        // initialize document
+    }
 
     const sectionOptions = [
         {value: 'upcoming', label: 'Upcoming'},
@@ -40,6 +45,14 @@ export default function MatchesList() {
         {value: '100', label: '100'},
         {value: '200', label: '200'},
     ]
+
+    const handleEventsChange = e => {
+        setEvents(e.value)
+    }
+
+    const handleSectionChange = e => {
+        setSection(e.value)
+    }
 
     return (
         <>
@@ -59,15 +72,19 @@ export default function MatchesList() {
                                 <div className="col-md-12 d-flex flex-column p-2">
                                     <div className="col-md-12 text-start p-2">
                                         <label htmlFor="" className={'text-white'}>Select Section</label>
-                                        <Select options={sectionOptions}/>
+                                        <Select options={sectionOptions}
+                                                value={sectionOptions.filter(obj => obj.value === section)}
+                                                onChange={handleSectionChange}/>
                                     </div>
                                     <div className="col-md-12 text-start p-2">
                                         <label htmlFor="" className={'text-white'}>Number of Events</label>
-                                        <Select options={totalEventOptions}/>
+                                        <Select options={totalEventOptions}
+                                                value={totalEventOptions.filter(obj => obj.value === events)}
+                                                onChange={handleEventsChange}/>
                                     </div>
                                     <div className="col-md-12 mt-5 text-start">
                                         <PDFDownloadLink
-                                            className={'btn btn-primary text-white btn-lg p-4 col-md-4'}
+                                            className={`btn btn-primary text-white btn-lg p-4 col-md-4 ${matches.data?.length === 0 ? 'disabled' : ''}`}
                                             document={<PdfDocument data={matches}/>}
                                             fileName="matches.pdf">
                                             {({blob, url, loading, error}) =>

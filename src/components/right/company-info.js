@@ -1,22 +1,12 @@
 import React from 'react';
-import contact from '../../assets/img/contact-24.png';
 import CustomerCare from '../../assets/img/banner/customer-care/Customer Care.png'
-import Paybill from '../../assets/img/banner/customer-care/PAYBILL.png'
+import Paybill from '../../assets/img/banner/customer-care/PAYBILL.jpg'
 
 const CompanyInfo = (props) => {
 
     return (
         <div className="qv rc alu show-on-affix">
             <div className="qv rc alu paybill block-shadow bottom-std-margin-spacing">
-                <div className="std-block-head bold">
-
-                </div>
-
-
-                <div className="payment-selector std-side-pads no-transform">
-
-
-                </div>
                 <div className="">
                     <div
                         className="contact-us black-bg capitalize text-white text-uppercase std-block-head bold">

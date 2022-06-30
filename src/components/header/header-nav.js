@@ -32,6 +32,11 @@ const HeaderNav = (props) => {
                 <li className={pathname === '/how-to-play' ? 'active' : ''}>
                     <a className="g url-link" href="/how-to-play" title="How to play">How to play</a>
                 </li>
+                <li className={pathname === '/print-matches' ? 'active' : ''}>
+                    <a className="g url-link" href="/print-matches" title="Print Matches">
+                        Print Matches
+                    </a>
+                </li>
                 { state?.user && 
                 <>
                     <li className={pathname === '/deposit' ? 'active' : ''}>

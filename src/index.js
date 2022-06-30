@@ -74,6 +74,8 @@ const ProtectedRoute = React.lazy(
     () => import('./components/utils/protected-route')
 );
 
+const PrintMatches = React.lazy(()=>import('./components/pages/downloads'))
+
 const Logout = () => {
     let navigate = useNavigate();
 
@@ -118,6 +120,7 @@ render((
                     <Route exact path="/verify-account" element={<VerifyAccount/>}/>
                     <Route exact path="/app" element={<MobileApp/>}/>
                     <Route exact path="/logout" element={<Logout/>}/>
+                    <Route exact path="/print-matches" element={<PrintMatches/>}/>
 
                     <Route exact path="/deposit"
                            element={<ProtectedRoute><Deposit/> </ProtectedRoute>}/>

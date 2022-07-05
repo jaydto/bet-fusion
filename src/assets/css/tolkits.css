@@ -30,7 +30,9 @@
     /*width: 40px;*/
 }
 
-
+.casino-category:focus{
+    background-color: orange;
+}
 /*
  * Copyright (c) Murwa 2018.
  *

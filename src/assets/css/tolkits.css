@@ -11,12 +11,12 @@
     background-color: #16202c !important;
 }
 
-.pro-sidebar.collapsed .pro-menu > ul > .pro-menu-item.pro-sub-menu > .pro-inner-list-item > .popper-inner{
+.pro-sidebar.collapsed .pro-menu > ul > .pro-menu-item.pro-sub-menu > .pro-inner-list-item > .popper-inner {
     /*background-color: #16202c !important;*/
     background-color: #253743 !important;
 }
 
-.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item{
+.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item {
     /*padding: 2px !important;*/
 }
 
@@ -24,10 +24,12 @@
     margin-top: 120px;
 }
 
-.affix {
-    top:50px;
-    position:fixed;
+.virtual-game-image {
+    cursor: pointer;
+    /*height: 40px;*/
+    /*width: 40px;*/
 }
+
 
 /*
  * Copyright (c) Murwa 2018.
@@ -1077,7 +1079,6 @@ button {
 .shrink-header .second-nav {
     top: 68px !important;
 }
-
 
 
 #shrink-header.shrink-header nav.second-nav.ck.pc.os.app-navbar div#navbar-collapse-main.by.f.collapse.container ul.nav.navbar-nav.og.ale.ss li a {

@@ -74,7 +74,9 @@ const ProtectedRoute = React.lazy(
     () => import('./components/utils/protected-route')
 );
 
-const PrintMatches = React.lazy(()=>import('./components/pages/downloads'))
+const PrintMatches = React.lazy(() => import('./components/pages/downloads'))
+
+const Casino = React.lazy(() => import('./components/pages/casino/Casino'))
 
 const Logout = () => {
     let navigate = useNavigate();
@@ -97,6 +99,7 @@ render((
             <Suspense fallback={<p> Loading ... </p>}>
                 <Routes>
                     <Route exact path="/" element={<Index/>}/>
+                    <Route exact path="/casino" element={<Casino/>}/>
                     <Route exact path="/highlights" element={<Index/>}/>
                     <Route exact path="/upcoming" element={<Index/>}/>
                     <Route exact path="/tomorrow" element={<Index/>}/>

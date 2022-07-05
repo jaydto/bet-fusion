@@ -39,6 +39,13 @@ const Index = (props) => {
         if (search_term !== null) {
             return
         }
+
+        let sport_id = url.searchParams.get('sport_id')
+
+        if (sport_id !== null) {
+            endpoint += " &sport_id=" + sport_id
+        }
+
         await makeRequest({url: endpoint, method: method, data: betslip}).then(([status, result]) => {
             if (status == 200) {
                 setMatches(result?.data || result)
@@ -59,6 +66,12 @@ const Index = (props) => {
         let search_term = url.searchParams.get('search')
         if (search_term !== null) {
             endpoint += ' &search=' + search_term
+        }
+
+        let sport_id = url.searchParams.get('sport_id')
+
+        if (sport_id !== null) {
+            endpoint += " &sport_id=" + sport_id
         }
 
         await makeRequest({url: endpoint, method: "POST", data: betslip}).then(([status, result]) => {

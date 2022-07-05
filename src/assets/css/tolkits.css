@@ -24,6 +24,11 @@
     margin-top: 120px;
 }
 
+.affix {
+    top:50px;
+    position:fixed;
+}
+
 /*
  * Copyright (c) Murwa 2018.
  *

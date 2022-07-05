@@ -67,7 +67,7 @@ const Sidebar = (props) => {
             marginRight: '5px',
             marginTop: "5px"
         }}
-             className={'vh-100 text-white'}>
+             className={`vh-100 text-white sticky-top `}>
             <ProSidebar
                 style={{backgroundColor: '#16202c !important'}}
                 image={false}
@@ -123,7 +123,8 @@ const Sidebar = (props) => {
                                             >
                                                 {country?.competitions.map((league, leagueKey) => (
                                                     <MenuItem key={`${leagueKey}_league`}>
-                                                        <a href={`/competition/${competition.sport_id}/${country.category_id}/${league.competition_id}`}>
+                                                        <a href={`/competition/${competition.sport_id}/${country.category_id}/${league.competition_id}`}
+                                                           onClick={() => setLocalStorage('active_item', competition.sport_id)}>
                                                             {league.competition_name}
                                                         </a>
                                                     </MenuItem>
@@ -133,14 +134,14 @@ const Sidebar = (props) => {
                                     ))}
                                 </SubMenu>
                                 <MenuItem>
-                                    <a href={`/competition/${competition.sport_id}/`}>Today Games</a>
+                                    <a href={`/upcoming?sport_id=${competition.sport_id}/`}>Today Games</a>
                                 </MenuItem>
                                 <MenuItem>
-                                    <a href={`/competition/${competition.sport_id}/`}>Highlights</a>
+                                    <a href={`/highlights?sport_id=${competition.sport_id}/`}>Highlights</a>
                                 </MenuItem>
                                 <MenuItem>
-                                    <a href={`/upcoming/${competition.sport_id}/`}>
-                                        Upcoming Games
+                                    <a href={`/tomorrow?sport_id=${competition.sport_id}/`}>
+                                        Tomorrow
                                     </a>
                                 </MenuItem>
                             </SubMenu>

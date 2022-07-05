@@ -19,7 +19,7 @@ const HeaderNav = (props) => {
     }, [searching])
 
     const fetchMatches = async (search) => {
-        if (search.length >= 3) {
+        if (search && search.length >= 3) {
             let method = "POST"
             let endpoint = "/v1/matches?page=" + (1) + `&limit=${10}&search=${search}`;
             await makeRequest({url: endpoint, method: method, data: []}).then(([status, result]) => {

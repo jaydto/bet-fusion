@@ -1,3 +1,25 @@
+.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item:hover .pro-icon-wrapper .pro-icon {
+    animation: none !important;
+}
+
+.pro-sidebar > .pro-sidebar-inner {
+    background-color: #253743 !important;
+
+}
+
+.pro-sidebar .pro-menu .pro-menu-item.pro-sub-menu .pro-inner-list-item {
+    background-color: #16202c !important;
+}
+
+.pro-sidebar.collapsed .pro-menu > ul > .pro-menu-item.pro-sub-menu > .pro-inner-list-item > .popper-inner{
+    /*background-color: #16202c !important;*/
+    background-color: #253743 !important;
+}
+
+.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item{
+    /*padding: 2px !important;*/
+}
+
 .app-header-nav {
     margin-top: 120px;
 }
@@ -1052,6 +1074,7 @@ button {
 }
 
 
+
 #shrink-header.shrink-header nav.second-nav.ck.pc.os.app-navbar div#navbar-collapse-main.by.f.collapse.container ul.nav.navbar-nav.og.ale.ss li a {
     font-size: 13px !important;
     font-weight: normal;
@@ -1685,6 +1708,10 @@ events-header {
     cursor: pointer;
 }
 
+.cursor-pointer {
+    cursor: pointer !important;
+}
+
 .paybill .odds {
     text-align: left;
     padding-left: 5px;
@@ -1742,6 +1769,7 @@ events-header {
     background-position: center center;
     padding-bottom: 5px;
     background-size: cover;
+    z-index: 9999 !important;
 }
 
 .opacity-reduce-txt {
@@ -6776,6 +6804,7 @@ ul.sport {
 
     .top-nav {
         top: 0px;
+        z-index: 9999 !important;
     }
 
     .navbar-nav .open .dropdown-menu > li > a,

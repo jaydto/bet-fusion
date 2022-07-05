@@ -18,7 +18,7 @@ const Right = (props) => {
     const { jackpot, betslipValidationData } = props;
 
     return (
-        <div className="gn" id="right-generic">
+        <div className="gn col-md-3 text-white" id="right-generic">
             {props?.message && <AlertMessage classname={props.classname} message={props.message} /> }
             <div className="bet-option-list" id='slip-holder'>
                 <div className="bet alu block-shadow">

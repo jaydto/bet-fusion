@@ -2,7 +2,7 @@ import React, {useEffect, useCallback, useState} from "react";
 
 import Header from './header/header';
 import Footer from './footer/footer';
-import SideBar from './sidebar/sidebar';
+import SideBar from './sidebar/awesome/Sidebar';
 import CarouselLoader from './carousel/index';
 import {JackpotMatchList, JackpotHeader} from './matches/index';
 import makeRequest from "./utils/fetch-request";
@@ -38,10 +38,10 @@ const Jackpot = (props) => {
     return (
         <>
             <Header/>
-            <div className="by amt">
-                <div className="gc">
-                    <SideBar loadCompetitions/>
-                    <div className="gz home">
+            <div className="amt">
+                <div className="d-flex flex-row justify-content-between">
+                    <SideBar loadCompetitions />
+                    <div className="gz home"  style={{width:'auto'}}>
                         <div className="homepage">
                             <CarouselLoader/>
                             <JackpotHeader jackpot={matches?.meta}/>

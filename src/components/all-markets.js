@@ -1,6 +1,4 @@
-import React,  { 
-    useContext, 
-    useEffect, 
+import React,  {
     useLayoutEffect, 
     useState,
     useCallback,
@@ -10,22 +8,13 @@ import { useParams } from 'react-router-dom';
 
 import makeRequest from "./utils/fetch-request";
 import useInterval from "../hooks/set-interval.hook";
-import { Context }  from '../context/store';
 import { getBetslip } from './utils/betslip' ;
 
-import { 
-    getFromLocalStorage,
-    setLocalStorage
-} from './utils/local-storage';
 import { MarketList } from './matches/index';
-import banner from '../assets/img/banner.jpg';
 
 const Header = React.lazy(()=>import('./header/header'));
 const Footer = React.lazy(()=>import('./footer/footer'));
-const SideBar = React.lazy(()=>import('./sidebar/sidebar'));
-const CarouselLoader = React.lazy(()=>import('./carousel/index'));
-const MainTabs = React.lazy(()=>import('./header/main-tabs'));
-const SearchBar = React.lazy(()=>import('./header/search-bar'));
+const SideBar = React.lazy(()=>import('./sidebar/awesome/Sidebar'));
 const Right = React.lazy(()=>import('./right/index'));
 
 const MatchAllMarkets = (props) => {
@@ -89,12 +78,12 @@ const MatchAllMarkets = (props) => {
 
    return (
        <>
-        <Header />        
-        <div className="by amt">
-          <div className="gc">
-            <SideBar loadCompetitions />
-            <div className="gz home">
-                <div className="homepage">
+        <Header />
+           <div className="amt">
+               <div className="d-flex flex-row justify-content-between">
+                   <SideBar loadCompetitions />
+                   <div className="gz home"  style={{width:'auto'}}>
+                       <div className="homepage">
                     <MarketList live={live}  
                         matchwithmarkets={matchwithmarkets} 
                         pdown={producerDown} />

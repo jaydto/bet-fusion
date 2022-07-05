@@ -12,7 +12,7 @@ import { getBetslip } from './utils/betslip' ;
 
 const Header = React.lazy(()=>import('./header/header'));
 const Footer = React.lazy(()=>import('./footer/footer'));
-const SideBar = React.lazy(()=>import('./sidebar/sidebar'));
+const SideBar = React.lazy(()=>import('./sidebar/awesome/Sidebar'));
 const CarouselLoader = React.lazy(()=>import('./carousel/index'));
 const MainTabs = React.lazy(()=>import('./header/main-tabs'));
 const SearchBar = React.lazy(()=>import('./header/search-bar'));
@@ -38,7 +38,7 @@ const CompetitionMatches = (props) => {
     };
 
 	useInterval(async () => {
-        let endpoint = "/v1/sports/competition?id="+competitionid+"&page="+ (page|| 1); 
+        let endpoint = "/v1/sports/competition?id="+competitionid+"&page="+ (page|| 1)+"&sport_id=79";
         let betslip = findPostableSlip();
         let method = betslip ? "POST" : "GET";
 		await makeRequest({url:endpoint, method:method, data:betslip}).then(([status, result]) => {
@@ -84,10 +84,10 @@ const CompetitionMatches = (props) => {
    return (
        <>
         <Header />        
-        <div className="by amt">
-          <div className="gc">
-            <SideBar loadCompetitions />
-            <div className="gz home">
+        <div className="amt">
+            <div className="d-flex flex-row justify-content-between">
+                <SideBar loadCompetitions />
+            <div className="gz home"  style={{width:'auto'}}>
                 <div className="homepage">
                     <CarouselLoader />
                     { matches && <MatchList 

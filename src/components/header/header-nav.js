@@ -18,14 +18,17 @@ const HeaderNav = (props) => {
         fetchMatches()
     }, [searching])
 
-    const fetchMatches = async () => {
-        let method = "POST"
-        let endpoint = "/v1/matches?page=" + (1) + `&limit=${5}&search=arsenal`;
-        await makeRequest({url: endpoint, method: method, data: []}).then(([status, result]) => {
-            if (status == 200) {
-                setMatches(result?.data || result)
-            }
-        });
+    const fetchMatches = async (search) => {
+        if (search.length >= 3) {
+            let method = "POST"
+            let endpoint = "/v1/matches?page=" + (1) + `&limit=${10}&search=${search}`;
+            await makeRequest({url: endpoint, method: method, data: []}).then(([status, result]) => {
+                if (status == 200) {
+                    setMatches(result?.data || result)
+                }
+            });
+        }
+
     };
 
     const dismissSearch = () => {
@@ -71,7 +74,7 @@ const HeaderNav = (props) => {
                 </ListGroup>
                 <ListGroup className={'right nav navbar-nav ss '} as={'ul'}>
                     <li className={pathname === '/print-matches' ? '' : ''}>
-                        <a className="g url-link" href="javascript:void(0)" title="Search"
+                        <a className="g url-link" href="#" title="Search"
                            onClick={() => setSearching(true)}>
                             <FontAwesomeIcon icon={faSearch}/> Search
                         </a>
@@ -94,6 +97,7 @@ const HeaderNav = (props) => {
                     <div className="d-flex">
                         <div className="col-md-10">
                             <input type="text" placeholder={'Start typing to search for team ...'}
+                                   onInput={(event) => fetchMatches(event.target.value)}
                                    className={'form-control input-field border-0 bg-dark text-white no-border-radius'}/>
                         </div>
 
@@ -104,9 +108,13 @@ const HeaderNav = (props) => {
                     <div
                         className={`autocomplete-box position-fixed bg-white border-dark col-md-5 mt-1 shadow-lg text-start`}>
                         {matches.map((match, index) => (
-                            <li key={index}>
-                                {match.home_team}
-                            </li>
+                            <a href={`/?search=${match.home_team}`}>
+                                <li key={index}>
+                                    <a href={`/?search=${match.home_team}`}>
+                                        {match.home_team}
+                                    </a>
+                                </li>
+                            </a>
                         ))}
                     </div>
                 </ListGroup>

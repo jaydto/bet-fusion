@@ -2,18 +2,19 @@ import React from "react";
 import 'react-accessible-accordion/dist/fancy-example.css';
 
 const Header = React.lazy(() => import('../../header/header'));
-const SideBar = React.lazy(() => import('../../sidebar/sidebar'));
+const SideBar = React.lazy(() => import('../../sidebar/awesome/Sidebar'));
 const Footer = React.lazy(() => import('../../footer/footer'));
 const Right = React.lazy(() => import('../../right/index'));
 
 const MobileApp = () => {
+
     return (
         <>
             <Header/>
-            <div className="by amt">
-                <div className="gc">
+            <div className="amt">
+                <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions/>
-                    <div className="gz home">
+                    <div className="gz home" style={{width: 'auto'}}>
                         <div className="homepage">
                             <div className='col-md-12 primary-bg p-4 text-center'>
                                 <h4 className="inline-block">
@@ -27,7 +28,8 @@ const MobileApp = () => {
                                 </p>
                             </div>
                             <div className="col-md-12 mt-2 text-white accordion-container text-center">
-                                <a href='/app/download' target={"_blank"} className="btn btn-primary btn-lg mb-5">
+                                <a href='https://betnare.com/app/download/betnare.apk' target={"_blank"}
+                                   className="btn btn-primary btn-lg mb-5">
                                     DOWNLOAD BETNARE APP
                                 </a>
                             </div>

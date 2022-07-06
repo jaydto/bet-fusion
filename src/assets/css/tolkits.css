@@ -53,10 +53,16 @@
     color: white;
     position: sticky !important;
     top: 4rem;
+    margin-left: 2px;
+    outline: none !important;
 }
 
 .casino-category:focus {
-    background-color: orange;
+    background-color: #f98f06;
+}
+
+.bg-active {
+    background: #f98f06 !important
 }
 
 /*

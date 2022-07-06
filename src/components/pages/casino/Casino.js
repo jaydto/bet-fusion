@@ -44,10 +44,12 @@ const Casino = (props) => {
                             <div className="col-md-11 d-flex flex-column">
                                 <div className="col-md-12">
                                     <div className="game-categories shadow-sm  p-2 shadow-sm casino-category-container">
-                                        {categories?.map((category) => (
-                                            <button className={`cursor-pointer text-center casino-category`}
-                                               key={category.game_type_id}
-                                               onClick={() => getCategoryGames(category)}>
+                                        {categories?.map((category, index) => (
+                                            <button
+                                                className={`cursor-pointer text-center casino-category`}
+                                                key={category.game_type_id}
+                                                autoFocus={index === 0}
+                                                onClick={() => getCategoryGames(category)}>
                                                 {category?.game_type_description}
                                             </button>
                                         ))}

@@ -4,6 +4,7 @@ import Footer from "../../footer/footer";
 import makeRequest from "../../utils/fetch-request";
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 import {Link} from "react-router-dom";
+import SideBar from "../../sidebar/awesome/Sidebar";
 
 const Casino = (props) => {
 
@@ -30,35 +31,43 @@ const Casino = (props) => {
     useEffect(() => {
         fetchGames()
     }, [])
-    return (
 
+    return (
         <>
             <Header/>
+            <Header/>
             <div className="amt">
-                <div className="d-flex flex-row justify-content-between">
-                    <div className="col-md-12">
+                <div className="d-flex flex-row">
+                    <SideBar loadCompetitions/>
+                    <div className="gz home" style={{width: '100%'}}>
                         <div className="homepage">
-                            <div
-                                className="game-categories sticky-top col-md-12 shadow-sm text-white d-flex position-sticky p-2 mt-1 shadow-sm overflow-scroll">
-                                {categories?.map((category) => (
-                                    <a className={`col-md-1 cursor-pointer text-center casino-category`}
-                                       key={category.game_type_id}
-                                       onClick={() => getCategoryGames(category)}>
-                                        {category?.game_type_description}
-                                    </a>
-                                ))}
-                            </div>
-                            <div className={'row text-white p-2 shadow-sm'}>
-                                {games?.map((game) => (
-                                    <Link to={{
-                                        pathname: `/casino/${game.game_id}`
-                                    }}
-                                          className="col-md-2 mt-1 d-flex flex-column shadow-sm"
-                                          key={game.game_id}>
-                                        <LazyLoadImage src={`${game.game_icon}`} className={'virtual-game-image'}/>
-                                        <p className={'p-2 bold'}>{game.game_name}</p>
-                                    </Link>
-                                ))}
+                            <div className="col-md-11 d-flex flex-column">
+                                <div className="col-md-12">
+                                    <div className="game-categories shadow-sm  p-2 shadow-sm casino-category-container">
+                                        {categories?.map((category) => (
+                                            <button className={`cursor-pointer text-center casino-category`}
+                                               key={category.game_type_id}
+                                               onClick={() => getCategoryGames(category)}>
+                                                {category?.game_type_description}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div className="col">
+                                    <div className={'row text-white p-2 shadow-sm'}>
+                                        {games?.map((game) => (
+                                            <Link to={{pathname: `/casino/${game.game_id}`}}
+                                                  className="col-md-2 mt-1 d-flex flex-column shadow-sm"
+                                                  key={game.game_id}>
+                                                <LazyLoadImage src={`${game.game_icon}`}
+                                                               className={'virtual-game-image'}/>
+                                                <p className={'p-2 bold'}>{game.game_name}</p>
+                                            </Link>
+                                        ))}
+                                    </div>
+                                </div>
+
+
                             </div>
                         </div>
                     </div>

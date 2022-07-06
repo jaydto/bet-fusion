@@ -30,9 +30,35 @@
     /*width: 40px;*/
 }
 
-.casino-category:focus{
+.casino-category-container {
+    display: flex;
+    flex-direction: row !important;
+    justify-content: space-around;
+    align-items: flex-start;
+    border: 2px dashed rgba(114, 186, 94, 0.35);
+    background: rgba(114, 186, 94, 0.05);
+}
+
+.shark-1 {
+    position: sticky;
+    top: 0;
+}
+
+
+.casino-category {
+    width: 100%;
+    border-radius: 5px;
+    background-color: #0e131b;
+    padding: 2px;
+    color: white;
+    position: sticky !important;
+    top: 4rem;
+}
+
+.casino-category:focus {
     background-color: orange;
 }
+
 /*
  * Copyright (c) Murwa 2018.
  *

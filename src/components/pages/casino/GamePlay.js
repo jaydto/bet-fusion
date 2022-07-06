@@ -11,16 +11,26 @@ const GamePlay = (props) => {
 
     const [gameUrlLoaded, setGameUrlLoaded] = useState(false)
 
-    const getGameUrl = async (game_id) => {
+    const createPlayer = async () => {
 
-        const headers = {
-            Authorization: 'Bearer aedc397f7a20fc82b265f89e1726a2965bc5339b2777fb2c071f2a3c'
-        }
-        let endpoint = `/v1/casino/game/url?game-id=${game_id}`
+        let endpoint = '/v1/casino/create/player'
 
         let method = "GET"
 
-        await makeRequest({url: endpoint, method: method, additionalHeaders: headers}).then(([status, result]) => {
+        await makeRequest({url: endpoint, method: method}).then(([status, result]) => {
+            if (status === 200) {
+                console.log(result)
+            }
+        });
+    }
+
+    const startGame = async (game_id) => {
+
+        let endpoint = `/v1/casino/start/game?game-id=${game_id}`
+
+        let method = "GET"
+
+        await makeRequest({url: endpoint, method: method}).then(([status, result]) => {
             if (status === 200) {
                 setGameUrl(result?.result.gameURL)
                 setGameUrlLoaded(true)
@@ -29,7 +39,10 @@ const GamePlay = (props) => {
     }
 
     useEffect(() => {
-        getGameUrl(game_id)
+        createPlayer().then(()=>{
+            startGame(game_id)
+        })
+
     }, [])
     return (
         <>

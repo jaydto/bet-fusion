@@ -140,7 +140,6 @@ const Header = (props) => {
                         </Offcanvas.Header>
                         <Offcanvas.Body>
                             <SideBar competitions={competitions} override_display={true}/>
-
                         </Offcanvas.Body>
                     </Navbar.Offcanvas>
                 </Container>

@@ -3,6 +3,8 @@ import Header from "../../header/header";
 import Footer from "../../footer/footer";
 import {useParams} from "react-router-dom";
 import makeRequest from "../../utils/fetch-request";
+import Skeleton, {SkeletonTheme} from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const GamePlay = (props) => {
     const {game_id} = useParams()
@@ -39,7 +41,7 @@ const GamePlay = (props) => {
     }
 
     useEffect(() => {
-        createPlayer().then(()=>{
+        createPlayer().then(() => {
             startGame(game_id)
         })
 
@@ -52,8 +54,10 @@ const GamePlay = (props) => {
                     <div className="col-md-12">
                         <div className="homepage">
                             <div
-                                className={`col-md-12  text-center alert alert-warning ${gameUrlLoaded ? 'd-none' : 'd-block'}`}>
-                                Getting game details. Please wait ...
+                                className={`col-md-12 ${gameUrlLoaded ? 'd-none' : 'd-block'}`}>
+                                <SkeletonTheme baseColor="#202020" highlightColor="#444">
+                                    <Skeleton height={'550px'}/>
+                                </SkeletonTheme>
                             </div>
                             {gameUrlLoaded && <>
                                 <iframe src={gameUrl} title="Gadme" width={'100%'} height={'500px'}></iframe>

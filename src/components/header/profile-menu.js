@@ -2,6 +2,7 @@ import React from 'react';
 import {faUser, faLock, faCoins} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {formatNumber} from "../utils/betslip";
+import {Link} from "react-router-dom";
 
 const ProfileMenu = (props) => {
     const {user} = props;
@@ -11,17 +12,17 @@ const ProfileMenu = (props) => {
                 <div className="ale ss profile d-flex flex-row row ">
                     <div className="col d-flex flex-column right justify-content-end">
                         <div>
-                            <button className={'btn text-white'}>
+                            <Link to={{pathname: '/withdraw'}} className={'btn text-white'}>
                                 <span><FontAwesomeIcon icon={faCoins}/> Withdraw</span>
-                            </button>
-                            <button className={'btn text-white'}>
+                            </Link>
+                            <Link to={{pathname: '/my-bets'}} className={'btn text-white'}>
                                 <span><FontAwesomeIcon icon={faCoins}/> My Bets</span>
-                            </button>
+                            </Link>
                         </div>
                         <div className={'mt-1'}>
-                            <button className={'btn text-white btn-outline-warning'}>
+                            <Link to={{pathname: '/deposit'}} className={'btn text-white btn-outline-warning'}>
                                 <span><FontAwesomeIcon icon={faCoins}/> Deposit Funds</span>
-                            </button>
+                            </Link>
                         </div>
                     </div>
                     <div className="row d-flex flex-row col-md-5">

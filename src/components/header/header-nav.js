@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState, useRef} from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Container from 'react-bootstrap/Container';
 import {Context} from '../../context/store';
@@ -9,10 +9,9 @@ import makeRequest from "../utils/fetch-request";
 const HeaderNav = (props) => {
     const [state,] = useContext(Context);
     const pathname = window.location.pathname;
-
     const [searching, setSearching] = useState(false)
-
     const [matches, setMatches] = useState([])
+    const searchInputRef = useRef(null)
 
     useEffect(() => {
         fetchMatches()
@@ -23,13 +22,18 @@ const HeaderNav = (props) => {
             let method = "POST"
             let endpoint = "/v1/matches?page=" + (1) + `&limit=${10}&search=${search}`;
             await makeRequest({url: endpoint, method: method, data: []}).then(([status, result]) => {
-                if (status == 200) {
+                if (status === 200) {
                     setMatches(result?.data || result)
                 }
             });
         }
 
     };
+
+    const showSearchBar = () => {
+        setSearching(true)
+        searchInputRef.current.focus()
+    }
 
     const dismissSearch = () => {
         setSearching(false)
@@ -80,7 +84,7 @@ const HeaderNav = (props) => {
                 <ListGroup className={'right nav navbar-nav ss '} as={'ul'}>
                     <li className={pathname === '/print-matches' ? '' : ''}>
                         <a className="g url-link" href="#" title="Search"
-                           onClick={() => setSearching(true)}>
+                           onClick={() => showSearchBar()}>
                             <FontAwesomeIcon icon={faSearch}/> Search
                         </a>
                     </li>
@@ -101,7 +105,7 @@ const HeaderNav = (props) => {
                 <ListGroup as="ul" xs="9" horizontal className="nav navbar-nav og ale ss col-md-6 text-center">
                     <div className="d-flex">
                         <div className="col-md-10">
-                            <input type="text" placeholder={'Start typing to search for team ...'}
+                            <input type="text" placeholder={'Start typing to search for team ...'} ref={searchInputRef}
                                    onInput={(event) => fetchMatches(event.target.value)}
                                    className={'form-control input-field border-0 bg-dark text-white no-border-radius'}/>
                         </div>
@@ -113,11 +117,9 @@ const HeaderNav = (props) => {
                     <div
                         className={`autocomplete-box position-fixed bg-white border-dark col-md-5 mt-1 shadow-lg text-start`}>
                         {matches.map((match, index) => (
-                            <a href={`/?search=${match.home_team}`}>
-                                <li key={index}>
-                                    <a href={`/?search=${match.home_team}`}>
-                                        {match.home_team}
-                                    </a>
+                            <a href={`/?search=${match.home_team}`} key={index}>
+                                <li>
+                                    {match.home_team}
                                 </li>
                             </a>
                         ))}

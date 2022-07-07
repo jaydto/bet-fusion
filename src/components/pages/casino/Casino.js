@@ -61,7 +61,7 @@ const Casino = (props) => {
                     <SideBar loadCompetitions/>
                     <div className="gz home" style={{width: '100%'}}>
                         <div className="homepage">
-                            <div className="col-md-11 d-flex flex-column">
+                            <div className="col-md-12 d-flex flex-column">
                                 <div className="col-md-12">
                                     <div className="game-categories shadow-sm  p-2 shadow-sm casino-category-container">
                                         {categories?.map((category, index) => (

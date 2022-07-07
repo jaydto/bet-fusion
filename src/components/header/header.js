@@ -117,7 +117,9 @@ const Header = (props) => {
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`}/>
                     <div className="col-9" id="navbar-collapse-main">
-                        {user ? <ProfileMenu user={user}/> : <HeaderLogin setUser={setUser}/>}
+                        <div className="col-md-5 right ">
+                            {user ? <ProfileMenu user={user}/> : <HeaderLogin setUser={setUser}/>}
+                        </div>
                     </div>
                     <Row className="second-nav ck pc os app-navbar app-header-nav">
                         <HeaderNav/>

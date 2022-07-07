@@ -4421,7 +4421,7 @@ fieldset[disabled] .fm.fl {
 .ss.profile {
     padding-bottom: 7px;
     padding-top: 5px;
-    margin-right: 40px !important;
+    /*margin-right: 40px !important;*/
     width: auto;
     font-size: 12px;
     font-weight: normal;

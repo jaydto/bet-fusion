@@ -40,13 +40,21 @@ const Casino = (props) => {
         Notify(message)
     }
 
+    const launchGame = (game_id) => {
+
+        if (user?.token) {
+            return window.location.href = `/casino/${game_id}`
+        }
+
+        return showLoginNotification()
+    }
+
     useEffect(() => {
         fetchGames()
     }, [])
 
     return (
         <>
-            <Header/>
             <Header/>
             <div className="amt">
                 <div className="d-flex flex-row">
@@ -70,25 +78,15 @@ const Casino = (props) => {
                                 <div className="col">
                                     <div className={'row text-white p-2 shadow-sm'}>
                                         {games?.map((game) => (
-                                            user ? (
-                                                <Link to={{pathname: `/casino/${game.game_id}`}}
-                                                      className="col-md-2 mt-1 d-flex flex-column shadow-sm"
-                                                      key={game.game_id}>
+                                                <div onClick={() => launchGame(game.game_id)}
+                                                     className="col-md-2 mt-1 d-flex flex-column shadow-sm"
+                                                     key={game.game_id}>
                                                     <LazyLoadImage src={`${game.game_icon}`}
                                                                    className={'virtual-game-image'}/>
                                                     <p className={'p-2 bold'}>{game.game_name}</p>
-                                                </Link>) : (<>
-                                                <Link
-                                                    onClick={() => showLoginNotification()}
-                                                    to={{}}
-                                                    className="col-md-2 mt-1 d-flex flex-column shadow-sm"
-                                                    key={game.game_id}>
-                                                    <LazyLoadImage src={`${game.game_icon}`}
-                                                                   className={'virtual-game-image'}/>
-                                                    <p className={'p-2 bold'}>{game.game_name}</p>
-                                                </Link>
-                                            </>)
-                                        ))}
+                                                </div>
+                                            )
+                                        )}
                                     </div>
                                 </div>
 

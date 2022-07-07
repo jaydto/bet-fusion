@@ -34,6 +34,7 @@ const GamePlay = (props) => {
 
         await makeRequest({url: endpoint, method: method}).then(([status, result]) => {
             if (status === 200) {
+                console.log(result?.result.gameURL)
                 setGameUrl(result?.result.gameURL)
                 setGameUrlLoaded(true)
             }
@@ -55,8 +56,8 @@ const GamePlay = (props) => {
                         <div className="homepage">
                             <div
                                 className={`col-md-12 ${gameUrlLoaded ? 'd-none' : 'd-block'}`}>
-                                <SkeletonTheme baseColor="#202020" highlightColor="#444">
-                                    <Skeleton height={'550px'}/>
+                                <SkeletonTheme baseColor="#0e131b" highlightColor="#3f6878">
+                                    <Skeleton height={'100px'}/>
                                 </SkeletonTheme>
                             </div>
                             {gameUrlLoaded && <>

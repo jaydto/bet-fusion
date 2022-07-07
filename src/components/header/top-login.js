@@ -154,7 +154,7 @@ const HeaderLogin = (props) => {
 
     return (
         <Container className="top-login-section">
-            <Row className="" style={{float: "right", marginRight: "15px"}}>
+            <Row className="" style={{float: "right"}}>
                 <div className="col-12">
                     <a className="" href="/signup" title="Join now">
                         <span className="register-label">Register now!</span>

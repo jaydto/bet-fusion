@@ -5,11 +5,14 @@ import {useParams} from "react-router-dom";
 import makeRequest from "../../utils/fetch-request";
 import Skeleton, {SkeletonTheme} from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import {getFromLocalStorage} from "../../utils/local-storage";
 
 const GamePlay = (props) => {
     const {game_id} = useParams()
 
     const [gameUrl, setGameUrl] = useState('')
+
+    const [isLoggedIn] = useState(getFromLocalStorage('user'))
 
     const [gameUrlLoaded, setGameUrlLoaded] = useState(false)
 
@@ -34,7 +37,6 @@ const GamePlay = (props) => {
 
         await makeRequest({url: endpoint, method: method}).then(([status, result]) => {
             if (status === 200) {
-                console.log(result?.result.gameURL)
                 setGameUrl(result?.result.gameURL)
                 setGameUrlLoaded(true)
             }
@@ -42,9 +44,11 @@ const GamePlay = (props) => {
     }
 
     useEffect(() => {
-        createPlayer().then(() => {
-            startGame(game_id)
-        })
+        isLoggedIn ?
+            createPlayer().then(() => {
+                startGame(game_id)
+            }) :
+            window.location.href = "/casino"
 
     }, [])
     return (

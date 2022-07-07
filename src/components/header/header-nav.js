@@ -72,7 +72,7 @@ const HeaderNav = (props) => {
                             <li className={pathname === '/deposit' ? 'active' : ''}>
                                 <a className="url-link" href="/deposit" title="Deposit"> Deposit</a>
                             </li>
-                            <li className={pathname === 'withdraw' ? 'active' : ''}>
+                            <li className={pathname === '/withdraw' ? 'active' : ''}>
                                 <a className="url-link" href="/withdraw" title="Withdraw"> Withdraw</a>
                             </li>
                             <li className={pathname === '/my-bets' ? 'active' : ''}>

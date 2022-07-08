@@ -7,13 +7,14 @@ import Skeleton, {SkeletonTheme} from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import {getFromLocalStorage} from "../../utils/local-storage";
 import {LazyLoadImage} from "react-lazy-load-image-component";
+import {Stack} from "react-bootstrap";
 
 const GamePlay = (props) => {
     const {game_id} = useParams()
 
     const [gameUrl, setGameUrl] = useState('')
 
-    const [games, setGames] = useState(getFromLocalStorage('category_games'))
+    const [games] = useState(getFromLocalStorage('category_games'))
 
     const [isLoggedIn] = useState(getFromLocalStorage('user'))
 
@@ -49,24 +50,20 @@ const GamePlay = (props) => {
     }
 
     const CategoryGames = () => (
-        <div className="col-md-12">
-            <div className={'col-md-12 overflow-scroll d-flex'}>
-                <div className="container-fluid">
-                    <div className="row flex-row flex-nowrap text-white shadow-lg justify-content-around">
-                        {games?.map((game) => (
-                                <div className="" style={{width: "60px"}}
-                                     onClick={() => startGame(game.game_id)}>
-                                    <LazyLoadImage
-                                        style={{height: "50px", width: "60px", float: "left"}}
-                                        src={`${game.game_icon}`}
-                                        className={'virtual-game-image'}/>
-                                </div>
-                            )
-                        )}
-                    </div>
-                </div>
-            </div>
-        </div>
+
+        <Stack direction="horizontal" gap={1} style={{overflow: "scroll"}}
+               className={'d-flex justify-content-center w-100'}>
+            {
+                games.map((game, index) => (
+                    <LazyLoadImage
+                        key={index}
+                        onClick={() => startGame(game.game_id)}
+                        style={{height: "50px", width: "60px", float: "left"}}
+                        src={`${game.game_icon}`}
+                        className={'virtual-game-image'}/>
+                ))
+            }
+        </Stack>
     )
 
     useEffect(() => {
@@ -92,8 +89,9 @@ const GamePlay = (props) => {
                                 </SkeletonTheme>
                             </div>
                             {gameUrlLoaded && <>
-                                <iframe className={'mt-3 shadow-lg'}
-                                        src={gameUrl} title="Gadme" width={'100%'} height={'500px'}></iframe>
+                                <iframe
+                                    className={'mt-3 shadow-lg'}
+                                    src={gameUrl} title="Gadme" width={'100%'} height={'600px'}></iframe>
                             </>}
                         </div>
                     </div>

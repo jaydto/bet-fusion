@@ -5,7 +5,7 @@ import makeRequest from "../../utils/fetch-request";
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 import {Link} from "react-router-dom";
 import SideBar from "../../sidebar/awesome/Sidebar";
-import {getFromLocalStorage} from "../../utils/local-storage";
+import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
 import Notify from "../../utils/Notify";
 
 const Casino = (props) => {
@@ -23,6 +23,7 @@ const Casino = (props) => {
             if (status === 200) {
                 setCategories(result.types)
                 setGames(result.data)
+                setLocalStorage('category_games', result.data)
             }
         });
     }
@@ -43,7 +44,7 @@ const Casino = (props) => {
     const launchGame = (game_id) => {
 
         if (user?.token) {
-            return window.location.href = `/casino/${game_id}`
+            return window.location.href = `/gameplay/${game_id}`
         }
 
         return showLoginNotification()

@@ -62,9 +62,9 @@ const HeaderNav = (props) => {
                     <li className={pathname === '/app' ? 'active' : ''}>
                         <a className="g url-link" href="/app" title="App">APP </a>
                     </li>
-                    <li className={pathname === '/casino' ? 'active' : ''}>
-                        <a className="g url-link" href="/casino" title="App">
-                            CASINO
+                    <li className={pathname === '/virtuals' || pathname.includes("gameplay")  ? 'active' : ''}>
+                        <a className="g url-link" href="/virtuals" title="App">
+                            VIRTUAL GAMES
                         </a>
                     </li>
                     {state?.user &&

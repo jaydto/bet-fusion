@@ -101,8 +101,8 @@ render((
             <Suspense fallback={<p> Loading ... </p>}>
                 <Routes>
                     <Route exact path="/" element={<Index/>}/>
-                    <Route exact path="/casino" element={<Casino/>}/>
-                    <Route exact path="/casino/:game_id" element={<CasinoGamePlay/>}/>
+                    <Route exact path="/virtuals" element={<Casino/>}/>
+                    <Route exact path="/gameplay/:game_id" element={<CasinoGamePlay/>}/>
                     <Route exact path="/highlights" element={<Index/>}/>
                     <Route exact path="/upcoming" element={<Index/>}/>
                     <Route exact path="/tomorrow" element={<Index/>}/>

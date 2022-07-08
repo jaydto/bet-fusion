@@ -6,11 +6,14 @@ import makeRequest from "../../utils/fetch-request";
 import Skeleton, {SkeletonTheme} from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import {getFromLocalStorage} from "../../utils/local-storage";
+import {LazyLoadImage} from "react-lazy-load-image-component";
 
 const GamePlay = (props) => {
     const {game_id} = useParams()
 
     const [gameUrl, setGameUrl] = useState('')
+
+    const [games, setGames] = useState(getFromLocalStorage('category_games'))
 
     const [isLoggedIn] = useState(getFromLocalStorage('user'))
 
@@ -37,11 +40,34 @@ const GamePlay = (props) => {
 
         await makeRequest({url: endpoint, method: method}).then(([status, result]) => {
             if (status === 200) {
+                console.log(result?.result.gameURL)
                 setGameUrl(result?.result.gameURL)
                 setGameUrlLoaded(true)
+
             }
         });
     }
+
+    const CategoryGames = () => (
+        <div className="col-md-12">
+            <div className={'col-md-12 overflow-scroll d-flex'}>
+                <div className="container-fluid">
+                    <div className="row flex-row flex-nowrap text-white shadow-lg justify-content-around">
+                        {games?.map((game) => (
+                                <div className="" style={{width: "60px"}}
+                                     onClick={() => startGame(game.game_id)}>
+                                    <LazyLoadImage
+                                        style={{height: "50px", width: "60px", float: "left"}}
+                                        src={`${game.game_icon}`}
+                                        className={'virtual-game-image'}/>
+                                </div>
+                            )
+                        )}
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
 
     useEffect(() => {
         isLoggedIn ?
@@ -58,6 +84,7 @@ const GamePlay = (props) => {
                 <div className="d-flex flex-row justify-content-between">
                     <div className="col-md-12">
                         <div className="homepage">
+                            <CategoryGames/>
                             <div
                                 className={`col-md-12 ${gameUrlLoaded ? 'd-none' : 'd-block'}`}>
                                 <SkeletonTheme baseColor="#0e131b" highlightColor="#3f6878">
@@ -65,7 +92,8 @@ const GamePlay = (props) => {
                                 </SkeletonTheme>
                             </div>
                             {gameUrlLoaded && <>
-                                <iframe src={gameUrl} title="Gadme" width={'100%'} height={'500px'}></iframe>
+                                <iframe className={'mt-3 shadow-lg'}
+                                        src={gameUrl} title="Gadme" width={'100%'} height={'500px'}></iframe>
                             </>}
                         </div>
                     </div>

@@ -1,6 +1,70 @@
-.app-header-nav{
+.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item:hover .pro-icon-wrapper .pro-icon {
+    animation: none !important;
+}
+
+.pro-sidebar > .pro-sidebar-inner {
+    background-color: #253743 !important;
+
+}
+
+.pro-sidebar .pro-menu .pro-menu-item.pro-sub-menu .pro-inner-list-item {
+    background-color: #16202c !important;
+}
+
+.pro-sidebar.collapsed .pro-menu > ul > .pro-menu-item.pro-sub-menu > .pro-inner-list-item > .popper-inner {
+    /*background-color: #16202c !important;*/
+    background-color: #253743 !important;
+}
+
+.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item {
+    /*padding: 2px !important;*/
+}
+
+.app-header-nav {
     margin-top: 120px;
 }
+
+.virtual-game-image {
+    cursor: pointer;
+    /*height: 40px;*/
+    /*width: 40px;*/
+}
+
+.casino-category-container {
+    display: flex;
+    flex-direction: row !important;
+    justify-content: space-around;
+    align-items: flex-start;
+    border: 2px dashed rgba(114, 186, 94, 0.35);
+    background: rgba(114, 186, 94, 0.05);
+}
+
+.shark-1 {
+    position: sticky;
+    top: 0;
+}
+
+
+.casino-category {
+    width: 100%;
+    border-radius: 5px;
+    background-color: #0e131b;
+    padding: 2px;
+    color: white;
+    position: sticky !important;
+    top: 4rem;
+    margin-left: 2px;
+    outline: none !important;
+}
+
+.casino-category:focus {
+    background-color: #f98f06;
+}
+
+.bg-active {
+    background: #f98f06 !important
+}
+
 /*
  * Copyright (c) Murwa 2018.
  *
@@ -75,23 +139,28 @@ header, li a, .thedate span {
 .gothb {
     font-family: 'GothamBold';
 }
-.header-menu li.active{
+
+.header-menu li.active {
     background-color: #3f6878;
     border-bottom: 2px solid #FFC428;
 }
-.header-menu a.active{
+
+.header-menu a.active {
     border-bottom: 2px solid #dfbc64;
 }
+
 .betslip input[type="number"] {
     color: #333;
     border: 1px solid #9f9f9f;
     font-size: 13px;
 }
-.accordion-button:not(.collapsed){
+
+.accordion-button:not(.collapsed) {
     color: white;
     border: none;
 }
-.accordion-button{
+
+.accordion-button {
     outline: none;
     border: none;
     color: whitesmoke;
@@ -102,12 +171,123 @@ header, li a, .thedate span {
     border-bottom: thin solid white;
 }
 
-.accordion-button:focus{
+.no-border-radius {
+    -webkit-border-radius: 0px 0px 0px 0px;
+    -moz-border-radius: 0px 0px 0px 0px;
+    border-radius: 0px 0px 0px 0px;
+}
+
+::selection {
+    color: #fff;
+    background: #664AFF;
+}
+
+.wrapper {
+    max-width: 450px;
+    margin: 150px auto;
+}
+
+.wrapper .search-input {
+    background: #fff;
+    width: 100%;
+    border-radius: 5px;
+    position: relative;
+    box-shadow: 0px 1px 5px 3px rgba(0, 0, 0, 0.12);
+}
+
+.search-input input {
+    height: 55px;
+    width: 100%;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 0 60px 0 20px;
+    font-size: 18px;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-input.active input {
+    border-radius: 5px 5px 0 0;
+}
+
+.search-input .autocomplete-box {
+    padding: 0;
+    opacity: 0;
+    pointer-events: none;
+    max-height: 280px;
+    overflow-y: auto;
+}
+
+.search-input.active .autocomplete-box {
+    padding: 10px 8px;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.autocomplete-box li {
+    list-style: none;
+    padding: 5px 9px;
+    width: 100%;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.search-input.active .autocomplete-box li {
+    display: block;
+}
+
+.autocomplete-box li:hover {
+    background: #efefef;
+}
+
+.search-input .icon {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    height: 55px;
+    width: 55px;
+    text-align: center;
+    line-height: 55px;
+    font-size: 20px;
+    color: #644bff;
+    cursor: pointer;
+}
+
+.fadeIn {
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.accordion-button:focus {
     outline: none;
 }
-.accordion-container{
+
+.accordion-container {
     /*background: #1E3948 !important;*/
 }
+
 .accordion-item-panel {
     background: #1E3948 !important;
     padding: 10px 35px;
@@ -118,6 +298,7 @@ header, li a, .thedate span {
 .accordion-item-panel li {
     margin-bottom: 10px;
 }
+
 #quick-login p {
     font-size: 14px;
     font-weight: normal;
@@ -144,12 +325,12 @@ header, li a, .thedate span {
     font-weight: normal;
 }
 
-.top-login-input-field::placeholder{
+.top-login-input-field::placeholder {
     color: gray;
 }
 
 
-.pdf-app{
+.pdf-app {
     display: table;
     margin: 0 auto;
 }
@@ -466,7 +647,7 @@ header, li a, .thedate span {
     background: #334c5c;
     border-top: none !important;
     border-radius: 0px !important;
-    text-align:left;
+    text-align: left;
 }
 
 .match-detail button .label {
@@ -523,7 +704,7 @@ header, li a, .thedate span {
     color: #fff !important;
     font-size: 15px;
     font-family: inherit;
-    text-transform:uppercase;
+    text-transform: uppercase;
 }
 
 .match-header {
@@ -560,7 +741,7 @@ header, li a, .thedate span {
     background: #101B25;
     opacity: 0.9;
     padding: 0;
-    align-items:center;
+    align-items: center;
 }
 
 .events-header div {
@@ -1567,6 +1748,10 @@ events-header {
     cursor: pointer;
 }
 
+.cursor-pointer {
+    cursor: pointer !important;
+}
+
 .paybill .odds {
     text-align: left;
     padding-left: 5px;
@@ -1624,6 +1809,7 @@ events-header {
     background-position: center center;
     padding-bottom: 5px;
     background-size: cover;
+    z-index: 9999 !important;
 }
 
 .opacity-reduce-txt {
@@ -1634,7 +1820,7 @@ events-header {
     padding-left: 10px;
     padding-right: 10px;
     font-size: 10px;
-    color:rgb(105, 129, 154);
+    color: rgb(105, 129, 154);
 }
 
 .std-side-pads {
@@ -2516,13 +2702,13 @@ nav .mobi {
     font-family: arial;
 }
 
-.bet-option.warn{
-    background:#999999;
-    opacity:0.7;
+.bet-option.warn {
+    background: #999999;
+    opacity: 0.7;
 }
 
 .bet-option .row .warn {
-    color:#a12000;
+    color: #a12000;
 }
 
 .bet-option form {
@@ -4235,10 +4421,10 @@ fieldset[disabled] .fm.fl {
 .ss.profile {
     padding-bottom: 7px;
     padding-top: 5px;
-    margin-right:40px !important;
-    width:auto;
-    font-size:12px;
-    font-weight:normal;
+    /*margin-right: 40px !important;*/
+    width: auto;
+    font-size: 12px;
+    font-weight: normal;
 }
 
 .light-bg {
@@ -6658,6 +6844,7 @@ ul.sport {
 
     .top-nav {
         top: 0px;
+        z-index: 9999 !important;
     }
 
     .navbar-nav .open .dropdown-menu > li > a,
@@ -7519,20 +7706,21 @@ a.cq.active {
 }
 
 input.text-danger::placeholder {
-  color: #842029 !important;
-  opacity: 1; /* Firefox */
+    color: #842029 !important;
+    opacity: 1; /* Firefox */
 }
 
 input.text-danger:-ms-input-placeholder { /* Internet Explorer 10-11 */
-  color: #842029 !important;
+    color: #842029 !important;
 }
 
 input.text-danger::-ms-input-placeholder { /* Microsoft Edge */
-  color: #842029 !important;
+    color: #842029 !important;
 }
 
-.text-danger { 
+.text-danger {
 }
+
 .alert-danger {
     color: #842029;
     background-color: #f8d7da;
@@ -9451,9 +9639,10 @@ button.close {
     }
 }
 
-.scrollbar-container{
-    height:100vh;
+.scrollbar-container {
+    height: 100vh;
 }
+
 @media (max-width: 768px) {
 
     table.bdd {
@@ -9463,21 +9652,26 @@ button.close {
     table.basic-table.bd {
         font-size: 10px;
     }
+
     .top-login-section {
-        display:none;
+        display: none;
 
     }
+
     .shrink-header .second-nav {
         top: 62px !important;
     }
+
     .by.amt {
-        margin-top:30px !important;
+        margin-top: 30px !important;
     }
-    .scrollbar-container{
-        height:auto;
+
+    .scrollbar-container {
+        height: auto;
     }
+
     .pad.left-text {
-        margin-left:10px;
+        margin-left: 10px;
     }
 }
 
@@ -13091,16 +13285,19 @@ img.zoom-img {
 }
 
 @media (max-width: 767px) {
-    .app-sidebar{
+    .app-sidebar {
         display: block !important;
     }
-    .off-canvas{
+
+    .off-canvas {
         top: 0 !important;
     }
-    .app-header-nav{
+
+    .app-header-nav {
         padding-left: 4px;
         margin-top: -20px !important;
     }
+
     .password-change {
 
         font-size: 15px;
@@ -13378,63 +13575,71 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     border-radius: 2px;
     float: right;
 }
-.jp-header-text{
+
+.jp-header-text {
     text-align: center;
     color: #fff;
     text-transform: uppercase;
     font-size: 18px;
 }
-.jp-header-text .jp-header-amount{
-    padding:5px 0;
-    font-weight:bord;
-    color:#FFC428;
+
+.jp-header-text .jp-header-amount {
+    padding: 5px 0;
+    font-weight: bord;
+    color: #FFC428;
 }
-.jp-header-text .jp-header-top{
-    padding:5px 0 0;
+
+.jp-header-text .jp-header-top {
+    padding: 5px 0 0;
 }
-.btn-square{
+
+.btn-square {
     border-radius: 0px !important;
     border: unset !important;
 }
-.deposit-input::placeholder{
+
+.deposit-input::placeholder {
     color: gray;
 }
-.deposit-input{
+
+.deposit-input {
     border: 2px solid gray;
 }
 
 
-.input-field{
+.input-field {
     height: 40px;
     line-height: 40px;
     border: none;
 }
 
-.deposit-withdraw-button{
+.deposit-withdraw-button {
     height: 40px;
     line-height: 20px;
     border: none;
     font-size: 14px;
     text-transform: uppercase;
 }
-.input-square{
+
+.input-square {
     border-radius: 0 !important;
 }
 
-.deposit-funds-icon{
+.deposit-funds-icon {
     height: 60px;
     width: 250px !important;
     max-width: unset !important;
 }
+
 .right {
-    float:right !important;
+    float: right !important;
 }
 
-.jackpot-amount{
+.jackpot-amount {
     position: absolute;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     left: 50%;
-    font-family: 'Times New Roman',serif;
+    font-family: 'Times New Roman', serif;
     letter-spacing: 5px;
     font-size: 30px;
     font-weight: bold;
@@ -13448,10 +13653,11 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
             #cb9b51 78%,
             #462523 100%
     );
-    color:transparent;
-    -webkit-background-clip:text;
+    color: transparent;
+    -webkit-background-clip: text;
 
 }
+
 .login-button {
     color: #ffffff;
     background-color: #527994;

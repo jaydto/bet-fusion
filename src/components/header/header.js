@@ -12,7 +12,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import logo from '../../assets/img/logo.png';
 import {Navbar, Nav, Offcanvas} from "react-bootstrap";
-import SideBar from "../sidebar/sidebar";
+import SideBar from "../sidebar/awesome/Sidebar";
 
 const ProfileMenu = React.lazy(() => import('./profile-menu'));
 const HeaderLogin = React.lazy(() => import('./top-login'));
@@ -26,17 +26,17 @@ const Header = (props) => {
     const {current} = containerRef;
     const [competitions, setCompetitions] = useState({});
 
-    const fetchData = useCallback(async() => {
+    const fetchData = useCallback(async () => {
         let cached_categories = getFromLocalStorage('categories');
         let endpoint = "/v1/categories";
 
-        if(!cached_categories) {
-            const [competition_result] =  await Promise.all([
-                makeRequest({url:endpoint, method:"get", data:null }),
+        if (!cached_categories) {
+            const [competition_result] = await Promise.all([
+                makeRequest({url: endpoint, method: "get", data: null}),
             ]);
             let [c_status, c_result] = competition_result
 
-            if(c_status === 200){
+            if (c_status === 200) {
                 setCompetitions(c_result);
             }
             setLocalStorage('categories', c_result);
@@ -117,12 +117,15 @@ const Header = (props) => {
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`}/>
                     <div className="col-9" id="navbar-collapse-main">
-                        {user ? <ProfileMenu user={user}/> : <HeaderLogin setUser={setUser}/>}
+                        <div className="col-md-5 right ">
+                            {user ? <ProfileMenu user={user}/> : <HeaderLogin setUser={setUser}/>}
+                        </div>
                     </div>
                     <Row className="second-nav ck pc os app-navbar app-header-nav">
                         <HeaderNav/>
                     </Row>
                     <Navbar.Offcanvas
+                        style={{width: "min-content !important"}}
                         className='off-canvas second-nav'
                         id={`offcanvasNavbar-expand-${expand}`}
                         aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
@@ -138,9 +141,7 @@ const Header = (props) => {
                             </Offcanvas.Title>
                         </Offcanvas.Header>
                         <Offcanvas.Body>
-                            <Nav className="justify-content-end flex-grow-1 p-2">
-                                <SideBar competitions={competitions} override_display={true}/>
-                            </Nav>
+                            <SideBar competitions={competitions} override_display={true}/>
                         </Offcanvas.Body>
                     </Navbar.Offcanvas>
                 </Container>

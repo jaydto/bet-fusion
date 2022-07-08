@@ -21,7 +21,7 @@ import {Context} from '../../context/store';
 
 const Header = React.lazy(() => import('../header/header'));
 const Footer = React.lazy(() => import('../footer/footer'));
-const SideBar = React.lazy(() => import('../sidebar/sidebar'));
+const SideBar = React.lazy(() => import('../sidebar/awesome/Sidebar'));
 const Right = React.lazy(() => import('../right/index'));
 
 
@@ -69,10 +69,10 @@ const HowToPlay = (props) => {
     return (
         <>
             <Header/>
-            <div className="by amt">
-                <div className="gc">
-                    <SideBar competitions={competitions}/>
-                    <div className="gz home">
+            <div className="amt">
+                <div className="d-flex flex-row justify-content-between">
+                    <SideBar loadCompetitions />
+                    <div className="gz home"  style={{width:'auto'}}>
                         <div className="homepage">
                             <div className='col-md-12 primary-bg p-4 text-center'>
                                 <h4 className="inline-block"> HOW TO PLAY </h4>

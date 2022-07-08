@@ -5,7 +5,7 @@ import makeRequest from "../../utils/fetch-request";
 import Select from 'react-select'
 
 const Header = React.lazy(() => import('../../header/header'));
-const SideBar = React.lazy(() => import('../../sidebar/sidebar'));
+const SideBar = React.lazy(() => import('../../sidebar/awesome/Sidebar'));
 const Footer = React.lazy(() => import('../../footer/footer'));
 const Right = React.lazy(() => import('../../right/index'));
 
@@ -57,9 +57,9 @@ export default function MatchesList() {
     return (
         <>
             <Header/>
-            <div className="by amt">
-                <div className="gc">
-                    <SideBar loadCompetitions/>
+            <div className="amt">
+                <div className="d-flex flex-row justify-content-between">
+                    <SideBar loadCompetitions />
                     <div className="gz home">
                         <div className="homepage">
                             <div className='col-md-12 primary-bg p-4 text-center'>

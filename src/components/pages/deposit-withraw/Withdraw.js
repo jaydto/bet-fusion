@@ -7,7 +7,7 @@ import {getBetslip} from '../../utils/betslip'
 
 
 const Header = React.lazy(()=>import('../../header/header'));
-const SideBar = React.lazy(()=>import('../../sidebar/sidebar'));
+const SideBar = React.lazy(()=>import('../../sidebar/awesome/Sidebar'));
 const Right = React.lazy(()=>import('../../right/index'));
 const Footer = React.lazy(()=>import('../../footer/footer'));
 
@@ -168,12 +168,12 @@ const Withdrawal = (props) => {
 
     return (
          <React.Fragment>
-           <Header/>
-           <div className="by amt">
-             <div className="gc">
-                <SideBar loadCompetitions />
-                <div className="gz home">
-                    <div className="homepage">
+             <Header/>
+             <div className="amt">
+                 <div className="d-flex flex-row justify-content-between">
+                     <SideBar loadCompetitions/>
+                     <div className="gz home" style={{width: '100%'}}>
+                         <div className="homepage">
                       <FormTitle />
                         <div className="col-md-12 mt-2 text-white p-2">
                             <Alert />

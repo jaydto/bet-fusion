@@ -13,7 +13,7 @@ import '../assets/css/accordion.react.css';
 
 const Header = React.lazy(()=>import('./header/header'));
 const Footer = React.lazy(()=>import('./footer/footer'));
-const SideBar = React.lazy(()=>import('./sidebar/sidebar'));
+const SideBar = React.lazy(()=>import('./sidebar/awesome/Sidebar'));
 const CarouselLoader = React.lazy(()=>import('./carousel/index'));
 const Right = React.lazy(()=>import('./right/index'));
 
@@ -205,10 +205,10 @@ const MyBets = (props) => {
     return (
         <>
             <Header user={state?.user}/>
-            <div className="by amt">
-                <div className="gc">
-                    <SideBar loadCompetitions />
-                    <div className="gz home">
+            <div className="amt">
+                <div className="d-flex flex-row justify-content-between">
+                    <SideBar loadCompetitions/>
+                    <div className="gz home" style={{width: '100%'}}>
                         <div className="homepage">
                             <CarouselLoader/>
                             <PageTitle />

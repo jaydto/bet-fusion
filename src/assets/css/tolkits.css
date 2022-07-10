@@ -13686,6 +13686,10 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     border-top-left-radius: 10px;
 }
 
+.background-primary{
+    background-color: #16202c !important;
+}
+
 @media only screen and (max-width: 576px) {
     .amt {
         margin-top: 60px !important;

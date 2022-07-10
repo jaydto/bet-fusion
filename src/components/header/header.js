@@ -13,6 +13,10 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import logo from '../../assets/img/logo.png';
 import {Navbar, Nav, Offcanvas} from "react-bootstrap";
 import SideBar from "../sidebar/awesome/Sidebar";
+import {Menu, MenuItem, ProSidebar, SidebarContent, SidebarHeader, SubMenu} from "react-pro-sidebar";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faArrowLeft, faArrowRight} from "@fortawesome/free-solid-svg-icons";
+import SidebarMobile from "../sidebar/awesome/SidebarMobile";
 
 const ProfileMenu = React.lazy(() => import('./profile-menu'));
 const HeaderLogin = React.lazy(() => import('./top-login'));
@@ -125,12 +129,11 @@ const Header = (props) => {
                         <HeaderNav/>
                     </Row>
                     <Navbar.Offcanvas
-                        style={{width: "100% !important"}}
-                        className='off-canvas second-nav'
+                        style={{width: "100% !important", height: "100%"}}
+                        className='off-canvas background-primary p-0'
                         id={`offcanvasNavbar-expand-${expand}`}
                         aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-                        placement="start"
-                    >
+                        placement="start">
                         <Offcanvas.Header closeButton className='text-white'>
                             <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
                                 <div className="col-3">
@@ -141,7 +144,7 @@ const Header = (props) => {
                             </Offcanvas.Title>
                         </Offcanvas.Header>
                         <Offcanvas.Body>
-
+                            <SidebarMobile/>
                         </Offcanvas.Body>
                     </Navbar.Offcanvas>
                 </Container>

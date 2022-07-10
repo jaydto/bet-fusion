@@ -19,11 +19,7 @@ const Sidebar = (props) => {
         setToggled(value);
     };
 
-
-    const [imageLoaded, setImageLoaded] = useState(false);
     const [competitions, setCompetitions] = useState(props?.competitions);
-    const [show] = useState(props?.override_display)
-
 
     const fetchData = useCallback(async () => {
         let cached_competitions = getFromLocalStorage('categories');
@@ -55,9 +51,25 @@ const Sidebar = (props) => {
     }, [fetchData]);
 
     const getIcon = (competition) => {
-        console.log("Competition", competition)
         return competition.flag
     }
+
+    const [width, setWidth] = useState(window.innerWidth);
+
+    const updateDimensions = () => {
+        setWidth(window.innerWidth);
+        if (width >= 768 && width <= 991) {
+            setCollapsed(true)
+        } else {
+            setCollapsed(false)
+        }
+    }
+    useEffect(() => {
+        updateDimensions()
+        window.addEventListener("resize", updateDimensions);
+        return () => window.removeEventListener("resize", updateDimensions);
+    }, [width]);
+
 
     return (
         <div style={{
@@ -65,9 +77,9 @@ const Sidebar = (props) => {
             overflow: 'scroll initial',
             zIndex: 10,
             marginRight: '5px',
-            marginTop: "5px"
+            top: "140px"
         }}
-             className={`vh-100 text-white sticky-top `}>
+             className={`vh-100 text-white sticky-top d-none d-md-block`}>
             <ProSidebar
                 style={{backgroundColor: '#16202c !important'}}
                 image={false}

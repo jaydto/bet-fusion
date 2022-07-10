@@ -1407,7 +1407,8 @@ header {
     }
 
     .second-nav {
-        top: 80px !important;
+        /*top: 80px !important;*/
+        margin-top: 140px;
         background: #16202c !important;
     }
 
@@ -1416,7 +1417,7 @@ header {
     }
 
     .amt {
-        padding-top: 115px !important;
+        /*padding-top: 50px !important;*/
     }
 
 
@@ -13667,4 +13668,32 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     margin-top: 1px;
     border-radius: 0px;
     font-size: 14px !important;
+}
+
+.betslip-container {
+    position: sticky !important;
+    top: 140px !important;
+    background: #253743 !important;
+}
+
+.betslip-container-mobile {
+    /*bottom: 0;*/
+    /*height: 100%;*/
+}
+
+.bet-slip-footer-toggle {
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.background-primary{
+    background-color: #16202c !important;
+}
+
+@media only screen and (max-width: 576px) {
+    .amt {
+        margin-top: 60px !important;
+        padding-top: 20px !important;
+        /*scroll-margin-top: 140px;*/
+    }
 }

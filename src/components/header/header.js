@@ -103,12 +103,12 @@ const Header = (props) => {
         updateUserOnLogin()
     }, [updateUserOnLogin])
 
-    const expand = "sm"
+    const expand = "md"
     return (
         <>
-            <Navbar expand="sm" className="mb-3 ck pc os app-navbar top-nav" fixed="top" variant="dark">
-                <Container fluid>
-                    <Navbar.Brand href="/" className="e logo" title="Betnare">
+            <Navbar expand="md" className="mb-3 ck pc os app-navbar top-nav" fixed="top" variant="dark">
+                <Container fluid className={'d-flex justify-content-between'}>
+                    <Navbar.Brand href="/" className="e logo align-self-start" title="Betnare">
                         <div className="col-3">
                             <div>
                                 <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"/>
@@ -125,7 +125,7 @@ const Header = (props) => {
                         <HeaderNav/>
                     </Row>
                     <Navbar.Offcanvas
-                        style={{width: "min-content !important"}}
+                        style={{width: "100% !important"}}
                         className='off-canvas second-nav'
                         id={`offcanvasNavbar-expand-${expand}`}
                         aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
@@ -141,7 +141,7 @@ const Header = (props) => {
                             </Offcanvas.Title>
                         </Offcanvas.Header>
                         <Offcanvas.Body>
-                            <SideBar competitions={competitions} override_display={true}/>
+
                         </Offcanvas.Body>
                     </Navbar.Offcanvas>
                 </Container>

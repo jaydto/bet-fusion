@@ -41,7 +41,8 @@ const HeaderNav = (props) => {
     }
     return (
         <>
-            <Container id="navbar-collapse-main" className={`header-menu ${searching ? 'd-none' : 'd-block'}`}>
+            <Container id="navbar-collapse-main"
+                       className={`d-none d-md-flex d-flex flex-row justify-content-sm-start justify-content-md-between header-menu ${searching ? 'hidden' : 'd-block'}`}>
 
                 <ListGroup as="ul" xs="9" horizontal className="nav navbar-nav og ale ss">
 
@@ -62,9 +63,9 @@ const HeaderNav = (props) => {
                     <li className={pathname === '/app' ? 'active' : ''}>
                         <a className="g url-link" href="/app" title="App">APP </a>
                     </li>
-                    <li className={pathname === '/virtuals' || pathname.includes("gameplay")  ? 'active' : ''}>
+                    <li className={pathname === '/virtuals' || pathname.includes("gameplay") ? 'active' : ''}>
                         <a className="g url-link" href="/virtuals" title="App">
-                            VIRTUAL GAMES
+                            Virtuals
                         </a>
                     </li>
                     {state?.user &&
@@ -81,7 +82,7 @@ const HeaderNav = (props) => {
                         </>
                     }
                 </ListGroup>
-                <ListGroup className={'right nav navbar-nav ss '} as={'ul'}>
+                <ListGroup className={'align-self-end nav navbar-nav ss '} as={'ul'}>
                     <li className={pathname === '/print-matches' ? '' : ''}>
                         <a className="g url-link" href="#" title="Search"
                            onClick={() => showSearchBar()}>

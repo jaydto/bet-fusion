@@ -43,6 +43,7 @@ const Right = (props) => {
                         <QuickLogin/>
                     </div>
                 </div>
+                <CompanyInfo/>
             </div>
             <div
                 className={`fixed-bottom text-white d-block d-md-none bg-secondary betslip-container-mobile ${betSlipMobile ? 'd-block' : 'd-none'}`}>

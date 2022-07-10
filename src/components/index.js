@@ -109,7 +109,7 @@ const Index = (props) => {
                         <div className="homepage">
                             <CarouselLoader/>
                             <MainTabs tab={location.pathname.replace("/", "")}/>
-                            <MobileCategories/>
+                            {/*<MobileCategories/>*/}
                             <MatchList
                                 live={false}
                                 matches={matches}

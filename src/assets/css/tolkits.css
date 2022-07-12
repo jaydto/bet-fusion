@@ -2,9 +2,12 @@
     animation: none !important;
 }
 
+.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item > .pro-icon-wrapper {
+    background-color: unset !important;
+}
+
 .pro-sidebar > .pro-sidebar-inner {
     background-color: #253743 !important;
-
 }
 
 .pro-sidebar .pro-menu .pro-menu-item.pro-sub-menu .pro-inner-list-item {
@@ -17,7 +20,7 @@
 }
 
 .pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item {
-    /*padding: 2px !important;*/
+    padding: 0.5px !important;
 }
 
 .app-header-nav {

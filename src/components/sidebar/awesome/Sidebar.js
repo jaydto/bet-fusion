@@ -146,7 +146,7 @@ const Sidebar = (props) => {
                     <Menu iconShape="circle">
                         {competitions?.all_sports.map((competition, index) => (
                             <SubMenu title={competition.sport_name} defaultOpen={getActiveSport(competition.sport_id)}
-                                     icon={<img style={{borderRadius: '50%', height: '35px'}}
+                                     icon={<img style={{borderRadius: '50%', height: '20px'}}
                                                 src={getSportImageIcon(competition.sport_name)}/>}
                                      key={index}>
                                 <SubMenu title={'Countries'} style={{maxHeight: '300px', overflow: 'scroll'}}>

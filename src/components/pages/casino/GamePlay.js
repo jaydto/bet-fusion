@@ -42,7 +42,6 @@ const GamePlay = (props) => {
 
         await makeRequest({url: endpoint, method: method}).then(([status, result]) => {
             if (status === 200) {
-                console.log(result?.result.gameURL)
                 setGameUrl(result?.result.gameURL)
                 setGameUrlLoaded(true)
 

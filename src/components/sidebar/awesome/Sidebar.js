@@ -67,7 +67,10 @@ const Sidebar = (props) => {
     }
     const updateSidebarState = () => {
         let sport_id = (new URL(window.location.href).searchParams.get('sport_id'))
-        setSport(sport_id || 79)
+        if (sport_id === null && window.location.pathname === '/') {
+            sport_id = 79
+        }
+        setSport(sport_id)
     }
 
     const getActiveSport = (matchId) => {

@@ -14118,3 +14118,50 @@ li a.live-game:hover {
   border-radius: 0px;
   font-size: 14px !important;
 }
+
+.betslip-container-mobile {
+    /*bottom: 0;*/
+    /*height: 100%;*/
+}
+
+.bet-slip-footer-toggle {
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.background-primary {
+    background-color: #16202c !important;
+}
+
+.modal-50w {
+    width: 100vw !important;
+}
+
+/*.match-category-container{*/
+/*    overflow: hidden;*/
+/*    white-space: nowrap;*/
+/*    padding: 2px;*/
+/*}*/
+
+.filters-modal .modal-content {
+    background-color: #16202c;
+    color: #fff;
+}
+
+.market-item:hover {
+    background-color: #253743;
+    transition: .5s;
+    border-radius: 4px;
+}
+
+.hover-none:hover {
+    background-color: unset !important;
+}
+
+@media only screen and (max-width: 576px) {
+    .amt {
+        margin-top: 60px !important;
+        padding-top: 20px !important;
+        /*scroll-margin-top: 140px;*/
+    }
+}

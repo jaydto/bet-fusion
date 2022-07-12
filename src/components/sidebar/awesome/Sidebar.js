@@ -91,7 +91,7 @@ const Sidebar = (props) => {
             marginRight: '5px',
             top: "140px"
         }}
-             className={`vh-100 text-white sticky-top d-none d-md-block`}>
+             className={`text-white sticky-top d-none d-md-block`}>
             <ProSidebar
                 style={{backgroundColor: '#16202c !important'}}
                 image={false}

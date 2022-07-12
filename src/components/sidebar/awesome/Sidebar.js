@@ -70,6 +70,19 @@ const Sidebar = (props) => {
         return () => window.removeEventListener("resize", updateDimensions);
     }, [width]);
 
+    const getSportImageIcon = (sport_name, folder = 'svg') => {
+        console.log(sport_name)
+        let default_img = 'default_sport'
+        let sport_image;
+        try {
+            sport_image = require(`../../../assets/${folder}/${sport_name}.svg`);
+        } catch (error) {
+            sport_image = require(`../../../assets/${folder}/${default_img}.svg`);
+        }
+        console.log(sport_image)
+        return sport_image
+    }
+
 
     return (
         <div style={{
@@ -120,17 +133,15 @@ const Sidebar = (props) => {
                     <Menu iconShape="circle">
                         {competitions?.all_sports.map((competition, index) => (
                             <SubMenu title={competition.sport_name}
-                                     icon={<img style={{borderRadius: '50%', height: '25px'}}
-                                                src={require(`./../../../assets${competition.flag}`)}/>}
+                                     icon={<img style={{borderRadius: '50%', height: '35px'}}
+                                                src={getSportImageIcon(competition.sport_name)}/>}
                                      key={index}>
                                 <SubMenu title={'Countries'} style={{maxHeight: '300px', overflow: 'scroll'}}>
                                     {competition?.categories.map((country, countryKey) => (
                                         <div key={`${countryKey}_category`}>
                                             <SubMenu title={country.category_name}
                                                      icon={<img style={{borderRadius: '50%', height: '20px'}}
-                                                                src={country.cat_flag !== null ?
-                                                                    require(`./../../../assets/img/flags-1-1/${country.cat_flag}.svg`) :
-                                                                    require(`./../../../assets/img/flags-1-1/default_flag.svg`)}
+                                                                src={getSportImageIcon(country.cat_flag, 'img/flags-1-1')}
                                                      />}
                                             >
                                                 {country?.competitions.map((league, leagueKey) => (

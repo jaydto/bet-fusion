@@ -1,5 +1,7 @@
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
+import MarketFilter from "../filters/MarketFilter";
+import React from "react";
 
 const MainTabs = (props) => {
     const {tab} = props;
@@ -10,16 +12,27 @@ const MainTabs = (props) => {
 
     return (
         <Container>
-            <Row className="top-matches">
-                <a href="/upcoming" className={`col-sm-4 ${u_class}`}>
-                    <span className="col-sm-11 main-header">Upcoming</span>
-                </a>
-                <a href="/highlights" className={`col-sm-4 ${h_class}`}>
-                    <span className="col-sm-11 main-header">Highlights</span>
-                </a>
-                <a href="/tomorrow" className={`col-sm-4 ${t_class}`}>
-                    <span className="col-sm-11 main-header">Tomorrow</span>
-                </a>
+            <Row className="top-matches d-flex flex-row ">
+                <div className="col bg-black">
+                    <a href="/upcoming" className={`w-100 ${u_class}`}>
+                        <span className="col-sm-11 main-header">Upcoming</span>
+                    </a>
+                </div>
+                <div className="col bg-black">
+                    <a href="/highlights" className={`w-100 ${h_class}`}>
+                        <span className="col-sm-11 main-header">Highlights</span>
+                    </a>
+                </div>
+                <div className="col bg-black">
+                    <a href="/tomorrow" className={`w-100 ${t_class}`}>
+                        <span className="col-sm-11 main-header">Tomorrow</span>
+                    </a>
+                </div>
+                <div className="col p-0">
+                    <a className={' d-flex justify-content-center h-100'}>
+                        <MarketFilter/>
+                    </a>
+                </div>
             </Row>
         </Container>
     )

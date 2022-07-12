@@ -21,8 +21,8 @@ const MarketFilter = () => {
 
     return (
         <>
-            <div className="col-md-12 shadow-sm text-white d-flex justify-content-end">
-                <button className={'btn btn-lg btn-dark rounded btn-outline-dark text-white mt-1'}
+            <div className="col-md-12 shadow-sm text-white d-flex justify-content-end h-100 p-0">
+                <button className={'bg-dark rounded btn-outline-dark text-white align-self-end h-100 hover-none'}
                         onClick={() => setShowFilters(true)}>
                     <FontAwesomeIcon icon={faFilter}/> Filter Markets <FontAwesomeIcon icon={faAngleDown}/>
                 </button>

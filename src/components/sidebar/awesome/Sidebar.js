@@ -71,7 +71,7 @@ const Sidebar = (props) => {
     }, [width]);
 
     const getSportImageIcon = (sport_name, folder = 'svg') => {
-        console.log(sport_name)
+
         let default_img = 'default_sport'
         let sport_image;
         try {
@@ -79,7 +79,6 @@ const Sidebar = (props) => {
         } catch (error) {
             sport_image = require(`../../../assets/${folder}/${default_img}.svg`);
         }
-        console.log(sport_image)
         return sport_image
     }
 

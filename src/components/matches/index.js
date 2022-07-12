@@ -273,7 +273,7 @@ const OddButton = (props) => {
             "sport_name": sport_name,
             "live": live,
             "ucn": cstm,
-            "market_active":market_active,
+            "market_active": market_active,
         }
 
         if (cstm === ucn) {
@@ -521,7 +521,10 @@ export const JackpotMatchList = (props) => {
 
             <Container className="web-element">
                 {matches && Object.entries(matches?.data).map(([key, match]) => (
-                    <MatchRow match={match} jackpot key={key}/>
+                    <a href={`/match/${match.match_id}`}>
+                        <MatchRow match={match} jackpot key={key}/>
+                    </a>
+
                 ))
                 }
                 {(matches !== null && matches.length === 0) &&
@@ -545,7 +548,10 @@ const MatchList = (props) => {
             <Container className="web-element">
                 {matches &&
                     Object.entries(matches).map(([key, match]) => (
-                        <MatchRow match={match} key={key} live={live} pdown={pdown}/>
+                        <a href={`/match/${match.match_id}`}>
+                            <MatchRow match={match} key={key} live={live} pdown={pdown}/>
+                        </a>
+
                     ))
                 }
                 {(matches !== null && matches.length === 0) &&

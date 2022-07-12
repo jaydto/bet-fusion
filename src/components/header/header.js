@@ -119,12 +119,16 @@ const Header = (props) => {
                             </div>
                         </div>
                     </Navbar.Brand>
-                    <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`}/>
-                    <div className="col-9" id="navbar-collapse-main">
-                        <div className="col-md-5 right ">
+                    <div className="col-9 change-size" id="navbar-collapse-main">
+                        <div className="col-md-10 right ">
                             {user ? <ProfileMenu user={user}/> : <HeaderLogin setUser={setUser}/>}
                         </div>
+
+                        <div className="button-toggle">
+                    <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} className="px-3 py-3"/>
+                        </div>
                     </div>
+                   
                     <Row className="second-nav ck pc os app-navbar app-header-nav">
                         <HeaderNav/>
                     </Row>

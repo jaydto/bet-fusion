@@ -35,7 +35,8 @@ const GamePlay = (props) => {
 
     const startGame = async (game_id) => {
 
-        let endpoint = `/v1/casino/start/game?game-id=${game_id}`
+        // let endpoint = `/v1/casino/start/game?game-id=${game_id}`
+        let endpoint = `/v1/casino/game/url?game-id=${game_id}`
 
         let method = "GET"
 

@@ -5,6 +5,7 @@ import makeRequest from './utils/fetch-request';
 import {getBetslip} from './utils/betslip' ;
 import useInterval from "../hooks/set-interval.hook";
 import MobileCategories from "./header/MobileCategories";
+import MarketFilter from "./filters/MarketFilter";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -47,6 +48,12 @@ const Index = (props) => {
             endpoint += " &sport_id=" + sport_id
         }
 
+        let sub_type_id = url.searchParams.get('sub_type_id')
+
+        if (sub_type_id !== null) {
+            endpoint += "?sub_type_id=" + sub_type_id
+        }
+
         await makeRequest({url: endpoint, method: method, data: betslip}).then(([status, result]) => {
             if (status == 200) {
                 setMatches(result?.data || result)
@@ -74,6 +81,13 @@ const Index = (props) => {
         if (sport_id !== null) {
             endpoint += " &sport_id=" + sport_id
         }
+
+        let sub_type_id = url.searchParams.get('sub_type_id')
+
+        if (sub_type_id !== null) {
+            endpoint += " &sub_type_id=" + sub_type_id
+        }
+
 
         await makeRequest({url: endpoint, method: "POST", data: betslip}).then(([status, result]) => {
             if (status == 200) {
@@ -108,6 +122,7 @@ const Index = (props) => {
                     <div className="gz home" style={{width: '100%'}}>
                         <div className="homepage">
                             <CarouselLoader/>
+                            <MarketFilter/>
                             <MainTabs tab={location.pathname.replace("/", "")}/>
                             {/*<MobileCategories/>*/}
                             <MatchList

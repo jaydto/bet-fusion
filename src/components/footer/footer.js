@@ -21,22 +21,12 @@ const Footer = (props) => {
                             </a>
                         </li>
                         <li className="footer-icon">
-                            <a href="https://www.facebook.com/BetnareKenya">
+                            <a href="http://facebook.com/Betnare-101164702604689">
                                 <FontAwesomeIcon icon={faFacebook}/> Facebook
                             </a>
                         </li>
                         <li className="footer-icon">
-                            <a href="https://twitter.com/betnare">
-                                <FontAwesomeIcon icon={faTwitter}/> Twitter
-                            </a>
-                        </li>
-                        <li className="footer-icon">
-                            <a href="https://www.youtube.com/user/betnare">
-                                <FontAwesomeIcon icon={faYoutube}/> YouTube
-                            </a>
-                        </li>
-                        <li className="footer-icon">
-                            <a href="https://instagram.com/betnare">
+                            <a href="https://instagram.com/betnareke?igshid=YmMyMTA2M2Y=">
                                 <FontAwesomeIcon icon={faInstagram}/> Instagram
                             </a>
                         </li>

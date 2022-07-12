@@ -13686,8 +13686,29 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     border-top-left-radius: 10px;
 }
 
-.background-primary{
+.background-primary {
     background-color: #16202c !important;
+}
+
+.modal-50w {
+    width: 100vw !important;
+}
+
+/*.match-category-container{*/
+/*    overflow: hidden;*/
+/*    white-space: nowrap;*/
+/*    padding: 2px;*/
+/*}*/
+
+.filters-modal .modal-content {
+    background-color: #16202c;
+    color: #fff;
+}
+
+.market-item:hover {
+    background-color: #253743;
+    transition: .5s;
+    border-radius: 4px;
 }
 
 @media only screen and (max-width: 576px) {

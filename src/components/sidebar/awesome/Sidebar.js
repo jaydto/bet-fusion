@@ -10,6 +10,7 @@ const Sidebar = (props) => {
 
     const [collapsed, setCollapsed] = useState(false)
     const [toggled, setToggled] = useState(false)
+    const [sport, setSport] = useState(79)
 
     const handleCollapsedChange = (checked) => {
         setCollapsed(checked);
@@ -64,8 +65,18 @@ const Sidebar = (props) => {
             setCollapsed(false)
         }
     }
+    const updateSidebarState = () => {
+        let sport_id = (new URL(window.location.href).searchParams.get('sport_id'))
+        setSport(sport_id || 79)
+    }
+
+    const getActiveSport = (matchId) => {
+        return (Number(sport) === Number(matchId))
+
+    }
     useEffect(() => {
         updateDimensions()
+        updateSidebarState()
         window.addEventListener("resize", updateDimensions);
         return () => window.removeEventListener("resize", updateDimensions);
     }, [width]);
@@ -131,7 +142,7 @@ const Sidebar = (props) => {
                 <SidebarContent>
                     <Menu iconShape="circle">
                         {competitions?.all_sports.map((competition, index) => (
-                            <SubMenu title={competition.sport_name}
+                            <SubMenu title={competition.sport_name} defaultOpen={getActiveSport(competition.sport_id)}
                                      icon={<img style={{borderRadius: '50%', height: '35px'}}
                                                 src={getSportImageIcon(competition.sport_name)}/>}
                                      key={index}>
@@ -156,13 +167,13 @@ const Sidebar = (props) => {
                                     ))}
                                 </SubMenu>
                                 <MenuItem>
-                                    <a href={`/upcoming?sport_id=${competition.sport_id}/`}>Today Games</a>
+                                    <a href={`/upcoming?sport_id=${competition.sport_id}`}>Today Games</a>
                                 </MenuItem>
                                 <MenuItem>
-                                    <a href={`/highlights?sport_id=${competition.sport_id}/`}>Highlights</a>
+                                    <a href={`/highlights?sport_id=${competition.sport_id}`}>Highlights</a>
                                 </MenuItem>
                                 <MenuItem>
-                                    <a href={`/tomorrow?sport_id=${competition.sport_id}/`}>
+                                    <a href={`/tomorrow?sport_id=${competition.sport_id}`}>
                                         Tomorrow
                                     </a>
                                 </MenuItem>

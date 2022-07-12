@@ -16,7 +16,9 @@ const MarketFilter = () => {
     ]
 
     const filterMarkets = (marketId) => {
-        window.location.href = "/?sub_type_id=" + marketId
+        let url = new URL(window.location.href)
+        url.searchParams.set('sub_type_id', marketId)
+        window.location.href = url
     }
 
     return (

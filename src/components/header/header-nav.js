@@ -68,19 +68,6 @@ const HeaderNav = (props) => {
                             Virtuals
                         </a>
                     </li>
-                    {state?.user &&
-                        <>
-                            <li className={pathname === '/deposit' ? 'active' : ''}>
-                                <a className="url-link" href="/deposit" title="Deposit"> Deposit</a>
-                            </li>
-                            <li className={pathname === '/withdraw' ? 'active' : ''}>
-                                <a className="url-link" href="/withdraw" title="Withdraw"> Withdraw</a>
-                            </li>
-                            <li className={pathname === '/my-bets' ? 'active' : ''}>
-                                <a className="url-link" href="/my-bets" title="My bets">My Bets</a>
-                            </li>
-                        </>
-                    }
                 </ListGroup>
                 <ListGroup className={'align-self-end nav navbar-nav ss '} as={'ul'}>
                     <li className={pathname === '/print-matches' ? '' : ''}>

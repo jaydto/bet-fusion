@@ -35,10 +35,6 @@ const Index = (props) => {
         let betslip = findPostableSlip();
         let method = betslip ? "POST" : "GET";
         let url = new URL(window.location.href)
-        let search_term = url.searchParams.get('search')
-        if (search_term !== null) {
-            return
-        }
 
         let sport_id = url.searchParams.get('sport_id')
 
@@ -49,7 +45,12 @@ const Index = (props) => {
         let sub_type_id = url.searchParams.get('sub_type_id')
 
         if (sub_type_id !== null) {
-            endpoint += "?sub_type_id=" + sub_type_id
+            endpoint += `${sport_id === null}'?':'&'sub_type_id=` + sub_type_id
+        }
+
+        let search_term = url.searchParams.get('search')
+        if (search_term !== null) {
+            return
         }
 
         await makeRequest({url: endpoint, method: method, data: betslip}).then(([status, result]) => {

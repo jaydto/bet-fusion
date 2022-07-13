@@ -110,7 +110,7 @@ const Header = (props) => {
     const expand = "md"
     return (
         <>
-            <Navbar expand="md" className="mb-3 ck pc os app-navbar top-nav" fixed="top" variant="dark">
+            <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark">
                 <Container fluid className={'d-flex justify-content-between'}>
                     <Navbar.Brand href="/" className="e logo align-self-start" title="Betnare">
                         <div className="col-3">

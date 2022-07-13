@@ -42,7 +42,7 @@ const HeaderNav = (props) => {
     return (
         <>
             <Container id="navbar-collapse-main"
-                       className={`d-none d-md-flex d-flex flex-row justify-content-sm-start justify-content-md-between header-menu ${searching ? 'hidden' : 'd-block'}`}>
+                       className={`d-none d-md-flex d-flex flex-row justify-content-sm-start justify-content-md-between header-menu  ${searching ? 'hidden' : 'd-block'}`}>
 
                 <ListGroup as="ul" xs="9" horizontal className="nav navbar-nav og ale ss change-display">
 

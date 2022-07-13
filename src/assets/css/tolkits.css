@@ -6003,6 +6003,12 @@ ul.sport {
   }
 }
 @media (min-width: 979px) {
+  .fix-print{
+    padding:7px 5px 3px 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   #slip-holder.affix-top {
     position: static;
     margin-top: 0px;
@@ -6149,10 +6155,7 @@ ul.sport {
     margin:0px;
     padding:10px 0!important; 
   }
-  .fix-print{
-    /* display:block-ruby; */
-    margin-right:-10px !important;
-  }
+
 }
 
 
@@ -6346,8 +6349,18 @@ ul.sport {
 }
 @media (max-width:864px) and (min-width: 768px){
 
+  .fix-print{
+    /* display:block-ruby; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    padding: 8px 2px 5px 2px!important;
+    margin: 0px!important;
+  }
+
   .app-header-nav {
-    margin-top: 110px!important;
+    margin-top: 105px!important;
   }
 }
 /* @media (max-width: 991px) {
@@ -6367,7 +6380,7 @@ ul.sport {
 
 @media (min-width:1148px){
   .app-header-nav {
-    margin-top: 100px;
+    margin-top: 115px;
   }
   .shrink-header .second-nav {
   top: 68px ;
@@ -7342,7 +7355,7 @@ ul.sport {
     width: 100px;
   }
   .amt {
-    margin-top: 120px ;
+    margin-top: 110px ;
   }
   .nav-fix {
     margin-top: 150px;

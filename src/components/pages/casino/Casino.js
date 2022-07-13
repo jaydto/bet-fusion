@@ -16,7 +16,7 @@ const Casino = (props) => {
 
     const [games, setGames] = useState([])
 
-    const fetchGames = async (category = 'rgs-vsb') => {
+    const fetchGames = async (category = 'vs') => {
         let endpoint = "/v1/casino-games?game-type-id=" + category
         let method = "GET"
         await makeRequest({url: endpoint, method: method}).then(([status, result]) => {
@@ -65,21 +65,21 @@ const Casino = (props) => {
                             <div className="col-md-12 d-flex flex-column">
                                 <div className="col-md-12">
                                     <div className="game-categories shadow-sm  p-2 shadow-sm casino-category-container">
-                                        <button
-                                            className={`cursor-pointer text-center casino-category`}
-                                            autoFocus
-                                            onClick={() => getCategoryGames()}>
-                                            Virtual Games
-                                        </button>
-                                        {/*{categories?.map((category, index) => (*/}
-                                        {/*    <button*/}
-                                        {/*        className={`cursor-pointer text-center casino-category`}*/}
-                                        {/*        key={category.game_type_id}*/}
-                                        {/*        autoFocus={index === 0}*/}
-                                        {/*        onClick={() => getCategoryGames(category)}>*/}
-                                        {/*        {category?.game_type_description}*/}
-                                        {/*    </button>*/}
-                                        {/*))}*/}
+                                        {/*<button*/}
+                                        {/*    className={`cursor-pointer text-center casino-category`}*/}
+                                        {/*    autoFocus*/}
+                                        {/*    onClick={() => getCategoryGames()}>*/}
+                                        {/*    Virtual Games*/}
+                                        {/*</button>*/}
+                                        {categories?.map((category, index) => (
+                                            <button
+                                                className={`cursor-pointer text-center casino-category`}
+                                                key={category.game_type_id}
+                                                autoFocus={index === 0}
+                                                onClick={() => getCategoryGames(category)}>
+                                                {category?.game_type_description}
+                                            </button>
+                                        ))}
                                     </div>
                                 </div>
                                 <div className="col">

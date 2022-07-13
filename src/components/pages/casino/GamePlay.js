@@ -89,8 +89,7 @@ const GamePlay = (props) => {
                                 </SkeletonTheme>
                             </div>
                             {gameUrlLoaded && <>
-                                <iframe
-                                    className={'mt-3 shadow-lg'}
+                                <iframe className={'mt-3 shadow-lg'}
                                     src={gameUrl} title="Gadme" width={'100%'} height={'600px'}></iframe>
                             </>}
                         </div>

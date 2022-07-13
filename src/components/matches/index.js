@@ -273,7 +273,7 @@ const OddButton = (props) => {
             "sport_name": sport_name,
             "live": live,
             "ucn": cstm,
-            "market_active":market_active,
+            "market_active": market_active,
         }
 
         if (cstm === ucn) {
@@ -411,16 +411,19 @@ const MatchRow = (props) => {
                     <>{`${match.match_time}'`}</> : match?.start_time}
             </div>
             <div className="col-sm-7 col-xs-12">
-                <div className="compt-detail"> {match.category} | {match.competition_name}</div>
-                <div className="compt-teams">
-                    {live && (match?.match_status !== 'ended') && <ColoredCircle color="red"/>}
-                    {match.home_team}
-                    <span className="opacity-reduce-txt vs-styling">
+                <a href={`/match/${match.match_id}`}>
+                    <div className="compt-detail"> {match.category} | {match.competition_name}</div>
+                    <div className="compt-teams">
+                        {live && (match?.match_status !== 'ended') && <ColoredCircle color="red"/>}
+                        {match.home_team}
+                        <span className="opacity-reduce-txt vs-styling">
                         {live && match?.score}
-                        {!live && 'VS'}
+                            {!live && 'VS'}
                     </span>
-                    {match.away_team}
-                </div>
+                        {match.away_team}
+                    </div>
+                </a>
+
             </div>
             <Row className={`${jackpot ? 'col-4' : 'col-lg-3 col-xs-12'} m-0 p-0`}>
                 <div className="col-4 match-div-col" style={{padding: 0}}>

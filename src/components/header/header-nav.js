@@ -64,23 +64,20 @@ const HeaderNav = (props) => {
                         <a className="g url-link" href="/app" title="App">APP </a>
                     </li>
                     <li className={pathname === '/virtuals' || pathname.includes("gameplay") ? 'active' : ''}>
-                        <a className="g url-link" href="/virtuals" title="App">
+                        <a className="g url-link" href="/virtuals" title="Virtuals">
                             Virtuals
                         </a>
                     </li>
-                    {state?.user &&
-                        <>
-                            <li className={pathname === '/deposit' ? 'active' : ''}>
-                                <a className="url-link" href="/deposit" title="Deposit"> Deposit</a>
-                            </li>
-                            <li className={pathname === '/withdraw' ? 'active' : ''}>
-                                <a className="url-link" href="/withdraw" title="Withdraw"> Withdraw</a>
-                            </li>
-                            <li className={pathname === '/my-bets' ? 'active' : ''}>
-                                <a className="url-link" href="/my-bets" title="My bets">My Bets</a>
-                            </li>
-                        </>
-                    }
+                    <li className={pathname === '/casino' || pathname.includes("gameplay") ? 'active' : ''}>
+                        <a className="g url-link" href="/casino" title="Casino">
+                            Casino
+                        </a>
+                    </li>
+                    <li className={pathname === '/promotions' || pathname.includes("gameplay") ? 'active' : ''}>
+                        <a className="g url-link" href="/promotions" title="Promotions">
+                            Promotions
+                        </a>
+                    </li>
                 </ListGroup>
                 <ListGroup className={'align-self-end nav navbar-nav ss '} as={'ul'}>
                     <li className={pathname === '/print-matches' ? '' : ''}>

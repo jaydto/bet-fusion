@@ -80,6 +80,8 @@ const Casino = React.lazy(() => import('./components/pages/casino/Casino'))
 
 const CasinoGamePlay = React.lazy(() => import('./components/pages/casino/GamePlay'))
 
+const Promotions = React.lazy(() => import('./components/pages/promotions/Promotions'))
+
 const Logout = () => {
     let navigate = useNavigate();
 
@@ -127,6 +129,7 @@ render((
                     <Route exact path="/app" element={<MobileApp/>}/>
                     <Route exact path="/logout" element={<Logout/>}/>
                     <Route exact path="/print-matches" element={<PrintMatches/>}/>
+                    <Route exact path="/promotions" element={<Promotions/>}/>
 
                     <Route exact path="/deposit"
                            element={<ProtectedRoute><Deposit/> </ProtectedRoute>}/>

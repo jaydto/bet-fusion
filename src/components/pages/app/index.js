@@ -35,6 +35,7 @@ const MobileApp = () => {
                                 </p>
                             </div>
                             <div className="col-md-12 mt-2 text-white accordion-container text-center">
+
                             </div>
                         </div>
                     </div>

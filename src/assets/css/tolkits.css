@@ -7,8 +7,12 @@
   animation: none !important;
 }
 
+.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item > .pro-icon-wrapper {
+    background-color: unset !important;
+}
+
 .pro-sidebar > .pro-sidebar-inner {
-  background-color: #253743 !important;
+    background-color: #253743 !important;
 }
 
 .pro-sidebar .pro-menu .pro-menu-item.pro-sub-menu .pro-inner-list-item {
@@ -26,7 +30,11 @@
 }
 
 .pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item {
-  /* padding: 0.9px 20px !important; */
+    padding: 0.5px 25px 0px 12px !important;
+}
+
+.app-header-nav {
+    margin-top: 120px;
 }
 
 .virtual-game-image {
@@ -14137,6 +14145,7 @@ li a.live-game:hover {
 .hover-none:hover {
   background-color: unset !important;
 }
+
 
 @media only screen and (max-width: 576px) {
   .amt {

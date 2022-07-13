@@ -78,7 +78,11 @@ const PrintMatches = React.lazy(() => import('./components/pages/downloads'))
 
 const Casino = React.lazy(() => import('./components/pages/casino/Casino'))
 
+const Virtuals = React.lazy(() => import('./components/pages/casino/Virtuals'))
+
 const CasinoGamePlay = React.lazy(() => import('./components/pages/casino/GamePlay'))
+
+const Promotions = React.lazy(() => import('./components/pages/promotions/Promotions'))
 
 const Logout = () => {
     let navigate = useNavigate();
@@ -101,7 +105,8 @@ render((
             <Suspense fallback={<p> Loading ... </p>}>
                 <Routes>
                     <Route exact path="/" element={<Index/>}/>
-                    <Route exact path="/virtuals" element={<Casino/>}/>
+                    <Route exact path="/virtuals" element={<Virtuals/>}/>
+                    <Route exact path="/casino" element={<Casino/>}/>
                     <Route exact path="/gameplay/:game_id" element={<CasinoGamePlay/>}/>
                     <Route exact path="/highlights" element={<Index/>}/>
                     <Route exact path="/upcoming" element={<Index/>}/>
@@ -127,6 +132,7 @@ render((
                     <Route exact path="/app" element={<MobileApp/>}/>
                     <Route exact path="/logout" element={<Logout/>}/>
                     <Route exact path="/print-matches" element={<PrintMatches/>}/>
+                    <Route exact path="/promotions" element={<Promotions/>}/>
 
                     <Route exact path="/deposit"
                            element={<ProtectedRoute><Deposit/> </ProtectedRoute>}/>

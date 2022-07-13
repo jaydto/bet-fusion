@@ -32,9 +32,18 @@ const Index = (props) => {
     };
 
     useInterval(async () => {
+
         let endpoint = "/v1/matches";
+
         let betslip = findPostableSlip();
+
         let method = betslip ? "POST" : "GET";
+
+        let tab = location.pathname.replace("/", "") || 'highlights';
+
+        endpoint += "?page=" + (page || 1) + "&limit=100&tab=" + tab
+
+
         let url = new URL(window.location.href)
 
         let sport_id = url.searchParams.get('sport_id')
@@ -46,10 +55,11 @@ const Index = (props) => {
         let sub_type_id = url.searchParams.get('sub_type_id')
 
         if (sub_type_id !== null) {
-            endpoint += `${sport_id === null}'?':'&'sub_type_id=` + sub_type_id
+            endpoint += ` &sub_type_id=` + sub_type_id
         }
 
         let search_term = url.searchParams.get('search')
+
         if (search_term !== null) {
             return
         }
@@ -66,7 +76,7 @@ const Index = (props) => {
     }, 3000);
 
     const fetchData = useCallback(async () => {
-        if (matches) return;
+
         let tab = location.pathname.replace("/", "") || 'highlights';
         let betslip = findPostableSlip();
         let endpoint = "/v1/matches?page=" + (page || 1) + "&limit=100&tab=" + tab;

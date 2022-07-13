@@ -42,7 +42,8 @@ const MarketFilter = () => {
                 <Modal.Body>
                     <div className={'d-flex flex-column p-2'}>
                         {markets.map((market, index) => (
-                            <div key={market.id} className={'p-2 cursor-pointer market-item'} onClick={() => filterMarkets(market.id)}>
+                            <div className={'p-2 cursor-pointer market-item'} onClick={() => filterMarkets(market.id)}
+                                 key={index}>
                                 {market.name}
                             </div>
                         ))}

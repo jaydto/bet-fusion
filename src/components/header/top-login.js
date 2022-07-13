@@ -44,6 +44,7 @@ const HeaderLogin = (props) => {
             if (message.status == 200) {
                 setLocalStorage('user', message.user);
                 setUser(message.user);
+                window.location.reload()
             }
 
         }

@@ -16,7 +16,9 @@ const MarketFilter = () => {
     ]
 
     const filterMarkets = (marketId) => {
-        window.location.href = "/?sub_type_id=" + marketId
+        let url = new URL(window.location.href)
+        url.searchParams.set('sub_type_id', marketId)
+        window.location.href = url
     }
 
     return (
@@ -40,7 +42,8 @@ const MarketFilter = () => {
                 <Modal.Body>
                     <div className={'d-flex flex-column p-2'}>
                         {markets.map((market, index) => (
-                            <div className={'p-2 cursor-pointer market-item'} onClick={() => filterMarkets(market.id)}>
+                            <div className={'p-2 cursor-pointer market-item'} onClick={() => filterMarkets(market.id)}
+                                 key={index}>
                                 {market.name}
                             </div>
                         ))}

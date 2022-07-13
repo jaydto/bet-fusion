@@ -5692,6 +5692,10 @@ ul.sport {
 }
 
 @media (max-width: 574px) {
+  .mobile-change {
+    display: grid !important;
+    grid-template-columns: [col-1]100px[col2]50px[col-end];
+  }
   .app-header-nav {
     margin-top: -4px !important;
   }
@@ -5713,10 +5717,6 @@ ul.sport {
 }
 
 @media (max-width: 767px) {
-  .tablet-design {
-    width: 100%;
-    float: right;
-  }
   .button-toggle {
     display: flex;
     align-items: center;
@@ -7102,18 +7102,7 @@ ul.sport {
   }
 }
 
-@media (max-width: 620px) {
-  .change-size {
-    width: 100%;
-    margin-top: 20px;
-  }
-  .mobile-change {
-    display: grid !important;
-    grid-template-columns: [col1]130px[col2]2fr[col-end];
-    grid-template-rows: 50px 50px;
-    gap: 8px;
-    width: 100%;
-  }
+@media (max-width: 480px) {
 }
 @media (max-device-width: 480px) and (orientation: landscape) {
   .os .f,
@@ -14154,5 +14143,8 @@ li a.live-game:hover {
     margin-top: 60px !important;
     padding-top: 20px !important;
     /*scroll-margin-top: 140px;*/
+  }
+  .disable-ipad {
+    display: none !important;
   }
 }

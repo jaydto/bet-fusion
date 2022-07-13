@@ -78,6 +78,8 @@ const PrintMatches = React.lazy(() => import('./components/pages/downloads'))
 
 const Casino = React.lazy(() => import('./components/pages/casino/Casino'))
 
+const Virtuals = React.lazy(() => import('./components/pages/casino/Virtuals'))
+
 const CasinoGamePlay = React.lazy(() => import('./components/pages/casino/GamePlay'))
 
 const Promotions = React.lazy(() => import('./components/pages/promotions/Promotions'))
@@ -103,7 +105,8 @@ render((
             <Suspense fallback={<p> Loading ... </p>}>
                 <Routes>
                     <Route exact path="/" element={<Index/>}/>
-                    <Route exact path="/virtuals" element={<Casino/>}/>
+                    <Route exact path="/virtuals" element={<Virtuals/>}/>
+                    <Route exact path="/casino" element={<Casino/>}/>
                     <Route exact path="/gameplay/:game_id" element={<CasinoGamePlay/>}/>
                     <Route exact path="/highlights" element={<Index/>}/>
                     <Route exact path="/upcoming" element={<Index/>}/>

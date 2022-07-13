@@ -454,7 +454,7 @@ const MatchRow = (props) => {
           {match.away_team}
         </div>
       </div>
-      <Row className={`${jackpot ? "col-4" : "col-lg-3 col-xs-12"} m-0 p-0`}>
+      <Row className={`${jackpot ? "col-4" : "col-lg-3 col-xs-12"} m-0 p-0 justify-content-center`}>
         <div className="col-3 match-div-col " style={{ padding: 0 }}>
           {!pdown &&
           match?.odds?.home_odd &&

@@ -13673,6 +13673,21 @@ img.zoom-img {
   text-align: center;
   background: #7a2c46;
 }
+.betslip-container {
+  position: sticky !important;
+  top: 140px !important;
+  background: #253743 !important;
+}
+
+.betslip-container-mobile {
+  bottom: 0;
+  height: 100%;
+}
+
+.bet-slip-footer-toggle {
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
 
 .logo-sign-inner {
   border: 4px solid #7b2d47;

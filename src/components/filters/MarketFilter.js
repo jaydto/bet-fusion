@@ -26,7 +26,7 @@ const MarketFilter = () => {
             <div className="col-md-12 shadow-sm text-white d-flex justify-content-end h-100 p-0 ">
                 <button className={'bg-dark rounded btn-outline-dark text-white align-self-end h-100 hover-none p-0 '}
                         onClick={() => setShowFilters(true)}>
-                    <FontAwesomeIcon icon={faFilter}/> Filter Markets <FontAwesomeIcon icon={faAngleDown}/>
+                    <FontAwesomeIcon icon={faFilter}/> More Markets <FontAwesomeIcon icon={faAngleDown}/>
                 </button>
             </div>
             <Modal show={showFilters} onHide={handleClose}
@@ -42,7 +42,7 @@ const MarketFilter = () => {
                 <Modal.Body>
                     <div className={'d-flex flex-column p-2'}>
                         {markets.map((market, index) => (
-                            <div className={'p-2 cursor-pointer market-item'} onClick={() => filterMarkets(market.id)}>
+                            <div key={market.id} className={'p-2 cursor-pointer market-item'} onClick={() => filterMarkets(market.id)}>
                                 {market.name}
                             </div>
                         ))}

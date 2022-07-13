@@ -77,7 +77,7 @@ const MatchHeaderRow = (props) => {
   }, [first_match?.parent_match_id]);
 
   return (
-    <Container>
+    <Container className="full-mobile">
       <Row className="events-header">
         <div className="col-8 left-text">
           <h3 className="main-heading-1">
@@ -520,7 +520,7 @@ export const MarketList = (props) => {
           live={live}
         />
       )}
-      <Container className="web-element">
+      <Container className="web-element ">
         {Object.entries(matchwithmarkets?.data?.odds || {}).map(
           ([mkt_id, markets]) => {
             return (
@@ -596,7 +596,7 @@ const MatchList = (props) => {
         <MatchHeaderRow live={live} first_match={matches ? matches[0] : {}} />
       )}
 
-      <Container className="web-element">
+      <Container className="web-element full-mobile">
         {matches &&
           Object.entries(matches).map(([key, match]) => (
             <MatchRow match={match} key={key} live={live} pdown={pdown} />

@@ -44,17 +44,17 @@ const HeaderNav = (props) => {
             <Container id="navbar-collapse-main"
                        className={`d-none d-md-flex d-flex flex-row justify-content-sm-start justify-content-md-between header-menu ${searching ? 'hidden' : 'd-block'}`}>
 
-                <ListGroup as="ul" xs="9" horizontal className="nav navbar-nav og ale ss">
+                <ListGroup as="ul" xs="9" horizontal className="nav navbar-nav og ale ss change-display">
 
                     <li className={pathname === '/' ? "active" : ''}>
-                        <a className="cg fm ox anl url-link not-selectable" href="/" title="Home">Home</a>
+                        <a className="cg fm ox anl url-link not-selectable " href="/" title="Home">Home</a>
                     </li>
                     <li>
                         <a className={`g url-link live-game ${pathname === '/live' ? 'active' : ''}`} href="/live"
                            title="Live">Live</a>
                     </li>
                     <li className={pathname === '/highlights' ? 'active' : ''}>
-                        <a className="cg fm ox anl url-link" href="/highlights" title="Todays Highlights">Highlights</a>
+                        <a className="cg fm ox anl url-link " href="/highlights" title="Todays Highlights">Highlights</a>
                     </li>
 
                     <li className={pathname === '/jackpot' ? 'active' : ''}>
@@ -69,20 +69,20 @@ const HeaderNav = (props) => {
                         </a>
                     </li>
                 </ListGroup>
-                <ListGroup className={'align-self-end nav navbar-nav ss '} as={'ul'}>
+                <ListGroup className={'align-self-end nav navbar-nav ss change-display'} as={'ul'}>
                     <li className={pathname === '/print-matches' ? '' : ''}>
-                        <a className="g url-link" href="#" title="Search"
+                        <a className="g url-link fix-display" href="#" title="Search"
                            onClick={() => showSearchBar()}>
                             <FontAwesomeIcon icon={faSearch}/> Search
                         </a>
                     </li>
                     <li className={pathname === '/how-to-play' ? 'active' : ''}>
-                        <a className="g url-link" href="/how-to-play" title="How to play">
+                        <a className="g url-link fix-display" href="/how-to-play" title="How to play">
                             <FontAwesomeIcon icon={faQuestionCircle}/> Help
                         </a>
                     </li>
                     <li className={pathname === '/print-matches' ? 'active' : 'fa-border'}>
-                        <a className="g url-link" href="/print-matches" title="Print Matches">
+                        <a className="g url-link fix-print" href="/print-matches" title="Print Matches">
                             <FontAwesomeIcon icon={faPrint}/> Print Matches
                         </a>
                     </li>

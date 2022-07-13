@@ -11,7 +11,7 @@ const MainTabs = (props) => {
     const t_class = tab === 'tomorrow' ? "home-tabs-active" : "home-tabs";
 
     return (
-        <Container>
+        <Container className="full-mobile">
             <Row className="top-matches d-flex flex-row ">
                 <div className="col bg-black">
                     <a href="/upcoming" className={`w-100 ${u_class}`}>
@@ -28,7 +28,7 @@ const MainTabs = (props) => {
                         <span className="col-sm-11 main-header">Tomorrow</span>
                     </a>
                 </div>
-                <div className="col p-0">
+                <div className="col p-0 bg-dark">
                     <a className={' d-flex justify-content-center h-100'}>
                         <MarketFilter/>
                     </a>

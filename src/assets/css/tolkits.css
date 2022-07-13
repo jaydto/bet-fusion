@@ -27,7 +27,7 @@
 
 
 .pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item {
-  /*padding: 2px !important;*/
+  /* padding: 0.9px 20px !important; */
 }
 
 
@@ -5885,7 +5885,7 @@ ul.sport {
   }
 
   .amt {
-    padding-top: 160px !important;
+    padding-top: 90px !important;
   }
 
   .shrink-header .icon-holder img {
@@ -6139,6 +6139,20 @@ ul.sport {
   .df {
     font-size: 21px;
   }
+  .change-display{
+    display:contents;
+  }
+  .fix-display{
+    display:flex!important;
+    justify-content:center;
+    align-items:center;
+    margin:0px;
+    padding:10px 0!important; 
+  }
+  .fix-print{
+    /* display:block-ruby; */
+    margin-right:-10px !important;
+  }
 }
 
 
@@ -6330,7 +6344,19 @@ ul.sport {
     width: 100%;
   }
 }
-@media (min-width: 992px), (max-width: 1140px) {
+@media (max-width:864px) and (min-width: 768px){
+
+  .app-header-nav {
+    margin-top: 110px!important;
+  }
+}
+/* @media (max-width: 991px) {
+  .app-header-nav {
+    margin-top:118px ;
+  } */
+ 
+/* } */
+@media (min-width: 992px) ,(max-width: 1140px) {
   .by {
     width: 100%;
   }
@@ -7316,14 +7342,12 @@ ul.sport {
     width: 100px;
   }
   .amt {
-    margin-top: 145px ;
+    margin-top: 120px ;
   }
   .nav-fix {
     margin-top: 150px;
   }
-  .alu {
-    padding-top: 12px;
-  }
+
   .mobile-disable {
     padding-top: 16px;
   }
@@ -10003,6 +10027,10 @@ button.close {
 
 
 @media (max-width: 991px) {
+  .full-mobile{
+    width:100%;
+    max-width: 100%;
+  }
   .top-login{
     margin-top:-12px;
   }
@@ -13737,6 +13765,10 @@ img.zoom-img {
 }
 
 @media (max-width: 767px) {
+  .amt{
+    margin-top:0px!important;
+    
+  }
   .disp-sidebar{
     /* display:none; */
    }

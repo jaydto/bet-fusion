@@ -9,7 +9,7 @@ const ProfileMenu = (props) => {
   return (
     <>
       {user && (
-        <div className="ale ss profile d-flex flex-row row disable-ipad ">
+        <div className="ale ss profile d-flex flex-row row disable-ipad tablet-design ">
             <div className="{'mt-1'} col-md-3 d-flex flex-column justify-content-end w-change1">
             <Link
               to={{ pathname: "/deposit" }}

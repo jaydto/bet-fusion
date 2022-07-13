@@ -107,11 +107,11 @@ const Header = (props) => {
         updateUserOnLogin()
     }, [updateUserOnLogin])
 
-    const expand = "md"
+    const expand = "sm"
     return (
         <>
-            <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark">
-                <Container fluid className={'d-flex justify-content-between'}>
+            <Navbar expand="sm" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark">
+                <Container fluid className={'d-flex justify-content-between mobile-change'}>
                     <Navbar.Brand href="/" className="e logo align-self-start" title="Betnare">
                         <div className="col-3">
                             <div>

@@ -20,17 +20,13 @@ export default function MatchesList() {
 
     const fetchMatches = async () => {
         let method = "POST"
-        let endpoint = "/v1/matches?page=" + (1) + `&limit=${events}&tab=` + section;
+        let endpoint = "/v1/matches?page=" + (1) + `&limit=${events}&tab=` + section + '&sub_type_id=1,10,29,18';
         await makeRequest({url: endpoint, method: method, data: []}).then(([status, result]) => {
             if (status == 200) {
                 setMatches(result?.data || result)
             }
         });
     };
-
-    const getPDFDocument = async () => {
-        // initialize document
-    }
 
     const sectionOptions = [
         {value: 'upcoming', label: 'Upcoming'},
@@ -59,7 +55,7 @@ export default function MatchesList() {
             <Header/>
             <div className="amt">
                 <div className="d-flex flex-row justify-content-between">
-                    <SideBar loadCompetitions />
+                    <SideBar loadCompetitions/>
                     <div className="gz home">
                         <div className="homepage">
                             <div className='col-md-12 primary-bg p-4 text-center'>

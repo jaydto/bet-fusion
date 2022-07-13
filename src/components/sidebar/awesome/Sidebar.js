@@ -145,10 +145,22 @@ const Sidebar = (props) => {
                 <SidebarContent>
                     <Menu iconShape="circle">
                         {competitions?.all_sports.map((competition, index) => (
+
                             <SubMenu title={competition.sport_name} defaultOpen={getActiveSport(competition.sport_id)}
-                                     icon={<img style={{borderRadius: '50%', height: '20px',backgroundColor:"#fff"}}
+                                     icon={<img style={{borderRadius: '50%', height: '20px', backgroundColor: "#fff"}}
                                                 src={getSportImageIcon(competition.sport_name)}/>}
                                      key={index}>
+                                {index === 0 && (
+                                    <SubMenu title={'Top Leagues'}>
+                                        {competitions?.top_soccer?.map((top_league, index) => (
+                                            <MenuItem key={`l_${index}`}>
+                                                <a href={`/competition/${top_league.sport_id}/${top_league.category_id}/${top_league.competition_id}`}>
+                                                    {top_league?.competition_name}
+                                                </a>
+                                            </MenuItem>
+                                        ))}
+                                    </SubMenu>
+                                )}
                                 <SubMenu title={'Countries'} style={{maxHeight: '300px', overflow: 'scroll'}}>
                                     {competition?.categories.map((country, countryKey) => (
                                         <div key={`${countryKey}_category`}>

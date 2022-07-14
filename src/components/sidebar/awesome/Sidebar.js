@@ -51,10 +51,6 @@ const Sidebar = (props) => {
         };
     }, [fetchData]);
 
-    const getIcon = (competition) => {
-        return competition.flag
-    }
-
     const [width, setWidth] = useState(window.innerWidth);
 
     const updateDimensions = () => {

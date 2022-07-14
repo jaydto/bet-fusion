@@ -111,8 +111,7 @@ const Sidebar = (props) => {
                 image={false}
                 onToggle={handleToggleSidebar}
                 collapsed={collapsed}
-                toggled={toggled}
-            >
+                toggled={toggled}>
                 <SidebarHeader>
                     <div
                         style={{
@@ -124,8 +123,7 @@ const Sidebar = (props) => {
                             overflow: 'hidden',
                             textOverflow: 'ellipsis',
                             whiteSpace: 'nowrap',
-                        }}
-                    >
+                        }}>
                         <div className="d-flex justify-content-end">
 
                             <span onClick={() => setCollapsed(!collapsed)} className={'cursor-pointer'}>
@@ -153,7 +151,10 @@ const Sidebar = (props) => {
                                 {index === 0 && (
                                     <SubMenu title={'Top Leagues'}>
                                         {competitions?.top_soccer?.map((top_league, index) => (
-                                            <MenuItem key={`l_${index}`}>
+                                            <MenuItem key={`l_${index}`}
+                                                      icon={<img
+                                                          src={getSportImageIcon(top_league?.country_code,'img/flags-1-1')}
+                                                          style={{borderRadius: "50%", height: "20px"}}></img>}>
                                                 <a href={`/competition/${top_league.sport_id}/${top_league.category_id}/${top_league.competition_id}`}>
                                                     {top_league?.competition_name}
                                                 </a>

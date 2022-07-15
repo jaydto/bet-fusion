@@ -153,7 +153,7 @@ const SideBets = (props) => {
 }
 
 const OddButton = (props) => {
-    const {match, mkt, detail, live, jackpot} = props
+    const {match, mkt, detail, live, jackpot, subType, marketKey} = props
     // console.log("Props are ",props)
     const [ucn, setUcn] = useState('');
     // console.log(ucn)
@@ -176,6 +176,8 @@ const OddButton = (props) => {
         updateBeslipKey();
     }, [updateBeslipKey])
 
+    // here
+
     const updatePickedChoices = useCallback(() => {
         // let betslip = state?.[betslip_key];
         let betslip = getBetslip() || {};
@@ -183,7 +185,11 @@ const OddButton = (props) => {
             match.match_id
             + "" + match.sub_type_id
             + (match?.[mkt] || match?.odd_key || 'draw')
+            + (marketKey !== undefined ? marketKey : '')
         );
+        // here
+        // console.log(betslip?.[match.match_id]?.match_id)
+        // console.log(uc)
         if ((betslip?.[match.match_id]?.match_id == match.match_id)
             && uc == betslip?.[match.match_id]?.ucn) {
             setPicked('picked');
@@ -202,12 +208,29 @@ const OddButton = (props) => {
                 match.match_id
                 + "" + match.sub_type_id
                 + (match?.[mkt] || match?.odd_key || 'draw')
+                + (marketKey !== undefined ? marketKey : '')
             );
             setUcn(uc);
             if (mkt === 'home_team') {
-                setOddValue(match.odds.home_odd)
+                if (subType !== undefined) {
+                    let odds = match?.odds;
+                    let overUnder = odds[18]
+                    if (overUnder !== undefined) {
+                        setOddValue(match.odds[subType][marketKey])
+                    }
+                } else {
+                    setOddValue(match.odds.home_odd)
+                }
             } else if (mkt === 'away_team') {
-                setOddValue(match.odds.away_odd)
+                if (subType !== undefined) {
+                    let odds = match?.odds;
+                    let overUnder = odds[18]
+                    if (overUnder !== undefined) {
+                        setOddValue(match.odds[subType][marketKey])
+                    }
+                } else {
+                    setOddValue(match.odds.away_odd)
+                }
             } else if (mkt === 'draw') {
                 setOddValue(match.odds.neutral_odd)
             } else {
@@ -229,7 +252,11 @@ const OddButton = (props) => {
                     match.match_id
                     + "" + match.sub_type_id
                     + (match?.[mkt] || match?.odd_key || 'draw')
+                    + (marketKey !== undefined ? marketKey : '')
                 );
+                // console.log(uc)
+                //
+                // console.log(state?.[reference])
 
                 if (state?.[reference] === uc) {
                     setPicked('picked')
@@ -257,7 +284,7 @@ const OddButton = (props) => {
         let away_team = event.currentTarget.getAttribute("away_team");
         let sport_name = event.currentTarget.getAttribute("sport_name");
         let market_active = event.currentTarget.getAttribute("market_active");
-        let cstm = clean(mid + "" + stid + oddk)
+        let cstm = clean(mid + "" + stid + oddk + (marketKey !== undefined ? marketKey : ''))
 
         let slip = {
             "match_id": mid,
@@ -275,6 +302,9 @@ const OddButton = (props) => {
             "ucn": cstm,
             "market_active": market_active,
         }
+
+        // console.log("Slip", slip)
+        // console.log(cstm)
 
         if (cstm === ucn) {
             let betslip;
@@ -342,7 +372,7 @@ const MarketRow = (props) => {
     const MktOddsButton = (props) => {
         const {match, mktodds, live, pdown} = props;
         const fullmatch = {...match, ...mktodds};
-
+        console.log("Market odds", fullmatch)
         return (
             !pdown
             && fullmatch?.odd_value !== 'NaN'
@@ -371,6 +401,7 @@ const MarketRow = (props) => {
             </Row>
 
             {markets && markets.map((mkt_odds) => {
+                console.log(mkt_odds)
                 return (<>
                     <Col className="match-detail" style={{width: width, float: "left"}}>
                         <MktOddsButton
@@ -398,6 +429,17 @@ const ColoredCircle = ({color}) => {
 
 const MatchRow = (props) => {
     const {match, jackpot, live, pdown} = props;
+    const getFullMatch = (match) => {
+        let odds = match?.odds['18']
+        if (odds !== undefined) {
+            odds.sub_type_id = 18
+            odds.market_name = "1st half - both teams to score"
+        }
+        return {...match, ...odds}
+        console.log(odds)
+        // console.log(match)
+        return match
+    }
     return (
         <Row className="top-matches">
             <div className="col-sm-1 col-xs-12 pad left-text">
@@ -410,7 +452,7 @@ const MatchRow = (props) => {
                 {(live && match?.match_time) ?
                     <>{`${match.match_time}'`}</> : match?.start_time}
             </div>
-            <div className="col-sm-7 col-xs-12">
+            <div className="col-sm-5 col-xs-12">
                 <a href={`/match/${match.match_id}`}>
                     <div className="compt-detail"> {match.category} | {match.competition_name}</div>
                     <div className="compt-teams">
@@ -446,6 +488,28 @@ const MatchRow = (props) => {
                         ? <OddButton match={match} mkt="away_team" live={live} jackpot={jackpot}/>
                         : <EmptyTextRow odd_key={match?.odd_key}/>
                     }
+                </div>
+            </Row>
+            <Row className={`${jackpot ? 'col-4' : 'col-lg-2 col-xs-12'} m-0 p-0`}>
+                <div className="col-4 match-div-col" style={{padding: 0}}>
+                    {/*{(!pdown && match?.odds["18"] && match.odds.home_odd !== 'NaN' &&*/}
+                    {/*    match.market_active == 1 && match.odds.home_odd_active == 1)*/}
+                    {/*    ? <OddButton match={match} mkt="home_team" live={live} jackpot={jackpot}/>*/}
+                    {/*    : <EmptyTextRow odd_key={match?.odd_key}/>*/}
+                    {/*}*/}
+
+                    <OddButton match={getFullMatch(match)} mkt="home_team" live={live} jackpot={jackpot} subType="18"
+                               marketKey={'over 2.5'}/>
+                </div>
+                <div className="col-4 match-div-col" style={{padding: 0}}>
+                    {/*{(!pdown && match?.odds?.away_odd && match.odds.away_odd !== 'NaN' &&*/}
+                    {/*    match.market_active == 1 && match.odds.away_odd_active == 1)*/}
+                    {/*    ? <OddButton match={match} mkt="away_team" live={live} jackpot={jackpot}/>*/}
+                    {/*    : <EmptyTextRow odd_key={match?.odd_key}/>*/}
+                    {/*}*/}
+                    <OddButton match={match} mkt="away_team" live={live} jackpot={jackpot}
+                               subType="18"
+                               marketKey={'under 2.5'}/>
                 </div>
             </Row>
             {!pdown && !jackpot && (match?.side_bets > 1) &&

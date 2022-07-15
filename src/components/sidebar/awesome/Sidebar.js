@@ -85,7 +85,7 @@ const Sidebar = (props) => {
         let default_img = 'default_sport'
         let sport_image;
         try {
-            sport_image = require(`../../../assets/${folder}/${sport_name}.svg`);
+            sport_image = require(`../../../assets/${folder}/${sport_name}.png`);
         } catch (error) {
             sport_image = require(`../../../assets/${folder}/${default_img}.svg`);
         }
@@ -141,7 +141,7 @@ const Sidebar = (props) => {
                         {competitions?.all_sports.map((competition, index) => (
 
                             <SubMenu title={competition.sport_name} defaultOpen={getActiveSport(competition.sport_id)}
-                                     icon={<img style={{borderRadius: '50%', height: '20px', backgroundColor: "#fff"}}
+                                     icon={<img style={{borderRadius: '50%', height: '20px'}}
                                                 src={getSportImageIcon(competition.sport_name)}/>}
                                      key={index}>
                                 {index === 0 && (

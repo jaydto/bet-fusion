@@ -3,8 +3,17 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Container from 'react-bootstrap/Container';
 import {Context} from '../../context/store';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faSearch, faPrint, faQuestionCircle, faTimes} from '@fortawesome/free-solid-svg-icons'
+import {
+    faSearch,
+    faPrint,
+    faQuestionCircle,
+    faTimes,
+    faLaptop,
+    faMagnet,
+    faMagic, faInfo, faChessBoard, faDice
+} from '@fortawesome/free-solid-svg-icons'
 import makeRequest from "../utils/fetch-request";
+import {faMobile, faCoins} from "@fortawesome/free-solid-svg-icons";
 
 const HeaderNav = (props) => {
     const [state,] = useContext(Context);
@@ -53,29 +62,43 @@ const HeaderNav = (props) => {
                         <a className={`g url-link live-game ${pathname === '/live' ? 'active' : ''}`} href="/live"
                            title="Live">Live</a>
                     </li>
-                    <li className={pathname === '/highlights' ? 'active' : ''}>
-                        <a className="cg fm ox anl url-link" href="/highlights" title="Todays Highlights">Highlights</a>
-                    </li>
 
                     <li className={pathname === '/jackpot' ? 'active' : ''}>
-                        <a className="cg fm ox anl url-link" href="/jackpot" title="Jackpot">Jackpot</a>
+                        <a className="cg fm ox anl url-link" href="/jackpot" title="Jackpot">
+                            <FontAwesomeIcon icon={faCoins}/> Jackpot
+                        </a>
                     </li>
                     <li className={pathname === '/app' ? 'active' : ''}>
-                        <a className="g url-link" href="/app" title="App">APP </a>
+                        <a className="g url-link" href="/app" title="App">
+                            <span>
+                                <FontAwesomeIcon icon={faMobile}/> APP
+                            </span>
+                        </a>
                     </li>
                     <li className={pathname === '/virtuals' || pathname.includes("gameplay") ? 'active' : ''}>
                         <a className="g url-link" href="/virtuals" title="Virtuals">
-                            Virtuals
+                            <span>
+                                <FontAwesomeIcon icon={faLaptop}/> Virtuals
+                            </span>
                         </a>
                     </li>
                     <li className={pathname === '/casino' || pathname.includes("gameplay") ? 'active' : ''}>
                         <a className="g url-link" href="/casino" title="Casino">
-                            Casino
+                            <FontAwesomeIcon icon={faDice}/> Casino
                         </a>
                     </li>
                     <li className={pathname === '/promotions' || pathname.includes("gameplay") ? 'active' : ''}>
                         <a className="g url-link" href="/promotions" title="Promotions">
-                            Promotions
+                            <FontAwesomeIcon icon={faMagic}/> Promotions
+                        </a>
+                    </li>
+                    <li>
+                        <a className="g url-link" href="https://lsdev.sir.sportradar.com/betnaremts"
+                           title="Live Score"
+                           target={"_blank"}>
+                            <span>
+                                <FontAwesomeIcon icon={faInfo}/> Live Score
+                            </span>
                         </a>
                     </li>
                 </ListGroup>

@@ -427,6 +427,15 @@ const ColoredCircle = ({color}) => {
     ) : null;
 };
 
+const overrideMatchMarketDetails = (props) => {
+    const {match, marketid} = props;
+    const odds = match?.odds[marketid];
+    let newMatch = match;
+
+    return newMatch
+
+}
+
 const MatchRow = (props) => {
     const {match, jackpot, live, pdown} = props;
     const getFullMatch = (match) => {
@@ -465,7 +474,6 @@ const MatchRow = (props) => {
                         {match.away_team}
                     </div>
                 </a>
-
             </div>
             <Row className={`${jackpot ? 'col-4' : 'col-lg-3 col-xs-12'} m-0 p-0`}>
                 <div className="col-4 match-div-col" style={{padding: 0}}>

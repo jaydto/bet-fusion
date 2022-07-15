@@ -141,7 +141,7 @@ const Sidebar = (props) => {
                         {competitions?.all_sports.map((competition, index) => (
 
                             <SubMenu title={competition.sport_name} defaultOpen={getActiveSport(competition.sport_id)}
-                                     icon={<img style={{borderRadius: '50%', height: '20px', backgroundColor: "#fff"}}
+                                     icon={<img style={{borderRadius: '50%', height: '20px'}}
                                                 src={getSportImageIcon(competition.sport_name)}/>}
                                      key={index}>
                                 {index === 0 && (

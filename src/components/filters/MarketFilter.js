@@ -9,10 +9,10 @@ const MarketFilter = () => {
         setShowFilters(false)
     }
     const markets = [
-        {id: "1", name: "1X2 Winner"},
-        {id: "10", name: "Double Chance"},
-        {id: "29", name: "Both Teams to Score"},
-        {id: "60", name: "First Half 1X2"},
+        {id: "1,18", name: "1X2 & Total Over/Under 2.5"},
+        {id: "1,10", name: "1X2 & Double Chance"},
+        {id: "1,29", name: "1X2 & Both Teams to Score"},
+        {id: "1,60", name: "1X2 & First Half 1X2"},
     ]
 
     const filterMarkets = (marketId) => {

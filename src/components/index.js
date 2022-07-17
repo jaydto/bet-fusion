@@ -42,7 +42,6 @@ const Index = (props) => {
 
         endpoint += "?page=" + (page || 1) + "&limit=50&tab=" + tab
 
-
         let url = new URL(window.location.href)
 
         let sport_id = url.searchParams.get('sport_id')

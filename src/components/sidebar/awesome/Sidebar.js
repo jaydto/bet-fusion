@@ -85,7 +85,7 @@ const Sidebar = (props) => {
         let default_img = 'default_sport'
         let sport_image;
         try {
-            sport_image = require(`../../../assets/${folder}/${sport_name}.png`);
+            sport_image = require(`../../../assets/${folder}/${sport_name}.svg`);
         } catch (error) {
             sport_image = require(`../../../assets/${folder}/${default_img}.svg`);
         }

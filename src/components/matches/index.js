@@ -108,7 +108,7 @@ const MatchHeaderRow = (props) => {
     return (
         <Container>
             <Row className="events-header">
-                <div className="col-6 left-text">
+                <div className="col-5 left-text">
                     <h3 className="main-heading-1">
                         {live && <span className="live-header">LIVE </span>}
                         {sportName} {market && <>( {market} )</>}
@@ -123,7 +123,7 @@ const MatchHeaderRow = (props) => {
                     <div className="col-4">2</div>
                     <div className="col-4 events-odd"></div>
                 </div>
-                <div className={'col-2 d-flex flex-row'}>
+                <div className={'col-3 d-flex flex-row'}>
                     <div className="col-4">
                         {extraMarketDisplays?.[0] || "1X"}
                     </div>
@@ -494,7 +494,7 @@ const MatchRow = (props) => {
                 {(live && match?.match_time) ?
                     <>{`${match.match_time}'`}</> : match?.start_time}
             </div>
-            <div className="col-sm-5 col-xs-12">
+            <div className="col-sm-4 col-xs-12">
                 <a href={`/match/${match.match_id}`}>
                     <div className="compt-detail"> {match.category} | {match.competition_name}</div>
                     <div className="compt-teams">
@@ -508,7 +508,7 @@ const MatchRow = (props) => {
                     </div>
                 </a>
             </div>
-            <Row className={`${jackpot ? 'col-4' : 'col-lg-3 col-xs-12'} m-0 p-0`}>
+            <Row className={`${jackpot ? 'col-4' : 'col-lg-3 col-xs-12'} m-0 p-2`}>
                 <div className="col-4 match-div-col" style={{padding: 0}}>
                     {(!pdown && match?.odds?.home_odd && match.odds.home_odd !== 'NaN' &&
                         match.market_active == 1 && match.odds.home_odd_active == 1)
@@ -531,7 +531,7 @@ const MatchRow = (props) => {
                     }
                 </div>
             </Row>
-            {!jackpot && <Row className={`${jackpot ? 'col-4' : 'col-lg-2 col-xs-12'} m-0 p-0`}>
+            {!jackpot && <Row className={`${jackpot ? 'col-4' : 'col-lg-3 col-xs-12'} m-0 p-2`}>
                 {Object.entries(match?.extra_odds || {}).map(([marketName, odds]) => {
                     return Object.entries(odds || {}).map(([odd_key, odd_data]) => {
                         return <div className={'col-4 match-div-col'}>

@@ -40,7 +40,7 @@ const Index = (props) => {
 
         let tab = location.pathname.replace("/", "") || 'highlights';
 
-        endpoint += "?page=" + (page || 1) + "&limit=2&tab=" + tab
+        endpoint += "?page=" + (page || 1) + "&limit=50&tab=" + tab
 
 
         let url = new URL(window.location.href)
@@ -74,7 +74,7 @@ const Index = (props) => {
 
         let tab = location.pathname.replace("/", "") || 'highlights';
         let betslip = findPostableSlip();
-        let endpoint = "/v1/matches?page=" + (page || 1) + "&limit=2&tab=" + tab + '&sub_type_id=1,10';
+        let endpoint = "/v1/matches?page=" + (page || 1) + "&limit=50&tab=" + tab;
         let url = new URL(window.location.href)
         let search_term = url.searchParams.get('search')
         if (search_term !== null) {
@@ -87,12 +87,7 @@ const Index = (props) => {
             endpoint += " &sport_id=" + sport_id
         }
 
-        let sub_type_id = url.searchParams.get('sub_type_id')
-
-        if (sub_type_id !== null) {
-            endpoint += " &sub_type_id=" + sub_type_id
-        }
-
+        endpoint += ` &sub_type_id=` + (url.searchParams.get('sub_type_id') || "1,10")
 
         await makeRequest({url: endpoint, method: "POST", data: betslip}).then(([status, result]) => {
             if (status == 200) {

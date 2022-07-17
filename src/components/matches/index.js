@@ -3,7 +3,6 @@ import {Context} from '../../context/store';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
-import usePrevious from '../../hooks/use-previous';
 import {
     addToSlip,
     removeFromSlip,
@@ -55,8 +54,45 @@ const MatchHeaderRow = (props) => {
     const [sportName, setSportName] = useState('Soccer');
     const [showX, setShowX] = useState(true);
     const [market, setMarket] = useState('1x2');
+    const [marketCols, setMarketCols] = useState(3)
+    const [extraMarketDisplays, setExtraMarketDisplays] = useState([])
+
+    const getSelectedMarkets = () => {
+
+        const markets = [
+            {
+                id: "1,18", name: "1X2 & Total Over/Under 2.5", extra_market_cols: "2", extra_markets_display: [
+                    "Over", "Under"
+                ]
+            },
+            {
+                id: "1,10", name: "1X2 & Double Chance", extra_market_cols: "3", extra_markets_display: [
+                    "1X", "X2", "12"
+                ]
+            },
+            {
+                id: "1,29", name: "1X2 & Both Teams to Score", extra_market_cols: "2", extra_markets_display: [
+                    "YES", "NO"
+                ]
+            },
+        ]
+
+        let url = new URL(window.location)
+
+        let sub_types = url.searchParams.get('sub_type_id')
+
+        if (sub_types) {
+            let selectedMarket = markets.filter((market) => market.id === sub_types)
+            if (selectedMarket.length > 0) {
+                setMarketCols(selectedMarket[0].extra_market_cols)
+                setExtraMarketDisplays(selectedMarket[0].extra_markets_display)
+            }
+        }
+    }
+
 
     useEffect(() => {
+        getSelectedMarkets()
         if (first_match) {
             setSportName(first_match.sport_name);
             setMarket(first_match.market_name);
@@ -68,22 +104,37 @@ const MatchHeaderRow = (props) => {
         }
     }, [first_match?.parent_match_id])
 
+
     return (
         <Container>
             <Row className="events-header">
-                <div className="col-8 left-text">
+                <div className="col-6 left-text">
                     <h3 className="main-heading-1">
                         {live && <span className="live-header">LIVE </span>}
                         {sportName} {market && <>( {market} )</>}
                     </h3>
                 </div>
-                <div className="col-1">1</div>
-                {showX
-                    ? <div className="col-1 events-odd">X</div>
-                    : <div className="col-1 events-odd">&nbsp;</div>
-                }
-                <div className="col-1">2</div>
-                <div className="col-1 events-odd"></div>
+                <div className={'col-3 d-flex flex-row'}>
+                    <div className="col-4">1</div>
+                    {showX
+                        ? <div className="col-4 events-odd">X</div>
+                        : <div className="col-4 events-odd">&nbsp;</div>
+                    }
+                    <div className="col-4">2</div>
+                    <div className="col-4 events-odd"></div>
+                </div>
+                <div className={'col-2 d-flex flex-row'}>
+                    <div className="col-4">
+                        {extraMarketDisplays?.[0] || "1X"}
+                    </div>
+                    <div className={`col-4 events-odd ${marketCols > 1 ? 'd-block' : 'd-none'}`}>
+                        {extraMarketDisplays?.[1] || "X2"}
+                    </div>
+                    <div className={`col-4 ${marketCols > 2 ? 'd-block' : 'd-none'}`}>
+                        {extraMarketDisplays?.[2] || "12"}
+                    </div>
+                    <div className="col-4 events-odd"></div>
+                </div>
             </Row>
         </Container>
     )
@@ -483,8 +534,10 @@ const MatchRow = (props) => {
             {!jackpot && <Row className={`${jackpot ? 'col-4' : 'col-lg-2 col-xs-12'} m-0 p-0`}>
                 {Object.entries(match?.extra_odds || {}).map(([marketName, odds]) => {
                     return Object.entries(odds || {}).map(([odd_key, odd_data]) => {
-                        return <OddButton match={getUpdatedMatchFromOdds({match, marketName, odd_key, odd_data})}
-                                          key={odd_key} live={live}/>
+                        return <div className={'col-4 match-div-col'}>
+                            <OddButton match={getUpdatedMatchFromOdds({match, marketName, odd_key, odd_data})}
+                                       key={odd_key} live={live}/>
+                        </div>
                     });
                 })
                 }

@@ -7,16 +7,13 @@
   animation: none !important;
 }
 
-.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item > .pro-icon-wrapper {
-    background-color: unset !important;
-}
-
 .pro-sidebar > .pro-sidebar-inner {
-    background-color: #253743 !important;
+  background-color: #253743 !important;
 }
 
 .pro-sidebar .pro-menu .pro-menu-item.pro-sub-menu .pro-inner-list-item {
   background-color: #16202c !important;
+  
 }
 
 .pro-sidebar.collapsed
@@ -30,11 +27,7 @@
 }
 
 .pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item {
-    padding: 0.5px 25px 0px 12px !important;
-}
-
-.app-header-nav {
-    margin-top: 120px;
+  /* padding: 0.9px 20px !important; */
 }
 
 .virtual-game-image {
@@ -856,6 +849,18 @@ button {
   padding: 0px 0 0px;
   text-align: center;
   border-right: 0px !important;
+}
+.font-tbt{
+      font-weight:200;
+      font-size:12px;
+      display: flex;
+      justify-content: flex-start;
+      letter-spacing: 1px;
+      align-items: center;
+
+}
+.space-icons{
+  padding-right:10px
 }
 
 .jp-matches button {
@@ -5557,6 +5562,10 @@ ul.sport {
 .of .f {
   max-height: 340px;
 }
+.flow{
+  overflow-x:hidden;
+  overflow-y: auto;
+}
 
 .by > .or,
 .gb > .or,
@@ -5581,7 +5590,7 @@ ul.sport {
 
 .nav-options-finance {
   display: flex;
-  flex-direction: column;
+  flex-direction:column;
   justify-content: start;
   align-items: baseline;
 }
@@ -5695,7 +5704,7 @@ ul.sport {
     display:none;
   } */
   .amt {
-    margin-top: 140px;
+    margin-top: 100px;
   }
 }
 
@@ -5725,14 +5734,18 @@ ul.sport {
 }
 
 @media (max-width: 767px) {
+ 
+  .rescale{
+    margin-left:-5px;
+  }
   .button-toggle {
     display: flex;
     align-items: center;
   }
-  .change-size {
+  /* .change-size {
     display: grid;
     grid-template-columns: [col1] 1fr [col2] 50px [col-end];
-  }
+  } */
   .w-change1 {
     width: 20%;
   }
@@ -5955,11 +5968,15 @@ ul.sport {
   }
 }
 @media (min-width: 979px) {
+  .change-display{
+    display:contents!important;
+  }
   .fix-print {
-    padding: 7px 5px 3px 5px;
-    display: flex;
+    padding: 8px 3px 3px 2px!important;
+    display: contents!important;
     justify-content: center;
     align-items: center;
+    font-size: 10px;
   }
   #slip-holder.affix-top {
     position: static;
@@ -6096,9 +6113,7 @@ ul.sport {
   .df {
     font-size: 21px;
   }
-  .change-display {
-    display: contents;
-  }
+ 
   .fix-display {
     display: flex !important;
     justify-content: center;
@@ -6296,17 +6311,25 @@ ul.sport {
     width: 100%;
   }
 }
-@media (max-width: 864px) and (min-width: 768px) {
-  .fix-print {
-    /* display:block-ruby; */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 10px;
-    padding: 8px 2px 5px 2px !important;
-    margin: 0px !important;
+@media (max-width: 916px) and (min-width: 768px) {
+  span  .space-icons{
+    padding-right:0px;
   }
-
+  .change-2{
+    display:grid;
+    grid-template-columns: minmax(0,0.5fr) minmax(0,0.5fr) minmax(0,1fr);
+  }
+  .grid-1{
+    grid-column:1;
+  }
+  .ipad-change{
+    display:grid!important;
+    grid-template-columns:[col1]1fr[col2]1fr[col-end];
+  }
+}
+@media (max-width: 864px) and (min-width: 768px) {
+  
+ 
   .app-header-nav {
     margin-top: 105px !important;
   }
@@ -6318,23 +6341,46 @@ ul.sport {
 
 /* } */
 @media (min-width: 992px), (max-width: 1140px) {
+  .btn-spacing{
+    word-spacing: 1px;
+    font-size: 11px;
+    font-weight: 700;
+  }
   .by {
     width: 100%;
   }
   .app-header-nav {
-    margin-top: 110px;
+    margin-top: 100px;
+  }
+  .amt{
+    margin-top: 107px;
   }
 }
 
-@media (min-width: 1148px) {
+@media (min-width: 1160px) {
+  .fix-print{
+    font-size:12px;
+  }
+  .font-tbt {
+    font-weight: 200;
+    font-size: 15px;
+    display: flex;
+    justify-content: flex-start;
+    letter-spacing: 1px;
+    align-items: center;
+    text-tranform:capitalize;
+  }
+  .btn-spacing{
+    font-size:15px;
+  }
   .app-header-nav {
-    margin-top: 115px;
+    margin-top: 120px;
   }
   .shrink-header .second-nav {
     top: 68px;
   }
   .amt {
-    margin-top: 120px;
+    margin-top: 130px;
     scroll-margin-top: 140px;
   }
 }
@@ -6618,7 +6664,7 @@ ul.sport {
 
   .gn {
     width: 20%;
-    padding: 0px 5px;
+    padding: 0px 2px;
   }
 
   .gj {
@@ -7284,7 +7330,15 @@ ul.sport {
     top: 0;
   }
 }
-@media (max-width: 1148px) {
+@media (max-width: 1014px){
+  .amt {
+    margin-top:110px;
+  }
+  .move-up{
+    margin-top:-10px
+  }
+}
+@media (max-width: 1147px) {
   .sign-up.btn {
     padding: 7px 7px;
     /* font-family: arial; */
@@ -7293,9 +7347,7 @@ ul.sport {
 
     width: 100px;
   }
-  .amt {
-    margin-top: 118px;
-  }
+  
   .nav-fix {
     margin-top: 150px;
   }
@@ -9286,6 +9338,16 @@ button.close {
   .ce {
     width: 900px;
   }
+  .change-2{
+    display:contents;
+  }
+  .w-change2 {
+  
+  }
+  .w-change1 {
+
+  }
+
 }
 
 .tooltip {
@@ -9974,6 +10036,16 @@ button.close {
 }
 
 @media (max-width: 991px) {
+ 
+  .fix-print {
+    /* display:block-ruby; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    padding: 8px 2px 5px 2px !important;
+    margin: 0px !important;
+  }
   .full-mobile {
     width: 100%;
     max-width: 100%;
@@ -9981,6 +10053,10 @@ button.close {
   .top-login {
     margin-top: -12px;
   }
+    .change-display {
+      display: grid;
+      grid-template-columns: [col1]0px[col2]60px[col3]70px[col4]95px[col5]80px[col6]55px[col7]75px[col8]72px[col9]100px[col-end];
+    }  
   .font-reduced {
     font-size: 11px;
     margin-top: -6px;
@@ -9997,28 +10073,7 @@ button.close {
   }
 }
 
-@media (min-width: 768px) and (max-width: 991px) {
-  .sd {
-    display: block !important;
-  }
-  .font-tbt {
-    font-size: 10px;
-    padding-right: 5px;
-  }
 
-  table.sd {
-    display: table !important;
-  }
-
-  tr.sd {
-    display: table-row !important;
-  }
-
-  th.sd,
-  td.sd {
-    display: table-cell !important;
-  }
-}
 
 @media (min-width: 768px) and (max-width: 991px) {
   .sj {
@@ -10026,6 +10081,7 @@ button.close {
   }
   .font-tbt {
     padding: 0;
+    
   }
 }
 
@@ -13617,7 +13673,7 @@ img.zoom-img {
 }
 .betslip-container {
   position: sticky !important;
-  top: 140px !important;
+  top: 5px !important;
   background: #253743 !important;
 }
 
@@ -14145,7 +14201,6 @@ li a.live-game:hover {
 .hover-none:hover {
   background-color: unset !important;
 }
-
 
 @media only screen and (max-width: 576px) {
   .amt {

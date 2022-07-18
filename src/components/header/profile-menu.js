@@ -13,46 +13,52 @@ const ProfileMenu = (props) => {
             <div className="{'mt-1'} col-md-3 d-flex flex-column justify-content-end w-change1">
             <Link
               to={{ pathname: "/deposit" }}
-              className={"btn text-white btn-outline-warning "}
+              className={"btn text-white btn-outline-warning   "}
             >
-              <span className="font-tbt">
-                <FontAwesomeIcon icon={faCoins} /> Deposit Funds
+              <span className="font-tbt overflow-hidden btn-outline-warning rescale">
+               <span className=" space-icons"> <FontAwesomeIcon icon={faCoins} /></span> Deposit 
               </span>
             </Link>
           </div>
+          
           <div className="col-md-3  d-flex flex-column right justify-content-end w-change1">
-            <div className="nav-options-finance w-100  ">
-              <Link to={{ pathname: "/withdraw" }} className={"btn text-white w-100 d-content"}>
-                <span className="font-tbt ">
-                  <FontAwesomeIcon icon={faCoins} /> Withdraw
-                </span>
-              </Link>
+          <div>
+              <span className="font-tbt py-1 px-4">Bonus  {formatNumber(user.bonus) || 0} </span>
+              </div>
+              <div>
               <Link to={{ pathname: "/my-bets" }} className={"btn text-white w-100 d-content"}>
                 <span className="font-tbt pad-2 ">
-                  <FontAwesomeIcon icon={faCoins} /> My Bets
+                <span className=" space-icons"><FontAwesomeIcon icon={faCoins} /> </span>My Bets
                 </span>
               </Link>
-            </div>
+              </div>
           </div>
          
 
           <div className="col-md-3 d-flex flex-column right justify-content-end w-change2">
-            <div className="nav-options-finance ">
-              <span className="font-tbt">Balance KES {formatNumber(user.balance) || 0} </span>
-              <span className="font-tbt">Bonus KES {formatNumber(user.bonus) || 0} </span>
-            </div>
+              <div>
+              <span className="font-tbt py-1 flex-wrap">Balance  {formatNumber(user.balance) || 0} </span>
+              </div>
+              <div>
+              <Link to={{ pathname: "/withdraw" }} className={"btn text-white w-100 d-content"}>
+                <span className="font-tbt pad-2">
+                <span className=" space-icons"><FontAwesomeIcon icon={faCoins} /> </span>Withdraw
+                </span>
+              </Link>
+              </div>
+             
           </div>
 
           <div className="col-md-3 d-flex flex-column nav-option-content w-change2">
             <div>
-              <span className="font-tbt">
-                <FontAwesomeIcon icon={faUser} /> {user?.msisdn}
+              <span className="font-tbt py-1">
+              <span className=" space-icons"><FontAwesomeIcon icon={faUser} /> </span>{user?.msisdn}
               </span>
             </div>
             <div>
               <a href="/logout">
-                <span className="font-tbt">
-                  <FontAwesomeIcon icon={faLock} /> Logout
+                <span className="font-tbt py-1">
+                <span className=" space-icons"> <FontAwesomeIcon icon={faLock} /> </span>Logout
                 </span>
               </a>
             </div>

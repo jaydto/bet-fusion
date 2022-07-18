@@ -123,18 +123,20 @@ const MatchHeaderRow = (props) => {
                     <div className="col-4">2</div>
                     <div className="col-4 events-odd"></div>
                 </div>
-                <div className={'col-3 d-flex flex-row'}>
-                    <div className="col-4">
-                        {extraMarketDisplays?.[0] || "1X"}
+                {!live && (
+                    <div className={'col-3 d-flex flex-row'}>
+                        <div className="col-4">
+                            {extraMarketDisplays?.[0] || "1X"}
+                        </div>
+                        <div className={`col-4 events-odd ${marketCols > 1 ? 'd-block' : 'd-none'}`}>
+                            {extraMarketDisplays?.[1] || "X2"}
+                        </div>
+                        <div className={`col-4 ${marketCols > 2 ? 'd-block' : 'd-none'}`}>
+                            {extraMarketDisplays?.[2] || "12"}
+                        </div>
+                        <div className="col-4 events-odd"></div>
                     </div>
-                    <div className={`col-4 events-odd ${marketCols > 1 ? 'd-block' : 'd-none'}`}>
-                        {extraMarketDisplays?.[1] || "X2"}
-                    </div>
-                    <div className={`col-4 ${marketCols > 2 ? 'd-block' : 'd-none'}`}>
-                        {extraMarketDisplays?.[2] || "12"}
-                    </div>
-                    <div className="col-4 events-odd"></div>
-                </div>
+                )}
             </Row>
         </Container>
     )

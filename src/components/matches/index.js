@@ -497,7 +497,7 @@ const MatchRow = (props) => {
                     <>{`${match.match_time}'`}</> : match?.start_time}
             </div>
             <div className="col-sm-4 col-xs-12">
-                <a href={`/match/${match.match_id}`}>
+                <a href={`/match/${live ? 'live/' + match.parent_match_id : match.match_id}`}>
                     <div className="compt-detail"> {match.category} | {match.competition_name}</div>
                     <div className="compt-teams">
                         {live && (match?.match_status !== 'ended') && <ColoredCircle color="red"/>}

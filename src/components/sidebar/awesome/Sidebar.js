@@ -80,12 +80,12 @@ const Sidebar = (props) => {
         return () => window.removeEventListener("resize", updateDimensions);
     }, [width]);
 
-    const getSportImageIcon = (sport_name, folder = 'svg') => {
+    const getSportImageIcon = (sport_name, folder = 'svg', topLeagues = false) => {
 
         let default_img = 'default_sport'
         let sport_image;
         try {
-            sport_image = require(`../../../assets/${folder}/${sport_name}.svg`);
+            sport_image = topLeagues ? require(`../../../assets${sport_name}`) : require(`../../../assets/${folder}/${sport_name}.svg`);
         } catch (error) {
             sport_image = require(`../../../assets/${folder}/${default_img}.svg`);
         }
@@ -149,7 +149,7 @@ const Sidebar = (props) => {
                                         {competitions?.top_soccer?.map((top_league, index) => (
                                             <MenuItem key={`l_${index}`}
                                                       icon={<img
-                                                          src={getSportImageIcon(top_league?.country_code,'img/flags-1-1')}
+                                                          src={getSportImageIcon(top_league?.flag, 'img/flags-1-1', true)}
                                                           style={{borderRadius: "50%", height: "20px"}}></img>}>
                                                 <a href={`/competition/${top_league.sport_id}/${top_league.category_id}/${top_league.competition_id}`}>
                                                     {top_league?.competition_name}

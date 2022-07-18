@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useCallback, useState} from "react";
+import React, {useContext, useEffect, useCallback, useState, useRef} from "react";
 import {useLocation} from 'react-router-dom';
 import {Context} from '../context/store';
 import makeRequest from './utils/fetch-request';
@@ -16,7 +16,7 @@ const SideBar = React.lazy(() => import('./sidebar/awesome/Sidebar'))
 
 const Index = (props) => {
     const location = useLocation();
-    const [matches, setMatches] = useState(null);
+    const [matches, setMatches] = useState([]);
     const [producerDown, setProducerDown] = useState(false);
     const [page, setPage] = useState(1);
     const [userSlipsValidation, setUserSlipsValidation] = useState();
@@ -60,7 +60,8 @@ const Index = (props) => {
 
         await makeRequest({url: endpoint, method: method, data: betslip}).then(([status, result]) => {
             if (status == 200) {
-                setMatches(result?.data || result)
+                setMatches(matches.length>0?{...matches,...result?.data}:result?.data || result)
+                // setMatches(result?.data || result)
                 if (result?.slip_data) {
                     setUserSlipsValidation(result?.slip_data)
                 }
@@ -90,7 +91,7 @@ const Index = (props) => {
 
         await makeRequest({url: endpoint, method: "POST", data: betslip}).then(([status, result]) => {
             if (status == 200) {
-                setMatches(result?.data || result)
+                setMatches(matches.length>0?{...matches,...result?.data}:result?.data || result)
                 if (result?.slip_data) {
                     setUserSlipsValidation(result?.slip_data)
                 }
@@ -99,6 +100,7 @@ const Index = (props) => {
         });
 
     }, []);
+
 
     useEffect(() => {
         fetchData();
@@ -111,6 +113,18 @@ const Index = (props) => {
         };
     }, [fetchData]);
 
+    const listInnerRef = useRef();
+
+    const onScroll = () => {
+        console.log("scrolling")
+        if (listInnerRef.current) {
+            const {scrollTop, scrollHeight, clientHeight} = listInnerRef.current;
+            if (scrollTop + clientHeight === scrollHeight) {
+                console.log("Bottom fetching ....")
+                setPage(page+1)
+            }
+        }
+    };
 
     return (
         <>
@@ -118,13 +132,14 @@ const Index = (props) => {
             <div className="amt">
                 <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions/>
-                    <div className="gz home" style={{width: '100%'}}>
-                        <div className="homepage">
+                    <div className="gz home" style={{width: '100%'}} onScroll={() => onScroll()} ref={listInnerRef}>
+                        <div className="homepage vh-100">
                             <CarouselLoader/>
                             <MainTabs tab={location.pathname.replace("/", "")}/>
                             {/*<MobileCategories/>*/}
                             <MatchList
                                 live={false}
+                                scroll={()=>onScroll()}
                                 matches={matches}
                                 pdown={producerDown}
                             />

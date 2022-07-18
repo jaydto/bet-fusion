@@ -475,7 +475,7 @@ const getUpdatedMatchFromOdds = (props) => {
     delete newMatch['odds']
     delete newMatch['extra_odds']
 
-    console.log("New match details", newMatch)
+    // console.log("New match details", newMatch)
     return newMatch;
 
 }

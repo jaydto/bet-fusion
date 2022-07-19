@@ -94,8 +94,7 @@ const HeaderNav = (props) => {
                     </li>
                     <li>
                         <a className="g url-link" href="/livescore"
-                           title="Live Score"
-                           target={"_blank"}>
+                           title="Live Score">
                             <span>
                                 <FontAwesomeIcon icon={faInfo}/> Live Score
                             </span>

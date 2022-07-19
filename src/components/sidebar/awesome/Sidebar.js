@@ -35,6 +35,8 @@ const Sidebar = (props) => {
             if (c_status === 200) {
                 setCompetitions(c_result);
                 setLocalStorage('categories', c_result);
+            }else{
+                fetchData()
             }
         } else {
             setCompetitions(cached_competitions);

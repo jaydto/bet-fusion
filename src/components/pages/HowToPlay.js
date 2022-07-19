@@ -28,37 +28,6 @@ const Right = React.lazy(() => import('../right/index'));
 const HowToPlay = (props) => {
 
     const [, dispatch] = useContext(Context);
-    const [competitions, setCompetitions] = useState({});
-
-    const fetchData = useCallback(async () => {
-        let cached_categories = getFromLocalStorage('categories');
-        let endpoint = "/v1/categories";
-
-        if (!cached_categories) {
-            const [competition_result] = await Promise.all([
-                makeRequest({url: endpoint, method: "get", data: null}),
-            ]);
-            let [c_status, c_result] = competition_result
-
-            if (c_status === 200) {
-                setCompetitions(c_result);
-            }
-            setLocalStorage('categories', c_result);
-        } else {
-            setCompetitions(cached_categories);
-        }
-
-    }, []);
-
-    useEffect(() => {
-
-        const abortController = new AbortController();
-        fetchData();
-
-        return () => {
-            abortController.abort();
-        };
-    }, [fetchData]);
 
     useEffect(() => {
         let betslip = getBetslip();

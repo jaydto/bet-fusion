@@ -93,7 +93,7 @@ const HeaderNav = (props) => {
                         </a>
                     </li>
                     <li>
-                        <a className="g url-link" href="https://lsdev.sir.sportradar.com/betnaremts"
+                        <a className="g url-link" href="/livescore"
                            title="Live Score"
                            target={"_blank"}>
                             <span>

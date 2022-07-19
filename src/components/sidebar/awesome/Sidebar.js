@@ -103,7 +103,7 @@ const Sidebar = (props) => {
         }}
              className={`vh-100 text-white sticky-top d-none d-md-block`}>
             <ProSidebar
-                width={'100%'}
+
                 style={{backgroundColor: '#16202c !important'}}
                 image={false}
                 onToggle={handleToggleSidebar}

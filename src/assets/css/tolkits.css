@@ -789,12 +789,14 @@ header, li a, .thedate span {
     display: block;
     width: 100%;
     border: none;
-    padding: 2px 5px 2px 10px;
+    text-align: center !important;
+    /*padding: 2px 15px 2px 8px;*/
     outline-style: none;
     outline: none;
     text-transform: uppercase;
-    font-size: 13px;
+    font-size: 10px;
     font-weight: 100;
+    padding: 2px;
 }
 
 .top-matches .side {
@@ -946,6 +948,7 @@ button {
 
 .theodds {
     padding: 0;
+    font-weight: bold;
 }
 
 .slip-counter {
@@ -13729,11 +13732,22 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 }
 
 .overflow-ellipsis {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+
 }
 
 .match-detail-container {
-    width: 20% !important;
+    width: 25% !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 50px;
+    /*max-width: 20% !important;*/
+    /*margin-right: 2% !important;*/
+}
+
+.odd-button {
+    height: 35px !important;
+    line-height: 15px;
+    width: 45px;
+    text-align: center !important;
 }

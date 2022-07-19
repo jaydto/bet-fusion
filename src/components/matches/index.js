@@ -18,6 +18,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import padlock from '../../assets/img/padlock.png';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faChartLine} from "@fortawesome/free-solid-svg-icons";
+import {getFromLocalStorage} from "../utils/local-storage";
 
 
 const clean = (_str) => {
@@ -52,8 +53,11 @@ const EmptyTextRow = (props) => {
 
 const MatchHeaderRow = (props) => {
     const {live, first_match} = props;
-    //const [state, ]  = useContext(Context);;
-    const [sportName, setSportName] = useState('Soccer');
+    //const [state, ]  = useContext(Context);
+    const categories = getFromLocalStorage('categories')
+    const sport_id = new URL(window.location).searchParams.get('sport_id') || 79
+    let sport = categories?.all_sports?.filter((category) => category.sport_id == sport_id)
+    const [sportName, setSportName] = useState(sport[0].sport_name || 'Soccer');
     const [showX, setShowX] = useState(true);
     const [market, setMarket] = useState('1x2');
     const [marketCols, setMarketCols] = useState(3)

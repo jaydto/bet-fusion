@@ -1,0 +1,11 @@
+[servers]
+localhost 
+
+[nodes]
+
+[servers:vars]
+ansible_user_user=apple
+ansible_ssh_pass=    
+
+[nodes:vars]
+

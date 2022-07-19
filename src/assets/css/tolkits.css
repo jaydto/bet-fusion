@@ -8819,6 +8819,10 @@ button.close {
 .rp .btn-block + .btn-block {
     margin-left: 0;
 }
+.frame-spacing{
+    margin-top: -35px;
+    margin-left: -100px;
+}
 
 .modal-scrollbar-measure {
     position: absolute;

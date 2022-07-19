@@ -92,6 +92,10 @@ const Sidebar = (props) => {
         return sport_image
     }
 
+    const getDefaultMarketsForSport = (competition) => {
+        return competition?.default_display_markets
+    }
+
 
     return (
         <div style={{
@@ -180,13 +184,17 @@ const Sidebar = (props) => {
                                     ))}
                                 </SubMenu>
                                 <MenuItem>
-                                    <a href={`/upcoming?sport_id=${competition.sport_id}`}>Today Games</a>
+                                    <a href={`/upcoming?sport_id=${competition.sport_id}&sub_type_id=${getDefaultMarketsForSport(competition)}`}>
+                                        Today Games
+                                    </a>
                                 </MenuItem>
                                 <MenuItem>
-                                    <a href={`/highlights?sport_id=${competition.sport_id}`}>Highlights</a>
+                                    <a href={`/highlights?sport_id=${competition.sport_id}&sub_type_id=${getDefaultMarketsForSport(competition)}`}>
+                                        Highlights
+                                    </a>
                                 </MenuItem>
                                 <MenuItem>
-                                    <a href={`/tomorrow?sport_id=${competition.sport_id}`}>
+                                    <a href={`/tomorrow?sport_id=${competition.sport_id}&sub_type_id=${getDefaultMarketsForSport(competition)}`}>
                                         Tomorrow
                                     </a>
                                 </MenuItem>

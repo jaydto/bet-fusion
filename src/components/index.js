@@ -51,7 +51,6 @@ const Index = (props) => {
         }
         endpoint += ` &sub_type_id=` + (url.searchParams.get('sub_type_id') || "1,10,18")
 
-
         let search_term = url.searchParams.get('search')
 
         if (search_term !== null) {

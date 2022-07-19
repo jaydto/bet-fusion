@@ -112,7 +112,7 @@ const MatchHeaderRow = (props) => {
 
 
     return (
-        <Container>
+        <Container className="full-mobile">
             <Row className="events-header">
                 <div className="col-4 left-text">
                     <h3 className="main-heading-1">
@@ -212,7 +212,7 @@ const SideBets = (props) => {
 
     return (
 
-        <div className={`col-lg-1 col-sm-1 col-md-1 col-xs-1 events-odd pad ${picked} align-self-center`}>
+        <div className={`bet-fix col-lg-1 col-sm-1 col-md-1 col-xs-1 events-odd pad ${picked} align-self-center`}>
             <a className="side" title={'More Markets'}
                href={`/match/${live ? 'live/' : ''}${
                    live ? match.parent_match_id : match?.match_id}`
@@ -404,7 +404,7 @@ const OddButton = (props) => {
             onClick={handleButtonOnClick}>
             {!detail &&
                 (
-                    <span className="theodds">
+                    <span className="theodds odd-fix">
                             {oddValue}
                         </span>
                 )

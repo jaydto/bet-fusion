@@ -4,6 +4,7 @@ import {Context} from '../context/store';
 import makeRequest from './utils/fetch-request';
 import {getBetslip} from './utils/betslip' ;
 import useInterval from "../hooks/set-interval.hook";
+import MobileCategories from "./header/MobileCategories";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -136,7 +137,7 @@ const Index = (props) => {
                         <div className="homepage">
                             <CarouselLoader/>
                             <MainTabs tab={location.pathname.replace("/", "")}/>
-                            {/*<MobileCategories/>*/}
+                            {/* <MobileCategories/> */}
                             <MatchList
                                 live={false}
                                 scroll={()=>onScroll()}

@@ -51,12 +51,12 @@ const HeaderNav = (props) => {
     return (
         <>
             <Container id="navbar-collapse-main"
-                       className={`d-none d-md-flex d-flex flex-row justify-content-sm-start justify-content-md-between header-menu ${searching ? 'hidden' : 'd-block'}`}>
+                       className={`d-none d-md-flex d-flex flex-row justify-content-sm-start justify-content-md-between header-menu ipad-change ${searching ? 'hidden' : 'd-block'}`}>
 
-                <ListGroup as="ul" xs="9" horizontal className="nav navbar-nav og ale ss">
-
+                <ListGroup as="ul" xs="9" horizontal className="nav navbar-nav og ale ss  col-lg-9 col-md-8 col-sm-8 change-display">
+                    
                     <li className={pathname === '/' ? "active" : ''}>
-                        <a className="cg fm ox anl url-link not-selectable" href="/" title="Home">Home</a>
+                        <a className="cg fm ox anl url-link not-selectable " href="/" title="Home">Home</a>
                     </li>
                     <li>
                         <a className={`g url-link live-game ${pathname === '/live' ? 'active' : ''}`} href="/live"
@@ -102,27 +102,27 @@ const HeaderNav = (props) => {
                         </a>
                     </li>
                 </ListGroup>
-                <ListGroup className={'align-self-end nav navbar-nav ss '} as={'ul'}>
-                    <li className={pathname === '/print-matches' ? '' : ''}>
-                        <a className="g url-link" href="#" title="Search"
+                <ListGroup className={'align-self-end nav navbar-nav ss  col-lg-3 col-md-4 col-sm-4  change-2 w-100 '} as={'ul'}>
+                    <li className={pathname === '/print-matches' ? '' : 'grid-1'}>
+                        <a className="g url-link fix-display" href="#" title="Search"
                            onClick={() => showSearchBar()}>
-                            <FontAwesomeIcon icon={faSearch}/> Search
+                            <span className=" space-icons"><FontAwesomeIcon icon={faSearch}/> </span>Search
                         </a>
                     </li>
                     <li className={pathname === '/how-to-play' ? 'active' : ''}>
-                        <a className="g url-link" href="/how-to-play" title="How to play">
-                            <FontAwesomeIcon icon={faQuestionCircle}/> Help
+                        <a className="g url-link fix-display" href="/how-to-play" title="How to play">
+                        <span className=" space-icons"><FontAwesomeIcon icon={faQuestionCircle}/> </span>Help
                         </a>
                     </li>
-                    <li className={pathname === '/print-matches' ? 'active' : 'fa-border'}>
-                        <a className="g url-link" href="/print-matches" title="Print Matches">
-                            <FontAwesomeIcon icon={faPrint}/> Print Matches
+                    <li className={pathname === '/print-matches' ? 'active' : 'fa-border py-md-2 py-lg-3 py-sm-0 '}>
+                        <a className="g url-link fix-print" href="/print-matches" title="Print Matches">
+                        <span className=" space-icons"><FontAwesomeIcon icon={faPrint}/> </span>Print Matches
                         </a>
                     </li>
                 </ListGroup>
             </Container>
             <Container id="navbar-collapse-main"
-                       className={`fadeIn header-menu d-flex justify-content-center ${searching ? 'd-block' : 'd-none'}`}>
+                       className={`fadeIn header-menu d-flex justify-content-center p-4 ${searching ? 'd-block' : 'd-none'}`}>
                 <ListGroup as="ul" xs="9" horizontal className="nav navbar-nav og ale ss col-md-6 text-center">
                     <div className="d-flex">
                         <div className="col-md-10">

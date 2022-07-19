@@ -946,6 +946,7 @@ button {
 
 .theodds {
     padding: 0;
+    font-weight: bold;
 }
 
 .slip-counter {
@@ -13729,11 +13730,20 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 }
 
 .overflow-ellipsis {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+
 }
 
 .match-detail-container {
-    width: 20% !important;
+    width: 26% !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 60px;
+    /*max-width: 20% !important;*/
+    /*margin-right: 2% !important;*/
+}
+
+.odd-button {
+    height: 35px !important;
+    line-height: 15px;
 }

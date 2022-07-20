@@ -23,9 +23,9 @@
   /* padding: 0.9px 20px !important; */
 }
 
-/*.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item {*/
-/*    padding: 0.5px 25px 0px 12px !important;*/
-/*}*/
+.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item {
+    padding: 0.5px 25px 0px 12px !important;
+}
 
 .virtual-game-image {
   cursor: pointer;
@@ -6849,6 +6849,10 @@ ul.sport {
   padding-right: 20px;
 }
 @media (max-width: 1090px) {
+    .disable-ipad{
+        margin-top: -12px;
+        font-size: 12px;
+    }
     .market-odds{
         flex-basis: auto;
     }

@@ -529,6 +529,8 @@ const getUpdatedMatchFromOdds = (props) => {
     delete newMatch['odds']
     delete newMatch['extra_odds']
 
+    console.log(newMatch)
+
     // console.log("New match details", newMatch)
     return newMatch;
 
@@ -584,7 +586,7 @@ const MatchRow = (props) => {
                 {/*    </div>*/}
                 {/*</a>*/}
             </div>
-            <Row className={`${jackpot ? 'col-4' : 'col'} mx-0 py-4 market-odds`}>
+            <Row className={`${jackpot ? 'col-4' : 'col'} mx-0 p-2 market-odds`}>
                 <div className="col-4 match-div-col" style={{padding: 0}}>
                     {(!pdown && match?.odds?.home_odd && match.odds.home_odd !== 'NaN' &&
                         match.market_active == 1 && match.odds.home_odd_active == 1)
@@ -609,7 +611,7 @@ const MatchRow = (props) => {
             </Row>
             {!jackpot && <>
                 {Object.entries(match?.extra_odds || {}).map(([marketName, odds], index) => (
-                    <Row className={`${index < 1 ? 'col' : 'col'} m-0 py-4`}>
+                    <Row className={`${index < 1 ? 'col' : 'col'} m-0 p-2`}>
                         {
                             Object.entries(odds || {}).map(([odd_key, odd_data]) => {
                                 return <div className={`${index < 1 ? 'col-4' : 'col-4'} match-div-col`}>
@@ -622,7 +624,7 @@ const MatchRow = (props) => {
                 ))
                 }
                 {Object.keys(match?.extra_odds || {}).length < 2 && <>
-                    <Row className={'col-2'}></Row>
+                    <EmptyTextRow odd_key={match?.odd_key} className={'p-2'}/>
                 </>}
             </>
             }

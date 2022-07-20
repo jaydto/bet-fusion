@@ -249,7 +249,7 @@ const SideBets = (props) => {
                    live ? match.parent_match_id : match?.match_id}`
                }>+{match.side_bets}
             </a>
-            <a href={"#"} title={'View Stats'} onClick={() => generateStatsUrl()}>
+            <a className="side" href={"#"} title={'View Stats'} onClick={() => generateStatsUrl()}>
                 <FontAwesomeIcon icon={faChartLine}/>
             </a>
         </div>

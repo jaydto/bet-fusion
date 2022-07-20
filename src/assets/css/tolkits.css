@@ -4189,6 +4189,9 @@ select[multiple].er {
 }
 
 @media (min-width: 768px) {
+    .span-change{
+        width:25%!important;
+    }
     .fi .et {
         display: inline-block;
         margin-bottom: 0;
@@ -7007,7 +7010,7 @@ ul.sport {
   }
 
   .amt {
-    /*padding-top: 90px !important;*/
+    padding-top: 90px !important;
   }
 
   .shrink-header .icon-holder img {
@@ -7297,6 +7300,9 @@ ul.sport {
   }
 }
 @media screen and (max-width: 767px) {
+    .hide2{
+        display:none;
+    }
     .space-button{
         width:5%;
     }
@@ -14859,7 +14865,7 @@ img.zoom-img {
 
     .app-header-nav {
         padding-left: 4px;
-        margin-top: -20px !important;
+        margin-top: -25px !important;
     }
 
     .password-change {

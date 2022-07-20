@@ -41,11 +41,6 @@ const MainTabs = (props) => {
                         <span className="col-sm-11 main-header">Tomorrow</span>
                     </a>
                 </div>
-                <div className="col p-0">
-                    <a className={' d-flex justify-content-center h-100'}>
-                        <MarketFilter/>
-                    </a>
-                </div>
             </Row>
         </Container>
     )

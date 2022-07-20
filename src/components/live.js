@@ -1,24 +1,24 @@
-import React,  { useContext, useLayoutEffect, useEffect, useCallback, useState, useMemo } from "react";
-import { useLocation, useParams } from 'react-router-dom';
+import React, {useContext, useLayoutEffect, useEffect, useCallback, useState, useMemo} from "react";
+import {useLocation, useParams} from 'react-router-dom';
 import makeRequest from './utils/fetch-request';
-import { getJackpotBetslip, getBetslip } from './utils/betslip' ;
+import {getJackpotBetslip, getBetslip} from './utils/betslip' ;
 
 import matches from "./utils/fetch-request";
 import useInterval from "../hooks/set-interval.hook";
-import { Context }  from '../context/store';
+import {Context} from '../context/store';
 import banner from '../assets/img/banner.jpg';
 
-const Header = React.lazy(()=>import('./header/header'));
-const Footer = React.lazy(()=>import('./footer/footer'));
-const LiveSideBar = React.lazy(()=>import('./sidebar/live-sidebar'));
-const CarouselLoader = React.lazy(()=>import('./carousel/index'));
-const SearchBar = React.lazy(()=>import('./header/search-bar'));
-const MatchList = React.lazy(()=>import('./matches/index'));
-const Right = React.lazy(()=>import('./right/index'));
+const Header = React.lazy(() => import('./header/header'));
+const Footer = React.lazy(() => import('./footer/footer'));
+const LiveSideBar = React.lazy(() => import('./sidebar/live-sidebar'));
+const CarouselLoader = React.lazy(() => import('./carousel/index'));
+const SearchBar = React.lazy(() => import('./header/search-bar'));
+const MatchList = React.lazy(() => import('./matches/index'));
+const Right = React.lazy(() => import('./right/index'));
 
 
 const Live = (props) => {
-    const [matches, setMatches] = useState(); 
+    const [matches, setMatches] = useState();
     const [state, dispatch] = useContext(Context);
     const {spid} = useParams();
 
@@ -28,44 +28,44 @@ const Live = (props) => {
 
     const findPostableSlip = () => {
         let betslips = getBetslip() || {};
-        var values = Object.keys(betslips).map(function(key){
+        var values = Object.keys(betslips).map(function (key) {
             return betslips[key];
         });
         return values;
     };
 
-	useInterval(async () => {
-        let endpoint = "/v1/matches/live";     
-        if(spid) {
-            endpoint += "?spid="+spid;
+    useInterval(async () => {
+        let endpoint = "/v1/matches/live";
+        if (spid) {
+            endpoint += "?spid=" + spid;
         }
         let betslip = findPostableSlip();
         let method = betslip ? "POST" : "GET";
-		await makeRequest({url:endpoint, method:method, data:betslip}).then(([status, result]) => {
-            if(status == 200) {
-                setMatches(result?.data||result)
-                if(result?.slip_data) {
+        await makeRequest({url: endpoint, method: method, data: betslip}).then(([status, result]) => {
+            if (status == 200) {
+                setMatches(result?.data || result)
+                if (result?.slip_data) {
                     setUserSlipsValidation(result?.slip_data)
                 }
-               setProducerDown(result?.producer_status === 1);
+                setProducerDown(result?.producer_status === 1);
             }
-		});                                                
+        });
     }, 2000);
 
-    const fetchData = useCallback(async() => {
-        let endpoint = "/v1/matches/live";     
-        if(spid) {
-            endpoint += "?spid="+spid;
+    const fetchData = useCallback(async () => {
+        let endpoint = "/v1/matches/live";
+        if (spid) {
+            endpoint += "?spid=" + spid;
         }
         let betslip = findPostableSlip();
         let method = betslip ? "POST" : "GET";
-        const [match_result] =  await Promise.all([
-            makeRequest({url:endpoint, method:method, data:betslip })
+        const [match_result] = await Promise.all([
+            makeRequest({url: endpoint, method: method, data: betslip})
         ]);
         let [m_status, m_result] = match_result;
-        if(m_status == 200){
-            setMatches(m_result?.data||m_result)
-            if(m_result?.slip_data) {
+        if (m_status == 200) {
+            setMatches(m_result?.data || m_result)
+            if (m_result?.slip_data) {
                 setUserSlipsValidation(m_result?.slip_data);
             }
             setProducerDown(m_result?.producer_status === 1);
@@ -74,35 +74,35 @@ const Live = (props) => {
     }, []);
 
 
-    useEffect(()=>{                                                             
+    useEffect(() => {
         fetchData();
         let cachedSlips = getBetslip("betslip");
-        if(cachedSlips){
-            dispatch({type:"SET", key:"betslip", payload:cachedSlips}); 
+        if (cachedSlips) {
+            dispatch({type: "SET", key: "betslip", payload: cachedSlips});
         }
-        return () => {                                                          
-            setMatches(null); 
-        };                                                                      
+        return () => {
+            setMatches(null);
+        };
     }, [fetchData]);
 
-   return (
-       <>
-        <Header />        
-        <div className="by amt">
-          <div className="gc">
-            <LiveSideBar  />
-            <div className="gz home">
-                <div className="homepage">
-                    <CarouselLoader />
-                     { matches && <MatchList live  matches={matches}  pdown={producerDown}/> }
-                </div> 
-            </div>  
-            <Right betslipValidationData={userSlipsValidation} />
-          </div>
-        </div>
-       <Footer />
-       </>
-   )
+    return (
+        <>
+            <Header/>
+            <div className="amt">
+                <div className="d-flex flex-row justify-content-between">
+                    <LiveSideBar/>
+                    <div className="gz home">
+                        <div className="homepage">
+                            <CarouselLoader/>
+                            {matches && <MatchList live matches={matches} pdown={producerDown}/>}
+                        </div>
+                    </div>
+                    <Right betslipValidationData={userSlipsValidation}/>
+                </div>
+            </div>
+            <Footer/>
+        </>
+    )
 }
 
 export default Live

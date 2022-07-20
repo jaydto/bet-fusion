@@ -101,7 +101,7 @@ const HeaderNav = (props) => {
                             </span>
                         </a>
                     </li>
-                    <li className={pathname === '/print-matches' ? '' : 'spacing-end'}>
+                    <li className={pathname === '/print-matches' ? 'spacing-end' : 'spacing-end'}>
                         <a className="g url-link fix-display" href="#" title="Search"
                            onClick={() => showSearchBar()}>
                             <span className=" space-icons"><FontAwesomeIcon icon={faSearch}/> </span>Search
@@ -112,7 +112,7 @@ const HeaderNav = (props) => {
                             <span className=" space-icons"><FontAwesomeIcon icon={faQuestionCircle}/> </span>Help
                         </a>
                     </li>
-                    <li className={pathname === '/print-matches' ? 'active' : 'fa-border py-md-0 py-lg-3 py-sm-0 d-flex align-items-center'}>
+                    <li className={pathname === '/print-matches' ? 'active py-3' : 'fa-border py-md-0 py-lg-3 py-sm-0 d-flex align-items-center'}>
                         <a className="g url-link fix-print" href="/print-matches" title="Print Matches">
                             <span className=" space-icons"><FontAwesomeIcon icon={faPrint}/> </span>Print <span className={'hide1'}>Matches</span>
                         </a>

@@ -120,7 +120,7 @@ const HeaderNav = (props) => {
 
             </Container>
             <Container id="navbar-collapse-main"
-                       className={`fadeIn header-menu d-flex justify-content-center p-4 ${searching ? 'd-block' : 'd-none'}`}>
+                       className={`fadeIn header-menu d-flex justify-content-center px-4 ${searching ? 'd-block' : 'd-none'}`}>
                 <ListGroup as="ul" xs="9" horizontal className="nav navbar-nav og ale ss col-md-6 text-center">
                     <div className="d-flex">
                         <div className="col-md-10">

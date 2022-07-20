@@ -696,6 +696,10 @@ header, li a, .thedate span {
   justify-content: center;
     font-size: 14px;
 }
+
+.more-markets-container{
+    min-width: 100px !important;
+}
 .picked .theodds,
 .picked .mobi-odd {
   color: #fff;

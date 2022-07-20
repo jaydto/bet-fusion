@@ -1,0 +1,27 @@
+---
+- name: server
+  hosts: "*"
+
+  become: yes
+  gather_facts: no
+  vars:
+      git_repo_url: https://github.com/rubewafula/betnare-web.git
+      repo_path: /usr/nginx/betnare-web
+  tasks:
+    - name: Installing nodejs
+      apt: 
+        name: nodejs 
+        update_cache: yes
+    - name: Installing npm
+      apt: 
+        name: npm 
+        update_cache: yes
+    - name: Installing dependencies
+      command: npm install
+    - name: Building
+      command: npm run build
+    - name: Installing web server
+      command: npm install serve
+    # - name: python installation
+    #   pip:
+    #     requirements: /path/to requirements.txt

@@ -13,7 +13,7 @@ const LiveScore = () => {
                         <div className="homepage">
                             <div className="col-md-12 d-flex flex-column">
                                 <div
-                                    className='col-md-12 primary-bg p-4 text-center d-flex flex-row justify-content-center'>
+                                    className='col-md-12 primary-bg p-4 text-center d-flex d-none flex-row justify-content-center'>
                                     <h5 className="inline-block align-self-center text-uppercase">
                                         Live Score
                                     </h5>
@@ -24,7 +24,7 @@ const LiveScore = () => {
                                             <div className="col-md-12">
                                                 <div className="d-flex flex-column">
                                                     <iframe src="https://lsdev.sir.sportradar.com/betnaremts"
-                                                            height={'100%'} className={'vh-100'}
+                                                            height={'100%'} className={'vh-100 frame-spacing'}
                                                             title="Betnare Livescore"></iframe>
                                                 </div>
                                             </div>

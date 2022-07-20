@@ -23,10 +23,10 @@ const MarketFilter = () => {
 
     return (
         <>
-            <div className="col-md-12 shadow-sm text-white d-flex justify-content-end h-100 p-0">
-                <button className={'bg-dark rounded btn-outline-dark text-white align-self-end h-100 hover-none'}
+            <div className="col-md-12 shadow-sm text-white d-flex justify-content-end h-100 p-0 ">
+                <button className={'bg-dark rounded btn-outline-dark text-white align-self-end h-100 hover-none p-0 btn-spacing '}
                         onClick={() => setShowFilters(true)}>
-                    <FontAwesomeIcon icon={faFilter}/> Filter Markets <FontAwesomeIcon icon={faAngleDown}/>
+                    <FontAwesomeIcon icon={faFilter}/> More Markets <FontAwesomeIcon icon={faAngleDown}/>
                 </button>
             </div>
             <Modal show={showFilters} onHide={handleClose}

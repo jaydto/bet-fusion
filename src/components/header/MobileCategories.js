@@ -13,7 +13,7 @@ const MobileCategories = () => {
                              key={index}
                              style={{minWidth: "120px"}}>
                             <a href={`/upcoming?sport_id=${category.sport_id}/`}
-                               className={'card card-block mx-1 d-flex flex-column'}>
+                               className={'card card-block mx-1 d-flex flex-column h-100'}>
                                 <img style={{borderRadius: '50%', height: '35px', width: "35px"}}
                                      className={'align-self-center'}
                                      src={require(`./../../assets${category.flag}`)}/>

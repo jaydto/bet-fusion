@@ -24,7 +24,7 @@ const MainTabs = (props) => {
     }
 
     return (
-        <Container>
+        <Row className="full-mobile">
             <Row className="top-matches d-flex flex-row ">
                 <div className="col bg-black">
                     <a className={`cursor-pointer w-100 ${u_class}`} onClick={() => getLink('upcoming')}>
@@ -41,8 +41,13 @@ const MainTabs = (props) => {
                         <span className="col-sm-11 main-header">Tomorrow</span>
                     </a>
                 </div>
+                <div className="col p-0 bg-dark">
+                    <a className={' d-flex justify-content-center h-100'}>
+                        <MarketFilter/>
+                    </a>
+                </div>
             </Row>
-        </Container>
+        </Row>
     )
 
 }

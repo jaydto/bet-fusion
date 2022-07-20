@@ -245,7 +245,7 @@ li.bet-option {
     color: #FFC428;
     height: 19px;
     font-weight: normal;
-    font-size: 18px;
+    font-size: 12px;
     font-weight: bold;
 }
 .capitalize {
@@ -276,7 +276,7 @@ li.bet-option {
 }
 .et.label {
     float: left;
-    opacity: ;
+    /*opacity: ;*/
     margin-left: 9px;
     text-transform: uppercase;
     font-size: 12px;

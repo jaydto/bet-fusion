@@ -104,7 +104,7 @@ const Sidebar = (props) => {
             display: 'flex',
             overflow: 'scroll initial',
             zIndex: 10,
-            marginRight: '5px',
+            marginRight: '2px',
             top: "100px"
         }}
              className={`vh-100 text-white sticky-top d-none d-md-block up`}>

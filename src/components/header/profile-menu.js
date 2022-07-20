@@ -3,6 +3,7 @@ import { faUser, faLock, faCoins } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { formatNumber } from "../utils/betslip";
 import { Link } from "react-router-dom";
+import {Navbar} from "react-bootstrap";
 
 const ProfileMenu = (props) => {
   const { user } = props;
@@ -10,7 +11,7 @@ const ProfileMenu = (props) => {
     <>
       {user && (
         <div className="ale ss profile d-flex flex-row row  tablet-design ">
-            <div className="{'mt-1'} col-md-3 d-flex flex-column justify-content-end w-change1">
+            <div className="{'mt-1'} col-md-2 d-flex flex-column justify-content-end space-deposit">
             <Link
               to={{ pathname: "/deposit" }}
               className={"btn text-white btn-outline-warning   "}
@@ -23,7 +24,7 @@ const ProfileMenu = (props) => {
           
           <div className="col-md-3  d-flex flex-column right justify-content-end w-change1">
           <div>
-              <span className="font-tbt py-1 px-4">Bonus  {formatNumber(user.bonus) || 0} </span>
+              <span className="font-tbt py-2 px-2">Bonus  {formatNumber(user.bonus) || 0} </span>
               </div>
               <div>
               <Link to={{ pathname: "/my-bets" }} className={"btn text-white w-100 d-content"}>
@@ -37,7 +38,7 @@ const ProfileMenu = (props) => {
 
           <div className="col-md-3 d-flex flex-column right justify-content-end w-change2">
               <div>
-              <span className="font-tbt py-1 flex-wrap">Balance  {formatNumber(user.balance) || 0} </span>
+              <span className="font-tbt py-2 flex-wrap">Balance  {formatNumber(user.balance) || 0} </span>
               </div>
               <div>
               <Link to={{ pathname: "/withdraw" }} className={"btn text-white w-100 d-content"}>
@@ -63,7 +64,9 @@ const ProfileMenu = (props) => {
               </a>
             </div>
           </div>
-
+          <div className="col-1 button-toggle space-button">
+            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"md"}`} className="px-3 py-3"/>
+          </div>
         
         </div>
       )}

@@ -1378,6 +1378,7 @@ header {
 
 @media (max-width: 768px) {
 
+
     .mobi {
         display: block !important;
     }
@@ -6890,7 +6891,9 @@ ul.sport {
 }
 
 @media (max-width: 767px) {
-
+    .amt{
+        margin-top:0px!important;
+    }
   .rescale{
     margin-left:-5px;
   }
@@ -6936,9 +6939,7 @@ ul.sport {
     /*justify-content: flex-start;*/
     /*grid-column: 1/12;*/
   }
-  .amt {
-    margin-top: 0px !important;
-  }
+
   .container {
     padding: 0 !important;
   }
@@ -7006,7 +7007,7 @@ ul.sport {
   }
 
   .amt {
-    padding-top: 90px !important;
+    /*padding-top: 90px !important;*/
   }
 
   .shrink-header .icon-holder img {
@@ -7259,6 +7260,9 @@ ul.sport {
 }
 
 @media (min-width: 768px) {
+   .amt{
+       margin-top: 110px!important;
+   }
   .disp-sidebar {
     display: flex;
     z-index: 10;
@@ -7293,6 +7297,12 @@ ul.sport {
   }
 }
 @media screen and (max-width: 767px) {
+    .space-button{
+        width:5%;
+    }
+    .space-deposit{
+        width:15%;
+    }
   .eo {
     width: 100%;
     margin-bottom: 16.5px;
@@ -7503,9 +7513,7 @@ ul.sport {
   .app-header-nav {
     margin-top: 100px;
   }
-  .amt{
-    margin-top: 110px!important;
-  }
+
 }
 
 @media (min-width: 1160px) {

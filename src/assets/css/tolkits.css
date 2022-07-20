@@ -24,7 +24,7 @@
 }
 
 .pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item {
-    padding: 0.5px 25px 0px 12px !important;
+    /*padding: 0.5px 25px 0px 12px !important;*/
 }
 
 .virtual-game-image {
@@ -15227,7 +15227,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 
 .betslip-container {
     position: sticky !important;
-    /*top: 140px !important;*/
+    top: 140px !important;
     background: #253743 !important;
 }
 

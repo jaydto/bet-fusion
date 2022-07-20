@@ -20,11 +20,11 @@
 }
 
 .pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item {
-  /* padding: 0.9px 20px !important; */
+   /*padding: 0.9px 20px !important;*/
 }
 
 .pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item {
-    /*padding: 0.5px 25px 0px 12px !important;*/
+    padding: 0.5px 25px 0px 12px !important;
 }
 
 .virtual-game-image {

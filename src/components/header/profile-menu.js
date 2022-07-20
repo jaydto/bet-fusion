@@ -23,7 +23,7 @@ const ProfileMenu = (props) => {
           
           <div className="col-md-3  d-flex flex-column right justify-content-end w-change1">
           <div>
-              <span className="font-tbt py-1 px-4">Bonus  {formatNumber(user.bonus) || 0} </span>
+              <span className="font-tbt py-2 px-2">Bonus  {formatNumber(user.bonus) || 0} </span>
               </div>
               <div>
               <Link to={{ pathname: "/my-bets" }} className={"btn text-white w-100 d-content"}>
@@ -37,7 +37,7 @@ const ProfileMenu = (props) => {
 
           <div className="col-md-3 d-flex flex-column right justify-content-end w-change2">
               <div>
-              <span className="font-tbt py-1 flex-wrap">Balance  {formatNumber(user.balance) || 0} </span>
+              <span className="font-tbt py-2 flex-wrap">Balance  {formatNumber(user.balance) || 0} </span>
               </div>
               <div>
               <Link to={{ pathname: "/withdraw" }} className={"btn text-white w-100 d-content"}>

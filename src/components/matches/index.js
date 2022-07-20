@@ -152,9 +152,10 @@ const MatchHeaderRow = (props) => {
                         <div className={`col-4 ${marketCols > 2 ? 'd-block' : 'd-none'}`}>
                             {extraMarketDisplays?.[2] || ""}
                         </div>
-                        <div className="col-4 events-odd"></div>
                     </div>
                 )}
+                <div className="col-4 events-odd"></div>
+
             </Row>
         </Container>
     )
@@ -175,7 +176,7 @@ const MoreMarketsHeaderRow = (props) => {
     } = props;
 
     return (
-        <Container>
+        <Row>
             <Row className="panel-header primary-bg">
 
                 <h4 className="inline-block">
@@ -202,7 +203,7 @@ const MoreMarketsHeaderRow = (props) => {
                     </Row>
                 }
             </Row>
-        </Container>
+        </Row>
     )
 }
 
@@ -218,7 +219,7 @@ const SideBets = (props) => {
                    live ? match.parent_match_id : match?.match_id}`
                }>+{match.side_bets}
             </a>
-            <a href="" title={'View Stats'}>
+            <a href="" className={'side '} title={'View Stats'}>
                 <FontAwesomeIcon icon={faChartLine}/>
             </a>
         </div>
@@ -506,7 +507,7 @@ const getUpdatedMatchFromOdds = (props) => {
 const MatchRow = (props) => {
     const {match, jackpot, live, pdown} = props;
     return (
-        <Row className="top-matches d-flex">
+        <Row className="top-matches d-flex fix-bets">
             <div className="col-sm-1 col-xs-12 pad left-text">
                 {live &&
                     <>
@@ -553,7 +554,7 @@ const MatchRow = (props) => {
                 {/*    </div>*/}
                 {/*</a>*/}
             </div>
-            <Row className={`${jackpot ? 'col-4' : 'col'} m-0 p-4`}>
+            <Row className={`${jackpot ? 'col-4' : 'col'} mx-0 py-4 market-odds`}>
                 <div className="col-4 match-div-col" style={{padding: 0}}>
                     {(!pdown && match?.odds?.home_odd && match.odds.home_odd !== 'NaN' &&
                         match.market_active == 1 && match.odds.home_odd_active == 1)
@@ -578,7 +579,7 @@ const MatchRow = (props) => {
             </Row>
             {!jackpot && <>
                 {Object.entries(match?.extra_odds || {}).map(([marketName, odds], index) => (
-                    <Row className={`${index < 1 ? 'col' : 'col'} m-0 p-4`}>
+                    <Row className={`${index < 1 ? 'col' : 'col'} m-0 py-4`}>
                         {
                             Object.entries(odds || {}).map(([odd_key, odd_data]) => {
                                 return <div className={`${index < 1 ? 'col-4' : 'col-4'} match-div-col`}>

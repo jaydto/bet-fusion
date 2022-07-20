@@ -51,9 +51,9 @@ const HeaderNav = (props) => {
     return (
         <>
             <Container id="navbar-collapse-main"
-                       className={`d-none d-md-flex d-flex flex-row justify-content-sm-start justify-content-md-between header-menu ipad-change ${searching ? 'hidden' : 'd-block'}`}>
+                       className={`d-none d-md-flex d-flex flex-row  header-menu ${searching ? 'hidden' : 'd-block'}`}>
 
-                <ListGroup as="ul" xs="9" horizontal className="nav navbar-nav og ale ss  col-lg-9 col-md-8 col-sm-8 change-display">
+                <ListGroup as="ul" xs="12" horizontal className="nav navbar-nav og d-flex ale ss  col-lg-12 col-md-12 col-sm-12 change-display">
                     
                     <li className={pathname === '/' ? "active" : ''}>
                         <a className="cg fm ox anl url-link not-selectable " href="/" title="Home">Home</a>
@@ -101,9 +101,7 @@ const HeaderNav = (props) => {
                             </span>
                         </a>
                     </li>
-                </ListGroup>
-                <ListGroup className={'align-self-end nav navbar-nav ss  col-lg-3 col-md-4 col-sm-4  change-2 w-100 '} as={'ul'}>
-                    <li className={pathname === '/print-matches' ? '' : 'grid-1'}>
+                    <li className={pathname === '/print-matches' ? '' : 'spacing-end'}>
                         <a className="g url-link fix-display" href="#" title="Search"
                            onClick={() => showSearchBar()}>
                             <span className=" space-icons"><FontAwesomeIcon icon={faSearch}/> </span>Search
@@ -111,15 +109,16 @@ const HeaderNav = (props) => {
                     </li>
                     <li className={pathname === '/how-to-play' ? 'active' : ''}>
                         <a className="g url-link fix-display" href="/how-to-play" title="How to play">
-                        <span className=" space-icons"><FontAwesomeIcon icon={faQuestionCircle}/> </span>Help
+                            <span className=" space-icons"><FontAwesomeIcon icon={faQuestionCircle}/> </span>Help
                         </a>
                     </li>
-                    <li className={pathname === '/print-matches' ? 'active' : 'fa-border py-md-2 py-lg-3 py-sm-0 '}>
+                    <li className={pathname === '/print-matches' ? 'active' : 'fa-border py-md-0 py-lg-3 py-sm-0 d-flex align-items-center'}>
                         <a className="g url-link fix-print" href="/print-matches" title="Print Matches">
-                        <span className=" space-icons"><FontAwesomeIcon icon={faPrint}/> </span>Print Matches
+                            <span className=" space-icons"><FontAwesomeIcon icon={faPrint}/> </span>Print <span className={'hide1'}>Matches</span>
                         </a>
                     </li>
                 </ListGroup>
+
             </Container>
             <Container id="navbar-collapse-main"
                        className={`fadeIn header-menu d-flex justify-content-center p-4 ${searching ? 'd-block' : 'd-none'}`}>

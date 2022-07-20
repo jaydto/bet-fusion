@@ -24,7 +24,7 @@ const MainTabs = (props) => {
     }
 
     return (
-        <Container className="full-mobile">
+        <Row className="full-mobile">
             <Row className="top-matches d-flex flex-row ">
                 <div className="col bg-black">
                     <a className={`cursor-pointer w-100 ${u_class}`} onClick={() => getLink('upcoming')}>
@@ -47,7 +47,7 @@ const MainTabs = (props) => {
                     </a>
                 </div>
             </Row>
-        </Container>
+        </Row>
     )
 
 }

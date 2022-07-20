@@ -15,7 +15,7 @@ const ProfileMenu = (props) => {
               to={{ pathname: "/deposit" }}
               className={"btn text-white btn-outline-warning   "}
             >
-              <span className="font-tbt overflow-hidden btn-outline-warning rescale">
+              <span className="font-tbt overflow-hidden justify-content-center btn-outline-warning rescale">
                <span className=" space-icons"> <FontAwesomeIcon icon={faCoins} /></span> Deposit 
               </span>
             </Link>

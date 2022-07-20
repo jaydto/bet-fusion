@@ -98,7 +98,7 @@ const Sidebar = (props) => {
             display: 'flex',
             overflow: 'scroll initial',
             zIndex: 10,
-            marginRight: '5px',
+            marginRight: '0px',
             top: "100px"
         }}
              className={`vh-100 text-white sticky-top d-none d-md-block up`}>
@@ -159,7 +159,7 @@ const Sidebar = (props) => {
                                         ))}
                                     </SubMenu>
                                 )}
-                                <SubMenu title={'Countries'} style={{maxHeight: '300px', overflow: 'scroll'}}>
+                                <SubMenu title={'Countries'} style={{maxHeight: '300px', overflowY: 'auto' , overflowX:'hidden'}}>
                                     {competition?.categories.map((country, countryKey) => (
                                         <div key={`${countryKey}_category`}>
                                             <SubMenu title={country.category_name}

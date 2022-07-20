@@ -138,7 +138,7 @@ const BetSlip = (props) => {
 
     return (
         <div className="bet-body text-white">
-            <div className="flow" style={{maxHeight: "50vh"}}>
+            <div className="flow" style={{maxHeight: "50vh",overflowY:"auto"}}>
                 <ul>
                     {Object.entries(betslipsData || {}).map(([match_id, slip]) => {
                         let odd = slip.odd_value;

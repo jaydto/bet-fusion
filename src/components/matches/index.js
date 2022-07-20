@@ -67,33 +67,40 @@ const MatchHeaderRow = (props) => {
 
         const markets = [
             {
-                id: "1,18", name: "1X2 & Total Over/Under 2.5", extra_market_cols: "2", extra_markets_display: [
-                    "Over", "Under"
+                id: "18", name: "Over/Under 2.5", extra_market_cols: "2", extra_markets_display: [
+                    "Under", "Over"
                 ]
             },
             {
-                id: "1,10", name: "1X2 & Double Chance", extra_market_cols: "3", extra_markets_display: [
+                id: "10", name: "Double Chance", extra_market_cols: "3", extra_markets_display: [
                     "1X", "X2", "12"
                 ]
             },
             {
-                id: "1,29", name: "1X2 & Both Teams to Score", extra_market_cols: "2", extra_markets_display: [
-                    "YES", "NO"
+                id: "29", name: "Both Teams to Score", extra_market_cols: "2", extra_markets_display: [
+                    "NO", "YES"
                 ]
             },
         ]
 
+
         let url = new URL(window.location)
 
-        let sub_types = url.searchParams.get('sub_type_id')
+        let sub_types = (url.searchParams.get('sub_type_id') || "1,29,18").split(",")
 
-        if (sub_types) {
-            let selectedMarket = markets.filter((market) => market.id === sub_types)
+        let extraMarkets = []
+
+        sub_types.forEach((sub_type) => {
+            let selectedMarket = markets.filter((market) => market.id === sub_type)
+
             if (selectedMarket.length > 0) {
-                setMarketCols(selectedMarket[0].extra_market_cols)
-                setExtraMarketDisplays(selectedMarket[0].extra_markets_display)
+                extraMarkets.push(selectedMarket[0])
             }
-        }
+        })
+
+        setExtraMarketDisplays(extraMarkets)
+
+        console.log(extraMarketDisplays)
     }
 
 
@@ -141,18 +148,29 @@ const MatchHeaderRow = (props) => {
                         2
                     </div>
                 </div>
-                {!live && (
-                    <div className={'col-2 d-flex flex-row p-3 ml-'}>
-                        <div className="col-4">
-                            {extraMarketDisplays?.[0] || ""}
-                        </div>
-                        <div className={`col-4 events-odd ${marketCols > 1 ? 'd-block' : 'd-none'}`}>
-                            {extraMarketDisplays?.[1] || ""}
-                        </div>
-                        <div className={`col-4 ${marketCols > 2 ? 'd-block' : 'd-none'}`}>
-                            {extraMarketDisplays?.[2] || ""}
-                        </div>
-                        <div className="col-4 events-odd"></div>
+                {!live && extraMarketDisplays.length > 0 && (
+                    <div className={'col-6 d-flex flex-row'}>
+                        {extraMarketDisplays?.map((extra_market) => (
+                            <div className={'col-4 d-flex flex-column'}>
+                                <span className={'small'}>
+                                    {extra_market.name}
+                                </span>
+                                <div className={'d-flex flex-row'}>
+                                    <div className="col-6 small text-uppercase">
+                                        {(extra_market.extra_markets_display[0])}
+                                    </div>
+                                    <div
+                                        className={`col events-odd small text-uppercase ${marketCols > 1 ? 'd-block' : 'd-none'}`}>
+                                        {(extra_market.extra_markets_display[1])}
+                                    </div>
+                                    {extra_market?.extra_market_cols > 2 && <div
+                                        className={`col-6 small text-uppercase`}>
+                                        {(extra_market.extra_markets_display[2])}
+                                    </div>}
+
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 )}
             </Row>
@@ -210,6 +228,17 @@ const SideBets = (props) => {
     const {match, live} = props;
     const [picked,] = useState();
 
+    const generateStatsUrl = () => {
+        let categories = getFromLocalStorage('categories')
+        // console.log(categories)
+        let sport_id = new URL(window.location).searchParams.get('sport_id') || 79
+        let sport = categories?.all_sports?.filter((category) => category.sport_id == sport_id)
+        let home_id = ''
+        let away_id = ''
+        let url = `https:https//s5dev.sir.sportradar.com/betnaremts/en/${sport_id}/season/${sport}/h2h/${home_id}/${away_id}`
+        let link = new URL(url)
+    }
+
     return (
 
         <div className={`col-lg-1 col-sm-1 col-md-1 col-xs-1 events-odd pad ${picked} align-self-center`}>
@@ -218,7 +247,7 @@ const SideBets = (props) => {
                    live ? match.parent_match_id : match?.match_id}`
                }>+{match.side_bets}
             </a>
-            <a href="" title={'View Stats'}>
+            <a href={"#"} title={'View Stats'} onClick={() => generateStatsUrl()}>
                 <FontAwesomeIcon icon={faChartLine}/>
             </a>
         </div>

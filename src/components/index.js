@@ -49,7 +49,7 @@ const Index = (props) => {
         if (sport_id !== null) {
             endpoint += " &sport_id=" + sport_id
         }
-        endpoint += ` &sub_type_id=` + (url.searchParams.get('sub_type_id') || "1,10,18")
+        endpoint += ` &sub_type_id=` + (url.searchParams.get('sub_type_id') || "1,29,18")
 
         let search_term = url.searchParams.get('search')
 
@@ -86,7 +86,7 @@ const Index = (props) => {
             endpoint += " &sport_id=" + sport_id
         }
 
-        endpoint += ` &sub_type_id=` + (url.searchParams.get('sub_type_id') || "1,10,18")
+        endpoint += ` &sub_type_id=` + (url.searchParams.get('sub_type_id') || "1,29,18")
 
         await makeRequest({url: endpoint, method: "POST", data: betslip}).then(([status, result]) => {
             if (status == 200) {

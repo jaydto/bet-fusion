@@ -137,6 +137,7 @@ const MatchHeaderRow = (props) => {
                 {/*    <div className="col-4 events-odd"></div>*/}
                 {/*</div>*/}
 
+                
                 <div className="col-2 m-0 p-4 row p-3">
                     <div className="col-4 match-div-col">
                         1
@@ -173,8 +174,6 @@ const MatchHeaderRow = (props) => {
                         ))}
                     </div>
                 )}
-                <div className="col-4 events-odd"></div>
-
             </Row>
         </Container>
     )

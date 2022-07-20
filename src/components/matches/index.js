@@ -626,14 +626,29 @@ const MatchRow = (props) => {
                     )
                 ))
                 }
-                {Object.keys(match?.extra_odds || {}).length < 2 &&
+                {
+                    Object.keys(match?.extra_odds || {}).length < 2 &&
+                    <>
+                        <Row className={`${jackpot ? 'col-4' : 'col'} mx-0 p-4 market-odds`}>
+                            <div className="col-4 events-odd match-div-col" style={{padding: 0}}>
+                                <EmptyTextRow odd_key={match?.odd_key} className={'p-4'}/>
+                                <EmptyTextRow odd_key={match?.odd_key} className={'p-4'}/>
+                                <EmptyTextRow odd_key={match?.odd_key} className={'p-4'}/>
+                            </div>
+                        </Row>
+                    </>
+                } {
+                Object.keys(match?.extra_odds || {}).length < 1 &&
+                <>
                     <Row className={`${jackpot ? 'col-4' : 'col'} mx-0 p-4 market-odds`}>
                         <div className="col-4 events-odd match-div-col" style={{padding: 0}}>
                             <EmptyTextRow odd_key={match?.odd_key} className={'p-4'}/>
                             <EmptyTextRow odd_key={match?.odd_key} className={'p-4'}/>
                             <EmptyTextRow odd_key={match?.odd_key} className={'p-4'}/>
                         </div>
-                    </Row>}
+                    </Row>
+                </>
+            }
             </>
             }
             {!pdown && !jackpot && (match?.side_bets > 1) &&

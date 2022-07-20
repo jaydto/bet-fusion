@@ -11,7 +11,7 @@ const ProfileMenu = (props) => {
     <>
       {user && (
         <div className="ale ss profile d-flex flex-row row  tablet-design ">
-            <div className="{'mt-1'} col-md-2 d-flex flex-column justify-content-end space-deposit">
+            <div className="{'mt-1'} col-md-2 span-change d-flex flex-column justify-content-end space-deposit">
             <Link
               to={{ pathname: "/deposit" }}
               className={"btn text-white btn-outline-warning   "}

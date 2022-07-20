@@ -137,7 +137,7 @@ const MatchHeaderRow = (props) => {
                 {/*    <div className="col-4 events-odd"></div>*/}
                 {/*</div>*/}
 
-                
+
                 <div className="col-2 m-0 p-4 row p-3">
                     <div className="col-4 match-div-col">
                         1
@@ -241,16 +241,18 @@ const SideBets = (props) => {
     }
 
     return (
-
-        <div className={`bet-fix col-lg-1 col-sm-1 col-md-1 col-xs-1 events-odd pad ${picked} align-self-center`}>
-            <a className="side" title={'More Markets'}
-               href={`/match/${live ? 'live/' : ''}${
-                   live ? match.parent_match_id : match?.match_id}`
-               }>+{match.side_bets}
-            </a>
-            <a className="side" href={"#"} title={'View Stats'} onClick={() => generateStatsUrl()}>
-                <FontAwesomeIcon icon={faChartLine}/>
-            </a>
+        <div
+            className={`bet-fix events-odd pad ${picked} align-self-center more-markets-container`}>
+            {(match?.side_bets > 1) && <>
+                <a className="side" title={'More Markets'}
+                   href={`/match/${live ? 'live/' : ''}${
+                       live ? match.parent_match_id : match?.match_id}`
+                   }>+{match.side_bets}
+                </a>
+                <a className="side" href={"#"} title={'View Stats'} onClick={() => generateStatsUrl()}>
+                    <FontAwesomeIcon icon={faChartLine}/>
+                </a>
+            </>}
         </div>
     )
 
@@ -650,7 +652,7 @@ const MatchRow = (props) => {
             }
             </>
             }
-            {!pdown && !jackpot && (match?.side_bets > 1) &&
+            {!pdown && !jackpot &&
                 <SideBets match={match} live={live} style={{d: "inline"}}/>}
         </Row>
     )

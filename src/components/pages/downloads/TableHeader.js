@@ -1,8 +1,7 @@
 import React from 'react';
 import {Text, View, StyleSheet, Image} from '@react-pdf/renderer';
-import logo from "../../../assets/img/logo.jpg";
+import PrintHeader from "../../../assets/img/banner/print-matches/HEADER.jpg"
 
-const borderColor = '#90e5fc'
 const styles = StyleSheet.create({
     row: {
         marginTop: 5,
@@ -17,8 +16,8 @@ const styles = StyleSheet.create({
         padding: 5
     },
     logo: {
-        height: 50,
-        width: "20%",
+        height: "auto",
+        width: "100%",
     },
     headerSection: {
         padding: 5,
@@ -32,7 +31,7 @@ const styles = StyleSheet.create({
 const TableHeader = () => (
     <>
         <View style={styles.row}>
-            <Image style={styles.logo} src={logo}/>
+            <Image style={styles.logo} src={PrintHeader}/>
         </View>
         <View style={styles.headerSection}>
             <Text>

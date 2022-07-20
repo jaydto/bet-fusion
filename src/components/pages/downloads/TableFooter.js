@@ -1,5 +1,6 @@
 import React from 'react';
-import {Text, View, StyleSheet} from '@react-pdf/renderer';
+import {Text, View, StyleSheet, Image} from '@react-pdf/renderer';
+import PrintFooter from "../../../assets/img/banner/print-matches/FOOTER.jpg"
 
 const borderColor = '#90e5fc'
 const styles = StyleSheet.create({
@@ -52,21 +53,7 @@ const TableFooter = ({items}) => {
                     4087777
                 </Text>
             </View>
-            <View style={styles.headerContainer}>
-                <Text style={styles.companyMetaText}>Betnare Kenya</Text>
-                <Text style={styles.companyMetaText}>PAYBILL: 4087777</Text>
-                <Text style={styles.companyMetaText}>SUPPORT: support@betnare.com</Text>
-                <Text style={styles.companyMetaText}>PHONE: 0726738394</Text>
-            </View>
-            <View style={styles.license}>
-                <Text>
-                    Betnare Kenya is licensed by the Betting & Licensing Control Board
-                    under BCLB NO. 0000397.
-                </Text>
-                <Text>
-                    Gambling can be addictive, please gamble responsibly. 18+ only.
-                </Text>
-            </View>
+            <Image style={styles.logo} src={PrintFooter}/>
         </>
     )
 };

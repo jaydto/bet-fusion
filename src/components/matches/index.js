@@ -52,7 +52,7 @@ const EmptyTextRow = (props) => {
 };
 
 const MatchHeaderRow = (props) => {
-    const {live, first_match} = props;
+    const {live, first_match, jackpot} = props;
     //const [state, ]  = useContext(Context);
     const categories = getFromLocalStorage('categories')
     const sport_id = new URL(window.location).searchParams.get('sport_id') || 79
@@ -177,7 +177,7 @@ const MatchHeaderRow = (props) => {
                             </div>
                         </div>
                     }
-                    {!live && extraMarketDisplays.length > 0 && (
+                    {!live && !jackpot && extraMarketDisplays.length > 0 && (
                         <div className={'d-flex flex-row'}>
                             {extraMarketDisplays?.map((extra_market) => (
                                 <div className={'d-flex flex-column text-center text-white'}>
@@ -316,8 +316,8 @@ const OddButton = (props) => {
     // here
 
     const updatePickedChoices = useCallback(() => {
-        // let betslip = state?.[betslip_key];
-        let betslip = getBetslip() || {};
+        let betslip = jackpot ? state?.[betslip_key] : (getBetslip() || {});
+        // let betslip = getBetslip() || {};
         let uc = clean(
             match.match_id
             + "" + match.sub_type_id
@@ -567,9 +567,11 @@ const getUpdatedMatchFromOdds = (props) => {
 const MatchRow = (props) => {
     const {match, jackpot, live, pdown, three_way} = props;
     let url = new URL(window.location)
+    match.market_active = 1
+    match.odds.home_odd_active = 1
     let sub_types = (url.searchParams.get('sub_type_id') || "1,29,18").split(",")
     const [totalMarkets] = useState(sub_types.length)
-    let append = totalMarkets - Object.keys(match?.extra_odds).length - 1
+    let append = totalMarkets - Object.keys(match?.extra_odds || {}).length - 1
     let loops = []
     for (let i = 0; i < append; i++) {
         loops.push(i)
@@ -735,7 +737,7 @@ export const JackpotMatchList = (props) => {
     return (
         <div className="matches full-width mt-5">
 
-            <MatchHeaderRow first_match={matches ? matches[0] : []}/>
+            <MatchHeaderRow jackpot={true} first_match={matches ? matches[0] : []}/>
 
             <Container className="web-element">
                 {matches && Object.entries(matches?.data).map(([key, match]) => (

@@ -630,9 +630,9 @@ const MatchRow = (props) => {
                             <div className={`c-btn-group m-lg-1 align-self-center`}>
                                 {
                                     Object.entries(odds || {}).map(([odd_key, odd_data]) => {
-                                        return <OddButton
+                                        return odd_data?.odd_active == 1 ? (<OddButton
                                             match={getUpdatedMatchFromOdds({match, marketName, odd_key, odd_data})}
-                                            key={odd_key} live={live}/>
+                                            key={odd_key} live={live}/>) : (<EmptyTextRow odd_key={match?.odd_key}/>)
                                     })
                                 }
                             </div>

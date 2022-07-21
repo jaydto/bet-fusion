@@ -30,17 +30,17 @@ const EmptyTextRow = (props) => {
     const {odd_key, classname} = props;
 
     return (
-        <div className={`${classname} btn btn-disabled match-detail col`}
+        <div className={`${classname} btn btn-disabled match-detail col c-btn`}
              style={{
                  width: "100%",
                  height: "30px",
                  padding: "2px",
                  color: "#fff",
                  background: "#334c5c",
-                 opacity: 0.7
+                 opacity: 1
              }}>
             {odd_key && <span className="et label btn-disabled ">{odd_key}</span>}
-            <span className="label label-inverse right">
+            <span className="label label-inverse">
              <LazyLoadImage
                  style={{opacity: "0.3", width: "15px"}}
                  src={padlock}
@@ -63,7 +63,10 @@ const MatchHeaderRow = (props) => {
     const [marketCols, setMarketCols] = useState(3)
     const [extraMarketDisplays, setExtraMarketDisplays] = useState([])
 
+    const [threeWay, setThreeWay] = useState(false)
+
     const getSelectedMarkets = () => {
+
 
         const markets = [
             {
@@ -81,6 +84,32 @@ const MatchHeaderRow = (props) => {
                     "NO", "YES"
                 ]
             },
+            {
+                id: "219", name: "Winner (incl. overtime)", extra_market_cols: "2", extra_markets_display: [1, 2]
+            },
+            {
+                id: "186", name: "Winner", extra_market_cols: "2", extra_markets_display: [1, 2]
+            },
+
+            {
+                id: "202", name: "1 Set Winner", extra_market_cols: "2", extra_markets_display: [1, 2]
+            },
+            {
+                id: "406",
+                name: "Winner (incl. overtime and penalties)",
+                extra_market_cols: 2,
+                extra_markets_display: [
+                    1, 2
+                ]
+            },
+            {
+                id: "340",
+                name: "Winner (incl. super over)",
+                extra_market_cols: 2,
+                extra_markets_display: [
+                    1, 2
+                ]
+            }
         ]
 
 
@@ -88,10 +117,14 @@ const MatchHeaderRow = (props) => {
 
         let sub_types = (url.searchParams.get('sub_type_id') || "1,29,18").split(",")
 
+        if (sub_types.includes("1")) {
+            setThreeWay(true)
+        }
+
         let extraMarkets = []
 
         sub_types.forEach((sub_type) => {
-            let selectedMarket = markets.filter((market) => market.id === sub_type)
+            let selectedMarket = markets.filter((market) => Number(market.id) === Number(sub_type))
 
             if (selectedMarket.length > 0) {
                 extraMarkets.push(selectedMarket[0])
@@ -100,7 +133,6 @@ const MatchHeaderRow = (props) => {
 
         setExtraMarketDisplays(extraMarkets)
 
-        console.log(extraMarketDisplays)
     }
 
 
@@ -120,60 +152,52 @@ const MatchHeaderRow = (props) => {
 
     return (
         <Container className="full-mobile">
-            <Row className="events-header">
-                <div className="col-4 left-text">
-                    <h3 className="main-heading-1">
+            <Row className={'d-flex markets-header-container'}>
+                <div className="align-self-center" style={{width: "38%"}}>
+                    <h3 className="main-heading-1 text-white">
                         {live && <span className="live-header">LIVE </span>}
                         {sportName} {market && <></>}
                     </h3>
                 </div>
-                {/*<div className={'col-3 d-flex flex-row'}>*/}
-                {/*    <div className="col-4">1</div>*/}
-                {/*    {showX*/}
-                {/*        ? <div className="col-4 events-odd">X</div>*/}
-                {/*        : <div className="col-4 events-odd">&nbsp;</div>*/}
-                {/*    }*/}
-                {/*    <div className="col-4">2</div>*/}
-                {/*    <div className="col-4 events-odd"></div>*/}
-                {/*</div>*/}
-
-
-                <div className="col-2 m-0 p-4 row p-3">
-                    <div className="col-4 match-div-col">
-                        1
-                    </div>
-                    <div className="col-4 events-odd match-div-col">
-                        x
-                    </div>
-                    <div className="col-4 match-div-col">
-                        2
-                    </div>
-                </div>
-                {!live && extraMarketDisplays.length > 0 && (
-                    <div className={'col-6 d-flex flex-row'}>
-                        {extraMarketDisplays?.map((extra_market) => (
-                            <div className={'col-4 d-flex flex-column'}>
-                                <span className={'small'}>
-                                    {extra_market.name}
-                                </span>
-                                <div className={'d-flex flex-row'}>
-                                    <div className="col-6 small text-uppercase">
-                                        {(extra_market.extra_markets_display[0])}
-                                    </div>
-                                    <div
-                                        className={`col events-odd small text-uppercase ${marketCols > 1 ? 'd-block' : 'd-none'}`}>
-                                        {(extra_market.extra_markets_display[1])}
-                                    </div>
-                                    {extra_market?.extra_market_cols > 2 && <div
-                                        className={`col-6 small text-uppercase`}>
-                                        {(extra_market.extra_markets_display[2])}
-                                    </div>}
-
-                                </div>
+                <div className="col d-flex flex-row " style={{width: "60%"}}>
+                    {threeWay && <div className="d-flex flex-row">
+                        <div className="d-flex flex-column text-center text-white">
+                            <div>
+                                3 WAY
                             </div>
-                        ))}
+                            <div className={'c-btn-group m-lg-1 align-self-end'}>
+                                <a className="c-btn-header text-white">1</a>
+                                <a className="c-btn-header text-white">X</a>
+                                <a className="c-btn-header text-white">2</a>
+                            </div>
+                        </div>
                     </div>
-                )}
+                    }
+                    {!live && extraMarketDisplays.length > 0 && (
+                        <div className={'d-flex flex-row'}>
+                            {extraMarketDisplays?.map((extra_market) => (
+                                <div className={'d-flex flex-column text-center text-white'} style={{width: "150px"}}>
+                                    <span className={'small'}>
+                                        {extra_market.name}
+                                    </span>
+                                    <div className={'c-btn-group m-lg-1'}>
+                                        <a className="c-btn-header">
+                                            {(extra_market.extra_markets_display[0])}
+                                        </a>
+                                        <a className="c-btn-header">
+                                            {(extra_market.extra_markets_display[1])}
+                                        </a>
+                                        {extra_market?.extra_market_cols > 2 &&
+                                            <a className={`c-btn-header`}>
+                                                {(extra_market.extra_markets_display[2])}
+                                            </a>}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </div>
+
             </Row>
         </Container>
     )
@@ -242,7 +266,7 @@ const SideBets = (props) => {
 
     return (
         <div
-            className={`bet-fix events-odd pad ${picked} align-self-center more-markets-container`}>
+            className={`bet-fix events-odd pad ${picked} align-self-center more-markets-container m-lg-2`}>
             {(match?.side_bets > 1) && <>
                 <a className="side" title={'More Markets'}
                    href={`/match/${live ? 'live/' : ''}${
@@ -419,7 +443,7 @@ const OddButton = (props) => {
     return (
         <button
             ref={ref}
-            className={`home-team ${match.match_id} ${ucn} ${picked} odd-button`}
+            className={`home-team ${match.match_id} ${ucn} ${picked} c-btn`}
             home_team={match.home_team}
             odd_type={match?.name || match?.market_name || "1X2"}
             bet_type={live ? 1 : 0}
@@ -529,29 +553,34 @@ const getUpdatedMatchFromOdds = (props) => {
     newMatch.special_bet_value = odd_data.special_bet_value;
     delete newMatch['odds']
     delete newMatch['extra_odds']
-
-    console.log(newMatch)
-
-    // console.log("New match details", newMatch)
     return newMatch;
 
 }
 
 const MatchRow = (props) => {
-    const {match, jackpot, live, pdown} = props;
+    const {match, jackpot, live, pdown, three_way} = props;
+    let url = new URL(window.location)
+    let sub_types = (url.searchParams.get('sub_type_id') || "1,29,18").split(",")
+    const [totalMarkets] = useState(sub_types.length)
     return (
-        <Row className="top-matches d-flex fix-bets">
-            <div className="col-sm-1 col-xs-12 pad left-text">
+        <div className="top-matches d-flex">
+            <div className="col-sm-2 col-xs-12 pad left-text">
                 {live &&
                     <>
                         <small style={{color: "green"}}> {match?.match_status} </small>
                         <br/>
                     </>
                 }
-                {(live && match?.match_time) ?
-                    <>{`${match.match_time}'`}</> : match?.start_time}
+                <div className="d-flex flex-column">
+                    <span className={'small'}>
+                        {(live && match?.match_time) ?
+                            <>{`${match.match_time}'`}</> : match?.start_time}
+                    </span>
+                    <>ID: {match?.game_id}</>
+                </div>
+
             </div>
-            <div className="col col-xs-12 match-detail-container">
+            <div className="col-2 col-xs-12 match-detail-container">
                 <a href={`/match/${live ? 'live/' + match.parent_match_id : match.match_id}`}>
                     <div className="d-flex flex-column">
                         <div className="compt-detail overflow-ellipsis">
@@ -573,88 +602,54 @@ const MatchRow = (props) => {
                         </div>
                     </div>
                 </a>
-
-                {/*<a href={`/match/${live ? 'live/' + match.parent_match_id : match.match_id}`} className={'d-none'}>*/}
-                {/*    <div className="compt-detail"> {match.category} | {match.competition_name}</div>*/}
-                {/*    <div className="compt-teams">*/}
-                {/*        {live && (match?.match_status !== 'ended') && <ColoredCircle color="red"/>}*/}
-                {/*        {match.home_team}*/}
-                {/*        <span className="opacity-reduce-txt vs-styling">*/}
-                {/*        {live && match?.score}*/}
-                {/*            {!live && 'VS'}*/}
-                {/*    </span>*/}
-                {/*        {match.away_team}*/}
-                {/*    </div>*/}
-                {/*</a>*/}
             </div>
-            <Row className={`${jackpot ? 'col-4' : 'col'} mx-0 p-4 market-odds`}>
-                <div className="col-4 match-div-col" style={{padding: 0}}>
-                    {(!pdown && match?.odds?.home_odd && match.odds.home_odd !== 'NaN' &&
-                        match.market_active == 1 && match.odds.home_odd_active == 1)
-                        ? <OddButton match={match} mkt="home_team" live={live} jackpot={jackpot}/>
-                        : <EmptyTextRow odd_key={match?.odd_key}/>
+            <div className="col d-flex flex-row justify-content-between">
+                <div className="c-btn-group align-self-center">
+                    {
+                        match?.odds?.home_odd ? (match?.odds?.home_odd && (!pdown && match?.odds?.home_odd && match.odds.home_odd !== 'NaN' &&
+                                match.market_active == 1 && match.odds.home_odd_active == 1)
+                                ? <OddButton match={match} mkt="home_team" live={live} jackpot={jackpot}/>
+                                : <EmptyTextRow odd_key={match?.odd_key}/>) :
+                            match?.odds?.home_odd ? <EmptyTextRow odd_key={match?.odd_key}/> : ''
                     }
-                </div>
-                <div className="col-4 events-odd match-div-col" style={{padding: 0}}>
-                    {(!pdown && match?.odds?.neutral_odd && match.odds.neutral_odd !== 'NaN' &&
-                        match.market_active == 1 && match.odds.neutral_odd_active == 1)
-                        ? <OddButton match={match} mkt="draw" live={live} jackpot={jackpot}/>
-                        : <EmptyTextRow odd_key={match?.odd_key}/>
+
+                    {match?.odds?.neutral_odd ? ((!pdown && match?.odds?.neutral_odd && match.odds.neutral_odd !== 'NaN' &&
+                            match.market_active == 1 && match.odds.neutral_odd_active == 1)
+                            ? <OddButton match={match} mkt="draw" live={live} jackpot={jackpot}/>
+                            : <EmptyTextRow odd_key={match?.odd_key}/>) :
+                        match?.odds?.neutral_odd ? <EmptyTextRow odd_key={match?.odd_key}/> : ''
                     }
-                </div>
-                <div className="col-4 match-div-col" style={{padding: 0}}>
-                    {(!pdown && match?.odds?.away_odd && match.odds.away_odd !== 'NaN' &&
+                    {match?.odds?.away_odd ? (match?.odds?.away_odd && (!pdown && match?.odds?.away_odd && match.odds.away_odd !== 'NaN' &&
                         match.market_active == 1 && match.odds.away_odd_active == 1)
                         ? <OddButton match={match} mkt="away_team" live={live} jackpot={jackpot}/>
-                        : <EmptyTextRow odd_key={match?.odd_key}/>
+                        : <EmptyTextRow odd_key={match?.odd_key}/>) :
+                        match?.odds?.away_odd ? <EmptyTextRow odd_key={match?.odd_key}/> : ''
                     }
                 </div>
-            </Row>
-            {!jackpot && <>
-                {Object.entries(match?.extra_odds || {}).map(([marketName, odds], index) => (
-                    marketName !== '1x2' && (
-                        <Row className={`${index < 1 ? 'col' : 'col'} m-0 p-4`}>
-                            {
-                                Object.entries(odds || {}).map(([odd_key, odd_data]) => {
-                                    return <div className={`${index < 1 ? 'col-4' : 'col-4'} match-div-col`}>
-                                        <OddButton
+
+                {!jackpot && <>
+                    {Object.entries(match?.extra_odds || {}).map(([marketName, odds], index) => (
+                        marketName !== '1x2' && (
+                            <div className={`c-btn-group m-lg-1 align-self-center`}>
+                                {
+                                    Object.entries(odds || {}).map(([odd_key, odd_data]) => {
+                                        return odd_data?.odd_active == 1 ? (<OddButton
                                             match={getUpdatedMatchFromOdds({match, marketName, odd_key, odd_data})}
-                                            key={odd_key} live={live}/>
-                                    </div>
-                                })
-                            }
-                        </Row>
-                    )
-                ))
-                }
-                {
-                    Object.keys(match?.extra_odds || {}).length < 2 &&
-                    <>
-                        <Row className={`${jackpot ? 'col-4' : 'col'} mx-0 p-4 market-odds`}>
-                            <div className="col-4 events-odd match-div-col" style={{padding: 0}}>
-                                <EmptyTextRow odd_key={match?.odd_key} className={'p-4'}/>
-                                <EmptyTextRow odd_key={match?.odd_key} className={'p-4'}/>
-                                <EmptyTextRow odd_key={match?.odd_key} className={'p-4'}/>
+                                            key={odd_key} live={live}/>) : (<EmptyTextRow odd_key={match?.odd_key}/>)
+                                    })
+                                }
                             </div>
-                        </Row>
-                    </>
-                } {
-                Object.keys(match?.extra_odds || {}).length < 1 &&
-                <>
-                    <Row className={`${jackpot ? 'col-4' : 'col'} mx-0 p-4 market-odds`}>
-                        <div className="col-4 events-odd match-div-col" style={{padding: 0}}>
-                            <EmptyTextRow odd_key={match?.odd_key} className={'p-4'}/>
-                            <EmptyTextRow odd_key={match?.odd_key} className={'p-4'}/>
-                            <EmptyTextRow odd_key={match?.odd_key} className={'p-4'}/>
-                        </div>
-                    </Row>
+                        )
+                    ))
+                    }
+
                 </>
-            }
-            </>
-            }
-            {!pdown && !jackpot &&
-                <SideBets match={match} live={live} style={{d: "inline"}}/>}
-        </Row>
+                }
+                {!pdown && !jackpot &&
+                    <SideBets match={match} live={live} style={{d: "inline"}}/>}
+            </div>
+
+        </div>
     )
 
 }
@@ -742,7 +737,7 @@ export const JackpotMatchList = (props) => {
 }
 
 const MatchList = (props) => {
-    const {live, matches, pdown} = props;
+    const {live, matches, pdown, three_way} = props;
 
     return (
         <div className="matches full-width">
@@ -752,7 +747,7 @@ const MatchList = (props) => {
             <Container className="web-element">
                 {matches &&
                     Object.entries(matches).map(([key, match]) => (
-                        <MatchRow match={match} key={key} live={live} pdown={pdown}/>
+                        <MatchRow match={match} key={key} live={live} pdown={pdown} three_way={three_way}/>
                     ))
                 }
                 {(matches !== null && matches.length === 0) &&

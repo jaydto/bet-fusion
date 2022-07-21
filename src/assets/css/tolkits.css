@@ -15385,7 +15385,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-right: 50px;
+    margin-right: 5%;
     /*max-width: 20% !important;*/
     /*margin-right: 2% !important;*/
 }
@@ -15445,7 +15445,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     /*border: 1px solid red;*/
     overflow: hidden;
     border-radius: 4px;
-    margin-left: 20px !important;
+    margin-left: 5% !important;
 }
 
 .c-btn-group > .c-btn {

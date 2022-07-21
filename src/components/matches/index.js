@@ -83,6 +83,32 @@ const MatchHeaderRow = (props) => {
                 id: "29", name: "Both Teams to Score", extra_market_cols: "2", extra_markets_display: [
                     "NO", "YES"
                 ]
+            },
+            {
+                id: "219", name: "Winner (incl. overtime)", extra_market_cols: "2", extra_markets_display: [1, 2]
+            },
+            {
+                id: "186", name: "Winner", extra_market_cols: "2", extra_markets_display: [1, 2]
+            },
+
+            {
+                id: "202", name: "1 Set Winner", extra_market_cols: "2", extra_markets_display: [1, 2]
+            },
+            {
+                id: "406",
+                name: "Winner (incl. overtime and penalties)",
+                extra_market_cols: 2,
+                extra_markets_display: [
+                    1, 2
+                ]
+            },
+            {
+                id: "340",
+                name: "Winner (incl. super over)",
+                extra_market_cols: 2,
+                extra_markets_display: [
+                    1, 2
+                ]
             }
         ]
 
@@ -98,14 +124,12 @@ const MatchHeaderRow = (props) => {
         let extraMarkets = []
 
         sub_types.forEach((sub_type) => {
-            let selectedMarket = markets.filter((market) => market.id === sub_type)
+            let selectedMarket = markets.filter((market) => Number(market.id) === Number(sub_type))
 
             if (selectedMarket.length > 0) {
                 extraMarkets.push(selectedMarket[0])
             }
         })
-
-        console.log(extraMarkets)
 
         setExtraMarketDisplays(extraMarkets)
 
@@ -535,17 +559,26 @@ const getUpdatedMatchFromOdds = (props) => {
 
 const MatchRow = (props) => {
     const {match, jackpot, live, pdown, three_way} = props;
+    let url = new URL(window.location)
+    let sub_types = (url.searchParams.get('sub_type_id') || "1,29,18").split(",")
+    const [totalMarkets] = useState(sub_types.length)
     return (
         <div className="top-matches d-flex">
-            <div className="col-sm-1 col-xs-12 pad left-text">
+            <div className="col-sm-2 col-xs-12 pad left-text">
                 {live &&
                     <>
                         <small style={{color: "green"}}> {match?.match_status} </small>
                         <br/>
                     </>
                 }
-                {(live && match?.match_time) ?
-                    <>{`${match.match_time}'`}</> : match?.start_time}
+                <div className="d-flex flex-column">
+                    <span className={'small'}>
+                        {(live && match?.match_time) ?
+                            <>{`${match.match_time}'`}</> : match?.start_time}
+                    </span>
+                    <>ID: {match?.game_id}</>
+                </div>
+
             </div>
             <div className="col-2 col-xs-12 match-detail-container">
                 <a href={`/match/${live ? 'live/' + match.parent_match_id : match.match_id}`}>
@@ -569,40 +602,27 @@ const MatchRow = (props) => {
                         </div>
                     </div>
                 </a>
-
-                {/*<a href={`/match/${live ? 'live/' + match.parent_match_id : match.match_id}`} className={'d-none'}>*/}
-                {/*    <div className="compt-detail"> {match.category} | {match.competition_name}</div>*/}
-                {/*    <div className="compt-teams">*/}
-                {/*        {live && (match?.match_status !== 'ended') && <ColoredCircle color="red"/>}*/}
-                {/*        {match.home_team}*/}
-                {/*        <span className="opacity-reduce-txt vs-styling">*/}
-                {/*        {live && match?.score}*/}
-                {/*            {!live && 'VS'}*/}
-                {/*    </span>*/}
-                {/*        {match.away_team}*/}
-                {/*    </div>*/}
-                {/*</a>*/}
             </div>
             <div className="col d-flex flex-row justify-content-between">
-                {three_way && <div className="c-btn-group align-self-center">
-                    {(!pdown && match?.odds?.home_odd && match.odds.home_odd !== 'NaN' &&
-                        match.market_active == 1 && match.odds.home_odd_active == 1)
-                        ? <OddButton match={match} mkt="home_team" live={live} jackpot={jackpot}/>
-                        : <EmptyTextRow odd_key={match?.odd_key}/>
+                <div className="c-btn-group align-self-center">
+                    {
+                        match?.odds?.home_odd ? (match?.odds?.home_odd && (!pdown && match?.odds?.home_odd && match.odds.home_odd !== 'NaN' &&
+                            match.market_active == 1 && match.odds.home_odd_active == 1)
+                            ? <OddButton match={match} mkt="home_team" live={live} jackpot={jackpot}/>
+                            : <EmptyTextRow odd_key={match?.odd_key}/>) : ''
                     }
 
-                    {(!pdown && match?.odds?.neutral_odd && match.odds.neutral_odd !== 'NaN' &&
+                    {match?.odds?.neutral_odd ? ((!pdown && match?.odds?.neutral_odd && match.odds.neutral_odd !== 'NaN' &&
                         match.market_active == 1 && match.odds.neutral_odd_active == 1)
                         ? <OddButton match={match} mkt="draw" live={live} jackpot={jackpot}/>
-                        : <EmptyTextRow odd_key={match?.odd_key}/>
+                        : <EmptyTextRow odd_key={match?.odd_key}/>) : ''
                     }
-                    {(!pdown && match?.odds?.away_odd && match.odds.away_odd !== 'NaN' &&
+                    {match?.odds?.away_odd ? (match?.odds?.away_odd && (!pdown && match?.odds?.away_odd && match.odds.away_odd !== 'NaN' &&
                         match.market_active == 1 && match.odds.away_odd_active == 1)
                         ? <OddButton match={match} mkt="away_team" live={live} jackpot={jackpot}/>
-                        : <EmptyTextRow odd_key={match?.odd_key}/>
+                        : <EmptyTextRow odd_key={match?.odd_key}/>) : ''
                     }
                 </div>
-                }
 
                 {!jackpot && <>
                     {Object.entries(match?.extra_odds || {}).map(([marketName, odds], index) => (
@@ -619,47 +639,7 @@ const MatchRow = (props) => {
                         )
                     ))
                     }
-                    {
-                        Object.keys(match?.extra_odds || {}).length < 2 &&
-                        <>
-                            <div className="c-btn-group m-lg-1 align-self-center">
-                                <a className="c-btn">
-                                    <LazyLoadImage
-                                        style={{opacity: "0.3", width: "15px"}}
-                                        src={padlock}
-                                        effect="blur"
-                                        alt="--"/>
-                                </a>
-                                <a className="c-btn">
-                                    <LazyLoadImage
-                                        style={{opacity: "0.3", width: "15px"}}
-                                        src={padlock}
-                                        effect="blur"
-                                        alt="--"/>
-                                </a>
-                            </div>
-                        </>
-                    } {
-                    Object.keys(match?.extra_odds || {}).length < 1 &&
-                    <>
-                        <div className="c-btn-group m-lg-1 align-self-center">
-                            <a className="c-btn">
-                                <LazyLoadImage
-                                    style={{opacity: "0.3", width: "15px"}}
-                                    src={padlock}
-                                    effect="blur"
-                                    alt="--"/>
-                            </a>
-                            <a className="c-btn">
-                                <LazyLoadImage
-                                    style={{opacity: "0.3", width: "15px"}}
-                                    src={padlock}
-                                    effect="blur"
-                                    alt="--"/>
-                            </a>
-                        </div>
-                    </>
-                }
+
                 </>
                 }
                 {!pdown && !jackpot &&

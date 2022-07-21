@@ -15381,7 +15381,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 }
 
 .match-detail-container {
-    width: 25% !important;
+    width: 22% !important;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

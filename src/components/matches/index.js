@@ -17,7 +17,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import padlock from '../../assets/img/padlock.png';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faChartLine} from "@fortawesome/free-solid-svg-icons";
+import {faChartLine, faFire} from "@fortawesome/free-solid-svg-icons";
 import {getFromLocalStorage} from "../utils/local-storage";
 
 
@@ -70,36 +70,36 @@ const MatchHeaderRow = (props) => {
 
         const markets = [
             {
-                id: "18", name: "Over/Under 2.5", extra_market_cols: "2", extra_markets_display: [
+                id: "18", name: "Over/Under 2.5", extra_market_cols: 2, extra_markets_display: [
                     "Under", "Over"
                 ]
             },
             {
-                id: "10", name: "Double Chance", extra_market_cols: "3", extra_markets_display: [
+                id: "10", name: "Double Chance", extra_market_cols: 3, extra_markets_display: [
                     "1X", "X2", "12"
                 ]
             },
             {
-                id: "29", name: "Both Teams to Score", extra_market_cols: "2", extra_markets_display: [
+                id: "29", name: "Both Teams to Score", extra_market_cols: 2, extra_markets_display: [
                     "NO", "YES"
                 ]
             },
             {
-                id: "219", name: "Winner (incl. overtime)", extra_market_cols: "2", extra_markets_display: [1, 2]
+                id: "219", name: "Winner (incl. overtime)", extra_market_cols: 2, extra_markets_display: [2, 1]
             },
             {
-                id: "186", name: "Winner", extra_market_cols: "2", extra_markets_display: [1, 2]
+                id: "186", name: "Winner", extra_market_cols: 2, extra_markets_display: [1, 2]
             },
 
             {
-                id: "202", name: "1 Set Winner", extra_market_cols: "2", extra_markets_display: [1, 2]
+                id: "202", name: "1 Set Winner", extra_market_cols: 2, extra_markets_display: [1, 2]
             },
             {
                 id: "406",
                 name: "Winner (incl. overtime and penalties)",
                 extra_market_cols: 2,
                 extra_markets_display: [
-                    1, 2
+                    2, 1
                 ]
             },
             {
@@ -152,31 +152,35 @@ const MatchHeaderRow = (props) => {
 
     return (
         <Container className="full-mobile">
-            <Row className={'d-flex markets-header-container'}>
-                <div className="align-self-center" style={{width: "38%"}}>
-                    <h3 className="main-heading-1 text-white">
-                        {live && <span className="live-header">LIVE </span>}
-                        {sportName} {market && <></>}
-                    </h3>
+            <div className="top-matches d-flex">
+                <div className="col-sm-2 col-xs-12 pad left-text">
+                    <div className="align-self-center col">
+                        <h3 className="main-heading-1 text-white">
+                            {live && <span className="live-header">LIVE </span>}
+                            {sportName} {market && <></>}
+                        </h3>
+                    </div>
                 </div>
-                <div className="col d-flex flex-row " style={{width: "60%"}}>
-                    {threeWay && <div className="d-flex flex-row">
-                        <div className="d-flex flex-column text-center text-white">
-                            <div>
-                                3 WAY
-                            </div>
-                            <div className={'c-btn-group m-lg-1 align-self-end'}>
-                                <a className="c-btn-header text-white">1</a>
-                                <a className="c-btn-header text-white">X</a>
-                                <a className="c-btn-header text-white">2</a>
+                <div className={'col-2 col-xs-12 match-detail-container'}></div>
+                <div className={'col d-flex flex-row justify-content-between'}>
+                    {threeWay &&
+                        <div className="d-flex flex-row">
+                            <div className="d-flex flex-column text-center text-white">
+                                <div>
+                                    3 WAY
+                                </div>
+                                <div className={'c-btn-group align-self-end'}>
+                                    <a className="c-btn-header text-white">1</a>
+                                    <a className="c-btn-header text-white">X</a>
+                                    <a className="c-btn-header text-white">2</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     }
                     {!live && extraMarketDisplays.length > 0 && (
                         <div className={'d-flex flex-row'}>
                             {extraMarketDisplays?.map((extra_market) => (
-                                <div className={'d-flex flex-column text-center text-white'} style={{width: "150px"}}>
+                                <div className={'d-flex flex-column text-center text-white'}>
                                     <span className={'small'}>
                                         {extra_market.name}
                                     </span>
@@ -196,9 +200,12 @@ const MatchHeaderRow = (props) => {
                             ))}
                         </div>
                     )}
+                    <div
+                        className="bet-fix events-odd pad undefined align-self-center more-markets-container m-lg-2 col-3">
+                        <FontAwesomeIcon icon={faFire} className={'text-warning'}/>
+                    </div>
                 </div>
-
-            </Row>
+            </div>
         </Container>
     )
 }
@@ -619,9 +626,9 @@ const MatchRow = (props) => {
                     }
 
                     {match?.odds?.neutral_odd ? ((!pdown && match?.odds?.neutral_odd && match.odds.neutral_odd !== 'NaN' &&
-                            match.market_active == 1 && match.odds.neutral_odd_active == 1)
-                            ? <OddButton match={match} mkt="draw" live={live} jackpot={jackpot}/>
-                            : <EmptyTextRow odd_key={match?.odd_key}/>) :''
+                        match.market_active == 1 && match.odds.neutral_odd_active == 1)
+                        ? <OddButton match={match} mkt="draw" live={live} jackpot={jackpot}/>
+                        : <EmptyTextRow odd_key={match?.odd_key}/>) : ''
                     }
                     {match?.odds?.away_odd ? (match?.odds?.away_odd && (!pdown && match?.odds?.away_odd && match.odds.away_odd !== 'NaN' &&
                             match.market_active == 1 && match.odds.away_odd_active == 1)
@@ -633,7 +640,7 @@ const MatchRow = (props) => {
 
                 {!jackpot && <>
                     {Object.entries(match?.extra_odds || {}).map(([marketName, odds], index) => (
-                        marketName !== '1x2' && (
+                        marketName !== '' && (
                             <div className={`c-btn-group m-lg-1 align-self-center`}>
                                 {
                                     Object.entries(odds || {}).map(([odd_key, odd_data]) => {

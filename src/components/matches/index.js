@@ -617,7 +617,7 @@ const MatchRow = (props) => {
                             match.market_active == 1 && match.odds.neutral_odd_active == 1)
                             ? <OddButton match={match} mkt="draw" live={live} jackpot={jackpot}/>
                             : <EmptyTextRow odd_key={match?.odd_key}/>) :
-                        match?.odds?.neutral_odd ? <EmptyTextRow odd_key={match?.odd_key}/> : ''
+                        match?.odds?.neutral_odd ? '' : <EmptyTextRow odd_key={match?.odd_key}/>
                     }
                     {match?.odds?.away_odd ? (match?.odds?.away_odd && (!pdown && match?.odds?.away_odd && match.odds.away_odd !== 'NaN' &&
                         match.market_active == 1 && match.odds.away_odd_active == 1)

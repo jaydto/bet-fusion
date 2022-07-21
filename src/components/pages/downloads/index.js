@@ -13,6 +13,7 @@ export default function MatchesList() {
     const [matches, setMatches] = useState([]);
     const [section, setSection] = useState('highlights');
     const [events, setEvents] = useState(0);
+    const [loaded, setLoaded] = useState(false)
 
     useEffect(() => {
         fetchMatches()
@@ -24,6 +25,9 @@ export default function MatchesList() {
         await makeRequest({url: endpoint, method: method, data: []}).then(([status, result]) => {
             if (status == 200) {
                 setMatches(result?.data || result)
+                if (result?.data?.length > 0) {
+                    setLoaded(true)
+                }
             }
         });
     };
@@ -80,7 +84,7 @@ export default function MatchesList() {
                                     </div>
                                     <div className="col-md-12 mt-5 text-start">
                                         <PDFDownloadLink
-                                            className={`btn btn-primary text-white btn-lg p-4 col-md-4`}
+                                            className={`btn btn-primary text-white btn-lg p-4 col-md-4 ${loaded ? '' : 'disabled'}`}
                                             document={<PdfDocument data={matches}/>}
                                             fileName="matches.pdf">
                                             {({blob, url, loading, error}) =>

@@ -19,6 +19,7 @@ const Index = (props) => {
     const location = useLocation();
     const [matches, setMatches] = useState([]);
     const [producerDown, setProducerDown] = useState(false);
+    const [threeWay, setThreeWay] = useState(false);
     const [page, setPage] = useState(1);
     const [userSlipsValidation, setUserSlipsValidation] = useState();
     const [state, dispatch] = useContext(Context);
@@ -60,7 +61,7 @@ const Index = (props) => {
 
         await makeRequest({url: endpoint, method: method, data: betslip}).then(([status, result]) => {
             if (status == 200) {
-                setMatches(matches.length>0?{...matches,...result?.data}:result?.data || result)
+                setMatches(matches.length > 0 ? {...matches, ...result?.data} : result?.data || result)
                 // setMatches(result?.data || result)
                 if (result?.slip_data) {
                     setUserSlipsValidation(result?.slip_data)
@@ -91,7 +92,7 @@ const Index = (props) => {
 
         await makeRequest({url: endpoint, method: "POST", data: betslip}).then(([status, result]) => {
             if (status == 200) {
-                setMatches(matches.length>0?{...matches,...result?.data}:result?.data || result)
+                setMatches(matches.length > 0 ? {...matches, ...result?.data} : result?.data || result)
                 if (result?.slip_data) {
                     setUserSlipsValidation(result?.slip_data)
                 }
@@ -103,6 +104,7 @@ const Index = (props) => {
 
 
     useEffect(() => {
+        checkThreeWay()
         fetchData();
         let cachedSlips = getBetslip("betslip");
         if (cachedSlips) {
@@ -121,10 +123,16 @@ const Index = (props) => {
             const {scrollTop, scrollHeight, clientHeight} = listInnerRef.current;
             if (scrollTop + clientHeight === scrollHeight) {
                 console.log("Bottom fetching ....")
-                setPage(page+1)
+                setPage(page + 1)
             }
         }
     };
+
+    const checkThreeWay = () => {
+        let url = new URL(window.location)
+        let sub_types = (url.searchParams.get('sub_type_id') || "1,29,18").split(",")
+        setThreeWay(sub_types.includes("1"))
+    }
 
     return (
         <>
@@ -139,9 +147,9 @@ const Index = (props) => {
                             {/* <MobileCategories/> */}
                             <MatchList
                                 live={false}
-                                scroll={()=>onScroll()}
                                 matches={matches}
                                 pdown={producerDown}
+                                three_way={threeWay}
                             />
                         </div>
                     </div>

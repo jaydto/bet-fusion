@@ -43,7 +43,11 @@ const Casino = (props) => {
 
     const launchGame = (game_id) => {
 
-        if (user?.token) {
+        const userState = (getFromLocalStorage("user"));
+
+        console.log(userState)
+
+        if (userState?.token) {
             return window.location.href = `/gameplay/${game_id}`
         }
 

@@ -15415,7 +15415,6 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 
 .c-btn {
     padding: .25em .5em;
-    border: solid 1px red;
     border-radius: 4px;
     display: inline-block;
     text-align: center;

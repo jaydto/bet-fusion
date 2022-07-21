@@ -653,7 +653,7 @@ const MatchRow = (props) => {
                         )
                     ))
                     }
-                    {loops?.map(() => (
+                    {!live && loops?.map(() => (
                         <div className={`c-btn-group align-self-center`}>
                             <EmptyTextRow odd_key={match?.odd_key}/>
                             <EmptyTextRow odd_key={match?.odd_key}/>

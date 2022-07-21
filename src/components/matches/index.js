@@ -562,6 +562,11 @@ const MatchRow = (props) => {
     let url = new URL(window.location)
     let sub_types = (url.searchParams.get('sub_type_id') || "1,29,18").split(",")
     const [totalMarkets] = useState(sub_types.length)
+    let append = totalMarkets - Object.keys(match?.extra_odds).length - 1
+    let loops = []
+    for (let i = 0; i < append; i++) {
+        loops.push(i)
+    }
     return (
         <div className="top-matches d-flex">
             <div className="col-sm-2 col-xs-12 pad left-text">
@@ -616,13 +621,12 @@ const MatchRow = (props) => {
                     {match?.odds?.neutral_odd ? ((!pdown && match?.odds?.neutral_odd && match.odds.neutral_odd !== 'NaN' &&
                             match.market_active == 1 && match.odds.neutral_odd_active == 1)
                             ? <OddButton match={match} mkt="draw" live={live} jackpot={jackpot}/>
-                            : <EmptyTextRow odd_key={match?.odd_key}/>) :
-                        match?.odds?.neutral_odd ? '' : <EmptyTextRow odd_key={match?.odd_key}/>
+                            : <EmptyTextRow odd_key={match?.odd_key}/>) :''
                     }
                     {match?.odds?.away_odd ? (match?.odds?.away_odd && (!pdown && match?.odds?.away_odd && match.odds.away_odd !== 'NaN' &&
-                        match.market_active == 1 && match.odds.away_odd_active == 1)
-                        ? <OddButton match={match} mkt="away_team" live={live} jackpot={jackpot}/>
-                        : <EmptyTextRow odd_key={match?.odd_key}/>) :
+                            match.market_active == 1 && match.odds.away_odd_active == 1)
+                            ? <OddButton match={match} mkt="away_team" live={live} jackpot={jackpot}/>
+                            : <EmptyTextRow odd_key={match?.odd_key}/>) :
                         match?.odds?.away_odd ? <EmptyTextRow odd_key={match?.odd_key}/> : ''
                     }
                 </div>
@@ -642,7 +646,12 @@ const MatchRow = (props) => {
                         )
                     ))
                     }
-
+                    {loops?.map(() => (
+                        <div className={`c-btn-group align-self-center`}>
+                            <EmptyTextRow odd_key={match?.odd_key}/>
+                            <EmptyTextRow odd_key={match?.odd_key}/>
+                        </div>
+                    ))}
                 </>
                 }
                 {!pdown && !jackpot &&

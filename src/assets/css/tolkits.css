@@ -699,7 +699,7 @@ header, li a, .thedate span {
 }
 
 .more-markets-container {
-    min-width: 100px !important;
+    /*min-width: 100px !important;*/
 }
 
 .picked .theodds,
@@ -744,7 +744,7 @@ header, li a, .thedate span {
 }
 
 .side {
-    flex-grow: 1;
+    /*flex-grow: 1;*/
 }
 
 .match .blueish {

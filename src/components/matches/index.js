@@ -30,17 +30,17 @@ const EmptyTextRow = (props) => {
     const {odd_key, classname} = props;
 
     return (
-        <div className={`${classname} btn btn-disabled match-detail col`}
+        <div className={`${classname} btn btn-disabled match-detail col c-btn`}
              style={{
                  width: "100%",
                  height: "30px",
                  padding: "2px",
                  color: "#fff",
                  background: "#334c5c",
-                 opacity: 0.7
+                 opacity: 1
              }}>
             {odd_key && <span className="et label btn-disabled ">{odd_key}</span>}
-            <span className="label label-inverse right">
+            <span className="label label-inverse">
              <LazyLoadImage
                  style={{opacity: "0.3", width: "15px"}}
                  src={padlock}
@@ -100,7 +100,6 @@ const MatchHeaderRow = (props) => {
 
         setExtraMarketDisplays(extraMarkets)
 
-        console.log(extraMarketDisplays)
     }
 
 
@@ -120,60 +119,44 @@ const MatchHeaderRow = (props) => {
 
     return (
         <Container className="full-mobile">
-            <Row className="events-header">
-                <div className="col-4 left-text">
-                    <h3 className="main-heading-1">
+            <Row className={'d-flex markets-header-container'}>
+                <div className="align-self-center" style={{width: "38%"}}>
+                    <h3 className="main-heading-1 text-white">
                         {live && <span className="live-header">LIVE </span>}
                         {sportName} {market && <></>}
                     </h3>
                 </div>
-                {/*<div className={'col-3 d-flex flex-row'}>*/}
-                {/*    <div className="col-4">1</div>*/}
-                {/*    {showX*/}
-                {/*        ? <div className="col-4 events-odd">X</div>*/}
-                {/*        : <div className="col-4 events-odd">&nbsp;</div>*/}
-                {/*    }*/}
-                {/*    <div className="col-4">2</div>*/}
-                {/*    <div className="col-4 events-odd"></div>*/}
-                {/*</div>*/}
-
-
-                <div className="col-2 m-0 p-4 row p-3">
-                    <div className="col-4 match-div-col">
-                        1
+                <div className="col d-flex flex-row " style={{width: "60%"}}>
+                    <div className="c-btn-group m-lg-1 align-self-end">
+                        <a className="c-btn-header text-white">1</a>
+                        <a className="c-btn-header text-white">X</a>
+                        <a className="c-btn-header text-white">2</a>
                     </div>
-                    <div className="col-4 events-odd match-div-col">
-                        x
-                    </div>
-                    <div className="col-4 match-div-col">
-                        2
-                    </div>
-                </div>
-                {!live && extraMarketDisplays.length > 0 && (
-                    <div className={'col-6 d-flex flex-row'}>
-                        {extraMarketDisplays?.map((extra_market) => (
-                            <div className={'col-4 d-flex flex-column'}>
-                                <span className={'small'}>
-                                    {extra_market.name}
-                                </span>
-                                <div className={'d-flex flex-row'}>
-                                    <div className="col-6 small text-uppercase">
-                                        {(extra_market.extra_markets_display[0])}
+                    {!live && extraMarketDisplays.length > 0 && (
+                        <div className={'d-flex flex-row'}>
+                            {extraMarketDisplays?.map((extra_market) => (
+                                <div className={'d-flex flex-column text-center text-white'} style={{width:"150px"}}>
+                                    <span className={'small'}>
+                                        {extra_market.name}
+                                    </span>
+                                    <div className={'c-btn-group m-lg-1'}>
+                                        <a className="c-btn-header">
+                                            {(extra_market.extra_markets_display[0])}
+                                        </a>
+                                        <a className="c-btn-header">
+                                            {(extra_market.extra_markets_display[1])}
+                                        </a>
+                                        {extra_market?.extra_market_cols > 2 &&
+                                            <a className={`c-btn-header`}>
+                                                {(extra_market.extra_markets_display[2])}
+                                            </a>}
                                     </div>
-                                    <div
-                                        className={`col events-odd small text-uppercase ${marketCols > 1 ? 'd-block' : 'd-none'}`}>
-                                        {(extra_market.extra_markets_display[1])}
-                                    </div>
-                                    {extra_market?.extra_market_cols > 2 && <div
-                                        className={`col-6 small text-uppercase`}>
-                                        {(extra_market.extra_markets_display[2])}
-                                    </div>}
-
                                 </div>
-                            </div>
-                        ))}
-                    </div>
-                )}
+                            ))}
+                        </div>
+                    )}
+                </div>
+
             </Row>
         </Container>
     )
@@ -242,7 +225,7 @@ const SideBets = (props) => {
 
     return (
         <div
-            className={`bet-fix events-odd pad ${picked} align-self-center more-markets-container`}>
+            className={`bet-fix events-odd pad ${picked} align-self-center more-markets-container m-lg-2`}>
             {(match?.side_bets > 1) && <>
                 <a className="side" title={'More Markets'}
                    href={`/match/${live ? 'live/' : ''}${
@@ -419,7 +402,7 @@ const OddButton = (props) => {
     return (
         <button
             ref={ref}
-            className={`home-team ${match.match_id} ${ucn} ${picked} odd-button`}
+            className={`home-team ${match.match_id} ${ucn} ${picked} c-btn`}
             home_team={match.home_team}
             odd_type={match?.name || match?.market_name || "1X2"}
             bet_type={live ? 1 : 0}
@@ -540,7 +523,7 @@ const getUpdatedMatchFromOdds = (props) => {
 const MatchRow = (props) => {
     const {match, jackpot, live, pdown} = props;
     return (
-        <Row className="top-matches d-flex fix-bets">
+        <div className="top-matches d-flex">
             <div className="col-sm-1 col-xs-12 pad left-text">
                 {live &&
                     <>
@@ -551,7 +534,7 @@ const MatchRow = (props) => {
                 {(live && match?.match_time) ?
                     <>{`${match.match_time}'`}</> : match?.start_time}
             </div>
-            <div className="col col-xs-12 match-detail-container">
+            <div className="col-2 col-xs-12 match-detail-container">
                 <a href={`/match/${live ? 'live/' + match.parent_match_id : match.match_id}`}>
                     <div className="d-flex flex-column">
                         <div className="compt-detail overflow-ellipsis">
@@ -587,74 +570,88 @@ const MatchRow = (props) => {
                 {/*    </div>*/}
                 {/*</a>*/}
             </div>
-            <Row className={`${jackpot ? 'col-4' : 'col'} mx-0 p-4 market-odds`}>
-                <div className="col-4 match-div-col" style={{padding: 0}}>
+            <div className="col d-flex flex-row justify-content-between">
+                <div className="c-btn-group align-self-center">
                     {(!pdown && match?.odds?.home_odd && match.odds.home_odd !== 'NaN' &&
                         match.market_active == 1 && match.odds.home_odd_active == 1)
                         ? <OddButton match={match} mkt="home_team" live={live} jackpot={jackpot}/>
                         : <EmptyTextRow odd_key={match?.odd_key}/>
                     }
-                </div>
-                <div className="col-4 events-odd match-div-col" style={{padding: 0}}>
+
                     {(!pdown && match?.odds?.neutral_odd && match.odds.neutral_odd !== 'NaN' &&
                         match.market_active == 1 && match.odds.neutral_odd_active == 1)
                         ? <OddButton match={match} mkt="draw" live={live} jackpot={jackpot}/>
                         : <EmptyTextRow odd_key={match?.odd_key}/>
                     }
-                </div>
-                <div className="col-4 match-div-col" style={{padding: 0}}>
                     {(!pdown && match?.odds?.away_odd && match.odds.away_odd !== 'NaN' &&
                         match.market_active == 1 && match.odds.away_odd_active == 1)
                         ? <OddButton match={match} mkt="away_team" live={live} jackpot={jackpot}/>
                         : <EmptyTextRow odd_key={match?.odd_key}/>
                     }
                 </div>
-            </Row>
-            {!jackpot && <>
-                {Object.entries(match?.extra_odds || {}).map(([marketName, odds], index) => (
-                    marketName !== '1x2' && (
-                        <Row className={`${index < 1 ? 'col' : 'col'} m-0 p-4`}>
-                            {
-                                Object.entries(odds || {}).map(([odd_key, odd_data]) => {
-                                    return <div className={`${index < 1 ? 'col-4' : 'col-4'} match-div-col`}>
-                                        <OddButton
+                {!jackpot && <>
+                    {Object.entries(match?.extra_odds || {}).map(([marketName, odds], index) => (
+                        marketName !== '1x2' && (
+                            <div className={`c-btn-group m-lg-1 align-self-center`}>
+                                {
+                                    Object.entries(odds || {}).map(([odd_key, odd_data]) => {
+                                        return <OddButton
                                             match={getUpdatedMatchFromOdds({match, marketName, odd_key, odd_data})}
                                             key={odd_key} live={live}/>
-                                    </div>
-                                })
-                            }
-                        </Row>
-                    )
-                ))
-                }
-                {
-                    Object.keys(match?.extra_odds || {}).length < 2 &&
-                    <>
-                        <Row className={`${jackpot ? 'col-4' : 'col'} mx-0 p-4 market-odds`}>
-                            <div className="col-4 events-odd match-div-col" style={{padding: 0}}>
-                                <EmptyTextRow odd_key={match?.odd_key} className={'p-4'}/>
-                                <EmptyTextRow odd_key={match?.odd_key} className={'p-4'}/>
-                                <EmptyTextRow odd_key={match?.odd_key} className={'p-4'}/>
+                                    })
+                                }
                             </div>
-                        </Row>
-                    </>
-                } {
-                Object.keys(match?.extra_odds || {}).length < 1 &&
-                <>
-                    <Row className={`${jackpot ? 'col-4' : 'col'} mx-0 p-4 market-odds`}>
-                        <div className="col-4 events-odd match-div-col" style={{padding: 0}}>
-                            <EmptyTextRow odd_key={match?.odd_key} className={'p-4'}/>
-                            <EmptyTextRow odd_key={match?.odd_key} className={'p-4'}/>
-                            <EmptyTextRow odd_key={match?.odd_key} className={'p-4'}/>
+                        )
+                    ))
+                    }
+                    {
+                        Object.keys(match?.extra_odds || {}).length < 2 &&
+                        <>
+                            <div className="c-btn-group m-lg-1 align-self-center">
+                                <a className="c-btn">
+                                    <LazyLoadImage
+                                        style={{opacity: "0.3", width: "15px"}}
+                                        src={padlock}
+                                        effect="blur"
+                                        alt="--"/>
+                                </a>
+                                <a className="c-btn">
+                                    <LazyLoadImage
+                                        style={{opacity: "0.3", width: "15px"}}
+                                        src={padlock}
+                                        effect="blur"
+                                        alt="--"/>
+                                </a>
+                            </div>
+                        </>
+                    } {
+                    Object.keys(match?.extra_odds || {}).length < 1 &&
+                    <>
+                        <div className="c-btn-group m-lg-1 align-self-center">
+                            <a className="c-btn">
+                                <LazyLoadImage
+                                    style={{opacity: "0.3", width: "15px"}}
+                                    src={padlock}
+                                    effect="blur"
+                                    alt="--"/>
+                            </a>
+                            <a className="c-btn">
+                                <LazyLoadImage
+                                    style={{opacity: "0.3", width: "15px"}}
+                                    src={padlock}
+                                    effect="blur"
+                                    alt="--"/>
+                            </a>
                         </div>
-                    </Row>
+                    </>
+                }
                 </>
-            }
-            </>
-            }
-            {!pdown && !jackpot &&
-                <SideBets match={match} live={live} style={{d: "inline"}}/>}
-        </Row>
+                }
+                {!pdown && !jackpot &&
+                    <SideBets match={match} live={live} style={{d: "inline"}}/>}
+            </div>
+
+        </div>
     )
 
 }

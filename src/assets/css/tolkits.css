@@ -1799,6 +1799,8 @@ events-header {
 
 .home {
     /*overflow: auto;*/
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .helpline h4 {

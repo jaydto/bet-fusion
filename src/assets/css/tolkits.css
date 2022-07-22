@@ -33,7 +33,9 @@
     /*height: 40px;*/
     /*width: 40px;*/
 }
-
+.size-date{
+    width:20%;
+}
 .casino-category-container {
     display: flex;
     position: sticky !important;
@@ -1801,6 +1803,7 @@ events-header {
     /*overflow: auto;*/
     overflow-x: hidden;
     overflow-y: auto;
+    height:100%!important;
 }
 
 .helpline h4 {
@@ -15415,13 +15418,15 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 .overflow-ellipsis {
 
 }
-
+.space-bets{
+    gap:2px;
+}
 .match-detail-container {
-    width: 22% !important;
+    width: 20.6% !important;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-right: 5%;
+    margin-right: 4.7%;
     /*max-width: 20% !important;*/
     /*margin-right: 2% !important;*/
 }
@@ -15475,13 +15480,22 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     background-color: red;
     color: #fff;
 }
+.change-match{
 
+}
+.change-date1{
+    width:27%!important;
+    padding-top: 7px;
+}
+.size-info{
+    width:39%;
+}
 .c-btn-group {
     display: inline-flex;
     /*border: 1px solid red;*/
     overflow: hidden;
     border-radius: 4px;
-    margin-left: 5% !important;
+    margin-left: 2% !important;
 }
 
 .c-btn-group:empty {

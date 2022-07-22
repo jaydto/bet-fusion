@@ -4,7 +4,7 @@ import makeRequest from "../utils/fetch-request";
 import mpesa from '../../assets/img/mpesa-3.png'
 
 const Header = React.lazy(() => import('../header/header'));
-const SideBar = React.lazy(() => import('../sidebar/sidebar'));
+const SideBar = React.lazy(() => import('../sidebar/awesome/Sidebar'));
 const Right = React.lazy(() => import('../right/index'));
 const Footer = React.lazy(() => import('../footer/footer'));
 
@@ -138,8 +138,8 @@ const Signup = (props) => {
     return (
         <React.Fragment>
             <Header/>
-            <div className="by amt">
-                <div className="gc">
+            <div className="amt">
+                <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions/>
                     <div className="gz home">
                         <div className="homepage">

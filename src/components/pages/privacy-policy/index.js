@@ -10,14 +10,14 @@ import React from "react";
 import Footer from '../../footer/footer'
 import Header from '../../header/header'
 import Right from '../../right/index'
-import SideBar from '../../sidebar/sidebar'
+import SideBar from '../../sidebar/awesome/Sidebar'
 
 const PrivacyPolicy = () => {
     return (
         <>
             <Header/>
-            <div className="by amt">
-                <div className="gc">
+            <div className="amt">
+                <div className="d-flex flex-row justify-content-between">
                     <SideBar/>
                     <div className="gz home">
                         <div className="homepage">

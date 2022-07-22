@@ -8,7 +8,7 @@ import {
 } from 'react-accessible-accordion';
 import 'react-accessible-accordion/dist/fancy-example.css';
 const Header = React.lazy(()=>import('../../header/header'));
-const SideBar = React.lazy(()=>import('../../sidebar/sidebar'));
+const SideBar = React.lazy(()=>import('../../sidebar/awesome/Sidebar'));
 const Footer = React.lazy(()=>import('../../footer/footer'));
 const Right = React.lazy(()=>import('../../right/index'));
 
@@ -16,8 +16,8 @@ const CookiePolicy = () => {
     return (
         <>
             <Header/>
-            <div className="by amt">
-                <div className="gc">
+            <div className="amt">
+                <div className="d-flex flex-row justify-content-between">
                     <SideBar  loadCompetitions/>
                     <div className="gz home">
                         <div className="homepage">

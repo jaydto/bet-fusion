@@ -53,7 +53,11 @@ const Index = (props) => {
         if (sport_id !== null) {
             endpoint += " &sport_id=" + sport_id
         }
-        endpoint += ` &sub_type_id=` + (url.searchParams.get('sub_type_id') || "1,29,18")
+
+        endpoint = endpoint.replaceAll(" ", '')
+
+        endpoint += `&sub_type_id=` + (url.searchParams.get('sub_type_id') || "1,29,18")
+
 
         let search_term = url.searchParams.get('search')
 
@@ -79,25 +83,27 @@ const Index = (props) => {
         let betslip = findPostableSlip();
         let endpoint = "/v1/matches?page=" + (page || 1) + `&limit=${limit || 50}&tab=` + tab;
         let url = new URL(window.location.href)
-        let search_term = url.searchParams.get('search')
-        if (search_term !== null) {
-            endpoint += ' &search=' + search_term
-        }
-
         let sport_id = url.searchParams.get('sport_id')
 
         if (sport_id !== null) {
             endpoint += " &sport_id=" + sport_id
         }
 
-        endpoint += ` &sub_type_id=` + (url.searchParams.get('sub_type_id') || "1,29,18")
+        endpoint = endpoint.replaceAll(" ", '')
+
+
+        let search_term = url.searchParams.get('search')
+        if (search_term !== null) {
+            endpoint += ' &search=' + search_term
+        }
+
+
+        endpoint += `&sub_type_id=` + (url.searchParams.get('sub_type_id') || "1,29,18")
+
 
         await makeRequest({url: endpoint, method: "POST", data: betslip}).then(([status, result]) => {
             if (status == 200) {
-                console.log("Existing matches ", matches)
                 setMatches(matches.length > 0 ? {...matches, ...result?.data} : result?.data || result)
-                console.log("New matches ", result?.data)
-                console.log("Updated length ", matches.length)
                 if (result?.slip_data) {
                     setUserSlipsValidation(result?.slip_data)
                 }
@@ -123,18 +129,21 @@ const Index = (props) => {
     const listInnerRef = useRef();
 
     const onScroll = () => {
+        console.log("Scrolling now ...")
         if (listInnerRef.current) {
             const {scrollTop, scrollHeight, clientHeight} = listInnerRef.current;
             let offset = scrollHeight - (scrollTop + clientHeight)
-            if (offset) {
+            if (offset <= 300) {
+                // window.s
                 if (!fetching) {
                     setFetching(true)
-                    setLimit(limit + 7)
+                    setLimit(limit + 50)
                     fetchData().then(() => {
                         setFetching(false)
+                        // window.scrollBy(0, (-scrollTop))
+                        listInnerRef.current.style.top = scrollTop;
                     })
                 }
-
             }
         }
     };

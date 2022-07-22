@@ -25,6 +25,7 @@ const Index = (props) => {
     const [userSlipsValidation, setUserSlipsValidation] = useState();
     const [state, dispatch] = useContext(Context);
     const [fetching, setFetching] = useState(false)
+    const homePageRef = useRef()
     const findPostableSlip = () => {
         let betslips = getBetslip() || {};
         var values = Object.keys(betslips).map(function (key) {
@@ -122,15 +123,12 @@ const Index = (props) => {
     const listInnerRef = useRef();
 
     const onScroll = () => {
-        console.log("scrolling")
         if (listInnerRef.current) {
             const {scrollTop, scrollHeight, clientHeight} = listInnerRef.current;
-            console.log("Scrolling height ...", scrollTop + clientHeight, scrollHeight)
-            if (scrollHeight - (scrollTop + clientHeight) <= 600) {
+            let offset = scrollHeight - (scrollTop + clientHeight)
+            if (offset) {
                 if (!fetching) {
-                    console.log("Fetching more ...")
                     setFetching(true)
-                    console.log("Limit is now ", limit + 7)
                     setLimit(limit + 7)
                     fetchData().then(() => {
                         setFetching(false)
@@ -155,7 +153,7 @@ const Index = (props) => {
                     <SideBar loadCompetitions/>
                     <div className="gz home vh-100" style={{width: '100%'}} onScroll={() => onScroll()}
                          ref={listInnerRef}>
-                        <div className="homepage">
+                        <div className="homepage" ref={homePageRef}>
                             <CarouselLoader/>
                             <MainTabs tab={location.pathname.replace("/", "")}/>
                             {/* <MobileCategories/> */}

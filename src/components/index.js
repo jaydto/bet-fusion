@@ -4,7 +4,7 @@ import {Context} from '../context/store';
 import makeRequest from './utils/fetch-request';
 import {getBetslip} from './utils/betslip' ;
 import useInterval from "../hooks/set-interval.hook";
-import MobileCategories from "./header/MobileCategories";
+import {Spinner} from "react-bootstrap";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -18,12 +18,13 @@ const SideBar = React.lazy(() => import('./sidebar/awesome/Sidebar'))
 const Index = (props) => {
     const location = useLocation();
     const [matches, setMatches] = useState([]);
+    const [limit, setLimit] = useState(10);
     const [producerDown, setProducerDown] = useState(false);
     const [threeWay, setThreeWay] = useState(false);
     const [page, setPage] = useState(1);
     const [userSlipsValidation, setUserSlipsValidation] = useState();
     const [state, dispatch] = useContext(Context);
-
+    const [fetching, setFetching] = useState(false)
     const findPostableSlip = () => {
         let betslips = getBetslip() || {};
         var values = Object.keys(betslips).map(function (key) {
@@ -42,7 +43,7 @@ const Index = (props) => {
 
         let tab = location.pathname.replace("/", "") || 'highlights';
 
-        endpoint += "?page=" + (page || 1) + "&limit=50&tab=" + tab
+        endpoint += "?page=" + (page || 1) + `&limit=${limit || 50}&tab=` + tab
 
         let url = new URL(window.location.href)
 
@@ -75,7 +76,7 @@ const Index = (props) => {
 
         let tab = location.pathname.replace("/", "") || 'highlights';
         let betslip = findPostableSlip();
-        let endpoint = "/v1/matches?page=" + (page || 1) + "&limit=50&tab=" + tab;
+        let endpoint = "/v1/matches?page=" + (page || 1) + `&limit=${limit || 50}&tab=` + tab;
         let url = new URL(window.location.href)
         let search_term = url.searchParams.get('search')
         if (search_term !== null) {
@@ -92,7 +93,10 @@ const Index = (props) => {
 
         await makeRequest({url: endpoint, method: "POST", data: betslip}).then(([status, result]) => {
             if (status == 200) {
+                console.log("Existing matches ", matches)
                 setMatches(matches.length > 0 ? {...matches, ...result?.data} : result?.data || result)
+                console.log("New matches ", result?.data)
+                console.log("Updated length ", matches.length)
                 if (result?.slip_data) {
                     setUserSlipsValidation(result?.slip_data)
                 }
@@ -121,9 +125,18 @@ const Index = (props) => {
         console.log("scrolling")
         if (listInnerRef.current) {
             const {scrollTop, scrollHeight, clientHeight} = listInnerRef.current;
-            if (scrollTop + clientHeight === scrollHeight) {
-                console.log("Bottom fetching ....")
-                setPage(page + 1)
+            console.log("Scrolling height ...", scrollTop + clientHeight, scrollHeight)
+            if (scrollHeight - (scrollTop + clientHeight) <= 600) {
+                if (!fetching) {
+                    console.log("Fetching more ...")
+                    setFetching(true)
+                    console.log("Limit is now ", limit + 7)
+                    setLimit(limit + 7)
+                    fetchData().then(() => {
+                        setFetching(false)
+                    })
+                }
+
             }
         }
     };
@@ -140,7 +153,8 @@ const Index = (props) => {
             <div className="amt">
                 <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions/>
-                    <div className="gz home vh-100" style={{width: '100%'}} onScroll={() => onScroll()} ref={listInnerRef}>
+                    <div className="gz home vh-100" style={{width: '100%'}} onScroll={() => onScroll()}
+                         ref={listInnerRef}>
                         <div className="homepage">
                             <CarouselLoader/>
                             <MainTabs tab={location.pathname.replace("/", "")}/>
@@ -151,6 +165,9 @@ const Index = (props) => {
                                 pdown={producerDown}
                                 three_way={threeWay}
                             />
+                            <div className={`text-center mt-2 ${fetching ? 'd-block' : 'd-none'}`}>
+                                <Spinner animation="grow" variant={'light'} size={'lg'}/>
+                            </div>
                         </div>
                     </div>
                     <Right betslipValidationData={userSlipsValidation}/>

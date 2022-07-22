@@ -151,8 +151,8 @@ const MatchHeaderRow = (props) => {
 
 
     return (
-        <Container className="full-mobile">
-            <div className="top-matches d-flex">
+        <Container className="full-mobile sticky-top">
+            <div className="top-matches d-flex position-sticky shadow-lg" style={{opacity: "1"}}>
                 <div className="col-sm-2 col-xs-12 pad left-text">
                     <div className="align-self-center col">
                         <h3 className="main-heading-1 text-white">

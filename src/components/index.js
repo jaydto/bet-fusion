@@ -140,7 +140,7 @@ const Index = (props) => {
             <div className="amt">
                 <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions/>
-                    <div className="gz home" style={{width: '100%'}} onScroll={() => onScroll()} ref={listInnerRef}>
+                    <div className="gz home vh-100" style={{width: '100%'}} onScroll={() => onScroll()} ref={listInnerRef}>
                         <div className="homepage">
                             <CarouselLoader/>
                             <MainTabs tab={location.pathname.replace("/", "")}/>

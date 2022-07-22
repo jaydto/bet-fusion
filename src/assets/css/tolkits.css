@@ -15448,7 +15448,9 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     margin-left: 5% !important;
 }
 
-.c-btn-group:empty { display: none }
+.c-btn-group:empty {
+    display: none
+}
 
 .c-btn-group > .c-btn {
     border-radius: 0;
@@ -15491,4 +15493,14 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     position: sticky;
     position: -webkit-sticky;
     top: 100px; /* required */
+}
+
+.fixed-markets-header {
+    top: 134px;
+    align-self: center;
+    opacity: 1;
+    width: 61%;
+    left: auto;
+    right: auto;
+    position: sticky !important;
 }

@@ -166,7 +166,7 @@ const MatchHeaderRow = (props) => {
                     </div>
                 </div>
                 <div className={'col-2 col-xs-12 match-detail-container'}></div>
-                <div className={'col d-flex flex-row justify-content-between'}>
+                <div className={'col d-flex flex-row justify-content-between space-bets'}>
                     {threeWay &&
                         <div className="d-flex flex-row">
                             <div className="d-flex flex-column text-center text-white">
@@ -182,13 +182,13 @@ const MatchHeaderRow = (props) => {
                         </div>
                     }
                     {!live && !jackpot && extraMarketDisplays.length > 0 && (
-                        <>
+                        <div className={'d-flex flex-row'}>
                             {extraMarketDisplays?.map((extra_market) => (
                                 <div className={'d-flex flex-column text-white'}>
                                     <span className={'small text-center text-uppercase bold'}>
                                         {extra_market.name}
                                     </span>
-                                    <div className={'c-btn-group'}>
+                                    <div className={'c-btn-group m-lg-1'}>
                                         <a className="c-btn-header">
                                             {(extra_market.extra_markets_display[0])}
                                         </a>
@@ -202,7 +202,7 @@ const MatchHeaderRow = (props) => {
                                     </div>
                                 </div>
                             ))}
-                        </>
+                        </div>
                     )}
                     <div
                         className="bet-fix events-odd pad undefined align-self-center more-markets-container m-lg-2 col-3">
@@ -575,14 +575,14 @@ const MatchRow = (props) => {
     }
     return (
         <div className="top-matches d-flex">
-            <div className="col-sm-2 col-xs-12 pad left-text">
+            <div className="size-info  d-flex col-xs-12 pad left-text">
                 {live &&
                     <>
                         <small style={{color: "green"}}> {match?.match_status} </small>
                         <br/>
                     </>
                 }
-                <div className="d-flex flex-column">
+                <div className="d-flex flex-column px-1 change-date1">
                     <span className={'small'}>
                         {(live && match?.match_time) ?
                             <>{`${match.match_time}'`}</> : match?.start_time}
@@ -591,9 +591,9 @@ const MatchRow = (props) => {
                 </div>
 
             </div>
-            <div className="col-2 col-xs-12 match-detail-container">
+            <div className="col-2 align-items-center col-xs-12 match-detail-container">
                 <a href={jackpot ? '#' : `/match/${live ? 'live/' + match.parent_match_id : match.match_id}`}>
-                    <div className="d-flex flex-column">
+                    <div className="d-flex flex-column py-2">
                         <div className="compt-detail overflow-ellipsis">
                             <small>{match.category} | {match.competition_name}</small>
                         </div>
@@ -614,7 +614,7 @@ const MatchRow = (props) => {
                     </div>
                 </a>
             </div>
-            <div className="col d-flex flex-row justify-content-between">
+            <div className="col d-flex flex-row justify-content-between space-bets">
                 <div className="c-btn-group align-self-center">
                     {
                         match?.odds?.home_odd ? (match?.odds?.home_odd && (!pdown && match?.odds?.home_odd && match.odds.home_odd !== 'NaN' &&
@@ -753,7 +753,7 @@ export const JackpotHeader = (props) => {
                         {jackpot?.type} - {jackpot?.total_games} GAMES {jackpot?.name}
                     </div>
                 </Row>
-                <Row className="jp-header-text">
+                <Row className="jp-header-text mb-2">
                     <div className="jackpot-amount mt-3">
                         <CurrencyFormat
                             value={jackpot?.jackpot_amount}
@@ -793,7 +793,7 @@ export const JackpotMatchList = (props) => {
 
 
     return (
-        <div className="matches full-width">
+        <div className="matches full-width mt-5">
 
             <MatchHeaderRow jackpot={true} first_match={matches ? matches[0] : []}/>
             <div className={'row d-flex flex-row justify-content-between shadow-lg'}>

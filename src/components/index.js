@@ -36,6 +36,8 @@ const Index = (props) => {
 
     useInterval(async () => {
 
+        setFetching(true)
+
         let endpoint = "/v1/matches";
 
         let betslip = findPostableSlip();
@@ -68,6 +70,7 @@ const Index = (props) => {
         await makeRequest({url: endpoint, method: method, data: betslip}).then(([status, result]) => {
             if (status == 200) {
                 setMatches(matches.length > 0 ? {...matches, ...result?.data} : result?.data || result)
+                setFetching(false)
                 // setMatches(result?.data || result)
                 if (result?.slip_data) {
                     setUserSlipsValidation(result?.slip_data)
@@ -78,7 +81,7 @@ const Index = (props) => {
     }, 3000);
 
     const fetchData = useCallback(async () => {
-
+        setFetching(true)
         let tab = location.pathname.replace("/", "") || 'highlights';
         let betslip = findPostableSlip();
         let endpoint = "/v1/matches?page=" + (page || 1) + `&limit=${limit || 50}&tab=` + tab;
@@ -104,6 +107,7 @@ const Index = (props) => {
         await makeRequest({url: endpoint, method: "POST", data: betslip}).then(([status, result]) => {
             if (status == 200) {
                 setMatches(matches.length > 0 ? {...matches, ...result?.data} : result?.data || result)
+                setFetching(false)
                 if (result?.slip_data) {
                     setUserSlipsValidation(result?.slip_data)
                 }
@@ -112,7 +116,6 @@ const Index = (props) => {
         });
 
     }, []);
-
 
     useEffect(() => {
         checkThreeWay()
@@ -128,31 +131,18 @@ const Index = (props) => {
 
     const listInnerRef = useRef();
 
-    const onScroll = () => {
-        console.log("Scrolling now ...")
-        if (listInnerRef.current) {
-            const {scrollTop, scrollHeight, clientHeight} = listInnerRef.current;
-            let offset = scrollHeight - (scrollTop + clientHeight)
-            if (offset <= 300) {
-                // window.s
-                if (!fetching) {
-                    setFetching(true)
-                    setLimit(limit + 50)
-                    fetchData().then(() => {
-                        setFetching(false)
-                        // window.scrollBy(0, (-scrollTop))
-                        listInnerRef.current.style.top = scrollTop;
-                    })
-                }
-            }
-        }
-    };
-
     const checkThreeWay = () => {
         let url = new URL(window.location)
         let sub_types = (url.searchParams.get('sub_type_id') || "1,29,18").split(",")
         setThreeWay(sub_types.includes("1"))
     }
+
+    document.addEventListener('scrollEnd', (event) => {
+        if (!fetching) {
+            setFetching(true)
+            setLimit(limit + 50)
+        }
+    })
 
     return (
         <>
@@ -160,8 +150,7 @@ const Index = (props) => {
             <div className="amt">
                 <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions/>
-                    <div className="gz home vh-100" style={{width: '100%'}} onScroll={() => onScroll()}
-                         ref={listInnerRef}>
+                    <div className="gz home" style={{width: '100%'}}>
                         <div className="homepage" ref={homePageRef}>
                             <CarouselLoader/>
                             <MainTabs tab={location.pathname.replace("/", "")}/>
@@ -172,9 +161,9 @@ const Index = (props) => {
                                 pdown={producerDown}
                                 three_way={threeWay}
                             />
-                            <div className={`text-center mt-2 ${fetching ? 'd-block' : 'd-none'}`}>
-                                <Spinner animation="grow" variant={'light'} size={'lg'}/>
-                            </div>
+                        </div>
+                        <div className={`text-center mt-2 text-white ${fetching ? 'd-block' : 'd-none'}`}>
+                            <Spinner animation={'grow'} size={'lg'}/>
                         </div>
                     </div>
                     <Right betslipValidationData={userSlipsValidation}/>

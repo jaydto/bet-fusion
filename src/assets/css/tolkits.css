@@ -4940,7 +4940,10 @@ input[type="button"].btn-block {
     }
 }
 
-@media (min-width: 1260px) {
+@media (min-width: 1279px) {
+    .size-info{
+        width:39%!important;
+    }
     .by {
         width: 100%;
     }
@@ -6901,7 +6904,29 @@ ul.sport {
     padding-right: 20px;
 }
 
-@media (max-width: 1090px) {
+@media (max-width: 1190px) {
+    .top-matches .side{
+        width:30px;
+        height: 24px;
+    }
+    .fit-ipad{
+        width:-webkit-fill-available;
+        margin-bottom: 0px;
+    }
+    .c-btn-header{
+        min-width:40px!important;
+    }
+    .match-detail-container{
+        width:19%!important;
+    }
+
+    .amt {
+        margin-top: 113px !important;
+    }
+    .bet-fix{
+        flex-direction: column!important;
+        /*margin-left:auto!important;*/
+    }
     .disable-ipad {
         margin-top: -12px;
         font-size: 12px;
@@ -7585,14 +7610,34 @@ ul.sport {
     }
 }
 
-/* @media (max-width: 991px) {
-  .app-header-nav {
-    margin-top:118px ;
-  } */
+ @media (max-width: 991px) {
+     .bet-fix{
+         flex-direction: row!important;
+         /*margin-left:auto!important;*/
+     }
+    .space-bets{
+        flex-direction:column!important;
+        gap:10px!important;
+
+    }
+     .size-info{
+         width:100%!important;
+     }
+     .c-btn-group{
+         width:100%;
+         margin-left: 0!important;
+     }
+     .c-btn-group > .c-btn {
+         width:100%!important;
+     }
 
 /* } */
 
 @media (min-width: 992px), (max-width: 1140px) {
+ }
+@media (min-width: 992px) and (max-width: 1140px) {
+
+
     .btn-spacing {
         word-spacing: 1px;
         font-size: 11px;
@@ -7641,8 +7686,16 @@ ul.sport {
         scroll-margin-top: 140px;
     }
 }
+@media (min-width: 1340px) {
 
+    .c-btn-header{
+        min-width:60px!important;
+    }
+}
 @media (min-width: 1260px) {
+    .c-btn-group > .c-btn {
+        width: 50px !important;
+    }
     .by {
         width: 100%;
     }
@@ -8614,7 +8667,18 @@ ul.sport {
         margin-top: -10px
     }
 }
+@media (max-width: 1279px ){
+    .c-btn-group > .c-btn{
+        min-width: 40px!important;
+    }
 
+    .match-detail-container {
+        margin-right:2%!important;
+    }
+}
+@media (max-width: 1216px){
+
+}
 @media (max-width: 1147px) {
     .change-display {
         flex-wrap: nowrap;
@@ -10510,6 +10574,9 @@ button.close {
 }
 
 @media (min-width: 992px) {
+    .size-info{
+        width:35%;
+    }
     .ce {
         width: 900px;
     }
@@ -15467,7 +15534,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     border-radius: 4px;
     display: inline-block;
     text-align: center;
-    min-width: 60px;
+    min-width: 50px;
     color: white;
     text-transform: uppercase;
     border-right: 1px solid gray;

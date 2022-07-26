@@ -35,7 +35,7 @@ const Sidebar = (props) => {
             if (c_status === 200) {
                 setCompetitions(c_result);
                 setLocalStorage('categories', c_result);
-            }else{
+            } else {
                 fetchData()
             }
         } else {
@@ -158,14 +158,15 @@ const Sidebar = (props) => {
                                                       icon={<img
                                                           src={getSportImageIcon(top_league?.flag, 'img/flags-1-1', true)}
                                                           style={{borderRadius: "50%", height: "20px"}}></img>}>
-                                                <a href={`/competition/${top_league.sport_id}/${top_league.category_id}/${top_league.competition_id}`}>
+                                                <a href={`/competition/${top_league.sport_id}/${top_league.category_id}/${top_league.competition_id}?sub_type_id=${getDefaultMarketsForSport(competition)}`}>
                                                     {top_league?.competition_name}
                                                 </a>
                                             </MenuItem>
                                         ))}
                                     </SubMenu>
                                 )}
-                                <SubMenu title={'Countries'} style={{maxHeight: '300px', overflowY: 'auto' , overflowX:'hidden'}}>
+                                <SubMenu title={'Countries'}
+                                         style={{maxHeight: '300px', overflowY: 'auto', overflowX: 'hidden'}}>
                                     {competition?.categories.map((country, countryKey) => (
                                         <div key={`${countryKey}_category`}>
                                             <SubMenu title={country.category_name}

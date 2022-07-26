@@ -6938,16 +6938,16 @@ ul.sport {
 .pad-r {
     padding-right: 20px;
 }
-
-@media (max-width: 1190px) {
+.fit-ipad{
+    width:-webkit-fill-available;
+    margin-bottom: 0px;
+}
+@media (max-width: 1258px) {
     .top-matches .side{
         width:30px;
         height: 24px;
     }
-    .fit-ipad{
-        width:-webkit-fill-available;
-        margin-bottom: 0px;
-    }
+
     .c-btn-header{
         min-width:40px!important;
     }
@@ -6958,10 +6958,7 @@ ul.sport {
     .amt {
         margin-top: 113px !important;
     }
-    .bet-fix{
-        flex-direction: column!important;
-        /*margin-left:auto!important;*/
-    }
+
     .disable-ipad {
         margin-top: -12px;
         font-size: 12px;
@@ -7605,7 +7602,12 @@ ul.sport {
         font-size: 18px;
     }
 }
-
+.space-between{
+    gap:10%
+}
+.fit-ipad{
+    /*margin-left: -10%;*/
+}
 @media (min-width: 768px) {
     .fk .ez .ff {
         padding-top: 6px;
@@ -7671,7 +7673,10 @@ ul.sport {
 @media (min-width: 992px), (max-width: 1140px) {
  }
 @media (min-width: 992px) and (max-width: 1140px) {
-
+    .bet-fix{
+        flex-direction: column!important;
+        /*margin-left:auto!important;*/
+    }
 
     .btn-spacing {
         word-spacing: 1px;
@@ -7721,10 +7726,22 @@ ul.sport {
         scroll-margin-top: 140px;
     }
 }
-@media (min-width: 1340px) {
+@media (min-width:1400px){
+    .space-between{
+        width: 45%!important;
+        /*gap: 18%;*/
+    }
+}
+@media (min-width:1800px){
+    .space-between{
+        width: 45%!important;
+        gap: 26%;
+    }
+}
+@media (min-width: 1500px) {
 
     .c-btn-header{
-        min-width:60px!important;
+        min-width:52px!important;
     }
 }
 @media (min-width: 1260px) {
@@ -8702,19 +8719,25 @@ ul.sport {
         margin-top: -10px
     }
 }
-@media (max-width: 1279px ){
+@media (max-width: 1278px ){
     .c-btn-group > .c-btn{
         min-width: 40px!important;
+    }
+    .space-bets{
+        gap:19px!important;
     }
 
     .match-detail-container {
         margin-right:2%!important;
+        width:19.6%!important;
     }
 }
-@media (max-width: 1216px){
 
-}
 @media (max-width: 1147px) {
+
+    .space-bets{
+        gap:2px!important;
+    }
     .change-display {
         flex-wrap: nowrap;
         font-size: 11px;
@@ -10610,7 +10633,7 @@ button.close {
 
 @media (min-width: 992px) {
     .size-info{
-        width:35%;
+        width:34%;
     }
     .ce {
         width: 900px;
@@ -15520,9 +15543,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 .overflow-ellipsis {
 
 }
-.space-bets{
-    gap:2px;
-}
+
 .match-detail-container {
     width: 20.6% !important;
     white-space: nowrap;

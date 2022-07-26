@@ -166,7 +166,7 @@ const MatchHeaderRow = (props) => {
                     </div>
                 </div>
                 <div className={'col-2 col-xs-12 match-detail-container'}></div>
-                <div className={'col d-flex d-sm-none d-md-flex flex-row justify-content-between space-bets'}>
+                <div className={'col d-flex d-md-none d-lg-flex flex-row justify-content-between space-bets  fit-ipad'}>
                     {threeWay &&
                         <div className="d-flex flex-row">
                             <div className="d-flex flex-column text-center text-white">
@@ -185,7 +185,8 @@ const MatchHeaderRow = (props) => {
                         </div>
                     }
                     {!live && !jackpot && extraMarketDisplays.length > 0 && (
-                        <div className={'d-flex flex-row'}>
+                        <div className={'d-flex flex-row space-between'}>
+
                             {extraMarketDisplays?.map((extra_market) => (
                                 <div className={'d-flex flex-column text-white fit-ipad'}>
                                     <span className={'small text-center text-uppercase bold'}>
@@ -205,7 +206,7 @@ const MatchHeaderRow = (props) => {
                                     </div>
                                 </div>
                             ))}
-                        </div>
+                          </div>
                     )}
                     <div
                         className="bet-fix events-odd pad undefined align-self-center more-markets-container m-lg-2 col-3 ">
@@ -618,6 +619,9 @@ const MatchRow = (props) => {
                 </a>
             </div>
             <div className="col d-flex flex-row justify-content-between space-bets">
+                {/*<div className={'d-flex'}>*/}
+                {/*    <div className="c-btn-group align-self-center d-none">*/}
+                {/*    </div>*/}
                 <div className="c-btn-group align-self-center">
                     {
                         match?.odds?.home_odd ? (match?.odds?.home_odd && (!pdown && match?.odds?.home_odd && match.odds.home_odd !== 'NaN' &&

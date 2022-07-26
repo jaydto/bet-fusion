@@ -18,7 +18,7 @@ const SideBar = React.lazy(() => import('./sidebar/awesome/Sidebar'))
 const Index = (props) => {
     const location = useLocation();
     const [matches, setMatches] = useState([]);
-    const [limit, setLimit] = useState(10);
+    const [limit, setLimit] = useState(50);
     const [producerDown, setProducerDown] = useState(false);
     const [threeWay, setThreeWay] = useState(false);
     const [page, setPage] = useState(1);

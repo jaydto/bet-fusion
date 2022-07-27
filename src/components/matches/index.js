@@ -629,10 +629,26 @@ const MatchRow = (props) => {
 
 
             </div>
-            <div className="col d-flex  flex-row justify-content-between space-bets">
-                {/*<div className={'d-flex'}>*/}
-                {/*    <div className="c-btn-group align-self-center d-none">*/}
-                {/*    </div>*/}
+            <div className="col d-flex  flex-row justify-content-between space-bets ">
+                <div className={'d-flex flex-md-column  flex-lg-row'}>
+                    <div className="c-btn-group align-self-center flex-sm-column d-md-flex d-lg-none ">
+                        {/*{threeWay &&*/}
+                        {/*    <div className="d-flex flex-row ">*/}
+                        {/*        <div className="d-flex flex-column text-center text-white fit-ipad">*/}
+                        {/*            <div>*/}
+                        {/*                3 WAY*/}
+                        {/*            </div>*/}
+
+                        {/*            <div className={'c-btn-group align-self-end'}>*/}
+                        {/*                <a className="c-btn-header text-white">1</a>*/}
+                        {/*                <a className="c-btn-header text-white">X</a>*/}
+                        {/*                <a className="c-btn-header text-white">2</a>*/}
+                        {/*            </div>*/}
+
+
+                        {/*        </div>*/}
+                        {/*    </div>}*/}
+                    </div>
                     <div className="c-btn-group align-self-center">
                         {
                             match?.odds?.home_odd ? (match?.odds?.home_odd && (!pdown && match?.odds?.home_odd && match.odds.home_odd !== 'NaN' &&
@@ -662,7 +678,7 @@ const MatchRow = (props) => {
                     {Object.entries(match?.extra_odds || {}).map(([marketName, odds], index) => (
                         marketName !== '' && (
                             <div className={'d-flex flex-md-column flex-lg-row'}>
-                            <div className="c-btn-group align-self-center d-lg-none flex-md-column d-md-flex">
+                            <div className="c-btn-group align-self-center d-lg-none flex-md-column flex-sm-column d-md-flex">
                                 hello
                             </div>
                             <div className={`c-btn-group m-lg-1 align-self-center`}>
@@ -692,7 +708,7 @@ const MatchRow = (props) => {
                 }
 
 
-                <div className={'d-md-none d-lg-flex'}>
+                <div className={'d-md-none d-sm-none d-lg-flex'}>
 
                 {!pdown && !jackpot &&
                     <SideBets match={match} live={live}  style={{d: "inline"}}/>}

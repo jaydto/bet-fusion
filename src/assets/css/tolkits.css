@@ -11441,7 +11441,7 @@ button.close {
         margin-left: 10px;
     }
 }
-@media (min-width: 865px) and (max-width: 996px){
+@media (min-width: 865px) and (max-width: 991px){
     .app-header-nav{
         top:62px
     }

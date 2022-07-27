@@ -6941,7 +6941,7 @@ ul.sport {
 .fit-ipad{
     width:-webkit-fill-available;
     margin-bottom: 0px;
-    margin-left: -10px;
+    margin-left: -5px;
 }
 @media (max-width: 1258px) {
     .top-matches .side{
@@ -8723,6 +8723,7 @@ ul.sport {
 @media (max-width: 1278px ){
     .c-btn-group > .c-btn{
         min-width: 40px!important;
+        transition:  min-width 0.01s ease-in-out ;
     }
     .space-bets{
         gap:10px!important;
@@ -8731,6 +8732,7 @@ ul.sport {
     .match-detail-container {
         margin-right:2%!important;
         width:19.6%!important;
+        transition: width 0.01s ease-in-out;
     }
 }
 
@@ -11474,8 +11476,13 @@ button.close {
         margin-left: 10px;
     }
 }
-
+@media (min-width: 865px) and (max-width: 996px){
+    .app-header-nav{
+        top:62px
+    }
+}
 @media (min-width: 768px) and (max-width: 991px) {
+
     .st {
         display: none !important;
     }

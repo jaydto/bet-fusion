@@ -677,8 +677,8 @@ const MatchRow = (props) => {
                     {!jackpot && <>
                     {Object.entries(match?.extra_odds || {}).map(([marketName, odds], index) => (
                         marketName !== '' && (
-                            <div className={'d-flex flex-md-column flex-lg-row'}>
-                            <div className="c-btn-group align-self-center d-lg-none flex-md-column flex-sm-column d-md-flex">
+                            <div className={'d-flex flex-md-column flex-sm-column  flex-lg-row'}>
+                            <div className="c-btn-group align-self-center d-lg-none flex-md-column d-md-flex">
                                 hello
                             </div>
                             <div className={`c-btn-group m-lg-1 align-self-center`}>

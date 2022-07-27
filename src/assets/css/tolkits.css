@@ -6906,6 +6906,7 @@ ul.sport {
 .fit-ipad{
     width:-webkit-fill-available;
     margin-bottom: 0px;
+    margin-left: -10px;
 }
 @media (max-width: 1258px) {
     .top-matches .side{
@@ -8689,7 +8690,7 @@ ul.sport {
         min-width: 40px!important;
     }
     .space-bets{
-        gap:19px!important;
+        gap:10px!important;
     }
 
     .match-detail-container {

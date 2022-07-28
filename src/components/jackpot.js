@@ -6,6 +6,7 @@ import SideBar from './sidebar/awesome/Sidebar';
 import CarouselLoader from './carousel/index';
 import {JackpotMatchList, JackpotHeader} from './matches/index';
 import makeRequest from "./utils/fetch-request";
+import dailyJackpot from '../assets/img/banner/jackpots/DailyJackpot.png'
 
 const Right = React.lazy(() => import('./right/index'));
 
@@ -43,7 +44,7 @@ const Jackpot = (props) => {
                     <SideBar loadCompetitions/>
                     <div className="gz home" style={{width: "100%"}}>
                         <div className="homepage">
-                            <CarouselLoader/>
+                            <img src={dailyJackpot}/>
                             <JackpotHeader jackpot={matches?.meta}/>
                             <JackpotMatchList matches={matches}/>
                         </div>

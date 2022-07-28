@@ -3,13 +3,10 @@ import SideBar from "../../sidebar/awesome/Sidebar";
 import Footer from "../../footer/footer";
 import React from "react";
 
-import banner2 from '../../../assets/img/banner/homepage/virtuals.jpg';
-import banner1 from '../../../assets/img/banner/homepage/karibu.png';
-import banner5 from '../../../assets/img/banner/homepage/FREEBET.png';
-import banner7 from '../../../assets/img/banner/homepage/ChezaLive.png';
-import banner8 from '../../../assets/img/banner/homepage/BEST ODDS.png';
-import depositBonus from '../../../assets/img/banner/homepage/DEPOSIT BONUS.png';
-import cashBack from '../../../assets/img/banner/homepage/CASHBACK.png';
+import twentyPercentDepositBonus from '../../../assets/img/banner/products/20PercentFirstdepositBonus-min.png'
+import thirtyPercentDailyCashback from '../../../assets/img/banner/products/30PercentDAILYCASHBACK.png'
+import seventyPercentMultibetCashback from '../../../assets/img/banner/products/70PercentMULTIBETCASHBACK.png'
+import karibuBonus from '../../../assets/img/banner/products/KaribuBonus.png'
 
 const Promotions = () => {
     return (
@@ -31,8 +28,34 @@ const Promotions = () => {
                                     <div className={'row text-white p-2 shadow-sm d-flex justify-content-center'}>
                                         <div className="col-md-12 shadow-lg">
                                             <div className="d-flex flex-column">
+                                                <h5>50 BOB KARIBU BONUS</h5>
+                                                <img src={karibuBonus} className={'rounded'}/>
+                                                <span><u>Register</u></span>
+                                                <ul>
+                                                    <li>
+                                                        ✅ Register on sms by sending the word JOIN or BET or Game etc to 29877
+                                                    </li>
+                                                    <li>
+                                                        ✅ Visit betnare.com and create an account
+                                                    </li>
+                                                </ul>
+                                                <div className="col-md-12">
+                                                    <span><u>Terms and conditions</u></span>
+                                                    <ol>
+
+                                                        ✅ Eligible for new accounts only.
+                                                        <br/>
+
+                                                        Bonus rules apply
+
+                                                    </ol>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-md-12 shadow-lg">
+                                            <div className="d-flex flex-column">
                                                 <h5>20% FIRST DEPOSIT BONUS (DEPOSIT UPEWE)</h5>
-                                                <img src={depositBonus} className={'rounded'}/>
+                                                <img src={twentyPercentDepositBonus} className={'rounded'}/>
                                                 <span><u>How to Play</u></span>
                                                 <ul>
                                                     <li>
@@ -68,12 +91,11 @@ const Promotions = () => {
                                                 </div>
                                             </div>
                                         </div>
-
                                         <div className="col-md-12 d-flex flex-row shadow-lg mt-2">
                                             <div className="col-md-12">
                                                 <div className="d-flex flex-column">
                                                     <h5>DAILY CASHBACK</h5>
-                                                    <img src={cashBack} className={'rounded'}/>
+                                                    <img src={thirtyPercentDailyCashback} className={'rounded'}/>
                                                     <span><u>How to Play</u></span>
                                                     <ul>
                                                         <li>
@@ -140,7 +162,7 @@ const Promotions = () => {
                                             <div className="col-md-12">
                                                 <div className="d-flex flex-column">
                                                     <h5>MULTIBET LOST BONUS</h5>
-                                                    <img src={cashBack} className={'rounded'}/>
+                                                    <img src={seventyPercentMultibetCashback} className={'rounded'}/>
                                                     <span><u>How to Play</u></span>
                                                     <ul>
 

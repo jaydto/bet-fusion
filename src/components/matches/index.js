@@ -621,19 +621,19 @@ const MatchRow = (props) => {
                 <div className="c-btn-group align-self-center">
                     {
                         match?.odds?.home_odd ? (match?.odds?.home_odd && (!pdown && match?.odds?.home_odd && match.odds.home_odd !== 'NaN' &&
-                                match.market_active == 1 && match.odds.home_odd_active == 1)
+                                match.market_active == 1 && match.odds.home_odd_active == 1)|| jackpot
                                 ? <OddButton match={match} mkt="home_team" live={live} jackpot={jackpot}/>
                                 : <EmptyTextRow odd_key={match?.odd_key}/>) :
                             match?.odds?.home_odd ? <EmptyTextRow odd_key={match?.odd_key}/> : ''
                     }
 
                     {match?.odds?.neutral_odd ? ((!pdown && match?.odds?.neutral_odd && match.odds.neutral_odd !== 'NaN' &&
-                        match.market_active == 1 && match.odds.neutral_odd_active == 1)
+                        match.market_active == 1 && match.odds.neutral_odd_active == 1) || jackpot
                         ? <OddButton match={match} mkt="draw" live={live} jackpot={jackpot}/>
                         : <EmptyTextRow odd_key={match?.odd_key}/>) : ''
                     }
                     {match?.odds?.away_odd ? (match?.odds?.away_odd && (!pdown && match?.odds?.away_odd && match.odds.away_odd !== 'NaN' &&
-                            match.market_active == 1 && match.odds.away_odd_active == 1)
+                            match.market_active == 1 && match.odds.away_odd_active == 1)|| jackpot
                             ? <OddButton match={match} mkt="away_team" live={live} jackpot={jackpot}/>
                             : <EmptyTextRow odd_key={match?.odd_key}/>) :
                         match?.odds?.away_odd ? <EmptyTextRow odd_key={match?.odd_key}/> : ''

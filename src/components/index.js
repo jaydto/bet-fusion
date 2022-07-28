@@ -58,7 +58,7 @@ const Index = (props) => {
 
         endpoint = endpoint.replaceAll(" ", '')
 
-        endpoint += `&sub_type_id=` + (url.searchParams.get('sub_type_id') || "1,29,18")
+        endpoint += `&sub_type_id=` + (url.searchParams.get('sub_type_id') || "1,18,29")
 
 
         let search_term = url.searchParams.get('search')
@@ -101,7 +101,7 @@ const Index = (props) => {
         }
 
 
-        endpoint += `&sub_type_id=` + (url.searchParams.get('sub_type_id') || "1,29,18")
+        endpoint += `&sub_type_id=` + (url.searchParams.get('sub_type_id') || "1,18,29")
 
 
         await makeRequest({url: endpoint, method: "POST", data: betslip}).then(([status, result]) => {
@@ -133,7 +133,7 @@ const Index = (props) => {
 
     const checkThreeWay = () => {
         let url = new URL(window.location)
-        let sub_types = (url.searchParams.get('sub_type_id') || "1,29,18").split(",")
+        let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29").split(",")
         setThreeWay(sub_types.includes("1"))
     }
 

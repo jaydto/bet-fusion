@@ -115,7 +115,7 @@ const MatchHeaderRow = (props) => {
 
         let url = new URL(window.location)
 
-        let sub_types = (url.searchParams.get('sub_type_id') || "1,29,18").split(",")
+        let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29").split(",")
 
         if (sub_types.includes("1")) {
             setThreeWay(true)
@@ -569,7 +569,7 @@ const MatchRow = (props) => {
     let url = new URL(window.location)
     match.market_active = 1
     match.odds.home_odd_active = 1
-    let sub_types = (url.searchParams.get('sub_type_id') || "1,29,18").split(",")
+    let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29").split(",")
     const [totalMarkets] = useState(sub_types.length)
     let append = totalMarkets - Object.keys(match?.extra_odds || {}).length - 1
     let loops = []

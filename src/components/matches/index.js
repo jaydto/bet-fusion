@@ -20,6 +20,8 @@ import padlock from '../../assets/img/padlock.png';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faChartLine, faFire} from "@fortawesome/free-solid-svg-icons";
 import {getFromLocalStorage} from "../utils/local-storage";
+import {returnTrue} from "react-currency-format/lib/utils";
+import myGif from '../../assets/img/gif/fire5.gif'
 import * as url from "url";
 import {Input} from "@material-ui/core";
 
@@ -166,9 +168,9 @@ const MatchHeaderRow = (props) => {
                     </div>
                 </div>
                 <div className={'col-2 col-xs-12 match-detail-container'}></div>
-                <div className={'col d-flex d-md-none d-lg-flex flex-row justify-content-between space-bets  fit-ipad'}>
+                <div className={'col d-flex d-md-none d-sm-none d-lg-flex flex-row justify-content-between space-bets fit-ipad'}>
                     {threeWay &&
-                        <div className="d-flex flex-row">
+                        <div className="d-flex flex-row ">
                             <div className="d-flex flex-column text-center text-white fit-ipad">
                                 <div className={'bold'}>
                                     3 WAY
@@ -209,14 +211,14 @@ const MatchHeaderRow = (props) => {
                             ))}
                             <div
                                 className="bet-fix events-odd pad undefined align-self-center more-markets-container m-lg-2 col-3 ">
-                                <FontAwesomeIcon icon={faFire} className={'text-warning'}/>
+                                <LazyLoadImage src={myGif} className={'fire'}/>
                             </div>
                         </div>
 
 
 
             </div>
-        </Container>
+        </Row>
     )
 }
 
@@ -684,7 +686,7 @@ const MatchRow = (props) => {
                             <div className={`c-btn-group m-lg-1 align-self-center`}>
                                 {
                                     Object.entries(odds || {}).map(([odd_key, odd_data]) => {
-                                        return odd_data?.odd_active == 1 && odd_data.market_active == 1 ? (<OddButton
+                                        return odd_data?.odd_active == 1 ? (<OddButton
                                             match={getUpdatedMatchFromOdds({match, marketName, odd_key, odd_data})}
                                             key={odd_key} live={live}/>) : (<EmptyTextRow odd_key={match?.odd_key}/>)
                                     })
@@ -787,7 +789,7 @@ export const MarketList = (props) => {
                     />
                 })
                 }
-            </Container>
+            </Row>
         </div>
     )
 
@@ -872,7 +874,7 @@ export const JackpotMatchList = (props) => {
                         No events found.
                     </div>
                 }
-            </Container>
+            </Row>
         </div>
     )
 }
@@ -896,7 +898,7 @@ const MatchList = (props) => {
                         No events found.
                     </div>
                 }
-            </Container>
+            </Row>
         </div>
     )
 }

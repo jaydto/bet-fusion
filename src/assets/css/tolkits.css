@@ -11441,6 +11441,10 @@ button.close {
         margin-left: 10px;
     }
 }
+.fire{
+    width: 30px!important;
+    height: 30px;
+}
 @media (min-width: 865px) and (max-width: 991px){
     .app-header-nav{
         top:62px
@@ -15079,6 +15083,7 @@ img.zoom-img {
 
     .off-canvas {
         top: 0 !important;
+        margin-top: 70px;
     }
 
     .app-header-nav {
@@ -15106,6 +15111,9 @@ img.zoom-img {
 }
 
 @media (min-width: 767px) {
+    .off-canvas{
+        display:none;
+    }
     .visible-mobile {
         display: none;
     }

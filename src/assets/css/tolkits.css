@@ -8710,7 +8710,10 @@ ul.sport {
         flex-wrap: nowrap;
         font-size: 11px;
         display: grid !important;
-        grid-template-columns: [col0]0px[col1]60px[col2]70px[col3]100px[col4]80px[col5]120px[col6]120px[col7]140px[col8]120px[col9]90px[col10]70px[col11]108px[col-end];
+        /*code needed to commented out after commenting out casino option*/
+        /*grid-template-columns: [col0]0px[col1]60px[col2]70px[col3]100px[col4]80px[col5]120px[col6]120px[col7]140px[col8]120px[col9]90px[col10]70px[col11]108px[col-end];*/
+        grid-template-columns: [col0]0px[col1]60px[col2]70px[col3]100px[col4]80px[col5]120px[col7]140px[col8]120px[col9]90px[col10]70px[col11]108px[col12]0[col-end];
+
         overflow: auto;
     }
 

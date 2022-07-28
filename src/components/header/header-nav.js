@@ -82,11 +82,11 @@ const HeaderNav = (props) => {
                             </span>
                         </a>
                     </li>
-                    <li className={pathname === '/casino' || pathname.includes("gameplay") ? 'active' : ''}>
-                        <a className="g url-link" href="/casino" title="Casino">
-                            <FontAwesomeIcon icon={faDice}/> Casino
-                        </a>
-                    </li>
+                    {/*<li className={pathname === '/casino' || pathname.includes("gameplay") ? 'active' : ''}>*/}
+                    {/*    <a className="g url-link" href="/casino" title="Casino">*/}
+                    {/*        <FontAwesomeIcon icon={faDice}/> Casino*/}
+                    {/*    </a>*/}
+                    {/*</li>*/}
                     <li className={pathname === '/promotions' || pathname.includes("gameplay") ? 'active' : ''}>
                         <a className="g url-link" href="/promotions" title="Promotions">
                             <FontAwesomeIcon icon={faMagic}/> Promotions

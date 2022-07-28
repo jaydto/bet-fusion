@@ -3,6 +3,7 @@ import 'react-accessible-accordion/dist/fancy-example.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faDownload} from "@fortawesome/free-solid-svg-icons";
 import DownloadLink from "react-download-link";
+import mobileBanner from '../../../assets/img/mobile/APPDownload.png'
 
 const Header = React.lazy(() => import('../../header/header'));
 const SideBar = React.lazy(() => import('../../sidebar/awesome/Sidebar'));
@@ -40,12 +41,16 @@ const MobileApp = () => {
                             </div>
                             <div className="col-md-12 mt-2 text-white accordion-container text-start">
                                 <hr/>
-                                Download the 🔥BetNare APP🔥 now!!
-                                FOR BETTER EXPERIENCE
-                                Take Control of Your Bets
+                                <div className={'d-flex justify-content-center shadow-lg mb-5'}>
+                                    Download the 🔥BetNare APP🔥 now!!
+                                    FOR BETTER EXPERIENCE
+                                    Take Control of Your Bets
 
-                                Download & Get 50/= Instant BONUS.
-
+                                    Download & Get 50/= Instant BONUS.
+                                </div>
+                                <div className={'col-md-12 justify-content-center d-flex'}>
+                                    <img src={mobileBanner} style={{width: "80%"}} className={'rounded-3 shadow-lg'}/>
+                                </div>
                                 <div className="col p-2">
                                     <br/>✅ Only 2MB in size
                                     <br/>✅ Faster & Lighter - Uses less data with data saver mode to play LIVE games.
@@ -57,7 +62,7 @@ const MobileApp = () => {
                                 </div>
                                 <div className="col">
                                     <hr/>
-                                    Play & Start Winning on the Fastest ⚡️ &  Lightest Betting App.
+                                    Play & Start Winning on the Fastest ⚡️ & Lightest Betting App.
                                     <hr/>
                                 </div>
                                 <div className="text-center mt-2 col">

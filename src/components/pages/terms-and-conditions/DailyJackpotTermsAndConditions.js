@@ -84,8 +84,6 @@ const DailyJackpotTermsAndConditions = () =>
                             competitions in prior days that have had no winners are accumulated (rolled-over) and
                             offered as a
                             prize.
-
-
                         </div>
                     </AccordionItemPanel>
                 </AccordionItem>

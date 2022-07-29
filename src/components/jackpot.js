@@ -3,12 +3,14 @@ import React, {useEffect, useCallback, useState} from "react";
 import Header from './header/header';
 import Footer from './footer/footer';
 import SideBar from './sidebar/awesome/Sidebar';
-import CarouselLoader from './carousel/index';
 import {JackpotMatchList, JackpotHeader} from './matches/index';
 import makeRequest from "./utils/fetch-request";
 import dailyJackpot from '../assets/img/banner/jackpots/DailyJackpot.png'
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
 
 const Right = React.lazy(() => import('./right/index'));
+const DailyJackpotTermsAndConditions = React.lazy(() => import('./pages/terms-and-conditions/DailyJackpotTermsAndConditions'))
 
 const Jackpot = (props) => {
     const [matches, setMatches] = useState(null);
@@ -45,8 +47,23 @@ const Jackpot = (props) => {
                     <div className="gz home" style={{width: "100%"}}>
                         <div className="homepage">
                             <img src={dailyJackpot}/>
-                            <JackpotHeader jackpot={matches?.meta}/>
-                            <JackpotMatchList matches={matches}/>
+                            <Tabs
+                                variant={'tabs'}
+                                defaultActiveKey="home"
+                                id=""
+                                className="background-primary"
+                                justify>
+                                <Tab eventKey="home" title="Jackpot" className={'background-primary'}>
+                                    <JackpotHeader jackpot={matches?.meta}/>
+                                    <JackpotMatchList matches={matches}/>
+                                </Tab>
+                                <Tab eventKey="results" title="Results">
+                                    Jackpot results will be shown here...
+                                </Tab>
+                                <Tab eventKey="terms" title="Terms & Conditions">
+                                    <DailyJackpotTermsAndConditions/>
+                                </Tab>
+                            </Tabs>
                         </div>
                     </div>
                     <Right jackpot={true}/>

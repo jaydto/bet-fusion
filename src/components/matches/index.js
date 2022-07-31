@@ -595,7 +595,7 @@ const MatchRow = (props) => {
 
             </div>
             <div className="col-2 col-xs-12 match-detail-container">
-                <a href={`/match/${live ? 'live/' + match.parent_match_id : match.match_id}`}>
+                <a href={jackpot ? '#' : `/match/${live ? 'live/' + match.parent_match_id : match.match_id}`}>
                     <div className="d-flex flex-column">
                         <div className="compt-detail overflow-ellipsis">
                             <small>{match.category} | {match.competition_name}</small>
@@ -621,7 +621,7 @@ const MatchRow = (props) => {
                 <div className="c-btn-group align-self-center">
                     {
                         match?.odds?.home_odd ? (match?.odds?.home_odd && (!pdown && match?.odds?.home_odd && match.odds.home_odd !== 'NaN' &&
-                                match.market_active == 1 && match.odds.home_odd_active == 1)|| jackpot
+                                match.market_active == 1 && match.odds.home_odd_active == 1) || jackpot
                                 ? <OddButton match={match} mkt="home_team" live={live} jackpot={jackpot}/>
                                 : <EmptyTextRow odd_key={match?.odd_key}/>) :
                             match?.odds?.home_odd ? <EmptyTextRow odd_key={match?.odd_key}/> : ''
@@ -633,7 +633,7 @@ const MatchRow = (props) => {
                         : <EmptyTextRow odd_key={match?.odd_key}/>) : ''
                     }
                     {match?.odds?.away_odd ? (match?.odds?.away_odd && (!pdown && match?.odds?.away_odd && match.odds.away_odd !== 'NaN' &&
-                            match.market_active == 1 && match.odds.away_odd_active == 1)|| jackpot
+                            match.market_active == 1 && match.odds.away_odd_active == 1) || jackpot
                             ? <OddButton match={match} mkt="away_team" live={live} jackpot={jackpot}/>
                             : <EmptyTextRow odd_key={match?.odd_key}/>) :
                         match?.odds?.away_odd ? <EmptyTextRow odd_key={match?.odd_key}/> : ''

@@ -52,7 +52,7 @@ const DisputeResolution = () => {
                                             </p>
                                             <p>
                                                 You can contact the BetNare Customer Services team by way of email
-                                                ccare@betnare.com or call our customer care lines or inbox us through
+                                                customercare@betnare.com or call our customer care lines or inbox us through
                                                 our
                                                 social Media Pages Facebook, Betnare, Instagram Betnare etc. Queries
                                                 will

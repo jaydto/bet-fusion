@@ -34,7 +34,7 @@ const Complaints = () => {
                     need
                     further escalation, they should contact our customer support agents by
                     email
-                    on ccare@betnare.com. A customer care representative shall acknowledge
+                    on customercare@betnare.com. A customer care representative shall acknowledge
                     the
                     receipt of the complaint to the Client in a maximum period of 3 working
                     days.

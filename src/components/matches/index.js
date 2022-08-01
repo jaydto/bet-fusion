@@ -274,7 +274,8 @@ const SideBets = (props) => {
                    }>+{match.side_bets}
                 </a>
                 <a className="side"
-                   href={`https://s5dev.sir.sportradar.com/betnaremts/en/match/${match.parent_match_id}`} target={"_blank"}
+                   href={`https://s5dev.sir.sportradar.com/betnaremts/en/match/${match.parent_match_id}`}
+                   target={"_blank"}
                    title={'View Stats'}>
                     <FontAwesomeIcon icon={faChartLine}/>
                 </a>

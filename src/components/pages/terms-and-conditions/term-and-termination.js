@@ -39,7 +39,7 @@ const TermAndTermination = () => {
                 <p>
                     The CLIENT may only terminate the agreement by providing written notice
                     to
-                    the customer support email at ccare@betnare.com.
+                    the customer support email at customercare@betnare.com.
                 </p>
             </AccordionItemPanel>
         </AccordionItem>

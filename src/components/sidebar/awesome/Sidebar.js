@@ -34,8 +34,10 @@ const Sidebar = (props) => {
 
             if (c_status === 200) {
                 setCompetitions(c_result);
+                setLocalStorage('categories', c_result);
+            } else {
+                fetchData()
             }
-            setLocalStorage('categories', c_result);
         } else {
             setCompetitions(cached_competitions);
         }
@@ -80,16 +82,20 @@ const Sidebar = (props) => {
         return () => window.removeEventListener("resize", updateDimensions);
     }, [width]);
 
-    const getSportImageIcon = (sport_name, folder = 'svg') => {
+    const getSportImageIcon = (sport_name, folder = 'svg', topLeagues = false) => {
 
         let default_img = 'default_sport'
         let sport_image;
         try {
-            sport_image = require(`../../../assets/${folder}/${sport_name}.svg`);
+            sport_image = topLeagues ? require(`../../../assets${sport_name}`) : require(`../../../assets/${folder}/${sport_name}.svg`);
         } catch (error) {
             sport_image = require(`../../../assets/${folder}/${default_img}.svg`);
         }
         return sport_image
+    }
+
+    const getDefaultMarketsForSport = (competition) => {
+        return competition?.default_display_markets
     }
 
 
@@ -98,11 +104,12 @@ const Sidebar = (props) => {
             display: 'flex',
             overflow: 'scroll initial',
             zIndex: 10,
-            marginRight: '5px',
-            top: "140px"
+            marginRight: '2px',
+            top: "100px"
         }}
-             className={`vh-100 text-white sticky-top d-none d-md-block`}>
+             className={`vh-100 text-white sticky-top d-none d-md-block up`}>
             <ProSidebar
+
                 style={{backgroundColor: '#16202c !important'}}
                 image={false}
                 onToggle={handleToggleSidebar}
@@ -141,7 +148,7 @@ const Sidebar = (props) => {
                         {competitions?.all_sports.map((competition, index) => (
 
                             <SubMenu title={competition.sport_name} defaultOpen={getActiveSport(competition.sport_id)}
-                                     icon={<img style={{borderRadius: '50%', height: '20px', backgroundColor: "#fff"}}
+                                     icon={<img style={{borderRadius: '50%', height: '20px'}}
                                                 src={getSportImageIcon(competition.sport_name)}/>}
                                      key={index}>
                                 {index === 0 && (
@@ -149,16 +156,17 @@ const Sidebar = (props) => {
                                         {competitions?.top_soccer?.map((top_league, index) => (
                                             <MenuItem key={`l_${index}`}
                                                       icon={<img
-                                                          src={getSportImageIcon(top_league?.country_code,'img/flags-1-1')}
+                                                          src={getSportImageIcon(top_league?.flag, 'img/flags-1-1', true)}
                                                           style={{borderRadius: "50%", height: "20px"}}></img>}>
-                                                <a href={`/competition/${top_league.sport_id}/${top_league.category_id}/${top_league.competition_id}`}>
+                                                <a href={`/competition/${top_league.sport_id}/${top_league.category_id}/${top_league.competition_id}?sub_type_id=${getDefaultMarketsForSport(competition)}`}>
                                                     {top_league?.competition_name}
                                                 </a>
                                             </MenuItem>
                                         ))}
                                     </SubMenu>
                                 )}
-                                <SubMenu title={'Countries'} style={{maxHeight: '300px', overflow: 'scroll'}}>
+                                <SubMenu title={'Countries'}
+                                         style={{maxHeight: '300px', overflowY: 'auto', overflowX: 'hidden'}}>
                                     {competition?.categories.map((country, countryKey) => (
                                         <div key={`${countryKey}_category`}>
                                             <SubMenu title={country.category_name}
@@ -179,13 +187,17 @@ const Sidebar = (props) => {
                                     ))}
                                 </SubMenu>
                                 <MenuItem>
-                                    <a href={`/upcoming?sport_id=${competition.sport_id}`}>Today Games</a>
+                                    <a href={`/upcoming?sport_id=${competition.sport_id}&sub_type_id=${getDefaultMarketsForSport(competition)}`}>
+                                        Today Games
+                                    </a>
                                 </MenuItem>
                                 <MenuItem>
-                                    <a href={`/highlights?sport_id=${competition.sport_id}`}>Highlights</a>
+                                    <a href={`/highlights?sport_id=${competition.sport_id}&sub_type_id=${getDefaultMarketsForSport(competition)}`}>
+                                        Highlights
+                                    </a>
                                 </MenuItem>
                                 <MenuItem>
-                                    <a href={`/tomorrow?sport_id=${competition.sport_id}`}>
+                                    <a href={`/tomorrow?sport_id=${competition.sport_id}&sub_type_id=${getDefaultMarketsForSport(competition)}`}>
                                         Tomorrow
                                     </a>
                                 </MenuItem>

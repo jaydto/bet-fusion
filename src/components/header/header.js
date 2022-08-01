@@ -42,8 +42,8 @@ const Header = (props) => {
 
             if (c_status === 200) {
                 setCompetitions(c_result);
+                setLocalStorage('categories', c_result);
             }
-            setLocalStorage('categories', c_result);
         } else {
             setCompetitions(cached_categories);
         }
@@ -110,8 +110,8 @@ const Header = (props) => {
     const expand = "md"
     return (
         <>
-            <Navbar expand="md" className="mb-3 ck pc os app-navbar top-nav" fixed="top" variant="dark">
-                <Container fluid className={'d-flex justify-content-between'}>
+            <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark">
+                <Container fluid className={'d-flex justify-content-between mobile-change'}>
                     <Navbar.Brand href="/" className="e logo align-self-start" title="Betnare">
                         <div className="col-3">
                             <div>
@@ -119,12 +119,13 @@ const Header = (props) => {
                             </div>
                         </div>
                     </Navbar.Brand>
-                    <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`}/>
-                    <div className="col-9" id="navbar-collapse-main">
-                        <div className="col-md-5 right ">
+                    <div className="col-9 change-size" id="navbar-collapse-main">
+                        <div className="col-md-10 col-sm-12 col-lg-7 right disable-ipad ">
                             {user ? <ProfileMenu user={user}/> : <HeaderLogin setUser={setUser}/>}
                         </div>
+
                     </div>
+                   
                     <Row className="second-nav ck pc os app-navbar app-header-nav">
                         <HeaderNav/>
                     </Row>

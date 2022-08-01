@@ -17,7 +17,7 @@ const Footer = (props) => {
                         </li>
                         <li className="">
                             <a href="mailto:care@ke.betnare.com">
-                                <FontAwesomeIcon icon={faEnvelope}/> info@betnare.com
+                                <FontAwesomeIcon icon={faEnvelope}/> customercare@betnare.com
                             </a>
                         </li>
                         <li className="footer-icon">

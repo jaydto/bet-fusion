@@ -142,38 +142,37 @@ const styles = StyleSheet.create({
 
 export function PdfDocument(props) {
     const getBothTeamsToScoreOdds = (match, key) => {
-        let odds = match?.odds;
-        let bothTeamsToScore = odds[29]
-        return key === 'yes' ? bothTeamsToScore?.yes : bothTeamsToScore?.no
+        let odds = match?.extra_odds;
+        let bothTeamsToScore = odds['Both teams to score']
+        return key === 'yes' ? bothTeamsToScore?.yes?.odd_value : bothTeamsToScore?.no?.odd_value
     }
 
     const getDoubleChanceOdds = (match, key) => {
-        let odds = match?.odds;
-        let doubleChance = odds[10]
+        let odds = match?.extra_odds;
+        let doubleChance = odds['Double chance']
         if (key === '1orX') {
             let oddKey = match?.home_team + ' or draw'
-            return doubleChance[oddKey]
+            return doubleChance?.[oddKey]?.['odd_value']
         }
         if (key === 'Xor2') {
             let oddKey = 'draw or ' + match?.away_team
-            return doubleChance[oddKey]
+            return doubleChance?.[oddKey]?.['odd_value']
         }
 
         if (key === '1or2') {
             let oddKey = match?.home_team + ' or ' + match?.away_team
-            return doubleChance[oddKey]
+            return doubleChance?.[oddKey]?.['odd_value']
         }
     }
 
     const getOverUnderTwoPointFive = (match, key) => {
-        let odds = match?.odds;
-        let overUnder = odds[18]
+        let odds = match?.extra_odds;
+        let overUnder = odds['Total']
         if (key === 'over') {
-            return overUnder['over 2.5']
+            return overUnder?.['over 2.5']?.['odd_value']
         }
-
         if (key === 'under') {
-            return overUnder['under 2.5']
+            return overUnder?.['under 2.5']?.['odd_value']
         }
     }
     return (

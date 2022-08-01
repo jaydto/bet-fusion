@@ -156,7 +156,7 @@ const General = () => {
                         services offered after a change is enacted in the terms and
                         conditions,
                         the CLIENT will be entitled to withdraw their uncommitted funds by
-                        sending an email to ccare@BetNare.com. The company will cease to
+                        sending an email to customercare@betnare.com. The company will cease to
                         have
                         any continued obligation towards the CLIENT from the day of receipt
                         of

@@ -8,7 +8,7 @@ import {
 import 'react-accessible-accordion/dist/fancy-example.css';
 import React from "react";
 import Header from '../../header/header'
-import SideBar from '../../sidebar/sidebar'
+import SideBar from '../../sidebar/awesome/Sidebar'
 import Footer from '../../footer/footer'
 import Right from '../../right/index'
 
@@ -16,8 +16,8 @@ const DisputeResolution = () => {
     return (
         <>
             <Header/>
-            <div className="by amt">
-                <div className="gc">
+            <div className="amt">
+                <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions />
                     <div className="gz home">
                         <div className="homepage">
@@ -52,7 +52,7 @@ const DisputeResolution = () => {
                                             </p>
                                             <p>
                                                 You can contact the BetNare Customer Services team by way of email
-                                                ccare@betnare.com or call our customer care lines or inbox us through
+                                                customercare@betnare.com or call our customer care lines or inbox us through
                                                 our
                                                 social Media Pages Facebook, Betnare, Instagram Betnare etc. Queries
                                                 will

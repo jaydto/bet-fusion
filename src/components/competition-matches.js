@@ -9,6 +9,7 @@ import {
     setLocalStorage
 } from './utils/local-storage';
 import {getBetslip} from './utils/betslip' ;
+import {Spinner} from "react-bootstrap";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -25,9 +26,12 @@ const CompetitionMatches = (props) => {
     const [matches, setMatches] = useState(null);
     const [state, dispatch] = useContext(Context);
     const {sportid, categoryid, competitionid} = useParams();
-    const [isLoading, setIsLoading] = useState(false);
     const [producerDown, setProducerDown] = useState(false);
     const [userSlipsValidation, setUserSlipsValidation] = useState();
+    const [fetching, setFetching] = useState(false)
+    const [limit, setLimit] = useState(50);
+    const [shouldFetch, setShouldFetch] = useState(true);
+
 
     const findPostableSlip = () => {
         let betslips = getBetslip() || {};
@@ -38,32 +42,43 @@ const CompetitionMatches = (props) => {
     };
 
     useInterval(async () => {
+        if (!shouldFetch) {
+            return;
+        }
+        setFetching(true)
         let endpoint = "/v1/sports/competition?id=" + competitionid + "&page=" + (page || 1) + "&sport_id=79";
+        let sub_types = new URL(window.location).searchParams.get('sub_type_id')
+        endpoint += sub_types ? '&sub_type_id=' + sub_types : ''
         let betslip = findPostableSlip();
         let method = betslip ? "POST" : "GET";
         await makeRequest({url: endpoint, method: method, data: betslip}).then(([status, result]) => {
             if (status == 200) {
                 setMatches(result?.data || result)
+                setShouldFetch(result?.data.length > 0)
                 if (result?.slip_data) {
                     setUserSlipsValidation(result?.slip_data)
                 }
                 setProducerDown(result?.producer_status === 1);
+                setFetching(false)
             }
         });
     }, 3000);
 
     const fetchPagedData = useCallback(() => {
-        if (!isLoading) {
-            setIsLoading(true);
+        if (!fetching && shouldFetch) {
+            setFetching(true);
             let betslip = findPostableSlip();
             let endpoint = "/v1/sports/competition?id=" + competitionid + "&page=" + (page || 1);
+            let sub_types = new URL(window.location).searchParams.get('sub_type_id')
+            endpoint += sub_types ? '&sub_type_id=' + sub_types : ''
             makeRequest({url: endpoint, method: "post", data: betslip}).then(([status, result]) => {
                 setMatches(result?.data || result);
+                setShouldFetch(result?.data.length > 0)
                 if (result?.slip_data) {
                     setUserSlipsValidation(result?.slip_data)
                 }
                 setProducerDown(result?.producer_status === 1);
-                setIsLoading(false);
+                setFetching(false);
             });
         }
     }, []);
@@ -80,6 +95,12 @@ const CompetitionMatches = (props) => {
         };
     }, [fetchPagedData]);
 
+    document.addEventListener('scrollEnd', (event) => {
+        if (!fetching) {
+            setFetching(true)
+            setLimit(limit + 50)
+        }
+    })
 
     return (
         <>
@@ -95,6 +116,9 @@ const CompetitionMatches = (props) => {
                                 matches={matches}
                                 pdown={producerDown}
                             />}
+                        </div>
+                        <div className={`text-center mt-2 text-white ${fetching ? 'd-block' : 'd-none'}`}>
+                            <Spinner animation={'grow'} size={'lg'}/>
                         </div>
                     </div>
                     <Right betslipValidationData={userSlipsValidation}/>

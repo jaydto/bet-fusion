@@ -261,14 +261,7 @@ const SideBets = (props) => {
     const [picked,] = useState();
 
     const generateStatsUrl = () => {
-        let categories = getFromLocalStorage('categories')
-        // console.log(categories)
-        let sport_id = new URL(window.location).searchParams.get('sport_id') || 79
-        let sport = categories?.all_sports?.filter((category) => category.sport_id == sport_id)
-        let home_id = ''
-        let away_id = ''
-        let url = `https:https//s5dev.sir.sportradar.com/betnaremts/en/${sport_id}/season/${sport}/h2h/${home_id}/${away_id}`
-        let link = new URL(url)
+        window.location.href = ''
     }
 
     return (
@@ -280,7 +273,9 @@ const SideBets = (props) => {
                        live ? match.parent_match_id : match?.match_id}`
                    }>+{match.side_bets}
                 </a>
-                <a className="side" href={"#"} title={'View Stats'} onClick={() => generateStatsUrl()}>
+                <a className="side"
+                   href={`https://s5dev.sir.sportradar.com/betnaremts/en/match/${match.parent_match_id}`}
+                   title={'View Stats'}>
                     <FontAwesomeIcon icon={faChartLine}/>
                 </a>
             </>}

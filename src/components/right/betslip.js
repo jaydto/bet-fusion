@@ -17,7 +17,8 @@ const clean_rep = (str) => {
 }
 
 const BetSlip = (props) => {
-    const {jackpot, betslipValidationData} = props;
+    const {jackpot, betslipValidationData, jackpotData} = props;
+    console.log("Props", props)
     const [betslipKey, setBetslipKey] = useState("betslip");
     const [betslipsData, setBetslipsData] = useState(null);
     const [state, dispatch] = useContext(Context);
@@ -138,7 +139,7 @@ const BetSlip = (props) => {
 
     return (
         <div className="bet-body text-white">
-            <div className="flow" style={{maxHeight: "50vh",overflowY:"auto"}}>
+            <div className="flow" style={{maxHeight: "50vh", overflowY: "auto"}}>
                 <ul>
                     {Object.entries(betslipsData || {}).map(([match_id, slip]) => {
                         let odd = slip.odd_value;
@@ -149,7 +150,7 @@ const BetSlip = (props) => {
                                 style={{background: no_odd_bg}}>
 
                                 <div className="bet-cancel">
-                                    <input id={slip.match_id} type="submit"  value="X"
+                                    <input id={slip.match_id} type="submit" value="X"
                                            onClick={() => handledRemoveSlip(slip)}/>
                                 </div>
                                 <div className="bet-value">
@@ -191,6 +192,7 @@ const BetSlip = (props) => {
             </div>
             <div className="bottom">
                 <BetslipSubmitForm
+                    jackpotData={jackpotData}
                     totalOdds={totalOdds}
                     betslip={betslipsData}
                     setBetslipsData={setBetslipsData}

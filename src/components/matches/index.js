@@ -728,7 +728,7 @@ export const JackpotHeader = (props) => {
 }
 
 export const JackpotMatchList = (props) => {
-    const {matches} = props;
+    const {matches, jackpotData} = props;
 
     return (
         <div className="matches full-width mt-5">

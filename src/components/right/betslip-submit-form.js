@@ -25,7 +25,7 @@ const Float = (equation, precision = 4) => {
 
 const BetslipSubmitForm = (props) => {
 
-    const {jackpot, totalGames, totalOdds, betslip, setBetslipsData} = props;
+    const {jackpot, totalGames, totalOdds, betslip, setBetslipsData, jackpotData} = props;
     const [ipv4, setIpv4] = useState(null);
     const [message, setMessage] = useState(null);
     const [state, dispatch] = useContext(Context);
@@ -148,8 +148,11 @@ const BetslipSubmitForm = (props) => {
             let stake_after_tax = Float(stake) / Float(107.5) * 100
             let ext = Float(stake) - Float(stake_after_tax);
             let raw_possible_win = Float(stake_after_tax) * Float(totalOdds);
-            if (raw_possible_win > 500000) {
+            if (raw_possible_win > 500000 && !jackpot) {
                 raw_possible_win = 500000
+            }
+            if (jackpot) {
+                console.log(jackpotData)
             }
             let taxable_amount = Float(raw_possible_win) - Float(stake_after_tax);
             let wint = taxable_amount * 0.2;
@@ -230,10 +233,12 @@ const BetslipSubmitForm = (props) => {
     }
 
     const SubmitButton = (props) => {
-        const {title, ...rest} = props;
+        const {title, disabled, ...rest} = props;
         const {isSubmitting} = useFormikContext();
         return (
-            <button type="submit" {...rest} disabled={isSubmitting}>{isSubmitting ? " WAIT ... " : title}</button>
+            <button type="submit" {...rest} className={`${disabled ? 'disabled' : ''} place-bet-btn bold`}
+                    id='place_bet_button'
+                    disabled={isSubmitting || disabled}>{isSubmitting ? " WAIT ... " : title}</button>
         );
     };
 
@@ -268,14 +273,14 @@ const BetslipSubmitForm = (props) => {
                 <Alert/>
                 <table className="bet-table">
                     <tbody>
-                    <tr className="hide-on-affix">
+                    {!jackpot && <tr className="hide-on-affix">
                         <td>TOTAL ODDS</td>
                         <td>
                             <b>{Float(totalOdds, 2)}</b>
 
                         </td>
+                    </tr>}
 
-                    </tr>
                     <tr id="odd-change-text">
                         <td colSpan="2">
                             <label className="checkbox">
@@ -307,13 +312,14 @@ const BetslipSubmitForm = (props) => {
                     <tr>
                         <td colSpan="2"></td>
                     </tr>
-                    <tr className="bet-win-tr hide-on-affix">
+                    {!jackpot && <tr className="bet-win-tr hide-on-affix">
                         <td>Possible winnings</td>
                         <td>
                             KES. <span
                             id="pos_win">{formatNumber(possibleWin)}</span>
                         </td>
-                    </tr>
+                    </tr>}
+
                     <tr className="bet-win-tr hide-on-affix">
                         <td> Excise Tax (7.5%)</td>
                         <td>KES. <span id="tax">{formatNumber(exciseTax)}</span></td>
@@ -324,7 +330,8 @@ const BetslipSubmitForm = (props) => {
                     </tr>
                     <tr className="bet-win-tr hide-on-affix">
                         <td>Net Amount</td>
-                        <td>KES. <span id="net-amount">{formatNumber(netWin)}</span></td>
+                        <td>KES. <span
+                            id="net-amount">{formatNumber(jackpot ? jackpotData?.jackpot_amount : netWin)}</span></td>
                     </tr>
                     <tr>
                         <td>
@@ -335,6 +342,7 @@ const BetslipSubmitForm = (props) => {
                         </td>
                         <td>
                             <SubmitButton id="place_bet_button"
+                                          disabled={jackpot && Object.entries(betslip || []).length != JSON.stringify(jackpotData?.total_games)}
                                           className="place-bet-btn bold"
                                           title="PLACE BET"/>
                         </td>

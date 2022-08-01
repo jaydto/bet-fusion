@@ -1,0 +1,33 @@
+---
+- include_vars:
+    file: ../vars/main.yml
+    name: vars
+
+- name: clone a repository
+  git:
+    repo: "{{git_repo}}"
+    dest: "{{git_dest}}"
+  accept_host_key: yes
+
+- name: install nginx
+  apt:
+    name: nginx
+    state: present
+
+- name: Installing nodejs
+  apt:
+    name: nodejs
+    update_cache: yes
+
+- name: Installing npm
+  apt:
+    name: npm
+    update_cache: yes
+
+
+
+- name: Installing web server
+  command: npm install serve
+# - name: python installation
+#   pip:
+#     requirements: /path/to requirements.txt

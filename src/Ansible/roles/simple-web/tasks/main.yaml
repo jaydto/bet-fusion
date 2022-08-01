@@ -1,0 +1,4 @@
+---
+#task files
+- import_tasks: resource.yml
+- import_tasks: configure.yml

@@ -49,8 +49,8 @@ const HowToPlay = (props) => {
                             </div>
                             <div className="col-md-12 card mt-2"></div>
                             <div className="col-md-12 py-2 px-1 w-100 text-white accordion-container">
-                                <Accordion preExpanded={['1']}>
-                                    <AccordionItem uuid="1" className={'px-1 pt-1 pb-2'}>
+                                <Accordion preExpanded={['1']} allowZeroExpanded className="size-accordion">
+                                    <AccordionItem uuid="1" className={' pb-2'}>
                                         <AccordionItemHeading>
                                             <AccordionItemButton className='accordion-button'>
                                                 Play via SMS
@@ -58,28 +58,35 @@ const HowToPlay = (props) => {
                                         </AccordionItemHeading>
                                         <AccordionItemPanel className='accordion-item-panel px-1 pt-1'>
 
-                                            <Accordion preExpanded={['12']} allowMultipleExpanded>
-                                                <AccordionItem className={'pb-3'}>
+                                            <Accordion preExpanded={['12']} allowZeroExpanded>
+                                                <AccordionItem>
                                                     <AccordionItemHeading>
-                                                    <AccordionItemButton className='accordion-button'>
-                                                        Register
-                                                    </AccordionItemButton>
-                                                </AccordionItemHeading>
+                                                        <AccordionItemButton className='accordion-button'>
+                                                            Register
+                                                        </AccordionItemButton>
+                                                    </AccordionItemHeading>
                                                     <AccordionItemPanel className='accordion-item-panel px-2 py-1'>
-                                                        <h3>Why should I register with BetNare ?</h3>
-                                                        <p>
-                                                            Registration allows you to open a BetNare account
-                                                            free of charge and under no obligation. Your BetNare
-                                                            account will help you manage your bets and other
-                                                            account details. You need to deposit actual money
-                                                            into your account before you can place bets.
-                                                        </p>
-                                                        <p>
-                                                            Register now! To Play
 
-                                                        </p>
 
-                                                        <Accordion allowMultipleExpanded>
+                                                        <Accordion allowZeroExpanded>
+                                                            <AccordionItem>
+                                                                <AccordionItemHeading>
+                                                                    <AccordionItemButton className={'accordion-button'}>Why
+                                                                        should I register with BetNare
+                                                                        ?</AccordionItemButton>
+                                                                </AccordionItemHeading>
+                                                                <AccordionItemPanel className={'accordion-item-panel'}>
+                                                                    Registration allows you to open a BetNare account
+                                                                    free of charge and under no obligation. Your BetNare
+                                                                    account will help you manage your bets and other
+                                                                    account details. You need to deposit actual money
+                                                                    into your account before you can place bets.
+                                                                    <p>
+                                                                        Register now! To Play
+
+                                                                    </p>
+                                                                </AccordionItemPanel>
+                                                            </AccordionItem>
 
 
                                                             <AccordionItem>
@@ -91,22 +98,27 @@ const HowToPlay = (props) => {
                                                                 </AccordionItemHeading>
                                                                 <AccordionItemPanel className={'px-2 py-1'}>
                                                                     <h3>To register via SMS follow these steps;</h3>
-                                                                    <AccordionItemHeading>
-                                                                        <AccordionItemButton
-                                                                            className='accordion-button'>
-                                                                            Step 1
-                                                                        </AccordionItemButton>
-                                                                    </AccordionItemHeading>
-                                                                    <AccordionItemPanel>
-                                                                        To register via SMS send “JOIN” to 29877. You
-                                                                        will receive a confirmation message with a link
-                                                                        directing you to read the terms and conditions
-                                                                        on BetNare.
-                                                                        Once you have read and understood the Terms and
-                                                                        Conditions, you are able to create an account on
-                                                                        BetNare.
+                                                                    <Accordion allowZeroExpanded>
+                                                                        <AccordionItem>
+                                                                            <AccordionItemHeading>
+                                                                                <AccordionItemButton
+                                                                                    className='accordion-button'>
+                                                                                    Step 1
+                                                                                </AccordionItemButton>
+                                                                            </AccordionItemHeading>
+                                                                            <AccordionItemPanel>
+                                                                                To register via SMS send “JOIN” to 29877. You
+                                                                                will receive a confirmation message with a link
+                                                                                directing you to read the terms and conditions
+                                                                                on BetNare.
+                                                                                Once you have read and understood the Terms and
+                                                                                Conditions, you are able to create an account on
+                                                                                BetNare.
 
-                                                                    </AccordionItemPanel>
+                                                                            </AccordionItemPanel>
+                                                                        </AccordionItem>
+                                                                    </Accordion>
+
 
                                                                 </AccordionItemPanel>
                                                             </AccordionItem>
@@ -156,7 +168,7 @@ const HowToPlay = (props) => {
 
                                                 </AccordionItem>
 
-                                                <AccordionItem uuid={'12'} className={'pb-3'}>
+                                                <AccordionItem uuid={'12'}>
                                                     <AccordionItemHeading>
                                                         <AccordionItemButton className='accordion-button'>
                                                             Deposit
@@ -164,7 +176,8 @@ const HowToPlay = (props) => {
                                                     </AccordionItemHeading>
                                                     <AccordionItemPanel className='accordion-item-panel px-2 py-1'>
                                                         <h3>How do I deposit cash into my BetNare account? </h3>
-                                                        <p className={'px-2'}>Once you have completed your registration. To deposit money
+                                                        <p className={'px-2'}>Once you have completed your registration.
+                                                            To deposit money
                                                             into your BetNare account is easy, just follow these
                                                             steps:</p>
                                                         <Accordion allowZeroExpanded>
@@ -215,7 +228,7 @@ const HowToPlay = (props) => {
                                                     </AccordionItemPanel>
                                                 </AccordionItem>
 
-                                                <AccordionItem className={'pb-3'}>
+                                                <AccordionItem>
                                                     <AccordionItemHeading>
                                                         <AccordionItemButton className='accordion-button'>
                                                             Bet via SMS
@@ -255,51 +268,60 @@ const HowToPlay = (props) => {
                                                                             Follow the steps below to place a single bet
                                                                             via sms.
                                                                         </p>
-                                                                        <AccordionItemHeading>
-                                                                            <AccordionItemButton
-                                                                                className='accordion-button'>
-                                                                                Step 1 </AccordionItemButton>
-                                                                        </AccordionItemHeading>
-                                                                        <AccordionItemPanel>
-                                                                            SMS to 29877 the Game ID of the game you
-                                                                            wish to bet on,
-                                                                            your prediction and the amount you wish to
-                                                                            bet with.
-                                                                            e.g. 1234#1#100 - where "1234" is the game
-                                                                            ID, "1" is
-                                                                            your
-                                                                            prediction for Home team to win, and "10" is
-                                                                            the bet
-                                                                            amount.
+                                                                        <Accordion allowZeroExpanded preExpanded={['1']}>
+                                                                            <AccordionItem uuid={'1'}>
+                                                                                <AccordionItemHeading>
+                                                                                    <AccordionItemButton
+                                                                                        className='accordion-button'>
+                                                                                        Step 1 </AccordionItemButton>
+                                                                                </AccordionItemHeading>
+                                                                                <AccordionItemPanel>
+                                                                                    SMS to 29877 the Game ID of the game you
+                                                                                    wish to bet on,
+                                                                                    your prediction and the amount you wish to
+                                                                                    bet with.
+                                                                                    e.g. 1234#1#100 - where "1234" is the game
+                                                                                    ID, "1" is
+                                                                                    your
+                                                                                    prediction for Home team to win, and "10" is
+                                                                                    the bet
+                                                                                    amount.
 
 
-                                                                        </AccordionItemPanel>
-                                                                        <AccordionItemHeading>
-                                                                            <AccordionItemButton
-                                                                                className='accordion-button'>
-                                                                                Step 2 </AccordionItemButton>
-                                                                        </AccordionItemHeading>
-                                                                        <AccordionItemPanel>
-                                                                            You will receive a confirmation message from
-                                                                            29877
-                                                                            showing
-                                                                            your Bet ID, possible payout, and your
-                                                                            BetNare account
-                                                                            balance.
-                                                                            The possible payout is calculated by
-                                                                            multiplying your
-                                                                            total
-                                                                            Odds by the bet amount then subtracting 20%
-                                                                            withholding
-                                                                            tax.
-                                                                            Withholding tax is 20% of your net winnings.
-                                                                            Net winnings is possible win (Bet amount X
-                                                                            odd) less the
-                                                                            bet
-                                                                            amount.
+                                                                                </AccordionItemPanel>
+                                                                            </AccordionItem>
+                                                                            <AccordionItem>
+                                                                                <AccordionItemHeading>
+                                                                                    <AccordionItemButton
+                                                                                        className='accordion-button'>
+                                                                                        Step 2 </AccordionItemButton>
+                                                                                </AccordionItemHeading>
+                                                                                <AccordionItemPanel>
+                                                                                    You will receive a confirmation message from
+                                                                                    29877
+                                                                                    showing
+                                                                                    your Bet ID, possible payout, and your
+                                                                                    BetNare account
+                                                                                    balance.
+                                                                                    The possible payout is calculated by
+                                                                                    multiplying your
+                                                                                    total
+                                                                                    Odds by the bet amount then subtracting 20%
+                                                                                    withholding
+                                                                                    tax.
+                                                                                    Withholding tax is 20% of your net winnings.
+                                                                                    Net winnings is possible win (Bet amount X
+                                                                                    odd) less the
+                                                                                    bet
+                                                                                    amount.
 
 
-                                                                        </AccordionItemPanel>
+                                                                                </AccordionItemPanel>
+                                                                            </AccordionItem>
+
+                                                                        </Accordion>
+
+
 
                                                                     </AccordionItemPanel>
                                                                 </AccordionItem>
@@ -315,68 +337,76 @@ const HowToPlay = (props) => {
                                                                         Follow the steps below to place a Multi bet via
                                                                         SMS.
                                                                     </p>
-                                                                    <AccordionItemHeading>
-                                                                        <AccordionItemButton
-                                                                            className='accordion-button'>
-                                                                            Step 1
-                                                                        </AccordionItemButton>
-                                                                    </AccordionItemHeading>
-                                                                    <AccordionItemPanel>
-                                                                        <p>
-                                                                            SMS to 29877 the Game IDs of the games you
-                                                                            have
-                                                                            selected, your
-                                                                            predictions for these games, and the amount
-                                                                            you
-                                                                            want to bet
-                                                                            with. (Note that a Multibet has a minimum of
-                                                                            two
-                                                                            games and a
-                                                                            maximum of 30 games).
-                                                                            e.g. 2345#2#4567#1#1243 #X#5432 where 2345is
-                                                                            the
-                                                                            first Game ID,2
-                                                                            is the prediction, 4567is the second Game
-                                                                            ID, 1
-                                                                            is the
-                                                                            prediction, 1243 is the third Game ID and X
-                                                                            is
-                                                                            the prediction.
-                                                                            KSH 5432 is the bet amount for your
-                                                                            Multibet.
+                                                                    <Accordion preExpanded={'7'}>
+                                                                        <AccordionItem>
+                                                                            <AccordionItemHeading>
+                                                                                <AccordionItemButton
+                                                                                    className='accordion-button'>
+                                                                                    Step 1
+                                                                                </AccordionItemButton>
+                                                                            </AccordionItemHeading>
+                                                                            <AccordionItemPanel>
+                                                                                <p>
+                                                                                    SMS to 29877 the Game IDs of the games you
+                                                                                    have
+                                                                                    selected, your
+                                                                                    predictions for these games, and the amount
+                                                                                    you
+                                                                                    want to bet
+                                                                                    with. (Note that a Multibet has a minimum of
+                                                                                    two
+                                                                                    games and a
+                                                                                    maximum of 30 games).
+                                                                                    e.g. 2345#2#4567#1#1243 #X#5432 where 2345is
+                                                                                    the
+                                                                                    first Game ID,2
+                                                                                    is the prediction, 4567is the second Game
+                                                                                    ID, 1
+                                                                                    is the
+                                                                                    prediction, 1243 is the third Game ID and X
+                                                                                    is
+                                                                                    the prediction.
+                                                                                    KSH 5432 is the bet amount for your
+                                                                                    Multibet.
 
 
-                                                                        </p>
+                                                                                </p>
 
-                                                                    </AccordionItemPanel>
-                                                                    <AccordionItemHeading>
-                                                                        <AccordionItemButton
-                                                                            className='accordion-button'>
-                                                                            Step 2
-                                                                        </AccordionItemButton>
-                                                                    </AccordionItemHeading>
-                                                                    <AccordionItemPanel>
-                                                                        <p>
-                                                                            You will receive a confirmation message from
-                                                                            29877 showing your
-                                                                            Multi Bet ID, possible payout, and your
-                                                                            BetNare
-                                                                            account balance.
-                                                                            The possible payout is calculated by
-                                                                            multiplying
-                                                                            your total Odds
-                                                                            by the bet amount then subtracting 20%
-                                                                            withholding tax.
-                                                                            Withholding tax is 20% of your net winnings.
-                                                                            Net winnings is possible win (Bet amount X
-                                                                            odd)
-                                                                            less the bet
-                                                                            amount.
+                                                                            </AccordionItemPanel>
+                                                                        </AccordionItem>
+                                                                        <AccordionItem>
+                                                                            <AccordionItemHeading>
+                                                                                <AccordionItemButton
+                                                                                    className='accordion-button'>
+                                                                                    Step 2
+                                                                                </AccordionItemButton>
+                                                                            </AccordionItemHeading>
+                                                                            <AccordionItemPanel>
+                                                                                <p>
+                                                                                    You will receive a confirmation message from
+                                                                                    29877 showing your
+                                                                                    Multi Bet ID, possible payout, and your
+                                                                                    BetNare
+                                                                                    account balance.
+                                                                                    The possible payout is calculated by
+                                                                                    multiplying
+                                                                                    your total Odds
+                                                                                    by the bet amount then subtracting 20%
+                                                                                    withholding tax.
+                                                                                    Withholding tax is 20% of your net winnings.
+                                                                                    Net winnings is possible win (Bet amount X
+                                                                                    odd)
+                                                                                    less the bet
+                                                                                    amount.
 
 
-                                                                        </p>
+                                                                                </p>
 
-                                                                    </AccordionItemPanel>
+                                                                            </AccordionItemPanel>
+                                                                        </AccordionItem>
+                                                                    </Accordion>
+
+
                                                                     <AccordionItemHeading>
                                                                         <AccordionItemButton
                                                                             className='accordion-button'>
@@ -496,7 +526,7 @@ const HowToPlay = (props) => {
 
                                                     </AccordionItemPanel>
                                                 </AccordionItem>
-                                                <AccordionItem className={'pb-3'}>
+                                                <AccordionItem>
                                                     <AccordionItemHeading>
                                                         <AccordionItemButton className='accordion-button'>
                                                             Withdrawal via SMS </AccordionItemButton>
@@ -526,7 +556,7 @@ const HowToPlay = (props) => {
 
                                                     </AccordionItemPanel>
                                                 </AccordionItem>
-                                                <AccordionItem className={'pb-3'}>
+                                                <AccordionItem>
                                                     <AccordionItemHeading>
                                                         <AccordionItemButton className='accordion-button'>My
                                                             Account</AccordionItemButton>
@@ -560,9 +590,9 @@ const HowToPlay = (props) => {
                                                 Play via Web
                                             </AccordionItemButton>
                                         </AccordionItemHeading>
-                                        <AccordionItemPanel className='accordion-item-panel px-2 py-1'  >
-                                            <Accordion preExpanded={['1']} className={'px-1' }>
-                                                <AccordionItem uuid={'1'} className={'pb-3'}>
+                                        <AccordionItemPanel className='accordion-item-panel px-2 py-1'>
+                                            <Accordion preExpanded={['1']} allowZeroExpanded className={'px-1'}>
+                                                <AccordionItem uuid={'1'}>
                                                     <AccordionItemHeading>
                                                         <AccordionItemButton className='accordion-button'>
                                                             Registration
@@ -570,68 +600,83 @@ const HowToPlay = (props) => {
                                                     </AccordionItemHeading>
 
                                                     <AccordionItemPanel className='accordion-item-panel px-2 py-1'>
-                                                        <Accordion preExpanded={['13']} className={'px-1'}>
+
+                                                        <Accordion preExpanded={['13']} allowZeroExpanded
+                                                                   className={'px-1'}>
                                                             <AccordionItem uuid={'13'}>
                                                                 <AccordionItemHeading>
-                                                                    <AccordionItemButton className='accordion-button'>Why should
+                                                                    <AccordionItemButton className='accordion-button'>Why
+                                                                        should
                                                                         I
                                                                         register with BetNare?</AccordionItemButton>
                                                                 </AccordionItemHeading>
                                                                 <AccordionItemPanel className='accordion-item-panel'>
                                                                     <p>
-                                                                        Registration allows you to open a BetNare account free
+                                                                        Registration allows you to open a BetNare
+                                                                        account free
                                                                         of charge
                                                                         and
-                                                                        under no obligation. Your BetNare account will help you
+                                                                        under no obligation. Your BetNare account will
+                                                                        help you
                                                                         manage
                                                                         your
-                                                                        bets and other account details. You need to deposit
+                                                                        bets and other account details. You need to
+                                                                        deposit
                                                                         actual money
                                                                         into your account before you can place bets.
                                                                     </p>
                                                                 </AccordionItemPanel>
                                                             </AccordionItem>
-                                                           <AccordionItem>
-                                                               <AccordionItemHeading>
-                                                                   <AccordionItemButton className='accordion-button'>How do I
-                                                                       Register
-                                                                       with BetNare?</AccordionItemButton>
-                                                               </AccordionItemHeading>
-                                                               <AccordionItemPanel className='accordion-item-panel'>
-                                                                   <AccordionItemHeading>
-                                                                       <AccordionItemButton className='accordion-button'>Step
-                                                                           1</AccordionItemButton>
-                                                                   </AccordionItemHeading>
-                                                                   <AccordionItemPanel className='accordion-item-panel'>
-                                                                       <p>Please visit www.BetNare .com and click on the
-                                                                           Register Now
-                                                                           link on the top RIGHT corner of the website.
-                                                                           Please read the Terms and Conditions and fill in all
-                                                                           the
-                                                                           fields and click the Get verification code button or
-                                                                           alternatively you can skip this step if you have a
-                                                                           code
-                                                                           already.
+                                                            <AccordionItem>
+                                                                <AccordionItemHeading>
+                                                                    <AccordionItemButton className='accordion-button'>How
+                                                                        do I
+                                                                        Register
+                                                                        with BetNare?</AccordionItemButton>
+                                                                </AccordionItemHeading>
+                                                                <AccordionItemPanel className='accordion-item-panel'>
+                                                                    <AccordionItemHeading>
+                                                                        <AccordionItemButton
+                                                                            className='accordion-button'>Step
+                                                                            1</AccordionItemButton>
+                                                                    </AccordionItemHeading>
+                                                                    <AccordionItemPanel
+                                                                        className='accordion-item-panel'>
+                                                                        <p>Please visit www.BetNare .com and click on
+                                                                            the
+                                                                            Register Now
+                                                                            link on the top RIGHT corner of the website.
+                                                                            Please read the Terms and Conditions and
+                                                                            fill in all
+                                                                            the
+                                                                            fields and click the Get verification code
+                                                                            button or
+                                                                            alternatively you can skip this step if you
+                                                                            have a
+                                                                            code
+                                                                            already.
 
-                                                                           Fill in your phone number and the registration code
-                                                                           SENT TO
-                                                                           YOUR MOBILE NO.
+                                                                            Fill in your phone number and the
+                                                                            registration code
+                                                                            SENT TO
+                                                                            YOUR MOBILE NO.
 
-                                                                           A confirmation message appears to confirm that your
-                                                                           registration was successful.
+                                                                            A confirmation message appears to confirm
+                                                                            that your
+                                                                            registration was successful.
 
-                                                                           BetNare!
-                                                                       </p>
-                                                                   </AccordionItemPanel>
-                                                               </AccordionItemPanel>
-                                                           </AccordionItem>
+                                                                            BetNare!
+                                                                        </p>
+                                                                    </AccordionItemPanel>
+                                                                </AccordionItemPanel>
+                                                            </AccordionItem>
 
                                                         </Accordion>
 
 
                                                     </AccordionItemPanel>
                                                 </AccordionItem>
-                                                <AccordionItem className={'pb-3'}>
+                                                <AccordionItem>
                                                     <AccordionItemHeading>
                                                         <AccordionItemButton className='accordion-button'>
                                                             How do I place a bet?
@@ -657,7 +702,7 @@ const HowToPlay = (props) => {
                                                     </AccordionItemPanel>
                                                 </AccordionItem>
 
-                                                <AccordionItem className={'pb-3'}>
+                                                <AccordionItem>
                                                     <AccordionItemHeading>
                                                         <AccordionItemButton className='accordion-button'>How do I place
                                                             a
@@ -726,7 +771,7 @@ const HowToPlay = (props) => {
 
                                                     </AccordionItemPanel>
                                                 </AccordionItem>
-                                                <AccordionItem className={'pb-3'}>
+                                                <AccordionItem>
                                                     <AccordionItemHeading>
                                                         <AccordionItemButton className='accordion-button'>How do I place
                                                             a multi
@@ -803,7 +848,7 @@ const HowToPlay = (props) => {
 
                                                     </AccordionItemPanel>
                                                 </AccordionItem>
-                                                <AccordionItem className={'pb-3'}>
+                                                <AccordionItem>
                                                     <AccordionItemHeading>
                                                         <AccordionItemButton className='accordion-button'>How do I place
                                                             a
@@ -870,7 +915,7 @@ const HowToPlay = (props) => {
 
                                                     </AccordionItemPanel>
                                                 </AccordionItem>
-                                                <AccordionItem className={'pb-3'}>
+                                                <AccordionItem>
                                                     <AccordionItemHeading>
                                                         <AccordionItemButton className='accordion-button'>How do I
                                                             withdraw cash
@@ -888,7 +933,7 @@ const HowToPlay = (props) => {
 
                                                     </AccordionItemPanel>
                                                 </AccordionItem>
-                                                <AccordionItem className={'pb-3'}>
+                                                <AccordionItem>
                                                     <AccordionItemHeading>
                                                         <AccordionItemButton className='accordion-button'>How do I check
                                                             My
@@ -904,7 +949,7 @@ const HowToPlay = (props) => {
                                                 </AccordionItem>
 
 
-                                                <AccordionItem className={'pb-3'}>
+                                                <AccordionItem>
                                                     <AccordionItemHeading>
                                                         <AccordionItemButton className='accordion-button'>How do I log
                                                             into my
@@ -917,7 +962,7 @@ const HowToPlay = (props) => {
                                                         your phone number as USERNAME and the WEB PASSWORD as PASSWORD
                                                     </AccordionItemPanel>
                                                 </AccordionItem>
-                                                <AccordionItem className={'pb-3'}>
+                                                <AccordionItem>
                                                     <AccordionItemHeading>
                                                         <AccordionItemButton className='accordion-button'>How do I check
                                                             my
@@ -931,7 +976,7 @@ const HowToPlay = (props) => {
                                                         choose filter
                                                         from date to date. </AccordionItemPanel>
                                                 </AccordionItem>
-                                                <AccordionItem className={'pb-3'}>
+                                                <AccordionItem>
                                                     <AccordionItemHeading>
                                                         <AccordionItemButton className='accordion-button'>How do I check
                                                             my bets

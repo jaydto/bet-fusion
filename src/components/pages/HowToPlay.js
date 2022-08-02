@@ -57,33 +57,30 @@ const HowToPlay = (props) => {
                                             </AccordionItemButton>
                                         </AccordionItemHeading>
                                         <AccordionItemPanel className='accordion-item-panel px-1 pt-1'>
+
                                             <Accordion preExpanded={['12']} allowMultipleExpanded>
                                                 <AccordionItem className={'pb-3'}>
                                                     <AccordionItemHeading>
-                                                        <AccordionItemButton className='accordion-button'>
-                                                            Registration
-                                                        </AccordionItemButton>
-                                                    </AccordionItemHeading>
+                                                    <AccordionItemButton className='accordion-button'>
+                                                        Register
+                                                    </AccordionItemButton>
+                                                </AccordionItemHeading>
                                                     <AccordionItemPanel className='accordion-item-panel px-2 py-1'>
-                                                        <></>
+                                                        <h3>Why should I register with BetNare ?</h3>
+                                                        <p>
+                                                            Registration allows you to open a BetNare account
+                                                            free of charge and under no obligation. Your BetNare
+                                                            account will help you manage your bets and other
+                                                            account details. You need to deposit actual money
+                                                            into your account before you can place bets.
+                                                        </p>
+                                                        <p>
+                                                            Register now! To Play
+
+                                                        </p>
+
                                                         <Accordion allowMultipleExpanded>
-                                                            <AccordionItem>
-                                                                <AccordionItemHeading>
-                                                                    <AccordionItemButton className='accordion-button'>
-                                                                        Why should I register with BetNare ?
-                                                                    </AccordionItemButton>
-                                                                </AccordionItemHeading>
-                                                                <AccordionItemPanel>
-                                                                    Registration allows you to open a BetNare account
-                                                                    free of charge and under no obligation. Your BetNare
-                                                                    account will help you manage your bets and other
-                                                                    account details. You need to deposit actual money
-                                                                    into your account before you can place bets.
 
-                                                                    Register now! To Play
-
-                                                                </AccordionItemPanel>
-                                                            </AccordionItem>
 
                                                             <AccordionItem>
 

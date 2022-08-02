@@ -62,7 +62,7 @@ const HowToPlay = (props) => {
                                                 <AccordionItem>
                                                     <AccordionItemHeading>
                                                         <AccordionItemButton className='accordion-button'>
-                                                            Register
+                                                            Register via sms
                                                         </AccordionItemButton>
                                                     </AccordionItemHeading>
                                                     <AccordionItemPanel className='accordion-item-panel px-2 py-1'>
@@ -171,7 +171,7 @@ const HowToPlay = (props) => {
                                                 <AccordionItem uuid={'12'}>
                                                     <AccordionItemHeading>
                                                         <AccordionItemButton className='accordion-button'>
-                                                            Deposit
+                                                            Deposit via sms
                                                         </AccordionItemButton>
                                                     </AccordionItemHeading>
                                                     <AccordionItemPanel className='accordion-item-panel px-2 py-1'>
@@ -242,7 +242,7 @@ const HowToPlay = (props) => {
                                                                         How do I place a bet?
                                                                     </AccordionItemButton>
                                                                 </AccordionItemHeading>
-                                                                <AccordionItemPanel>
+                                                                <AccordionItemPanel className={' accordion-item-panel'}>
                                                                     <p>
                                                                         You now have an opportunity to predict the
                                                                         outcome of any
@@ -263,7 +263,7 @@ const HowToPlay = (props) => {
                                                                             How do I place a Single Bet?
                                                                         </AccordionItemButton>
                                                                     </AccordionItemHeading>
-                                                                    <AccordionItemPanel>
+                                                                    <AccordionItemPanel className={'accordion-item-panel px-2'}>
                                                                         <p>
                                                                             Follow the steps below to place a single bet
                                                                             via sms.
@@ -332,7 +332,7 @@ const HowToPlay = (props) => {
                                                                         How do I place a Multi Bet?
                                                                     </AccordionItemButton>
                                                                 </AccordionItemHeading>
-                                                                <AccordionItemPanel className='accordion-item-panel'>
+                                                                <AccordionItemPanel className='accordion-item-panel px-2'>
                                                                     <p>
                                                                         Follow the steps below to place a Multi bet via
                                                                         SMS.
@@ -558,8 +558,7 @@ const HowToPlay = (props) => {
                                                 </AccordionItem>
                                                 <AccordionItem>
                                                     <AccordionItemHeading>
-                                                        <AccordionItemButton className='accordion-button'>My
-                                                            Account</AccordionItemButton>
+                                                        <AccordionItemButton className='accordion-button'>checking balance via sms</AccordionItemButton>
                                                     </AccordionItemHeading>
                                                     <AccordionItemPanel>
                                                         <h3>How do I check my balance?</h3>
@@ -595,7 +594,7 @@ const HowToPlay = (props) => {
                                                 <AccordionItem uuid={'1'}>
                                                     <AccordionItemHeading>
                                                         <AccordionItemButton className='accordion-button'>
-                                                            Registration
+                                                            Registration by web
                                                         </AccordionItemButton>
                                                     </AccordionItemHeading>
 
@@ -679,7 +678,7 @@ const HowToPlay = (props) => {
                                                 <AccordionItem>
                                                     <AccordionItemHeading>
                                                         <AccordionItemButton className='accordion-button'>
-                                                            How do I place a bet?
+                                                            How do I place a bet via web?
                                                         </AccordionItemButton>
                                                     </AccordionItemHeading>
 

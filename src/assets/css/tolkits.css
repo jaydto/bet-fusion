@@ -1691,7 +1691,7 @@ events-header {
 
 
 .neutral .mobi-odd {
-    color:;
+    /*color:;*/
 }
 
 .helpline {
@@ -7638,7 +7638,7 @@ ul.sport {
 
 @media (min-width: 992px), (max-width: 1140px) {
  }
-@media (min-width: 992px) and (max-width: 1140px) {
+@media (min-width: 992px) and (max-width: 1160px) {
     .bet-fix{
         flex-direction: column!important;
         /*margin-left:auto!important;*/
@@ -10247,7 +10247,7 @@ button.qu.active:focus {
 }
 
 .rc {
-    border-color:;
+    /*border-color:;*/
 }
 
 .rc > .qx {

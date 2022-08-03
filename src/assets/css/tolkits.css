@@ -7556,9 +7556,7 @@ ul.sport {
   } */
 
 /* } */
-.size-accordion{
-    min-width:750px;
-}
+
 @media (min-width: 992px), (max-width: 1140px) {
     .btn-spacing {
         word-spacing: 1px;
@@ -7833,6 +7831,27 @@ ul.sport {
 
     .kz {
         margin-left: 0%;
+    }
+}
+
+@media (min-width:1366px){
+    .size-accordion{
+        min-width:850px;
+    }
+}
+@media (max-width: 1365px){
+    .size-accordion{
+        min-width:755px;
+    }
+}
+@media (min-width:1440px){
+    .size-accordion{
+        min-width:900px;
+    }
+}
+@media (min-width:1550px){
+    .size-accordion{
+        min-width:1000px;
     }
 }
 

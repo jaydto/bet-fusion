@@ -260,10 +260,6 @@ const SideBets = (props) => {
     const {match, live} = props;
     const [picked,] = useState();
 
-    const generateStatsUrl = () => {
-        window.location.href = ''
-    }
-
     return (
         <div
             className={`bet-fix events-odd pad ${picked} align-self-center more-markets-container m-lg-2`}>

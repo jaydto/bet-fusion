@@ -53,14 +53,14 @@ const Jackpot = (props) => {
                                 id=""
                                 className="background-primary "
                                 justify>
-                                <Tab eventKey="home" title="Jackpot" className={'background-primary text-light'}>
+                                <Tab eventKey="home" title="Jackpot" className={'background-primary '}>
                                     <JackpotHeader jackpot={matches?.meta}/>
                                     <JackpotMatchList matches={matches}/>
                                 </Tab>
-                                <Tab eventKey="results" title="Results" className={'text-light'}>
+                                <Tab eventKey="results" title="Results" >
                                     Jackpot results will be shown here...
                                 </Tab>
-                                <Tab eventKey="terms" title="Terms & Conditions" className={'text-light'}>
+                                <Tab eventKey="terms" title="Terms & Conditions" >
                                     <DailyJackpotTermsAndConditions/>
                                 </Tab>
                             </Tabs>

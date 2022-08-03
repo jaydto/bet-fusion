@@ -42,7 +42,7 @@ const HowToPlay = (props) => {
             <div className="amt">
                 <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions/>
-                    <div className="gz home" style={{width: 'auto'}}>
+                    <div className="gz home" style={{width: '100%'}}>
                         <div className="homepage">
                             <div className='col-md-12 primary-bg p-4 text-center'>
                                 <h4 className="inline-block"> HOW TO PLAY </h4>

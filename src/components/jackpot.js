@@ -51,16 +51,16 @@ const Jackpot = (props) => {
                                 variant={'tabs'}
                                 defaultActiveKey="home"
                                 id=""
-                                className="background-primary"
+                                className="background-primary "
                                 justify>
-                                <Tab eventKey="home" title="Jackpot" className={'background-primary'}>
+                                <Tab eventKey="home" title="Jackpot" className={'background-primary '}>
                                     <JackpotHeader jackpot={matches?.meta}/>
                                     <JackpotMatchList matches={matches}/>
                                 </Tab>
-                                <Tab eventKey="results" title="Results">
+                                <Tab eventKey="results" title="Results" >
                                     Jackpot results will be shown here...
                                 </Tab>
-                                <Tab eventKey="terms" title="Terms & Conditions">
+                                <Tab eventKey="terms" title="Terms & Conditions" >
                                     <DailyJackpotTermsAndConditions/>
                                 </Tab>
                             </Tabs>

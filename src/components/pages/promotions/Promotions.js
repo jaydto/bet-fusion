@@ -214,6 +214,37 @@ const Promotions = () => {
 
                                                         </ol>
                                                     </div>
+
+                                                    <div className="col-md-12">
+                                                        <span><u>SET AMOUNTS</u></span>
+                                                        <ol>
+
+                                                            ✅ Minimum Bet Amount: The minimum betting amount for a single/multi bet is KES.10
+                                                            <br/>
+
+                                                            ✅ Maximum Bet Amount: The maximum betting amount for a single/multi bet is KES.20,000
+                                                            <br/>
+
+                                                            ✅ Maximum Single Bet Winning: The Single bet winning amount is limited to KES.500,000
+                                                            <br/>
+
+                                                            ✅ Maximum Multi bet Winning: The Multi bet winning amount is limited to KES.500,000
+                                                            <br/>
+
+                                                            ✅ Maximum Aggregate Winning (maximum payout): The Maximum winnings amount per customer per day is limited to KES.500,000
+                                                            <br/>
+
+                                                            ✅ Minimum withdrawal amount is KES.100
+                                                            <br/>
+
+                                                            ✅ Maximum withdrawal amount per transaction is KES.20,000
+                                                            <br/>
+
+                                                            ✅ Maximum withdrawal per person /per account / per day KES.20,000
+
+                                                        </ol>
+                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>

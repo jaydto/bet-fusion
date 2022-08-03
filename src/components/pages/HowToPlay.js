@@ -589,7 +589,7 @@ const HowToPlay = (props) => {
                                                 Play via Web
                                             </AccordionItemButton>
                                         </AccordionItemHeading>
-                                        <AccordionItemPanel className='accordion-item-panel px-2 py-1'>
+                                        <AccordionItemPanel className='accordion-item-panel px-1 py-1'>
                                             <Accordion preExpanded={['1']} allowZeroExpanded className={'px-1'}>
                                                 <AccordionItem uuid={'1'}>
                                                     <AccordionItemHeading>
@@ -598,7 +598,7 @@ const HowToPlay = (props) => {
                                                         </AccordionItemButton>
                                                     </AccordionItemHeading>
 
-                                                    <AccordionItemPanel className='accordion-item-panel px-2 py-1'>
+                                                    <AccordionItemPanel className='accordion-item-panel px-1 py-1'>
 
                                                         <Accordion preExpanded={['13']} allowZeroExpanded
                                                                    className={'px-1'}>

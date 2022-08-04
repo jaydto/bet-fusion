@@ -85,7 +85,12 @@ const BetslipSubmitForm = (props) => {
 
         let slipHasOddsChange = false;
 
+        let jackpotMessage = 'jp'
+
         for (let slip of bs) {
+            if (jackpot) {
+                jackpotMessage += "#" + slip.bet_pick
+            }
             if (slip.prev_odds
                 && slip.prev_odds != slip.odd_value
                 && values.accept_all_odds_change === false) {
@@ -93,7 +98,6 @@ const BetslipSubmitForm = (props) => {
                 break;
             }
         }
-        ;
 
         if (slipHasOddsChange === true) {
             setMessage({
@@ -111,6 +115,7 @@ const BetslipSubmitForm = (props) => {
             possible_win: possibleWin,
             profile_id: values.user_id,
             stake_amount: values.bet_amount,
+            amount: values.bet_amount,
             bet_total_odds: totalOdds,
             endCustomerIP: ipv4,
             channelID: 'web',
@@ -120,13 +125,27 @@ const BetslipSubmitForm = (props) => {
             accept_all_odds_change: values.accept_all_odds_change
         };
         let endpoint = '/bet';
-        makeRequest({url: endpoint, method: 'GET', data: payload, use_jwt: true})
+        let method = "GET"
+        let use_jwt = !jackpot
+        if (jackpot) {
+            payload.message = jackpotMessage
+            payload.jackpot_id = jackpotData?.jackpot_event_id
+            payload.slip = ''
+            endpoint = "/jp/bet"
+            method = "POST"
+        }
+
+        makeRequest({url: endpoint, method: method, data: payload, use_jwt: use_jwt})
             .then(([status, response]) => {
                 setMessage(response);
                 if (status === 200 || status == 201 || status == 204) {
                     //all is good am be quiet
                     if (jackpot) {
                         clearJackpotSlip();
+                        setMessage({
+                            status: 201,
+                            message: "Jackpot bet placed successfully."
+                        })
                     } else {
                         clearSlip();
                     }
@@ -148,13 +167,14 @@ const BetslipSubmitForm = (props) => {
             let stake_after_tax = Float(stake) / Float(107.5) * 100
             let ext = Float(stake) - Float(stake_after_tax);
             let raw_possible_win = Float(stake_after_tax) * Float(totalOdds);
+            if (jackpot) {
+                raw_possible_win = jackpotData?.jackpot_amount
+            }
             if (raw_possible_win > 500000 && !jackpot) {
                 raw_possible_win = 500000
             }
-            if (jackpot) {
-                console.log(jackpotData)
-            }
             let taxable_amount = Float(raw_possible_win) - Float(stake_after_tax);
+
             let wint = taxable_amount * 0.2;
             let nw = raw_possible_win - wint;
             setExciseTax(Float(ext, 2));

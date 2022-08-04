@@ -18,7 +18,6 @@ const clean_rep = (str) => {
 
 const BetSlip = (props) => {
     const {jackpot, betslipValidationData, jackpotData} = props;
-    console.log("Props", props)
     const [betslipKey, setBetslipKey] = useState("betslip");
     const [betslipsData, setBetslipsData] = useState(null);
     const [state, dispatch] = useContext(Context);

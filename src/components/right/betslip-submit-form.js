@@ -137,8 +137,8 @@ const BetslipSubmitForm = (props) => {
 
         makeRequest({url: endpoint, method: method, data: payload, use_jwt: use_jwt})
             .then(([status, response]) => {
-                setMessage(response);
-                if (status === 200 || status == 201 || status == 204) {
+                setMessage(response)
+                if (status === 200 || status == 201 || status == 204 || jackpot) {
                     //all is good am be quiet
                     if (jackpot) {
                         clearJackpotSlip();
@@ -150,7 +150,7 @@ const BetslipSubmitForm = (props) => {
                         clearSlip();
                     }
                     setBetslipsData(null);
-                    dispatch({type: "SET", key: "betslip", payload: {}});
+                    dispatch({type: "SET", key: jackpot ? 'jackpotbetslip' : 'betslip', payload: {}});
                 } else {
                     let qmessage = {
                         status: status,

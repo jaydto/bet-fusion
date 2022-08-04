@@ -18,7 +18,7 @@ const AlertMessage = (props) => {
 }
 
 const Right = (props) => {
-    const {jackpot, betslipValidationData} = props;
+    const {jackpot, betslipValidationData, jackpotData} = props;
     const [betSlipMobile, setBetSlipMobile] = useState(false)
 
     return (
@@ -38,7 +38,8 @@ const Right = (props) => {
                         <button id="slip-button-close" type="button" className="close mobi" aria-hidden="true">×
                         </button>
                         <div id="betslip" className="betslip">
-                            <BetSlip jackpot={jackpot} betslipValidationData={betslipValidationData}/>
+                            <BetSlip jackpot={jackpot} betslipValidationData={betslipValidationData}
+                                     jackpotData={jackpotData}/>
                         </div>
                         <QuickLogin/>
                     </div>

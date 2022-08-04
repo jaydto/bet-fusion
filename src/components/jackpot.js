@@ -66,7 +66,7 @@ const Jackpot = (props) => {
                             </Tabs>
                         </div>
                     </div>
-                    <Right jackpot={true}/>
+                    <Right jackpot={true} jackpotData={matches?.meta}/>
                 </div>
             </div>
             <Footer/>

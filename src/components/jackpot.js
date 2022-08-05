@@ -70,8 +70,9 @@ const Jackpot = (props) => {
                                 <Tab eventKey="results" title="Results">
                                     <JackpotHeader jackpot={matches?.meta}/>
                                     <div className="matches full-mobile sticky-top container">
-                                        <div className="top-matches d-flex position-sticky shadow-lg p-4 mt-5 text-white">
-                                            <div className="col-md-3">
+                                        <div
+                                            className="top-matches d-flex position-sticky shadow-lg p-4 mt-5 text-white">
+                                            <div className="col-md-3 bold">
                                                 TIME
                                             </div>
                                             <div className="col-md-6 bold">
@@ -105,7 +106,7 @@ const Jackpot = (props) => {
                                                         </div>
                                                     </div>
                                                     <div className="col-md-3">
-                                                        {match?.outcome}
+                                                        {match?.outcome || '-'}
                                                     </div>
                                                 </div>
                                             </Container>

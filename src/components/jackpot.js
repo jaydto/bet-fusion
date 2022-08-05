@@ -54,7 +54,8 @@ const Jackpot = (props) => {
                                 className="background-primary "
                                 justify>
                                 <Tab eventKey="home" title="Jackpot" className={'background-primary'}>
-                                    {matches?.length > 0 ? (
+
+                                    {matches?.data?.length > 0 ? (
                                         <>
                                             <JackpotHeader jackpot={matches?.meta}/>
                                             <JackpotMatchList matches={matches}/>

@@ -176,7 +176,7 @@ const Sidebar = (props) => {
                                             >
                                                 {country?.competitions.map((league, leagueKey) => (
                                                     <MenuItem key={`${leagueKey}_league`}>
-                                                        <a href={`/competition/${competition.sport_id}/${country.category_id}/${league.competition_id}`}
+                                                        <a href={`/competition/${competition.sport_id}/${country.category_id}/${league.competition_id}?sub_type_id=${getDefaultMarketsForSport(competition)}`}
                                                            onClick={() => setLocalStorage('active_item', competition.sport_id)}>
                                                             {league.competition_name}
                                                         </a>
@@ -187,7 +187,7 @@ const Sidebar = (props) => {
                                     ))}
                                 </SubMenu>
                                 <MenuItem>
-                                    <a href={`/upcoming?sport_id=${competition.sport_id}&sub_type_id=${getDefaultMarketsForSport(competition)}`}>
+                                    <a href={` / upcoming ? sport_id =${competition.sport_id}&sub_type_id=${getDefaultMarketsForSport(competition)}`}>
                                         Today Games
                                     </a>
                                 </MenuItem>

@@ -15,7 +15,7 @@ export default function MatchesList() {
     const [matches, setMatches] = useState([]);
     const [section, setSection] = useState('highlights');
     const [title, setTitle] = useState('highlights');
-    const [events, setEvents] = useState(0);
+    const [events, setEvents] = useState(10);
     const [loaded, setLoaded] = useState(false)
     const [jackpotData, setJackpotData] = useState([])
     const [key, setKey] = useState('home');

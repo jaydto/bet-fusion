@@ -109,7 +109,8 @@ export default function MatchesList() {
                                     onSelect={(k) => fetchActiveTabMatches(k)}
                                     className="background-primary"
                                     justify>
-                                    <Tab eventKey="matches" title="Matches" className={'background-primary shadow p-5'}>
+                                    <Tab eventKey="matches" title="Matches" className={'background-primary shadow p-5'}
+                                         style={{border: '1px solid #334c5c'}}>
                                         <div className="col-md-12 d-flex flex-column p-2">
                                             <div className="col-md-12 text-start p-2">
                                                 <label htmlFor="" className={'text-white'}>Select Section</label>
@@ -137,6 +138,7 @@ export default function MatchesList() {
                                         </div>
                                     </Tab>
                                     <Tab eventKey="jackpot" title="Jackpot Matches"
+                                         style={{border: '1px solid #334c5c'}}
                                          className={'background-primary shadow'}>
                                         <div className="col mt-5 background-primary">
                                             <Card className={'background-primary text-white'}>

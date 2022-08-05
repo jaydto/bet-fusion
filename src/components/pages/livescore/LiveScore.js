@@ -1,5 +1,4 @@
 import Header from "../../header/header";
-import SideBar from "../../sidebar/awesome/Sidebar";
 import Footer from "../../footer/footer";
 import React from "react";
 
@@ -23,7 +22,7 @@ const LiveScore = () => {
                                         <div className="col-md-12 d-flex flex-row shadow-lg p-3">
                                             <div className="col-md-12">
                                                 <div className="d-flex flex-column">
-                                                    <iframe src="https://lsdev.sir.sportradar.com/betnaremts"
+                                                    <iframe src="https://ls.sir.sportradar.com/betnaremts"
                                                             height={'100%'} className={'vh-100 frame-spacing'}
                                                             title="Betnare Livescore"></iframe>
                                                 </div>

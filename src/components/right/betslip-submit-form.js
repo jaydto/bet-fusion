@@ -216,7 +216,7 @@ const BetslipSubmitForm = (props) => {
     }, [updateWinnings]);
 
     const initialValues = {
-        bet_amount: 100,
+        bet_amount: jackpot ? jackpotData?.bet_amount : 100,
         accept_all_odds_change: true,
         user_id: state?.user?.profile_id,
         total_games: totalGames,
@@ -319,13 +319,15 @@ const BetslipSubmitForm = (props) => {
                         <td>Stake</td>
                         <td>
                             <div id="betting">
-                                <input type="text"
-                                       className="bet-select"
-                                       name="bet_amount"
-                                       id="bet_amount"
-                                       value={values.bet_amount}
-                                       onChange={(e) => onFieldChanged(e)}
-                                />
+                                {jackpot ?
+                                    jackpotData?.bet_amount :
+                                    (<input type="text"
+                                            className="bet-select"
+                                            name="bet_amount"
+                                            id="bet_amount"
+                                            value={values.bet_amount}
+                                            onChange={(e) => onFieldChanged(e)}
+                                    />)}
                             </div>
                         </td>
                     </tr>

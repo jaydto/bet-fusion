@@ -25,6 +25,7 @@ export default function MatchesList() {
     }, [section, events])
 
     const fetchMatches = async () => {
+        setLoaded(false)
         let method = 'POST'
         let endpoint = "/v1/matches?page=" + (1) + `&limit=${events}&tab=` + section + '&sub_type_id=1,10,29,18';
         await makeRequest({url: endpoint, method: method, data: []}).then(([status, result]) => {
@@ -61,6 +62,7 @@ export default function MatchesList() {
     }
 
     const fetchJackpotData = useCallback(async () => {
+        setLoaded(false)
         let match_endpoint = "/v1/matches/jackpot";
         const [match_result] = await Promise.all([
             makeRequest({url: match_endpoint, method: "get", data: null})

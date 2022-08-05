@@ -84,6 +84,7 @@ export default function MatchesList() {
         } else {
             setMatches([])
             setIsJackpot(false)
+            setTitle(section)
         }
     }
 

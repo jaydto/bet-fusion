@@ -54,14 +54,14 @@ const Jackpot = (props) => {
                                 className="background-primary"
                                 justify>
                                 <Tab eventKey="home" title="Jackpot" className={'background-primary'}>
-
                                     {matches?.data?.length > 0 ? (
                                         <>
                                             <JackpotHeader jackpot={matches?.meta}/>
                                             <JackpotMatchList matches={matches}/>
                                         </>
                                     ) : (
-                                        <div className={'text-white col-md-12 text-center background-primary shadow mt-2 p-3'}>
+                                        <div
+                                            className={'text-white col-md-12 text-center background-primary shadow mt-2 p-3'}>
                                             There are no active jackpots at the moment.
                                         </div>
                                     )}

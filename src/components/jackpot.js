@@ -8,6 +8,7 @@ import makeRequest from "./utils/fetch-request";
 import dailyJackpot from '../assets/img/banner/jackpots/DailyJackpot.png'
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
+import Container from "react-bootstrap/Container";
 
 const Right = React.lazy(() => import('./right/index'));
 const DailyJackpotTermsAndConditions = React.lazy(() => import('./pages/terms-and-conditions/DailyJackpotTermsAndConditions'))
@@ -67,7 +68,49 @@ const Jackpot = (props) => {
                                     )}
                                 </Tab>
                                 <Tab eventKey="results" title="Results">
-                                    Jackpot results will be shown here...
+                                    <JackpotHeader jackpot={matches?.meta}/>
+                                    <div className="matches full-mobile sticky-top container">
+                                        <div className="top-matches d-flex position-sticky shadow-lg p-4 mt-5 text-white">
+                                            <div className="col-md-3">
+                                                TIME
+                                            </div>
+                                            <div className="col-md-6 bold">
+                                                MATCH
+                                            </div>
+                                            <div className="col-md-3 bold">
+                                                OUTCOME
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {matches?.data.map((match, index) => (
+                                        <div className={'matches full-width'} key={index}>
+                                            <Container className="web-element">
+                                                <div
+                                                    className="col-md-12 shadow d-flex flex-row p-2 text-white top-matches">
+                                                    <div className="col-md-3">
+                                                        {match?.start_time}
+                                                    </div>
+                                                    <div className="col-md-6 d-flex flex-column">
+                                                        <div className={'small'}>
+                                                            {match?.category} | {match?.competition_name}
+                                                        </div>
+                                                        <div>
+                                                            <div className={'bold'}>
+                                                                {match?.home_team}
+                                                            </div>
+                                                            <div className={'bold'}>
+                                                                {match?.away_team}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-md-3">
+                                                        {match?.outcome}
+                                                    </div>
+                                                </div>
+                                            </Container>
+                                        </div>
+                                    ))}
                                 </Tab>
                                 <Tab eventKey="terms" title="Terms & Conditions">
                                     <DailyJackpotTermsAndConditions/>

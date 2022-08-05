@@ -187,7 +187,7 @@ const Sidebar = (props) => {
                                     ))}
                                 </SubMenu>
                                 <MenuItem>
-                                    <a href={` / upcoming ? sport_id =${competition.sport_id}&sub_type_id=${getDefaultMarketsForSport(competition)}`}>
+                                    <a href={`/upcoming?sport_id =${competition.sport_id}&sub_type_id=${getDefaultMarketsForSport(competition)}`}>
                                         Today Games
                                     </a>
                                 </MenuItem>

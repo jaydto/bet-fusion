@@ -151,8 +151,9 @@ const MatchHeaderRow = (props) => {
 
 
     return (
-        <Container className="full-mobile sticky-top">
-            <div className="top-matches d-flex position-sticky shadow-lg" style={{opacity: "1"}}>
+        <Container className="full-mobile sticky-top" style={{position: "sticky", top: "130px"}}>
+            <div className="top-matches d-flex position-sticky sticky-top shadow-lg"
+                 style={{opacity: "1", top: "100px"}}>
                 <div className="col-sm-2 col-xs-12 pad left-text">
                     <div className="align-self-center col">
                         <h3 className="main-heading-1 text-white">
@@ -166,7 +167,7 @@ const MatchHeaderRow = (props) => {
                     {threeWay &&
                         <div className="d-flex flex-row">
                             <div className="d-flex flex-column text-center text-white">
-                                <div>
+                                <div className={'bold'}>
                                     3 WAY
                                 </div>
                                 <div className={'c-btn-group align-self-end'}>
@@ -178,13 +179,13 @@ const MatchHeaderRow = (props) => {
                         </div>
                     }
                     {!live && !jackpot && extraMarketDisplays.length > 0 && (
-                        <div className={'d-flex flex-row'}>
+                        <>
                             {extraMarketDisplays?.map((extra_market) => (
-                                <div className={'d-flex flex-column text-center text-white'}>
-                                    <span className={'small'}>
+                                <div className={'d-flex flex-column text-white'}>
+                                    <span className={'small text-center text-uppercase bold'}>
                                         {extra_market.name}
                                     </span>
-                                    <div className={'c-btn-group m-lg-1'}>
+                                    <div className={'c-btn-group'}>
                                         <a className="c-btn-header">
                                             {(extra_market.extra_markets_display[0])}
                                         </a>
@@ -198,7 +199,7 @@ const MatchHeaderRow = (props) => {
                                     </div>
                                 </div>
                             ))}
-                        </div>
+                        </>
                     )}
                     <div
                         className="bet-fix events-odd pad undefined align-self-center more-markets-container m-lg-2 col-3">
@@ -638,7 +639,7 @@ const MatchRow = (props) => {
                             <div className={`c-btn-group m-lg-1 align-self-center`}>
                                 {
                                     Object.entries(odds || {}).map(([odd_key, odd_data]) => {
-                                        return odd_data?.odd_active == 1 && odd_data.market_active==1 ? (<OddButton
+                                        return odd_data?.odd_active == 1 && odd_data.market_active == 1 ? (<OddButton
                                             match={getUpdatedMatchFromOdds({match, marketName, odd_key, odd_data})}
                                             key={odd_key} live={live}/>) : (<EmptyTextRow odd_key={match?.odd_key}/>)
                                     })

@@ -15517,3 +15517,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     color: white;
     border: none !important;
 }
+
+.nav-tabs {
+    border: none !important;
+}

@@ -158,7 +158,7 @@ const Sidebar = (props) => {
                                                       icon={<img
                                                           src={getSportImageIcon(top_league?.flag, 'img/flags-1-1', true)}
                                                           style={{borderRadius: "50%", height: "20px"}}></img>}>
-                                                <a href={`/competition/${top_league.sport_id}/${top_league.category_id}/${top_league.competition_id}?sub_type_id=${getDefaultMarketsForSport(competition)}`}>
+                                                <a href={`/competition/${top_league.sport_id}/${top_league.category_id}/${top_league.competition_id}?sport_id=${competition.sport_id}&sub_type_id=${getDefaultMarketsForSport(competition)}`}>
                                                     {top_league?.competition_name}
                                                 </a>
                                             </MenuItem>
@@ -176,7 +176,7 @@ const Sidebar = (props) => {
                                             >
                                                 {country?.competitions.map((league, leagueKey) => (
                                                     <MenuItem key={`${leagueKey}_league`}>
-                                                        <a href={`/competition/${competition.sport_id}/${country.category_id}/${league.competition_id}?sub_type_id=${getDefaultMarketsForSport(competition)}`}
+                                                        <a href={`/competition/${competition.sport_id}/${country.category_id}/${league.competition_id}?sport_id=${competition.sport_id}&sub_type_id=${getDefaultMarketsForSport(competition)}`}
                                                            onClick={() => setLocalStorage('active_item', competition.sport_id)}>
                                                             {league.competition_name}
                                                         </a>

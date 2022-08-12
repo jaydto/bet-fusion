@@ -552,7 +552,6 @@ const getUpdatedMatchFromOdds = (props) => {
     newMatch.special_bet_value = odd_data.special_bet_value;
     delete newMatch['odds']
     delete newMatch['extra_odds']
-    console.log(newMatch)
     return newMatch;
 
 }

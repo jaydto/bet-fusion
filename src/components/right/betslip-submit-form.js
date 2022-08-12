@@ -286,7 +286,7 @@ const BetslipSubmitForm = (props) => {
         let bonusBetEligible = (Object.values(betslip || []).filter((slip) => Number(slip.odd_value) < Number(perSlipBonusOdd)).length < 1) && userBonus > 0
 
         if (!bonusBetEligible) {
-            message = ('You are not eligible for a jackpot bet. To qualify, please select 4 games each with odds of ' + perSlipBonusOdd + " or more.")
+            message = (`You are not eligible for a jackpot bet. To qualify, please select ${maxBonusGames} games each with odds of ${perSlipBonusOdd} or more.`)
         }
 
         if (userBonus < 1) {

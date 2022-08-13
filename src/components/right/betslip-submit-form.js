@@ -29,11 +29,6 @@ const BetslipSubmitForm = (props) => {
     const [ipv4, setIpv4] = useState(null);
     const [message, setMessage] = useState(null);
     const [state, dispatch] = useContext(Context);
-    const [bonusMessage, setBonusMessage] = useState('')
-    const perSlipBonusOdd = 1.78
-    const maxBonusOdds = 10.4976
-    const maxBonusGames = 4
-    const bonusBetEligible = false
 
     const [stake, setStake] = useState(100);
     const [stakeAfterTax, setStakeAfterTax] = useState(0);
@@ -266,45 +261,6 @@ const BetslipSubmitForm = (props) => {
                     disabled={isSubmitting || disabled}>{isSubmitting ? " WAIT ... " : title}</button>
         );
     }
-
-    const updateBonusState = () => {
-
-        let message = '';
-
-        let userBonus = Number(state?.user?.bonus || 0)
-
-        if ((totalGames < maxBonusGames)) {
-            let remainingGames = Number(maxBonusGames) - Number(totalGames)
-            message = (`Congratulations, you are eligible for a bonus bet. Add ${remainingGames} more game${remainingGames > 1 ? 's' : ''} to place your bet using bonus.`)
-
-        } else if ((totalGames === maxBonusGames)) {
-            message = ("Congratulations, you are eligible for a bonus bet.")
-        } else {
-            message = ("This bet will be treated as a cash bet.")
-        }
-
-        let bonusBetEligible = (Object.values(betslip || []).filter((slip) => Number(slip.odd_value) < Number(perSlipBonusOdd)).length < 1) && userBonus > 0
-
-        if (!bonusBetEligible) {
-            message = (`You are not eligible for a jackpot bet. To qualify, please select ${maxBonusGames} games each with odds of ${perSlipBonusOdd} or more.`)
-        }
-
-        if (userBonus < 1) {
-            message = '';
-        }
-
-        let alertMessage = {
-            status: bonusBetEligible ? 201 : 500,
-            message: message
-        }
-
-        setMessage(alertMessage)
-    }
-
-
-    useEffect(() => {
-        updateBonusState()
-    }, [totalOdds, totalGames])
 
     return (
 

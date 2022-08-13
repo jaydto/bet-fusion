@@ -25,7 +25,7 @@ const Float = (equation, precision = 4) => {
 
 const BetslipSubmitForm = (props) => {
 
-    const {jackpot, totalGames, totalOdds, betslip, setBetslipsData, jackpotData} = props;
+    const {jackpot, totalGames, totalOdds, betslip, setBetslipsData, jackpotData, bonusBet} = props;
     const [ipv4, setIpv4] = useState(null);
     const [message, setMessage] = useState(null);
     const [state, dispatch] = useContext(Context);
@@ -216,7 +216,7 @@ const BetslipSubmitForm = (props) => {
     }, [updateWinnings]);
 
     const initialValues = {
-        bet_amount: jackpot ? jackpotData?.bet_amount : 100,
+        bet_amount: jackpot ? jackpotData?.bet_amount : bonusBet ? 30 : 100,
         accept_all_odds_change: true,
         user_id: state?.user?.profile_id,
         total_games: totalGames,
@@ -291,91 +291,93 @@ const BetslipSubmitForm = (props) => {
 
             return (<FormikForm name="betslip-submit-form">
                 <Alert/>
-                <table className="bet-table">
-                    <tbody>
-                    {!jackpot && <tr className="hide-on-affix">
-                        <td>TOTAL ODDS</td>
-                        <td>
-                            <b>{Float(totalOdds, 2)}</b>
+                {totalGames > 0 && (
+                    <table className="bet-table">
+                        <tbody>
+                        {!jackpot && <tr className="hide-on-affix">
+                            <td>TOTAL ODDS</td>
+                            <td>
+                                <b>{Float(totalOdds, 2)}</b>
 
-                        </td>
-                    </tr>}
+                            </td>
+                        </tr>}
 
-                    <tr id="odd-change-text">
-                        <td colSpan="2">
-                            <label className="checkbox">
+                        <tr id="odd-change-text">
+                            <td colSpan="2">
+                                <label className="checkbox">
 
-                                <input type="checkbox"
-                                       className="odds-change-box"
-                                       name={"accept_all_odds_change"}
-                                       id={"accept-all-odds-change"}
-                                       checked={values?.accept_all_odds_change}
-                                       onChange={(e) => onFieldChanged(e)}
-                                /> Accept any odds change
-                            </label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Stake</td>
-                        <td>
-                            <div id="betting">
-                                {jackpot ?
-                                    jackpotData?.bet_amount :
-                                    (<input type="text"
-                                            className="bet-select"
-                                            name="bet_amount"
-                                            id="bet_amount"
-                                            value={values.bet_amount}
-                                            onChange={(e) => onFieldChanged(e)}
-                                    />)}
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colSpan="2"></td>
-                    </tr>
-                    {!jackpot && <tr className="bet-win-tr hide-on-affix">
-                        <td>Possible winnings</td>
-                        <td>
-                            KES. <span
-                            id="pos_win">{formatNumber(possibleWin)}</span>
-                        </td>
-                    </tr>}
-
-                    <tr className="bet-win-tr hide-on-affix">
-                        <td> Excise Tax (7.5%)</td>
-                        <td>KES. <span id="tax">{formatNumber(exciseTax)}</span></td>
-                    </tr>
-                    {jackpot ? (
-                        ''
-                    ) : (
-                        <tr className="bet-win-tr hide-on-affix">
-                            <td> Withholding (20%)</td>
-                            <td>KES. <span id="tax">{formatNumber(withholdingTax)}</span></td>
+                                    <input type="checkbox"
+                                           className="odds-change-box"
+                                           name={"accept_all_odds_change"}
+                                           id={"accept-all-odds-change"}
+                                           checked={values?.accept_all_odds_change}
+                                           onChange={(e) => onFieldChanged(e)}
+                                    /> Accept any odds change
+                                </label>
+                            </td>
                         </tr>
-                    )}
-                    <tr className="bet-win-tr hide-on-affix">
-                        <td>{jackpot ? 'Jackpot Amount' : 'Net Amount'}</td>
-                        <td>KES. <span
-                            id="net-amount">{formatNumber(jackpot ? jackpotData?.jackpot_amount : netWin)}</span></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <button className="place-bet-btn"
-                                    type="button"
-                                    onClick={() => handleRemoveAll()}>REMOVE ALL
-                            </button>
-                        </td>
-                        <td>
-                            <SubmitButton id="place_bet_button"
-                                          disabled={jackpot && Object.entries(betslip || []).length != JSON.stringify(jackpotData?.total_games)}
-                                          className="place-bet-btn bold"
-                                          title="PLACE BET"/>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                        <tr>
+                            <td>Stake</td>
+                            <td>
+                                <div id="betting">
+                                    {jackpot ?
+                                        jackpotData?.bet_amount :
+                                        (<input type="text"
+                                                className="bet-select"
+                                                name="bet_amount"
+                                                id="bet_amount"
+                                                value={values.bet_amount}
+                                                onChange={(e) => onFieldChanged(e)}
+                                        />)}
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colSpan="2"></td>
+                        </tr>
+                        {!jackpot && <tr className="bet-win-tr hide-on-affix">
+                            <td>Possible winnings</td>
+                            <td>
+                                KES. <span
+                                id="pos_win">{formatNumber(possibleWin)}</span>
+                            </td>
+                        </tr>}
 
+                        <tr className="bet-win-tr hide-on-affix">
+                            <td> Excise Tax (7.5%)</td>
+                            <td>KES. <span id="tax">{formatNumber(exciseTax)}</span></td>
+                        </tr>
+                        {jackpot ? (
+                            ''
+                        ) : (
+                            <tr className="bet-win-tr hide-on-affix">
+                                <td> Withholding (20%)</td>
+                                <td>KES. <span id="tax">{formatNumber(withholdingTax)}</span></td>
+                            </tr>
+                        )}
+                        <tr className="bet-win-tr hide-on-affix">
+                            <td>{jackpot ? 'Jackpot Amount' : 'Net Amount'}</td>
+                            <td>KES. <span
+                                id="net-amount">{formatNumber(jackpot ? jackpotData?.jackpot_amount : netWin)}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button className="place-bet-btn"
+                                        type="button"
+                                        onClick={() => handleRemoveAll()}>REMOVE ALL
+                                </button>
+                            </td>
+                            <td>
+                                <SubmitButton id="place_bet_button"
+                                              disabled={jackpot && Object.entries(betslip || []).length != JSON.stringify(jackpotData?.total_games)}
+                                              className="place-bet-btn bold"
+                                              title="PLACE BET"/>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                )}
                 <input
                     type="hidden"
                     name={"user_id"}

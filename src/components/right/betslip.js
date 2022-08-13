@@ -8,9 +8,6 @@ import {
     getJackpotBetslip,
 } from '../utils/betslip';
 
-import PerfectScrollbar from 'react-perfect-scrollbar';
-import CompanyInfo from "./company-info";
-
 const clean_rep = (str) => {
     str = str.replace(/[^A-Za-z0-9\-]/g, '');
     return str.replace(/-+/g, '-');
@@ -23,13 +20,11 @@ const BetSlip = (props) => {
     const [state, dispatch] = useContext(Context);
     const totalGames = betslipsData ? Object.keys(betslipsData).length : 0
     const [message, setMessage] = useState(null)
+    const [qualifiesBonus, setQualifiesBonus] = useState(false)
 
     const [totalOdds, setTotalOdds] = useState(1);
-    const [bonusMessage, setBonusMessage] = useState('')
     const perSlipBonusOdd = 1.78
-    const maxBonusOdds = 10.4976
     const maxBonusGames = 4
-    const bonusBetEligible = false
     //initial betslip loading
     const loadBetslip = useCallback(() => {
         if (!betslipsData) {
@@ -153,7 +148,7 @@ const BetSlip = (props) => {
             message = (`Congratulations, you qualify for bonus. Add ${remainingGames} more game${remainingGames > 1 ? 's' : ''} to place your bet using bonus.`)
 
         } else if ((totalGames === maxBonusGames)) {
-            message = ("Congratulations, you are eligible for a bonus bet.")
+            message = ("Congratulations, you are eligible for a bonus bet. Allowed Bonus Bet Amount is KES 30.")
         } else {
             message = ("This bet will be treated as a cash bet.")
         }
@@ -174,6 +169,7 @@ const BetSlip = (props) => {
         }
 
         setMessage(alertMessage)
+        setQualifiesBonus(bonusBetEligible)
     }
 
     const BonusAlert = () => {
@@ -200,7 +196,9 @@ const BetSlip = (props) => {
 
     return (
         <div className="bet-body text-white">
-            <BonusAlert/>
+            {!jackpot && (
+                <BonusAlert/>
+            )}
             <div className="flow" style={{maxHeight: "42vh", overflowY: "auto"}}>
                 <ul>
                     {Object.entries(betslipsData || {}).map(([match_id, slip]) => {
@@ -261,6 +259,7 @@ const BetSlip = (props) => {
                     totalGames={betslipsData
                         ? Object.keys(betslipsData).length : 0}
                     jackpot={jackpot}
+                    bonusBet={qualifiesBonus}
                 />
             </div>
         </div>

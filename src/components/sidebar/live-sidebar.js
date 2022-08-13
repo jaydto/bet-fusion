@@ -14,8 +14,6 @@ const LiveSideBar = (props) => {
 
     const [liveSports, setLiveSports] = useState()
 
-    console.log(liveSports)
-
     const fetchData = useCallback(() => {
         let endpoint = "/v1/sports?live=1";
         makeRequest({url: endpoint, method: "get", data: null})

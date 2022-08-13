@@ -21,9 +21,15 @@ const BetSlip = (props) => {
     const [betslipKey, setBetslipKey] = useState("betslip");
     const [betslipsData, setBetslipsData] = useState(null);
     const [state, dispatch] = useContext(Context);
+    const totalGames = betslipsData ? Object.keys(betslipsData).length : 0
+    const [message, setMessage] = useState(null)
 
     const [totalOdds, setTotalOdds] = useState(1);
-
+    const [bonusMessage, setBonusMessage] = useState('')
+    const perSlipBonusOdd = 1.78
+    const maxBonusOdds = 10.4976
+    const maxBonusGames = 4
+    const bonusBetEligible = false
     //initial betslip loading
     const loadBetslip = useCallback(() => {
         if (!betslipsData) {
@@ -136,9 +142,66 @@ const BetSlip = (props) => {
         dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
     }
 
+    const updateBonusState = () => {
+
+        let message = '';
+
+        let userBonus = Number(state?.user?.bonus || 0)
+
+        if ((totalGames < maxBonusGames)) {
+            let remainingGames = Number(maxBonusGames) - Number(totalGames)
+            message = (`Congratulations, you qualify for bonus. Add ${remainingGames} more game${remainingGames > 1 ? 's' : ''} to place your bet using bonus.`)
+
+        } else if ((totalGames === maxBonusGames)) {
+            message = ("Congratulations, you are eligible for a bonus bet.")
+        } else {
+            message = ("This bet will be treated as a cash bet.")
+        }
+
+        let bonusBetEligible = (Object.values(betslipsData || []).filter((slip) => Number(slip.odd_value) < Number(perSlipBonusOdd)).length < 1) && userBonus > 0
+
+        if (!bonusBetEligible) {
+            message = (`To qualify for bonus bet, please select ${maxBonusGames} games each with odds of ${perSlipBonusOdd} or more.`)
+        }
+
+        if (userBonus < 1) {
+            message = '';
+        }
+
+        let alertMessage = {
+            status: bonusBetEligible ? 201 : 500,
+            message: message
+        }
+
+        setMessage(alertMessage)
+    }
+
+    const BonusAlert = () => {
+        let c = message?.status === 201 ? 'success' : 'warning';
+        let x_style = {
+            float: "right",
+            display: "block",
+            fontSize: "22px",
+            color: "orangered",
+            cursor: "pointer",
+            padding: "3px"
+        }
+        return (<>{message?.status && message?.message &&
+            <div className={`fade col shadow p-0 alert-${c} show position-sticky`}>
+                {message.message}
+            </div>}
+        </>);
+    }
+
+
+    useEffect(() => {
+        updateBonusState()
+    }, [totalOdds, totalGames])
+
     return (
         <div className="bet-body text-white">
-            <div className="flow" style={{maxHeight: "50vh", overflowY: "auto"}}>
+            <BonusAlert/>
+            <div className="flow" style={{maxHeight: "42vh", overflowY: "auto"}}>
                 <ul>
                     {Object.entries(betslipsData || {}).map(([match_id, slip]) => {
                         let odd = slip.odd_value;

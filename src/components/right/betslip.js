@@ -159,7 +159,7 @@ const BetSlip = (props) => {
             message = (`To qualify for bonus bet, please select ${maxBonusGames} games each with odds of ${perSlipBonusOdd} or more.`)
         }
 
-        if (userBonus < 1) {
+        if (userBonus < 1 || totalGames > maxBonusGames) {
             message = '';
         }
 

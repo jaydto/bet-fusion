@@ -150,7 +150,7 @@ const BetSlip = (props) => {
         } else if ((totalGames === maxBonusGames)) {
             message = ("Congratulations, you are eligible for a bonus bet. Allowed Bonus Bet Amount is KES 30.")
         } else {
-            message = ("This bet will be treated as a cash bet.")
+            message = ("")
         }
 
         let bonusBetEligible = (Object.values(betslipsData || []).filter((slip) => Number(slip.odd_value) < Number(perSlipBonusOdd)).length < 1) && userBonus > 0
@@ -169,7 +169,7 @@ const BetSlip = (props) => {
         }
 
         setMessage(alertMessage)
-        setQualifiesBonus(bonusBetEligible)
+        setQualifiesBonus(bonusBetEligible && totalGames <= maxBonusGames)
     }
 
     const BonusAlert = () => {

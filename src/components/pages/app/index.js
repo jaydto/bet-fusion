@@ -40,8 +40,7 @@ const MobileApp = () => {
                                       className="btn btn-primary btn-lg mb-5 text-white text-decoration-none"
                                       label="Download App"
                                       filename="betnare.apk"
-                                      exportFile={() => getDownloadFile()}
-                                >Download Betnare App</Link>
+                                      exportFile={() => getDownloadFile()}>Download Betnare App</Link>
                             </div>
                             <div className="col-md-12 mt-2 text-white accordion-container text-start">
                                 <hr/>

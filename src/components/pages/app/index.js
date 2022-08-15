@@ -1,7 +1,5 @@
 import React from "react";
 import 'react-accessible-accordion/dist/fancy-example.css';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faDownload} from "@fortawesome/free-solid-svg-icons";
 import DownloadLink from "react-download-link";
 import mobileBanner from '../../../assets/img/mobile/APPDownload.png'
 import {Link} from "react-router-dom";

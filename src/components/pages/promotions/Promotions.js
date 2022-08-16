@@ -52,7 +52,7 @@ const Promotions = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-md-12 shadow-lg">
+                                        <div className="col-md-12 shadow-lg d-none">
                                             <div className="d-flex flex-column">
                                                 <h5>20% FIRST DEPOSIT BONUS (DEPOSIT UPEWE)</h5>
                                                 <img src={twentyPercentDepositBonus} className={'rounded'}/>
@@ -91,7 +91,7 @@ const Promotions = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-md-12 d-flex flex-row shadow-lg mt-2">
+                                        <div className="col-md-12 d-flex flex-row shadow-lg mt-2 d-none">
                                             <div className="col-md-12">
                                                 <div className="d-flex flex-column">
                                                     <h5>DAILY CASHBACK</h5>
@@ -157,7 +157,7 @@ const Promotions = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-md-12 d-flex flex-row shadow-lg mt-2">
+                                        <div className="col-md-12 d-flex flex-row shadow-lg mt-2 d-none">
 
                                             <div className="col-md-12">
                                                 <div className="d-flex flex-column">

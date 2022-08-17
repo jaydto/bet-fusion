@@ -4975,10 +4975,7 @@ input[type="button"].btn-block {
     }
 }
 
-@media (min-width: 1279px) {
-    .size-info{
-        width:39%!important;
-    }
+@media (min-width: 1260px) {
     .by {
         width: 100%;
     }
@@ -15579,7 +15576,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 }
 
 .match-detail-container {
-    width: 20.6% !important;
+    width: 21.6% ;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

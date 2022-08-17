@@ -15,6 +15,10 @@ import './assets/css/tolkits.css';
 import './assets/css/sidebar-menu.css';
 import './index.css';
 import Store from './context/store';
+import ReactGA from 'react-ga4';
+
+const TRACKING_ID = "G-Z7T5HC0MYT";
+ReactGA.initialize(TRACKING_ID);
 
 const Index = React.lazy(() => import('./components/index'));
 const CompetitionsMatches = React.lazy(

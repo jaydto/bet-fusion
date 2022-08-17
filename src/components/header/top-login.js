@@ -7,8 +7,10 @@ import {Context} from '../../context/store';
 import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {setLocalStorage} from '../utils/local-storage';
+import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 
 const HeaderLogin = (props) => {
+    const gaEventTracker = useAnalyticsEventTracker('Navigation');
     const [isLoading, setIsLoading] = useState(null)
     const [message, setMessage] = useState(null);
     const {setUser} = props;
@@ -125,7 +127,8 @@ const HeaderLogin = (props) => {
                             />
                             <br/>
                             <input type="hidden" name="ref" value="{props.refURL}"/>
-                            <a href="/reset-password" title="Reset password">
+                            <a href="/reset-password" title="Reset password"
+                               onClick={() => gaEventTracker('Reset Password')}>
                                 <span className="sticky-hidden">Forgot Password?</span>
                             </a>
                         </div>
@@ -156,10 +159,11 @@ const HeaderLogin = (props) => {
         <Container className="top-login-section">
             <Row className="" style={{float: "right"}}>
                 <div className="col-12">
-                    <a className="" href="/signup" title="Join now">
+                    <a className="" href="/signup" title="Join now" onClick={() => gaEventTracker('Register')}>
                         <span className="register-label">Register now!</span>
                     </a>
-                    <a className="m-lg-2 badge bg-success" href="/verify-account" title="Verify Account">
+                    <a className="m-lg-2 badge bg-success" href="/verify-account" title="Verify Account"
+                       onClick={() => gaEventTracker('Verify')}>
                         <span className="register-label">Verify Account</span>
                     </a>
                 </div>

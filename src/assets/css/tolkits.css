@@ -15268,7 +15268,7 @@ img.zoom-img {
 }
 
 
-#live_matches.top-matches a:hove {
+#live_matches.top-matches a:hover {
     text-decoration: none;
     cursor: pointer;
 }

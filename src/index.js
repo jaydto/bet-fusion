@@ -17,7 +17,7 @@ import './index.css';
 import Store from './context/store';
 import ReactGA from 'react-ga4';
 
-const TRACKING_ID = "G-Z7T5HC0MYT";
+const TRACKING_ID = "G-5NLSN9BLN4";
 ReactGA.initialize(TRACKING_ID);
 
 const Index = React.lazy(() => import('./components/index'));

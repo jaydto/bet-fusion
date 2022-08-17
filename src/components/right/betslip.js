@@ -8,6 +8,8 @@ import {
     getJackpotBetslip,
 } from '../utils/betslip';
 import {Link} from "react-router-dom";
+import PerfectScrollbar from 'react-perfect-scrollbar';
+import CompanyInfo from "./company-info";
 
 const clean_rep = (str) => {
     str = str.replace(/[^A-Za-z0-9\-]/g, '');

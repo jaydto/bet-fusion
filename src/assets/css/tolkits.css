@@ -8721,6 +8721,11 @@ ul.sport {
 }
 
 @media (max-width: 1147px) {
+    .betslip-container {
+        position: sticky !important;
+        top: 120px !important;
+        background: #253743 !important;
+    }
 
     .space-bets{
         gap:2px!important;

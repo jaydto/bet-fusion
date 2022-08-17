@@ -52,7 +52,7 @@ const Jackpot = (props) => {
                                 variant={'tabs'}
                                 defaultActiveKey="home"
                                 id=""
-                                className="background-primary"
+                                className="background-primary "
                                 justify>
                                 <Tab eventKey="home" title="Jackpot" className={'background-primary'}>
                                     {matches?.data?.length > 0 ? (
@@ -113,7 +113,7 @@ const Jackpot = (props) => {
                                         </div>
                                     ))}
                                 </Tab>
-                                <Tab eventKey="terms" title="Terms & Conditions">
+                                <Tab eventKey="terms" title="Terms & Conditions" >
                                     <DailyJackpotTermsAndConditions/>
                                 </Tab>
                             </Tabs>

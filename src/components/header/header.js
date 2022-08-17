@@ -111,7 +111,7 @@ const Header = (props) => {
                     <Navbar.Brand href="/" className="e logo align-self-start" title="Betnare">
                         <div className="col-3">
                             <div>
-                                <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"/>
+                                <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur" className={"image-size"}/>
                             </div>
                         </div>
                     </Navbar.Brand>

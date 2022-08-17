@@ -6954,6 +6954,9 @@ ul.sport {
 }
 
 @media (max-width: 640px), (max-width: 574px) {
+     .image-size{
+        width: 100px!important;
+    }
     .font-tbt {
         font-size: 10px;
     }
@@ -6995,7 +6998,7 @@ ul.sport {
     }
 
     .w-change2 {
-        width: 30%;
+        width: 28%;
     }
 
     .pad-l {
@@ -7404,7 +7407,7 @@ ul.sport {
     }
 
     .space-button {
-        width: 5%;
+        width: 7%;
     }
 
     .space-deposit {
@@ -7614,6 +7617,8 @@ ul.sport {
 }
 
  @media (max-width: 991px) {
+
+
      .bet-fix{
          flex-direction: row!important;
          /*margin-left:auto!important;*/
@@ -8514,6 +8519,10 @@ ul.sport {
 /*}*/
 
 @media (max-width: 768px) {
+     .mobile-slip{position: absolute;
+        width: 100%;
+        margin-top: 35%;
+     }
     table.bdd {
         font-size: 10px;
     }
@@ -8676,6 +8685,16 @@ ul.sport {
 }
 
 @media (max-width: 1014px) {
+     .change-display {
+        flex-wrap: nowrap;
+        font-size: 11px;
+        display: grid !important;
+        /*code needed to commented out after commenting out casino option*/
+        /*grid-template-columns: [col0]0px[col1]60px[col2]70px[col3]100px[col4]80px[col5]120px[col6]120px[col7]140px[col8]120px[col9]90px[col10]70px[col11]108px[col-end];*/
+        grid-template-columns: [col0]0px[col1]60px[col2]70px[col3]100px[col4]80px[col5]150px[col7]140px[col8]120px[col9]100px[col10]120px[col11]0px[col12]0[col-end];
+
+        overflow: auto;
+    }
 
     .amt {
         margin-top: 110px;
@@ -8706,16 +8725,7 @@ ul.sport {
     .space-bets{
         gap:2px!important;
     }
-    .change-display {
-        flex-wrap: nowrap;
-        font-size: 11px;
-        display: grid !important;
-        /*code needed to commented out after commenting out casino option*/
-        /*grid-template-columns: [col0]0px[col1]60px[col2]70px[col3]100px[col4]80px[col5]120px[col6]120px[col7]140px[col8]120px[col9]90px[col10]70px[col11]108px[col-end];*/
-        grid-template-columns: [col0]0px[col1]60px[col2]70px[col3]100px[col4]80px[col5]120px[col7]140px[col8]120px[col9]90px[col10]70px[col11]108px[col12]0[col-end];
 
-        overflow: auto;
-    }
 
     .hide1 {
         display: none;

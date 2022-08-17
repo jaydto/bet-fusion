@@ -131,14 +131,14 @@ const HeaderNav = (props) => {
                         <a className="g url-link fix-display" href="#" title="Search"
                            onClick={() => showSearchBar()}>
                             <span className=" space-icons"><FontAwesomeIcon icon={faSearch}/> </span><span
-                            className={'hide2'}>Search</span>
+                            >Search</span>
                         </a>
                     </li>
                     <li className={pathname === '/how-to-play' ? 'active' : ''}
                         onClick={() => gaEventTracker('Visit How To Play Page')}>
                         <a className="g url-link fix-display" href="/how-to-play" title="How to play">
                             <span className=" space-icons"><FontAwesomeIcon icon={faQuestionCircle}/> </span> <span
-                            className={'hide2'}>Help</span>
+                            >Help</span>
                         </a>
                     </li>
                     <li className={pathname === '/print-matches' ? 'active py-3' : 'fa-border py-md-0 py-lg-3 py-sm-0 d-flex align-items-center'}

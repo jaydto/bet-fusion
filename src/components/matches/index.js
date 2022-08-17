@@ -210,7 +210,7 @@ const MatchHeaderRow = (props) => {
                                   </div>
                             ))}
                             <div
-                                className="bet-fix events-odd pad undefined align-items-center more-markets-container m-lg-2 col-3 d-flex h-100 d-flex align-self-center justify-content-end
+                                className="bet-fix events-odd pad undefined align-items-md-start align-items-lg-center more-markets-container m-lg-2 col-3 d-flex h-100 d-flex align-self-center justify-content-md-end justify-content-lg-center
                               ">
                                 <LazyLoadImage src={myGif} className={'fire mb-2'}/>
                             </div>

@@ -27,9 +27,6 @@ const GamePlay = (props) => {
         let method = "GET"
 
         await makeRequest({url: endpoint, method: method}).then(([status, result]) => {
-            if (status === 200) {
-                console.log(result)
-            }
         });
     }
 

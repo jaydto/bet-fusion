@@ -5,9 +5,10 @@ import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
 import makeRequest from "../../utils/fetch-request";
 import {faArrowLeft, faArrowRight} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 
 const Sidebar = (props) => {
-
+    const gaEventTracker = useAnalyticsEventTracker('Navigation');
     const [collapsed, setCollapsed] = useState(false)
     const [toggled, setToggled] = useState(false)
     const [sport, setSport] = useState(79)
@@ -148,6 +149,7 @@ const Sidebar = (props) => {
                         {competitions?.all_sports.map((competition, index) => (
 
                             <SubMenu title={competition.sport_name} defaultOpen={getActiveSport(competition.sport_id)}
+                                     onClick={() => gaEventTracker(`${competition?.sport_name}`)}
                                      icon={<img style={{borderRadius: '50%', height: '20px'}}
                                                 src={getSportImageIcon(competition.sport_name)}/>}
                                      key={index}>
@@ -158,7 +160,8 @@ const Sidebar = (props) => {
                                                       icon={<img
                                                           src={getSportImageIcon(top_league?.flag, 'img/flags-1-1', true)}
                                                           style={{borderRadius: "50%", height: "20px"}}></img>}>
-                                                <a href={`/competition/${top_league.sport_id}/${top_league.category_id}/${top_league.competition_id}?sub_type_id=${getDefaultMarketsForSport(competition)}`}>
+                                                <a onClick={() => gaEventTracker(`Top Leagues ${top_league?.competition_name}`)}
+                                                   href={`/competition/${top_league.sport_id}/${top_league.category_id}/${top_league.competition_id}?sport_id=${competition.sport_id}&sub_type_id=${getDefaultMarketsForSport(competition)}`}>
                                                     {top_league?.competition_name}
                                                 </a>
                                             </MenuItem>
@@ -170,14 +173,18 @@ const Sidebar = (props) => {
                                     {competition?.categories.map((country, countryKey) => (
                                         <div key={`${countryKey}_category`}>
                                             <SubMenu title={country.category_name}
+                                                     onClick={() => gaEventTracker(`${country?.category_name}`)}
                                                      icon={<img style={{borderRadius: '50%', height: '20px'}}
                                                                 src={getSportImageIcon(country.cat_flag, 'img/flags-1-1')}
                                                      />}
                                             >
                                                 {country?.competitions.map((league, leagueKey) => (
                                                     <MenuItem key={`${leagueKey}_league`}>
-                                                        <a href={`/competition/${competition.sport_id}/${country.category_id}/${league.competition_id}`}
-                                                           onClick={() => setLocalStorage('active_item', competition.sport_id)}>
+                                                        <a href={`/competition/${competition.sport_id}/${country.category_id}/${league.competition_id}?sport_id=${competition.sport_id}&sub_type_id=${getDefaultMarketsForSport(competition)}`}
+                                                           onClick={() => {
+                                                               setLocalStorage('active_item', competition.sport_id);
+                                                               gaEventTracker(league?.competition_name)
+                                                           }}>
                                                             {league.competition_name}
                                                         </a>
                                                     </MenuItem>
@@ -187,17 +194,20 @@ const Sidebar = (props) => {
                                     ))}
                                 </SubMenu>
                                 <MenuItem>
-                                    <a href={`/upcoming?sport_id=${competition.sport_id}&sub_type_id=${getDefaultMarketsForSport(competition)}`}>
+                                    <a onClick={() => gaEventTracker(`Today Games ${competition?.sport_name}`)}
+                                       href={`/upcoming?sport_id =${competition.sport_id}&sub_type_id=${getDefaultMarketsForSport(competition)}`}>
                                         Today Games
                                     </a>
                                 </MenuItem>
                                 <MenuItem>
-                                    <a href={`/highlights?sport_id=${competition.sport_id}&sub_type_id=${getDefaultMarketsForSport(competition)}`}>
+                                    <a onClick={() => gaEventTracker(`Highlights ${competition?.sport_name}`)}
+                                       href={`/highlights?sport_id=${competition.sport_id}&sub_type_id=${getDefaultMarketsForSport(competition)}`}>
                                         Highlights
                                     </a>
                                 </MenuItem>
                                 <MenuItem>
-                                    <a href={`/tomorrow?sport_id=${competition.sport_id}&sub_type_id=${getDefaultMarketsForSport(competition)}`}>
+                                    <a onClick={() => gaEventTracker(`Tomorrow ${competition?.sport_name}`)}
+                                       href={`/tomorrow?sport_id=${competition.sport_id}&sub_type_id=${getDefaultMarketsForSport(competition)}`}>
                                         Tomorrow
                                     </a>
                                 </MenuItem>

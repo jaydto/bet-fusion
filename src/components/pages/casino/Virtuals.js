@@ -16,7 +16,7 @@ const Casino = (props) => {
 
     const [games, setGames] = useState([])
 
-    const fetchGames = async (category = 'rgs-vsb') => {
+    const fetchGames = async (category = 'vs') => {
         let endpoint = "/v1/casino-games?game-type-id=" + category
         let method = "GET"
         await makeRequest({url: endpoint, method: method}).then(([status, result]) => {
@@ -44,8 +44,6 @@ const Casino = (props) => {
     const launchGame = (game_id) => {
 
         const userState = (getFromLocalStorage("user"));
-
-        console.log(userState)
 
         if (userState?.token) {
             return window.location.href = `/gameplay/${game_id}`

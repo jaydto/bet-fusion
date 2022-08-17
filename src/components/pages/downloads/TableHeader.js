@@ -25,17 +25,18 @@ const styles = StyleSheet.create({
         fontSize: 9,
         display: "flex",
         justifyContent: "flex-end",
-    }
+    },
+    title: {textTransform: "uppercase"}
 });
 
-const TableHeader = () => (
+const TableHeader = (props) => (
     <>
         <View style={styles.row}>
             <Image style={styles.logo} src={PrintHeader}/>
         </View>
         <View style={styles.headerSection}>
-            <Text>
-                Highlights - {new Date().toDateString()}
+            <Text style={styles.title}>
+                {props?.title} - {new Date().toDateString()}
             </Text>
         </View>
     </>

@@ -1,10 +1,10 @@
 import React, {useState, useContext, useEffect, useCallback} from 'react';
 import QuickLogin from './quick-login';
 import CompanyInfo from './company-info';
-import {Context} from '../../context/store';
 import BetSlip from './betslip';
 import {faTimes} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {Badge} from "react-bootstrap";
 
 const AlertMessage = (props) => {
     return (
@@ -18,7 +18,7 @@ const AlertMessage = (props) => {
 }
 
 const Right = (props) => {
-    const {jackpot, betslipValidationData} = props;
+    const {jackpot, betslipValidationData, jackpotData} = props;
     const [betSlipMobile, setBetSlipMobile] = useState(false)
 
     return (
@@ -28,17 +28,22 @@ const Right = (props) => {
                 <div className="bet-option-list sticky-top" id=''>
                     <div className="bet alu block-shadow">
                         <header>
-                            <div className="betslip-header">
-                    <span className="col-sm-2 bkmrk">
+                            <div className="betslip-header d-flex justify-content-between">
+                    <span className="col-sm-2 bkmrk d-none">
                         <i className="fa fa-bookmark" aria-hidden="true"></i></span>
                                 <span className="col-sm-8 slp">BETSLIP</span>
-                                <span className="col-sm-2 slip-counter"></span>
+                                <span className="col-sm-2 slip-counter text-white">
+                                     <Badge pill bg="dark">
+                                      {betslipValidationData?.length || 0}
+                                      </Badge>
+                                </span>
                             </div>
                         </header>
                         <button id="slip-button-close" type="button" className="close mobi" aria-hidden="true">×
                         </button>
                         <div id="betslip" className="betslip">
-                            <BetSlip jackpot={jackpot} betslipValidationData={betslipValidationData}/>
+                            <BetSlip jackpot={jackpot} betslipValidationData={betslipValidationData}
+                                     jackpotData={jackpotData}/>
                         </div>
                         <QuickLogin/>
                     </div>
@@ -58,7 +63,7 @@ const Right = (props) => {
                                 </span>
                             </div>
                         </header>
-                        <div id="betslip" className="betslip">
+                        <div id="betslip" className="betslip">]
                             <BetSlip jackpot={jackpot} betslipValidationData={betslipValidationData}/>
                         </div>
                         <QuickLogin/>

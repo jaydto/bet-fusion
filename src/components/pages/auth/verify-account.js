@@ -30,7 +30,7 @@ const VerifyAccount = (props) => {
                 window.location.href = "/"
             }, 3000)
         }).catch((err) => {
-            console.log(err)
+
         })
     }
 

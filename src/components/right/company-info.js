@@ -35,7 +35,7 @@ const CompanyInfo = (props) => {
                         </span>
                     </div>
                     <div className="mail text-lowercase bold">
-                        <i className="fa fa-envelope-o" aria-hidden="true"></i> &nbsp; support@betnare.com
+                        <i className="fa fa-envelope-o" aria-hidden="true"></i> &nbsp; customercare@betnare.com
                     </div>
                 </div>
             </div>

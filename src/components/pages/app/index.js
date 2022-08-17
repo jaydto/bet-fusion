@@ -1,9 +1,9 @@
-import React from "react";
+import React, {useEffect} from "react";
 import 'react-accessible-accordion/dist/fancy-example.css';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faDownload} from "@fortawesome/free-solid-svg-icons";
 import DownloadLink from "react-download-link";
 import mobileBanner from '../../../assets/img/mobile/APPDownload.png'
+import {Link} from "react-router-dom";
+import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 
 const Header = React.lazy(() => import('../../header/header'));
 const SideBar = React.lazy(() => import('../../sidebar/awesome/Sidebar'));
@@ -13,6 +13,11 @@ const downloadAPKFile = React.lazy(() => import('../../../assets/betnare.apk'));
 
 
 const MobileApp = () => {
+    const gaEventTracker = useAnalyticsEventTracker('App');
+
+    useEffect(() => {
+        gaEventTracker('App Page')
+    })
 
     const getDownloadFile = () => {
         return downloadAPKFile;
@@ -32,12 +37,15 @@ const MobileApp = () => {
                                     BETNARE APP
                                 </h4>
 
-                                <DownloadLink
-                                    className="btn btn-primary btn-lg mb-5 text-white text-decoration-none"
-                                    label="Download App"
-                                    filename="betnare.apk"
-                                    exportFile={() => getDownloadFile()}
-                                />
+                                <Link to={'/betnare.apk'}
+                                      target={"_blank"}
+                                      title={'Download App'}
+                                      download={'betnare.apk'}
+                                      className="btn btn-primary btn-lg mb-5 text-white text-decoration-none"
+                                      label="Download App"
+                                      filename="betnare.apk"
+                                      onClick={()=>gaEventTracker('Downloaded App')}
+                                      exportFile={() => getDownloadFile()}>Download Betnare App</Link>
                             </div>
                             <div className="col-md-12 mt-2 text-white accordion-container text-start">
                                 <hr/>

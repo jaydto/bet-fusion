@@ -5,6 +5,8 @@ import makeRequest from './utils/fetch-request';
 import {getBetslip} from './utils/betslip' ;
 import useInterval from "../hooks/set-interval.hook";
 import {Spinner} from "react-bootstrap";
+import useAnalyticsEventTracker from '../components/analytics/useAnalyticsEventTracker';
+
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -14,8 +16,8 @@ const MainTabs = React.lazy(() => import('./header/main-tabs'));
 const MatchList = React.lazy(() => import('./matches/index'));
 const Right = React.lazy(() => import('./right/index'));
 const SideBar = React.lazy(() => import('./sidebar/awesome/Sidebar'))
-
 const Index = (props) => {
+    const gaEventTracker = useAnalyticsEventTracker('Home');
     const location = useLocation();
     const [matches, setMatches] = useState([]);
     const [limit, setLimit] = useState(50);

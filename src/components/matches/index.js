@@ -25,6 +25,7 @@ import myGif from '../../assets/img/gif/fire5.gif'
 import * as url from "url";
 import {Input} from "@material-ui/core";
 
+import * as Json from "ajv";
 
 const clean = (_str) => {
     _str = _str.replace(/[^A-Za-z0-9\-]/g, '');
@@ -176,7 +177,7 @@ const MatchHeaderRow = (props) => {
 
         }
     }, [first_match?.parent_match_id])
-
+    console.log(extraMarketDisplays)
 
     return (
         <Row className="full-mobile sticky-top" style={{position: "sticky", top: "130px"}}>

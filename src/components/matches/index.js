@@ -640,7 +640,7 @@ const MatchRow = (props) => {
     for (let i = 0; i < append; i++) {
         loops.push(i)
     }
-console.log(extraMarketDisplays.length)
+    console.log(extraMarketDisplays.length)
     return (
         <div className="top-matches d-flex flex-sm-column flex-lg-row">
             <div className="size-info  d-flex col-xs-12 pad left-text">
@@ -792,19 +792,20 @@ console.log(extraMarketDisplays.length)
                                 <div className={`c-btn-group m-lg-1 align-self-center d-lg-flex  d-md-none d-sm-none`}>
                                     {
                                         Object.entries(odds || {}).map(([odd_key, odd_data]) => {
-                                            return odd_data?.odd_active == 1 && odd_data.market_active == 1 ? (
 
-                                                <OddButton
-                                                    match={getUpdatedMatchFromOdds({
-                                                        match,
-                                                        marketName,
-                                                        odd_key,
-                                                        odd_data
-                                                    })}
-                                                    key={odd_key} live={live}/>) : (
-                                                <EmptyTextRow odd_key={match?.odd_key}/>
 
-                                            )
+                                            return odd_data?.odd_active == 1 && odd_data.market_active == 1 ?
+                                                (
+                                                    <OddButton
+                                                            match={getUpdatedMatchFromOdds({
+                                                                match,
+                                                                marketName,
+                                                                odd_key,
+                                                                odd_data
+                                                            })}
+                                                            key={odd_key} live={live}/>) : (
+                                                        <EmptyTextRow odd_key={match?.odd_key}/>
+                                                )
                                         })
                                     }
                                 </div>

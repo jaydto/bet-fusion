@@ -57,21 +57,7 @@ const EmptyTextRow = (props) => {
     );
 };
 
-const MatchHeaderRow = (props) => {
-    const {live, first_match, jackpot} = props;
-    //const [state, ]  = useContext(Context);
-    const categories = getFromLocalStorage('categories')
-    const sport_id = new URL(window.location).searchParams.get('sport_id') || 79
-    let sport = categories?.all_sports?.filter((category) => category.sport_id == sport_id)
-    const [sportName, setSportName] = useState(sport?.[0]?.sport_name || 'Soccer');
-    const [showX, setShowX] = useState(true);
-    const [market, setMarket] = useState('1x2');
-    const [marketCols, setMarketCols] = useState(3)
-    const [extraMarketDisplays, setExtraMarketDisplays] = useState([])
-
-    const [threeWay, setThreeWay] = useState(false)
-
-    const getSelectedMarkets = () => {
+const marketChoice = () => {
 
 
         const markets = [

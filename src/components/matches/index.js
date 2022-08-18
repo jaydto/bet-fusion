@@ -791,22 +791,31 @@ const MatchRow = (props) => {
                                 </div>
                                 <div className={`c-btn-group m-lg-1 align-self-center d-lg-flex  d-md-none d-sm-none`}>
                                     {
-                                        Object.entries(odds || {}).map(([odd_key, odd_data]) => {
+                                        Object.entries(odds || {}).map(([odd_key, odd_data]) =>
+                                            (
+                                                <>
+                                                    <div className=" c-btn-group  d-sm-flex d-md-flex d-lg-none flex-row ">
+                                                        {(odd_key)}
+                                                    </div>
+
+                                                        { odd_data?.odd_active == 1 && odd_data.market_active == 1 ?
+                                                            (
+                                                                <OddButton
+                                                                    match={getUpdatedMatchFromOdds({
+                                                                        match,
+                                                                        marketName,
+                                                                        odd_key,
+                                                                        odd_data
+                                                                    })}
+                                                                    key={odd_key} live={live}/>) : (
+                                                                <EmptyTextRow odd_key={match?.odd_key}/>
+                                                            )
+                                                        }
 
 
-                                            return odd_data?.odd_active == 1 && odd_data.market_active == 1 ?
-                                                (
-                                                    <OddButton
-                                                            match={getUpdatedMatchFromOdds({
-                                                                match,
-                                                                marketName,
-                                                                odd_key,
-                                                                odd_data
-                                                            })}
-                                                            key={odd_key} live={live}/>) : (
-                                                        <EmptyTextRow odd_key={match?.odd_key}/>
-                                                )
-                                        })
+                                                </>
+
+                                        ))
                                     }
                                 </div>
                             </div>

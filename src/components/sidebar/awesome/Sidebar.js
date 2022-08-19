@@ -110,7 +110,7 @@ const Sidebar = (props) => {
              className={`vh-100 text-white sticky-top d-none d-md-block up`}>
             <ProSidebar
 
-                style={{backgroundColor: '#16202c !important',color: "orange"}}
+                style={{backgroundColor: '#16202c !important'}}
                 image={false}
                 onToggle={handleToggleSidebar}
                 collapsed={collapsed}

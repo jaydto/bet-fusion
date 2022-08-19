@@ -2092,7 +2092,9 @@ mark {
 small {
     font-size: 80%;
 }
-
+.date-size{
+    font-size: 80%;
+}
 sub,
 sup {
     font-size: 75%;
@@ -3802,7 +3804,9 @@ input[type="checkbox"]:focus {
     text-shadow: none !important;
     padding: 0 !important;
 }
-
+.small{
+    width:max-content;
+}
 .no-pad-left {
     padding-left: 0;
 }
@@ -4975,12 +4979,16 @@ input[type="button"].btn-block {
 }
 
 @media (min-width: 992px) {
+    .container-size{
+        width:100%!important
+    }
     .by {
         width: 100%;
     }
 }
 
 @media (min-width: 1260px) {
+
     .by {
         width: 100%;
     }
@@ -6945,6 +6953,7 @@ ul.sport {
     width: -webkit-fill-available;
     margin-bottom: 0px;
     margin-left: -5px;
+    overflow-x: hidden;
 }
 
 @media (max-width: 1258px) {
@@ -7663,6 +7672,12 @@ ul.sport {
 }
 
 @media (max-width: 991px) {
+    .border-info{
+        border: 1px solid black;
+    }
+    .container-size{
+        width:95%!important;
+    }
     .card-small {
         position: relative;
         display: flex;
@@ -7672,11 +7687,12 @@ ul.sport {
         background-clip: border-box;
         border: 1px solid rgba(0, 0, 0, .125);
         border-radius: 10px;
+        /*transform: translate(1px, 2px);*/
     }
 
     .sticky-responsive {
         position: sticky;
-        top: 100px !important
+        top: 120px !important
     }
 
     .bet-fix {
@@ -7714,8 +7730,12 @@ ul.sport {
 @media (min-width: 992px), (max-width: 1140px) {
  }
 @media (min-width: 992px) and (max-width: 1160px) {
+    .small{
+        width:auto!important;
+    }
+
     .top-matches .side {
-        width: 40px;
+        width: 35px;
         height: 24px;
     }
     .bet-fix {
@@ -7787,6 +7807,9 @@ ul.sport {
 }
 
 @media (min-width: 1500px) {
+    .gap-size{
+        gap:40%;
+    }
 
     .c-btn-header {
         min-width: 52px !important;
@@ -8767,6 +8790,8 @@ ul.sport {
 }
 
 @media (max-width: 1014px) {
+
+
     .change-display {
         flex-wrap: nowrap;
         font-size: 11px;
@@ -8790,7 +8815,7 @@ ul.sport {
 @media (max-width: 1278px ) {
 
     .c-btn-group > .c-btn {
-        min-width: 40px !important;
+        min-width: 42px !important;
         transition: min-width 0.01s ease-in-out;
     }
 
@@ -10701,12 +10726,12 @@ button.close {
         width: 300px;
     }
 }
-
+/*.sticky-responsive {*/
+/*    position: sticky;*/
+/*    top: 115px;*/
+/*}*/
 @media (min-width: 992px) {
-    .sticky-responsive {
-        position: sticky;
-        top: 115px !important
-    }
+
 
     .size-info {
         width: 34%;
@@ -11461,6 +11486,9 @@ button.close {
 }
 
 @media (min-width: 992px) and (max-width: 1259px) {
+    .sticky-responsive{
+        top:115px
+    }
     .sm {
         display: block !important;
     }

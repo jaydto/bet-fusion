@@ -166,7 +166,8 @@ const MatchHeaderRow = (props) => {
     console.log(extraMarketDisplays)
 
     return (
-        <Row className="full-mobile sticky-top sticky-responsive" style={{position: "sticky", top: "130px"}}>
+
+        <Row className="full-mobile sticky-top sticky-responsive">
             <div className="top-matches d-flex position-sticky sticky-top shadow-lg"
                  style={{opacity: "1", top: "100px"}}>
                 <div className="col-sm-2 col-xs-12 pad left-text">
@@ -195,31 +196,34 @@ const MatchHeaderRow = (props) => {
 
                             </div>
                         </div>}
-                    {!live && !jackpot && extraMarketDisplays.length > 0 &&
-                        extraMarketDisplays?.map((extra_market) => (
+                    <div className={"d-flex"}>
+                        {!live && !jackpot && extraMarketDisplays.length > 0 &&
+                            extraMarketDisplays?.map((extra_market) => (
 
-                            <div className={'d-flex flex-row'}>
-                                <div className={'d-flex flex-column text-center text-white fit-ipad'}>
+                                <div className={'d-flex flex-row'}>
+                                    <div className={'d-flex flex-column text-center text-white fit-ipad'}>
                                     <span className={'small'}>
                                         {extra_market.name}
                                     </span>
-                                    <div className={'c-btn-group m-lg-1 mt-sm-1 justify-content-center'}>
-                                        <a className="c-btn-header">
-                                            {(extra_market.extra_markets_display[0])}
-                                        </a>
-                                        <a className="c-btn-header">
-                                            {(extra_market.extra_markets_display[1])}
-                                        </a>
-                                        {extra_market?.extra_market_cols > 2 &&
-                                            <a className={`c-btn-header`}>
-                                                {(extra_market.extra_markets_display[2])}
-                                            </a>}
+                                        <div className={'c-btn-group m-lg-1 mt-sm-1 justify-content-center'}>
+                                            <a className="c-btn-header mx-2">
+                                                {(extra_market.extra_markets_display[0])}
+                                            </a>
+                                            <a className="c-btn-header mx-2">
+                                                {(extra_market.extra_markets_display[1])}
+                                            </a>
+                                            {extra_market?.extra_market_cols > 2 &&
+                                                <a className={`c-btn-header`}>
+                                                    {(extra_market.extra_markets_display[2])}
+                                                </a>}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))}
+                    </div>
+
                     <div
-                        className="bet-fix events-odd pad undefined align-items-md-start align-items-lg-center more-markets-container m-lg-2 col-3 d-flex h-100 d-flex align-self-center justify-content-md-end justify-content-lg-center
+                        className="bet-fix events-odd pad undefined align-items-md-start align-items-lg-center more-markets-container m-lg-2 col-3 d-flex h-100 d-flex align-self-center justify-content-md-start justify-content-lg-center
                               ">
                         <LazyLoadImage src={myGif} className={'fire mb-2'}/>
                     </div>
@@ -640,11 +644,12 @@ const MatchRow = (props) => {
     for (let i = 0; i < append; i++) {
         loops.push(i)
     }
-    console.log(extraMarketDisplays.length)
+    // console.log(extraMarketDisplays.length)
     return (
         <div className="top-matches d-flex flex-sm-column flex-lg-row ">
-            <div className="d-lg-flex d-md-block d-sm-block card-small mx-sm-4 mx-md-4 mx-lg-0 w-100 ">
-                <div className="size-info  d-flex col-xs-12 pad left-text">
+            <div
+                className="d-lg-flex d-md-block d-sm-block  mx-sm-4 mx-md-4 mx-lg-0 px-sm-4 px-md-4 px-lg-0 py-sm-4 py-md-4 py-lg-0 container-size ">
+                <div className="size-info  d-flex col-xs-12 pad left-text ">
                     {live &&
                         <>
                             <small style={{color: "green"}}> {match?.match_status} </small>
@@ -652,7 +657,7 @@ const MatchRow = (props) => {
                         </>
                     }
                     <div className="d-flex flex-column px-1 justify-content-sm-center change-date1">
-                    <span className={'small'}>
+                    <span className={'date-size'}>
                         {(live && match?.match_time) ?
                             <>{`${match.match_time}'`}</> : match?.start_time}
                     </span>
@@ -688,14 +693,15 @@ const MatchRow = (props) => {
 
 
                 </div>
-                <div className="col d-flex  flex-row justify-content-between space-bets ">
+                <hr className={"d-md-block d-sm-block d-lg-none m-sm-1 m-md-1 m-lg-0"}/>
+                <div className="col d-flex  flex-row justify-content-between space-bets card-small">
                     <div className={'d-flex flex-md-column flex-sm-column  flex-lg-row'}>
                         <div className="c-btn-group align-self-center flex-sm-column d-sm-flex d-md-flex d-lg-none  ">
                             {threeWay &&
                                 <div className="d-flex flex-row ">
                                     <div className="d-flex flex-column text-center text-white fit-ipad">
-                                        <div>
-                                            3 WAY
+                                        <div className="font-weight-bold">
+                                            <h4 className="font-weight-bold"> 3 WAY</h4>
                                         </div>
 
                                         <div className='d-flex justify-content-around'>
@@ -730,67 +736,71 @@ const MatchRow = (props) => {
                             }
                         </div>
                     </div>
-
-                    {!jackpot && <>
-                        {Object.entries(match?.extra_odds || {}).map(([marketName, odds], index) => (
-                            marketName !== '' && (
-                                <div className={'d-flex flex-md-column flex-sm-column flex-lg-row my-lg-0 my-md-2 my-sm-2  '}>
+                    <div className={"d-flex "}>
+                        {!jackpot && <>
+                            {Object.entries(match?.extra_odds || {}).map(([marketName, odds], index) => (
+                                marketName !== '' && (
                                     <div
-                                        className="c-btn-group align-self-center d-lg-none flex-md-column text-center flex-sm-row text-center d-md-flex d-sm-flex">
-                                        {(marketName)}
+                                        className={'d-flex flex-md-column flex-sm-column flex-lg-row my-lg-0 my-md-2 my-sm-2  w-100'}>
+                                        <div
+                                            className="c-btn-group align-self-center d-lg-none flex-md-column text-center  flex-sm-row text-center d-md-flex d-sm-flex">
+                                            <h4>{(marketName)}</h4>
+
+                                        </div>
+                                        <div
+                                            className={`c-btn-group m-lg-1 align-self-center d-lg-flex d-sm-flex d-md-flex flex-sm-row flex-md-row flex-lg-row `}>
+
+                                            {
+                                                Object.entries(odds || {}).map(([odd_key, odd_data]) =>
+                                                    (
+                                                        <div
+                                                            className={"d-flex flex-column w-100 px-sm-1 px-md-1 px-lg-1 "}>
+                                                            <div
+                                                                className=" c-btn-header text-white w-100 d-sm-flex d-md-flex d-lg-none flex-column px-sm-1 px-lg-0 px-md-1  ">
+                                                                {(odd_key)}
+                                                            </div>
+                                                            <div className=" c-btn-group align-self-center">
+                                                                {odd_data?.odd_active == 1 && odd_data.market_active == 1 ?
+                                                                    (
+                                                                        <OddButton
+                                                                            match={getUpdatedMatchFromOdds({
+                                                                                match,
+                                                                                marketName,
+                                                                                odd_key,
+                                                                                odd_data
+                                                                            })}
+                                                                            key={odd_key} live={live}/>) : (
+                                                                        <EmptyTextRow odd_key={match?.odd_key}/>
+                                                                    )
+                                                                }
+                                                            </div>
+
+
+                                                        </div>
+
+                                                    ))
+                                            }
+                                        </div>
 
                                     </div>
-                                    <div className={`c-btn-group m-lg-1 align-self-center d-lg-flex d-sm-flex d-md-flex flex-sm-row flex-md-row flex-lg-row `}>
-
-                                        {
-                                            Object.entries(odds || {}).map(([odd_key, odd_data]) =>
-                                                (
-                                                    <div className={"d-flex flex-column w-100 px-sm-1 px-md-1 px-lg-1"}>
-                                                        <div className=" c-btn-header text-white w-100 d-sm-flex d-md-flex d-lg-none flex-column px-sm-1 px-lg-0 px-md-1  ">
-                                                            {(odd_key)}
-                                                        </div>
-                                                        <div className=" c-btn-group align-self-center">
-                                                            { odd_data?.odd_active == 1 && odd_data.market_active == 1 ?
-                                                                (
-                                                                    <OddButton
-                                                                        match={getUpdatedMatchFromOdds({
-                                                                            match,
-                                                                            marketName,
-                                                                            odd_key,
-                                                                            odd_data
-                                                                        })}
-                                                                        key={odd_key} live={live}/>) : (
-                                                                    <EmptyTextRow odd_key={match?.odd_key}/>
-                                                                )
-                                                            }
-                                                        </div>
 
 
-
-
-                                                    </div>
-
-                                                ))
-                                        }
+                                )
+                            ))
+                            }
+                            {!live && loops?.map(() => (
+                                <div className={'d-flex'}>
+                                    <div className="c-btn-group align-self-center d-none">
                                     </div>
-
+                                    <div className={`c-btn-group align-self-center`}>
+                                        <EmptyTextRow odd_key={match?.odd_key}/>
+                                        <EmptyTextRow odd_key={match?.odd_key}/>
+                                    </div>
                                 </div>
-
-                            )
-                        ))
+                            ))}
+                        </>
                         }
-                        {!live && loops?.map(() => (
-                            <div className={'d-flex'}>
-                                <div className="c-btn-group align-self-center d-none">
-                                </div>
-                                <div className={`c-btn-group align-self-center`}>
-                                    <EmptyTextRow odd_key={match?.odd_key}/>
-                                    <EmptyTextRow odd_key={match?.odd_key}/>
-                                </div>
-                            </div>
-                        ))}
-                    </>
-                    }
+                    </div>
 
 
                     <div className={'d-md-none d-sm-none d-lg-flex'}>

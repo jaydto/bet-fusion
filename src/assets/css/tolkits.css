@@ -7793,6 +7793,9 @@ ul.sport {
 }
 
 @media (min-width: 1400px) {
+    .separations{
+        gap:14%!important;
+    }
     .space-between {
         width: 45% !important;
         /*gap: 18%;*/
@@ -8815,7 +8818,7 @@ ul.sport {
 @media (max-width: 1278px ) {
 
     .c-btn-group > .c-btn {
-        min-width: 42px !important;
+        min-width: 40px !important;
         transition: min-width 0.01s ease-in-out;
     }
 

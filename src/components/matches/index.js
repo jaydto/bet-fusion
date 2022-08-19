@@ -196,7 +196,7 @@ const MatchHeaderRow = (props) => {
 
                             </div>
                         </div>}
-                    <div className={"d-flex"}>
+                    <div className={"d-flex separations"}>
                         {!live && !jackpot && extraMarketDisplays.length > 0 &&
                             extraMarketDisplays?.map((extra_market) => (
 
@@ -736,7 +736,7 @@ const MatchRow = (props) => {
                             }
                         </div>
                     </div>
-                    <div className={"d-flex "}>
+                    <div className={"d-flex separations"}>
                         {!jackpot && <>
                             {Object.entries(match?.extra_odds || {}).map(([marketName, odds], index) => (
                                 marketName !== '' && (

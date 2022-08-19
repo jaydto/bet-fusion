@@ -6960,7 +6960,7 @@ ul.sport {
 
 
     .c-btn-header {
-        min-width: 40px !important;
+        min-width: 35px !important;
     }
 
     .match-detail-container {
@@ -11430,6 +11430,9 @@ button.close {
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
+    .sticky-responsive{
+        top: 107px!important
+    }
     .sd {
         display: block !important;
     }
@@ -11487,7 +11490,7 @@ button.close {
 
 @media (min-width: 992px) and (max-width: 1259px) {
     .sticky-responsive{
-        top:115px
+        top:110px
     }
     .sm {
         display: block !important;

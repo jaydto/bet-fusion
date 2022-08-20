@@ -11,6 +11,7 @@ module.exports = function override(config, env) {
         util: require.resolve('util'),
         buffer: require.resolve('buffer'),
         asset: require.resolve('assert'),
+        "url": require.resolve("url/")
     };
 
     config.plugins = [

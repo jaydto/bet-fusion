@@ -3,6 +3,7 @@ import {Context} from '../../context/store';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
+import bgJackpot from '../../assets/img/banner/jackpots/bg-jackpot.png'
 import {
     addToSlip,
     removeFromSlip,
@@ -19,6 +20,7 @@ import padlock from '../../assets/img/padlock.png';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faChartLine, faFire} from "@fortawesome/free-solid-svg-icons";
 import {getFromLocalStorage} from "../utils/local-storage";
+import * as url from "url";
 
 
 const clean = (_str) => {
@@ -702,13 +704,14 @@ export const JackpotHeader = (props) => {
 
     return (
         <Container>
-            <Row className="top-matches">
+            <Row className="top-matches"
+                 style={{backgroundImage: `url(${bgJackpot})`, backgroundRepeat: 'no-repeat', height: "75px"}}>
                 <Row className="jp-header-text">
                     <div className="jp-header-top">
                         {jackpot?.type} - {jackpot?.total_games} GAMES {jackpot?.name}
                     </div>
                 </Row>
-                <Row className="jp-header-text mb-2">
+                <Row className="jp-header-text">
                     <div className="jackpot-amount mt-3">
                         <CurrencyFormat
                             value={jackpot?.jackpot_amount}
@@ -727,7 +730,7 @@ export const JackpotMatchList = (props) => {
     const {matches, jackpotData} = props;
 
     return (
-        <div className="matches full-width mt-5">
+        <div className="matches full-width">
 
             <MatchHeaderRow jackpot={true} first_match={matches ? matches[0] : []}/>
 

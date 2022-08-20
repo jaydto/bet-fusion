@@ -15292,7 +15292,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 }
 
 .jackpot-amount {
-    position: absolute;
+    position: relative;
     transform: translate(-50%, -50%);
     left: 50%;
     font-family: 'Times New Roman', serif;

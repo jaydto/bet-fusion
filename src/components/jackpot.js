@@ -11,7 +11,8 @@ import Tabs from 'react-bootstrap/Tabs';
 import Container from "react-bootstrap/Container";
 
 const Right = React.lazy(() => import('./right/index'));
-const DailyJackpotTermsAndConditions = React.lazy(() => import('./pages/terms-and-conditions/DailyJackpotTermsAndConditions'))
+const DailyJackpotTermsAndConditions = React.lazy(
+    () => import('./pages/terms-and-conditions/DailyJackpotTermsAndConditions'))
 
 const Jackpot = (props) => {
     const [matches, setMatches] = useState(null);
@@ -113,7 +114,7 @@ const Jackpot = (props) => {
                                         </div>
                                     ))}
                                 </Tab>
-                                <Tab eventKey="terms" title="Terms & Conditions" >
+                                <Tab eventKey="terms" title="Terms & Conditions">
                                     <DailyJackpotTermsAndConditions/>
                                 </Tab>
                             </Tabs>

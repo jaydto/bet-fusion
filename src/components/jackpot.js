@@ -9,6 +9,7 @@ import dailyJackpot from '../assets/img/banner/jackpots/DailyJackpot.png'
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Container from "react-bootstrap/Container";
+import Select from "react-select";
 
 const Right = React.lazy(() => import('./right/index'));
 const DailyJackpotTermsAndConditions = React.lazy(
@@ -16,9 +17,16 @@ const DailyJackpotTermsAndConditions = React.lazy(
 
 const Jackpot = (props) => {
     const [matches, setMatches] = useState(null);
+    const [finishedJackpots, setFinishedJackpots] = useState([])
 
-    const fetchData = useCallback(async () => {
+    const fetchData = useCallback(async (jackpot_id = '', jackpot_status = '') => {
         let match_endpoint = "/v1/matches/jackpot";
+        if (jackpot_id !== '') {
+            match_endpoint += '?jackpot_id=' + jackpot_id
+        }
+        if (jackpot_status !== '') {
+            match_endpoint += "&jackpot_status=" + jackpot_status
+        }
 
         const [match_result] = await Promise.all([
             makeRequest({url: match_endpoint, method: "get", data: null})
@@ -30,15 +38,40 @@ const Jackpot = (props) => {
 
     }, []);
 
+    const jackpotHistory = useCallback(async () => {
+
+        let endpoint = "/v1/matches/jp-history"
+
+        const [match_result] = await Promise.all([
+            makeRequest({url: endpoint, method: "get", data: null})
+        ]);
+
+        let [m_status, m_result] = match_result;
+
+        if (m_status === 200) {
+            m_result?.map((result) => {
+                result.value = result
+                result.label = result?.jackpot_name
+                return result
+            })
+            setFinishedJackpots(m_result)
+        }
+    })
+
     useEffect(() => {
 
         const abortController = new AbortController();
         fetchData();
+        jackpotHistory()
 
         return () => {
             abortController.abort();
         };
     }, [fetchData]);
+
+    const loadJPResults = (jackpot) => {
+        fetchData(jackpot?.jackpot_event_id, jackpot?.jackpot_status)
+    }
 
     return (
         <>
@@ -69,6 +102,18 @@ const Jackpot = (props) => {
                                     )}
                                 </Tab>
                                 <Tab eventKey="results" title="Results">
+                                    <div className="row shadow-lg">
+                                        <h4 className={'text-white'}>Jackpot Results</h4>
+                                        <Select options={finishedJackpots} className={'bg-secondary'}
+                                                menuPortalTarget={document.body}
+                                                menuPosition="fixed"
+                                                isSearchable={true}
+                                                styles={{
+                                                    menuPortal: (provided) => ({ ...provided, zIndex: 9999 }),
+                                                    menu: (provided) => ({ ...provided, zIndex: 9999 })
+                                                }}
+                                                onChange={loadJPResults}/>
+                                    </div>
                                     <JackpotHeader jackpot={matches?.meta}/>
                                     <div className="matches full-mobile sticky-top container">
                                         <div

@@ -109,8 +109,8 @@ const Jackpot = (props) => {
                                                 menuPosition="fixed"
                                                 isSearchable={true}
                                                 styles={{
-                                                    menuPortal: (provided) => ({ ...provided, zIndex: 9999 }),
-                                                    menu: (provided) => ({ ...provided, zIndex: 9999 })
+                                                    menuPortal: (provided) => ({...provided, zIndex: 9999}),
+                                                    menu: (provided) => ({...provided, zIndex: 9999})
                                                 }}
                                                 onChange={loadJPResults}/>
                                     </div>
@@ -121,11 +121,14 @@ const Jackpot = (props) => {
                                             <div className="col-md-3 bold">
                                                 TIME
                                             </div>
-                                            <div className="col-md-6 bold">
+                                            <div className="col-md-4 bold">
                                                 MATCH
                                             </div>
                                             <div className="col-md-3 bold">
                                                 OUTCOME
+                                            </div>
+                                            <div className="col-md-4 bold">
+                                                WINNING OUTCOME
                                             </div>
                                         </div>
                                     </div>
@@ -138,7 +141,7 @@ const Jackpot = (props) => {
                                                     <div className="col-md-3">
                                                         {match?.start_time}
                                                     </div>
-                                                    <div className="col-md-6 d-flex flex-column">
+                                                    <div className="col-md-4 d-flex flex-column">
                                                         <div className={'small'}>
                                                             {match?.category} | {match?.competition_name}
                                                         </div>
@@ -153,6 +156,9 @@ const Jackpot = (props) => {
                                                     </div>
                                                     <div className="col-md-3">
                                                         {match?.outcome || '-'}
+                                                    </div>
+                                                    <div className="col-md-2">
+                                                        {match?.winning_outcome || '-'}
                                                     </div>
                                                 </div>
                                             </Container>

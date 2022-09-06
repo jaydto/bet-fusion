@@ -51,8 +51,8 @@ const Promotions = () => {
                                                     </ol>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div className="col-md-12 shadow-lg d-none">
+                                        x</div>
+                                        <div className="col-md-12 shadow-lg">
                                             <div className="d-flex flex-column">
                                                 <h5>20% FIRST DEPOSIT BONUS (DEPOSIT UPEWE)</h5>
                                                 <img src={twentyPercentDepositBonus} className={'rounded'}/>

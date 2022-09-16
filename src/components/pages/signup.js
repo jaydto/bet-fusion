@@ -21,10 +21,11 @@ const Signup = (props) => {
     const handleSubmit = values => {
         let endpoint = '/v1/signup';
         makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
+            console.log("Response ", response?.success)
             setSuccess(status === 200 || status === 201);
-            setMessage(response.message);
+            setMessage(response?.success?.message || "");
             let timer = setInterval(() => {
-                window.location.href = "/verify-account"
+                // window.location.href = "/"
                 clearInterval(timer)
             }, 3000)
         })

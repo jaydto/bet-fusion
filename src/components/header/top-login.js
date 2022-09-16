@@ -162,7 +162,7 @@ const HeaderLogin = (props) => {
                     <a className="" href="/signup" title="Join now" onClick={() => gaEventTracker('Register')}>
                         <span className="register-label">Register now!</span>
                     </a>
-                    <a className="m-lg-2 badge bg-success" href="/verify-account" title="Verify Account"
+                    <a className="m-lg-2 badge bg-success d-none" href="/verify-account" title="Verify Account"
                        onClick={() => gaEventTracker('Verify')}>
                         <span className="register-label">Verify Account</span>
                     </a>

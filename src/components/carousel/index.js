@@ -3,10 +3,10 @@ import Carousel from 'react-bootstrap/Carousel';
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
-import twenty_percent from '../../assets/img/banner/products/20PercentFirstdepositBonus-min.png'
+import twenty_percent from '../../assets/img/banner/products/Twenty-Percent-Deposit-Bonus.jpeg'
 // import banner2 from '../../assets/img/banner/products/30PercentDAILYCASHBACK.png'
 // import banner3 from '../../assets/img/banner/products/70PercentMULTIBETCASHBACK.png'
-import banner1 from '../../assets/img/banner/products/KaribuBonus.png'
+import banner1 from '../../assets/img/banner/products/Karibu-Bonus.jpeg'
 // import banner5 from '../../assets/img/banner/products/100PercentDepositBonus.png'
 import odds from '../../assets/img/banner/products/ODDS.png'
 

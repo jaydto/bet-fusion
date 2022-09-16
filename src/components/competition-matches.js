@@ -1,13 +1,8 @@
 import React, {useContext, useEffect, useState, useCallback} from "react";
 import {useParams} from 'react-router-dom';
-import banner from '../assets/img/banner.jpg';
 import makeRequest from "./utils/fetch-request";
 import {Context} from '../context/store';
 import useInterval from "../hooks/set-interval.hook";
-import {
-    getFromLocalStorage,
-    setLocalStorage
-} from './utils/local-storage';
 import {getBetslip} from './utils/betslip' ;
 import {Spinner} from "react-bootstrap";
 

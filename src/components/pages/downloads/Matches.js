@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
         borderTopWidth: 0
     },
     tableColMatch: {
-        width: "40%",
+        width: "30%",
         borderStyle: "solid",
         borderColor: '#bfbfbf',
         borderWidth: 1,
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 0
     },
     tableColHeaderSpannedTopMatch: {
-        width: "40%",
+        width: "30%",
         borderStyle: "solid",
         borderColor: '#bfbfbf',
         borderWidth: 1,
@@ -190,6 +190,9 @@ export function PdfDocument(props) {
                         <View style={styles.tableColHeaderSpannedTop}>
                             <Text style={styles.tableCellHeader}></Text>
                         </View>
+                        <View style={styles.tableColHeaderSpannedTop}>
+                            <Text style={styles.tableCellHeader}></Text>
+                        </View>
                         <View style={styles.tableColHeaderSpannedTopMatch}>
                             <Text style={styles.tableCellHeader}></Text>
                         </View>
@@ -214,6 +217,11 @@ export function PdfDocument(props) {
                         <View style={styles.tableCol}>
                             <Text style={styles.tableCell}>
                                 DATE / TIME
+                            </Text>
+                        </View>
+                        <View style={styles.tableCol}>
+                            <Text style={styles.tableCell}>
+                                COMPETITION
                             </Text>
                         </View>
                         <View style={styles.tableCol}>
@@ -282,6 +290,11 @@ export function PdfDocument(props) {
                             <View style={styles.tableCol}>
                                 <Text style={styles.tableCell}>
                                     {match.start_time}
+                                </Text>
+                            </View>
+                            <View style={styles.tableCol}>
+                                <Text style={styles.tableCell}>
+                                    {match?.competition_name}
                                 </Text>
                             </View>
                             <View style={styles.tableCol}>

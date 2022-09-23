@@ -7,8 +7,9 @@ import {Link} from "react-router-dom";
 import SideBar from "../../sidebar/awesome/Sidebar";
 import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
 import Notify from "../../utils/Notify";
+import {Button, ButtonGroup} from "react-bootstrap";
 
-const Casino = (props) => {
+const Virtuals = (props) => {
 
     const [user] = useState(getFromLocalStorage("user"));
 
@@ -16,7 +17,7 @@ const Casino = (props) => {
 
     const [games, setGames] = useState([])
 
-    const fetchGames = async (category = 'vs') => {
+    const fetchGames = async (category = 'rgs-vsb') => {
         let endpoint = "/v1/casino-games?game-type-id=" + category
         let method = "GET"
         await makeRequest({url: endpoint, method: method}).then(([status, result]) => {
@@ -41,12 +42,12 @@ const Casino = (props) => {
         Notify(message)
     }
 
-    const launchGame = (game_id) => {
+    const launchGame = (game_id, live = true) => {
 
         const userState = (getFromLocalStorage("user"));
 
         if (userState?.token) {
-            return window.location.href = `/gameplay/${game_id}`
+            return window.location.href = `/gameplay/${game_id}/` + live ? "1" : "0"
         }
 
         return showLoginNotification()
@@ -71,20 +72,41 @@ const Casino = (props) => {
                                             className={`cursor-pointer text-center casino-category`}
                                             autoFocus
                                             onClick={() => getCategoryGames('rgs-vsb')}>
-                                            Virtual Games
+                                            <h3 className={'text-uppercase'}>
+                                                Virtual Games
+                                            </h3>
                                         </button>
                                     </div>
                                 </div>
                                 <div className="col">
                                     <div className={'row text-white p-2 shadow-sm'}>
                                         {games?.map((game) => (
-                                                <div onClick={() => launchGame(game.game_id)}
-                                                     className="col-md-2 mt-1 d-flex flex-column shadow-sm"
-                                                     key={game.game_id}>
-                                                    <LazyLoadImage src={`${game.game_icon}`}
-                                                                   className={'virtual-game-image'}/>
-                                                    <p className={'p-2 bold'}>{game.game_name}</p>
+                                                <div className={'col-md-2'}>
+                                                    <div
+                                                        className={'mt-1 mb-1 d-flex flex-column shadow-lg'}
+                                                        style={{border: "1px solid gray"}}>
+                                                        <div onClick={() => launchGame(game.game_id)}
+                                                             className=""
+                                                             key={game.game_id}>
+                                                            <LazyLoadImage src={`${game.game_icon}`}
+                                                                           className={'virtual-game-image'}/>
+                                                            <p className={'p-2 bold text-elipsis'}>{game.game_name}</p>
+                                                        </div>
+                                                        <div className="overlay shadow-sm row">
+                                                            <ButtonGroup aria-label="Basic example">
+                                                                <Button variant="warning"
+                                                                        onClick={() => launchGame(game?.game_id, false)}>
+                                                                    Play Demo
+                                                                </Button>
+                                                                <Button variant="danger"
+                                                                        onClick={() => launchGame(game?.game_id, true)}>
+                                                                    Play Game
+                                                                </Button>
+                                                            </ButtonGroup>
+                                                        </div>
+                                                    </div>
                                                 </div>
+
                                             )
                                         )}
                                     </div>
@@ -101,4 +123,4 @@ const Casino = (props) => {
 }
 
 
-export default Casino;
+export default Virtuals;

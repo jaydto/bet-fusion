@@ -10,7 +10,7 @@ import {LazyLoadImage} from "react-lazy-load-image-component";
 import {Stack} from "react-bootstrap";
 
 const GamePlay = (props) => {
-    const {game_id} = useParams()
+    const {game_id, live} = useParams()
 
     const [gameUrl, setGameUrl] = useState('')
 
@@ -32,16 +32,13 @@ const GamePlay = (props) => {
 
     const startGame = async (game_id) => {
 
-        // let endpoint = `/v1/casino/start/game?game-id=${game_id}`
-        // let endpoint = `/v1/casino/game/url?game-id=${game_id}`
-        let endpoint = `/v1/casino/game/demo-url?game-id=${game_id}`
+        let endpoint = live === '0' ? `/v1/casino/game/demo-url?game-id=${game_id}` : `/v1/casino/game/url?game-id=${game_id}`
 
         let method = "GET"
 
         await makeRequest({url: endpoint, method: method}).then(([status, result]) => {
             if (status === 200) {
                 setGameUrl(result?.result.gameURL)
-                alert(result?.result.gameURL)
                 setGameUrlLoaded(true)
 
             }
@@ -88,8 +85,9 @@ const GamePlay = (props) => {
                                 </SkeletonTheme>
                             </div>
                             {gameUrlLoaded && <>
-                                <iframe className={'mt-3 shadow-lg'}
-                                    src={gameUrl} title="Gadme" width={'100%'} height={'600px'}></iframe>
+                                <iframe className={'mt-3 shadow-lg'} allowFullScreen webkitallowfullscreen
+                                        mozallowfullscreen
+                                        src={gameUrl} title="Gadme" width={'100%'} height={'600px'}></iframe>
                             </>}
                         </div>
                     </div>

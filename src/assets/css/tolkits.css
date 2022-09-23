@@ -15521,3 +15521,9 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 .nav-tabs {
     border: none !important;
 }
+
+.text-elipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

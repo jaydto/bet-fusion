@@ -10,7 +10,7 @@ import {
     faTimes,
     faLaptop,
     faMagnet,
-    faMagic, faInfo, faChessBoard, faDice
+    faMagic, faInfo, faChessBoard, faDice, faFire
 } from '@fortawesome/free-solid-svg-icons'
 import makeRequest from "../utils/fetch-request";
 import {faMobile, faCoins} from "@fortawesome/free-solid-svg-icons";
@@ -18,6 +18,7 @@ import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 
 const HeaderNav = (props) => {
     const gaEventTracker = useAnalyticsEventTracker('Navigation');
+    const [test, setTest] = useState(false)
     const [state,] = useContext(Context);
     const pathname = window.location.pathname;
     const [searching, setSearching] = useState(false)
@@ -52,6 +53,14 @@ const HeaderNav = (props) => {
         setSearching(false)
         setMatches([])
     }
+
+    const checkEnvironment = () => {
+        setTest(window.location.hostname === 'test.betnare.com')
+    }
+
+    useEffect(() => {
+        checkEnvironment()
+    })
     return (
         <>
             <Container id="navbar-collapse-main"
@@ -82,18 +91,34 @@ const HeaderNav = (props) => {
                             </span>
                         </a>
                     </li>
-                    {/*<li className={pathname === '/virtuals' || pathname.includes("gameplay") ? 'active' : ''}>*/}
-                    {/*    <a className="g url-link" href="/virtuals" title="Virtuals">*/}
-                    {/*        <span>*/}
-                    {/*            <FontAwesomeIcon icon={faLaptop}/> Virtuals*/}
-                    {/*        </span>*/}
-                    {/*    </a>*/}
-                    {/*</li>*/}
-                    {/*<li className={pathname === '/casino' || pathname.includes("gameplay") ? 'active' : ''}>*/}
-                    {/*    <a className="g url-link" href="/casino" title="Casino">*/}
-                    {/*        <FontAwesomeIcon icon={faDice}/> Casino*/}
-                    {/*    </a>*/}
-                    {/*</li>*/}
+
+                    {test ? (
+                        <>
+                            <li className={pathname === '/live-casino' || pathname.includes("gameplay") ? 'active' : ''}>
+                                <a className="g url-link" href="/live-casino" title="Live Casino">
+                            <span>
+                                <FontAwesomeIcon icon={faFire} className={'text-warning'}/> Live Casino
+                            </span>
+                                </a>
+                            </li>
+                            <li className={pathname === '/casino' || pathname.includes("gameplay") ? 'active' : ''}>
+                                <a className="g url-link" href="/casino" title="Casino">
+                                    <FontAwesomeIcon icon={faDice}/> Casino
+                                </a>
+                            </li>
+                            <li className={pathname === '/virtuals' || pathname.includes("gameplay") ? 'active' : ''}>
+                                <a className="g url-link" href="/virtuals" title="Virtuals">
+                            <span>
+                                <FontAwesomeIcon icon={faLaptop}/> Virtuals
+                            </span>
+                                </a>
+                            </li>
+                        </>
+                    ) : (
+                        <></>
+                    )}
+
+
                     <li className={pathname.includes("promotions") ? 'active' : ''}
                         onClick={() => gaEventTracker('Visit Promotions Page')}>
                         <a className="g url-link" href="/promotions" title="Promotions">

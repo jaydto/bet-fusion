@@ -47,7 +47,7 @@ const Casino = (props) => {
         const userState = (getFromLocalStorage("user"));
 
         if (userState?.token) {
-            return window.location.href = `/gameplay/${game_id}/` + live ? "1" : "0"
+            return window.location.href = `/gameplay/${game_id}/${live ? '1' : '0'}`
         }
 
         return showLoginNotification()
@@ -85,12 +85,12 @@ const Casino = (props) => {
                                                     <div
                                                         className={'mt-1 mb-1 d-flex flex-column shadow-lg'}
                                                         style={{border: "1px solid gray"}}>
-                                                        <div onClick={() => launchGame(game.game_id)}
+                                                        <div onClick={() => launchGame(game?.game_id, true)}
                                                              className=""
                                                              key={game.game_id}>
                                                             <LazyLoadImage src={`${game.game_icon}`}
                                                                            className={'virtual-game-image'}/>
-                                                            <p className={'p-2 bold text-elipsis'}>{game.game_name}</p>
+                                                            <p className={'p-2 bold text-elipsis'}>{game?.game_name}</p>
                                                         </div>
                                                         <div className="overlay shadow-sm row">
                                                             <ButtonGroup aria-label="Basic example">

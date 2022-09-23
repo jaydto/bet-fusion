@@ -92,9 +92,7 @@ const LiveCasino = (props) => {
                         localData[length] = data
                     }
                 }
-                console.log("Local Data here is ", localData)
                 setTableData([...localData])
-                console.log("Updated table data is ", [...localData])
             }
         }
     }

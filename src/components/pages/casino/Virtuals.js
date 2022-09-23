@@ -47,7 +47,7 @@ const Virtuals = (props) => {
         const userState = (getFromLocalStorage("user"));
 
         if (userState?.token) {
-            return window.location.href = `/gameplay/${game_id}/` + live ? "1" : "0"
+            return window.location.href = `/gameplay/${game_id}/${live ? '1' : '0'}`
         }
 
         return showLoginNotification()

@@ -114,7 +114,7 @@ const Promotions = () => {
                                                     </ol>
                                                     <hr/>
 
-                                                        <Table stripped bordered responsive   className={"text-white"} style={{backgroundColor:"#1f2f38"}} >
+                                                        <Table  bordered responsive   className={"text-white"} style={{backgroundColor:"#1f2f38"}} >
                                                         <thead>
                                                         <tr>
                                                             <th>Types</th>

@@ -4,9 +4,9 @@ import Footer from "../../footer/footer";
 import React from "react";
 
 import twentyPercentDepositBonus from '../../../assets/img/banner/products/Twenty-Percent-Deposit-Bonus.jpeg'
-import thirtyPercentDailyCashback from '../../../assets/img/banner/products/30PercentDAILYCASHBACK.png'
-import seventyPercentMultibetCashback from '../../../assets/img/banner/products/70PercentMULTIBETCASHBACK.png'
 import karibuBonus from '../../../assets/img/banner/products/Karibu-Bonus.jpeg'
+import multibetCashback from '../../../assets/img/banner/products/Banner_100pc_Cashback.jpg'
+import twoHundredPercent from '../../../assets/img/banner/products/Banner_200pc_Bonus_x.jpg'
 
 const Promotions = () => {
     return (
@@ -33,7 +33,8 @@ const Promotions = () => {
                                                 <span><u>Register</u></span>
                                                 <ul>
                                                     <li>
-                                                        ✅ Register on sms by sending the word JOIN or BET or Game etc to 29877
+                                                        ✅ Register on sms by sending the word JOIN or BET or Game etc to
+                                                        29877
                                                     </li>
                                                     <li>
                                                         ✅ Visit betnare.com and create an account
@@ -51,7 +52,8 @@ const Promotions = () => {
                                                     </ol>
                                                 </div>
                                             </div>
-                                        x</div>
+                                            x
+                                        </div>
                                         <div className="col-md-12 shadow-lg">
                                             <div className="d-flex flex-column">
                                                 <h5>20% FIRST DEPOSIT BONUS (DEPOSIT UPEWE)</h5>
@@ -91,160 +93,94 @@ const Promotions = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-md-12 d-flex flex-row shadow-lg mt-2 d-none">
+                                        <div className="col-md-12 d-flex flex-row shadow-lg mt-2">
                                             <div className="col-md-12">
                                                 <div className="d-flex flex-column">
-                                                    <h5>DAILY CASHBACK</h5>
-                                                    <img src={thirtyPercentDailyCashback} className={'rounded'}/>
+                                                    <h5>100% DAILY CASHBACK</h5>
+                                                    <img src={multibetCashback} className={'rounded'}/>
                                                     <span><u>How to Play</u></span>
                                                     <ul>
                                                         <li>
-                                                            Get a 30% cash
-                                                            back which comes as a bonus when you lose their third cash
-                                                            bet (Single bets and
-                                                            multi-bets) with an odd of 2.5 and above
+                                                            100% MULTIBET LOST BONUS
+
+                                                            Place a pre-match Multibet/ accumulator of 5 or MORE
+                                                            selections.
+                                                        </li>
+                                                        <li>
+                                                            If your bet is unsuccessful from 1 loss out of the
+                                                            accumulator, BetNare will refund a bonus of a set percentage
+                                                            based on the matrix set on your stake. i.e. The bonus amount
+                                                            is dependent on the number of selections.
                                                         </li>
                                                     </ul>
                                                     <div className="col-md-12">
                                                         <span><u>Terms and conditions</u></span>
                                                         <ol>
-
-                                                            ✅ This promotion will apply to your third (2.5 and above
-                                                            odds) cash bet made
-                                                            every day.
-
+                                                            <br/>
+                                                            This offer ONLY applies to returns on Pre-Match accumulators
+                                                            <br/>
+                                                            ✅ The MAXIMUM BONUS that you can receive is KES250.
                                                             <br/>
 
-                                                            ✅ The award in is CASH, which is credited to the
-                                                            customer’s wallet
+                                                            ✅ BetNare may, at any time reclaim any bonus amount; Free
+                                                            Bets, Nare Points and enhanced payments that you may have
+                                                            been awarded in error.
                                                             <br/>
 
-
-                                                            ✅ The maximum amount issued as a cash back bonus will be
-                                                            KSH 100.
+                                                            ✅ BetNare may at any time make minor amendments to this
+                                                            promotion to correct typographical errors or to improve on
+                                                            clarity of customer experience and may CANCEL this promotion
+                                                            for legal or regulatory reasons.
                                                             <br/>
 
-                                                            ✅ Bets with bonus amounts will not be considered for
-                                                            this promotion as they
-                                                            are not cash bets.
+                                                            ✅ Bets placed with Bonuses DO NOT apply/qualify for this
+                                                            offer.
                                                             <br/>
 
-                                                            ✅ Jackpot bets will not be considered for this
+                                                            ✅ The refund is paid in BONUS and BONUS RULES apply.
+                                                            <br/>
+
+                                                            ✅ Jackpot bets will not apply/ be considered for this
                                                             promotion.
                                                             <br/>
 
-                                                            ✅ Voided Bets will be considered as cash refunds.
-                                                            <br/>
+                                                            ✅ Voided bets will not apply / be considered.
 
-                                                            ✅ The promotion runs on Monday to Thursday ONLY and WILL
-                                                            NOT be
-                                                            available on FRIDAY, SATURDAY & SUNDAY
-                                                            <br/>
-
-                                                            ✅ Betnare reserves the right to end the promotion at any
-                                                            time without any
-                                                            explanation or notification.
-                                                            <br/>
-
-                                                            ✅ Betnare reserves the right to disqualify any player at
-                                                            any time without being
-                                                            bound to give reasons.
-                                                            <br/>
-
-                                                            Bonus rules apply
                                                         </ol>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-md-12 d-flex flex-row shadow-lg mt-2 d-none">
-
+                                        <div className="col-md-12 d-flex flex-row shadow-lg mt-2">
                                             <div className="col-md-12">
                                                 <div className="d-flex flex-column">
-                                                    <h5>MULTIBET LOST BONUS</h5>
-                                                    <img src={seventyPercentMultibetCashback} className={'rounded'}/>
+                                                    <h5>200% FIRST DEPOSIT BONUS</h5>
+                                                    <img src={twoHundredPercent} className={'rounded'}/>
                                                     <span><u>How to Play</u></span>
                                                     <ul>
 
-                                                        ✅ Place a pre-match Multibet / accumulator of 5 or more
-                                                        selections.
-
-                                                        ✅ If your bet is unsuccessful from 1 loss out of the
-                                                        accumulator, we will refund a
-                                                        bonus of a set percentage based on the matrix set on your
-                                                        stake. i.e., The bonus
-                                                        amount is dependent on the number of selections
+                                                        ✅ Register – SMS “JOIN” or “BET” or “GAME” etc to 29877 Visit
+                                                        www.betnare.com and REGISTER
+                                                        <br/>
+                                                        ✅Deposit ANY amount to your Cash Wallet on Betnare. PayBill
+                                                        4087777 Acc.No. PHONE NUMBER
 
                                                     </ul>
                                                     <div className="col-md-12">
                                                         <span><u>Terms and conditions</u></span>
                                                         <ol>
 
-                                                            ✅ This offer ONLY applies to returns on pre-match
-                                                            accumulators
+                                                            ✅ This offer ONLY applies to your first ever deposit
                                                             <br/>
 
-                                                            ✅ The maximum bonus that you can receive is KES.500
+                                                            ✅ Any Amount above KES. 49 Thus 1st deposits of KES.100 up to
+                                                            KES. 1000 are matched with a bonus.
                                                             <br/>
-
-                                                            ✅ Betnare may reclaim any bonus amount, Free Bets,
-                                                            shinda points or enhanced
-                                                            payments that have been awarded in error.
+                                                            ✅ The maximum bonus that you can receive is KES.250
                                                             <br/>
-
-                                                            ✅ Betnare may, at any time, make minor amendments to
-                                                            this promotion to correct
-                                                            typographical errors or to improve on clarity or
-                                                            customer experience and may
-                                                            cancel this promotion for legal or regulatory reasons.
-                                                            <br/>
-
-                                                            ✅ Bets placed with bonuses do not apply/qualify for this
-                                                            offer
-                                                            <br/>
-
-                                                            ✅ The refund is paid in BONUS and bonus rules apply
-                                                            <br/>
-
-                                                            ✅ Jackpot bets will not apply/ be considered for this
-                                                            promotion
-                                                            <br/>
-
-                                                            ✅ Voided Bets will not apply/ be considered.
 
                                                         </ol>
                                                     </div>
-
-                                                    <div className="col-md-12">
-                                                        <span><u>SET AMOUNTS</u></span>
-                                                        <ol>
-
-                                                            ✅ Minimum Bet Amount: The minimum betting amount for a single/multi bet is KES.10
-                                                            <br/>
-
-                                                            ✅ Maximum Bet Amount: The maximum betting amount for a single/multi bet is KES.20,000
-                                                            <br/>
-
-                                                            ✅ Maximum Single Bet Winning: The Single bet winning amount is limited to KES.500,000
-                                                            <br/>
-
-                                                            ✅ Maximum Multi bet Winning: The Multi bet winning amount is limited to KES.500,000
-                                                            <br/>
-
-                                                            ✅ Maximum Aggregate Winning (maximum payout): The Maximum winnings amount per customer per day is limited to KES.500,000
-                                                            <br/>
-
-                                                            ✅ Minimum withdrawal amount is KES.100
-                                                            <br/>
-
-                                                            ✅ Maximum withdrawal amount per transaction is KES.20,000
-                                                            <br/>
-
-                                                            ✅ Maximum withdrawal per person /per account / per day KES.20,000
-
-                                                        </ol>
-                                                    </div>
-
                                                 </div>
                                             </div>
                                         </div>

@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Formik, Form} from 'formik';
 import makeRequest from "../utils/fetch-request";
 import mpesa from '../../assets/img/mpesa-3.png'
+import {clearTrackingData, setLocalStorage, setTrackingData} from "../utils/local-storage";
 
 const Header = React.lazy(() => import('../header/header'));
 const SideBar = React.lazy(() => import('../sidebar/awesome/Sidebar'));
@@ -19,11 +20,19 @@ const Signup = (props) => {
     }
 
     const handleSubmit = values => {
-        let endpoint = '/v1/signup';
+
+        let endpoint = '/v1/signup'
+
+        setTrackingData(values)
+
         makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
-            console.log("Response ", response?.success)
             setSuccess(status === 200 || status === 201);
             setMessage(response?.success?.message || "");
+            if (values.utm_source !== undefined && values.utm_source === 'eskimi') {
+                console.log("Sending data to eskimi...")
+                window.esk('track', 'Conversion');
+            }
+            clearTrackingData()
             let timer = setInterval(() => {
                 // window.location.href = "/"
                 clearInterval(timer)

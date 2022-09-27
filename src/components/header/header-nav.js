@@ -9,8 +9,7 @@ import {
     faQuestionCircle,
     faTimes,
     faLaptop,
-    faMagnet,
-    faMagic, faInfo, faChessBoard, faDice, faFire
+    faMagic, faInfo, faDice, faFire
 } from '@fortawesome/free-solid-svg-icons'
 import makeRequest from "../utils/fetch-request";
 import {faMobile, faCoins} from "@fortawesome/free-solid-svg-icons";

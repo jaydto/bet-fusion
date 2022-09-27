@@ -5,6 +5,7 @@ import makeRequest from "../../utils/fetch-request";
 import mpesa from '../../../assets/img/mpesa.png'
 import {Context} from '../../../context/store';
 import {getBetslip} from '../../utils/betslip'
+import {clearTrackingData, setTrackingData} from "../../utils/local-storage";
 
 const Header = React.lazy(() => import('../../header/header'));
 const Footer = React.lazy(() => import('../../footer/footer'));
@@ -25,9 +26,11 @@ const Deposit = (props) => {
 
     const handleSubmit = values => {
         let endpoint = '/stk/deposit';
+        setTrackingData(values)
         makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
             setSuccess(status === 200 || status === 201);
             setMessage(response);
+            clearTrackingData()
         })
     }
 

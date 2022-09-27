@@ -3,6 +3,8 @@ import Carousel from 'react-bootstrap/Carousel';
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
+import two_hundred_percent from '../../assets/img/banner/products/Banner_200pc_Bonus_x.jpg'
+import cashback from '../../assets/img/banner/products/Banner_100pc_Cashback.jpg'
 import twenty_percent from '../../assets/img/banner/products/Twenty-Percent-Deposit-Bonus.jpeg'
 // import banner2 from '../../assets/img/banner/products/30PercentDAILYCASHBACK.png'
 // import banner3 from '../../assets/img/banner/products/70PercentMULTIBETCASHBACK.png'
@@ -13,8 +15,9 @@ import odds from '../../assets/img/banner/products/ODDS.png'
 const banners = [
     banner1,
     twenty_percent,
+    two_hundred_percent,
+    cashback,
     odds
-    // banner2, banner3, banner4, banner5
 ]
 
 const CarouselLoader = (props) => {

@@ -121,15 +121,6 @@ const LiveCasino = (props) => {
         })
     }
 
-    const getSeats = (seats) => {
-        seats = Number(seats) > 4 ? 4 : Number(seats)
-        let iconSeats = ''
-        let arr = []
-        for (let i = 0; i < Number(seats); i++) {
-            arr.push(i)
-        }
-        return arr
-    }
     useEffect(() => {
         initializeDGA().then(() => {
             initializeDGAEvents()

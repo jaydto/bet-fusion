@@ -6,6 +6,7 @@ import {getBetslip} from './utils/betslip' ;
 import useInterval from "../hooks/set-interval.hook";
 import {Spinner} from "react-bootstrap";
 import useAnalyticsEventTracker from '../components/analytics/useAnalyticsEventTracker';
+import {setLocalStorage} from "./utils/local-storage";
 
 
 const Header = React.lazy(() => import('./header/header'));
@@ -28,6 +29,7 @@ const Index = (props) => {
     const [state, dispatch] = useContext(Context);
     const [fetching, setFetching] = useState(false)
     const homePageRef = useRef()
+    const [utmSource, setUtmSource] = useState('')
     const findPostableSlip = () => {
         let betslips = getBetslip() || {};
         var values = Object.keys(betslips).map(function (key) {
@@ -131,8 +133,6 @@ const Index = (props) => {
         };
     }, [fetchData]);
 
-    const listInnerRef = useRef();
-
     const checkThreeWay = () => {
         let url = new URL(window.location)
         let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29").split(",")
@@ -145,6 +145,27 @@ const Index = (props) => {
             setLimit(limit + 50)
         }
     })
+
+    const configureCampaignCookie = () => {
+
+        let url = new URL(window.location)
+
+        let utm_source = url.searchParams.get('utm_source')
+
+        let utm_campaign = url.searchParams.get('utm_campaign')
+
+        if (utm_source !== null) {
+            setLocalStorage('utm_source', utm_source)
+        }
+
+        if (utm_campaign !== null) {
+            setLocalStorage('utm_campaign', utm_campaign)
+        }
+    }
+
+    useEffect(() => {
+        configureCampaignCookie()
+    }, [utmSource])
 
     return (
         <>

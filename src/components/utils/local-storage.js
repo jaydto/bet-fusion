@@ -26,3 +26,25 @@ export const setLocalStorage = (key, value, ttl) => {
 export const removeItem = (key) => {
     window.localStorage.removeItem(key);
 }
+
+export const setTrackingData = (data) => {
+
+    let utm_source = getFromLocalStorage('utm_source')
+
+    let utm_campaign = getFromLocalStorage('utm_campaign')
+
+    if (utm_source !== null) {
+        data.utm_source = utm_source
+    }
+
+    if (utm_campaign !== null) {
+        data.utm_campaign = utm_campaign
+    }
+
+    return data
+}
+
+export const clearTrackingData = () => {
+    setLocalStorage('utm_source', null)
+    setLocalStorage('utm_campaign', null)
+}

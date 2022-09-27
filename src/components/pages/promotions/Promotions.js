@@ -7,6 +7,7 @@ import twentyPercentDepositBonus from '../../../assets/img/banner/products/Twent
 import karibuBonus from '../../../assets/img/banner/products/Karibu-Bonus.jpeg'
 import multibetCashback from '../../../assets/img/banner/products/Banner_100pc_Cashback.jpg'
 import twoHundredPercent from '../../../assets/img/banner/products/Banner_200pc_Bonus_x.jpg'
+import {Table} from "react-bootstrap";
 
 const Promotions = () => {
     return (
@@ -93,26 +94,116 @@ const Promotions = () => {
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div className="col-md-12 d-flex flex-row shadow-lg mt-2">
                                             <div className="col-md-12">
                                                 <div className="d-flex flex-column">
-                                                    <h5>100% DAILY CASHBACK</h5>
+                                                    <h5> 100% MULTIBET LOST BONUS</h5>
                                                     <img src={multibetCashback} className={'rounded'}/>
-                                                    <span><u>How to Play</u></span>
-                                                    <ul>
+                                                    <span><u>How it works</u></span>
+                                                    <ol>
                                                         <li>
-                                                            100% MULTIBET LOST BONUS
+                                                            	Place a pre-match Multibet/ accumulator of 5 or MORE selections.
+                                                        </li>
+                                                        <li>
+                                                            If your bet is unsuccessful from 1 loss out of the accumulator,
+                                                            BetNare will refund a bonus of a set percentage based on the matrix
+                                                            set on your stake. i.e. The bonus amount is dependent on the
+                                                            number of selections.
+                                                        </li>
+                                                    </ol>
+                                                    <hr/>
 
-                                                            Place a pre-match Multibet/ accumulator of 5 or MORE
-                                                            selections.
-                                                        </li>
+                                                        <Table stripped bordered responsive   className={"text-white"} style={{backgroundColor:"#1f2f38"}} >
+                                                        <thead>
+                                                        <tr>
+                                                            <th>Types</th>
+                                                            <th>Bonus LOSS
+                                                                Breakdown Table
+                                                            </th>
+                                                            <th>Percentage</th>
+
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr>
+                                                            <td>#</td>
+                                                            <td>Bet Type</td>
+                                                            <td>Bonus</td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>1/5 folds</td>
+                                                            <td>30% bonus</td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2</td>
+                                                            <td> 1/6 folds</td>
+                                                            <td>35% bonus</td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td>3</td>
+                                                            <td> 1/7     folds</td>
+                                                            <td>40% bonus</td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td>4</td>
+                                                            <td> 1/8 folds</td>
+                                                            <td>45% bonus</td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td>5</td>
+                                                            <td> 1/9 folds</td>
+                                                            <td>50% bonus</td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td>6</td>
+                                                            <td> 1/10 folds</td>
+                                                            <td>55% bonus</td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td>7</td>
+                                                            <td> 1/11 folds</td>
+                                                            <td>60% bonus</td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td>6</td>
+                                                            <td> 1/12 folds</td>
+                                                            <td>get 100% bonus</td>
+
+                                                        </tr>
+                                                        </tbody>
+                                                </Table>
+                                                    <hr/>
+                                                    <ol type={"I"}>
+                                                       <h5><u>Example</u></h5>
+                                                        <li>If I lose 1/5 and my stake was 100% THEN I will be awarded a BONUS of KES.30.</li>
+                                                        <li>If I LOSE 1/10 folds and my STAKE was KES 100, THEN I will be awarded a bonus of KES.55.</li>
+                                                        <li>If I LOSE 1/20 selections and my STAKE was 1000, THEN I will be awarded a bonus of KES250.</li>
+                                                    </ol>
+                                                    <ol type={"I"}>
+                                                        <h5><u>Significant Terms and Conditions</u></h5>
                                                         <li>
-                                                            If your bet is unsuccessful from 1 loss out of the
-                                                            accumulator, BetNare will refund a bonus of a set percentage
-                                                            based on the matrix set on your stake. i.e. The bonus amount
-                                                            is dependent on the number of selections.
+                                                            	This offer ONLY applies to returns on Pre-Match accumulators
                                                         </li>
-                                                    </ul>
+                                                        <li>	The MAXIMUM BONUS that you can receive is KES250.</li>
+                                                        <li>	BetNare may, at any time reclaim any bonus amount; Free Bets, Nare Points and enhanced payments that you may have been awarded in error.</li>
+                                                        <li>	BetNare may at any time make minor amendments to this promotion to correct typographical errors or to improve on clarity of customer experience and may CANCEL this promotion for legal or regulatory reasons.</li>
+                                                        <li>	Bets placed with Bonuses DO NOT apply/qualify for this offer</li>
+                                                        <li>	The refund is paid in BONUS and BONUS RULES apply</li>
+                                                        <li>	Jackpot bets will not apply/ be considered for this promotion</li>
+                                                        <li>	Voided bets will not apply / be considered.</li>
+                                                    </ol>
+
+
                                                     <div className="col-md-12">
                                                         <span><u>Terms and conditions</u></span>
                                                         <ol>

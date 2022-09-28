@@ -5,12 +5,12 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import two_hundred_percent from '../../assets/img/banner/products/Banner_200pc_Bonus_x.jpg'
 import cashback from '../../assets/img/banner/products/Banner_100pc_Cashback.jpg'
-import twenty_percent from '../../assets/img/banner/products/Twenty-Percent-Deposit-Bonus.jpeg'
+import twenty_percent from '../../assets/img/banner/products/Banner_20pc.jpg'
 // import banner2 from '../../assets/img/banner/products/30PercentDAILYCASHBACK.png'
 // import banner3 from '../../assets/img/banner/products/70PercentMULTIBETCASHBACK.png'
 import banner1 from '../../assets/img/banner/products/Karibu-Bonus.jpeg'
 // import banner5 from '../../assets/img/banner/products/100PercentDepositBonus.png'
-import odds from '../../assets/img/banner/products/ODDS.png'
+import odds from '../../assets/img/banner/products/Banner_Odds.jpg'
 
 const banners = [
     banner1,

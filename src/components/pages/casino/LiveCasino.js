@@ -7,7 +7,7 @@ import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
 import Notify from "../../utils/Notify";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faChair} from "@fortawesome/free-solid-svg-icons";
+import {faChair, faCircle, faDotCircle} from "@fortawesome/free-solid-svg-icons";
 
 const LiveCasino = (props) => {
 
@@ -31,11 +31,6 @@ const LiveCasino = (props) => {
                 setLocalStorage('category_games', result.data)
             }
         });
-    }
-
-    const getCategoryGames = (category) => {
-        setGames([])
-        fetchGames(category?.game_type_id)
     }
 
     const showLoginNotification = () => {
@@ -93,6 +88,8 @@ const LiveCasino = (props) => {
                     }
                 }
                 setTableData([...localData])
+
+                console.log(localData)
             }
         }
     }
@@ -158,26 +155,67 @@ const LiveCasino = (props) => {
                                                      onClick={() => launchGame(tableDataItem?.tableId)}>
                                                     <div className="col shadow-lg p-2 cursor-pointer"
                                                          style={{border: "thin solid gray", borderRadius: "4px"}}>
+                                                        <div className="col text-uppercase text-center bold" style={{
+                                                            color: "#fdb429"
+                                                        }}>
+                                                            {tableDataItem?.tableName}
+                                                        </div>
                                                         <LazyLoadImage src={`${tableDataItem?.tableImage}`}
                                                                        style={{borderRadius: "4px"}}
                                                                        className={'casino-game-image'}/>
                                                         <div className="row d-flex flex-column">
                                                             <div className="col">
-                                                                {tableDataItem?.tableName}
-                                                            </div>
-                                                            <div className="col">
                                                                 <div className="d-flex flex-row">
-                                                                    <div className={'col-md-1 text-warning'}>
-                                                                        <FontAwesomeIcon icon={faChair}/>
+                                                                    <div className={'col-md-6 flex-row'}>
+                                                                        <FontAwesomeIcon icon={faChair}
+                                                                                         className={'text-warning'}/>
+                                                                        &nbsp;{tableDataItem?.totalSeatedPlayers} seats
                                                                     </div>
-                                                                    <div>
-                                                                        {tableDataItem?.totalSeatedPlayers} seats
+                                                                    <div className={'col-md-6 text-end'}>
+                                                                        <FontAwesomeIcon icon={faCircle}
+                                                                                         className={`${tableDataItem?.tableOpen ? 'text-success' : 'text-danger'}`}/>
+                                                                        {tableDataItem?.tableOpen ? ' Table Open' : ' Table Closed'}
+                                                                    </div>
+                                                                </div>
+                                                                <div style={{borderTop: 'thin solid gray'}}
+                                                                     className={'mt-1 flex-row row'}>
+                                                                    <div className={'col flex-column text-secondary'}>
+                                                                        <div className={'small'}>
+                                                                            Max Bet
+                                                                        </div>
+                                                                        <div>
+                                                                            {tableDataItem?.tableLimits?.maxBet}
+                                                                        </div>
+                                                                    </div>
+                                                                    <div
+                                                                        className={'col flex-column text-center text-secondary'}>
+                                                                        <div className={'small'}>
+                                                                            Max Players
+                                                                        </div>
+                                                                        <div>
+                                                                            {tableDataItem?.tableLimits?.maxPlayers}
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div
+                                                                        className={'col flex-column text-end text-secondary'}>
+                                                                        <div className={'small'}>
+                                                                            Min Bet
+                                                                        </div>
+                                                                        <div>
+                                                                            {tableDataItem?.tableLimits?.minBet}
+                                                                        </div>
+
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div className="col">
-                                                                <button className={'btn btn-lg btn-warning col-md-12'}>
-                                                                    Play {tableDataItem?.tableName}
+                                                                <button className={'btn btn-lg col-md-12'} style={{
+                                                                    background: "linear-gradient(to right, #f4512c, #f87b2b 50%, #fb9e29 75%)"
+                                                                }}>
+                                                                    <strong className={'text-white'}>
+                                                                        Play {tableDataItem?.tableName}
+                                                                    </strong>
                                                                 </button>
                                                             </div>
                                                         </div>

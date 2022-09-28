@@ -54,7 +54,7 @@ const HeaderNav = (props) => {
     }
 
     const checkEnvironment = () => {
-        setTest(window.location.hostname === 'test.betnare.com')
+        setTest(window.location.hostname === 'test.betnare.com' || true)
     }
 
     useEffect(() => {

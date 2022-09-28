@@ -3,7 +3,7 @@ import SideBar from "../../sidebar/awesome/Sidebar";
 import Footer from "../../footer/footer";
 import React from "react";
 
-import twentyPercentDepositBonus from '../../../assets/img/banner/products/Twenty-Percent-Deposit-Bonus.jpeg'
+import twentyPercentDepositBonus from '../../../assets/img/banner/products/Banner_20pc.jpg'
 import karibuBonus from '../../../assets/img/banner/products/Karibu-Bonus.jpeg'
 import multibetCashback from '../../../assets/img/banner/products/Banner_100pc_Cashback.jpg'
 import twoHundredPercent from '../../../assets/img/banner/products/Banner_200pc_Bonus_x.jpg'

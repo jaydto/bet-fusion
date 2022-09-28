@@ -8,7 +8,7 @@ const LiveScore = () => {
             <Header/>
             <div className="amt">
                 <div className="d-flex flex-row">
-                    <div className="gz home" style={{width: '100%'}}>
+                    <div className="gz home " style={{width: '100%'}}>
                         <div className="homepage">
                             <div className="col-md-12 d-flex flex-column">
                                 <div

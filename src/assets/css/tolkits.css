@@ -15527,3 +15527,113 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.promotion {
+    background-color: #454d56;
+    width: 96%;
+    margin: 0 auto;
+    margin-top: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 13px;
+    color: white;
+    text-align: left;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.promotion-header {
+    padding: 5px;
+    font-size: 14px;
+}
+
+.promotions-header {
+    color: white;
+    text-align: center;
+    padding: 0px 10px;
+}
+
+.promo-instructions {
+    text-align: left;
+}
+
+.promo-instructions hr {
+    border-top: 1px solid #f16a0a;
+    color: #f16a0a;
+}
+
+.promo-instructions ul {
+    font-size: inherit;
+    color: inherit;
+    list-style: none;
+    margin-top: 2px;
+}
+
+.steps-title {
+    margin-left: 10px;
+    display: inline-block;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.cashback-table {
+    background-color: rgb(31, 47, 56);
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    width: 98%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+.cashback-table {
+    background-color: rgb(31, 47, 56);
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    width: 98%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+.cashback-table thead tr {
+    background-color: #737980;
+    color: #ffffff;
+    text-align: center;
+}
+
+.cashback-table th,
+.cashback-table td {
+    padding: 12px 15px;
+}
+
+.cashback-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.cashback-table tbody tr:nth-of-type(even) {
+    background-color: rgb(31, 47, 56);
+}
+
+.cashback-table tbody tr:last-of-type {
+    border-bottom: 2px solid;
+}
+
+@media screen and (max-width: 600px) {
+    .promotion-body img {
+        height: 80px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .promotion-body img {
+        height: 100px;
+    }
+}
+
+@media screen and (max-width: 1440px) {
+    .promotion-body img {
+        height: 100px;
+    }
+}

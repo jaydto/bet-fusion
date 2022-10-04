@@ -7,7 +7,7 @@ import {Link} from "react-router-dom";
 import SideBar from "../../sidebar/awesome/Sidebar";
 import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
 import Notify from "../../utils/Notify";
-import {Button, ButtonGroup} from "react-bootstrap";
+import {Badge, Button, ButtonGroup} from "react-bootstrap";
 
 const Casino = (props) => {
 
@@ -67,15 +67,16 @@ const Casino = (props) => {
                         <div className="homepage">
                             <div className="col-md-12 d-flex flex-column">
                                 <div className="col-md-12">
-                                    <div className="game-categories shadow-sm  p-2 shadow-sm casino-category-container">
-                                        <button
-                                            className={`cursor-pointer text-center casino-category`}
-                                            autoFocus
-                                            onClick={() => getCategoryGames('rgs-vsb')}>
-                                            <h3 className={'text-uppercase'}>
-                                                Casino Games
-                                            </h3>
-                                        </button>
+                                    <div
+                                        className="game-categories shadow-sm p-2 shadow-sm casino-category-container mt-2">
+                                        {categories?.map((category) => (
+                                            <Button bg="warning"
+                                                    style={{marginRight: '2px'}}
+                                                    className={`cursor-pointer text-center casino-category`}
+                                                    onClick={() => getCategoryGames(category)}>
+                                                {(category?.game_type_description)}
+                                            </Button>
+                                        ))}
                                     </div>
                                 </div>
                                 <div className="col">

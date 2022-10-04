@@ -3,10 +3,16 @@ import SideBar from "../../sidebar/awesome/Sidebar";
 import Footer from "../../footer/footer";
 import React from "react";
 
-import twentyPercentDepositBonus from '../../../assets/img/banner/products/Banner_20pc.jpg'
-import karibuBonus from '../../../assets/img/banner/products/Karibu-Bonus.jpeg'
-import multibetCashback from '../../../assets/img/banner/products/Banner_100pc_Cashback.jpg'
-import twoHundredPercent from '../../../assets/img/banner/products/Banner_200pc_Bonus_x.jpg'
+import twentyPercentDepositBonus from '../../../assets/img/banner/products/20PercentDaily.jpg'
+import karibuBonus from '../../../assets/img/banner/products/50_= Bonus.jpg'
+import multibetCashback from '../../../assets/img/banner/products/100PercentCashback.jpg'
+import twoHundredPercent from '../../../assets/img/banner/products/200PercentBonus.jpg'
+import advance from '../../../assets/img/banner/products/Advance.jpg'
+import lala from '../../../assets/img/banner/products/Lala.jpg'
+import ngware from '../../../assets/img/banner/products/Ngware.jpg'
+import rent from '../../../assets/img/banner/products/Rent.jpg'
+import rushHour from '../../../assets/img/banner/products/Rush Hour.jpg'
+
 import {Table} from "react-bootstrap";
 
 const Promotions = () => {
@@ -27,19 +33,18 @@ const Promotions = () => {
                                 </div>
                                 <div className="col">
                                     <div className={'row text-white p-2 shadow-sm d-flex justify-content-center'}>
-                                        <div className="col-md-12 shadow-lg">
+                                        <div className="col-md-12 shadow-lg promotion">
                                             <div className="d-flex flex-column">
                                                 <h5>50 BOB KARIBU BONUS</h5>
                                                 <img src={karibuBonus} className={'rounded'}/>
                                                 <span><u>Register</u></span>
                                                 <ul>
-                                                    <li>
-                                                        ✅ Register on sms by sending the word JOIN or BET or Game etc to
-                                                        29877
-                                                    </li>
-                                                    <li>
-                                                        ✅ Visit betnare.com and create an account
-                                                    </li>
+
+                                                    ✅ Register on sms by sending the word JOIN or BET or Game etc to
+                                                    29877
+                                                    <br/>
+
+                                                    ✅ Visit betnare.com and create an account
                                                 </ul>
                                                 <div className="col-md-12">
                                                     <span><u>Terms and conditions</u></span>
@@ -53,22 +58,19 @@ const Promotions = () => {
                                                     </ol>
                                                 </div>
                                             </div>
-                                            x
                                         </div>
-                                        <div className="col-md-12 shadow-lg">
+                                        <div className="col-md-12 shadow-lg promotion">
                                             <div className="d-flex flex-column">
                                                 <h5>20% FIRST DEPOSIT BONUS (DEPOSIT UPEWE)</h5>
                                                 <img src={twentyPercentDepositBonus} className={'rounded'}/>
                                                 <span><u>How to Play</u></span>
                                                 <ul>
-                                                    <li>
-                                                        ✅ Deposit KES.50 to 500 get 20% as bonus
-                                                    </li>
-                                                    <li>
-                                                        ✅ Deposit 500 and above get ksh.100 free (bonus). i.e. it is
-                                                        capped at Ksh.500. Any
-                                                        amount above 500 bonus issued will be Ksh.100.
-                                                    </li>
+                                                    ✅ Deposit KES.50 to 500 get 20% as bonus
+                                                    <br/>
+
+                                                    ✅ Deposit 500 and above get ksh.100 free (bonus). i.e. it is
+                                                    capped at Ksh.500. Any
+                                                    amount above 500 bonus issued will be Ksh.100.
                                                 </ul>
                                                 <div className="col-md-12">
                                                     <span><u>Terms and conditions</u></span>
@@ -94,27 +96,31 @@ const Promotions = () => {
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <div className="col-md-12 d-flex flex-row shadow-lg mt-2">
+                                        <div className="col-md-12 d-flex flex-row shadow-lg mt-2 promotion">
                                             <div className="col-md-12">
                                                 <div className="d-flex flex-column">
                                                     <h5> 100% MULTIBET LOST BONUS</h5>
                                                     <img src={multibetCashback} className={'rounded'}/>
                                                     <span><u>How it works</u></span>
                                                     <ol>
-                                                        <li>
-                                                            	Place a pre-match Multibet/ accumulator of 5 or MORE selections.
-                                                        </li>
-                                                        <li>
-                                                            If your bet is unsuccessful from 1 loss out of the accumulator,
-                                                            BetNare will refund a bonus of a set percentage based on the matrix
-                                                            set on your stake. i.e. The bonus amount is dependent on the
-                                                            number of selections.
-                                                        </li>
+                                                        <br/>
+                                                        ✅
+                                                        Place a pre-match Multibet/ accumulator of 5 or MORE
+                                                        selections.
+                                                        <br/>
+                                                        ✅
+                                                        If your bet is unsuccessful from 1 loss out of the
+                                                        accumulator,
+                                                        BetNare will refund a bonus of a set percentage based on the
+                                                        matrix
+                                                        set on your stake. i.e. The bonus amount is dependent on the
+                                                        number of selections.
+
                                                     </ol>
                                                     <hr/>
 
-                                                        <Table  bordered responsive   className={"text-white"} style={{backgroundColor:"#1f2f38"}} >
+                                                    <Table bordered responsive className={"text-white"}
+                                                           style={{backgroundColor: "#1f2f38"}}>
                                                         <thead>
                                                         <tr>
                                                             <th>Types</th>
@@ -146,7 +152,7 @@ const Promotions = () => {
                                                         </tr>
                                                         <tr>
                                                             <td>3</td>
-                                                            <td> 1/7     folds</td>
+                                                            <td> 1/7 folds</td>
                                                             <td>40% bonus</td>
 
                                                         </tr>
@@ -181,29 +187,47 @@ const Promotions = () => {
 
                                                         </tr>
                                                         </tbody>
-                                                </Table>
+                                                    </Table>
                                                     <hr/>
-                                                    <ol type={"I"}>
-                                                       <h5><u>Example</u></h5>
-                                                        <li>If I lose 1/5 and my stake was 100% THEN I will be awarded a BONUS of KES.30.</li>
-                                                        <li>If I LOSE 1/10 folds and my STAKE was KES 100, THEN I will be awarded a bonus of KES.55.</li>
-                                                        <li>If I LOSE 1/20 selections and my STAKE was 1000, THEN I will be awarded a bonus of KES250.</li>
-                                                    </ol>
-                                                    <ol type={"I"}>
-                                                        <h5><u>Significant Terms and Conditions</u></h5>
-                                                        <li>
-                                                            	This offer ONLY applies to returns on Pre-Match accumulators
-                                                        </li>
-                                                        <li>	The MAXIMUM BONUS that you can receive is KES250.</li>
-                                                        <li>	BetNare may, at any time reclaim any bonus amount; Free Bets, Nare Points and enhanced payments that you may have been awarded in error.</li>
-                                                        <li>	BetNare may at any time make minor amendments to this promotion to correct typographical errors or to improve on clarity of customer experience and may CANCEL this promotion for legal or regulatory reasons.</li>
-                                                        <li>	Bets placed with Bonuses DO NOT apply/qualify for this offer</li>
-                                                        <li>	The refund is paid in BONUS and BONUS RULES apply</li>
-                                                        <li>	Jackpot bets will not apply/ be considered for this promotion</li>
-                                                        <li>	Voided bets will not apply / be considered.</li>
-                                                    </ol>
 
-
+                                                    <h5><u>Example</u></h5>
+                                                    ✅ If I lose 1/5 and my stake was 100% THEN I will be awarded a
+                                                    BONUS of KES.30.
+                                                    <br/>
+                                                    ✅ If I LOSE 1/10 folds and my STAKE was KES 100, THEN I will
+                                                    be awarded a bonus of KES.55.
+                                                    <br/>
+                                                    ✅
+                                                    If I LOSE 1/20 selections and my STAKE was 1000, THEN I will
+                                                    be awarded a bonus of KES250.
+                                                    <br/>
+                                                    <h5><u>Significant Terms and Conditions</u></h5>
+                                                    <br/>
+                                                    ✅
+                                                    This offer ONLY applies to returns on Pre-Match accumulators
+                                                    <br/>
+                                                    ✅
+                                                    The MAXIMUM BONUS that you can receive is KES250.
+                                                    <br/>
+                                                    ✅ BetNare may, at any time reclaim any bonus amount; Free
+                                                    Bets, Nare Points and enhanced payments that you may have
+                                                    been awarded in error.
+                                                    <br/>
+                                                    ✅ BetNare may at any time make minor amendments to this
+                                                    promotion to correct typographical errors or to improve on
+                                                    clarity of customer experience and may CANCEL this promotion
+                                                    for legal or regulatory reasons.
+                                                    <br/>
+                                                    ✅ Bets placed with Bonuses DO NOT apply/qualify for this
+                                                    offer
+                                                    <br/>
+                                                    ✅ The refund is paid in BONUS and BONUS RULES apply
+                                                    <br/>
+                                                    ✅
+                                                    Jackpot bets will not apply/ be considered for this
+                                                    promotion
+                                                    <br/>
+                                                    ✅ Voided bets will not apply / be considered.
                                                     <div className="col-md-12">
                                                         <span><u>Terms and conditions</u></span>
                                                         <ol>
@@ -242,7 +266,7 @@ const Promotions = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-md-12 d-flex flex-row shadow-lg mt-2">
+                                        <div className="col-md-12 d-flex flex-row shadow-lg mt-2 promotion">
                                             <div className="col-md-12">
                                                 <div className="d-flex flex-column">
                                                     <h5>200% FIRST DEPOSIT BONUS</h5>
@@ -264,13 +288,134 @@ const Promotions = () => {
                                                             ✅ This offer ONLY applies to your first ever deposit
                                                             <br/>
 
-                                                            ✅ Any Amount above KES. 49 Thus 1st deposits of KES.100 up to
+                                                            ✅ Any Amount above KES. 49 Thus 1st deposits of KES.100 up
+                                                            to
                                                             KES. 1000 are matched with a bonus.
                                                             <br/>
                                                             ✅ The maximum bonus that you can receive is KES.250
                                                             <br/>
 
                                                         </ol>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-md-12 d-flex flex-row shadow-lg mt-2 promotion">
+                                            <div className="col-md-12">
+                                                <div className="d-flex flex-column">
+                                                    <h5>BETNARE NGWARE</h5>
+                                                    <img src={ngware} className={'rounded'}/>
+                                                    <span>
+                                                        Monday promotion. BetNare Ngware, anzisha Wiki na Thao.
+                                                    </span>
+                                                    <div className="col-md-12">
+                                                        <span><u>Entry Requirements</u></span>
+                                                        <ol>
+
+                                                            ✅ This promotion will be running every Monday for the Month
+                                                            Of October 2022.<br/>
+
+                                                            ✅ Place a bet with 50/= or more between 6am and 12 pm.<br/>
+
+                                                            ✅ Like the social media post in any of our channels.<br/>
+
+                                                            <strong>
+                                                                NB: Kindly NOTE that the WINS will be credited on
+                                                                your BetNare Account. You can Play with or Withdraw the
+                                                                Funds.
+                                                            </strong>
+
+                                                        </ol>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-md-12 d-flex flex-row shadow-lg mt-2 promotion">
+                                            <div className="col-md-12">
+                                                <div className="d-flex flex-column">
+                                                    <h5>Furahia Rush Hour kiBetNare</h5>
+                                                    <img src={rushHour} className={'rounded'}/>
+                                                    <div className="col-md-12">
+                                                        ✅ This promotion will run every Friday for the Month Of October
+                                                        2022, 3pm to 7pm<br/>
+
+                                                        ✅Award 3 Lucky winners with Ksh. 3000 each.<br/>
+
+                                                        ✅Award a winner every two hours from 3pm to 7pm.<br/>
+                                                    </div>
+                                                    <div className="col-md-12">
+                                                        <span><u>Entry Requirements</u></span>
+                                                        <ol>
+
+                                                            ✅Entry requirements:<br/>
+
+                                                            ✅ Place a bet with 50/= or more between 3pm and 7pm<br/>
+
+                                                            ✅ Like the social media post in any of our channels<br/>
+
+                                                            <strong>
+                                                                Kindly NOTE that the WINS will be credited on your
+                                                                BetNare accounts. You can Play with or Withdraw the
+                                                                Funds
+                                                            </strong>
+
+                                                        </ol>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-md-12 d-flex flex-row shadow-lg mt-2 promotion">
+                                            <div className="col-md-12">
+                                                <div className="d-flex flex-column">
+                                                    <h5 className={'text-uppercase'}>Jijenge kaAdvance na BetNare</h5>
+                                                    <img src={advance} className={'rounded'}/>
+                                                    <div className="col-md-12">
+                                                        ✅
+                                                        Place a bet with 50/= or more between 3rd October 2022 and 17th
+                                                        October 2022
+                                                        <br/>
+                                                        ✅
+                                                        Follow/Like any of our social media channels
+                                                        <br/>
+
+                                                        ✅Award 3 Lucky winners with Ksh. 3000 each.<br/>
+
+                                                        ✅Award a winner every two hours from 3pm to 7pm.<br/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-md-12 d-flex flex-row shadow-lg mt-2 promotion">
+                                            <div className="col-md-12">
+                                                <div className="d-flex flex-column">
+                                                    <h5 className={'text-uppercase'}>
+                                                        Angukia Rent
+                                                    </h5>
+                                                    <img src={rent} className={'rounded'}/>
+                                                    <div className="col-md-12">
+                                                        ✅
+                                                        The Angukia rent draw will be conducted on Monday 31st October.
+                                                        <br/>
+
+                                                        ✅BetNare will Award 1 lucky winner with KSh. 30,000 who’d
+                                                        participated in any of the running October Promotions.
+
+                                                        <br/>
+                                                        <strong className={'text-uppercase'}>
+                                                            Entry requirements:
+                                                        </strong>
+                                                        <br/>
+                                                        ✅
+                                                        Place a bet with 50/= or more between 3rd October and 31st
+                                                        October at 12noon
+                                                        <br/>
+                                                        ✅
+                                                        Follow/Like any of our social media channels
+                                                        <br/>
+                                                        ✅
+                                                        <strong>Kindly NOTE that the WINS will be credited on your
+                                                            BetNare
+                                                            accounts. You can Play with or Withdraw the Funds</strong>
                                                     </div>
                                                 </div>
                                             </div>

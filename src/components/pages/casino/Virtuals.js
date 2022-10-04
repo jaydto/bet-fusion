@@ -83,14 +83,15 @@ const Virtuals = (props) => {
                                         {games?.map((game) => (
                                                 <div className={'col-md-2'}>
                                                     <div
-                                                        className={'mt-1 mb-1 d-flex flex-column shadow-lg'}
-                                                        style={{border: "1px solid gray"}}>
-                                                        <div onClick={() => launchGame(game.game_id)}
+                                                        className={'mt-1 mb-1 d-flex flex-column shadow-lg virtual-game-container'}>
+                                                        <div onClick={() => launchGame(game?.game_id, true)}
                                                              className=""
                                                              key={game.game_id}>
+                                                            <p className={'text-center bold text-elipsis text-uppercase'}>
+                                                                {game?.game_name}
+                                                            </p>
                                                             <LazyLoadImage src={`${game.game_icon}`}
                                                                            className={'virtual-game-image'}/>
-                                                            <p className={'p-2 bold text-elipsis'}>{game.game_name}</p>
                                                         </div>
                                                         <div className="overlay shadow-sm row">
                                                             <ButtonGroup aria-label="Basic example">
@@ -106,7 +107,6 @@ const Virtuals = (props) => {
                                                         </div>
                                                     </div>
                                                 </div>
-
                                             )
                                         )}
                                     </div>

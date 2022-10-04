@@ -153,8 +153,9 @@ const LiveCasino = (props) => {
                                             {tableData?.map((tableDataItem) => (
                                                 <div className={'col-md-3 p-2'}
                                                      onClick={() => launchGame(tableDataItem?.tableId)}>
-                                                    <div className="col shadow-lg p-2 cursor-pointer"
-                                                         style={{border: "thin solid gray", borderRadius: "4px"}}>
+                                                    <div
+                                                        className="col shadow-lg p-2 cursor-pointer virtual-game-container"
+                                                        style={{border: "thin solid gray", borderRadius: "4px"}}>
                                                         <div className="col text-uppercase text-center bold" style={{
                                                             color: "#fdb429"
                                                         }}>
@@ -177,7 +178,7 @@ const LiveCasino = (props) => {
                                                                         {tableDataItem?.tableOpen ? ' Table Open' : ' Table Closed'}
                                                                     </div>
                                                                 </div>
-                                                                <div style={{borderTop: 'thin solid gray'}}
+                                                                <div
                                                                      className={'mt-1 flex-row row'}>
                                                                     <div className={'col flex-column text-secondary'}>
                                                                         <div className={'small'}>
@@ -205,7 +206,6 @@ const LiveCasino = (props) => {
                                                                         <div>
                                                                             {tableDataItem?.tableLimits?.minBet}
                                                                         </div>
-
                                                                     </div>
                                                                 </div>
                                                             </div>

@@ -68,11 +68,11 @@ const Casino = (props) => {
                             <div className="col-md-12 d-flex flex-column">
                                 <div className="col-md-12">
                                     <div
-                                        className="game-categories shadow-sm p-2 shadow-sm casino-category-container mt-2">
+                                        className="shadow-sm p-2 shadow-sm casino-category-container mt-2">
                                         {categories?.map((category) => (
                                             <Button bg="warning"
                                                     style={{marginRight: '2px'}}
-                                                    className={`cursor-pointer text-center casino-category`}
+                                                    className={`cursor-pointer text-center casino-category casino-category-button`}
                                                     onClick={() => getCategoryGames(category)}>
                                                 {(category?.game_type_description)}
                                             </Button>

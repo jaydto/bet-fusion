@@ -36,11 +36,11 @@
 
 .casino-category-container {
     display: flex;
+    position: sticky !important;
     flex-direction: row !important;
     justify-content: space-around;
     align-items: flex-start;
-    border: 2px dashed rgba(114, 186, 94, 0.35);
-    background: rgba(114, 186, 94, 0.05);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important;
 }
 
 .shark-1 {
@@ -15636,4 +15636,18 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     .promotion-body img {
         height: 100px;
     }
+}
+
+.casino-category-button {
+    border: thin solid rgba(0, 0, 0, 0.15);
+    padding: 5px 15px;
+    margin-right: 5px;
+    border-radius: 25px;
+    white-space: nowrap;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.casino-category-button:hover {
+    background: #ffc428;
 }

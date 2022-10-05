@@ -35,7 +35,7 @@ const Promotions = () => {
                                     <div className={'row text-white p-2 shadow-sm d-flex justify-content-center'}>
                                         <div className="col-md-12 shadow-lg promotion">
                                             <div className="d-flex flex-column">
-                                                <h5>50 BOB KARIBU BONUS</h5>
+                                                <h5>100 BOB KARIBU BONUS</h5>
                                                 <img src={karibuBonus} className={'rounded'}/>
                                                 <span><u>Register</u></span>
                                                 <ul>

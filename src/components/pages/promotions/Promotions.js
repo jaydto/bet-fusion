@@ -228,41 +228,6 @@ const Promotions = () => {
                                                     promotion
                                                     <br/>
                                                     ✅ Voided bets will not apply / be considered.
-                                                    <div className="col-md-12">
-                                                        <span><u>Terms and conditions</u></span>
-                                                        <ol>
-                                                            <br/>
-                                                            This offer ONLY applies to returns on Pre-Match accumulators
-                                                            <br/>
-                                                            ✅ The MAXIMUM BONUS that you can receive is KES250.
-                                                            <br/>
-
-                                                            ✅ BetNare may, at any time reclaim any bonus amount; Free
-                                                            Bets, Nare Points and enhanced payments that you may have
-                                                            been awarded in error.
-                                                            <br/>
-
-                                                            ✅ BetNare may at any time make minor amendments to this
-                                                            promotion to correct typographical errors or to improve on
-                                                            clarity of customer experience and may CANCEL this promotion
-                                                            for legal or regulatory reasons.
-                                                            <br/>
-
-                                                            ✅ Bets placed with Bonuses DO NOT apply/qualify for this
-                                                            offer.
-                                                            <br/>
-
-                                                            ✅ The refund is paid in BONUS and BONUS RULES apply.
-                                                            <br/>
-
-                                                            ✅ Jackpot bets will not apply/ be considered for this
-                                                            promotion.
-                                                            <br/>
-
-                                                            ✅ Voided bets will not apply / be considered.
-
-                                                        </ol>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -323,6 +288,39 @@ const Promotions = () => {
                                                                 NB: Kindly NOTE that the WINS will be credited on
                                                                 your BetNare Account. You can Play with or Withdraw the
                                                                 Funds.
+                                                            </strong>
+
+                                                        </ol>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-md-12 d-flex flex-row shadow-lg mt-2 promotion">
+                                            <div className="col-md-12">
+                                                <div className="d-flex flex-column">
+                                                    <h5>LALA KICHAMPE</h5>
+                                                    <img src={lala} className={'rounded'}/>
+                                                    <span>
+                                                        This promotion will run on every Wednesday of the Month of
+                                                            October, 8pm to 10pm.
+                                                    </span>
+                                                    <div className="col-md-12">
+                                                        <span><u>Entry Requirements</u></span>
+                                                        <ol>
+
+                                                            ✅BetNare will Award 4 lucky winners with Ksh. 2000 each, 2
+                                                            winners each hour from 8 pm to 10 pm. <br/>
+
+                                                            Entry requirements:
+
+                                                            ✅ Place a bet with 50/= or more between 8pm and 10 pm
+
+                                                            ✅ Like the social media post in any of our channels
+
+                                                            <strong>
+                                                                NB; Kindly NOTE that the WINS will be credited on your
+                                                                BetNare accounts. You can Play with or Withdraw the
+                                                                Funds
                                                             </strong>
 
                                                         </ol>

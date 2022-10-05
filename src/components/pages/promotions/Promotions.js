@@ -308,12 +308,10 @@ const Promotions = () => {
                                                         <span><u>Entry Requirements</u></span>
                                                         <ol>
 
-                                                            ✅BetNare will Award 4 lucky winners with Ksh. 2000 each, 2
+                                                            ✅ BetNare will Award 4 lucky winners with Ksh. 2000 each, 2
                                                             winners each hour from 8 pm to 10 pm. <br/>
-
-                                                            Entry requirements:
-
                                                             ✅ Place a bet with 50/= or more between 8pm and 10 pm
+                                                            <br/>
 
                                                             ✅ Like the social media post in any of our channels
 

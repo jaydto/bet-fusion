@@ -137,14 +137,16 @@ const BetslipSubmitForm = (props) => {
 
         makeRequest({url: endpoint, method: method, data: payload, use_jwt: use_jwt})
             .then(([status, response]) => {
-                setMessage(response)
-                if (status === 200 || status == 201 || status == 204 || jackpot) {
+                console.log("Status code is ", status)
+
+                if (status === 200 || status == 201 || status == 204) {
+                    setMessage(response)
                     //all is good am be quiet
                     if (jackpot) {
-                        clearJackpotSlip();
+                        // clearJackpotSlip();
                         setMessage({
                             status: 201,
-                            message: "Jackpot bet placed successfully."
+                            message: response?.message
                         })
                     } else {
                         clearSlip();
@@ -152,9 +154,16 @@ const BetslipSubmitForm = (props) => {
                     setBetslipsData(null);
                     dispatch({type: "SET", key: jackpot ? 'jackpotbetslip' : 'betslip', payload: {}});
                 } else {
+                    let response_message = response?.message
+                    if (response_message === '' || response_message === undefined) {
+                        response_message = response?.error
+                        if (response_message === '' || response_message === undefined) {
+                            response_message = "Something went wrong. Please try again later or contact support. 0701 087 777"
+                        }
+                    }
                     let qmessage = {
                         status: status,
-                        message: response?.message || "Error attempting to login"
+                        message: response_message
                     };
                     setMessage(qmessage);
                 }

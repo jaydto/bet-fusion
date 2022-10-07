@@ -143,7 +143,7 @@ const BetslipSubmitForm = (props) => {
                     setMessage(response)
                     //all is good am be quiet
                     if (jackpot) {
-                        // clearJackpotSlip();
+                        clearJackpotSlip();
                         setMessage({
                             status: 201,
                             message: response?.message

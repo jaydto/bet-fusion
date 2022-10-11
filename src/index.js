@@ -116,7 +116,7 @@ render((
                     <Route exact path="/virtuals" element={<Virtuals/>}/>
                     <Route exact path="/livescore" element={<LiveScore/>}/>
                     {/*<Route exact path="/casino" element={<Casino/>}/>*/}
-                    <Route exact path="/live-casino" element={<LiveCasino/>}/>
+                    {/*<Route exact path="/live-casino" element={<LiveCasino/>}/>*/}
                     <Route exact path="/gameplay/:game_id/:live" element={<CasinoGamePlay/>}/>
                     <Route exact path="/highlights" element={<Index/>}/>
                     <Route exact path="/upcoming" element={<Index/>}/>

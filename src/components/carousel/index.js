@@ -3,9 +3,9 @@ import Carousel from 'react-bootstrap/Carousel';
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
-import two_hundred_percent from '../../assets/img/banner/products/200PercentBonus.jpg'
+import two_hundred_percent from '../../assets/img/banner/products/500PercentBonus_.jpg'
 import cashback from '../../assets/img/banner/products/100PercentCashback.jpg'
-import twenty_percent from '../../assets/img/banner/products/20PercentDaily.jpg'
+import twenty_percent from '../../assets/img/banner/products/150PercentDaily_.jpg'
 import banner1 from '../../assets/img/banner/products/100_RegBonus.jpg'
 import odds from '../../assets/img/banner/products/Odds ni Nare.jpg'
 import advance from '../../assets/img/banner/products/Advance.jpg'
@@ -13,6 +13,7 @@ import lala from '../../assets/img/banner/products/Lala.jpg'
 import ngware from '../../assets/img/banner/products/Ngware.jpg'
 import rent from '../../assets/img/banner/products/Rent.jpg'
 import rushHour from '../../assets/img/banner/products/Rush Hour.jpg'
+import tisaJackpot from '../../assets/img/banner/products/TisaTisaJackpot.jpg'
 
 
 const banners = [
@@ -25,7 +26,8 @@ const banners = [
     lala,
     ngware,
     rent,
-    rushHour
+    rushHour,
+    tisaJackpot
 ]
 
 const CarouselLoader = (props) => {

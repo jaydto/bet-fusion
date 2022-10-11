@@ -23,24 +23,19 @@ const DailyJackpotTermsAndConditions = () =>
                         <div className={'text-white'}>
                             <ol>
                                 <li>
-                                    Jackpot Amount ; Kenya Shillings 1,000,000/=
+                                    Jackpot Amount ; Kenya Shillings 99,999/=
 
                                 </li>
                                 <li>
-                                    Stake 15/=
+                                    Stake 9/=
                                 </li>
                                 <li>
-                                    13 Pre-Selected Soccer games
+                                    9 Pre-Selected Soccer games
 
                                 </li>
                                 <li>
                                     Market Picks – 3-Way markets Only
                                 </li>
-                                <li>
-                                    Bonus Games – 11&12 Correct picks
-                                </li>
-
-
                             </ol>
 
                         </div>

@@ -5,7 +5,7 @@ import Footer from './footer/footer';
 import SideBar from './sidebar/awesome/Sidebar';
 import {JackpotMatchList, JackpotHeader} from './matches/index';
 import makeRequest from "./utils/fetch-request";
-import dailyJackpot from '../assets/img/banner/jackpots/DailyJackpot.png'
+import dailyJackpot from '../assets/img/banner/products/TisaTisaJackpot.jpg'
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Container from "react-bootstrap/Container";

@@ -50,12 +50,12 @@ const DailyJackpotTermsAndConditions = () =>
                     <AccordionItemPanel className={'accordion-item-panel'}>
                         <p>The BetNare Daily Jackpot is a pool betting platform that is promoted and operated by BetNare
                             on pre-selected football matches.</p>
-                        <p>The BetNare Daily Jackpot competition consists of predicting results of 13 matches which are
+                        <p>The BetNare Daily Jackpot competition consists of predicting results of 9 matches which are
                             selected by BetNare every day.</p>
                         <p>To take part and have a chance to win the BetNare jackpot you must get registered on
-                            www.betnare.com and have at least KES 15 in your BetNare account.</p>
-                        <p>If you correctly predict all the 13 match results, you win the Daily Jackpot prize of Kshs
-                            1,000,000/=</p>
+                            www.betnare.com and have at least KES 9 in your BetNare account.</p>
+                        <p>If you correctly predict all the 9 match results, you win the Daily Jackpot prize of Kshs
+                            99,999.00/=</p>
 
                     </AccordionItemPanel>
                 </AccordionItem>
@@ -80,8 +80,8 @@ const DailyJackpotTermsAndConditions = () =>
                         <p>Liverpool = 2</p>
 
                         <h4 className='text-decoration-underline'>SMS format</h4>
-                        <p>SMS DJP (Daily Jackpot) pick1pick2pick3pick4pick5…. to 29877</p>
-                        <p>Example DJP12X21X… to 29877</p>
+                        <p>SMS JP (Daily Jackpot) pick1pick2pick3pick4pick5…. to 29877</p>
+                        <p>Example JP12X21X… to 29877</p>
 
                         <h4 className='text-decoration-underline'>Jackpot rollover</h4>
                         <p>BETNARE may, at its own discretion, introduce a Jackpot rollover, in which jackpot totals
@@ -101,23 +101,23 @@ const DailyJackpotTermsAndConditions = () =>
                             time. Extra time and penalty shoot-outs shall not be included.</p>
                         <p>The competitions are open to persons aged 18 years or over, resident in Kenya. Proof of age
                             and identity are a MUST requirement.</p>
-                        <p>The BetNare Daily Jackpot prize money is KES 1,000,000/=</p>
+                        <p>The BetNare Daily Jackpot prize money is KES 99,999.00/=</p>
                         <p>Players will be deemed to have accepted these terms and conditions and agreed to be bound by
                             them when entering this competition.</p>
 
 
                         <p>The Daily Jackpot amount is subject to change in a daily jackpot.</p>
-                        <p>The Daily Jackpot is based on Thirteen (13) pre-selected football games.</p>
+                        <p>The Daily Jackpot is based on Thirteen (9) pre-selected football games.</p>
                         <p>The Daily Jackpot amount, consolation prizes and/or any bonuses thereof will be divided equally
                             amongst all the Daily Jackpot winners.</p>
                         <p>To make your selections- On the BetNare Daily Jackpot competition entry page
-                            (www.betnare.com/jackpot) make your predictions on the 13 pre-selected football matches </p>
+                            (www.betnare.com/jackpot) make your predictions on the 9 pre-selected football matches </p>
                         <p><strong>(HOME, WIN, DRAW, AWAY WIN)</strong>. The stake amount of each combination is KES 15.</p>
                         <p><strong>NOTE ;</strong> You CANNOT make more than 1 prediction for ONE match.</p>
                         <p className={' text-uppercase text-decoration-underline'}><strong>The Daily Jackpot bet can be placed through:</strong> </p>
                         <p  ><strong>  </strong> </p>
                         <ul>
-                            <li>submitting predictions of the results of 13 pre-selected
+                            <li>submitting predictions of the results of 9 pre-selected
                                 football matches at (www.betnare.com/jackpot)</li>
                             <li>
                                 By choosing “Auto Bet” option, a random selection of one prediction per match will be

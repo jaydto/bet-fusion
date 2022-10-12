@@ -418,6 +418,7 @@ const OddButton = (props) => {
             "live": live,
             "ucn": cstm,
             "market_active": market_active,
+            "position": match?.pos || 0
         }
 
         // console.log("Slip", slip)

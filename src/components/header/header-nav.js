@@ -91,32 +91,27 @@ const HeaderNav = (props) => {
                         </a>
                     </li>
 
-                    {test ? (
-                        <>
-                            <li className={pathname === '/live-casino' || pathname.includes("gameplay") ? 'active' : ''}>
-                                <a className="g url-link" href="/live-casino" title="Live Casino">
+                    <>
+                        <li className={`${pathname === '/live-casino' || pathname.includes("gameplay") ? 'active' : ''} d-none`}>
+                            <a className="g url-link" href="/live-casino" title="Live Casino">
                             <span>
                                 <FontAwesomeIcon icon={faFire} className={'text-warning'}/> Live Casino
                             </span>
-                                </a>
-                            </li>
-                            <li className={pathname === '/casino' || pathname.includes("gameplay") ? 'active' : ''}>
-                                <a className="g url-link" href="/casino" title="Casino">
-                                    <FontAwesomeIcon icon={faDice}/> Casino
-                                </a>
-                            </li>
-                            <li className={pathname === '/virtuals' || pathname.includes("gameplay") ? 'active' : ''}>
-                                <a className="g url-link" href="/virtuals" title="Virtuals">
+                            </a>
+                        </li>
+                        <li className={`${pathname === '/casino' || pathname.includes("gameplay") ? 'active' : ''} d-none`}>
+                            <a className="g url-link" href="/casino" title="Casino">
+                                <FontAwesomeIcon icon={faDice}/> Casino
+                            </a>
+                        </li>
+                        <li className={`${pathname === '/virtuals' || pathname.includes("gameplay") ? 'active' : ''}`}>
+                            <a className="g url-link" href="/virtuals" title="Virtuals">
                             <span>
                                 <FontAwesomeIcon icon={faLaptop}/> Virtuals
                             </span>
-                                </a>
-                            </li>
-                        </>
-                    ) : (
-                        <></>
-                    )}
-
+                            </a>
+                        </li>
+                    </>
 
                     <li className={pathname.includes("promotions") ? 'active' : ''}
                         onClick={() => gaEventTracker('Visit Promotions Page')}>

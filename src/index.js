@@ -2,7 +2,7 @@ import React, {useEffect, useCallback, Suspense} from "react";
 import {render} from "react-dom";
 
 import {
-    BrowserRouter,
+    BrowserRouter, Navigate,
     Route,
     Routes,
     useNavigate,
@@ -92,6 +92,9 @@ const Promotions = React.lazy(() => import('./components/pages/promotions/Promot
 
 const LiveScore = React.lazy(() => import('./components/pages/livescore/LiveScore'))
 
+const PageNotFound = React.lazy(() => import('./components/pages/404/NotFound'))
+
+
 const Logout = () => {
     let navigate = useNavigate();
 
@@ -112,11 +115,13 @@ render((
         <BrowserRouter>
             <Suspense fallback={<p> Loading ... </p>}>
                 <Routes>
+                    <Route path="*" element={<Navigate to="/404" />} />
                     <Route exact path="/" element={<Index/>}/>
                     <Route exact path="/virtuals" element={<Virtuals/>}/>
                     <Route exact path="/livescore" element={<LiveScore/>}/>
-                    <Route exact path="/casino" element={<Casino/>}/>
-                    <Route exact path="/live-casino" element={<LiveCasino/>}/>
+                    <Route exact path="/404" element={<PageNotFound/>}/>
+                    {/*<Route exact path="/casino" element={<Casino/>}/>*/}
+                    {/*<Route exact path="/live-casino" element={<LiveCasino/>}/>*/}
                     <Route exact path="/gameplay/:game_id/:live" element={<CasinoGamePlay/>}/>
                     <Route exact path="/highlights" element={<Index/>}/>
                     <Route exact path="/upcoming" element={<Index/>}/>

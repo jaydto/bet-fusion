@@ -15665,3 +15665,199 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 .casino-category-button:hover {
     background: #ffc428;
 }
+
+.clearfix:before,
+.clearfix:after {
+    display: table;
+
+    content: ' ';
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.page-404 .outer {
+    position: absolute;
+    top: 0;
+
+    display: table;
+
+    width: 100%;
+    height: 100%;
+}
+
+.page-404 .outer .middle {
+    display: table-cell;
+
+    vertical-align: middle;
+}
+
+.page-404 .outer .middle .inner {
+    width: 300px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.page-404 .outer .middle .inner .inner-circle {
+    height: 300px;
+
+    border-radius: 50%;
+    background-color: #ffffff;
+}
+
+.page-404 .outer .middle .inner .inner-circle:hover i {
+    color: #FCC024 !important;
+    background-color: #f5f5f5;
+    box-shadow: 0 0 0 15px #FCC024;
+}
+
+.page-404 .outer .middle .inner .inner-circle:hover span {
+    color: #FCC024;
+}
+
+.page-404 .outer .middle .inner .inner-circle i {
+    font-size: 5em;
+    line-height: 1em;
+
+    float: right;
+
+    width: 1.6em;
+    height: 1.6em;
+    margin-top: -.7em;
+    margin-right: -.5em;
+    padding: 20px;
+
+    -webkit-transition: all .4s;
+    transition: all .4s;
+    text-align: center;
+
+    color: #f5f5f5 !important;
+    border-radius: 50%;
+    background-color: #FCC024;
+    box-shadow: 0 0 0 15px #f0f0f0;
+}
+
+.page-404 .outer .middle .inner .inner-circle span {
+    font-size: 11em;
+    font-weight: 700;
+    line-height: 1.2em;
+
+    display: block;
+
+    -webkit-transition: all .4s;
+    transition: all .4s;
+    text-align: center;
+
+    color: #e0e0e0;
+}
+
+.page-404 .outer .middle .inner .inner-status {
+    font-size: 20px;
+
+    display: block;
+
+    margin-top: 20px;
+    margin-bottom: 5px;
+
+    text-align: center;
+
+    color: #FCC024;
+}
+
+.page-404 .outer .middle .inner .inner-detail {
+    line-height: 1.4em;
+
+    display: block;
+
+    margin-bottom: 10px;
+
+    text-align: center;
+
+    color: #999999;
+}
+
+
+.mo-fire {
+    width: 100px;
+    height: auto;
+    position: absolute;
+    right: auto;
+    left: auto;
+}
+
+.mo-fire svg {
+    width: 100%;
+    height: auto;
+    position: relative
+}
+
+.flame {
+    animation-name: flamefly;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    opacity: 0;
+    transform-origin: 50% 50% 0;
+}
+
+.flame.one {
+    animation-delay: 1s;
+    animation-duration: 3s;
+}
+
+.flame3.two {
+    animation-duration: 5s;
+    animation-delay: 1s;
+}
+
+.flame-main {
+    animation-name: flameWobble;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.flame-main.one {
+    animation-duration: 4s;
+    animation-delay: 1s;
+}
+
+.flame-main.two {
+    animation-duration: 3s;
+    animation-delay: 2s;
+}
+
+.flame-main.three {
+    animation-duration: 2.1s;
+    animation-delay: 3s;
+}
+
+.flame-main.four {
+    animation-duration: 3.2s;
+    animation-delay: 4s;
+}
+
+.flame-main.five {
+    animation-duration: 2.5s;
+    animation-delay: 5s;
+}
+
+@keyframes flameWobble {
+    50% {
+        transform: scale(1, 1.2) translate(0, -30px) rotate(-2deg);
+    }
+}
+
+@keyframes flamefly {
+    0% {
+        transform: translate(0) rotate(180deg);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-20px, -100px) rotate(180deg);
+        opacity: 0;
+    }
+}

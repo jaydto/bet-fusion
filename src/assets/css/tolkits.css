@@ -165,6 +165,17 @@ header, li a, .thedate span {
 .header-menu a.active {
     border-bottom: 2px solid #dfbc64;
 }
+.betslip::-webkit-scrollbar{
+    display: none;
+}
+
+.flow{
+    display: flex;
+    flex-direction: column-reverse;
+}
+.flow::-webkit-scrollbar{
+    display: none;
+}
 
 .betslip input[type="number"] {
     color: #333;
@@ -15343,6 +15354,10 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     position: sticky !important;
     top: 140px !important;
     background: #253743 !important;
+}
+
+.betslip-container::-webkit-scrollbar {
+    display: none;
 }
 
 .betslip-container-mobile {

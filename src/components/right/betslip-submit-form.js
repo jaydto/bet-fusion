@@ -87,6 +87,15 @@ const BetslipSubmitForm = (props) => {
 
         let jackpotMessage = 'jp'
 
+
+        if (jackpot) {
+
+            bs = bs.sort(function (a, b) {
+                return Number(a.position) - Number(b.position);
+            });
+
+        }
+
         for (let slip of bs) {
             if (jackpot) {
                 jackpotMessage += "#" + slip.bet_pick

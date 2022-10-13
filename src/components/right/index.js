@@ -22,10 +22,10 @@ const Right = (props) => {
     const [betSlipMobile, setBetSlipMobile] = useState(false)
 
     return (
-        <div className="col-md-3 gn betslip-container sticky-top">
-            <div className="overflow-scroll betslip-container d-none d-md-block">
+        <div className="col-md-3 gn betslip-container sticky-top vh-100 overflow-scroll">
+            <div className="betslip-container d-none d-md-block">
                 {props?.message && <AlertMessage classname={props.classname} message={props.message}/>}
-                <div className="bet-option-list sticky-top" id=''>
+                <div className="bet-option-list " id=''>
                     <div className="bet alu block-shadow">
                         <header>
                             <div className="betslip-header d-flex justify-content-between">
@@ -39,7 +39,8 @@ const Right = (props) => {
                                 </span>
                             </div>
                         </header>
-                        <button id="slip-button-close" type="button" className="close mobi" aria-hidden="true">×
+                        <button id="slip-button-close" type="button" className="close mobi" aria-hidden="true">
+                            X
                         </button>
                         <div id="betslip" className="betslip">
                             <BetSlip jackpot={jackpot} betslipValidationData={betslipValidationData}

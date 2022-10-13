@@ -165,15 +165,17 @@ header, li a, .thedate span {
 .header-menu a.active {
     border-bottom: 2px solid #dfbc64;
 }
-.betslip::-webkit-scrollbar{
+
+.betslip::-webkit-scrollbar {
     display: none;
 }
 
-.flow{
+.flow {
     display: flex;
     flex-direction: column-reverse;
 }
-.flow::-webkit-scrollbar{
+
+.flow::-webkit-scrollbar {
     display: none;
 }
 
@@ -15133,8 +15135,6 @@ h4.live-header {
 #live_matches .cmp-d {
     font-size: 13px;
     display: block;
-    display: block;
-
 }
 
 li a.live-game.active, .navbar-nav li a.live-game.active, li a.live-game {
@@ -15352,7 +15352,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 
 .betslip-container {
     position: sticky !important;
-    top: 140px !important;
+    /*top: 140px !important;*/
     background: #253743 !important;
 }
 

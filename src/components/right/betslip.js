@@ -23,7 +23,7 @@ const BetSlip = (props) => {
     const [qualifiesBonus, setQualifiesBonus] = useState(false)
 
     const [totalOdds, setTotalOdds] = useState(1);
-    const perSlipBonusOdd = 1.78
+    const perSlipBonusOdd = 2.0
     const maxBonusGames = 4
     //initial betslip loading
     const loadBetslip = useCallback(() => {
@@ -148,7 +148,7 @@ const BetSlip = (props) => {
             message = (`Congratulations, you qualify for bonus. Add ${remainingGames} more game${remainingGames > 1 ? 's' : ''} to place your bet using bonus.`)
 
         } else if ((totalGames === maxBonusGames)) {
-            message = ("Congratulations, you are eligible for a bonus bet. Allowed Bonus Bet Amount is KES 75.")
+            message = ("Congratulations, you are eligible for a bonus bet. Allowed Bonus Bet Amount is KES 100.")
         } else {
             message = ("")
         }

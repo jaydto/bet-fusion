@@ -70,7 +70,7 @@ const RedeemPoints = (props) => {
             <>
                 <div className="form-group row d-flex justify-content-center mt-5">
                     <div className="col-md-12">
-                        <label>Amount to RedeemPoints</label>
+                        <label>Points to Redeem</label>
                         <input
                             onChange={ev => onFieldChanged(ev)}
                             className="text-dark deposit-input form-control col-md-12 input-field"
@@ -99,7 +99,7 @@ const RedeemPoints = (props) => {
     const PaymentInstructions = (props) => {
         return (
             <>
-                <label className='header text-info'>RedeemPoints Instructions</label>
+                <label className='header text-info'>Redeem Points Instructions</label>
                 <div className="container">
                     <div className="row">
                         <div className="col"> 1. Enter the number of points to redeem.</div>

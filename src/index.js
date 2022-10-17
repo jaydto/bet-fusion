@@ -54,8 +54,11 @@ const PrivacyPolicy = React.lazy(
     () => import('./components/pages/privacy-policy/index')
 );
 const Withdraw = React.lazy(
-    () => import('./components/pages/deposit-withraw/Withdraw'))
-;
+    () => import('./components/pages/deposit-withraw/Withdraw')
+);
+const RedeemPoints = React.lazy(
+    () => import('./components/pages/points/RedeemPoints')
+);
 const Deposit = React.lazy(
     () => import('./components/pages/deposit-withraw/Deposit')
 );
@@ -115,7 +118,7 @@ render((
         <BrowserRouter>
             <Suspense fallback={<p> Loading ... </p>}>
                 <Routes>
-                    <Route path="*" element={<Navigate to="/404" />} />
+                    <Route path="*" element={<Navigate to="/404"/>}/>
                     <Route exact path="/" element={<Index/>}/>
                     <Route exact path="/virtuals" element={<Virtuals/>}/>
                     <Route exact path="/livescore" element={<LiveScore/>}/>
@@ -148,11 +151,12 @@ render((
                     <Route exact path="/logout" element={<Logout/>}/>
                     <Route exact path="/print-matches" element={<PrintMatches/>}/>
                     <Route exact path="/promotions" element={<Promotions/>}/>
-
                     <Route exact path="/deposit"
                            element={<ProtectedRoute><Deposit/> </ProtectedRoute>}/>
                     <Route exact path="/withdraw"
                            element={<ProtectedRoute><Withdraw/></ProtectedRoute>}/>
+                    <Route exact path="/redeem-points"
+                           element={<ProtectedRoute><RedeemPoints/></ProtectedRoute>}/>
                     <Route exact path="/my-bets"
                            element={<ProtectedRoute><MyBets/> </ProtectedRoute>}/>
                 </Routes>

@@ -17,9 +17,9 @@ import tisaJackpot from '../../assets/img/banner/products/TisaTisaJackpot.jpg'
 
 
 const banners = [
+    two_hundred_percent,
     banner1,
     twenty_percent,
-    two_hundred_percent,
     cashback,
     odds,
     advance,

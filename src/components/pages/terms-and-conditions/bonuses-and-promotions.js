@@ -91,16 +91,19 @@ const BonusesAndPromotions = () => {
                         	Bonus expiry is midnight (all bonuses)
                     </li>
                     <li>
-                        	Maximum games per slip on bonus related bets is 4
+                            The Maximum and Minimum stake of the bonuses is 100/=
                     </li>
                     <li>
-                        	Minimum odds per game on bonus related bets is 1.8
+                            Total number of games per slip on bonus related bets is 4
                     </li>
                     <li>
-                        	Minimum total odds per bonus bet is 10.00
+                            Minimum odds per game on bonus related bets is 2.0
                     </li>
                     <li>
-                        	The maximum pays-out from bonus bets - KES.1,000 per betslip.
+                            Minimum total odds per bonus bet is 16.00
+                    </li>
+                    <li>
+                            The maximum pays-out from bonus bets – KES300 per betslip.
                     </li>
                     <li>
                         	All rules on bonus bets will apply.

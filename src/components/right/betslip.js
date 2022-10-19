@@ -23,7 +23,7 @@ const BetSlip = (props) => {
     const [qualifiesBonus, setQualifiesBonus] = useState(false)
 
     const [totalOdds, setTotalOdds] = useState(1);
-    const perSlipBonusOdd = 2.0
+    const perSlipBonusOdd = 1.8
     const maxBonusGames = 4
     //initial betslip loading
     const loadBetslip = useCallback(() => {

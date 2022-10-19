@@ -33,6 +33,7 @@ const Promotions = () => {
                                 </div>
                                 <div className="col">
                                     <div className={'row text-white p-2 shadow-sm d-flex justify-content-center'}>
+                                    
                                         <div className="col-md-12 shadow-lg promotion">
                                             <div className="d-flex flex-column">
                                                 <h5>100 BOB KARIBU BONUS</h5>
@@ -61,34 +62,30 @@ const Promotions = () => {
                                         </div>
                                         <div className="col-md-12 shadow-lg promotion">
                                             <div className="d-flex flex-column">
-                                                <h5>20% FIRST DEPOSIT BONUS (DEPOSIT UPEWE)</h5>
+                                                <h5>150% FIRST DAILY DEPOSIT BONUS (DEPOSIT UPEWE)</h5>
                                                 <img src={twentyPercentDepositBonus} className={'rounded'}/>
                                                 <span><u>How to Play</u></span>
                                                 <ul>
-                                                    ✅ Deposit KES.50 to 500 get 20% as bonus
+                                                    ✅ A client receives 150% BONUS on the FIRST deposit of the day.
                                                     <br/>
 
-                                                    ✅ Deposit 500 and above get ksh.100 free (bonus). i.e. it is
-                                                    capped at Ksh.500. Any
-                                                    amount above 500 bonus issued will be Ksh.100.
+    
                                                 </ul>
                                                 <div className="col-md-12">
                                                     <span><u>Terms and conditions</u></span>
                                                     <ol>
 
-                                                        ✅ Promotion is capped at KES.500 max
+                                                        ✅ Promotion is capped at KES.1000 max
                                                         <br/>
-                                                        ✅ Any deposit amounts exceeding 500 will only get
-                                                        KES.100
+                                                        ✅ Any deposit amounts exceeding 667 will only get
+                                                        KES.1000
                                                         <br/>
 
                                                         ✅ The bonus is only to be issued ONCE, per player per
                                                         day.
                                                         <br/>
 
-                                                        ✅ The bonus is ONLY to be issued on one transaction of
-                                                        KES 50 and above.
-                                                        <br/>
+                                                        
 
                                                         Bonus rules apply
 
@@ -234,7 +231,7 @@ const Promotions = () => {
                                         <div className="col-md-12 d-flex flex-row shadow-lg mt-2 promotion">
                                             <div className="col-md-12">
                                                 <div className="d-flex flex-column">
-                                                    <h5>200% FIRST DEPOSIT BONUS</h5>
+                                                    <h5>500% FIRST DEPOSIT BONUS</h5>
                                                     <img src={twoHundredPercent} className={'rounded'}/>
                                                     <span><u>How to Play</u></span>
                                                     <ul>
@@ -255,9 +252,9 @@ const Promotions = () => {
 
                                                             ✅ Any Amount above KES. 49 Thus 1st deposits of KES.100 up
                                                             to
-                                                            KES. 1000 are matched with a bonus.
+                                                            KES. 200 are matched with a bonus.
                                                             <br/>
-                                                            ✅ The maximum bonus that you can receive is KES.250
+                                                            ✅ The maximum bonus that you can receive is KES.1000
                                                             <br/>
 
                                                         </ol>

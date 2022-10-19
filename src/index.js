@@ -25,7 +25,9 @@ const CompetitionsMatches = React.lazy(
     () => import('./components/competition-matches')
 );
 const MatchAllMarkets = React.lazy(() => import('./components/all-markets'));
+
 const Jackpot = React.lazy(() => import('./components/jackpot'));
+
 const Live = React.lazy(
     () => import('./components/live')
 );

@@ -97,10 +97,10 @@ const BonusesAndPromotions = () => {
                             Total number of games per slip on bonus related bets is 4
                     </li>
                     <li>
-                            Minimum odds per game on bonus related bets is 2.0
+                            Minimum odds per game on bonus related bets is 1.8
                     </li>
                     <li>
-                            Minimum total odds per bonus bet is 16.00
+                            Minimum total odds per bonus bet is 10.50
                     </li>
                     <li>
                             The maximum pays-out from bonus bets – KES300 per betslip.

@@ -678,7 +678,6 @@ export const MarketList = (props) => {
         let filtered = []
         let elements = Array.from(Object.entries(matchwithmarkets?.data?.odds || {}))
         elements.filter((mkt_id, markets) => {
-            console.log("From array ", mkt_id)
             if (mkt_id[0].toLowerCase().includes(value)) {
                 filtered[mkt_id[0]] = mkt_id[1]
             }

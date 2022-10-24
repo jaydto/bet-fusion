@@ -679,6 +679,7 @@ header, li a, .thedate span {
     border-top: none !important;
     border-radius: 0px !important;
     text-align: left;
+    font-weight: 20 !important;
 }
 
 .match-detail button .label {
@@ -754,6 +755,7 @@ header, li a, .thedate span {
     font-size: 15px;
     font-family: inherit;
     text-transform: uppercase;
+    font-weight: bolder;
 }
 
 .match-header {

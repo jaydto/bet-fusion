@@ -21,6 +21,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faChartLine, faFire} from "@fortawesome/free-solid-svg-icons";
 import {getFromLocalStorage} from "../utils/local-storage";
 import * as url from "url";
+import {Input} from "@material-ui/core";
 
 
 const clean = (_str) => {
@@ -671,23 +672,63 @@ export const MarketList = (props) => {
 
     const {live, matchwithmarkets, pdown} = props;
 
+    const [filters, setFilters] = useState({})
+
+    const filterMarkets = (value) => {
+        let filtered = []
+        let elements = Array.from(Object.entries(matchwithmarkets?.data?.odds || {}))
+        elements.filter((mkt_id, markets) => {
+            console.log("From array ", mkt_id)
+            if (mkt_id[0].toLowerCase().includes(value)) {
+                filtered[mkt_id[0]] = mkt_id[1]
+            }
+            return []
+        })
+
+        let match = filters?.data?.match
+
+        let ob = ({
+            data: {
+                match: match,
+                odds: Object.assign({}, filtered)
+            }
+        })
+
+        setFilters(ob)
+    }
+
+    useEffect(() => {
+        setFilters(matchwithmarkets)
+    }, [matchwithmarkets])
+
     return (
         <div className="matches full-width">
-            {!matchwithmarkets
+            {!filters
                 ? <div className="top-matches">Event not available for betting.</div>
                 : <MoreMarketsHeaderRow
-                    {...matchwithmarkets?.data?.match}
-                    score={matchwithmarkets?.data?.match?.score}
+                    {...filters?.data?.match}
+                    score={filters?.data?.match?.score}
                     live={live}
                 />
             }
             <Container className="web-element">
-                {Object.entries(matchwithmarkets?.data?.odds || {}).map(([mkt_id, markets]) => {
+                <div className="col-md-12 position-sticky shadow-lg primary-bg mb-1"
+                     style={{top: "135px", height: "40px", backgroundColor: "#3c5a6c !important"}}>
+                    <Input type="text" className={'form-control h-100  border-0'}
+                           style={{
+                               fontSize: "14px",
+                               backgroundColor: "#3c5a6c",
+                               color: "#FFF"
+                           }}
+                           onInput={(event) => filterMarkets(event.target.value)}
+                           placeholder={'Type to search for market ...'}/>
+                </div>
+                {Object.entries(filters?.data?.odds || {}).map(([mkt_id, markets]) => {
                     return <MarketRow
                         market_id={mkt_id}
                         markets={markets}
                         width={markets.length === 3 ? "33.333%" : "50%"}
-                        match={matchwithmarkets?.data?.match}
+                        match={filters?.data?.match}
                         key={mkt_id}
                         live={live}
                         pdown={pdown}

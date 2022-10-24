@@ -137,7 +137,7 @@ header, li a, .thedate span {
 }
 
 .gn li a {
-    font-family: 'GothamBook';
+    /*font-family: 'GothamBook';*/
 }
 
 .f-list {
@@ -2775,7 +2775,7 @@ nav .mobi {
     font-weight: 500;
     text-transform: uppercase;
     font-weight: normal !important;
-    font-family: arial;
+    /*font-family: arial;*/
 }
 
 .bet-option.warn {

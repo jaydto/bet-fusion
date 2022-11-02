@@ -28,9 +28,13 @@ const Signup = (props) => {
         makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
             setSuccess(status === 200 || status === 201);
             setMessage(response?.success?.message || "");
-            if (values.utm_source !== undefined && values.utm_source === 'eskimi') {
-                console.log("Sending data to eskimi...")
-                window.esk('track', 'Conversion');
+            if (values.utm_source !== undefined) {
+                if (values.utm_source === 'eskimi') {
+                    window.esk('track', 'Conversion');
+                }
+                if (values.utm_source === 'google') {
+                    window.gtag_report_conversion(window.location)
+                }
             }
             clearTrackingData()
             let timer = setInterval(() => {

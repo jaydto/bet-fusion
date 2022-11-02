@@ -458,6 +458,7 @@ const OddButton = (props) => {
             parent_match_id={match.parent_match_id}
             match_id={match.match_id}
             custom={ucn}
+            id={ucn}
             sport_name={match.sport_name}
             sub_type_id={match.sub_type_id}
             special_bet_value={match?.special_bet_value || ''}
@@ -769,12 +770,44 @@ export const JackpotHeader = (props) => {
 
 export const JackpotMatchList = (props) => {
     const {matches, jackpotData} = props;
+    const [selections, setSelections] = useState([])
+
+    const randomize = async () => {
+        matches?.data?.forEach((match, index) => {
+            let teams = [match?.home_team, 'draw', match?.away_team]
+            let team = teams[Math.floor(Math.random() * teams.length)].replaceAll(" ", "")
+            while (selections[index] === team) {
+                team = teams[Math.floor(Math.random() * teams.length)].replaceAll(" ", "")
+            }
+            selections[index] = team
+            let selection = match?.match_id.toString() + match?.sub_type_id.toString() +
+                team.toString()
+            document.querySelectorAll('button[custom="' + selection + '"]').forEach((el) => {
+                el.click()
+            })
+        })
+        setSelections(selections)
+    }
+
 
     return (
         <div className="matches full-width">
 
             <MatchHeaderRow jackpot={true} first_match={matches ? matches[0] : []}/>
-
+            <div className={'row d-flex flex-row justify-content-between shadow-lg'}>
+                <div className="col-md-12 text-center shadow-lg">
+                    <div className={'text-white col'}>
+                        Wekelea Jackpot Bet bila worries na Nare Auto pick.
+                    </div>
+                    <div className={'col-md-12 text-center'}>
+                        <button className={'btn btn-square btn-lg text-danger place-bet-btn bold mb-1'}
+                                style={{fontWeight: "bold", fontSize: "20px"}}
+                                onClick={() => randomize()}>
+                            <FontAwesomeIcon icon={faFire}/> Nare Auto Pick
+                        </button>
+                    </div>
+                </div>
+            </div>
             <Container className="web-element">
                 {matches && Object.entries(matches?.data).map(([key, match]) => (
                     <MatchRow match={match} jackpot key={key}/>

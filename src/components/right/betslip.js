@@ -205,7 +205,7 @@ const BetSlip = (props) => {
                     {Object.entries(betslipsData || {}).map(([match_id, slip]) => {
                         let odd = slip.odd_value;
                         let no_odd_bg = odd === 1 ? '#f29f7a' : '';
-                        console.log(slip)
+                        // console.log(slip)
                         return (
                             <li className={`bet-option hide-on-affix ${slip?.disable ? 'warn' : ''}`} key={match_id}
                                 style={{background: no_odd_bg}}>

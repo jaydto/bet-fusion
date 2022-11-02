@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {ProSidebar, Menu, MenuItem, SubMenu, SidebarHeader, SidebarContent} from 'react-pro-sidebar';
+import {Menu, MenuItem, ProSidebar, SidebarContent, SidebarHeader, SubMenu} from 'react-pro-sidebar';
 import 'react-pro-sidebar/dist/css/styles.css';
 import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
 import makeRequest from "../../utils/fetch-request";
@@ -73,8 +73,7 @@ const Sidebar = (props) => {
     }
 
     const getActiveSport = (matchId) => {
-        return (Number(sport) === Number(matchId))
-
+        return (Number(sport || 79) === Number(matchId))
     }
     useEffect(() => {
         updateDimensions()

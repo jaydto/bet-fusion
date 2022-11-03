@@ -52,6 +52,18 @@
     </script>
     <script src="https://dga.pragmaticplaylive.net/dgaAPI.js"></script>
     <script src="https://client.pragmaticplaylive.net/desktop/assets/api/fullscreenApi.js"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10991240939"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'AW-10991240939');
+    </script>
     <!--End of Tawk.to Script-->
     <!-- Eskimi DSP Pixel Code -->
     <script>
@@ -71,6 +83,20 @@
             p.parentNode.insertBefore(s, p)
         }(window, document, 'script', 'https://dsp-media.eskimi.com/assets/js/e/gtr.min.js?_=0.0.0.3');
         esk('init', '26048');
+    </script>
+    <script>
+        function gtag_report_conversion(url) {
+            var callback = function () {
+                if (typeof (url) != 'undefined') {
+                    window.location = url;
+                }
+            };
+            gtag('event', 'conversion', {
+                'send_to': 'AW-10991240939/GdurCO6x5IAYEOuNhPko',
+                'event_callback': callback
+            });
+            return false;
+        }
     </script>
     <!-- End Eskimi DSP Pixel Code -->
 </head>

@@ -783,7 +783,9 @@ export const JackpotMatchList = (props) => {
             let selection = match?.match_id.toString() + match?.sub_type_id.toString() +
                 team.toString()
             document.querySelectorAll('button[custom="' + selection + '"]').forEach((el) => {
-                el.click()
+                if (!el.classList.contains('picked')) {
+                    el.click()
+                }
             })
         })
         setSelections(selections)

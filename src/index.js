@@ -14,6 +14,7 @@ import './assets/css/application.css';
 import './assets/css/tolkits.css';
 import './assets/css/sidebar-menu.css';
 import './index.css';
+import './assets/css/sidebar-menu.css';
 import Store from './context/store';
 import ReactGA from 'react-ga4';
 

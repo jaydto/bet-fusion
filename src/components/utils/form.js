@@ -196,7 +196,7 @@ export const DatabaeSelectField = (props) => {
                         if(label_text){
                             label_text += " - ";
                         } 
-                        label_text += record.[col] ;
+                        label_text += record[col] ;
                     });
                     staff_options["label"] = label_text;         
                     options = [...options, staff_options]

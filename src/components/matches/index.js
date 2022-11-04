@@ -182,7 +182,7 @@ const MatchHeaderRow = (props) => {
                 <div className={'col d-flex d-md-none d-sm-none d-lg-flex flex-row justify-content-between space-bets'}>
                     {threeWay &&
                         <div className="d-flex flex-row ">
-                            <div className="d-flex flex-column text-center text-white fit-ipad">
+                            <div className="d-flex flex-column text-center text-white fit-ipad ">
                                 <div className={'bold'}>
                                     3 WAY
                                 </div>
@@ -206,10 +206,10 @@ const MatchHeaderRow = (props) => {
                                         {extra_market.name}
                                     </span>
                                         <div className={'c-btn-group m-lg-1 mt-sm-1 justify-content-center'}>
-                                            <a className="c-btn-header mx-2">
+                                            <a className="c-btn-header mx-2 ">
                                                 {(extra_market.extra_markets_display[0])}
                                             </a>
-                                            <a className="c-btn-header mx-2">
+                                            <a className="c-btn-header mx-2 ">
                                                 {(extra_market.extra_markets_display[1])}
                                             </a>
                                             {extra_market?.extra_market_cols > 2 &&
@@ -468,7 +468,7 @@ const OddButton = (props) => {
     return (
         <button
             ref={ref}
-            className={`home-team ${match.match_id} ${ucn} ${picked} c-btn`}
+            className={`home-team  ${match.match_id} ${ucn} ${picked} c-btn`}
             home_team={match.home_team}
             odd_type={match?.name || match?.market_name || "1X2"}
             bet_type={live ? 1 : 0}
@@ -699,7 +699,7 @@ const MatchRow = (props) => {
                         <div className="c-btn-group align-self-center flex-sm-column d-sm-flex d-md-flex d-lg-none  ">
                             {threeWay &&
                                 <div className="d-flex flex-row ">
-                                    <div className="d-flex flex-column text-center text-white fit-ipad">
+                                    <div className="d-flex flex-column text-center text-white fit-ipad w-100">
                                         <div className="font-weight-bold">
                                             <h4 className="font-weight-bold"> 3 WAY</h4>
                                         </div>

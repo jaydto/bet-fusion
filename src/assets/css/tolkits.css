@@ -6950,7 +6950,7 @@ ul.sport {
 }
 
 .fit-ipad {
-    width: -webkit-fill-available;
+    /*width: -webkit-fill-available;*/
     margin-bottom: 0px;
     margin-left: -5px;
     overflow-x: hidden;
@@ -7725,7 +7725,7 @@ ul.sport {
 
     }
 
-/* } */
+ }
 
 @media (min-width: 992px), (max-width: 1140px) {
  }
@@ -7822,7 +7822,7 @@ ul.sport {
 @media (min-width: 1260px) {
 
     .c-btn-group > .c-btn {
-        width: 50px !important;
+        width: 50px;
     }
 
     .by {
@@ -8818,7 +8818,7 @@ ul.sport {
 @media (max-width: 1278px ) {
 
     .c-btn-group > .c-btn {
-        min-width: 40px !important;
+        min-width: 40px ;
         transition: min-width 0.01s ease-in-out;
     }
 
@@ -14506,8 +14506,8 @@ fieldset[disabled] .tw.active {
 
 img[data-action="zoom"] {
     cursor: pointer;
-    cursor: -webkit-zoom-in;
-    cursor: -moz-zoom-in;
+    /*cursor: -webkit-zoom-in;*/
+    /*cursor: -moz-zoom-in;*/
 }
 
 .zoom-img,
@@ -14519,8 +14519,8 @@ img[data-action="zoom"] {
 
 img.zoom-img {
     cursor: pointer;
-    cursor: -webkit-zoom-out;
-    cursor: -moz-zoom-out;
+    /*cursor: -webkit-zoom-out;*/
+    /*cursor: -moz-zoom-out;*/
 }
 
 .zoom-overlay {
@@ -15759,7 +15759,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     border-radius: 0;
     border: none;
     border-right: 1px solid #16202c;
-    width: 50px !important;
+    width: 50px ;
     height: 40px !important;
     line-height: 30px;
     /*background-color: black;*/
@@ -16146,4 +16146,4 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
         transform: translate(-20px, -100px) rotate(180deg);
         opacity: 0;
     }
-}}
+}

@@ -225,7 +225,7 @@ const MatchHeaderRow = (props) => {
                     <div
                         className="bet-fix events-odd pad undefined align-items-md-start align-items-lg-center more-markets-container m-lg-2 col-3 d-flex h-100 d-flex align-self-center justify-content-md-start justify-content-lg-center
                               ">
-                        <LazyLoadImage src={myGif} className={'fire mb-2'}/>
+                        <LazyLoadImage src={myGif} className={'fire '}/>
                     </div>
                 </div>
 
@@ -859,7 +859,7 @@ export const MarketList = (props) => {
                     live={live}
                 />
             }
-            <Container className="web-element">
+            <Row className="web-element">
                 <div className="col-md-12 position-sticky shadow-lg primary-bg mb-1"
                      style={{top: "135px", height: "40px", backgroundColor: "#3c5a6c !important"}}>
                     <Input type="text" className={'form-control h-100  border-0'}
@@ -958,7 +958,7 @@ export const JackpotMatchList = (props) => {
                     </div>
                 </div>
             </div>
-            <Container className="web-element">
+            <Row className="web-element">
                 {matches && Object.entries(matches?.data).map(([key, match]) => (
                     <MatchRow match={match} jackpot key={key}/>
                 ))
@@ -981,7 +981,7 @@ const MatchList = (props) => {
 
             {matches && <MatchHeaderRow live={live} first_match={matches ? matches[0] : {}}/>}
 
-            <Container className="web-element">
+            <Row className="web-element">
                 {matches &&
                     Object.entries(matches).map(([key, match]) => (
                         <MatchRow match={match} key={key} live={live} pdown={pdown} three_way={three_way}/>

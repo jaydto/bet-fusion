@@ -736,7 +736,7 @@ const MatchRow = (props) => {
                             }
                         </div>
                     </div>
-                    <div className={"d-flex separations"}>
+                    <div className={"d-lg-none d-md-flex d-sm-flex separations "}>
                         {!jackpot && <>
                             {Object.entries(match?.extra_odds || {}).map(([marketName, odds], index) => (
                                 marketName !== '' && (
@@ -802,6 +802,29 @@ const MatchRow = (props) => {
                         }
                     </div>
 
+                    {!jackpot && <>
+                        {Object.entries(match?.extra_odds || {}).map(([marketName, odds], index) => (
+                            marketName !== '' && (
+                                <div className={`c-btn-group m-lg-1 align-self-center d-lg-flex d-md-none d-sm-none`}>
+                                    {
+                                        Object.entries(odds || {}).map(([odd_key, odd_data]) => {
+                                            return odd_data?.odd_active == 1 && odd_data.market_active == 1 ? (<OddButton
+                                                match={getUpdatedMatchFromOdds({match, marketName, odd_key, odd_data})}
+                                                key={odd_key} live={live}/>) : (<EmptyTextRow odd_key={match?.odd_key}/>)
+                                        })
+                                    }
+                                </div>
+                            )
+                        ))
+                        }
+                        {!live && loops?.map(() => (
+                            <div className={`c-btn-group align-self-center`}>
+                                <EmptyTextRow odd_key={match?.odd_key}/>
+                                <EmptyTextRow odd_key={match?.odd_key}/>
+                            </div>
+                        ))}
+                    </>
+                    }
 
                     <div className={'d-md-none d-sm-none d-lg-flex'}>
 

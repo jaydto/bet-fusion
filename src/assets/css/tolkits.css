@@ -14731,7 +14731,7 @@ img.zoom-img {
 
 @media (min-width: 768px) {
     .anw .nav > li > a {
-        padding-bottom: 0 15px 23px;
+        padding-bottom: 23px;
     }
 }
 
@@ -16111,4 +16111,4 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
         transform: translate(-20px, -100px) rotate(180deg);
         opacity: 0;
     }
-}
+}}

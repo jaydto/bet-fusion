@@ -170,7 +170,8 @@ const MatchHeaderRow = (props) => {
         <Row className="full-mobile sticky-top sticky-responsive">
             <div className="top-matches d-flex position-sticky sticky-top shadow-lg"
                  style={{opacity: "1", top: "100px"}}>
-                <div className="col-sm-2 col-xs-12 pad left-text">
+                <div className={"size-info  d-flex col-xs-12 pad left-text"}>
+                <div className="col pad left-text d-flex">
                     <div className="align-self-center col">
                         <h3 className="main-heading-1 text-white">
                             {live && <span className="live-header">LIVE </span>}
@@ -178,7 +179,9 @@ const MatchHeaderRow = (props) => {
                         </h3>
                     </div>
                 </div>
-                <div className={'col-2 col-xs-12 match-detail-container'}></div>
+
+                <div className={'col match-detail-container'}></div>
+                </div>
                 <div className={'col d-flex d-md-none d-sm-none d-lg-flex flex-row justify-content-between space-bets'}>
                     {threeWay &&
                         <div className="d-flex flex-row ">
@@ -196,7 +199,7 @@ const MatchHeaderRow = (props) => {
 
                             </div>
                         </div>}
-                    <div className={"d-flex separations"}>
+                    <div className={" separations d-sm-flex d-md-flex d-lg-none"}>
                         {!live && !jackpot && extraMarketDisplays.length > 0 &&
                             extraMarketDisplays?.map((extra_market) => (
 
@@ -221,6 +224,30 @@ const MatchHeaderRow = (props) => {
                                 </div>
                             ))}
                     </div>
+
+                    {!live && !jackpot && extraMarketDisplays.length > 0 && (
+                        <>
+                            {extraMarketDisplays?.map((extra_market) => (
+                                <div className={'d-lg-flex d-md-none d-sm-none flex-column text-white'}>
+                                    <span className={'small text-center text-uppercase bold'}>
+                                        {extra_market.name}
+                                    </span>
+                                    <div className={'c-btn-group'}>
+                                        <a className="c-btn-header">
+                                            {(extra_market.extra_markets_display[0])}
+                                        </a>
+                                        <a className="c-btn-header">
+                                            {(extra_market.extra_markets_display[1])}
+                                        </a>
+                                        {extra_market?.extra_market_cols > 2 &&
+                                            <a className={`c-btn-header`}>
+                                                {(extra_market.extra_markets_display[2])}
+                                            </a>}
+                                    </div>
+                                </div>
+                            ))}
+                        </>
+                    )}
 
                     <div
                         className="bet-fix events-odd pad undefined align-items-md-start align-items-lg-center more-markets-container m-lg-2 col-3 d-flex h-100 d-flex align-self-center justify-content-md-start justify-content-lg-center

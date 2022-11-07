@@ -11397,7 +11397,7 @@ button.close {
     }
 }
 
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 769px) and (max-width: 991px) {
     .change-display {
         flex-wrap: nowrap;
         font-size: 11px;
@@ -11595,7 +11595,7 @@ button.close {
     height: 100vh;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
     .live-color{
         margin-left: 2px;
         background: red;

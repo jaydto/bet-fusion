@@ -71,7 +71,7 @@ const HeaderNav = (props) => {
                     <li className={pathname === '/' ? "active" : ''} onClick={() => gaEventTracker('Visit Homepage')}>
                         <a className="cg fm ox anl url-link not-selectable " href="/" title="Home">Home</a>
                     </li>
-                    <li onClick={() => gaEventTracker('Visit Live Page')}>
+                    <li onClick={() => gaEventTracker('Visit Live Page')} className={"live-color"}>
                         <a className={`g url-link live-game ${pathname === '/live' ? 'active' : ''}`} href="/live"
                            title="Live">Live</a>
                     </li>

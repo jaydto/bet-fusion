@@ -182,6 +182,7 @@ const MatchHeaderRow = (props) => {
 
                 <div className={'col match-detail-container'}></div>
                 </div>
+                {/*match heading*/}
                 <div className={'col d-flex d-md-none d-sm-none d-lg-flex flex-row justify-content-between space-bets'}>
                     {threeWay &&
                         <div className="d-flex flex-row ">
@@ -199,6 +200,8 @@ const MatchHeaderRow = (props) => {
 
                             </div>
                         </div>}
+                    {/*conditional render of different views for mobile and desktop*/}
+                    {/*mobile*/}
                     <div className={" separations d-sm-flex d-md-flex d-lg-none"}>
                         {!live && !jackpot && extraMarketDisplays.length > 0 &&
                             extraMarketDisplays?.map((extra_market) => (
@@ -211,9 +214,11 @@ const MatchHeaderRow = (props) => {
                                         <div className={'c-btn-group m-lg-1 mt-sm-1 justify-content-center'}>
                                             <a className="c-btn-header mx-2 ">
                                                 {(extra_market.extra_markets_display[0])}
+
                                             </a>
                                             <a className="c-btn-header mx-2 ">
                                                 {(extra_market.extra_markets_display[1])}
+
                                             </a>
                                             {extra_market?.extra_market_cols > 2 &&
                                                 <a className={`c-btn-header`}>
@@ -224,7 +229,7 @@ const MatchHeaderRow = (props) => {
                                 </div>
                             ))}
                     </div>
-
+                    {/*desktop*/}
                     {!live && !jackpot && extraMarketDisplays.length > 0 && (
                         <>
                             {extraMarketDisplays?.map((extra_market) => (
@@ -255,7 +260,6 @@ const MatchHeaderRow = (props) => {
                         <LazyLoadImage src={myGif} className={'fire '}/>
                     </div>
                 </div>
-
 
             </div>
         </Row>
@@ -763,6 +767,7 @@ const MatchRow = (props) => {
                             }
                         </div>
                     </div>
+                    {/*mobile  display and odds*/}
                     <div className={"d-lg-none d-md-flex d-sm-flex separations "}>
                         {!jackpot && <>
                             {Object.entries(match?.extra_odds || {}).map(([marketName, odds], index) => (
@@ -815,20 +820,23 @@ const MatchRow = (props) => {
                                 )
                             ))
                             }
-                            {!live && loops?.map(() => (
-                                <div className={'d-flex'}>
-                                    <div className="c-btn-group align-self-center d-none">
-                                    </div>
-                                    <div className={`c-btn-group align-self-center`}>
-                                        <EmptyTextRow odd_key={match?.odd_key}/>
-                                        <EmptyTextRow odd_key={match?.odd_key}/>
-                                    </div>
-                                </div>
-                            ))}
+
+                                {/*{!live && loops?.map(() => (*/}
+                                {/*    <div className='d-flex w-100 justify-content-center align-items-baseline'>*/}
+                                {/*        <div className="c-btn-group align-self-center d-none">*/}
+                                {/*        </div>*/}
+                                {/*        <div className={`c-btn-group align-self-center`}>*/}
+                                {/*            <EmptyTextRow odd_key={match?.odd_key}/>*/}
+                                {/*            <EmptyTextRow odd_key={match?.odd_key}/>*/}
+                                {/*        </div>*/}
+                                {/*    </div>*/}
+                                {/*))}*/}
+
                         </>
                         }
                     </div>
-
+                    {/*desktop display of odds*/}
+                    <div className={"d-lg-flex d-md-none d-sm-none "}>
                     {!jackpot && <>
                         {Object.entries(match?.extra_odds || {}).map(([marketName, odds], index) => (
                             marketName !== '' && (
@@ -844,14 +852,17 @@ const MatchRow = (props) => {
                             )
                         ))
                         }
+
                         {!live && loops?.map(() => (
                             <div className={`c-btn-group align-self-center`}>
                                 <EmptyTextRow odd_key={match?.odd_key}/>
                                 <EmptyTextRow odd_key={match?.odd_key}/>
                             </div>
                         ))}
+
                     </>
                     }
+                    </div>
 
                     <div className={'d-md-none d-sm-none d-lg-flex'}>
 

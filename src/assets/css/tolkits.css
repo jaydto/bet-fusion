@@ -6922,11 +6922,13 @@ ul.sport {
 }
 
 @media (max-width: 1258px) {
+    /*.c-btn-group > .c-btn {*/
+    /*width: 35px!importnat;*/
+    /*}*/
 
-
-    .c-btn-header {
-        min-width: 35px !important;
-    }
+    /*.c-btn-header {*/
+    /*    min-width: 35px !important;*/
+    /*}*/
 
     .match-detail-container {
         width: 19% !important;
@@ -7634,6 +7636,7 @@ ul.sport {
 }
 
 @media (max-width: 991px) {
+
     .border-info{
         border: 1px solid black;
     }
@@ -7654,7 +7657,7 @@ ul.sport {
 
     .sticky-responsive {
         position: sticky;
-        top: 120px !important
+        top: 0px;
     }
 
     .bet-fix {
@@ -7689,7 +7692,17 @@ ul.sport {
 
  }
 
-@media (min-width: 992px), (max-width: 1140px) {
+@media (min-width: 992px) and (max-width: 1014px) {
+    .change-display {
+        flex-wrap: nowrap;
+        font-size: 11px;
+        display: grid !important;
+        /*code needed to commented out after commenting out casino option*/
+        /*grid-template-columns: [col0]0px[col1]60px[col2]70px[col3]100px[col4]80px[col5]120px[col6]120px[col7]140px[col8]120px[col9]90px[col10]70px[col11]108px[col-end];*/
+        grid-template-columns: [col0]0px[col1]60px[col2]70px[col3]100px[col4]80px[col5]120px[col7]140px[col8]120px[col9]100px[col10]120px[col11]130px[col12]0[col-end];
+
+        overflow: auto;
+    }
  }
 @media (min-width: 992px) and (max-width: 1160px) {
     .small{
@@ -7700,10 +7713,10 @@ ul.sport {
         width: 35px;
         height: 24px;
     }
-    .bet-fix {
-        flex-direction: column !important;
-        /*margin-left:auto!important;*/
-    }
+    /*.bet-fix {*/
+    /*    flex-direction: row !important;*/
+    /*    !*margin-left:auto!important;*!*/
+    /*}*/
 
     .btn-spacing {
         word-spacing: 1px;
@@ -8755,18 +8768,6 @@ ul.sport {
 }
 
 @media (max-width: 1014px) {
-
-
-    .change-display {
-        flex-wrap: nowrap;
-        font-size: 11px;
-        display: grid !important;
-        /*code needed to commented out after commenting out casino option*/
-        /*grid-template-columns: [col0]0px[col1]60px[col2]70px[col3]100px[col4]80px[col5]120px[col6]120px[col7]140px[col8]120px[col9]90px[col10]70px[col11]108px[col-end];*/
-        grid-template-columns: [col0]0px[col1]60px[col2]70px[col3]100px[col4]80px[col5]120px[col7]140px[col8]120px[col9]100px[col10]120px[col11]130px[col12]0[col-end];
-
-        overflow: auto;
-    }
 
     .amt {
         margin-top: 110px;
@@ -10697,8 +10698,8 @@ button.close {
 /*}*/
 @media (min-width: 992px) {
 
-    .c-btn-group > .c-btn {
-        width: 50px!important;
+    .c-btn-header{
+        width: 50px;
     }
     .size-info {
         width: 34%;
@@ -11397,6 +11398,16 @@ button.close {
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
+    .change-display {
+        flex-wrap: nowrap;
+        font-size: 11px;
+        display: grid !important;
+        /*code needed to commented out after commenting out casino option*/
+        /*grid-template-columns: [col0]0px[col1]60px[col2]70px[col3]100px[col4]80px[col5]120px[col6]120px[col7]140px[col8]120px[col9]90px[col10]70px[col11]108px[col-end];*/
+        grid-template-columns: [col0]0px[col1]60px[col2]70px[col3]100px[col4]80px[col5]120px[col7]140px[col8]120px[col9]100px[col10]120px[col11]130px[col12]0[col-end];
+
+        overflow: auto;
+    }
     .sticky-responsive{
         top: 107px!important
     }
@@ -11452,6 +11463,54 @@ button.close {
     th.se,
     td.se {
         display: table-cell !important;
+    }
+}
+@media (max-width: 1259px) {
+    .to-none{
+        display: none;
+    }
+    .c-btn-group {
+        width: 100%;
+        margin-left: 0 !important;
+    }
+    .to-tabview{
+        display: flex !important;
+    }
+    .size-info{
+        width:100%!important;
+    }
+    .to-deskview{
+        display: none!important;
+    }
+    .to-block{
+        display: block!important;
+    }
+    .to-flex-1{
+        flex-direction: column;
+    }
+    .to-flex{
+        flex-direction: row;
+    }
+    .space-bets {
+        flex-direction: column !important;}
+
+}
+
+@media (min-width: 1260px){
+    .to-tabview{
+        display: none!important;
+    }
+    .c-btn-group> .c-btn {
+        width: 50px!important;
+    }
+    .to-flex-1{
+        flex-direction: row;
+    }
+    .to-deskview{
+        display: flex!important;
+    }
+    .to-flex{
+        flex-direction: column;
     }
 }
 
@@ -11517,8 +11576,21 @@ button.close {
     height: 100vh;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
+    .live-color{
+        margin-left: 2px;
+        background: red;
+    }
 
+    .change-display {
+        flex-wrap: nowrap;
+        font-size: 11px;
+        display: grid !important;
+        /*code needed to commented out after commenting out casino option*/
+        /*grid-template-columns: [col0]0px[col1]60px[col2]70px[col3]100px[col4]80px[col5]120px[col6]120px[col7]140px[col8]120px[col9]90px[col10]70px[col11]108px[col-end];*/
+        grid-template-columns: [col30]0px[col1]60px[col2]70px[col3]100px[col4]80px[col5]120px[col7]140px[col8]120px[col9]120px[col10]130px[col11]150px[col12]0[col-end];
+        overflow: auto;
+    }
     table.bdd {
         font-size: 10px;
     }

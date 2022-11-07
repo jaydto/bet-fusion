@@ -15,7 +15,7 @@ const ProfileMenu = (props) => {
                         <a href="/redeem-points" className={'link-info text-info'} title={'Click to Redeem'}>
                             <span
                                 className="font-tbt rounded btn-sm outline-info">
-                                Nare Points &nbsp;
+                                <span className={"to-none"}>Nare</span> Points &nbsp;
                                 {formatNumber(user?.points_balance) || 0}
                             </span>
                         </a>

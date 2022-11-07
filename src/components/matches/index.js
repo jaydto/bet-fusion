@@ -106,7 +106,6 @@ const marketChoice = () => {
 
     return markets
 
-
 }
 
 
@@ -183,7 +182,7 @@ const MatchHeaderRow = (props) => {
                 <div className={'col match-detail-container'}></div>
                 </div>
                 {/*match heading*/}
-                <div className={'col d-flex d-md-none d-sm-none d-lg-flex flex-row justify-content-between space-bets'}>
+                <div className={'col  to-deskview flex-row justify-content-between space-bets'}>
                     {threeWay &&
                         <div className="d-flex flex-row ">
                             <div className="d-flex flex-column text-center text-white fit-ipad ">
@@ -202,7 +201,7 @@ const MatchHeaderRow = (props) => {
                         </div>}
                     {/*conditional render of different views for mobile and desktop*/}
                     {/*mobile*/}
-                    <div className={" separations d-sm-flex d-md-flex d-lg-none"}>
+                    <div className={" separations to-tabview"}>
                         {!live && !jackpot && extraMarketDisplays.length > 0 &&
                             extraMarketDisplays?.map((extra_market) => (
 
@@ -233,7 +232,7 @@ const MatchHeaderRow = (props) => {
                     {!live && !jackpot && extraMarketDisplays.length > 0 && (
                         <>
                             {extraMarketDisplays?.map((extra_market) => (
-                                <div className={'d-lg-flex d-md-none d-sm-none flex-column text-white'}>
+                                <div className={'to-deskview flex-column text-white'}>
                                     <span className={'small text-center text-uppercase bold'}>
                                         {extra_market.name}
                                     </span>
@@ -679,7 +678,7 @@ const MatchRow = (props) => {
     return (
         <div className="top-matches d-flex flex-sm-column flex-lg-row ">
             <div
-                className="d-lg-flex d-md-block d-sm-block  mx-sm-4 mx-md-4 mx-lg-0 px-sm-4 px-md-4 px-lg-0 py-sm-4 py-md-4 py-lg-0 container-size ">
+                className="to-deskview to-block  mx-sm-4 mx-md-4 mx-lg-0 px-sm-4 px-md-4 px-lg-0 py-sm-4 py-md-4 py-lg-0 container-size ">
                 <div className="size-info  d-flex col-xs-12 pad left-text ">
                     {live &&
                         <>
@@ -700,7 +699,7 @@ const MatchRow = (props) => {
                                 <div className="compt-detail overflow-ellipsis">
                                     <small>{match.category} | {match.competition_name}</small>
                                 </div>
-                                <div className="compt-teams d-flex flex-lg-column flex-sm-row">
+                                <div className="compt-teams d-flex to-flex">
                                     <div className={'bold'}>
                                         {live && (match?.match_status !== 'ended') && <ColoredCircle color="red"/>}
                                         {match.home_team}
@@ -717,17 +716,17 @@ const MatchRow = (props) => {
                             </div>
                         </a>
                     </div>
-                    <div className={'d-md-flex d-lg-none'}>
+                    <div className={'to-tabview'}>
                         {!pdown && !jackpot &&
                             <SideBets match={match} live={live} style={{d: "inline"}}/>}
                     </div>
 
 
                 </div>
-                <hr className={"d-md-block d-sm-block d-lg-none m-sm-1 m-md-1 m-lg-0"}/>
+                <hr className={"to-block m-sm-1 m-md-1 m-lg-0"}/>
                 <div className="col d-flex  flex-row justify-content-between space-bets card-small">
-                    <div className={'d-flex flex-md-column flex-sm-column  flex-lg-row'}>
-                        <div className="c-btn-group align-self-center flex-sm-column d-sm-flex d-md-flex d-lg-none  ">
+                    <div className={'d-flex to-flex-1'}>
+                        <div className="c-btn-group align-self-center to-flex-1 to-tabview  ">
                             {threeWay &&
                                 <div className="d-flex flex-row ">
                                     <div className="d-flex flex-column text-center text-white fit-ipad w-100">
@@ -768,19 +767,19 @@ const MatchRow = (props) => {
                         </div>
                     </div>
                     {/*mobile  display and odds*/}
-                    <div className={"d-lg-none d-md-flex d-sm-flex separations "}>
+                    <div className={"to-tabview separations "}>
                         {!jackpot && <>
                             {Object.entries(match?.extra_odds || {}).map(([marketName, odds], index) => (
                                 marketName !== '' && (
                                     <div
-                                        className={'d-flex flex-md-column flex-sm-column flex-lg-row my-lg-0 my-md-2 my-sm-2  w-100'}>
+                                        className={'d-flex to-flex-1 my-lg-0 my-md-2 my-sm-2  w-100'}>
                                         <div
-                                            className="c-btn-group align-self-center d-lg-none flex-md-column text-center  flex-sm-row text-center d-md-flex d-sm-flex">
+                                            className="c-btn-group align-self-center  flex-md-column text-center  flex-sm-row text-center to-tabview">
                                             <h4>{(marketName)}</h4>
 
                                         </div>
                                         <div
-                                            className={`c-btn-group m-lg-1 align-self-center d-lg-flex d-sm-flex d-md-flex flex-sm-row flex-md-row flex-lg-row `}>
+                                            className={`c-btn-group m-lg-1 align-self-center to-tabview flex-sm-row flex-md-row flex-lg-row `}>
 
                                             {
                                                 Object.entries(odds || {}).map(([odd_key, odd_data]) =>
@@ -788,7 +787,7 @@ const MatchRow = (props) => {
                                                         <div
                                                             className={"d-flex flex-column w-100 px-sm-1 px-md-1 px-lg-1 "}>
                                                             <div
-                                                                className=" c-btn-header text-white w-100 d-sm-flex d-md-flex d-lg-none flex-column px-sm-1 px-lg-0 px-md-1  ">
+                                                                className=" c-btn-header text-white w-100 to-tabview flex-column px-sm-1 px-lg-0 px-md-1  ">
                                                                 {(odd_key)}
                                                             </div>
                                                             <div className=" c-btn-group align-self-center">
@@ -836,11 +835,11 @@ const MatchRow = (props) => {
                         }
                     </div>
                     {/*desktop display of odds*/}
-                    <div className={"d-lg-flex d-md-none d-sm-none "}>
+
                     {!jackpot && <>
                         {Object.entries(match?.extra_odds || {}).map(([marketName, odds], index) => (
                             marketName !== '' && (
-                                <div className={`c-btn-group m-lg-1 align-self-center d-lg-flex d-md-none d-sm-none`}>
+                                <div className={`c-btn-group m-lg-1 align-self-center to-deskview`}>
                                     {
                                         Object.entries(odds || {}).map(([odd_key, odd_data]) => {
                                             return odd_data?.odd_active == 1 && odd_data.market_active == 1 ? (<OddButton
@@ -854,7 +853,7 @@ const MatchRow = (props) => {
                         }
 
                         {!live && loops?.map(() => (
-                            <div className={`c-btn-group align-self-center`}>
+                            <div className={`c-btn-group align-self-center to-deskview`}>
                                 <EmptyTextRow odd_key={match?.odd_key}/>
                                 <EmptyTextRow odd_key={match?.odd_key}/>
                             </div>
@@ -862,17 +861,15 @@ const MatchRow = (props) => {
 
                     </>
                     }
-                    </div>
-
-                    <div className={'d-md-none d-sm-none d-lg-flex'}>
+                    <div className={'to-deskview'}>
 
                         {!pdown && !jackpot &&
                             <SideBets match={match} live={live} style={{d: "inline"}}/>}
                     </div>
+                    </div>
+
+
                 </div>
-            </div>
-
-
         </div>
     )
 

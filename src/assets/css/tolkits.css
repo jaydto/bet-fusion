@@ -11466,6 +11466,25 @@ button.close {
     }
 }
 @media (max-width: 1259px) {
+    .card-small {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-clip: border-box;
+        border: 1px solid rgba(0, 0, 0, .125);
+        border-radius: 10px;
+        /*transform: translate(1px, 2px);*/
+    }
+    .container-size {
+        width: 95%!important;
+        padding-right: 1.5rem!important;
+        padding-left: 1.5rem!important;
+        margin-right: 1.5rem!important;
+        margin-left: 1.5rem!important;
+
+    }
     .to-none{
         display: none;
     }

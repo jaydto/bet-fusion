@@ -7269,9 +7269,6 @@ ul.sport {
 }
 
 @media (min-width: 979px) {
-    .change-display {
-        /*display:contents!important;*/
-    }
 
     .fix-print {
         padding: 8px 3px 3px 2px !important;
@@ -8801,7 +8798,7 @@ ul.sport {
         display: grid !important;
         /*code needed to commented out after commenting out casino option*/
         /*grid-template-columns: [col0]0px[col1]60px[col2]70px[col3]100px[col4]80px[col5]120px[col6]120px[col7]140px[col8]120px[col9]90px[col10]70px[col11]108px[col-end];*/
-        grid-template-columns: [col0]0px[col1]60px[col2]70px[col3]100px[col4]80px[col5]150px[col7]140px[col8]120px[col9]100px[col10]120px[col11]0px[col12]0[col-end];
+        grid-template-columns: [col0]0px[col1]60px[col2]70px[col3]100px[col4]80px[col5]120px[col7]140px[col8]120px[col9]100px[col10]120px[col11]130px[col12]0[col-end];
 
         overflow: auto;
     }

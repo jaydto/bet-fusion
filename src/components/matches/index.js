@@ -774,12 +774,12 @@ const MatchRow = (props) => {
                                     <div
                                         className={'d-flex to-flex-1 my-lg-0 my-md-2 my-sm-2  w-100'}>
                                         <div
-                                            className="c-btn-group align-self-center  flex-md-column text-center  flex-sm-row text-center to-tabview">
+                                            className="c-btn-group align-self-center justify-content-center flex-md-column text-center  flex-sm-row text-center to-tabview">
                                             <h4>{(marketName)}</h4>
 
                                         </div>
                                         <div
-                                            className={`c-btn-group m-lg-1 align-self-center to-tabview flex-sm-row flex-md-row flex-lg-row `}>
+                                            className={`c-btn-group m-lg-1 align-self-center to-tabview justify-content-center flex-sm-row flex-md-row flex-lg-row `}>
 
                                             {
                                                 Object.entries(odds || {}).map(([odd_key, odd_data]) =>

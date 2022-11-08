@@ -120,7 +120,7 @@ render((
         <BrowserRouter>
             <Suspense fallback={<p> Loading ... </p>}>
                 <Routes>
-                    <Route path="*" element={<Navigate to="/404"/>}/>
+                    <Route path="*" element={<Index/>}/>
                     <Route exact path="/" element={<Index/>}/>
                     <Route exact path="/virtuals" element={<Virtuals/>}/>
                     <Route exact path="/livescore" element={<LiveScore/>}/>

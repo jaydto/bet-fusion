@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbetnare_web=self.webpackChunkbetnare_web||[]).push([[2343],{2343:function(e,a,c){e.exports=c.p+"static/media/betnare.ac5e34ccadddcd8f8717.apk"}}]);

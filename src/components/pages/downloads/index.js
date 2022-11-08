@@ -49,7 +49,7 @@ export default function MatchesList() {
         {value: '30', label: '30'},
         {value: '50', label: '50'},
         {value: '100', label: '100'},
-        {value: '200', label: '200'},
+        {value: '1500', label: '1500'},
         // {value: '5000', label: '5000'},
     ]
 

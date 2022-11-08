@@ -5,6 +5,7 @@ import BetSlip from './betslip';
 import {faTimes} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {Badge} from "react-bootstrap";
+import MobileMenu from '../mobile-menu';
 
 const AlertMessage = (props) => {
     return (
@@ -74,7 +75,7 @@ const Right = (props) => {
             <div
                 className={`${betSlipMobile ? 'd-none' : 'd-block'} d-block d-md-none fixed-bottom text-center text-white bg-info bet-slip-footer-toggle`}
                 onClick={() => setBetSlipMobile(true)}>
-                Click to show BetSlip
+                <MobileMenu/>
             </div>
         </div>
     )

@@ -1,5 +1,5 @@
 import React, {useEffect, useCallback, useState, useContext, useRef} from 'react';
-import {useNavigate} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import {LazyLoadImage} from 'react-lazy-load-image-component';
@@ -13,12 +13,16 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import logo from '../../assets/img/logo.png';
 import {Navbar, Offcanvas} from "react-bootstrap";
 import SidebarMobile from "../sidebar/awesome/SidebarMobile";
+import MobileNav1 from "../mobile-navigation/MobileNav1";
+import MobileProfile from "./MobileProfile";
+import useWindowDimensions from "./Dimensions";
 
 const ProfileMenu = React.lazy(() => import('./profile-menu'));
 const HeaderLogin = React.lazy(() => import('./top-login'));
 const HeaderNav = React.lazy(() => import('./header-nav'));
 
 const Header = (props) => {
+    const { height, width } = useWindowDimensions()
     const [user, setUser] = useState(getFromLocalStorage("user"));
     const [, dispatch] = useContext(Context);
     const history = useNavigate();
@@ -108,23 +112,40 @@ const Header = (props) => {
         <>
             <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark">
                 <Container fluid className={'d-flex justify-content-between mobile-change'}>
-                    <Navbar.Brand href="/" className="e logo align-self-start" title="Betnare">
-                        <div className="col-3">
-                            <div>
-                                <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur" className={"image-size"}/>
-                            </div>
-                        </div>
+                    <Navbar.Brand  className="e logo align-self-start menu-control" title="Betnare">
+                        <Link to={{pathname: "/"}} className="col-3">
+
+
+                                    <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"
+                                                   className={"image-size"}/>
+                        </Link>
+
+                        {width<=514?<div className="col-1 button-toggle space-button" style={{width:"3.1rem"}}>
+                            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"md"}`} className="px-3 py-3" />
+                        </div>:""}
                     </Navbar.Brand>
-                    <div className="col-9 change-size" id="navbar-collapse-main">
-                        <div className="col-md-10 col-sm-12 col-lg-8 right disable-ipad ">
+                    <div className="col-9 change-size " id="navbar-collapse-main">
+                        <div className="col-md-10 col-sm-12 col-lg-8 right disable-ipad to-navcheck justify-content-end">
                             {user ? <ProfileMenu user={user}/> : <HeaderLogin setUser={setUser}/>}
+                        </div>
+                        <div className="col-md-10 col-sm-12 col-lg-8 right to-profilecheck w-100 justify-content-end style-mobile">
+                            {user ? <MobileProfile user={user}/> : ""}
+                            { width>514?<div
+                            className="col-1 button-toggle space-button">
+                            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"md"}`} className="px-3 py-3"/>
+                        </div>:""
+                        }
                         </div>
 
                     </div>
 
-                    <Row className="second-nav ck pc os app-navbar app-header-nav">
+                    <Row className="second-nav ck pc os app-navbar app-header-nav to-navcheck ">
                         <HeaderNav/>
                     </Row>
+                    <Row className={"mobile-only"}>
+                        <MobileNav1/>
+                    </Row>
+
                     <Navbar.Offcanvas
                         style={{width: "100% !important", height: "100%"}}
                         className='off-canvas background-primary p-0'
@@ -144,6 +165,7 @@ const Header = (props) => {
                             <SidebarMobile/>
                         </Offcanvas.Body>
                     </Navbar.Offcanvas>
+
                 </Container>
             </Navbar>
         </>

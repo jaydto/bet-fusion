@@ -23,7 +23,7 @@ const Right = (props) => {
     const [betSlipMobile, setBetSlipMobile] = useState(false)
 
     return (
-        <div className="col-md-3 gn betslip-container sticky-top vh-100 overflow-scroll">
+        <div className="col-md-3 gn betslip-container sticky-top vh-100 overflow-scroll tablet-view">
             <div className="betslip-container d-none d-md-block">
                 {props?.message && <AlertMessage classname={props.classname} message={props.message}/>}
                 <div className="bet-option-list " id=''>
@@ -73,8 +73,7 @@ const Right = (props) => {
                 </div>
             </div>
             <div
-                className={`${betSlipMobile ? 'd-none' : 'd-block'} d-block d-md-none fixed-bottom text-center text-white bg-info bet-slip-footer-toggle`}
-                onClick={() => setBetSlipMobile(true)}>
+                className={`${betSlipMobile ? 'd-none' : 'd-block'} tablet-only fixed-bottom text-center text-white bg-info bet-slip-footer-toggle`}>
                 <MobileMenu/>
             </div>
         </div>

@@ -9,6 +9,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 
 
 export const SportItem = (props) => {
+    console.log("data_sport-item",props);
     const {
         sport, 
         sport_id, 
@@ -80,6 +81,7 @@ export const SportItem = (props) => {
 }
 
 export const CategoryItem = (props) => {
+    console.log("all info",props);
     const {category, sport_id, category_id } = props;
     const {sportid, categoryid, competitionid} = useParams();
     const [activeClass, setActiveClass] = useState('');

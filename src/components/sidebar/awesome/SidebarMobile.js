@@ -53,7 +53,8 @@ const SidebarMobile = (props) => {
                                 </a>
                             </MenuItem>
                         </SubMenu>
-                    ))}
+
+                        ))}
                 </Menu>
             </SidebarContent>
         </ProSidebar>

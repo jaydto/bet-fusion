@@ -162,7 +162,7 @@ const MatchHeaderRow = (props) => {
 
         }
     }, [first_match?.parent_match_id])
-    console.log(extraMarketDisplays)
+    //console.log(extraMarketDisplays)
 
     return (
 
@@ -319,16 +319,16 @@ const SideBets = (props) => {
         <div
             className={`bet-fix events-odd pad ${picked} align-self-center more-markets-container m-lg-2 `}>
             {(match?.side_bets > 1) && <>
-                <a className="side" title={'More Markets'}
-                   href={`/match/${live ? 'live/' : ''}${
-                       live ? match.parent_match_id : match?.match_id}`
-                   }>+{match.side_bets}
-                </a>
                 <a className="side"
                    href={`https://s5.sir.sportradar.com/betnaremts/en/match/${match.parent_match_id}`}
                    target={"_blank"}
                    title={'View Stats'}>
-                    <FontAwesomeIcon icon={faChartLine}/>
+                    <FontAwesomeIcon className={"icon-size"} icon={faChartLine}/>
+                </a>
+                <a className="side small w-auto" title={'More Markets'}
+                   href={`/match/${live ? 'live/' : ''}${
+                       live ? match.parent_match_id : match?.match_id}`
+                   }>+{match.side_bets}&nbsp;<span className={"mobile-only"}> Markets</span>
                 </a>
             </>}
         </div>
@@ -678,7 +678,7 @@ const MatchRow = (props) => {
     return (
         <div className="top-matches d-flex flex-sm-column flex-lg-row ">
             <div
-                className="to-deskview to-block  mx-sm-4 mx-md-4 mx-lg-0 px-sm-4 px-md-4 px-lg-0 py-sm-4 py-md-4 py-lg-0 container-size ">
+                className="to-deskview to-block to-tabview  mx-lg-0 px-sm-4 px-md-4 px-lg-0  py-md-4 py-lg-0 container-size ">
                 <div className="size-info  d-flex col-xs-12 pad left-text ">
                     {live &&
                         <>
@@ -686,14 +686,14 @@ const MatchRow = (props) => {
                             <br/>
                         </>
                     }
-                    <div className="d-flex flex-column px-1 justify-content-sm-center change-date1">
+                    <div className="d-flex flex-column px-1 justify-content-sm-center change-date1 mobile-remove">
                     <span className={'date-size'}>
                         {(live && match?.match_time) ?
                             <>{`${match.match_time}'`}</> : match?.start_time}
                     </span>
                         <>ID: {match?.game_id}</>
                     </div>
-                    <div className="col align-items-center col-xs-12 match-detail-container px-2 change-match">
+                    <div className="col align-items-center col-xs-12 match-detail-container px-2 change-match only-mobile">
                         <a href={`/match/${live ? 'live/' + match.parent_match_id : match.match_id}`}>
                             <div className="d-flex flex-column py-2">
                                 <div className="compt-detail overflow-ellipsis">
@@ -730,11 +730,18 @@ const MatchRow = (props) => {
                             {threeWay &&
                                 <div className="d-flex flex-row ">
                                     <div className="d-flex flex-column text-center text-white fit-ipad w-100">
-                                        <div className="font-weight-bold">
-                                            <h4 className="font-weight-bold"> 3 WAY</h4>
+                                        <div className="font-weight-bold mobile-remove">
+                                            <h4 className="font-weight-bold mobile-remove"> 3 WAY</h4>
                                         </div>
+                                        <div className="d-flex flex-row px-1 justify-content-end change-date1 mobile-only">
+                                            <span className={'date-size px-1 wrapping'}>
+                                                {(live && match?.match_time) ?
+                                                    <>{`${match.match_time}'`}</> : match?.start_time}
+                                            </span>
+                                            <div className={"px-1 wrapping"}>ID: {match?.game_id}</div>
 
-                                        <div className='d-flex justify-content-around'>
+                                        </div>
+                                        <div className='d-flex justify-content-around mobile-remove'>
                                             <a className="c-btn-header text-white w-100">1</a>
                                             <a className="c-btn-header text-white w-100">X</a>
                                             <a className="c-btn-header text-white w-100">2</a>
@@ -764,10 +771,17 @@ const MatchRow = (props) => {
                                     : <EmptyTextRow odd_key={match?.odd_key}/>) :
                                 match?.odds?.away_odd ? <EmptyTextRow odd_key={match?.odd_key}/> : ''
                             }
+
                         </div>
+                        <div className={'to-tabview mobile-only justify-content-end'}>
+                            {!pdown && !jackpot &&
+                                <SideBets match={match} live={live} style={{d: "inline"}}/>}
+                        </div>
+
                     </div>
+
                     {/*mobile  display and odds*/}
-                    <div className={"to-tabview separations "}>
+                    <div className={"to-tabview separations mobile-remove"}>
                         {!jackpot && <>
                             {Object.entries(match?.extra_odds || {}).map(([marketName, odds], index) => (
                                 marketName !== '' && (

@@ -6992,6 +6992,9 @@ ul.sport {
 }
 
 @media (max-width: 574px) {
+    .ss.profile{
+        width: 100%;
+    }
     .mobile-change {
         /*display: grid !important;*/
         /*grid-template-columns: [col-1]100px[col2]50px[col-end];*/
@@ -15480,6 +15483,9 @@ img.zoom-img {
     .to-navcheck{
         display: none;
     }
+    .image-size{
+        width:25% ;
+    }
     .to-profilecheck{
         display:flex;
     }
@@ -15502,6 +15508,12 @@ img.zoom-img {
         flex-direction: column !important;}
 }
 @media (max-width:514px){
+    .mobile-width{
+        width: 100%;
+    }
+    .font-btn{
+        font-size: 14px;
+    }
 .change-size{
     width: 100%;
 }

@@ -7746,7 +7746,7 @@ ul.sport {
 
     .c-btn-group > .c-btn {
         width: 100% !important;
-        height: 20px !important;
+        /*height: 20px !important;*/
     }
 
     .c-btn-header {
@@ -11572,6 +11572,10 @@ button.close {
     }
     .to-profilecheck{
         display:none;
+    }
+    .to-flex-2{
+        display:flex!important;
+        flex-direction:row;
     }
     .size-info{
         width:100%!important;

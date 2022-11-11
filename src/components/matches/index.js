@@ -736,8 +736,7 @@ const MatchRow = (props) => {
                 </div>
                 <hr className={"to-block m-sm-1 m-md-1 m-lg-0"}/>
                 <div className="col d-flex  flex-row justify-content-between space-bets card-small">
-                    <div className={'d-flex to-flex-1'}>
-                        <div className="c-btn-group align-self-center to-flex-1 to-tabview  ">
+                        <div className="c-btn-group align-self-center to-flex-1 to-tabview">
                             {threeWay &&
                                 <div className="d-flex flex-row ">
                                     <div className="d-flex flex-column text-center text-white fit-ipad w-100">
@@ -762,8 +761,8 @@ const MatchRow = (props) => {
                                     </div>
                                 </div>}
                         </div>
-                        <div className="c-btn-group align-self-center">
-                            {
+
+                        <div className="c-btn-group align-self-center checking">{
                                 match?.odds?.home_odd ? (match?.odds?.home_odd && (!pdown && match?.odds?.home_odd && match.odds.home_odd !== 'NaN' &&
                                         match.market_active == 1 && match.odds.home_odd_active == 1)
                                         ? <OddButton match={match} mkt="home_team" live={live} jackpot={jackpot}/>
@@ -784,12 +783,8 @@ const MatchRow = (props) => {
                             }
 
                         </div>
-                        <div className={'to-tabview mobile-only justify-content-end'}>
-                            {!pdown && !jackpot &&
-                                <SideBets match={match} live={live} style={{d: "inline"}}/>}
-                        </div>
 
-                    </div>
+
 
                     {/*mobile  display and odds*/}
                     <div className={"to-profile-check separations"}>
@@ -799,23 +794,31 @@ const MatchRow = (props) => {
                                     <div
                                         className={'d-flex to-flex-1 my-lg-0 my-md-2 my-sm-2  w-100'}>
                                         <div
-                                            className="c-btn-group align-self-center justify-content-center flex-md-column text-center  flex-sm-row text-center to-tabview mobile-remove">
+                                            className="c-btn-group align-self-center justify-content-center  flex-md-column text-center  flex-sm-row text-center to-tabview mobile-remove">
                                             <h4>{(marketName)}</h4>
 
-                                        </div>
+                                        </div> <div className="d-flex flex-row px-1 justify-content-end change-date1 mobile-only">
+                                            <span className={'date-size px-1 wrapping'}>
+                                                {(live && match?.match_time) ?
+                                                    <>{`${match.match_time}'`}</> : match?.start_time}
+                                            </span>
+                                        <div className={"px-1 wrapping"}>ID: {match?.game_id}</div>
+
+                                    </div>
+
                                         <div
-                                            className={`c-btn-group m-lg-1 align-self-center to-tabview justify-content-center flex-sm-row flex-md-row flex-lg-row `}>
+                                            className={`c-btn-group m-lg-1  align-self-center px-2 to-tabview justify-content-center flex-sm-row flex-md-row flex-lg-row `}>
 
                                             {
                                                 Object.entries(odds || {}).map(([odd_key, odd_data]) =>
                                                     (
                                                         <div
-                                                            className={"d-flex flex-column w-100 px-sm-1 px-md-1 px-lg-1 "}>
+                                                            className={"d-flex flex-column w-100 margin-l-mobile px-sm-1 px-md-1 px-lg-1 "}>
                                                             <div
                                                                 className=" c-btn-header text-white w-100 to-tabview flex-column px-sm-1 px-lg-0 px-md-1 mobile-remove ">
                                                                 {(odd_key)}
                                                             </div>
-                                                            <div className=" c-btn-group align-self-center">
+                                                            <div className=" c-btn-group  align-self-center">
                                                                 {odd_data?.odd_active == 1 && odd_data.market_active == 1 ?
                                                                     (
                                                                         <OddButton
@@ -858,6 +861,10 @@ const MatchRow = (props) => {
 
                         </>
                         }
+                    </div>
+                    <div className={'to-tabview mobile-only justify-content-end'}>
+                        {!pdown && !jackpot &&
+                            <SideBets match={match} live={live} style={{d: "inline"}}/>}
                     </div>
                     {/*desktop display of odds*/}
 

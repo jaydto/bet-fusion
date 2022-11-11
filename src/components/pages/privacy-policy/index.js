@@ -19,7 +19,7 @@ const PrivacyPolicy = () => {
             <div className="amt">
                 <div className="d-flex flex-row justify-content-between">
                     <SideBar/>
-                    <div className="gz home">
+                    <div className="gz home w-100">
                         <div className="homepage">
                             <div className='col-md-12 primary-bg p-4 text-center'>
                                 <h4 className="inline-block">

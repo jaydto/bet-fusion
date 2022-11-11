@@ -263,7 +263,7 @@ const ResetPassword = (props) => {
             <div className="amt">
                 <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions />
-                    <div className="gz home">
+                    <div className="gz home w-100">
                         <div className="homepage">
                             <FormTitle/>
                             <div className="col-md-12 mt-2 text-white p-2">

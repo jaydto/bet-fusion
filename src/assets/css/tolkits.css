@@ -15364,7 +15364,22 @@ img.zoom-img {
     align-items: center;
     height: 100vh;
 }
+.to-check-change{
+    display:flex;
+}
 @media (max-width: 767px){
+    .c-btn-group> .c-btn{
+        height: 35px!important;
+        line-height: 15px!important;
+        font-weight: 400;
+
+    }
+    .margin-l-mobile{
+        margin-left: 0.2rem;
+    }
+    .to-check-change:first-child:empty{
+        display: none!important;
+    }
     .login-color{
         color: aqua;
     }
@@ -15526,6 +15541,9 @@ img.zoom-img {
         display:none;
     }
     .to-tabview:empty{
+        display:none!important;
+    }
+    .checking:empty{
         display:none;
     }
     .to-deskview:empty{
@@ -16138,15 +16156,12 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     margin-left: 2% !important;
 }
 
-.c-btn-group:empty {
-    display: none
-}
 
 .c-btn-group > .c-btn {
     border-radius: 0;
     border: none;
     border-right: 1px solid #16202c;
-    height: 40px !important;
+    height: 40px;
     line-height: 30px;
     /*background-color: black;*/
     background: rgb(51, 76, 92);

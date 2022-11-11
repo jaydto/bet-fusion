@@ -15362,7 +15362,10 @@ img.zoom-img {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+
+}
+.padding-mobile{
+    padding-top:10rem;
 }
 .to-check-change{
     display:flex;

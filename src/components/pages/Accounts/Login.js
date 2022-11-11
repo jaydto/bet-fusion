@@ -8,8 +8,8 @@ import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {setLocalStorage} from '../../utils/local-storage';
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
-import BetnareLogo from "../../../assets/img/logo.png"
 import {useNavigate} from "react-router-dom";
+const Header = React.lazy(() => import('../../header/header'));
 
 
 const Login = () => {
@@ -18,6 +18,8 @@ const Login = () => {
     const [message, setMessage] = useState(null);
     // const {setUser} = props;
     const navigate=useNavigate();
+
+
 
     const initialValues = {
         msisdn: "",
@@ -134,7 +136,7 @@ const Login = () => {
                         <div className="col-md-12 w-100">
                             <input type="password"
                                    name="password"
-                                   className={`text-dark form-control input-field w-100 button-radius mb-3 ${errors.password && 'text-danger'} `}
+                                   className={`text-dark form-control input-field w-100 button-radius mb-3 font-input ${errors.password && 'text-danger'} `}
                                    data-action="grow"
                                    placeholder={errors.password?errors.password: "Enter password"}
                                    onChange={ev => onFieldChanged(ev)}
@@ -184,10 +186,9 @@ const Login = () => {
 
     return (
         <Container className="d-flex login-mobile">
-            <Row className="w-100 mt-5" style={{float: "right"}}>
-                <div className={"d-flex justify-content-center"}>
-                    <img src={BetnareLogo} alt={"logo"} className={" w-50 "}/>
-                </div>
+            <Header/>
+            <Row className="w-100 padding-mobile" style={{float: "right"}}>
+
                 <FormTitle/>
                 <LoginInstructions/>
 

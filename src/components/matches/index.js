@@ -736,6 +736,8 @@ const MatchRow = (props) => {
                 </div>
                 <hr className={"to-block m-sm-1 m-md-1 m-lg-0"}/>
                 <div className="col d-flex  flex-row justify-content-between space-bets card-small">
+                    {/*{width>767?<div className={"d-flex to-flex-1"}>*/}
+
                         <div className="c-btn-group align-self-center to-flex-1 to-tabview">
                             {threeWay &&
                                 <div className="d-flex flex-row ">
@@ -763,12 +765,12 @@ const MatchRow = (props) => {
                         </div>
 
                         <div className="c-btn-group align-self-center checking">{
-                                match?.odds?.home_odd ? (match?.odds?.home_odd && (!pdown && match?.odds?.home_odd && match.odds.home_odd !== 'NaN' &&
-                                        match.market_active == 1 && match.odds.home_odd_active == 1)
-                                        ? <OddButton match={match} mkt="home_team" live={live} jackpot={jackpot}/>
-                                        : <EmptyTextRow odd_key={match?.odd_key}/>) :
-                                    match?.odds?.home_odd ? <EmptyTextRow odd_key={match?.odd_key}/> : ''
-                            }
+                            match?.odds?.home_odd ? (match?.odds?.home_odd && (!pdown && match?.odds?.home_odd && match.odds.home_odd !== 'NaN' &&
+                                    match.market_active == 1 && match.odds.home_odd_active == 1)
+                                    ? <OddButton match={match} mkt="home_team" live={live} jackpot={jackpot}/>
+                                    : <EmptyTextRow odd_key={match?.odd_key}/>) :
+                                match?.odds?.home_odd ? <EmptyTextRow odd_key={match?.odd_key}/> : ''
+                        }
 
                             {match?.odds?.neutral_odd ? ((!pdown && match?.odds?.neutral_odd && match.odds.neutral_odd !== 'NaN' &&
                                 match.market_active == 1 && match.odds.neutral_odd_active == 1|| jackpot)
@@ -783,7 +785,57 @@ const MatchRow = (props) => {
                             }
 
                         </div>
+                    {/*</div>*/}
+                        // :""
+                        // }
 
+                    {/*{width<=767?<div className="c-btn-group align-self-center to-flex-1 to-tabview">*/}
+                    {/*    {threeWay &&*/}
+                    {/*        <div className="d-flex flex-row ">*/}
+                    {/*            <div className="d-flex flex-column text-center text-white fit-ipad w-100">*/}
+                    {/*                <div className="font-weight-bold mobile-remove">*/}
+                    {/*                    <h4 className="font-weight-bold mobile-remove"> 3 WAY</h4>*/}
+                    {/*                </div>*/}
+                    {/*                <div className="d-flex flex-row px-1 justify-content-end change-date1 mobile-only">*/}
+                    {/*                        <span className={'date-size px-1 wrapping'}>*/}
+                    {/*                            {(live && match?.match_time) ?*/}
+                    {/*                                <>{`${match.match_time}'`}</> : match?.start_time}*/}
+                    {/*                        </span>*/}
+                    {/*                    <div className={"px-1 wrapping"}>ID: {match?.game_id}</div>*/}
+
+                    {/*                </div>*/}
+                    {/*                <div className='d-flex justify-content-around mobile-remove'>*/}
+                    {/*                    <a className="c-btn-header text-white w-100">1</a>*/}
+                    {/*                    <a className="c-btn-header text-white w-100">X</a>*/}
+                    {/*                    <a className="c-btn-header text-white w-100">2</a>*/}
+                    {/*                </div>*/}
+
+
+                    {/*            </div>*/}
+                    {/*        </div>}*/}
+                    {/*</div>:""}*/}
+
+                    {/*{width<=767?<div className="c-btn-group align-self-center checking">{*/}
+                    {/*    match?.odds?.home_odd ? (match?.odds?.home_odd && (!pdown && match?.odds?.home_odd && match.odds.home_odd !== 'NaN' &&*/}
+                    {/*            match.market_active == 1 && match.odds.home_odd_active == 1)*/}
+                    {/*            ? <OddButton match={match} mkt="home_team" live={live} jackpot={jackpot}/>*/}
+                    {/*            : <EmptyTextRow odd_key={match?.odd_key}/>) :*/}
+                    {/*        match?.odds?.home_odd ? <EmptyTextRow odd_key={match?.odd_key}/> : ''*/}
+                    {/*}*/}
+
+                    {/*    {match?.odds?.neutral_odd ? ((!pdown && match?.odds?.neutral_odd && match.odds.neutral_odd !== 'NaN' &&*/}
+                    {/*        match.market_active == 1 && match.odds.neutral_odd_active == 1|| jackpot)*/}
+                    {/*        ? <OddButton match={match} mkt="draw" live={live} jackpot={jackpot}/>*/}
+                    {/*        : <EmptyTextRow odd_key={match?.odd_key}/>) : ''*/}
+                    {/*    }*/}
+                    {/*    {match?.odds?.away_odd ? (match?.odds?.away_odd && (!pdown && match?.odds?.away_odd && match.odds.away_odd !== 'NaN' &&*/}
+                    {/*            match.market_active == 1 && match.odds.away_odd_active == 1|| jackpot)*/}
+                    {/*            ? <OddButton match={match} mkt="away_team" live={live} jackpot={jackpot}/>*/}
+                    {/*            : <EmptyTextRow odd_key={match?.odd_key}/>) :*/}
+                    {/*        match?.odds?.away_odd ? <EmptyTextRow odd_key={match?.odd_key}/> : ''*/}
+                    {/*    }*/}
+
+                    {/*</div>:""}*/}
 
 
                     {/*mobile  display and odds*/}

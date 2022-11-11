@@ -11,6 +11,9 @@
 
 # production
 /build
+/ios
+/android
+/cordova
 
 # misc
 .DS_Store

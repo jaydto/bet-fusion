@@ -18,13 +18,15 @@ import MobileProfile from "./MobileProfile";
 import useWindowDimensions from "./Dimensions";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCoins} from "@fortawesome/free-solid-svg-icons";
+import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 
 const ProfileMenu = React.lazy(() => import('./profile-menu'));
 const HeaderLogin = React.lazy(() => import('./top-login'));
 const HeaderNav = React.lazy(() => import('./header-nav'));
 
 const Header = (props) => {
-    const {height, width} = useWindowDimensions()
+    const {height, width} = useWindowDimensions();
+    const gaEventTracker = useAnalyticsEventTracker('Navigation');
     const [user, setUser] = useState(getFromLocalStorage("user"));
     const [, dispatch] = useContext(Context);
     const history = useNavigate();
@@ -115,11 +117,11 @@ const Header = (props) => {
             <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark">
                 <Container fluid className={'d-flex justify-content-between mobile-change'}>
                     <Navbar.Brand className="e logo align-self-start menu-control" title="Betnare">
-                        <Link to={{pathname: "/"}} className="col-3 ">
+                        <Link to={{pathname: "/"}} className="col-4 resize-mobile">
                             <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"
-                                           className={"image-size"}/>
+                                           className={"image-size "}/>
                         </Link>
-                        {width <= 514 ? <div
+                        {width <= 514 ? user? <div
                             className="col-md-3  d-flex flex-column right justify-content-center align-items-center w-change2">
                             <div>
                                 <a
@@ -130,12 +132,30 @@ const Header = (props) => {
                                         </span>
                                 </a>
                             </div>
-                        </div> : ""}
+                        </div> :"": ""}
+
+                        {width<=514?user?"":
+                            <div className="col-sm-2 style-mobile">
+                            <Link to={"/login"} className="cg  login-color btn" type="submit">
+                                 <span>Login</span>
+                            </Link>
+                                <div className="">
+                                    <a className="cg login-button btn bg-warning" href="/signup" title="Join now" onClick={() => gaEventTracker('Register')}>
+                                        <span className=" ">Register</span>
+                                    </a>
+                                    <a className="m-lg-2 badge bg-success d-none" href="/verify-account" title="Verify Account"
+                                       onClick={() => gaEventTracker('Verify')}>
+                                        <span className="register-label">Verify Account</span>
+                                    </a>
+                                </div>
+                        </div>:""}
+
+
                         {width <= 514 ?
-                            user?
+
                                 <div className="col-1 button-toggle space-button" style={{width: "3.1rem"}}>
                                 <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"md"}`} className="px-3 py-3"/>
-                            </div> : "":""}
+                            </div> : ""}
                     </Navbar.Brand>
                     <div className="col-9 change-size " id="navbar-collapse-main">
                         <div
@@ -156,6 +176,23 @@ const Header = (props) => {
                                     </Link>
                                 </div>
                             </div>:"" : ""}
+                            {width>514?user?"":
+                                <div className="col-sm-3 style-mobile">
+                                    <Link to={"/login"} className="cg login-color btn" type="submit">
+                                        <span>Login</span>
+                                    </Link>
+                                    <div className="">
+                                        <a className="cg login-button btn bg-warning" href="/signup" title="Join now" onClick={() => gaEventTracker('Register')}>
+                                            <span className=" ">Register</span>
+                                        </a>
+                                        <a className="m-lg-2 badge bg-success d-none" href="/verify-account" title="Verify Account"
+                                           onClick={() => gaEventTracker('Verify')}>
+                                            <span className="register-label">Verify Account</span>
+                                        </a>
+                                    </div>
+                                </div>:""}
+
+
                             {user ? <MobileProfile user={user}/> : ""}
                             {width > 514 ? <div
                                 className="col-1 button-toggle space-button">

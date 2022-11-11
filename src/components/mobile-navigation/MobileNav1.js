@@ -71,7 +71,7 @@ const MobileNav1 = (props) => {
                     <a href="/jackpot">
                         <div className="inner-div active">
                             <div className="menu-img">
-                                <LazyLoadImage src={jackpot} style={{width: "25px" }}/>
+                                <LazyLoadImage src={jackpot} style={{width: "20px" }}/>
                             </div>
                             <div style={{textAalign: "center"}}>
                                 Jackpot
@@ -83,7 +83,7 @@ const MobileNav1 = (props) => {
                     <a href="/promotions">
                         <div className="inner-div active">
                             <div className="menu-img">
-                                <LazyLoadImage src={promo} style={{width: "25px"}}/>
+                                <LazyLoadImage src={promo} style={{width: "20px"}}/>
                             </div>
                             <div style={{textAlign: "center"}}>
                                 Promos
@@ -100,7 +100,7 @@ const MobileNav1 = (props) => {
                                   className="side-icon"
                                   src={getSportImageIcon(allsports.sport_name)}
                                   alt=""
-                                  style={{height: "25px"}} alt="#"
+                                  style={{height: "20px"}} alt="#"
                               />
                             </div>
                             <div style={{textAlign: "center", fontWeight:"300"}}>

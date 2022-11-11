@@ -18,6 +18,7 @@ import './assets/css/sidebar-menu.css';
 import Store from './context/store';
 import ReactGA from 'react-ga4';
 
+
 const TRACKING_ID = "G-5NLSN9BLN4";
 ReactGA.initialize(TRACKING_ID);
 
@@ -69,7 +70,9 @@ const Deposit = React.lazy(
 const Signup = React.lazy(
     () => import('./components/pages/signup')
 );
-
+const Login=React.lazy(
+    ()=>import('./components/pages/Accounts/Login')
+)
 const ResetPassword = React.lazy(
     () => import('./components/pages/auth/reset-password')
 )
@@ -126,6 +129,7 @@ render((
                     <Route exact path="/virtuals" element={<Virtuals/>}/>
                     <Route exact path="/livescore" element={<LiveScore/>}/>
                     <Route exact path="/404" element={<PageNotFound/>}/>
+                    <Route exact path="/login" element={<Login/>}/>
                     {/*<Route exact path="/casino" element={<Casino/>}/>*/}
                     {/*<Route exact path="/live-casino" element={<LiveCasino/>}/>*/}
                     <Route exact path="/gameplay/:game_id/:live" element={<CasinoGamePlay/>}/>

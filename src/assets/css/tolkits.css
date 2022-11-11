@@ -1517,7 +1517,7 @@ header {
     }
 
     .e.logo {
-        padding: 0px 5px !important;
+        padding: 8px 5px !important;
 
     }
 
@@ -6958,6 +6958,16 @@ ul.sport {
 }
 
 @media (max-width: 1258px) {
+    /*fonts in login screen*/
+    .font-input{
+        font-size:1.8rem
+    }
+    .btn-font{
+        font-size:2rem!important;
+    }
+    .button-radius{
+        border-radius: 1rem!important;
+    }
     /*.c-btn-group > .c-btn {*/
     /*width: 35px!importnat;*/
     /*}*/
@@ -7144,7 +7154,7 @@ ul.sport {
     }
 
     .e.logo {
-        padding: 0px 5px !important;
+        padding: 8px 5px !important;
     }
 
     .second-nav {
@@ -11442,6 +11452,7 @@ button.close {
 @media (min-width: 768px){
     .mobile-only{
         display: none!important;
+        margin-top: 0.5rem;
     }
 }
 
@@ -15347,7 +15358,29 @@ img.zoom-img {
     font-size: 19px;
     text-align: center;
 }
+.login-mobile{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
 @media (max-width: 767px){
+    .login-color{
+        color: aqua;
+    }
+    .login-button{
+        border-radius: 1rem!important;
+        /*line-height: 2;*/
+        height: 2.3rem!important;
+    }
+
+    .style-mobile{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 1rem;
+        /*gap:1rem;*/
+    }
     .font-btn{
         /*width: max-content!important;*/
     }
@@ -15368,6 +15401,7 @@ img.zoom-img {
 
     table.menu-table tr {
         white-space: nowrap;
+        height: 6rem;
     }
 
     table tr td .menu-t {
@@ -15436,6 +15470,7 @@ img.zoom-img {
     .matches .top-matches{
         padding-top: 0px!important;
         padding-bottom: 0px !important;
+        border: none;
     }
     .icon-size{
         font-size: 2rem;
@@ -15477,23 +15512,33 @@ img.zoom-img {
         height: 2rem!important  ;
     }
 
-    .to-tabview{
-        display: none;
-    }
+
     .to-navcheck{
         display: none;
     }
     .image-size{
-        width:25% ;
+        width:100% ;
     }
-    .to-profilecheck{
+    .to-profile-check{
         display:flex;
+    }
+    .to-profile-check:empty{
+        display:none;
+    }
+    .to-tabview:empty{
+        display:none;
+    }
+    .to-deskview:empty{
+        display:none;
     }
     .size-info{
         width:40%!important;
     }
     .to-deskview{
         display: none!important;
+    }
+    .to-tabview{
+        display: none;
     }
     .to-block{
         display: flex!important;
@@ -15508,6 +15553,15 @@ img.zoom-img {
         flex-direction: column !important;}
 }
 @media (max-width:514px){
+    .image-size{
+        width:25% ;
+    }
+    .resize-mobile{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-right: 1.7rem
+    }
     .mobile-width{
         width: 100%;
     }
@@ -15882,7 +15936,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 
 
 .input-field {
-    height: 40px;
+    height: 40px!important;
     line-height: 40px;
     border: none;
 }
@@ -15940,7 +15994,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     padding: 0px 10px;
     margin-top: 1px;
     border-radius: 0px;
-    font-size: 14px !important;
+    font-size: 14px;
 }
 
 .betslip-container {
@@ -15995,7 +16049,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 
 @media only screen and (max-width: 576px) {
     .amt {
-        margin-top: 60px !important;
+        margin-top: 10rem !important;
         padding-top: 20px !important;
         /*scroll-margin-top: 140px;*/
     }

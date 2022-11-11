@@ -26,6 +26,7 @@ import * as url from "url";
 import {Input} from "@material-ui/core";
 
 import * as Json from "ajv";
+import useWindowDimensions from "../header/Dimensions";
 
 const clean = (_str) => {
     _str = _str.replace(/[^A-Za-z0-9\-]/g, '');
@@ -622,6 +623,7 @@ const MatchRow = (props) => {
     const [sportName, setSportName] = useState(sport?.[0].sport_name || 'Soccer');
     const [showX, setShowX] = useState(true);
     const [market, setMarket] = useState('1x2');
+    const {height, width} = useWindowDimensions();
 
     const [threeWay, setThreeWay] = useState(false)
     const getSelectedMarkets = () => {
@@ -632,6 +634,13 @@ const MatchRow = (props) => {
         let url = new URL(window.location)
 
         let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29").split(",")
+        // console.log("subtypes",sub_types[0]);
+        if(width<=767){
+            console.log("condition has been met ", [sub_types[0]])
+            sub_types=[sub_types[0]]
+        }
+
+
 
         if (sub_types.includes("1")) {
             setThreeWay(true)
@@ -646,6 +655,8 @@ const MatchRow = (props) => {
                 extraMarkets.push(selectedMarket[0])
             }
         })
+
+        console.log("extra-markets",extraMarkets);
 
         setExtraMarketDisplays(extraMarkets)
 
@@ -781,14 +792,14 @@ const MatchRow = (props) => {
                     </div>
 
                     {/*mobile  display and odds*/}
-                    <div className={"to-tabview separations mobile-remove"}>
+                    <div className={"to-profile-check separations"}>
                         {!jackpot && <>
                             {Object.entries(match?.extra_odds || {}).map(([marketName, odds], index) => (
                                 marketName !== '' && (
                                     <div
                                         className={'d-flex to-flex-1 my-lg-0 my-md-2 my-sm-2  w-100'}>
                                         <div
-                                            className="c-btn-group align-self-center justify-content-center flex-md-column text-center  flex-sm-row text-center to-tabview">
+                                            className="c-btn-group align-self-center justify-content-center flex-md-column text-center  flex-sm-row text-center to-tabview mobile-remove">
                                             <h4>{(marketName)}</h4>
 
                                         </div>
@@ -801,7 +812,7 @@ const MatchRow = (props) => {
                                                         <div
                                                             className={"d-flex flex-column w-100 px-sm-1 px-md-1 px-lg-1 "}>
                                                             <div
-                                                                className=" c-btn-header text-white w-100 to-tabview flex-column px-sm-1 px-lg-0 px-md-1  ">
+                                                                className=" c-btn-header text-white w-100 to-tabview flex-column px-sm-1 px-lg-0 px-md-1 mobile-remove ">
                                                                 {(odd_key)}
                                                             </div>
                                                             <div className=" c-btn-group align-self-center">

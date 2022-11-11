@@ -4,6 +4,8 @@
   "private": true,
   "homepage": "./",
   "dependencies": {
+    "@capacitor/android": "^4.4.0",
+    "@capacitor/ios": "^4.4.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-brands-svg-icons": "^5.15.4",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
@@ -85,6 +87,8 @@
     ]
   },
   "devDependencies": {
+    "@capacitor/cli": "^4.4.0",
+    "@capacitor/core": "^4.4.0",
     "copy-webpack-plugin": "^11.0.0",
     "react-app-rewired": "^2.2.1"
   }

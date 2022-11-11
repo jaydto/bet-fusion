@@ -16,6 +16,10 @@ const MobileMenu = ()=>{
                         <img src={VirtualSvg} alt=""></img>
                         <p>Virtuals</p>
                     </a>
+                  <a href="/" className="bloc-icon scaling">
+                      <img src={BetslipSvg} alt=""></img>
+                      <p>Slip</p>
+                  </a>
                     <a href="/live" className="bloc-icon">
                         <img src={LiveSvg} alt=""></img>
                         <p>Live</p>
@@ -24,10 +28,7 @@ const MobileMenu = ()=>{
                         <img src={ProfileSvg} alt=""></img>
                         <p>Me</p>
                     </a>
-                    <a href="/" className="bloc-icon">
-                        <img src={BetslipSvg} alt=""></img>
-                        <p>Slip</p>
-                    </a>
+
                     
     </nav>
         </div>

@@ -8859,6 +8859,10 @@ ul.sport {
 }
 
 @media (max-width: 1147px) {
+    .c-btn-group > .c-btn {
+        min-width: 10rem ;
+        transition: min-width 0.01s ease-in-out;
+    }
     .betslip-container {
         position: sticky !important;
         top: 120px !important;
@@ -16169,11 +16173,14 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     border: none;
     border-right: 1px solid #16202c;
     height: 40px;
-    line-height: 30px;
+    line-height: 20px;
     /*background-color: black;*/
     background: rgb(51, 76, 92);
 }
-
+.scaling{
+    scale: 1.1 1.5;
+    border-radius: 10rem;
+}
 .c-btn-group > .c-btn:last-child {
     border-right: none;
 }

@@ -60,6 +60,13 @@ const MobileMenu = (props) => {
                     </span>
                     <p>Slip </p>
                 </a>
+                {liveSports==null?   <a href="/live" className="bloc-icon">
+                    <img src={LiveSvg} alt="">
+                    </img>
+
+                    <p>Live</p>
+
+                </a>:""}
                 {liveSports && Object.entries(liveSports).map(([index, livesport]) => (
                     <a href="/live" className="bloc-icon">
                         <img src={LiveSvg} alt="">

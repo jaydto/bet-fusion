@@ -15383,6 +15383,7 @@ img.zoom-img {
         height: 35px!important;
         line-height: 30px!important;
         font-weight: 400;
+        min-width:40px!important;
 
     }
     .margin-l-mobile{

@@ -1105,7 +1105,7 @@ export const JackpotMatchList = (props) => {
                 ))
                 }
                 {(matches !== null && matches.length === 0) &&
-                    <div className="top-matches row">
+                    <div className="top-matches row  mx-2">
                         No events found.
                     </div>
                 }
@@ -1129,7 +1129,7 @@ const MatchList = (props) => {
                     ))
                 }
                 {(matches !== null && matches.length === 0) &&
-                    <div className="top-matches row">
+                    <div className="top-matches row  mx-2">
                         No events found.
                     </div>
                 }

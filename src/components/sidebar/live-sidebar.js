@@ -34,7 +34,7 @@ const LiveSideBar = (props) => {
     }, [fetchData]);
 
     return (
-        <div className="d-md-block w-25" >
+        <div className="d-md-block w-25 mobile-remove" >
             <div style={{
                 display: 'flex',
                 overflow: 'scroll initial',

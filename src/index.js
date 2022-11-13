@@ -17,7 +17,7 @@ import './index.css';
 import './assets/css/sidebar-menu.css';
 import Store from './context/store';
 import ReactGA from 'react-ga4';
-
+import useWindowDimensions from "./components/header/Dimensions";
 
 const TRACKING_ID = "G-5NLSN9BLN4";
 ReactGA.initialize(TRACKING_ID);
@@ -29,7 +29,9 @@ const CompetitionsMatches = React.lazy(
 const MatchAllMarkets = React.lazy(() => import('./components/all-markets'));
 
 const Jackpot = React.lazy(() => import('./components/jackpot'));
-
+const Betslip=React.lazy(()=>{
+    import('./components/pages/Accounts/Betslip')
+})
 const Live = React.lazy(
     () => import('./components/live')
 );
@@ -117,6 +119,12 @@ const Logout = () => {
     }, [out]);
     return null;
 }
+const GetDimensions=()=>{
+    const {height, width} = useWindowDimensions();
+    return(
+        width
+    );
+}
 
 const container = document.getElementById("app");
 render((
@@ -136,6 +144,7 @@ render((
                     <Route exact path="/highlights" element={<Index/>}/>
                     <Route exact path="/upcoming" element={<Index/>}/>
                     <Route exact path="/tomorrow" element={<Index/>}/>
+                    <Route path="/betslip" element={<Betslip/>}/>
                     <Route exact path="/competition/:id" element={<CompetitionsMatches/>}/>
                     <Route exact path="/competition/:sportid/:categoryid/:competitionid"
                            element={<CompetitionsMatches/>}/>

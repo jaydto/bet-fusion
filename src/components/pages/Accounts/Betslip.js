@@ -1,12 +1,14 @@
-import React, {useState, useContext, useEffect, useCallback} from 'react';
-import QuickLogin from './quick-login';
-import CompanyInfo from './company-info';
-import BetSlip from './betslip';
-import {faTimes} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import React, {useCallback, useLayoutEffect, useState} from 'react';
 import {Badge} from "react-bootstrap";
-import MobileMenu from '../mobile-menu';
-
+import BetSlip from "../../right/betslip";
+import QuickLogin from "../../right/quick-login";
+import CompanyInfo from "../../right/company-info";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faTimes} from "@fortawesome/free-solid-svg-icons";
+import MobileMenu from "../../mobile-menu";
+import {getBetslip} from "../../utils/betslip";
+import useInterval from "../../../hooks/set-interval.hook";
+import makeRequest from "../../utils/fetch-request";
 const AlertMessage = (props) => {
     return (
         <div className={`alert alert-dismissible ${props.classname}`} role='alert'>
@@ -17,10 +19,9 @@ const AlertMessage = (props) => {
         </div>
     )
 }
-
-const Right = (props) => {
+const Betslip = (props) => {
     const {jackpot, betslipValidationData, jackpotData} = props;
-    const [betSlipMobile, setBetSlipMobile] = useState(false)
+    const [betSlipMobile, setBetSlipMobile] = useState(false);
 
     return (
         <div className="col-md-3 gn betslip-container sticky-top vh-100 overflow-scroll tablet-view">
@@ -33,8 +34,8 @@ const Right = (props) => {
                     <span className="col-sm-2 bkmrk d-none">
                         <i className="fa fa-bookmark" aria-hidden="true"></i></span>
                                 <span className="col-sm-8 slp">BETSLIP</span>
-                                <span className="col-sm-2  text-white">
-                                     <Badge pill bg="dark" >
+                                <span className="col-sm-2 slip-counter text-white">
+                                     <Badge pill bg="dark">
                                       {betslipValidationData?.length || 0}
                                       </Badge>
                                 </span>
@@ -73,12 +74,11 @@ const Right = (props) => {
                 </div>
             </div>
             <div
-
                 className={`${betSlipMobile ? 'd-none' : 'd-block'} tablet-only fixed-bottom text-center text-white bg-info bet-slip-footer-toggle`}>
-
-                <MobileMenu betslipValidationData={betslipValidationData}/>
+                <MobileMenu betslip={betslipValidationData}/>
             </div>
         </div>
-    )
-}
-export default Right;
+    );
+};
+
+export default Betslip;

@@ -15381,7 +15381,7 @@ img.zoom-img {
 @media (max-width: 767px){
     .c-btn-group> .c-btn{
         height: 35px!important;
-        line-height: 15px!important;
+        line-height: 30px!important;
         font-weight: 400;
 
     }

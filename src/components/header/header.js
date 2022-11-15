@@ -25,6 +25,7 @@ const Header = (props) => {
     const containerRef = useRef();
     const {current} = containerRef;
     const [competitions, setCompetitions] = useState({});
+    const [settings, setSettings] = useState({});
 
     const fetchData = useCallback(async () => {
         let cached_categories = getFromLocalStorage('categories');
@@ -46,10 +47,37 @@ const Header = (props) => {
 
     }, []);
 
+    const fetchAppConfigurations = useCallback(async () => {
+
+        let cached_settings = getFromLocalStorage('settings');
+
+        let endpoint = "/v1/bet/settings";
+
+        if (!cached_settings) {
+
+            const [result] = await Promise.all([
+                makeRequest({url: endpoint, method: "POST", data: null}),
+            ]);
+
+            let [c_status, c_result] = result
+
+            console.log("C Result is now ", c_result?.message)
+
+            if (c_status === 200) {
+                setSettings(c_result?.message);
+                setLocalStorage('settings', c_result?.message);
+            }
+
+        } else {
+            setSettings(cached_settings);
+        }
+    })
+
     useEffect(() => {
 
         const abortController = new AbortController();
         fetchData();
+        fetchAppConfigurations();
 
         return () => {
             abortController.abort();

@@ -6500,13 +6500,12 @@ ul.sport {
 }
 
 .nav > li > a > img {
-    border: 2px solid #24367e;
+    /*border: 2px solid #24367e;*/
     width: 25px;
     padding: 0;
     border-radius: 100px;
     margin: 0 10px;
 }
-
 .ol {
     border-bottom: 1px solid #dddddd;
 }

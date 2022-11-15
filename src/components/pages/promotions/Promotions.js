@@ -420,7 +420,9 @@ const Promotions = () => {
                     </div>
                 </div>
             </div>
+            <div className={"mobile-remove"}>
             <Footer/>
+            </div>
         </>
 
     )

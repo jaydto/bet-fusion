@@ -6,7 +6,7 @@ import {getBetslip} from './utils/betslip' ;
 import useInterval from "../hooks/set-interval.hook";
 import {Spinner} from "react-bootstrap";
 import useAnalyticsEventTracker from '../components/analytics/useAnalyticsEventTracker';
-import {setLocalStorage} from "./utils/local-storage";
+import {getFromLocalStorage, setLocalStorage} from "./utils/local-storage";
 import useWindowDimensions from "./header/Dimensions";
 
 
@@ -19,6 +19,7 @@ const MatchList = React.lazy(() => import('./matches/index'));
 const Right = React.lazy(() => import('./right/index'));
 const SideBar = React.lazy(() => import('./sidebar/awesome/Sidebar'))
 const Index = (props) => {
+    const [user, setUser] = useState(getFromLocalStorage("user"));
     const gaEventTracker = useAnalyticsEventTracker('Home');
     const location = useLocation();
     const {height, width} = useWindowDimensions();
@@ -184,10 +185,12 @@ const Index = (props) => {
         configureCampaignCookie()
     }, [utmSource])
 
+
     return (
         <>
             <Header/>
-            <div className="amt">
+
+            <div className={(width<=514?user?"user_logged":"amt":"amt")}>
                 <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions/>
                     <div className="gz home" style={{width: '100%',overflowX: "clip"}}>
@@ -209,7 +212,9 @@ const Index = (props) => {
                     <Right betslipValidationData={userSlipsValidation}/>
                 </div>
             </div>
+            <div className={"mobile-remove"}>
             <Footer/>
+            </div>
         </>
     )
 }

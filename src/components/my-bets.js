@@ -219,7 +219,10 @@ const MyBets = (props) => {
                     <Right/>
                 </div>
             </div>
-            <Footer/>
+            <div className={"mobile-remove"}>
+                <Footer/>
+            </div>
+
         </>
     )
 }

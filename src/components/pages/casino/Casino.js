@@ -117,7 +117,9 @@ const Casino = (props) => {
                     </div>
                 </div>
             </div>
+            <div className={"mobile-remove"}>
             <Footer/>
+            </div>
         </>
     )
 

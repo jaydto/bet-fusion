@@ -78,7 +78,9 @@ const TermsAndConditions = (props) => {
                     <Right/>
                 </div>
             </div>
+            <div className={"mobile-remove"}>
             <Footer/>
+            </div>
         </>
     )
 }

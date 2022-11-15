@@ -7,6 +7,8 @@ import matches from "./utils/fetch-request";
 import useInterval from "../hooks/set-interval.hook";
 import {Context} from '../context/store';
 import banner from '../assets/img/banner.jpg';
+import {getFromLocalStorage} from "./utils/local-storage";
+import useWindowDimensions from "./header/Dimensions";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -21,6 +23,8 @@ const Live = (props) => {
     const [matches, setMatches] = useState();
     const [state, dispatch] = useContext(Context);
     const {spid} = useParams();
+    const [user, setUser] = useState(getFromLocalStorage("user"));
+    const {height, width} = useWindowDimensions();
 
     const [producerDown, setProducerDown] = useState(false);
     const location = useLocation();
@@ -88,7 +92,7 @@ const Live = (props) => {
     return (
         <>
             <Header/>
-            <div className="amt">
+            <div className={(width<=514?user?"user_logged":"amt":"amt")}>
                 <div className="d-flex flex-row justify-content-between">
                     <LiveSideBar/>
                     <div className="gz home" style={{width:"100%"}}>
@@ -100,7 +104,9 @@ const Live = (props) => {
                     <Right betslipValidationData={userSlipsValidation}/>
                 </div>
             </div>
+            <div className={"mobile-remove"}>
             <Footer/>
+            </div>
         </>
     )
 }

@@ -8,35 +8,58 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import promo from "../../../src/assets/img/mobile/fire.png";
 import jackpot from "../../../src/assets/img/mobile/jackpot.png";
-import {getFromLocalStorage} from "../utils/local-storage";
+import {getFromLocalStorage,setLocalStorage} from "../utils/local-storage";
+import makeRequest from "../utils/fetch-request";
 
 
 
 const MobileNav1 = (props) => {
 
-    let sport = getFromLocalStorage('categories')
-    console.log(sport)
-    let {sportid, categoryid, competitionid} = useParams();
+    let [sport,setSport] =useState( getFromLocalStorage('categories'));
+
+
     const [activeClass, setActiveClass] = useState('');
 
-    // const handleMenuToggle = useCallback(() => {
-    //     if(activeClass === ''){
-    //         setActiveClass("active");
-    //     } else {
-    //         setActiveClass('');
-    //     }
-    // }, [activeClass]);
+    const activeClick = useCallback(() => {
+        if(activeClass === ''){
+            setActiveClass("active-1");
+        } else {
+            setActiveClass('');
+        }
+    }, [activeClass]);
 
-    // const initActiveClass = () => {
-    //     sportid = sportid ?? 79;
-    //     if (sport_id == sportid) {
-    //         setActiveClass('active');
-    //     }
-    // };
+    const fetchData = useCallback(async () => {
+        let cached_competitions = getFromLocalStorage('categories');
+        let endpoint = "/v1/categories";
 
-    // useEffect(() => {
-    //     initActiveClass();
-    // }, [initActiveClass]);
+        if (!cached_competitions) {
+            const [competition_result] = await Promise.all([
+                makeRequest({url: endpoint, method: "get", data: null}),
+            ]);
+            let [c_status, c_result] = competition_result
+
+            if (c_status === 200) {
+                setSport(c_result);
+                setLocalStorage('categories', c_result);
+            } else {
+                fetchData()
+            }
+        } else {
+            setSport(cached_competitions);
+        }
+
+    }, []);
+
+    useEffect(() => {
+        const abortController = new AbortController();
+        fetchData();
+
+        return () => {
+            abortController.abort();
+        };
+    }, [fetchData]);
+    console.log('sports',sport)
+
 
     const default_img = 'default_sport';
     let sport_image;
@@ -62,8 +85,7 @@ const MobileNav1 = (props) => {
         return sport_image
     }
     return (<div className="menu-wrapper">
-
-
+        {/*{sport==null?setSport(getFromLocalStorage("categories")):""}*/}
         <table className="menu-table" style={{width: "100%", textAlign: "center"}}>
             <tbody>
             <tr className={"tr-style"}>

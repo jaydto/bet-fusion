@@ -8,6 +8,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import {getFromLocalStorage} from "../../utils/local-storage";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import {Stack} from "react-bootstrap";
+import useWindowDimensions from "../../header/Dimensions";
 
 const GamePlay = (props) => {
     const {game_id, live} = useParams()
@@ -19,6 +20,8 @@ const GamePlay = (props) => {
     const [isLoggedIn] = useState(getFromLocalStorage('user'))
 
     const [gameUrlLoaded, setGameUrlLoaded] = useState(false)
+    const [user, setUser] = useState(getFromLocalStorage("user"));
+    const {height, width} = useWindowDimensions();
 
     const createPlayer = async () => {
 
@@ -73,9 +76,9 @@ const GamePlay = (props) => {
     return (
         <>
             <Header/>
-            <div className="amt">
+            <div className={(width<=514?user?"user_logged":"amt":"amt")}>
                 <div className="d-flex flex-row justify-content-between">
-                    <div className="col-md-12">
+                    <div className="col-md-12 virtual-width-mobile">
                         <div className="homepage">
                             <CategoryGames/>
                             <div
@@ -93,7 +96,9 @@ const GamePlay = (props) => {
                     </div>
                 </div>
             </div>
-            <Footer/>
+            <div className={"mobile-remove"}>
+                <Footer/>
+            </div>
         </>
     )
 }

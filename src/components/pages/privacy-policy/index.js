@@ -249,7 +249,9 @@ const PrivacyPolicy = () => {
                     <Right/>
                 </div>
             </div>
+            <div className={"mobile-remove"}>
             <Footer/>
+            </div>
         </>)
 }
 

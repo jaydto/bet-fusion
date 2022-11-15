@@ -179,7 +179,9 @@ export default function MatchesList() {
                     <Right/>
                 </div>
             </div>
+            <div className={"mobile-remove"}>
             <Footer/>
+            </div>
         </>
     )
 }

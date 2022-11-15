@@ -1005,7 +1005,9 @@ const HowToPlay = (props) => {
                     <Right/>
                 </div>
             </div>
+            <div className={"mobile-remove"}>
             <Footer/>
+            </div>
         </>
     )
 }

@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.betnare.com',
-  appName: 'betnare-web',
+  appId: 'com.betnare.app',
+  appName: 'betnare',
   webDir: 'build',
   bundledWebRuntime: false
 };

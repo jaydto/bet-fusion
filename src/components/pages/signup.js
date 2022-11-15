@@ -81,10 +81,10 @@ const Signup = (props) => {
             <Form>
                 <div className="pt-0">
                     <div className="row">
-                        <div className='col-md-6 text-center'>
+                        <div className='col-md-6 text-center w-100 border-bottom'>
                             <img src={mpesa} alt=""/>
                         </div>
-                        <hr/>
+
                         <div className="form-group row d-flex justify-content-center mt-5">
                             <div className="col-md-12">
                                 <label>Mobile Number</label>
@@ -168,7 +168,9 @@ const Signup = (props) => {
                     <Right/>
                 </div>
             </div>
+            <div className={"mobile-remove"}>
             <Footer/>
+            </div>
         </React.Fragment>
     );
 }

@@ -40,11 +40,12 @@ const EmptyTextRow = (props) => {
         <div className={`${classname} btn btn-disabled match-detail col c-btn`}
              style={{
                  width: "100%",
-                 height: "30px",
+                 height: "40px",
                  padding: "2px",
                  color: "#fff",
                  background: "#334c5c",
-                 opacity: 1
+                 opacity: 1,
+                 lineHeight:"3"
              }}>
             {odd_key && <span className="et label btn-disabled ">{odd_key}</span>}
             <span className="label label-inverse">
@@ -690,11 +691,11 @@ const MatchRow = (props) => {
         <div className="top-matches d-flex flex-sm-column flex-lg-row ">
             <div
                 className="to-deskview to-block to-tabview  mx-lg-0 px-sm-4 px-md-4 px-lg-0  py-md-4 py-lg-0 container-size ">
-                <div className="size-info  d-flex col-xs-12 pad left-text ">
+                <div className="size-info  d-flex col-xs-12 pad left-text flex-column ">
                     {live &&
                         <>
                             <small style={{color: "green"}}> {match?.match_status} </small>
-                            <br/>
+
                         </>
                     }
                     <div className="d-flex flex-column px-1 justify-content-sm-center change-date1 mobile-remove">
@@ -1000,8 +1001,8 @@ export const MarketList = (props) => {
                     live={live}
                 />
             }
-            <Row className="web-element">
-                <div className="col-md-12 position-sticky shadow-lg primary-bg mb-1"
+            <Row className="web-element px-3">
+                <div className="col-md-12 position-sticky shadow-lg primary-bg mb-1 remove-top"
                      style={{top: "135px", height: "40px", backgroundColor: "#3c5a6c !important"}}>
                     <Input type="text" className={'form-control h-100  border-0'}
                            style={{

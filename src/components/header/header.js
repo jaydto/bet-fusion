@@ -17,8 +17,9 @@ import MobileNav1 from "../mobile-navigation/MobileNav1";
 import MobileProfile from "./MobileProfile";
 import useWindowDimensions from "./Dimensions";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCoins} from "@fortawesome/free-solid-svg-icons";
+import {faCoins, faSearch, faTimes} from "@fortawesome/free-solid-svg-icons";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
+import ListGroup from "react-bootstrap/ListGroup";
 
 const ProfileMenu = React.lazy(() => import('./profile-menu'));
 const HeaderLogin = React.lazy(() => import('./top-login'));
@@ -30,9 +31,34 @@ const Header = (props) => {
     const [user, setUser] = useState(getFromLocalStorage("user"));
     const [, dispatch] = useContext(Context);
     const history = useNavigate();
+    const [searching, setSearching] = useState(false)
     const containerRef = useRef();
+    const searchInputRef = useRef(null)
+    const [matches, setMatches] = useState([])
     const {current} = containerRef;
     const [competitions, setCompetitions] = useState({});
+    const dismissSearch = () => {
+        setSearching(false)
+        setMatches([])
+    }
+
+    useEffect(() => {
+        fetchMatches()
+    }, [searching])
+
+    const fetchMatches = async (search) => {
+        if (search && search.length >= 3) {
+            gaEventTracker('Searching')
+            let method = "POST"
+            let endpoint = "/v1/matches?page=" + (1) + `&limit=${10}&search=${search}`;
+            await makeRequest({url: endpoint, method: method, data: []}).then(([status, result]) => {
+                if (status === 200) {
+                    setMatches(result?.data || result)
+                }
+            });
+        }
+
+    };
 
     const fetchData = useCallback(async () => {
         let cached_categories = getFromLocalStorage('categories');
@@ -97,6 +123,12 @@ const Header = (props) => {
 
     }, [current]);
 
+    const showSearchBar = () => {
+        setSearching(true)
+        searchInputRef.current.focus()
+        gaEventTracker('Clicked on Search')
+    }
+
     const updateUserOnLogin = useCallback(() => {
         dispatch({type: "SET", key: "user", payload: user});
     }, [user?.msisdn, user?.balance]);
@@ -133,6 +165,13 @@ const Header = (props) => {
                                 </a>
                             </div>
                         </div> :"": ""}
+                        {width<=514? <div className={`col-sm-1 align-items-center ${searching ? 'd-none' : 'd-flex'}`}>
+                            <a className="" href="#" title="Search"
+                               onClick={() => showSearchBar()}>
+                                <span className=""><FontAwesomeIcon icon={faSearch}/> </span><span
+                            ></span>
+                            </a>
+                        </div>:""}
 
                         {width<=514?user?"":
                             <div className="col-sm-2 style-mobile">
@@ -150,11 +189,10 @@ const Header = (props) => {
                                 </div>
                         </div>:""}
 
-
                         {width <= 514 ?
 
                                 <div className="col-1 button-toggle space-button" style={{width: "3.1rem"}}>
-                                <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"md"}`} className="px-3 py-3"/>
+                                <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"md"}`} className="px-3 py-3" />
                             </div> : ""}
                     </Navbar.Brand>
                     <div className="col-9 change-size " id="navbar-collapse-main">
@@ -170,12 +208,75 @@ const Header = (props) => {
                                     <Link
                                         to={{pathname: "/deposit"}}
                                         className={"btn text-white btn-outline-warning"}>
-              <span className="font-btn overflow-hidden justify-content-center btn-outline-warning rescale">
-               <span className=" space-icons"> <FontAwesomeIcon icon={faCoins}/></span> Deposit
-              </span>
+                                          <span className="font-btn overflow-hidden justify-content-center btn-outline-warning rescale">
+                                           <span className=" space-icons"> <FontAwesomeIcon icon={faCoins}/></span> Deposit
+                                          </span>
                                     </Link>
                                 </div>
                             </div>:"" : ""}
+                            {width<=514?
+                                <Container id="navbar-collapse-main"
+                                       className={`fadeIn header-menu d-flex justify-content-center px-4 ${searching ? 'd-block' : 'd-none'}`}>
+                                <ListGroup as="ul" xs="9" horizontal className="nav navbar-nav og ale ss col-md-6 text-center w-100">
+                                    <div className="d-flex">
+                                        <div className="col-md-10 w-100 px-4">
+                                            <input type="text" placeholder={'Start typing to search for team ...'} ref={searchInputRef}
+                                                   onInput={(event) => fetchMatches(event.target.value)}
+                                                   className={'form-control input-field border-0 bg-dark text-white no-border-radius'}/>
+                                        </div>
+
+                                        <button className={'btn text-white -align-right'} onClick={() => dismissSearch()}>
+                                            <FontAwesomeIcon icon={faTimes}/> Close
+                                        </button>
+                                    </div>
+                                    <div
+                                        className={`autocomplete-box position-fixed bg-white border-dark col-md-5 mt-1 shadow-lg text-start`}
+                                        onClick={() => gaEventTracker('View Search Results')}>
+                                        {matches.map((match, index) => (
+                                            <a href={`/?search=${match.home_team}`} key={index}>
+                                                <li>
+                                                    {match.home_team}
+                                                </li>
+                                            </a>
+                                        ))}
+                                    </div>
+                                </ListGroup>
+                            </Container>:""}
+
+                            {width<=767&&width>514? <div className={`col-sm-4  align-items-center justify-content-center d-flex`}>
+                                <a className={`${searching ? 'd-none' : 'd-flex'}`}href="#" title="Search"
+                                   onClick={() => showSearchBar()}>
+                                    <span className=""><FontAwesomeIcon icon={faSearch}/> </span><span
+                                ></span>
+                                </a>
+                                <Container id="navbar-collapse-main"
+                                           className={`fadeIn header-menu d-flex justify-content-center px-4 ${searching ? 'd-block' : 'd-none'}`}>
+                                    <ListGroup as="ul" xs="9" horizontal className="nav navbar-nav og ale ss col-md-6 text-center">
+                                        <div className="d-flex">
+                                            <div className="col-md-10">
+                                                <input type="text" placeholder={'Start typing to search for team ...'} ref={searchInputRef}
+                                                       onInput={(event) => fetchMatches(event.target.value)}
+                                                       className={'form-control input-field border-0 bg-dark text-white no-border-radius'}/>
+                                            </div>
+
+                                            <button className={'btn text-white -align-right'} onClick={() => dismissSearch()}>
+                                                <FontAwesomeIcon icon={faTimes}/> Close
+                                            </button>
+                                        </div>
+                                        <div
+                                            className={`autocomplete-box position-fixed bg-white border-dark col-md-5 mt-1 shadow-lg text-start`}
+                                            onClick={() => gaEventTracker('View Search Results')}>
+                                            {matches.map((match, index) => (
+                                                <a href={`/?search=${match.home_team}`} key={index}>
+                                                    <li>
+                                                        {match.home_team}
+                                                    </li>
+                                                </a>
+                                            ))}
+                                        </div>
+                                    </ListGroup>
+                                </Container>
+                            </div>:""}
                             {width>514?user?"":
                                 <div className="col-sm-3 style-mobile">
                                     <Link to={"/login"} className="cg login-color btn" type="submit">
@@ -212,12 +313,12 @@ const Header = (props) => {
                     </Row>
 
                     <Navbar.Offcanvas
-                        style={{width: "100% !important", height: "100%"}}
+                        style={{width: "80%", height: "100%",zIndex: "9999", marginTop: "0px"}}
                         className='off-canvas background-primary p-0'
                         id={`offcanvasNavbar-expand-${expand}`}
                         aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
                         placement="start">
-                        <Offcanvas.Header closeButton className='text-white'>
+                        <Offcanvas.Header closeButton className='text-white' closeVariant={"white"}>
                             <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
                                 <div className="col-3">
                                     <div>
@@ -226,7 +327,7 @@ const Header = (props) => {
                                 </div>
                             </Offcanvas.Title>
                         </Offcanvas.Header>
-                        <Offcanvas.Body>
+                        <Offcanvas.Body className={(width<=514?user?"":"":"")}>
                             <SidebarMobile/>
                         </Offcanvas.Body>
                     </Navbar.Offcanvas>

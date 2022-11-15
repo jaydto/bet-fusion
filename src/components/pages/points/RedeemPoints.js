@@ -180,7 +180,9 @@ const RedeemPoints = (props) => {
                     <Right/>
                 </div>
             </div>
+            <div className={"mobile-remove"}>
             <Footer/>
+            </div>
         </React.Fragment>
     )
 }

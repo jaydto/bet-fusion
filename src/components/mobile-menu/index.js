@@ -1,12 +1,13 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import HomeSvg from '../../assets/svg/home-icon.svg';
-import VirtualSvg from '../../assets/svg/virtuals.svg';
-import LiveSvg from '../../assets/svg/live.svg';
-import ProfileSvg from '../../assets/svg/profile.svg';
+import HomeSvg from '../../assets/img/mobile/home.png';
+import VirtualSvg from '../../assets/img/mobile/virtual.png';
+import LiveSvg from '../../assets/img/mobile/live-3.png';
+import ProfileSvg from '../../assets/img/mobile/user.png';
 import BetslipSvg from '../../assets/svg/betslip.svg';
 import {getBetslip} from "../utils/betslip";
 import makeRequest from "../utils/fetch-request";
 import {Badge} from "react-bootstrap";
+import Betslip from "../pages/Accounts/Betslip";
 
 const MobileMenu = (props) => {
     console.log("props aere here ", props)
@@ -47,28 +48,32 @@ const MobileMenu = (props) => {
                     <p>Virtuals</p>
                 </a>
                 <a href="/betslip" className="bloc-icon scaling">
-                    <img src={BetslipSvg} alt=""></img>
-                    <span className={'badge rounded-pill bg-dark'} style={{
-                        float: "right",
-                        color: "#fff",
-                        position: "absolute",
-                        marginRight: "1.5rem",
-                        top: "1px"
-                    }}>
-                          {betslipValidationData?.length || 0}
+                    {/*<img src={BetslipSvg} alt=""></img>*/}
+                    {/*<span className={'badge rounded-pill bg-dark'} style={{*/}
+                    {/*    float: "right",*/}
+                    {/*    color: "#fff",*/}
+                    {/*    position: "absolute",*/}
+                    {/*    marginRight: "1.5rem",*/}
+                    {/*    top: "1px"*/}
+                    {/*}}>*/}
+                    {/*      {betslipValidationData?.length || 0}*/}
 
-                    </span>
+                    {/*</span>*/}
+                    <span className="col-sm-2  text-white">
+                                     <Badge pill bg="warning" >
+                                      {betslipValidationData?.length || 0}
+                                         {/*<div className={"d-none"}>*/}
+                                         {/*    <Betslip betslip={{betslipValidationData}}/>*/}
+                                         {/*</div>*/}
+
+                                      </Badge>
+                                </span>
                     <p>Slip </p>
                 </a>
-                {liveSports==null?   <a href="/live" className="bloc-icon">
-                    <img src={LiveSvg} alt="">
-                    </img>
+                {/*{liveSports!=null? "live":"off"}*/}
 
-                    <p>Live</p>
-
-                </a>:""}
-                {liveSports && Object.entries(liveSports).map(([index, livesport]) => (
-                    <a href="/live" className="bloc-icon">
+                {liveSports?.length>0?Object.entries(liveSports).map(([index, livesport]) => (
+                    <a href={`/live`} className="bloc-icon">
                         <img src={LiveSvg} alt="">
                         </img>
                         <span className={'badge rounded-pill bg-dark'} style={{
@@ -78,11 +83,33 @@ const MobileMenu = (props) => {
                             marginRight: "1.5rem",
                             top: "1px"
                         }}>
-                                                                        {livesport.count}
+                                                                        {livesport.count||0}
                         </span>
                         <p>Live</p>
 
-                    </a>))}
+                    </a>)):<a href={'/live'} className="bloc-icon">
+                    <img src={LiveSvg} alt="">
+                    </img>
+                    <span className={'badge rounded-pill bg-dark'} style={{
+                        float: "right",
+                        color: "#fff",
+                        position: "absolute",
+                        marginRight: "1.5rem",
+                        top: "1px"
+                    }}>
+                                                                       0
+                        </span>
+                    <p>Live</p>
+
+                </a>
+                  }
+                  {/*<a href="/live" className="bloc-icon">*/}
+                  {/*      <img src={LiveSvg} alt="">*/}
+                  {/*      </img>*/}
+
+                  {/*      <p>Live</p>*/}
+
+                  {/*  </a>*/}
                 <a href="/" className="bloc-icon">
                     <img src={ProfileSvg} alt=""></img>
                     <p>Me</p>

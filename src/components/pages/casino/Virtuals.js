@@ -8,10 +8,12 @@ import SideBar from "../../sidebar/awesome/Sidebar";
 import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
 import Notify from "../../utils/Notify";
 import {Button, ButtonGroup} from "react-bootstrap";
+import useWindowDimensions from "../../header/Dimensions";
 
 const Virtuals = (props) => {
 
     const [user] = useState(getFromLocalStorage("user"));
+    const {height, width} = useWindowDimensions();
 
     const [categories, setCategories] = useState([])
 
@@ -60,7 +62,7 @@ const Virtuals = (props) => {
     return (
         <>
             <Header/>
-            <div className="amt">
+            <div className={(width<=514?user?"user_logged":"amt":"amt")}>
                 <div className="d-flex flex-row">
                     <SideBar loadCompetitions/>
                     <div className="gz home" style={{width: '100%'}}>
@@ -79,9 +81,9 @@ const Virtuals = (props) => {
                                     </div>
                                 </div>
                                 <div className="col">
-                                    <div className={'row text-white p-2 shadow-sm'}>
+                                    <div className={'row text-white p-2 shadow-sm virtual-size'}>
                                         {games?.map((game) => (
-                                                <div className={'col-md-2'}>
+                                                <div className={'col-md-2 virtual-width'}>
                                                     <div
                                                         className={'mt-1 mb-1 d-flex flex-column shadow-lg virtual-game-container'}>
                                                         <div onClick={() => launchGame(game?.game_id, true)}
@@ -116,7 +118,9 @@ const Virtuals = (props) => {
                     </div>
                 </div>
             </div>
+            <div className={"mobile-remove"}>
             <Footer/>
+            </div>
         </>
     )
 

@@ -10,6 +10,8 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Container from "react-bootstrap/Container";
 import Select from "react-select";
+import {getFromLocalStorage} from "./utils/local-storage";
+import useWindowDimensions from "./header/Dimensions";
 
 const Right = React.lazy(() => import('./right/index'));
 const DailyJackpotTermsAndConditions = React.lazy(
@@ -18,6 +20,8 @@ const DailyJackpotTermsAndConditions = React.lazy(
 const Jackpot = (props) => {
     const [matches, setMatches] = useState(null);
     const [finishedJackpots, setFinishedJackpots] = useState([])
+    const [user, setUser] = useState(getFromLocalStorage("user"));
+    const {height, width} = useWindowDimensions();
 
     const fetchData = useCallback(async (jackpot_id = '', jackpot_status = '') => {
         let match_endpoint = "/v1/matches/jackpot";
@@ -76,7 +80,7 @@ const Jackpot = (props) => {
     return (
         <>
             <Header/>
-            <div className="amt">
+            <div className={(width<=514?user?"user_logged":"amt":"amt")}>
                 <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions/>
                     <div className="gz home" style={{width: "100%", overflowX: "clip"}}>
@@ -174,7 +178,9 @@ const Jackpot = (props) => {
                     <Right jackpot={true} jackpotData={matches?.meta}/>
                 </div>
             </div>
+            <div className={"mobile-remove"}>
             <Footer/>
+            </div>
         </>
     )
 }

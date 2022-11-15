@@ -105,7 +105,9 @@ const CookiePolicy = () => {
                     <Right/>
                 </div>
             </div>
+            <div className={"mobile-remove"}>
             <Footer/>
+            </div>
         </>
     )
 }

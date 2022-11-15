@@ -119,7 +119,9 @@ const CompetitionMatches = (props) => {
                     <Right betslipValidationData={userSlipsValidation}/>
                 </div>
             </div>
+            <div className={"mobile-remove"}>
             <Footer/>
+            </div>
         </>
     )
 }

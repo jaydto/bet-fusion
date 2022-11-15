@@ -11,6 +11,8 @@ import useInterval from "../hooks/set-interval.hook";
 import { getBetslip } from './utils/betslip' ;
 
 import { MarketList } from './matches/index';
+import useWindowDimensions from "./header/Dimensions";
+import {getFromLocalStorage} from "./utils/local-storage";
 
 const Header = React.lazy(()=>import('./header/header'));
 const Footer = React.lazy(()=>import('./footer/footer'));
@@ -19,6 +21,8 @@ const Right = React.lazy(()=>import('./right/index'));
 
 const MatchAllMarkets = (props) => {
     const [page, setPage] = useState(1);
+    const {height, width} = useWindowDimensions();
+    const [user, setUser] = useState(getFromLocalStorage("user"));
     const [producerDown, setProducerDown] = useState(false);
     const { live } = props;
     const [matchwithmarkets, setMatchWithMarkets] = useState();
@@ -79,7 +83,7 @@ const MatchAllMarkets = (props) => {
    return (
        <>
         <Header />
-           <div className="amt">
+           <div className={(width<=514?user?"user_logged":"amt":"amt")}>
                <div className="d-flex flex-row justify-content-between">
                    <SideBar loadCompetitions />
                    <div className="gz home"  style={{width:'100%'}}>
@@ -92,7 +96,9 @@ const MatchAllMarkets = (props) => {
             <Right betslipValidationData={userSlipsValidation} />
           </div>
         </div>
-       <Footer />
+           <div className={"mobile-remove"}>
+               <Footer/>
+           </div>
        </>
    )
 }

@@ -66,7 +66,7 @@ const Betslip = (props) => {
                                 </span>
                             </div>
                         </header>
-                        <div id="betslip" className="betslip">]
+                        <div id="betslip" className="betslip">
                             <BetSlip jackpot={jackpot} betslipValidationData={betslipValidationData}/>
                         </div>
                         <QuickLogin/>

@@ -7043,6 +7043,12 @@ ul.sport {
         display: flex;
         flex-wrap:wrap;
     }
+    .betslip-container-mobile{
+        height:80%!important;
+    }
+    .live-col{
+        flex-direction:column!important;
+    }
     .virtual-width{
         width:50%;
     }

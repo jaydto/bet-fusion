@@ -691,7 +691,7 @@ const MatchRow = (props) => {
         <div className="top-matches d-flex flex-sm-column flex-lg-row ">
             <div
                 className="to-deskview to-block to-tabview  mx-lg-0 px-sm-4 px-md-4 px-lg-0  py-md-4 py-lg-0 container-size ">
-                <div className="size-info  d-flex col-xs-12 pad left-text flex-column ">
+                <div className="size-info  d-flex col-xs-12 pad left-text flex-row live-col">
                     {live &&
                         <>
                             <small style={{color: "green"}}> {match?.match_status} </small>

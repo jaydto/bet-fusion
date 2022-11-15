@@ -10,6 +10,9 @@
 /coverage
 
 # production
+/cordova
+/android
+/ios
 /build
 /ios
 /android

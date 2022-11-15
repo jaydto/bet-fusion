@@ -8,10 +8,10 @@ import karibuBonus from '../../../assets/img/banner/products/100_RegBonus.jpg'
 import multibetCashback from '../../../assets/img/banner/products/100PercentCashback.jpg'
 import twoHundredPercent from '../../../assets/img/banner/products/500PercentBonus_.jpg'
 import advance from '../../../assets/img/banner/products/Advance.jpg'
-import lala from '../../../assets/img/banner/products/Lala.jpg'
-import ngware from '../../../assets/img/banner/products/Ngware.jpg'
-import rent from '../../../assets/img/banner/products/Rent.jpg'
-import rushHour from '../../../assets/img/banner/products/Rush Hour.jpg'
+// import lala from '../../../assets/img/banner/products/Lala.jpg'
+// import ngware from '../../../assets/img/banner/products/Ngware.jpg'
+// import rent from '../../../assets/img/banner/products/Rent.jpg'
+// import rushHour from '../../../assets/img/banner/products/Rush Hour.jpg'
 
 import {Table} from "react-bootstrap";
 
@@ -262,11 +262,11 @@ const Promotions = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-md-12 d-flex flex-row shadow-lg mt-2 promotion">
+                                        <div className="col-md-12 d-flex flex-row shadow-lg mt-2 promotion d-none">
                                             <div className="col-md-12">
                                                 <div className="d-flex flex-column">
                                                     <h5>BETNARE NGWARE</h5>
-                                                    <img src={ngware} className={'rounded'}/>
+                                                    {/*<img src={ngware} className={'rounded'}/>*/}
                                                     <span>
                                                         Monday promotion. BetNare Ngware, anzisha Wiki na Thao.
                                                     </span>
@@ -292,11 +292,11 @@ const Promotions = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-md-12 d-flex flex-row shadow-lg mt-2 promotion">
+                                        <div className="col-md-12 d-flex flex-row shadow-lg mt-2 promotion d-none">
                                             <div className="col-md-12">
                                                 <div className="d-flex flex-column">
                                                     <h5>LALA KICHAMPE</h5>
-                                                    <img src={lala} className={'rounded'}/>
+                                                    {/*<img src={lala} className={'rounded'}/>*/}
                                                     <span>
                                                         This promotion will run on every Wednesday of the Month of
                                                             October, 8pm to 10pm.
@@ -323,11 +323,11 @@ const Promotions = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-md-12 d-flex flex-row shadow-lg mt-2 promotion">
+                                        <div className="col-md-12 d-flex flex-row shadow-lg mt-2 promotion d-none">
                                             <div className="col-md-12">
                                                 <div className="d-flex flex-column">
                                                     <h5>Furahia Rush Hour kiBetNare</h5>
-                                                    <img src={rushHour} className={'rounded'}/>
+                                                    {/*<img src={rushHour} className={'rounded'}/>*/}
                                                     <div className="col-md-12">
                                                         ✅ This promotion will run every Friday for the Month Of October
                                                         2022, 3pm to 7pm<br/>
@@ -378,13 +378,13 @@ const Promotions = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-md-12 d-flex flex-row shadow-lg mt-2 promotion">
+                                        <div className="col-md-12 d-flex flex-row shadow-lg mt-2 promotion d-none">
                                             <div className="col-md-12">
                                                 <div className="d-flex flex-column">
                                                     <h5 className={'text-uppercase'}>
                                                         Angukia Rent
                                                     </h5>
-                                                    <img src={rent} className={'rounded'}/>
+                                                    {/*<img src={rent} className={'rounded'}/>*/}
                                                     <div className="col-md-12">
                                                         ✅
                                                         The Angukia rent draw will be conducted on Monday 31st October.

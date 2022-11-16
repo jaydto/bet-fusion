@@ -15877,3 +15877,14 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
         opacity: 0;
     }
 }
+
+.deposit-button{
+    height: 40px;
+    line-height: 20px;
+    padding:4px;
+}
+.withdraw-button{
+    height: 40px;
+    line-height: 20px;
+    padding:4px;
+}

@@ -15,6 +15,7 @@ import {
 import makeRequest from "../utils/fetch-request";
 import {faMobile, faCoins} from "@fortawesome/free-solid-svg-icons";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
+import {Link} from "react-router-dom";
 
 const HeaderNav = (props) => {
     const gaEventTracker = useAnalyticsEventTracker('Navigation');
@@ -70,35 +71,37 @@ const HeaderNav = (props) => {
                            className="nav navbar-nav og d-flex ale ss  col-lg-12 col-md-12 col-sm-12 change-display">
 
                     <li className={pathname === '/' ? "active" : ''} onClick={() => gaEventTracker('Visit Homepage')}>
-                        <a className="cg fm ox anl url-link not-selectable " href="/" title="Home">Home</a>
+                        <Link className="cg fm ox anl url-link not-selectable " to="/" title="Home">Home</Link>
                     </li>
                     <li onClick={() => gaEventTracker('Visit Live Page')}>
-                        <a className={`g url-link live-game ${pathname === '/live' ? 'active' : ''}`} href="/live"
-                           title="Live">Live</a>
+                        <Link className={`g url-link live-game ${pathname === '/live' ? 'active' : ''}`}
+                              to={{pathname: "/live"}}
+                              title="Live">Live</Link>
                     </li>
 
                     <li className={pathname === '/jackpot' ? 'active' : ''}
                         onClick={() => gaEventTracker('Visit Jackpot Page')}>
-                        <a className="cg fm ox anl url-link" href="/jackpot" title="Jackpot">
+                        <Link className="cg fm ox anl url-link" to={{pathname: "/jackpot"}} title="Jackpot">
                             <FontAwesomeIcon icon={faCoins}/> Jackpot
-                        </a>
+                        </Link>
                     </li>
                     <li className={window.location.search.includes('worldcup') ? 'active' : ''}
                         onClick={() => gaEventTracker('World Cup')}>
-                        <a className="cg fm ox anl url-link"
-                           href="/competition/79/8085/18585?sport_id=79&sub_type_id=1,18,29&limit=500&c=worldcup"
-                           title="Fifa World Cup">
-                            <img src={worldCup} className={'world-cup'} style={{height: "20px",borderRadius:"0 !important"}}></img>
+                        <Link className="cg fm ox anl url-link"
+                              to={{pathname: "/competition/79/8085/18585?sport_id=79&sub_type_id=1,18,29&limit=500&c=worldcup"}}
+                              title="Fifa World Cup">
+                            <img src={worldCup} className={'world-cup'}
+                                 style={{height: "20px", borderRadius: "0 !important"}}></img>
                             <strong>Fifa World Cup</strong>
-                        </a>
+                        </Link>
                     </li>
                     <li className={pathname === '/app' ? 'active' : ''}
                         onClick={() => gaEventTracker('Visit App Page')}>
-                        <a className="g url-link" href="/app" title="App">
+                        <Link className="g url-link" to={{pathname: "/app"}} title="App">
                             <span>
                                 <FontAwesomeIcon icon={faMobile}/> APP
                             </span>
-                        </a>
+                        </Link>
                     </li>
 
                     <>
@@ -115,27 +118,27 @@ const HeaderNav = (props) => {
                             </a>
                         </li>
                         <li className={`${pathname === '/virtuals' || pathname.includes("gameplay") ? 'active' : ''}`}>
-                            <a className="g url-link" href="/virtuals" title="Virtuals">
+                            <Link className="g url-link" to={{pathname: "/virtuals"}} title="Virtuals">
                             <span>
                                 <FontAwesomeIcon icon={faLaptop}/> Virtuals
                             </span>
-                            </a>
+                            </Link>
                         </li>
                     </>
 
                     <li className={pathname.includes("promotions") ? 'active' : ''}
                         onClick={() => gaEventTracker('Visit Promotions Page')}>
-                        <a className="g url-link" href="/promotions" title="Promotions">
+                        <Link className="g url-link" to={{pathname: "/promotions"}} title="Promotions">
                             <FontAwesomeIcon icon={faMagic}/> Promotions
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a className="g url-link" href="/livescore"
-                           title="Live Score" onClick={() => gaEventTracker('Visit Live Score Page')}>
+                        <Link className="g url-link" to={{pathname: "/livescore"}}
+                              title="Live Score" onClick={() => gaEventTracker('Visit Live Score Page')}>
                             <span>
                                 <FontAwesomeIcon icon={faInfo}/> Live Score
                             </span>
-                        </a>
+                        </Link>
                     </li>
                     <li className={pathname === '/print-matches' ? 'spacing-end' : 'spacing-end'}>
                         <a className="g url-link fix-display" href="#" title="Search"
@@ -179,11 +182,11 @@ const HeaderNav = (props) => {
                         className={`autocomplete-box position-fixed bg-white border-dark col-md-5 mt-1 shadow-lg text-start`}
                         onClick={() => gaEventTracker('View Search Results')}>
                         {matches.map((match, index) => (
-                            <a href={`/?search=${match.home_team}`} key={index}>
+                            <Link to={{pathname: `/?search=${match.home_team}`}} key={index}>
                                 <li>
                                     {match.home_team}
                                 </li>
-                            </a>
+                            </Link>
                         ))}
                     </div>
                 </ListGroup>

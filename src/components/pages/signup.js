@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Formik, Form} from 'formik';
 import makeRequest from "../utils/fetch-request";
 import mpesa from '../../assets/img/mpesa-3.png'
 import {clearTrackingData, setLocalStorage, setTrackingData} from "../utils/local-storage";
-import {Input} from "@material-ui/core";
+import {useNavigate} from "react-router-dom";
 
 const Header = React.lazy(() => import('../header/header'));
 const SideBar = React.lazy(() => import('../sidebar/awesome/Sidebar'));
@@ -14,11 +14,13 @@ const Signup = (props) => {
 
     const [success, setSuccess] = useState(false);
     const [message, setMessage] = useState(null);
+    const navigate=useNavigate();
 
     const initialValues = {
         msisdn: '',
         password: ''
     }
+
 
     const handleSubmit = values => {
 
@@ -42,7 +44,12 @@ const Signup = (props) => {
                 // window.location.href = "/"
                 clearInterval(timer)
             }, 3000)
+            // navigate("/")
+            setTimeout(()=>navigate("/"),2000
+            )
+
         })
+
     }
 
     const validate = values => {
@@ -86,41 +93,43 @@ const Signup = (props) => {
                             <img src={mpesa} alt=""/>
                         </div>
                         <hr/>
-                        <div className="form-group col-md-6 w-100 mt-5">
+                        <div className="form-group row d-flex justify-content-center mt-5">
                             <div className="col-md-12">
                                 <label>Mobile Number</label>
                                 <input
-                                    value={values.msisdn}
+                                    // value={values.msisdn}
                                     className="text-dark deposit-input form-control col-md-12 input-field"
                                     id="msisdn"
                                     name="msisdn"
                                     type="text"
                                     placeholder='Phone number'
-                                    OnChange={ev => onFieldChanged(ev)}
+                                    onfocusout={ev => onFieldChanged(ev)}
+                                    // onChange={ev => onFieldChanged(ev)}
                                 />
                                 {errors.msisdn && <div className='text-danger'> {errors.msisdn} </div>}
                             </div>
                         </div>
 
-                        <div className="form-group col-md-6 w-100 mt-5">
+                        <div className="form-group row d-flex justify-content-center mt-5">
                             <div className="col-md-12">
                                 <label>Password</label>
                                 <input
-                                    value={values.password}
+                                    // value={values.password}
                                     className="text-dark deposit-input form-control col-md-12 input-field"
                                     id="password"
                                     name="password"
                                     type="password"
                                     placeholder='Password'
-                                    OnChange={ev => onFieldChanged(ev)}
+                                    onfocusout={ev => onFieldChanged(ev)}
+                                    // onChange={ev => onFieldChanged(ev)}
                                 />
                                 {errors.password && <div className='text-danger'> {errors.password} </div>}
                             </div>
                         </div>
-                        <div className="form-group col-md-6 w-100 mb-4">
-                            <div className="col-md-3">
+                        <div className="form-group row d-flex justify-content-left mb-4">
+                            <div className="col-md-3 w-100">
                                 <button type="submit"
-                                        className='w-100 btn btn-lg btn-primary mt-5 col-md-12 deposit-withdraw-button'>
+                                        className=' w-100 btn btn-lg btn-primary mt-5 col-md-12 deposit-withdraw-button'>
                                     Signup
                                 </button>
                             </div>
@@ -155,7 +164,7 @@ const Signup = (props) => {
             <div className="amt">
                 <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions/>
-                    <div className="gz home w-100">
+                    <div className="gz home">
                         <div className="homepage">
                             <FormTitle/>
                             <div className="col-md-12 mt-2 text-white p-2">
@@ -166,7 +175,6 @@ const Signup = (props) => {
                             </div>
                         </div>
                     </div>
-
                     <Right/>
                 </div>
             </div>
@@ -179,3 +187,5 @@ const Signup = (props) => {
 }
 
 export default Signup;
+
+

@@ -6,7 +6,6 @@ import {
     clearSlip,
     clearJackpotSlip, formatNumber
 } from '../utils/betslip';
-import {toast} from 'react-toastify';
 import publicIp from 'public-ip';
 import makeRequest from '../utils/fetch-request';
 import 'react-toastify/dist/ReactToastify.css';
@@ -15,8 +14,8 @@ import {
     Formik,
     Form as FormikForm,
     useFormikContext,
-    Field
 } from 'formik';
+import {getFromLocalStorage} from "../utils/local-storage";
 
 const Float = (equation, precision = 4) => {
     return Math.round(equation * (10 ** precision)) / (10 ** precision);
@@ -26,6 +25,8 @@ const Float = (equation, precision = 4) => {
 const BetslipSubmitForm = (props) => {
 
     const {jackpot, totalGames, totalOdds, betslip, setBetslipsData, jackpotData, bonusBet} = props;
+    const [hasMultiBetBoost, setHasMultiBetBoost] = useState(true)
+    const [multiBoostAmount, setMultiBoostAmount] = useState(0)
     const [ipv4, setIpv4] = useState(null);
     const [message, setMessage] = useState(null);
     const [state, dispatch] = useContext(Context);
@@ -280,6 +281,26 @@ const BetslipSubmitForm = (props) => {
         );
     }
 
+    const calculateMultiBetBoostAmount = () => {
+        let settings = getFromLocalStorage('settings')
+        let rates = settings?.multi_bet_bonus || {}
+        let ratio = rates?.filter((rate) => rate.selections === totalOdds)
+        console.log("Ration on selections is ", ratio)
+        let boost = 0
+        let betslips = getBetslip() || {};
+        let a = stakeAfterTax * (totalOdds) * (1 - (1 / totalOdds));
+
+        console.log("Bet slip changed, recalculating the bonus boost ... ")
+    }
+
+    const MultiBetBoost = () => {
+        return "Congratulations! your selection of " + totalGames + " games has earned you a boost of KES " + formatNumber(multiBoostAmount);
+    }
+
+    useEffect(() => {
+        calculateMultiBetBoostAmount()
+    }, [betslip])
+
     return (
 
         <Formik
@@ -309,6 +330,11 @@ const BetslipSubmitForm = (props) => {
 
             return (<FormikForm name="betslip-submit-form">
                 <Alert/>
+                {hasMultiBetBoost ? (
+                    <div className={'alert alert-success'}>
+                        <MultiBetBoost/>
+                    </div>
+                ) : (<></>)}
                 {totalGames > 0 && (
                     <table className="bet-table">
                         <tbody>

@@ -135,6 +135,7 @@ const MatchHeaderRow = (props) => {
             }
         })
 
+
         setExtraMarketDisplays(extraMarkets)
 
     }

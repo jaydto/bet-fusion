@@ -202,7 +202,7 @@ const BetSlip = (props) => {
             {!jackpot && (
                 <BonusAlert/>
             )}
-            <div className="flow" style={{maxHeight: "35vh", overflowY: "auto"}}>
+            <div className="flow mobile-height" style={{maxHeight: "35vh", overflowY: "auto"}}>
                 <ul>
                     {Object.entries(betslipsData || {}).map(([match_id, slip]) => {
                         let odd = slip.odd_value;
@@ -211,12 +211,13 @@ const BetSlip = (props) => {
                         return (
                             <li className={`bet-option hide-on-affix ${slip?.disable ? 'warn' : ''}`} key={match_id}
                                 style={{background: no_odd_bg}}>
+                                <div className="bet-cancel">
+                                    <input id={slip.match_id} type="submit" value="X"
+                                           onClick={() => handledRemoveSlip(slip)}/>
+                                </div>
                                 <a href={`${slip?.bet_type === "0" ? "/match/" + slip?.match_id : "/match/live/" + slip?.parent_match_id}`}
                                    style={{color: "inherit", fontStyle: "inherit"}} className={'g url-link'}>
-                                    <div className="bet-cancel">
-                                        <input id={slip.match_id} type="submit" value="X"
-                                               onClick={() => handledRemoveSlip(slip)}/>
-                                    </div>
+
                                     <div className="bet-value">
                                         <b>
                                             {<span style={{

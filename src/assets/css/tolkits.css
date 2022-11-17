@@ -1,3 +1,8 @@
+*{
+    list-style:none;
+    box-sizing: border-box;
+    text-decoration: none;
+}
 .mobile-menu {
     background: #1f2f38;
     position: fixed;
@@ -934,7 +939,7 @@ button {
 }
 
 .font-btn {
-    font-weight: 200;
+    /*font-weight: 200;*/
     font-size: 12px;
     display: flex;
     justify-content: flex-start;
@@ -7039,9 +7044,45 @@ ul.sport {
 }
 
 @media (max-width: 767px) {
+    .logout-btn{
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        background: #23313d;
+        border: 1px solid white;
+        border-radius: 1rem;
+    }
+    .mobile-top{
+        margin-top:12rem;
+    }
     .virtual-size{
         display: flex;
         flex-wrap:wrap;
+    }
+    /*.betslip form{*/
+    /*    margin-top:5px!important;*/
+    /*    position:absolute;*/
+    /*    width:100%;*/
+    /*    background:#1f2f38;*/
+    /*}*/
+
+    .betslip td{
+        padding: 2px 2px!important;
+    }
+    .mobile-height{
+        max-height:30vh!important;
+    }
+    .width-full{
+        width:100%;
+    }
+    .mobile-menu{
+        z-index:9999;
+    }
+    .bet-align-left{
+        text-align:left;
+    }
+    .bet-align-right{
+        text-align:right;
     }
     .betslip-container-mobile{
         height:80%!important;
@@ -7664,7 +7705,7 @@ ul.sport {
 
 .sticky-responsive {
     position: sticky;
-    top: 130px
+    top: 126px
 }
 
 @media (min-width: 768px) {
@@ -15424,6 +15465,21 @@ img.zoom-img {
     background:#ffc107!important;
 }
 @media (max-width: 767px){
+    .font-slip{
+        font-size:11px;
+    }
+    .mobile-width-full{
+        width:100%;
+    }
+    .sidebar-mobile-column{
+        display:flex;
+        flex-direction:column;
+    }
+    .mobile-betslip{
+        background:#1f2f38;
+        height:100vh;
+        z-index: 10000;
+    }
     .footer-mobile{
         width: 99%;
         padding:0.1rem 1.5rem;
@@ -16247,7 +16303,8 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     background: rgb(51, 76, 92);
 }
 .scaling{
-    scale: 1.1 1.5;
+    scale: 1.5;
+    margin-bottom:1rem;
     border-radius: 10rem;
 }
 .c-btn-group > .c-btn:last-child {

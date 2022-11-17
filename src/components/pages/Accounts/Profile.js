@@ -1,10 +1,284 @@
-import React from 'react';
+import React, {useState} from 'react';
+import "./card.css";
+import Right from "../../right";
+import {faCoins, faUser, faChevronRight, faQuestionCircle} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {formatNumber} from "../../utils/betslip";
+import {clearTrackingData, getFromLocalStorage, setTrackingData} from "../../utils/local-storage";
+import useWindowDimensions from "../../header/Dimensions";
+
+
+import {Link, useNavigate} from "react-router-dom";
+import Header from "../../header/header";
+import {Navbar, Offcanvas} from "react-bootstrap";
+import {LazyLoadImage} from "react-lazy-load-image-component";
+import logo from "../../../assets/img/logo.png";
+import Container from "react-bootstrap/Container";
+
+
+
+import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
+import SidebarMobile from "../../sidebar/awesome/SidebarMobile";
+import makeRequest from "../../utils/fetch-request";
+
+
 
 const Profile = () => {
-    return (
-        <div>
+    const navigate = useNavigate();
+    const [success, setSuccess] = useState(false);
+    const [message, setMessage] = useState(null);
+    const [user, setUser] = useState(getFromLocalStorage("user"));
+    const {height, width} = useWindowDimensions();
+    const expand = "md"
 
-        </div>
+    const [withdraw, setWithdraw] = useState('');
+    const [deposit,setDeposit]=useState('');
+    const gaEventTracker = useAnalyticsEventTracker('Navigation');
+
+    const depositCash=(value, amount)=>{
+
+        let values={
+            msisdn:value,
+            amount:amount
+        }
+        {console.log("here deposit",values)}
+
+        let endpoint = '/stk/deposit';
+        setTrackingData(values)
+        makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
+            setSuccess(status === 200 || status === 201);
+            setMessage(response);
+            clearTrackingData()})
+
+    }
+    const withdrawCash=(value,amount)=>{
+
+        let values={
+            msisdn:value,
+            amount:amount
+        }
+        let endpoint = '/withdraw';
+        {console.log("here withdraw",values)}
+
+        makeRequest({url: endpoint, method: 'POST', data: {user:values}, use_jwt:true}).then(([status, response]) => {
+            setSuccess(status === 200 || status === 201);
+            setMessage(response);
+
+        })
+    }
+    return (
+        <>
+            <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark">
+                <Container fluid className={'d-flex justify-content-between mobile-change'}>
+                    <Navbar.Brand className="e logo align-self-start menu-control" title="Betnare">
+                        <Link to={{pathname: "/"}} className="col-4 resize-mobile">
+                            <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"
+                                           className={"image-size "}/>
+                        </Link>
+
+
+                        {width <= 514 ?
+
+                            <div className="col-1 button-toggle mx-2" style={{width: "3.1rem"}}>
+                                <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"md"}`} className="px-3 py-3" />
+                            </div> : ""}
+                    </Navbar.Brand>
+                    <div className="col-9  " id="navbar-collapse-main">
+
+                        <div
+                            className="col-md-10 col-sm-12 col-lg-8 right to-profilecheck w-100 justify-content-end style-mobile">
+
+
+                            {width > 514 ? <div
+                                className="col-1 button-toggle mx-2">
+                                <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"md"}`} className="px-3 py-3"/>
+                            </div> : ""
+                            }
+
+                        </div>
+
+                    </div>
+                    <Navbar.Offcanvas
+                        style={{width: "80%", height: "100%",zIndex: "9999", marginTop: "0px"}}
+                        className='off-canvas background-primary p-0'
+                        id={`offcanvasNavbar-expand-${expand}`}
+                        aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+                        placement="start">
+                        <Offcanvas.Header closeButton className='text-white' closeVariant={"white"}>
+                            <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
+                                <div className="col-3">
+                                    <div>
+                                        <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"/>
+                                    </div>
+                                </div>
+                            </Offcanvas.Title>
+                        </Offcanvas.Header>
+                        <Offcanvas.Body className={(width<=514?user?"":"":"")}>
+                            <SidebarMobile/>
+                        </Offcanvas.Body>
+                    </Navbar.Offcanvas>
+                </Container>
+            </Navbar>
+            <div className="row d-flex flex-column gap-3 px-4 py-4 justify-content-center align-items-center">
+                <div style={{marginTop:"4rem"}}>
+                    <div className={"card-body d-flex flex-column align-items-center gap-2"}>
+                        <div className={"bg-warning user-style"}>
+                            <FontAwesomeIcon icon={faUser} className={"text-light"}
+                                             style={{height: "3rem", width: "3rem"}}/>
+                        </div>
+                        <span className=" text-warning"> {user?.msisdn}</span>
+                    </div>
+
+                </div>
+                <div className=" w-100 ">
+
+                    <div className="card-radius profile-bg text-light">
+                        <div className="card-body d-flex justify-content-between gap-2 ">
+                            <div className={" profile-bg"}>
+                                <div className="card-body ">
+                                    <span
+                                        className="font-btn py-2 flex-wrap">Balance {formatNumber(user?.balance) || 0} </span>
+                                </div>
+                            </div>
+                            <div className={"d-flex align-items-center"}>
+                                <div className={"line-between"}></div>
+                            </div>
+
+                            <div className={"profile-bg"}>
+                                <div className="card-body ">
+                                    <span className="font-btn py-2 px-2">Bonus {formatNumber(user.bonus) || 0} </span>
+                                </div>
+                            </div>
+                            <div className={"d-flex align-items-center"}>
+                                <div className={"line-between"}></div>
+                            </div>
+                            <div className={" profile-bg"}>
+                                <div className="card-body ">
+                                    <a href="/redeem-points" className={'link-info text-info'}
+                                       title={'Click to Redeem'}>
+                            <span
+                                className="font-btn rounded btn-sm outline-info">
+                                <span className={"to-none"}>Nare</span> Points &nbsp;
+                                {formatNumber(user?.points_balance) || 0}
+                            </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className=" w-100">
+                    <div className="card card-radius profile-bg text-light">
+                        <div className="card-body">
+                            <div>
+                                <Link to={{pathname: "/my-bets"}} className={"btn text-white w-100 d-content"}>
+                                    <span className="font-btn pad-2  justify-content-between">
+                                    <span className="d-flex align-items-center gap-3 ">
+                                        <FontAwesomeIcon icon={faCoins} style={{height:"2.5rem", width:"2.5rem"}} className={"text-warning"}/>
+                                        <div className={"card-title text-warning"}><h4>My Bets</h4></div>
+                                    </span>
+
+                                        <FontAwesomeIcon icon={faChevronRight} className={"text-warning"} />
+
+                                     </span>
+                                </Link>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div className=" w-100">
+                    <div className="card card-radius profile-bg text-light">
+                        <div className="card-body d-flex flex-column align-items-start">
+                            <div className={"card-title"}><h4>Deposit</h4></div>
+                            <p className={"card-text"}>Send Money to your betnare account</p>
+                            <form className="col-md-12 w-100 ">
+
+                                <input
+                                    onChange={e => setDeposit(e.target.value,user.msisdn)}
+                                    className="text-dark deposit-input form-control col-md-12 input-field"
+                                    id="amount"
+                                    name="amount"
+                                    type="number"
+                                    value={deposit}
+                                    placeholder='Enter Amount'
+                                />
+                                <div className="w-50 d-flex align-items-start">
+                                    <button
+                                        className='btn btn-lg btn-primary mt-5 w-100 deposit-withdraw-button' onClick={depositCash(user.msisdn,deposit)}>
+                                        DEPOSIT
+                                    </button>
+                                </div>
+                                {console.log("value deposit",deposit+" "+user.msisdn)}
+                                {/*{errors.amount && <div className='text-danger'> {errors.amount}*/}
+                                {/*</div>}*/}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div className=" w-100">
+                    <div className="card card-radius profile-bg text-light">
+                        <div className="card-body d-flex flex-column align-items-start">
+                            <div className={"card-title"}><h4>Withdraw</h4></div>
+                            <p className={"card-text"}>Withdraw from your betnare wallet</p>
+                            <form className="col-md-12 w-100 ">
+                                <input
+                                    onChange={e => setWithdraw(e.target.value,user.msisdn)}
+                                    className="text-dark deposit-input form-control col-md-12 input-field"
+                                    id="amount"
+                                    name="amount"
+                                    type="number"
+                                    value={withdraw}
+                                    placeholder='Enter Amount'
+                                />
+                                <div className="w-50 d-flex align-items-start">
+                                    <button
+                                        className='btn btn-lg btn-primary mt-5 w-100 deposit-withdraw-button' onClick={withdrawCash(user.msisdn,withdraw)}>
+                                        WITHDRAW
+                                    </button>
+                                </div>
+                                {console.log("value withdraw",withdraw+" ",user.msisdn)}
+                                {/*{errors.amount && <div className='text-danger'> {errors.amount}*/}
+                                {/*</div>}*/}
+                            </form>
+                            {/*<p className={"card-text"}>Minimum KES 100</p>*/}
+                        </div>
+                    </div>
+                </div>
+
+
+                <div className=" w-100">
+                    <div className="card card-radius profile-bg text-light">
+                        <div className="card-body d-flex flex-column align-items-start">
+                        <div className={"card-title"}><h4>Support</h4></div>
+
+                            <Link to={"/how-to-play"} className={"d-flex gap-3 align-items-center text-light justify-content-between w-100"}>
+                                <span className={"d-flex gap-3 align-items-center"}>
+                                    <FontAwesomeIcon icon={faQuestionCircle}/>
+                                Help and support
+                                </span>
+
+                                <FontAwesomeIcon icon={faChevronRight}/>
+                            </Link>
+                            <hr className={"w-100 my-2"}/>
+                            <span className={"text-warning d-flex justify-content-center w-100"}>
+                                <Link to={"/logout"}>Sign out</Link>
+                            </span>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div className={"mobile-only mobile-top"}>
+                <Right/>
+            </div>
+        </>
+
     );
 };
 

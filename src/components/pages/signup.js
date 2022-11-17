@@ -3,6 +3,7 @@ import {Formik, Form} from 'formik';
 import makeRequest from "../utils/fetch-request";
 import mpesa from '../../assets/img/mpesa-3.png'
 import {clearTrackingData, setLocalStorage, setTrackingData} from "../utils/local-storage";
+import {Input} from "@material-ui/core"
 
 const Header = React.lazy(() => import('../header/header'));
 const SideBar = React.lazy(() => import('../sidebar/awesome/Sidebar'));
@@ -80,46 +81,46 @@ const Signup = (props) => {
         return (
             <Form>
                 <div className="pt-0">
-                    <div className="row">
+                    <div className="row align-items-center">
                         <div className='col-md-6 text-center w-100 border-bottom'>
                             <img src={mpesa} alt=""/>
                         </div>
 
-                        <div className="form-group row d-flex justify-content-center mt-5">
+                        <div className="form-group col-md-6 text-center w-100  mt-5">
                             <div className="col-md-12">
                                 <label>Mobile Number</label>
-                                <input
-                                    value={values.msisdn}
+                                <Input
                                     className="text-dark deposit-input form-control col-md-12 input-field"
                                     id="msisdn"
                                     name="msisdn"
                                     type="text"
-                                    placeholder='Phone number'
+                                    placeholder={errors.msisdn?errors.msisdn:'Phone enter a phone number'}
                                     onChange={ev => onFieldChanged(ev)}
+                                    value={values.msisdn}
                                 />
                                 {errors.msisdn && <div className='text-danger'> {errors.msisdn} </div>}
                             </div>
                         </div>
 
-                        <div className="form-group row d-flex justify-content-center mt-5">
+                        <div className="form-group col-md-6 text-center w-100  mt-5">
                             <div className="col-md-12">
                                 <label>Password</label>
-                                <input
-                                    value={values.password}
+                                <Input
                                     className="text-dark deposit-input form-control col-md-12 input-field"
                                     id="password"
                                     name="password"
                                     type="password"
                                     placeholder='Password'
                                     onChange={ev => onFieldChanged(ev)}
+                                    value={values.password}
                                 />
                                 {errors.password && <div className='text-danger'> {errors.password} </div>}
                             </div>
                         </div>
-                        <div className="form-group row d-flex justify-content-left mb-4">
+                        <div className="form-group col-md-6 text-center w-100  mb-4">
                             <div className="col-md-3">
-                                <button type="submit"
-                                        className='btn btn-lg btn-primary mt-5 col-md-12 deposit-withdraw-button'>
+                                <button type="submit "
+                                        className='btn btn-lg btn-primary  mt-5 col-md-12 deposit-withdraw-button width-full'>
                                     Signup
                                 </button>
                             </div>
@@ -165,9 +166,13 @@ const Signup = (props) => {
                             </div>
                         </div>
                     </div>
-                    <Right/>
+
                 </div>
             </div>
+            <div className={"mobile-top mobile-only"}>
+                <Right/>
+            </div>
+
             <div className={"mobile-remove"}>
             <Footer/>
             </div>

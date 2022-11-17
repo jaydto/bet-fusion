@@ -17,7 +17,7 @@ import './index.css';
 import './assets/css/sidebar-menu.css';
 import Store from './context/store';
 import ReactGA from 'react-ga4';
-import useWindowDimensions from "./components/header/Dimensions";
+
 import App from "./App";
 
 const TRACKING_ID = "G-5NLSN9BLN4";

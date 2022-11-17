@@ -1,5 +1,9 @@
 import React from "react";
-import {faUser, faLock, faCoins} from "@fortawesome/free-solid-svg-icons";
+import {
+    faLock,
+    faCloudUploadAlt,
+    faCloudDownloadAlt, faGifts, faDollarSign, faListOl, faSmile, faUserAlt
+} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {formatNumber} from "../utils/betslip";
 import {Link} from "react-router-dom";
@@ -10,72 +14,76 @@ const ProfileMenu = (props) => {
     return (
         <>
             {user && (
-                <div className="ale ss profile d-flex flex-row row  tablet-design ">
-                    <div className="{'mt-1'} col-md-2 span-change d-flex flex-column justify-content-end space-deposit">
-                        <a href="/redeem-points" className={'link-info text-info'} title={'Click to Redeem'}>
-                            <span
-                                className="font-btn rounded btn-sm outline-info">
-                                <span className={"to-none"}>Nare</span> Points &nbsp;
-                                {formatNumber(user?.points_balance) || 0}
-                            </span>
-                        </a>
-                        <Link
-                            to={{pathname: "/deposit"}}
-                            className={"btn text-white btn-outline-warning"}>
-                              <span
-                                  className="font-btn overflow-hidden justify-content-center btn-outline-warning rescale">
-                               <span className=" space-icons"> <FontAwesomeIcon icon={faCoins}/></span> Deposit
+                <>
+                    <div className="row w-100">
+                        <div className="col d-flex flex-column text-white align-items-end">
+                            <div>
+                                <Link
+                                    to={{pathname: "/deposit"}}
+                                    className={"deposit-button"}>
+                                      <span className="">
+                                       <span className=" space-icons"> <FontAwesomeIcon
+                                           icon={faCloudDownloadAlt}/></span>
+                                          <strong>DEPOSIT FUNDS</strong>
+                                      </span>
+                                </Link>
+                            </div>
+                            <div>
+                                <Link to={{pathname: "/withdraw"}} className={"withdraw-button text-white"}>
+                                    <span className="">
+                                    <span className=" space-icons"><FontAwesomeIcon icon={faCloudUploadAlt}/> </span>
+                                        Withdraw
+                                    </span>
+                                </Link>
+                            </div>
+                        </div>
+                        <div className="col d-flex flex-column text-white align-items-end">
+                            <div>
+                                <FontAwesomeIcon
+                                    icon={faDollarSign}/> Cash
+                                <strong style={{color: "#FFB200"}}> KSH {formatNumber(user.balance) || 0}</strong>
+                            </div>
+                            <div><FontAwesomeIcon
+                                icon={faGifts}/> Gift <strong>
+                                KSH {formatNumber(user.bonus) || 0}</strong></div>
+                        </div>
+                        <div className="col d-flex flex-column text-white align-items-center">
+                            <div>
+                                <FontAwesomeIcon
+                                    icon={faSmile}/> Bonus
+                                <strong>KSH {formatNumber(user.bonus) || 0}</strong>
+                            </div>
+                            <div>
+                                <Link to={{pathname: "/redeem-points"}}
+                                      className={'link-info text-info'} title={'Click to Redeem'}>
+                                    <FontAwesomeIcon
+                                        icon={faListOl}/> Points <strong> {formatNumber(user.points_balance) || 0}</strong>
+                                </Link>
+                            </div>
+                        </div>
+                        <div className="col d-flex flex-column text-white align-items-end">
+                            <div>
+                              <span className="font-btn ">
+                              <span className=" space-icons">
+                                  <FontAwesomeIcon icon={faUserAlt}/> </span>
+                                  {user?.msisdn}
                               </span>
-                        </Link>
-                    </div>
-
-                    <div className="col-md-3  d-flex flex-column right justify-content-end w-change1">
-                        <div>
-                            <span className="font-btn py-2 px-2">Bonus {formatNumber(user.bonus) || 0} </span>
-                        </div>
-                        <div>
-                            <Link to={{pathname: "/my-bets"}} className={"btn text-white w-100 d-content"}>
-                <span className="font-btn pad-2 ">
-                <span className=" space-icons"><FontAwesomeIcon icon={faCoins}/> </span>My Bets
-                </span>
-                            </Link>
-                        </div>
-                    </div>
-
-
-                    <div className="col-md-3 d-flex flex-column right justify-content-end w-change2">
-                        <div>
-                            <span className="font-btn py-2 flex-wrap">Balance {formatNumber(user.balance) || 0} </span>
-                        </div>
-                        <div>
-                            <Link to={{pathname: "/withdraw"}} className={"btn text-white w-100 d-content"}>
-                <span className="font-btn pad-2">
-                <span className=" space-icons"><FontAwesomeIcon icon={faCoins}/> </span>Withdraw
-                </span>
-                            </Link>
-                        </div>
-
-                    </div>
-
-                    <div className="col-md-3 d-flex flex-column nav-option-content w-change2">
-                        <div>
-              <span className="font-btn py-1">
-              <span className=" space-icons"><FontAwesomeIcon icon={faUser}/> </span>{user?.msisdn}
-              </span>
-                        </div>
-                        <div>
-                            <a href="/logout">
-                <span className="font-btn py-1">
-                <span className=" space-icons"> <FontAwesomeIcon icon={faLock}/> </span>Logout
-                </span>
-                            </a>
+                            </div>
+                            <div>
+                                <a href="/logout">
+                                    <span className="font-tb">
+                                    <span className="space-icons"> <FontAwesomeIcon icon={faLock}/> </span>
+                                        Log Out
+                                    </span>
+                                </a>
+                            </div>
+                            <div className="col-1 button-toggle space-button">
+                                <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"md"}`} className="px-3 py-3"/>
+                            </div>
                         </div>
                     </div>
-                    <div className="col-1 button-toggle space-button">
-                        <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"md"}`} className="px-3 py-3"/>
-                    </div>
+                </>
 
-                </div>
             )}
         </>
     );

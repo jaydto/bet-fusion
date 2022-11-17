@@ -39,7 +39,7 @@ const TermsAndConditions = (props) => {
             <div className="amt">
                 <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions/>
-                    <div className="gz home">
+                    <div className="gz home mobile-width-full">
                         <div className="homepage">
                             <div className='col-md-12 primary-bg p-4 text-center'>
                                 <h4 className="inline-block">

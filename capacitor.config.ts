@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.betnare.app',
+  appId: 'io.ionic.starter',
   appName: 'betnare',
   webDir: 'build',
   bundledWebRuntime: false

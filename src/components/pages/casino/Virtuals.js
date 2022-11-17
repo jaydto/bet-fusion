@@ -9,6 +9,7 @@ import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
 import Notify from "../../utils/Notify";
 import {Button, ButtonGroup} from "react-bootstrap";
 import useWindowDimensions from "../../header/Dimensions";
+import Right from "../../right";
 
 const Virtuals = (props) => {
 
@@ -117,6 +118,10 @@ const Virtuals = (props) => {
                         </div>
                     </div>
                 </div>
+                <div className={"mobile-only mobile-top"}>
+                    <Right/>
+                </div>
+
             </div>
             <div className={"mobile-remove"}>
             <Footer/>

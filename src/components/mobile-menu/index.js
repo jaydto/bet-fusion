@@ -13,6 +13,7 @@ import {faTimes} from "@fortawesome/free-solid-svg-icons";
 import BetSlip from "../right/betslip";
 import QuickLogin from "../right/quick-login";
 import Right from "../right";
+import {getFromLocalStorage} from "../utils/local-storage";
 
 const MobileMenu = (props) => {
     console.log("props aere here ", props)
@@ -20,6 +21,7 @@ const MobileMenu = (props) => {
     const {jackpot, betslipValidationData, jackpotData} = props;
     const [betSlipMobile, setBetSlipMobile] = useState(false);
     let value=true;
+    const [user, setUser] = useState(getFromLocalStorage("user"));
 
     const fetchData = useCallback(() => {
         let endpoint = "/v1/sports?live=1";
@@ -46,24 +48,27 @@ const MobileMenu = (props) => {
     return (
         <div>
             <div
-            className={`fixed-bottom text-white d-block d-md-none shadow-lg betslip-container-mobile ${betSlipMobile ? 'd-block' : 'd-none'}`}>
-            <div className="bet-option-list sticky-top" id=''>
-            <div className="bet alu  block-shadow">
-            <header style={{marginTop: "50px"}}>
-            <div className="betslip-header d-flex justify-content-between">
-            <span className="col-sm-8 slp">BETSLIP</span>
-            <span className="col-sm-2 slip-counter d-flex justify-content-center"
-            title={'Hide BetSlip'} onClick={() => setBetSlipMobile(false)}>
-            <FontAwesomeIcon icon={faTimes} className={'align-self-center'}/>
-            </span>
+            className={`fixed-bottom text-white d-block d-md-none shadow-lg betslip-container-mobile ${betSlipMobile ? 'd-flex' : 'd-none'}`} style={{marginBottom:"7rem"}}>
+            <div className={"w-100"} style={{position:"relative"}}>
+                <div className="bet-option-list w-100" id='' style={{position:"absolute",bottom:"0"}}>
+                    <div className="bet alu  block-shadow d-flex flex-column">
+                        <header >
+                            <div className="betslip-header d-flex justify-content-between">
+                                <span className="col-sm-8 slp">BETSLIP</span>
+                                <span className="col-sm-2 slip-counter d-flex justify-content-center"
+                                      title={'Hide BetSlip'} onClick={() => setBetSlipMobile(false)}>
+                                            <FontAwesomeIcon icon={faTimes} className={'align-self-center'}/>
+                                </span>
+                            </div>
+                        </header>
+                        <div id="betslip" className="betslip">
+                            <BetSlip jackpot={jackpot} betslipValidationData={betslipValidationData}/>
+                        </div>
+                        <QuickLogin/>
+                    </div>
+                </div>
             </div>
-            </header>
-            <div id="betslip" className="betslip">
-            <BetSlip jackpot={jackpot} betslipValidationData={betslipValidationData}/>
-            </div>
-            <QuickLogin/>
-            </div>
-            </div>
+
             </div>
             <nav className="mobile-menu">
                 <a href="/" className="bloc-icon">
@@ -74,42 +79,46 @@ const MobileMenu = (props) => {
                     <img src={VirtualSvg} alt=""></img>
                     <p>Virtuals</p>
                 </a>
-                <a href="#" className={` bloc-icon scaling  bet-slip-footer-toggle`} onClick={()=>{setBetSlipMobile(true)}}>
-                    <span className="col-sm-2  text-white">
-                                     <Badge pill bg="warning" >
+                <div className={"bloc-icon "}>
+                    <a href="#" className={` scaling  bet-slip-footer-toggle`} onClick={()=>{setBetSlipMobile(true)}}>
+                    <span className="col-sm-2  text-white my-4">
+                                     <Badge pill bg="warning " >
                                       {betslipValidationData?.length || 0}
-
 
                                       </Badge>
                                 </span>
-                    <p>Slip </p>
-                </a>
+
+                    </a>
+                    <p style={{MarginBottom:"2.1rem"}}>Slip </p>
+                </div>
                 {/*{liveSports!=null? "live":"off"}*/}
 
                 {liveSports?.length>0?Object.entries(liveSports).map(([index, livesport]) => (
                     <a href={`/live`} className="bloc-icon">
-                        <img src={LiveSvg} alt="">
+                        <img style={{background:"red"}} src={LiveSvg} alt="">
                         </img>
-                        <span className={'badge rounded-pill bg-dark'} style={{
+                        <span className={'badge rounded-pill '} style={{
                             float: "right",
                             color: "#fff",
                             position: "absolute",
                             marginRight: "1.5rem",
-                            top: "1px"
+                            top: "1px",
+                            background:"red"
                         }}>
                                                                         {livesport.count||0}
                         </span>
                         <p>Live</p>
 
                     </a>)):<a href={'/live'} className="bloc-icon">
-                    <img src={LiveSvg} alt="">
+                    <img style={{background:"red"}} src={LiveSvg} alt="">
                     </img>
-                    <span className={'badge rounded-pill bg-dark'} style={{
+                    <span className={'badge rounded-pill '} style={{
                         float: "right",
                         color: "#fff",
                         position: "absolute",
                         marginRight: "1.5rem",
-                        top: "1px"
+                        top: "1px",
+                        background:"red"
                     }}>
                                                                        0
                         </span>
@@ -117,17 +126,14 @@ const MobileMenu = (props) => {
 
                 </a>
                   }
-                  {/*<a href="/live" className="bloc-icon">*/}
-                  {/*      <img src={LiveSvg} alt="">*/}
-                  {/*      </img>*/}
 
-                  {/*      <p>Live</p>*/}
-
-                  {/*  </a>*/}
-                <a href="/" className="bloc-icon">
+                {user?<a href="/profile" className="bloc-icon">
                     <img src={ProfileSvg} alt=""></img>
-                    <p>Me</p>
-                </a>
+                    <p>Profile</p>
+                </a>:<a href="/login" className="bloc-icon">
+                    <img src={ProfileSvg} alt=""></img>
+                    <p>Profile</p>
+                </a>}
 
 
             </nav>

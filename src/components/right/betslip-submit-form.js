@@ -313,8 +313,8 @@ const BetslipSubmitForm = (props) => {
                     <table className="bet-table">
                         <tbody>
                         {!jackpot && <tr className="hide-on-affix">
-                            <td>TOTAL ODDS</td>
-                            <td>
+                            <td className={"bet-align-left"}>TOTAL ODDS</td>
+                            <td className={"bet-align-right"}>
                                 <b>{Float(totalOdds, 2)}</b>
 
                             </td>
@@ -335,9 +335,9 @@ const BetslipSubmitForm = (props) => {
                             </td>
                         </tr>
                         <tr>
-                            <td>Stake</td>
-                            <td>
-                                <div id="betting">
+                            <td className={'bet-align-left'}>Stake</td>
+                            <td >
+                                <div className={"bet-align-right"} id="betting">
                                     {jackpot ?
                                         jackpotData?.bet_amount :
                                         (<input type="text"
@@ -354,23 +354,23 @@ const BetslipSubmitForm = (props) => {
                             <td colSpan="2"></td>
                         </tr>
                         {!jackpot && <tr className="bet-win-tr hide-on-affix">
-                            <td>Possible winnings</td>
-                            <td>
+                            <td className={"bet-align-left"}>Possible winnings</td>
+                            <td className={"bet-align-right"}>
                                 KES. <span
                                 id="pos_win">{formatNumber(possibleWin)}</span>
                             </td>
                         </tr>}
 
                         <tr className="bet-win-tr hide-on-affix">
-                            <td> Excise Tax (7.5%)</td>
-                            <td>KES. <span id="tax">{formatNumber(exciseTax)}</span></td>
+                            <td className={"bet-align-left"}> Excise Tax (7.5%)</td>
+                            <td className={"bet-align-right"}>KES. <span id="tax">{formatNumber(exciseTax)}</span></td>
                         </tr>
                         {jackpot ? (
                             ''
                         ) : (
                             <tr className="bet-win-tr hide-on-affix">
-                                <td> Withholding (20%)</td>
-                                <td>KES. <span id="tax">{formatNumber(withholdingTax)}</span></td>
+                                <td className={"bet-align-left"}> Withholding (20%)</td>
+                                <td className={"bet-align-right"}>KES. <span id="tax">{formatNumber(withholdingTax)}</span></td>
                             </tr>
                         )}
                         <tr className="bet-win-tr hide-on-affix">

@@ -5,6 +5,7 @@ import {Route, Routes, useNavigate} from "react-router-dom";
 import useWindowDimensions from "./components/header/Dimensions";
 import Header from "./components/header/header";
 
+
 const Index = React.lazy(() => import('./components/index'));
 const CompetitionsMatches = React.lazy(
     () => import('./components/competition-matches')
@@ -18,6 +19,7 @@ const Betslip=React.lazy(()=>{
 const Live = React.lazy(
     () => import('./components/live')
 );
+const Profile=React.lazy(()=>import("./components/pages/Accounts/Profile"))
 const MyBets = React.lazy(
     () => import('./components/my-bets')
 );
@@ -116,6 +118,7 @@ function App() {
         <Route exact path="/livescore" element={<LiveScore/>}/>
         <Route exact path="/404" element={<PageNotFound/>}/>
         <Route exact path="/login" element={<Login/>}/>
+        <Route exact path={"/profile"} element={<Profile/>}/>
         {/*<Route exact path="/casino" element={<Casino/>}/>*/}
         {/*<Route exact path="/live-casino" element={<LiveCasino/>}/>*/}
         <Route exact path="/gameplay/:game_id/:live" element={<CasinoGamePlay/>}/>

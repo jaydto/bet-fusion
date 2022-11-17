@@ -6,6 +6,7 @@ import {faTimes} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {Badge} from "react-bootstrap";
 import MobileMenu from '../mobile-menu';
+import useWindowDimensions from "../header/Dimensions";
 
 const AlertMessage = (props) => {
     return (
@@ -21,9 +22,10 @@ const AlertMessage = (props) => {
 const Right = (props) => {
     const {jackpot, betslipValidationData, jackpotData} = props;
     const [betSlipMobile, setBetSlipMobile] = useState(false)
+    const {height, width} = useWindowDimensions();
 
     return (
-        <div className="col-md-3 gn betslip-container sticky-top vh-100 overflow-scroll tablet-view">
+        <div className={`col-md-3 gn betslip-container sticky-top ${width<=767?"":"vh-100"} overflow-scroll tablet-view`}>
             <div className="betslip-container d-none d-md-block">
                 {props?.message && <AlertMessage classname={props.classname} message={props.message}/>}
                 <div className="bet-option-list " id=''>

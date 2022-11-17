@@ -9,6 +9,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import {setLocalStorage} from '../../utils/local-storage';
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 import {useNavigate} from "react-router-dom";
+import Right from "../../right";
+import {Input} from "@material-ui/core"
+
 const Header = React.lazy(() => import('../../header/header'));
 
 
@@ -17,13 +20,11 @@ const Login = () => {
     const [isLoading, setIsLoading] = useState(null)
     const [message, setMessage] = useState(null);
     // const {setUser} = props;
-    const navigate=useNavigate();
-
+    const navigate = useNavigate();
 
 
     const initialValues = {
-        msisdn: "",
-        password: ""
+        msisdn: "", password: ""
     }
 
     const Notify = (message) => {
@@ -64,6 +65,7 @@ const Login = () => {
     const handleSubmit = values => {
         let endpoint = '/v1/login';
         setIsLoading(true)
+        console.log('values here', values.msisdn,+""+values.password)
         makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
 
             setIsLoading(false)
@@ -73,37 +75,33 @@ const Login = () => {
 
             } else {
                 let message = {
-                    status: status,
-                    message: response?.message || "Error attempting to login"
+                    status: status, message: response?.message || "Error attempting to login"
                 };
                 Notify(message);
             }
         })
     }
 
-
     const validate = values => {
 
         let errors = {}
 
         if (!values.msisdn || !values.msisdn.match(/(254|0|)?[71]\d{8}/g)) {
-            errors.msisdn = 'Invalid phone number'
+            errors.msisdn = 'Please enter a valid phone number'
         }
 
-        if (!values.password || values.password.length < 4) {
-            errors.password = "Invalid password";
+        if (!values.amount || values.amount < 1 || values.amount > 70000) {
+            errors.amount = "Please enter amount between KES 1.00 and KES 70,000.00";
         }
-
         return errors
     }
+
     const FormTitle = () => {
-        return (
-            <div className='col-md-12 primary-bg p-4 text-center'>
-                <h4 className="inline-block">
-                    Login
-                </h4>
-            </div>
-        )
+        return (<div className='col-md-12 primary-bg p-4 text-center'>
+            <h4 className="inline-block">
+                Login
+            </h4>
+        </div>)
     }
 
     const MyLoginForm = (props) => {
@@ -114,99 +112,104 @@ const Login = () => {
             let value = ev.target.value;
             setFieldValue(field, value);
         }
-        return (
-            <div className={"d-flex w-100 justify-content-center"}>
-                <Form className="form-group row d-flex justify-content-center w-100">
+        return (<div className={"d-flex w-100 justify-content-center"}>
+            <Form className="form-group row d-flex justify-content-center w-100">
+                <div className="col-md-12">
+                    <Input type="text"
+                           name="msisdn"
+                           className={`text-dark button-radius form-control input-field font-input ${errors.msisdn && 'text-danger'}`}
+                           data-action="grow"
+                           placeholder={errors.msisdn?errors.msisdn:"Please enter your phone number "}
+                           value={values.msisdn}
+                           onInput={ev => onFieldChanged(ev)}
 
-                        <div className="col-md-12">
-                            <input type="text"
-                                   name="msisdn"
-                                   className={`text-dark button-radius form-control input-field font-input ${errors.msisdn && 'text-danger'}`}
-                                   data-action="grow"
-                                   placeholder={errors.msisdn?errors.msisdn: "Enter phone number"}
-                                   onChange={ev => onFieldChanged(ev)}
-                                   value={values.msisdn}
-                            />
-                            <br/>
-                            <span className="sticky-hidden text-warning d-flex justify-content-end font-input">
-                            <label><input type="checkbox" name="remember" value="1"/>Remember me</label>
-                        </span>
-                        </div>
-                    <div className={"form-group  d-flex justify-content-center my-4 font-input"}>
-                        <div className="col-md-12 w-100">
-                            <input type="password"
-                                   name="password"
-                                   className={`text-dark form-control input-field w-100 button-radius mb-3 font-input ${errors.password && 'text-danger'} `}
-                                   data-action="grow"
-                                   placeholder={errors.password?errors.password: "Enter password"}
-                                   onChange={ev => onFieldChanged(ev)}
-                                   value={values.password}
-                            />
-                            <br/>
+                    />
+                    {console.log("values", values+" "+errors.msisdn)}
+                </div>
+                <br/>
+                <span className="sticky-hidden text-warning d-flex justify-content-end font-input">
+                    <label><Input type="checkbox" name="remember" value="1"/>Remember me</label>
+                </span>
 
-                            <input type="hidden" name="ref" value="{props.refURL}"/>
+                <div className={"form-group  d-flex justify-content-center my-2 font-input"}>
+                    <div className="col-md-12 w-100">
+                        <Input type="password"
+                               name="password"
+                               className={`text-dark form-control input-field w-100 button-radius mb-3 font-input ${errors.password && 'text-danger'} `}
+                               data-action="grow"
+                               placeholder={errors.password ? errors.password : "Enter password"}
+                               value={values.password}
+                               onInput={ev => onFieldChanged(ev)}
+
+                        />
+                    </div>
+                </div>
+                <span className="sticky-hidden text-warning d-flex justify-content-end font-input my-2">
+                            <Input type="hidden" name="ref" value="{props.refURL}"/>
                             <a href="/reset-password" title="Reset password"
-                               onClick={() => gaEventTracker('Reset Password')} >
+                               onClick={() => gaEventTracker('Reset Password')}>
                                 <span className="sticky-hidden text-warning px-2 d-flex justify-content-end">Forgot Password?</span>
                             </a>
-                        </div>
+                        </span>
+                <div className="form-group  d-flex justify-content-left mb-2">
+                    <div className="col-md-12 w-100">
+                        <button className="cg login-button btn w-100 button-radius input-field btn-font"
+                                type="submit">
+                            {isLoading ? <span>Logging In ...</span> : <span>Login</span>}
+                        </button>
                     </div>
-                    <div className="form-group  d-flex justify-content-left mb-4">
-                        <div className="col-md-12 w-100">
-                            <button className="cg login-button btn w-100 button-radius input-field btn-font" type="submit">
-                                {isLoading ? <span>Logging In ...</span> : <span>Login</span>}
-                            </button>
-                        </div>
-                    </div>
+                </div>
 
-                </Form>
-            </div>
-        );
+            </Form>
+        </div>);
     }
 
     const LoginForm = (props) => {
-        return (
-            <Formik
-                initialValues={initialValues}
-                onSubmit={handleSubmit}
-                validateOnChange={false}
-                validateOnBlur={false}
-                validate={validate}
-            >{(props) => <MyLoginForm {...props} />}</Formik>
-        );
+        console.log("values formik here",'here')
+        return (<Formik
+            initialValues={initialValues}
+            onSubmit={handleSubmit}
+            validateOnChange={false}
+            validateOnBlur={false}
+            validate={validate}
+        >{(props) => <MyLoginForm {...props} />}</Formik>);
     }
-    const LoginInstructions=()=>{
-        return(
-            <p className={"text-white py-2 px-4 font-input"}>
+    const LoginInstructions = () => {
+        return (<p className={"text-white py-2 px-4 font-input"}>
                 Enter your phone number and password below to Login to your existing account.
             </p>
 
         );
     }
 
-    return (
-        <Container className="d-flex login-mobile">
-            <Header/>
-            <Row className="w-100 padding-mobile" style={{float: "right"}}>
+    return (<Container className="d-flex login-mobile">
+        <Header/>
+        <Row className="w-100 padding-mobile" style={{float: "right"}}>
 
-                <FormTitle/>
-                <LoginInstructions/>
+            <FormTitle/>
+            <LoginInstructions/>
 
-            </Row>
-            <Row className={"w-100"} style={{float: "right"}}>
-                <ToastContainer/>
-                <LoginForm/>
-                <div className="col-12">
-                    <a className="d-flex justify-content-center w-100" href="/signup" title="Join now" onClick={() => gaEventTracker('Register')}>
-                        <span className="register-label text-warning font-input ">Don't have an account! Register now!</span>
-                    </a>
-                    <a className="m-lg-2 badge bg-success d-none" href="/verify-account" title="Verify Account"
-                       onClick={() => gaEventTracker('Verify')}>
-                        <span className="register-label">Verify Account</span>
-                    </a>
-                </div>
-            </Row>
-        </Container>
-    )
+        </Row>
+        <Row className={"w-100"} style={{float: "right"}}>
+            <ToastContainer/>
+            <LoginForm/>
+            <div className="col-12">
+                <a className="d-flex justify-content-center w-100" href="/signup" title="Join now"
+                   onClick={() => gaEventTracker('Register')}>
+                        <span
+                            className="register-label text-warning font-input ">Don't have an account! Register now!</span>
+                </a>
+                <a className="m-lg-2 badge bg-success d-none" href="/verify-account" title="Verify Account"
+                   onClick={() => gaEventTracker('Verify')}>
+                    <span className="register-label">Verify Account</span>
+                </a>
+            </div>
+
+
+        </Row>
+        <div className={"mobile-only mobile-top"}>
+            <Right/>
+        </div>
+    </Container>)
 }
 export default React.memo(Login);

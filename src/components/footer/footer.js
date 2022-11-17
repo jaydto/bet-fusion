@@ -8,7 +8,7 @@ const Footer = (props) => {
 
     return (
         <footer className="footer-custom footer-mobile">
-            <div className="row">
+            <div className="row sidebar-mobile-column">
                 <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3 text-white">
                     <h5>BETNARE</h5>
                     <ul>

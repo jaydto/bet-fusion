@@ -5,11 +5,16 @@
   "homepage": "./",
   "dependencies": {
     "@capacitor/android": "^4.4.0",
+    "@capacitor/app": "4.1.1",
+    "@capacitor/haptics": "4.1.0",
     "@capacitor/ios": "^4.4.0",
+    "@capacitor/keyboard": "4.1.0",
+    "@capacitor/status-bar": "4.1.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-brands-svg-icons": "^5.15.4",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.19",
+    "@ionic/react": "^6.3.6",
     "@material-ui/core": "^4.12.3",
     "@react-pdf/renderer": "^2.2.0",
     "@testing-library/jest-dom": "^5.16.1",
@@ -87,8 +92,8 @@
     ]
   },
   "devDependencies": {
-    "@capacitor/cli": "^4.4.0",
-    "@capacitor/core": "^4.4.0",
+    "@capacitor/cli": "4.5.0",
+    "@capacitor/core": "4.5.0",
     "copy-webpack-plugin": "^11.0.0",
     "react-app-rewired": "^2.2.1"
   }

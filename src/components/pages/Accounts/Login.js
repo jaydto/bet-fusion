@@ -115,37 +115,37 @@ const Login = () => {
         return (<div className={"d-flex w-100 justify-content-center"}>
             <Form className="form-group row d-flex justify-content-center w-100">
                 <div className="col-md-12">
-                    <Input type="text"
+                    <input type="text"
                            name="msisdn"
                            className={`text-dark button-radius form-control input-field font-input ${errors.msisdn && 'text-danger'}`}
                            data-action="grow"
                            placeholder={errors.msisdn?errors.msisdn:"Please enter your phone number "}
                            value={values.msisdn}
-                           onInput={ev => onFieldChanged(ev)}
+                           onChange={ev => onFieldChanged(ev)}
 
                     />
                     {console.log("values", values+" "+errors.msisdn)}
                 </div>
                 <br/>
                 <span className="sticky-hidden text-warning d-flex justify-content-end font-input">
-                    <label><Input type="checkbox" name="remember" value="1"/>Remember me</label>
+                    <label><input type="checkbox" name="remember" value="1"/>Remember me</label>
                 </span>
 
                 <div className={"form-group  d-flex justify-content-center my-2 font-input"}>
                     <div className="col-md-12 w-100">
-                        <Input type="password"
+                        <input type="password"
                                name="password"
                                className={`text-dark form-control input-field w-100 button-radius mb-3 font-input ${errors.password && 'text-danger'} `}
                                data-action="grow"
                                placeholder={errors.password ? errors.password : "Enter password"}
                                value={values.password}
-                               onInput={ev => onFieldChanged(ev)}
+                               onChange={ev => onFieldChanged(ev)}
 
                         />
                     </div>
                 </div>
                 <span className="sticky-hidden text-warning d-flex justify-content-end font-input my-2">
-                            <Input type="hidden" name="ref" value="{props.refURL}"/>
+                            <input type="hidden" name="ref" value="{props.refURL}"/>
                             <a href="/reset-password" title="Reset password"
                                onClick={() => gaEventTracker('Reset Password')}>
                                 <span className="sticky-hidden text-warning px-2 d-flex justify-content-end">Forgot Password?</span>

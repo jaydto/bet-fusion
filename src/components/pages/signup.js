@@ -3,7 +3,7 @@ import {Formik, Form} from 'formik';
 import makeRequest from "../utils/fetch-request";
 import mpesa from '../../assets/img/mpesa-3.png'
 import {clearTrackingData, setLocalStorage, setTrackingData} from "../utils/local-storage";
-import {Input} from "@material-ui/core"
+import {Input} from "@material-ui/core";
 
 const Header = React.lazy(() => import('../header/header'));
 const SideBar = React.lazy(() => import('../sidebar/awesome/Sidebar'));
@@ -81,46 +81,46 @@ const Signup = (props) => {
         return (
             <Form>
                 <div className="pt-0">
-                    <div className="row align-items-center">
-                        <div className='col-md-6 text-center w-100 border-bottom'>
+                    <div className="row">
+                        <div className='col-md-6 text-center'>
                             <img src={mpesa} alt=""/>
                         </div>
-
-                        <div className="form-group col-md-6 text-center w-100  mt-5">
+                        <hr/>
+                        <div className="form-group col-md-6 w-100 mt-5">
                             <div className="col-md-12">
                                 <label>Mobile Number</label>
-                                <Input
+                                <input
+                                    value={values.msisdn}
                                     className="text-dark deposit-input form-control col-md-12 input-field"
                                     id="msisdn"
                                     name="msisdn"
                                     type="text"
-                                    placeholder={errors.msisdn?errors.msisdn:'Phone enter a phone number'}
-                                    onChange={ev => onFieldChanged(ev)}
-                                    value={values.msisdn}
+                                    placeholder='Phone number'
+                                    OnChange={ev => onFieldChanged(ev)}
                                 />
                                 {errors.msisdn && <div className='text-danger'> {errors.msisdn} </div>}
                             </div>
                         </div>
 
-                        <div className="form-group col-md-6 text-center w-100  mt-5">
+                        <div className="form-group col-md-6 w-100 mt-5">
                             <div className="col-md-12">
                                 <label>Password</label>
-                                <Input
+                                <input
+                                    value={values.password}
                                     className="text-dark deposit-input form-control col-md-12 input-field"
                                     id="password"
                                     name="password"
                                     type="password"
                                     placeholder='Password'
-                                    onChange={ev => onFieldChanged(ev)}
-                                    value={values.password}
+                                    OnChange={ev => onFieldChanged(ev)}
                                 />
                                 {errors.password && <div className='text-danger'> {errors.password} </div>}
                             </div>
                         </div>
-                        <div className="form-group col-md-6 text-center w-100  mb-4">
+                        <div className="form-group col-md-6 w-100 mb-4">
                             <div className="col-md-3">
-                                <button type="submit "
-                                        className='btn btn-lg btn-primary  mt-5 col-md-12 deposit-withdraw-button width-full'>
+                                <button type="submit"
+                                        className='w-100 btn btn-lg btn-primary mt-5 col-md-12 deposit-withdraw-button'>
                                     Signup
                                 </button>
                             </div>
@@ -167,15 +167,13 @@ const Signup = (props) => {
                         </div>
                     </div>
 
+                    <Right/>
                 </div>
             </div>
-            <div className={"mobile-top mobile-only"}>
-                <Right/>
+            <div className={"mobile-remove"}>
+                <Footer/>
             </div>
 
-            <div className={"mobile-remove"}>
-            <Footer/>
-            </div>
         </React.Fragment>
     );
 }

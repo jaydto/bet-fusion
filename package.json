@@ -95,6 +95,9 @@
     "@capacitor/cli": "4.5.0",
     "@capacitor/core": "4.5.0",
     "copy-webpack-plugin": "^11.0.0",
+    "postcss": "^8.4.19",
+    "postcss-cli": "^10.0.0",
+    "postcss-import": "^15.0.0",
     "react-app-rewired": "^2.2.1"
   }
 }

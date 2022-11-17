@@ -4,7 +4,8 @@ import {
     removeFromSlip,
     getBetslip,
     clearSlip,
-    clearJackpotSlip, formatNumber
+    clearJackpotSlip,
+    formatNumber
 } from '../utils/betslip';
 import publicIp from 'public-ip';
 import makeRequest from '../utils/fetch-request';
@@ -283,9 +284,12 @@ const BetslipSubmitForm = (props) => {
 
     const calculateMultiBetBoostAmount = () => {
         let settings = getFromLocalStorage('settings')
-        let rates = settings?.multi_bet_bonus || {}
-        let ratio = rates?.filter((rate) => rate.selections === totalOdds)
-        console.log("Ration on selections is ", ratio)
+        if (totalGames < Number(settings?.betnareGifts?.giftBoostMinLegs)) {
+            setHasMultiBetBoost(false)
+        }
+        // let rates = settings?.multi_bet_bonus || {}
+        // let ratio = rates?.filter((rate) => rate.selections === totalOdds)
+        // console.log("Ration on selections is ", ratio)
         let boost = 0
         let betslips = getBetslip() || {};
         let a = stakeAfterTax * (totalOdds) * (1 - (1 / totalOdds));
@@ -294,6 +298,7 @@ const BetslipSubmitForm = (props) => {
     }
 
     const MultiBetBoost = () => {
+
         return "Congratulations! your selection of " + totalGames + " games has earned you a boost of KES " + formatNumber(multiBoostAmount);
     }
 

@@ -8,6 +8,7 @@ import {
     getJackpotBetslip,
 } from '../utils/betslip';
 import {Link} from "react-router-dom";
+import {getFromLocalStorage} from "../utils/local-storage";
 
 const clean_rep = (str) => {
     str = str.replace(/[^A-Za-z0-9\-]/g, '');
@@ -22,10 +23,10 @@ const BetSlip = (props) => {
     const totalGames = betslipsData ? Object.keys(betslipsData).length : 0
     const [message, setMessage] = useState(null)
     const [qualifiesBonus, setQualifiesBonus] = useState(false)
+    const [qualifiesGift, setQualifiesGift] = useState(false)
+    const [settings, setSettings] = useState(getFromLocalStorage('settings'))
 
     const [totalOdds, setTotalOdds] = useState(1);
-    const perSlipBonusOdd = 1.8
-    const maxBonusGames = 4
     //initial betslip loading
     const loadBetslip = useCallback(() => {
         if (!betslipsData) {
@@ -138,7 +139,21 @@ const BetSlip = (props) => {
         dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
     }
 
+    const updateGiftState = () => {
+
+    }
+
     const updateBonusState = () => {
+
+        let maxBonusGames = Number(settings?.betnareBonus?.bonusBetLegs);
+
+        let perSlipBonusOdd = settings?.betnareBonus?.minBonusOdd
+
+        let fixedOdd = settings?.betnareBonus?.fixedOdd === "1"
+
+        let perSlipMaxOdd = settings?.betnareBonus?.maxBonusOdd
+
+        let bonusBetFixedAmount = settings?.betnareBonus?.bonusBetAmount
 
         let message = '';
 
@@ -149,15 +164,21 @@ const BetSlip = (props) => {
             message = (`Congratulations, you qualify for bonus. Add ${remainingGames} more game${remainingGames > 1 ? 's' : ''} to place your bet using bonus.`)
 
         } else if ((totalGames === maxBonusGames)) {
-            message = ("Congratulations, you are eligible for a bonus bet. Allowed Bonus Bet Amount is KES 100.")
+            message = ("Congratulations, you are eligible for a bonus bet. Allowed Bonus Bet Amount is KES " + bonusBetFixedAmount)
         } else {
             message = ("")
         }
 
-        let bonusBetEligible = (Object.values(betslipsData || []).filter((slip) => Number(slip.odd_value) < Number(perSlipBonusOdd)).length < 1) && userBonus > 0
+        let bonusBetEligible = false
+
+        if (fixedOdd) {
+            bonusBetEligible = (Object.values(betslipsData || []).filter((slip) => Number(slip.odd_value) < Number(perSlipBonusOdd) || slip.sub_type_id !== "1").length < 1) && userBonus > 0
+        } else {
+            bonusBetEligible = (Object.values(betslipsData || []).filter((slip) => Number(slip.odd_value) < Number(perSlipBonusOdd) || Number(slip.odd_value) > Number(perSlipMaxOdd) || slip.sub_type_id !== "1")).length < 1 && userBonus > 0
+        }
 
         if (!bonusBetEligible) {
-            message = (`To qualify for bonus bet, please select ${maxBonusGames} games each with odds of ${perSlipBonusOdd} or more.`)
+            message = (`To qualify for bonus bet, please select ${maxBonusGames} games each with odds ${Number(fixedOdd) === 1 ? " of " + perSlipBonusOdd : ' between ' + perSlipBonusOdd + ' and ' + perSlipMaxOdd}`)
         }
 
         if (userBonus < 1 || totalGames > maxBonusGames) {
@@ -193,6 +214,7 @@ const BetSlip = (props) => {
 
     useEffect(() => {
         updateBonusState()
+        updateGiftState()
     }, [totalOdds, totalGames])
 
     return (

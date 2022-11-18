@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "./static/css/main.01ba75d5.css",
-    "main.js": "./static/js/main.348845a0.js",
+    "main.js": "./static/js/main.b7c4a7eb.js",
     "static/js/9930.061dff94.chunk.js": "./static/js/9930.061dff94.chunk.js",
     "static/js/2190.dd868e3f.chunk.js": "./static/js/2190.dd868e3f.chunk.js",
     "static/js/7242.3aaa305c.chunk.js": "./static/js/7242.3aaa305c.chunk.js",
@@ -28,8 +28,8 @@
     "static/js/8919.8199d940.chunk.js": "./static/js/8919.8199d940.chunk.js",
     "static/js/5084.adb6f30c.chunk.js": "./static/js/5084.adb6f30c.chunk.js",
     "static/js/186.6ad22cd4.chunk.js": "./static/js/186.6ad22cd4.chunk.js",
-    "static/js/3970.1c66a695.chunk.js": "./static/js/3970.1c66a695.chunk.js",
-    "static/js/2514.a9fb8721.chunk.js": "./static/js/2514.a9fb8721.chunk.js",
+    "static/js/3970.0c1976e3.chunk.js": "./static/js/3970.0c1976e3.chunk.js",
+    "static/js/2514.c4b24c71.chunk.js": "./static/js/2514.c4b24c71.chunk.js",
     "static/js/9131.fa33a6c5.chunk.js": "./static/js/9131.fa33a6c5.chunk.js",
     "static/js/5422.47781ae3.chunk.js": "./static/js/5422.47781ae3.chunk.js",
     "static/css/1415.f18fee14.chunk.css": "./static/css/1415.f18fee14.chunk.css",
@@ -89,7 +89,7 @@
     "static/js/4265.fb483ba2.chunk.js": "./static/js/4265.fb483ba2.chunk.js",
     "static/js/1178.c6802fc2.chunk.js": "./static/js/1178.c6802fc2.chunk.js",
     "static/js/8704.ee8bd465.chunk.js": "./static/js/8704.ee8bd465.chunk.js",
-    "static/js/2085.e84c90af.chunk.js": "./static/js/2085.e84c90af.chunk.js",
+    "static/js/2085.525a5532.chunk.js": "./static/js/2085.525a5532.chunk.js",
     "static/media/betnare.apk": "./static/media/betnare.ac5e34ccadddcd8f8717.apk",
     "static/media/banner_live.jpg": "./static/media/banner_live.d425bf55a191066493e7.jpg",
     "static/media/kipenga.jpg": "./static/media/kipenga.6e29c68e3a0319b96cb9.jpg",
@@ -407,7 +407,6 @@
     "static/media/tennis-ball.svg": "./static/media/tennis-ball.5d61ee5cea23d7d48b3a.svg",
     "static/media/football.svg": "./static/media/football.961eb43c5c04264042bdec5c64e9b573.svg",
     "static/media/dragster-svgrepo-com.svg": "./static/media/dragster-svgrepo-com.a4c9062da6389d186dd7.svg",
-    "index.html": "./index.html",
     "static/media/Handball.svg": "./static/media/Handball.d1fb3766f8d2c5b7aa5c.svg",
     "static/media/Basketball.svg": "./static/media/Basketball.47042aa40feb4a8d484b.svg",
     "static/media/icon.svg": "./static/media/icon.4ef6ac2c95fd33e6df51.svg",
@@ -423,6 +422,7 @@
     "static/media/Hockey.svg": "./static/media/Hockey.069a2d25d51cfa670be3.svg",
     "static/media/Badminton3.svg": "./static/media/Badminton3.4eb12ec719b4c2f2e2ff.svg",
     "static/media/Rugby.svg": "./static/media/Rugby.cb7528d536b8d54f1e98.svg",
+    "index.html": "./index.html",
     "static/media/tennis2.svg": "./static/media/tennis2.571c7304acbe97303e57.svg",
     "static/media/rugby.svg": "./static/media/rugby.5cf8549e8eed538c6f6c.svg",
     "static/media/ck.svg": "./static/media/ck.3e6dd6ddd9eb71276bcb.svg",
@@ -639,7 +639,7 @@
     "static/media/bd.svg": "./static/media/bd.a62e330d249ff3f5bd27.svg",
     "static/media/id.svg": "./static/media/id.578a8a9cdfdb824a35b1.svg",
     "main.01ba75d5.css.map": "./static/css/main.01ba75d5.css.map",
-    "main.348845a0.js.map": "./static/js/main.348845a0.js.map",
+    "main.b7c4a7eb.js.map": "./static/js/main.b7c4a7eb.js.map",
     "9930.061dff94.chunk.js.map": "./static/js/9930.061dff94.chunk.js.map",
     "2190.dd868e3f.chunk.js.map": "./static/js/2190.dd868e3f.chunk.js.map",
     "7242.3aaa305c.chunk.js.map": "./static/js/7242.3aaa305c.chunk.js.map",
@@ -666,8 +666,8 @@
     "8919.8199d940.chunk.js.map": "./static/js/8919.8199d940.chunk.js.map",
     "5084.adb6f30c.chunk.js.map": "./static/js/5084.adb6f30c.chunk.js.map",
     "186.6ad22cd4.chunk.js.map": "./static/js/186.6ad22cd4.chunk.js.map",
-    "3970.1c66a695.chunk.js.map": "./static/js/3970.1c66a695.chunk.js.map",
-    "2514.a9fb8721.chunk.js.map": "./static/js/2514.a9fb8721.chunk.js.map",
+    "3970.0c1976e3.chunk.js.map": "./static/js/3970.0c1976e3.chunk.js.map",
+    "2514.c4b24c71.chunk.js.map": "./static/js/2514.c4b24c71.chunk.js.map",
     "9131.fa33a6c5.chunk.js.map": "./static/js/9131.fa33a6c5.chunk.js.map",
     "5422.47781ae3.chunk.js.map": "./static/js/5422.47781ae3.chunk.js.map",
     "1415.f18fee14.chunk.css.map": "./static/css/1415.f18fee14.chunk.css.map",
@@ -726,10 +726,10 @@
     "4265.fb483ba2.chunk.js.map": "./static/js/4265.fb483ba2.chunk.js.map",
     "1178.c6802fc2.chunk.js.map": "./static/js/1178.c6802fc2.chunk.js.map",
     "8704.ee8bd465.chunk.js.map": "./static/js/8704.ee8bd465.chunk.js.map",
-    "2085.e84c90af.chunk.js.map": "./static/js/2085.e84c90af.chunk.js.map"
+    "2085.525a5532.chunk.js.map": "./static/js/2085.525a5532.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.01ba75d5.css",
-    "static/js/main.348845a0.js"
+    "static/js/main.b7c4a7eb.js"
   ]
 }

@@ -14,7 +14,8 @@
 /ios
 /android
 /cordova
-
+/capacitor.config.ts
+./cordova/www
 # misc
 .DS_Store
 .env.local

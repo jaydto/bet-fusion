@@ -124,7 +124,8 @@ const Login = () => {
                            onChange={ev => onFieldChanged(ev)}
 
                     />
-                    {console.log("values", values+" "+errors.msisdn)}
+                    {errors.msisdn && <div className='text-danger'> {errors.msisdn} </div>}
+
                 </div>
                 <br/>
                 <span className="sticky-hidden text-warning d-flex justify-content-end font-input">
@@ -137,11 +138,12 @@ const Login = () => {
                                name="password"
                                className={`text-dark form-control input-field w-100 button-radius mb-3 font-input ${errors.password && 'text-danger'} `}
                                data-action="grow"
-                               placeholder={errors.password ? errors.password : "Enter password"}
+                               placeholder={ "Enter password"}
                                value={values.password}
                                onChange={ev => onFieldChanged(ev)}
 
                         />
+                        {errors.msisdn && <div className='text-danger'> {errors.msisdn} </div>}
                     </div>
                 </div>
                 <span className="sticky-hidden text-warning d-flex justify-content-end font-input my-2">

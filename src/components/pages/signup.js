@@ -97,14 +97,14 @@ const Signup = (props) => {
                             <div className="col-md-12">
                                 <label>Mobile Number</label>
                                 <input
-                                    // value={values.msisdn}
+                                    value={values.msisdn}
                                     className="text-dark deposit-input form-control col-md-12 input-field"
                                     id="msisdn"
                                     name="msisdn"
                                     type="text"
                                     placeholder='Phone number'
-                                    onfocusout={ev => onFieldChanged(ev)}
-                                    // onChange={ev => onFieldChanged(ev)}
+                                    // onfocusout={ev => onFieldChanged(ev)}
+                                    onChange={ev => onFieldChanged(ev)}
                                 />
                                 {errors.msisdn && <div className='text-danger'> {errors.msisdn} </div>}
                             </div>

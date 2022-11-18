@@ -17,6 +17,8 @@ import {
     useFormikContext,
 } from 'formik';
 import {getFromLocalStorage} from "../utils/local-storage";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faGift} from "@fortawesome/free-solid-svg-icons";
 
 const Float = (equation, precision = 4) => {
     return Math.round(equation * (10 ** precision)) / (10 ** precision);
@@ -38,6 +40,9 @@ const BetslipSubmitForm = (props) => {
     const [withholdingTax, setWithholdingTax] = useState(0);
     const [possibleWin, setPossibleWin] = useState(0);
     const [netWin, setNetWin] = useState(0);
+    const [settings, setSettings] = useState(getFromLocalStorage('settings'))
+    const [multiBoostMessage, setMultiBoostMessage] = useState('')
+    const [awardMultiGift, setAwardMultiGift] = useState(false)
 
     const [betslipKey, setBetslipKey] = useState("betslip");
 
@@ -283,28 +288,42 @@ const BetslipSubmitForm = (props) => {
     }
 
     const calculateMultiBetBoostAmount = () => {
+
         let settings = getFromLocalStorage('settings')
-        if (totalGames < Number(settings?.betnareGifts?.giftBoostMinLegs)) {
+
+        let giftMinGames = Number(settings?.betnareGifts?.giftBoostMinLegs)
+
+        if (totalGames < giftMinGames) {
+
             setHasMultiBetBoost(false)
+
         }
-        // let rates = settings?.multi_bet_bonus || {}
-        // let ratio = rates?.filter((rate) => rate.selections === totalOdds)
-        // console.log("Ration on selections is ", ratio)
         let boost = 0
+
         let betslips = getBetslip() || {};
-        let a = stakeAfterTax * (totalOdds) * (1 - (1 / totalOdds));
 
-        console.log("Bet slip changed, recalculating the bonus boost ... ")
-    }
+        let odds = (Object.values(betslips || [])?.filter((slip) => Number(slip.odd_value) >= settings?.betnareGifts?.giftBoostMinOdds))
 
-    const MultiBetBoost = () => {
+        let giftQualificationOdds = odds.length
 
-        return "Congratulations! your selection of " + totalGames + " games has earned you a boost of KES " + formatNumber(multiBoostAmount);
+        let awardGifts = Number(settings?.betnareGifts?.awardGiftBoost) === 1 && Number(state?.user?.gift_balance || 0) > 0
+
+        setAwardMultiGift(awardGifts)
+
+        if ((giftQualificationOdds < giftMinGames)) {
+            let remainingGames = Number(giftMinGames) - Number(giftQualificationOdds)
+            setMultiBoostMessage(`Congratulations, you qualify for Nare Gift. Add ${remainingGames} more game${remainingGames > 1 ? 's' : ''} with odds of  ${settings?.betnareGifts?.giftBoostMinOdds} or above to redeem your gift.`)
+
+        } else if ((giftQualificationOdds >= giftMinGames)) {
+            boost = Math.round((20 / 100) * stake)
+            let boostedStake = Number(stake) + Number(boost)
+            setMultiBoostMessage("Congratulations! we have gifted you KES " + boost + " on your stake. Your new stake is " + boostedStake)
+        }
     }
 
     useEffect(() => {
         calculateMultiBetBoostAmount()
-    }, [betslip])
+    }, [betslip, stake])
 
     return (
 
@@ -335,9 +354,9 @@ const BetslipSubmitForm = (props) => {
 
             return (<FormikForm name="betslip-submit-form">
                 <Alert/>
-                {hasMultiBetBoost ? (
+                {awardMultiGift && Number(totalGames) > settings?.betnareBonus?.bonusBetLegs ? (
                     <div className={'alert alert-success'}>
-                        <MultiBetBoost/>
+                        <FontAwesomeIcon icon={faGift}/> {multiBoostMessage}
                     </div>
                 ) : (<></>)}
                 {totalGames > 0 && (

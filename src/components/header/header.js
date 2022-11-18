@@ -61,7 +61,7 @@ const Header = (props) => {
 
             let [c_status, c_result] = result
 
-            console.log("C Result is now ", c_result?.message)
+            // console.log("C Result is now ", c_result?.message)
 
             if (c_status === 200) {
                 setSettings(c_result?.message);

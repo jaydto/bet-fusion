@@ -30,6 +30,9 @@ input, select, textarea {
   .bloc-icon p{
     color: white;
   }
+  .bloc-icon:nth-of-type(3){
+        background: none;
+    }
 
   .bloc-icon img {
     width: 25px;
@@ -40,7 +43,9 @@ input, select, textarea {
     display: none;
     }
   }
-
+.remove-width{
+    width:0!important;
+}
 
 .pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item:hover .pro-icon-wrapper .pro-icon {
     animation: none !important;
@@ -1485,17 +1490,7 @@ header {
         font-size: 12px;
     }
 
-    .slip-counter {
-        background: #bc1b56;
-        text-align: center;
-        color: #fff;
-        font-size: 20px;
-        padding: 0 5px;
-        display: inline-block;
-        margin: -5px -1px -5px;
-        border-radius: 100px;
-        width: 30px;
-    }
+
 
     #slip-holder {
         position: fixed;
@@ -7063,15 +7058,7 @@ ul.sport {
         border: 1px solid white;
         border-radius: 1rem;
     }
-    .nav__betslip{
-        margin: -7px auto;
-        height: 55px;
-        border-radius: 50%;
-        width: 55px;
-        font-weight: 500;
-        font-size: 14px;
-        border: none;
-    }
+
     .mobile-top{
         margin-top:12rem;
     }
@@ -7778,6 +7765,26 @@ ul.sport {
     /*.tablet-view{*/
     /*    display: none;*/
     /*}*/
+    .slip-counter {
+        background: #bc1b56;
+        text-align: center;
+        color: #fff;
+        font-size: 20px;
+        padding: 0 5px;
+        display: inline-block;
+        margin: -5px -1px -5px;
+        border-radius: 100px;
+        width: 30px;
+    }
+    .nav__betslip{
+        margin: -7px auto;
+        height: 55px;
+        border-radius: 50%;
+        width: 55px;
+        font-weight: 500;
+        font-size: 14px;
+        border: none;
+    }
     .tablet-only{
         display: flex!important;
     }
@@ -15587,7 +15594,7 @@ img.zoom-img {
     }
 
     .mobile-top{
-        margin-top:7rem;
+        margin-top:15rem;
     }
     .menu-t .menu-img {
         width: 100% !important;

@@ -1,7 +1,14 @@
 import React, {useState} from 'react';
 import "./card.css";
 import Right from "../../right";
-import {faCoins, faUser, faChevronRight, faQuestionCircle} from "@fortawesome/free-solid-svg-icons";
+import {
+    faCoins,
+    faUser,
+    faChevronRight,
+    faQuestionCircle,
+    faGifts,
+    faDollarSign, faSmile, faListOl
+} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {formatNumber} from "../../utils/betslip";
 import {clearTrackingData, getFromLocalStorage, setTrackingData} from "../../utils/local-storage";
@@ -114,7 +121,10 @@ const Profile = () => {
                             <div className={" profile-bg"}>
                                 <div className="card-body ">
                                     <span
-                                        className="font-btn py-2 flex-wrap">Balance {formatNumber(user?.balance) || 0} </span>
+                                        className="font-btn py-2 d-flex flex-column">
+                                        <span className={"d-flex align-items-center gap-2"}><FontAwesomeIcon
+                                            icon={faDollarSign}/> Cash</span>
+                                <strong style={{color: "#FFB200"}}> KSH {formatNumber(user.balance) || 0}</strong> </span>
                                 </div>
                             </div>
                             <div className={"d-flex align-items-center"}>
@@ -123,7 +133,34 @@ const Profile = () => {
 
                             <div className={"profile-bg"}>
                                 <div className="card-body ">
-                                    <span className="font-btn py-2 px-2">Bonus {formatNumber(user.bonus) || 0} </span>
+                                    <span className="font-btn py-2 px-2 d-flex flex-column">
+                                        <span className={"d-flex align-items-center gap-2"}>
+                                            <FontAwesomeIcon
+                                                icon={faSmile}/> Bonus
+                                        </span>
+                                <strong>KSH {formatNumber(user.bonus) || 0}</strong> </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className=" w-100 ">
+
+                    <div className="card-radius profile-bg text-light">
+
+                        <div className="card-body d-flex justify-content-between gap-2 ">
+
+                            <div className={"profile-bg"}>
+                                <div className="card-body "><span className="font-btn py-2 px-2 d-flex flex-column">
+                                        <span className={"d-flex align-items-center gap-2"}>
+                                    <FontAwesomeIcon
+                                        icon={faGifts}/> Gift </span>
+                                    <span>
+                                        <strong>
+                                    KSH {formatNumber(user.bonus) || 0}</strong>
+                                    </span>
+                                </span>
                                 </div>
                             </div>
                             <div className={"d-flex align-items-center"}>
@@ -131,14 +168,17 @@ const Profile = () => {
                             </div>
                             <div className={" profile-bg"}>
                                 <div className="card-body ">
-                                    <a href="/redeem-points" className={'link-info text-info'}
-                                       title={'Click to Redeem'}>
-                            <span
-                                className="font-btn rounded btn-sm outline-info">
-                                <span className={"to-none"}>Nare</span> Points &nbsp;
-                                {formatNumber(user?.points_balance) || 0}
-                            </span>
-                                    </a>
+                                    <Link to={{pathname: "/redeem-points"}}
+                                          className={'link-info text-info font-btn py-2 px-2 d-flex flex-column'} title={'Click to Redeem'}>
+                                        <span className={"d-flex align-items-center gap-2"}>
+                                           <FontAwesomeIcon
+                                               icon={faListOl}/> Points
+                                        </span>
+                                        <span>
+                                            <strong> {formatNumber(user.points_balance) || 0}</strong>
+                                        </span>
+
+                                    </Link>
                                 </div>
                             </div>
                         </div>
@@ -194,7 +234,7 @@ const Profile = () => {
 
             </div>
             <div className={"mobile-only mobile-top"}>
-                <Right/>
+                <Right profile={true}/>
             </div>
         </>
 

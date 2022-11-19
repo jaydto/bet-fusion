@@ -271,4 +271,4 @@ const BetSlip = (props) => {
         </div>
     )
 }
-export default React.memo(BetSlip);
+export default  React.memo(BetSlip);

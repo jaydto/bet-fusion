@@ -355,7 +355,7 @@ const BetslipSubmitForm = (props) => {
                         </tr>
                         {!jackpot && <tr className="bet-win-tr hide-on-affix">
                             <td className={""}>Possible winnings</td>
-                            <td className={"bet-align-right"}>
+                            <td className={""}>
                                 KES. <span
                                 id="pos_win">{formatNumber(possibleWin)}</span>
                             </td>
@@ -363,7 +363,7 @@ const BetslipSubmitForm = (props) => {
 
                         <tr className="bet-win-tr hide-on-affix">
                             <td className={""}> Excise Tax (7.5%)</td>
-                            <td className={"bet-align-right"}>KES. <span id="tax">{formatNumber(exciseTax)}</span></td>
+                            <td className={""}>KES. <span id="tax">{formatNumber(exciseTax)}</span></td>
                         </tr>
                         {jackpot ? (
                             ''

@@ -28,6 +28,7 @@ const ProfileMenu = (props) => {
                                       </span>
                                 </Link>
                             </div>
+
                             <div>
                                 <Link to={{pathname: "/withdraw"}} className={"withdraw-button text-white"}>
                                     <span className="">

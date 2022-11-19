@@ -17,7 +17,7 @@ import MobileNav1 from "../mobile-navigation/MobileNav1";
 import MobileProfile from "./MobileProfile";
 import useWindowDimensions from "./Dimensions";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCoins, faSearch, faTimes} from "@fortawesome/free-solid-svg-icons";
+import {faCloudDownloadAlt, faCoins, faSearch, faTimes} from "@fortawesome/free-solid-svg-icons";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import ListGroup from "react-bootstrap/ListGroup";
 
@@ -153,18 +153,22 @@ const Header = (props) => {
                             <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"
                                            className={"image-size "}/>
                         </Link>
-                        {width <= 514 ? user? <div
-                            className="col-md-3  d-flex flex-column right justify-content-center align-items-center w-change2">
-                            <div>
-                                <a
-                                    href={ "/deposit"}
-                                    className={"btn text-white btn-outline-warning"}>
-                                      <span className="font-btn overflow-hidden justify-content-center btn-outline-warning rescale">
-                                       <span className=" space-icons"> <FontAwesomeIcon icon={faCoins}/></span> Deposit
-                                        </span>
-                                </a>
-                            </div>
-                        </div> :"": ""}
+                        {width <= 514 ? user?
+                            <div className="col-md-3  d-flex flex-column right justify-content-center align-items-center w-change2">
+                                <div>
+                                    <Link
+                                        to={{pathname: "/deposit"}}
+                                        className={"deposit-button"}>
+                                      <span className="">
+                                       <span className=" space-icons"> <FontAwesomeIcon
+                                           icon={faCloudDownloadAlt}/></span>
+                                          DEPOSIT
+                                      </span>
+                                    </Link>
+                                </div>
+                        </div>
+                            :""
+                            : ""}
                         {width<=514? <div className={`col-sm-1 align-items-center ${searching ? 'd-none' : 'd-flex'}`}>
                             <a className="" href="#" title="Search"
                                onClick={() => showSearchBar()}>
@@ -197,23 +201,26 @@ const Header = (props) => {
                     </Navbar.Brand>
                     <div className="col-9 change-size " id="navbar-collapse-main">
                         <div
-                            className="col-md-10 col-sm-12 col-lg-8 right disable-ipad to-navcheck justify-content-end">
+                            className="col-md-11 col-sm-12 col-lg-8 right disable-ipad to-navcheck justify-content-end">
                             {user ? <ProfileMenu user={user}/> : <HeaderLogin setUser={setUser}/>}
                         </div>
                         <div
-                            className="col-md-10 col-sm-12 col-lg-8 right to-profilecheck w-100 justify-content-end style-mobile">
+                            className="col-md-11 col-sm-12 col-lg-8 right to-profilecheck w-100 justify-content-end style-mobile">
                             {width > 514 ? user?
                                 <div className="col-md-3  d-flex flex-column right justify-content-center align-items-center w-change2">
-                                <div>
-                                    <Link
-                                        to={{pathname: "/deposit"}}
-                                        className={"btn text-white btn-outline-warning"}>
-                                          <span className="font-btn overflow-hidden justify-content-center btn-outline-warning rescale">
-                                           <span className=" space-icons"> <FontAwesomeIcon icon={faCoins}/></span> Deposit
-                                          </span>
-                                    </Link>
+                                    <div>
+                                        <Link
+                                            to={{pathname: "/deposit"}}
+                                            className={"deposit-button"}>
+                                      <span className="">
+                                       <span className=" space-icons"> <FontAwesomeIcon
+                                           icon={faCloudDownloadAlt}/></span>
+                                          DEPOSIT
+                                      </span>
+                                        </Link>
+                                    </div>
                                 </div>
-                            </div>:"" : ""}
+                                :"" : ""}
                             {width<=514?
                                 <Container id="navbar-collapse-main"
                                        className={`fadeIn header-menu d-flex justify-content-center px-4 ${searching ? 'd-block' : 'd-none'}`}>
@@ -243,7 +250,7 @@ const Header = (props) => {
                                 </ListGroup>
                             </Container>:""}
 
-                            {width<=767&&width>514? <div className={`col-sm-5  align-items-center justify-content-center d-flex`}>
+                            {width<=767&&width>514? <div className={`${searching?"col-sm-5":"col"}  align-items-center justify-content-center d-flex`}>
                                 <a className={`${searching ? 'd-none' : 'd-flex'}`}href="#" title="Search"
                                    onClick={() => showSearchBar()}>
                                     <span className=""><FontAwesomeIcon icon={faSearch}/> </span><span

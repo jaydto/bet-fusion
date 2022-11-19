@@ -212,7 +212,9 @@ const Deposit = (props) => {
 
             <div className={(mobile?"profile-bg card-radius":width <= 514 ? state?.user ? "user_logged" : "amt" : "amt")}>
                 <div className="d-flex flex-row justify-content-between">
-                    <SideBar loadCompetitions/>
+                    <div className={`${mobile?"d-none":""}`}>
+                        <SideBar loadCompetitions/>
+                    </div>
                     <div className="gz home" style={{width: '100%', overflowX: 'clip'}}>
                         <div className="homepage">
                             <div className={`${mobile?"d-none":""}`}>
@@ -230,10 +232,13 @@ const Deposit = (props) => {
                             </div>
                         </div>
                     </div>
-                    <Right/>
+                    <div className={`${mobile?"d-none":""}`}>
+                        <Right/>
+                    </div>
+
                 </div>
             </div>
-            <div className={"mobile-remove"}>
+            <div className={`${mobile?"d-none":"mobile-remove"}`}>
                 <Footer/>
             </div>
         </React.Fragment>

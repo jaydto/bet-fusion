@@ -10,6 +10,8 @@ import {
 } from 'react-accessible-accordion';
 
 import '../assets/css/accordion.react.css';
+import {getFromLocalStorage} from "./utils/local-storage";
+import useWindowDimensions from "./header/Dimensions";
 
 const Header = React.lazy(()=>import('./header/header'));
 const Footer = React.lazy(()=>import('./footer/footer'));
@@ -18,32 +20,33 @@ const CarouselLoader = React.lazy(()=>import('./carousel/index'));
 const Right = React.lazy(()=>import('./right/index'));
 
 const Styles = {
-   container: {
-       background:'#22323e !important',
-   },
-   headers: {
-       background:'#18242f', 
-       color:'#ffffff',
-       padding: '10px 40px 10px',
-       fontSize: '12px'
-   },
-   bet:{
-       background:'#1e2d3b',
-       padding: '10px',
-       color: '#fff',
-       opacity: 0.8,
-       marginBottom: '1px'
-   }
+    container: {
+        background:'#22323e !important',
+    },
+    headers: {
+        background:'#18242f',
+        color:'#ffffff',
+        padding: '10px 10px 10px 40px',
+        fontSize: '12px'
+    },
+    bet:{
+        background:'#1e2d3b',
+        padding: '10px',
+        color: '#fff',
+        opacity: 0.8,
+        marginBottom: '1px'
+    }
 };
 
 const MyBets = (props) => {
     const [state, dispatch] = useContext(Context);
     const [isLoading, setIsLoading] = useState(false);
+    const {height, width} = useWindowDimensions();
 
     const fetchData = useCallback(async() => {
         if(isLoading) return;
         setIsLoading(true);
-        let endpoint = "/v1/full/betdetails/?limit=5";
+        let endpoint = "/v1/full/betdetails";
         makeRequest({url: endpoint, method: "POST", data: null}).then(([status, result]) => {
             dispatch({type: "SET", key: "mybets", payload: result});
             setIsLoading(false);
@@ -52,20 +55,21 @@ const MyBets = (props) => {
     }, []);
 
     useEffect(() => {
-       fetchData();
+        fetchData();
     }, [fetchData]);
 
     const BetItemHeader = (props) => {
         return (
-            <div className={`container`} style={Styles.headers}>
+            <div className={`${width<=767?"w-100":'container'}`} style={Styles.headers}>
                 <div className="row">
-                    <div className="col">CREATED</div>
-                    <div className="col">ID</div>
-                    <div className="col">GAMES</div>
-                    <div className="col">BET AMOUNT</div>
-                    <div className="col">POSSIBLE WIN</div>
-                    <div className="col">TAX</div>
-                    <div className="col">State</div>
+                    {/*<div className={`${width<=767?"col":"d-none"}`}></div>*/}
+                    <div className="col text-center">CREATED</div>
+                    <div className="col  text-center">ID</div>
+                    <div className="col text-center">GAMES</div>
+                    <div className="col text-center">BET AMOUNT</div>
+                    <div className="col text-center">POSSIBLE WIN</div>
+                    <div className="col text-center">TAX</div>
+                    <div className="col text-center">State</div>
                 </div>
             </div>
         );
@@ -79,13 +83,13 @@ const MyBets = (props) => {
         const cancelBet = () => {
             let endpoint = '/bet-cancel';
             let data = {
-                    bet_id:bet.bet_id,
-                    cancel_code:101,
+                bet_id:bet.bet_id,
+                cancel_code:101,
             }
             makeRequest({url: endpoint, method: "POST", data: data, use_jwt:true}).then(([status, result]) => {
                 if(status === 201){
-                   setBetStatus('CANCEL RQ');
-                   setCanCancel(false);
+                    setBetStatus('CANCEL RQ');
+                    setCanCancel(false);
                 }
             });
         };
@@ -94,28 +98,28 @@ const MyBets = (props) => {
             return (
                 <div className="col">
                     <button
-                         title="Cancel Bet"
-                         className="col btn btn-sm place-bet-btn "
-                         onClick={()=> cancelBet()} 
-                         >
-                         Cancel
+                        title="Cancel Bet"
+                        className="col btn btn-sm place-bet-btn "
+                        onClick={()=> cancelBet()}
+                    >
+                        Cancel
                     </button>
                 </div>
             )
         }
 
         return (
-            <div className={`container`} style={Styles.bet} key={bet.bet_id}>
+            <div className={`${width<=767?"w-100":"container"}`} style={Styles.bet} key={bet.bet_id}>
                 <div className="row">
-                    <div className="col">{ bet.created}</div>
-                    <div className="col">{ bet.bet_id}</div>
-                    <div className="col">{ bet.total_matches}</div>
-                    <div className="col">{ bet.bet_amount}</div>
-                    <div className="col">{ bet.possible_win}</div>
-                    <div className="col">{ bet.tax}</div>
-                    { canCancel == false 
-                        ? <div className="col">{ betStatus}</div>
-                        : cancelBetMarkup() 
+                    <div className="col text-center">{ bet.created}</div>
+                    <div className="col text-center">{ bet.bet_id}</div>
+                    <div className="col text-center">{ bet.total_matches}</div>
+                    <div className="col text-center">{ bet.bet_amount}</div>
+                    <div className="col text-center">{ bet.possible_win}</div>
+                    <div className="col text-center">{ bet.tax}</div>
+                    { canCancel == false
+                        ? <div className="col text-center">{ betStatus}</div>
+                        : cancelBetMarkup()
                     }
                 </div>
             </div>
@@ -123,7 +127,7 @@ const MyBets = (props) => {
     }
 
     const BetslipHeader = () => {
-        
+
         return (
             <div className={`container slipheader`} >
                 <div className="row">
@@ -144,7 +148,7 @@ const MyBets = (props) => {
     const BetslipItem = (props) => {
         const { betslip } = props;
 
-		
+
         return (
             <div className={`container kumbafu`}  key={betslip.game_id}>
                 <div className="row">
@@ -154,7 +158,7 @@ const MyBets = (props) => {
                     <div className="col">{ betslip.market}</div>
                     <div className="col">{ betslip.odd_value}</div>
                     <div className="col">{ betslip.bet_pick}</div>
-                    <div className="col">{ betslip.outcomes}</div>
+                    <div className="col px-1">{ betslip.outcomes}</div>
                     <div className="col">{ betslip.ft_result}</div>
                     <div className="col">{ betslip.status}</div>
                 </div>
@@ -163,49 +167,49 @@ const MyBets = (props) => {
     }
 
     const MyBetsList = (props) => {
-		return (
-         <Accordion >
-			{state?.mybets && state.mybets.map((bet) => (
-				<AccordionItem 
-                    key = {bet.bet_id} 
-                    uuid = { bet.bet_id }
-					>
-					<AccordionItemHeading>
-						<AccordionItemButton>
-							<BetItem bet={bet}  key={bet.id}/>
-						</AccordionItemButton>
-					</AccordionItemHeading>
-					<AccordionItemPanel>
-                     <BetslipHeader />
-					{  bet.betslip?.map((betslip) => (
-                         <BetslipItem 
-                            betslip={betslip}  
-                            key={betslip.bet_slip_id}
-                         />  
-                       ))
-                    }
-                    { isLoading && <p>Loading ... </p>}
-					</AccordionItemPanel>
-				</AccordionItem>
-			))}
-		</Accordion>
-	    );
+        return (
+            <Accordion className={"px-1"} >
+                {state?.mybets && state.mybets.map((bet) => (
+                    <AccordionItem
+                        key = {bet.bet_id}
+                        uuid = { bet.bet_id }
+                    >
+                        <AccordionItemHeading>
+                            <AccordionItemButton>
+                                <BetItem bet={bet}  key={bet.id}/>
+                            </AccordionItemButton>
+                        </AccordionItemHeading>
+                        <AccordionItemPanel>
+                            <BetslipHeader />
+                            {  bet.betslip?.map((betslip) => (
+                                <BetslipItem
+                                    betslip={betslip}
+                                    key={betslip.bet_slip_id}
+                                />
+                            ))
+                            }
+                            { isLoading && <p>Loading ... </p>}
+                        </AccordionItemPanel>
+                    </AccordionItem>
+                ))}
+            </Accordion>
+        );
 
     }
 
     const PageTitle = () => {
-       return (
+        return (
             <div className='col-md-12 primary-bg p-4 text-center'>
                 <h4 className="inline-block">
                     MY BETS
                 </h4>
             </div>
-       )
+        )
     }
     return (
         <>
             <Header user={state?.user}/>
-            <div className="amt">
+            <div className={(width<=514?state?.user?"user_logged":"amt":"amt")}>
                 <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions/>
                     <div className="gz home" style={{width: '100%'}}>
@@ -219,7 +223,7 @@ const MyBets = (props) => {
                     <Right/>
                 </div>
             </div>
-            <div className={"mobile-remove"}>
+            <div className={"mobile-remove mobile-top"}>
                 <Footer/>
             </div>
 

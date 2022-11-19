@@ -23,10 +23,11 @@ const Right = (props) => {
     const {jackpot, betslipValidationData, jackpotData} = props;
     const [betSlipMobile, setBetSlipMobile] = useState(false)
     const {height, width} = useWindowDimensions();
+    const {profile}=props;
 
     return (
-        <div className={`col-md-3 gn betslip-container sticky-top ${width<=767?"":"vh-100"} overflow-scroll tablet-view`}>
-            <div className="betslip-container d-none d-md-block">
+        <div className={`col-md-3 gn betslip-container sticky-top ${width<=991?"remove-width":"vh-100"} overflow-scroll tablet-view`}>
+            <div className="betslip-container d-none d-lg-block">
                 {props?.message && <AlertMessage classname={props.classname} message={props.message}/>}
                 <div className="bet-option-list " id=''>
                     <div className="bet alu block-shadow">

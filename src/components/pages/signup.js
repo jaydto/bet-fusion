@@ -89,16 +89,16 @@ const Signup = (props) => {
             <Form>
                 <div className="pt-0">
                     <div className="row">
-                        <div className='col-md-6 text-center'>
+                        <div className='col-md-6 text-center border-bottom'>
                             <img src={mpesa} alt=""/>
                         </div>
-                        <hr/>
-                        <div className="form-group row d-flex justify-content-center mt-5">
-                            <div className="col-md-12">
+
+                        <div className="form-group w-100 d-flex justify-content-center mt-5">
+                            <div className="col-md-12 w-100">
                                 <label>Mobile Number</label>
                                 <input
                                     value={values.msisdn}
-                                    className="text-dark deposit-input form-control col-md-12 input-field"
+                                    className="text-dark deposit-input w-100  button-radius col-md-12 input-field"
                                     id="msisdn"
                                     name="msisdn"
                                     type="text"
@@ -110,26 +110,26 @@ const Signup = (props) => {
                             </div>
                         </div>
 
-                        <div className="form-group row d-flex justify-content-center mt-5">
-                            <div className="col-md-12">
+                        <div className="form-group w-100 d-flex justify-content-center mt-5">
+                            <div className="col-md-12 d-flex flex-column w-100">
                                 <label>Password</label>
                                 <input
-                                    // value={values.password}
-                                    className="text-dark deposit-input form-control col-md-12 input-field"
+                                    value={values.password}
+                                    className="text-dark deposit-input  button-radius col-md-12 input-field"
                                     id="password"
                                     name="password"
                                     type="password"
                                     placeholder='Password'
-                                    onfocusout={ev => onFieldChanged(ev)}
-                                    // onChange={ev => onFieldChanged(ev)}
+                                    // onfocusout={ev => onFieldChanged(ev)}
+                                    onChange={ev => onFieldChanged(ev)}
                                 />
                                 {errors.password && <div className='text-danger'> {errors.password} </div>}
                             </div>
                         </div>
-                        <div className="form-group row d-flex justify-content-left mb-4">
+                        <div className="form-group w-100 d-flex justify-content-left mb-4">
                             <div className="col-md-3 w-100">
                                 <button type="submit"
-                                        className=' w-100 btn btn-lg btn-primary mt-5 col-md-12 deposit-withdraw-button'>
+                                        className='button-radius  w-100 btn btn-lg btn-primary mt-5 col-md-12 deposit-withdraw-button'>
                                     Signup
                                 </button>
                             </div>

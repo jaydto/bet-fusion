@@ -1,5 +1,5 @@
 import React,  {
-    useLayoutEffect, 
+    useLayoutEffect,
     useState,
     useCallback,
 } from "react";
@@ -11,8 +11,6 @@ import useInterval from "../hooks/set-interval.hook";
 import { getBetslip } from './utils/betslip' ;
 
 import { MarketList } from './matches/index';
-import useWindowDimensions from "./header/Dimensions";
-import {getFromLocalStorage} from "./utils/local-storage";
 
 const Header = React.lazy(()=>import('./header/header'));
 const Footer = React.lazy(()=>import('./footer/footer'));
@@ -21,8 +19,6 @@ const Right = React.lazy(()=>import('./right/index'));
 
 const MatchAllMarkets = (props) => {
     const [page, setPage] = useState(1);
-    const {height, width} = useWindowDimensions();
-    const [user, setUser] = useState(getFromLocalStorage("user"));
     const [producerDown, setProducerDown] = useState(false);
     const { live } = props;
     const [matchwithmarkets, setMatchWithMarkets] = useState();
@@ -39,20 +35,20 @@ const MatchAllMarkets = (props) => {
         return values;
     };
     useInterval(() => {
-		let endpoint = live 
-			? "/v1/matches/live?id="+params.id
-			: "/v1/matches?id="+params.id;
+        let endpoint = live
+            ? "/v1/matches/live?id="+params.id
+            : "/v1/matches?id="+params.id;
 
         let betslip = findPostableSlip();
         let method = betslip ? "POST" : "GET";
 
-		makeRequest({url:endpoint, method:method, data:betslip}).then(([_status, response]) => {
-			setMatchWithMarkets(response?.data || response );
+        makeRequest({url:endpoint, method:method, data:betslip}).then(([_status, response]) => {
+            setMatchWithMarkets(response?.data || response );
             if(response?.slip_data) {
                 setUserSlipsValidation(response?.slip_data);
             }
             setProducerDown(response?.producer_status === 1);
-		});                                                                     
+        });
     }, (live ? 2000: null));
 
 
@@ -60,7 +56,7 @@ const MatchAllMarkets = (props) => {
         if(!isLoading && !isNaN(+params.id)) {
             setIsLoading(true);
             let betslip = findPostableSlip();
-            let endpoint = live 
+            let endpoint = live
                 ? "/v1/matches/live?id="+params.id
                 : "/v1/matches?id="+params.id;
 
@@ -73,34 +69,35 @@ const MatchAllMarkets = (props) => {
     }, []);
 
     useLayoutEffect(() => {
-        const abortController = new AbortController();                          
+        const abortController = new AbortController();
         fetchPagedData();
-        return () => {                                                          
-            abortController.abort();                                            
-        };                                                                      
+        return () => {
+            abortController.abort();
+        };
     }, [fetchPagedData]);
 
-   return (
-       <>
-        <Header />
-           <div className={(width<=514?user?"user_logged":"amt":"amt")}>
-               <div className="d-flex flex-row justify-content-between">
-                   <SideBar loadCompetitions />
-                   <div className="gz home"  style={{width:'100%'}}>
-                       <div className="homepage">
-                    <MarketList live={live}  
-                        matchwithmarkets={matchwithmarkets} 
-                        pdown={producerDown} />
-                </div> 
-            </div>  
-            <Right betslipValidationData={userSlipsValidation} />
-          </div>
-        </div>
-           <div className={"mobile-remove"}>
-               <Footer/>
-           </div>
-       </>
-   )
+    return (
+        <>
+            <Header />
+            <div className="amt">
+                <div className="d-flex flex-row justify-content-between">
+                    <SideBar loadCompetitions />
+                    <div className="gz home"  style={{width:'100%'}}>
+                        <div className="homepage">
+                            <MarketList live={live}
+                                        matchwithmarkets={matchwithmarkets}
+                                        pdown={producerDown} />
+                        </div>
+                    </div>
+                    <Right betslipValidationData={userSlipsValidation} />
+                </div>
+            </div>
+            <Footer />
+        </>
+    )
 }
 
 export default MatchAllMarkets;
+
+
+

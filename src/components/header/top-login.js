@@ -117,6 +117,7 @@ const HeaderLogin = (props) => {
                             <label><input type="checkbox" name="remember" value="1"/>Remember me</label>
                         </span>
                         </div>
+
                         <div className="col-5">
                             <input type="password"
                                    name="password"

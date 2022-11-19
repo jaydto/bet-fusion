@@ -1,5 +1,4 @@
 import React, {useState, useContext, useEffect} from 'react';
-import mpesa from '../../../assets/img/mpesa-3.png';
 import makeRequest from "../../utils/fetch-request";
 import {Formik, Form} from 'formik';
 import {Context} from '../../../context/store';
@@ -129,10 +128,6 @@ const RedeemPoints = (props) => {
             <Form className="shadow-sm rounded border-0">
                 <div className="pt-0">
                     <div className="row">
-                        <div className='col-md-7 text-center'>
-                            <img src={mpesa} alt=""/>
-                        </div>
-                        <hr/>
                         <RedeemPointsFormFields onFieldChanged={onFieldChanged} values={values} errors={errors}/>
                         <hr/>
                         <PaymentInstructions/>

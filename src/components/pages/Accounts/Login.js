@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext, useCallback} from 'react'
+import React, {useState, useEffect, useContext, useCallback, useLayoutEffect} from 'react'
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import {Formik, Field, Form} from 'formik';
@@ -6,10 +6,12 @@ import makeRequest from "../../utils/fetch-request";
 import {Context} from '../../../context/store';
 import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {setLocalStorage} from '../../utils/local-storage';
+import {getFromLocalStorage, setLocalStorage} from '../../utils/local-storage';
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 import {useNavigate} from "react-router-dom";
+import {debounce} from "lodash";
 import Right from "../../right";
+import useWindowDimensions from "../../header/Dimensions";
 
 
 const Header = React.lazy(() => import('../../header/header'));
@@ -20,7 +22,12 @@ const Login = () => {
     const [isLoading, setIsLoading] = useState(null)
     const [message, setMessage] = useState(null);
     // const {setUser} = props;
+
+    const {height, width} = useWindowDimensions();
     const navigate = useNavigate();
+    const [user, setUser] = useState(getFromLocalStorage("user"));
+
+
 
 
     const initialValues = {
@@ -65,19 +72,22 @@ const Login = () => {
     const handleSubmit = values => {
         let endpoint = '/v1/login';
         setIsLoading(true)
-        console.log('values here', values.msisdn,+""+values.password)
+
         makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
 
             setIsLoading(false)
             if (status === 200 || status == 201 || status == 204) {
                 setMessage(response);
-                navigate("/")
+                setTimeout(()=>navigate("/"),3000
+                )
 
             } else {
                 let message = {
-                    status: status, message: response?.message || "Error attempting to login"
+                    status: status,
+                    message: response?.message || "Error attempting to login"
                 };
                 Notify(message);
+                setMessage(response)
             }
         })
     }
@@ -87,12 +97,13 @@ const Login = () => {
         let errors = {}
 
         if (!values.msisdn || !values.msisdn.match(/(254|0|)?[71]\d{8}/g)) {
-            errors.msisdn = 'Please enter a valid phone number'
+            errors.msisdn = 'Invalid phone number'
         }
 
-        if (!values.amount || values.amount < 1 || values.amount > 70000) {
-            errors.amount = "Please enter amount between KES 1.00 and KES 70,000.00";
+        if (!values.password || values.password.length < 4) {
+            errors.password = "Invalid password";
         }
+
         return errors
     }
 
@@ -104,56 +115,75 @@ const Login = () => {
         </div>)
     }
 
-    const MyLoginForm = (props) => {
+
+
+
+
+
+    const   MyLoginForm = (props) => {
+
         const {isValid, errors, values, submitForm, setFieldValue} = props;
 
+        const delayedValue=useCallback(debounce((ev)=>{
+
+        },600))
         const onFieldChanged = (ev) => {
             let field = ev.target.name;
             let value = ev.target.value;
-            setFieldValue(field, value);
+            setFieldValue(field, value)
         }
-        return (<div className={"d-flex w-100 justify-content-center"}>
-            <Form className="form-group row d-flex justify-content-center w-100">
+
+        return (
+            <div className={"d-flex w-100 justify-content-center"}>
+                {user?setTimeout(()=>navigate("/"),4000):""}
+            <Form className=" row d-flex justify-content-center w-100 ">
+
                 <div className="col-md-12">
                     <input type="text"
+
                            name="msisdn"
-                           className={`text-dark button-radius form-control input-field font-input ${errors.msisdn && 'text-danger'}`}
+                           className={`text-dark button-radius w-100 input-field  ${errors.msisdn && 'text-danger'}`}
                            data-action="grow"
                            placeholder={errors.msisdn?errors.msisdn:"Please enter your phone number "}
-                           value={values.msisdn}
                            onChange={ev => onFieldChanged(ev)}
+                           value={values.msisdn}
 
                     />
+                    {console.log("values",values.msisdn)}
                     {errors.msisdn && <div className='text-danger'> {errors.msisdn} </div>}
 
-                </div>
-                <br/>
-                <span className="sticky-hidden text-warning d-flex justify-content-end font-input">
+                    <span className="sticky-hidden text-warning d-flex justify-content-end font-input my-2">
                     <label><input type="checkbox" name="remember" value="1"/>Remember me</label>
                 </span>
+                </div>
 
-                <div className={"form-group  d-flex justify-content-center my-2 font-input"}>
+
+
+                <div className={"  d-flex justify-content-center my-2 "}>
                     <div className="col-md-12 w-100">
                         <input type="password"
                                name="password"
-                               className={`text-dark form-control input-field w-100 button-radius mb-3 font-input ${errors.password && 'text-danger'} `}
+                               className={`text-dark  input-field w-100 button-radius mb-3  ${errors.password && 'text-danger'} `}
                                data-action="grow"
                                placeholder={ "Enter password"}
                                value={values.password}
                                onChange={ev => onFieldChanged(ev)}
 
                         />
-                        {errors.msisdn && <div className='text-danger'> {errors.msisdn} </div>}
-                    </div>
-                </div>
-                <span className="sticky-hidden text-warning d-flex justify-content-end font-input my-2">
+                        {errors.password && <div className='text-danger'> {errors.password} </div>}
+                        <span className="sticky-hidden text-warning d-flex justify-content-end font-input my-2">
                             <input type="hidden" name="ref" value="{props.refURL}"/>
                             <a href="/reset-password" title="Reset password"
                                onClick={() => gaEventTracker('Reset Password')}>
                                 <span className="sticky-hidden text-warning px-2 d-flex justify-content-end">Forgot Password?</span>
                             </a>
                         </span>
-                <div className="form-group  d-flex justify-content-left mb-2">
+
+                    </div>
+                </div>
+
+
+                <div className="  d-flex justify-content-left mb-2">
                     <div className="col-md-12 w-100">
                         <button className="cg login-button btn w-100 button-radius input-field btn-font"
                                 type="submit">
@@ -167,13 +197,15 @@ const Login = () => {
     }
 
     const LoginForm = (props) => {
-        console.log("values formik here",'here')
+
+        {console.log("initialvalues",initialValues)}
         return (<Formik
-            initialValues={initialValues}
+            initialValues={ initialValues}
             onSubmit={handleSubmit}
             validateOnChange={false}
             validateOnBlur={false}
             validate={validate}
+            enableReinitialize={true}
         >{(props) => <MyLoginForm {...props} />}</Formik>);
     }
     const LoginInstructions = () => {
@@ -184,32 +216,42 @@ const Login = () => {
         );
     }
 
-    return (<Container className="d-flex login-mobile">
+    return (
+        <Container className="d-flex login-mobile overflow-auto " style={{minHeight:"400px"}}>
         <Header/>
-        <Row className="w-100 padding-mobile" style={{float: "right"}}>
+        <div className={"overflow-scroll"}>
+            <Row className="w-100 padding-mobile " style={{float: "right"}}>
 
-            <FormTitle/>
-            <LoginInstructions/>
+                <FormTitle/>
+                <LoginInstructions/>
 
-        </Row>
-        <Row className={"w-100"} style={{float: "right"}}>
-            <ToastContainer/>
-            <LoginForm/>
-            <div className="col-12">
-                <a className="d-flex justify-content-center w-100" href="/signup" title="Join now"
-                   onClick={() => gaEventTracker('Register')}>
+                <div className={" d-flex align-items-center justify-content-center text-success w-100 font-input"} >
+                    {message?.status==200?message?.message:""}
+
+                </div>
+
+            </Row>
+            <Row className={"w-100"} style={{float: "right"}}>
+                <ToastContainer/>
+
+                <LoginForm/>
+                <div className="col-12">
+                    <a className="d-flex justify-content-center w-100" href="/signup" title="Join now"
+                       onClick={() => gaEventTracker('Register')}>
                         <span
                             className="register-label text-warning font-input ">Don't have an account! Register now!</span>
-                </a>
-                <a className="m-lg-2 badge bg-success d-none" href="/verify-account" title="Verify Account"
-                   onClick={() => gaEventTracker('Verify')}>
-                    <span className="register-label">Verify Account</span>
-                </a>
-            </div>
+                    </a>
+                    <a className="m-lg-2 badge bg-success d-none" href="/verify-account" title="Verify Account"
+                       onClick={() => gaEventTracker('Verify')}>
+                        <span className="register-label">Verify Account</span>
+                    </a>
+                </div>
 
 
-        </Row>
-        <div className={"mobile-only mobile-top"}>
+            </Row>
+
+        </div>
+            <div className={"mobile-only mobile-top"}>
             <Right/>
         </div>
     </Container>)

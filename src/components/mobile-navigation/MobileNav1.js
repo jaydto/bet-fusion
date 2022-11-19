@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback} from 'react';
 import {
+    Link,
     useParams,
 } from "react-router-dom";
 
@@ -90,7 +91,7 @@ const MobileNav1 = (props) => {
             <tbody>
             <tr className={"tr-style"}>
                 <td className="menu-t"  style={{paddingLeft: "4px"}}>
-                    <a href="/jackpot">
+                    <Link to="/jackpot">
                         <div className="inner-div active">
                             <div className="menu-img">
                                 <LazyLoadImage src={jackpot} style={{width: "20px" }}/>
@@ -99,10 +100,10 @@ const MobileNav1 = (props) => {
                                 Jackpot
                             </div>
                         </div>
-                    </a>
+                    </Link>
                 </td>
                 <td className="menu-t" style={{paddingLeft: "4px"}}>
-                    <a href="/promotions">
+                    <Link to="/promotions">
                         <div className="inner-div active">
                             <div className="menu-img">
                                 <LazyLoadImage src={promo} style={{width: "20px"}}/>
@@ -111,11 +112,11 @@ const MobileNav1 = (props) => {
                                 Promos
                         </div>
                         </div>
-                    </a>
+                    </Link>
                 </td>
                 {sport?.all_sports.map((allsports, index) => (
                 <td className="menu-t" style={{paddingLeft: "4px"}}>
-                    <a href={`/highlights?sport_id=${allsports.sport_id}&sub_type_id=${getDefaultMarketsForSport(allsports)}`} >
+                    <Link to={`/highlights?sport_id=${allsports.sport_id}&sub_type_id=${getDefaultMarketsForSport(allsports)}`} >
                         <div className="inner-div active">
                             <div className="menu-img">
                                 <LazyLoadImage
@@ -129,7 +130,7 @@ const MobileNav1 = (props) => {
                          { allsports.sport_name }
                             </div>
                         </div>
-                    </a>
+                    </Link>
 
                 </td>
                 ))}

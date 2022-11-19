@@ -20,52 +20,29 @@ import Container from "react-bootstrap/Container";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 import SidebarMobile from "../../sidebar/awesome/SidebarMobile";
 import makeRequest from "../../utils/fetch-request";
+import {Formik} from "formik";
+import DepositProfile from "./component/DepositProfile";
+import WithdrawProfile from "./component/WithdrawProfile";
 
 
 
 const Profile = () => {
     const navigate = useNavigate();
-    const [success, setSuccess] = useState(false);
-    const [message, setMessage] = useState(null);
+
     const [user, setUser] = useState(getFromLocalStorage("user"));
     const {height, width} = useWindowDimensions();
     const expand = "md"
 
-    const [withdraw, setWithdraw] = useState('');
-    const [deposit,setDeposit]=useState('');
+
+
     const gaEventTracker = useAnalyticsEventTracker('Navigation');
 
-    const depositCash=(value, amount)=>{
 
-        let values={
-            msisdn:value,
-            amount:amount
-        }
-        {console.log("here deposit",values)}
 
-        let endpoint = '/stk/deposit';
-        setTrackingData(values)
-        makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
-            setSuccess(status === 200 || status === 201);
-            setMessage(response);
-            clearTrackingData()})
 
-    }
-    const withdrawCash=(value,amount)=>{
 
-        let values={
-            msisdn:value,
-            amount:amount
-        }
-        let endpoint = '/withdraw';
-        {console.log("here withdraw",values)}
 
-        makeRequest({url: endpoint, method: 'POST', data: {user:values}, use_jwt:true}).then(([status, response]) => {
-            setSuccess(status === 200 || status === 201);
-            setMessage(response);
 
-        })
-    }
     return (
         <>
             <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark">
@@ -189,66 +166,8 @@ const Profile = () => {
                     </div>
                 </div>
 
-                <div className=" w-100">
-                    <div className="card card-radius profile-bg text-light">
-                        <div className="card-body d-flex flex-column align-items-start">
-                            <div className={"card-title"}><h4>Deposit</h4></div>
-                            <p className={"card-text"}>Send Money to your betnare account</p>
-                            <form className="col-md-12 w-100 ">
-
-                                <input
-                                    onChange={e => setDeposit(e.target.value,user.msisdn)}
-                                    className="text-dark deposit-input form-control col-md-12 input-field"
-                                    id="amount"
-                                    name="amount"
-                                    type="number"
-                                    value={deposit}
-                                    placeholder='Enter Amount'
-                                />
-                                <div className="w-50 d-flex align-items-start">
-                                    <button
-                                        className='btn btn-lg btn-primary mt-5 w-100 deposit-withdraw-button' onClick={depositCash(user.msisdn,deposit)}>
-                                        DEPOSIT
-                                    </button>
-                                </div>
-                                {console.log("value deposit",deposit+" "+user.msisdn)}
-                                {/*{errors.amount && <div className='text-danger'> {errors.amount}*/}
-                                {/*</div>}*/}
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <div className=" w-100">
-                    <div className="card card-radius profile-bg text-light">
-                        <div className="card-body d-flex flex-column align-items-start">
-                            <div className={"card-title"}><h4>Withdraw</h4></div>
-                            <p className={"card-text"}>Withdraw from your betnare wallet</p>
-                            <form className="col-md-12 w-100 ">
-                                <input
-                                    onChange={e => setWithdraw(e.target.value,user.msisdn)}
-                                    className="text-dark deposit-input form-control col-md-12 input-field"
-                                    id="amount"
-                                    name="amount"
-                                    type="number"
-                                    value={withdraw}
-                                    placeholder='Enter Amount'
-                                />
-                                <div className="w-50 d-flex align-items-start">
-                                    <button
-                                        className='btn btn-lg btn-primary mt-5 w-100 deposit-withdraw-button' onClick={withdrawCash(user.msisdn,withdraw)}>
-                                        WITHDRAW
-                                    </button>
-                                </div>
-                                {console.log("value withdraw",withdraw+" ",user.msisdn)}
-                                {/*{errors.amount && <div className='text-danger'> {errors.amount}*/}
-                                {/*</div>}*/}
-                            </form>
-                            {/*<p className={"card-text"}>Minimum KES 100</p>*/}
-                        </div>
-                    </div>
-                </div>
-
+              <DepositProfile/>
+                <WithdrawProfile/>
 
                 <div className=" w-100">
                     <div className="card card-radius profile-bg text-light">

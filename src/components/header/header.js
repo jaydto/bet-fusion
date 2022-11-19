@@ -243,7 +243,7 @@ const Header = (props) => {
                                 </ListGroup>
                             </Container>:""}
 
-                            {width<=767&&width>514? <div className={`col-sm-4  align-items-center justify-content-center d-flex`}>
+                            {width<=767&&width>514? <div className={`col-sm-5  align-items-center justify-content-center d-flex`}>
                                 <a className={`${searching ? 'd-none' : 'd-flex'}`}href="#" title="Search"
                                    onClick={() => showSearchBar()}>
                                     <span className=""><FontAwesomeIcon icon={faSearch}/> </span><span

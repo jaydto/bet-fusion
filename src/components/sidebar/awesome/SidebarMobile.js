@@ -4,7 +4,7 @@ import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import Footer from "../../footer/footer";
 import 'react-pro-sidebar/dist/css/styles.css';
-import { faUser,  faQuestionCircle, faPrint, faHome,faStream,faInfo,faLaptop,faMagic} from "@fortawesome/free-solid-svg-icons";
+import { faUser,  faQuestionCircle, faPrint, faHome,faStream,faInfo,faLaptop,faMagic,faCoins} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 const SidebarMobile = (props) => {
     // const [competitions, setCompetitions] = useState(getFromLocalStorage('categories'));
@@ -25,6 +25,17 @@ const SidebarMobile = (props) => {
 
                     </MenuItem>
                 </Menu>:""}
+
+                {user?<Menu>
+                    <MenuItem >
+                        <div className={"d-flex gap-4 align-items-center"}>
+                            <FontAwesomeIcon icon={faCoins}/>
+                            <Link to={"/deposit"} className={"text-warning"}>Deposit</Link>
+                        </div>
+
+                    </MenuItem>
+                </Menu>:""}
+
 
                 <Menu>
                     <MenuItem className={"d-flex justify-content-between"}>
@@ -95,8 +106,8 @@ const SidebarMobile = (props) => {
             </SidebarContent>
             <SidebarFooter className={"background-primary"}>
                 <Footer />
-                {user? <Menu className={"logout-btn"}>
-                    <MenuItem> <Link to={"/logout"}>Logout</Link> </MenuItem>
+                {user? <Menu >
+                    <MenuItem> <Link className={"logout-btn"} to={"/logout"}>Logout</Link> </MenuItem>
                 </Menu>:""}
             </SidebarFooter>
         </ProSidebar>

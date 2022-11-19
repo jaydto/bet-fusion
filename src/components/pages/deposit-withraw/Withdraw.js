@@ -4,6 +4,7 @@ import makeRequest from "../../utils/fetch-request";
 import { Formik,  Form} from 'formik';
 import { Context } from '../../../context/store';
 import {getBetslip} from '../../utils/betslip'
+import useWindowDimensions from "../../header/Dimensions";
 
 
 const Header = React.lazy(()=>import('../../header/header'));
@@ -17,6 +18,17 @@ const Withdrawal = (props) => {
    
     const [success, setSuccess] = useState(false);
     const [message, setMessage] = useState(null);
+    const {height, width} = useWindowDimensions();
+    const [alert, setAlert] = useState(true);
+    const {mobile}=props;
+
+    useEffect(() => {
+        // when the component is mounted, the alert is displayed for 3 seconds
+        setTimeout(() => {
+            setAlert(false);
+        }, 5000);
+    }, []);
+
 
     const initialValues = {
         amount: '',
@@ -68,7 +80,7 @@ const Withdrawal = (props) => {
         return (
             <>
             <div className="form-group row d-flex justify-content-center">
-                <div className="col-md-12">
+                <div className={`${mobile?"d-none":"col-md-12"}`}>
                     <label>Phone Number</label>
                     <input
                         readOnly={true}
@@ -82,8 +94,9 @@ const Withdrawal = (props) => {
                     {errors.msisdn &&  <div className='text-danger'> {errors.msisdn} </div>  }
                 </div>
             </div>
-            <div className="form-group row d-flex justify-content-center mt-5">
+            <div className={`"form-group row d-flex justify-content-center "${mobile?"":"mt-5"}`}>
                 <div className="col-md-12">
+                    <div className={`${mobile?"card-title":"d-none"}`}><h4>WITHDRAW</h4></div>
                     <label>Amount to Withdraw</label>
                     <input
                         onChange={ev => onFieldChanged(ev) }
@@ -98,10 +111,10 @@ const Withdrawal = (props) => {
                 </div>
             </div>
             <div className="form-group row d-flex justify-content-left mb-4">
-                <div className="col-md-3">
-                    <button
-                        className='btn btn-lg btn-primary mt-5 col-md-12 deposit-withdraw-button'>
-                        Withdraw
+                <div className="w-50 d-flex align-items-start">
+                    <button type={"submit"}
+                            className='btn btn-lg btn-primary mt-5 w-100 deposit-withdraw-button' >
+                        WITHDRAW
                     </button>
                 </div>
             </div>
@@ -132,16 +145,19 @@ const Withdrawal = (props) => {
             setFieldValue(field, value);
         }
        return (
-            <Form className="shadow-sm rounded border-0" >
+            <Form className={`${mobile?"":"shadow-sm rounded border-0"}`} >
                 <div className="pt-0">
                     <div className="row">
-                        <div className='col-md-7 text-center'>
+                        <div className={`${mobile?"d-none":'col-md-7 text-center'}`}>
                             <img src={mpesa} alt=""/>
                         </div>
-                        <hr/>
+                        <hr className={`${mobile?"d-none":""}`}/>
                         <WithdrawFormFields  onFieldChanged ={ onFieldChanged} values ={values } errors={errors} />
-                        <hr/>
-                        <PaymentInstructions />
+                        <hr className={`${mobile?"d-none":""}`}/>
+                        <div className={`${mobile?"d-none":""}`}>
+                            <PaymentInstructions />
+                        </div>
+
                     </div>
                 </div>
             </Form>
@@ -162,22 +178,27 @@ const Withdrawal = (props) => {
 
     const Alert = (props) => {
         let c = success ? 'success' : 'danger';
-        return (<>{ message  && <div role="alert" className={`fade alert alert-${c} show`}>{message}</div> } </>) ;
+        return (<>{ alert&&message  && <div role="alert" className={`fade alert alert-${c} show`}>{message}</div> } </>) ;
 
     };
 
     return (
          <React.Fragment>
-             <Header/>
-             <div className="amt">
-                 <div className="d-flex flex-row justify-content-between">
+             <div className={`${mobile?"d-none":""}`}>
+                 <Header/>
+             </div>
+             <div className={(mobile?"profile-bg card-radius":width <= 514 ? state?.user ? "user_logged" : "amt" : "amt")}>
+             <div className="d-flex flex-row justify-content-between">
                      <SideBar loadCompetitions/>
                      <div className="gz home" style={{width: '100%',overflowX:"clip"}}>
                          <div className="homepage">
-                      <FormTitle />
+                             <div className={`${mobile?"d-none":""}`}>
+                                 <FormTitle />
+                             </div>
+
                         <div className="col-md-12 mt-2 text-white p-2">
                             <Alert />
-                            <div className="modal-body pb-0" data-backdrop="static">
+                            <div className={`${mobile?"px-2":"modal-body pb-0"}`} data-backdrop="static">
                                  <WithdrawalForm />
                             </div>
                         </div>
@@ -193,4 +214,4 @@ const Withdrawal = (props) => {
     )
 }
 
-export default Withdrawal;
+export default React.memo(Withdrawal);

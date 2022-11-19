@@ -16,7 +16,7 @@ import Right from "../right";
 import {getFromLocalStorage} from "../utils/local-storage";
 
 const MobileMenu = (props) => {
-    console.log("props aere here ", props)
+    // console.log("props aere here ", props)
     const [liveSports, setLiveSports] = useState();
     const {jackpot, betslipValidationData, jackpotData} = props;
     const [betSlipMobile, setBetSlipMobile] = useState(false);
@@ -79,37 +79,41 @@ const MobileMenu = (props) => {
                     <img src={VirtualSvg} alt=""></img>
                     <p>Virtuals</p>
                 </a>
-                <div className={"bloc-icon "}>
-                    <a href="#" className={` scaling  bet-slip-footer-toggle`} onClick={()=>{setBetSlipMobile(true)}}>
-                    <span className="col-sm-2  text-white my-4">
-                                     <Badge pill bg="warning " >
-                                      {betslipValidationData?.length || 0}
 
+                    <a href="#" className={`  nav__betslip bloc-icon bet-slip-footer-toggle text-white`} onClick={()=>{setBetSlipMobile(true)}}>
+                                     <Badge pill bg="warning nav__betslip d-flex justify-content-center align-items-center" >
+                                      {betslipValidationData?.length || 0}
                                       </Badge>
-                                </span>
+
 
                     </a>
-                    <p style={{MarginBottom:"2.1rem"}}>Slip </p>
-                </div>
-                {/*{liveSports!=null? "live":"off"}*/}
 
-                {liveSports?.length>0?Object.entries(liveSports).map(([index, livesport]) => (
-                    <a href={`/live`} className="bloc-icon">
-                        <img style={{background:"red"}} src={LiveSvg} alt="">
-                        </img>
-                        <span className={'badge rounded-pill '} style={{
-                            float: "right",
-                            color: "#fff",
-                            position: "absolute",
-                            marginRight: "1.5rem",
-                            top: "1px",
-                            background:"red"
-                        }}>
-                                                                        {livesport.count||0}
+
+                {/*{console.log("liveSports",Object.values(liveSports)[0])}*/}
+
+                {liveSports?.length>0?
+                    Object.entries(liveSports).map(([index, livesport]) => (
+
+                                <a href={`/live`} className="bloc-icon">
+                                <img style={{background:"red"}} src={LiveSvg} alt="">
+                                </img>
+                                <span className={'badge rounded-pill '} style={{
+                                    float: "right",
+                                    color: "#fff",
+                                    position: "absolute",
+                                    marginRight: "1.5rem",
+                                    top: "1px",
+                                    background:"red"
+                                }}>
+                            {livesport.count||0}
                         </span>
-                        <p>Live</p>
+                                <p>Live</p>
 
-                    </a>)):<a href={'/live'} className="bloc-icon">
+                            </a>
+                        ))
+
+
+                    : <a href={'/live'} className="bloc-icon">
                     <img style={{background:"red"}} src={LiveSvg} alt="">
                     </img>
                     <span className={'badge rounded-pill '} style={{

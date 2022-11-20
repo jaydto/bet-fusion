@@ -7861,16 +7861,21 @@ ul.sport {
     }
 
  }
+@media (max-width: 1200px){
+    .print-width{
+        width:130px;
+    }
+}
 
-@media (min-width: 992px) and (max-width: 1014px) {
+@media (min-width: 992px) and (max-width: 1200px) {
+
     .change-display {
         flex-wrap: nowrap;
         font-size: 11px;
         display: grid !important;
         /*code needed to commented out after commenting out casino option*/
         /*grid-template-columns: [col0]0px[col1]60px[col2]70px[col3]100px[col4]80px[col5]120px[col6]120px[col7]140px[col8]120px[col9]90px[col10]70px[col11]108px[col-end];*/
-        grid-template-columns: [col0]0px[col1]60px[col2]70px[col3]100px[col4]80px[col5]120px[col7]140px[col8]120px[col9]100px[col10]120px[col11]130px[col12]0[col-end];
-
+        grid-template-columns: [col0]0px[col1]60px[col2]70px[col3]100px[col4]200px[col5]80px[col7]110px[col8]130px[col9]120px[col10]100px[col11]105px[col12]0[col-end];
         overflow: auto;
     }
  }
@@ -11560,6 +11565,8 @@ button.close {
 @media (max-width: 767px) {
     .mobile-remove{
         display: none!important;
+        padding:0;
+
     }
     .sg {
         display: block !important;
@@ -11591,8 +11598,7 @@ button.close {
         display: grid !important;
         /*code needed to commented out after commenting out casino option*/
         /*grid-template-columns: [col0]0px[col1]60px[col2]70px[col3]100px[col4]80px[col5]120px[col6]120px[col7]140px[col8]120px[col9]90px[col10]70px[col11]108px[col-end];*/
-        grid-template-columns: [col0]0px[col1]60px[col2]70px[col3]100px[col4]80px[col5]120px[col7]140px[col8]120px[col9]100px[col10]120px[col11]130px[col12]0[col-end];
-
+        grid-template-columns: [col0]0px[col1]60px[col2]70px[col3]100px[col4]200px[col5]80px[col7]110px[col8]130px[col9]130px[col10]50px[col11]120px[col12]0[col-end];
         overflow: auto;
     }
     .sticky-responsive{
@@ -15590,7 +15596,7 @@ img.zoom-img {
     }
     .menu-table .active {
         /*background-color: #16202C !important;*/
-        border: thin solid white;
+        border-bottom: thin solid yellow;
     }
 
     .mobile-top{

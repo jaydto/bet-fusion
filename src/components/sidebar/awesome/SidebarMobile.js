@@ -4,73 +4,101 @@ import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import Footer from "../../footer/footer";
 import 'react-pro-sidebar/dist/css/styles.css';
-import { faUser,  faQuestionCircle, faPrint, faHome,faStream,faInfo,faLaptop,faMagic,faCoins} from "@fortawesome/free-solid-svg-icons";
+import {
+    faUser, faQuestionCircle, faPrint, faHome, faStream, faInfo, faLaptop, faMagic, faCoins, faMobile
+} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
+
 const SidebarMobile = (props) => {
     // const [competitions, setCompetitions] = useState(getFromLocalStorage('categories'));
     const [user, setUser] = useState(getFromLocalStorage("user"));
-    return (
-        <ProSidebar
+    const gaEventTracker = useAnalyticsEventTracker('Navigation');
+    return (<ProSidebar
             className={'background-primary'}
             style={{width: "100%"}}
             image={false}>
             <SidebarHeader className={"background-primary"}>
 
-                {user?<Menu>
-                    <MenuItem >
+                {user ? <Menu>
+                    <MenuItem>
                         <div className={"d-flex gap-4 align-items-center"}>
                             <FontAwesomeIcon icon={faUser}/>
                             <Link to={"/profile"}>User Profile</Link>
                         </div>
 
                     </MenuItem>
-                </Menu>:""}
+                </Menu> : ""}
 
-                {user?<Menu>
-                    <MenuItem >
+                {user ? <Menu>
+                    <MenuItem>
                         <div className={"d-flex gap-4 align-items-center"}>
                             <FontAwesomeIcon icon={faCoins}/>
                             <Link to={"/deposit"} className={"text-warning"}>Deposit</Link>
                         </div>
 
                     </MenuItem>
-                </Menu>:""}
+                </Menu> : ""}
 
 
                 <Menu>
                     <MenuItem className={"d-flex justify-content-between"}>
                         <div className={"d-flex gap-4 align-items-center"}>
-                        <FontAwesomeIcon icon={faQuestionCircle}/>
-                        <Link to={"/how-to-play"}>How to play</Link>
+                            <FontAwesomeIcon icon={faQuestionCircle}/>
+                            <Link to={"/how-to-play"}>How to play</Link>
                         </div>
                     </MenuItem>
                 </Menu>
                 <Menu>
                     <MenuItem>
                         <div className={"d-flex gap-4 align-items-center"}>
-                        <FontAwesomeIcon icon={faPrint}/>
-                        <Link to={"/print-matches"}>Print</Link>
+                            <FontAwesomeIcon icon={faPrint}/>
+                            <Link to={"/print-matches"}>Print</Link>
                         </div>
                     </MenuItem>
                 </Menu>
             </SidebarHeader>
-            <SidebarContent className={"background-primary"} >
+            <SidebarContent className={"background-primary"}>
 
-                <Menu >
+                <Menu>
                     <MenuItem>
                         <div className={"d-flex gap-4 align-items-center"}>
-                        <FontAwesomeIcon icon={faHome}/>
-                        <a href={"/"}>Home</a>
+                            <FontAwesomeIcon icon={faHome}/>
+                            <a href={"/"}>Home</a>
                         </div>
-                        </MenuItem>
+                    </MenuItem>
 
                 </Menu>
                 <Menu>
 
                     <MenuItem>
                         <div className={"d-flex gap-4 align-items-center"}>
-                        <FontAwesomeIcon icon={faStream}/>
-                        <Link to={"/live"}>Live</Link>
+                            <FontAwesomeIcon icon={faMobile}/>
+                            <Link className="g url-link" to={"/app"} title="App"
+                                  onClick={() => gaEventTracker('Visit App Page')}>
+                                App
+                            </Link>
+
+                        </div>
+                    </MenuItem>
+                </Menu>
+
+                <Menu>
+
+                    <MenuItem>
+                        <div className={"d-flex gap-4 align-items-center"}>
+                            <FontAwesomeIcon icon={faStream}/>
+                            <Link to={"/live"}>Live</Link>
+                        </div>
+                    </MenuItem>
+                </Menu>
+
+                <Menu>
+
+                    <MenuItem>
+                        <div className={"d-flex gap-4 align-items-center"}>
+                            <FontAwesomeIcon icon={faLaptop}/>
+                            <Link to={"/virtuals"}>Virtuals</Link>
                         </div>
                     </MenuItem>
                 </Menu>
@@ -78,8 +106,8 @@ const SidebarMobile = (props) => {
 
                     <MenuItem>
                         <div className={"d-flex gap-4 align-items-center"}>
-                        <FontAwesomeIcon icon={faLaptop}/>
-                        <Link to={"/virtuals"}>Virtuals</Link>
+                            <FontAwesomeIcon icon={faMagic}/>
+                            <Link to={"/promotions"}>Promotions</Link>
                         </div>
                     </MenuItem>
                 </Menu>
@@ -87,17 +115,8 @@ const SidebarMobile = (props) => {
 
                     <MenuItem>
                         <div className={"d-flex gap-4 align-items-center"}>
-                        <FontAwesomeIcon icon={faMagic}/>
-                        <Link to={"/promotions"}>Promotions</Link>
-                        </div>
-                        </MenuItem>
-                </Menu>
-                <Menu>
-
-                    <MenuItem>
-                        <div className={"d-flex gap-4 align-items-center"}>
-                        <FontAwesomeIcon icon={faInfo}/>
-                        <Link to={"/livescore"}>Livescore</Link>
+                            <FontAwesomeIcon icon={faInfo}/>
+                            <Link to={"/livescore"}>Livescore</Link>
                         </div>
                     </MenuItem>
                 </Menu>
@@ -105,13 +124,12 @@ const SidebarMobile = (props) => {
 
             </SidebarContent>
             <SidebarFooter className={"background-primary"}>
-                <Footer />
-                {user? <Menu >
+                <Footer/>
+                {user ? <Menu>
                     <MenuItem> <Link className={"logout-btn"} to={"/logout"}>Logout</Link> </MenuItem>
-                </Menu>:""}
+                </Menu> : ""}
             </SidebarFooter>
-        </ProSidebar>
-    )
+        </ProSidebar>)
 }
 
 export default SidebarMobile

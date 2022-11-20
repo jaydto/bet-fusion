@@ -22,6 +22,7 @@ const MobileMenu = (props) => {
     const [betSlipMobile, setBetSlipMobile] = useState(false);
     let value=true;
     const [user, setUser] = useState(getFromLocalStorage("user"));
+    const pathname = window.location.pathname;
 
     const fetchData = useCallback(() => {
         let endpoint = "/v1/sports?live=1";

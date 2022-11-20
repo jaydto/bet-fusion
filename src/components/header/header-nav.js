@@ -14,6 +14,7 @@ import {
 import makeRequest from "../utils/fetch-request";
 import {faMobile, faCoins} from "@fortawesome/free-solid-svg-icons";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
+import worldCup from "../../../src/assets/img/flags-1-1/worldcup.png"
 
 const HeaderNav = (props) => {
     const gaEventTracker = useAnalyticsEventTracker('Navigation');
@@ -82,6 +83,16 @@ const HeaderNav = (props) => {
                             <FontAwesomeIcon icon={faCoins}/> Jackpot
                         </a>
                     </li>
+                    <li className={window.location.search.includes('worldcup') ? 'active' : ''}
+                        onClick={() => gaEventTracker('World Cup')}>
+                        <a className="cg fm ox anl url-link"
+                           href="/competition/79/8085/18585?sport_id=79&sub_type_id=1,18,29&limit=500&c=worldcup"
+                           title="Fifa World Cup">
+                            <img src={worldCup} className={'world-cup'} style={{height: "20px",borderRadius:"0 !important"}}></img>
+                            <strong>Fifa World Cup</strong>
+                        </a>
+                    </li>
+
                     <li className={pathname === '/app' ? 'active' : ''}
                         onClick={() => gaEventTracker('Visit App Page')}>
                         <a className="g url-link" href="/app" title="App">
@@ -141,7 +152,7 @@ const HeaderNav = (props) => {
                             >Help</span>
                         </a>
                     </li>
-                    <li className={pathname === '/print-matches' ? 'active py-3' : 'fa-border py-md-0 py-lg-3 py-sm-0 d-flex align-items-center'}
+                    <li className={pathname === '/print-matches' ? 'active py-3' : 'fa-border print-width py-md-0 py-lg-3 py-sm-0 d-flex align-items-center'}
                         onClick={() => gaEventTracker('Visit Print Matches')}>
                         <a className="g url-link fix-print" href="/print-matches" title="Print Matches">
                             <span className=" space-icons"><FontAwesomeIcon icon={faPrint}/> </span>Print <span

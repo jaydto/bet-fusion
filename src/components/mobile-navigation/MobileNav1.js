@@ -11,13 +11,16 @@ import promo from "../../../src/assets/img/mobile/fire.png";
 import jackpot from "../../../src/assets/img/mobile/jackpot.png";
 import {getFromLocalStorage,setLocalStorage} from "../utils/local-storage";
 import makeRequest from "../utils/fetch-request";
-
+import worldCup from "../../../src/assets/img/flags-1-1/worldcup.png"
+import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 
 
 const MobileNav1 = (props) => {
 
     let [sport,setSport] =useState( getFromLocalStorage('categories'));
 
+    const gaEventTracker = useAnalyticsEventTracker('Navigation');
+    const pathname = window.location.pathname;
 
     const [activeClass, setActiveClass] = useState('');
 
@@ -112,6 +115,20 @@ const MobileNav1 = (props) => {
                                 Promos
                         </div>
                         </div>
+                    </Link>
+                </td>
+                <td style={{paddingLeft: "4px"}} className={window.location.search.includes('worldcup') ? 'active  ' : 'menu-t'}
+                    onClick={() => gaEventTracker('World Cup')}>
+                    <Link className="cg fm ox anl url-link d-flex flex-column"
+                       to={"/competition/79/8085/18585?sport_id=79&sub_type_id=1,18,29&limit=500&c=worldcup"}
+                       title="Fifa World Cup">
+                        <span className={"menu-img"}>
+                            <LazyLoadImage src={worldCup} className={'world-cup '} style={{height: "25px",borderRadius:"0 !important"}}></LazyLoadImage>
+                        </span>
+                        <span>
+                            <strong>Fifa World Cup</strong>
+                        </span>
+
                     </Link>
                 </td>
                 {sport?.all_sports.map((allsports, index) => (

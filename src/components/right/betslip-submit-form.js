@@ -288,6 +288,7 @@ const BetslipSubmitForm = (props) => {
     }
 
     const calculateMultiBetBoostAmount = () => {
+        console.log("New betslip is ", betslip)
 
         let settings = getFromLocalStorage('settings')
 
@@ -298,11 +299,12 @@ const BetslipSubmitForm = (props) => {
             setHasMultiBetBoost(false)
 
         }
+
         let boost = 0
 
         let betslips = getBetslip() || {};
 
-        let odds = (Object.values(betslips || [])?.filter((slip) => Number(slip.odd_value) >= settings?.betnareGifts?.giftBoostMinOdds))
+        let odds = (Object.values(betslips || [])?.filter((slip) => slip.bet_type !== '1' && Number(slip.odd_value) >= settings?.betnareGifts?.giftBoostMinOdds))
 
         let giftQualificationOdds = odds.length
 
@@ -354,7 +356,7 @@ const BetslipSubmitForm = (props) => {
 
             return (<FormikForm name="betslip-submit-form">
                 <Alert/>
-                {awardMultiGift && Number(totalGames) > settings?.betnareBonus?.bonusBetLegs ? (
+                {!jackpot && awardMultiGift && Number(totalGames) > settings?.betnareBonus?.bonusBetLegs ? (
                     <div className={'alert alert-success'}>
                         <FontAwesomeIcon icon={faGift}/> {multiBoostMessage}
                     </div>

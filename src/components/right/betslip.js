@@ -171,10 +171,12 @@ const BetSlip = (props) => {
 
         let bonusBetEligible = false
 
+        let bonusBetSportID = settings?.betnareBonus?.bonusSport
+
         if (fixedOdd) {
-            bonusBetEligible = (Object.values(betslipsData || []).filter((slip) => Number(slip.odd_value) < Number(perSlipBonusOdd) || slip.sub_type_id !== "1").length < 1) && userBonus > 0
+            bonusBetEligible = (Object.values(betslipsData || []).filter((slip) => Number(slip.odd_value) < Number(perSlipBonusOdd) || slip.sub_type_id !== "1" || slip.sport_id !== bonusBetSportID || slip.bet_type !== '1').length < 1) && userBonus > 0
         } else {
-            bonusBetEligible = (Object.values(betslipsData || []).filter((slip) => Number(slip.odd_value) < Number(perSlipBonusOdd) || Number(slip.odd_value) > Number(perSlipMaxOdd) || slip.sub_type_id !== "1")).length < 1 && userBonus > 0
+            bonusBetEligible = (Object.values(betslipsData || []).filter((slip) => Number(slip.odd_value) < Number(perSlipBonusOdd) || Number(slip.odd_value) > Number(perSlipMaxOdd) || slip.sub_type_id !== "1" || slip.sport_id !== bonusBetSportID || slip.bet_type !== '1')).length < 1 && userBonus > 0
         }
 
         if (!bonusBetEligible) {

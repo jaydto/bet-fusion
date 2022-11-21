@@ -79,7 +79,7 @@ const Right = (props) => {
 
                 className={`${betSlipMobile ? 'd-none' : 'd-block'} tablet-only fixed-bottom text-center text-white bg-info bet-slip-footer-toggle`}>
 
-                <MobileMenu betslipValidationData={betslipValidationData}/>
+                <MobileMenu jackpot={jackpot} betslipValidationData={betslipValidationData}/>
             </div>
         </div>
     )

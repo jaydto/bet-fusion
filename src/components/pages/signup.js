@@ -103,7 +103,6 @@ const Signup = (props) => {
                                     name="msisdn"
                                     type="text"
                                     placeholder='Phone number'
-                                    // onfocusout={ev => onFieldChanged(ev)}
                                     onChange={ev => onFieldChanged(ev)}
                                 />
                                 {errors.msisdn && <div className='text-danger'> {errors.msisdn} </div>}
@@ -120,7 +119,6 @@ const Signup = (props) => {
                                     name="password"
                                     type="password"
                                     placeholder='Password'
-                                    // onfocusout={ev => onFieldChanged(ev)}
                                     onChange={ev => onFieldChanged(ev)}
                                 />
                                 {errors.password && <div className='text-danger'> {errors.password} </div>}

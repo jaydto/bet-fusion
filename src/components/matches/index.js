@@ -637,7 +637,7 @@ const MatchRow = (props) => {
         let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29").split(",")
         // console.log("subtypes",sub_types[0]);
         if(width<=767){
-            console.log("condition has been met ", [sub_types[0]])
+            // console.log("condition has been met ", [sub_types[0]])
             sub_types=[sub_types[0]]
         }
 
@@ -736,9 +736,10 @@ const MatchRow = (props) => {
 
                 </div>
                 <hr className={"to-block m-sm-1 m-md-1 m-lg-0"}/>
-                <div className="col d-flex  flex-row justify-content-between space-bets card-small">
+                <div className="col d-flex  flex-row space-bets card-small">
 
-                    {width>767?<div className={"d-flex to-flex-1"}>
+                    {width>767?
+                        <div className={"d-flex to-flex-1"}>
                         <div className="c-btn-group align-self-center to-flex-1 to-tabview">
                             {threeWay &&
                                 <div className="d-flex flex-row ">
@@ -764,7 +765,6 @@ const MatchRow = (props) => {
                                     </div>
                                 </div>}
                         </div>
-
                         <div className="c-btn-group align-self-center checking">{
                             match?.odds?.home_odd ? (match?.odds?.home_odd && (!pdown && match?.odds?.home_odd && match.odds.home_odd !== 'NaN' &&
                                     match.market_active == 1 && match.odds.home_odd_active == 1)
@@ -789,12 +789,10 @@ const MatchRow = (props) => {
                     </div>:""}
 
                     {width<=767?<div className="c-btn-group align-self-center to-flex-1 to-tabview">
-                            {threeWay &&
+
                                 <div className="d-flex flex-row ">
                                     <div className="d-flex flex-column text-center text-white fit-ipad w-100">
-                                        <div className="font-weight-bold mobile-remove">
-                                            <h4 className="font-weight-bold mobile-remove"> 3 WAY</h4>
-                                        </div>
+
                                         <div className="d-flex flex-row px-1 justify-content-end change-date1 mobile-only">
                                             <span className={'date-size px-1 wrapping'}>
                                                 {(live && match?.match_time) ?
@@ -803,15 +801,12 @@ const MatchRow = (props) => {
                                             <div className={"px-1 wrapping"}>ID: {match?.game_id}</div>
 
                                         </div>
-                                        <div className='d-flex justify-content-around mobile-remove'>
-                                            <a className="c-btn-header text-white w-100">1</a>
-                                            <a className="c-btn-header text-white w-100">X</a>
-                                            <a className="c-btn-header text-white w-100">2</a>
-                                        </div>
+
 
 
                                     </div>
-                                </div>}
+                                </div>
+
                         </div>
                         :""}
                     {width<=767?<div className="c-btn-group align-self-center checking">{
@@ -840,23 +835,24 @@ const MatchRow = (props) => {
 
                     {/*mobile  display and odds*/}
                     <div className={"to-profile-check separations to-flex-2"}>
-                        {!jackpot && <>
+                        {match?.competition_name!="World Cup"&&!jackpot  &&  <>
                             {Object.entries(match?.extra_odds || {}).map(([marketName, odds], index) => (
                                 marketName !== '' && (
                                     <div
-                                        className={'d-flex to-flex-1 my-lg-0 my-md-2 my-sm-2  w-100'}>
+                                        className={'d-flex to-flex-1 my-lg-0  w-100'}>
                                         <div
                                             className="c-btn-group align-self-center justify-content-center  flex-md-column text-center  flex-sm-row text-center to-tabview mobile-remove">
                                             <h4>{(marketName)}</h4>
 
-                                        </div> <div className="d-flex flex-row px-1 justify-content-end change-date1 mobile-only">
-                                            <span className={'date-size px-1 wrapping'}>
-                                                {(live && match?.match_time) ?
-                                                    <>{`${match.match_time}'`}</> : match?.start_time}
-                                            </span>
-                                        <div className={"px-1 wrapping"}>ID: {match?.game_id}</div>
+                                        </div>
+                                    {/*    <div className="d-none flex-row px-1 justify-content-end change-date1 mobile-only">*/}
+                                    {/*        <span className={'date-size px-1 wrapping'}>*/}
+                                    {/*            {(live && match?.match_time) ?*/}
+                                    {/*                <>{`${match.match_time}'`}</> : match?.start_time}*/}
+                                    {/*        </span>*/}
+                                    {/*    <div className={"px-1 wrapping"}>ID: {match?.game_id}</div>*/}
 
-                                    </div>
+                                    {/*</div>*/}
 
                                         <div
                                             className={`c-btn-group m-lg-1  align-self-center px-2 to-tabview justify-content-center flex-sm-row flex-md-row flex-lg-row `}>

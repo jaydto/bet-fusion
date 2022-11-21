@@ -14,13 +14,15 @@ import BetSlip from "../right/betslip";
 import QuickLogin from "../right/quick-login";
 import Right from "../right";
 import {getFromLocalStorage} from "../utils/local-storage";
+import {Link} from "react-router-dom";
+import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 
 const MobileMenu = (props) => {
     // console.log("props aere here ", props)
     const [liveSports, setLiveSports] = useState();
     const {jackpot, betslipValidationData, jackpotData} = props;
     const [betSlipMobile, setBetSlipMobile] = useState(false);
-    let value=true;
+    const gaEventTracker = useAnalyticsEventTracker('Navigation');
     const [user, setUser] = useState(getFromLocalStorage("user"));
     const pathname = window.location.pathname;
 
@@ -72,22 +74,22 @@ const MobileMenu = (props) => {
 
             </div>
             <nav className="mobile-menu">
-                <a href="/" className="bloc-icon">
+                <Link to={"/"} className={`bloc-icon ${pathname==="/"?"active":""}`} onClick={() => gaEventTracker('Visit Homepage')}>
                     <img src={HomeSvg} alt=""></img>
                     <p>Home</p>
-                </a>
-                <a href="/virtuals" className="bloc-icon">
+                </Link>
+                <Link to={"/virtuals"} className={`bloc-icon ${pathname==="/virtuals"?"active":""}`} >
                     <img src={VirtualSvg} alt=""></img>
                     <p>Virtuals</p>
-                </a>
+                </Link>
 
-                    <a href="#" className={`  nav__betslip bloc-icon bet-slip-footer-toggle text-white`} onClick={()=>{setBetSlipMobile(true)}}>
-                        {console.log("betslip",betslipValidationData?.length)}
+                    <Link to={"#"} className={`  nav__betslip bloc-icon bet-slip-footer-toggle text-white`} onClick={()=>{setBetSlipMobile(true)}}>
+                        {/*{console.log("betslip",betslipValidationData?.length)}*/}
                         <Badge pill bg="warning nav__betslip d-flex justify-content-center align-items-center" >
                                       {betslipValidationData?.length || 0}
                                       </Badge>
 
-                    </a>
+                    </Link>
 
 
                 {/*{console.log("liveSports",Object.values(liveSports)[0])}*/}
@@ -95,7 +97,7 @@ const MobileMenu = (props) => {
                 {liveSports?.length>0?
                     Object.entries(liveSports).map(([index, livesport]) => (
 
-                                <a href={`/live`} className="bloc-icon">
+                                <Link to={`/live`} className={`bloc-icon ${pathname==="/live"?'active':""}`} onClick={() => gaEventTracker('Visit Live  Page')}>
                                 <img style={{background:"red"}} src={LiveSvg} alt="">
                                 </img>
                                 <span className={'badge rounded-pill '} style={{
@@ -110,11 +112,11 @@ const MobileMenu = (props) => {
                         </span>
                                 <p>Live</p>
 
-                            </a>
+                            </Link>
                         ))
 
 
-                    : <a href={'/live'} className="bloc-icon">
+                    : <Link to={'/live'} className={`bloc-icon ${pathname==="/live"?'active':""}`}>
                     <img style={{background:"red"}} src={LiveSvg} alt="">
                     </img>
                     <span className={'badge rounded-pill '} style={{
@@ -129,16 +131,16 @@ const MobileMenu = (props) => {
                         </span>
                     <p>Live</p>
 
-                </a>
+                </Link>
                   }
 
-                {user?<a href="/profile" className="bloc-icon">
+                {user?<Link to={"/profile"} className={`bloc-icon ${pathname==="/profile"?"active":""}`}>
                     <img src={ProfileSvg} alt=""></img>
                     <p>Profile</p>
-                </a>:<a href="/login" className="bloc-icon">
+                </Link>:<Link to={"/login"} className={`bloc-icon ${pathname==="/login"?"active":""}`}>
                     <img src={ProfileSvg} alt=""></img>
                     <p>Profile</p>
-                </a>}
+                </Link>}
 
 
             </nav>

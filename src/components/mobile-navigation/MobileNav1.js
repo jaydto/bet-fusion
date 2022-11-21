@@ -93,7 +93,7 @@ const MobileNav1 = (props) => {
         <table className="menu-table" style={{width: "100%", textAlign: "center"}}>
             <tbody>
             <tr className={"tr-style"}>
-                <td className="menu-t"  style={{paddingLeft: "4px"}}>
+                <td className={`menu-t ${pathname==="/jackpot"?"active":""}`}  style={{paddingLeft: "4px"}}>
                     <Link to="/jackpot">
                         <div className="inner-div active">
                             <div className="menu-img">
@@ -105,7 +105,7 @@ const MobileNav1 = (props) => {
                         </div>
                     </Link>
                 </td>
-                <td className="menu-t" style={{paddingLeft: "4px"}}>
+                <td className={`menu-t ${pathname==="/promotions"?"active":""}`} style={{paddingLeft: "4px"}}>
                     <Link to="/promotions">
                         <div className="inner-div active">
                             <div className="menu-img">
@@ -132,7 +132,7 @@ const MobileNav1 = (props) => {
                     </Link>
                 </td>
                 {sport?.all_sports.map((allsports, index) => (
-                <td className="menu-t" style={{paddingLeft: "4px"}}>
+                <td className={`menu-t sport-check ${pathname===allsports.sport_id?"active":""}`} style={{paddingLeft: "4px"}}>
                     <Link to={`/highlights?sport_id=${allsports.sport_id}&sub_type_id=${getDefaultMarketsForSport(allsports)}`} >
                         <div className="inner-div active">
                             <div className="menu-img">

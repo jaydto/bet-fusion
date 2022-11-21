@@ -6969,6 +6969,9 @@ ul.sport {
     .btn-font{
         font-size:2rem!important;
     }
+    .sport-check:hover{
+        background:#ffc107!important;
+    }
     .button-radius{
         border-radius: 1rem!important;
     }
@@ -7765,6 +7768,9 @@ ul.sport {
     /*.tablet-view{*/
     /*    display: none;*/
     /*}*/
+    .bloc-icon .active{
+        border-bottom: 1px solid yellow;
+    }
     .slip-counter {
         background: #bc1b56;
         text-align: center;
@@ -7789,7 +7795,7 @@ ul.sport {
         display: flex!important;
     }
     .matches .top-matches{
-        /*border-bottom: 1px solid #334c9c!important;*/
+        border-bottom: 1px solid #334c5c!important;
     }
     .border-info{
         border: 1px solid black;
@@ -15594,10 +15600,16 @@ img.zoom-img {
         justify-content: center;
         align-items: flex-end;
     }
-    .menu-table .active {
+    .active {
         /*background-color: #16202C !important;*/
         border-bottom: thin solid yellow;
+
     }
+    .active > p{
+        color: yellow;
+    }
+
+
 
     .mobile-top{
         margin-top:15rem;

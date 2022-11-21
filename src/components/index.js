@@ -68,7 +68,7 @@ const Index = (props) => {
         let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29").split(",")
         // console.log("subtypes",sub_types[0]);
         if(width<=767){
-            console.log("condition has been met ", [sub_types[0]])
+            // console.log("condition has been met ", [sub_types[0]])
             sub_types=[sub_types[0]]
         }
 
@@ -117,9 +117,9 @@ const Index = (props) => {
         }
         //splitting before api call
         let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29").split(",")
-        // console.log("subtypes",sub_types[0]);
+        console.log("subtypes",sub_types[0]);
         if(width<=767){
-            console.log("condition has been met ", [sub_types[0]])
+            // console.log("condition has been met ", [sub_types[0]])
             sub_types=[sub_types[0]]
         }
 

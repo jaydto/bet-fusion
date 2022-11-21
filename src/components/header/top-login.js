@@ -8,6 +8,7 @@ import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {setLocalStorage} from '../utils/local-storage';
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
+import {Link} from "react-router-dom";
 
 const HeaderLogin = (props) => {
     const gaEventTracker = useAnalyticsEventTracker('Navigation');
@@ -161,13 +162,13 @@ const HeaderLogin = (props) => {
         <Container className="top-login-section">
             <Row className="" style={{float: "right"}}>
                 <div className="col-12">
-                    <a className="" href="/signup" title="Join now" onClick={() => gaEventTracker('Register')}>
+                    <Link className="" to={"/signup"} title="Join now" onClick={() => gaEventTracker('Register')}>
                         <span className="register-label">Register now!</span>
-                    </a>
-                    <a className="m-lg-2 badge bg-success d-none" href="/verify-account" title="Verify Account"
+                    </Link>
+                    <Link className="m-lg-2 badge bg-success d-none" to={"/verify-account"} title="Verify Account"
                        onClick={() => gaEventTracker('Verify')}>
                         <span className="register-label">Verify Account</span>
-                    </a>
+                    </Link>
                 </div>
             </Row>
             <Row style={{float: "right"}}>

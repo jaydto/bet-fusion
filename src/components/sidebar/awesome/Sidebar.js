@@ -6,6 +6,7 @@ import makeRequest from "../../utils/fetch-request";
 import {faArrowLeft, faArrowRight} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
+import {Link} from "react-router-dom";
 
 const Sidebar = (props) => {
     const gaEventTracker = useAnalyticsEventTracker('Navigation');
@@ -156,10 +157,10 @@ const Sidebar = (props) => {
                                 <MenuItem icon={<img
                                     src={getSportImageIcon('/img/flags-1-1/worldcup.png', 'img/flags-1-1', true)}
                                     style={{borderRadius: "50%", height: "20px"}}></img>}>
-                                    <a onClick={() => gaEventTracker(`Today Games ${competition?.sport_name}`)}
-                                       href={`/competition/79/8085/18585?sport_id=79&sub_type_id=1,18,29&limit=500&c=worldcup`}>
+                                    <Link onClick={() => gaEventTracker(`Today Games ${competition?.sport_name}`)}
+                                       to={`/competition/79/8085/18585?sport_id=79&sub_type_id=1,18,29&limit=500&c=worldcup`}>
                                         <strong>Fifa World Cup</strong>
-                                    </a>
+                                    </Link>
                                 </MenuItem>
                                 {index === 0 && (
 
@@ -169,10 +170,10 @@ const Sidebar = (props) => {
                                                       icon={<img
                                                           src={getSportImageIcon(top_league?.flag, 'img/flags-1-1', true)}
                                                           style={{borderRadius: "50%", height: "20px"}}></img>}>
-                                                <a onClick={() => gaEventTracker(`Top Leagues ${top_league?.competition_name}`)}
-                                                   href={`/competition/${top_league.sport_id}/${top_league.category_id}/${top_league.competition_id}?sport_id=${competition.sport_id}&sub_type_id=${getDefaultMarketsForSport(competition)}`}>
+                                                <Link onClick={() => gaEventTracker(`Top Leagues ${top_league?.competition_name}`)}
+                                                   to={`/competition/${top_league.sport_id}/${top_league.category_id}/${top_league.competition_id}?sport_id=${competition.sport_id}&sub_type_id=${getDefaultMarketsForSport(competition)}`}>
                                                     {top_league?.competition_name}
-                                                </a>
+                                                </Link>
                                             </MenuItem>
                                         ))}
                                     </SubMenu>
@@ -189,13 +190,13 @@ const Sidebar = (props) => {
                                             >
                                                 {country?.competitions.map((league, leagueKey) => (
                                                     <MenuItem key={`${leagueKey}_league`}>
-                                                        <a href={`/competition/${competition.sport_id}/${country.category_id}/${league.competition_id}?sport_id=${competition.sport_id}&sub_type_id=${getDefaultMarketsForSport(competition)}`}
+                                                        <Link to={`/competition/${competition.sport_id}/${country.category_id}/${league.competition_id}?sport_id=${competition.sport_id}&sub_type_id=${getDefaultMarketsForSport(competition)}`}
                                                            onClick={() => {
                                                                setLocalStorage('active_item', competition.sport_id);
                                                                gaEventTracker(league?.competition_name)
                                                            }}>
                                                             {league.competition_name}
-                                                        </a>
+                                                        </Link>
                                                     </MenuItem>
                                                 ))}
                                             </SubMenu>
@@ -203,22 +204,22 @@ const Sidebar = (props) => {
                                     ))}
                                 </SubMenu>
                                 <MenuItem>
-                                    <a onClick={() => gaEventTracker(`Today Games ${competition?.sport_name}`)}
-                                       href={`/upcoming?sport_id =${competition.sport_id}&sub_type_id=${getDefaultMarketsForSport(competition)}`}>
+                                    <Link onClick={() => gaEventTracker(`Today Games ${competition?.sport_name}`)}
+                                       to={`/upcoming?sport_id =${competition.sport_id}&sub_type_id=${getDefaultMarketsForSport(competition)}`}>
                                         Today Games
-                                    </a>
+                                    </Link>
                                 </MenuItem>
                                 <MenuItem>
-                                    <a onClick={() => gaEventTracker(`Highlights ${competition?.sport_name}`)}
-                                       href={`/highlights?sport_id=${competition.sport_id}&sub_type_id=${getDefaultMarketsForSport(competition)}`}>
+                                    <Link onClick={() => gaEventTracker(`Highlights ${competition?.sport_name}`)}
+                                       to={`/highlights?sport_id=${competition.sport_id}&sub_type_id=${getDefaultMarketsForSport(competition)}`}>
                                         Highlights
-                                    </a>
+                                    </Link>
                                 </MenuItem>
                                 <MenuItem>
-                                    <a onClick={() => gaEventTracker(`Tomorrow ${competition?.sport_name}`)}
-                                       href={`/tomorrow?sport_id=${competition.sport_id}&sub_type_id=${getDefaultMarketsForSport(competition)}`}>
+                                    <Link onClick={() => gaEventTracker(`Tomorrow ${competition?.sport_name}`)}
+                                       to={`/tomorrow?sport_id=${competition.sport_id}&sub_type_id=${getDefaultMarketsForSport(competition)}`}>
                                         Tomorrow
-                                    </a>
+                                    </Link>
                                 </MenuItem>
                             </SubMenu>
                         ))}

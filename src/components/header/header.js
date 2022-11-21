@@ -183,13 +183,13 @@ const Header = (props) => {
                                  <span>Login</span>
                             </Link>
                                 <div className="">
-                                    <a className="cg login-button btn bg-warning" href="/signup" title="Join now" onClick={() => gaEventTracker('Register')}>
+                                    <Link className="cg login-button btn bg-warning" to={"/signup"} title="Join now" onClick={() => gaEventTracker('Register')}>
                                         <span className=" ">Register</span>
-                                    </a>
-                                    <a className="m-lg-2 badge bg-success d-none" href="/verify-account" title="Verify Account"
+                                    </Link>
+                                    <Link className="m-lg-2 badge bg-success d-none" to={"/verify-account"} title="Verify Account"
                                        onClick={() => gaEventTracker('Verify')}>
                                         <span className="register-label">Verify Account</span>
-                                    </a>
+                                    </Link>
                                 </div>
                         </div>:""}
 
@@ -250,7 +250,7 @@ const Header = (props) => {
                                 </ListGroup>
                             </Container>:""}
 
-                            {width<=767&&width>514? <div className={`${searching?"col-sm-5":"col"}  align-items-center justify-content-center d-flex`}>
+                            {width<=767&&width>514? <div className={`${searching?"col-sm-5":"col px-4"}  align-items-center justify-content-end  d-flex`}>
                                 <a className={`${searching ? 'd-none' : 'd-flex'}`}href="#" title="Search"
                                    onClick={() => showSearchBar()}>
                                     <span className=""><FontAwesomeIcon icon={faSearch}/> </span><span
@@ -290,13 +290,13 @@ const Header = (props) => {
                                         <span>Login</span>
                                     </Link>
                                     <div className="">
-                                        <a className="cg login-button btn bg-warning" href="/signup" title="Join now" onClick={() => gaEventTracker('Register')}>
+                                        <Link className="cg login-button btn bg-warning" to={"/signup"} title="Join now" onClick={() => gaEventTracker('Register')}>
                                             <span className=" ">Register</span>
-                                        </a>
-                                        <a className="m-lg-2 badge bg-success d-none" href="/verify-account" title="Verify Account"
+                                        </Link>
+                                        <Link className="m-lg-2 badge bg-success d-none" to={"/verify-account"} title="Verify Account"
                                            onClick={() => gaEventTracker('Verify')}>
                                             <span className="register-label">Verify Account</span>
-                                        </a>
+                                        </Link>
                                     </div>
                                 </div>:""}
 

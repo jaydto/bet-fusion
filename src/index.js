@@ -20,8 +20,10 @@ import ReactGA from 'react-ga4';
 
 
 
-import useWindowDimensions from "./components/header/Dimensions";
-import Header from "./components/header/header";
+
+// import {LazyLoadImage} from "react-lazy-load-image-component/src";
+import logo from "./assets/img/logo.png";
+import {ProgressBar} from "loading-animations-react";
 
 
 const Index = React.lazy(() => import('./components/index'));
@@ -114,7 +116,7 @@ const Logout = () => {
 
     const out = useCallback(() => {
         localStorage.clear();
-        setTimeout(()=>navigate("/login"),500
+        setTimeout(()=>navigate("/"),500
         )
     }, [navigate]);
 
@@ -133,7 +135,21 @@ const container = document.getElementById("app");
 render((
     <Store>
         <BrowserRouter>
-            <Suspense fallback={<p> Loading ... </p>}>
+            <Suspense fallback={
+                <div className={"d-flex align-items-center flex-column justify-content-center vh-100"}>
+                <div className={"d-flex justify-content-start flex-column"}>
+                    <img src={logo} alt="Betnare" title="Betnare" effects="blur" style={{height:"53px"}}/>
+                    <span className={"text-light "}>
+                    <ProgressBar
+                        borderColor=""
+                        sliderColor="#242e3a"
+                        sliderBackground="rgb(0,0,0)"
+                    />
+                </span>
+                </div>
+
+
+            </div>}>
                 <Routes>
                     <Route path="*" element={<Index/>}/>
                     <Route exact path="/" element={<Index/>}/>

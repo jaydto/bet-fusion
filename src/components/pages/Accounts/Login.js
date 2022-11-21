@@ -3,13 +3,13 @@ import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import {Formik, Field, Form} from 'formik';
 import makeRequest from "../../utils/fetch-request";
-import {Context} from '../../../context/store';
+
 import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {getFromLocalStorage, setLocalStorage} from '../../utils/local-storage';
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
-import {useNavigate} from "react-router-dom";
-import {debounce} from "lodash";
+import {Link, useNavigate} from "react-router-dom";
+
 import Right from "../../right";
 import useWindowDimensions from "../../header/Dimensions";
 
@@ -124,9 +124,7 @@ const Login = () => {
 
         const {isValid, errors, values, submitForm, setFieldValue} = props;
 
-        const delayedValue=useCallback(debounce((ev)=>{
 
-        },600))
         const onFieldChanged = (ev) => {
             let field = ev.target.name;
             let value = ev.target.value;
@@ -137,10 +135,9 @@ const Login = () => {
             <div className={"d-flex w-100 justify-content-center"}>
                 {user?setTimeout(()=>navigate("/"),4000):""}
             <Form className=" row d-flex justify-content-center w-100 ">
-
                 <div className="col-md-12">
                     <input type="text"
-
+                           autoComplete={"off"}
                            name="msisdn"
                            className={`text-dark button-radius w-100 input-field  ${errors.msisdn && 'text-danger'}`}
                            data-action="grow"
@@ -162,6 +159,7 @@ const Login = () => {
                 <div className={"  d-flex justify-content-center my-2 "}>
                     <div className="col-md-12 w-100">
                         <input type="password"
+                               autoComplete={"off"}
                                name="password"
                                className={`text-dark  input-field w-100 button-radius mb-3  ${errors.password && 'text-danger'} `}
                                data-action="grow"
@@ -173,10 +171,10 @@ const Login = () => {
                         {errors.password && <div className='text-danger'> {errors.password} </div>}
                         <span className="sticky-hidden text-warning d-flex justify-content-end font-input my-2">
                             <input type="hidden" name="ref" value="{props.refURL}"/>
-                            <a href="/reset-password" title="Reset password"
+                            <Link to={"/reset-password"} title="Reset password"
                                onClick={() => gaEventTracker('Reset Password')}>
                                 <span className="sticky-hidden text-warning px-2 d-flex justify-content-end">Forgot Password?</span>
-                            </a>
+                            </Link>
                         </span>
 
                     </div>
@@ -217,9 +215,9 @@ const Login = () => {
     }
 
     return (
-        <Container className="d-flex login-mobile overflow-auto " style={{minHeight:"400px"}}>
+        <Row className="d-flex login-mobile  w-100" >
         <Header/>
-        <div className={"overflow-scroll"}>
+        <div className={""}>
             <Row className="w-100 padding-mobile " style={{float: "right"}}>
 
                 <FormTitle/>
@@ -236,24 +234,25 @@ const Login = () => {
 
                 <LoginForm/>
                 <div className="col-12">
-                    <a className="d-flex justify-content-center w-100" href="/signup" title="Join now"
+                    <Link className="d-flex justify-content-center w-100" to={"/signup"} title="Join now"
                        onClick={() => gaEventTracker('Register')}>
                         <span
                             className="register-label text-warning font-input ">Don't have an account! Register now!</span>
-                    </a>
-                    <a className="m-lg-2 badge bg-success d-none" href="/verify-account" title="Verify Account"
+                    </Link>
+                    <Link className="m-lg-2 badge bg-success d-none" to={"/verify-account"} title="Verify Account"
                        onClick={() => gaEventTracker('Verify')}>
                         <span className="register-label">Verify Account</span>
-                    </a>
+                    </Link>
                 </div>
 
 
             </Row>
 
-        </div>
             <div className={"mobile-only mobile-top"}>
-            <Right/>
+                <Right/>
+            </div>
         </div>
-    </Container>)
+
+    </Row>)
 }
 export default React.memo(Login);

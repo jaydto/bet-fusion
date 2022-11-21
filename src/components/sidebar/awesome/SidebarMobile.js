@@ -64,7 +64,7 @@ const SidebarMobile = (props) => {
                     <MenuItem>
                         <div className={"d-flex gap-4 align-items-center"}>
                             <FontAwesomeIcon icon={faHome}/>
-                            <a href={"/"}>Home</a>
+                            <Link to={"/"}>Home</Link>
                         </div>
                     </MenuItem>
 
@@ -74,7 +74,7 @@ const SidebarMobile = (props) => {
                     <MenuItem>
                         <div className={"d-flex gap-4 align-items-center"}>
                             <FontAwesomeIcon icon={faMobile}/>
-                            <Link className="g url-link" to={"/app"} title="App"
+                            <Link className="" to={"/app"} title="App"
                                   onClick={() => gaEventTracker('Visit App Page')}>
                                 App
                             </Link>

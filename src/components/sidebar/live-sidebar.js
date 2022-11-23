@@ -1,18 +1,17 @@
 import React, {useState, useEffect, useCallback} from 'react';
-import football from '../../assets/svg/football.svg'
-import PerfectScrollbar from 'react-perfect-scrollbar';
 import makeRequest from "../utils/fetch-request";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import {Menu, MenuItem, ProSidebar, SidebarContent, SidebarHeader, SubMenu} from "react-pro-sidebar";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faArrowLeft, faArrowRight} from "@fortawesome/free-solid-svg-icons";
-import {setLocalStorage} from "../utils/local-storage";
+import {Link} from "react-router-dom";
+import useWindowDimensions from "../header/Dimensions";
+
 
 const LiveSideBar = (props) => {
 
     const [liveSports, setLiveSports] = useState()
+    const {height, width} = useWindowDimensions();
 
     const fetchData = useCallback(() => {
         let endpoint = "/v1/sports?live=1";
@@ -34,7 +33,7 @@ const LiveSideBar = (props) => {
     }, [fetchData]);
 
     return (
-        <div className="d-md-block w-25 mobile-remove" >
+        <div className={`${width<=767?"":"d-md-block w-25 "}`} >
             <div style={{
                 display: 'flex',
                 overflow: 'scroll initial',
@@ -43,8 +42,8 @@ const LiveSideBar = (props) => {
                 top: "100px",
                 marginTop: "10px"
             }}
-                 className={`vh-100 text-white sticky-top d-none d-md-block up`}>
-                <ProSidebar
+                 className={`${width<=767?"":"vh-100 text-white sticky-top  d-md-block up"}`}>
+                <ProSidebar className={`${width<=767?"w-100":""}`}
                     style={{backgroundColor: '#16202c !important'}}
                     image={false}>
                     <SidebarHeader>
@@ -79,18 +78,18 @@ const LiveSideBar = (props) => {
                         </div>
                     </SidebarHeader>
                     <SidebarContent>
-                        <Menu iconShape="circle">
+                        <Menu iconShape="circle"  >
                             {liveSports && Object.entries(liveSports).map(([index, livesport]) => (
-                                    <Menu iconShape="circle">
+                                    <Menu iconShape="circle" >
                                         <MenuItem>
-                                            <a className="col-12"
-                                               href={`/live/${livesport.sport_id}`}>
+                                            <Link className="col-12"
+                                               to={`/live/${livesport.sport_id}`}>
                                                 <Row>
                                                     <Col lg="11" md="11" sm="11" xs="11" className="topl">
                                                         <Row style={{color: "#69819a"}}>
                                                             <Col className={'text-white'}>{livesport.sport_name} </Col>
                                                             <Col>
-                                                                <span className={'badge rounded-pill bg-dark'} style={{
+                                                                <span className={`badge rounded-pill bg-dark ${width<=767?"live-slide":""}`} style={{
                                                                     float: "right",
                                                                     color: "#fff"
                                                                 }}>
@@ -100,7 +99,7 @@ const LiveSideBar = (props) => {
                                                         </Row>
                                                     </Col>
                                                 </Row>
-                                            </a>
+                                            </Link>
                                         </MenuItem>
                                     </Menu>
                                 )

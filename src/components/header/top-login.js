@@ -15,6 +15,7 @@ const HeaderLogin = (props) => {
     const [isLoading, setIsLoading] = useState(null)
     const [message, setMessage] = useState(null);
     const {setUser} = props;
+    const {login}=props;
 
     const initialValues = {
         msisdn: "",
@@ -103,26 +104,26 @@ const HeaderLogin = (props) => {
         return (
             <>
                 <Form className="ow og i web-element">
-                    <Row>
-                        <div className="col-5">
+                    <Row className={`${login?"d-flex flex-column":""}`}>
+                        <div className={`${login?"w-100 ": "col-5"}`}>
                             <input type="text"
                                    name="msisdn"
-                                   className={`top-login-input-field ${errors.msisdn && 'text-danger'}`}
+                                   className={`${login?"w-100 input-field button-radius":""}top-login-input-field ${errors.msisdn && 'text-danger'}`}
                                    data-action="grow"
                                    placeholder={errors.msisdn || "+254........."}
                                    onChange={ev => onFieldChanged(ev)}
                                    value={values.msisdn}
                             />
                             <br/>
-                            <span className="sticky-hidden">
+                            <span className={`${login?"sticky-hidden text-warning d-flex justify-content-end font-input my-2":"sticky-hidden"}`}>
                             <label><input type="checkbox" name="remember" value="1"/>Remember me</label>
                         </span>
                         </div>
 
-                        <div className="col-5">
+                        <div className={`${login?"w-100 ": "col-5"}`}>
                             <input type="password"
                                    name="password"
-                                   className={`top-login-input-field ${errors.password && 'text-danger'} `}
+                                   className={`${login?"w-100 input-field button-radius":""}top-login-input-field ${errors.password && 'text-danger'} `}
                                    data-action="grow"
                                    placeholder={errors.password || "Password"}
                                    onChange={ev => onFieldChanged(ev)}
@@ -130,16 +131,27 @@ const HeaderLogin = (props) => {
                             />
                             <br/>
                             <input type="hidden" name="ref" value="{props.refURL}"/>
-                            <a href="/reset-password" title="Reset password"
+                            <Link to={"/reset-password"} title="Reset password"
                                onClick={() => gaEventTracker('Reset Password')}>
-                                <span className="sticky-hidden">Forgot Password?</span>
-                            </a>
+                                <span className={`${login?"sticky-hidden text-warning px-2 d-flex justify-content-end":"sticky-hidden"}`}>Forgot Password?</span>
+                            </Link>
                         </div>
-                        <div className="col-sm-2">
-                            <button className="cg login-button btn" type="submit">
+                        <div className={`${login?"w-100":"col-sm-2"}`}>
+                            <button className={`${login?"w-100 button-radius input-field btn-font": " "}cg login-button btn`} type="submit">
                                 {isLoading ? <span>Logging In ...</span> : <span>Login</span>}
                             </button>
                         </div>
+                        <Row className={`${login?"d-flex":"d-none"}`} style={{float: "right"}}>
+                            <div className="col-12">
+                                <Link className={`${login?"d-flex justify-content-center w-100":""}`} to={"/signup"} title="Join now" onClick={() => gaEventTracker('Register')}>
+                                    <span className={`${login?"text-warning font-input ":""}register-label`}>{login?"Dont have an account! Register now ": "Register now!"}</span>
+                                </Link>
+                                <Link className="m-lg-2 badge bg-success d-none" to={"/verify-account"} title="Verify Account"
+                                      onClick={() => gaEventTracker('Verify')}>
+                                    <span className="register-label">Verify Account</span>
+                                </Link>
+                            </div>
+                        </Row>
                     </Row>
                 </Form>
             </>
@@ -159,8 +171,8 @@ const HeaderLogin = (props) => {
     }
 
     return (
-        <Container className="top-login-section">
-            <Row className="" style={{float: "right"}}>
+        <Container className={`${login?"d-flex flex-column mx-2":"top-login-section"}`}>
+            <Row className={`${login?"d-none":""}`} style={{float: "right"}}>
                 <div className="col-12">
                     <Link className="" to={"/signup"} title="Join now" onClick={() => gaEventTracker('Register')}>
                         <span className="register-label">Register now!</span>
@@ -175,6 +187,7 @@ const HeaderLogin = (props) => {
                 <ToastContainer/>
                 <LoginForm/>
             </Row>
+
         </Container>
     )
 }

@@ -1,4 +1,5 @@
 import React  from 'react';
+import {Link} from "react-router-dom";
 
 
 const QuickLogin = (props) => {
@@ -18,7 +19,7 @@ const QuickLogin = (props) => {
                 <div className="col-sm-4 zero-padding">
                     <input type="submit" className="cg fm" value="Submit" />
                 </div>
-                <div className="col-sm-8 zero-padding"><a href="/signup">Join now</a></div>
+                <div className="col-sm-8 zero-padding"><Link to={"/signup"}>Join now</Link></div>
             </div>
             </form>
         </div>

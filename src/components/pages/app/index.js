@@ -32,7 +32,7 @@ const MobileApp = () => {
                     <div className="gz home" style={{width: '100%',overflowX: 'clip'}}>
                         <div className="homepage">
                             <div
-                                className='col-md-12 primary-bg p-4 text-center d-flex flex-row justify-content-between sticky-top'>
+                                className='col-md-12 primary-bg p-4 text-center d-flex flex-row justify-content-between align-items-center sticky-top'>
                                 <h4 className="inline-block">
                                     BETNARE APP
                                 </h4>
@@ -41,7 +41,7 @@ const MobileApp = () => {
                                       target={"_blank"}
                                       title={'Download App'}
                                       download={'betnare.apk'}
-                                      className="btn btn-primary btn-lg mb-5 text-white text-decoration-none"
+                                      className="btn btn-primary btn-lg  text-white text-decoration-none"
                                       label="Download App"
                                       filename="betnare.apk"
                                       onClick={()=>gaEventTracker('Downloaded App')}
@@ -84,10 +84,13 @@ const MobileApp = () => {
                             </div>
                         </div>
                     </div>
-                    <Right/>
+                    <div className={"mobile-top"}>
+                        <Right app={true}/>
+                    </div>
+
                 </div>
             </div>
-            <div className={"mobile-remove"}>
+            <div className="mobile-remove ">
             <Footer/>
             </div>
         </>

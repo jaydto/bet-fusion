@@ -170,11 +170,11 @@ const Header = (props) => {
                             :""
                             : ""}
                         {width<=514? <div className={`col-sm-1 align-items-center ${searching ? 'd-none' : 'd-flex'}`}>
-                            <a className="" href="#" title="Search"
+                            <Link className="" to={"#"} title="Search"
                                onClick={() => showSearchBar()}>
                                 <span className=""><FontAwesomeIcon icon={faSearch}/> </span><span
                             ></span>
-                            </a>
+                            </Link>
                         </div>:""}
 
                         {width<=514?user?"":
@@ -240,22 +240,22 @@ const Header = (props) => {
                                         className={`autocomplete-box position-fixed bg-white border-dark col-md-5 mt-1 shadow-lg text-start`}
                                         onClick={() => gaEventTracker('View Search Results')}>
                                         {matches.map((match, index) => (
-                                            <a href={`/?search=${match.home_team}`} key={index}>
+                                            <Link to={`/?search=${match.home_team}`} key={index}>
                                                 <li>
                                                     {match.home_team}
                                                 </li>
-                                            </a>
+                                            </Link>
                                         ))}
                                     </div>
                                 </ListGroup>
                             </Container>:""}
 
                             {width<=767&&width>514? <div className={`${searching?"col-sm-5":"col px-4"}  align-items-center justify-content-end  d-flex`}>
-                                <a className={`${searching ? 'd-none' : 'd-flex'}`}href="#" title="Search"
+                                <Link className={`${searching ? 'd-none' : 'd-flex'}`}to={"#"} title="Search"
                                    onClick={() => showSearchBar()}>
                                     <span className=""><FontAwesomeIcon icon={faSearch}/> </span><span
                                 ></span>
-                                </a>
+                                </Link>
                                 <Container id="navbar-collapse-main"
                                            className={`fadeIn header-menu d-flex justify-content-center px-4 ${searching ? 'd-block' : 'd-none'}`}>
                                     <ListGroup as="ul" xs="9" horizontal className="nav navbar-nav og ale ss col-md-6 text-center">
@@ -274,11 +274,11 @@ const Header = (props) => {
                                             className={`autocomplete-box position-fixed bg-white border-dark col-md-5 mt-1 shadow-lg text-start`}
                                             onClick={() => gaEventTracker('View Search Results')}>
                                             {matches.map((match, index) => (
-                                                <a href={`/?search=${match.home_team}`} key={index}>
+                                                <Link to={`/?search=${match.home_team}`} key={index}>
                                                     <li>
                                                         {match.home_team}
                                                     </li>
-                                                </a>
+                                                </Link>
                                             ))}
                                         </div>
                                     </ListGroup>

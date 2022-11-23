@@ -2,73 +2,77 @@ import React from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faEnvelope} from "@fortawesome/free-solid-svg-icons";
 import {faFacebook, faInstagram, faTwitter, faYoutube} from "@fortawesome/free-brands-svg-icons"
+import {Link} from "react-router-dom";
 
 
 const Footer = (props) => {
 
     return (
-        <footer className="footer-custom footer-mobile">
+        <footer className="footer-custom footer-mobile px-4">
             <div className="row sidebar-mobile-column">
                 <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3 text-white">
-                    <h5>BETNARE</h5>
+                    <h5 className={"border-bottom border-secondary"}>BETNARE</h5>
+
                     <ul>
                         <li className="">
                             P.O.BOX 00100 NAIROBI KENYA
                         </li>
                         <li className="">
-                            <a href="mailto:care@ke.betnare.com">
+                            <Link to={"mailto:care@ke.betnare.com"}>
                                 <FontAwesomeIcon icon={faEnvelope}/> customercare@betnare.com
-                            </a>
+                            </Link>
                         </li>
                         <li className="footer-icon">
-                            <a href="http://facebook.com/Betnare-101164702604689">
+                            <Link to={"http://facebook.com/Betnare-101164702604689"}>
                                 <FontAwesomeIcon icon={faFacebook}/> Facebook
-                            </a>
+                            </Link>
                         </li>
                         <li className="footer-icon">
-                            <a href="https://instagram.com/betnareke?igshid=YmMyMTA2M2Y=">
+                            <Link to={"https://instagram.com/betnareke?igshid=YmMyMTA2M2Y="}>
                                 <FontAwesomeIcon icon={faInstagram}/> Instagram
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </div>
                 <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-                    <h5>TERMS AND CONDITIONS</h5>
+                    <h5 className={"border-bottom border-secondary"}>TERMS AND CONDITIONS</h5>
+
                     <ul>
                         <li className="">
-                            <a href="/terms-and-conditions">Terms and Conditions</a>
+                            <Link to={"/terms-and-conditions"}>Terms and Conditions</Link>
                         </li>
                         <li className="">
-                            <a href="/responsible-gambling">Responsible Gambling</a>
+                            <Link to={"/responsible-gambling"}>Responsible Gambling</Link>
                         </li>
                         <li className="">
-                            <a href="/privacy-policy">Privacy Policy</a>
+                            <Link to={"/privacy-policy"}>Privacy Policy</Link>
                         </li>
                         <li className="">
-                            <a href="/cookie-policy">Cookie Policy</a>
+                            <Link to={"/cookie-policy"}>Cookie Policy</Link>
                         </li>
                         <li className="">
-                            <a href="/how-to-play">How To Play</a>
+                            <Link to={"/how-to-play"}>How To Play</Link>
                         </li>
                     </ul>
                 </div>
                 <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-                    <h5>LEGAL</h5>
+                    <h5 className={"border-bottom border-secondary"}>LEGAL</h5>
+
                     <ul>
                         <li className="text-danger">
                             You must be 18 Years+ to use this website.
                         </li>
                         <li className="">
-                            <a href="/dispute-resolution">Dispute Resolution</a>
+                            <Link to={"/dispute-resolution"}>Dispute Resolution</Link>
                         </li>
                         <li className="">
-                            <a href="/anti-money-laundering">Anti-money Laundering</a>
+                            <Link to={"/anti-money-laundering"}>Anti-money Laundering</Link>
                         </li>
                     </ul>
                 </div>
                 <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-                    <h5>LICENSING</h5>
-                    <hr/>
+                    <h5 className={"border-bottom border-secondary"}>LICENSING</h5>
+
                     <p>
                         We are licensed and regulated by the Betting Control and Licensing
                         Board BCLB 0000453

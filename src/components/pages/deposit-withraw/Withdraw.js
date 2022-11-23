@@ -22,6 +22,7 @@ const Withdrawal = (props) => {
     const [alert, setAlert] = useState(true);
     const {mobile}=props;
 
+
     useEffect(() => {
         // when the component is mounted, the alert is displayed for 3 seconds
         setTimeout(() => {
@@ -208,7 +209,7 @@ const Withdrawal = (props) => {
                     </div>
                 </div>
                  <div className={`${mobile?"d-none":""}`}>
-                     <Right/>
+                     <Right withdraw={true}/>
                  </div>
              </div>
            </div>

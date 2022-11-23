@@ -43,8 +43,11 @@ input, select, textarea {
     display: none;
     }
   }
-.remove-width{
-    width:0!important;
+/*.remove-width{*/
+/*    width:0!important;*/
+/*}*/
+.width-all{
+    width:100%;
 }
 
 .pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item:hover .pro-icon-wrapper .pro-icon {
@@ -77,6 +80,20 @@ input, select, textarea {
     padding: 0.5px 25px 0px 12px !important;
 }
 
+@media (max-width:767px){
+    .pro-menu > ul{
+        display:flex;
+        overflow-x: auto;
+        /*justify-content:space-between;*/
+    }
+    .pro-menu-item > div{
+        width: 180px;
+    }
+    .live-slide{
+        float: left!important;
+    }
+
+}
 .virtual-game-image {
     cursor: pointer;
     /*height: 40px;*/
@@ -483,7 +500,7 @@ header, li a, .thedate span {
 }
 
 .fb-iframe {
-    background: url('../img/banner-bg.jpg');
+    /*background: url('../img/banner-bg.jpg');*/
     height: 160px;
     display: block;
 }
@@ -6972,9 +6989,9 @@ ul.sport {
     .sport-check:hover{
         background:#ffc107!important;
     }
-    .button-radius{
-        border-radius: 1rem!important;
-    }
+    /*.button-radius{*/
+    /*    border-radius: 1rem!important;*/
+    /*}*/
     /*.c-btn-group > .c-btn {*/
     /*width: 35px!importnat;*/
     /*}*/
@@ -7046,11 +7063,14 @@ ul.sport {
 }
 
 @media (max-width: 767px) {
-    .scroll {
-        height:100vh;
-        margin-bottom: 200px;
-        overflow-y: scroll;
+    .fm{
+        color: #fff;
     }
+    /*.scroll {*/
+    /*    height:100vh;*/
+    /*    margin-bottom: 200px;*/
+    /*    overflow-y: scroll;*/
+    /*}*/
     .logout-btn{
         display: flex;
         width: 100%;
@@ -16334,7 +16354,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 
 .change-date1 {
     width: 27% ;
-    padding-top: 7px;
+    padding-top: 5px;
 }
 .size-info{
     width:39%;

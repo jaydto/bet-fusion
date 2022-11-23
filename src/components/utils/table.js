@@ -40,26 +40,26 @@ const TdActions = (props) => {
     return (
        <td data-title="Action">
         {
-            actions.print && (<a href={`/${model}/report/${recordId}`} target="_blank" className="text-muted m-1" data-placement="top" data-toggle="tooltip" title="Report" data-original-title="Report">
+            actions.print && (<Link to={`/${model}/report/${recordId}`} target="_blank" className="text-muted m-1" data-placement="top" data-toggle="tooltip" title="Report" data-original-title="Report">
               <i className="fa fa-print"></i>
-            </a>)
+            </Link>)
         }
         {
-            actions.view && (<a href={`/${model}/detail/${recordId}`} className="text-success m-1" data-placement="top" data-toggle="tooltip" title="View" data-original-title="View">
+            actions.view && (<Link to={`/${model}/detail/${recordId}`} className="text-success m-1" data-placement="top" data-toggle="tooltip" title="View" data-original-title="View">
               <i className="fa fa-eye"></i>
-            </a>)
+            </Link>)
         }
         {
-           actions.edit && (<a href="#" onClick={() => onEditFunction(model, recordId)}  className="text-primary" >
+           actions.edit && (<Link to={"#"} onClick={() => onEditFunction(model, recordId)}  className="text-primary" >
                 <i className="fa fa-edit"></i>
-             </a>)             
+             </Link>)
         }
         {
-           actions.delete && (<a href="#"  
+           actions.delete && (<Link to={"#"}
                onClick={() => deleteItem(model, recordId)} 
                className="text-danger m-1" data-placement="top" data-toggle="tooltip" title="" data-original-title="Delete">
               <i className="fa fa-trash"></i>
-           </a>)   
+           </Link>)
         }
         
       </td>

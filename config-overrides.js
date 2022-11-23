@@ -1,4 +1,5 @@
 const webpack = require('react-scripts/config/webpack.config')
+const path = require("path");
 module.exports = function override(config, env) {
     //do stuff with the webpack config...
 
@@ -23,4 +24,10 @@ module.exports = function override(config, env) {
     ];
     return config;
 }
-module.exports = {}
+module.exports = {
+    output: {
+        path: path.resolve(__dirname, '/'),
+        filename: "[name].bundle.js",
+        chunkFilename: "[name].chunk.js"
+    },
+}

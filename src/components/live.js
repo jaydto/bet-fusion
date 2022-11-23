@@ -93,11 +93,19 @@ const Live = (props) => {
         <>
             <Header/>
             <div className={(width<=514?user?"user_logged":"amt":"amt")}>
-                <div className="d-flex flex-row justify-content-between">
-                    <LiveSideBar/>
+                <div className="d-flex flex-row justify-content-between ">
+                    {/*/!*<div className={"mobile-remove"}>*!/*/}
+                    {/*    <LiveSideBar/>*/}
+                    {/*/!*</div>*!/*/}
+
                     <div className="gz home" style={{width:"100%"}}>
                         <div className="homepage">
                             <CarouselLoader/>
+                            <div className={`${width<=767?"d-block":"d-none"}`}>
+                                <LiveSideBar/>
+                            </div>
+
+                            {/*hello*/}
                             {matches && <MatchList live matches={matches} pdown={producerDown}/>}
                         </div>
                     </div>

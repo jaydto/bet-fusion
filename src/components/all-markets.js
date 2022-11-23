@@ -89,10 +89,15 @@ const MatchAllMarkets = (props) => {
                                         pdown={producerDown} />
                         </div>
                     </div>
-                    <Right betslipValidationData={userSlipsValidation} />
+
+                        <Right betslipValidationData={userSlipsValidation} />
+
+
                 </div>
             </div>
-            <Footer />
+            <div className={"mobile-remove"}>
+                <Footer/>
+            </div>
         </>
     )
 }

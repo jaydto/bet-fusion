@@ -220,7 +220,10 @@ const MyBets = (props) => {
                             <MyBetsList  />
                         </div>
                     </div>
-                    <Right/>
+
+                        <Right/>
+
+
                 </div>
             </div>
             <div className={"mobile-remove mobile-top"}>

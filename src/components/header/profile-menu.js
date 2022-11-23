@@ -71,12 +71,12 @@ const ProfileMenu = (props) => {
                               </span>
                             </div>
                             <div>
-                                <a href="/logout">
+                                <Link to={"/logout"}>
                                     <span className="font-tb">
                                     <span className="space-icons"> <FontAwesomeIcon icon={faLock}/> </span>
                                         Log Out
                                     </span>
-                                </a>
+                                </Link>
                             </div>
                             <div className="col-1 button-toggle space-button">
                                 <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"md"}`} className="px-3 py-3"/>

@@ -27,6 +27,8 @@ import {Input} from "@material-ui/core";
 
 import * as Json from "ajv";
 import useWindowDimensions from "../header/Dimensions";
+import {Link} from "react-router-dom";
+import LiveSidebar from "../sidebar/live-sidebar";
 
 const clean = (_str) => {
     _str = _str.replace(/[^A-Za-z0-9\-]/g, '');
@@ -321,17 +323,16 @@ const SideBets = (props) => {
         <div
             className={`bet-fix events-odd pad ${picked} align-self-center more-markets-container m-lg-2 `}>
             {(match?.side_bets > 1) && <>
-                <a className="side"
-                   href={`https://s5.sir.sportradar.com/betnaremts/en/match/${match.parent_match_id}`}
+                <Link className="side"
+                   to={`https://s5.sir.sportradar.com/betnaremts/en/match/${match.parent_match_id}`}
                    target={"_blank"}
                    title={'View Stats'}>
                     <FontAwesomeIcon className={"icon-size"} icon={faChartLine}/>
-                </a>
-                <a className="side small w-auto" title={'More Markets'}
-                   href={`/match/${live ? 'live/' : ''}${
-                       live ? match.parent_match_id : match?.match_id}`
+                </Link>
+                <Link className="side small w-auto" title={'More Markets'}
+                   to={`/match/${live ?  'live/'+ match.parent_match_id : match?.match_id}`
                    }>+{match.side_bets}&nbsp;<span className={"mobile-only"}> Markets</span>
-                </a>
+                </Link>
             </>}
         </div>
     )
@@ -706,7 +707,7 @@ const MatchRow = (props) => {
                         <>ID: {match?.game_id}</>
                     </div>
                     <div className="col align-items-center col-xs-12 match-detail-container px-2 change-match only-mobile">
-                        <a href={`/match/${live ? 'live/' + match.parent_match_id : match.match_id}`}>
+                        <Link to={`/match/${live ? 'live/' + match.parent_match_id : match.match_id}`}>
                             <div className="d-flex flex-column py-2">
                                 <div className="compt-detail overflow-ellipsis">
                                     <small>{match.category} | {match.competition_name}</small>
@@ -726,7 +727,7 @@ const MatchRow = (props) => {
 
                                 </div>
                             </div>
-                        </a>
+                        </Link>
                     </div>
                     <div className={'to-tabview'}>
                         {!pdown && !jackpot &&
@@ -736,7 +737,7 @@ const MatchRow = (props) => {
 
                 </div>
                 <hr className={"to-block m-sm-1 m-md-1 m-lg-0"}/>
-                <div className="col d-flex  flex-row space-bets card-small">
+                <div className="col d-flex  flex-row space-bets justify-content-lg-between  card-small">
 
                     {width>767?
                         <div className={"d-flex to-flex-1"}>
@@ -1116,7 +1117,7 @@ const MatchList = (props) => {
 
     return (
         <div className="matches full-width">
-
+            {/*<LiveSidebar/>*/}
             {matches && <MatchHeaderRow live={live} first_match={matches ? matches[0] : {}}/>}
 
             <Row className="web-element">

@@ -106,11 +106,11 @@ const HeaderNav = (props) => {
 
                     <>
                         <li className={`${pathname === '/live-casino' || pathname.includes("gameplay") ? 'active' : ''} d-none`}>
-                            <a className="g url-link" href="/live-casino" title="Live Casino">
+                            <Link className="g url-link" to={"/live-casino"} title="Live Casino">
                             <span>
                                 <FontAwesomeIcon icon={faFire} className={'text-warning'}/> Live Casino
                             </span>
-                            </a>
+                            </Link>
                         </li>
                         <li className={`${pathname === '/casino' || pathname.includes("gameplay") ? 'active' : ''} d-none`}>
                             <Link  className="g url-link" to={"/casino"} title="Casino">
@@ -183,11 +183,11 @@ const HeaderNav = (props) => {
                         className={`autocomplete-box position-fixed bg-white border-dark col-md-5 mt-1 shadow-lg text-start`}
                         onClick={() => gaEventTracker('View Search Results')}>
                         {matches.map((match, index) => (
-                            <a href={`/?search=${match.home_team}`} key={index}>
+                            <Link to={`/?search=${match.home_team}`} key={index}>
                                 <li>
                                     {match.home_team}
                                 </li>
-                            </a>
+                            </Link>
                         ))}
                     </div>
                 </ListGroup>

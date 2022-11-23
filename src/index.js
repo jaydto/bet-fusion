@@ -24,6 +24,7 @@ import ReactGA from 'react-ga4';
 // import {LazyLoadImage} from "react-lazy-load-image-component/src";
 import logo from "./assets/img/logo.png";
 import {ProgressBar} from "loading-animations-react";
+import Loading from "./components/loading/Loading";
 
 
 const Index = React.lazy(() => import('./components/index'));
@@ -78,37 +79,37 @@ const Signup = React.lazy(
     () => import('./components/pages/signup')
 );
 const Login=React.lazy(
-    ()=>import('./components/pages/Accounts/Login')
-)
+    ()=>import('./components/pages/Login')
+);
 const ResetPassword = React.lazy(
     () => import('./components/pages/auth/reset-password')
-)
+);
 
 const VerifyAccount = React.lazy(
     () => import('./components/pages/auth/verify-account')
-)
+);
 
-const MobileApp = React.lazy(() => import('./components/pages/app'))
+const MobileApp = React.lazy(() => import('./components/pages/app'));
 
 const ProtectedRoute = React.lazy(
     () => import('./components/utils/protected-route')
 );
 
-const PrintMatches = React.lazy(() => import('./components/pages/downloads'))
+const PrintMatches = React.lazy(() => import('./components/pages/downloads'));
 
-const Casino = React.lazy(() => import('./components/pages/casino/Casino'))
+const Casino = React.lazy(() => import('./components/pages/casino/Casino'));
 
-const LiveCasino = React.lazy(() => import('./components/pages/casino/LiveCasino'))
+const LiveCasino = React.lazy(() => import('./components/pages/casino/LiveCasino'));
 
-const Virtuals = React.lazy(() => import('./components/pages/casino/Virtuals'))
+const Virtuals = React.lazy(() => import('./components/pages/casino/Virtuals'));
 
-const CasinoGamePlay = React.lazy(() => import('./components/pages/casino/GamePlay'))
+const CasinoGamePlay = React.lazy(() => import('./components/pages/casino/GamePlay'));
 
-const Promotions = React.lazy(() => import('./components/pages/promotions/Promotions'))
+const Promotions = React.lazy(() => import('./components/pages/promotions/Promotions'));
 
-const LiveScore = React.lazy(() => import('./components/pages/livescore/LiveScore'))
+const LiveScore = React.lazy(() => import('./components/pages/livescore/LiveScore'));
 
-const PageNotFound = React.lazy(() => import('./components/pages/404/NotFound'))
+const PageNotFound = React.lazy(() => import('./components/pages/404/NotFound'));
 
 
 const Logout = () => {
@@ -136,27 +137,15 @@ render((
     <Store>
         <BrowserRouter>
             <Suspense fallback={
-                <div className={"d-flex align-items-center flex-column justify-content-center vh-100"}>
-                <div className={"d-flex justify-content-start flex-column"}>
-                    <img src={logo} alt="Betnare" title="Betnare" effects="blur" style={{height:"53px"}}/>
-                    <span className={"text-light "}>
-                    <ProgressBar
-                        borderColor=""
-                        sliderColor="#242e3a"
-                        sliderBackground="rgb(0,0,0)"
-                    />
-                </span>
-                </div>
-
-
-            </div>}>
+            <Loading/>
+            }>
                 <Routes>
                     <Route path="*" element={<Index/>}/>
                     <Route exact path="/" element={<Index/>}/>
                     <Route exact path="/virtuals" element={<Virtuals/>}/>
                     <Route exact path="/livescore" element={<LiveScore/>}/>
                     <Route exact path="/404" element={<PageNotFound/>}/>
-                    <Route exact path="/login" element={<Login/>}/>
+
                     <Route exact path={"/profile"} element={<Profile/>}/>
                     {/*<Route exact path="/casino" element={<Casino/>}/>*/}
                     {/*<Route exact path="/live-casino" element={<LiveCasino/>}/>*/}
@@ -181,6 +170,7 @@ render((
                     <Route exact path="/terms-and-conditions" element={<TermsAndConditions/>}/>
                     <Route exact path="/how-to-play" element={<HowToPlay/>}/>
                     <Route exact path="/signup" element={<Signup/>}/>
+                    <Route exact path="/login" element={<Login/>}/>
                     <Route exact path="/reset-password" element={<ResetPassword/>}/>
                     <Route exact path="/verify-account" element={<VerifyAccount/>}/>
                     <Route exact path="/app" element={<MobileApp/>}/>

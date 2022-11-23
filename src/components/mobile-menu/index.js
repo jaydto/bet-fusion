@@ -3,16 +3,15 @@ import HomeSvg from '../../assets/img/mobile/home.png';
 import VirtualSvg from '../../assets/img/mobile/virtual.png';
 import LiveSvg from '../../assets/img/mobile/live-3.png';
 import ProfileSvg from '../../assets/img/mobile/user.png';
-import BetslipSvg from '../../assets/svg/betslip.svg';
-import {getBetslip} from "../utils/betslip";
+
 import makeRequest from "../utils/fetch-request";
 import {Badge} from "react-bootstrap";
-import Betslip from "../pages/Accounts/Betslip";
+
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTimes} from "@fortawesome/free-solid-svg-icons";
 import BetSlip from "../right/betslip";
 import QuickLogin from "../right/quick-login";
-import Right from "../right";
+
 import {getFromLocalStorage} from "../utils/local-storage";
 import {Link} from "react-router-dom";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
@@ -94,45 +93,17 @@ const MobileMenu = (props) => {
 
                 {/*{console.log("liveSports",Object.values(liveSports)[0])}*/}
 
-                {liveSports?.length>0?
-                    Object.entries(liveSports).map(([index, livesport]) => (
+
+
 
                                 <Link to={`/live`} className={`bloc-icon ${pathname==="/live"?'active':""}`} onClick={() => gaEventTracker('Visit Live  Page')}>
                                 <img style={{background:"red"}} src={LiveSvg} alt="">
                                 </img>
-                                <span className={'badge rounded-pill '} style={{
-                                    float: "right",
-                                    color: "#fff",
-                                    position: "absolute",
-                                    marginRight: "1.5rem",
-                                    top: "1px",
-                                    background:"red"
-                                }}>
-                            {livesport.count||0}
-                        </span>
-                                <p>Live</p>
+
+                                <p>Live <span className={"text-light"}>({liveSports?.length||0})</span></p>
 
                             </Link>
-                        ))
 
-
-                    : <Link to={'/live'} className={`bloc-icon ${pathname==="/live"?'active':""}`}>
-                    <img style={{background:"red"}} src={LiveSvg} alt="">
-                    </img>
-                    <span className={'badge rounded-pill '} style={{
-                        float: "right",
-                        color: "#fff",
-                        position: "absolute",
-                        marginRight: "1.5rem",
-                        top: "1px",
-                        background:"red"
-                    }}>
-                                                                       0
-                        </span>
-                    <p>Live</p>
-
-                </Link>
-                  }
 
                 {user?<Link to={"/profile"} className={`bloc-icon ${pathname==="/profile"?"active":""}`}>
                     <img src={ProfileSvg} alt=""></img>

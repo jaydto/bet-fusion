@@ -4,7 +4,6 @@ import {
     useParams,
 } from "react-router-dom";
 
-import downArrow from '../../assets/img/down-arrow.svg';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import promo from "../../../src/assets/img/mobile/fire.png";

@@ -157,11 +157,19 @@ render((
                     <Route exact path="/competition/:id" element={<CompetitionsMatches/>}/>
                     <Route exact path="/competition/:sportid/:categoryid/:competitionid"
                            element={<CompetitionsMatches/>}/>
+                    {/*<Route exact path={"/match"}>*/}
+                    {/*    */}
+                    {/*</Route>*/}
                     <Route exact path="/match/:id" element={<MatchAllMarkets/>}/>
                     <Route exact path="/match/live/:id" element={<MatchAllMarkets live/>}/>
                     <Route exact path="/jackpot" element={<Jackpot/>}/>
-                    <Route exact path="/live" element={<Live/>}/>
-                    <Route exact path="/live/:spid" element={<Live/>}/>
+                    <Route exact path="/live" >
+                        <Route index element={<Live/>}/>
+                        <Route path={":spid"} element={<Live/>}/>
+                    </Route>
+
+
+                    {/*<Route exact path="/live/:spid" element={<Live/>}/>*/}
                     <Route exact path="/privacy-policy" element={<PrivacyPolicy/>}/>
                     <Route exact path="/anti-money-laundering" element={<AntimoneyLaundering/>}/>
                     <Route exact path="/responsible-gambling" element={<ResponsibleGambling/>}/>

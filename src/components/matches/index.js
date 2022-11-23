@@ -29,6 +29,9 @@ import * as Json from "ajv";
 import useWindowDimensions from "../header/Dimensions";
 import {Link} from "react-router-dom";
 import LiveSidebar from "../sidebar/live-sidebar";
+import {App} from "@capacitor/app";
+import {Capacitor} from "@capacitor/core";
+import {Browser} from "@capacitor/browser";
 
 const clean = (_str) => {
     _str = _str.replace(/[^A-Za-z0-9\-]/g, '');
@@ -323,21 +326,37 @@ const SideBets = (props) => {
         <div
             className={`bet-fix events-odd pad ${picked} align-self-center more-markets-container m-lg-2 `}>
             {(match?.side_bets > 1) && <>
-                <Link className="side"
-                   to={`https://s5.sir.sportradar.com/betnaremts/en/match/${match.parent_match_id}`}
+                <a className="side"
+                   href={`https://s5.sir.sportradar.com/betnaremts/en/match/${match.parent_match_id}`}
                    target={"_blank"}
                    title={'View Stats'}>
                     <FontAwesomeIcon className={"icon-size"} icon={faChartLine}/>
-                </Link>
-                <Link className="side small w-auto" title={'More Markets'}
-                   to={`/match/${live ?  'live/'+ match.parent_match_id : match?.match_id}`
+                </a>
+                <a className="side small w-auto" title={'More Markets'}
+                   href={`/match/${live ?  'live/'+ match.parent_match_id : match?.match_id}`
                    }>+{match.side_bets}&nbsp;<span className={"mobile-only"}> Markets</span>
-                </Link>
+                </a>
             </>}
         </div>
     )
 
 }
+// window.addEventListener('error', e => {
+//     // prompt user to confirm refresh
+//     if (/Loading chunk [\d]+ failed/.test(e.message)) {
+//         window.location.reload();
+//     }
+// });
+
+
+// App.addListener("appUrlOpen",data=>{
+//     if(Capacitor.isNativePlatform){
+//         if(data.url("https://s5.sir.sportradar.com")){
+//
+//             Browser.open(url);
+//         }
+//     }
+// })
 
 const OddButton = (props) => {
     const {match, mkt, detail, live, jackpot, subType, marketKey} = props

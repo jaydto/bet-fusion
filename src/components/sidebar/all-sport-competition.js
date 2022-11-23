@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback} from 'react';
 import {
-  useParams,
+    Link,
+    useParams,
 } from "react-router-dom";
 
 import downArrow from '../../assets/img/down-arrow.svg';

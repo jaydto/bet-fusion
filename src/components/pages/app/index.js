@@ -9,7 +9,7 @@ const Header = React.lazy(() => import('../../header/header'));
 const SideBar = React.lazy(() => import('../../sidebar/awesome/Sidebar'));
 const Footer = React.lazy(() => import('../../footer/footer'));
 const Right = React.lazy(() => import('../../right/index'));
-const downloadAPKFile = React.lazy(() => import('../../../assets/betnare.apk'));
+// const downloadAPKFile = React.lazy(() => import('../../../assets/betnare.apk'));
 
 
 const MobileApp = () => {
@@ -19,9 +19,9 @@ const MobileApp = () => {
         gaEventTracker('App Page')
     })
 
-    const getDownloadFile = () => {
-        return downloadAPKFile;
-    }
+    // const getDownloadFile = () => {
+    //     return downloadAPKFile;
+    // }
 
     return (
         <>
@@ -37,15 +37,17 @@ const MobileApp = () => {
                                     BETNARE APP
                                 </h4>
 
-                                <Link to={'/betnare.apk'}
+                                <Link to={'#'}
                                       target={"_blank"}
                                       title={'Download App'}
-                                      download={'betnare.apk'}
+                                      // download={'betnare.apk'}
                                       className="btn btn-primary btn-lg  text-white text-decoration-none"
                                       label="Download App"
-                                      filename="betnare.apk"
-                                      onClick={()=>gaEventTracker('Downloaded App')}
-                                      exportFile={() => getDownloadFile()}>Download Betnare App</Link>
+                                      // filename="betnare.apk"
+                                      // onClick={()=>gaEventTracker('Downloaded App')}
+                                      // exportFile={() => getDownloadFile()}
+                                >Download Betnare App
+                                </Link>
                             </div>
                             <div className="col-md-12 mt-2 text-white accordion-container text-start">
                                 <hr/>
@@ -78,7 +80,7 @@ const MobileApp = () => {
                                         className="btn btn-primary btn-lg mb-5 text-white btn-lg col-md-3 text-decoration-none"
                                         label="Download App Now"
                                         filename="betnare.apk"
-                                        exportFile={() => getDownloadFile()}
+                                        // exportFile={() => getDownloadFile()}
                                     />
                                 </div>
                             </div>

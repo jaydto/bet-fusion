@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext} from 'react';
 import { Context }  from '../../context/store';
+import {Link} from "react-router-dom";
 
 const Th = (props) => {
    return <th scope="col">{props?.name}</th>

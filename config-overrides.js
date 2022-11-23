@@ -14,6 +14,12 @@ module.exports = function override(config, env) {
         asset: require.resolve('assert'),
         "url": require.resolve("url/")
     };
+    config.output={
+        path: path.resolve(__dirname, "/"),
+        filename: "[name].bundle.js",
+        chunkFilename: "[name].chunk.js",
+
+    };
 
     config.plugins = [
         ...config.plugins,
@@ -24,10 +30,4 @@ module.exports = function override(config, env) {
     ];
     return config;
 }
-module.exports = {
-    output: {
-        path: path.resolve(__dirname, '/'),
-        filename: "[name].bundle.js",
-        chunkFilename: "[name].chunk.js"
-    },
-}
+module.exports = {}

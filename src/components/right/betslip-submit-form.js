@@ -35,11 +35,25 @@ const BetslipSubmitForm = (props) => {
     const [state, dispatch] = useContext(Context);
 
     const [stake, setStake] = useState(100);
+    const [stakeBoosted, setStakeBoosted] = useState(100);
+
     const [stakeAfterTax, setStakeAfterTax] = useState(0);
+    const [stakeAfterTaxBoosted, setStakeAfterTaxBoosted] = useState(0);
+
     const [exciseTax, setExciseTax] = useState(0);
+    const [exciseTaxBoosted, setExciseTaxBoosted] = useState(0);
+
+
     const [withholdingTax, setWithholdingTax] = useState(0);
+    const [withholdingTaxBoosted, setWithholdingTaxBoosted] = useState(0);
+
     const [possibleWin, setPossibleWin] = useState(0);
+    const [possibleWinBoosted, setPossibleWinBoosted] = useState(0);
+
+
     const [netWin, setNetWin] = useState(0);
+    const [netWinBoosted, setNetWinBoosted] = useState(0);
+
     const [settings, setSettings] = useState(getFromLocalStorage('settings'))
     const [multiBoostMessage, setMultiBoostMessage] = useState('')
     const [awardMultiGift, setAwardMultiGift] = useState(false)
@@ -188,25 +202,54 @@ const BetslipSubmitForm = (props) => {
     });
 
     const updateWinnings = useCallback(() => {
+
         if (betslip) {
+
             let stake_after_tax = Float(stake) / Float(107.5) * 100
+            let stake_after_tax_boosted = Float((Float(stake) + Float(multiBoostAmount))) / Float(107.5) * 100
+
             let ext = Float(stake) - Float(stake_after_tax);
+            let ext_boosted = Float((stake + Float(multiBoostAmount))) - Float(stake_after_tax_boosted);
+
             let raw_possible_win = Float(stake_after_tax) * Float(totalOdds);
+            let boosted_raw_possible_win = Float(stake_after_tax_boosted) * Float(totalOdds);
+
             if (jackpot) {
                 raw_possible_win = jackpotData?.jackpot_amount
             }
+
             if (raw_possible_win > 500000 && !jackpot) {
                 raw_possible_win = 500000
             }
+            if (boosted_raw_possible_win > 500000 && !jackpot) {
+                boosted_raw_possible_win = 500000
+            }
+
             let taxable_amount = Float(raw_possible_win) - Float(stake_after_tax);
+            let taxable_amount_boosted = Float(boosted_raw_possible_win) - Float(stake_after_tax_boosted);
 
             let wint = taxable_amount * 0.2;
+            let wint_boosted = taxable_amount_boosted * 0.2;
+
             let nw = raw_possible_win - wint;
+            let nw_boosted = boosted_raw_possible_win - wint_boosted;
+
+
             setExciseTax(Float(ext, 2));
+            setExciseTaxBoosted(Float(ext_boosted, 2));
+
             setStakeAfterTax(stake_after_tax);
+            setStakeAfterTaxBoosted(stake_after_tax_boosted);
+
             setNetWin(Float(nw, 2));
+            setNetWinBoosted(Float(nw_boosted, 2));
+
             setPossibleWin(Float(raw_possible_win, 2));
+            setPossibleWinBoosted(Float(boosted_raw_possible_win, 2));
+
             setWithholdingTax(Float(wint, 2));
+            setWithholdingTaxBoosted(Float(wint_boosted, 2));
+
         } else {
             setNetWin(0);
             setWithholdingTax(0);
@@ -217,7 +260,7 @@ const BetslipSubmitForm = (props) => {
         if (message && message.status > 299) {
             setMessage(null);
         }
-    }, [betslip, stake, totalOdds]);
+    }, [betslip, stake, totalOdds, multiBoostAmount]);
 
     const handleRemoveAll = useCallback(() => {
         let betslips = getBetslip();
@@ -288,7 +331,6 @@ const BetslipSubmitForm = (props) => {
     }
 
     const calculateMultiBetBoostAmount = () => {
-        console.log("New betslip is ", betslip)
 
         let settings = getFromLocalStorage('settings')
 
@@ -318,8 +360,17 @@ const BetslipSubmitForm = (props) => {
 
         } else if ((giftQualificationOdds >= giftMinGames)) {
             boost = Math.round((20 / 100) * stake)
-            let boostedStake = Number(stake) + Number(boost)
-            setMultiBoostMessage("Congratulations! we have gifted you KES " + boost + " on your stake. Your new stake is " + boostedStake)
+            if (boost > Number(settings?.betnareGifts?.maxGiftBoostAmount)) {
+                boost = Number(settings?.betnareGifts?.maxGiftBoostAmount)
+            }
+            if (boost > 1) {
+                setMultiBoostAmount(boost)
+                setHasMultiBetBoost(true)
+                let boostedStake = Number(stake) + Number(boost)
+                boostedStake = formatNumber(boostedStake)
+                setMultiBoostMessage("Congratulations! we have gifted you KES " + boost + " on your stake. Your new stake is " + boostedStake)
+
+            }
         }
     }
 
@@ -409,26 +460,29 @@ const BetslipSubmitForm = (props) => {
                             <td>Possible winnings</td>
                             <td>
                                 KES. <span
-                                id="pos_win">{formatNumber(possibleWin)}</span>
+                                id="pos_win">{formatNumber(hasMultiBetBoost ? possibleWinBoosted : possibleWin)}</span>
                             </td>
                         </tr>}
 
                         <tr className="bet-win-tr hide-on-affix">
                             <td> Excise Tax (7.5%)</td>
-                            <td>KES. <span id="tax">{formatNumber(exciseTax)}</span></td>
+                            <td>KES. <span
+                                id="tax">{formatNumber(hasMultiBetBoost ? exciseTaxBoosted : exciseTax)}</span></td>
                         </tr>
                         {jackpot ? (
                             ''
                         ) : (
                             <tr className="bet-win-tr hide-on-affix">
                                 <td> Withholding (20%)</td>
-                                <td>KES. <span id="tax">{formatNumber(withholdingTax)}</span></td>
+                                <td>KES. <span
+                                    id="tax">{formatNumber(hasMultiBetBoost ? withholdingTaxBoosted : withholdingTax)}</span>
+                                </td>
                             </tr>
                         )}
                         <tr className="bet-win-tr hide-on-affix">
                             <td>{jackpot ? 'Jackpot Amount' : 'Net Amount'}</td>
                             <td>KES. <span
-                                id="net-amount">{formatNumber(jackpot ? jackpotData?.jackpot_amount : netWin)}</span>
+                                id="net-amount">{formatNumber(jackpot ? jackpotData?.jackpot_amount : (hasMultiBetBoost ? netWinBoosted : netWin))}</span>
                             </td>
                         </tr>
                         <tr>

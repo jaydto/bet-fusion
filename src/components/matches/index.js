@@ -24,14 +24,8 @@ import {returnTrue} from "react-currency-format/lib/utils";
 import myGif from '../../assets/img/gif/fire5.gif'
 import * as url from "url";
 import {Input} from "@material-ui/core";
-
-import * as Json from "ajv";
 import useWindowDimensions from "../header/Dimensions";
 import {Link} from "react-router-dom";
-import LiveSidebar from "../sidebar/live-sidebar";
-import {App} from "@capacitor/app";
-import {Capacitor} from "@capacitor/core";
-import {Browser} from "@capacitor/browser";
 
 const clean = (_str) => {
     _str = _str.replace(/[^A-Za-z0-9\-]/g, '');

@@ -6,13 +6,10 @@
   "dependencies": {
     "@capacitor/android": "^4.5.0",
     "@capacitor/app": "^4.1.1",
-    "@capacitor/browser": "^4.1.0",
-    "@capacitor/configure": "^2.0.10",
-    "@capacitor/haptics": "4.1.0",
     "@capacitor/ios": "^4.5.0",
     "@capacitor/keyboard": "4.1.0",
-    "@capacitor/network": "^4.1.0",
-    "@capacitor/status-bar": "4.1.0",
+
+
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-brands-svg-icons": "^5.15.4",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",

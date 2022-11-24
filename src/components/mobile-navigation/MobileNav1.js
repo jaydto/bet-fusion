@@ -61,7 +61,7 @@ const MobileNav1 = (props) => {
             abortController.abort();
         };
     }, [fetchData]);
-    console.log('sports',sport)
+    // console.log('sports',sport)
 
 
     const default_img = 'default_sport';

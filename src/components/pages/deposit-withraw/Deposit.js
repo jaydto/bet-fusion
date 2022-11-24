@@ -111,7 +111,7 @@ const Deposit = (props) => {
                             className="text-dark deposit-input form-control col-md-12 input-field"
                             id="amount"
                             name="amount"
-                            type="number"
+                            type="text"
                             value={values.amount}
                             placeholder='Enter Amount to deposit'
                         />
@@ -233,9 +233,9 @@ const Deposit = (props) => {
                             </div>
                         </div>
                     </div>
-                    <div className={`${mobile?"d-none":""}`}>
-                        <Right deposit={true}/>
-                    </div>
+                    {/*<div className={`${mobile?"d-none":""}`}>*/}
+                    {/*    <Right deposit={true}/>*/}
+                    {/*</div>*/}
 
                 </div>
             </div>

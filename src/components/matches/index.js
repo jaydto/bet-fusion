@@ -671,7 +671,7 @@ const MatchRow = (props) => {
             }
         })
 
-        console.log("extra-markets",extraMarkets);
+        // console.log("extra-markets",extraMarkets);
 
         setExtraMarketDisplays(extraMarkets)
 

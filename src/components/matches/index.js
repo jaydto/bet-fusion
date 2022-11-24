@@ -22,6 +22,7 @@ import {faChartLine, faFire} from "@fortawesome/free-solid-svg-icons";
 import {getFromLocalStorage} from "../utils/local-storage";
 import * as url from "url";
 import {Input} from "@material-ui/core";
+import {Link} from "react-router-dom";
 
 
 const clean = (_str) => {
@@ -133,6 +134,7 @@ const MatchHeaderRow = (props) => {
                 extraMarkets.push(selectedMarket[0])
             }
         })
+
 
         setExtraMarketDisplays(extraMarkets)
 
@@ -268,11 +270,11 @@ const SideBets = (props) => {
         <div
             className={`bet-fix events-odd pad ${picked} align-self-center more-markets-container m-lg-2`}>
             {(match?.side_bets > 1) && <>
-                <a className="side" title={'More Markets'}
-                   href={`/match/${live ? 'live/' : ''}${
+                <Link className="side" title={'More Markets'}
+                   to={`/match/${live ? 'live/' : ''}${
                        live ? match.parent_match_id : match?.match_id}`
                    }>+{match.side_bets}
-                </a>
+                </Link>
                 <a className="side"
                    href={`https://s5.sir.sportradar.com/betnaremts/en/match/${match.parent_match_id}`}
                    target={"_blank"}
@@ -401,6 +403,7 @@ const OddButton = (props) => {
         let home_team = event.currentTarget.getAttribute("home_team");
         let away_team = event.currentTarget.getAttribute("away_team");
         let sport_name = event.currentTarget.getAttribute("sport_name");
+        let sport_id = event.currentTarget.getAttribute("sport_id");
         let market_active = event.currentTarget.getAttribute("market_active");
         let cstm = clean(mid + "" + stid + oddk + (marketKey !== undefined ? marketKey : ''))
 
@@ -416,6 +419,7 @@ const OddButton = (props) => {
             "bet_type": bet_type,
             "odd_type": odd_type,
             "sport_name": sport_name,
+            "sport_id": sport_id,
             "live": live,
             "ucn": cstm,
             "market_active": market_active,
@@ -460,6 +464,7 @@ const OddButton = (props) => {
             custom={ucn}
             id={ucn}
             sport_name={match.sport_name}
+            sport_id={match.sport_id}
             sub_type_id={match.sub_type_id}
             special_bet_value={match?.special_bet_value || ''}
             onClick={handleButtonOnClick}>

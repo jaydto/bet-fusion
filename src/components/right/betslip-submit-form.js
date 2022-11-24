@@ -326,7 +326,7 @@ const BetslipSubmitForm = (props) => {
         return (
             <button type="submit" {...rest} className={`${disabled ? 'disabled' : ''} place-bet-btn bold`}
                     id='place_bet_button'
-                    disabled={isSubmitting || disabled}>{isSubmitting ? " WAIT ... " : title}</button>
+                    disabled={isSubmitting || disabled}>{isSubmitting ? "PLEASE WAIT ... " : title}</button>
         );
     }
 

@@ -206,10 +206,10 @@ const BetslipSubmitForm = (props) => {
         if (betslip) {
 
             let stake_after_tax = Float(stake) / Float(107.5) * 100
-            let stake_after_tax_boosted = Float((Float(stake) + Float(multiBoostAmount))) / Float(107.5) * 100
+            let stake_after_tax_boosted = ((Float(stake) )+ Float(multiBoostAmount)) / Float(107.5) * 100
 
             let ext = Float(stake) - Float(stake_after_tax);
-            let ext_boosted = Float((stake + Float(multiBoostAmount))) - Float(stake_after_tax_boosted);
+            let ext_boosted = (Float(stake) + Float(multiBoostAmount)) - Float(stake_after_tax_boosted);
 
             let raw_possible_win = Float(stake_after_tax) * Float(totalOdds);
             let boosted_raw_possible_win = Float(stake_after_tax_boosted) * Float(totalOdds);

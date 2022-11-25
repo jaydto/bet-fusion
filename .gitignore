@@ -15,7 +15,7 @@
 /ios
 /build
 /ios
-/android
+
 /cordova
 /capacitor.config.ts
 ./cordova/www

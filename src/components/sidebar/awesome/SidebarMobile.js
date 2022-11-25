@@ -125,8 +125,8 @@ const SidebarMobile = (props) => {
             </SidebarContent>
             <SidebarFooter className={"background-primary"}>
                 <Footer/>
-                {user ? <Menu>
-                    <MenuItem> <Link className={"logout-btn"} to={"/logout"}>Logout</Link> </MenuItem>
+                {user ? <Menu className={"w-100 "}>
+                    <MenuItem className={"w-100 sidebar-mobile"}> <Link className={"logout-btn"} to={"/logout"}>Logout</Link> </MenuItem>
                 </Menu> : ""}
             </SidebarFooter>
         </ProSidebar>)

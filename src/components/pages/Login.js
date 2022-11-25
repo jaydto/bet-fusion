@@ -17,19 +17,13 @@ const Header = React.lazy(() => import('../header/header'));
 
 
 const Login = () => {
-    const gaEventTracker = useAnalyticsEventTracker('Navigation');
-    const [isLoading, setIsLoading] = useState(null)
+
     const [message, setMessage] = useState(null);
     // const {setUser} = props;
 
-    const {height, width} = useWindowDimensions();
     const navigate = useNavigate();
     const [user, setUser] = useState(getFromLocalStorage("user"));
 
-
-    const initialValues = {
-        msisdn: "", password: ""
-    }
 
     const Notify = (message) => {
         let options = {
@@ -66,43 +60,8 @@ const Login = () => {
         dispatchUser();
     }, [dispatchUser]);
 
-    const handleSubmit = values => {
-        let endpoint = '/v1/login';
-        setIsLoading(true)
 
-        makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
 
-            setIsLoading(false)
-            if (status === 200 || status == 201 || status == 204) {
-                setMessage(response);
-                setTimeout(() => navigate("/"), 3000
-                )
-
-            } else {
-                let message = {
-                    status: status,
-                    message: response?.message || "Error attempting to login"
-                };
-                Notify(message);
-                setMessage(response)
-            }
-        })
-    }
-
-    const validate = values => {
-
-        let errors = {}
-
-        if (!values.msisdn || !values.msisdn.match(/(254|0|)?[71]\d{8}/g)) {
-            errors.msisdn = 'Invalid phone number'
-        }
-
-        if (!values.password || values.password.length < 4) {
-            errors.password = "Invalid password";
-        }
-
-        return errors
-    }
 
     const FormTitle = () => {
         return (<div className='col-md-12 primary-bg p-4 text-center'>
@@ -112,94 +71,8 @@ const Login = () => {
         </div>)
     }
 
-    const MyLoginForm = (props) => {
-
-        const {isValid, errors, values, submitForm, setFieldValue} = props;
 
 
-        const onFieldChanged = (ev) => {
-            let field = ev.target.name;
-            let value = ev.target.value;
-            setFieldValue(field, value)
-        }
-
-        return (
-            // <div className={"d-flex w-100 justify-content-center"}>
-            //     {user?setTimeout(()=>navigate("/"),4000):""}
-            <Form className=" row d-flex justify-content-center w-100 ">
-                <div className="col-md-12">
-                    <input type="text"
-                        autoComplete={"off"}
-                           id={"msisdn"}
-                           name="msisdn"
-                           className={`text-dark button-radius w-100 input-field  ${errors.msisdn && 'text-danger'}`}
-                           data-action="grow"
-                           placeholder={errors.msisdn ? errors.msisdn : "Please enter your phone number "}
-                           onChange={ev => onFieldChanged(ev)}
-                           value={values.msisdn}
-
-                    />
-                    {/*{console.log("values",values.msisdn)}*/}
-                    {errors.msisdn && <div className='text-danger'> {errors.msisdn} </div>}
-
-                    <span className="sticky-hidden text-warning d-flex justify-content-end font-input my-2">
-                    <label><input type="checkbox" name="remember" value="1"/>Remember me</label>
-                </span>
-                </div>
-
-
-                <div className={"  d-flex justify-content-center my-2 "}>
-                    <div className="col-md-12 w-100">
-                        <input type="password"
-                            autoComplete={"off"}
-                               id={"password"}
-                               name="password"
-                               className={`text-dark  input-field w-100 button-radius mb-3  ${errors.password && 'text-danger'} `}
-                               data-action="grow"
-                               placeholder={"Enter password"}
-                               value={values.password}
-                               onChange={ev => onFieldChanged(ev)}
-
-                        />
-                        {errors.password && <div className='text-danger'> {errors.password} </div>}
-                        <span className="sticky-hidden text-warning d-flex justify-content-end font-input my-2">
-                            <input type="hidden" name="ref" value="{props.refURL}"/>
-                            <Link to={"/reset-password"} title="Reset password"
-                                  onClick={() => gaEventTracker('Reset Password')}>
-                                <span className="sticky-hidden text-warning px-2 d-flex justify-content-end">Forgot Password?</span>
-                            </Link>
-                        </span>
-
-                    </div>
-                </div>
-
-
-                <div className="  d-flex justify-content-left mb-2">
-                    <div className="col-md-12 w-100">
-                        <button className="cg login-button btn w-100 button-radius input-field btn-font"
-                                type="submit">
-                            {isLoading ? <span>Logging In ...</span> : <span>Login</span>}
-                        </button>
-                    </div>
-                </div>
-
-            </Form>);
-        // {/*</div>*/}
-    }
-
-    const LoginForm = (props) => {
-
-        {
-            console.log("initialvalues", initialValues)
-        }
-        return (<Formik
-            initialValues={initialValues}
-            onSubmit={handleSubmit}
-            validateOnChange={false}
-            validateOnBlur={false}
-            validate={validate}
-        >{(props) => <MyLoginForm {...props} />}</Formik>);
-    }
     const LoginInstructions = () => {
         return (<p className={"text-white py-2 px-4 font-input"}>
                 Enter your phone number and password below to Login to your existing account.
@@ -215,7 +88,7 @@ const Login = () => {
                 {user?setTimeout(navigate("/"),500):""}
                 <div className={"d-flex flex-row justify-content-between"}>
                     <div className="gz home w-100">
-                        <div className="homepage">
+                        <div className="homepage px-4 mx-2">
                             <FormTitle/>
                             <LoginInstructions/>
                             <HeaderLogin setUser={setUser} login={true}/>

@@ -1,6 +1,6 @@
 import React, {useState, useContext, useEffect} from 'react';
 
-import {Formik, Form} from 'formik';
+import {Formik, Form, Field} from 'formik';
 import makeRequest from "../../utils/fetch-request";
 import mpesa from '../../../assets/img/mpesa.png'
 import {Context} from '../../../context/store';
@@ -13,7 +13,55 @@ const Footer = React.lazy(() => import('../../footer/footer'));
 const SideBar = React.lazy(() => import('../../sidebar/awesome/Sidebar'));
 const Right = React.lazy(() => import('../../right/index'));
 
+const DepositFormFields = (props) => {
+    const {values, errors, onFieldChanged,mobile} = props;
 
+    return (
+        <>
+            <div className={`${mobile ? 'd-none' : 'form-group row d-flex justify-content-center'}`}>
+                <div className="col-md-12">
+                    <label>Phone Number</label>
+                    <input
+                        readOnly={true}
+                        className="text-dark deposit-input form-control input-field"
+                        id="msisdn"
+                        name="msisdn"
+                        type="text"
+                        value={values.msisdn}
+                        placeholder='Enter Phone Number'
+                    />
+                    {errors.msisdn && <div className='text-danger'> {errors.msisdn} </div>}
+                </div>
+            </div>
+            <div className={`"form-group row d-flex justify-content-center"${mobile?"":" mt-5"}`}>
+                <div className="col-md-12">
+                    <div className={`${mobile?"card-title":"d-none"}`}><h4>DEPOSIT</h4></div>
+                    <label>Amount to Deposit</label>
+
+                    <input
+                        onChange={ev => onFieldChanged(ev)}
+                        className="text-dark deposit-input form-control col-md-12 input-field deposit"
+                        id="amount"
+                        name="amount"
+                        type="text"
+                        value={values.amount}
+                        placeholder='Enter Amount to deposit'
+                    />
+
+                    {errors.amount && <div className='text-danger'> {errors.amount} </div>}
+                </div>
+            </div>
+            <div className="form-group row d-flex justify-content-left mb-4">
+                <div className="w-50 d-flex align-items-start">
+                    <button type={"submit"}
+                            className='btn btn-lg btn-primary mt-5 w-100 deposit-withdraw-button' >
+                        DEPOSIT
+                    </button>
+                </div>
+            </div>
+        </>
+    )
+}
 const Deposit = (props) => {
 
     const [state, dispatch] = useContext(Context);
@@ -82,54 +130,7 @@ const Deposit = (props) => {
     }
 
 
-    const DepositFormFields = (props) => {
-        const {values, errors, onFieldChanged} = props;
 
-        return (
-            <>
-                <div className={`${mobile ? 'd-none' : 'form-group row d-flex justify-content-center'}`}>
-                    <div className="col-md-12">
-                        <label>Phone Number</label>
-                        <input
-                            readOnly={true}
-                            className="text-dark deposit-input form-control input-field"
-                            id="msisdn"
-                            name="msisdn"
-                            type="text"
-                            value={values.msisdn}
-                            placeholder='Enter Phone Number'
-                        />
-                        {errors.msisdn && <div className='text-danger'> {errors.msisdn} </div>}
-                    </div>
-                </div>
-                <div className={`"form-group row d-flex justify-content-center"${mobile?"":" mt-5"}`}>
-                    <div className="col-md-12">
-                        <div className={`${mobile?"card-title":"d-none"}`}><h4>DEPOSIT</h4></div>
-                        <label>Amount to Deposit</label>
-                        <input
-                            onChange={ev => onFieldChanged(ev)}
-                            className="text-dark deposit-input form-control col-md-12 input-field"
-                            id="amount"
-                            name="amount"
-                            type="text"
-                            defaultValue={values.amount}
-                            placeholder='Enter Amount to deposit'
-                        />
-
-                        {errors.amount && <div className='text-danger'> {errors.amount} </div>}
-                    </div>
-                </div>
-                <div className="form-group row d-flex justify-content-left mb-4">
-                    <div className="w-50 d-flex align-items-start">
-                        <button type={"submit"}
-                                className='btn btn-lg btn-primary mt-5 w-100 deposit-withdraw-button' >
-                            DEPOSIT
-                        </button>
-                    </div>
-                </div>
-            </>
-        )
-    }
 
 
     const PaymentInstructions = (props) => {
@@ -175,7 +176,7 @@ const Deposit = (props) => {
                             <img src={mpesa} alt=""/>
                         </div>
                         <hr className={`${mobile?"d-none":""}`}/>
-                        <DepositFormFields onFieldChanged={onFieldChanged} values={values} errors={errors}/>
+                        <DepositFormFields onFieldChanged={onFieldChanged} values={values} errors={errors} mobile={mobile}/>
                         <hr className={`${mobile?"d-none":""}`}/>
                         <div className={`${mobile?"d-none":""}`}>
                             <PaymentInstructions/>
@@ -233,10 +234,11 @@ const Deposit = (props) => {
                             </div>
                         </div>
                     </div>
-                    <div className={`${mobile?"d-none":"mobile-top"}`}>
-                        <Right deposit={true}/>
-                    </div>
 
+
+                </div>
+                <div className={`${mobile?"d-none":"mobile-top"}`}>
+                    <Right deposit={true}/>
                 </div>
             </div>
             <div className={`${mobile?"d-none":"mobile-remove"}`}>

@@ -89,6 +89,10 @@ input, select, textarea {
     .pro-menu-item > div{
         width: 180px;
     }
+
+    .pro-menu-item.sidebar-mobile > div{
+        width:100%!important;
+    }
     .live-slide{
         float: left!important;
     }
@@ -7082,7 +7086,7 @@ ul.sport {
     }
 
     .mobile-top{
-        margin-top:12rem;
+        margin-top:15rem;
     }
     .virtual-size{
         display: flex;
@@ -15912,7 +15916,7 @@ img.zoom-img {
 
 
 .live-match .match-header {
-    background-image: url("../img/field.jpeg");
+    /*background-image: url("../img/field.jpeg");*/
     background-size: cover;
     background-repeat: no-repeat;
     height: 200px;

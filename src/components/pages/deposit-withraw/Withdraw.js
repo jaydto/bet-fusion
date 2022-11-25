@@ -53,8 +53,9 @@ const WithdrawFormFields = (props) => {
                         className="text-dark deposit-input form-control col-md-12 input-field"
                         id="amount"
                         name="amount"
+                        onClick={()=>document.getElementById("amount").autofocus}
                         type="text"
-                        defaultValue ={values.amount}
+                        Value ={values.amount}
                         placeholder='Enter Amount'
                     />
                     {errors.amount &&  <div className='text-danger'> {errors.amount} </div>  }
@@ -175,13 +176,13 @@ const Withdrawal = (props) => {
 
     const WithdrawalForm = (props) => {
         return (
-             <Formik
+            <Formik
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
                 validateOnChange={false}
                 validateOnBlur={false}
                 validate={validate}
-             >{(props) => <MyWithdrawalForm {...props} /> } </Formik>
+            >{(props) => <MyWithdrawalForm {...props} />}</Formik>
             );
     }
 
@@ -215,10 +216,11 @@ const Withdrawal = (props) => {
                         </div>
                     </div>
                 </div>
+
+             </div>
                  <div className={`${mobile?"d-none":"mobile-top"}`}>
                      <Right withdraw={true}/>
                  </div>
-             </div>
            </div>
              <div className={`${mobile?"d-none":"mobile-remove"}`}>
            <Footer/>

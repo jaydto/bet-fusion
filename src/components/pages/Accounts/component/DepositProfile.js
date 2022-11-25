@@ -7,9 +7,9 @@ import Deposit from "../../deposit-withraw/Deposit";
 function DepositProfile(props) {
 
     return (
-        <div className="w-100">
+        // <div className="w-100">
             <Deposit mobile={true}/>
-        </div>
+        // </div>
     );
 }
 

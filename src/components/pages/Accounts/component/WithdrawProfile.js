@@ -7,9 +7,9 @@ function WithdrawProfile(props) {
 
 
     return (
-        <div className=" w-100">
+        // <div className=" w-100">
             <Withdraw mobile={true}/>
-        </div>
+        // /
     );
 }
 

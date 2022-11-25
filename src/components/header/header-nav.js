@@ -84,7 +84,7 @@ const HeaderNav = (props) => {
                         <Link className="cg fm ox anl url-link" to={"/jackpot"} title="Jackpot">
                             <FontAwesomeIcon icon={faCoins}/> Jackpot
                         </Link>
-                        </a>
+
                     </li>
                     <li className={window.location.search.includes('worldcup') ? 'active' : ''}
                         onClick={() => gaEventTracker('World Cup')}>

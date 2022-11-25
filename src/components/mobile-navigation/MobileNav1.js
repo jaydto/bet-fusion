@@ -31,6 +31,7 @@ const MobileNav1 = (props) => {
         }
     }, [activeClass]);
 
+
     const fetchData = useCallback(async () => {
         let cached_competitions = getFromLocalStorage('categories');
         let endpoint = "/v1/categories";
@@ -60,7 +61,7 @@ const MobileNav1 = (props) => {
         return () => {
             abortController.abort();
         };
-    }, [fetchData]);
+    }, []);
     // console.log('sports',sport)
 
 
@@ -119,7 +120,7 @@ const MobileNav1 = (props) => {
                 <td style={{paddingLeft: "4px"}} className={window.location.search.includes('worldcup') ? 'active  ' : 'menu-t'}
                     onClick={() => gaEventTracker('World Cup')}>
                     <Link className="cg fm ox anl url-link d-flex flex-column"
-                       to={"/competition/79/8085/18585?sport_id=79&sub_type_id=1,18,29&limit=500&c=worldcup"}
+                       to={"competition/79/8085/18585?sport_id=79&sub_type_id=1,18,29&limit=500&c=worldcup"}
                        title="Fifa World Cup">
                         <span className={"menu-img"}>
                             <LazyLoadImage src={worldCup} className={'world-cup '} style={{height: "25px",borderRadius:"0 !important"}}></LazyLoadImage>

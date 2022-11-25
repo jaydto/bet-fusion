@@ -3,6 +3,7 @@ import makeRequest from "../../utils/fetch-request";
 import {Formik, Form} from 'formik';
 import {Context} from '../../../context/store';
 import {getBetslip} from '../../utils/betslip'
+import useWindowDimensions from "../../header/Dimensions";
 
 
 const Header = React.lazy(() => import('../../header/header'));
@@ -13,7 +14,7 @@ const Footer = React.lazy(() => import('../../footer/footer'));
 const RedeemPoints = (props) => {
     //todo get the phone number from logged in user ....
     const [state, dispatch] = useContext(Context);
-
+    const {height, width} = useWindowDimensions();
     const [success, setSuccess] = useState(false);
     const [message, setMessage] = useState(null);
 
@@ -158,7 +159,7 @@ const RedeemPoints = (props) => {
     return (
         <React.Fragment>
             <Header/>
-            <div className="amt">
+            <div className={width <= 514 ? state?.user ? "user_logged" : "amt" : "amt"}>
                 <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions/>
                     <div className="gz home" style={{width: '100%', overflowX: "clip"}}>
@@ -172,10 +173,12 @@ const RedeemPoints = (props) => {
                             </div>
                         </div>
                     </div>
-                    <Right/>
+                    <div className={"mobile-top"}>
+                        <Right/>
+                    </div>
                 </div>
             </div>
-            <div className={"mobile-remove"}>
+            <div className={"mobile-remove "}>
             <Footer/>
             </div>
         </React.Fragment>

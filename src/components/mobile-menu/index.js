@@ -36,7 +36,6 @@ const MobileMenu = (props) => {
     }, []);
 
 
-
     useEffect(() => {
         const abortController = new AbortController();
         fetchData();
@@ -47,75 +46,76 @@ const MobileMenu = (props) => {
     }, [fetchData]);
 
     // console.log("Props bs", betslip)
-    return (
-        <div>
+    return (<div>
             <div
-            className={`fixed-bottom text-white d-block  shadow-lg betslip-container-mobile ${betSlipMobile ? 'd-flex' : 'd-none'}`} style={{marginBottom:"7rem"}}>
-            <div className={"w-100"} style={{position:"relative"}}>
-                <div className="bet-option-list w-100" id='' style={{position:"absolute",bottom:"0"}}>
-                    <div className="bet alu  block-shadow d-flex flex-column">
-                        <header >
-                            <div className="betslip-header d-flex justify-content-between">
-                                <span className="col-sm-8 slp">BETSLIP</span>
-                                <span className="col-sm-2 slip-counter d-flex justify-content-center"
-                                      title={'Hide BetSlip'} onClick={() => setBetSlipMobile(false)}>
+                className={`fixed-bottom text-white d-block  shadow-lg betslip-container-mobile ${betSlipMobile ? 'd-flex' : 'd-none'}`}
+                style={{marginBottom: "7rem"}}>
+                <div className={"w-100"} style={{position: "relative"}}>
+                    <div className="bet-option-list w-100" id='' style={{position: "absolute", bottom: "0"}}>
+                        <div className="bet alu  block-shadow d-flex flex-column">
+                            <header>
+                                <div className="betslip-header d-flex justify-content-between">
+                                    <span className="col-sm-8 slp">BETSLIP</span>
+                                    <span className="col-sm-2 slip-counter d-flex justify-content-center"
+                                          title={'Hide BetSlip'} onClick={() => setBetSlipMobile(false)}>
                                             <FontAwesomeIcon icon={faTimes} className={'align-self-center'}/>
                                 </span>
+                                </div>
+                            </header>
+                            <div id="betslip" className="betslip">
+                                <BetSlip jackpot={jackpot} betslipValidationData={betslipValidationData}/>
                             </div>
-                        </header>
-                        <div id="betslip" className="betslip">
-                            <BetSlip jackpot={jackpot} betslipValidationData={betslipValidationData}/>
+                            <QuickLogin/>
                         </div>
-                        <QuickLogin/>
                     </div>
                 </div>
-            </div>
 
             </div>
             <nav className="mobile-menu">
-                <Link to={"/"} className={`bloc-icon ${pathname==="/"?"active":""}`} onClick={() => gaEventTracker('Visit Homepage')}>
+                <Link to={"/"} className={`bloc-icon ${pathname === "/" ? "active" : ""}`}
+                      onClick={() => gaEventTracker('Visit Homepage')}>
                     <img src={HomeSvg} alt=""></img>
                     <p>Home</p>
                 </Link>
-                <Link to={"/virtuals"} className={`bloc-icon ${pathname==="/virtuals"?"active":""}`} >
+                <Link to={"/virtuals"} className={`bloc-icon ${pathname === "/virtuals" ? "active" : ""}`}>
                     <img src={VirtualSvg} alt=""></img>
                     <p>Virtuals</p>
                 </Link>
 
-                    <Link to={"#"} className={`  nav__betslip bloc-icon bet-slip-footer-toggle text-white`} onClick={()=>{setBetSlipMobile(true)}}>
-                        {/*{console.log("betslip",betslipValidationData?.length)}*/}
-                        <Badge pill bg="warning nav__betslip d-flex justify-content-center align-items-center" >
-                                      {betslipValidationData?.length || 0}
-                                      </Badge>
+                <Link to={"#"} className={`  nav__betslip bloc-icon bet-slip-footer-toggle text-white`} onClick={() => {
+                    setBetSlipMobile(true)
+                }}>
+                    {/*{console.log("betslip",betslipValidationData?.length)}*/}
+                    <Badge pill bg="warning nav__betslip d-flex justify-content-center align-items-center">
+                        {betslipValidationData?.length || 0}
+                    </Badge>
 
-                    </Link>
+                </Link>
 
 
                 {/*{console.log("liveSports",Object.values(liveSports)[0])}*/}
 
 
+                <Link to={`/live`} className={`bloc-icon ${pathname === "/live" ? 'active' : ""}`}
+                      onClick={() => gaEventTracker('Visit Live  Page')}>
+                    <img style={{background: "red"}} src={LiveSvg} alt="">
+                    </img>
+
+                    <p>Live <span className={"text-light"}>({liveSports?.length || 0})</span></p>
+
+                </Link>
 
 
-                                <Link to={`/live`} className={`bloc-icon ${pathname==="/live"?'active':""}`} onClick={() => gaEventTracker('Visit Live  Page')}>
-                                <img style={{background:"red"}} src={LiveSvg} alt="">
-                                </img>
-
-                                <p>Live <span className={"text-light"}>({liveSports?.length||0})</span></p>
-
-                            </Link>
-
-
-                {user?<Link to={"/profile"} className={`bloc-icon ${pathname==="/profile"?"active":""}`}>
+                {user ? <Link to={"/profile"} className={`bloc-icon ${pathname === "/profile" ? "active" : ""}`}>
                     <img src={ProfileSvg} alt=""></img>
                     <p>Profile</p>
-                </Link>:<Link to={"/login"} className={`bloc-icon ${pathname==="/login"?"active":""}`}>
+                </Link> : <Link to={"/login"} className={`bloc-icon ${pathname === "/login" ? "active" : ""}`}>
                     <img src={ProfileSvg} alt=""></img>
                     <p>Profile</p>
                 </Link>}
 
 
             </nav>
-        </div>
-    )
+        </div>)
 }
 export default MobileMenu;

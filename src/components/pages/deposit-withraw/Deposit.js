@@ -112,7 +112,7 @@ const Deposit = (props) => {
                             id="amount"
                             name="amount"
                             type="text"
-                            value={values.amount}
+                            defaultValue={values.amount}
                             placeholder='Enter Amount to deposit'
                         />
 
@@ -194,7 +194,7 @@ const Deposit = (props) => {
                 validateOnChange={false}
                 validateOnBlur={false}
                 validate={validate}
-                render={(props) => <MyDepositForm {...props} />}/>
+            >{(props) => <MyDepositForm {...props} />}</Formik>
         );
     }
 
@@ -233,9 +233,9 @@ const Deposit = (props) => {
                             </div>
                         </div>
                     </div>
-                    {/*<div className={`${mobile?"d-none":""}`}>*/}
-                    {/*    <Right deposit={true}/>*/}
-                    {/*</div>*/}
+                    <div className={`${mobile?"d-none":"mobile-top"}`}>
+                        <Right deposit={true}/>
+                    </div>
 
                 </div>
             </div>

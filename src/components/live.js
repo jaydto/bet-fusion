@@ -3,10 +3,8 @@ import {useLocation, useParams} from 'react-router-dom';
 import makeRequest from './utils/fetch-request';
 import {getJackpotBetslip, getBetslip} from './utils/betslip' ;
 
-import matches from "./utils/fetch-request";
 import useInterval from "../hooks/set-interval.hook";
 import {Context} from '../context/store';
-import banner from '../assets/img/banner.jpg';
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));

@@ -430,7 +430,7 @@ header, li a, .thedate span {
 }
 
 .fb-iframe {
-    background: url('../img/banner-bg.jpg');
+    /*background: url('../img/banner-bg.jpg');*/
     height: 160px;
     display: block;
 }
@@ -15042,7 +15042,7 @@ img.zoom-img {
 
 
 .live-match .match-header {
-    background-image: url("../img/field.jpeg");
+    /*background-image: url("../img/field.jpeg");*/
     background-size: cover;
     background-repeat: no-repeat;
     height: 200px;

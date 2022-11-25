@@ -7088,6 +7088,7 @@ ul.sport {
     .mobile-top{
         margin-top:15rem;
     }
+
     .virtual-size{
         display: flex;
         flex-wrap:wrap;
@@ -7791,6 +7792,10 @@ ul.sport {
     /*.tablet-view{*/
     /*    display: none;*/
     /*}*/
+    .menu-t:hover{
+        background: #ffc107 ;
+    }
+
     .bloc-icon .active{
         border-bottom: 1px solid yellow;
     }
@@ -15533,6 +15538,12 @@ img.zoom-img {
     background:#ffc107!important;
 }
 @media (max-width: 767px){
+    .virtual-game-container{
+        width:100%;
+    }
+    .virtual-width{
+        width:50%;
+    }
     .font-slip{
         font-size:11px;
     }

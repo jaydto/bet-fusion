@@ -82,7 +82,7 @@ const Casino = (props) => {
                                 <div className="col">
                                     <div className={'row text-white p-2 shadow-sm'}>
                                         {games?.map((game) => (
-                                                <div className={'col-md-2'}>
+                                                <div className={'col-md-2 virtual-width'}>
                                                     <div
                                                         className={'mt-1 mb-1 d-flex flex-column shadow-lg virtual-game-container'}>
                                                         <div onClick={() => launchGame(game?.game_id, true)}

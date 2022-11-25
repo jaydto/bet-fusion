@@ -1,86 +1,24 @@
 import React, {useState, useContext, useEffect} from 'react';
 
-import {Formik, Form, Field} from 'formik';
+import {Formik, Form} from 'formik';
 import makeRequest from "../../utils/fetch-request";
 import mpesa from '../../../assets/img/mpesa.png'
 import {Context} from '../../../context/store';
 import {getBetslip} from '../../utils/betslip'
-import {clearTrackingData, getFromLocalStorage, setTrackingData} from "../../utils/local-storage";
-import useWindowDimensions from "../../header/Dimensions";
+import {clearTrackingData, setTrackingData} from "../../utils/local-storage";
 
 const Header = React.lazy(() => import('../../header/header'));
 const Footer = React.lazy(() => import('../../footer/footer'));
 const SideBar = React.lazy(() => import('../../sidebar/awesome/Sidebar'));
 const Right = React.lazy(() => import('../../right/index'));
 
-const DepositFormFields = (props) => {
-    const {values, errors, onFieldChanged,mobile} = props;
 
-    return (
-        <>
-            <div className={`${mobile ? 'd-none' : 'form-group row d-flex justify-content-center'}`}>
-                <div className="col-md-12">
-                    <label>Phone Number</label>
-                    <input
-                        readOnly={true}
-                        className="text-dark deposit-input form-control input-field"
-                        id="msisdn"
-                        name="msisdn"
-                        type="text"
-                        value={values.msisdn}
-                        placeholder='Enter Phone Number'
-                    />
-                    {errors.msisdn && <div className='text-danger'> {errors.msisdn} </div>}
-                </div>
-            </div>
-            <div className={`"form-group row d-flex justify-content-center"${mobile?"":" mt-5"}`}>
-                <div className="col-md-12">
-                    <div className={`${mobile?"card-title":"d-none"}`}><h4>DEPOSIT</h4></div>
-                    <label>Amount to Deposit</label>
-
-                    <input
-                        onChange={ev => onFieldChanged(ev)}
-                        className="text-dark deposit-input form-control col-md-12 input-field deposit"
-                        id="amount"
-                        name="amount"
-                        type="text"
-                        value={values.amount}
-                        placeholder='Enter Amount to deposit'
-                    />
-
-                    {errors.amount && <div className='text-danger'> {errors.amount} </div>}
-                </div>
-            </div>
-            <div className="form-group row d-flex justify-content-left mb-4">
-                <div className="w-50 d-flex align-items-start">
-                    <button type={"submit"}
-                            className='btn btn-lg btn-primary mt-5 w-100 deposit-withdraw-button' >
-                        DEPOSIT
-                    </button>
-                </div>
-            </div>
-        </>
-    )
-}
 const Deposit = (props) => {
 
     const [state, dispatch] = useContext(Context);
     const [success, setSuccess] = useState(false);
-    const [error, setError] = useState(false);
     const [message, setMessage] = useState(null);
-    // const [user, setUser] = useState(getFromLocalStorage("user"));
-    const {height, width} = useWindowDimensions();
-    const [alert, setAlert] = useState(true);
     const {mobile} = props
-    // console.log("is mobile", mobile)
-
-    useEffect(() => {
-        // when the component is mounted, the alert is displayed for 3 seconds
-        setTimeout(() => {
-            setAlert(false);
-        }, 5000);
-    }, [alert]);
-
 
     const initialValues = {
         amount: '',
@@ -92,7 +30,6 @@ const Deposit = (props) => {
         setTrackingData(values)
         makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
             setSuccess(status === 200 || status === 201);
-            setError(status !== 200 || status !== 201);
             setMessage(response);
             clearTrackingData()
         })
@@ -130,7 +67,52 @@ const Deposit = (props) => {
     }
 
 
+    const DepositFormFields = (props) => {
+        const {values, errors, onFieldChanged} = props;
 
+        return (
+            <>
+                <div className="form-group row d-flex justify-content-center">
+                    <div className={`${mobile?"d-none":"col-md-12"}`}>
+                        <label>Phone Number</label>
+                        <input
+                            readOnly={true}
+                            className="text-dark deposit-input form-control input-field"
+                            id="msisdn"
+                            name="msisdn"
+                            type="text"
+                            value={values.msisdn}
+                            placeholder='Enter Phone Number'
+                        />
+                        {errors.msisdn && <div className='text-danger'> {errors.msisdn} </div>}
+                    </div>
+                </div>
+                <div className="form-group row d-flex justify-content-center mt-5">
+                    <div className="col-md-12">
+                        <label>Amount to Deposit</label>
+                        <input
+                            onChange={ev => onFieldChanged(ev)}
+                            className="text-dark deposit-input form-control col-md-12 input-field"
+                            id="amount"
+                            name="amount"
+                            type="text"
+                            value={values.amount}
+                            placeholder='Enter Amount'
+                        />
+                        {errors.amount && <div className='text-danger'> {errors.amount} </div>}
+                    </div>
+                </div>
+                <div className="form-group row d-flex justify-content-left mb-4">
+                    <div className="w-50 d-flex align-items-start">
+                        <button type={"submit"}
+                                className='btn btn-lg btn-primary mt-5 w-100 deposit-withdraw-button' >
+                            Deposit
+                        </button>
+                    </div>
+                </div>
+            </>
+        )
+    }
 
 
     const PaymentInstructions = (props) => {
@@ -169,17 +151,21 @@ const Deposit = (props) => {
         }
 
         return (
-            <Form className={`${mobile?"":"shadow-sm rounded border-0"}`}>
+            <Form className="shadow-sm rounded border-0">
                 <div className="pt-0">
+                    <div className={`${mobile?"card-title":"d-none"}`}><h4>DEPOSIT</h4></div>
                     <div className="row">
-                        <div className={`${mobile?"d-none":'col-md-7 text-center'}`}>
-                            <img src={mpesa} alt=""/>
+                        <div className='col-md-7 text-center'>
+                            <div className={`${mobile?"d-none":'col-md-7 text-center'}`}>
+                                <img src={mpesa} alt=""/>
+                            </div>
                         </div>
                         <hr className={`${mobile?"d-none":""}`}/>
-                        <DepositFormFields onFieldChanged={onFieldChanged} values={values} errors={errors} mobile={mobile}/>
+
+                        <DepositFormFields onFieldChanged={onFieldChanged} values={values} errors={errors}/>
                         <hr className={`${mobile?"d-none":""}`}/>
                         <div className={`${mobile?"d-none":""}`}>
-                            <PaymentInstructions/>
+                            <PaymentInstructions />
                         </div>
 
                     </div>
@@ -187,6 +173,7 @@ const Deposit = (props) => {
             </Form>
         );
     }
+
     const DepositForm = (props) => {
         return (
             <Formik
@@ -195,46 +182,37 @@ const Deposit = (props) => {
                 validateOnChange={false}
                 validateOnBlur={false}
                 validate={validate}
-            >{(props) => <MyDepositForm {...props} />}</Formik>
+                render={(props) => <MyDepositForm {...props} />}/>
         );
     }
 
     const Alert = (props) => {
-        let c = success ? 'success' : error ? 'danger' : '';
-        return (<>{alert && message !== '' &&
-            <div role="alert" className={`fade alert alert-${c} show`}>{message}</div>} </>);
+        let c = success ? 'success' : 'danger';
+        return (<>{message && <div role="alert" className={`fade alert alert-${c} show`}>{message}</div>} </>);
 
     };
 
     return (
         <React.Fragment>
-            <div className={`${mobile?"d-none":""}`}>
-                <Header/>
-            </div>
-
-            <div className={(mobile?"profile-bg card-radius":width <= 514 ? state?.user ? "user_logged" : "amt" : "amt")}>
+            <Header/>
+            <div className={`${mobile?"":"amt"}`}>
                 <div className="d-flex flex-row justify-content-between">
-                    <div className={`${mobile?"d-none":""}`}>
-                        <SideBar loadCompetitions/>
-                    </div>
-                    <div className="gz home" style={{width: '100%', overflowX: 'clip'}}>
+                    <SideBar loadCompetitions/>
+                    <div className="gz home" style={{width: '100%',overflowX:'clip'}}>
                         <div className="homepage">
                             <div className={`${mobile?"d-none":""}`}>
                                 <FormTitle/>
+
                             </div>
-
-
-                            <div className="col-md-12 mt-2 text-white p-2">
-
+                            <div className={`col-md-12 mt-2 text-white p-2 ${mobile?"profile-bg card-radius":""}`}>
                                 <Alert/>
-                                <div className={`${mobile?"px-2":"modal-body pb-0"}`} data-backdrop="static">
+                                <div className="modal-body pb-0" data-backdrop="static">
 
                                     <DepositForm/>
                                 </div>
                             </div>
                         </div>
                     </div>
-
 
                 </div>
                 <div className={`${mobile?"d-none":"mobile-top"}`}>
@@ -244,9 +222,10 @@ const Deposit = (props) => {
             <div className={`${mobile?"d-none":"mobile-remove"}`}>
                 <Footer/>
             </div>
+
         </React.Fragment>
     )
 
 }
 
-export default React.memo(Deposit)
+export default Deposit

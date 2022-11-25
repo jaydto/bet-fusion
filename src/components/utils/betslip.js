@@ -1,5 +1,5 @@
-import { 
-    getFromLocalStorage, 
+import {
+    getFromLocalStorage,
     setLocalStorage,
     removeItem
 } from './local-storage';
@@ -16,14 +16,14 @@ export const addToSlip = (slip) => {
 }
 
 export const removeFromSlip = (match_id) => {
-   let current_slip = getFromLocalStorage('betslip');
-   delete current_slip[match_id];
-   setLocalStorage('betslip', current_slip, 1*60*60*1000);
-   return current_slip;
+    let current_slip = getFromLocalStorage('betslip');
+    delete current_slip[match_id];
+    setLocalStorage('betslip', current_slip, 1*60*60*1000);
+    return current_slip;
 }
 
 export const clearSlip = () => {
-   removeItem('betslip');
+    removeItem('betslip');
 }
 export const getBetslip = () => {
     return getFromLocalStorage('betslip');
@@ -45,17 +45,18 @@ export const addToJackpotSlip = (slip) => {
 }
 
 export const removeFromJackpotSlip = (match_id) => {
-   let current_slip = getFromLocalStorage('jackpotbetslip');
-   delete current_slip[match_id];
-   setLocalStorage('jackpotbetslip', current_slip, 1*60*60*1000);
-   return current_slip;
+    let current_slip = getFromLocalStorage('jackpotbetslip');
+    delete current_slip[match_id];
+    setLocalStorage('jackpotbetslip', current_slip, 1*60*60*1000);
+    return current_slip;
 }
 
 export const clearJackpotSlip = () => {
-   removeItem('jackpotbetslip');
+    removeItem('jackpotbetslip');
 }
 export const formatNumber = (number) => {
-    return number === undefined || number === 0 ? '0' : number.toString()
+    return number === undefined || number === 0 ? '0.00' : number.toString()
         .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
         .replace(".00", '');
 }
+

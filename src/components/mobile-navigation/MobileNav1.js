@@ -8,6 +8,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import promo from "../../../src/assets/img/mobile/fire.png";
 import jackpot from "../../../src/assets/img/mobile/jackpot.png";
+import home from "../../../src/assets/img/mobile/home.png"
 import {getFromLocalStorage,setLocalStorage} from "../utils/local-storage";
 import makeRequest from "../utils/fetch-request";
 import worldCup from "../../../src/assets/img/flags-1-1/worldcup.png"
@@ -93,6 +94,18 @@ const MobileNav1 = (props) => {
         <table className="menu-table" style={{width: "100%", textAlign: "center"}}>
             <tbody>
             <tr className={"tr-style"}>
+                <td className={`menu-t ${pathname==="/"?"active":""}`}  style={{paddingLeft: "4px"}}>
+                    <Link to="/">
+                        <div className="inner-div active">
+                            <div className="menu-img">
+                                <LazyLoadImage src={home} style={{width: "20px" }}/>
+                            </div>
+                            <div style={{textAalign: "center"}}>
+                                Home
+                            </div>
+                        </div>
+                    </Link>
+                </td>
                 <td className={`menu-t ${pathname==="/jackpot"?"active":""}`}  style={{paddingLeft: "4px"}}>
                     <Link to="/jackpot">
                         <div className="inner-div active">

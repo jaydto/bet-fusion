@@ -5,7 +5,18 @@ import {Link} from "react-router-dom";
 import Footer from "../../footer/footer";
 import 'react-pro-sidebar/dist/css/styles.css';
 import {
-    faUser, faQuestionCircle, faPrint, faHome, faStream, faInfo, faLaptop, faMagic, faCoins, faMobile
+    faUser,
+    faQuestionCircle,
+    faPrint,
+    faHome,
+    faStream,
+    faInfo,
+    faLaptop,
+    faMagic,
+    faCoins,
+    faMobile,
+    faCloud,
+    faCloudDownloadAlt
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
@@ -33,7 +44,7 @@ const SidebarMobile = (props) => {
                 {user ? <Menu>
                     <MenuItem>
                         <div className={"d-flex gap-4 align-items-center"}>
-                            <FontAwesomeIcon icon={faCoins}/>
+                            <FontAwesomeIcon icon={faCloudDownloadAlt}/>
                             <Link to={"/deposit"} className={"text-warning"}>Deposit</Link>
                         </div>
 
@@ -49,8 +60,9 @@ const SidebarMobile = (props) => {
                         </div>
                     </MenuItem>
                 </Menu>
+
                 <Menu>
-                    <MenuItem>
+                    <MenuItem className={"d-flex justify-content-between"}>
                         <div className={"d-flex gap-4 align-items-center"}>
                             <FontAwesomeIcon icon={faPrint}/>
                             <Link to={"/print-matches"}>Print</Link>

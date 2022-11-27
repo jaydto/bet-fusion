@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import Container from "react-bootstrap/Container";
 import {getFromLocalStorage} from "../utils/local-storage";
+import {Link} from "react-router-dom";
 
 const MobileCategories = () => {
     let categories = getFromLocalStorage('categories');

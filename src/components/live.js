@@ -23,7 +23,6 @@ const Live = (props) => {
     const [matches, setMatches] = useState();
     const [state, dispatch] = useContext(Context);
     const {spid} = useParams();
-    const [user, setUser] = useState(getFromLocalStorage("user"));
     const {height, width} = useWindowDimensions();
 
     const [producerDown, setProducerDown] = useState(false);
@@ -92,7 +91,7 @@ const Live = (props) => {
     return (
         <>
             <Header/>
-            <div className={(width<=514?user?"user_logged":"amt":"amt")}>
+            <div className={(width<=514?state?.user?"user_logged":"amt":"amt")}>
                 <div className="d-flex flex-row justify-content-between ">
                     {/*/!*<div className={"mobile-remove"}>*!/*/}
                     {/*    <LiveSideBar/>*/}

@@ -44,8 +44,9 @@ const Profile = () => {
 
     const gaEventTracker = useAnalyticsEventTracker('Navigation');
 
-
-
+const  userIn={
+    marginTop: "4rem"
+}
 
 
 
@@ -103,8 +104,9 @@ const Profile = () => {
                     </Navbar.Offcanvas>
                 </Container>
             </Navbar>
+
             <div className="row d-flex flex-column gap-3 px-4 py-4 justify-content-center align-items-center">
-                <div style={{marginTop:"4rem"}}>
+                <div style={userIn}>
                     <div className={"card-body d-flex flex-column align-items-center gap-2"}>
                         <div className={"bg-warning user-style"}>
                             <FontAwesomeIcon icon={faUser} className={"text-light"}
@@ -114,6 +116,7 @@ const Profile = () => {
                     </div>
 
                 </div>
+
                 <div className=" w-100 ">
 
                     <div className="card-radius profile-bg text-light">

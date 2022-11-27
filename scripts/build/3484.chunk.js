@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkbetnare_web=self.webpackChunkbetnare_web||[]).push([[3484],{83484:function(e,n,r){r.r(n),r.d(n,{default:function(){return u}});var t=r(80184);var u=function(){return(0,t.jsx)("div",{className:"App"})}}}]);
+//# sourceMappingURL=3484.chunk.js.map

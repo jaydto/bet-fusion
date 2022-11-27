@@ -7,6 +7,8 @@ import {
     Routes,
     useNavigate,
 } from 'react-router-dom'
+import { defineCustomElements } from '@ionic/pwa-elements/loader';
+
 
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -29,9 +31,9 @@ import Loading from "./components/loading/Loading";
 
 const Index = React.lazy(() => import('./components/index'));
 const CompetitionsMatches = React.lazy(
-    () => import('./components/competition-matches')
+    () => import('./components/competition/competition-matches')
 );
-const MatchAllMarkets = React.lazy(() => import('./components/all-markets'));
+const MatchAllMarkets = React.lazy(() => import('./components/competition/all-markets'));
 
 const Jackpot = React.lazy(() => import('./components/jackpot'));
 const Betslip=React.lazy(()=>{
@@ -118,7 +120,8 @@ const Logout = () => {
     const out = useCallback(() => {
         localStorage.clear();
         setTimeout(()=>navigate("/"),500
-        )
+        );
+        localStorage.clear();
     }, [navigate]);
 
     useEffect(() => {
@@ -142,17 +145,18 @@ render((
                 <Routes>
                     <Route path="*" element={<Index/>}/>
                     <Route exact path="/" element={<Index/>}/>
-                    <Route exact path="/virtuals" element={<Virtuals/>}/>
-                    <Route exact path="/livescore" element={<LiveScore/>}/>
                     <Route exact path="/404" element={<PageNotFound/>}/>
-
                     <Route exact path={"/profile"} element={<Profile/>}/>
                     {/*<Route exact path="/casino" element={<Casino/>}/>*/}
                     {/*<Route exact path="/live-casino" element={<LiveCasino/>}/>*/}
+                    <Route exact path="/virtuals" element={<Virtuals/>}/>
+                    <Route exact path="/livescore" element={<LiveScore/>}/>
                     <Route exact path="/gameplay/:game_id/:live" element={<CasinoGamePlay/>}/>
+
                     <Route exact path="/highlights" element={<Index/>}/>
                     <Route exact path="/upcoming" element={<Index/>}/>
                     <Route exact path="/tomorrow" element={<Index/>}/>
+
                     <Route path="/betslip" element={<Betslip/>}/>
                     <Route exact path="/competition/:id" element={<CompetitionsMatches/>}/>
                     <Route exact path="/competition/:sportid/:categoryid/:competitionid"
@@ -167,8 +171,6 @@ render((
                         <Route index element={<Live/>}/>
                         <Route path={":spid"} element={<Live/>}/>
                     </Route>
-
-
                     {/*<Route exact path="/live/:spid" element={<Live/>}/>*/}
                     <Route exact path="/privacy-policy" element={<PrivacyPolicy/>}/>
                     <Route exact path="/anti-money-laundering" element={<AntimoneyLaundering/>}/>
@@ -199,7 +201,8 @@ render((
     </Store>
 ), container);
 
-
+// Call the element loader after the platform has been bootstrapped
+defineCustomElements(window);
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals

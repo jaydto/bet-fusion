@@ -72,22 +72,22 @@ const LiveSideBar = (props) => {
                                 textOverflow: 'ellipsis',
                                 whiteSpace: 'nowrap',
                             }}>
-                            <div className="d-flex">
+                            <div className="d-flex justify-content-sm-center">
                                 LIVE SPORTS
                             </div>
                         </div>
                     </SidebarHeader>
-                    <SidebarContent>
-                        <Menu iconShape="circle"  >
+                    <SidebarContent className={"sidebar-live "}>
+                        <Menu iconShape="circle live-inner"  >
                             {liveSports && Object.entries(liveSports).map(([index, livesport]) => (
-                                    <Menu iconShape="circle" >
-                                        <MenuItem>
+                                    <Menu iconShape="circle inner-live live-items"  >
+                                        <MenuItem className={"live-items"}>
                                             <Link className="col-12"
                                                to={`/live/${livesport.sport_id}`}>
                                                 <Row>
                                                     <Col lg="11" md="11" sm="11" xs="11" className="topl">
                                                         <Row style={{color: "#69819a"}}>
-                                                            <Col className={'text-white'}>{livesport.sport_name} </Col>
+                                                            <Col className={'text-white col-4'}>{livesport.sport_name} </Col>
                                                             <Col>
                                                                 <span className={`badge rounded-pill bg-dark ${width<=767?"live-slide":""}`} style={{
                                                                     float: "right",

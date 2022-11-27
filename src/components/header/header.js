@@ -20,6 +20,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCloudDownloadAlt, faCoins, faSearch, faTimes} from "@fortawesome/free-solid-svg-icons";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import ListGroup from "react-bootstrap/ListGroup";
+import MobileNav2 from "../mobile-navigation/MobileNav2";
 
 const ProfileMenu = React.lazy(() => import('./profile-menu'));
 const HeaderLogin = React.lazy(() => import('./top-login'));
@@ -317,6 +318,7 @@ const Header = (props) => {
                     </Row>
                     <Row className={"mobile-only"}>
                         <MobileNav1/>
+                        <MobileNav2/>
                     </Row>
 
                     <Navbar.Offcanvas

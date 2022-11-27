@@ -1,10 +1,12 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useCallback, useContext, useEffect, useState} from "react";
 import {PDFDownloadLink} from "@react-pdf/renderer";
 import {PdfDocument} from "./Matches";
 import makeRequest from "../../utils/fetch-request";
 import Select from 'react-select'
 import {Card, Tab, Tabs} from "react-bootstrap";
 import {formatNumber} from "../../utils/betslip";
+import {Context} from "../../../context/store";
+import useWindowDimensions from "../../header/Dimensions";
 
 const Header = React.lazy(() => import('../../header/header'));
 const SideBar = React.lazy(() => import('../../sidebar/awesome/Sidebar'));
@@ -19,6 +21,8 @@ export default function MatchesList() {
     const [loaded, setLoaded] = useState(false)
     const [jackpotData, setJackpotData] = useState([])
     const [key, setKey] = useState('home');
+    const {height, width} = useWindowDimensions();
+    const [state, dispatch] = useContext(Context);
     const [isJackpot, setIsJackpot] = useState(false);
     useEffect(() => {
         fetchMatches()
@@ -90,11 +94,10 @@ export default function MatchesList() {
             setTitle(section)
         }
     }
-
     return (
         <>
             <Header/>
-            <div className="amt">
+            <div className={`${width<=514?state?.user?"user_logged":"amt":"amt"}`}>
                 <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions/>
                     <div className="gz home" style={{width:"100%"}}>

@@ -13,6 +13,7 @@ import {getFromLocalStorage,setLocalStorage} from "../utils/local-storage";
 import makeRequest from "../utils/fetch-request";
 import worldCup from "../../../src/assets/img/flags-1-1/worldcup.png"
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
+import {App} from "@capacitor/app";
 
 
 const MobileNav1 = (props) => {
@@ -31,6 +32,21 @@ const MobileNav1 = (props) => {
             setActiveClass('');
         }
     }, [activeClass]);
+
+    // App.addListener("appUrlOpen",data=>{
+    //     if(data.url.includes("worldcup")){
+    //         data.url.replace("/competition/79/8085","");
+    //
+    //     }
+    // })
+    // App.addListener('backButton', (data) => {
+    //     console.log('back button click:', JSON.stringify(data));
+    //     if (data.canGoBack) {
+    //         window.history.back();
+    //     } else {
+    //         // Maybe show alert before closing app?
+    //         App.exitApp();
+    //     }
 
 
     const fetchData = useCallback(async () => {
@@ -133,7 +149,7 @@ const MobileNav1 = (props) => {
                 <td style={{paddingLeft: "4px"}} className={window.location.search.includes('worldcup') ? 'active  ' : 'menu-t'}
                     onClick={() => gaEventTracker('World Cup')}>
                     <Link className="cg fm ox anl url-link d-flex flex-column"
-                       to={"competition/79/8085/18585?sport_id=79&sub_type_id=1,18,29&limit=500&c=worldcup"}
+                       to={"/competition/79/8085/18585?sport_id=79&sub_type_id=1,18,29&limit=500&c=worldcup"}
                        title="Fifa World Cup">
                         <span className={"menu-img"}>
                             <LazyLoadImage src={worldCup} className={'world-cup '} style={{height: "25px",borderRadius:"0 !important"}}></LazyLoadImage>
@@ -143,11 +159,15 @@ const MobileNav1 = (props) => {
                         </span>
 
                     </Link>
+                    {console.log("sports_data",sport)}
                 </td>
+
+
                 {sport?.all_sports.map((allsports, index) => (
                 <td className={`menu-t sport-check ${pathname===allsports.sport_id?"active":""}`} style={{paddingLeft: "4px"}}>
                     <Link to={`/highlights?sport_id=${allsports.sport_id}&sub_type_id=${getDefaultMarketsForSport(allsports)}`} >
                         <div className="inner-div active">
+                            {/*{console.log('all sports',allsports)}*/}
                             <div className="menu-img">
                                 <LazyLoadImage
                                   className="side-icon"

@@ -86,6 +86,23 @@ input, select, textarea {
         overflow-x: auto;
         /*justify-content:space-between;*/
     }
+    .live-items{
+        width: 100px;
+        overflow: hidden
+    }
+    .live-items> div{
+       padding: 0;
+    }
+
+    .sidebar-live > .pro-menu{
+        border:1px solid;
+        padding-top: 2px!important;
+        padding-bottom: 2px !important;
+    }
+    .inner-live{
+        padding-top: 5px!important;
+        padding-bottom: 5px !important;
+    }
     .pro-menu-item > div{
         width: 180px;
     }
@@ -7099,6 +7116,9 @@ ul.sport {
     /*    width:100%;*/
     /*    background:#1f2f38;*/
     /*}*/
+    .slip-size{
+        max-height:30vh!important;
+    }
 
     .betslip td{
         padding: 2px 2px!important;
@@ -16292,7 +16312,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 
 @media only screen and (max-width: 576px) {
     .amt {
-        margin-top: 10rem !important;
+        margin-top: 13.5rem !important;
         padding-top: 20px !important;
         /*scroll-margin-top: 140px;*/
     }

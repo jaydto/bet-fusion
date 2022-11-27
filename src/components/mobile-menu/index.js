@@ -49,7 +49,7 @@ const MobileMenu = (props) => {
     return (<div>
             <div
                 className={`fixed-bottom text-white d-block  shadow-lg betslip-container-mobile ${betSlipMobile ? 'd-flex' : 'd-none'}`}
-                style={{marginBottom: "7rem"}}>
+                style={{marginBottom: "6.7rem"}}>
                 <div className={"w-100"} style={{position: "relative"}}>
                     <div className="bet-option-list w-100" id='' style={{position: "absolute", bottom: "0"}}>
                         <div className="bet alu  block-shadow d-flex flex-column">

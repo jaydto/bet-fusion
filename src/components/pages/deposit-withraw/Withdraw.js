@@ -172,7 +172,9 @@ const Withdrawal = (props) => {
 
     return (
         <React.Fragment>
-            <Header/>
+            <div className={`${mobile?"d-none":""}`}>
+                <Header/>
+            </div>
             <div className={`${mobile?"":"amt"}`}>
                 <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions/>

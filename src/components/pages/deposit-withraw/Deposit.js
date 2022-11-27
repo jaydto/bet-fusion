@@ -20,6 +20,7 @@ const Deposit = (props) => {
     const [message, setMessage] = useState(null);
     const {mobile} = props
 
+
     const initialValues = {
         amount: '',
         msisdn: state?.user?.msisdn
@@ -194,7 +195,10 @@ const Deposit = (props) => {
 
     return (
         <React.Fragment>
+            <div className={`${mobile?"d-none":""}`}>
             <Header/>
+            </div>
+
             <div className={`${mobile?"":"amt"}`}>
                 <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions/>

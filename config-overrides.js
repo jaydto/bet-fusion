@@ -1,5 +1,6 @@
 const webpack = require('react-scripts/config/webpack.config')
 const path = require("path");
+
 module.exports = function override(config, env) {
     //do stuff with the webpack config...
 
@@ -14,12 +15,13 @@ module.exports = function override(config, env) {
         asset: require.resolve('assert'),
         "url": require.resolve("url/")
     };
-    config.output={
-        path: path.resolve(__dirname, "/"),
-        filename: "[name].bundle.js",
-        chunkFilename: "[name].chunk.js",
+    // config.output={
+    //     path: path.resolve(__dirname, "/"),
+    //     filename: "[name].bundle.js",
+    //     chunkFilename: "[name].chunk.js",
+    //
+    // };
 
-    };
 
     config.plugins = [
         ...config.plugins,

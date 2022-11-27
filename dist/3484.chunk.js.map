@@ -1,0 +1,1 @@
+{"version":3,"file":"3484.chunk.js","mappings":"6KAaA,MAVA,WAEE,OACE,gBAAKA,UAAU,OAKlB,C","sources":["webpack://betnare-web/./src/App.js"],"sourcesContent":["\nimport './App.css';\n\nfunction App() {\n\n  return (\n    <div className=\"App\">\n\n\n    </div>\n  );\n}\n\nexport default App;\n"],"names":["className"],"sourceRoot":""}

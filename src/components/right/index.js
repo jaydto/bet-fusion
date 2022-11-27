@@ -60,7 +60,7 @@ const Right = (props) => {
             className={`fixed-bottom text-white d-block d-md-none shadow-lg betslip-container-mobile ${betSlipMobile ? 'd-block' : 'd-none'}`}>
             <div className="bet-option-list sticky-top mobile-slip" id=''>
                 <div className="bet alu  block-shadow">
-                    <header style={{marginTop: "60px"}}>
+                    <header style={{marginTop: "35px"}}>
                         <div className="betslip-header d-flex justify-content-between">
                             <span className="col-sm-8 slp">BETSLIP</span>
                             <span className="col-sm-2 slip-counter d-flex justify-content-center"

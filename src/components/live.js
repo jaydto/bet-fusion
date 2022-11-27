@@ -93,9 +93,9 @@ const Live = (props) => {
             <Header/>
             <div className={(width<=514?state?.user?"user_logged":"amt":"amt")}>
                 <div className="d-flex flex-row justify-content-between ">
-                    {/*/!*<div className={"mobile-remove"}>*!/*/}
-                    {/*    <LiveSideBar/>*/}
-                    {/*/!*</div>*!/*/}
+                    <div className={"mobile-remove"}>
+                        <LiveSideBar/>
+                    </div>
 
                     <div className="gz home" style={{width:"100%"}}>
                         <div className="homepage">

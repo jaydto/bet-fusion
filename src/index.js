@@ -7,8 +7,6 @@ import {
     Routes,
     useNavigate,
 } from 'react-router-dom'
-import { defineCustomElements } from '@ionic/pwa-elements/loader';
-
 
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -16,18 +14,12 @@ import './assets/css/application.css';
 import './assets/css/tolkits.css';
 import './assets/css/sidebar-menu.css';
 import './index.css';
-import './assets/css/sidebar-menu.css';
 import Store from './context/store';
 import ReactGA from 'react-ga4';
-
-
-
-
-// import {LazyLoadImage} from "react-lazy-load-image-component/src";
-import logo from "./assets/img/logo.png";
-import {ProgressBar} from "loading-animations-react";
 import Loading from "./components/loading/Loading";
 
+const TRACKING_ID = "G-5NLSN9BLN4";
+ReactGA.initialize(TRACKING_ID);
 
 const Index = React.lazy(() => import('./components/index'));
 const CompetitionsMatches = React.lazy(
@@ -36,13 +28,10 @@ const CompetitionsMatches = React.lazy(
 const MatchAllMarkets = React.lazy(() => import('./components/competition/all-markets'));
 
 const Jackpot = React.lazy(() => import('./components/jackpot'));
-const Betslip=React.lazy(()=>{
-    import('./components/pages/Accounts/Betslip')
-})
+
 const Live = React.lazy(
     () => import('./components/live')
 );
-const Profile=React.lazy(()=>import("./components/pages/Accounts/Profile"))
 const MyBets = React.lazy(
     () => import('./components/my-bets')
 );
@@ -80,47 +69,44 @@ const Deposit = React.lazy(
 const Signup = React.lazy(
     () => import('./components/pages/signup')
 );
-const Login=React.lazy(
-    ()=>import('./components/pages/Login')
-);
+
 const ResetPassword = React.lazy(
     () => import('./components/pages/auth/reset-password')
-);
+)
 
 const VerifyAccount = React.lazy(
     () => import('./components/pages/auth/verify-account')
-);
+)
 
-const MobileApp = React.lazy(() => import('./components/pages/app'));
+const MobileApp = React.lazy(() => import('./components/pages/app'))
 
 const ProtectedRoute = React.lazy(
     () => import('./components/utils/protected-route')
 );
 
-const PrintMatches = React.lazy(() => import('./components/pages/downloads'));
+const PrintMatches = React.lazy(() => import('./components/pages/downloads'))
 
-const Casino = React.lazy(() => import('./components/pages/casino/Casino'));
+const Casino = React.lazy(() => import('./components/pages/casino/Casino'))
 
-const LiveCasino = React.lazy(() => import('./components/pages/casino/LiveCasino'));
+const LiveCasino = React.lazy(() => import('./components/pages/casino/LiveCasino'))
 
-const Virtuals = React.lazy(() => import('./components/pages/casino/Virtuals'));
+const Virtuals = React.lazy(() => import('./components/pages/casino/Virtuals'))
 
-const CasinoGamePlay = React.lazy(() => import('./components/pages/casino/GamePlay'));
+const CasinoGamePlay = React.lazy(() => import('./components/pages/casino/GamePlay'))
 
-const Promotions = React.lazy(() => import('./components/pages/promotions/Promotions'));
+const Promotions = React.lazy(() => import('./components/pages/promotions/Promotions'))
 
-const LiveScore = React.lazy(() => import('./components/pages/livescore/LiveScore'));
+const LiveScore = React.lazy(() => import('./components/pages/livescore/LiveScore'))
 
-const PageNotFound = React.lazy(() => import('./components/pages/404/NotFound'));
+const PageNotFound = React.lazy(() => import('./components/pages/404/NotFound'))
 
 
 const Logout = () => {
     let navigate = useNavigate();
+
     const out = useCallback(() => {
         localStorage.clear();
-        setTimeout(()=>navigate("/"),500
-        );
-        localStorage.clear();
+        navigate("/");
     }, [navigate]);
 
     useEffect(() => {
@@ -129,58 +115,29 @@ const Logout = () => {
     return null;
 }
 
-const App=React.lazy(()=>import('./App'));
-const TRACKING_ID = "G-5NLSN9BLN4";
-ReactGA.initialize(TRACKING_ID);
-
 const container = document.getElementById("app");
 render((
     <Store>
         <BrowserRouter>
-            <Suspense fallback={
-            <Loading/>
-            }>
+            <Suspense fallback={<Loading/>}>
                 <Routes>
-                    <Route path="*" element={<Index/>}/>
+                    <Route path="*" element={<Navigate to="/404"/>}/>
                     <Route exact path="/" element={<Index/>}/>
-                    <Route exact path="/404" element={<PageNotFound/>}/>
-                    <Route exact path={"/profile"} element={<Profile/>}/>
-                    {/*<Route exact path="/casino" element={<Casino/>}/>*/}
-                    {/*<Route exact path="/live-casino" element={<LiveCasino/>}/>*/}
                     <Route exact path="/virtuals" element={<Virtuals/>}/>
                     <Route exact path="/livescore" element={<LiveScore/>}/>
+                    <Route exact path="/404" element={<PageNotFound/>}/>
+                    {/*<Route exact path="/casino" element={<Casino/>}/>*/}
+                    {/*<Route exact path="/live-casino" element={<LiveCasino/>}/>*/}
                     <Route exact path="/gameplay/:game_id/:live" element={<CasinoGamePlay/>}/>
-
                     <Route exact path="/highlights" element={<Index/>}/>
                     <Route exact path="/upcoming" element={<Index/>}/>
                     <Route exact path="/tomorrow" element={<Index/>}/>
-
-                    <Route path="/betslip" element={<Betslip/>}/>
-
-                    <Route exact path="/competition" >
-                        <Route index element={<CompetitionsMatches/>}/>
-                        <Route exact path={":id"} element={<MatchAllMarkets/>}/>
-                        <Route exact path={":sportid/:categoryid/:competitionid"} element={<CompetitionsMatches/>}/>
-                    </Route>
-                    {/*<Route exact path="/competition/:id" element={<CompetitionsMatches/>}/>*/}
-                    {/*<Route exact path="/competition/:sportid/:categoryid/:competitionid"*/}
-                    {/*       element={<CompetitionsMatches/>}/>*/}
-                    {/*<Route exact path={"/match"}>*/}
-                    {/*    */}
-                    {/*</Route>*/}
-                    {/*<Route exact path="/match" >*/}
-                    {/*    <Route index element={<MatchAllMarkets/>}/>*/}
-                    {/*    <Route exact path={":id"} element={<MatchAllMarkets/>}/>*/}
-                    {/*    <Route exact path={"live/:id"} element={<MatchAllMarkets/>}/>*/}
-                    {/*</Route>*/}
+                    <Route exact path="/competition/:id" element={<CompetitionsMatches/>}/>
+                    <Route exact path="/competition/:sportid/:categoryid/:competitionid"
+                           element={<CompetitionsMatches/>}/>
                     <Route exact path="/match/:id" element={<MatchAllMarkets/>}/>
                     <Route exact path="/match/live/:id" element={<MatchAllMarkets live/>}/>
-
                     <Route exact path="/jackpot" element={<Jackpot/>}/>
-                    {/*<Route exact path="/live" >*/}
-                    {/*    <Route index element={<Live/>}/>*/}
-                    {/*    <Route path={":spid"} element={<Live/>}/>*/}
-                    {/*</Route>*/}
                     <Route exact path="/live" element={<Live/>}/>
                     <Route exact path="/live/:spid" element={<Live/>}/>
                     <Route exact path="/privacy-policy" element={<PrivacyPolicy/>}/>
@@ -191,7 +148,6 @@ render((
                     <Route exact path="/terms-and-conditions" element={<TermsAndConditions/>}/>
                     <Route exact path="/how-to-play" element={<HowToPlay/>}/>
                     <Route exact path="/signup" element={<Signup/>}/>
-                    <Route exact path="/login" element={<Login/>}/>
                     <Route exact path="/reset-password" element={<ResetPassword/>}/>
                     <Route exact path="/verify-account" element={<VerifyAccount/>}/>
                     <Route exact path="/app" element={<MobileApp/>}/>
@@ -212,8 +168,7 @@ render((
     </Store>
 ), container);
 
-// Call the element loader after the platform has been bootstrapped
-defineCustomElements(window);
+
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals

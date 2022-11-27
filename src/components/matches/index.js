@@ -20,9 +20,9 @@ import padlock from '../../assets/img/padlock.png';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faChartLine, faFire} from "@fortawesome/free-solid-svg-icons";
 import {getFromLocalStorage} from "../utils/local-storage";
-import {returnTrue} from "react-currency-format/lib/utils";
+
 import myGif from '../../assets/img/gif/fire5.gif'
-import * as url from "url";
+
 import {Input} from "@material-ui/core";
 import useWindowDimensions from "../header/Dimensions";
 import {Link} from "react-router-dom";
@@ -720,12 +720,12 @@ const MatchRow = (props) => {
                         <>ID: {match?.game_id}</>
                     </div>
                     <div className="col align-items-center col-xs-12 match-detail-container px-2 change-match only-mobile">
-                        <Link to={`/match/${live ? 'live/' + match.parent_match_id : match.match_id}`}>
-                            <div className="d-flex flex-column py-2">
+                        <a href={jackpot ? '#' : `/match/${live ? 'live/' + match.parent_match_id : match.match_id}`}>
+                            <div className="d-flex flex-column">
                                 <div className="compt-detail overflow-ellipsis">
                                     <small>{match.category} | {match.competition_name}</small>
                                 </div>
-                                <div className="compt-teams d-flex to-flex">
+                                <div className="compt-teams d-flex flex-column">
                                     <div className={'bold'}>
                                         {live && (match?.match_status !== 'ended') && <ColoredCircle color="red"/>}
                                         {match.home_team}
@@ -740,8 +740,7 @@ const MatchRow = (props) => {
 
                                 </div>
                             </div>
-                        </Link>
-                    </div>
+                        </a>   </div>
                     <div className={'to-tabview'}>
                         {!pdown && !jackpot &&
                             <SideBets match={match} live={live} style={{d: "inline"}}/>}

@@ -116,7 +116,6 @@ const PageNotFound = React.lazy(() => import('./components/pages/404/NotFound'))
 
 const Logout = () => {
     let navigate = useNavigate();
-
     const out = useCallback(() => {
         localStorage.clear();
         setTimeout(()=>navigate("/"),500
@@ -133,7 +132,6 @@ const Logout = () => {
 const App=React.lazy(()=>import('./App'));
 const TRACKING_ID = "G-5NLSN9BLN4";
 ReactGA.initialize(TRACKING_ID);
-
 
 const container = document.getElementById("app");
 render((
@@ -158,20 +156,33 @@ render((
                     <Route exact path="/tomorrow" element={<Index/>}/>
 
                     <Route path="/betslip" element={<Betslip/>}/>
-                    <Route exact path="/competition/:id" element={<CompetitionsMatches/>}/>
-                    <Route exact path="/competition/:sportid/:categoryid/:competitionid"
-                           element={<CompetitionsMatches/>}/>
+
+                    <Route exact path="/competition" >
+                        <Route index element={<CompetitionsMatches/>}/>
+                        <Route exact path={":id"} element={<MatchAllMarkets/>}/>
+                        <Route exact path={":sportid/:categoryid/:competitionid"} element={<CompetitionsMatches/>}/>
+                    </Route>
+                    {/*<Route exact path="/competition/:id" element={<CompetitionsMatches/>}/>*/}
+                    {/*<Route exact path="/competition/:sportid/:categoryid/:competitionid"*/}
+                    {/*       element={<CompetitionsMatches/>}/>*/}
                     {/*<Route exact path={"/match"}>*/}
                     {/*    */}
                     {/*</Route>*/}
+                    {/*<Route exact path="/match" >*/}
+                    {/*    <Route index element={<MatchAllMarkets/>}/>*/}
+                    {/*    <Route exact path={":id"} element={<MatchAllMarkets/>}/>*/}
+                    {/*    <Route exact path={"live/:id"} element={<MatchAllMarkets/>}/>*/}
+                    {/*</Route>*/}
                     <Route exact path="/match/:id" element={<MatchAllMarkets/>}/>
                     <Route exact path="/match/live/:id" element={<MatchAllMarkets live/>}/>
+
                     <Route exact path="/jackpot" element={<Jackpot/>}/>
-                    <Route exact path="/live" >
-                        <Route index element={<Live/>}/>
-                        <Route path={":spid"} element={<Live/>}/>
-                    </Route>
-                    {/*<Route exact path="/live/:spid" element={<Live/>}/>*/}
+                    {/*<Route exact path="/live" >*/}
+                    {/*    <Route index element={<Live/>}/>*/}
+                    {/*    <Route path={":spid"} element={<Live/>}/>*/}
+                    {/*</Route>*/}
+                    <Route exact path="/live" element={<Live/>}/>
+                    <Route exact path="/live/:spid" element={<Live/>}/>
                     <Route exact path="/privacy-policy" element={<PrivacyPolicy/>}/>
                     <Route exact path="/anti-money-laundering" element={<AntimoneyLaundering/>}/>
                     <Route exact path="/responsible-gambling" element={<ResponsibleGambling/>}/>

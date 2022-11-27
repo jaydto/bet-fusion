@@ -326,10 +326,11 @@ const SideBets = (props) => {
                    title={'View Stats'}>
                     <FontAwesomeIcon className={"icon-size"} icon={faChartLine}/>
                 </a>
-                <a className="side small w-auto" title={'More Markets'}
-                   href={`match/${live ?  'live/'+ match.parent_match_id : match?.match_id}`
-                   }>+{match.side_bets}&nbsp;<span className={"mobile-only"}> Markets</span>
-                </a>
+                    <Link className="side" title={'More Markets'}
+                          to={`/match/${live ? 'live/' : ''}${
+                              live ? match.parent_match_id : match?.match_id}`
+                          }>+{match.side_bets}
+                    </Link>
             </>}
         </div>
     )

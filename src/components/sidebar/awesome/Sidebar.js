@@ -204,7 +204,7 @@ const Sidebar = (props) => {
                                 </SubMenu>
                                 <MenuItem>
                                     <a onClick={() => gaEventTracker(`Today Games ${competition?.sport_name}`)}
-                                       href={`/upcoming?sport_id =${competition.sport_id}&sub_type_id=${getDefaultMarketsForSport(competition)}`}>
+                                       href={`/upcoming?sport_id=${competition.sport_id}&sub_type_id=${getDefaultMarketsForSport(competition)}`}>
                                         Today Games
                                     </a>
                                 </MenuItem>

@@ -13,7 +13,7 @@ import useWindowDimensions from "../../header/Dimensions";
 const GamePlay = (props) => {
     let url = new URL(window.location)
     const live = url.searchParams.get('live')
-    const game_id= url.searchParams.get('live')
+    const game_id= url.searchParams.get('game_id')
 
 
     const [gameUrl, setGameUrl] = useState('')

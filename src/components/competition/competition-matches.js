@@ -5,6 +5,7 @@ import {Context} from '../../context/store';
 import useInterval from "../../hooks/set-interval.hook";
 import {getBetslip} from '../utils/betslip' ;
 import {Spinner} from "react-bootstrap";
+import useWindowDimensions from "../header/Dimensions";
 
 const Header = React.lazy(() => import('../header/header'));
 const Footer = React.lazy(() => import('../footer/footer'));
@@ -20,7 +21,10 @@ const CompetitionMatches = (props) => {
     const [page, setPage] = useState(1);
     const [matches, setMatches] = useState(null);
     const [state, dispatch] = useContext(Context);
+    const {height, width} = useWindowDimensions();
+
     const url = new URL(window.location)
+
     const competitionid= url.searchParams.get('competitionid')
     const [producerDown, setProducerDown] = useState(false);
     const [userSlipsValidation, setUserSlipsValidation] = useState();
@@ -100,8 +104,8 @@ const CompetitionMatches = (props) => {
     return (
         <>
             <Header/>
-            <div className="amt">
-                <div className="d-flex flex-row justify-content-between">
+            <div className={(width<=514?state?.user?"user_logged":"amt":"amt")}>
+            <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions/>
                     <div className="gz home" style={{width: '100%'}}>
                         <div className="homepage">

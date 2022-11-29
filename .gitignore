@@ -8,13 +8,14 @@
 /src/Ansible
 # testing
 /coverage
-
+/android
 # production
 /cordova
 
 /ios
 /build
 /ios
+/dist
 
 /cordova
 /capacitor.config.ts

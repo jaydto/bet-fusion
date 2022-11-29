@@ -83,11 +83,11 @@ const LiveSideBar = (props) => {
                                     <Menu iconShape="circle inner-live live-items"  >
                                         <MenuItem className={"live-items"}>
                                             <Link className="col-12"
-                                               to={`/live?sport_id=${livesport.sport_id}`}>
+                                                  to={`/live/${livesport.sport_id}`}>
                                                 <Row>
                                                     <Col lg="11" md="11" sm="11" xs="11" className="topl">
                                                         <Row style={{color: "#69819a"}}>
-                                                            <Col className={'text-white col-4'}>{livesport.sport_name} </Col>
+                                                            <Col className={'text-white col-7'}>{livesport.sport_name} </Col>
                                                             <Col>
                                                                 <span className={`badge rounded-pill bg-dark ${width<=767?"live-slide":""}`} style={{
                                                                     float: "right",

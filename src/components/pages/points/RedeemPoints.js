@@ -3,7 +3,6 @@ import makeRequest from "../../utils/fetch-request";
 import {Formik, Form} from 'formik';
 import {Context} from '../../../context/store';
 import {getBetslip} from '../../utils/betslip'
-import useWindowDimensions from "../../header/Dimensions";
 
 
 const Header = React.lazy(() => import('../../header/header'));
@@ -14,7 +13,7 @@ const Footer = React.lazy(() => import('../../footer/footer'));
 const RedeemPoints = (props) => {
     //todo get the phone number from logged in user ....
     const [state, dispatch] = useContext(Context);
-    const {height, width} = useWindowDimensions();
+
     const [success, setSuccess] = useState(false);
     const [message, setMessage] = useState(null);
 
@@ -84,9 +83,9 @@ const RedeemPoints = (props) => {
                     </div>
                 </div>
                 <div className="form-group row d-flex justify-content-left mb-4">
-                    <div className="w-50 d-flex align-items-start">
-                        <button type={"submit"}
-                                className='btn btn-lg btn-primary mt-5 w-100 deposit-withdraw-button' >
+                    <div className="col-md-3">
+                        <button
+                            className='btn btn-lg btn-primary mt-5 col-md-12 deposit-withdraw-button'>
                             Redeem Points
                         </button>
                     </div>
@@ -159,7 +158,7 @@ const RedeemPoints = (props) => {
     return (
         <React.Fragment>
             <Header/>
-            <div className={width <= 514 ? state?.user ? "user_logged" : "amt" : "amt"}>
+            <div className="amt">
                 <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions/>
                     <div className="gz home" style={{width: '100%', overflowX: "clip"}}>
@@ -178,9 +177,10 @@ const RedeemPoints = (props) => {
                     </div>
                 </div>
             </div>
-            <div className={"mobile-remove "}>
-            <Footer/>
+            <div className={"mobile-remove"}>
+                <Footer/>
             </div>
+
         </React.Fragment>
     )
 }

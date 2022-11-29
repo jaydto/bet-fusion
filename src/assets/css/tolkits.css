@@ -87,7 +87,7 @@ input, select, textarea {
         /*justify-content:space-between;*/
     }
     .live-items{
-        width: 100px;
+        width: auto;
         overflow: hidden
     }
     .live-items> div{
@@ -104,7 +104,7 @@ input, select, textarea {
         padding-bottom: 5px !important;
     }
     .pro-menu-item > div{
-        width: 180px;
+        width: 140px;
     }
 
     .pro-menu-item.sidebar-mobile > div{

@@ -1,7 +1,7 @@
 import Header from "../../header/header";
 import SideBar from "../../sidebar/awesome/Sidebar";
 import Footer from "../../footer/footer";
-import React from "react";
+import React, {useContext} from "react";
 
 import twentyPercentDepositBonus from '../../../assets/img/banner/products/150PercentDaily_.jpg'
 import karibuBonus from '../../../assets/img/banner/products/100_RegBonus.jpg'
@@ -14,12 +14,16 @@ import advance from '../../../assets/img/banner/products/Advance.jpg'
 // import rushHour from '../../../assets/img/banner/products/Rush Hour.jpg'
 
 import {Table} from "react-bootstrap";
+import useWindowDimensions from "../../header/Dimensions";
+import {Context} from "../../../context/store";
 
 const Promotions = () => {
+    const {height, width} = useWindowDimensions();
+    const [state, dispatch] = useContext(Context);
     return (
         <>
             <Header/>
-            <div className="amt">
+            <div className={(width<=514?state?.user?"user_logged":"amt":"amt")}>
                 <div className="d-flex flex-row">
                     <SideBar loadCompetitions/>
                     <div className="gz home" style={{width: '100%'}}>

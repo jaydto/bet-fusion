@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import {
     Accordion,
     AccordionItem,
@@ -7,17 +7,21 @@ import {
     AccordionItemPanel,
 } from 'react-accessible-accordion';
 import 'react-accessible-accordion/dist/fancy-example.css';
+import useWindowDimensions from "../../header/Dimensions";
+import {Context} from "../../../context/store";
 const Header = React.lazy(()=>import('../../header/header'));
 const SideBar = React.lazy(()=>import('../../sidebar/awesome/Sidebar'));
 const Footer = React.lazy(()=>import('../../footer/footer'));
 const Right = React.lazy(()=>import('../../right/index'));
 
 const CookiePolicy = () => {
+    const {height, width} = useWindowDimensions();
+    const [state, dispatch] = useContext(Context);
     return (
         <>
             <Header/>
-            <div className="amt">
-                <div className="d-flex flex-row justify-content-between">
+            <div className={(width<=514?state?.user?"user_logged":"amt":"amt")}>
+            <div className="d-flex flex-row justify-content-between">
                     <SideBar  loadCompetitions/>
                     <div className="gz home w-100">
                         <div className="homepage">

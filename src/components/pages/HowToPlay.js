@@ -19,6 +19,7 @@ import {
 import {getBetslip} from '../utils/betslip' ;
 import {Context} from '../../context/store';
 import {AccordionButton} from "react-bootstrap";
+import useWindowDimensions from "../header/Dimensions";
 
 const Header = React.lazy(() => import('../header/header'));
 const Footer = React.lazy(() => import('../footer/footer'));
@@ -27,8 +28,9 @@ const Right = React.lazy(() => import('../right/index'));
 
 
 const HowToPlay = (props) => {
+    const {height, width} = useWindowDimensions();
 
-    const [, dispatch] = useContext(Context);
+    const [state, dispatch] = useContext(Context);
 
     useEffect(() => {
         let betslip = getBetslip();
@@ -39,7 +41,7 @@ const HowToPlay = (props) => {
     return (
         <>
             <Header/>
-            <div className="amt">
+            <div className={(width<=514?state?.user?"user_logged":"amt":"amt")}>
                 <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions/>
                     <div className="gz home" style={{width: '100%'}}>

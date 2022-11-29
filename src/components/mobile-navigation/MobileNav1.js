@@ -148,23 +148,18 @@ const MobileNav1 = (props) => {
                 </td>
                 <td style={{paddingLeft: "4px"}} className={window.location.search.includes('worldcup') ? 'active  ' : 'menu-t'}
                     onClick={() => gaEventTracker('World Cup')}>
-                    <Link className="cg fm ox anl url-link d-flex flex-column"
-                       to={"/competition/79/8085/18585?sport_id=79&sub_type_id=1,18,29&limit=500&c=worldcup"}
-                       title="Fifa World Cup">
-                        <span className={"menu-img"}>
-                            <LazyLoadImage src={worldCup} className={'world-cup '} style={{height: "25px",borderRadius:"0 !important"}}></LazyLoadImage>
-                        </span>
-                        <span>
-                            <strong>Fifa World Cup</strong>
-                        </span>
-
+                    <Link className="cg fm ox anl url-link d-flex flex-column align-items-center"
+                          to={{pathname: "/18585"}}
+                          title="Fifa World Cup"
+                    >
+                        <img src={worldCup} className={'world-cup'}
+                             style={{height: "25px", borderRadius: "0 !important"}}></img>
+                        <strong>Fifa World Cup</strong>
                     </Link>
-                    {console.log("sports_data",sport)}
                 </td>
 
-
                 {sport?.all_sports.map((allsports, index) => (
-                <td className={`menu-t sport-check ${pathname===allsports.sport_id?"active":""}`} style={{paddingLeft: "4px"}}>
+                <td key={index} className={`menu-t sport-check ${pathname===allsports.sport_id?"active":""}`} style={{paddingLeft: "4px"}}>
                     <Link to={`/highlights?sport_id=${allsports.sport_id}&sub_type_id=${getDefaultMarketsForSport(allsports)}`} >
                         <div className="inner-div active">
                             {/*{console.log('all sports',allsports)}*/}

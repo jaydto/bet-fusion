@@ -8,6 +8,7 @@ import SideBar from "../../sidebar/awesome/Sidebar";
 import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
 import Notify from "../../utils/Notify";
 import {Badge, Button, ButtonGroup} from "react-bootstrap";
+import useWindowDimensions from "../../header/Dimensions";
 
 const Casino = (props) => {
 
@@ -16,6 +17,8 @@ const Casino = (props) => {
     const [categories, setCategories] = useState([])
 
     const [games, setGames] = useState([])
+    const {height, width} = useWindowDimensions();
+
 
     const fetchGames = async (category = 'vs') => {
         let endpoint = "/v1/casino-games?game-type-id=" + category
@@ -58,10 +61,12 @@ const Casino = (props) => {
     }, [])
 
     return (
+
         <>
             <Header/>
-            <div className="amt">
-                <div className="d-flex flex-row">
+            <div className={(width<=514?user?"user_logged":"amt":"amt")}>
+
+            <div className="d-flex flex-row">
                     <SideBar loadCompetitions/>
                     <div className="gz home" style={{width: '100%'}}>
                         <div className="homepage">

@@ -1,9 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Formik, Form} from 'formik';
 import makeRequest from "../utils/fetch-request";
 import mpesa from '../../assets/img/mpesa-3.png'
 import {clearTrackingData, setLocalStorage, setTrackingData} from "../utils/local-storage";
 import {useNavigate} from "react-router-dom";
+import useWindowDimensions from "../header/Dimensions";
+import {Context} from "../../context/store";
 
 const Header = React.lazy(() => import('../header/header'));
 const SideBar = React.lazy(() => import('../sidebar/awesome/Sidebar'));
@@ -15,6 +17,8 @@ const Signup = (props) => {
     const [success, setSuccess] = useState(false);
     const [message, setMessage] = useState(null);
     const navigate=useNavigate();
+    const {height, width} = useWindowDimensions();
+    const [state, dispatch] = useContext(Context);
 
     const initialValues = {
         msisdn: '',
@@ -159,7 +163,7 @@ const Signup = (props) => {
     return (
         <React.Fragment>
             <Header/>
-            <div className="amt">
+            <div className={(width<=514?state?.user?"user_logged":"amt":"amt")}>
                 <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions/>
                     <div className="gz home w-100">

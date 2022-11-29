@@ -6,17 +6,21 @@ import {
     AccordionItemPanel,
 } from 'react-accessible-accordion';
 import 'react-accessible-accordion/dist/fancy-example.css';
-import React from "react";
+import React, {useContext} from "react";
 import Footer from '../../footer/footer'
 import Header from '../../header/header'
 import Right from '../../right/index'
 import SideBar from '../../sidebar/awesome/Sidebar'
+import useWindowDimensions from "../../header/Dimensions";
+import {Context} from "../../../context/store";
 
 const PrivacyPolicy = () => {
+    const {height, width} = useWindowDimensions();
+    const [state, dispatch] = useContext(Context);
     return (
         <>
             <Header/>
-            <div className="amt">
+            <div className={(width<=514?state?.user?"user_logged":"amt":"amt")}>
                 <div className="d-flex flex-row justify-content-between">
                     <SideBar/>
                     <div className="gz home w-100">

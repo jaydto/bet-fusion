@@ -22,8 +22,9 @@ const Right = React.lazy(() => import('./right/index'));
 const Live = (props) => {
     const [matches, setMatches] = useState();
     const [state, dispatch] = useContext(Context);
-    const {spid} = useParams();
     const {height, width} = useWindowDimensions();
+    const {spid} = useParams();
+
 
     const [producerDown, setProducerDown] = useState(false);
     const location = useLocation();

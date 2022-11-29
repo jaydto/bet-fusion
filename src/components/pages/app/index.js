@@ -1,20 +1,24 @@
-import React, {useEffect} from "react";
+import React, {useContext, useEffect} from "react";
 import 'react-accessible-accordion/dist/fancy-example.css';
 import DownloadLink from "react-download-link";
 import mobileBanner from '../../../assets/img/mobile/APPDownload.png'
 import {Link} from "react-router-dom";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
+import useWindowDimensions from "../../header/Dimensions";
+import {Context} from "../../../context/store";
 
 const Header = React.lazy(() => import('../../header/header'));
 const SideBar = React.lazy(() => import('../../sidebar/awesome/Sidebar'));
 const Footer = React.lazy(() => import('../../footer/footer'));
 const Right = React.lazy(() => import('../../right/index'));
+
 // const downloadAPKFile = React.lazy(() => import('../../../assets/betnare.apk'));
 
 
 const MobileApp = () => {
     const gaEventTracker = useAnalyticsEventTracker('App');
-
+    const {height, width} = useWindowDimensions();
+    const [state,dispatch]=useContext(Context);
     useEffect(() => {
         gaEventTracker('App Page')
     })
@@ -26,8 +30,8 @@ const MobileApp = () => {
     return (
         <>
             <Header/>
-            <div className="amt">
-                <div className="d-flex flex-row justify-content-between">
+            <div className={(width<=514?state?.user?"user_logged":"amt":"amt")}>
+            <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions/>
                     <div className="gz home" style={{width: '100%',overflowX: 'clip'}}>
                         <div className="homepage">

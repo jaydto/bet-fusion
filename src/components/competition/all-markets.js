@@ -1,7 +1,7 @@
-import React,  {
+import React, {
     useLayoutEffect,
     useState,
-    useCallback,
+    useCallback, useContext,
 } from "react";
 import { useParams } from 'react-router-dom';
 
@@ -11,6 +11,8 @@ import useInterval from "../../hooks/set-interval.hook";
 import { getBetslip } from '../utils/betslip' ;
 
 import { MarketList } from '../matches';
+import {Context} from "../../context/store";
+import useWindowDimensions from "../header/Dimensions";
 
 const Header = React.lazy(()=>import('../header/header'));
 const Footer = React.lazy(()=>import('../footer/footer'));
@@ -21,9 +23,11 @@ const MatchAllMarkets = (props) => {
     const [page, setPage] = useState(1);
     const [producerDown, setProducerDown] = useState(false);
     const { live } = props;
+
     const [matchwithmarkets, setMatchWithMarkets] = useState();
     const [userSlipsValidation, setUserSlipsValidation] = useState();
-
+    const {height, width} = useWindowDimensions();
+    const [state, dispatch] = useContext(Context);
     const params = useParams();
     const [isLoading, setIsLoading] = useState(false);
 
@@ -77,9 +81,10 @@ const MatchAllMarkets = (props) => {
     }, [fetchPagedData]);
 
     return (
+
         <>
             <Header />
-            <div className="amt">
+            <div className={(width<=514?state?.user?"user_logged":"amt":"amt")}>
                 <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions />
                     <div className="gz home"  style={{width:'100%'}}>

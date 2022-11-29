@@ -232,8 +232,8 @@ const MatchHeaderRow = (props) => {
                     {/*desktop*/}
                     {!live && !jackpot && extraMarketDisplays.length > 0 && (
                         <>
-                            {extraMarketDisplays?.map((extra_market) => (
-                                <div className={'to-deskview flex-column text-white'}>
+                            {extraMarketDisplays?.map((extra_market,index) => (
+                                <div key={index} className={'to-deskview flex-column text-white'}>
                                     <span className={'small text-center text-uppercase bold'}>
                                         {extra_market.name}
                                     </span>
@@ -588,7 +588,7 @@ const MarketRow = (props) => {
                 {market_id}
             </Row>
 
-            {markets && markets.map((mkt_odds) => {
+            {markets && markets.map((mkt_odds,index) => {
                 // console.log(mkt_odds)
                 return (<>
                     <Col className="match-detail" style={{width: width, float: "left"}}>
@@ -852,7 +852,7 @@ const MatchRow = (props) => {
                         {match?.competition_name!="World Cup"&&!jackpot  &&  <>
                             {Object.entries(match?.extra_odds || {}).map(([marketName, odds], index) => (
                                 marketName !== '' && (
-                                    <div
+                                    <div key={index}
                                         className={'d-flex to-flex-1 my-lg-0  w-100'}>
                                         <div
                                             className="c-btn-group align-self-center justify-content-center  flex-md-column text-center  flex-sm-row text-center to-tabview mobile-remove">
@@ -872,9 +872,9 @@ const MatchRow = (props) => {
                                             className={`c-btn-group m-lg-1  align-self-center px-2 to-tabview justify-content-center flex-sm-row flex-md-row flex-lg-row `}>
 
                                             {
-                                                Object.entries(odds || {}).map(([odd_key, odd_data]) =>
+                                                Object.entries(odds || {}).map(([odd_key, odd_data],index) =>
                                                     (
-                                                        <div
+                                                        <div key={index}
                                                             className={"d-flex flex-column w-100 margin-l-mobile px-sm-1 px-md-1 px-lg-1 "}>
                                                             <div
                                                                 className=" c-btn-header text-white w-100 to-tabview flex-column px-sm-1 px-lg-0 px-md-1 mobile-remove ">

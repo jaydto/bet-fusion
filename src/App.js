@@ -1,14 +1,14 @@
 
 import './App.css';
-
-function App() {
-
-  return (
-    <div className="App">
+import React, {useCallback, useEffect} from "react";
 
 
-    </div>
-  );
+
+
+const App=()=> {
+return (
+    <></>
+)
 }
 
 export default App;

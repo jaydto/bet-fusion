@@ -3,8 +3,9 @@ import SideBar from "../../sidebar/awesome/Sidebar";
 import Footer from "../../footer/footer";
 import React, {useContext} from "react";
 
-import twentyPercentDepositBonus from '../../../assets/img/banner/products/150PercentDaily_.jpg'
-import karibuBonus from '../../../assets/img/banner/products/100_RegBonus.jpg'
+import twentyPercentDepositBonus from '../../../assets/img/banner/products/20PercentDailyDepositGift.jpeg'
+import karibuBonus from '../../../assets/img/banner/products/KaribuBonus.jpeg'
+import firstDeposit from '../../../assets/img/banner/products/StakeBooster.jpeg'
 import multibetCashback from '../../../assets/img/banner/products/100PercentCashback.jpg'
 import twoHundredPercent from '../../../assets/img/banner/products/500PercentBonus_.jpg'
 import advance from '../../../assets/img/banner/products/Advance.jpg'
@@ -15,7 +16,7 @@ import advance from '../../../assets/img/banner/products/Advance.jpg'
 
 import {Table} from "react-bootstrap";
 import useWindowDimensions from "../../header/Dimensions";
-import {Context} from "../../../context/store";
+import {Context} from "copy-webpack-plugin";
 
 const Promotions = () => {
     const {height, width} = useWindowDimensions();
@@ -37,7 +38,7 @@ const Promotions = () => {
                                 </div>
                                 <div className="col">
                                     <div className={'row text-white p-2 shadow-sm d-flex justify-content-center'}>
-                                    
+
                                         <div className="col-md-12 shadow-lg promotion">
                                             <div className="d-flex flex-column">
                                                 <h5>100 BOB KARIBU BONUS</h5>
@@ -66,32 +67,69 @@ const Promotions = () => {
                                         </div>
                                         <div className="col-md-12 shadow-lg promotion">
                                             <div className="d-flex flex-column">
-                                                <h5>150% FIRST DAILY DEPOSIT BONUS (DEPOSIT UPEWE)</h5>
-                                                <img src={twentyPercentDepositBonus} className={'rounded'}/>
+                                                <h5>1500% FIRST DEPOSIT BOOSTER</h5>
+                                                <img src={firstDeposit} className={'rounded'}/>
                                                 <span><u>How to Play</u></span>
                                                 <ul>
-                                                    ✅ A client receives 150% BONUS on the FIRST deposit of the day.
+                                                    ✅ A client receives 1500% BONUS on the FIRST ever deposit.
                                                     <br/>
 
-    
                                                 </ul>
                                                 <div className="col-md-12">
                                                     <span><u>Terms and conditions</u></span>
                                                     <ol>
 
-                                                        ✅ Promotion is capped at KES.1000 max
+                                                        ✅ Make a single first deposit of any AMOUNT on BetNare.
                                                         <br/>
-                                                        ✅ Any deposit amounts exceeding 667 will only get
-                                                        KES.1000
+                                                        ✅Get 1500% of your first deposit value as Free Nare Booster
+                                                        to be used at BetNare when placing bets (in the Betslip)
                                                         <br/>
 
-                                                        ✅ The bonus is only to be issued ONCE, per player per
+                                                        ✅ Start using your BOOSTERS immediately on your 1st Cash Bet.
                                                         day.
                                                         <br/>
 
-                                                        
+                                                        ✅This offer ONLY applies to your first ever deposit from
+                                                        November 25th
 
-                                                        Bonus rules apply
+                                                        <br/>
+
+                                                        ✅The BOOSTER wallet funds Do Not have an expiry date.
+
+                                                        <br/>
+                                                    </ol>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-md-12 shadow-lg promotion">
+                                            <div className="d-flex flex-column">
+                                                <h5>20% FIRST DAILY DEPOSIT BONUS </h5>
+                                                <img src={twentyPercentDepositBonus} className={'rounded'}/>
+                                                <span><u>How to Play</u></span>
+                                                <ul>
+                                                    ✅ Get 20% daily deposit Boost on your 1st deposit of the day.
+                                                    <br/>
+                                                    ✅ E.g., When you make a deposit of 100/=, BetNare will boost your
+                                                    deposit by 20% which is 20/=. The 20/= will be Topped up into your
+                                                    BOOSTER wallet.
+                                                    <br/>
+
+                                                </ul>
+                                                <div className="col-md-12">
+                                                    <span><u>Terms and conditions</u></span>
+                                                    <ol>
+
+                                                        <ul>
+                                                            <>✅ Deposit any AMOUNT to GET the 20% DAILY BOOSTER</>
+                                                            <br/>
+                                                            <>✅ The GIFT is ONLY to be issued ONCE per player, per
+                                                                account, per day.
+                                                            </>
+                                                            <br/>
+                                                            <>✅ Kindly Note that the Gift wallet funds Do Not have
+                                                                an expiry date.
+                                                            </>
+                                                        </ul>
 
                                                     </ol>
                                                 </div>
@@ -229,40 +267,6 @@ const Promotions = () => {
                                                     promotion
                                                     <br/>
                                                     ✅ Voided bets will not apply / be considered.
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="col-md-12 d-flex flex-row shadow-lg mt-2 promotion">
-                                            <div className="col-md-12">
-                                                <div className="d-flex flex-column">
-                                                    <h5>500% FIRST DEPOSIT BONUS</h5>
-                                                    <img src={twoHundredPercent} className={'rounded'}/>
-                                                    <span><u>How to Play</u></span>
-                                                    <ul>
-
-                                                        ✅ Register – SMS “JOIN” or “BET” or “GAME” etc to 29877 Visit
-                                                        www.betnare.com and REGISTER
-                                                        <br/>
-                                                        ✅Deposit ANY amount to your Cash Wallet on Betnare. PayBill
-                                                        4087777 Acc.No. PHONE NUMBER
-
-                                                    </ul>
-                                                    <div className="col-md-12">
-                                                        <span><u>Terms and conditions</u></span>
-                                                        <ol>
-
-                                                            ✅ This offer ONLY applies to your first ever deposit
-                                                            <br/>
-
-                                                            ✅ Any Amount above KES. 49 Thus 1st deposits of KES.100 up
-                                                            to
-                                                            KES. 200 are matched with a bonus.
-                                                            <br/>
-                                                            ✅ The maximum bonus that you can receive is KES.1000
-                                                            <br/>
-
-                                                        </ol>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -424,12 +428,12 @@ const Promotions = () => {
                     </div>
                 </div>
             </div>
-            <div className={"mobile-remove"}>
-            <Footer/>
-            </div>
-        </>
+                <div className={"mobile-remove"}>
+                    <Footer/>
+                </div>
+            </>
 
-    )
+            )
 }
 
 export default Promotions

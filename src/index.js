@@ -1,9 +1,5 @@
 import React, {useEffect, useCallback, Suspense} from "react";
 import {render} from "react-dom";
-
-
-
-
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/css/application.css';
@@ -133,27 +129,24 @@ ReactGA.initialize(TRACKING_ID);
 const container = document.getElementById("app");
 render((
     <Store>
-        <BrowserRouter>
+        <BrowserRouter >
             <Suspense fallback={<Loading/>}>
                 <Routes>
                     <Route path="*" element={<Navigate to="/404"/>}/>
-                    <Route exact path="/" element={<Index/>}/>
-                    <Route exact path="/virtuals" element={<Virtuals/>}/>
+                    <Route exact path="/" element={<Index/>}>
+                        <Route exact path="/highlights" element={<Index/>}/>
+                        <Route exact path="/upcoming" element={<Index/>}/>
+                        <Route exact path="/tomorrow" element={<Index/>}/>
+                    </Route>
+                    <Route exact path="/virtuals"  element={<Virtuals/>}/>
+                    <Route exact path="gameplay"  element={<CasinoGamePlay/>}/>
+                    {/*<Route exact path="/casino" element={<Casino/>}/>*/}
+                    {/*<Route exact path="/live-casino" element={<LiveCasino/>}/>*/}
                     <Route exact path="/livescore" element={<LiveScore/>}/>
                     <Route exact path="/404" element={<PageNotFound/>}/>
                     <Route exact path={"/profile"} element={<Profile/>}/>
-                    {/*<Route exact path="/casino" element={<Casino/>}/>*/}
-                    {/*<Route exact path="/live-casino" element={<LiveCasino/>}/>*/}
-                    <Route exact path="/gameplay/:game_id/:live" element={<CasinoGamePlay/>}/>
-                    <Route exact path="/highlights" element={<Index/>}/>
-                    <Route exact path="/upcoming" element={<Index/>}/>
-                    <Route exact path="/tomorrow" element={<Index/>}/>
-                    <Route exact path= "/:competitionid"
+                    <Route exact path= "/competition"
                            element={<CompetitionsMatches/>}
-                           loader={async ({ params }) => {
-                               return fetch(
-                                   `/competition/${params.id}.json`
-                               );}}
                     />
                     <Route exact path="/competition/:sportid/:categoryid/:competitionid"
                            element={<CompetitionsMatches/>}
@@ -162,30 +155,16 @@ render((
                            }}
                     />
 
-                    <Route exact path="/match/:id"
+                    <Route exact path="/match/"
                            element={<MatchAllMarkets/>}
-                           loader={async({params})=>{
-                               return fetch(`/match/${params.id}`)
-                           }
-                           }
+
 
                     />
-                    <Route exact path="/match/live/:id"
+                    <Route exact path="/match/"
                            element={<MatchAllMarkets live/>}
-                           loader={async({params})=>{
-                               return fetch(`match/live/${params.id}`)
-                           }}
-
                     />
                     <Route exact path="/jackpot" element={<Jackpot/>}/>
                     <Route exact path="/live" element={<Live/>}/>
-                    <Route exact path="/live/:spid"
-                           element={<Live/>}
-                           loader={async({params})=>{
-                               return fetch(`live/${params.spid}`)
-
-                           }}
-                    />
                     <Route exact path="/privacy-policy" element={<PrivacyPolicy/>}/>
                     <Route exact path="/anti-money-laundering" element={<AntimoneyLaundering/>}/>
                     <Route exact path="/responsible-gambling" element={<ResponsibleGambling/>}/>
@@ -206,7 +185,7 @@ render((
                     <Route exact path="/withdraw"
                            element={<ProtectedRoute><Withdraw/></ProtectedRoute>}/>
                     <Route exact path="/redeem-points"
-                           element={<ProtectedRoute><RedeemPoints/></ProtectedRoute>}/>
+                           element={<RedeemPoints/>}/>
                     <Route exact path="/my-bets"
                            element={<ProtectedRoute><MyBets/> </ProtectedRoute>}/>
                 </Routes>

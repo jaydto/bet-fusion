@@ -3,7 +3,7 @@ import Header from "../../header/header";
 import Footer from "../../footer/footer";
 import makeRequest from "../../utils/fetch-request";
 import {LazyLoadImage} from 'react-lazy-load-image-component';
-import {Link} from "react-router-dom";
+import {Link, Outlet} from "react-router-dom";
 import SideBar from "../../sidebar/awesome/Sidebar";
 import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
 import Notify from "../../utils/Notify";
@@ -50,8 +50,9 @@ const Virtuals = (props) => {
         const userState = (getFromLocalStorage("user"));
 
         if (userState?.token) {
-            return window.location.href = `/gameplay/${game_id}/${live ? '1' : '0'}`
+            return window.location.href = `/gameplay?game_id=${game_id}&live=${live ? '1' : '0'}`
         }
+        {console.log("live",live)}
 
         return showLoginNotification()
     }
@@ -126,6 +127,7 @@ const Virtuals = (props) => {
             <div className={"mobile-remove"}>
             <Footer/>
             </div>
+
         </>
     )
 

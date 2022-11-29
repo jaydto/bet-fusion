@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import Header from "../../header/header";
 import Footer from "../../footer/footer";
-import {useParams} from "react-router-dom";
+import {useParams, useSearchParams} from "react-router-dom";
 import makeRequest from "../../utils/fetch-request";
 import Skeleton, {SkeletonTheme} from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
@@ -11,7 +11,10 @@ import {Stack} from "react-bootstrap";
 import useWindowDimensions from "../../header/Dimensions";
 
 const GamePlay = (props) => {
-    const {game_id, live} = useParams()
+    let url = new URL(window.location)
+    const live = url.searchParams.get('live')
+    const game_id= url.searchParams.get('live')
+
 
     const [gameUrl, setGameUrl] = useState('')
 

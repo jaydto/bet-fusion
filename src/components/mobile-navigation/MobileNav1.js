@@ -149,7 +149,7 @@ const MobileNav1 = (props) => {
                 <td style={{paddingLeft: "4px"}} className={window.location.search.includes('worldcup') ? 'active  ' : 'menu-t'}
                     onClick={() => gaEventTracker('World Cup')}>
                     <Link className="cg fm ox anl url-link d-flex flex-column align-items-center"
-                          to={{pathname: "/18585"}}
+                          to={{pathname: "/competition",search: "competitionid=18585&sub_type_id=1,18,29&limit=500&c=worldcup"}}
                           title="Fifa World Cup"
                     >
                         <img src={worldCup} className={'world-cup'}

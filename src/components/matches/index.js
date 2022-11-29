@@ -316,6 +316,7 @@ const SideBets = (props) => {
     const {match, live} = props;
     const [picked,] = useState();
 
+
     return (
         <div
             className={`bet-fix events-odd pad ${picked} align-self-center more-markets-container m-lg-2 `}>
@@ -327,7 +328,7 @@ const SideBets = (props) => {
                     <FontAwesomeIcon className={"icon-size"} icon={faChartLine}/>
                 </a>
                     <Link className="side" title={'More Markets'}
-                          to={`/match/${live ? 'live/' : ''}${
+                          to={`/match?live=${live ? 'live' : ''}&id=${
                               live ? match.parent_match_id : match?.match_id}`
                           }>+{match.side_bets}
                     </Link>
@@ -721,7 +722,7 @@ const MatchRow = (props) => {
                         <>ID: {match?.game_id}</>
                     </div>
                     <div className="col align-items-center col-xs-12 match-detail-container px-2 change-match only-mobile">
-                        <a href={jackpot ? '#' : `/match/${live ? 'live/' + match.parent_match_id : match.match_id}`}>
+                        <a href={jackpot ? '#' : `match/${live ? 'live/' + match.parent_match_id : match.match_id}`}>
                             <div className="d-flex flex-column">
                                 <div className="compt-detail overflow-ellipsis">
                                     <small>{match.category} | {match.competition_name}</small>

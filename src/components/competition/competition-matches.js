@@ -20,13 +20,13 @@ const CompetitionMatches = (props) => {
     const [page, setPage] = useState(1);
     const [matches, setMatches] = useState(null);
     const [state, dispatch] = useContext(Context);
-    const {sportid, categoryid, competitionid} = useParams();
+    const url = new URL(window.location)
+    const competitionid= url.searchParams.get('competitionid')
     const [producerDown, setProducerDown] = useState(false);
     const [userSlipsValidation, setUserSlipsValidation] = useState();
     const [fetching, setFetching] = useState(false)
     const [limit, setLimit] = useState(50);
     const [shouldFetch, setShouldFetch] = useState(true);
-
 
     const findPostableSlip = () => {
         let betslips = getBetslip() || {};

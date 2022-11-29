@@ -16,7 +16,9 @@ import advance from '../../../assets/img/banner/products/Advance.jpg'
 
 import {Table} from "react-bootstrap";
 import useWindowDimensions from "../../header/Dimensions";
-import {Context} from "copy-webpack-plugin";
+import {Context} from "../../../context/store";
+import Right from "../../right";
+
 
 const Promotions = () => {
     const {height, width} = useWindowDimensions();
@@ -426,6 +428,9 @@ const Promotions = () => {
                             </div>
                         </div>
                     </div>
+                </div>
+                <div className={"mobile-top"}>
+                    <Right/>
                 </div>
             </div>
                 <div className={"mobile-remove"}>

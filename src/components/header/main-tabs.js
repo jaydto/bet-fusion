@@ -1,8 +1,7 @@
 import Row from 'react-bootstrap/Row';
-import Container from 'react-bootstrap/Container';
-import MarketFilter from "../filters/MarketFilter";
 import React from "react";
-import {forEach} from "react-bootstrap/ElementChildren";
+import {Link} from "react-router-dom";
+
 
 const MainTabs = (props) => {
     const {tab} = props;
@@ -28,19 +27,19 @@ const MainTabs = (props) => {
         <Row className="full-mobile">
             <Row className="top-matches d-flex flex-row ">
                 <div className="col bg-black text-center">
-                    <a className={`cursor-pointer w-100 ${u_class}`} onClick={() => getLink('upcoming')}>
+                    <Link className={`cursor-pointer w-100 ${u_class}`} onClick={() => getLink('upcoming')}>
                         <span className="col-sm-11 main-header">Upcoming</span>
-                    </a>
+                    </Link>
                 </div>
                 <div className="col bg-black text-center">
-                    <a className={`cursor-pointer w-100 ${h_class}`} onClick={() => getLink('highlights')}>
+                    <Link className={`cursor-pointer w-100 ${h_class}`} onClick={() => getLink('highlights')}>
                         <span className="col-sm-11 main-header">Highlights</span>
-                    </a>
+                    </Link>
                 </div>
                 <div className="col bg-black text-center">
-                    <a className={`cursor-pointer w-100 ${t_class}`} onClick={() => getLink('tomorrow')}>
+                    <Link className={`cursor-pointer w-100 ${t_class}`} onClick={() => getLink('tomorrow')}>
                         <span className="col-sm-11 main-header">Tomorrow</span>
-                    </a>
+                    </Link>
                 </div>
             </Row>
         </Row>

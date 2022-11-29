@@ -23,7 +23,8 @@ const Live = (props) => {
     const [matches, setMatches] = useState();
     const [state, dispatch] = useContext(Context);
     const {height, width} = useWindowDimensions();
-    const {spid} = useParams();
+    const url = new URL(window.location)
+    const spid= url.searchParams.get('spid')
 
 
     const [producerDown, setProducerDown] = useState(false);

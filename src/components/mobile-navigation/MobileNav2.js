@@ -90,7 +90,7 @@ const MobileNav2 = (props) => {
         {/*{sport==null?setSport(getFromLocalStorage ("categories")):""}*/}
         <DropdownButton id="dropdown-league-button" variant="secondary" title="Top League" >
                 {sport?.top_soccer.map((top_soccer, index) => (
-                    <Dropdown.Item key={index} as={Link} className={"bg-light"} style={{paddingLeft: "4px"}} to={{pathname:`/${top_soccer.competition_id}`,search:`?sport_id=79&sub_type_id=1`}}>
+                    <Dropdown.Item key={index} as={Link} className={"bg-light"} style={{paddingLeft: "4px"}}  to={{pathname: `/competition`,search: `competitionid=${top_soccer.competition_id}&sub_type_id=1`}}>
                                 <div style={{textAlign: "center", fontWeight: "300"}}>
                                     {top_soccer.competition_name}
                                 </div>

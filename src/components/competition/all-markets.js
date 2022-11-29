@@ -22,13 +22,17 @@ const Right = React.lazy(()=>import('../right'));
 const MatchAllMarkets = (props) => {
     const [page, setPage] = useState(1);
     const [producerDown, setProducerDown] = useState(false);
-    const { live } = props;
+
+    let url = new URL(window.location)
+    const live = url.searchParams.get('live')
+    const id= url.searchParams.get('id')
 
     const [matchwithmarkets, setMatchWithMarkets] = useState();
     const [userSlipsValidation, setUserSlipsValidation] = useState();
     const {height, width} = useWindowDimensions();
     const [state, dispatch] = useContext(Context);
-    const params = useParams();
+
+
     const [isLoading, setIsLoading] = useState(false);
 
     const findPostableSlip = () => {
@@ -40,8 +44,8 @@ const MatchAllMarkets = (props) => {
     };
     useInterval(() => {
         let endpoint = live
-            ? "/v1/matches/live?id="+params.id
-            : "/v1/matches?id="+params.id;
+            ? "/v1/matches/live?id="+id
+            : "/v1/matches?id="+id;
 
         let betslip = findPostableSlip();
         let method = betslip ? "POST" : "GET";
@@ -57,12 +61,12 @@ const MatchAllMarkets = (props) => {
 
 
     const fetchPagedData =useCallback(async() => {
-        if(!isLoading && !isNaN(+params.id)) {
+        if(!isLoading && !isNaN(+id)) {
             setIsLoading(true);
             let betslip = findPostableSlip();
             let endpoint = live
-                ? "/v1/matches/live?id="+params.id
-                : "/v1/matches?id="+params.id;
+                ? "/v1/matches/live?id="+id
+                : "/v1/matches?id="+id;
 
             await makeRequest({url: endpoint, method: "POST", data: betslip}).then(([status, result]) => {
                 setMatchWithMarkets(result?.data|| result)

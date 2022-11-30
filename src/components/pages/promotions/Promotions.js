@@ -41,8 +41,8 @@ const Promotions = () => {
                                                 <h5>KARIBU GIFT WALLET</h5>
                                                 <img src={karibuGiftWallet} className={'rounded'}/>
                                                 <p>Register and Get the BetNare Bet Booster of UPTO 3,000/= FREE</p>
-                                                <p>The client is set to receive Up to 3,000/= to Unlock their Gift Wallet once they</p>
-                                                <span><u>Register</u></span>
+                                                <p>The client is set to receive Up to 3,000/= to Unlock their Gift Wallet once they  Register</p>
+                                               <br/>
                                                 <ul>
                                                     How to get the Nare Booster Gifts
                                                     <br/>

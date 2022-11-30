@@ -1048,7 +1048,7 @@ export const JackpotHeader = (props) => {
 
     return (
         <Container>
-            <Row className="top-matches"
+            <Row className="top-matches jackpot-resize"
                  style={{backgroundImage: `url(${bgJackpot})`, backgroundRepeat: 'no-repeat', height: "75px"}}>
                 <Row className="jp-header-text">
                     <div className="jp-header-top">

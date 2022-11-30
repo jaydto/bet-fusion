@@ -168,7 +168,7 @@ const MyBets = (props) => {
 
     const MyBetsList = (props) => {
         return (
-            <Accordion className={"px-1"} >
+            <Accordion className={"px-1 accordion-bg"} >
                 {state?.mybets && state.mybets.map((bet) => (
                     <AccordionItem
                         key = {bet.bet_id}

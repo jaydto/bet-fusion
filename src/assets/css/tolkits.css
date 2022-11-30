@@ -81,6 +81,12 @@ input, select, textarea {
 }
 
 @media (max-width:767px){
+    .jackpot-resize{
+        height:100px!important;
+    }
+    .accordion-bg{
+        background: #0e131b;
+    }
     .pro-menu > ul{
         display:flex;
         overflow-x: auto;

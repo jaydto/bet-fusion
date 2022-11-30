@@ -63,13 +63,13 @@ const MyBets = (props) => {
             <div className={`${width<=767?"w-100":'container'}`} style={Styles.headers}>
                 <div className="row">
                     {/*<div className={`${width<=767?"col":"d-none"}`}></div>*/}
-                    <div className="col text-center">CREATED</div>
-                    <div className="col  text-center">ID</div>
-                    <div className="col text-center">GAMES</div>
-                    <div className="col text-center">BET AMOUNT</div>
-                    <div className="col text-center">POSSIBLE WIN</div>
-                    <div className="col text-center">TAX</div>
-                    <div className="col text-center">State</div>
+                    <div className="col text-center mybets-font overflow-hidden">CREATED</div>
+                    <div className="col  text-center mybets-font overflow-hidden">ID</div>
+                    <div className="col text-center mybets-font overflow-hidden">GAMES</div>
+                    <div className="col text-center mybets-font overflow-hidden">BET AMOUNT</div>
+                    <div className="col text-center mybets-font overflow-hidden">POSSIBLE WIN</div>
+                    <div className="col text-center mybets-font overflow-hidden">TAX</div>
+                    <div className="col text-center mybets-font overflow-hidden">State</div>
                 </div>
             </div>
         );
@@ -111,14 +111,14 @@ const MyBets = (props) => {
         return (
             <div className={`${width<=767?"w-100":"container"}`} style={Styles.bet} key={bet.bet_id}>
                 <div className="row">
-                    <div className="col text-center">{ bet.created}</div>
-                    <div className="col text-center">{ bet.bet_id}</div>
-                    <div className="col text-center">{ bet.total_matches}</div>
-                    <div className="col text-center">{ bet.bet_amount}</div>
-                    <div className="col text-center">{ bet.possible_win}</div>
-                    <div className="col text-center">{ bet.tax}</div>
+                    <div className="col text-center mybets-font overflow-hidden">{ bet.created}</div>
+                    <div className="col text-center mybets-font overflow-hidden">{ bet.bet_id}</div>
+                    <div className="col text-center mybets-font overflow-hidden">{ bet.total_matches}</div>
+                    <div className="col text-center mybets-font overflow-hidden">{ bet.bet_amount}</div>
+                    <div className="col text-center mybets-font overflow-hidden">{ bet.possible_win}</div>
+                    <div className="col text-center mybets-font overflow-hidden">{ bet.tax}</div>
                     { canCancel == false
-                        ? <div className="col text-center">{ betStatus}</div>
+                        ? <div className="col text-center mybets-font overflow-hidden">{ betStatus}</div>
                         : cancelBetMarkup()
                     }
                 </div>

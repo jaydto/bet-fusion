@@ -722,7 +722,8 @@ const MatchRow = (props) => {
                         <>ID: {match?.game_id}</>
                     </div>
                     <div className="col align-items-center col-xs-12 match-detail-container px-2 change-match only-mobile">
-                        <a href={jackpot ? '#' : `match/${live ? 'live/' + match.parent_match_id : match.match_id}`}>
+                        <Link to={jackpot ? '#' : `/match?live=${live ? 'live' : ''}&id=${
+                              live ? match.parent_match_id : match?.match_id}`}>
                             <div className="d-flex flex-column">
                                 <div className="compt-detail overflow-ellipsis">
                                     <small>{match.category} | {match.competition_name}</small>
@@ -742,7 +743,7 @@ const MatchRow = (props) => {
 
                                 </div>
                             </div>
-                        </a>   </div>
+                        </Link>   </div>
                     <div className={'to-tabview'}>
                         {!pdown && !jackpot &&
                             <SideBets match={match} live={live} style={{d: "inline"}}/>}

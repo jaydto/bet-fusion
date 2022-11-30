@@ -86,6 +86,11 @@ input, select, textarea {
         overflow-x: auto;
         /*justify-content:space-between;*/
     }
+    .mybets-font{
+        font-size: 10px;
+        font-weight: 600;
+        font-variant: discretionary-ligatures;
+    }
     .live-items{
         width: auto;
         overflow: hidden

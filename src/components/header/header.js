@@ -153,6 +153,7 @@ const Header = (props) => {
                     <Row className="second-nav ck pc os app-navbar app-header-nav">
                         <HeaderNav/>
                     </Row>
+               { /**
                     <Navbar.Offcanvas
                         style={{width: "100% !important", height: "100%"}}
                         className='off-canvas background-primary p-0'
@@ -172,6 +173,7 @@ const Header = (props) => {
                             <SidebarMobile/>
                         </Offcanvas.Body>
                     </Navbar.Offcanvas>
+                **/ }
                 </Container>
             </Navbar>
         </>

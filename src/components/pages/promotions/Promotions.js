@@ -4,7 +4,7 @@ import Footer from "../../footer/footer";
 import React, {useContext} from "react";
 
 import twentyPercentDepositBonus from '../../../assets/img/banner/products/20PercentDailyDepositGift.jpeg'
-import karibuBonus from '../../../assets/img/banner/products/KaribuBonus.jpeg'
+
 import firstDeposit from '../../../assets/img/banner/products/StakeBooster.jpeg'
 import multibetCashback from '../../../assets/img/banner/products/100PercentCashback.jpg'
 import twoHundredPercent from '../../../assets/img/banner/products/500PercentBonus_.jpg'
@@ -13,7 +13,7 @@ import advance from '../../../assets/img/banner/products/Advance.jpg'
 // import ngware from '../../../assets/img/banner/products/Ngware.jpg'
 // import rent from '../../../assets/img/banner/products/Rent.jpg'
 // import rushHour from '../../../assets/img/banner/products/Rush Hour.jpg'
-
+import KaribuGiftWallet from '../../../assets/img/banner/products/KaribuGiftWallet.jpg'
 import {Table} from "react-bootstrap";
 import useWindowDimensions from "../../header/Dimensions";
 import {Context} from "../../../context/store";
@@ -38,30 +38,79 @@ const Promotions = () => {
                                         BETNARE PROMOTIONS
                                     </div>
                                 </div>
+
                                 <div className="col">
                                     <div className={'row text-white p-2 shadow-sm d-flex justify-content-center'}>
 
                                         <div className="col-md-12 shadow-lg promotion">
                                             <div className="d-flex flex-column">
-                                                <h5>100 BOB KARIBU BONUS</h5>
-                                                <img src={karibuBonus} className={'rounded'}/>
-                                                <span><u>Register</u></span>
+                                                <h5>KARIBU GIFT WALLET</h5>
+                                                <img src={KaribuGiftWallet} className={'rounded'}/>
+                                                <p>Register and Get the BetNare Bet Booster of UPTO 3,000/= FREE</p>
+                                                <p>The client is set to receive Up to 3,000/= to Unlock their Gift Wallet once they  Register</p>
+                                                <br/>
                                                 <ul>
-
-                                                    ✅ Register on sms by sending the word JOIN or BET or Game etc to
-                                                    29877
+                                                    How to get the Nare Booster Gifts
                                                     <br/>
-
-                                                    ✅ Visit betnare.com and create an account
+                                                    ✅REGISTER on BetNare.
+                                                    <br/>
+                                                    ✅Get UPTO 3,000 of registration as Free Nare Booster to be used on BetNare
+                                                    when placing bets (in the Betslip)
+                                                    <br/>
+                                                    ✅Start using your BOOSTERS immediately on your 1 st Cash Bet.
+                                                    <br/>
                                                 </ul>
+                                                <span><u>HOW TO USE THE BOOSTERS;</u></span>
+                                                <ul>
+                                                    ✅Place a bet with a minimum of odds of 1.5 per leg
+                                                    <br/>
+                                                    ✅A minimum of 4 games on a Multi Bet.
+                                                    <br/>
+                                                    ✅BetNare will top up your stake by 20% of the stake used.
+                                                    e.g., When you stake 50/= BetNare will boost your stake by 20% meaning
+                                                    your stake will be 60/=, if you place a Stake of 200/=, BetNare will boost it to
+                                                    240/=
+                                                    <br/>
+                                                    <br/>
+                                                    <p className={"text-center lead"}>
+                                                        <strong>NB:</strong> - Kindly Note that the Maximum Gift Bonus One can be topped up with is 40/=
+                                                        PER TICKET.
+                                                        <br/>
+                                                        - Kindly Note that the BOOSTER wallet funds Do Not have an expiry date.
+
+                                                    </p>
+
+
+                                                </ul>
+                                                <br/>
                                                 <div className="col-md-12">
                                                     <span><u>Terms and conditions</u></span>
                                                     <ol>
 
-                                                        ✅ Eligible for new accounts only.
-                                                        <br/>
 
-                                                        Bonus rules apply
+                                                        ✅ One account one Nare Booster. Accounts with the same IP address and same
+                                                        Password will be regarded as the same customer and will not be able to claim the
+                                                        Booster Gift. First Deposit Gifts would be available only if a user makes a deposit
+                                                        within the first 3 months of account opening.<br/>
+
+                                                        ✅ Once you REGISTER you get GIFT BOOSTER in total value of up to KES.3,000.<br/>
+
+                                                        ✅ You will receive all the gifts once you REGISTER . The gifts will become valid only
+                                                        on cash bets.<br/>
+                                                        ✅ The Gifts can only be used for &quot;Real Sports&quot; and not on Virtuals , Jackpot and
+                                                        Casino.<br/>
+
+                                                        ✅ These Free Bet Gifts can only be used to place bets with 4+ selections with at
+                                                        least 4 selections having Odds &gt; 1.5.<br/>
+
+                                                        ✅ Only 1 Booster Gift can be used in 1 Betslip.<br/>
+
+                                                        ✅ In this promotion, BetNare only allows one chance to award Gifts per person /
+                                                        mobile number/ IP address/device number.<br/>
+
+                                                        ✅ Duplicate accounts will be closed and will not qualify for this offer. Any winnings
+                                                        obtained unlawfully from this bonus will be removed. Promotions and Gifts are
+                                                        created in order to reward our most valued customers.<br/>
 
                                                     </ol>
                                                 </div>
@@ -278,8 +327,8 @@ const Promotions = () => {
                                                     <h5>BETNARE NGWARE</h5>
                                                     {/*<img src={ngware} className={'rounded'}/>*/}
                                                     <span>
-                                                        Monday promotion. BetNare Ngware, anzisha Wiki na Thao.
-                                                    </span>
+                        Monday promotion. BetNare Ngware, anzisha Wiki na Thao.
+                    </span>
                                                     <div className="col-md-12">
                                                         <span><u>Entry Requirements</u></span>
                                                         <ol>
@@ -308,9 +357,9 @@ const Promotions = () => {
                                                     <h5>LALA KICHAMPE</h5>
                                                     {/*<img src={lala} className={'rounded'}/>*/}
                                                     <span>
-                                                        This promotion will run on every Wednesday of the Month of
-                                                            October, 8pm to 10pm.
-                                                    </span>
+                        This promotion will run on every Wednesday of the Month of
+                            October, 8pm to 10pm.
+                    </span>
                                                     <div className="col-md-12">
                                                         <span><u>Entry Requirements</u></span>
                                                         <ol>
@@ -425,6 +474,7 @@ const Promotions = () => {
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>

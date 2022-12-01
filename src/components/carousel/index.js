@@ -6,7 +6,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import twentyPercentStakeBooster from '../../assets/img/banner/products/20PercentStakeBooster.jpeg'
 import cashback from '../../assets/img/banner/products/100PercentCashback.jpg'
 // import twenty_percent from '../../assets/img/banner/products/150PercentDaily_.jpg'
-import banner1 from '../../assets/img/banner/products/KaribuBonus.jpeg'
+import KaribuGiftWallet from '../../assets/img/banner/products/KaribuGiftWallet.jpg'
 import advance from '../../assets/img/banner/products/Advance.jpg'
 // import lala from '../../assets/img/banner/products/Lala.jpg'
 // import ngware from '../../assets/img/banner/products/Ngware.jpg'
@@ -18,7 +18,7 @@ import tisaJackpot from '../../assets/img/banner/products/TisaTisaJackpot.jpg'
 
 
 const banners = [
-    banner1,
+   KaribuGiftWallet,
     stakeBooster,
     dailyDepositGift,
     twentyPercentStakeBooster,

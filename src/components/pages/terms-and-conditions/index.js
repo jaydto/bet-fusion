@@ -6,6 +6,7 @@ import {
 import 'react-accessible-accordion/dist/fancy-example.css';
 import useWindowDimensions from "../../header/Dimensions";
 import {Context} from "../../../context/store";
+import GiftWallet from "./GiftWallet";
 
 const Header = React.lazy(()=>import('../../header/header'));
 const Footer = React.lazy(()=>import('../../footer/footer'));
@@ -61,6 +62,7 @@ const TermsAndConditions = (props) => {
                                     <Withdrawals/>
                                     <LiveBetting/>
                                     <BonusesAndPromotions/>
+                                    <GiftWallet/>
                                     <Complaints/>
                                     <Misconduct/>
                                     <ErrorsOrOmissions/>

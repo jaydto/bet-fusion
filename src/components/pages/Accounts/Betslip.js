@@ -6,9 +6,6 @@ import CompanyInfo from "../../right/company-info";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTimes} from "@fortawesome/free-solid-svg-icons";
 import MobileMenu from "../../mobile-menu";
-import {getBetslip} from "../../utils/betslip";
-import useInterval from "../../../hooks/set-interval.hook";
-import makeRequest from "../../utils/fetch-request";
 const AlertMessage = (props) => {
     return (
         <div className={`alert alert-dismissible ${props.classname}`} role='alert'>
@@ -20,7 +17,7 @@ const AlertMessage = (props) => {
     )
 }
 const Betslip = (props) => {
-    const {jackpot, betslipValidationData, jackpotData} = props;
+    const {jackpot, betslipValidationData, jackpotData,slipJackpot} = props;
     const [betSlipMobile, setBetSlipMobile] = useState(false);
 
     return (
@@ -75,7 +72,7 @@ const Betslip = (props) => {
             </div>
             <div
                 className={`${betSlipMobile ? 'd-none' : 'd-block'} tablet-only fixed-bottom text-center text-white bg-info bet-slip-footer-toggle`}>
-                <MobileMenu betslip={betslipValidationData}/>
+                <MobileMenu betslip={betslipValidationData} />
             </div>
         </div>
     );

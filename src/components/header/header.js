@@ -302,7 +302,7 @@ const Header = (props) => {
                                 </div>:""}
 
 
-                            {user ? <MobileProfile user={user}/> : ""}
+                            {user ? searching?"": <MobileProfile user={user}/> : ""}
                             {width > 514 ? <div
                                 className="col-1 button-toggle space-button">
                                 <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"md"}`} className="px-3 py-3"/>

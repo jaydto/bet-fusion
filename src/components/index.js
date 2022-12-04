@@ -22,6 +22,7 @@ const Index = (props) => {
     const [user, setUser] = useState(getFromLocalStorage("user"));
     const gaEventTracker = useAnalyticsEventTracker('Home');
     const location = useLocation();
+
     const {height, width} = useWindowDimensions();
     const [matches, setMatches] = useState([]);
     const [limit, setLimit] = useState(10);
@@ -33,6 +34,7 @@ const Index = (props) => {
     const [fetching, setFetching] = useState(false)
     const homePageRef = useRef()
     const [utmSource, setUtmSource] = useState('')
+
     const findPostableSlip = () => {
         let betslips = getBetslip() || {};
         var values = Object.keys(betslips).map(function (key) {
@@ -67,9 +69,9 @@ const Index = (props) => {
         //splitting before api call
         let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29").split(",")
         // console.log("subtypes",sub_types[0]);
-        if(width<=767){
+        if (width <= 767) {
             // console.log("condition has been met ", [sub_types[0]])
-            sub_types=[sub_types[0]]
+            sub_types = [sub_types[0]]
         }
 
         endpoint = endpoint.replaceAll(" ", '')
@@ -117,10 +119,10 @@ const Index = (props) => {
         }
         //splitting before api call
         let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29").split(",")
-        console.log("subtypes",sub_types[0]);
-        if(width<=767){
+        console.log("subtypes", sub_types[0]);
+        if (width <= 767) {
             // console.log("condition has been met ", [sub_types[0]])
-            sub_types=[sub_types[0]]
+            sub_types = [sub_types[0]]
         }
 
         endpoint += `&sub_type_id=` + (sub_types || "1,18,29")
@@ -186,37 +188,35 @@ const Index = (props) => {
     }, [utmSource])
 
 
-    return (
-        <>
-            <Header/>
+    return (<>
+        <Header/>
 
-            <div className={(width<=514?user?"user_logged":"amt":"amt")}>
-                <div className="d-flex flex-row justify-content-between">
-                    <SideBar loadCompetitions/>
-                    <div className="gz home" style={{width: '100%',overflowX: "clip"}}>
-                        <div className="homepage" ref={homePageRef}>
-                            <CarouselLoader/>
-                            <MainTabs tab={location.pathname.replace("/", "")}/>
-                            {/* <MobileCategories/> */}
-                            <MatchList
-                                live={false}
-                                matches={matches}
-                                pdown={producerDown}
-                                three_way={threeWay}
-                            />
-                        </div>
-                        <div className={`text-center mt-2 text-white ${fetching ? 'd-block' : 'd-none'}`}>
-                            <Spinner animation={'grow'} size={'lg'}/>
-                        </div>
+        <div className={(width <= 514 ? user ? "user_logged" : "amt" : "amt")}>
+            <div className="d-flex flex-row justify-content-between">
+                <SideBar loadCompetitions/>
+                <div className="gz home" style={{width: '100%', overflowX: "clip"}}>
+                    <div className="homepage" ref={homePageRef}>
+                        <CarouselLoader/>
+                        <MainTabs tab={location.pathname.replace("/", "")}/>
+                        {/* <MobileCategories/> */}
+                        <MatchList
+                            live={false}
+                            matches={matches}
+                            pdown={producerDown}
+                            three_way={threeWay}
+                        />
                     </div>
-                    <Right betslipValidationData={userSlipsValidation}/>
+                    <div className={`text-center mt-2 text-white ${fetching ? 'd-block' : 'd-none'}`}>
+                        <Spinner animation={'grow'} size={'lg'}/>
+                    </div>
                 </div>
+                <Right betslipValidationData={userSlipsValidation} jackpotData={matches?.meta}/>
             </div>
-            <div className={"mobile-remove"}>
+        </div>
+        <div className={"mobile-remove"}>
             <Footer/>
-            </div>
-        </>
-    )
+        </div>
+    </>)
 }
 
 export default Index

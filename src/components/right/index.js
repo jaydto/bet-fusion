@@ -18,7 +18,7 @@ const AlertMessage = (props) => {
 }
 
 const Right = (props) => {
-    const {jackpot, betslipValidationData, jackpotData} = props;
+    const {jackpot, betslipValidationData, jackpotData,slipJackpot} = props;
     const [betSlipMobile, setBetSlipMobile] = useState(false)
     const {height, width} = useWindowDimensions();
     const {profile} = props;
@@ -49,7 +49,7 @@ const Right = (props) => {
                     </button>
                     <div id="betslip" className="betslip">
                         <BetSlip jackpot={jackpot} betslipValidationData={betslipValidationData}
-                                 jackpotData={jackpotData}/>
+                                 jackpotData={jackpotData} />
                     </div>
                     <QuickLogin/>
                 </div>
@@ -80,7 +80,7 @@ const Right = (props) => {
 
             className={`${betSlipMobile ? 'd-none' : 'd-block'} tablet-only fixed-bottom text-center text-white bg-info bet-slip-footer-toggle`}>
 
-            <MobileMenu jackpot={jackpot} betslipValidationData={betslipValidationData}/>
+            <MobileMenu jackpot={jackpot} betslipValidationData={betslipValidationData} jackpotData={jackpotData}/>
         </div>
     </div>)
 }

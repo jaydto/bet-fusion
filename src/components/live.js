@@ -6,7 +6,7 @@ import {getJackpotBetslip, getBetslip} from './utils/betslip' ;
 import matches from "./utils/fetch-request";
 import useInterval from "../hooks/set-interval.hook";
 import {Context} from '../context/store';
-import banner from '../assets/img/banner.jpg';
+
 import {getFromLocalStorage} from "./utils/local-storage";
 import useWindowDimensions from "./header/Dimensions";
 
@@ -29,6 +29,7 @@ const Live = (props) => {
     const [producerDown, setProducerDown] = useState(false);
     const location = useLocation();
     const [userSlipsValidation, setUserSlipsValidation] = useState();
+
 
     const findPostableSlip = () => {
         let betslips = getBetslip() || {};
@@ -109,7 +110,7 @@ const Live = (props) => {
                             {matches && <MatchList live matches={matches} pdown={producerDown}/>}
                         </div>
                     </div>
-                    <Right betslipValidationData={userSlipsValidation}/>
+                    <Right betslipValidationData={userSlipsValidation} jackpotData={matches?.meta}/>
                 </div>
             </div>
             <div className={"mobile-remove"}>

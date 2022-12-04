@@ -12,6 +12,7 @@ import Container from "react-bootstrap/Container";
 import Select from "react-select";
 import {getFromLocalStorage} from "./utils/local-storage";
 import useWindowDimensions from "./header/Dimensions";
+import {getBetslip, getJackpotBetslip} from "./utils/betslip";
 
 const Right = React.lazy(() => import('./right/index'));
 const DailyJackpotTermsAndConditions = React.lazy(
@@ -23,7 +24,16 @@ const Jackpot = (props) => {
     const [user, setUser] = useState(getFromLocalStorage("user"));
     const {height, width} = useWindowDimensions();
 
+    // const findPostableSlip = () => {
+    //     let betslips = getJackpotBetslip() || {};
+    //     var values = Object.keys(betslips).map(function (key) {
+    //         return betslips[key];
+    //     });
+    //     return values;
+    // };
+
     const fetchData = useCallback(async (jackpot_id = '', jackpot_status = '') => {
+        // let betslip=findPostableSlip();
         let match_endpoint = "/v1/matches/jackpot";
         if (jackpot_id !== '') {
             match_endpoint += '?jackpot_id=' + jackpot_id
@@ -38,6 +48,8 @@ const Jackpot = (props) => {
         let [m_status, m_result] = match_result;
         if (m_status === 200) {
             setMatches(m_result);
+            console.log("jackpot results",m_result)
+
         }
 
     }, []);
@@ -118,6 +130,7 @@ const Jackpot = (props) => {
                                                 }}
                                                 onChange={loadJPResults}/>
                                     </div>
+
                                     <JackpotHeader jackpot={matches?.meta}/>
                                     <div className="matches full-mobile sticky-top container">
                                         <div
@@ -175,7 +188,9 @@ const Jackpot = (props) => {
                             </Tabs>
                         </div>
                     </div>
-                    <Right jackpot={true} jackpotData={matches?.meta}/>
+                    <Right jackpot={true} jackpotData={matches?.meta} />
+
+
                 </div>
             </div>
             <div className={"mobile-remove"}>

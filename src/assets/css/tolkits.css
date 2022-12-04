@@ -81,6 +81,23 @@ input, select, textarea {
 }
 
 @media (max-width:767px){
+    .mobile-wrap{
+        flex-wrap:nowrap;
+        overflow-x: auto;
+    }
+    .league-container{
+        max-width: 100vw;
+        width: 100vw;
+        display: inline-block;
+        overflow-y: hidden;
+        overflow-x: auto;
+
+    }
+    .league-row{
+        white-space: nowrap;
+        height:3rem;
+        overflow-x: auto;
+    }
     .jackpot-resize{
         height:100px!important;
     }
@@ -115,7 +132,10 @@ input, select, textarea {
         padding-bottom: 5px !important;
     }
     .pro-menu-item > div{
-        width: 140px;
+        width: 200px;
+    }
+    .live-items >div{
+        width:140px!important;
     }
 
     .pro-menu-item.sidebar-mobile > div{
@@ -7018,7 +7038,7 @@ ul.sport {
         font-size:2rem!important;
     }
     .sport-check:hover{
-        background:#ffc107!important;
+        border_bottom:thin solid #ffc107!important;
     }
     /*.button-radius{*/
     /*    border-radius: 1rem!important;*/
@@ -7824,7 +7844,7 @@ ul.sport {
     /*    display: none;*/
     /*}*/
     .menu-t:hover{
-        background: #ffc107 ;
+        border-bottom:thin solid #ffc107 ;
     }
 
     .bloc-icon .active{
@@ -15566,7 +15586,7 @@ img.zoom-img {
 }
 
 .bloc-icon:hover{
-    background:#ffc107!important;
+    border-bottom:thin solid #ffc107!important;
 }
 @media (max-width: 767px){
     .virtual-game-container{

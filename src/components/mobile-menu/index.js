@@ -15,6 +15,7 @@ import QuickLogin from "../right/quick-login";
 import {getFromLocalStorage} from "../utils/local-storage";
 import {Link} from "react-router-dom";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
+import {getJackpotBetslip, getBetslip} from '../utils/betslip'
 
 const MobileMenu = (props) => {
     // console.log("props aere here ", props)
@@ -62,10 +63,18 @@ const MobileMenu = (props) => {
                                 </span>
                                 </div>
                             </header>
+
                             <div id="betslip" className="betslip">
-                                <BetSlip jackpot={jackpot} betslipValidationData={betslipValidationData}/>
+                                {
+                                    ((betslipValidationData!="") || (jackpot==true || jackpot!=null) )?
+                                    <BetSlip jackpot={jackpot} betslipValidationData={betslipValidationData}
+                                             jackpotData={jackpotData} />
+                                       : "No bets available"
+
+                                }
                             </div>
                             <QuickLogin/>
+
                         </div>
                     </div>
                 </div>
@@ -85,9 +94,11 @@ const MobileMenu = (props) => {
                 <Link to={"#"} className={`  nav__betslip bloc-icon bet-slip-footer-toggle text-white`} onClick={() => {
                     setBetSlipMobile(true)
                 }}>
-                    {/*{console.log("betslip",betslipValidationData?.length)}*/}
+
                     <Badge pill bg="warning nav__betslip d-flex justify-content-center align-items-center">
-                        {betslipValidationData?.length || 0}
+                        {/*{betslipValidationData?.length || 0 || ( Object.keys(getJackpotBetslip())!==undefined &&jackpot===true?Object.keys(getJackpotBetslip())?.length:0) }*/}
+                        {betslipValidationData?.length || 0 || (jackpot===true?jackpotData?.total_games:0)}
+                        {/*{console.log("betslip_validation: ",betslipValidationData +" jackpot: " +jackpot+" jackpotData: "+Object.keys(getJackpotBetslip()))}*/}
                     </Badge>
 
                 </Link>

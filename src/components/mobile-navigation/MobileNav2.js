@@ -86,18 +86,26 @@ const MobileNav2 = (props) => {
         }
         return sport_image
     }
-    return (<div>
+    return (<div className={"league-container"}>
         {/*{sport==null?setSport(getFromLocalStorage ("categories")):""}*/}
-        <DropdownButton id="dropdown-league-button" variant="secondary" title="Top League" >
+        <table  style={{width: "100%", textAlign: "center"}}>
+            <tbody>
+            <tr className={"d-flex league-row"}>
                 {sport?.top_soccer.map((top_soccer, index) => (
-                    <Dropdown.Item key={index} as={Link} className={"bg-light"} style={{paddingLeft: "4px"}}  to={{pathname: `/competition`,search: `competitionid=${top_soccer.competition_id}&sub_type_id=1`}}>
-                                <div style={{textAlign: "center", fontWeight: "300"}}>
-                                    {top_soccer.competition_name}
-                                </div>
-                    </Dropdown.Item>
+                    <td key={index} className={` d-flex menu-t sport-check ${pathname===top_soccer.competition_id?" active":""}`} style={{paddingLeft: "4px"}}>
+                        <Link  style={{paddingLeft: "4px",width:"max-content"}}  to={{pathname: `/competition`,search: `competitionid=${top_soccer.competition_id}&sub_type_id=1`}}>
+                            <div className="inner-div active">
+                                {top_soccer.competition_name}
+                            </div>
+                        </Link>
+                    </td>
+
                 ))}
 
-        </DropdownButton>
+            </tr>
+            </tbody>
+
+        </table>
 
     </div>)
 };

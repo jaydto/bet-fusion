@@ -101,7 +101,7 @@ const Withdrawal = (props) => {
                 <div className="w-50 d-flex align-items-start">
                     <button type={"submit"}
                             className='btn btn-lg btn-primary mt-5 w-100 deposit-withdraw-button' >
-                        Deposit
+                        WITHDRAW
                     </button>
                 </div>
             </>

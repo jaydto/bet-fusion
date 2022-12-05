@@ -808,7 +808,7 @@ export const JackpotMatchList = (props) => {
                     </div>
                     <div className={'col-md-12 text-center'}>
                         <button className={'btn btn-square btn-lg  place-bet-btn bold mb-1'}
-                        id={"jp-nare-pick-buttonq"}
+                        id={"jp-nare-pick-button"}
                                 style={{fontWeight: "bold", fontSize: "20px"}}
                                 onClick={() => randomize()}>
                             <FontAwesomeIcon icon={faFire}/> Nare Auto Pick

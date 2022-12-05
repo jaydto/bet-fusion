@@ -355,6 +355,15 @@ li.bet-option {
     color: #000;
     border-radius: 2px;
 }
+#jp-nare-pick-button{
+  color:#000000;
+  background-color:#fbd702;
+  border-radius:6px!important;
+}
+#jp-nare-pick-button:hover{
+  color:orangered!important;
+
+}
 
 .social-icons {
     float: right;

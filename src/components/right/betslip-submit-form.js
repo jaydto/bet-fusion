@@ -5,7 +5,7 @@ import {
     getBetslip,
     clearSlip,
     clearJackpotSlip,
-    formatNumber
+    formatNumber, getJackpotBetslip, removeFromJackpotSlip
 } from '../utils/betslip';
 import publicIp from 'public-ip';
 import makeRequest from '../utils/fetch-request';
@@ -263,9 +263,9 @@ const BetslipSubmitForm = (props) => {
     }, [betslip, stake, totalOdds, multiBoostAmount]);
 
     const handleRemoveAll = useCallback(() => {
-        let betslips = getBetslip();
+        let betslips =jackpot?getJackpotBetslip(): getBetslip();
         Object.entries(betslips).map(([match_id, match]) => {
-            removeFromSlip(match_id);
+            jackpot?removeFromJackpotSlip(match_id):removeFromSlip(match_id);
             let match_selector = match.match_id + "_selected";
             let ucn = clean_rep(
                 match.match_id
@@ -419,10 +419,8 @@ const BetslipSubmitForm = (props) => {
                             <td className={"bet-align-left"}>TOTAL ODDS</td>
                             <td className={"bet-align-right"}>
                                 <b>{Float(totalOdds, 2)}</b>
-
                             </td>
                         </tr>}
-
                         <tr id="odd-change-text">
                             <td colSpan="2">
                                 <label className="checkbox">

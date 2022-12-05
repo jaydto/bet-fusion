@@ -28,7 +28,7 @@ const Right = (props) => {
 
     return (<div
         className={`col-md-3 ${deposit || withdraw||app ? "width-all" : "gn"} betslip-container sticky-top ${width <= 991 ? "remove-width" : "vh-100"} overflow-scroll tablet-view`}>
-        <div className="betslip-container d-none d-lg-block">
+        <div className="betslip-container d-none d-lg-block" style={{overflowY:"auto"}}>
             {props?.message && <AlertMessage classname={props.classname} message={props.message}/>}
             <div className="bet-option-list " id=''>
                 <div className="bet alu block-shadow">

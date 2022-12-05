@@ -2506,7 +2506,7 @@ footer {
     color: #fff;
     padding: 0;
     font-size: 16px;
-    margin-top: 30px;
+    margin-top: 2px;
 }
 
 footer a {
@@ -15462,7 +15462,7 @@ img.zoom-img {
 
 .betslip-container {
     position: sticky !important;
-    top: 5px !important;
+    /*top: 5px !important;*/
     background: #253743 !important;
 }
 
@@ -16293,7 +16293,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 
 .betslip-container {
     position: sticky !important;
-    /*top: 140px !important;*/
+    top: 13rem;
     background: #253743 !important;
 }
 

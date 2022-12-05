@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useContext, useEffect, useState} from 'react';
 import HomeSvg from '../../assets/img/mobile/home.png';
 import VirtualSvg from '../../assets/img/mobile/virtual.png';
 import LiveSvg from '../../assets/img/mobile/live-3.png';
@@ -16,6 +16,7 @@ import {getFromLocalStorage} from "../utils/local-storage";
 import {Link} from "react-router-dom";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {getJackpotBetslip, getBetslip} from '../utils/betslip'
+import {Context} from "../../context/store";
 
 const MobileMenu = (props) => {
     // console.log("props aere here ", props)
@@ -23,8 +24,8 @@ const MobileMenu = (props) => {
     const {jackpot, betslipValidationData, jackpotData} = props;
     const [betSlipMobile, setBetSlipMobile] = useState(false);
     const gaEventTracker = useAnalyticsEventTracker('Navigation');
-    const [user, setUser] = useState(getFromLocalStorage("user"));
     const pathname = window.location.pathname;
+    const [state, dispatch] = useContext(Context);
 
     const fetchData = useCallback(() => {
         let endpoint = "/v1/sports?live=1";
@@ -96,8 +97,11 @@ const MobileMenu = (props) => {
                 }}>
 
                     <Badge pill bg="warning nav__betslip d-flex justify-content-center align-items-center">
-                        {/*{betslipValidationData?.length || 0 || ( Object.keys(getJackpotBetslip())!==undefined &&jackpot===true?Object.keys(getJackpotBetslip())?.length:0) }*/}
-                        {betslipValidationData?.length || 0 || (jackpot===true?jackpotData?.total_games:0)}
+                        {/*{console.log("betslip state",state?.count)}*/}
+                        { (jackpot===true?
+                            getJackpotBetslip()!=null?
+                                Object.keys(getJackpotBetslip())?.length:
+                                0:getBetslip()?Object.keys(getBetslip()).length:0)}
                         {/*{console.log("betslip_validation: ",betslipValidationData +" jackpot: " +jackpot+" jackpotData: "+Object.keys(getJackpotBetslip()))}*/}
                     </Badge>
 
@@ -117,7 +121,7 @@ const MobileMenu = (props) => {
                 </Link>
 
 
-                {user ? <Link to={"/profile"} className={`bloc-icon ${pathname === "/profile" ? "active" : ""}`}>
+                {state?.user ? <Link to={"/profile"} className={`bloc-icon ${pathname === "/profile" ? "active" : ""}`}>
                     <img src={ProfileSvg} alt=""></img>
                     <p>Profile</p>
                 </Link> : <Link to={"/login"} className={`bloc-icon ${pathname === "/login" ? "active" : ""}`}>

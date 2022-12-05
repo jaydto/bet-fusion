@@ -47,6 +47,11 @@ const BetSlip = (props) => {
             setBetslipsData(state[betslipKey]);
         }
     }, [state[betslipKey]]);
+    useEffect(() => {
+        dispatch({type: "SET", key: "count", payload: betslipsData!=null?Object.keys(betslipsData)?.length:0});
+    }, [])
+
+    // console.log("'betslipdata",Object.keys(betslipsData)==null?Object.keys(betslipsData):"h");
 
     //Handle db validation of betslip
     const validateBetslipwithDbData = useCallback(() => {

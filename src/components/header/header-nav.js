@@ -89,8 +89,8 @@ const HeaderNav = (props) => {
                     <li className={window.location.search.includes('worldcup') ? 'active' : ''}
                         onClick={() => gaEventTracker('World Cup')}>
                         <Link className="cg fm ox anl url-link"
-                           to="/competition?competitionid=18585?sport_id=79&sub_type_id=1,18,29&limit=500&c=worldcup"
-                           title="Fifa World Cup">
+                              to={{pathname: "/competition",search: "competitionid=18585&sub_type_id=1,18,29&limit=500&c=worldcup"}}
+                              title="Fifa World Cup">
                             <img src={worldCup} className={'world-cup'} style={{height: "20px",borderRadius:"0 !important"}}></img>
                             <strong>Fifa World Cup</strong>
                         </Link>

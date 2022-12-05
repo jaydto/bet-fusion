@@ -43,9 +43,13 @@ const Index = (props) => {
         return values;
     };
 
-    useInterval(async () => {
 
-        setFetching(true)
+    useInterval(async () => {
+        console.log("location",location.pathname)
+        if(location.pathname==="/")
+            setFetching(true)
+        else
+            setFetching(false)
 
         let endpoint = "/v1/matches";
 

@@ -46,7 +46,8 @@ const ProfileMenu = (props) => {
                             </div>
                             <div><FontAwesomeIcon
                                 icon={faGifts}/> Gift <strong>
-                                KSH {formatNumber(user.bonus) || 0}</strong></div>
+                                KSH {formatNumber(user.gift_balance) || 0} </strong></div>
+
                         </div>
                         <div className="col d-flex flex-column text-white align-items-center">
                             <div>

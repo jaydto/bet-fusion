@@ -57,7 +57,7 @@ const MobileProfile = (props) => {
                                 icon={faGifts}/> Gifts
                         </span>
                             <span>
-                                <strong>{formatNumber(user.bonus) || 0}</strong>
+                                <strong>{formatNumber(user.gift_balance) || 0}</strong>
                             </span>
                         </span>
                         </div>

@@ -147,7 +147,7 @@ const Header = (props) => {
     const expand = "md"
     return (
         <>
-            <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark">
+            <Navbar expand="md" className="mb-0 ck pt-sm-0 pt-md-3 pc os app-navbar top-nav" fixed="top" variant="dark">
                 <Container fluid className={'d-flex justify-content-between mobile-change'}>
                     <Navbar.Brand className="e logo align-self-start menu-control" title="Betnare">
                         <Link to={{pathname: "/"}} className="col-4 resize-mobile">
@@ -200,7 +200,7 @@ const Header = (props) => {
                                 <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"md"}`} className="px-3 py-3" />
                             </div> : ""}
                     </Navbar.Brand>
-                    <div className="col-9 change-size " id="navbar-collapse-main">
+                    <div className={` col-9 change-size ${width>767?"desk-top":""}`} id="navbar-collapse-main " >
                         <div
                             className="col-md-11 col-sm-12 col-lg-8 right disable-ipad to-navcheck justify-content-end">
                             {user ? <ProfileMenu user={user}/> : <HeaderLogin setUser={setUser}/>}

@@ -7317,7 +7317,7 @@ ul.sport {
     }
 
     .amt {
-        padding-top: 130px !important;
+        padding-top: 140px !important;
     }
 
     .shrink-header .icon-holder img {
@@ -11731,6 +11731,9 @@ button.close {
 }
 
 @media (min-width: 992px) and (max-width: 1259px) {
+    .desk-top{
+        margin-top:0.3rem;
+    }
     .se {
         display: block !important;
     }
@@ -11749,9 +11752,7 @@ button.close {
     }
 }
 @media (min-width: 768px) and (max-width: 1259px) {
-    .betslip-container{
-        width:0px
-    }
+
     .live-pro-sidebar{
         /*width:150px!important;*/
         min-width:200px!important;
@@ -11961,7 +11962,9 @@ button.close {
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-
+    .betslip-container{
+        width:0px
+    }
     .st {
         display: none !important;
     }
@@ -15538,7 +15541,7 @@ img.zoom-img {
 .logo {
     position: relative;
     color: #fff !important;
-    padding-top: 8px;
+    /*padding-top: 8px;*/
 }
 
 .panel {

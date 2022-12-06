@@ -1095,7 +1095,7 @@ export const JackpotMatchList = (props) => {
 
 
     return (
-        <div className="matches full-width mt-5">
+        <div className="matches full-width mt-1">
 
             <MatchHeaderRow jackpot={true} first_match={matches ? matches[0] : []}/>
             <div className={'row d-flex flex-row justify-content-between shadow-lg'}>

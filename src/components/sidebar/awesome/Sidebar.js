@@ -154,7 +154,7 @@ const Sidebar = (props) => {
                                                 src={getSportImageIcon(competition.sport_name)}/>}
                                      key={index}>
 
-                                <MenuItem icon={<img
+                                {index === 0 && ( <MenuItem icon={<img
                                     src={getSportImageIcon('/img/flags-1-1/worldcup.png', 'img/flags-1-1', true)}
                                     style={{borderRadius: "50%", height: "20px"}}></img>}>
                                     <Link onClick={() => gaEventTracker(`Today Games ${competition?.sport_name}`)}
@@ -162,7 +162,8 @@ const Sidebar = (props) => {
                                           >
                                         <strong>Fifa World Cup</strong>
                                     </Link>
-                                </MenuItem>
+                                </MenuItem>)}
+
                                 {index === 0 && (
 
                                     <SubMenu title={'Top Leagues'}>

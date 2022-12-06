@@ -40,10 +40,10 @@ const LiveSideBar = (props) => {
                 zIndex: 10,
                 marginRight: '2px',
                 top: "100px",
-                marginTop: "10px"
+                // marginTop: "10px"
             }}
                  className={`${width<=767?"":"vh-100 text-white sticky-top  d-md-block up"}`}>
-                <ProSidebar className={`${width<=767?"w-100":""}`}
+                <ProSidebar className={`${width<=767?"w-100":"live-pro-sidebar"}`}
                     style={{backgroundColor: '#16202c !important'}}
                     image={false}>
                     <SidebarHeader>

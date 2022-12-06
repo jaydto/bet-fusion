@@ -935,7 +935,7 @@ const MatchRow = (props) => {
                     {!jackpot && <>
                         {Object.entries(match?.extra_odds || {}).map(([marketName, odds], index) => (
                             marketName !== '' && (
-                                <div className={`c-btn-group m-lg-1 align-self-center to-deskview`}>
+                                <div className={`c-btn-group  align-self-center to-deskview`}>
                                     {
                                         Object.entries(odds || {}).map(([odd_key, odd_data]) => {
                                             return odd_data?.odd_active == 1 && odd_data.market_active == 1 ? (<OddButton

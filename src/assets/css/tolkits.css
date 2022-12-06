@@ -97,6 +97,7 @@ input, select, textarea {
         white-space: nowrap;
         height:3rem;
         overflow-x: auto;
+        overflow-y: hidden;
     }
     .jackpot-resize{
         height:100px!important;
@@ -5063,6 +5064,7 @@ input[type="button"].btn-block {
 
 @media (min-width: 1260px) {
 
+
     .by {
         width: 100%;
     }
@@ -8055,9 +8057,12 @@ ul.sport {
 }
 
 @media (min-width: 1260px) {
-
+    .to-profile-check{
+        display:none;
+    }
     .c-btn-group > .c-btn {
         width: 50px;
+        height:40px!important;
     }
 
     .by {
@@ -11744,6 +11749,17 @@ button.close {
     }
 }
 @media (min-width: 768px) and (max-width: 1259px) {
+    .betslip-container{
+        width:0px
+    }
+    .live-pro-sidebar{
+        /*width:150px!important;*/
+        min-width:200px!important;
+    }
+    .pro-sidebar{
+        width:200px;
+        min-width:200px
+    }
     .card-small {
         position: relative;
         display: flex;
@@ -16296,7 +16312,9 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     top: 13rem;
     background: #253743 !important;
 }
-
+.to-profile-check:empty{
+    display:none;
+}
 .betslip-container::-webkit-scrollbar {
     display: none;
 }
@@ -16399,7 +16417,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     border-radius: 4px;
     display: inline-block;
     text-align: center;
-    min-width: 50px;
+    min-width: 55px;
     color: white;
     text-transform: uppercase;
     border-right: 1px solid gray;
@@ -16437,7 +16455,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     border-radius: 0;
     border: none;
     border-right: 1px solid #16202c;
-    height: 40px;
+
     line-height: 20px;
     /*background-color: black;*/
     background: rgb(51, 76, 92);

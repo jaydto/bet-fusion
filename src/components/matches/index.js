@@ -589,7 +589,7 @@ const MarketRow = (props) => {
                 {market_id}
             </Row>
 
-            {markets && markets.map((mkt_odds,index) => {
+            {markets && markets.map((mkt_odds) => {
                 // console.log(mkt_odds)
                 return (<>
                     <Col className="match-detail" style={{width: width, float: "left"}}>

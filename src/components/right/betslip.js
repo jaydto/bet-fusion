@@ -141,6 +141,7 @@ const BetSlip = (props) => {
         setBetslipsData(betslip);
 
         dispatch({type: "SET", key: betslipKey, payload: betslip});
+
         dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
     }
 

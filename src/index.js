@@ -93,6 +93,10 @@ const Virtuals = React.lazy(() => import('./components/pages/casino/Virtuals'))
 
 const CasinoGamePlay = React.lazy(() => import('./components/pages/casino/GamePlay'))
 
+const SpribeGamePlay = React.lazy(() => import('./components/pages/virtuals/SpribeGamePlay'))
+
+const SpribeGames = React.lazy(() => import('./components/pages/virtuals/SpribeGames'))
+
 const Promotions = React.lazy(() => import('./components/pages/promotions/Promotions'))
 
 const LiveScore = React.lazy(() => import('./components/pages/livescore/LiveScore'))
@@ -128,6 +132,8 @@ render((
                     {/*<Route exact path="/casino" element={<Casino/>}/>*/}
                     {/*<Route exact path="/live-casino" element={<LiveCasino/>}/>*/}
                     <Route exact path="/gameplay/:game_id/:live" element={<CasinoGamePlay/>}/>
+                    <Route exact path="/nare-games/:game" element={<SpribeGamePlay/>}/>
+                    <Route exact path="/nare-games" element={<SpribeGames/>}/>
                     <Route exact path="/highlights" element={<Index/>}/>
                     <Route exact path="/upcoming" element={<Index/>}/>
                     <Route exact path="/tomorrow" element={<Index/>}/>

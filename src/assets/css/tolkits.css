@@ -8057,6 +8057,9 @@ ul.sport {
 }
 
 @media (min-width: 1260px) {
+    .jackpot-width{
+        width:min-content!important;
+    }
     .to-profile-check{
         display:none;
     }
@@ -16441,7 +16444,9 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 .change-date1 {
     width: 27% ;
     padding-top: 5px;
+    /*width:min-content;*/
 }
+
 .size-info{
     width:39%;
 }

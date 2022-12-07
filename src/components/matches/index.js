@@ -714,14 +714,14 @@ const MatchRow = (props) => {
 
                         </>
                     }
-                    <div className="d-flex flex-column px-1 justify-content-sm-center change-date1 mobile-remove">
+                    <div className={`d-flex flex-column px-1 justify-content-sm-center change-date1 mobile-remove ${jackpot?"jackpot-width":""}`}>
                     <span className={'date-size'}>
                         {(live && match?.match_time) ?
                             <>{`${match.match_time}'`}</> : match?.start_time}
                     </span>
                         <>ID: {match?.game_id}</>
                     </div>
-                    <div className="col align-items-center col-xs-12 match-detail-container px-2 change-match only-mobile">
+                    <div className={`col align-items-center col-xs-12 match-detail-container px-2 change-match only-mobile ${jackpot?"align-self-center":""}`}>
                         <Link to={jackpot ? '#' : `/match?live=${live ? 'live' : ''}&id=${
                               live ? match.parent_match_id : match?.match_id}`}>
                             <div className="d-flex flex-column">

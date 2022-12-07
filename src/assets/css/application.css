@@ -500,3 +500,12 @@ li.bet-option {
 .caret.up {
     border-bottom-color: green;
 }
+
+#jp-nare-pick-button{
+    color:#000000!important;
+    background-color:#fbd702!important;
+    border-radius:6px!important;
+}
+#jp-nare-pick-button:hover{
+    color:orangered!important;
+}

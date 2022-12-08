@@ -1,11 +1,8 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Formik, Form} from 'formik';
 import makeRequest from "../utils/fetch-request";
 import mpesa from '../../assets/img/mpesa-3.png'
 import {clearTrackingData, setLocalStorage, setTrackingData} from "../utils/local-storage";
-import {useNavigate} from "react-router-dom";
-import useWindowDimensions from "../header/Dimensions";
-import {Context} from "../../context/store";
 
 const Header = React.lazy(() => import('../header/header'));
 const SideBar = React.lazy(() => import('../sidebar/awesome/Sidebar'));
@@ -16,15 +13,11 @@ const Signup = (props) => {
 
     const [success, setSuccess] = useState(false);
     const [message, setMessage] = useState(null);
-    const navigate=useNavigate();
-    const {height, width} = useWindowDimensions();
-    const [state, dispatch] = useContext(Context);
 
     const initialValues = {
         msisdn: '',
         password: ''
     }
-
 
     const handleSubmit = values => {
 
@@ -48,12 +41,7 @@ const Signup = (props) => {
                 // window.location.href = "/"
                 clearInterval(timer)
             }, 3000)
-            // navigate("/")
-            setTimeout(()=>navigate("/"),2000
-            )
-
         })
-
     }
 
     const validate = values => {
@@ -93,16 +81,16 @@ const Signup = (props) => {
             <Form>
                 <div className="pt-0">
                     <div className="row">
-                        <div className='col-md-6 text-center border-bottom'>
+                        <div className='col-md-6 text-center'>
                             <img src={mpesa} alt=""/>
                         </div>
-
-                        <div className="form-group w-100 d-flex justify-content-center mt-5">
-                            <div className="col-md-12 w-100">
+                        <hr/>
+                        <div className="form-group row d-flex justify-content-center mt-5">
+                            <div className="col-md-12">
                                 <label>Mobile Number</label>
                                 <input
                                     value={values.msisdn}
-                                    className="text-dark deposit-input w-100  button-radius col-md-12 input-field"
+                                    className="text-dark deposit-input form-control col-md-12 input-field"
                                     id="msisdn"
                                     name="msisdn"
                                     type="text"
@@ -113,12 +101,12 @@ const Signup = (props) => {
                             </div>
                         </div>
 
-                        <div className="form-group w-100 d-flex justify-content-center mt-5">
-                            <div className="col-md-12 d-flex flex-column w-100">
+                        <div className="form-group row d-flex justify-content-center mt-5">
+                            <div className="col-md-12">
                                 <label>Password</label>
                                 <input
                                     value={values.password}
-                                    className="text-dark deposit-input  button-radius col-md-12 input-field"
+                                    className="text-dark deposit-input form-control col-md-12 input-field"
                                     id="password"
                                     name="password"
                                     type="password"
@@ -128,11 +116,11 @@ const Signup = (props) => {
                                 {errors.password && <div className='text-danger'> {errors.password} </div>}
                             </div>
                         </div>
-                        <div className="form-group w-100 d-flex justify-content-left mb-4">
-                            <div className="col-md-3 w-100">
-                                <button type="submit"
-                                        className='button-radius  w-100 btn btn-lg btn-primary mt-5 col-md-12 deposit-withdraw-button'>
-                                    Signup
+                        <div className="form-group row d-flex justify-content-left mb-4">
+                            <div className="col-md-3">
+                                <button type={"submit"}
+                                        className='btn btn-lg btn-primary mt-5 w-100 deposit-withdraw-button' >
+                                    SIGNUP
                                 </button>
                             </div>
                         </div>
@@ -163,10 +151,10 @@ const Signup = (props) => {
     return (
         <React.Fragment>
             <Header/>
-            <div className={(width<=514?state?.user?"user_logged":"amt":"amt")}>
+            <div className="amt">
                 <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions/>
-                    <div className="gz home w-100">
+                    <div className="gz home">
                         <div className="homepage">
                             <FormTitle/>
                             <div className="col-md-12 mt-2 text-white p-2">
@@ -178,9 +166,10 @@ const Signup = (props) => {
                         </div>
                     </div>
                     <Right/>
+
                 </div>
             </div>
-            <div className={"mobile-remove"}>
+            <div className="mobile-remove">
                 <Footer/>
             </div>
 
@@ -189,5 +178,3 @@ const Signup = (props) => {
 }
 
 export default Signup;
-
-

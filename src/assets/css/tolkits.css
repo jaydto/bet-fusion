@@ -7792,7 +7792,7 @@ ul.sport {
 
 .sticky-responsive {
     position: sticky;
-    top: 126px
+    top: 124px
 }
 
 @media (min-width: 768px) {
@@ -7824,6 +7824,14 @@ ul.sport {
     }
 
 
+}
+.change-display{
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+.spacing{
+    width:max-content;
+    width: -moz-max-content;
 }
 
 @media (max-width: 864px) and (min-width: 768px) {
@@ -7956,15 +7964,15 @@ ul.sport {
 
 @media (min-width: 992px) and (max-width: 1200px) {
 
-    .change-display {
-        flex-wrap: nowrap;
-        font-size: 11px;
-        display: grid !important;
-        /*code needed to commented out after commenting out casino option*/
-        /*grid-template-columns: [col0]0px[col1]60px[col2]70px[col3]100px[col4]80px[col5]120px[col6]120px[col7]140px[col8]120px[col9]90px[col10]70px[col11]108px[col-end];*/
-        grid-template-columns: [col0]0px[col1]60px[col2]70px[col3]100px[col4]200px[col5]80px[col7]110px[col8]130px[col9]120px[col10]100px[col11]105px[col12]0[col-end];
-        overflow: auto;
-    }
+    /*.change-display {*/
+    /*    flex-wrap: nowrap;*/
+    /*    font-size: 11px;*/
+    /*    display: grid !important;*/
+    /*    !*code needed to commented out after commenting out casino option*!*/
+    /*    !*grid-template-columns: [col0]0px[col1]60px[col2]70px[col3]100px[col4]80px[col5]120px[col6]120px[col7]140px[col8]120px[col9]90px[col10]70px[col11]108px[col-end];*!*/
+    /*    grid-template-columns: [col0]0px[col1]60px[col2]70px[col3]100px[col4]200px[col5]80px[col7]110px[col8]130px[col9]120px[col10]100px[col11]105px[col12]0[col-end];*/
+    /*    overflow: auto;*/
+    /*}*/
  }
 @media (min-width: 992px) and (max-width: 1160px) {
     .small{
@@ -11685,15 +11693,15 @@ button.close {
 }
 
 @media (min-width: 769px) and (max-width: 991px) {
-    .change-display {
-        flex-wrap: nowrap;
-        font-size: 11px;
-        display: grid !important;
-        /*code needed to commented out after commenting out casino option*/
-        /*grid-template-columns: [col0]0px[col1]60px[col2]70px[col3]100px[col4]80px[col5]120px[col6]120px[col7]140px[col8]120px[col9]90px[col10]70px[col11]108px[col-end];*/
-        grid-template-columns: [col0]0px[col1]60px[col2]70px[col3]100px[col4]200px[col5]80px[col7]110px[col8]130px[col9]130px[col10]50px[col11]120px[col12]0[col-end];
-        overflow: auto;
-    }
+    /*.change-display {*/
+    /*    flex-wrap: nowrap;*/
+    /*    font-size: 11px;*/
+    /*    display: grid !important;*/
+    /*    !*code needed to commented out after commenting out casino option*!*/
+    /*    !*grid-template-columns: [col0]0px[col1]60px[col2]70px[col3]100px[col4]80px[col5]120px[col6]120px[col7]140px[col8]120px[col9]90px[col10]70px[col11]108px[col-end];*!*/
+    /*    grid-template-columns: [col0]0px[col1]60px[col2]70px[col3]100px[col4]200px[col5]80px[col7]110px[col8]130px[col9]130px[col10]50px[col11]120px[col12]0[col-end];*/
+    /*    overflow: auto;*/
+    /*}*/
     .sticky-responsive{
         top: 107px!important
     }
@@ -11916,15 +11924,15 @@ button.close {
         background: red;
     }
 
-    .change-display {
-        flex-wrap: nowrap;
-        font-size: 11px;
-        display: grid !important;
-        /*code needed to commented out after commenting out casino option*/
-        /*grid-template-columns: [col0]0px[col1]60px[col2]70px[col3]100px[col4]80px[col5]120px[col6]120px[col7]140px[col8]120px[col9]90px[col10]70px[col11]108px[col-end];*/
-        grid-template-columns: [col30]0px[col1]60px[col2]70px[col3]100px[col4]80px[col5]120px[col7]140px[col8]120px[col9]120px[col10]130px[col11]150px[col12]0[col-end];
-        overflow: auto;
-    }
+    /*.change-display {*/
+    /*    flex-wrap: nowrap;*/
+    /*    font-size: 11px;*/
+    /*    display: grid !important;*/
+    /*    !*code needed to commented out after commenting out casino option*!*/
+    /*    !*grid-template-columns: [col0]0px[col1]60px[col2]70px[col3]100px[col4]80px[col5]120px[col6]120px[col7]140px[col8]120px[col9]90px[col10]70px[col11]108px[col-end];*!*/
+    /*    grid-template-columns: [col30]0px[col1]60px[col2]70px[col3]100px[col4]80px[col5]120px[col7]140px[col8]120px[col9]120px[col10]130px[col11]150px[col12]0[col-end];*/
+    /*    overflow: auto;*/
+    /*}*/
     table.bdd {
         font-size: 10px;
     }

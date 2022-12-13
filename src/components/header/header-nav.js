@@ -115,7 +115,7 @@ const HeaderNav = (props) => {
                     </li>
                     <li className={pathname === '/app' ? 'active' : ''}
                         onClick={() => gaEventTracker('Visit App Page')}>
-                        <Link className="g url-link" to={"/app"} title="App">
+                        <Link className="g url-link spacing" to={"/app"} title="App">
                             <span>
                                 <FontAwesomeIcon icon={faMobile}/> APP
                             </span>
@@ -124,7 +124,7 @@ const HeaderNav = (props) => {
 
                     <>
                         <li className={`${pathname === '/live-casino' || pathname.includes("gameplay") ? 'active' : ''} d-none`}>
-                            <Link className="g url-link" to={"/live-casino"} title="Live Casino">
+                            <Link className="g url-link spacing" to={"/live-casino"} title="Live Casino">
                             <span>
                                 <FontAwesomeIcon icon={faFire} className={'text-warning'}/> Live Casino
                             </span>
@@ -136,7 +136,7 @@ const HeaderNav = (props) => {
                             </Link>
                         </li>
                         <li className={`${pathname === '/virtuals' || pathname.includes("gameplay") ? 'active' : ''}`}>
-                            <Link className="g url-link" to={"/virtuals"} title="Virtuals">
+                            <Link className="g url-link spacing" to={"/virtuals spacing"} title="Virtuals">
                             <span>
                                 <FontAwesomeIcon icon={faLaptop}/> Virtuals
                             </span>
@@ -146,12 +146,12 @@ const HeaderNav = (props) => {
 
                     <li className={pathname.includes("promotions") ? 'active' : ''}
                         onClick={() => gaEventTracker('Visit Promotions Page')}>
-                        <Link className="g url-link" to={"/promotions"} title="Promotions">
+                        <Link className="g url-link spacing" to={"/promotions"} title="Promotions">
                             <FontAwesomeIcon icon={faMagic}/> Promotions
                         </Link>
                     </li>
                     <li>
-                        <Link className="g url-link" to={"/livescore"}
+                        <Link className="g url-link spacing" to={"/livescore"}
                            title="Live Score" onClick={() => gaEventTracker('Visit Live Score Page')}>
                             <span>
                                 <FontAwesomeIcon icon={faInfo}/> Live Score
@@ -174,7 +174,7 @@ const HeaderNav = (props) => {
                     </li>
                     <li className={pathname === '/print-matches' ? 'active py-3' : 'fa-border print-width py-md-0 py-lg-3 py-sm-0 d-flex align-items-center'}
                         onClick={() => gaEventTracker('Visit Print Matches')}>
-                        <Link className="g url-link fix-print" to={"/print-matches"} title="Print Matches">
+                        <Link className="g url-link fix-print spacing" to={"/print-matches"} title="Print Matches">
                             <span className=" space-icons"><FontAwesomeIcon icon={faPrint}/> </span>Print <span
                             className={'hide1'}>Matches</span>
                         </Link>

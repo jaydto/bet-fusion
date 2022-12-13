@@ -104,15 +104,15 @@ const HeaderNav = (props) => {
                             <strong> Kanyonde</strong>
                         </Link>
                     </li>
-                    <li className={window.location.search.includes('nare-games') ? 'active' : ''}
-                        onClick={() => gaEventTracker('Nare Games')} style={{display: 'none !important'}}>
-                        <Link className="cg fm ox anl url-link"
-                              to="/nare-games"
-                              title="Nare Games">
-                            <FontAwesomeIcon icon={faFireAlt} style={{color: "orange"}}/>
-                            <strong> Nare Games</strong>
-                        </Link>
-                    </li>
+                    {/*<li className={window.location.search.includes('nare-games') ? 'active' : ''}*/}
+                    {/*    onClick={() => gaEventTracker('Nare Games')} style={{display: 'none !important'}}>*/}
+                    {/*    <Link className="cg fm ox anl url-link"*/}
+                    {/*          to="/nare-games"*/}
+                    {/*          title="Nare Games">*/}
+                    {/*        <FontAwesomeIcon icon={faFireAlt} style={{color: "orange"}}/>*/}
+                    {/*        <strong> Nare Games</strong>*/}
+                    {/*    </Link>*/}
+                    {/*</li>*/}
                     <li className={pathname === '/app' ? 'active' : ''}
                         onClick={() => gaEventTracker('Visit App Page')}>
                         <Link className="g url-link" to="/app" title="App">

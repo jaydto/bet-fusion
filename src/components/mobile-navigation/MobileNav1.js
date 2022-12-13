@@ -152,9 +152,9 @@ const MobileNav1 = (props) => {
                      onClick={() => gaEventTracker('Aviator')} style={{paddingLeft: "4px"}}>
                     <Link className="cg fm ox anl url-link d-flex flex-column align-items-center"
                           to={{pathname:"/nare-games", search:"game=aviator"}}
-                          title="Aviator">
+                          title="Kanyonde">
                         <FontAwesomeIcon icon={faPlaneDeparture} style={{color: "tomato",height:"27px"}}/>
-                        <strong> Aviator</strong>
+                        <strong> Kanyonde</strong>
                     </Link>
 
                 </td>

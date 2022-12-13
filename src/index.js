@@ -93,6 +93,10 @@ const Casino = React.lazy(() => import('./components/pages/casino/Casino'))
 
 const LiveCasino = React.lazy(() => import('./components/pages/casino/LiveCasino'))
 
+const SpribeGamePlay = React.lazy(() => import('./components/pages/virtuals/SpribeGamePlay'))
+
+const SpribeGames = React.lazy(() => import('./components/pages/virtuals/SpribeGames'))
+
 const Virtuals = React.lazy(() => import('./components/pages/casino/Virtuals'))
 
 const CasinoGamePlay = React.lazy(() => import('./components/pages/casino/GamePlay'))

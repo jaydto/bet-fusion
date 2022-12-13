@@ -9,7 +9,7 @@ import {
     faQuestionCircle,
     faTimes,
     faLaptop,
-    faMagic, faInfo, faDice, faFire
+    faMagic, faInfo, faDice, faFire, faPlaneDeparture, faFireAlt
 } from '@fortawesome/free-solid-svg-icons'
 import makeRequest from "../utils/fetch-request";
 import {faMobile, faCoins} from "@fortawesome/free-solid-svg-icons";
@@ -85,6 +85,24 @@ const HeaderNav = (props) => {
                             <FontAwesomeIcon icon={faCoins}/> Jackpot
                         </Link>
 
+                    </li>
+                    <li className={window.location.search.includes('aviator') ? 'active' : ''}
+                        onClick={() => gaEventTracker('Aviator')}>
+                        <Link className="cg fm ox anl url-link"
+                              to="/nare-games/aviator"
+                              title="Aviator">
+                            <FontAwesomeIcon icon={faPlaneDeparture} style={{color: "tomato"}}/>
+                            <strong> Aviator</strong>
+                        </Link>
+                    </li>
+                    <li className={window.location.search.includes('nare-games') ? 'active' : ''}
+                        onClick={() => gaEventTracker('Nare Games')}>
+                        <Link className="cg fm ox anl url-link"
+                              to="/nare-games"
+                              title="Nare Games">
+                            <FontAwesomeIcon icon={faFireAlt} style={{color: "orange"}}/>
+                            <strong> Nare Games</strong>
+                        </Link>
                     </li>
                     <li className={window.location.search.includes('worldcup') ? 'active' : ''}
                         onClick={() => gaEventTracker('World Cup')}>

@@ -2,7 +2,7 @@ import React from "react";
 import {
     faLock,
     faCloudUploadAlt,
-    faCloudDownloadAlt, faGifts, faDollarSign, faListOl, faSmile, faUserAlt
+    faCloudDownloadAlt, faGifts, faDollarSign, faListOl, faSmile, faUserAlt, faList
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {formatNumber} from "../utils/betslip";
@@ -71,13 +71,17 @@ const ProfileMenu = (props) => {
                                   {user?.msisdn}
                               </span>
                             </div>
-                            <div>
-                                <Link to={"/logout"}>
-                                    <span className="font-tb">
-                                    <span className="space-icons"> <FontAwesomeIcon icon={faLock}/> </span>
-                                        Log Out
-                                    </span>
-                                </Link>
+                            <div className={'d-flex flex-row justify-content-around'}>
+                                <div>
+                                    <Link to={{pathname: "/my-bets"}} title={"My Bets"} className={'text-white'}>
+                                        <strong> <FontAwesomeIcon icon={faList}/> My Bets | </strong>
+                                    </Link>
+                                </div>
+                                <div>
+                                    <a href="/logout">
+                                        <span className=""> <FontAwesomeIcon icon={faLock}/></span> Logout
+                                    </a>
+                                </div>
                             </div>
                             <div className="col-1 button-toggle space-button">
                                 <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"md"}`} className="px-3 py-3"/>

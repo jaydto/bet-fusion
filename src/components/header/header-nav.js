@@ -172,7 +172,7 @@ const HeaderNav = (props) => {
                             >Help</span>
                         </Link>
                     </li>
-                    <li className={pathname === '/print-matches' ? 'active py-3' : 'fa-border print-width py-md-0 py-lg-3 py-sm-0 d-flex align-items-center'}
+                    <li className={pathname === '/print-matches' ? 'active py-3 fa-border print-width py-md-0 py-lg-3 py-sm-0 d-flex align-items-center' : 'fa-border print-width py-md-0 py-lg-3 py-sm-0 d-flex align-items-center'}
                         onClick={() => gaEventTracker('Visit Print Matches')}>
                         <Link className="g url-link fix-print spacing" to={"/print-matches"} title="Print Matches">
                             <span className=" space-icons"><FontAwesomeIcon icon={faPrint}/> </span>Print <span

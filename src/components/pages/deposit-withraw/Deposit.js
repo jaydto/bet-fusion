@@ -164,7 +164,7 @@ const Deposit = (props) => {
                         <hr className={`${mobile?"d-none":""}`}/>
 
                         <DepositFormFields onFieldChanged={onFieldChanged} values={values} errors={errors}/>
-                        <hr className={`${mobile?"d-none":""}`}/>
+                        <hr className={`${mobile?"d-none":"mt-4"}`}/>
                         <div className={`${mobile?"d-none":""}`}>
                             <PaymentInstructions />
                         </div>

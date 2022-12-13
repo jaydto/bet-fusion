@@ -14,6 +14,8 @@ import makeRequest from "../utils/fetch-request";
 import worldCup from "../../../src/assets/img/flags-1-1/worldcup.png"
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {App} from "@capacitor/app";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faFireAlt, faPlaneDeparture} from "@fortawesome/free-solid-svg-icons";
 
 
 const MobileNav1 = (props) => {
@@ -145,6 +147,26 @@ const MobileNav1 = (props) => {
                         </div>
                         </div>
                     </Link>
+                </td>
+                <td  className={ window.location.search.includes('aviator') ? 'active' : 'menu-t'}
+                     onClick={() => gaEventTracker('Aviator')} style={{paddingLeft: "4px"}}>
+                    <Link className="cg fm ox anl url-link d-flex flex-column align-items-center"
+                          to={{pathname:"/nare-games", search:"game=aviator"}}
+                          title="Aviator">
+                        <FontAwesomeIcon icon={faPlaneDeparture} style={{color: "tomato",height:"27px"}}/>
+                        <strong> Aviator</strong>
+                    </Link>
+
+                </td>
+                <td className={window.location.search.includes('nare-games') ? 'active' : 'menu-t'}
+                    onClick={() => gaEventTracker('Nare Games')} style={{paddingLeft: "4px"}}>
+                    <Link className="cg fm ox anl url-link d-flex flex-column align-items-center"
+                          to="/nare-game"
+                          title="Nare Games">
+                        <FontAwesomeIcon icon={faFireAlt} style={{color: "orange",height:"27px"}}/>
+                        <strong> Nare Games</strong>
+                    </Link>
+
                 </td>
                 <td style={{paddingLeft: "4px"}} className={window.location.search.includes('worldcup') ? 'active  ' : 'menu-t'}
                     onClick={() => gaEventTracker('World Cup')}>

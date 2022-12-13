@@ -8,15 +8,20 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import {getFromLocalStorage} from "../../utils/local-storage";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFire} from "@fortawesome/free-solid-svg-icons";
+import useWindowDimensions from "../../header/Dimensions";
+import Right from "../../right";
 
 const GamePlay = (props) => {
 
-    const {game} = useParams()
+    // const {game} = useParams()
+    const url = new URL(window.location)
+    const game= url.searchParams.get('game')
     const [gameUrl, setGameUrl] = useState('')
     const [token, setUserToken] = useState('')
     const [user_id, setUserID] = useState('')
     const [demo, setDemo] = useState(false)
-
+    const [user, setUser] = useState(getFromLocalStorage("user"));
+    const {height, width} = useWindowDimensions();
     const [games] = useState(getFromLocalStorage('category_games'))
 
     const [isLoggedIn] = useState(getFromLocalStorage('user'))
@@ -63,9 +68,9 @@ const GamePlay = (props) => {
     return (
         <>
             <Header/>
-            <div className="amt">
+            <div className={(width<=514?user?"user_logged":"amt":"amt")}>
                 <div className="d-flex flex-row justify-content-between">
-                    <div className="col-md-12">
+                    <div className="col-md-12 w-100">
                         <div className="homepage">
                             <div
                                 className={`col-md-12 ${gameUrlLoaded ? 'd-none' : 'd-block'}`}>
@@ -90,7 +95,13 @@ const GamePlay = (props) => {
                     </div>
                 </div>
             </div>
-            <Footer/>
+            <div className="d-lg-none">
+                <Right/>
+            </div>
+            <div className={"mobile-remove"}>
+                <Footer/>
+            </div>
+
         </>
     )
 }

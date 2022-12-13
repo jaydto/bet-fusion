@@ -89,7 +89,7 @@ const HeaderNav = (props) => {
                     <li className={window.location.search.includes('aviator') ? 'active' : ''}
                         onClick={() => gaEventTracker('Aviator')}>
                         <Link className="cg fm ox anl url-link"
-                              to="/nare-games/aviator"
+                              to={{pathname:"/nare-games", search:"game=aviator"}}
                               title="Aviator">
                             <FontAwesomeIcon icon={faPlaneDeparture} style={{color: "tomato"}}/>
                             <strong> Aviator</strong>
@@ -98,7 +98,7 @@ const HeaderNav = (props) => {
                     <li className={window.location.search.includes('nare-games') ? 'active' : ''}
                         onClick={() => gaEventTracker('Nare Games')}>
                         <Link className="cg fm ox anl url-link"
-                              to="/nare-games"
+                              to="/nare-game"
                               title="Nare Games">
                             <FontAwesomeIcon icon={faFireAlt} style={{color: "orange"}}/>
                             <strong> Nare Games</strong>

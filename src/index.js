@@ -148,17 +148,16 @@ render((
                     <Route exact path= "/competition"
                            element={<CompetitionsMatches/>}
                     />
+                    <Route exact path="/nare-games/:game" element={<SpribeGamePlay/>}/>
+                    <Route exact path="/nare-games" element={<SpribeGames/>}/>
                     <Route exact path="/competition/:sportid/:categoryid/:competitionid"
                            element={<CompetitionsMatches/>}
                            loader={async ({params})=>{
                                return fetch(`/competition/${params.sportid}/${params.categoryid}/${params.competitionid}`)
                            }}
                     />
-
                     <Route exact path="/match/"
                            element={<MatchAllMarkets/>}
-
-
                     />
                     <Route exact path="/match/"
                            element={<MatchAllMarkets live/>}

@@ -16,7 +16,7 @@ const ProfileMenu = (props) => {
             {user && (
                 <>
                     <div className="row w-100">
-                        <div className="col d-flex flex-column text-white align-items-end">
+                        <div className="col d-flex flex-column text-white align-items-start">
                             <div>
                                 <Link
                                     to={{pathname: "/deposit"}}
@@ -38,7 +38,7 @@ const ProfileMenu = (props) => {
                                 </Link>
                             </div>
                         </div>
-                        <div className="col d-flex flex-column text-white align-items-end">
+                        <div className="col d-flex flex-column text-white align-items-start">
                             <div>
                                 <FontAwesomeIcon
                                     icon={faDollarSign}/> Cash
@@ -49,7 +49,7 @@ const ProfileMenu = (props) => {
                                 KSH {formatNumber(user.gift_balance) || 0} </strong></div>
 
                         </div>
-                        <div className="col d-flex flex-column text-white align-items-center">
+                        <div className="col d-flex flex-column text-white align-items-start">
                             <div>
                                 <FontAwesomeIcon
                                     icon={faSmile}/> Bonus

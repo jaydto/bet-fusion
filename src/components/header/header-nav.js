@@ -92,7 +92,7 @@ const HeaderNav = (props) => {
                               title="Fifa World Cup">
                             <img src={worldCup} className={'world-cup'}
                                  style={{height: "20px", borderRadius: "0 !important"}}></img>
-                            <strong>Fifa World Cup</strong>
+                            <strong>World Cup</strong>
                         </Link>
                     </li>
                     <li className={window.location.search.includes('aviator') ? 'active' : ''}

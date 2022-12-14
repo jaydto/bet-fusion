@@ -129,8 +129,8 @@ render((
                     <Route exact path="/virtuals" element={<Virtuals/>}/>
                     <Route exact path="/livescore" element={<LiveScore/>}/>
                     <Route exact path="/404" element={<PageNotFound/>}/>
-                    {/*<Route exact path="/casino" element={<Casino/>}/>*/}
-                    {/*<Route exact path="/live-casino" element={<LiveCasino/>}/>*/}
+                    <Route exact path="/casino" element={<Casino/>}/>
+                    <Route exact path="/live-casino" element={<LiveCasino/>}/>
                     <Route exact path="/gameplay/:game_id/:live" element={<CasinoGamePlay/>}/>
                     <Route exact path="/nare-games/:game" element={<SpribeGamePlay/>}/>
                     <Route exact path="/nare-games" element={<SpribeGames/>}/>

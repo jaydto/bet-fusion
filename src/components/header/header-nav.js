@@ -123,14 +123,14 @@ const HeaderNav = (props) => {
                     </li>
 
                     <>
-                        <li className={`${pathname === '/live-casino' || pathname.includes("gameplay") ? 'active' : ''} d-none`}>
+                        <li className={`${pathname === '/live-casino' || pathname.includes("gameplay") ? 'active' : ''}`}>
                             <a className="g url-link" href="/live-casino" title="Live Casino">
                             <span>
                                 <FontAwesomeIcon icon={faFire} className={'text-warning'}/> Live Casino
                             </span>
                             </a>
                         </li>
-                        <li className={`${pathname === '/casino' || pathname.includes("gameplay") ? 'active' : ''} d-none`}>
+                        <li className={`${pathname === '/casino' || pathname.includes("gameplay") ? 'active' : ''}`}>
                             <a className="g url-link" href="/casino" title="Casino">
                                 <FontAwesomeIcon icon={faDice}/> Casino
                             </a>

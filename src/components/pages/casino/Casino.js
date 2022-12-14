@@ -3,11 +3,10 @@ import Header from "../../header/header";
 import Footer from "../../footer/footer";
 import makeRequest from "../../utils/fetch-request";
 import {LazyLoadImage} from 'react-lazy-load-image-component';
-import {Link} from "react-router-dom";
 import SideBar from "../../sidebar/awesome/Sidebar";
 import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
 import Notify from "../../utils/Notify";
-import {Badge, Button, ButtonGroup} from "react-bootstrap";
+import {Button, ButtonGroup} from "react-bootstrap";
 
 const Casino = (props) => {
 

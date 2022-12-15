@@ -15,6 +15,8 @@ const config: CapacitorConfig = {
     cleartext: true
   },
 
+
+
 };
 
 

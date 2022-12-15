@@ -3,6 +3,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Container from 'react-bootstrap/Container';
 import {Context} from '../../context/store';
 import worldCup from '../../assets/img/flags-1-1/worldcup.png'
+
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {
     faSearch,
@@ -85,10 +86,10 @@ const HeaderNav = (props) => {
                         onClick={() => gaEventTracker('Aviator')}>
                         <Link className="cg fm ox anl url-link"
                               to="/nare-games/aviator"
-                              title="Aviator">
+                              title="Kanyonde">
                             <strong>
                                 <div className={'notification-item'}>
-                                    <FontAwesomeIcon icon={faPlaneDeparture} style={{color: "tomato"}}/> Aviator
+                                    <FontAwesomeIcon icon={faPlaneDeparture} style={{color: "tomato"}}/> Kanyonde
                                     <span className="notify-badge badge">NEW</span>
                                 </div>
                             </strong>

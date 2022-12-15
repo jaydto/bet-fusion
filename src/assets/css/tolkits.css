@@ -6504,8 +6504,9 @@ ul.sport {
     width: 25px;
     padding: 0;
     border-radius: 100px;
-    margin: 0 10px;
+    margin: 0 0px;
 }
+
 .ol {
     border-bottom: 1px solid #dddddd;
 }
@@ -15878,13 +15879,28 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     }
 }
 
-.deposit-button{
+.deposit-button {
     height: 40px;
     line-height: 20px;
-    padding:4px;
+    padding: 4px;
 }
-.withdraw-button{
+
+.withdraw-button {
     height: 40px;
     line-height: 20px;
-    padding:4px;
+    padding: 4px;
+}
+
+
+.notify-badge {
+    position: absolute;
+    right: -10px;
+    top: -2px;
+    margin-top: 5px !important;
+    background: red;
+    text-align: center;
+    border-radius: 10px 0px 15px 0px;
+    color: white;
+    padding: 1px 5px;
+    font-size: 10px;
 }

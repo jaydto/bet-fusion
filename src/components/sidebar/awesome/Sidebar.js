@@ -52,7 +52,7 @@ const Sidebar = (props) => {
         return () => {
             abortController.abort();
         };
-    }, [fetchData]);
+    }, []);
 
     const [width, setWidth] = useState(window.innerWidth);
 

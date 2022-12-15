@@ -1,4 +1,4 @@
-/*
+git branch/*
  * Copyright (c) Murwa 2018.
  *
  * All rights reserved.
@@ -354,6 +354,15 @@ li.bet-option {
     background: #fbd702 !important;
     color: #000;
     border-radius: 2px;
+}
+#jp-nare-pick-button{
+  color:#000000!important;
+  background-color:#fbd702!important;
+  border-radius:6px!important;
+}
+#jp-nare-pick-button:hover{
+  color:orangered!important;
+
 }
 
 .social-icons {

@@ -271,9 +271,9 @@ const SideBets = (props) => {
             className={`bet-fix events-odd pad ${picked} align-self-center more-markets-container m-lg-2`}>
             {(match?.side_bets > 1) && <>
                 <Link className="side" title={'More Markets'}
-                      to={`/match/${live ? 'live/' : ''}${
-                          live ? match.parent_match_id : match?.match_id}`
-                      }>+{match.side_bets}
+                   to={`/match/${live ? 'live/' : ''}${
+                       live ? match.parent_match_id : match?.match_id}`
+                   }>+{match.side_bets}
                 </Link>
                 <a className="side"
                    href={`https://s5.sir.sportradar.com/betnaremts/en/match/${match.parent_match_id}`}
@@ -796,8 +796,10 @@ export const JackpotMatchList = (props) => {
         setSelections(selections)
     }
 
+
     return (
         <div className="matches full-width">
+
             <MatchHeaderRow jackpot={true} first_match={matches ? matches[0] : []}/>
             <div className={'row d-flex flex-row justify-content-between shadow-lg'}>
                 <div className="col-md-12 text-center shadow-lg">
@@ -805,8 +807,8 @@ export const JackpotMatchList = (props) => {
                         Wekelea Jackpot Bet bila worries na Nare Auto pick.
                     </div>
                     <div className={'col-md-12 text-center'}>
-                        <button className={'btn btn-square btn-lg text-danger place-bet-btn bold mb-1'}
-                                id={'jp-nare-pick-button'}
+                        <button className={'btn btn-square btn-lg  place-bet-btn bold mb-1'}
+                        id={"jp-nare-pick-button"}
                                 style={{fontWeight: "bold", fontSize: "20px"}}
                                 onClick={() => randomize()}>
                             <FontAwesomeIcon icon={faFire}/> Nare Auto Pick

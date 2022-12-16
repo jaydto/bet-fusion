@@ -16,16 +16,25 @@ import stakeBooster from '../../assets/img/banner/products/StakeBooster.jpeg'
 import dailyDepositGift from '../../assets/img/banner/products/20PercentDailyDepositGift.jpeg'
 import tisaJackpot from '../../assets/img/banner/products/TisaTisaJackpot.jpg'
 
+import kanyondeBanner from "../../assets/img/banner/products/Kanyonde Web Banner.jpg"
+import krisi29 from "../../assets/img/banner/products/Krisi Ki Betnare Web Banners_29.jpg"
+import krisi49 from "../../assets/img/banner/products/Krisi Ki Betnare Web Banners_49.jpg"
+
 
 const banners = [
-   KaribuGiftWallet,
+    KaribuGiftWallet,
     stakeBooster,
     dailyDepositGift,
     twentyPercentStakeBooster,
     cashback,
     advance,
-    tisaJackpot
+    tisaJackpot,
+    kanyondeBanner,
+    krisi29,
+    krisi49
 ]
+
+
 
 const CarouselLoader = (props) => {
     const [imageLoaded, setImageLoaded] = useState(false);

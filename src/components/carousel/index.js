@@ -22,16 +22,16 @@ import krisi49 from "../../assets/img/banner/products/Krisi Ki Betnare Web Banne
 
 
 const banners = [
+    kanyondeBanner,
+    krisi29,
+    krisi49,
     karibuGiftWallet,
     stakeBooster,
     dailyDepositGift,
     twentyPercentStakeBooster,
     cashback,
     advance,
-    tisaJackpot,
-    kanyondeBanner,
-    krisi29,
-    krisi49
+    tisaJackpot
 ]
 
 const CarouselLoader = (props) => {

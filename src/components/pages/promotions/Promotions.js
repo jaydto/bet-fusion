@@ -1,32 +1,28 @@
 import Header from "../../header/header";
 import SideBar from "../../sidebar/awesome/Sidebar";
 import Footer from "../../footer/footer";
-import React, {useContext} from "react";
+import React from "react";
 
 import twentyPercentDepositBonus from '../../../assets/img/banner/products/20PercentDailyDepositGift.jpeg'
 
 import firstDeposit from '../../../assets/img/banner/products/StakeBooster.jpeg'
 import multibetCashback from '../../../assets/img/banner/products/100PercentCashback.jpg'
-import twoHundredPercent from '../../../assets/img/banner/products/500PercentBonus_.jpg'
-import advance from '../../../assets/img/banner/products/Advance.jpg'
+// import twoHundredPercent from '../../../assets/img/banner/products/500PercentBonus_.jpg'
+import krisi from '../../../assets/img/banner/products/Krisi Ki Betnare Web Banners_49.jpg'
 // import lala from '../../../assets/img/banner/products/Lala.jpg'
 // import ngware from '../../../assets/img/banner/products/Ngware.jpg'
 // import rent from '../../../assets/img/banner/products/Rent.jpg'
 // import rushHour from '../../../assets/img/banner/products/Rush Hour.jpg'
-import KaribuGiftWallet from '../../../assets/img/banner/products/KaribuGiftWallet.jpg'
+import karibuGiftWallet from "../../../assets/img/banner/products/KaribuGiftWallet.jpg"
+
 import {Table} from "react-bootstrap";
-import useWindowDimensions from "../../header/Dimensions";
-import {Context} from "../../../context/store";
 import Right from "../../right";
 
-
 const Promotions = () => {
-    const {height, width} = useWindowDimensions();
-    const [state, dispatch] = useContext(Context);
     return (
         <>
             <Header/>
-            <div className={(width<=514?state?.user?"user_logged":"amt":"amt")}>
+            <div className="amt">
                 <div className="d-flex flex-row">
                     <SideBar loadCompetitions/>
                     <div className="gz home" style={{width: '100%'}}>
@@ -38,23 +34,67 @@ const Promotions = () => {
                                         BETNARE PROMOTIONS
                                     </div>
                                 </div>
-
                                 <div className="col">
                                     <div className={'row text-white p-2 shadow-sm d-flex justify-content-center'}>
+                                        <div className="col-md-12 d-flex flex-row shadow-lg mt-2 promotion">
+                                            <div className="col-md-12">
+                                                <div className="d-flex flex-column">
+                                                    <h5 className={'text-uppercase'}>
+                                                        Open to all NEW and Existing customers.
+                                                        It is Christmas come early in BetNare, 5 JOGOOS & 2 MBUZI’s UP
+                                                        FOR GRABS DAILY
+                                                    </h5>
+                                                    <img src={krisi} className={'rounded'}/>
+                                                    <div className="col-md-12">
+                                                        ✅
+                                                        This applies to both Multibets and Single bets.
+                                                        <br/>
+                                                        ✅
+                                                        The promotion is Open for a customer once you place a bet
+                                                        (Any type of bet).
+                                                        <br/>
 
+                                                        ✅
+                                                        No Minimum odds or Number of legs are required for One to
+                                                        qualify for the award
+                                                        <br/>
+
+                                                        ✅
+                                                        Daily winners will receive different prizes credited into
+                                                        their BetNare account. This can be WITHDRAWN directly via Mpesa
+                                                        <br/>
+                                                        ✅Winners are chosen randomly by the BetNare promotion systems
+                                                        <br/>
+                                                        ✅JOGOOS up for grabs daily when you stake using KES29/= or
+                                                        MORE
+                                                        <br/>
+                                                        ✅
+                                                        MBUZIS up for grabs daily when you stake using KES49/= or MORE
+                                                        <br/>
+                                                        ✅
+                                                        Promo runs from the 10th December 2022 to 25th December 2022.
+                                                        <br/>
+                                                        ✅
+                                                        General BetNare terms and conditions apply.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div className="col-md-12 shadow-lg promotion">
                                             <div className="d-flex flex-column">
                                                 <h5>KARIBU GIFT WALLET</h5>
-                                                <img src={KaribuGiftWallet} className={'rounded'}/>
+                                                <img src={karibuGiftWallet} className={'rounded'}/>
                                                 <p>Register and Get the BetNare Bet Booster of UPTO 3,000/= FREE</p>
-                                                <p>The client is set to receive Up to 3,000/= to Unlock their Gift Wallet once they  Register</p>
+                                                <p>The client is set to receive Up to 3,000/= to Unlock their Gift
+                                                    Wallet once they Register</p>
                                                 <br/>
                                                 <ul>
                                                     How to get the Nare Booster Gifts
                                                     <br/>
                                                     ✅REGISTER on BetNare.
                                                     <br/>
-                                                    ✅Get UPTO 3,000 of registration as Free Nare Booster to be used on BetNare
+                                                    ✅Get UPTO 3,000 of registration as Free Nare Booster to be used on
+                                                    BetNare
                                                     when placing bets (in the Betslip)
                                                     <br/>
                                                     ✅Start using your BOOSTERS immediately on your 1 st Cash Bet.
@@ -67,16 +107,20 @@ const Promotions = () => {
                                                     ✅A minimum of 4 games on a Multi Bet.
                                                     <br/>
                                                     ✅BetNare will top up your stake by 20% of the stake used.
-                                                    e.g., When you stake 50/= BetNare will boost your stake by 20% meaning
-                                                    your stake will be 60/=, if you place a Stake of 200/=, BetNare will boost it to
+                                                    e.g., When you stake 50/= BetNare will boost your stake by 20%
+                                                    meaning
+                                                    your stake will be 60/=, if you place a Stake of 200/=, BetNare will
+                                                    boost it to
                                                     240/=
                                                     <br/>
                                                     <br/>
                                                     <p className={"text-center lead"}>
-                                                        <strong>NB:</strong> - Kindly Note that the Maximum Gift Bonus One can be topped up with is 40/=
+                                                        <strong>NB:</strong> - Kindly Note that the Maximum Gift Bonus
+                                                        One can be topped up with is 40/=
                                                         PER TICKET.
                                                         <br/>
-                                                        - Kindly Note that the BOOSTER wallet funds Do Not have an expiry date.
+                                                        - Kindly Note that the BOOSTER wallet funds Do Not have an
+                                                        expiry date.
 
                                                     </p>
 
@@ -88,28 +132,38 @@ const Promotions = () => {
                                                     <ol>
 
 
-                                                        ✅ One account one Nare Booster. Accounts with the same IP address and same
-                                                        Password will be regarded as the same customer and will not be able to claim the
-                                                        Booster Gift. First Deposit Gifts would be available only if a user makes a deposit
+                                                        ✅ One account one Nare Booster. Accounts with the same IP
+                                                        address and same
+                                                        Password will be regarded as the same customer and will not be
+                                                        able to claim the
+                                                        Booster Gift. First Deposit Gifts would be available only if a
+                                                        user makes a deposit
                                                         within the first 3 months of account opening.<br/>
 
-                                                        ✅ Once you REGISTER you get GIFT BOOSTER in total value of up to KES.3,000.<br/>
+                                                        ✅ Once you REGISTER you get GIFT BOOSTER in total value of up to
+                                                        KES.3,000.<br/>
 
-                                                        ✅ You will receive all the gifts once you REGISTER . The gifts will become valid only
+                                                        ✅ You will receive all the gifts once you REGISTER . The gifts
+                                                        will become valid only
                                                         on cash bets.<br/>
-                                                        ✅ The Gifts can only be used for &quot;Real Sports&quot; and not on Virtuals , Jackpot and
+                                                        ✅ The Gifts can only be used for &quot;Real Sports&quot; and not
+                                                        on Virtuals , Jackpot and
                                                         Casino.<br/>
 
-                                                        ✅ These Free Bet Gifts can only be used to place bets with 4+ selections with at
+                                                        ✅ These Free Bet Gifts can only be used to place bets with 4+
+                                                        selections with at
                                                         least 4 selections having Odds &gt; 1.5.<br/>
 
                                                         ✅ Only 1 Booster Gift can be used in 1 Betslip.<br/>
 
-                                                        ✅ In this promotion, BetNare only allows one chance to award Gifts per person /
+                                                        ✅ In this promotion, BetNare only allows one chance to award
+                                                        Gifts per person /
                                                         mobile number/ IP address/device number.<br/>
 
-                                                        ✅ Duplicate accounts will be closed and will not qualify for this offer. Any winnings
-                                                        obtained unlawfully from this bonus will be removed. Promotions and Gifts are
+                                                        ✅ Duplicate accounts will be closed and will not qualify for
+                                                        this offer. Any winnings
+                                                        obtained unlawfully from this bonus will be removed. Promotions
+                                                        and Gifts are
                                                         created in order to reward our most valued customers.<br/>
 
                                                     </ol>
@@ -327,8 +381,8 @@ const Promotions = () => {
                                                     <h5>BETNARE NGWARE</h5>
                                                     {/*<img src={ngware} className={'rounded'}/>*/}
                                                     <span>
-                        Monday promotion. BetNare Ngware, anzisha Wiki na Thao.
-                    </span>
+                                                        Monday promotion. BetNare Ngware, anzisha Wiki na Thao.
+                                                    </span>
                                                     <div className="col-md-12">
                                                         <span><u>Entry Requirements</u></span>
                                                         <ol>
@@ -357,9 +411,9 @@ const Promotions = () => {
                                                     <h5>LALA KICHAMPE</h5>
                                                     {/*<img src={lala} className={'rounded'}/>*/}
                                                     <span>
-                        This promotion will run on every Wednesday of the Month of
-                            October, 8pm to 10pm.
-                    </span>
+                                                        This promotion will run on every Wednesday of the Month of
+                                                            October, 8pm to 10pm.
+                                                    </span>
                                                     <div className="col-md-12">
                                                         <span><u>Entry Requirements</u></span>
                                                         <ol>
@@ -416,27 +470,6 @@ const Promotions = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-md-12 d-flex flex-row shadow-lg mt-2 promotion">
-                                            <div className="col-md-12">
-                                                <div className="d-flex flex-column">
-                                                    <h5 className={'text-uppercase'}>Jijenge kaAdvance na BetNare</h5>
-                                                    <img src={advance} className={'rounded'}/>
-                                                    <div className="col-md-12">
-                                                        ✅
-                                                        Place a bet with 50/= or more between 3rd October 2022 and 17th
-                                                        October 2022
-                                                        <br/>
-                                                        ✅
-                                                        Follow/Like any of our social media channels
-                                                        <br/>
-
-                                                        ✅Award 3 Lucky winners with Ksh. 3000 each.<br/>
-
-                                                        ✅Award a winner every two hours from 3pm to 7pm.<br/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <div className="col-md-12 d-flex flex-row shadow-lg mt-2 promotion d-none">
                                             <div className="col-md-12">
                                                 <div className="d-flex flex-column">
@@ -474,21 +507,21 @@ const Promotions = () => {
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className={"mobile-top"}>
+                <div className={"mobile-top d-lg-none"}>
                     <Right/>
                 </div>
             </div>
-                <div className={"mobile-remove"}>
-                    <Footer/>
-                </div>
-            </>
+            <div className={"mobile-remove"}>
+                <Footer/>
+            </div>
 
-            )
+        </>
+
+    )
 }
 
 export default Promotions

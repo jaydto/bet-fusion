@@ -124,6 +124,16 @@ const MobileNav1 = (props) => {
                         </div>
                     </Link>
                 </td>
+                <td  className={ window.location.search.includes('aviator') ? 'active' : 'menu-t'}
+                     onClick={() => gaEventTracker('Aviator')} style={{paddingLeft: "4px"}}>
+                    <Link className="cg fm ox anl url-link d-flex flex-column align-items-center"
+                          to={{pathname:"/nare-games", search:"game=aviator"}}
+                          title="Kanyonde">
+                        <FontAwesomeIcon icon={faPlaneDeparture} style={{color: "tomato",height:"27px"}}/>
+                        <strong> Kanyonde</strong>
+                    </Link>
+
+                </td>
                 <td className={`menu-t ${pathname==="/jackpot"?"active":""}`}  style={{paddingLeft: "4px"}}>
                     <Link to="/jackpot">
                         <div className="inner-div active">
@@ -136,38 +146,17 @@ const MobileNav1 = (props) => {
                         </div>
                     </Link>
                 </td>
-                <td className={`menu-t ${pathname==="/promotions"?"active":""}`} style={{paddingLeft: "4px"}}>
-                    <Link to="/promotions">
-                        <div className="inner-div active">
-                            <div className="menu-img">
-                                <LazyLoadImage src={promo} style={{width: "20px"}}/>
-                            </div>
-                            <div style={{textAlign: "center"}}>
-                                Promos
-                        </div>
-                        </div>
-                    </Link>
-                </td>
-                <td  className={ window.location.search.includes('aviator') ? 'active' : 'menu-t'}
-                     onClick={() => gaEventTracker('Aviator')} style={{paddingLeft: "4px"}}>
-                    <Link className="cg fm ox anl url-link d-flex flex-column align-items-center"
-                          to={{pathname:"/nare-games", search:"game=aviator"}}
-                          title="Kanyonde">
-                        <FontAwesomeIcon icon={faPlaneDeparture} style={{color: "tomato",height:"27px"}}/>
-                        <strong> Kanyonde</strong>
-                    </Link>
 
-                </td>
-                <td className={window.location.search.includes('nare-games') ? 'active' : 'menu-t'}
-                    onClick={() => gaEventTracker('Nare Games')} style={{paddingLeft: "4px"}}>
-                    <Link className="cg fm ox anl url-link d-flex flex-column align-items-center"
-                          to="/nare-game"
-                          title="Nare Games">
-                        <FontAwesomeIcon icon={faFireAlt} style={{color: "orange",height:"27px"}}/>
-                        <strong> Nare Games</strong>
-                    </Link>
+                {/*<td className={window.location.search.includes('nare-games') ? 'active' : 'menu-t'}*/}
+                {/*    onClick={() => gaEventTracker('Nare Games')} style={{paddingLeft: "4px"}}>*/}
+                {/*    <Link className="cg fm ox anl url-link d-flex flex-column align-items-center"*/}
+                {/*          to="/nare-game"*/}
+                {/*          title="Nare Games">*/}
+                {/*        <FontAwesomeIcon icon={faFireAlt} style={{color: "orange",height:"27px"}}/>*/}
+                {/*        <strong> Nare Games</strong>*/}
+                {/*    </Link>*/}
 
-                </td>
+                {/*</td>*/}
                 <td style={{paddingLeft: "4px"}} className={window.location.search.includes('worldcup') ? 'active  ' : 'menu-t'}
                     onClick={() => gaEventTracker('World Cup')}>
                     <Link className="cg fm ox anl url-link d-flex flex-column align-items-center"
@@ -202,6 +191,18 @@ const MobileNav1 = (props) => {
                 </td>
                 ))}
 
+                <td className={`menu-t ${pathname==="/promotions"?"active":""}`} style={{paddingLeft: "4px"}}>
+                    <Link to="/promotions">
+                        <div className="inner-div active">
+                            <div className="menu-img">
+                                <LazyLoadImage src={promo} style={{width: "20px"}}/>
+                            </div>
+                            <div style={{textAlign: "center"}}>
+                                Promos
+                            </div>
+                        </div>
+                    </Link>
+                </td>
             </tr>
             </tbody>
         </table>

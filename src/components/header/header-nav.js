@@ -78,14 +78,6 @@ const HeaderNav = (props) => {
                         <Link className={`g url-link live-game ${pathname === '/live' ? 'active' : ''}`} to={"/live"}
                            title="Live">Live</Link>
                     </li>
-
-                    <li className={pathname === '/jackpot' ? 'active' : ''}
-                        onClick={() => gaEventTracker('Visit Jackpot Page')}>
-                        <Link className="cg fm ox anl url-link" to={"/jackpot"} title="Jackpot">
-                            <FontAwesomeIcon icon={faCoins}/> Jackpot
-                        </Link>
-
-                    </li>
                     <li className={window.location.search.includes('aviator') ? 'active' : ''}
                         onClick={() => gaEventTracker('Aviator')}>
                         <Link className="cg fm ox anl url-link"
@@ -95,15 +87,30 @@ const HeaderNav = (props) => {
                             <strong> Kanyonde</strong>
                         </Link>
                     </li>
-                    <li className={window.location.search.includes('nare-games') ? 'active' : ''}
-                        onClick={() => gaEventTracker('Nare Games')}>
-                        <Link className="cg fm ox anl url-link"
-                              to="/nare-game"
-                              title="Nare Games">
-                            <FontAwesomeIcon icon={faFireAlt} style={{color: "orange"}}/>
-                            <strong> Nare Games</strong>
+                    <li className={`${pathname === '/virtuals' || pathname.includes("gameplay") ? 'active' : ''}`}>
+                        <Link className="g url-link spacing" to={"/virtuals spacing"} title="Virtuals">
+                            <span>
+                                <FontAwesomeIcon icon={faLaptop}/> Virtuals
+                            </span>
                         </Link>
                     </li>
+                    <li className={pathname === '/jackpot' ? 'active' : ''}
+                        onClick={() => gaEventTracker('Visit Jackpot Page')}>
+                        <Link className="cg fm ox anl url-link" to={"/jackpot"} title="Jackpot">
+                            <FontAwesomeIcon icon={faCoins}/> Jackpot
+                        </Link>
+
+                    </li>
+
+                    {/*<li className={window.location.search.includes('nare-games') ? 'active' : ''}*/}
+                    {/*    onClick={() => gaEventTracker('Nare Games')}>*/}
+                    {/*    <Link className="cg fm ox anl url-link"*/}
+                    {/*          to="/nare-game"*/}
+                    {/*          title="Nare Games">*/}
+                    {/*        <FontAwesomeIcon icon={faFireAlt} style={{color: "orange"}}/>*/}
+                    {/*        <strong> Nare Games</strong>*/}
+                    {/*    </Link>*/}
+                    {/*</li>*/}
                     <li className={window.location.search.includes('worldcup') ? 'active' : ''}
                         onClick={() => gaEventTracker('World Cup')}>
                         <Link className="cg fm ox anl url-link"
@@ -135,13 +142,7 @@ const HeaderNav = (props) => {
                                 <FontAwesomeIcon icon={faDice}/> Casino
                             </Link>
                         </li>
-                        <li className={`${pathname === '/virtuals' || pathname.includes("gameplay") ? 'active' : ''}`}>
-                            <Link className="g url-link spacing" to={"/virtuals spacing"} title="Virtuals">
-                            <span>
-                                <FontAwesomeIcon icon={faLaptop}/> Virtuals
-                            </span>
-                            </Link>
-                        </li>
+
                     </>
 
                     <li className={pathname.includes("promotions") ? 'active' : ''}

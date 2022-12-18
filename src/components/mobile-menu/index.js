@@ -1,7 +1,7 @@
 import React, {useCallback, useContext, useEffect, useState} from 'react';
 import HomeSvg from '../../assets/img/mobile/home.png';
 import VirtualSvg from '../../assets/img/mobile/virtual.png';
-import LiveSvg from '../../assets/img/mobile/live-3.png';
+import LiveSvg from '../../assets/img/mobile/live.png';
 import ProfileSvg from '../../assets/img/mobile/user.png';
 
 import makeRequest from "../utils/fetch-request";
@@ -113,7 +113,7 @@ const MobileMenu = (props) => {
 
                 <Link to={`/live`} className={`bloc-icon ${pathname === "/live" ? 'active' : ""}`}
                       onClick={() => gaEventTracker('Visit Live  Page')}>
-                    <img style={{background: "red"}} src={LiveSvg} alt="">
+                    <img  src={LiveSvg} alt="">
                     </img>
 
                     <p>Live <span className={"text-light"}>({liveSports?.length || 0})</span></p>

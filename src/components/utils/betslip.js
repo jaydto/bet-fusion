@@ -59,4 +59,3 @@ export const formatNumber = (number) => {
         .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
         .replace(".00", '');
 }
-

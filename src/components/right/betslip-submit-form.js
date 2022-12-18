@@ -491,13 +491,13 @@ const BetslipSubmitForm = (props) => {
                             </td>
                         </tr>
                         <tr>
-                            <td className={"bet-align-right"}>
+                            <td className={"bet-align-left"}>
                                 <button className="place-bet-btn"
                                         type="button"
                                         onClick={() => handleRemoveAll()}>REMOVE ALL
                                 </button>
                             </td>
-                            <td className={"bet-align-left"}>
+                            <td className={"bet-align-right"}>
                                 <SubmitButton id="place_bet_button"
                                               disabled={jackpot && Object.entries(betslip || []).length != JSON.stringify(jackpotData?.total_games)}
                                               className="place-bet-btn bold"

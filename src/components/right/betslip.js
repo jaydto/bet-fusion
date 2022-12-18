@@ -246,6 +246,7 @@ const BetSlip = (props) => {
                                                 width: "auto",
                                                 fontWeight: "bold"
                                             }}>{slip?.sport_name},&nbsp;</span>}
+                                            {console.log("sport_name",slip?.sport_name==undefined?"":slip?.sport_name)}
                                             {slip.bet_type === 0 && ' Pre-match'}
                                             {slip.bet_type === 1 && ' Live'}
                                         </b>

@@ -728,7 +728,7 @@ const MatchRow = (props) => {
                                 <div className="compt-detail overflow-ellipsis">
                                     <small>{match.category} | {match.competition_name}</small>
                                 </div>
-                                <div className="compt-teams d-flex flex-xl-column">
+                                <div className="compt-teams d-flex flex-xl-column flex-column flex-md-row">
                                     <div className={'bold'}>
                                         {live && (match?.match_status !== 'ended') && <ColoredCircle color="red"/>}
                                         {match.home_team}

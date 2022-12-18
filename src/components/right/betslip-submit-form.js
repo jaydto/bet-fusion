@@ -262,13 +262,14 @@ const BetslipSubmitForm = (props) => {
         }
     }, [betslip, stake, totalOdds, multiBoostAmount]);
 
+
     const handleRemoveAll = useCallback(() => {
         let betslips =jackpot?getJackpotBetslip():getBetslip();
         Object.entries(betslips).map(([match_id, match]) =>
         {
-           // let slip=
+            // let slip=
             jackpot ? removeFromJackpotSlip(match_id):
-            removeFromSlip(match_id);
+                removeFromSlip(match_id);
 
             let match_selector = match.match_id + "_selected";
             let ucn = clean_rep(
@@ -283,6 +284,7 @@ const BetslipSubmitForm = (props) => {
         dispatch({type: "SET", key: jackpot ? 'jackpotbetslip' : 'betslip', payload: {}});
         setMessage(null);
     }, []);
+
 
     useEffect(() => {
         updateWinnings();
@@ -526,5 +528,6 @@ const BetslipSubmitForm = (props) => {
             </FormikForm>)
         }}
         </Formik>)
+
 }
 export default React.memo(BetslipSubmitForm);

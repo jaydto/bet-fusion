@@ -1,4 +1,3 @@
-
 import React, {useState, useEffect, useContext, useCallback} from 'react';
 import BetslipSubmitForm from './betslip-submit-form';
 import {Context} from '../../context/store';

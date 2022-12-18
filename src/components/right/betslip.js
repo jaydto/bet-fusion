@@ -47,11 +47,6 @@ const BetSlip = (props) => {
             setBetslipsData(state[betslipKey]);
         }
     }, [state[betslipKey]]);
-    useEffect(() => {
-        dispatch({type: "SET", key: "count", payload: betslipsData!=null?Object.keys(betslipsData)?.length:0});
-    }, [])
-
-    // console.log("'betslipdata",Object.keys(betslipsData)==null?Object.keys(betslipsData):"h");
 
     //Handle db validation of betslip
     const validateBetslipwithDbData = useCallback(() => {
@@ -141,7 +136,6 @@ const BetSlip = (props) => {
         setBetslipsData(betslip);
 
         dispatch({type: "SET", key: betslipKey, payload: betslip});
-
         dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
     }
 
@@ -231,7 +225,7 @@ const BetSlip = (props) => {
                 <BonusAlert/>
             )}
             <div className="flow slip-size" style={{maxHeight: "42vh", overflowY: "auto"}}>
-                <ul>
+            <ul>
                     {Object.entries(betslipsData || {}).map(([match_id, slip]) => {
                         let odd = slip.odd_value;
                         let no_odd_bg = odd === 1 ? '#f29f7a' : '';
@@ -243,7 +237,7 @@ const BetSlip = (props) => {
                                     <input id={slip.match_id} type="submit" value="X"
                                            onClick={() => handledRemoveSlip(slip)}/>
                                 </div>
-                                <Link to={`${slip?.bet_type === "0" ? "/match?id=" + slip?.match_id : "/match/?live=live&id=" + slip?.parent_match_id}`}
+                                <Link to={`${slip?.bet_type === "0" ? "/match/" + slip?.match_id : "/match/live/" + slip?.parent_match_id}`}
                                    style={{color: "inherit", fontStyle: "inherit"}} className={'g url-link'}>
                                     <div className="bet-value">
                                         <b>

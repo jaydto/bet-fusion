@@ -1722,7 +1722,9 @@ header {
     vertical-align: baseline;
     border-radius: .25em;
 }
-
+.profile-wrap{
+    white-space: nowrap;
+}
 .profile {
     margin-right: 0 !important;
     text-align: right;

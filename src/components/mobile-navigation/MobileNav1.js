@@ -9,6 +9,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import promo from "../../../src/assets/img/mobile/fire.png";
 import jackpot from "../../../src/assets/img/mobile/jackpot.png";
 import home from "../../../src/assets/img/mobile/home.png"
+import kanyonde from "../../../src/assets/img/mobile/kanyonde.png"
 import {getFromLocalStorage,setLocalStorage} from "../utils/local-storage";
 import makeRequest from "../utils/fetch-request";
 import worldCup from "../../../src/assets/img/flags-1-1/worldcup.png"
@@ -129,8 +130,9 @@ const MobileNav1 = (props) => {
                     <Link className="cg fm ox anl url-link d-flex flex-column align-items-center"
                           to={{pathname:"/nare-games", search:"game=aviator"}}
                           title="Kanyonde">
-                        <FontAwesomeIcon icon={faPlaneDeparture} style={{color: "tomato",height:"27px"}}/>
-                        <strong> Kanyonde</strong>
+                        <div className="menu-img">
+                            <LazyLoadImage src={kanyonde} style={{height: "25px" }}/>
+                        </div>   <strong> Kanyonde</strong>
                     </Link>
 
                 </td>

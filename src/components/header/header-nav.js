@@ -94,6 +94,15 @@ const HeaderNav = (props) => {
                             </span>
                         </Link>
                     </li>
+                    <li className={window.location.search.includes('worldcup') ? 'active' : ''}
+                        onClick={() => gaEventTracker('World Cup')}>
+                        <Link className="cg fm ox anl url-link d-flex"
+                              to={{pathname: "/competition",search: "competitionid=18585&sub_type_id=1,18,29&limit=500&c=worldcup"}}
+                              title="Fifa World Cup">
+                            <img src={worldCup} className={'world-cup'} style={{height: "22px",borderRadius:"0 !important",margin:"0px"}}></img>
+                            <strong>Fifa World Cup</strong>
+                        </Link>
+                    </li>
                     <li className={pathname === '/jackpot' ? 'active' : ''}
                         onClick={() => gaEventTracker('Visit Jackpot Page')}>
                         <Link className="cg fm ox anl url-link" to={"/jackpot"} title="Jackpot">
@@ -111,15 +120,7 @@ const HeaderNav = (props) => {
                     {/*        <strong> Nare Games</strong>*/}
                     {/*    </Link>*/}
                     {/*</li>*/}
-                    <li className={window.location.search.includes('worldcup') ? 'active' : ''}
-                        onClick={() => gaEventTracker('World Cup')}>
-                        <Link className="cg fm ox anl url-link"
-                              to={{pathname: "/competition",search: "competitionid=18585&sub_type_id=1,18,29&limit=500&c=worldcup"}}
-                              title="Fifa World Cup">
-                            <img src={worldCup} className={'world-cup'} style={{height: "20px",borderRadius:"0 !important"}}></img>
-                            <strong>Fifa World Cup</strong>
-                        </Link>
-                    </li>
+
                     <li className={pathname === '/app' ? 'active' : ''}
                         onClick={() => gaEventTracker('Visit App Page')}>
                         <Link className="g url-link spacing" to={"/app"} title="App">

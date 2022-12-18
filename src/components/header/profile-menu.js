@@ -17,7 +17,7 @@ const ProfileMenu = (props) => {
                 <>
                     <div className="row w-100">
                         <div className="col d-flex flex-column text-white align-items-start">
-                            <div>
+                            <div className={"profile-wrap"}>
                                 <Link
                                     to={{pathname: "/deposit"}}
                                     className={"deposit-button"}>
@@ -72,12 +72,12 @@ const ProfileMenu = (props) => {
                               </span>
                             </div>
                             <div className={'d-flex flex-row justify-content-around'}>
-                                <div>
+                                <div className={"profile-wrap"}>
                                     <Link to={{pathname: "/my-bets"}} title={"My Bets"} className={'text-white'}>
                                         <strong> <FontAwesomeIcon icon={faList}/> My Bets | </strong>
                                     </Link>
                                 </div>
-                                <div>
+                                <div className={"profile-wrap"}>
                                     <a href="/logout">
                                         <span className=""> <FontAwesomeIcon icon={faLock}/></span> Logout
                                     </a>

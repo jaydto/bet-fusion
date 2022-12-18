@@ -29,7 +29,7 @@ const ProfileMenu = (props) => {
                                 </Link>
                             </div>
 
-                            <div>
+                            <div className={"profile-wrap"}>
                                 <Link to={{pathname: "/withdraw"}} className={"withdraw-button text-white"}>
                                     <span className="">
                                     <span className=" space-icons"><FontAwesomeIcon icon={faCloudUploadAlt}/> </span>
@@ -39,23 +39,23 @@ const ProfileMenu = (props) => {
                             </div>
                         </div>
                         <div className="col d-flex flex-column text-white align-items-start">
-                            <div>
+                            <div className={"profile-wrap"}>
                                 <FontAwesomeIcon
                                     icon={faDollarSign}/> Cash
                                 <strong style={{color: "#FFB200"}}> KSH {formatNumber(user.balance) || 0}</strong>
                             </div>
-                            <div><FontAwesomeIcon
+                            <div className={"profile-wrap"}><FontAwesomeIcon
                                 icon={faGifts}/> Gift <strong>
                                 KSH {formatNumber(user.gift_balance) || 0} </strong></div>
 
                         </div>
                         <div className="col d-flex flex-column text-white align-items-start">
-                            <div>
+                            <div className={"profile-wrap"}>
                                 <FontAwesomeIcon
                                     icon={faSmile}/> Bonus
                                 <strong>KSH {formatNumber(user.bonus) || 0}</strong>
                             </div>
-                            <div>
+                            <div className={"profile-wrap"}>
                                 <Link to={{pathname: "/redeem-points"}}
                                       className={'link-info text-info'} title={'Click to Redeem'}>
                                     <FontAwesomeIcon
@@ -64,7 +64,7 @@ const ProfileMenu = (props) => {
                             </div>
                         </div>
                         <div className="col d-flex flex-column text-white align-items-end">
-                            <div>
+                            <div className={"profile-wrap"}>
                               <span className="font-btn ">
                               <span className=" space-icons">
                                   <FontAwesomeIcon icon={faUserAlt}/> </span>

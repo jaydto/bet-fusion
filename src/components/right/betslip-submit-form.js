@@ -418,7 +418,7 @@ const BetslipSubmitForm = (props) => {
                 {!jackpot && awardMultiGift && Number(totalGames) > settings?.betnareBonus?.bonusBetLegs ? (
                     <div className={'alert alert-success'}>
                         <FontAwesomeIcon icon={faGift}/> {multiBoostMessage}
-                        {console.log("multiboost message:",multiBoostMessage)}
+                        {/*{console.log("multiboost message:",multiBoostMessage)}*/}
                     </div>
                 ) : (<></>)}
 

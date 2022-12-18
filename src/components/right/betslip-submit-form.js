@@ -60,6 +60,7 @@ const BetslipSubmitForm = (props) => {
 
     const [betslipKey, setBetslipKey] = useState("betslip");
 
+    console.log("settings",settings)
     useEffect(() => {
         if (jackpot) {
             setBetslipKey("jackpotbetslip");
@@ -417,8 +418,10 @@ const BetslipSubmitForm = (props) => {
                 {!jackpot && awardMultiGift && Number(totalGames) > settings?.betnareBonus?.bonusBetLegs ? (
                     <div className={'alert alert-success'}>
                         <FontAwesomeIcon icon={faGift}/> {multiBoostMessage}
+                        {console.log("multiboost message:",multiBoostMessage)}
                     </div>
                 ) : (<></>)}
+
                 {totalGames > 0 && (
                     <table className="bet-table">
                         <tbody>

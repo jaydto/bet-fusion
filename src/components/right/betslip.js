@@ -1,3 +1,4 @@
+
 import React, {useState, useEffect, useContext, useCallback} from 'react';
 import BetslipSubmitForm from './betslip-submit-form';
 import {Context} from '../../context/store';
@@ -245,7 +246,7 @@ const BetSlip = (props) => {
                                                 float: "left",
                                                 width: "auto",
                                                 fontWeight: "bold"
-                                            }}>{slip.sport_name},&nbsp;</span>}
+                                            }}>{slip?.sport_name},&nbsp;</span>}
                                             {slip.bet_type === 0 && ' Pre-match'}
                                             {slip.bet_type === 1 && ' Live'}
                                         </b>

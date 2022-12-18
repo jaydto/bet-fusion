@@ -45,7 +45,7 @@ const Index = (props) => {
 
 
     useInterval(async () => {
-        console.log("location",location.pathname)
+        // console.log("location",location.pathname)
         if(location.pathname==="/")
             setFetching(true)
         else

@@ -60,7 +60,7 @@ const BetslipSubmitForm = (props) => {
 
     const [betslipKey, setBetslipKey] = useState("betslip");
 
-    console.log("settings",settings)
+    // console.log("settings",settings)
     useEffect(() => {
         if (jackpot) {
             setBetslipKey("jackpotbetslip");
@@ -493,8 +493,7 @@ const BetslipSubmitForm = (props) => {
                                 id="net-amount">{formatNumber(jackpot ? jackpotData?.jackpot_amount : (hasMultiBetBoost ? netWinBoosted : netWin))}</span>
                             </td>
                         </tr>
-                        <tr>
-                            <td className={"bet-align-right"}>
+                        <tr><td className={"bet-align-right"}>
                                 <button className="place-bet-btn"
                                         type="button"
                                         onClick={() => handleRemoveAll()}>REMOVE ALL

@@ -19,6 +19,7 @@ import karibuGiftWallet from "../../assets/img/banner/products/KaribuGiftWallet.
 import kanyondeBanner from "../../assets/img/banner/products/Kanyonde Web Banner.jpg"
 import krisi29 from "../../assets/img/banner/products/Krisi Ki Betnare Web Banners_29.jpg"
 import krisi49 from "../../assets/img/banner/products/Krisi Ki Betnare Web Banners_49.jpg"
+import karibu50 from "../../assets/img/banner/products/50KaribuBonus.jpg"
 
 
 const banners = [
@@ -26,6 +27,7 @@ const banners = [
     krisi29,
     krisi49,
     karibuGiftWallet,
+    karibu50,
     stakeBooster,
     dailyDepositGift,
     twentyPercentStakeBooster,

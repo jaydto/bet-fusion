@@ -15616,7 +15616,18 @@ img.zoom-img {
 .user_logged{
     margin-top: 21.5rem!important;
 }
-
+.notify-badge {
+    background: red;
+    border-radius: 10px 0 15px 0;
+    color: #fff;
+    font-size: 10px;
+    margin-top: 5px !important;
+    padding: 1px 5px;
+    position: absolute;
+    right: -10px;
+    text-align: center;
+    top: -2px;
+}
 .bloc-icon:hover{
     border-bottom:thin solid #ffc107!important;
 }

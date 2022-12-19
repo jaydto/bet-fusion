@@ -132,6 +132,8 @@ const MobileNav1 = (props) => {
                           title="Kanyonde">
                         <div className="menu-img">
                             <LazyLoadImage src={kanyonde} style={{height: "25px" }}/>
+                            <span className=" badge" style={{color:"white",background:"red",position: "absolute"
+                                ,marginTop:"-5px", borderRadius: "10px 0 15px 0", marginLeft:"-10px"}}>NEW</span>
                         </div>   <strong> Kanyonde</strong>
                     </Link>
 

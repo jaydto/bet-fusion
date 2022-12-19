@@ -88,6 +88,8 @@ const MobileMenu = (props) => {
                     <p>Home</p>
                 </Link>
                 <Link to={"/virtuals"} className={`bloc-icon ${pathname === "/virtuals" ? "active" : ""}`}>
+                     <span className=" badge" style={{color:"white",background:"red",position: "absolute"
+                         ,marginTop:"-10px", borderRadius: "10px 0 15px 0"}}>NEW</span>
                     <img src={VirtualSvg} alt=""></img>
                     <p>Virtuals</p>
                 </Link>

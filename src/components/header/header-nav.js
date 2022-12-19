@@ -2,7 +2,6 @@ import React, {useContext, useEffect, useState, useRef} from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Container from 'react-bootstrap/Container';
 import {Context} from '../../context/store';
-import worldCup from '../../assets/img/flags-1-1/worldcup.png'
 
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {
@@ -11,7 +10,7 @@ import {
     faQuestionCircle,
     faTimes,
     faLaptop,
-    faMagic, faInfo, faDice, faFire, faPlane, faPlaneDeparture, faFireAlt
+    faMagic, faInfo, faDice, faFire, faPlaneDeparture, faFireAlt
 } from '@fortawesome/free-solid-svg-icons'
 import makeRequest from "../utils/fetch-request";
 import {faMobile, faCoins} from "@fortawesome/free-solid-svg-icons";
@@ -105,16 +104,6 @@ const HeaderNav = (props) => {
                                     </div>
                                 </strong>
                             </span>
-                        </Link>
-                    </li>
-                    <li className={window.location.search.includes('worldcup') ? 'active' : ''}
-                        onClick={() => gaEventTracker('World Cup')}>
-                        <Link className="url-link"
-                              to="/competition/79/8085/18585?sport_id=79&sub_type_id=1,18,29&limit=500&c=worldcup"
-                              title="Fifa World Cup">
-                            <img src={worldCup} className={'world-cup'}
-                                 style={{height: "20px", borderRadius: "0 !important"}}></img>
-                            <strong>Fifa World Cup</strong>
                         </Link>
                     </li>
 

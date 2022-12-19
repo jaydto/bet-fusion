@@ -152,17 +152,7 @@ const Sidebar = (props) => {
                                      icon={<img style={{borderRadius: '50%', height: '20px'}}
                                                 src={getSportImageIcon(competition.sport_name)}/>}
                                      key={index}>
-
-                                <MenuItem icon={<img
-                                    src={getSportImageIcon('/img/flags-1-1/worldcup.png', 'img/flags-1-1', true)}
-                                    style={{borderRadius: "50%", height: "20px"}}></img>}>
-                                    <a onClick={() => gaEventTracker(`Today Games ${competition?.sport_name}`)}
-                                       href={`/competition/79/8085/18585?sport_id=79&sub_type_id=1,18,29&limit=500&c=worldcup`}>
-                                        <strong>Fifa World Cup</strong>
-                                    </a>
-                                </MenuItem>
                                 {index === 0 && (
-
                                     <SubMenu title={'Top Leagues'}>
                                         {competitions?.top_soccer?.map((top_league, index) => (
                                             <MenuItem key={`l_${index}`}

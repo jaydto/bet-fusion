@@ -15621,6 +15621,10 @@ img.zoom-img {
     border-bottom:thin solid #ffc107!important;
 }
 @media (max-width: 767px){
+    .slip-body >tr{
+        line-height:11.5px;
+        white-space: nowrap;
+    }
     .virtual-game-container{
         width:100%;
     }

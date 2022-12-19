@@ -159,17 +159,17 @@ const MobileNav1 = (props) => {
                 {/*    </Link>*/}
 
                 {/*</td>*/}
-                <td style={{paddingLeft: "4px"}} className={window.location.search.includes('worldcup') ? 'active  ' : 'menu-t'}
-                    onClick={() => gaEventTracker('World Cup')}>
-                    <Link className="cg fm ox anl url-link d-flex flex-column align-items-center"
-                          to={{pathname: "/competition",search: "competitionid=18585&sub_type_id=1,18,29&limit=500&c=worldcup"}}
-                          title="Fifa World Cup"
-                    >
-                        <img src={worldCup} className={'world-cup'}
-                             style={{height: "25px", borderRadius: "0 !important"}}></img>
-                        <strong>Fifa World Cup</strong>
-                    </Link>
-                </td>
+                {/*<td style={{paddingLeft: "4px"}} className={window.location.search.includes('worldcup') ? 'active  ' : 'menu-t'}*/}
+                {/*    onClick={() => gaEventTracker('World Cup')}>*/}
+                {/*    <Link className="cg fm ox anl url-link d-flex flex-column align-items-center"*/}
+                {/*          to={{pathname: "/competition",search: "competitionid=18585&sub_type_id=1,18,29&limit=500&c=worldcup"}}*/}
+                {/*          title="Fifa World Cup"*/}
+                {/*    >*/}
+                {/*        <img src={worldCup} className={'world-cup'}*/}
+                {/*             style={{height: "25px", borderRadius: "0 !important"}}></img>*/}
+                {/*        <strong>Fifa World Cup</strong>*/}
+                {/*    </Link>*/}
+                {/*</td>*/}
 
                 {sport?.all_sports.map((allsports, index) => (
                 <td key={index} className={`menu-t sport-check ${pathname===allsports.sport_id?"active":""}`} style={{paddingLeft: "4px"}}>

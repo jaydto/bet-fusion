@@ -424,7 +424,7 @@ const BetslipSubmitForm = (props) => {
 
                 {totalGames > 0 && (
                     <table className="bet-table">
-                        <tbody>
+                        <tbody className={"slip-body"}>
                         {!jackpot && <tr className="hide-on-affix">
                             <td className={"bet-align-left"}>TOTAL ODDS</td>
                             <td className={"bet-align-right"}>

@@ -128,13 +128,26 @@ const MobileNav1 = (props) => {
                 <td  className={ window.location.search.includes('aviator') ? 'active' : 'menu-t'}
                      onClick={() => gaEventTracker('Aviator')} style={{paddingLeft: "4px"}}>
                     <Link className="cg fm ox anl url-link d-flex flex-column align-items-center"
-                          to={{pathname:"/nare-games", search:"game=aviator"}}
+                          to={{pathname:"/nare-game", search:"game=aviator"}}
                           title="Kanyonde">
                         <div className="menu-img">
                             <LazyLoadImage src={kanyonde} style={{height: "25px" }}/>
-                            <span className=" badge" style={{color:"white",background:"red",position: "absolute"
+                            <span className=" badge" style={{color:"white",background:"red"
                                 ,marginTop:"-5px", borderRadius: "10px 0 15px 0", marginLeft:"-10px"}}>NEW</span>
                         </div>   <strong> Kanyonde</strong>
+                    </Link>
+
+                </td>
+                <td className={window.location.search.includes('nare-games') ? 'active' : 'menu-t'}
+                    onClick={() => gaEventTracker('Nare Games')} style={{paddingLeft: "4px"}}>
+                    <Link className="cg fm ox anl url-link d-flex flex-column align-items-center"
+                          to="/nare-games"
+                          title="Nare Games">
+                        <div className="menu-img d-flex justify-content-center">
+                        <FontAwesomeIcon icon={faFireAlt} style={{color: "orange",height:"27px"}}/>
+                        <span className=" badge" style={{color:"white",background:"red"
+                            ,marginTop:"3px", borderRadius: "10px 0 15px 0", marginLeft:"2x"}}>NEW</span>
+                        </div><strong> Nare Games</strong>
                     </Link>
 
                 </td>
@@ -151,16 +164,7 @@ const MobileNav1 = (props) => {
                     </Link>
                 </td>
 
-                {/*<td className={window.location.search.includes('nare-games') ? 'active' : 'menu-t'}*/}
-                {/*    onClick={() => gaEventTracker('Nare Games')} style={{paddingLeft: "4px"}}>*/}
-                {/*    <Link className="cg fm ox anl url-link d-flex flex-column align-items-center"*/}
-                {/*          to="/nare-game"*/}
-                {/*          title="Nare Games">*/}
-                {/*        <FontAwesomeIcon icon={faFireAlt} style={{color: "orange",height:"27px"}}/>*/}
-                {/*        <strong> Nare Games</strong>*/}
-                {/*    </Link>*/}
 
-                {/*</td>*/}
                 {/*<td style={{paddingLeft: "4px"}} className={window.location.search.includes('worldcup') ? 'active  ' : 'menu-t'}*/}
                 {/*    onClick={() => gaEventTracker('World Cup')}>*/}
                 {/*    <Link className="cg fm ox anl url-link d-flex flex-column align-items-center"*/}

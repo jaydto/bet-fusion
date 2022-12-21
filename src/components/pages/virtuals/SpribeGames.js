@@ -11,6 +11,8 @@ import {faFire} from "@fortawesome/free-solid-svg-icons";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import {Button, ButtonGroup} from "react-bootstrap";
 import SideBar from "../../sidebar/awesome/Sidebar";
+import useWindowDimensions from "../../header/Dimensions";
+import Right from "../../right";
 
 
 const GamePlay = (props) => {
@@ -22,6 +24,7 @@ const GamePlay = (props) => {
     const [isLoggedIn] = useState(getFromLocalStorage('user'))
 
     const [gamesLoaded, setGamesLoaded] = useState(false)
+    const {height, width} = useWindowDimensions();
 
     const getFastGames = async () => {
 
@@ -65,12 +68,12 @@ const GamePlay = (props) => {
                         <div className="col-md-12 d-flex flex-column">
                             <div className="col-md-12">
                                 <div className="homepage">
-                                    <div className={'row row-cols-4 text-white p-2 shadow-sm mt-2'}>
+                                    <div className={`  row ${width<767?"row-cols-2":"row-cols-4 "}  text-white p-2 shadow-sm mt-2`}>
                                         {gamesLoaded && games?.map((game) => (
                                             <div className={'col cursor-pointer'}>
                                                 <div
                                                     className={'mt-1 mb-1 d-flex flex-column shadow-lg virtual-game-container'}>
-                                                    <Link to={`/nare-games/${game?.key}`}
+                                                    <Link to={{pathname:`/nare-game`, search: `game=${game?.key}`}}
                                                           className=""
                                                           key={game.key}>
                                                         <p className={'text-center bold text-elipsis text-uppercase'}>
@@ -97,7 +100,12 @@ const GamePlay = (props) => {
                     </div>
                 </div>
             </div>
-            <Footer/>
+            <div className={"mobile-only mobile-top d-lg-none"}>
+                <Right/>
+            </div>
+            <div className={"mobile-remove"}>
+                <Footer/>
+            </div>
         </>
     )
 }

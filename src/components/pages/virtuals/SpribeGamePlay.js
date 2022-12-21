@@ -95,7 +95,7 @@ const GamePlay = (props) => {
                     </div>
                 </div>
             </div>
-            <div className="d-lg-none">
+            <div className="d-lg-none mobile-top">
                 <Right/>
             </div>
             <div className={"mobile-remove"}>

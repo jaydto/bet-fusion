@@ -96,7 +96,6 @@ const HeaderNav = (props) => {
                         <Link className="cg fm ox anl url-link"
                               to="/nare-games"
                               title="Nare Games">
-
                             <strong>
                                 <FontAwesomeIcon icon={faFireAlt} style={{color: "orange"}}/>Nare Games
                                 <span className="notify-badge badge">NEW</span>

@@ -9,8 +9,9 @@ import {getFromLocalStorage} from "../../utils/local-storage";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFire} from "@fortawesome/free-solid-svg-icons";
 import {LazyLoadImage} from "react-lazy-load-image-component";
-import {Button} from "react-bootstrap";
-import SideBar from "../../sidebar/sidebar";
+import {Button, ButtonGroup} from "react-bootstrap";
+import SideBar from "../../sidebar/awesome/Sidebar";
+
 
 const GamePlay = (props) => {
     const {game_id, live} = useParams()

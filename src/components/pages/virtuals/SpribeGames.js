@@ -37,6 +37,19 @@ const GamePlay = (props) => {
     useEffect(() => {
         getFastGames()
     }, [])
+
+    // const getFastGamesImages = (nare_game, folder = 'fast_games') => {
+    //
+    //     let default_img = 'default_sport'
+    //     let nare_image;
+    //     try {
+    //        nare_image = require(`../../../src/assets/${folder}/${sport_name}.svg`);
+    //     } catch (error) {
+    //         nare_image = require(`../../../src/assets/${folder}/${default_img}.svg`);
+    //     }
+    //     return sport_image
+    // }
+
     return (
         <>
             <Header/>

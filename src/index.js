@@ -152,8 +152,8 @@ render((
                     <Route exact path= "/competition"
                            element={<CompetitionsMatches/>}
                     />
-                    <Route exact path="/nare-games" element={<SpribeGamePlay/>}/>
-                    <Route exact path="/nare-game" element={<SpribeGames/>}/>
+                    <Route exact path="/nare-game" element={<SpribeGamePlay/>}/>
+                    <Route exact path="/nare-games" element={<SpribeGames/>}/>
                     <Route exact path="/competition/:sportid/:categoryid/:competitionid"
                            element={<CompetitionsMatches/>}
                            loader={async ({params})=>{

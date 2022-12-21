@@ -81,13 +81,25 @@ const HeaderNav = (props) => {
                     <li className={window.location.search.includes('aviator') ? 'active' : ''}
                         onClick={() => gaEventTracker('Aviator')}>
                         <Link className="cg fm ox anl url-link"
-                              to="/nare-games/aviator"
+                              to={{pathname:"/nare-game", search:"game=aviator"}}
                               title="Kanyonde">
                             <strong>
                                 <div className={'notification-item'}>
                                     <FontAwesomeIcon icon={faPlaneDeparture} style={{color: "tomato"}}/> Kanyonde
                                     <span className="notify-badge badge">NEW</span>
                                 </div>
+                            </strong>
+                        </Link>
+                    </li>
+                    <li className={window.location.search.includes('nare-games') ? 'active' : ''}
+                        onClick={() => gaEventTracker('Nare Games')} title={"Nare Games"}>
+                        <Link className="cg fm ox anl url-link"
+                              to="/nare-games"
+                              title="Nare Games">
+
+                            <strong>
+                                <FontAwesomeIcon icon={faFireAlt} style={{color: "orange"}}/>Nare Games
+                                <span className="notify-badge badge">NEW</span>
                             </strong>
                         </Link>
                     </li>
@@ -119,16 +131,6 @@ const HeaderNav = (props) => {
                         </Link>
 
                     </li>
-
-                    {/*<li className={window.location.search.includes('nare-games') ? 'active' : ''}*/}
-                    {/*    onClick={() => gaEventTracker('Nare Games')}>*/}
-                    {/*    <Link className="cg fm ox anl url-link"*/}
-                    {/*          to="/nare-game"*/}
-                    {/*          title="Nare Games">*/}
-                    {/*        <FontAwesomeIcon icon={faFireAlt} style={{color: "orange"}}/>*/}
-                    {/*        <strong> Nare Games</strong>*/}
-                    {/*    </Link>*/}
-                    {/*</li>*/}
 
                     <li className={pathname === '/app' ? 'active' : ''}
                         onClick={() => gaEventTracker('Visit App Page')}>

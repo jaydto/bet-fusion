@@ -77,7 +77,7 @@ const GamePlay = (props) => {
                                 {demo && (
                                     <>
                                         <div className="alert alert-info">
-                                            This is Kanyonde Demo. To play the real game, please Log In.
+                                            This is {game} demo. To play the real game, please Log In.
                                             &nbsp;<FontAwesomeIcon icon={faFire} style={{color: "orangered"}}/>
                                         </div>
                                     </>

@@ -9,6 +9,8 @@ import {getFromLocalStorage} from "../../utils/local-storage";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFire} from "@fortawesome/free-solid-svg-icons";
 import {LazyLoadImage} from "react-lazy-load-image-component";
+import {Button} from "react-bootstrap";
+import SideBar from "../../sidebar/sidebar";
 
 const GamePlay = (props) => {
     const {game_id, live} = useParams()
@@ -38,40 +40,57 @@ const GamePlay = (props) => {
         getFastGames()
     }, [])
 
-    // const getFastGamesImages = (nare_game, folder = 'fast_games') => {
-    //
-    //     let default_img = 'default_sport'
-    //     let nare_image;
-    //     try {
-    //        nare_image = require(`../../../src/assets/${folder}/${sport_name}.svg`);
-    //     } catch (error) {
-    //         nare_image = require(`../../../src/assets/${folder}/${default_img}.svg`);
-    //     }
-    //     return sport_image
-    // }
+    const getFastGamesImages = (nare_games, folder = 'fast-games') => {
+
+        let nare_image;
+        try {
+
+            nare_image = require(`../../../../src/assets/img/${folder}/${nare_games.toLowerCase()}.png`);
+
+        } catch (error) {
+            console.log("error",error)
+
+        }
+        return nare_image
+    }
 
     return (
         <>
             <Header/>
             <div className="amt">
-                <div className="d-flex flex-row justify-content-between">
-                    <div className="col-md-12">
-                        <div className="homepage">
-                            <div className={'row text-white p-2 shadow-sm mt-2'}>
-                                {gamesLoaded && games?.map((game) => (
-                                    <div className={'col-md-2 cursor-pointer'}>
-                                        <div
-                                            className={'mt-1 mb-1 d-flex flex-column shadow-lg virtual-game-container'}>
-                                            <Link to={`/nare-games/${game?.key}`}
-                                                  className=""
-                                                  key={game.key}>
-                                                <p className={'text-center bold text-elipsis text-uppercase'}>
-                                                    {game?.name}
-                                                </p>
-                                            </Link>
-                                        </div>
+                <div className="d-flex flex-row ">
+                    <SideBar loadCompetitions/>
+                    <div className="gz home" style={{width: '100%'}}>
+                        <div className="col-md-12 d-flex flex-column">
+                            <div className="col-md-12">
+                                <div className="homepage">
+                                    <div className={'row row-cols-4 text-white p-2 shadow-sm mt-2'}>
+                                        {gamesLoaded && games?.map((game) => (
+                                            <div className={'col cursor-pointer'}>
+                                                <div
+                                                    className={'mt-1 mb-1 d-flex flex-column shadow-lg virtual-game-container'}>
+                                                    <Link to={`/nare-games/${game?.key}`}
+                                                          className=""
+                                                          key={game.key}>
+                                                        <p className={'text-center bold text-elipsis text-uppercase'}>
+                                                            {game?.name}
+                                                        </p>
+                                                        <LazyLoadImage
+                                                            src={getFastGamesImages(game.name)}
+                                                            alt=""
+                                                            alt="#"
+                                                        />
+                                                        <div className="overlay shadow-sm row">
+                                                            <Button variant="warning">
+                                                                Play Game
+                                                            </Button>
+                                                        </div>
+                                                    </Link>
+                                                </div>
+                                            </div>
+                                        ))}
                                     </div>
-                                ))}
+                                </div>
                             </div>
                         </div>
                     </div>

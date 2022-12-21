@@ -81,7 +81,7 @@ const HeaderNav = (props) => {
                     <li className={window.location.search.includes('aviator') ? 'active' : ''}
                         onClick={() => gaEventTracker('Aviator')}>
                         <Link className="cg fm ox anl url-link"
-                              to={{pathname:"/nare-game", search:"game=aviator"}}
+                              to={{pathname:"/nare-games", search:"game=aviator"}}
                               title="Kanyonde">
                             <strong>
                                 <div className={'notification-item'}>

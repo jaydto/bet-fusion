@@ -9,10 +9,23 @@ import {getFromLocalStorage} from "../../utils/local-storage";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFire} from "@fortawesome/free-solid-svg-icons";
 import {LazyLoadImage} from "react-lazy-load-image-component";
+import dice from "../../../assets/img/fast-games/dice.png"
+import hotline from "../../../assets/img/fast-games/hotline.png"
+import mines from "../../../assets/img/fast-games/mines.png"
+import mini_roulette from "../../../assets/img/fast-games/mini-roulette.png"
+import plinko from "../../../assets/img/fast-games/plinko.png"
+
 
 const GamePlay = (props) => {
     const {game_id, live} = useParams()
 
+    const spribe=[
+        plinko,
+        dice,
+        hotline,
+        mines,
+        mini_roulette
+    ]
 
     const [games, setGames] = useState([])
 

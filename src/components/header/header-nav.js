@@ -94,6 +94,15 @@ const HeaderNav = (props) => {
                             </strong>
                         </Link>
                     </li>
+                    <li className={window.location.search.includes('nare-games') ? 'active' : ''}
+                        onClick={() => gaEventTracker('Nare Games')}>
+                        <Link className="cg fm ox anl url-link"
+                              to="/nare-games"
+                              title="Nare Games">
+                            <FontAwesomeIcon icon={faFireAlt} style={{color: "orange"}}/>
+                            <strong> Nare Games</strong>
+                        </Link>
+                    </li>
                     <li className={`${pathname === '/virtuals' || pathname.includes("gameplay") ? 'active' : ''}`}>
                         <Link className="g url-link" to="/virtuals" title="Virtuals">
                             <span className={''}>

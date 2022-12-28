@@ -14,7 +14,7 @@ import {getFromLocalStorage,setLocalStorage} from "../utils/local-storage";
 import makeRequest from "../utils/fetch-request";
 import worldCup from "../../../src/assets/img/flags-1-1/worldcup.png"
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
-import {App} from "@capacitor/app";
+// import {App} from "@capacitor/app";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFireAlt, faPlaneDeparture} from "@fortawesome/free-solid-svg-icons";
 

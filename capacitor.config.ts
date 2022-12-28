@@ -7,6 +7,9 @@ const config: CapacitorConfig = {
   appName: 'betnare',
   webDir: 'build',
   bundledWebRuntime: false,
+  // plugins:{
+  //   LiveUpdates: true
+  // },
 
   server: {
     // androidScheme:"betnare"

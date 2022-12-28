@@ -8,7 +8,8 @@ import {Spinner} from "react-bootstrap";
 import useAnalyticsEventTracker from '../components/analytics/useAnalyticsEventTracker';
 import {getFromLocalStorage, setLocalStorage} from "./utils/local-storage";
 import useWindowDimensions from "./header/Dimensions";
-
+import {  Capacitor } from "@capacitor/core";
+import {App} from "@capacitor/app"
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -34,6 +35,28 @@ const Index = (props) => {
     const [fetching, setFetching] = useState(false)
     const homePageRef = useRef()
     const [utmSource, setUtmSource] = useState('')
+
+    useEffect(() => {
+        if (Capacitor.isNativePlatform) {
+            App.addListener("backButton", (e) => {
+                if (window.location.pathname === "/") {
+                    // Show A Confirm Box For User to exit app or not
+                    let ans = window.confirm("Are you sure");
+                    if (ans) {
+                        App.exitApp();
+                    }
+                }
+                else if (window.location.pathname === "/highlights") {
+                    // Show A Confirm Box For User to exit app or not
+                    let ans = window.confirm("Are you sure");
+                    if (ans) {
+                        App.exitApp();
+                    }
+                }
+
+            });
+        }
+    }, []);
 
     const findPostableSlip = () => {
         let betslips = getBetslip() || {};

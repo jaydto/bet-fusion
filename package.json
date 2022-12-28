@@ -6,7 +6,7 @@
   "dependencies": {
     "@awesome-cordova-plugins/deeplinks": "^6.2.0",
     "@capacitor/android": "4.5.0",
-    "@capacitor/app": "4.1.1",
+    "@capacitor/app": "^4.1.1",
     "@capacitor/device": "^4.1.0",
     "@capacitor/filesystem": "^4.1.4",
     "@capacitor/haptics": "4.1.0",

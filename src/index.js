@@ -122,13 +122,8 @@ const Logout = () => {
     return null;
 }
 
-
 const TRACKING_ID = "G-5NLSN9BLN4";
 ReactGA.initialize(TRACKING_ID);
-
-
-
-
 
 const container = document.getElementById("app");
 render((

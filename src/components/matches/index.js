@@ -1103,7 +1103,7 @@ export const JackpotMatchList = (props) => {
                         Wekelea Jackpot Bet bila worries na Nare Auto pick.
                     </div>
                     <div className={'col-md-12 text-center'}>
-                        <button className={'btn btn-square btn-lg  place-bet-btn bold mb-1'}
+                        <button className={'btn btn-square btn-lg  place-bet-btn bold mb-1 bg-warning'}
                                 id={"jp-nare-pick-button"}
                                 style={{fontWeight: "bold", fontSize: "20px"}}
                                 onClick={() => randomize()}>

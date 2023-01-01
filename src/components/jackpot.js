@@ -7,6 +7,7 @@ import {JackpotMatchList, JackpotHeader} from './matches/index';
 import makeRequest from "./utils/fetch-request";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
+import Jackpot300k from "../assets/img/banner/products/300kJackpot .jpg"
 import Container from "react-bootstrap/Container";
 import Select from "react-select";
 import {getFromLocalStorage} from "./utils/local-storage";
@@ -96,7 +97,7 @@ const Jackpot = (props) => {
                     <SideBar loadCompetitions/>
                     <div className="gz home" style={{width: "100%", overflowX: "clip"}}>
                         <div className="homepage">
-                            {/*<img src={dailyJackpot}/>*/}
+                            <img src={Jackpot300k}/>
                             <Tabs
                                 variant={'tabs'}
                                 defaultActiveKey="home"

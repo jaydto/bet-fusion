@@ -97,7 +97,6 @@ const Jackpot = (props) => {
                     <SideBar loadCompetitions/>
                     <div className="gz home" style={{width: "100%", overflowX: "clip"}}>
                         <div className="homepage">
-                            <img src={Jackpot300k}/>
                             <Tabs
                                 variant={'tabs'}
                                 defaultActiveKey="home"
@@ -105,9 +104,10 @@ const Jackpot = (props) => {
                                 className="background-primary "
                                 justify>
                                 <Tab eventKey="home" title="Jackpot" className={'background-primary'}>
+                                    <img src={Jackpot300k}/>
                                     {matches?.data?.length > 0 ? (
                                         <>
-                                            <JackpotHeader jackpot={matches?.meta}/>
+                                            {/*<JackpotHeader jackpot={matches?.meta}/>*/}
                                             <JackpotMatchList matches={matches}/>
                                         </>
                                     ) : (
@@ -186,7 +186,10 @@ const Jackpot = (props) => {
                                     <DailyJackpotTermsAndConditions/>
                                 </Tab>
                             </Tabs>
+
+
                         </div>
+
                     </div>
                     <Right jackpot={true} jackpotData={matches?.meta} />
 

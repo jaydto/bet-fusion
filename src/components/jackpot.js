@@ -5,7 +5,6 @@ import Footer from './footer/footer';
 import SideBar from './sidebar/awesome/Sidebar';
 import {JackpotMatchList, JackpotHeader} from './matches/index';
 import makeRequest from "./utils/fetch-request";
-import dailyJackpot from '../assets/img/banner/products/TisaTisaJackpot.jpg'
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Container from "react-bootstrap/Container";
@@ -81,7 +80,7 @@ const Jackpot = (props) => {
                     <SideBar loadCompetitions/>
                     <div className="gz home" style={{width: "100%", overflowX: "clip"}}>
                         <div className="homepage">
-                            <img src={dailyJackpot}/>
+                            {/*<img src={dailyJackpot}/>*/}
                             <Tabs
                                 variant={'tabs'}
                                 defaultActiveKey="home"

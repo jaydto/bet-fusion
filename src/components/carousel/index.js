@@ -5,35 +5,23 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import twentyPercentStakeBooster from '../../assets/img/banner/products/20PercentStakeBooster.jpeg'
 import cashback from '../../assets/img/banner/products/100PercentCashback.jpg'
-// import twenty_percent from '../../assets/img/banner/products/150PercentDaily_.jpg'
-
-import advance from '../../assets/img/banner/products/Advance.jpg'
-// import lala from '../../assets/img/banner/products/Lala.jpg'
-// import ngware from '../../assets/img/banner/products/Ngware.jpg'
-// import rent from '../../assets/img/banner/products/Rent.jpg'
-// import rushHour from '../../assets/img/banner/products/Rush Hour.jpg'
+import rushHour from '../../assets/img/banner/products/Rush Hour.jpg'
 import stakeBooster from '../../assets/img/banner/products/StakeBooster.jpeg'
 import dailyDepositGift from '../../assets/img/banner/products/20PercentDailyDepositGift.jpeg'
-import tisaJackpot from '../../assets/img/banner/products/TisaTisaJackpot.jpg'
 import karibuGiftWallet from "../../assets/img/banner/products/KaribuGiftWallet.jpg"
 import kanyondeBanner from "../../assets/img/banner/products/Kanyonde Web Banner.jpg"
-import krisi29 from "../../assets/img/banner/products/Krisi Ki Betnare Web Banners_29.jpg"
-import krisi49 from "../../assets/img/banner/products/Krisi Ki Betnare Web Banners_49.jpg"
 import karibu50 from "../../assets/img/banner/products/50KaribuBonus.jpg"
 
 
 const banners = [
     kanyondeBanner,
-    krisi29,
-    krisi49,
     karibuGiftWallet,
     karibu50,
     stakeBooster,
     dailyDepositGift,
     twentyPercentStakeBooster,
     cashback,
-    advance,
-    tisaJackpot
+
 ]
 
 const CarouselLoader = (props) => {

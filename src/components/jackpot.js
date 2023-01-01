@@ -91,6 +91,7 @@ const Jackpot = (props) => {
                                     {matches?.data?.length > 0 ? (
                                         <>
                                             <JackpotHeader jackpot={matches?.meta}/>
+                                            <br/>
                                             <JackpotMatchList matches={matches}/>
                                         </>
                                     ) : (

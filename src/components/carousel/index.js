@@ -5,23 +5,23 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import twentyPercentStakeBooster from '../../assets/img/banner/products/20PercentStakeBooster.jpeg'
 import cashback from '../../assets/img/banner/products/100PercentCashback.jpg'
-import rushHour from '../../assets/img/banner/products/Rush Hour.jpg'
 import stakeBooster from '../../assets/img/banner/products/StakeBooster.jpeg'
 import dailyDepositGift from '../../assets/img/banner/products/20PercentDailyDepositGift.jpeg'
 import karibuGiftWallet from "../../assets/img/banner/products/KaribuGiftWallet.jpg"
 import kanyondeBanner from "../../assets/img/banner/products/Kanyonde Web Banner.jpg"
 import karibu50 from "../../assets/img/banner/products/50KaribuBonus.jpg"
+import jackpot from "../../assets/img/banner/products/jackpot.webp"
 
 
 const banners = [
     kanyondeBanner,
-    karibuGiftWallet,
     karibu50,
+    karibuGiftWallet,
+    jackpot,
     stakeBooster,
     dailyDepositGift,
     twentyPercentStakeBooster,
     cashback,
-
 ]
 
 const CarouselLoader = (props) => {

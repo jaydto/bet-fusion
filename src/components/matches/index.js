@@ -3,7 +3,7 @@ import {Context} from '../../context/store';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
-import bgJackpot from '../../assets/img/banner/jackpots/bg-jackpot.png'
+import bgJackpot from '../../assets/img/banner/jackpots/jackpot.webp'
 import {
     addToSlip,
     removeFromSlip,
@@ -12,7 +12,7 @@ import {
     getBetslip
 } from '../utils/betslip';
 
-import CurrencyFormat from 'react-currency-format';
+// import CurrencyFormat from 'react-currency-format';
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
@@ -271,9 +271,9 @@ const SideBets = (props) => {
             className={`bet-fix events-odd pad ${picked} align-self-center more-markets-container m-lg-2`}>
             {(match?.side_bets > 1) && <>
                 <Link className="side" title={'More Markets'}
-                   to={`/match/${live ? 'live/' : ''}${
-                       live ? match.parent_match_id : match?.match_id}`
-                   }>+{match.side_bets}
+                      to={`/match/${live ? 'live/' : ''}${
+                          live ? match.parent_match_id : match?.match_id}`
+                      }>+{match.side_bets}
                 </Link>
                 <a className="side"
                    href={`https://s5.sir.sportradar.com/betnaremts/en/match/${match.parent_match_id}`}
@@ -752,18 +752,27 @@ export const JackpotHeader = (props) => {
     return (
         <Container>
             <Row className="top-matches"
-                 style={{backgroundImage: `url(${bgJackpot})`, backgroundRepeat: 'no-repeat', height: "75px"}}>
+                 style={{
+                     backgroundImage: `url(${bgJackpot})`,
+                     backgroundRepeat: 'no-repeat',
+                     backgroundSize: "cover",
+                     height: "200px"
+                 }}>
                 <Row className="jp-header-text">
-                    <div className="jp-header-top">
-                        {jackpot?.type} - {jackpot?.total_games} GAMES {jackpot?.name}
+                    <div className="jp-header-top mb-1">
+                        <h2>
+                            <strong>
+                                {/*{jackpot?.type} - {jackpot?.total_games} GAMES {jackpot?.name}*/}
+                            </strong>
+                        </h2>
                     </div>
                 </Row>
                 <Row className="jp-header-text">
-                    <div className="jackpot-amount mt-3">
-                        <CurrencyFormat
-                            value={jackpot?.jackpot_amount}
-                            displayType={'text'}
-                            thousandSeparator={true} prefix={'KES'}/>
+                    <div className="jackpot-amount mt-4">
+                        {/*<CurrencyFormat*/}
+                        {/*    value={jackpot?.jackpot_amount}*/}
+                        {/*    displayType={'text'}*/}
+                        {/*    thousandSeparator={true} prefix={'KSH '}/>*/}
                     </div>
                 </Row>
 
@@ -808,7 +817,7 @@ export const JackpotMatchList = (props) => {
                     </div>
                     <div className={'col-md-12 text-center'}>
                         <button className={'btn btn-square btn-lg  place-bet-btn bold mb-1'}
-                        id={"jp-nare-pick-button"}
+                                id={"jp-nare-pick-button"}
                                 style={{fontWeight: "bold", fontSize: "20px"}}
                                 onClick={() => randomize()}>
                             <FontAwesomeIcon icon={faFire}/> Nare Auto Pick

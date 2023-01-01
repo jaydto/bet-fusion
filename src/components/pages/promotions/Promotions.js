@@ -7,12 +7,6 @@ import twentyPercentDepositBonus from '../../../assets/img/banner/products/20Per
 
 import firstDeposit from '../../../assets/img/banner/products/StakeBooster.jpeg'
 import multibetCashback from '../../../assets/img/banner/products/100PercentCashback.jpg'
-// import twoHundredPercent from '../../../assets/img/banner/products/500PercentBonus_.jpg'
-import krisi from '../../../assets/img/banner/products/Krisi Ki Betnare Web Banners_49.jpg'
-// import lala from '../../../assets/img/banner/products/Lala.jpg'
-// import ngware from '../../../assets/img/banner/products/Ngware.jpg'
-// import rent from '../../../assets/img/banner/products/Rent.jpg'
-// import rushHour from '../../../assets/img/banner/products/Rush Hour.jpg'
 import karibuGiftWallet from "../../../assets/img/banner/products/KaribuGiftWallet.jpg"
 
 import {Table} from "react-bootstrap";
@@ -36,50 +30,50 @@ const Promotions = () => {
                                 </div>
                                 <div className="col">
                                     <div className={'row text-white p-2 shadow-sm d-flex justify-content-center'}>
-                                        <div className="col-md-12 d-flex flex-row shadow-lg mt-2 promotion">
-                                            <div className="col-md-12">
-                                                <div className="d-flex flex-column">
-                                                    <h5 className={'text-uppercase'}>
-                                                        Open to all NEW and Existing customers.
-                                                        It is Christmas come early in BetNare, 5 JOGOOS & 2 MBUZI’s UP
-                                                        FOR GRABS DAILY
-                                                    </h5>
-                                                    <img src={krisi} className={'rounded'}/>
-                                                    <div className="col-md-12">
-                                                        ✅
-                                                        This applies to both Multibets and Single bets.
-                                                        <br/>
-                                                        ✅
-                                                        The promotion is Open for a customer once you place a bet
-                                                        (Any type of bet).
-                                                        <br/>
+                                        {/*<div className="col-md-12 d-flex flex-row shadow-lg mt-2 promotion">*/}
+                                        {/*    <div className="col-md-12">*/}
+                                        {/*        <div className="d-flex flex-column">*/}
+                                        {/*            <h5 className={'text-uppercase'}>*/}
+                                        {/*                Open to all NEW and Existing customers.*/}
+                                        {/*                It is Christmas come early in BetNare, 5 JOGOOS & 2 MBUZI’s UP*/}
+                                        {/*                FOR GRABS DAILY*/}
+                                        {/*            </h5>*/}
+                                        {/*            /!*<img src={krisi} className={'rounded'}/>*!/*/}
+                                        {/*            <div className="col-md-12">*/}
+                                        {/*                ✅*/}
+                                        {/*                This applies to both Multibets and Single bets.*/}
+                                        {/*                <br/>*/}
+                                        {/*                ✅*/}
+                                        {/*                The promotion is Open for a customer once you place a bet*/}
+                                        {/*                (Any type of bet).*/}
+                                        {/*                <br/>*/}
 
-                                                        ✅
-                                                        No Minimum odds or Number of legs are required for One to
-                                                        qualify for the award
-                                                        <br/>
+                                        {/*                ✅*/}
+                                        {/*                No Minimum odds or Number of legs are required for One to*/}
+                                        {/*                qualify for the award*/}
+                                        {/*                <br/>*/}
 
-                                                        ✅
-                                                        Daily winners will receive different prizes credited into
-                                                        their BetNare account. This can be WITHDRAWN directly via Mpesa
-                                                        <br/>
-                                                        ✅Winners are chosen randomly by the BetNare promotion systems
-                                                        <br/>
-                                                        ✅JOGOOS up for grabs daily when you stake using KES29/= or
-                                                        MORE
-                                                        <br/>
-                                                        ✅
-                                                        MBUZIS up for grabs daily when you stake using KES49/= or MORE
-                                                        <br/>
-                                                        ✅
-                                                        Promo runs from the 10th December 2022 to 25th December 2022.
-                                                        <br/>
-                                                        ✅
-                                                        General BetNare terms and conditions apply.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        {/*                ✅*/}
+                                        {/*                Daily winners will receive different prizes credited into*/}
+                                        {/*                their BetNare account. This can be WITHDRAWN directly via Mpesa*/}
+                                        {/*                <br/>*/}
+                                        {/*                ✅Winners are chosen randomly by the BetNare promotion systems*/}
+                                        {/*                <br/>*/}
+                                        {/*                ✅JOGOOS up for grabs daily when you stake using KES29/= or*/}
+                                        {/*                MORE*/}
+                                        {/*                <br/>*/}
+                                        {/*                ✅*/}
+                                        {/*                MBUZIS up for grabs daily when you stake using KES49/= or MORE*/}
+                                        {/*                <br/>*/}
+                                        {/*                ✅*/}
+                                        {/*                Promo runs from the 10th December 2022 to 25th December 2022.*/}
+                                        {/*                <br/>*/}
+                                        {/*                ✅*/}
+                                        {/*                General BetNare terms and conditions apply.*/}
+                                        {/*            </div>*/}
+                                        {/*        </div>*/}
+                                        {/*    </div>*/}
+                                        {/*</div>*/}
                                         <div className="col-md-12 shadow-lg promotion">
                                             <div className="d-flex flex-column">
                                                 <h5>KARIBU GIFT WALLET</h5>

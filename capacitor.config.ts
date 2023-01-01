@@ -17,6 +17,9 @@ const config: CapacitorConfig = {
     hostname:"betnare",
     cleartext: true
   },
+  ios: {
+    contentInset: "always"
+  }
 
 
 };

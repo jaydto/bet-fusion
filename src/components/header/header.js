@@ -21,6 +21,7 @@ import {faCloudDownloadAlt, faCoins, faSearch, faTimes} from "@fortawesome/free-
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import ListGroup from "react-bootstrap/ListGroup";
 import MobileNav2 from "../mobile-navigation/MobileNav2";
+import {SafeArea} from "capacitor-plugin-safe-area";
 const ProfileMenu = React.lazy(() => import('./profile-menu'));
 const HeaderLogin = React.lazy(() => import('./top-login'));
 const HeaderNav = React.lazy(() => import('./header-nav'));
@@ -38,6 +39,18 @@ const Header = (props) => {
     const {current} = containerRef;
     const [competitions, setCompetitions] = useState({});
     const [settings, setSettings] = useState({});
+    // const [appInsets, setAppinsets] = useState({top: 0, bottom:0})
+    //
+    // useEffect(() => {
+    //     const setupWithInsets = async function () {
+    //         const insets = await SafeArea.getSafeAreaInsets()
+    //         appInsets.top = insets.insets.top;
+    //         appInsets.bottom = insets.insets.bottom
+    //         setAppinsets({...appInsets})
+    //     }
+    //     setupWithInsets();
+    // }, []);
+
     const dismissSearch = () => {
         setSearching(false)
         setMatches([])

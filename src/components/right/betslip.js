@@ -224,7 +224,7 @@ const BetSlip = (props) => {
             {!jackpot && (
                 <BonusAlert/>
             )}
-            <div className="flow slip-size" style={{maxHeight: "42vh", overflowY: "auto"}}>
+            <div className="flow slip-size landscape-orientation" style={{ overflowY: "auto"}}>
             <ul>
                     {Object.entries(betslipsData || {}).map(([match_id, slip]) => {
                         let odd = slip.odd_value;

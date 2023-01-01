@@ -9,11 +9,12 @@ import dailyDepositGift from '../../assets/img/banner/products/20PercentDailyDep
 import karibuGiftWallet from "../../assets/img/banner/products/KaribuGiftWallet.jpg"
 import kanyondeBanner from "../../assets/img/banner/products/Kanyonde Web Banner.jpg"
 import karibu50 from "../../assets/img/banner/products/50KaribuBonus.jpg"
-
+import Jackpot300k from "../../assets/img/banner/products/300kJackpot .jpg"
 const banners = [
     kanyondeBanner,
     karibuGiftWallet,
     karibu50,
+    Jackpot300k,
     stakeBooster,
     dailyDepositGift,
     twentyPercentStakeBooster,

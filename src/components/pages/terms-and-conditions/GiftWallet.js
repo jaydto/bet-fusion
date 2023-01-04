@@ -102,5 +102,3 @@ const GiftWallet = () => {
 }
 
 export default GiftWallet;
-
-

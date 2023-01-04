@@ -263,7 +263,6 @@ const BetslipSubmitForm = (props) => {
         }
     }, [betslip, stake, totalOdds, multiBoostAmount]);
 
-
     const handleRemoveAll = useCallback(() => {
         let betslips =jackpot?getJackpotBetslip():getBetslip();
         Object.entries(betslips).map(([match_id, match]) =>

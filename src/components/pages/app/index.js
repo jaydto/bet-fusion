@@ -59,8 +59,6 @@ const MobileApp = () => {
                                     Download the 🔥BetNare APP🔥 now!!
                                     FOR BETTER EXPERIENCE
                                     Take Control of Your Bets
-
-                                    Download & Get 50/= Instant BONUS.
                                 </div>
                                 <div className={'col-md-12 justify-content-center d-flex'}>
                                     <img src={mobileBanner} style={{width: "80%"}} className={'rounded-3 shadow-lg'}/>

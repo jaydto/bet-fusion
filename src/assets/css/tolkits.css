@@ -12021,10 +12021,6 @@ button.close {
         font-size: 10px;
     }
 
-    .top-login-section {
-        display: none;
-
-    }
 
     .shrink-header .second-nav {
         top: 62px !important;
@@ -15711,6 +15707,10 @@ img.zoom-img {
 }
 
 @media (max-width: 767px){
+    .top-login-section {
+        display: none;
+
+    }
     .slip-body >tr{
         line-height:11.5px;
         white-space: nowrap;

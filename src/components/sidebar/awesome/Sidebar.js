@@ -106,7 +106,7 @@ const Sidebar = (props) => {
             overflow: 'scroll initial',
             zIndex: 10,
             marginRight: '2px',
-            top: "12.5rem"
+            top: "10.5rem"
         }}
              className={`vh-100 text-white sticky-top d-none d-md-block up`}>
             <ProSidebar

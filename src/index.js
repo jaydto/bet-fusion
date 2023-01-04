@@ -6,17 +6,22 @@ import './assets/css/application.css';
 import './assets/css/tolkits.css';
 import './assets/css/sidebar-menu.css';
 import './index.css';
+// import { App } from '@capacitor/core';
 import Store from './context/store';
 import ReactGA from 'react-ga4';
 import Loading from "./components/loading/Loading";
 import {BrowserRouter, Navigate, Route, Routes, useNavigate} from "react-router-dom";
 
 
-const App=React.lazy(
-    ()=>import("./App")
+// const App=React.lazy(
+//     ()=>import("./App")
+//
+// )
 
-)
-
+// Initialize Capacitor and check for updates
+// App.init(async () => {
+//     await checkForUpdates();
+// });
 
 
 const Index = React.lazy(() => import('./components/index'));

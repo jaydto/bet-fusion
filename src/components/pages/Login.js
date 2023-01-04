@@ -64,7 +64,7 @@ const Login = () => {
 
 
     const FormTitle = () => {
-        return (<div className='col-md-12 primary-bg p-4 text-center'>
+        return (<div className='col-md-12 primary-bg p-4 text-center w-100'>
             <h4 className="inline-block">
                 Login
             </h4>
@@ -88,7 +88,7 @@ const Login = () => {
                 {user?setTimeout(navigate("/"),500):""}
                 <div className={"d-flex flex-row justify-content-between"}>
                     <div className="gz home w-100">
-                        <div className="homepage px-4 mx-2">
+                        <div className="homepage px-4 mx-2 d-flex flex-column align-items-center justify-content-center">
                             <FormTitle/>
                             <LoginInstructions/>
                             <HeaderLogin setUser={setUser} login={true}/>

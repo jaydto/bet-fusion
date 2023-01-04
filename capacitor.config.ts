@@ -13,9 +13,21 @@ const config: CapacitorConfig = {
 
   server: {
     // androidScheme:"betnare"
-    // hostname: `${ip.address()}/`,
+    // hostname: `${ip.address()}/`:,
     hostname:"betnare",
     cleartext: true
+  },
+  plugins:{
+    "AppUpdate":{
+      "updateUrl":""
+    },
+    "@capacitor/app":{}
+    ,
+    "SafeArea": {}
+    ,
+    "@capacitor/filesystem":{},
+
+
   },
   ios: {
     contentInset: "always"

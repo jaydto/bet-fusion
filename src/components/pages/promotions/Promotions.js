@@ -3,11 +3,12 @@ import SideBar from "../../sidebar/awesome/Sidebar";
 import Footer from "../../footer/footer";
 import React from "react";
 
-import twentyPercentDepositBonus from '../../../assets/img/banner/products/20PercentDailyDepositGift.jpeg'
+import twentyPercentDepositBonus from '../../../assets/img/banner/products/dailyDeposit.webp'
 
 import firstDeposit from '../../../assets/img/banner/products/StakeBooster.jpeg'
 import multibetCashback from '../../../assets/img/banner/products/100PercentCashback.jpg'
-import karibuGiftWallet from "../../../assets/img/banner/products/KaribuGiftWallet.jpg"
+
+import karibuGiftWallet from "../../../assets/img/banner/products/karibuGift.webp"
 
 import {Table} from "react-bootstrap";
 import Right from "../../right";

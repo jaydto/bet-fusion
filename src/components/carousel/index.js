@@ -2,24 +2,24 @@ import React, {useState} from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import twentyPercentStakeBooster from '../../assets/img/banner/products/20PercentStakeBooster.jpeg'
+
 import cashback from '../../assets/img/banner/products/100PercentCashback.jpg'
-import stakeBooster from '../../assets/img/banner/products/StakeBooster.jpeg'
-import dailyDepositGift from '../../assets/img/banner/products/20PercentDailyDepositGift.jpeg'
-import karibuGiftWallet from "../../assets/img/banner/products/KaribuGiftWallet.jpg"
+import stakeBooster from '../../assets/img/banner/products/stakeBooster.webp'
+import dailyDepositGift from '../../assets/img/banner/products/dailyDeposit.webp'
+import karibuGiftWallet from "../../assets/img/banner/products/karibuGift.webp"
 import kanyondeBanner from "../../assets/img/banner/products/Kanyonde Web Banner.jpg"
 import karibu50 from "../../assets/img/banner/products/50KaribuBonus.jpg"
-import Jackpot300k from "../../assets/img/banner/products/300kJackpot .jpg"
+import jackpot from "../../assets/img/banner/products/jackpot.webp"
+
+
 const banners = [
     kanyondeBanner,
-    karibuGiftWallet,
     karibu50,
-    Jackpot300k,
+    karibuGiftWallet,
+    jackpot,
     stakeBooster,
     dailyDepositGift,
-    twentyPercentStakeBooster,
     cashback,
-
 ]
 
 const CarouselLoader = (props) => {

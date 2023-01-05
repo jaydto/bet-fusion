@@ -7,6 +7,8 @@ import {toast, } from 'react-toastify';
 import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
 import makeRequest, {BASE_URL} from "../../utils/fetch-request";
 import axios from "axios";
+import {Link} from "react-router-dom";
+
 
 const {FilesystemDirectory} = Capacitor;
 
@@ -110,6 +112,10 @@ export function AppUpdater() {
         useEffect(() => {
             checkForUpdates();
         }, []);
+    const fileUrl = 'https://testapi.betnare.co.ke/download/betnare.apk';
+        const CustomToast=()=>{
+            <Link to={fileUrl} onClick={()=>toast.info("update starting")}>Download link</Link>
+        }
 
         const handleUpdate = async () => {
             // Download the updated app package from the Flask endpoint
@@ -167,7 +173,7 @@ export function AppUpdater() {
                     //     }).catch(error => {
                     //     console.error(error);
                     // });
-                    const fileUrl = 'https://testapi.betnare.co.ke/download/betnare.apk';
+
 
                     // async function getFileSize(url) {
                     //     try {
@@ -180,31 +186,39 @@ export function AppUpdater() {
                     //     }
                     // }
                     // 'Content-length': getFileSize(fileUrl),
+                    // const axiosInstance=axios.create({baseURL:'https://testapi.betnare.co.ke'})
 
-                    const apkResponse = await axios.get(fileUrl, { responseType: 'blob',crossdomain:true,headers:{
-                            "Cache-Control": "must-revalidate, post-check=0, pre-check=0",
-                            "access-control-allow-origin":"http://betnare",
-                            'access-control-allow-headers':'Content-Type',
-                            'Content-type': 'application/vnd.android.package-archive',
-                            'Content-Disposition': 'attachment; filename=betnare.apk"',
-
-                        } });
-                    // const fileBlob = apkResponse.data;
-                    // const apkResponse=axios.get (fileUrl,{responseType:'blob'})
-                    const fileBlob=apkResponse.data
-
-                    // console.log("apk_response",apkResponse)
-
-                    // Write the downloaded app package to a file on the device
-                    const filePath = 'betnare.apk';
-                    await Filesystem.writeFile({
-                        path: filePath,
-                        data: fileBlob,
-                        directory: FilesystemDirectory.Data
-                    });
-                    console.log("filesystem", FilesystemDirectory)
-                    // Quit the app and relaunch it, which will trigger the update process
-                    await App.exitApp();
+                    //  axios.get(fileUrl, { responseType: 'blob',validateStatus:false,headers:{
+                    //         "Cache-Control": "must-revalidate, post-check=0, pre-check=0",
+                    //         "access-control-allow-origin":"http://betnare",
+                    //         'access-control-allow-headers':'Content-Type',
+                    //         'Content-type': 'application/vnd.android.package-archive',
+                    //         'Content-Disposition': 'attachment; filename=betnare.apk"',
+                    //
+                    //     } }).then(async response => {
+                    //         try{
+                    //             const fileBlob = response.data
+                    //
+                    //             // console.log("apk_response",apkResponse)
+                    //
+                    //             // Write the downloaded app package to a file on the device
+                    //             const filePath = 'betnare.apk';
+                    //             await Filesystem.writeFile({
+                    //                 path: filePath,
+                    //                 data: fileBlob,
+                    //                 directory: FilesystemDirectory.Data
+                    //             });
+                    //             console.log("filesystem", FilesystemDirectory)
+                    //             // Quit the app and relaunch it, which will trigger the update process
+                    //             await App.exitApp();
+                    //         }catch (error){
+                    //             toast.warn("file write denied")
+                    //         }
+                    //     }
+                    //
+                    // ).catch((error)=>{
+                    //     toast.info("application failed to download")
+                    // })
 
                     {
                         // if (status == 200)
@@ -225,10 +239,11 @@ export function AppUpdater() {
                         //     }
                         // }
                     }
+                    toast("click"+ <CustomToast/>)
                     // );
 
                     // Quit the app and relaunch it, which will trigger the update process
-                    await App.exitApp();
+                    // await App.exitApp();
                     // }
 
                 } catch (e) {

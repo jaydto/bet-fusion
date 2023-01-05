@@ -72,12 +72,15 @@ const MobileApp = () => {
                                     <hr/>
                                 </div>
                                 <div className="text-center mt-2 col">
-                                    <DownloadLink
-                                        className="btn btn-primary btn-lg mb-5 text-white btn-lg col-md-3 text-decoration-none"
-                                        label="Download App Now"
-                                        filename="betnare.apk"
-                                        exportFile={() => getDownloadFile()}
-                                    />
+                                    <Link to={'/betnare.apk'}
+                                          target={"_blank"}
+                                          title={'Download App'}
+                                          download={'betnare.apk'}
+                                          className="btn btn-primary btn-lg mb-5 text-white text-decoration-none"
+                                          label="Download App"
+                                          filename="betnare.apk"
+                                          onClick={()=>gaEventTracker('Downloaded App')}
+                                          exportFile={() => getDownloadFile()}>Download App Now</Link>
                                 </div>
                             </div>
                         </div>

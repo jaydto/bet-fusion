@@ -237,7 +237,7 @@ const BetSlip = (props) => {
                                     <input id={slip.match_id} type="submit" value="X"
                                            onClick={() => handledRemoveSlip(slip)}/>
                                 </div>
-                                <Link to={`${slip?.bet_type === "0" ? "/match/" + slip?.match_id : "/match/live/" + slip?.parent_match_id}`}
+                                <Link to={`${slip?.bet_type === "0" ? "/match?id=" + slip?.match_id : "/match?live=live&id=" + slip?.parent_match_id}`}
                                    style={{color: "inherit", fontStyle: "inherit"}} className={'g url-link'}>
                                     <div className="bet-value">
                                         <b>

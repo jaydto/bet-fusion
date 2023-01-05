@@ -1014,7 +1014,7 @@ export const MarketList = (props) => {
                 />
             }
             <Row className="web-element px-3">
-                <div className="col-md-12 position-sticky shadow-lg primary-bg mb-1 remove-top"
+                <div className="col-md-12 position-sticky shadow-lg primary-bg mb-1 remove-top px-0"
                      style={{top: "135px", height: "40px", backgroundColor: "#3c5a6c !important"}}>
                     <Input type="text" className={'form-control h-100  border-0'}
                            style={{
@@ -1074,6 +1074,20 @@ export const JackpotMatchList = (props) => {
     const {matches, jackpotData} = props;
     const [selections, setSelections] = useState([])
 
+    useEffect(()=>{
+
+        const storedItem = localStorage.getItem('jackpotbetslip');
+// if(storedItem){
+//
+// }
+
+
+
+    },[])
+    const storedItem = localStorage.getItem('jackpotbetslip');
+    console.log("selection1",selections)
+
+
     const randomize = async () => {
         matches?.data?.forEach((match, index) => {
             let teams = [match?.home_team, 'draw', match?.away_team]
@@ -1091,6 +1105,7 @@ export const JackpotMatchList = (props) => {
             })
         })
         setSelections(selections)
+
     }
 
 

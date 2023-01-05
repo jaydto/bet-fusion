@@ -8145,9 +8145,9 @@ ul.sport {
 }
 
 @media (min-width: 1260px) {
-    .jackpot-width{
-        width:min-content!important;
-    }
+    /*.jackpot-width{*/
+    /*    width:min-content!important;*/
+    /*}*/
     .to-profile-check{
         display:none;
     }

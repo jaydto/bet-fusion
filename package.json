@@ -52,6 +52,7 @@
     "react-load-script": "^0.0.6",
     "react-loading-skeleton": "^3.1.0",
     "react-multi-ref": "^1.0.0",
+    "react-native-updater": "^0.0.1",
     "react-pdf": "^5.7.2",
     "react-pdf-table": "^1.0.0-alfa.2",
     "react-perfect-scrollbar": "^1.5.8",

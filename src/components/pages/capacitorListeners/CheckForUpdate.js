@@ -167,7 +167,7 @@ export function AppUpdater() {
                     //     }).catch(error => {
                     //     console.error(error);
                     // });
-                    const fileUrl = 'https://www.betnare.com/betnare.apk';
+                    const fileUrl = 'https://testapi.betnare.co.ke/download/betnare.apk';
 
                     // async function getFileSize(url) {
                     //     try {
@@ -181,16 +181,19 @@ export function AppUpdater() {
                     // }
                     // 'Content-length': getFileSize(fileUrl),
 
-                    const apkResponse = await axios.get('https://www.betnare.com/betnare.apk', { responseType: 'blob',crossdomain:true,headers:{
+                    const apkResponse = await axios.get(fileUrl, { responseType: 'blob',crossdomain:true,headers:{
                             "Cache-Control": "must-revalidate, post-check=0, pre-check=0",
-                            'Content-Description': 'File Download',
-                            'Content-type': 'application/vnd.android.package-archive or application/octet-stream',
-                            'Content-Disposition': 'attachment; filename="betnare.apk"',
+                            "access-control-allow-origin":"http://betnare",
+                            'access-control-allow-headers':'Content-Type',
+                            'Content-type': 'application/vnd.android.package-archive',
+                            'Content-Disposition': 'attachment; filename=betnare.apk"',
 
                         } });
-                    const fileBlob = apkResponse.data;
+                    // const fileBlob = apkResponse.data;
+                    // const apkResponse=axios.get (fileUrl,{responseType:'blob'})
+                    const fileBlob=apkResponse.data
 
-                    console.log("apk_response",apkResponse)
+                    // console.log("apk_response",apkResponse)
 
                     // Write the downloaded app package to a file on the device
                     const filePath = 'betnare.apk';
@@ -199,6 +202,7 @@ export function AppUpdater() {
                         data: fileBlob,
                         directory: FilesystemDirectory.Data
                     });
+                    console.log("filesystem", FilesystemDirectory)
                     // Quit the app and relaunch it, which will trigger the update process
                     await App.exitApp();
 

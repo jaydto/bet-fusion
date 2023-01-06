@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useState, useRef} from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Container from 'react-bootstrap/Container';
 import {Context} from '../../context/store';
+import kanyonde from "../../../src/assets/img/mobile/kanyonde.png"
 
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {
@@ -87,8 +88,9 @@ const HeaderNav = (props) => {
                               to="/nare-games/aviator"
                               title="Kanyonde">
                             <strong>
-                                <div className={'notification-item'}>
-                                    <FontAwesomeIcon icon={faPlaneDeparture} style={{color: "tomato"}}/> Kanyonde
+                                <div className={'notification-item d-flex'}>
+                                    <img src={kanyonde} className={"kanyonde-image"} style={{height:'22px'}} />
+                                    Kanyonde
                                     <span className="notify-badge badge">NEW</span>
                                 </div>
                             </strong>

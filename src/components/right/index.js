@@ -5,6 +5,7 @@ import BetSlip from './betslip';
 import {faTimes} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {Badge} from "react-bootstrap";
+import {getBetslip, getJackpotBetslip} from "../utils/betslip";
 
 const AlertMessage = (props) => {
     return (
@@ -34,7 +35,15 @@ const Right = (props) => {
                                 <span className="col-sm-8 slp">BETSLIP</span>
                                 <span className="col-sm-2 slip-counter text-white">
                                      <Badge pill bg="dark">
-                                      {betslipValidationData?.length || 0}
+                                      <Badge pill bg="dark">
+
+                                          { (jackpot===true?
+                                              getJackpotBetslip()!=null?
+                                                  Object.keys(getJackpotBetslip())?.length:
+                                                  0:getBetslip()?Object.keys(getBetslip()).length:0)}
+                                          {/*{console.log("betslip_validation: ",betslipValidationData +" jackpot: " +jackpot+" jackpotData: "+Object.keys(getJackpotBetslip()))}*/}
+</Badge>
+
                                       </Badge>
                                 </span>
                             </div>

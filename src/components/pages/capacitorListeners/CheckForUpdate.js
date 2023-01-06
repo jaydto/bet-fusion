@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import {Capacitor, Plugins} from '@capacitor/core';
+import {Capacitor} from '@capacitor/core';
 import {Filesystem} from '@capacitor/filesystem';
 import {App} from "@capacitor/app"
-import {toast, } from 'react-toastify';
 
-import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
-import makeRequest, {BASE_URL} from "../../utils/fetch-request";
+import {toast,} from 'react-toastify';
+import {BASE_URL} from "../../utils/fetch-request";
 import axios from "axios";
-import {Link} from "react-router-dom";
+import {ProgressBar} from "loading-animations-react";
+import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
 
 
 const {FilesystemDirectory} = Capacitor;
@@ -17,253 +17,206 @@ export function AppUpdater() {
 
     const [currentAppVersion, setCurrentAppVersion] = useState(null);
     const [latestAppVersion, setLatestAppVersion] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+    // const [showtoast, setShowToast] = useState(false);
+    const [shouldShowToast, setShouldShowTaost] = useState(false)
+
     async function checkForUpdates() {
         try {
             // Get the current app version from the device
-            if (Capacitor.isNativePlatform())
-            {
-                if (Capacitor.getPlatform().toString().toLowerCase() === "android")
-                {
+            if (Capacitor.isNativePlatform()) {
+                if (Capacitor.getPlatform().toString().toLowerCase() === "android") {
                     const info = await App.getInfo();
                     setCurrentAppVersion(info.version);
-                    console.log("android_version", info.version)
+                    // console.log("android_version", info.version)
                     //checking what platform we are using
-                    console.log("app  version", Capacitor.getPlatform().toString().toLowerCase());
-
-                    //no caches involved
-                    // try{
-                    //     // Get the latest app version from the Flask endpoint
-                    //     const response = await fetch('https://api.betnare.com/android/version');
-                    //     const json = await response.json();
-                    //     setLatestAppVersion(json.version);
-                    // }catch (e) {
-                    //     console.error(e)
-                    // }
-
-                    // Check if the latest app version is cached
-                    // const cacheKey = 'latestAppVersion';
-                    // let latestAppVersion = await getFromLocalStorage(cacheKey);
-
-                    // If the cache is expired or non-existent, make an API call to get the latest app version
-                    // const cacheTimeout = 1000 * 60 * 60; // 1 hour
-                    // if (!latestAppVersion || Date.now() - latestAppVersion.timestamp > cacheTimeout)
-                    {
-                    // const response = await fetch('https://api.betnare.com/android/version');
+                    // console.log("app  version", Capacitor.getPlatform().toString().toLowerCase());
 
 
-                    // await makeRequest({url: endpoint, method: method, data: []}).then(([status, result]) => {
-                    //     console.log("response",result)
-                    //     if (status === 200) {
-                    //         latestAppVersion = {
-                    //             version: result?.data, timestamp: Date.now()
-                    //         };
-                    //     }
-                    //     else{
-                    //         console.log("app_result",result);
-                    //     }
-                    //
-                    // });
-
-                    axios.get(BASE_URL+'/android/version')
+                    axios.get(BASE_URL + '/android/version')
                         .then(response => {
                             setLatestAppVersion(response.data.version);
-                            console.log("response", response.data.version)
-                            // console.log("latest_app_version", latestAppVersion)
+                            // console.log("response", response.data.version)
+
                         }).catch(error => {
-                        console.error(error);
+                        toast.warn("cant fetch version at the moment");
                     });
 
 
-                    // await setLocalStorage(cacheKey, latestAppVersion);
-                }
-
-                // setLatestAppVersion(latestAppVersion);
-                // console.log("latest_version", latestAppVersion)
-
-                // }
-                // }
-
-
-                //auto update
-
-                // // Compare the current app version with the latest app version
-                // if (currentAppVersion !== latestAppVersion) {
-                //     // Download the updated app package from the Flask endpoint
-                //     const response = await fetch('http://example.com/download/app.apk');
-                //     const fileBlob = await response.blob();
-                //
-                //     // Write the downloaded app package to a file on the device
-                //     const filePath = 'app.apk';
-                //     await Filesystem.writeFile({
-                //         path: filePath,
-                //         data: fileBlob,
-                //         directory: FilesystemDirectory.Data
-                //     });
-                //
-                //     // Quit the app and relaunch it, which will trigger the update process
-                //     await App.exitApp();
-                // }
-            console.log("currentAppVersion_latestAppVersion ",currentAppVersion+ " "+latestAppVersion)
-
-            }}
-        } catch (e) {
-            console.log("error",e)
-        }}
-        useEffect(() => {
-            checkForUpdates();
-        }, []);
-    const fileUrl = 'https://testapi.betnare.co.ke/download/betnare.apk';
-        const CustomToast=()=>{
-            <Link to={fileUrl} onClick={()=>toast.info("update starting")}>Download link</Link>
-        }
-
-        const handleUpdate = async () => {
-            // Download the updated app package from the Flask endpoint
-            // Compare the current app version with the latest app version
-            if (currentAppVersion !== latestAppVersion) {
-                // Download the updated app package from the Flask endpoint
-                try {
-                    // const response = await fetch('https://www.betnare.com/betnare.apk');
-
-
-                    // await makeRequest({url: endpoint, method: method, data: []}).then(async ([status, result]) =>
-
-
-
-                    // This method will throw an error if the user denies the permission request. You can use this method before attempting to download and write the updated app package to the file system.
-                    //
-                    //     If you want to check if the app already has permission to write to the file system, you can use the getPermissions method from the Filesystem API:
-
-                    const { granted } = await Filesystem.requestPermissions({ write: true });
-
-                    // console.log('granted',granted.prop)
-
-                    if (typeof granted!=="undefined") {
-                        toast.warning('Write permission is required to update the app', {
-                            appearance: 'error',
-                            autoDismiss: true
-                        })
-                        return;
-                    //     await Filesystem.requestPermissions({ write: true,read:true });
-                    }
-
-                    // This method returns an object with a permissions property, which is an object containing properties for each of the permissions that have been granted (read and write in this case). If the write property is true, it means that the app has permission to write to the file system.
-
-                        // axios.get('https://www.betnare.com/betnare.apk')
-                    //     .then(async response => {
-                    //         {
-                    //             const fileBlob = await response
-                    //             // Write the downloaded app package to a file on the device
-                    //             console.log("filesystems",response)
-                    //             const filePath = 'app.apk';
-                    //             try {
-                    //                 await Filesystem.writeFile({
-                    //                     path: filePath, data: fileBlob, directory: FilesystemDirectory.Data
-                    //                 });
-                    //
-                    //             } catch (e) {
-                    //                 // toast.warning('Please check if write permissions for the application are enabled.', {
-                    //                 //     autoClose: 3000,position: "top-left"
-                    //                 // })
-                    //                 console.log("error",e)
-                    //             }
-                    //         }
-                    //         // console.log("response", response.data.version)
-                    //         // console.log("latest_app_version", latestAppVersion)
-                    //     }).catch(error => {
-                    //     console.error(error);
-                    // });
-
-
-                    // async function getFileSize(url) {
-                    //     try {
-                    //         const response = await axios.head(url);
-                    //         const fileSize = response.headers['content-length'];
-                    //         return fileSize
-                    //         console.log(`File size: ${fileSize} bytes`);
-                    //     } catch (error) {
-                    //         console.error(error);
-                    //     }
-                    // }
-                    // 'Content-length': getFileSize(fileUrl),
-                    // const axiosInstance=axios.create({baseURL:'https://testapi.betnare.co.ke'})
-
-                    //  axios.get(fileUrl, { responseType: 'blob',validateStatus:false,headers:{
-                    //         "Cache-Control": "must-revalidate, post-check=0, pre-check=0",
-                    //         "access-control-allow-origin":"http://betnare",
-                    //         'access-control-allow-headers':'Content-Type',
-                    //         'Content-type': 'application/vnd.android.package-archive',
-                    //         'Content-Disposition': 'attachment; filename=betnare.apk"',
-                    //
-                    //     } }).then(async response => {
-                    //         try{
-                    //             const fileBlob = response.data
-                    //
-                    //             // console.log("apk_response",apkResponse)
-                    //
-                    //             // Write the downloaded app package to a file on the device
-                    //             const filePath = 'betnare.apk';
-                    //             await Filesystem.writeFile({
-                    //                 path: filePath,
-                    //                 data: fileBlob,
-                    //                 directory: FilesystemDirectory.Data
-                    //             });
-                    //             console.log("filesystem", FilesystemDirectory)
-                    //             // Quit the app and relaunch it, which will trigger the update process
-                    //             await App.exitApp();
-                    //         }catch (error){
-                    //             toast.warn("file write denied")
-                    //         }
-                    //     }
-                    //
-                    // ).catch((error)=>{
-                    //     toast.info("application failed to download")
-                    // })
-
-                    {
-                        // if (status == 200)
-                        // {
-                        //     const fileBlob = await result?.blob
-                        //     // Write the downloaded app package to a file on the device
-                        //     const filePath = 'app.apk';
-                        //     try {
-                        //         await Filesystem.writeFile({
-                        //             path: filePath, data: fileBlob, directory: FilesystemDirectory.Data
-                        //         });
-                        //
-                        //     } catch (e) {
-                        //         // toast.warning('Please check if write permissions for the application are enabled.', {
-                        //         //     autoClose: 3000,position: "top-left"
-                        //         // })
-                        //         console.log(e)
-                        //     }
-                        // }
-                    }
-                    toast("click"+ <CustomToast/>)
-                    // );
-
-                    // Quit the app and relaunch it, which will trigger the update process
-                    // await App.exitApp();
-                    // }
-
-                } catch (e) {
-                    // toast.warn('Update failed.', {
-                    //     autoClose: 3000, position: "top-left"
-                    // })
-                    console.log("never got to this point",e)
+                    // console.log("currentAppVersion_latestAppVersion ", currentAppVersion + " " + latestAppVersion)
 
                 }
             }
+        } catch (e) {
+            // console.log("error", e)
         }
+    }
+
+    // const handleDismiss = () => {
+    //     toast.dismiss();
+    //     setCookie('toastDismissed', true, { maxAge: 43200 }); // 12 hours in seconds
+    // }
+
+    // useEffect(() => {
+    //     if (!cookies.toastDismissed) {
+    //         toast('An update is available. Click here to update the app.', { onClick: handleDismiss });
+    //     }
+    // }, []);
+
+    useEffect(() => {
+        checkForUpdates();
+    }, []);
+    // const fileUrl = 'https://testapi.betnare.co.ke/download/betnare.apk';
+    const fileUrl = 'https://www.betnare.com/android/download'
+
+    const handleUpdate = async () => {
+        // Download the updated app package from the Flask endpoint
+        // Compare the current app version with the latest app version
+        if (currentAppVersion !== latestAppVersion) {
+            // Download the updated app package from the Flask endpoint
+            try {
+                setIsLoading(true);
+                // This method will throw an error if the user denies the permission request. You can use this method before attempting to download and write the updated app package to the file system.
+                const {granted} = await Filesystem.requestPermissions({write: true});
+
+                // If the user denies the permission request, show an error message
+                if (granted === false) {
+                    toast.warn('Write permission is required to update the app', {
+                        appearance: 'error',
+                        autoDismiss: true
+                    });
+                    return;
+                }
+                // Make the API call to download the updated app package
+                const fileBlob = await fetch(fileUrl).then(response => response.blob());
+                await Filesystem.writeFile({
+                    path: 'updated-app.apk',
+                    data: fileBlob,
+                    directory: FilesystemDirectory.External
+                });
+
+                // Install the updated app package
+                await App.installApp({
+                    filePath: 'file:///storage/emulated/0/updated-app.apk'
+                });
+
+                toast(<><a href={fileUrl} onClick={() => toast.info("update starting")}>Initiate the download
+                    process</a></>)
+                // );
+
+                // Quit the app and relaunch it, which will trigger the update process
+                // await App.exitApp();
+                // }
+
+            } catch (e) {
+                toast.error('An error occurred while updating the app', {
+                    appearance: 'error',
+                    autoDismiss: true
+                });
+                // console.log("never got to this point", e)
+
+            }
+            setIsLoading(false);
+        }
+        if (isLoading) {
+            return <ProgressBar
+                borderColor=""
+                sliderColor="#242e3a"
+                sliderBackground="rgb(0,0,0)"
+            />
+        }
+    }
+
+    // Function to handle closing the toast
+    // Function to handle closing the toast
+    const handleClose = () => {
+        // Store the current timestamp in local storage as a number
+        localStorage.setItem('toastClosedAt', Date.now());
+        toast("Update has been postponed we will show you an update after 24hrs")
+    }
+
+// Function to check if the toast should be shown
+
+    const handleDismiss = () => {
+        // console.log("Handling dismiss ,,, ")
+        // setShowToast(false);
+        //2 mins
+        // 120000
+        //3 hours
+        // 60 * 60 * 3 * 1000
+        setLocalStorage('updateToastTimestamp', new Date().getTime() + 60 * 60 * 3 * 1000)
+        // localStorage.setItem();
+        // localStorage.setItem('dismissedToast', true);
+    }
+
+    const showToast = () => {
+
+        let toastUpdateTimestamp = getFromLocalStorage('updateToastTimestamp')
+
+        if (toastUpdateTimestamp === null) {
+            // this guy has not disabled toast update
+            setShouldShowTaost(true)
+        } else {
+            // this guy has toast update timestamp set in local storage...
+            let now = Date.now() // current time in milliseconds ...
+
+            // console.log("Now", now)
+
+            let toastTime = (Number(toastUpdateTimestamp)) // time to show toast
+
+            {/*console.log("Toast Time", toastTime)*/}
+
+            let diff = toastTime - now
+
+            {/*console.log("Time Diff", diff)*/}
+
+            if (diff <= 0) {
+                setLocalStorage('updateToastTimestamp', null)
+                setShouldShowTaost(true)
+            }
+
+        }
+        // const dismissedToast = localStorage.getItem('dismissedToast');
+        // const dismissedToastTimestamp = localStorage.getItem('dismissedToastTimestamp');
+        // const currentTimestamp = new Date().getTime();
+        //
+        // // Check if the toast has been dismissed within the last 12 hours
+        // if (!dismissedToast || (currentTimestamp - dismissedToastTimestamp > 43200000)) {
+        //     setShowToast(true);
+        // }
+    }
+
+    useEffect(() => {
+        showToast();
+    }, []);
+
+    return (
+        <div>
+            {currentAppVersion && latestAppVersion ? (
+                currentAppVersion !== latestAppVersion && shouldShowToast && toast.info(
+                    <>
+                        <a
+                            href={fileUrl}
+                            onClick={() => toast.info('Update starting...')}
+                        >
+                            An update is available. Please click here to update!
+                        </a>
+                    </>,
+                    {
+                        position: toast.POSITION.TOP_LEFT,
+                        autoClose: false,
+                        onClick: () => handleDismiss()
+                    }
+                )
+
+            ) : (
+                ''
+            )}
+            {/*/!*{console.log('showToast', showtoast)}*!/*/}
+            {/*{console.log("versions_current: ", currentAppVersion + " new: " + latestAppVersion)}*/}
+
+        </div>
+    );
 
 
-
-    return (<div>
-            {currentAppVersion && latestAppVersion ? (currentAppVersion === latestAppVersion ? toast.success('Your app is up to date!', {
-                position: toast.POSITION.TOP_LEFT, autoClose: 1000
-            }) : toast.info('An update is available. click here to update.', {
-                position: toast.POSITION.TOP_LEFT, autoClose: false, onClick: handleUpdate
-            })) : ''}
-        {console.log("latest_app_version_current ",latestAppVersion+" "+currentAppVersion)}
-        </div>);
 }

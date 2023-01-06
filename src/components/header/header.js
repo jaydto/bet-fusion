@@ -21,9 +21,8 @@ import {faCloudDownloadAlt, faCoins, faSearch, faTimes} from "@fortawesome/free-
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import ListGroup from "react-bootstrap/ListGroup";
 import MobileNav2 from "../mobile-navigation/MobileNav2";
-import {SafeArea} from "capacitor-plugin-safe-area";
-import {AppUpdater} from "../pages/capacitorListeners/CheckForUpdate";
 import {App} from "@capacitor/app";
+import {AppUpdater} from "../pages/capacitorListeners/CheckForUpdate";
 const ProfileMenu = React.lazy(() => import('./profile-menu'));
 const HeaderLogin = React.lazy(() => import('./top-login'));
 const HeaderNav = React.lazy(() => import('./header-nav'));
@@ -202,12 +201,12 @@ const Header = (props) => {
         };
     }, []);
 
+
     const expand = "md"
     return (
         <>
             <AppUpdater/>
-
-            <Navbar expand="md" className="mb-0 ck pt-sm-0 pt-md-3 pc os app-navbar top-nav" fixed="top" variant="dark">
+            <Navbar expand="md"   className="mb-0 ck pt-sm-0 pt-md-3 pc os app-navbar top-nav" fixed="top" variant="dark">
                 <Container fluid className={'d-flex justify-content-between mobile-change'}>
                     <Navbar.Brand className="e logo align-self-start menu-control" title="Betnare">
                         <Link to={{pathname: "/"}} className="col-4 resize-mobile">

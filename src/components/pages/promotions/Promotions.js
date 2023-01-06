@@ -5,7 +5,7 @@ import React from "react";
 
 import twentyPercentDepositBonus from '../../../assets/img/banner/products/dailyDeposit.webp'
 
-import firstDeposit from '../../../assets/img/banner/products/StakeBooster.jpeg'
+import firstDeposit from '../../../assets/img/banner/products/stakeBooster.webp'
 import multibetCashback from '../../../assets/img/banner/products/100PercentCashback.jpg'
 
 import karibuGiftWallet from "../../../assets/img/banner/products/karibuGift.webp"

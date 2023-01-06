@@ -26,6 +26,10 @@ const config: CapacitorConfig = {
     "SafeArea": {}
     ,
     "@capacitor/filesystem":{},
+    "Preferences": {
+      "type": "javascript",
+      "path": "./node_modules/@capacitor/preferences/dist/esm/index.js"
+    }
 
 
   },

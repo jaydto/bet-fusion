@@ -1074,18 +1074,18 @@ export const JackpotMatchList = (props) => {
     const {matches, jackpotData} = props;
     const [selections, setSelections] = useState([])
 
-    useEffect(()=>{
+    // useEffect(()=>{
 
-        const storedItem = localStorage.getItem('jackpotbetslip');
+        // const storedItem = localStorage.getItem('jackpotbetslip');
 // if(storedItem){
 //
 // }
 
-
-
-    },[])
-    const storedItem = localStorage.getItem('jackpotbetslip');
-    console.log("selection1",selections)
+    //
+    //
+    // },[])
+    // const storedItem = localStorage.getItem('jackpotbetslip');
+    // console.log("selection1",storedItem)
 
 
     const randomize = async () => {

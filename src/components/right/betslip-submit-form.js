@@ -19,6 +19,7 @@ import {
 import {getFromLocalStorage} from "../utils/local-storage";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faGift} from "@fortawesome/free-solid-svg-icons";
+import {Button, ButtonGroup} from "react-bootstrap";
 
 const Float = (equation, precision = 4) => {
     return Math.round(equation * (10 ** precision)) / (10 ** precision);
@@ -492,18 +493,30 @@ const BetslipSubmitForm = (props) => {
                                 id="net-amount">{formatNumber(jackpot ? jackpotData?.jackpot_amount : (hasMultiBetBoost ? netWinBoosted : netWin))}</span>
                             </td>
                         </tr>
-                        <tr><td className={"bet-align-right"}>
-                                <button className="place-bet-btn"
-                                        type="button"
-                                        onClick={() => handleRemoveAll()}>REMOVE ALL
-                                </button>
+                        <tr className="bet-win-tr hide-on-affix">
+                            <td colSpan={'2'}>
+                                <ButtonGroup aria-label="Basic example">
+                                    <Button variant="secondary" className="place-bet-btn"  type="button" onClick={() => handleRemoveAll()}>REMOVE ALL</Button>
+                                    <SubmitButton id="place_bet_button"
+                                                  disabled={jackpot && Object.entries(betslip || []).length != JSON.stringify(jackpotData?.total_games)}
+                                                  className="place-bet-btn bold"
+                                                  title="PLACE BET"/>
+                                </ButtonGroup>
                             </td>
-                            <td className={"bet-align-left"}>
-                                <SubmitButton id="place_bet_button"
-                                              disabled={jackpot && Object.entries(betslip || []).length != JSON.stringify(jackpotData?.total_games)}
-                                              className="place-bet-btn bold"
-                                              title="PLACE BET"/>
-                            </td>
+
+
+                            {/*<td className={"bet-align-right"}>*/}
+                            {/*    <button className="place-bet-btn"*/}
+                            {/*            type="button"*/}
+                            {/*            onClick={() => handleRemoveAll()}>REMOVE ALL*/}
+                            {/*    </button>*/}
+                            {/*</td>*/}
+                            {/*<td className={"bet-align-left"}>*/}
+                            {/*    <SubmitButton id="place_bet_button"*/}
+                            {/*                  disabled={jackpot && Object.entries(betslip || []).length != JSON.stringify(jackpotData?.total_games)}*/}
+                            {/*                  className="place-bet-btn bold"*/}
+                            {/*                  title="PLACE BET"/>*/}
+                            {/*</td>*/}
                         </tr>
                         </tbody>
                     </table>

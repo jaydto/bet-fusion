@@ -17,6 +17,7 @@ import {Link} from "react-router-dom";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {getJackpotBetslip, getBetslip} from '../utils/betslip'
 import {Context} from "../../context/store";
+import useWindowDimensions from "../header/Dimensions";
 
 const MobileMenu = (props) => {
     // console.log("props aere here ", props)
@@ -25,7 +26,10 @@ const MobileMenu = (props) => {
     const [betSlipMobile, setBetSlipMobile] = useState(false);
     const gaEventTracker = useAnalyticsEventTracker('Navigation');
     const pathname = window.location.pathname;
+    const [popUpHeight, setPopUpHeight] = useState(0);
     const [state, dispatch] = useContext(Context);
+    const [className, setClassName] = useState('');
+    const {height, width} = useWindowDimensions();
 
     const fetchData = useCallback(() => {
         let endpoint = "/v1/sports?live=1";
@@ -37,6 +41,18 @@ const MobileMenu = (props) => {
             });
     }, []);
 
+    let totalCount = 0;
+
+    useEffect(() => {
+        // Calculate the remaining screen height
+        // const screenHeight = window.innerHeight;
+        // console.log("screenHeight",height)
+        const remainingScreenHeight = height - (jackpot?state?.user?295:260:state?.user?295:250);
+        // Set the pop up component height to be 20% of the remaining screen height
+        setPopUpHeight(remainingScreenHeight );
+    }, []);
+
+
 
     useEffect(() => {
         const abortController = new AbortController();
@@ -46,6 +62,11 @@ const MobileMenu = (props) => {
             abortController.abort();
         };
     }, [fetchData]);
+    // useEffect(() => {
+    //     if (window.innerWidth < 967) {
+    //         setClassName('slip-max-height');
+    //     }
+    // }, []);
 
     // console.log("Props bs", betslip)
     return (<div>
@@ -64,13 +85,14 @@ const MobileMenu = (props) => {
                                 </span>
                                 </div>
                             </header>
+                            {/*{console.log("popUPheight",popUpHeight)}*/}
 
-                            <div id="betslip" className="betslip">
+                            <div id="betslip" className={`betslip  ${width < 967 ?'slip-max-height':'d-sm-flex align-items-sm-center' }`} style={{height:""+popUpHeight+"px"}}>
                                 {
                                     ((betslipValidationData!="") || (jackpot==true || jackpot!=null) )?
                                     <BetSlip jackpot={jackpot} betslipValidationData={betslipValidationData}
                                              jackpotData={jackpotData} />
-                                       : "No bets available"
+                                        : <h4 className='text-warning'>You have not selected any bets</h4>
 
                                 }
                             </div>
@@ -117,10 +139,15 @@ const MobileMenu = (props) => {
                       onClick={() => gaEventTracker('Visit Live  Page')}>
                     <img  src={LiveSvg} alt="">
                     </img>
-
-                    <p>Live <span className={"text-light"}>({liveSports?.length || 0})</span></p>
+                    {liveSports?.forEach((sport) => {totalCount += sport.count;})}
+                    <p>Live <span className={"text-light"}>({totalCount || 0})</span></p>
+                    {/*{console.log("livesports",liveSports)}*/}
 
                 </Link>
+
+
+
+
 
 
                 {state?.user ? <Link to={"/profile"} className={`bloc-icon ${pathname === "/profile" ? "active" : ""}`}>

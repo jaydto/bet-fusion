@@ -9,6 +9,7 @@ import {
 } from '../utils/betslip';
 import {Link} from "react-router-dom";
 import {getFromLocalStorage} from "../utils/local-storage";
+import useWindowDimensions from "../header/Dimensions";
 
 const clean_rep = (str) => {
     str = str.replace(/[^A-Za-z0-9\-]/g, '');
@@ -24,7 +25,11 @@ const BetSlip = (props) => {
     const [message, setMessage] = useState(null)
     const [qualifiesBonus, setQualifiesBonus] = useState(false)
     const [qualifiesGift, setQualifiesGift] = useState(false)
+    const [popUpHeight, setPopUpHeight] = useState(0);
     const [settings, setSettings] = useState(getFromLocalStorage('settings'))
+    const [styles, setStyle] = useState({});
+    const [className, setClassName] = useState('');
+    const {height, width} = useWindowDimensions();
 
     const [totalOdds, setTotalOdds] = useState(1);
     //initial betslip loading
@@ -50,6 +55,7 @@ const BetSlip = (props) => {
 
     //Handle db validation of betslip
     const validateBetslipwithDbData = useCallback(() => {
+
         if (betslipValidationData && betslipsData) {
             let clone_slip = betslipsData;
             Object.entries(betslipValidationData).forEach(([key, slipdata]) => {
@@ -219,12 +225,22 @@ const BetSlip = (props) => {
         updateGiftState()
     }, [totalOdds, totalGames])
 
+    useEffect(() => {
+        // Calculate the remaining screen height
+        // const screenHeight = window.innerHeight;
+        // console.log("screenHeight",height)
+
+        const remainingScreenHeight = height - (jackpot?state?.user?430:371:state?.user?560:500);
+        // Set the pop up component height to be 20% of the remaining screen height
+        setPopUpHeight(remainingScreenHeight );
+    }, []);
+
     return (
         <div className="bet-body text-white">
             {!jackpot && (
                 <BonusAlert/>
             )}
-            <div className="flow slip-size landscape-orientation" style={{ overflowY: "auto"}}>
+            <div className={`flow ${width < 967?'':'slip-size'} landscape-orientation overflow-auto`} style={width<967?{ height: ''+popUpHeight+'px' }:{}}>
             <ul>
                     {Object.entries(betslipsData || {}).map(([match_id, slip]) => {
                         let odd = slip.odd_value;

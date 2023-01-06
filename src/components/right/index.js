@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect, useCallback} from 'react';
+import React, {useEffect, useState} from 'react';
 import QuickLogin from './quick-login';
 import CompanyInfo from './company-info';
 import BetSlip from './betslip';
@@ -7,6 +7,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {Badge} from "react-bootstrap";
 import MobileMenu from '../mobile-menu';
 import useWindowDimensions from "../header/Dimensions";
+import {getBetslip, getJackpotBetslip} from "../utils/betslip";
 
 const AlertMessage = (props) => {
     return (<div className={`alert alert-dismissible ${props.classname}`} role='alert'>
@@ -18,7 +19,7 @@ const AlertMessage = (props) => {
 }
 
 const Right = (props) => {
-    const {jackpot, betslipValidationData, jackpotData,slipJackpot} = props;
+    const {jackpot, betslipValidationData, jackpotData, slipJackpot} = props;
     const [betSlipMobile, setBetSlipMobile] = useState(false)
     const {height, width} = useWindowDimensions();
     const {profile} = props;
@@ -26,9 +27,21 @@ const Right = (props) => {
     const {app} = props;
     const {withdraw} = props;
 
+    const [jackpotCount, setJackpotCount] = useState(false);
+    const [betslipCount, setBetslipCount] = useState(0);
+
+    useEffect(() => {
+        // Define the getBetslip and getJackpotBetslip functions here
+        const betsipCount = jackpot === true ?
+            getJackpotBetslip() != null ? Object.keys(getJackpotBetslip())?.length : 0
+            :
+            getBetslip() ? Object.keys(getBetslip()).length : 0;
+        setBetslipCount(betslipCount);
+    }, [jackpot]);
+
     return (<div
-        className={`col-md-3 ${deposit || withdraw||app ? "width-all" : "gn"} betslip-container sticky-top ${width <= 991 ? "remove-width" : "vh-100"} overflow-scroll tablet-view`}>
-        <div className="betslip-container d-none d-lg-block" style={{overflowY:"auto"}}>
+        className={`col-md-3 ${deposit || withdraw || app ? "width-all" : "gn"} betslip-container sticky-top ${width <= 991 ? "remove-width" : "vh-100"} overflow-scroll tablet-view`}>
+        <div className="betslip-container d-none d-lg-block" style={{overflowY: "auto"}}>
             {props?.message && <AlertMessage classname={props.classname} message={props.message}/>}
             <div className="bet-option-list " id=''>
                 <div className="bet alu block-shadow">
@@ -38,9 +51,15 @@ const Right = (props) => {
                         <i className="fa fa-bookmark" aria-hidden="true"></i></span>
                             <span className="col-sm-8 slp">BETSLIP</span>
                             <span className="col-sm-2  text-white d-flex align-items-center">
-                                     <Badge pill bg="dark">
-                                      {betslipValidationData?.length || 0}
-                                      </Badge>
+                                     <Badge pill
+                                            bg="warning nav__betslip d-flex justify-content-center align-items-center">
+
+                                         {(jackpot === true ?
+                                             getJackpotBetslip() != null ? Object.keys(getJackpotBetslip())?.length : 0
+                                             :
+                                             getBetslip() ? Object.keys(getBetslip()).length : 0)}
+
+                                    </Badge>
                                 </span>
                         </div>
                     </header>
@@ -49,7 +68,7 @@ const Right = (props) => {
                     </button>
                     <div id="betslip" className="betslip">
                         <BetSlip jackpot={jackpot} betslipValidationData={betslipValidationData}
-                                 jackpotData={jackpotData} />
+                                 jackpotData={jackpotData}/>
                     </div>
                     <QuickLogin/>
                 </div>

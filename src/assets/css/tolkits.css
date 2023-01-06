@@ -46,6 +46,7 @@ input, select, textarea {
     }
 
 }
+
 @media (orientation: landscape) and (max-width: 967px) {
     .landscape-orientation{
         position:absolute;

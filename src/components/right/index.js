@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect, useCallback} from 'react';
+import React, {useState} from 'react';
 import QuickLogin from './quick-login';
 import CompanyInfo from './company-info';
 import BetSlip from './betslip';
@@ -36,13 +36,13 @@ const Right = (props) => {
                                 <span className="col-sm-2 slip-counter text-white">
                                      <Badge pill bg="dark">
                                       <Badge pill bg="dark">
-
-                                          { (jackpot===true?
-                                              getJackpotBetslip()!=null?
-                                                  Object.keys(getJackpotBetslip())?.length:
-                                                  0:getBetslip()?Object.keys(getBetslip()).length:0)}
+                                          {(jackpot === true ?
+                                              getJackpotBetslip() != null ?
+                                                  Object.keys(getJackpotBetslip())?.length :
+                                                  0 : getBetslip() ? Object.keys(getBetslip()).length : 0)}
                                           {/*{console.log("betslip_validation: ",betslipValidationData +" jackpot: " +jackpot+" jackpotData: "+Object.keys(getJackpotBetslip()))}*/}
-</Badge>
+                                          {/*                                          */}
+                                        </Badge>
 
                                       </Badge>
                                 </span>

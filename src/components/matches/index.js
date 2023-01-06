@@ -9,7 +9,7 @@ import {
     removeFromSlip,
     removeFromJackpotSlip,
     addToJackpotSlip,
-    getBetslip
+    getBetslip, getJackpotBetslip
 } from '../utils/betslip';
 
 // import CurrencyFormat from 'react-currency-format';
@@ -314,7 +314,7 @@ const OddButton = (props) => {
     // here
 
     const updatePickedChoices = useCallback(() => {
-        let betslip = jackpot ? state?.[betslip_key] : (getBetslip() || {});
+        let betslip = jackpot ? getJackpotBetslip() : (getBetslip() || {});
         // let betslip = getBetslip() || {};
         let uc = clean(
             match.match_id

@@ -175,7 +175,7 @@ const Index = (props) => {
                 <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions/>
                     <div className="gz home" style={{width: '100%',overflowX: "clip"}}>
-                        <div className="homepage" ref={homePageRef} style={{width:'60vw'}}>
+                        <div className="homepage" ref={homePageRef} >
                             <CarouselLoader/>
                             <Testimonials/>
                             <MainTabs tab={location.pathname.replace("/", "")}/>

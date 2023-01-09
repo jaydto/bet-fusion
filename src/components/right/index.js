@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import QuickLogin from './quick-login';
 import CompanyInfo from './company-info';
 import BetSlip from './betslip';
@@ -6,6 +6,7 @@ import {faTimes} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {Badge} from "react-bootstrap";
 import {getBetslip, getJackpotBetslip} from "../utils/betslip";
+import {Context} from "../../context/store";
 
 const AlertMessage = (props) => {
     return (
@@ -21,6 +22,7 @@ const AlertMessage = (props) => {
 const Right = (props) => {
     const {jackpot, betslipValidationData, jackpotData} = props;
     const [betSlipMobile, setBetSlipMobile] = useState(false)
+    const [state, dispatch] = useContext(Context);
 
     return (
         <div className="col-md-3 gn betslip-container sticky-top vh-100 overflow-scroll">
@@ -34,17 +36,19 @@ const Right = (props) => {
                         <i className="fa fa-bookmark" aria-hidden="true"></i></span>
                                 <span className="col-sm-8 slp">BETSLIP</span>
                                 <span className="col-sm-2 slip-counter text-white">
-                                     <Badge pill bg="dark">
-                                      <Badge pill bg="dark">
-                                          {(jackpot === true ?
-                                              getJackpotBetslip() != null ?
-                                                  Object.keys(getJackpotBetslip())?.length :
-                                                  0 : getBetslip() ? Object.keys(getBetslip()).length : 0)}
-                                          {/*{console.log("betslip_validation: ",betslipValidationData +" jackpot: " +jackpot+" jackpotData: "+Object.keys(getJackpotBetslip()))}*/}
-                                          {/*                                          */}
-                                        </Badge>
 
-                                      </Badge>
+
+                                    <Badge pill
+                                              bg="warning nav__betslip d-flex justify-content-center align-items-center">
+         {/*{console.log("jackpot_all",state?.[betslip_key])}*/}
+
+                                           {(jackpot === true ?
+                                               getJackpotBetslip() ? Object.keys(getJackpotBetslip()).length : 0
+                                               :
+                                               getBetslip() ? Object.keys(getBetslip()).length : 0)}
+
+
+    </Badge>
                                 </span>
                             </div>
                         </header>

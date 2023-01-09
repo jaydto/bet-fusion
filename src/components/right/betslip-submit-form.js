@@ -5,7 +5,7 @@ import {
     getBetslip,
     clearSlip,
     clearJackpotSlip,
-    formatNumber
+    formatNumber, getJackpotBetslip
 } from '../utils/betslip';
 import publicIp from 'public-ip';
 import makeRequest from '../utils/fetch-request';
@@ -77,7 +77,7 @@ const BetslipSubmitForm = (props) => {
     }, [ipv4]);
 
     const Alert = (props) => {
-        let c = message?.status == 201 ? 'success' : 'danger';
+        let c = message?.status == 201 ? 'success' :message?.status ==421?'warning': 'danger';
         let x_style = {
             float: "right",
             display: "block",
@@ -88,7 +88,7 @@ const BetslipSubmitForm = (props) => {
         }
         return (<>{message?.status &&
             <div role="alert"
-                 className={`fade alert alert-${c} show alert-dismissible`}>
+                 className={`fade alert alert-${c} show alert-dismissible d-flex justify-content-between align-items-center`}>
                 {message.message}
                 <span aria-hidden="true" style={x_style} onClick={() => setMessage(null)}>&times;</span>
             </div>}
@@ -311,6 +311,12 @@ const BetslipSubmitForm = (props) => {
             setMessage({status: 400, message: errors.user_id});
             return errors;
         }
+        if(jackpot && Object.keys(getJackpotBetslip()).length<jackpotData?.total_games){
+            let remaining=Number(jackpotData?.total_games)-Number(Object.keys(getJackpotBetslip()).length);
+            errors.jackpot_select=`Please select the ${remaining} remaining jackpot matches`
+            setMessage({status:421,message: errors.jackpot_select})
+            return errors
+        }
         return errors;
     };
 
@@ -494,7 +500,7 @@ const BetslipSubmitForm = (props) => {
                             </td>
                             <td>
                                 <SubmitButton id="place_bet_button"
-                                              disabled={jackpot && Object.entries(betslip || []).length != JSON.stringify(jackpotData?.total_games)}
+                                              // disabled={jackpot && Object.entries(betslip || []).length != JSON.stringify(jackpotData?.total_games)}
                                               className="place-bet-btn bold"
                                               title="PLACE BET"/>
                             </td>

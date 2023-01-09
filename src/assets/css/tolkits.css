@@ -2,9 +2,19 @@
     list-style:none;
     box-sizing: border-box;
     text-decoration: none;
+
 }
 input, select, textarea {
     font-size: 16px;
+}
+#app{
+    overflow-x:clip
+}
+.size-1{
+    width:15%
+}
+.size-2{
+    width:85%
 }
 @supports(padding:max(0px)) {
     body, footer {
@@ -16,6 +26,34 @@ input, select, textarea {
         /*padding-bottom: max(12px, env(safe-area-inset-bottom));*/
     }
 }
+
+    .testimonials-style{
+        /*white-space: nowrap;*/
+        overflow-x:hidden;
+        width: 60vw;
+        /*animation: slide 40s linear infinite;*/
+    }
+    .testimonial-style{
+        white-space: nowrap;
+        /*overflow-x:auto*/
+        animation: slide1 50s linear infinite;
+    }
+    @keyframes slide1 {
+        0% {
+            transform: translateX(0%);
+        }
+        100% {
+            transform: translateX(-1700px);
+        }
+    }
+    .sticky-testimony{
+        position: sticky;
+        top: 135px;
+        z-index:150;
+        opacity:1;
+        background: #253743;
+    }
+
 @media (orientation: landscape) and (max-height:375px){
 
     .slip-body>tr{
@@ -60,6 +98,8 @@ input, select, textarea {
     height:auto;
 
 }
+
+
 @media (orientation: landscape) and (max-width: 967px) {
     .landscape-orientation{
         position:absolute;
@@ -7886,7 +7926,7 @@ ul.sport {
 
 .sticky-responsive {
     position: sticky;
-    top: 124px
+    top: 160px
 }
 
 @media (min-width: 768px) {

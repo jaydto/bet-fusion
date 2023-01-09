@@ -9,6 +9,8 @@ import useAnalyticsEventTracker from '../components/analytics/useAnalyticsEventT
 import {getFromLocalStorage, setLocalStorage} from "./utils/local-storage";
 import useWindowDimensions from "./header/Dimensions";
 import {  Capacitor } from "@capacitor/core";
+import axios from "axios";
+import Testimonials from "./carousel/Testimonials";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -34,6 +36,7 @@ const Index = (props) => {
     const [fetching, setFetching] = useState(false)
     const homePageRef = useRef()
     const [utmSource, setUtmSource] = useState('')
+
 
     // useEffect(() => {
     //     if (Capacitor.isNativePlatform) {
@@ -167,6 +170,8 @@ const Index = (props) => {
 
     }, []);
 
+
+
     useEffect(() => {
         checkThreeWay()
         fetchData();
@@ -217,12 +222,14 @@ const Index = (props) => {
     return (<>
         <Header/>
 
-        <div className={(width <= 514 ? user ? "user_logged" : "amt" : "amt")}>
+        <div className={(width <= 514 ? user ? "user_logged" : "amt" : "amt")} style={{overflowY:"clip"}} >
             <div className="d-flex flex-row justify-content-between">
                 <SideBar loadCompetitions/>
                 <div className="gz home" style={{width: '100%', overflowX: "clip"}}>
-                    <div className="homepage" ref={homePageRef}>
+                    <div className="homepage" ref={homePageRef} style={{width:'60vw'}}>
                         <CarouselLoader/>
+                        <Testimonials/>
+
                         <MainTabs tab={location.pathname.replace("/", "")}/>
                         {/* <MobileCategories/> */}
                         <MatchList

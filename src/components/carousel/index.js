@@ -12,6 +12,7 @@ import karibu50 from "../../assets/img/banner/products/50KaribuBonus.jpg"
 import jackpot from "../../assets/img/banner/products/jackpot.webp"
 
 
+
 const banners = [
     kanyondeBanner,
     karibu50,

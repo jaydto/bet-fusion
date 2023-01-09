@@ -23,6 +23,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import MobileNav2 from "../mobile-navigation/MobileNav2";
 import {App} from "@capacitor/app";
 import {AppUpdater} from "../pages/capacitorListeners/CheckForUpdate";
+import {Capacitor} from "@capacitor/core";
 const ProfileMenu = React.lazy(() => import('./profile-menu'));
 const HeaderLogin = React.lazy(() => import('./top-login'));
 const HeaderNav = React.lazy(() => import('./header-nav'));
@@ -186,19 +187,24 @@ const Header = (props) => {
     }, [updateUserOnLogin])
 
     useEffect(() => {
-
-       const unsubscribe= App.addListener('backButton', () => {
-            // Check if the current route is the root route
-            if (window.location.pathname === '/') {
-                // Exit the app
-                App.exitApp();
+        if (Capacitor.isNativePlatform()) {
+            if (Capacitor.getPlatform().toString().toLowerCase() === "android") {
+                const unsubscribe= App.addListener('backButton', () => {
+                    // Check if the current route is the root route
+                    if (window.location.pathname === '/') {
+                        // Exit the app
+                        App.exitApp();
+                    }
+                });
+                return () => {
+                    // Don't forget to unsubscribe when the component unmounts
+                    unsubscribe();
+                };
             }
-        });
+        }
 
-        return () => {
-            // Don't forget to unsubscribe when the component unmounts
-            unsubscribe();
-        };
+
+
     }, []);
 
 

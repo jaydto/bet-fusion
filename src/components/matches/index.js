@@ -156,7 +156,7 @@ const MatchHeaderRow = (props) => {
 
 
     return (
-        <div className="full-mobile sticky-top" style={{position: "sticky", top: "161px"}}>
+        <div className="full-mobile sticky-top " style={{position: "sticky", top: "161px"}}>
             <div className="top-matches d-flex position-sticky sticky-top shadow-lg"
                  style={{opacity: "1", top: "100px"}}>
                 <div className="col-sm-2 col-xs-12 pad left-text">

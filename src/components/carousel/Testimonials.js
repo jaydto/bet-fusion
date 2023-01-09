@@ -25,6 +25,7 @@ const Testimonials = () => {
         fetchTestimonials()
     }, []);
 
+
     return (
 
             <div className=" testimonials-style border border-warning d-flex sticky-testimony">
@@ -35,7 +36,9 @@ const Testimonials = () => {
                     {testimonials?.map((testimony,index)=>(
                         <li key={index} className={" px-3 d-flex"}  >
                             {testimony}
+                            {/*{testimony}*/}
                         </li>
+
 
                     ))}
 

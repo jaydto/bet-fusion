@@ -1583,7 +1583,7 @@ header {
 }
 .sticky-testimony{
     position: sticky;
-    top: 151px;
+    top: 135px;
     z-index:150;
     opacity:1;
     background: #253743;
@@ -7220,11 +7220,13 @@ ul.sport {
         padding-bottom: 4px !important;
     }
 }
-
+.change-display{
+    display: flex !important;
+    white-space: nowrap;
+    flex-wrap: nowrap;
+}
 @media (min-width: 979px) {
-    .change-display {
-        /*display:contents!important;*/
-    }
+
 
     .fix-print {
         padding: 8px 3px 3px 2px !important;
@@ -8642,13 +8644,13 @@ ul.sport {
 }
 
 @media (max-width: 1147px) {
-    .change-display {
-        flex-wrap: nowrap;
-        font-size: 11px;
-        display: grid !important;
-        grid-template-columns: [col0]0px[col1]60px[col2]70px[col3]100px[col4]80px[col5]120px[col6]120px[col7]140px[col8]120px[col9]90px[col10]70px[col11]108px[col-end];
-        overflow: auto;
-    }
+    /*.change-display {*/
+    /*    flex-wrap: nowrap;*/
+    /*    font-size: 11px;*/
+    /*    display: grid !important;*/
+    /*    grid-template-columns: [col0]0px[col1]60px[col2]70px[col3]100px[col4]80px[col5]120px[col6]120px[col7]140px[col8]120px[col9]90px[col10]70px[col11]108px[col-end];*/
+    /*    overflow: auto;*/
+    /*}*/
 
     .hide1 {
         display: none;

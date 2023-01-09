@@ -46,7 +46,20 @@ input, select, textarea {
     }
 
 }
+.slip-max{
+    max-height:44vh;
+}
+.slip-height{
+    max-height:32vh
+}
+.slip-log-max{
+    max-height:38vh
+}
+.size-slip-new{
+    max-height:30vh;
+    height:auto;
 
+}
 @media (orientation: landscape) and (max-width: 967px) {
     .landscape-orientation{
         position:absolute;

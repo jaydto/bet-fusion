@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import QuickLogin from './quick-login';
 import CompanyInfo from './company-info';
 import BetSlip from './betslip';
@@ -8,6 +8,7 @@ import {Badge} from "react-bootstrap";
 import MobileMenu from '../mobile-menu';
 import useWindowDimensions from "../header/Dimensions";
 import {getBetslip, getJackpotBetslip} from "../utils/betslip";
+import {Context} from "../../context/store";
 
 const AlertMessage = (props) => {
     return (<div className={`alert alert-dismissible ${props.classname}`} role='alert'>
@@ -26,18 +27,20 @@ const Right = (props) => {
     const {deposit} = props;
     const {app} = props;
     const {withdraw} = props;
+    const [state, dispatch] = useContext(Context);
 
     const [jackpotCount, setJackpotCount] = useState(false);
     const [betslipCount, setBetslipCount] = useState(0);
+    let betslip_key="jackpotbetslip"
 
-    useEffect(() => {
-        // Define the getBetslip and getJackpotBetslip functions here
-        const betsipCount = jackpot === true ?
-            getJackpotBetslip() != null ? Object.keys(getJackpotBetslip())?.length : 0
-            :
-            getBetslip() ? Object.keys(getBetslip()).length : 0;
-        setBetslipCount(betslipCount);
-    }, [jackpot]);
+    // useEffect(() => {
+    //     // Define the getBetslip and getJackpotBetslip functions here
+    //     const betsipCount = jackpot === true ?
+    //         getJackpotBetslip() != null ? Object.keys(getJackpotBetslip())?.length : 0
+    //         :
+    //         getBetslip() ? Object.keys(getBetslip()).length : 0;
+    //     setBetslipCount(betslipCount);
+    // }, [jackpot]);
 
     return (<div
         className={`col-md-3 ${deposit || withdraw || app ? "width-all" : "gn"} betslip-container sticky-top ${width <= 991 ? "remove-width" : "vh-100"} overflow-scroll tablet-view`}>
@@ -53,11 +56,13 @@ const Right = (props) => {
                             <span className="col-sm-2  text-white d-flex align-items-center">
                                      <Badge pill
                                             bg="warning nav__betslip d-flex justify-content-center align-items-center">
+                                         {/*{console.log("jackpot_all",state?.[betslip_key])}*/}
 
                                          {(jackpot === true ?
-                                             getJackpotBetslip() != null ? Object.keys(getJackpotBetslip())?.length : 0
+                                             getJackpotBetslip() ? Object.keys(getJackpotBetslip()).length : 0
                                              :
                                              getBetslip() ? Object.keys(getBetslip()).length : 0)}
+
 
                                     </Badge>
                                 </span>

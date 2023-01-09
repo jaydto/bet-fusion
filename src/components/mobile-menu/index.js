@@ -43,6 +43,7 @@ const MobileMenu = (props) => {
 
     let totalCount = 0;
 
+
     useEffect(() => {
         // Calculate the remaining screen height
         // const screenHeight = window.innerHeight;
@@ -87,7 +88,7 @@ const MobileMenu = (props) => {
                             </header>
                             {/*{console.log("popUPheight",popUpHeight)}*/}
 
-                            <div id="betslip" className={`betslip  ${width < 967 ?'slip-max-height':'d-sm-flex align-items-sm-center' }`} style={{height:""+popUpHeight+"px"}}>
+                            <div id="betslip" className={`betslip  ${width < 967 ?'slip-max-height':'d-sm-flex align-items-sm-center size-slip-new' }`}  >
                                 {
                                     ((betslipValidationData!="") || (jackpot==true || jackpot!=null) )?
                                     <BetSlip jackpot={jackpot} betslipValidationData={betslipValidationData}
@@ -122,6 +123,7 @@ const MobileMenu = (props) => {
 
                     <Badge pill bg="warning nav__betslip d-flex justify-content-center align-items-center">
                         {/*{console.log("betslip state",state?.count)}*/}
+
                         { (jackpot===true?
                             getJackpotBetslip()!=null?
                                 Object.keys(getJackpotBetslip())?.length:

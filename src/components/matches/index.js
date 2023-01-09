@@ -381,8 +381,8 @@ const OddButton = (props) => {
 
     const updatePickedChoices = useCallback(() => {
         let betslip = jackpot ? getJackpotBetslip(): (getBetslip() || {});
-        console.log("jackpot slip",state?.[betslip_key] )
-        console.log("jackpot_bet", getJackpotBetslip())
+        // console.log("jackpot slip",state?.[betslip_key] )
+        // console.log("jackpot_bet", getJackpotBetslip())
         // let betslip = getBetslip() || {};
         let uc = clean(
             match.match_id

@@ -230,18 +230,19 @@ const BetSlip = (props) => {
         // const screenHeight = window.innerHeight;
         // console.log("screenHeight",height)
 
-        const remainingScreenHeight = height - (jackpot?state?.user?430:371:state?.user?560:500);
+        const remainingScreenHeight = height - (jackpot?state?.user?430:400:state?.user?560:500);
         // Set the pop up component height to be 20% of the remaining screen height
         setPopUpHeight(remainingScreenHeight );
     }, []);
 
     return (
-        <div className="bet-body text-white">
+        <div className="bet-body text-white ">
             {!jackpot && (
                 <BonusAlert/>
             )}
-            <div className={`flow ${width < 967?'':'slip-size'} landscape-orientation overflow-auto`} style={width<967?{ height: ''+popUpHeight+'px' }:{}}>
-            <ul>
+            {/*style={width<967?{ height: ''+popUpHeight+'px' }:{}}*/}
+            <div className={`flow ${width < 967?state?.user?jackpot?'slip-max':height<900?'slip-height':'slip-log-max':'slip-max':'slip-size'} landscape-orientation overflow-auto`}  >
+            <ul >
                     {Object.entries(betslipsData || {}).map(([match_id, slip]) => {
                         let odd = slip.odd_value;
                         let no_odd_bg = odd === 1 ? '#f29f7a' : '';

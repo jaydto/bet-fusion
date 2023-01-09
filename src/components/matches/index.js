@@ -156,7 +156,7 @@ const MatchHeaderRow = (props) => {
 
 
     return (
-        <div className="full-mobile sticky-top " style={{position: "sticky", top: "161px"}}>
+        <div className="full-mobile sticky-top container " style={{position: "sticky", top: "161px"}}>
             <div className="top-matches d-flex position-sticky sticky-top shadow-lg"
                  style={{opacity: "1", top: "100px"}}>
                 <div className="col-sm-2 col-xs-12 pad left-text">
@@ -848,7 +848,7 @@ const MatchList = (props) => {
 
             {matches && <MatchHeaderRow live={live} first_match={matches ? matches[0] : {}}/>}
 
-            <div className="web-element">
+            <div className="web-element container">
                 {matches &&
                     Object.entries(matches).map(([key, match]) => (
                         <MatchRow match={match} key={key} live={live} pdown={pdown} three_way={three_way}/>

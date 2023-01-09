@@ -31,6 +31,8 @@ const Index = (props) => {
     const [fetching, setFetching] = useState(false)
     const homePageRef = useRef()
     const [utmSource, setUtmSource] = useState('')
+    const widthRef = useRef(null);
+    const widthComponentRef = useRef(null);
     const findPostableSlip = () => {
         let betslips = getBetslip() || {};
         var values = Object.keys(betslips).map(function (key) {
@@ -168,16 +170,27 @@ const Index = (props) => {
         configureCampaignCookie()
     }, [utmSource])
 
+
+
+
+        // useEffect(() => {
+        //     // set the width of the carousel to the width of the other component
+        //     widthRef.current.style.width = widthComponentRef.current.offsetWidth + 'px';
+        // }, []);
+
     return (
         <>
             <Header/>
             <div className="amt">
                 <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions/>
-                    <div className="gz home" style={{width: '100%',overflowX: "clip"}}>
-                        <div className="homepage" ref={homePageRef} >
+                    <div className="gz home" style={{overflowX: "clip",width:'100%'}}>
+                        <div className="homepage w-100" ref={homePageRef} >
                             <CarouselLoader/>
-                            <Testimonials/>
+                            <div className={"container sticky-testimony"}>
+                                <Testimonials/>
+                            </div>
+
                             <MainTabs tab={location.pathname.replace("/", "")}/>
                             {/* <MobileCategories/> */}
                             <MatchList

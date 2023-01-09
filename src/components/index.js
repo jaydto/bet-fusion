@@ -7,6 +7,7 @@ import useInterval from "../hooks/set-interval.hook";
 import {Spinner} from "react-bootstrap";
 import useAnalyticsEventTracker from '../components/analytics/useAnalyticsEventTracker';
 import {setLocalStorage} from "./utils/local-storage";
+import Testimonials from "./carousel/Testimonials";
 
 
 const Header = React.lazy(() => import('./header/header'));
@@ -174,8 +175,9 @@ const Index = (props) => {
                 <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions/>
                     <div className="gz home" style={{width: '100%',overflowX: "clip"}}>
-                        <div className="homepage" ref={homePageRef}>
+                        <div className="homepage" ref={homePageRef} style={{width:'60vw'}}>
                             <CarouselLoader/>
+                            <Testimonials/>
                             <MainTabs tab={location.pathname.replace("/", "")}/>
                             {/* <MobileCategories/> */}
                             <MatchList

@@ -1562,6 +1562,32 @@ header {
     }
 
 }
+.testimonials-style{
+    /*white-space: nowrap;*/
+    overflow-x:hidden;
+    width: 60vw;
+    /*animation: slide 40s linear infinite;*/
+}
+.testimonial-style{
+    white-space: nowrap;
+    /*overflow-x:auto*/
+    animation: slide1 50s linear infinite;
+}
+@keyframes slide1 {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-1700px);
+    }
+}
+.sticky-testimony{
+    position: sticky;
+    top: 151px;
+    z-index:150;
+    opacity:1;
+    background: #253743;
+}
 
 @media (min-width: 979px) {
     #slip-holder.affix-top {

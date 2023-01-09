@@ -184,10 +184,10 @@ const Index = (props) => {
             <div className="amt">
                 <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions/>
-                    <div className="gz home" style={{overflowX: "clip",width:'100%'}}>
-                        <div className="homepage w-100" ref={homePageRef} >
+                    <div className="gz home match-overflow "  >
+                        <div className="homepage " ref={homePageRef} >
                             <CarouselLoader/>
-                            <div className={"container sticky-testimony"}>
+                            <div className={"sticky-testimony"}>
                                 <Testimonials/>
                             </div>
 

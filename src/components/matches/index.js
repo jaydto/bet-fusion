@@ -156,7 +156,7 @@ const MatchHeaderRow = (props) => {
 
 
     return (
-        <Container className="full-mobile sticky-top" style={{position: "sticky", top: "165px"}}>
+        <div className="full-mobile sticky-top" style={{position: "sticky", top: "161px"}}>
             <div className="top-matches d-flex position-sticky sticky-top shadow-lg"
                  style={{opacity: "1", top: "100px"}}>
                 <div className="col-sm-2 col-xs-12 pad left-text">
@@ -212,7 +212,7 @@ const MatchHeaderRow = (props) => {
                     </div>
                 </div>
             </div>
-        </Container>
+        </div>
     )
 }
 
@@ -716,7 +716,7 @@ export const MarketList = (props) => {
                     live={live}
                 />
             }
-            <Container className="web-element">
+            <div className="web-element">
                 <div className="col-md-12 position-sticky shadow-lg primary-bg mb-1"
                      style={{top: "135px", height: "40px", backgroundColor: "#3c5a6c !important"}}>
                     <Input type="text" className={'form-control h-100  border-0'}
@@ -740,7 +740,7 @@ export const MarketList = (props) => {
                     />
                 })
                 }
-            </Container>
+            </div>
         </div>
     )
 
@@ -848,7 +848,7 @@ const MatchList = (props) => {
 
             {matches && <MatchHeaderRow live={live} first_match={matches ? matches[0] : {}}/>}
 
-            <Container className="web-element">
+            <div className="web-element">
                 {matches &&
                     Object.entries(matches).map(([key, match]) => (
                         <MatchRow match={match} key={key} live={live} pdown={pdown} three_way={three_way}/>
@@ -859,7 +859,7 @@ const MatchList = (props) => {
                         No events found.
                     </div>
                 }
-            </Container>
+            </div>
         </div>
     )
 }

@@ -3,6 +3,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Container from 'react-bootstrap/Container';
 import {Context} from '../../context/store';
 import kanyonde from "../../../src/assets/img/mobile/kanyonde.png"
+import Premier_League from "../../assets/img/leagues/Premier League.svg"
 
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {
@@ -17,6 +18,7 @@ import makeRequest from "../utils/fetch-request";
 import {faMobile, faCoins} from "@fortawesome/free-solid-svg-icons";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {Link} from "react-router-dom";
+import worldCup from "../../assets/img/flags-1-1/worldcup.png";
 
 const HeaderNav = (props) => {
     const gaEventTracker = useAnalyticsEventTracker('Navigation');
@@ -86,11 +88,11 @@ const HeaderNav = (props) => {
                         onClick={() => gaEventTracker('Aviator')}>
                         <Link className="cg fm ox anl url-link"
                               to="/nare-games/aviator"
-                              title="Kanyonde">
+                              title="Aviator">
                             <strong>
                                 <div className={'notification-item d-flex'}>
                                     <img src={kanyonde} className={"kanyonde-image"} style={{height:'22px'}} />
-                                    Kanyonde
+                                    Aviator
                                     <span className="notify-badge badge">NEW</span>
                                 </div>
                             </strong>
@@ -127,15 +129,19 @@ const HeaderNav = (props) => {
                             <strong><FontAwesomeIcon icon={faCoins}/> Jackpot</strong>
                         </Link>
                     </li>
-                    {/*<li className={window.location.search.includes('nare-games') ? 'active' : ''}*/}
-                    {/*    onClick={() => gaEventTracker('Nare Games')} style={{display: 'none !important'}}>*/}
-                    {/*    <Link className="cg fm ox anl url-link"*/}
-                    {/*          to="/nare-games"*/}
-                    {/*          title="Nare Games">*/}
-                    {/*        <FontAwesomeIcon icon={faFireAlt} style={{color: "orange"}}/>*/}
-                    {/*        <strong> Nare Games</strong>*/}
-                    {/*    </Link>*/}
-                    {/*</li>*/}
+                    <li className={window.location.search.includes('worldcup') ? 'active' : ''}
+                        onClick={() => gaEventTracker('Premier League')}>
+                        <Link className="cg fm ox anl url-link"
+                              to="/competition/79/8076/16805?sport_id=79&sub_type_id=1,18,29&limit=500&c=worldcup"
+                              title="Premier League">
+                            <div className={'notification-item'}>
+                            <img src={Premier_League} className={'Premier League'}
+                                 style={{height: "20px", borderRadius: "0 !important"}}></img>
+                            <strong>Premier League</strong>
+                                <span className="notify-badge badge">NEW</span>
+                            </div>
+                        </Link>
+                    </li>
                     <li className={pathname === '/app' ? 'active' : ''}
                         onClick={() => gaEventTracker('Visit App Page')}>
                         <Link className="g url-link" to="/app" title="App">

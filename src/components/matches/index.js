@@ -3,7 +3,7 @@ import {Context} from '../../context/store';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
-import bgJackpot from '../../assets/img/banner/jackpots/jackpot.webp'
+import bgJackpot from '../../assets/img/banner/products/Bet_Nare_300k_Jackpot_Mobile.webp'
 import {
     addToSlip,
     removeFromSlip,
@@ -154,9 +154,19 @@ const MatchHeaderRow = (props) => {
         }
     }, [first_match?.parent_match_id])
 
+    const checkJackpot=()=>{
+        if (jackpot) {
+            return {top:"130px",positio:"sticky"}
+        }else{
+            return {top:"161px",positio:"sticky"}
+        }
+    }
+
+
+
 
     return (
-        <div className="full-mobile sticky-top container " style={{position: "sticky", top: "161px"}}>
+        <div className="full-mobile sticky-top container " style={checkJackpot()}>
             <div className="top-matches d-flex position-sticky sticky-top shadow-lg"
                  style={{opacity: "1", top: "100px"}}>
                 <div className="col-sm-2 col-xs-12 pad left-text">

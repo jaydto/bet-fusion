@@ -5,6 +5,7 @@ import {getJackpotBetslip, getBetslip} from './utils/betslip' ;
 
 import useInterval from "../hooks/set-interval.hook";
 import {Context} from '../context/store';
+import Testimonials from "./carousel/Testimonials";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -89,9 +90,12 @@ const Live = (props) => {
             <div className="amt">
                 <div className="d-flex flex-row justify-content-between">
                     <LiveSideBar/>
-                    <div className="gz home" style={{width:"100%"}}>
+                    <div className="gz home moz-clip" >
                         <div className="homepage">
                             <CarouselLoader/>
+                            <div className={"sticky-testimony"}>
+                                <Testimonials/>
+                            </div>
                             {matches && <MatchList live matches={matches} pdown={producerDown}/>}
                         </div>
                     </div>

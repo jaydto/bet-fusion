@@ -91,7 +91,7 @@ const HeaderNav = (props) => {
                               title="Aviator">
                             <strong>
                                 <div className={'notification-item d-flex'}>
-                                    <img src={kanyonde} className={"kanyonde-image"} style={{height:'22px'}} />
+                                    <img src={kanyonde} className={"kanyonde-image px-1"} style={{height:'20px'}} />
                                     Aviator
                                     <span className="notify-badge badge">NEW</span>
                                 </div>
@@ -104,10 +104,10 @@ const HeaderNav = (props) => {
                               to="/nare-games"
                               title="Nare Games">
 
-                            <strong>
-                                <FontAwesomeIcon icon={faFireAlt} style={{color: "orange"}}/>Nare Games
+                            <strong className={"px-1"}>
+                                <FontAwesomeIcon icon={faFireAlt} style={{color: "orange"}} /> Nare Games
                                 <span className="notify-badge badge">NEW</span>
-                                </strong>
+                            </strong>
                         </Link>
                     </li>
                     <li className={`${pathname === '/virtuals' || pathname.includes("gameplay") ? 'active' : ''}`}>
@@ -122,6 +122,19 @@ const HeaderNav = (props) => {
                             </span>
                         </Link>
                     </li>
+                    <li className={window.location.search.includes('Premier League') ? 'active' : ''}
+                        onClick={() => gaEventTracker('Premier League')}>
+                        <Link className="cg fm ox anl url-link"
+                              to="/competition/79/8076/16805?sport_id=79&sub_type_id=1,18,29&limit=500&c=Premier League"
+                              title="Premier League">
+                            <div className={'notification-item'}>
+                                <img src={Premier_League} className={'Premier League'}
+                                     style={{height: "20px", borderRadius: "0 !important"}}></img>
+                                <strong>Premier League</strong>
+                                <span className="notify-badge badge">NEW</span>
+                            </div>
+                        </Link>
+                    </li>
 
                     <li className={pathname === '/jackpot' ? 'active' : ''}
                         onClick={() => gaEventTracker('Visit Jackpot Page')}>
@@ -129,19 +142,7 @@ const HeaderNav = (props) => {
                             <strong><FontAwesomeIcon icon={faCoins}/> Jackpot</strong>
                         </Link>
                     </li>
-                    <li className={window.location.search.includes('worldcup') ? 'active' : ''}
-                        onClick={() => gaEventTracker('Premier League')}>
-                        <Link className="cg fm ox anl url-link"
-                              to="/competition/79/8076/16805?sport_id=79&sub_type_id=1,18,29&limit=500&c=worldcup"
-                              title="Premier League">
-                            <div className={'notification-item'}>
-                            <img src={Premier_League} className={'Premier League'}
-                                 style={{height: "20px", borderRadius: "0 !important"}}></img>
-                            <strong>Premier League</strong>
-                                <span className="notify-badge badge">NEW</span>
-                            </div>
-                        </Link>
-                    </li>
+
                     <li className={pathname === '/app' ? 'active' : ''}
                         onClick={() => gaEventTracker('Visit App Page')}>
                         <Link className="g url-link" to="/app" title="App">

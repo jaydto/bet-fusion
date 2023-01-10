@@ -5,6 +5,7 @@ import {Context} from '../context/store';
 import useInterval from "../hooks/set-interval.hook";
 import {getBetslip} from './utils/betslip' ;
 import {Spinner} from "react-bootstrap";
+import Testimonials from "./carousel/Testimonials";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -103,9 +104,10 @@ const CompetitionMatches = (props) => {
             <div className="amt">
                 <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions/>
-                    <div className="gz home" style={{width: '100%'}}>
+                    <div className="gz home moz-clip" >
                         <div className="homepage">
                             <CarouselLoader/>
+                            <Testimonials/>
                             {matches && <MatchList
                                 live={false}
                                 matches={matches}

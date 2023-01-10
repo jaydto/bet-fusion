@@ -10,6 +10,7 @@ import {
 } from 'react-accessible-accordion';
 
 import '../assets/css/accordion.react.css';
+import Testimonials from "./carousel/Testimonials";
 
 const Header = React.lazy(()=>import('./header/header'));
 const Footer = React.lazy(()=>import('./footer/footer'));
@@ -211,6 +212,9 @@ const MyBets = (props) => {
                     <div className="gz home" style={{width: '100%'}}>
                         <div className="homepage">
                             <CarouselLoader/>
+                            <div className={"sticky-testimony"}>
+                                <Testimonials/>
+                            </div>
                             <PageTitle />
                             <BetItemHeader />
                             <MyBetsList  />

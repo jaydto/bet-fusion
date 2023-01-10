@@ -3,14 +3,14 @@ import Carousel from 'react-bootstrap/Carousel';
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
-import twentyPercentStakeBooster from '../../assets/img/banner/products/20PercentStakeBooster.jpeg'
-import cashback from '../../assets/img/banner/products/100PercentCashback.jpg'
-import stakeBooster from '../../assets/img/banner/products/StakeBooster.jpeg'
-import dailyDepositGift from '../../assets/img/banner/products/20PercentDailyDepositGift.jpeg'
-import karibuGiftWallet from "../../assets/img/banner/products/KaribuGiftWallet.jpg"
+
+import cashback from '../../assets/img/banner/products/Bet_Nare_100_Cashback.webp'
+import stakeBooster from '../../assets/img/banner/products/Bet_Nare_20_Stake_Booster.webp'
+import dailyDepositGift from '../../assets/img/banner/products/Bet_Nare_20_ gift.webp'
+import karibuGiftWallet from "../../assets/img/banner/products/Bet_Nare_3000_karibu_gift.webp"
 import kanyondeBanner from "../../assets/img/banner/products/Kanyonde Web Banner.jpg"
-import karibu50 from "../../assets/img/banner/products/50KaribuBonus.jpg"
-import jackpot from "../../assets/img/banner/products/jackpot.webp"
+import karibu50 from "../../assets/img/banner/products/Bet_Nare_50_Karibu_Bonus.webp"
+import jackpot from "../../assets/img/banner/products/BetNare_300k_Jackpot_New.webp"
 
 
 const banners = [
@@ -20,7 +20,6 @@ const banners = [
     jackpot,
     stakeBooster,
     dailyDepositGift,
-    twentyPercentStakeBooster,
     cashback,
 ]
 

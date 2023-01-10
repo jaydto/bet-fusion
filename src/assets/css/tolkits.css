@@ -7950,7 +7950,7 @@ ul.sport {
     }
 
     .gz {
-        width: 60%;
+        width: 62%;
     }
 
     .gv {
@@ -15469,7 +15469,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 }
 
 ::-webkit-scrollbar {
-    width: 5px;
+    width: 1px;
 }
 
 /* Track */

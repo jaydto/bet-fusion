@@ -4,10 +4,10 @@ import {Filesystem} from '@capacitor/filesystem';
 import {App} from "@capacitor/app"
 
 import {toast,} from 'react-toastify';
-import {BASE_URL} from "../../utils/fetch-request";
+import {BASE_URL} from "../utils/fetch-request";
 import axios from "axios";
 import {ProgressBar} from "loading-animations-react";
-import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
+import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
 
 
 const {FilesystemDirectory} = Capacitor;

@@ -14,8 +14,8 @@ import {
 import makeRequest from "../utils/fetch-request";
 import {faMobile, faCoins} from "@fortawesome/free-solid-svg-icons";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
-import worldCup from "../../../src/assets/img/leagues/worldcup.png"
-import Premier_League from "../../assets/img/leagues/premier-league.svg"
+// import worldCup from "../../../src/assets/img/leagues/worldcup.png"
+import Premier_League from "../../assets/img/leagues/Premier League.svg"
 import {Link} from "react-router-dom";
 
 const HeaderNav = (props) => {

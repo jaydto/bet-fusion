@@ -22,7 +22,7 @@ import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import ListGroup from "react-bootstrap/ListGroup";
 import MobileNav2 from "../mobile-navigation/MobileNav2";
 import {App} from "@capacitor/app";
-import {AppUpdater} from "../pages/capacitorListeners/CheckForUpdate";
+import {AppUpdater} from "../capacitorListeners/CheckForUpdate";
 import {Capacitor} from "@capacitor/core";
 const ProfileMenu = React.lazy(() => import('./profile-menu'));
 const HeaderLogin = React.lazy(() => import('./top-login'));

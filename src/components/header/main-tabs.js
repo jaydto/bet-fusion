@@ -1,6 +1,8 @@
 import Row from 'react-bootstrap/Row';
-import React from "react";
+import React, {useState} from "react";
 import {Link} from "react-router-dom";
+import useWindowDimensions from "./Dimensions";
+import {getFromLocalStorage} from "../utils/local-storage";
 
 
 const MainTabs = (props) => {
@@ -9,6 +11,8 @@ const MainTabs = (props) => {
     const u_class = tab === 'upcoming' ? "home-tabs-active" : "home-tabs";
     const h_class = (!tab || tab === 'highlights') ? "home-tabs-active" : "home-tabs";
     const t_class = tab === 'tomorrow' ? "home-tabs-active" : "home-tabs";
+    const {height, width} = useWindowDimensions();
+    const [user, setUser] = useState(getFromLocalStorage("user"));
 
     const getLink = (tab) => {
         const urlSearchParams = new URLSearchParams(window.location.search);
@@ -24,7 +28,7 @@ const MainTabs = (props) => {
     }
 
     return (
-        <Row className="full-mobile highlight-menu">
+        <Row className={"full-mobile "+`${width<=767?user?"highlight-logged-in-menu":"highlight-menu":"highlight-menu"}`}>
             <Row className="top-matches d-flex flex-row ">
                 <div className="col bg-black text-center">
                     <Link className={`cursor-pointer w-100 ${u_class}`} onClick={() => getLink('upcoming')}>

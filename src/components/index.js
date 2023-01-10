@@ -11,6 +11,8 @@ import useWindowDimensions from "./header/Dimensions";
 import {  Capacitor } from "@capacitor/core";
 import axios from "axios";
 import Testimonials from "./carousel/Testimonials";
+import {AppUpdate} from "@capawesome/capacitor-app-update";
+import {AppUpdater} from "./capacitorListeners/CheckForUpdate";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -221,7 +223,6 @@ const Index = (props) => {
 
     return (<>
         <Header/>
-
         <div className={(width <= 514 ? user ? "user_logged" : "amt" : "amt ")} >
             <div className="d-flex flex-row justify-content-between">
                 <SideBar loadCompetitions/>

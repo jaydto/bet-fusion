@@ -70,7 +70,8 @@ const MobileMenu = (props) => {
     // }, []);
 
     // console.log("Props bs", betslip)
-    return (<div>
+    return (
+        <div>
             <div
                 className={`fixed-bottom text-white d-block  shadow-lg betslip-container-mobile ${betSlipMobile ? 'd-flex' : 'd-none'}`}
                 style={{marginBottom: "6.5rem"}}>
@@ -104,6 +105,7 @@ const MobileMenu = (props) => {
                 </div>
 
             </div>
+
             <nav className="mobile-menu">
                 <Link to={"/"} className={`bloc-icon ${pathname === "/" ? "active" : ""}`}
                       onClick={() => gaEventTracker('Visit Homepage')}>
@@ -162,6 +164,7 @@ const MobileMenu = (props) => {
 
 
             </nav>
-        </div>)
+        </div>
+    )
 }
 export default MobileMenu;

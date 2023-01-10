@@ -214,22 +214,38 @@ input, select, textarea {
 @media (max-width:767px){
     .sticky-testimony{
         position: sticky;
+        top: 156px;
+        z-index: 1999 !important;
+    }
+    .sticky-logged-in-testimony{
+        position: sticky;
         top: 197px;
-        z-index: 999999 !important;
+        z-index: 1999 !important;
+        opacity:1;
+        background: #253743;
 
+    }
+    .highlight-logged-in-menu{
+        position: sticky;
+        top: 223px;
+        opacity: 1;
+        z-index: 1999 !important;
+    }
+    .highlight-menu{
+        position: sticky;
+        top: 183px;
+        opacity: 1;
+        z-index: 1999 !important;
 
+    }
+    .betslip-container{
+        z-index:2000;
     }
 
     .size-1{
         width:34%;
     }
-    .highlight-menu{
-        position: sticky;
-        top: 223px;
-        opacity: 1;
-        z-index: 999999 !important;
 
-    }
     .mobile-wrap{
         flex-wrap:nowrap;
         overflow-x: auto;

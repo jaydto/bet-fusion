@@ -13,7 +13,7 @@ import kanyonde from "../../../src/assets/img/mobile/kanyonde.png"
 import {getFromLocalStorage,setLocalStorage} from "../utils/local-storage";
 import makeRequest from "../utils/fetch-request";
 // import worldCup from "../../../src/assets/img/leagues/worldcup.png"
-import Premier_League from "../../../src/assets/img/leagues/premier-league.svg"
+import Premier_League from "../../../src/assets/img/leagues/Premier League.svg"
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 // import {App} from "@capacitor/app";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -169,7 +169,7 @@ const MobileNav1 = (props) => {
                 <td style={{paddingLeft: "4px"}} className={window.location.search.includes('Premier League') ? 'active  ' : 'menu-t'}
                     onClick={() => gaEventTracker('Premier League')}>
                     <Link className="cg fm ox anl url-link d-flex flex-column align-items-center"
-                          to={{pathname: "/competition",search: "competitionid=16805&sub_type_id=1,18,29&limit=500&c=Premier League"}}
+                          to={{pathname: "/competition",search: "competitionid=16805&sub_type_id=1&limit=500&c=Premier League"}}
                           title="Fifa World Cup"
                     >
                         <img src={Premier_League} className={'world-cup'}

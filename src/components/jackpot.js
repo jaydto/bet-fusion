@@ -7,7 +7,7 @@ import {JackpotMatchList, JackpotHeader} from './matches/index';
 import makeRequest from "./utils/fetch-request";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-import Jackpot300k from "../assets/img/banner/products/300kJackpot .jpg"
+import Jackpot300k from "../assets/img/banner/products/Bet_Nare_300k_Jackpot_Mobile.webp"
 import Container from "react-bootstrap/Container";
 import Select from "react-select";
 import {getFromLocalStorage} from "./utils/local-storage";
@@ -131,20 +131,22 @@ const Jackpot = (props) => {
                                                 onChange={loadJPResults}/>
                                     </div>
 
-                                    <JackpotHeader jackpot={matches?.meta}/>
+                                    {/*<JackpotHeader jackpot={matches?.meta}/>*/}
+                                    <img src={Jackpot300k}/>
+
                                     <div className="matches full-mobile sticky-top container">
                                         <div
-                                            className="top-matches d-flex position-sticky shadow-lg p-4 mt-5 text-white">
-                                            <div className="col-md-3 bold">
+                                            className="top-matches d-flex position-sticky shadow-lg p-4 mt-5 text-white ">
+                                            <div className="col-md-3 col-sm-3 bold">
                                                 TIME
                                             </div>
-                                            <div className="col-md-4 bold">
-                                                MATCH
+                                            <div className="col-md-3 col-sm-4 bold">
+                                                MATCH COMPETITION
                                             </div>
-                                            <div className="col-md-3 bold">
-                                                OUTCOME
+                                            <div className="col-md-3 col-sm-3 bold">
+                                                MATCH OUTCOME
                                             </div>
-                                            <div className="col-md-4 bold">
+                                            <div className="col-md-2 col-sm-4 bold">
                                                 WINNING OUTCOME
                                             </div>
                                         </div>
@@ -152,13 +154,13 @@ const Jackpot = (props) => {
 
                                     {matches?.data.map((match, index) => (
                                         <div className={'matches full-width'} key={index}>
-                                            <Container className="web-element">
+                                            <Container className={`${width<=767?"":"web-element"}`}>
                                                 <div
                                                     className="col-md-12 shadow d-flex flex-row p-2 text-white top-matches">
-                                                    <div className="col-md-3">
+                                                    <div className="col-md-3  col-sm-3">
                                                         {match?.start_time}
                                                     </div>
-                                                    <div className="col-md-4 d-flex flex-column">
+                                                    <div className="col-md-4  col-sm-4 d-flex flex-column">
                                                         <div className={'small'}>
                                                             {match?.category} | {match?.competition_name}
                                                         </div>
@@ -171,10 +173,10 @@ const Jackpot = (props) => {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div className="col-md-3">
+                                                    <div className="col-md-3 col-sm-3">
                                                         {match?.outcome || '-'}
                                                     </div>
-                                                    <div className="col-md-2">
+                                                    <div className="col-md-2 col-sm-2">
                                                         {match?.winning_outcome || '-'}
                                                     </div>
                                                 </div>
@@ -191,8 +193,9 @@ const Jackpot = (props) => {
                         </div>
 
                     </div>
-                    <Right jackpot={true} jackpotData={matches?.meta} />
-
+                    {
+                        width<=767?<div className={"mobile-top"}> <Right jackpot={true} jackpotData={matches?.meta} /></div>: <Right jackpot={true} jackpotData={matches?.meta} />
+                    }
 
                 </div>
             </div>

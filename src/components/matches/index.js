@@ -1045,32 +1045,32 @@ export const MarketList = (props) => {
 
 }
 
-export const JackpotHeader = (props) => {
-    const {jackpot} = props
-
-    return (
-        <Container>
-            <Row className="top-matches jackpot-resize"
-                 style={{backgroundImage: `url(${bgJackpot})`, backgroundRepeat: 'no-repeat', height: "75px"}}>
-                <Row className="jp-header-text">
-                    <div className="jp-header-top">
-                        {jackpot?.type} - {jackpot?.total_games} GAMES {jackpot?.name}
-                    </div>
-                </Row>
-                <Row className="jp-header-text mb-2">
-                    <div className="jackpot-amount mt-3">
-                        <CurrencyFormat
-                            value={jackpot?.jackpot_amount}
-                            displayType={'text'}
-                            thousandSeparator={true} prefix={'KES'}/>
-                    </div>
-                </Row>
-
-            </Row>
-        </Container>
-    )
-
-}
+// export const JackpotHeader = (props) => {
+//     const {jackpot} = props
+//
+//     return (
+//         <Container>
+//             <Row className="top-matches jackpot-resize"
+//                  style={{backgroundImage: `url(${bgJackpot})`, backgroundRepeat: 'no-repeat', height: "75px"}}>
+//                 <Row className="jp-header-text">
+//                     <div className="jp-header-top">
+//                         {jackpot?.type} - {jackpot?.total_games} GAMES {jackpot?.name}
+//                     </div>
+//                 </Row>
+//                 <Row className="jp-header-text mb-2">
+//                     <div className="jackpot-amount mt-3">
+//                         <CurrencyFormat
+//                             value={jackpot?.jackpot_amount}
+//                             displayType={'text'}
+//                             thousandSeparator={true} prefix={'KES'}/>
+//                     </div>
+//                 </Row>
+//
+//             </Row>
+//         </Container>
+//     )
+//
+// }
 
 export const JackpotMatchList = (props) => {
     const {matches, jackpotData} = props;

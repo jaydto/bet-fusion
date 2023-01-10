@@ -19,13 +19,15 @@ const MobileApp = () => {
     const gaEventTracker = useAnalyticsEventTracker('App');
     const {height, width} = useWindowDimensions();
     const [state,dispatch]=useContext(Context);
+
+
     useEffect(() => {
         gaEventTracker('App Page')
     })
 
-    // const getDownloadFile = () => {
-    //     return downloadAPKFile;
-    // }
+    const getDownloadFile = () => {
+        return "downloadAPKFile;"
+    }
 
     return (
         <>
@@ -41,17 +43,18 @@ const MobileApp = () => {
                                     BETNARE APP
                                 </h4>
 
-                                <Link to={'#'}
+
+                                <Link to={'/betnare.apk'}
                                       target={"_blank"}
                                       title={'Download App'}
-                                      // download={'betnare.apk'}
+                                      download={'betnare.apk'}
                                       className="btn btn-primary btn-lg  text-white text-decoration-none"
                                       label="Download App"
-                                      // filename="betnare.apk"
-                                      // onClick={()=>gaEventTracker('Downloaded App')}
-                                      // exportFile={() => getDownloadFile()}
-                                >Download Betnare App
-                                </Link>
+                                      filename="betnare.apk"
+                                      onClick={()=>gaEventTracker('Downloaded App')}
+                                      exportFile={() => getDownloadFile()}>Download Betnare App</Link>
+
+
                             </div>
                             <div className="col-md-12 mt-2 text-white accordion-container text-start">
                                 <hr/>
@@ -78,12 +81,16 @@ const MobileApp = () => {
                                     <hr/>
                                 </div>
                                 <div className="text-center mt-2 col">
-                                    <DownloadLink
-                                        className="btn btn-primary btn-lg mb-5 text-white btn-lg col-md-3 text-decoration-none"
-                                        label="Download App Now"
-                                        filename="betnare.apk"
-                                        // exportFile={() => getDownloadFile()}
-                                    />
+                                    <Link to={'/betnare.apk'}
+                                          target={"_blank"}
+                                          title={'Download App'}
+                                          download={'betnare.apk'}
+                                          className="btn btn-primary btn-lg mb-5 text-white text-decoration-none"
+                                          label="Download App"
+                                          filename="betnare.apk"
+                                          onClick={()=>gaEventTracker('Downloaded App')}
+                                          exportFile={() => getDownloadFile()}>Download App Now</Link>
+
                                 </div>
                             </div>
                         </div>

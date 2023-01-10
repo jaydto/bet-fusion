@@ -92,12 +92,12 @@ const MobileNav2 = (props) => {
             <tbody>
             <tr className={"d-flex league-row"}>
                 {sport?.top_soccer.map((top_soccer, index) => (
-                    <td key={index} className={` d-flex menu-t sport-check ${pathname===top_soccer.competition_id?" active":""}`} style={{paddingLeft: "4px"}}>
-                        <Link  style={{paddingLeft: "4px",width:"max-content"}}  to={{pathname: `/competition`,search: `competitionid=${top_soccer.competition_id}&sub_type_id=1`}}>
+                    <td key={index} className={` d-flex menu-t sport-check ${pathname===top_soccer.competition_id?" active":""}`} style={{paddingLeft: "4px",textAlign: 'center',lineHeight: '1.5'}}>
+                        <Link  style={{paddingRight: "4px",width:"max-content"}}  to={{pathname: `/competition`,search: `competitionid=${top_soccer.competition_id}&sub_type_id=1`}}>
                             {/*<div className="menu-img">*/}
                             {/*    */}
                             {/*</div>*/}
-                            <div className="inner-div active">
+                            <div className="inner-div active d-flex align-items-center justify-content-center">
                                 <LazyLoadImage
                                     className="side-icon"
                                     src={getSportImageIcon(top_soccer.competition_name)}

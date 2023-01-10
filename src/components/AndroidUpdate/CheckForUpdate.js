@@ -18,6 +18,7 @@ export function AppUpdater() {
     const [currentAppVersion, setCurrentAppVersion] = useState(null);
     const [latestAppVersion, setLatestAppVersion] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    const [shown, setShown] =useState(false)
     // const [showtoast, setShowToast] = useState(false);
     const [shouldShowToast, setShouldShowTaost] = useState(false)
 
@@ -129,11 +130,7 @@ export function AppUpdater() {
 
     // Function to handle closing the toast
     // Function to handle closing the toast
-    const handleClose = () => {
-        // Store the current timestamp in local storage as a number
-        localStorage.setItem('toastClosedAt', Date.now());
-        toast("Update has been postponed we will show you an update after 24hrs")
-    }
+
 
 // Function to check if the toast should be shown
 
@@ -142,9 +139,9 @@ export function AppUpdater() {
         // setShowToast(false);
         //2 mins
         // 120000
-        //3 hours
-        // 60 * 60 * 3 * 1000
-        setLocalStorage('updateToastTimestamp', new Date().getTime() + 60 * 60 * 3 * 1000)
+        //1 hour
+        // 60 * 60 * 1* 1000
+        setLocalStorage('updateToastTimestamp', new Date().getTime() + 60 * 60 * 1 * 1000)
         // localStorage.setItem();
         // localStorage.setItem('dismissedToast', true);
     }
@@ -174,6 +171,7 @@ export function AppUpdater() {
                 setLocalStorage('updateToastTimestamp', null)
                 setShouldShowTaost(true)
             }
+            // toast.info("Update will be shown later")
 
         }
         // const dismissedToast = localStorage.getItem('dismissedToast');
@@ -190,6 +188,8 @@ export function AppUpdater() {
         showToast();
     }, []);
 
+
+
     return (
         <div>
             {currentAppVersion && latestAppVersion ? (
@@ -198,14 +198,16 @@ export function AppUpdater() {
                         <a
                             href={fileUrl}
                             onClick={() => toast.info('Update starting...')}
-                        >
-                            An update is available. Please click here to update!
+                        className={"text-warning"}>
+                            A new version of the app is available. Please update
                         </a>
                     </>,
                     {
                         position: toast.POSITION.TOP_LEFT,
                         autoClose: false,
-                        onClick: () => handleDismiss()
+                        onClick: () => handleDismiss(),
+                        toastId:1001
+
                     }
                 )
 
@@ -213,7 +215,7 @@ export function AppUpdater() {
                 ''
             )}
             {/*/!*{console.log('showToast', showtoast)}*!/*/}
-            {/*{console.log("versions_current: ", currentAppVersion + " new: " + latestAppVersion)}*/}
+            {console.log("versions_current: ", currentAppVersion + " new: " + latestAppVersion)}
 
         </div>
     );

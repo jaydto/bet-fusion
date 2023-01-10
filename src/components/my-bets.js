@@ -12,6 +12,7 @@ import {
 import '../assets/css/accordion.react.css';
 import {getFromLocalStorage} from "./utils/local-storage";
 import useWindowDimensions from "./header/Dimensions";
+import Testimonials from "./carousel/Testimonials";
 
 const Header = React.lazy(()=>import('./header/header'));
 const Footer = React.lazy(()=>import('./footer/footer'));
@@ -212,9 +213,10 @@ const MyBets = (props) => {
             <div className={(width<=514?state?.user?"user_logged":"amt":"amt")}>
                 <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions/>
-                    <div className="gz home" style={{width: '100%'}}>
+                    <div className="gz home moz-clip" >
                         <div className="homepage">
                             <CarouselLoader/>
+                            <Testimonials/>
                             <PageTitle />
                             <BetItemHeader />
                             <MyBetsList  />

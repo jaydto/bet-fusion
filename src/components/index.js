@@ -12,7 +12,7 @@ import {  Capacitor } from "@capacitor/core";
 import axios from "axios";
 import Testimonials from "./carousel/Testimonials";
 import {AppUpdate} from "@capawesome/capacitor-app-update";
-import {AppUpdater} from "./capacitorListeners/CheckForUpdate";
+
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -29,7 +29,7 @@ const Index = (props) => {
 
     const {height, width} = useWindowDimensions();
     const [matches, setMatches] = useState([]);
-    const [limit, setLimit] = useState(10);
+    const [limit, setLimit] = useState(20);
     const [producerDown, setProducerDown] = useState(false);
     const [threeWay, setThreeWay] = useState(false);
     const [page, setPage] = useState(1);

@@ -83,10 +83,10 @@ const HeaderNav = (props) => {
                         onClick={() => gaEventTracker('Aviator')}>
                         <Link className="cg fm ox anl url-link"
                               to={{pathname:"/nare-game", search:"game=aviator"}}
-                              title="Kanyonde">
+                              title="Aviator">
                             <strong>
                                 <div className={'notification-item'}>
-                                    <FontAwesomeIcon icon={faPlaneDeparture} style={{color: "tomato"}}/> Kanyonde
+                                    <FontAwesomeIcon icon={faPlaneDeparture} style={{color: "tomato"}}/> Aviator
                                     <span className="notify-badge badge">NEW</span>
                                 </div>
                             </strong>

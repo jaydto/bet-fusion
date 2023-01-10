@@ -9,6 +9,7 @@ import {Context} from '../context/store';
 
 import {getFromLocalStorage} from "./utils/local-storage";
 import useWindowDimensions from "./header/Dimensions";
+import Testimonials from "./carousel/Testimonials";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -99,9 +100,10 @@ const Live = (props) => {
                         <LiveSideBar/>
                     </div>
 
-                    <div className="gz home" style={{width:"100%"}}>
+                    <div className="gz home moz-clip" >
                         <div className="homepage">
                             <CarouselLoader/>
+                            <Testimonials/>
                             <div className={`${width<=767?"d-block":"d-none"}`}>
                                 <LiveSideBar/>
                             </div>

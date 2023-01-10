@@ -12,7 +12,8 @@ import home from "../../../src/assets/img/mobile/home.png"
 import kanyonde from "../../../src/assets/img/mobile/kanyonde.png"
 import {getFromLocalStorage,setLocalStorage} from "../utils/local-storage";
 import makeRequest from "../utils/fetch-request";
-import worldCup from "../../../src/assets/img/flags-1-1/worldcup.png"
+// import worldCup from "../../../src/assets/img/leagues/worldcup.png"
+import Premier_League from "../../../src/assets/img/leagues/premier-league.svg"
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 // import {App} from "@capacitor/app";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -165,17 +166,17 @@ const MobileNav1 = (props) => {
                 </td>
 
 
-                {/*<td style={{paddingLeft: "4px"}} className={window.location.search.includes('worldcup') ? 'active  ' : 'menu-t'}*/}
-                {/*    onClick={() => gaEventTracker('World Cup')}>*/}
-                {/*    <Link className="cg fm ox anl url-link d-flex flex-column align-items-center"*/}
-                {/*          to={{pathname: "/competition",search: "competitionid=18585&sub_type_id=1,18,29&limit=500&c=worldcup"}}*/}
-                {/*          title="Fifa World Cup"*/}
-                {/*    >*/}
-                {/*        <img src={worldCup} className={'world-cup'}*/}
-                {/*             style={{height: "25px", borderRadius: "0 !important"}}></img>*/}
-                {/*        <strong>Fifa World Cup</strong>*/}
-                {/*    </Link>*/}
-                {/*</td>*/}
+                <td style={{paddingLeft: "4px"}} className={window.location.search.includes('Premier League') ? 'active  ' : 'menu-t'}
+                    onClick={() => gaEventTracker('Premier League')}>
+                    <Link className="cg fm ox anl url-link d-flex flex-column align-items-center"
+                          to={{pathname: "/competition",search: "competitionid=16805&sub_type_id=1,18,29&limit=500&c=Premier League"}}
+                          title="Fifa World Cup"
+                    >
+                        <img src={Premier_League} className={'world-cup'}
+                             style={{height: "25px", borderRadius: "0 !important"}}></img>
+                        <strong>Premier League</strong>
+                    </Link>
+                </td>
 
                 {sport?.all_sports.map((allsports, index) => (
                 <td key={index} className={`menu-t sport-check ${pathname===allsports.sport_id?"active":""}`} style={{paddingLeft: "4px"}}>

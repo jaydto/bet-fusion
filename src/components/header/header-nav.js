@@ -14,7 +14,8 @@ import {
 import makeRequest from "../utils/fetch-request";
 import {faMobile, faCoins} from "@fortawesome/free-solid-svg-icons";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
-import worldCup from "../../../src/assets/img/flags-1-1/worldcup.png"
+import worldCup from "../../../src/assets/img/leagues/worldcup.png"
+import Premier_League from "../../assets/img/leagues/premier-league.svg"
 import {Link} from "react-router-dom";
 
 const HeaderNav = (props) => {
@@ -114,15 +115,15 @@ const HeaderNav = (props) => {
                             </span>
                         </Link>
                     </li>
-                    {/*<li className={window.location.search.includes('worldcup') ? 'active' : ''}*/}
-                    {/*    onClick={() => gaEventTracker('World Cup')}>*/}
-                    {/*    <Link className="cg fm ox anl url-link d-flex"*/}
-                    {/*          to={{pathname: "/competition",search: "competitionid=18585&sub_type_id=1,18,29&limit=500&c=worldcup"}}*/}
-                    {/*          title="Fifa World Cup">*/}
-                    {/*        <img src={worldCup} className={'world-cup'} style={{height: "22px",borderRadius:"0 !important",margin:"0px"}}></img>*/}
-                    {/*        <strong>Fifa World Cup</strong>*/}
-                    {/*    </Link>*/}
-                    {/*</li>*/}
+                    <li className={window.location.search.includes('worldcup') ? 'active' : ''}
+                        onClick={() => gaEventTracker('Premier League')}>
+                        <Link className="cg fm ox anl url-link d-flex"
+                              to={{pathname: "/competition",search: "competitionid=16805&sub_type_id=1,18,29&limit=500&c=Premier League"}}
+                              title="Fifa World Cup">
+                            <img src={Premier_League} className={'Premier League'} style={{height: "22px",borderRadius:"0 !important",margin:"0px"}}></img>
+                            <strong>Premier_League</strong>
+                        </Link>
+                    </li>
                     <li className={pathname === '/jackpot' ? 'active' : ''}
                         onClick={() => gaEventTracker('Visit Jackpot Page')}>
                         <Link className="cg fm ox anl url-link" to={"/jackpot"} title="Jackpot">

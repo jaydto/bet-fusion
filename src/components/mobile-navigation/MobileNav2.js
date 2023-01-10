@@ -5,7 +5,7 @@ import {LazyLoadImage} from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
 import makeRequest from "../utils/fetch-request";
-import worldCup from "../../../src/assets/img/flags-1-1/worldcup.png"
+// import worldCup from "../../../src/assets/img/leagues/worldcup.png"
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {Dropdown, DropdownButton} from "react-bootstrap";
 import DropdownItem from "react-bootstrap/DropdownItem";

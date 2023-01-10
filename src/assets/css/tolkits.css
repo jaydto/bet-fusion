@@ -7,9 +7,9 @@
 input, select, textarea {
     font-size: 16px;
 }
-#app{
-    overflow-x:clip
-}
+/*#app{*/
+/*    overflow-x:clip*/
+/*}*/
 .size-1{
     width:15%
 }
@@ -29,9 +29,16 @@ input, select, textarea {
 
     .testimonials-style{
         /*white-space: nowrap;*/
-        overflow-x:hidden;
-        width: 60vw;
+        overflow: -moz-hidden-unscrollable; /* Firefox */
+        overflow: -webkit-hidden; /* Safari and Chrome */
+        overflow: hidden;
+
         /*animation: slide 40s linear infinite;*/
+    }
+    .moz-clip{
+        overflow-x:clip;
+        overflow-x: -moz-clip;
+        width:100%;
     }
     .testimonial-style{
         white-space: nowrap;
@@ -48,7 +55,7 @@ input, select, textarea {
     }
     .sticky-testimony{
         position: sticky;
-        top: 135px;
+        top: 126px;
         z-index:150;
         opacity:1;
         background: #253743;
@@ -85,16 +92,16 @@ input, select, textarea {
 
 }
 .slip-max{
-    max-height:44vh;
+    max-height:42vh;
 }
 .slip-height{
-    max-height:32vh
+    max-height:30vh
 }
 .slip-log-max{
-    max-height:38vh
+    max-height:36vh
 }
 .size-slip-new{
-    max-height:30vh;
+    max-height:28vh;
     height:auto;
 
 }
@@ -205,6 +212,24 @@ input, select, textarea {
 }
 
 @media (max-width:767px){
+    .sticky-testimony{
+        position: sticky;
+        top: 197px;
+        z-index: 999999 !important;
+
+
+    }
+
+    .size-1{
+        width:34%;
+    }
+    .highlight-menu{
+        position: sticky;
+        top: 223px;
+        opacity: 1;
+        z-index: 999999 !important;
+
+    }
     .mobile-wrap{
         flex-wrap:nowrap;
         overflow-x: auto;
@@ -7926,7 +7951,7 @@ ul.sport {
 
 .sticky-responsive {
     position: sticky;
-    top: 160px
+    top: 153px
 }
 
 @media (min-width: 768px) {
@@ -8478,7 +8503,7 @@ ul.sport {
     }
 
     .gz {
-        width: 60%;
+        width: 62%;
     }
 
     .gv {
@@ -16550,7 +16575,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 }
 
 ::-webkit-scrollbar {
-    width: 5px;
+    width: 1px!important;
 }
 
 /* Track */

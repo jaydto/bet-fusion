@@ -222,11 +222,11 @@ const Index = (props) => {
     return (<>
         <Header/>
 
-        <div className={(width <= 514 ? user ? "user_logged" : "amt" : "amt")} style={{overflowY:"clip"}} >
+        <div className={(width <= 514 ? user ? "user_logged" : "amt" : "amt ")} >
             <div className="d-flex flex-row justify-content-between">
                 <SideBar loadCompetitions/>
-                <div className="gz home" style={{width: '100%', overflowX: "clip"}}>
-                    <div className="homepage" ref={homePageRef} style={{width:'60vw'}}>
+                <div className="gz home moz-clip" >
+                    <div className="homepage" ref={homePageRef} >
                         <CarouselLoader/>
                         <Testimonials/>
 

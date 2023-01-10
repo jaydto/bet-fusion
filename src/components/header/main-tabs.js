@@ -24,7 +24,7 @@ const MainTabs = (props) => {
     }
 
     return (
-        <Row className="full-mobile">
+        <Row className="full-mobile highlight-menu">
             <Row className="top-matches d-flex flex-row ">
                 <div className="col bg-black text-center">
                     <Link className={`cursor-pointer w-100 ${u_class}`} onClick={() => getLink('upcoming')}>

@@ -122,7 +122,7 @@ const HeaderNav = (props) => {
                             </span>
                         </Link>
                     </li>
-                    <li className={window.location.search.includes('Premier League') ? 'active' : ''}
+                    <li className={ window.location.search.includes('Premier League') ? 'active px-2' : 'px-2'}
                         onClick={() => gaEventTracker('Premier League')}>
                         <Link className="cg fm ox anl url-link"
                               to="/competition/79/8076/16805?sport_id=79&sub_type_id=1,18,29&limit=500&c=Premier League"

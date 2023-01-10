@@ -7235,6 +7235,7 @@ ul.sport {
     display: flex !important;
     white-space: nowrap;
     flex-wrap: nowrap;
+    overflow-x: auto;
 }
 @media (min-width: 979px) {
 

@@ -8007,7 +8007,9 @@ ul.sport {
 .change-display::-webkit-scrollbar {
     display: none;
 }
-
+.pro-sidebar > .pro-sidebar-inner > .pro-sidebar-layout::-webkit-scrollbar{
+    display: none;
+}
 .spacing{
     width:max-content;
     width: -moz-max-content;

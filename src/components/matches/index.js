@@ -164,9 +164,17 @@ const MatchHeaderRow = (props) => {
     }, [first_match?.parent_match_id])
     //console.log(extraMarketDisplays)
 
+    const checkJackpot=()=>{
+        if (jackpot) {
+            return {top:"130px",positio:"sticky"}
+        }else{
+            return {top:"161px",positio:"sticky"}
+        }
+    }
+
     return (
 
-        <Row className="full-mobile sticky-top sticky-responsive px-lg-3">
+        <Row className={`full-mobile sticky-top ${jackpot?'sticky-jackpot ':'sticky-responsive '}px-lg-3`}>
             <div className="top-matches d-flex position-sticky sticky-top shadow-lg"
                  style={{opacity: "1", top: "100px"}}>
                 <div className={"size-info  d-flex col-xs-12 pad left-text"}>

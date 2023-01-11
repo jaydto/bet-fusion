@@ -7969,6 +7969,10 @@ ul.sport {
     position: sticky;
     top: 153px
 }
+.sticky-jackpot{
+    top:130px;
+    position:sticky;
+}
 
 @media (min-width: 768px) {
     .fk .ez .ff {

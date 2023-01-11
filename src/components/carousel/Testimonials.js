@@ -30,7 +30,7 @@ const Testimonials = () => {
 
             <div className=" testimonials-style border border-warning d-flex sticky-testimony">
 
-                <div className={'text-warning bg-black size-1'} style={{zIndex:"200"}}>Winners</div>
+                <div className={'text-warning bg-black size-1'} style={{zIndex:"200", whiteSpace:'nowrap'}}>Recent Winners</div>
 
                 <ul className={' d-flex text-light flex-nowrap testimonial-style size-2'}  >
                     {testimonials?.map((testimony,index)=>(

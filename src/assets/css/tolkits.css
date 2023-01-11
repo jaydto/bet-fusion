@@ -8004,6 +8004,10 @@ ul.sport {
     flex-wrap: nowrap;
     overflow-x: auto;
 }
+.change-display::-webkit-scrollbar {
+    display: none;
+}
+
 .spacing{
     width:max-content;
     width: -moz-max-content;

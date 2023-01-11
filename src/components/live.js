@@ -90,7 +90,7 @@ const Live = (props) => {
             <div className="amt">
                 <div className="d-flex flex-row justify-content-between">
                     <LiveSideBar/>
-                    <div className="gz home moz-clip" >
+                    <div className="gz home match-overflow" >
                         <div className="homepage">
                             <CarouselLoader/>
                             <div className={"sticky-testimony"}>

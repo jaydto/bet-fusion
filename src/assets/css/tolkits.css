@@ -1569,6 +1569,11 @@ header {
     overflow: -webkit-hidden; /* Safari and Chrome */
     /*animation: slide 40s linear infinite;*/
 }
+.match-overflow{
+    overflow-x: clip;
+    overflow-x: -moz-clip;
+    width: 100%;
+}
 .testimonial-style{
     white-space: nowrap;
     /*overflow-x:auto*/
@@ -1585,8 +1590,9 @@ header {
 }
 .sticky-testimony{
     position: sticky;
+    position: -webkit-sticky;
     top: 133px;
-    width:100%;
+    /*width:100%;*/
     z-index:150;
     opacity:1;
 
@@ -1594,10 +1600,10 @@ header {
 .betslip-container-mozilla{
     margin-left: 2px
 }
-.match-overflow{
-    overflowX: clip;
-    overflowX: -moz-clip;
-    width: 100%;
+@media (min-width:1900px){
+    .match-overflow{
+        width:66%!important;
+    }
 }
 
 @media (min-width: 979px) {

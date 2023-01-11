@@ -23,6 +23,8 @@ import {getFromLocalStorage} from "../utils/local-storage";
 import * as url from "url";
 import {Input} from "@material-ui/core";
 import {Link} from "react-router-dom";
+import LiveMatchTracker from "../LMT/LiveMatchTracker";
+import Testimonials from "../carousel/Testimonials";
 
 
 const clean = (_str) => {
@@ -285,6 +287,7 @@ const SideBets = (props) => {
                           live ? match.parent_match_id : match?.match_id}`
                       }>+{match.side_bets}
                 </Link>
+               <Testimonials matchId={match?.match_id}/>
                 <a className="side"
                    href={`https://s5.sir.sportradar.com/betnaremts/en/match/${match.parent_match_id}`}
                    target={"_blank"}

@@ -7241,7 +7241,9 @@ ul.sport {
     display: none;
 }
 
-
+.pro-sidebar > .pro-sidebar-inner > .pro-sidebar-layout::-webkit-scrollbar{
+    display: none;
+}
 @media (min-width: 979px) {
 
 

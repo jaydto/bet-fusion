@@ -84,28 +84,28 @@ const HeaderNav = (props) => {
                         </strong></Link>
                     </li>
 
-                    <li className={window.location.search.includes('aviator') ? 'active' : ''}
+                    <li className={pathname.includes('aviator') ? 'active' : ''}
                         onClick={() => gaEventTracker('Aviator')}>
                         <Link className="cg fm ox anl url-link"
                               to="/nare-games/aviator"
                               title="Aviator">
                             <strong>
                                 <div className={'notification-item d-flex'}>
-                                    <img src={kanyonde} className={"kanyonde-image px-1"} style={{height:'20px'}} />
+                                    <img src={kanyonde} className={"kanyonde-image px-1"} style={{height: '20px'}}/>
                                     Aviator
                                     <span className="notify-badge badge">NEW</span>
                                 </div>
                             </strong>
                         </Link>
                     </li>
-                    <li className={window.location.search.includes('nare-games') ? 'active' : ''}
+                    <li className={pathname.includes('nare-games') ? 'active' : ''}
                         onClick={() => gaEventTracker('Nare Games')} title={"Nare Games"}>
                         <Link className="cg fm ox anl url-link"
                               to="/nare-games"
                               title="Nare Games">
 
                             <strong className={"px-1"}>
-                                <FontAwesomeIcon icon={faFireAlt} style={{color: "orange"}} /> Nare Games
+                                <FontAwesomeIcon icon={faFireAlt} style={{color: "orange"}}/> Nare Games
                                 <span className="notify-badge badge">NEW</span>
                             </strong>
                         </Link>
@@ -122,7 +122,7 @@ const HeaderNav = (props) => {
                             </span>
                         </Link>
                     </li>
-                    <li className={ window.location.search.includes('Premier League') ? 'active px-2' : 'px-2'}
+                    <li className={`${pathname.includes('Premier') || (window.location.href.includes("Premier")) ? 'active px-2' : 'px-2'}`}
                         onClick={() => gaEventTracker('Premier League')}>
                         <Link className="cg fm ox anl url-link"
                               to="/competition/79/8076/16805?sport_id=79&sub_type_id=1,18,29&limit=500&c=Premier League"

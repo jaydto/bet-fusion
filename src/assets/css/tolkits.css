@@ -7237,6 +7237,11 @@ ul.sport {
     flex-wrap: nowrap;
     overflow-x: auto;
 }
+.change-display::-webkit-scrollbar {
+    display: none;
+}
+
+
 @media (min-width: 979px) {
 
 

@@ -1591,7 +1591,7 @@ header {
 .sticky-testimony{
     position: sticky;
     position: -webkit-sticky;
-    top: 133px;
+    top: 127px;
     /*width:100%;*/
     z-index:150;
     opacity:1;

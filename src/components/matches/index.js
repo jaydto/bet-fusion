@@ -158,7 +158,7 @@ const MatchHeaderRow = (props) => {
         if (jackpot) {
             return {top:"130px",positio:"sticky"}
         }else{
-            return {top:"161px",positio:"sticky"}
+            return {top:"155px",positio:"sticky"}
         }
     }
 

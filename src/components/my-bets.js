@@ -171,7 +171,7 @@ const MyBets = (props) => {
                     key = {bet.bet_id} 
                     uuid = { bet.bet_id }>
 					<AccordionItemHeading >
-                        <AccordionItemButton disabled={true} >
+                        <AccordionItemButton aria-expanded={false} aria-disabled={true} aria-hidden={false} >
 							<BetItem bet={bet}  key={bet.id}/>
 						</AccordionItemButton>
 					</AccordionItemHeading>

@@ -165,18 +165,17 @@ const MyBets = (props) => {
 
     const MyBetsList = (props) => {
 		return (
-         <Accordion >
+         <Accordion className={"bg-dark"} >
 			{state?.mybets && state.mybets.map((bet) => (
 				<AccordionItem 
                     key = {bet.bet_id} 
-                    uuid = { bet.bet_id }
-					>
-					<AccordionItemHeading>
-						<AccordionItemButton>
+                    uuid = { bet.bet_id }>
+					<AccordionItemHeading >
+                        <AccordionItemButton disabled={true} >
 							<BetItem bet={bet}  key={bet.id}/>
 						</AccordionItemButton>
 					</AccordionItemHeading>
-					<AccordionItemPanel>
+					<AccordionItemPanel >
                      <BetslipHeader />
 					{  bet.betslip?.map((betslip) => (
                          <BetslipItem 
@@ -209,7 +208,7 @@ const MyBets = (props) => {
             <div className="amt">
                 <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions/>
-                    <div className="gz home" style={{width: '100%'}}>
+                    <div className="gz home" >
                         <div className="homepage">
                             <CarouselLoader/>
                             <div className={"sticky-testimony"}>

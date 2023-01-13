@@ -33,6 +33,10 @@
     /*height: 40px;*/
     /*width: 40px;*/
 }
+.accordion__button::before{
+    display: none!important;
+}
+
 
 .casino-category-container {
     display: flex;

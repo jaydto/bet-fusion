@@ -1,14 +1,10 @@
 import React, {useState, useEffect, useCallback} from 'react';
-import football from '../../assets/svg/football.svg'
-import PerfectScrollbar from 'react-perfect-scrollbar';
 import makeRequest from "../utils/fetch-request";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import {Menu, MenuItem, ProSidebar, SidebarContent, SidebarHeader, SubMenu} from "react-pro-sidebar";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faArrowLeft, faArrowRight} from "@fortawesome/free-solid-svg-icons";
-import {setLocalStorage} from "../utils/local-storage";
+import 'react-pro-sidebar/dist/css/styles.css';
 
 const LiveSideBar = (props) => {
 
@@ -34,7 +30,7 @@ const LiveSideBar = (props) => {
     }, [fetchData]);
 
     return (
-        <div className="d-md-block w-25" >
+        <div className="d-md-block" >
             <div style={{
                 display: 'flex',
                 overflow: 'scroll initial',

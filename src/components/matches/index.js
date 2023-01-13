@@ -3,7 +3,7 @@ import {Context} from '../../context/store';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
-import bgJackpot from '../../assets/img/banner/products/Bet_Nare_300k_Jackpot_Mobile.webp'
+import bgJackpot from '../../assets/img/banner/products/BetNare_300k_Jackpot_New.webp'
 import {
     addToSlip,
     removeFromSlip,

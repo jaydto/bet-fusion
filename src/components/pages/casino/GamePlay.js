@@ -85,8 +85,7 @@ const GamePlay = (props) => {
                                 </SkeletonTheme>
                             </div>
                             {gameUrlLoaded && <>
-                                <iframe className={'mt-3 shadow-lg'} allowFullScreen webkitallowfullscreen
-                                        mozallowfullscreen
+                                <iframe className={'mt-3 shadow-lg'} allowFullScreen
                                         src={gameUrl} title="Gadme" width={'100%'} height={'600px'}></iframe>
                             </>}
                         </div>

@@ -8,19 +8,23 @@ import cashback from '../../assets/img/banner/products/Bet_Nare_100_Cashback.web
 import stakeBooster from '../../assets/img/banner/products/Bet_Nare_20_Stake_Booster.webp'
 import dailyDepositGift from '../../assets/img/banner/products/Bet_Nare_20_ gift.webp'
 import karibuGiftWallet from "../../assets/img/banner/products/Bet_Nare_3000_karibu_gift.webp"
-import kanyondeBanner from "../../assets/img/banner/products/Kanyonde Web Banner.jpg"
+import Aviator from "../../assets/img/banner/products/Aviator.webp"
 import karibu50 from "../../assets/img/banner/products/Bet_Nare_50_Karibu_Bonus.webp"
 import jackpot from "../../assets/img/banner/products/BetNare_300k_Jackpot_New.webp"
+import GamePromoManu from "../../assets/img/banner/products/ManU vs Man City.webp"
+import GamePromoTote from "../../assets/img/banner/products/Tottenham vs Arsenal.webp"
 
 
 const banners = [
-    kanyondeBanner,
-    karibu50,
-    karibuGiftWallet,
-    jackpot,
-    stakeBooster,
-    dailyDepositGift,
-    cashback,
+    {src: Aviator, url: "/nare-games/aviator"},
+    {src: karibu50, url: "/promotions"},
+    {src: karibuGiftWallet, url: "/promotions"},
+    {src: jackpot, url: "/jackpot"},
+    {src: stakeBooster, url: "/promotions"},
+    {src: dailyDepositGift, url: "/deposit"},
+    {src: cashback, url: "/promotions"},
+    {src: GamePromoManu, url: "/match/32638121"},
+    {src: GamePromoTote, url: "/match/32638157"}
 ]
 
 const CarouselLoader = (props) => {
@@ -34,12 +38,15 @@ const CarouselLoader = (props) => {
             {banners.map((banner, idx) => (
                 <Carousel.Item key={idx}>
                     <LazyLoadImage
-                        className="d-block w-100"
+                        className="d-block w-100 cursor-pointer"
                         style={{display: imageLoaded ? 'block' : 'none'}}
-                        src={banner}
+                        src={banner.src}
                         onLoad={onImageLoaded}
                         alt="Batnare"
                         effects="blur"
+                        onClick={() => {
+                            window.location.href = banner.url
+                        }}
                     />
                 </Carousel.Item>
             ))

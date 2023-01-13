@@ -10,18 +10,13 @@ const Testimonials = () => {
     const [user, setUser] = useState(getFromLocalStorage("user"));
 
     const fetchTestimonials= (async=>{
-        // let endpoint='https://api.betnare.com/v1/recent-winners';
         let endpoint="/v1/recent-winners"
 
         makeRequest({url: endpoint, method:'POST',data:{}}).then((result)=>{
             setTestimonials(result[1])
 
-            console.log("results_data", result[1])
-        })
-        // axios.post(endpoint).then((result)=>{
-        //     console.log("result_data",result)
-        // })
 
+        })
 
     });
     useEffect(() => {

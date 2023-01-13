@@ -8,15 +8,10 @@ import {Spinner} from "react-bootstrap";
 import useAnalyticsEventTracker from '../components/analytics/useAnalyticsEventTracker';
 import {getFromLocalStorage, setLocalStorage} from "./utils/local-storage";
 import useWindowDimensions from "./header/Dimensions";
-import {  Capacitor } from "@capacitor/core";
-import axios from "axios";
 import Testimonials from "./carousel/Testimonials";
-import {AppUpdate} from "@capawesome/capacitor-app-update";
-
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
-// const SideBar = React.lazy(()=>import('./sidebar/sidebar'));
 const CarouselLoader = React.lazy(() => import('./carousel/index'));
 const MainTabs = React.lazy(() => import('./header/main-tabs'));
 const MatchList = React.lazy(() => import('./matches/index'));
@@ -38,29 +33,6 @@ const Index = (props) => {
     const [fetching, setFetching] = useState(false)
     const homePageRef = useRef()
     const [utmSource, setUtmSource] = useState('')
-
-
-    // useEffect(() => {
-    //     if (Capacitor.isNativePlatform) {
-    //         App.addListener("backButton", (e) => {
-    //             if (window.location.pathname === "/") {
-    //                 // Show A Confirm Box For User to exit app or not
-    //                 let ans = window.confirm("Are you sure");
-    //                 if (ans) {
-    //                     App.exitApp();
-    //                 }
-    //             }
-    //             else if (window.location.pathname === "/highlights") {
-    //                 // Show A Confirm Box For User to exit app or not
-    //                 let ans = window.confirm("Are you sure");
-    //                 if (ans) {
-    //                     App.exitApp();
-    //                 }
-    //             }
-    //
-    //         });
-    //     }
-    // }, []);
 
     const findPostableSlip = () => {
         let betslips = getBetslip() || {};

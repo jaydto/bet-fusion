@@ -8148,7 +8148,37 @@ ul.sport {
         margin-left: 0%;
     }
 }
+@media (min-width: 1900px){
+    .gz{
+        width: 66%
+    }
+}
 
+@media (min-width: 2000px){
+    .gz{
+        width: 74%
+    }
+}
+@media (min-width: 1400px){
+    .gz{
+        width: 62%
+    }
+}
+@media (min-width: 1600px){
+    .gz{
+        width: 64%
+    }
+}
+@media (min-width: 1700px){
+    .gz{
+        width: 66%
+    }
+}
+@media (min-width: 1800px){
+    .gz{
+        width: 70%
+    }
+}
 @media (min-width: 1260px) {
     .gg,
     .gk,

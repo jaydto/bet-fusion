@@ -11,16 +11,20 @@ import karibuGiftWallet from "../../assets/img/banner/products/Bet_Nare_3000_kar
 import Aviator from "../../assets/img/banner/products/Aviator.webp"
 import karibu50 from "../../assets/img/banner/products/Bet_Nare_50_Karibu_Bonus.webp"
 import jackpot from "../../assets/img/banner/products/BetNare_300k_Jackpot_New.webp"
+import GamePromoManu from "../../assets/img/banner/products/ManU vs Man City.webp"
+import GamePromoTote from "../../assets/img/banner/products/Tottenham vs Arsenal.webp"
 
 
 const banners = [
-    Aviator,
-    karibu50,
-    karibuGiftWallet,
-    jackpot,
-    stakeBooster,
-    dailyDepositGift,
-    cashback,
+    {src: Aviator, url:"https://betnare.com/nare-games/aviator"},
+    {src: karibu50, url:"https://betnare.com/promotions"},
+    {src: karibuGiftWallet, url:"https://betnare.com/promotions"},
+    {src: jackpot, url: "https://betnare.com/jackpot"},
+    {src: stakeBooster, url:"https://betnare.com/promotions"},
+    {src: dailyDepositGift, url:"https://betnare.com/deposit"},
+    {src: cashback, url:"https://betnare.com/promotions"},
+    {src: GamePromoManu, url:"https://betnare.com/match/32638121"},
+    {src: GamePromoTote, url:"https://betnare.com/match/32638157"}
 ]
 
 const CarouselLoader = (props) => {
@@ -34,12 +38,15 @@ const CarouselLoader = (props) => {
             {banners.map((banner, idx) => (
                 <Carousel.Item key={idx}>
                     <LazyLoadImage
-                        className="d-block w-100"
+                        className="d-block w-100 cursor-pointer"
                         style={{display: imageLoaded ? 'block' : 'none'}}
-                        src={banner}
+                        src={banner.src}
                         onLoad={onImageLoaded}
                         alt="Batnare"
                         effects="blur"
+                        onClick={()=>{
+                            window.location.href=banner.url
+                        }}
                     />
                 </Carousel.Item>
             ))

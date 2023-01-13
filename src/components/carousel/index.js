@@ -16,15 +16,15 @@ import GamePromoTote from "../../assets/img/banner/products/Tottenham vs Arsenal
 
 
 const banners = [
-    {src: Aviator, url:"https://betnare.com/nare-games/aviator"},
-    {src: karibu50, url:"https://betnare.com/promotions"},
-    {src: karibuGiftWallet, url:"https://betnare.com/promotions"},
-    {src: jackpot, url: "https://betnare.com/jackpot"},
-    {src: stakeBooster, url:"https://betnare.com/promotions"},
-    {src: dailyDepositGift, url:"https://betnare.com/deposit"},
-    {src: cashback, url:"https://betnare.com/promotions"},
-    {src: GamePromoManu, url:"https://betnare.com/match/32638121"},
-    {src: GamePromoTote, url:"https://betnare.com/match/32638157"}
+    {src: Aviator, url: "/nare-games/aviator"},
+    {src: karibu50, url: "/promotions"},
+    {src: karibuGiftWallet, url: "/promotions"},
+    {src: jackpot, url: "/jackpot"},
+    {src: stakeBooster, url: "/promotions"},
+    {src: dailyDepositGift, url: "/deposit"},
+    {src: cashback, url: "/promotions"},
+    {src: GamePromoManu, url: "/match/32638121"},
+    {src: GamePromoTote, url: "/match/32638157"}
 ]
 
 const CarouselLoader = (props) => {
@@ -44,8 +44,8 @@ const CarouselLoader = (props) => {
                         onLoad={onImageLoaded}
                         alt="Batnare"
                         effects="blur"
-                        onClick={()=>{
-                            window.location.href=banner.url
+                        onClick={() => {
+                            window.location.href = banner.url
                         }}
                     />
                 </Carousel.Item>

@@ -20,7 +20,6 @@ import padlock from '../../assets/img/padlock.png';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faChartLine, faFire} from "@fortawesome/free-solid-svg-icons";
 import {getFromLocalStorage} from "../utils/local-storage";
-import * as url from "url";
 import {Input} from "@material-ui/core";
 import {Link} from "react-router-dom";
 

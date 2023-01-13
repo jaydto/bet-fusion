@@ -27,9 +27,13 @@ const Float = (equation, precision = 4) => {
 
 const BetslipSubmitForm = (props) => {
 
+    const BetslipShareModal = React.lazy(() => import('../modals/BetslipShareModal'))
+
     const {jackpot, totalGames, totalOdds, betslip, setBetslipsData, jackpotData, bonusBet} = props;
     const [hasMultiBetBoost, setHasMultiBetBoost] = useState(true)
     const [multiBoostAmount, setMultiBoostAmount] = useState(0)
+    const [showShareModal, setShowShareModal] = useState(0)
+    const [betSharePayload, setBetSharePayload] = useState({})
     const [ipv4, setIpv4] = useState(null);
     const [message, setMessage] = useState(null);
     const [state, dispatch] = useContext(Context);
@@ -167,8 +171,6 @@ const BetslipSubmitForm = (props) => {
 
         makeRequest({url: endpoint, method: method, data: payload, use_jwt: use_jwt})
             .then(([status, response]) => {
-                console.log("Status code is ", status)
-
                 if (status === 200 || status == 201 || status == 204) {
                     setMessage(response)
                     //all is good am be quiet
@@ -393,13 +395,9 @@ const BetslipSubmitForm = (props) => {
         let endpoint = '/v1/bs-encode'
         makeRequest({url: endpoint, method: "POST", data: betslip})
             .then(([status, response]) => {
-                console.log("Status code is ", status)
-
-                if (status === 200 || status == 201 || status == 204) {
-                    setMessage(response)
-
-                } else {
-
+                if (status === 200) {
+                    setBetSharePayload(response)
+                    setShowShareModal(1)
                 }
             })
     }
@@ -433,6 +431,7 @@ const BetslipSubmitForm = (props) => {
 
             return (<FormikForm name="betslip-submit-form">
                 <Alert/>
+                {showShareModal === 1 && <BetslipShareModal visible={showShareModal} payload={betSharePayload}/>}
                 {!jackpot && awardMultiGift && Number(totalGames) > settings?.betnareBonus?.bonusBetLegs ? (
                     <div className={'alert alert-success'}>
                         <FontAwesomeIcon icon={faGift}/> {multiBoostMessage}
@@ -514,12 +513,13 @@ const BetslipSubmitForm = (props) => {
 
                         <tr id="odd-change-text">
                             <td colSpan="2">
-                                <button id=""
-                                        onClick={() => encodeBetSlip()}
-                                        style={{padding: "5px", backgroundColor: "#3f9ad1"}}
-                                        type={"button"}
-                                        className="bold btn-secondary rounded-2"
-                                        title="PLACE BET">
+                                <button
+                                    id=""
+                                    onClick={() => encodeBetSlip()}
+                                    style={{padding: "5px", backgroundColor: "#3f9ad1"}}
+                                    type={"button"}
+                                    className="bold btn-secondary rounded-2"
+                                    title="PLACE BET">
                                     Share <FontAwesomeIcon icon={faShare}/>
                                 </button>
                                 <button className="bold btn-secondary rounded-2 bg-secondary"

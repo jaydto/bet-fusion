@@ -74,7 +74,7 @@ const Index = (props) => {
             return
         }
 
-        await makeRequest({url: endpoint, method: method, data: betslip}).then(([status, result]) => {
+       return await makeRequest({url: endpoint, method: method, data: betslip}).then(([status, result]) => {
             if (status == 200) {
                 setMatches(matches.length > 0 ? {...matches, ...result?.data} : result?.data || result)
                 setFetching(false)
@@ -84,7 +84,7 @@ const Index = (props) => {
                 }
                 setProducerDown(result?.producer_status === 1);
             }
-        });
+        })
     }, 3000);
 
     const fetchData = useCallback(async () => {

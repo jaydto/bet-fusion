@@ -12,11 +12,10 @@ import Aviator from "../../assets/img/banner/products/Aviator.webp"
 import karibu50 from "../../assets/img/banner/products/Bet_Nare_50_Karibu_Bonus.webp"
 import jackpot from "../../assets/img/banner/products/BetNare_300k_Jackpot_New.webp"
 import GamePromoManu from "../../assets/img/banner/products/ManU vs Man City.webp"
-import GamePromoTote from "../../assets/img/banner/products/Tottenham vs Arsenal.webp"
+
 
 
 const banners = [
-    {src: GamePromoTote, url: "/match/32638157"},
     {src: Aviator, url: "/nare-games/aviator"},
     {src: karibu50, url: "/promotions"},
     {src: karibuGiftWallet, url: "/promotions"},

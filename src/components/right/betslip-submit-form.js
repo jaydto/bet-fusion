@@ -16,7 +16,7 @@ import {
     Form as FormikForm,
     useFormikContext,
 } from 'formik';
-import {getFromLocalStorage} from "../utils/local-storage";
+import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCheck, faCut, faFire, faFireAlt, faGift, faShare} from "@fortawesome/free-solid-svg-icons";
 
@@ -391,13 +391,16 @@ const BetslipSubmitForm = (props) => {
         calculateMultiBetBoostAmount()
     }, [betslip, stake])
 
+
     const encodeBetSlip = () => {
+
         let endpoint = '/v1/bs-encode'
         makeRequest({url: endpoint, method: "POST", data: betslip})
             .then(([status, response]) => {
                 if (status === 200) {
-                    setBetSharePayload(response)
                     setShowShareModal(1)
+                    setBetSharePayload(response)
+
                 }
             })
     }
@@ -431,7 +434,7 @@ const BetslipSubmitForm = (props) => {
 
             return (<FormikForm name="betslip-submit-form">
                 <Alert/>
-                {showShareModal === 1 && <BetslipShareModal visible={showShareModal} payload={betSharePayload}/>}
+                {showShareModal && <BetslipShareModal visible={showShareModal} payload={betSharePayload} setShowShareModal={setShowShareModal}/>}
                 {!jackpot && awardMultiGift && Number(totalGames) > settings?.betnareBonus?.bonusBetLegs ? (
                     <div className={'alert alert-success'}>
                         <FontAwesomeIcon icon={faGift}/> {multiBoostMessage}

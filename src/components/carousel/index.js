@@ -6,7 +6,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import cashback from '../../assets/img/banner/products/Bet_Nare_100_Cashback.webp'
 import stakeBooster from '../../assets/img/banner/products/Bet_Nare_20_Stake_Booster.webp'
-import dailyDepositGift from '../../assets/img/banner/products/Bet_Nare_20_ gift.webp'
+import dailyDepositGift from '../../assets/img/banner/products/Bet_Nare_20_gift.webp'
 import karibuGiftWallet from "../../assets/img/banner/products/Bet_Nare_3000_karibu_gift.webp"
 import Aviator from "../../assets/img/banner/products/Aviator.webp"
 import karibu50 from "../../assets/img/banner/products/Bet_Nare_50_Karibu_Bonus.webp"

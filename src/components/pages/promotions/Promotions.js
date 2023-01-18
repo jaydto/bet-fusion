@@ -3,7 +3,7 @@ import SideBar from "../../sidebar/awesome/Sidebar";
 import Footer from "../../footer/footer";
 import React from "react";
 
-import twentyPercentDepositBonus from '../../../assets/img/banner/products/Bet_Nare_20_ gift.webp'
+import twentyPercentDepositBonus from '../../../assets/img/banner/products/Bet_Nare_20_gift.webp'
 import firstDeposit from '../../../assets/img/banner/products/Bet_Nare_20_Stake_Booster.webp'
 import multibetCashback from '../../../assets/img/banner/products/Bet_Nare_100_Cashback.webp'
 import karibuGiftWallet from "../../../assets/img/banner/products/Bet_Nare_3000_karibu_gift.webp"

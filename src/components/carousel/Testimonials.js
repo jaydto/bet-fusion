@@ -21,49 +21,48 @@ const Testimonials = () => {
 
 
     return (
-        <table className="menu-table" style={{width:" 100%", textAlign: "center"}}>
-            <tr>
-                <td className="menu-t" style={{margin: "0!important", boxSizing:"border-box"}}>
-                    <p className="winners-holder" style={{margin: "0px"}}>
-                    <span className="winners-title">
-                        Winners
-                    </span>
-                        <span className="winners-content">
-                        <span>
-                            {testimonials?.map((testimony, index) => (
+        // <table className="menu-table" style={{width:" 100%", textAlign: "center"}}>
+        //     <tr>
+        //         <td className="menu-t" style={{margin: "0!important", boxSizing:"border-box"}}>
+        //             <p className="winners-holder" style={{margin: "0px"}}>
+        //             <span className="winners-title">
+        //                 Winners
+        //             </span>
+        //                 <span className="winners-content">
+        //                     {testimonials?.map((testimony, index) => (
+        //
+        //                         <span className="marquee" id="winners">{testimony}</span>
+        //
+        //                                  ))}
+        //                     <span className="marquee" id="winners"></span>
+        //
+        //             </span>
+        //             </p>
+        //         </td>
+        //     </tr>
+        // </table>
 
-                                <span className="marquee" id="winners">{testimony}</span>
+        <div className=" testimonials-style border border-warning d-flex sticky-testimony ">
 
-                                         ))}
-                            <span className="marquee" id="winners"></span>
-                        </span>
-                    </span>
-                    </p>
-                </td>
-            </tr>
-        </table>
+            <div className={'text-warning bg-black size-1'} style={{zIndex: "200", whiteSpace: 'nowrap'}}>Recent
+                Winners
+            </div>
 
-        // <div className=" testimonials-style border border-warning d-flex sticky-testimony ">
-        //
-        //     <div className={'text-warning bg-black size-1'} style={{zIndex: "200", whiteSpace: 'nowrap'}}>Recent
-        //         Winners
-        //     </div>
-        //
-        //     <ul className={' d-flex text-light flex-nowrap testimonial-style size-2'}>
-        //         {testimonials?.map((testimony, index) => (
-        //
-        //             <li key={index} className={" px-3 d-flex"} style={{zIndex: "200", whiteSpace: 'nowrap'}}>
-        //                 {testimony}
-        //                 {/*{testimony}*/}
-        //             </li>
-        //
-        //
-        //         ))}
-        //
-        //     </ul>
-        //
-        //
-        // </div>
+            <ul className={' d-flex text-light flex-nowrap testimonial-style size-2'}>
+                {testimonials?.map((testimony, index) => (
+
+                    <li key={index} className={" px-3 d-flex"} style={{zIndex: "200", whiteSpace: 'nowrap'}}>
+                        {testimony}
+                        {/*{testimony}*/}
+                    </li>
+
+
+                ))}
+
+            </ul>
+
+
+        </div>
 
 
     );

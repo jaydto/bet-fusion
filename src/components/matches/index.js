@@ -24,6 +24,7 @@ import {Input} from "@material-ui/core";
 import {Link} from "react-router-dom";
 import {toast} from "react-toastify";
 import Notify from "../utils/Notify";
+import Testimonials from "../carousel/Testimonials";
 
 
 const clean = (_str) => {
@@ -167,7 +168,7 @@ const MatchHeaderRow = (props) => {
 
 
     return (
-        <div className="full-mobile sticky-top container " style={checkJackpot()}>
+        <div className="full-mobile sticky-top mx-1 " style={checkJackpot()}>
             <div className="top-matches d-flex position-sticky sticky-top shadow-lg"
                  style={{opacity: "1", top: "100px"}}>
                 <div className="col-sm-2 col-xs-12 pad left-text">
@@ -863,7 +864,7 @@ const MatchList = (props) => {
 
             {matches && <MatchHeaderRow live={live} first_match={matches ? matches[0] : {}}/>}
 
-            <div className="web-element container">
+            <div className="web-element mx-1">
                 {matches &&
                     Object.entries(matches).map(([key, match]) => (
                         <MatchRow match={match} key={key} live={live} pdown={pdown} three_way={three_way}/>

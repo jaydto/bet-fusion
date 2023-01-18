@@ -1627,8 +1627,8 @@ header {
 .testimonial-style{
 
     /*overflow-x:auto*/
+    width:62vw;
     animation: slide1 50s linear infinite;
-    background: #253743;
 }
 @keyframes slide1 {
     0% {

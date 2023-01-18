@@ -19,6 +19,7 @@ import {
 import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCheck, faCut, faFire, faFireAlt, faGift, faShare} from "@fortawesome/free-solid-svg-icons";
+import {Spinner} from "react-bootstrap";
 
 const Float = (equation, precision = 4) => {
     return Math.round(equation * (10 ** precision)) / (10 ** precision);
@@ -32,11 +33,12 @@ const BetslipSubmitForm = (props) => {
     const {jackpot, totalGames, totalOdds, betslip, setBetslipsData, jackpotData, bonusBet} = props;
     const [hasMultiBetBoost, setHasMultiBetBoost] = useState(true)
     const [multiBoostAmount, setMultiBoostAmount] = useState(0)
-    const [showShareModal, setShowShareModal] = useState(0)
+    const [showShareModal, setShowShareModal] = useState(false)
     const [betSharePayload, setBetSharePayload] = useState({})
     const [ipv4, setIpv4] = useState(null);
     const [message, setMessage] = useState(null);
     const [state, dispatch] = useContext(Context);
+    const [loadingShare, setLoadingShare]=useState(false)
 
     const [stake, setStake] = useState(100);
     const [stakeBoosted, setStakeBoosted] = useState(100);
@@ -393,15 +395,22 @@ const BetslipSubmitForm = (props) => {
 
 
     const encodeBetSlip = () => {
+        setLoadingShare(true)
 
         let endpoint = '/v1/bs-encode'
         makeRequest({url: endpoint, method: "POST", data: betslip})
             .then(([status, response]) => {
+
                 if (status === 200) {
-                    setShowShareModal(1)
+                    setShowShareModal(true)
                     setBetSharePayload(response)
+                    setLoadingShare(false)
 
                 }
+                else{
+                    setLoadingShare(false)
+                }
+
             })
     }
 
@@ -515,15 +524,18 @@ const BetslipSubmitForm = (props) => {
                         </tr>
 
                         <tr id="odd-change-text">
-                            <td colSpan="2">
+                            <td colSpan="2" style={{whiteSpace:"nowrap"}}>
                                 <button
                                     id=""
                                     onClick={() => encodeBetSlip()}
-                                    style={{padding: "5px", backgroundColor: "#3f9ad1"}}
+                                    style={{padding: "5px", backgroundColor: "#3f9ad1",whiteSpace:"nowrap"}}
                                     type={"button"}
-                                    className="bold btn-secondary rounded-2"
+                                    className="bold btn-secondary rounded-2 flex-nowrap"
                                     title="PLACE BET">
-                                    Share <FontAwesomeIcon icon={faShare}/>
+                                    share&nbsp;
+                                    {loadingShare?<div className={`text-center  text-white d-block`}>
+                                        <Spinner animation={'grow'} size={'sm'}/>
+                                    </div>:<FontAwesomeIcon icon={faShare}/>}
                                 </button>
                                 <button className="bold btn-secondary rounded-2 bg-secondary"
                                         type="button"

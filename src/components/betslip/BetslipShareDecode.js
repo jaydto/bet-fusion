@@ -8,7 +8,8 @@ const BetslipShareDecode = () => {
 
     const [betslipData, setBetslipShare] = useState({})
 
-    const {share_code} = useParams()
+    const url = new URL(window.location)
+    let share_code= url.searchParams.get('share_code')
 
     const getBetslip = async () => {
 

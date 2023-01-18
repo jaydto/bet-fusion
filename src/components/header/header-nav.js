@@ -79,7 +79,7 @@ const HeaderNav = (props) => {
                               title="Home"><strong>Home</strong></Link>
                     </li>
                     <li className={pathname.includes('live') ? 'active' : ''} onClick={() => gaEventTracker('Visit Live Page')}>
-                        <Link className={`url-link fm anl cg ox  ${pathname === '/live' ? 'active' : ''}`}
+                        <Link className={`url-link fm anl cg ox `}
                               to="/live" title="Live">
                             <strong>
                             <img src={live} width={"25px"} height={"26px"}/>&nbsp;Live

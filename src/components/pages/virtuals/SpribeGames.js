@@ -46,7 +46,7 @@ const GamePlay = (props) => {
         let nare_image;
         try {
 
-            nare_image = require(`../../../../src/assets/img/${folder}/${nare_games.toLowerCase()}.png`);
+            nare_image = require(`../../../../src/assets/img/${folder}/${nare_games.toLowerCase()}.webp`);
 
         } catch (error) {
             console.log("error",error)

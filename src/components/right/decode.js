@@ -85,7 +85,9 @@ const DecodeCode = () => {
                                             <div className=" d-flex align-items-start">
                                                 <button type={"button"} onClick={()=>handleslip(code)}
                                                         className='btn btn-lg  w-100 deposit-withdraw-button text-white d-flex align-items-center justify-content-center' style={{backgroundColor:"#527994", borderRadius:"0.3rem"}}>
-                                                    Load Slip&nbsp;
+                                                    <strong>
+                                                        LOAD SLIP
+                                                        </strong>&nbsp;
                                                     {loading&&<div className={` text-white d-block`}>
                                                         <Spinner animation={'grow'} size={'sm'}/>
                                                     </div>}

@@ -137,7 +137,7 @@ const HeaderLogin = (props) => {
                         </div>
                         <div className="col-sm-2">
                             <button className="cg login-button btn" type="submit">
-                                {isLoading ? <span>Logging In ...</span> : <span>Login</span>}
+                                {isLoading ? <span>Logging In ...</span> : <span><strong>LOGIN</strong></span>}
                             </button>
                         </div>
                     </Row>

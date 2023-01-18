@@ -1643,7 +1643,7 @@ header {
     position: -webkit-sticky;
     top: 134px;
     /*width:100%;*/
-
+    background-color: black;
     z-index:150;
     opacity:1;
 

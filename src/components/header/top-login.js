@@ -6,6 +6,7 @@ import makeRequest from "../utils/fetch-request";
 import {Context} from '../../context/store';
 import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import fire from "../../assets/img/fire.webp"
 import {setLocalStorage} from '../utils/local-storage';
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 
@@ -23,7 +24,12 @@ export const  Notify = (message) => {
     if (message.status === 200) {
         toast.success(`🚀 ${message.message}`, options);
     } else {
-        toast.error(`🦄 ${message.message}`, options);
+        toast(<div className={"d-flex"}>
+            <img src={fire} alt="" height="24px"/>
+            <span>
+                {message.message}
+            </span>
+        </div>, options);
     }
 
 };

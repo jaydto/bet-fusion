@@ -1,5 +1,6 @@
 import {toast} from "react-toastify";
-
+import fire from  "../../assets/img/fire.webp"
+import React from "react";
 const Notify = (message) => {
     let options = {
         position: toast.POSITION.TOP_RIGHT,
@@ -14,7 +15,12 @@ const Notify = (message) => {
     if (message.status === 200) {
         toast.success(`🚀 ${message.message}`, options);
     } else {
-        toast.error(`🦄 ${message.message}`, options);
+        toast(<div className={"d-flex"}>
+            <img src={fire} alt="" height="24px"/>
+            <span>
+                {message.message}
+            </span>
+        </div>, options);
     }
 
 };

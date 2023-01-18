@@ -187,9 +187,8 @@ const Index = (props) => {
                     <div className="gz home match-overflow " >
                         <div className="homepage " ref={homePageRef} >
                             <CarouselLoader/>
-                            <div className={"sticky-testimony"}>
-                                <Testimonials/>
-                            </div>
+                            <Testimonials/>
+
 
                             <MainTabs tab={location.pathname.replace("/", "")}/>
                             {/* <MobileCategories/> */}

@@ -16,9 +16,10 @@ import {
     Form as FormikForm,
     useFormikContext,
 } from 'formik';
-import {getFromLocalStorage} from "../utils/local-storage";
+import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faGift} from "@fortawesome/free-solid-svg-icons";
+import {faCheck, faCut, faFire, faFireAlt, faGift, faShare} from "@fortawesome/free-solid-svg-icons";
+import {Spinner} from "react-bootstrap";
 
 const Float = (equation, precision = 4) => {
     return Math.round(equation * (10 ** precision)) / (10 ** precision);
@@ -27,12 +28,17 @@ const Float = (equation, precision = 4) => {
 
 const BetslipSubmitForm = (props) => {
 
+    const BetslipShareModal = React.lazy(() => import('../modals/BetslipShareModal'))
+
     const {jackpot, totalGames, totalOdds, betslip, setBetslipsData, jackpotData, bonusBet} = props;
     const [hasMultiBetBoost, setHasMultiBetBoost] = useState(true)
     const [multiBoostAmount, setMultiBoostAmount] = useState(0)
+    const [showShareModal, setShowShareModal] = useState(false)
+    const [betSharePayload, setBetSharePayload] = useState({})
     const [ipv4, setIpv4] = useState(null);
     const [message, setMessage] = useState(null);
     const [state, dispatch] = useContext(Context);
+    const [loadingShare, setLoadingShare]=useState(false)
 
     const [stake, setStake] = useState(100);
     const [stakeBoosted, setStakeBoosted] = useState(100);
@@ -77,7 +83,7 @@ const BetslipSubmitForm = (props) => {
     }, [ipv4]);
 
     const Alert = (props) => {
-        let c = message?.status == 201 ? 'success' :message?.status ==421?'warning': 'danger';
+        let c = message?.status == 201 ? 'success' : message?.status == 421 ? 'warning' : 'danger';
         let x_style = {
             float: "right",
             display: "block",
@@ -167,8 +173,6 @@ const BetslipSubmitForm = (props) => {
 
         makeRequest({url: endpoint, method: method, data: payload, use_jwt: use_jwt})
             .then(([status, response]) => {
-                console.log("Status code is ", status)
-
                 if (status === 200 || status == 201 || status == 204) {
                     setMessage(response)
                     //all is good am be quiet
@@ -206,7 +210,7 @@ const BetslipSubmitForm = (props) => {
         if (betslip) {
 
             let stake_after_tax = Float(stake) / Float(107.5) * 100
-            let stake_after_tax_boosted = ((Float(stake) )+ Float(multiBoostAmount)) / Float(107.5) * 100
+            let stake_after_tax_boosted = ((Float(stake)) + Float(multiBoostAmount)) / Float(107.5) * 100
 
             let ext = Float(stake) - Float(stake_after_tax);
             let ext_boosted = (Float(stake) + Float(multiBoostAmount)) - Float(stake_after_tax_boosted);
@@ -311,10 +315,10 @@ const BetslipSubmitForm = (props) => {
             setMessage({status: 400, message: errors.user_id});
             return errors;
         }
-        if(jackpot && Object.keys(getJackpotBetslip()).length<jackpotData?.total_games){
-            let remaining=Number(jackpotData?.total_games)-Number(Object.keys(getJackpotBetslip()).length);
-            errors.jackpot_select=`Please select the ${remaining} remaining jackpot matches`
-            setMessage({status:421,message: errors.jackpot_select})
+        if (jackpot && Object.keys(getJackpotBetslip()).length < jackpotData?.total_games) {
+            let remaining = Number(jackpotData?.total_games) - Number(Object.keys(getJackpotBetslip()).length);
+            errors.jackpot_select = `Please select the ${remaining} remaining jackpot matches`
+            setMessage({status: 421, message: errors.jackpot_select})
             return errors
         }
         return errors;
@@ -330,9 +334,14 @@ const BetslipSubmitForm = (props) => {
         const {title, disabled, ...rest} = props;
         const {isSubmitting} = useFormikContext();
         return (
-            <button type="submit" {...rest} className={`${disabled ? 'disabled' : ''} place-bet-btn bold`}
-                    id='place_bet_button'
-                    disabled={isSubmitting || disabled}>{isSubmitting ? "PLEASE WAIT ... " : title}</button>
+            <button type={"submit"}
+                    {...rest}
+                    id={"place_bet_button"}
+                    style={{padding: "5px",width:"100%"}}
+                    className={`${disabled ? 'disabled' : ''}'bg-warning bold rounded-2 text-dark cursor-pointer'`}
+                    disabled={isSubmitting || disabled}
+                    title="Place Bet">
+                {isSubmitting ? "Please Wait " : title} <FontAwesomeIcon icon={faFireAlt}/></button>
         );
     }
 
@@ -384,6 +393,27 @@ const BetslipSubmitForm = (props) => {
         calculateMultiBetBoostAmount()
     }, [betslip, stake])
 
+
+    const encodeBetSlip = () => {
+        setLoadingShare(true)
+
+        let endpoint = '/v1/bs-encode'
+        makeRequest({url: endpoint, method: "POST", data: betslip})
+            .then(([status, response]) => {
+
+                if (status === 200) {
+                    setShowShareModal(true)
+                    setBetSharePayload(response)
+                    setLoadingShare(false)
+
+                }
+                else{
+                    setLoadingShare(false)
+                }
+
+            })
+    }
+
     return (
 
         <Formik
@@ -413,6 +443,7 @@ const BetslipSubmitForm = (props) => {
 
             return (<FormikForm name="betslip-submit-form">
                 <Alert/>
+                {showShareModal && <BetslipShareModal visible={showShareModal} payload={betSharePayload} setShowShareModal={setShowShareModal}/>}
                 {!jackpot && awardMultiGift && Number(totalGames) > settings?.betnareBonus?.bonusBetLegs ? (
                     <div className={'alert alert-success'}>
                         <FontAwesomeIcon icon={faGift}/> {multiBoostMessage}
@@ -420,7 +451,7 @@ const BetslipSubmitForm = (props) => {
                 ) : (<></>)}
                 {totalGames > 0 && (
                     <table className="bet-table">
-                        <tbody>
+
                         {!jackpot && <tr className="hide-on-affix">
                             <td>TOTAL ODDS</td>
                             <td>
@@ -491,21 +522,43 @@ const BetslipSubmitForm = (props) => {
                                 id="net-amount">{formatNumber(jackpot ? jackpotData?.jackpot_amount : (hasMultiBetBoost ? netWinBoosted : netWin))}</span>
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                <button className="place-bet-btn"
-                                        type="button"
-                                        onClick={() => handleRemoveAll()}>REMOVE ALL
+                        <tr  >
+                            <td colSpan="100%" >
+                                <SubmitButton id="place_bet_button"
+                                              className="place-bet-btn bold "
+                                              title="PLACE BET" >
+                                </SubmitButton>
+                            </td>
+
+                        </tr>
+                        <tr id="odd-change-text">
+                            <td  className={"d-flex"} style={{whiteSpace:"nowrap"}}>
+                                <button
+                                    id=""
+                                    onClick={() => encodeBetSlip()}
+                                    style={{padding: "5px", backgroundColor: "#3f9ad1",whiteSpace:"nowrap", fontSize:"14px",
+                                        borderRadius: "0.3rem"
+                                    }}
+                                    type={"button"}
+                                    className="bold btn-secondary  flex-nowrap w-100 d-flex justify-content-center"
+                                    title="PLACE BET">
+                                    Share&nbsp;
+                                    {loadingShare?<div className={`text-center  text-white d-block`}>
+                                        <Spinner animation={'grow'} size={'sm'}/>
+                                    </div>:<FontAwesomeIcon icon={faShare}/>}
                                 </button>
                             </td>
-                            <td>
-                                <SubmitButton id="place_bet_button"
-                                              // disabled={jackpot && Object.entries(betslip || []).length != JSON.stringify(jackpotData?.total_games)}
-                                              className="place-bet-btn bold"
-                                              title="PLACE BET"/>
+                            <td className={""} style={{whiteSpace:"nowrap"}}>
+                                <button className="bold btn-secondary   bg-secondary w-100"
+                                        type="button"
+                                        style={{padding: "5px", borderRadius: "0.3rem",fontSize:"14px"}}
+                                        onClick={() => handleRemoveAll()}>
+                                    Clear All <FontAwesomeIcon icon={faCut}/>
+                                </button>
+
                             </td>
                         </tr>
-                        </tbody>
+
                     </table>
                 )}
                 <input

@@ -211,9 +211,8 @@ const MyBets = (props) => {
                     <div className="gz home" >
                         <div className="homepage">
                             <CarouselLoader/>
-                            <div className={"sticky-testimony"}>
                                 <Testimonials/>
-                            </div>
+
                             <PageTitle />
                             <BetItemHeader />
                             <MyBetsList  />

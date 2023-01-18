@@ -3,7 +3,7 @@ import {Context} from '../../context/store';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
-import bgJackpot from '../../assets/img/banner/products/BetNare_300k_Jackpot_New.webp'
+import bgJackpot from '../../assets/img/banner/products/Bet_Nare_300k_Jackpot_New.webp'
 import {
     addToSlip,
     removeFromSlip,
@@ -22,6 +22,9 @@ import {faChartLine, faFire} from "@fortawesome/free-solid-svg-icons";
 import {getFromLocalStorage} from "../utils/local-storage";
 import {Input} from "@material-ui/core";
 import {Link} from "react-router-dom";
+import {toast} from "react-toastify";
+import Notify from "../utils/Notify";
+import Testimonials from "../carousel/Testimonials";
 
 
 const clean = (_str) => {
@@ -157,7 +160,7 @@ const MatchHeaderRow = (props) => {
         if (jackpot) {
             return {top:"130px",positio:"sticky"}
         }else{
-            return {top:"155px",positio:"sticky"}
+            return {top:"162px",positio:"sticky"}
         }
     }
 
@@ -165,7 +168,7 @@ const MatchHeaderRow = (props) => {
 
 
     return (
-        <div className="full-mobile sticky-top container " style={checkJackpot()}>
+        <div className="full-mobile sticky-top mx-1 " style={checkJackpot()}>
             <div className="top-matches d-flex position-sticky sticky-top shadow-lg"
                  style={{opacity: "1", top: "100px"}}>
                 <div className="col-sm-2 col-xs-12 pad left-text">
@@ -437,7 +440,11 @@ const OddButton = (props) => {
 
         // console.log("Slip", slip)
         // console.log(cstm)
-
+        const maxPickReached=()=>{
+            setPicked('')
+            Notify(message)
+        }
+       let message= {status: 401, message: 'Maximum selections reached', token: ''}
         if (cstm === ucn) {
             let betslip;
             if (picked === 'picked') {
@@ -448,7 +455,7 @@ const OddButton = (props) => {
                 setPicked('');
             } else {
                 betslip = jackpot !== true
-                    ? addToSlip(slip)
+                    ? (getBetslip()&&Object.keys(getBetslip())?.length<=49)||getBetslip()==null?addToSlip(slip):maxPickReached()
                     : addToJackpotSlip(slip);
 
                 dispatch({type: "SET", key: reference, payload: cstm});
@@ -857,7 +864,7 @@ const MatchList = (props) => {
 
             {matches && <MatchHeaderRow live={live} first_match={matches ? matches[0] : {}}/>}
 
-            <div className="web-element container">
+            <div className="web-element mx-1">
                 {matches &&
                     Object.entries(matches).map(([key, match]) => (
                         <MatchRow match={match} key={key} live={live} pdown={pdown} three_way={three_way}/>

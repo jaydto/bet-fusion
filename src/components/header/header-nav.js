@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container';
 import {Context} from '../../context/store';
 import kanyonde from "../../../src/assets/img/mobile/kanyonde.png"
 import Premier_League from "../../assets/img/leagues/Premier League.svg"
+import live from "../../assets/img/live.png"
 
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {
@@ -77,16 +78,17 @@ const HeaderNav = (props) => {
                         <Link className="cg fm ox anl url-link not-selectable " to="/"
                               title="Home"><strong>Home</strong></Link>
                     </li>
-                    <li onClick={() => gaEventTracker('Visit Live Page')}>
-                        <Link className={`g url-link live-game ${pathname === '/live' ? 'active' : ''}`}
-                              to="/live" title="Live"><strong>
-                            Live
+                    <li className={pathname.includes('live') ? 'active' : ''} onClick={() => gaEventTracker('Visit Live Page')}>
+                        <Link className={`url-link fm anl cg ox `}
+                              to="/live" title="Live">
+                            <strong>
+                            <img src={live} width={"25px"} height={"26px"}/>&nbsp;Live
                         </strong></Link>
                     </li>
 
-                    <li className={pathname.includes('aviator') ? 'active' : ''}
+                    <li className={pathname.includes('aviator') ? 'active live-bg' : ''}
                         onClick={() => gaEventTracker('Aviator')}>
-                        <Link className="cg fm ox anl url-link"
+                        <Link className="url-link  anl cg ox"
                               to="/nare-games/aviator"
                               title="Aviator">
                             <strong>
@@ -100,7 +102,7 @@ const HeaderNav = (props) => {
                     </li>
                     <li className={pathname.includes('nare-games') ? 'active' : ''}
                         onClick={() => gaEventTracker('Nare Games')} title={"Nare Games"}>
-                        <Link className="cg fm ox anl url-link"
+                        <Link className="url-link fm anl cg ox"
                               to="/nare-games"
                               title="Nare Games">
 
@@ -111,7 +113,7 @@ const HeaderNav = (props) => {
                         </Link>
                     </li>
                     <li className={`${pathname === '/virtuals' || pathname.includes("gameplay") ? 'active' : ''}`}>
-                        <Link className="g url-link" to="/virtuals" title="Virtuals">
+                        <Link className="url-link fm anl cg ox" to="/virtuals" title="Virtuals">
                             <span className={''}>
                                 <strong>
                                     <div className={'notification-item'}>
@@ -145,7 +147,7 @@ const HeaderNav = (props) => {
 
                     <li className={pathname === '/app' ? 'active' : ''}
                         onClick={() => gaEventTracker('Visit App Page')}>
-                        <Link className="g url-link" to="/app" title="App">
+                        <Link className="url-link fm anl cg ox" to="/app" title="App">
                             <span>
                                 <strong><FontAwesomeIcon icon={faMobile}/> APP</strong>
                             </span>
@@ -166,7 +168,7 @@ const HeaderNav = (props) => {
                             </a>
                         </li>
                         <li>
-                            <Link className="g url-link" to="/livescore"
+                            <Link className="url-link fm anl cg ox" to="/livescore"
                                   title="Live Score" onClick={() => gaEventTracker('Visit Live Score Page')}>
                             <span>
                                 <strong><FontAwesomeIcon icon={faInfo}/> Live Score</strong>
@@ -177,12 +179,12 @@ const HeaderNav = (props) => {
 
                     <li className={pathname.includes("promotions") ? 'active' : ''}
                         onClick={() => gaEventTracker('Visit Promotions Page')}>
-                        <Link className="g url-link" to="/promotions" title="Promotions">
-                            <strong><FontAwesomeIcon icon={faMagic}/> Promotions</strong>
+                        <Link className="url-link fm anl cg ox" to="/promotions" title="Promotions">
+                            <strong><FontAwesomeIcon icon={faMagic}/> Promos</strong>
                         </Link>
                     </li>
                     <li className={pathname === '/print-matches' ? 'spacing-end' : 'spacing-end'}>
-                        <a className="g url-link fix-display" href="#" title="Search"
+                        <a className="url-link fm anl cg ox fix-display" href="#" title="Search"
                            onClick={() => showSearchBar()}>
                             <span className=" space-icons">
                                 <strong><FontAwesomeIcon icon={faSearch}/> </strong>
@@ -192,7 +194,7 @@ const HeaderNav = (props) => {
                     </li>
                     <li className={pathname === '/how-to-play' ? 'active' : ''}
                         onClick={() => gaEventTracker('Visit How To Play Page')}>
-                        <a className="g url-link fix-display" href="/how-to-play" title="How to play">
+                        <a className="url-link fm anl cg ox fix-display" href="/how-to-play" title="How to play">
                             <span className=" space-icons">
                                 <strong><FontAwesomeIcon icon={faQuestionCircle}/> </strong>
                             </span>
@@ -201,7 +203,7 @@ const HeaderNav = (props) => {
                     </li>
                     <li className={pathname === '/print-matches' ? 'active py-3' : 'fa-border py-md-0 py-lg-3 py-sm-0 d-flex align-items-center'}
                         onClick={() => gaEventTracker('Visit Print Matches')}>
-                        <a className="g url-link fix-print" href="/print-matches" title="Print Matches">
+                        <a className="url-link fm anl cg ox fix-print" href="/print-matches" title="Print Matches">
                             <span className=" space-icons"><FontAwesomeIcon icon={faPrint}/> </span>Print <span
                             className={'hide1'}>Matches</span>
                         </a>

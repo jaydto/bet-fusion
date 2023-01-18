@@ -93,9 +93,9 @@ const Live = (props) => {
                     <div className="gz home match-overflow" >
                         <div className="homepage">
                             <CarouselLoader/>
-                            <div className={"sticky-testimony"}>
+
                                 <Testimonials/>
-                            </div>
+
                             {matches && <MatchList live matches={matches} pdown={producerDown}/>}
                         </div>
                     </div>

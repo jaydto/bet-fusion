@@ -6,8 +6,33 @@ import makeRequest from "../utils/fetch-request";
 import {Context} from '../../context/store';
 import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import fire from "../../assets/img/fire.webp"
 import {setLocalStorage} from '../utils/local-storage';
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
+
+export const  Notify = (message) => {
+    let options = {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        toastId: 673738 /* this is hack to prevent multiple toasts */
+    }
+    if (message.status === 200) {
+        toast.success(`🚀 ${message.message}`, options);
+    } else {
+        toast(<div className={"d-flex"}>
+            <img src={fire} alt="" height="24px"/>
+            <span>
+                {message.message}
+            </span>
+        </div>, options);
+    }
+
+};
 
 const HeaderLogin = (props) => {
     const gaEventTracker = useAnalyticsEventTracker('Navigation');
@@ -20,24 +45,7 @@ const HeaderLogin = (props) => {
         password: ""
     }
 
-    const Notify = (message) => {
-        let options = {
-            position: toast.POSITION.TOP_RIGHT,
-            autoClose: 5000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            toastId: 673738 /* this is hack to prevent multiple toasts */
-        }
-        if (message.status === 200) {
-            toast.success(`🚀 ${message.message}`, options);
-        } else {
-            toast.error(`🦄 ${message.message}`, options);
-        }
 
-    };
 
     const dispatchUser = useCallback(() => {
         if (message !== null) {
@@ -68,6 +76,7 @@ const HeaderLogin = (props) => {
                     status: status,
                     message: response?.message || "Error attempting to login"
                 };
+                console.log("data_response", response)
                 Notify(message);
             }
         })
@@ -134,7 +143,7 @@ const HeaderLogin = (props) => {
                         </div>
                         <div className="col-sm-2">
                             <button className="cg login-button btn" type="submit">
-                                {isLoading ? <span>Logging In ...</span> : <span>Login</span>}
+                                {isLoading ? <span>Logging In ...</span> : <span><strong>LOGIN</strong></span>}
                             </button>
                         </div>
                     </Row>

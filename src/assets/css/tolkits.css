@@ -27,7 +27,9 @@
 .pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item {
     padding: 0.5px 25px 0px 12px !important;
 }
-
+.pc .navbar-nav > .active > a.live-bg{
+    background: transparent!important;
+}
 .virtual-game-image {
     cursor: pointer;
     /*height: 40px;*/
@@ -1566,6 +1568,50 @@ header {
     }
 
 }
+
+
+
+.winners-holder{
+    box-sizing: border-box;
+    background-color: #161616;
+    font-size: 10px;
+    border: 1px solid #fc0;
+    color: #fff;
+    height: 30px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+.winners-title{
+    background-color: black;
+    color: white;
+    padding: 5px;
+}
+.winners-content{
+    width: 100%;
+    overflow: hidden;
+}
+.marquee {
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+    width: 100%;
+    animation: marquee 100s linear infinite;
+}
+.marquee p {
+    display: inline;
+    margin-left: 20px;
+}
+@keyframes marquee {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(-50%, 0, 0);
+    }
+}
+
+
 .testimonials-style{
     /*white-space: nowrap;*/
     overflow-x:hidden;
@@ -1576,13 +1622,13 @@ header {
 .match-overflow{
     overflow-x: clip;
     overflow-x: -moz-clip;
-    width: 100%;
+    width: 100%!important;
 }
 .testimonial-style{
-    white-space: nowrap;
+
     /*overflow-x:auto*/
+    width:62vw;
     animation: slide1 50s linear infinite;
-    background: #253743;
 }
 @keyframes slide1 {
     0% {
@@ -1595,8 +1641,9 @@ header {
 .sticky-testimony{
     position: sticky;
     position: -webkit-sticky;
-    top: 127px;
+    top: 134px;
     /*width:100%;*/
+    background-color: black;
     z-index:150;
     opacity:1;
 
@@ -1605,9 +1652,7 @@ header {
     margin-left: 2px
 }
 @media (min-width:1900px){
-    .match-overflow{
-        width:66%!important;
-    }
+
 }
 
 @media (min-width: 979px) {
@@ -1751,7 +1796,6 @@ events-header {
 }
 
 .paybill {
-    background: #fff;
     color: #262424cc;
     text-align: center;
     text-transform: uppercase;
@@ -2343,6 +2387,7 @@ body {
     font-size: 14px;
     line-height: 1.8;
     background: #16202c;
+    max-width:100% !important
 }
 
 input,
@@ -8624,6 +8669,9 @@ ul.sport {
 
     .navbar-nav > li {
         float: left;
+        line-height: 5px;
+        display:flex;
+        align-items:center;
     }
 
     .navbar-nav > li > a {
@@ -8920,9 +8968,9 @@ fieldset[disabled] .pa .fu:focus {
 
 .pc .navbar-nav > li > a {
     color: #f0f0f0;
-    padding: 10px;
+    padding: 4px;
     margin-right: 10px;
-    margin-left: 10px;
+    margin-left: 9px;
     letter-spacing: 1px;
 }
 
@@ -14953,7 +15001,7 @@ img.zoom-img {
 
 .betslip-container {
     position: sticky !important;
-    top: 5px !important;
+
     background: #253743 !important;
 }
 
@@ -15013,7 +15061,7 @@ img.zoom-img {
 .logo {
     position: relative;
     color: #fff !important;
-    padding-top: 8px;
+    padding-top: 20px;
 }
 
 .panel {
@@ -15234,6 +15282,7 @@ h4.live-header {
 li a.live-game.active, .navbar-nav li a.live-game.active, li a.live-game {
     color: #fff;
     background-color: red;
+    line-height:30px;
 }
 
 li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-game:hover {
@@ -15433,13 +15482,14 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     height: 29px;
     padding: 0px 10px;
     margin-top: 1px;
-    border-radius: 0px;
+    border-radius: 0.3rem;
     font-size: 14px !important;
 }
 
 .betslip-container {
     position: sticky !important;
     /*top: 140px !important;*/
+
     background: #253743 !important;
 }
 
@@ -15789,6 +15839,9 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     height: 100%;
 }
 
+.modal-width{
+    width:94%;
+}
 .page-404 .outer .middle {
     display: table-cell;
 
@@ -15801,6 +15854,25 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     margin-left: auto;
 }
 
+.card-radius{
+    border-radius:1.1rem;
+}
+.profile-bg{
+    background:#253743;
+}
+.user-style{
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3rem;
+}
+.line-between{
+    border: 1px solid white;
+    height: 50%;
+}
 .page-404 .outer .middle .inner .inner-circle {
     height: 300px;
 
@@ -15980,7 +16052,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 .notify-badge {
     position: absolute;
     right: -10px;
-    top: -2px;
+    top: -10px;
     margin-top: 5px !important;
     background: red;
     text-align: center;

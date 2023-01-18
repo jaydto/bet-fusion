@@ -24,6 +24,7 @@ const Index = React.lazy(() => import('./components/index'));
 const CompetitionsMatches = React.lazy(
     () => import('./components/competition-matches')
 );
+const BetslipShareDecode = React.lazy(() => import('./components/betslip/BetslipShareDecode'))
 const MatchAllMarkets = React.lazy(() => import('./components/all-markets'));
 
 const Jackpot = React.lazy(() => import('./components/jackpot'));
@@ -126,6 +127,7 @@ render((
                 <Routes>
                     <Route path="*" element={<Navigate to="/404"/>}/>
                     <Route exact path="/" element={<Index/>}/>
+                    <Route exact path="/share" element={<BetslipShareDecode/>}/>
                     <Route exact path="/virtuals" element={<Virtuals/>}/>
                     <Route exact path="/livescore" element={<LiveScore/>}/>
                     <Route exact path="/404" element={<PageNotFound/>}/>

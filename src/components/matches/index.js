@@ -22,6 +22,8 @@ import {faChartLine, faFire} from "@fortawesome/free-solid-svg-icons";
 import {getFromLocalStorage} from "../utils/local-storage";
 import {Input} from "@material-ui/core";
 import {Link} from "react-router-dom";
+import {toast} from "react-toastify";
+import Notify from "../utils/Notify";
 
 
 const clean = (_str) => {
@@ -437,7 +439,11 @@ const OddButton = (props) => {
 
         // console.log("Slip", slip)
         // console.log(cstm)
-
+        const maxPickReached=()=>{
+            setPicked('')
+            Notify(message)
+        }
+       let message= {status: 401, message: 'Maximum selections reached', token: ''}
         if (cstm === ucn) {
             let betslip;
             if (picked === 'picked') {
@@ -448,7 +454,7 @@ const OddButton = (props) => {
                 setPicked('');
             } else {
                 betslip = jackpot !== true
-                    ? addToSlip(slip)
+                    ? (getBetslip()&&Object.keys(getBetslip())?.length<=4)||getBetslip()==null?addToSlip(slip):maxPickReached()
                     : addToJackpotSlip(slip);
 
                 dispatch({type: "SET", key: reference, payload: cstm});

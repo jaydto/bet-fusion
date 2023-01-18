@@ -9,6 +9,25 @@ import 'react-toastify/dist/ReactToastify.css';
 import {setLocalStorage} from '../utils/local-storage';
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 
+export const  Notify = (message) => {
+    let options = {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        toastId: 673738 /* this is hack to prevent multiple toasts */
+    }
+    if (message.status === 200) {
+        toast.success(`🚀 ${message.message}`, options);
+    } else {
+        toast.error(`🦄 ${message.message}`, options);
+    }
+
+};
+
 const HeaderLogin = (props) => {
     const gaEventTracker = useAnalyticsEventTracker('Navigation');
     const [isLoading, setIsLoading] = useState(null)
@@ -20,24 +39,7 @@ const HeaderLogin = (props) => {
         password: ""
     }
 
-    const Notify = (message) => {
-        let options = {
-            position: toast.POSITION.TOP_RIGHT,
-            autoClose: 5000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            toastId: 673738 /* this is hack to prevent multiple toasts */
-        }
-        if (message.status === 200) {
-            toast.success(`🚀 ${message.message}`, options);
-        } else {
-            toast.error(`🦄 ${message.message}`, options);
-        }
 
-    };
 
     const dispatchUser = useCallback(() => {
         if (message !== null) {
@@ -68,6 +70,7 @@ const HeaderLogin = (props) => {
                     status: status,
                     message: response?.message || "Error attempting to login"
                 };
+                console.log("data_response", response)
                 Notify(message);
             }
         })

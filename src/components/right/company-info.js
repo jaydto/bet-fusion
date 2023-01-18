@@ -1,6 +1,6 @@
 import React from 'react';
-import CustomerCare from '../../assets/img/banner/customer-care/Customer Care.png'
-import Paybill from '../../assets/img/banner/customer-care/PAYBILL.jpg'
+import CustomerCare from '../../assets/img/banner/customer-care/Customer_Care_Banner.webp'
+import Paybill from '../../assets/img/banner/customer-care/Paybill.webp'
 
 const CompanyInfo = (props) => {
 
@@ -21,7 +21,7 @@ const CompanyInfo = (props) => {
                         </span>
                     </div>
                 </div>
-                <div className="">
+                <div className="mt-3">
                     <div
                         className="contact-us black-bg capitalize text-white text-uppercase std-block-head bold">
                         Customer Care
@@ -30,11 +30,11 @@ const CompanyInfo = (props) => {
                         <span className="col-sm-4">
                         {/*<img src={contact} alt=" " />*/}
                         </span>
-                        <span className="col-sm-8">
+                        <span className="col-sm-8 mt-4">
                             <img src={CustomerCare} alt="" className='w-100'/>
                         </span>
                     </div>
-                    <div className="mail text-lowercase bold">
+                    <div className="mail text-lowercase bold bg-light">
                         <i className="fa fa-envelope-o" aria-hidden="true"></i> &nbsp; customercare@betnare.com
                     </div>
                 </div>

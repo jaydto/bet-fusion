@@ -10,7 +10,7 @@ import dailyDepositGift from '../../assets/img/banner/products/Bet_Nare_20_gift.
 import karibuGiftWallet from "../../assets/img/banner/products/Bet_Nare_3000_karibu_gift.webp"
 import Aviator from "../../assets/img/banner/products/Aviator.webp"
 import karibu50 from "../../assets/img/banner/products/Bet_Nare_50_Karibu_Bonus.webp"
-import jackpot from "../../assets/img/banner/products/BetNare_300k_Jackpot_New.webp"
+import jackpot from "../../assets/img/banner/products/Bet_Nare_300k_Jackpot_New.webp"
 
 
 const banners = [

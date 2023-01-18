@@ -48,7 +48,7 @@ const Right = (props) => {
                                                getBetslip() ? Object.keys(getBetslip()).length : 0)}
 
 
-    </Badge>
+                                    </Badge>
                                 </span>
                             </div>
                         </header>

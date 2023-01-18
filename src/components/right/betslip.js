@@ -9,6 +9,7 @@ import {
 } from '../utils/betslip';
 import {Link} from "react-router-dom";
 import {getFromLocalStorage} from "../utils/local-storage";
+import DecodeCode from "./decode";
 
 const clean_rep = (str) => {
     str = str.replace(/[^A-Za-z0-9\-]/g, '');
@@ -226,55 +227,58 @@ const BetSlip = (props) => {
             )}
             <div className="flow" style={{maxHeight: "42vh", overflowY: "auto"}}>
                 <ul>
-                    {Object.entries(betslipsData || {}).map(([match_id, slip]) => {
-                        let odd = slip.odd_value;
-                        let no_odd_bg = odd === 1 ? '#f29f7a' : '';
-                        // console.log(slip)
-                        return (
-                            <li className={`bet-option hide-on-affix ${slip?.disable ? 'warn' : ''}`} key={match_id}
-                                style={{background: no_odd_bg}}>
-                                <div className="bet-cancel">
-                                    <input id={slip.match_id} type="submit" value="X"
-                                           onClick={() => handledRemoveSlip(slip)}/>
-                                </div>
-                                <a href={`${slip?.bet_type === "0" ? "/match/" + slip?.match_id : "/match/live/" + slip?.parent_match_id}`}
-                                   style={{color: "inherit", fontStyle: "inherit"}} className={'g url-link'}>
-                                    <div className="bet-value">
-                                        <b>
-                                            {<span style={{
-                                                float: "left",
-                                                width: "auto",
-                                                fontWeight: "bold"
-                                            }}>{slip.sport_name},&nbsp;</span>}
-                                            {slip.bet_type === 0 && ' Pre-match'}
-                                            {slip.bet_type === 1 && ' Live'}
-                                        </b>
-                                    </div>
-                                    <div className="row">
-                                        <div className="bet-value">{`${slip.home_team} - ${slip.away_team}`}
-                                            <br/><span className="sp_sport"></span>
+                    {(betslipsData&&Object.keys(betslipsData)?.length==0)||betslipsData==null?
+                        <DecodeCode/>
+                        : Object.entries(betslipsData || {}).map(([match_id, slip]) => {
+                                let odd = slip.odd_value;
+                                let no_odd_bg = odd === 1 ? '#f29f7a' : '';
+                                // console.log(slip)
+                                return (
+                                    <li className={`bet-option hide-on-affix ${slip?.disable ? 'warn' : ''}`} key={match_id}
+                                        style={{background: no_odd_bg}}>
+                                        <div className="bet-cancel">
+                                            <input id={slip.match_id} type="submit" value="X"
+                                                   onClick={() => handledRemoveSlip(slip)}/>
                                         </div>
-                                    </div>
-                                    <div className="row">
-                                        <div className="bet-value">
-                                            Market - {slip.odd_type}
-                                        </div>
-                                    </div>
-                                    <div className="bet-pick"><b>Your Pick - {slip.bet_pick}
-                                        <span className="bet-odd">{slip.odd_value}
-                                            {slip.odd_value === 1 &&
-                                                (<span style={{color: "#cc0000", fontSize: "11px", display: "block"}}>Market Disabled</span>)
-                                            }
+                                        <a href={`${slip?.bet_type === "0" ? "/match/" + slip?.match_id : "/match/live/" + slip?.parent_match_id}`}
+                                           style={{color: "inherit", fontStyle: "inherit"}} className={'g url-link'}>
+                                            <div className="bet-value">
+                                                <b>
+                                                    {<span style={{
+                                                        float: "left",
+                                                        width: "auto",
+                                                        fontWeight: "bold"
+                                                    }}>{slip.sport_name},&nbsp;</span>}
+                                                    {slip.bet_type === 0 && ' Pre-match'}
+                                                    {slip.bet_type === 1 && ' Live'}
+                                                </b>
+                                            </div>
+                                            <div className="row">
+                                                <div className="bet-value">{`${slip.home_team} - ${slip.away_team}`}
+                                                    <br/><span className="sp_sport"></span>
+                                                </div>
+                                            </div>
+                                            <div className="row">
+                                                <div className="bet-value">
+                                                    Market - {slip.odd_type}
+                                                </div>
+                                            </div>
+                                            <div className="bet-pick"><b>Your Pick - {slip.bet_pick}
+                                                <span className="bet-odd">{slip.odd_value}
+                                                    {slip.odd_value === 1 &&
+                                                        (<span style={{color: "#cc0000", fontSize: "11px", display: "block"}}>Market Disabled</span>)
+                                                    }
                             </span></b>
-                                    </div>
-                                    <div className="row">
-                                        <div className="warn">{slip?.comment} </div>
-                                    </div>
-                                </a>
+                                            </div>
+                                            <div className="row">
+                                                <div className="warn">{slip?.comment} </div>
+                                            </div>
+                                        </a>
 
-                            </li>)
-                    })
-                    }
+                                    </li>)
+                            })
+                        }
+
                 </ul>
             </div>
             <div className="bottom">

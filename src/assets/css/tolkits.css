@@ -15804,6 +15804,25 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     margin-left: auto;
 }
 
+.card-radius{
+    border-radius:1.1rem;
+}
+.profile-bg{
+    background:#253743;
+}
+.user-style{
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3rem;
+}
+.line-between{
+    border: 1px solid white;
+    height: 50%;
+}
 .page-404 .outer .middle .inner .inner-circle {
     height: 300px;
 

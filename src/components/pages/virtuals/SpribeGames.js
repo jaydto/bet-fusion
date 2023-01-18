@@ -81,8 +81,8 @@ const GamePlay = (props) => {
                                                     alt=""
                                                      alt="#"
                                                 />
-                                                <div className="overlay shadow-sm row">
-                                                        <Button variant="warning">
+                                                <div className="overlay shadow-sm w-100 mt-1">
+                                                        <Button variant="warning" className={"w-100"}>
                                                             Play Game
                                                         </Button>
                                                 </div>

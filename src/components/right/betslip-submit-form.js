@@ -536,11 +536,11 @@ const BetslipSubmitForm = (props) => {
                                 <button
                                     id=""
                                     onClick={() => encodeBetSlip()}
-                                    style={{padding: "5px", backgroundColor: "#3f9ad1",whiteSpace:"nowrap", fontSize:"12px",
+                                    style={{padding: "5px", backgroundColor: "#3f9ad1",whiteSpace:"nowrap", fontSize:"14px",
                                         borderRadius: "0.3rem"
                                     }}
                                     type={"button"}
-                                    className="bold btn-secondary  flex-nowrap w-100"
+                                    className="bold btn-secondary  flex-nowrap w-100 d-flex justify-content-center"
                                     title="PLACE BET">
                                     Share&nbsp;
                                     {loadingShare?<div className={`text-center  text-white d-block`}>
@@ -551,7 +551,7 @@ const BetslipSubmitForm = (props) => {
                             <td className={""} style={{whiteSpace:"nowrap"}}>
                                 <button className="bold btn-secondary   bg-secondary w-100"
                                         type="button"
-                                        style={{padding: "5px", borderRadius: "0.3rem"}}
+                                        style={{padding: "5px", borderRadius: "0.3rem",fontSize:"14px"}}
                                         onClick={() => handleRemoveAll()}>
                                     Clear All <FontAwesomeIcon icon={faCut}/>
                                 </button>

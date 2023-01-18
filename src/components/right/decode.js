@@ -2,6 +2,9 @@ import React, {useEffect, useRef, useState} from 'react';
 import makeRequest from "../utils/fetch-request";
 import {addToSlip} from "../utils/betslip";
 import Notify from "../utils/Notify";
+import {Spinner} from "react-bootstrap";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faShare} from "@fortawesome/free-solid-svg-icons";
 
 
 
@@ -11,7 +14,7 @@ const DecodeCode = () => {
     useEffect(() => {
         inputRef.current = document.getElementById("code");
     }, []);
-
+    const [loading, setLoading]=useState(false)
     const [code, setCode]=useState("")
     const handleChanges = (e) => {
         e.preventDefault()
@@ -26,23 +29,28 @@ const DecodeCode = () => {
         let data = {
             "betslip_share_code": share_code
         }
-
+        setLoading(true)
         await makeRequest({url: endpoint, method: "POST", data: data}).then(([status, result]) => {
             // console.log(result?.success)
+
             if(status==200){
                 Object.entries(result?.success).map(([match_id, match]) => {
                     match.live = Number(match?.live) !== 0
                     match.bet_type = String(match?.bet_type)
                     addToSlip(match)
                 })
-                        window.location.href="/"
-            }else{
 
+                        window.location.href="/"
+
+            }
+            else{
                 Notify(
                     {status: 400, message: result?.error, token: ""}
                 )
+
             }
-            // setLocalStorage('betslip', (result?.success), 1 * 60 * 60 * 1000);
+            setLoading(false)
+
         })
 
     }
@@ -76,8 +84,11 @@ const DecodeCode = () => {
                                         <div className="form-group row d-flex justify-content-left col mt-4" style={{whiteSpace:"nowrap"}}>
                                             <div className=" d-flex align-items-start">
                                                 <button type={"button"} onClick={()=>handleslip(code)}
-                                                        className='btn btn-lg  w-100 deposit-withdraw-button text-white' style={{backgroundColor:"#527994", borderRadius:"0.3rem"}}>
-                                                    Load Slip
+                                                        className='btn btn-lg  w-100 deposit-withdraw-button text-white d-flex align-items-center justify-content-center' style={{backgroundColor:"#527994", borderRadius:"0.3rem"}}>
+                                                    Load Slip&nbsp;
+                                                    {loading&&<div className={` text-white d-block`}>
+                                                        <Spinner animation={'grow'} size={'sm'}/>
+                                                    </div>}
                                                 </button>
                                             </div>
                                         </div>

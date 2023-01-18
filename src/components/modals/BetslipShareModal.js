@@ -3,6 +3,7 @@ import Modal from "react-bootstrap/Modal";
 import {Button} from "react-bootstrap";
 import whatsap from "../../assets/svg/whatsapp.svg"
 import {LazyLoadImage} from 'react-lazy-load-image-component';
+import Notify from "../utils/Notify";
 
 const BetslipShareModal = (props) => {
     const {visible, payload, setShowShareModal} = props
@@ -54,6 +55,7 @@ const BetslipShareModal = (props) => {
                 <div className={'d-flex flex-column '}>
                     <input type="text" value={payload?.success} id="shareurl" readOnly={"readonly"}
                            className={'form-control'} style={{height: "40px"}} ref={copyLink}/>
+
                 </div>
                 <div className={"d-flex"}>
                     <div className="col-12 text-center mt-4 ">

@@ -337,7 +337,7 @@ const BetslipSubmitForm = (props) => {
             <button type={"submit"}
                     {...rest}
                     id={"place_bet_button"}
-                    style={{padding: "5px"}}
+                    style={{padding: "5px",width:"100%"}}
                     className={`${disabled ? 'disabled' : ''}'bg-warning bold rounded-2 text-dark cursor-pointer'`}
                     disabled={isSubmitting || disabled}
                     title="Place Bet">
@@ -451,7 +451,7 @@ const BetslipSubmitForm = (props) => {
                 ) : (<></>)}
                 {totalGames > 0 && (
                     <table className="bet-table">
-                        <tbody>
+
                         {!jackpot && <tr className="hide-on-affix">
                             <td>TOTAL ODDS</td>
                             <td>
@@ -522,34 +522,43 @@ const BetslipSubmitForm = (props) => {
                                 id="net-amount">{formatNumber(jackpot ? jackpotData?.jackpot_amount : (hasMultiBetBoost ? netWinBoosted : netWin))}</span>
                             </td>
                         </tr>
+                        <tr  >
+                            <td colSpan="100%" >
+                                <SubmitButton id="place_bet_button"
+                                              className="place-bet-btn bold "
+                                              title="PLACE BET" >
+                                </SubmitButton>
+                            </td>
 
+                        </tr>
                         <tr id="odd-change-text">
-                            <td colSpan="2" className={"d-flex"} style={{whiteSpace:"nowrap"}}>
+                            <td  className={"d-flex"} style={{whiteSpace:"nowrap"}}>
                                 <button
                                     id=""
                                     onClick={() => encodeBetSlip()}
-                                    style={{padding: "5px", backgroundColor: "#3f9ad1",whiteSpace:"nowrap"}}
+                                    style={{padding: "5px", backgroundColor: "#3f9ad1",whiteSpace:"nowrap", fontSize:"12px",
+                                        borderRadius: "0.3rem"
+                                    }}
                                     type={"button"}
-                                    className="bold btn-secondary rounded-2 flex-nowrap d-flex"
+                                    className="bold btn-secondary  flex-nowrap w-100"
                                     title="PLACE BET">
-                                    share&nbsp;
+                                    Share&nbsp;
                                     {loadingShare?<div className={`text-center  text-white d-block`}>
                                         <Spinner animation={'grow'} size={'sm'}/>
                                     </div>:<FontAwesomeIcon icon={faShare}/>}
                                 </button>
-                                <button className="bold btn-secondary rounded-2 bg-secondary"
+                            </td>
+                            <td className={""} style={{whiteSpace:"nowrap"}}>
+                                <button className="bold btn-secondary   bg-secondary w-100"
                                         type="button"
-                                        style={{padding: "5px"}}
+                                        style={{padding: "5px", borderRadius: "0.3rem"}}
                                         onClick={() => handleRemoveAll()}>
                                     Clear All <FontAwesomeIcon icon={faCut}/>
                                 </button>
-                                <SubmitButton id="place_bet_button"
-                                              className="place-bet-btn bold"
-                                              title="PLACE BET">
-                                </SubmitButton>
+
                             </td>
                         </tr>
-                        </tbody>
+
                     </table>
                 )}
                 <input

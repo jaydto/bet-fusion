@@ -159,7 +159,7 @@ const MatchHeaderRow = (props) => {
         if (jackpot) {
             return {top:"130px",positio:"sticky"}
         }else{
-            return {top:"155px",positio:"sticky"}
+            return {top:"162px",positio:"sticky"}
         }
     }
 
@@ -454,7 +454,7 @@ const OddButton = (props) => {
                 setPicked('');
             } else {
                 betslip = jackpot !== true
-                    ? (getBetslip()&&Object.keys(getBetslip())?.length<=4)||getBetslip()==null?addToSlip(slip):maxPickReached()
+                    ? (getBetslip()&&Object.keys(getBetslip())?.length<=49)||getBetslip()==null?addToSlip(slip):maxPickReached()
                     : addToJackpotSlip(slip);
 
                 dispatch({type: "SET", key: reference, payload: cstm});

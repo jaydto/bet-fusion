@@ -1595,7 +1595,7 @@ header {
 .sticky-testimony{
     position: sticky;
     position: -webkit-sticky;
-    top: 127px;
+    top: 134px;
     /*width:100%;*/
     z-index:150;
     opacity:1;
@@ -8624,6 +8624,9 @@ ul.sport {
 
     .navbar-nav > li {
         float: left;
+        line-height: 5px;
+        display:flex;
+        align-items:center;
     }
 
     .navbar-nav > li > a {
@@ -8920,9 +8923,9 @@ fieldset[disabled] .pa .fu:focus {
 
 .pc .navbar-nav > li > a {
     color: #f0f0f0;
-    padding: 10px;
+    padding: 4px;
     margin-right: 10px;
-    margin-left: 10px;
+    margin-left: 9px;
     letter-spacing: 1px;
 }
 
@@ -14953,7 +14956,7 @@ img.zoom-img {
 
 .betslip-container {
     position: sticky !important;
-    top: 5px !important;
+
     background: #253743 !important;
 }
 
@@ -15013,7 +15016,7 @@ img.zoom-img {
 .logo {
     position: relative;
     color: #fff !important;
-    padding-top: 8px;
+    padding-top: 20px;
 }
 
 .panel {
@@ -15234,6 +15237,7 @@ h4.live-header {
 li a.live-game.active, .navbar-nav li a.live-game.active, li a.live-game {
     color: #fff;
     background-color: red;
+    line-height:30px;
 }
 
 li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-game:hover {
@@ -15433,13 +15437,14 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     height: 29px;
     padding: 0px 10px;
     margin-top: 1px;
-    border-radius: 0px;
+    border-radius: 0.3rem;
     font-size: 14px !important;
 }
 
 .betslip-container {
     position: sticky !important;
     /*top: 140px !important;*/
+
     background: #253743 !important;
 }
 
@@ -16002,7 +16007,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 .notify-badge {
     position: absolute;
     right: -10px;
-    top: -2px;
+    top: -10px;
     margin-top: 5px !important;
     background: red;
     text-align: center;

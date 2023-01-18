@@ -1,6 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import makeRequest from "../utils/fetch-request";
 import {addToSlip} from "../utils/betslip";
+import Notify from "../utils/Notify";
 
 
 
@@ -28,15 +29,20 @@ const DecodeCode = () => {
 
         await makeRequest({url: endpoint, method: "POST", data: data}).then(([status, result]) => {
             // console.log(result?.success)
-            Object.entries(result?.success).map(([match_id, match]) => {
-                match.live = Number(match?.live) !== 0
-                match.bet_type = String(match?.bet_type)
-                addToSlip(match)
-            })
+            if(status==200){
+                Object.entries(result?.success).map(([match_id, match]) => {
+                    match.live = Number(match?.live) !== 0
+                    match.bet_type = String(match?.bet_type)
+                    addToSlip(match)
+                })
+                        window.location.href="/"
+            }else{
 
+                Notify(
+                    {status: 400, message: result?.error, token: ""}
+                )
+            }
             // setLocalStorage('betslip', (result?.success), 1 * 60 * 60 * 1000);
-        }).then(()=>{
-            window.location.href="/"
         })
 
     }
@@ -48,12 +54,12 @@ const DecodeCode = () => {
 
         <React.Fragment>
             <div className=" ">
-                <div className="card card-radius profile-bg text-light p-0">
-                    <div className="card-body p-0" style={{overflow:"hidden"}}>
+                <div className="card card-radius profile-bg text-light p-0 mt-2">
+                    <div className="card-body p-3" style={{overflow:"hidden"}}>
                         <form  >
                             <div className="form-group row d-flex justify-content-center ">
                                 <div className="col-md-12">
-                                    <label className={"text-bold h4 text-center"}> Do you have a shared betslip code? Enter it here. </label>
+                                    <label className={"text-bold h4 text-center"}> Enter your betslip share code to load betslip </label>
                                     <div className={"d-flex flex-column"}>
                                         <input
                                             className="text-dark deposit-input form-control col input-field"
@@ -63,13 +69,14 @@ const DecodeCode = () => {
                                             name="code"
                                             type="text"
                                             value={code}
+                                            style={{borderRadius:"0.3rem"}}
                                             autoFocus={true}
                                             placeholder='eg. PWXfsxR'
                                         />
                                         <div className="form-group row d-flex justify-content-left col mt-4" style={{whiteSpace:"nowrap"}}>
                                             <div className=" d-flex align-items-start">
                                                 <button type={"button"} onClick={()=>handleslip(code)}
-                                                        className='btn btn-lg btn-warning  w-100 deposit-withdraw-button' >
+                                                        className='btn btn-lg  w-100 deposit-withdraw-button text-white' style={{backgroundColor:"#527994", borderRadius:"0.3rem"}}>
                                                     Load Slip
                                                 </button>
                                             </div>

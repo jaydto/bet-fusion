@@ -21,27 +21,49 @@ const Testimonials = () => {
 
 
     return (
+        <table className="menu-table" style={{width:" 100%", textAlign: "center"}}>
+            <tr>
+                <td className="menu-t" style={{margin: "0!important", boxSizing:"border-box"}}>
+                    <p className="winners-holder" style={{margin: "0px"}}>
+                    <span className="winners-title">
+                        Winners
+                    </span>
+                        <span className="winners-content">
+                        <span>
+                            {testimonials?.map((testimony, index) => (
 
-        <div className=" testimonials-style border border-warning d-flex sticky-testimony ">
+                                <span className="marquee" id="winners">{testimony}</span>
 
-            <div className={'text-warning bg-black size-1'} style={{zIndex: "200", whiteSpace: 'nowrap'}}>Recent
-                Winners
-            </div>
+                                         ))}
+                            <span className="marquee" id="winners"></span>
+                        </span>
+                    </span>
+                    </p>
+                </td>
+            </tr>
+        </table>
 
-            <ul className={' d-flex text-light flex-nowrap testimonial-style size-2'}>
-                {testimonials?.map((testimony, index) => (
-                    <li key={index} className={" px-3 d-flex"} style={{zIndex: "200", whiteSpace: 'nowrap'}}>
-                        {testimony}
-                        {/*{testimony}*/}
-                    </li>
-
-
-                ))}
-
-            </ul>
-
-
-        </div>
+        // <div className=" testimonials-style border border-warning d-flex sticky-testimony ">
+        //
+        //     <div className={'text-warning bg-black size-1'} style={{zIndex: "200", whiteSpace: 'nowrap'}}>Recent
+        //         Winners
+        //     </div>
+        //
+        //     <ul className={' d-flex text-light flex-nowrap testimonial-style size-2'}>
+        //         {testimonials?.map((testimony, index) => (
+        //
+        //             <li key={index} className={" px-3 d-flex"} style={{zIndex: "200", whiteSpace: 'nowrap'}}>
+        //                 {testimony}
+        //                 {/*{testimony}*/}
+        //             </li>
+        //
+        //
+        //         ))}
+        //
+        //     </ul>
+        //
+        //
+        // </div>
 
 
     );

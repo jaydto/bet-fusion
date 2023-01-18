@@ -86,9 +86,10 @@ const LiveSideBar = (props) => {
                                                         <Row style={{color: "#69819a"}}>
                                                             <Col className={'text-white'}>{livesport.sport_name} </Col>
                                                             <Col>
-                                                                <span className={'badge rounded-pill bg-dark'} style={{
+                                                                <span className={'badge rounded-pill '} style={{
                                                                     float: "right",
-                                                                    color: "#fff"
+                                                                    color: "#fff",
+                                                                    background:"red"
                                                                 }}>
                                                                         {livesport.count}
                                                                 </span>

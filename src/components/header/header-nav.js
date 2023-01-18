@@ -78,7 +78,7 @@ const HeaderNav = (props) => {
                         <Link className="cg fm ox anl url-link not-selectable " to="/"
                               title="Home"><strong>Home</strong></Link>
                     </li>
-                    <li onClick={() => gaEventTracker('Visit Live Page')}>
+                    <li className={pathname.includes('live') ? 'active' : ''} onClick={() => gaEventTracker('Visit Live Page')}>
                         <Link className={`url-link fm anl cg ox  ${pathname === '/live' ? 'active' : ''}`}
                               to="/live" title="Live">
                             <strong>
@@ -86,9 +86,9 @@ const HeaderNav = (props) => {
                         </strong></Link>
                     </li>
 
-                    <li className={pathname.includes('aviator') ? 'active' : ''}
+                    <li className={pathname.includes('aviator') ? 'active live-bg' : ''}
                         onClick={() => gaEventTracker('Aviator')}>
-                        <Link className="url-link fm anl cg ox"
+                        <Link className="url-link  anl cg ox"
                               to="/nare-games/aviator"
                               title="Aviator">
                             <strong>

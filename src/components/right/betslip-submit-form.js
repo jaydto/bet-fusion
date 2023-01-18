@@ -524,13 +524,13 @@ const BetslipSubmitForm = (props) => {
                         </tr>
 
                         <tr id="odd-change-text">
-                            <td colSpan="2" style={{whiteSpace:"nowrap"}}>
+                            <td colSpan="2" className={"d-flex"} style={{whiteSpace:"nowrap"}}>
                                 <button
                                     id=""
                                     onClick={() => encodeBetSlip()}
                                     style={{padding: "5px", backgroundColor: "#3f9ad1",whiteSpace:"nowrap"}}
                                     type={"button"}
-                                    className="bold btn-secondary rounded-2 flex-nowrap"
+                                    className="bold btn-secondary rounded-2 flex-nowrap d-flex"
                                     title="PLACE BET">
                                     share&nbsp;
                                     {loadingShare?<div className={`text-center  text-white d-block`}>

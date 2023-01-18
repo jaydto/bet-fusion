@@ -53,10 +53,10 @@ const DecodeCode = () => {
                         <form  >
                             <div className="form-group row d-flex justify-content-center ">
                                 <div className="col-md-12">
-                                    <label className={"text-bold"}> Do you have a shared betslip code? Enter it here. </label>
-                                    <div className={"d-flex"}>
+                                    <label className={"text-bold h4 text-center"}> Do you have a shared betslip code? Enter it here. </label>
+                                    <div className={"d-flex flex-column"}>
                                         <input
-                                            className="text-dark deposit-input form-control w-75 input-field"
+                                            className="text-dark deposit-input form-control col input-field"
                                             id="code"
                                             ref={inputRef}
                                             onChange={(e)=>handleChanges(e)}
@@ -66,10 +66,10 @@ const DecodeCode = () => {
                                             autoFocus={true}
                                             placeholder='eg. PWXfsxR'
                                         />
-                                        <div className="form-group row d-flex justify-content-left " style={{whiteSpace:"nowrap"}}>
+                                        <div className="form-group row d-flex justify-content-left col mt-4" style={{whiteSpace:"nowrap"}}>
                                             <div className=" d-flex align-items-start">
                                                 <button type={"button"} onClick={()=>handleslip(code)}
-                                                        className='btn btn-lg btn-primary  w-100 deposit-withdraw-button' >
+                                                        className='btn btn-lg btn-warning  w-100 deposit-withdraw-button' >
                                                     Load Slip
                                                 </button>
                                             </div>

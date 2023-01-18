@@ -25,7 +25,7 @@ const Right = (props) => {
     const [state, dispatch] = useContext(Context);
 
     return (
-        <div className="col-md-3 gn betslip-container sticky-top vh-100 overflow-scroll betslip-container-mozilla">
+        <div className="col-md-3 gn betslip-container sticky-top vh-100 overflow-scroll betslip-container-mozilla" style={{position:"sticky !important", top:"12rem !important"}}>
             <div className="betslip-container d-none d-md-block">
                 {props?.message && <AlertMessage classname={props.classname} message={props.message}/>}
                 <div className="bet-option-list " id=''>

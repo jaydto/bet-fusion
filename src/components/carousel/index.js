@@ -11,6 +11,8 @@ import karibuGiftWallet from "../../assets/img/banner/products/Bet_Nare_3000_kar
 import Aviator from "../../assets/img/banner/products/Aviator.webp"
 import karibu50 from "../../assets/img/banner/products/Bet_Nare_50_Karibu_Bonus.webp"
 import jackpot from "../../assets/img/banner/products/Bet_Nare_300k_Jackpot_New.webp"
+import arsenal from "../../assets/img/banner/products/ArsenalvsManUtd.webp"
+import liverpool from "../../assets/img/banner/products/LiverpoolvsChelsea.webp"
 
 
 const banners = [
@@ -20,7 +22,10 @@ const banners = [
     {src: jackpot, url: "/jackpot"},
     {src: stakeBooster, url: "/promotions"},
     {src: dailyDepositGift, url: "/deposit"},
-    {src: cashback, url: "/promotions"}
+    {src: cashback, url: "/promotions"},
+    {src: liverpool, url: "/match/32641481"},
+    {src: arsenal, url: "/match/32641479"},
+
 ]
 
 const CarouselLoader = (props) => {

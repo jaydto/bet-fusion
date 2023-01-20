@@ -1,9 +1,11 @@
 import React, {useCallback, useEffect, useLayoutEffect, useRef, useState} from 'react';
 import makeRequest from "../utils/fetch-request";
+import { getFromLocalStorage } from '../utils/local-storage';
 
 
 const Testimonials = () => {
     const [testimonials, setTestimonials] = useState([]);
+    const [user, setUser] = useState(getFromLocalStorage("user"));
 
 
     const fetchTestimonials = async () => {
@@ -42,7 +44,7 @@ const Testimonials = () => {
         //     </tr>
         // </table>
 
-        <div className=" testimonials-style border border-warning d-flex sticky-testimony ">
+        <div className={` testimonials-style border border-warning d-flex ${user?"logged-in-testimony":"sticky-testimony"} `}>
 
             <div className={'text-warning bg-black size-1'} style={{zIndex: "200", whiteSpace: 'nowrap'}}>Recent
                 Winners

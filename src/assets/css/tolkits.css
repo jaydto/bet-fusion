@@ -1638,6 +1638,15 @@ header {
         transform: translateX(-1700px);
     }
 }
+.logged-in-testimony{
+    position: sticky;
+    position: -webkit-sticky;
+    top: 122px;
+    /*width:100%;*/
+    background-color: black;
+    z-index:150;
+    opacity:1;
+}
 .sticky-testimony{
     position: sticky;
     position: -webkit-sticky;
@@ -1975,7 +1984,7 @@ events-header {
     background: #16202c;
     background-size: cover;
     background-position: center center;
-    padding-bottom: 5px;
+    padding-bottom: 17px;
     background-size: cover;
     z-index: 9999 !important;
 }

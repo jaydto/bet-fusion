@@ -65,6 +65,7 @@ const MatchHeaderRow = (props) => {
     let sport = categories?.all_sports?.filter((category) => category.sport_id == sport_id)
     const [sportName, setSportName] = useState(sport?.[0]?.sport_name || 'Soccer');
     const [showX, setShowX] = useState(true);
+    const [user, setUser] = useState(getFromLocalStorage("user"));
     const [market, setMarket] = useState('1x2');
     const [marketCols, setMarketCols] = useState(3)
     const [extraMarketDisplays, setExtraMarketDisplays] = useState([])
@@ -160,7 +161,13 @@ const MatchHeaderRow = (props) => {
         if (jackpot) {
             return {top:"130px",positio:"sticky"}
         }else{
-            return {top:"162px",positio:"sticky"}
+            if (user){
+                return {top:"150px",positio:"sticky"}
+            }
+            else{
+                return {top:"162px",positio:"sticky"}
+            }
+           
         }
     }
 

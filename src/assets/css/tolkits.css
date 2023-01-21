@@ -15742,6 +15742,17 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     list-style: none;
     margin-top: 2px;
 }
+/* bitrixm */
+.b24-widget-button-position-bottom-left{
+        left: 2px !important;
+    }
+    .b24-widget-button-inner-mask{
+        display: none !important;
+    }
+    .b24-widget-button-block {
+        width: 55px !important;
+        height: 55px !important;
+    }
 
 .steps-title {
     margin-left: 10px;

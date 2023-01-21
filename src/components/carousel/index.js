@@ -16,6 +16,8 @@ import liverpool from "../../assets/img/banner/products/LiverpoolvsChelsea.webp"
 
 
 const banners = [
+    {src: liverpool, url: "/match/32641481"},
+    {src: arsenal, url: "/match/32641479"},
     {src: Aviator, url: "/nare-games/aviator"},
     {src: karibu50, url: "/promotions"},
     {src: karibuGiftWallet, url: "/promotions"},
@@ -23,9 +25,6 @@ const banners = [
     {src: stakeBooster, url: "/promotions"},
     {src: dailyDepositGift, url: "/deposit"},
     {src: cashback, url: "/promotions"},
-    {src: liverpool, url: "/match/32641481"},
-    {src: arsenal, url: "/match/32641479"},
-
 ]
 
 const CarouselLoader = (props) => {

@@ -45,7 +45,7 @@ const BetSlip = (props) => {
       jackpot && Object.keys(getJackpotBetslip()).length == 0
         ? setBetslipsData(null)
          :setBetslipsData(state[betslipKey]);
-        console.log("size of slip",Object.keys(getJackpotBetslip).length )
+        // console.log("size of slip",Object.keys(getJackpotBetslip).length )
     }
   }, [state[betslipKey]]);
 

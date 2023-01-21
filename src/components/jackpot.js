@@ -115,7 +115,7 @@ const Jackpot = (props) => {
                                                 onChange={loadJPResults}/>
                                     </div>
                                     <JackpotHeader jackpot={matches?.meta}/>
-                                    <div className="matches full-mobile sticky-top container">
+                                    <div className="matches full-mobile sticky-top mx-2 w-100">
                                         <div
                                             className="top-matches d-flex position-sticky shadow-lg p-4 mt-5 text-white">
                                             <div className="col-md-3 bold">
@@ -135,7 +135,7 @@ const Jackpot = (props) => {
 
                                     {matches?.data.map((match, index) => (
                                         <div className={'matches full-width'} key={index}>
-                                            <Container className="web-element">
+                                            <div className="web-element mx-2">
                                                 <div
                                                     className="col-md-12 shadow d-flex flex-row p-2 text-white top-matches">
                                                     <div className="col-md-3">
@@ -161,7 +161,7 @@ const Jackpot = (props) => {
                                                         {match?.winning_outcome || '-'}
                                                     </div>
                                                 </div>
-                                            </Container>
+                                            </div>
                                         </div>
                                     ))}
                                 </Tab>

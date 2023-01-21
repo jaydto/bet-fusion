@@ -848,7 +848,7 @@ export const JackpotMatchList = (props) => {
                     </div>
                 </div>
             </div>
-            <Container className="web-element">
+            <div className="web-element mx-2">
                 {matches && Object.entries(matches?.data).map(([key, match]) => (
                     <MatchRow match={match} jackpot key={key}/>
                 ))
@@ -858,7 +858,7 @@ export const JackpotMatchList = (props) => {
                         No events found.
                     </div>
                 }
-            </Container>
+            </div>
         </div>
     )
 }

@@ -272,7 +272,7 @@ const MoreMarketsHeaderRow = (props) => {
 
 
     let lmtIncludes=[79,85,82,80, 107]
-    console.log("sport_id", lmtIncludes.includes(sport_id))
+    // console.log("sport_id", lmtIncludes.includes(sport_id))
 
     return (
         <Row>

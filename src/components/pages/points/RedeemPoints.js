@@ -25,7 +25,7 @@ const RedeemPoints = (props) => {
     const handleSubmit = values => {
         let endpoint = '/redeem-points';
         makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
-            console.log("Status", status)
+            // console.log("Status", status)
             if (status === 200 || status === 201) {
                 setSuccess(true);
                 setMessage(response?.message);

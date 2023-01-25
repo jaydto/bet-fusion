@@ -76,7 +76,7 @@ const HeaderLogin = (props) => {
                     status: status,
                     message: response?.message || "Error attempting to login"
                 };
-                console.log("data_response", response)
+                // console.log("data_response", response)
                 Notify(message);
             }
         })

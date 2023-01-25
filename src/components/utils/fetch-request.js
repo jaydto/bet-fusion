@@ -26,7 +26,7 @@ const makeRequest = async ({url, method, data = null, use_jwt = false}) => {
             ...data,
             iat: Math.floor(Date.now() / 1000) + (1 * 60)
         };
-        console.log("Payload ",payload)
+        // console.log("Payload ",payload)
         jwt = sign(payload, ENC_KEY);
 
         url += (url.match(/\?/g) ? '&' : '?') + 'token=' + jwt;

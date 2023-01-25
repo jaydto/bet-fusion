@@ -36,7 +36,7 @@ const EmptyTextRow = (props) => {
     const {odd_key, classname} = props;
 
     return (
-        <div className={`${classname} btn btn-disabled match-detail col c-btn`}
+        <button className={`${classname} btn btn-disabled match-detail col c-btn`}
              style={{
                  width: "100%",
                  height: "30px",
@@ -53,7 +53,7 @@ const EmptyTextRow = (props) => {
                  effect="blur"
                  alt="--"/>
          </span>
-        </div>
+        </button>
     );
 };
 

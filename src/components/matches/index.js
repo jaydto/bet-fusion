@@ -236,6 +236,7 @@ const MatchHeaderRow = (props) => {
 }
 
 const MoreMarketsHeaderRow = (props) => {
+   
     const {
         home_team,
         away_team,
@@ -246,13 +247,38 @@ const MoreMarketsHeaderRow = (props) => {
         match_time,
         score,
         live,
+        sport_id,
+        parent_match_id,
         match_status
     } = props;
 
+
+    useEffect(()=>{
+        window.SIR('addWidget', '#sr-widget', 'match.lmtPlus', {
+            branding:{tabs:{option: "icon", variant: "fullWidth"}},
+            goalBannerImage: "https://storage.googleapis.com/nareimages/logo-white.webp",
+            logo:["https://storage.googleapis.com/nareimages/logo-dark.webp"],
+            momentum: "disable",
+            matchId: parent_match_id ,
+            collapseTo:"disable",
+            layout: "double",
+            scoreboard:"extended",
+            detailedScoreboard: "disable",
+
+        });
+    })
+
+
+
+
+    let lmtIncludes=[79,85,82,80, 107]
+    console.log("sport_id", lmtIncludes.includes(sport_id))
+
     return (
         <Row>
-            <Row className="panel-header primary-bg">
-
+               
+            {(live||lmtIncludes.includes(sport_id)) ?
+                <div id="sr-widget" className='mt-1 pt-2' ></div> :  <Row className="panel-header primary-bg">
                 <h4 className="inline-block">
                     {home_team} <small> - </small> {away_team}
                 </h4>
@@ -277,10 +303,10 @@ const MoreMarketsHeaderRow = (props) => {
                     </Row>
                 }
             </Row>
-        </Row>
+            }
+           </Row>
     )
 }
-
 const SideBets = (props) => {
     const {match, live} = props;
     const [picked,] = useState();

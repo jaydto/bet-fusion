@@ -9,7 +9,6 @@ import stakeBooster from '../../assets/img/banner/products/Bet_Nare_20_Stake_Boo
 import dailyDepositGift from '../../assets/img/banner/products/Bet_Nare_20_gift.webp'
 import karibuGiftWallet from "../../assets/img/banner/products/Bet_Nare_3000_karibu_gift.webp"
 import Aviator from "../../assets/img/banner/products/Aviator.webp"
-import karibu50 from "../../assets/img/banner/products/Bet_Nare_50_Karibu_Bonus.webp"
 import jackpot from "../../assets/img/banner/products/Bet_Nare_300k_Jackpot_New.webp"
 
 
@@ -17,7 +16,6 @@ import jackpot from "../../assets/img/banner/products/Bet_Nare_300k_Jackpot_New.
 const banners = [
 
     {src: Aviator, url: "/nare-games/aviator"},
-    {src: karibu50, url: "/promotions"},
     {src: karibuGiftWallet, url: "/promotions"},
     {src: jackpot, url: "/jackpot"},
     {src: stakeBooster, url: "/promotions"},

@@ -10,7 +10,7 @@ const Footer = (props) => {
         <footer className="footer-custom">
             <div className="row">
                 <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3 text-white">
-                    <h5 className={"border-bottom"}>BETNARE</h5>
+                    <h5 className={""}>BETNARE</h5>
                     <ul>
                         <li className="">
                             P.O.BOX 00100 NAIROBI KENYA
@@ -33,7 +33,7 @@ const Footer = (props) => {
                     </ul>
                 </div>
                 <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-                    <h5 className={"border-bottom"}>TERMS AND CONDITIONS</h5>
+                    <h5 className={""}>TERMS AND CONDITIONS</h5>
                     <ul>
                         <li className="">
                             <a href="/terms-and-conditions">Terms and Conditions</a>
@@ -53,7 +53,7 @@ const Footer = (props) => {
                     </ul>
                 </div>
                 <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-                    <h5 className={"border-bottom"}>LEGAL</h5>
+                    <h5 className={""}>LEGAL</h5>
                     <ul>
                         <li className="text-danger">
                             You must be 18 Years+ to use this website.
@@ -67,7 +67,7 @@ const Footer = (props) => {
                     </ul>
                 </div>
                 <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-                    <h5 className={"border-bottom"}>LICENSING</h5>
+                    <h5 className={""}>LICENSING</h5>
                     <p>
                         We are licensed and regulated by the Betting Control and Licensing
                         Board BCLB 0000453

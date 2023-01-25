@@ -89,7 +89,7 @@ const LiveCasino = (props) => {
                 }
                 setTableData([...localData])
 
-                console.log(localData)
+                // console.log(localData)
             }
         }
     }

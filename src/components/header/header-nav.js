@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState, useRef} from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Container from 'react-bootstrap/Container';
 import {Context} from '../../context/store';
-import kanyonde from "../../../src/assets/img/mobile/kanyonde.png"
+import kanyonde from "../../../src/assets/img/mobile/aviator.webp"
 import Premier_League from "../../assets/img/leagues/Premier League.svg"
 import live from "../../assets/img/live.png"
 
@@ -93,7 +93,7 @@ const HeaderNav = (props) => {
                               title="Aviator">
                             <strong>
                                 <div className={'notification-item d-flex'}>
-                                    <img src={kanyonde} className={"kanyonde-image px-1"} style={{height: '20px'}}/>
+                                    <img src={kanyonde} className={"-image"} style={{height: '25px'}}/>
                                     Aviator
                                     <span className="notify-badge badge">NEW</span>
                                 </div>

@@ -15593,7 +15593,9 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     /*max-width: 20% !important;*/
     /*margin-right: 2% !important;*/
 }
+.tags-span {
 
+}
 .odd-button {
     height: 35px !important;
     line-height: 15px;

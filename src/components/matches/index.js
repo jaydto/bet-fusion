@@ -284,16 +284,11 @@ const MoreMarketsHeaderRow = (props) => {
                     {home_team} <small> - </small> {away_team}
                         {
                             tags?.length ?
-                            tags.map(tag => (
-                                <span className="" key={tag.name}
-                                      style={{backgroundColor: `${tag.color}`,
-                                          color: "#ffffff",
-                                          borderRadius: "2px",
-                                          paddingLeft: "5px",
-                                          paddingRight: "5px",
-                                          marginLeft: "10px",
-                                          fontSize: "16px",
-                                          fontWeight: "bold"
+                            tags?.map(tag => (
+                                <span className="tag" key={tag.name}
+                                      style={{
+                                          backgroundColor: `${tag.background_color}`,
+                                          color: `${tag.color}`
                                       }}
                                 >
                                 {tag.name}
@@ -687,17 +682,12 @@ const MatchRow = (props) => {
                     </div>
                 </a>
                 {
-                    match.tags.length ?
+                    match?.tags.length ?
                         match.tags.map(tag => (
-                            <span className="" key={tag.name}
-                                 style={{backgroundColor: `${tag.color}`,
-                                     color: "#ffffff",
-                                     borderRadius: "2px",
-                                     paddingLeft: "5px",
-                                     paddingRight: "5px",
-                                     marginRight: "10px",
-                                     fontSize: "16px",
-                                     fontWeight: "bold"
+                            <span className="tag" key={tag.name}
+                                 style={{
+                                     backgroundColor: `${tag.background_color}`,
+                                     color: `${tag.color}`,
                                  }}
                                  >
                                 {tag.name}
@@ -755,7 +745,6 @@ const MatchRow = (props) => {
                 {!pdown && !jackpot &&
                     <SideBets match={match} live={live} style={{d: "inline"}}/>}
             </div>
-
         </div>
     )
 

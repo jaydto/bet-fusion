@@ -208,6 +208,14 @@ h4.inline-block {
     opacity: 08;
 }
 
+.tag {
+    border-radius: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-left: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
 
 .picked, .match-detail .picked {
     background: #fdd835 !important;

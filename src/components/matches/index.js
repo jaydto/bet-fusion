@@ -236,7 +236,7 @@ const MatchHeaderRow = (props) => {
 }
 
 const MoreMarketsHeaderRow = (props) => {
-   
+
     const {
         home_team,
         away_team,
@@ -249,7 +249,8 @@ const MoreMarketsHeaderRow = (props) => {
         live,
         sport_id,
         parent_match_id,
-        match_status
+        match_status,
+        tags
     } = props;
 
 
@@ -276,11 +277,25 @@ const MoreMarketsHeaderRow = (props) => {
 
     return (
         <Row>
-               
+
             {(live||lmtIncludes.includes(sport_id)) ?
                 <div id="sr-widget" className='mt-1 pt-2' ></div> :  <Row className="panel-header primary-bg">
                 <h4 className="inline-block">
                     {home_team} <small> - </small> {away_team}
+                        {
+                            tags?.length ?
+                            tags?.map(tag => (
+                                <span className="tag" key={tag.name}
+                                      style={{
+                                          backgroundColor: `${tag.background_color}`,
+                                          color: `${tag.color}`
+                                      }}
+                                >
+                                {tag.name}
+                            </span>
+                            ))
+                            : ""
+                        }
                 </h4>
                 {live &&
                     <Row className="header-text">
@@ -663,10 +678,23 @@ const MatchRow = (props) => {
                             <div className={'bold'}>
                                 {match.away_team}
                             </div>
-
                         </div>
                     </div>
                 </a>
+                {
+                    match.tags?.length ?
+                        match.tags.map(tag => (
+                            <span className="tag" key={tag.name}
+                                 style={{
+                                     backgroundColor: `${tag.background_color}`,
+                                     color: `${tag.color}`,
+                                 }}
+                                 >
+                                {tag.name}
+                            </span>
+                            ))
+                        : ""
+                }
             </div>
             <div className="col d-flex flex-row justify-content-between">
                 <div className="c-btn-group align-self-center">
@@ -717,7 +745,6 @@ const MatchRow = (props) => {
                 {!pdown && !jackpot &&
                     <SideBets match={match} live={live} style={{d: "inline"}}/>}
             </div>
-
         </div>
     )
 

@@ -682,7 +682,7 @@ const MatchRow = (props) => {
                     </div>
                 </a>
                 {
-                    match?.tags.length ?
+                    match.tags?.length ?
                         match.tags.map(tag => (
                             <span className="tag" key={tag.name}
                                  style={{

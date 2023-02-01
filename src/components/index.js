@@ -71,7 +71,7 @@ const Index = (props) => {
         //splitting before api call
         let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29").split(",")
         // console.log("subtypes",sub_types[0]);
-        if (width <= 767) {
+        if (width <= 991) {
             // console.log("condition has been met ", [sub_types[0]])
             sub_types = [sub_types[0]]
         }
@@ -195,7 +195,7 @@ const Index = (props) => {
         <div className={(width <= 514 ? user ? "user_logged" : "amt" : "amt ")} >
             <div className="d-flex flex-row justify-content-between">
                 <SideBar loadCompetitions/>
-                <div className="gz home moz-clip" >
+                <div className="gz home match-overflow" >
                     <div className="homepage" ref={homePageRef} >
                         <CarouselLoader/>
                         <Testimonials/>

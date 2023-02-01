@@ -269,7 +269,8 @@ const BetSlip = (props) => {
   return (
     <div className="bet-body text-white">
       {!jackpot && <BonusAlert />}
-        <div className={`flow ${width < 967?state?.user?jackpot?'slip-max':height<900?'slip-height':'slip-log-max':'slip-max':'slip-size'} landscape-orientation overflow-auto`}  >      <ul>
+      <div className={`flow ${state?.user?jackpot?'slip-max':'slip-height slip-log-max':'slip-max'} landscape-orientation overflow-auto`}  >
+          <ul className={"slip-top"}>
           {(betslipsData && Object.keys(betslipsData)?.length == 0) ||
           betslipsData == null ? (
             jackpot ? (

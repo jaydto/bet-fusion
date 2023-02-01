@@ -21,7 +21,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faChartLine, faFire} from "@fortawesome/free-solid-svg-icons";
 import {getFromLocalStorage} from "../utils/local-storage";
 
-import myGif from '../../assets/img/gif/fire5.gif'
+import myGif from '../../assets/img/fire.webp'
 
 import {Input} from "@material-ui/core";
 import useWindowDimensions from "../header/Dimensions";
@@ -123,6 +123,7 @@ const MatchHeaderRow = (props) => {
     const [sportName, setSportName] = useState(sport!=null?sport?.[0].sport_name || 'Soccer':"");    const [showX, setShowX] = useState(true);
     const [market, setMarket] = useState('1x2');
     const [marketCols, setMarketCols] = useState(3)
+    const [user, setUser] = useState(getFromLocalStorage("user"));
     const [extraMarketDisplays, setExtraMarketDisplays] = useState([])
 
     const [threeWay, setThreeWay] = useState(false)
@@ -168,17 +169,11 @@ const MatchHeaderRow = (props) => {
         }
     }, [first_match?.parent_match_id])
 
-    const checkJackpot=()=>{
-        if (jackpot) {
-            return {top:"130px",position:"sticky"}
-        }else{
-            return {top:"161px",position:"sticky"}
-        }
-    }
+
 
     return (
 
-        <Row className={`full-mobile sticky-top mx-1 ${jackpot?'sticky-jackpot ':'sticky-responsive '}px-lg-3`}>
+        <Row className={`full-mobile sticky-top ${jackpot?'sticky-jackpot ':user?"sticky-user":'sticky-responsive '}px-lg-3`}>
             <div className="top-matches d-flex position-sticky sticky-top shadow-lg"
                  style={{opacity: "1", top: "100px"}}>
                 <div className={"size-info  d-flex col-xs-12 pad left-text"}>
@@ -198,9 +193,9 @@ const MatchHeaderRow = (props) => {
                     {threeWay &&
                         <div className="d-flex flex-row ">
                             <div className="d-flex flex-column text-center text-white fit-ipad ">
-                                <div className={'bold'}>
-                                    3 WAY
-                                </div>
+                                {/*<div className={'bold'}>*/}
+                                {/*    3 WAY*/}
+                                {/*</div>*/}
                                 <div className={'c-btn-group align-self-end'}>
                                     <a className="c-btn-header text-white">1</a>
                                     <a className="c-btn-header text-white">X</a>
@@ -748,6 +743,7 @@ const MatchRow = (props) => {
                 className="to-deskview to-block to-tabview  mx-lg-0 px-sm-4 px-md-4 px-lg-0  py-md-4 py-lg-0 container-size ">
                 <div className="size-info  d-flex col-xs-12 pad left-text flex-row live-col">
 
+
                     <div className={`d-flex flex-column px-1 justify-content-sm-center change-date1 mobile-remove ${jackpot?"jackpot-width":""}`}>
                         {live &&
                             <>
@@ -755,10 +751,11 @@ const MatchRow = (props) => {
 
                             </>
                         }
-                        <span className={'date-size'}>
-                        {(live && match?.match_time) ?
-                            <>{`${match.match_time}'`}</> : match?.start_time}
-                    </span>
+
+                        <span className={'date-size wrapping px-3'}>
+                                                {(live && match?.match_time) ?
+                                                    <>{`${match.match_time}'`}</> : new Date(match?.start_time).getDate()+"/"+(Number(new Date(match?.start_time).getMonth())+1) + " "+ match?.match_time}
+                                            </span>
                         <>ID: {match?.game_id}</>
                     </div>
                     <div className={`col align-items-center col-xs-12 match-detail-container px-2 change-match only-mobile ${jackpot?"align-self-center":""}`}>
@@ -813,13 +810,24 @@ const MatchRow = (props) => {
                             {threeWay &&
                                 <div className="d-flex flex-row ">
                                     <div className="d-flex flex-column text-center text-white fit-ipad w-100">
-                                        <div className="font-weight-bold mobile-remove">
-                                            <h4 className="font-weight-bold mobile-remove"> 3 WAY</h4>
+                                        {/*<div className="font-weight-bold mobile-remove">*/}
+                                        {/*    <h4 className="font-weight-bold mobile-remove"> 3 WAY</h4>*/}
+                                        {/*</div>*/}
+                                        <div className={"d-sm-flex d-md-none"}>
+                                            <span className='d-flex justify-content-start'>
+                                                {match?.tags?.map((tag)=>(
+                                                    <span className='px-2 w-100 ' style={{color:tag?.color, backgroundColor:tag?.background_color, fontSize:"8px", borderRadius:"6px", marginLeft:"3px", width:"4px", marginTop:"8px"}}>
+                                                            <strong>
+                                                            {tag.name}
+                                                            </strong>
+                                                        </span>
+                                                ))}
+                                            </span>
                                         </div>
                                         <div className="d-flex flex-row px-1 justify-content-end change-date1 mobile-only">
-                                            <span className={'date-size px-1 wrapping'}>
+                                           <span className={'date-size wrapping px-3'}>
                                                 {(live && match?.match_time) ?
-                                                    <>{`${match.match_time}'`}</> : match?.start_time}
+                                                    <>{`${match.match_time}'`}</> : new Date(match?.start_time).getDate()+"/"+(Number(new Date(match?.start_time).getMonth())+1) + " "+ match?.match_time}
                                             </span>
                                             <div className={"px-1 wrapping"}>ID: {match?.game_id}</div>
 
@@ -863,9 +871,9 @@ const MatchRow = (props) => {
                                     <div className="d-flex flex-column text-center text-white fit-ipad w-100">
 
                                         <div className="d-flex flex-row px-1 justify-content-end change-date1 mobile-only">
-                                            <span className={'date-size px-1 wrapping'}>
+                                           <span className={'date-size wrapping px-3'}>
                                                 {(live && match?.match_time) ?
-                                                    <>{`${match.match_time}'`}</> : match?.start_time}
+                                                    <>{`${match.match_time}'`}</> : new Date(match?.start_time).getDate()+"/"+(Number(new Date(match?.start_time).getMonth())+1) + " "+ match?.match_time}
                                             </span>
                                             <div className={"px-1 wrapping"}>ID: {match?.game_id}</div>
 

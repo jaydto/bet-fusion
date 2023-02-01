@@ -99,7 +99,7 @@ const Live = (props) => {
                         <LiveSideBar/>
                     </div>
 
-                    <div className="gz home moz-clip" >
+                    <div className="gz home match-overflow" >
                         <div className="homepage">
                             <CarouselLoader/>
                             <Testimonials/>

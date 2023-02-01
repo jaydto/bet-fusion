@@ -18,6 +18,7 @@ import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {getJackpotBetslip, getBetslip} from '../utils/betslip'
 import {Context} from "../../context/store";
 import useWindowDimensions from "../header/Dimensions";
+import DecodeCode from "../right/decode";
 
 const MobileMenu = (props) => {
     // console.log("props aere here ", props)
@@ -89,17 +90,20 @@ const MobileMenu = (props) => {
                             </header>
                             {/*{console.log("popUPheight",popUpHeight)}*/}
 
-                            <div id="betslip" className={`betslip  ${width < 967 ?'slip-max-height':'d-sm-flex align-items-sm-center size-slip-new' }`}  >
-                                {
-                                    ((betslipValidationData!="") || (jackpot==true || jackpot!=null) )?
-                                    <BetSlip jackpot={jackpot} betslipValidationData={betslipValidationData}
-                                             jackpotData={jackpotData} />
-                                        : <h4 className='text-warning'>You have not selected any bets</h4>
-
-                                }
+                            <div id="betslip" className={`betslip  slip-max-height`}>
+                                {betslipValidationData != "" ||
+                                jackpot == true ||
+                                jackpot != null ? (
+                                    <BetSlip
+                                        jackpot={jackpot}
+                                        betslipValidationData={betslipValidationData}
+                                        jackpotData={jackpotData}
+                                    />
+                                ) : (
+                                    <DecodeCode />
+                                )}
                             </div>
-                            <QuickLogin/>
-
+                            <QuickLogin />
                         </div>
                     </div>
                 </div>

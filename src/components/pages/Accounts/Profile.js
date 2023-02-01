@@ -19,7 +19,7 @@ import {Link, useNavigate} from "react-router-dom";
 import Header from "../../header/header";
 import {Navbar, Offcanvas} from "react-bootstrap";
 import {LazyLoadImage} from "react-lazy-load-image-component";
-import logo from "../../../assets/img/logo.png";
+import logo from "../../../assets/img/Logo.webp";
 import Container from "react-bootstrap/Container";
 
 

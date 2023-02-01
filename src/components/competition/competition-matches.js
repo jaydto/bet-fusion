@@ -6,7 +6,7 @@ import useInterval from "../../hooks/set-interval.hook";
 import {getBetslip} from '../utils/betslip' ;
 import {Spinner} from "react-bootstrap";
 import useWindowDimensions from "../header/Dimensions";
-import Testimonials from "./carousel/Testimonials";
+import Testimonials from "../carousel/Testimonials";
 
 const Header = React.lazy(() => import('../header/header'));
 const Footer = React.lazy(() => import('../footer/footer'));

@@ -7,7 +7,7 @@ import {JackpotMatchList, JackpotHeader} from './matches/index';
 import makeRequest from "./utils/fetch-request";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-import Jackpot300k from "../assets/img/banner/products/Bet_Nare_300k_Jackpot_Mobile.webp"
+import Jackpot300k from  '../assets/img/banner/products/Bet_Nare_300k_Jackpot_New.webp'
 import Container from "react-bootstrap/Container";
 import Select from "react-select";
 import {getFromLocalStorage} from "./utils/local-storage";
@@ -128,8 +128,8 @@ const Jackpot = (props) => {
                                                 onChange={loadJPResults}/>
                                     </div>
 
-                                    <JackpotHeader jackpot={matches?.meta}/>
-                                    {/*<img src={Jackpot300k}/>*/}
+                                    {/*<JackpotHeader jackpot={matches?.meta}/>*/}
+                                    <img src={Jackpot300k}/>
 
                                     <div className="matches full-mobile sticky-top container">
                                         <div

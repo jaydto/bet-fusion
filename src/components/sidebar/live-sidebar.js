@@ -85,17 +85,22 @@ const LiveSideBar = (props) => {
                                             <Link className="col-12"
                                                   to={`/live/${livesport.sport_id}`}>
                                                 <Row>
-                                                    <Col lg="11" md="11" sm="11" xs="11" className="topl">
-                                                        <Row style={{color: "#69819a"}}>
-                                                            <Col className={'text-white col-7'}>{livesport.sport_name} </Col>
-                                                            <Col>
-                                                                <span className={`badge rounded-pill bg-dark ${width<=767?"live-slide":""}`} style={{
+                                                    <Col className="topl">
+                                                        <Row className={'gap-2'} style={{color: "#69819a"}}>
+                                                            <div className={'text-white d-flex align-itens-center'}>
+                                                                <span>{livesport.sport_name}</span>&nbsp;
+                                                                <span className={`badge  live-slide d-flex align-items-center`} style={{
                                                                     float: "right",
-                                                                    color: "#fff"
+                                                                    color: "#fff",
+                                                                    backgroundColor:"red!important",
+                                                                    borderRadius: "12px",
+                                                                    height:"24px"
                                                                 }}>
                                                                         {livesport.count}
                                                                 </span>
-                                                            </Col>
+                                                            </div>
+
+
                                                         </Row>
                                                     </Col>
                                                 </Row>

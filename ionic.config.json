@@ -1,7 +1,0 @@
-{
-  "name": "betnare",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "react"
-}

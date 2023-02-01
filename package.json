@@ -67,7 +67,7 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
-    "build": "node scripts/build.js && cp -r build/* ./cordova/www",
+    "build": "node scripts/build.js && sudo cp -rf build/* ../betnare-live/ && sudo chown -R nginx ../betnare-live",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
     "preinstall": "npx npm-force-resolutions"
@@ -91,8 +91,6 @@
     ]
   },
   "devDependencies": {
-    "@capacitor/cli": "^4.0.0",
-    "@capacitor/core": "^4.0.0",
     "copy-webpack-plugin": "^11.0.0",
     "postcss": "^8.4.19",
     "postcss-cli": "^10.0.0",

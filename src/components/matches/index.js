@@ -816,7 +816,7 @@ const MatchRow = (props) => {
                                         <div className={"d-sm-flex d-md-none"}>
                                             <span className='d-flex justify-content-start'>
                                                 {match?.tags?.map((tag)=>(
-                                                    <span className='px-2 w-100 ' style={{color:tag?.color, backgroundColor:tag?.background_color, fontSize:"8px", borderRadius:"6px", marginLeft:"3px", width:"4px", marginTop:"8px"}}>
+                                                    <span className='px-2 w-100 ' style={{color:tag?.color, backgroundColor:tag?.background_color, fontSize:"8px", borderRadius:"10px", marginLeft:"3px", width:"4px", marginTop:"8px"}}>
                                                             <strong>
                                                             {tag.name}
                                                             </strong>

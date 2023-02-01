@@ -6,10 +6,11 @@ import {getJackpotBetslip, getBetslip} from './utils/betslip' ;
 import matches from "./utils/fetch-request";
 import useInterval from "../hooks/set-interval.hook";
 import {Context} from '../context/store';
+import Testimonials from "./carousel/Testimonials";
 
 import {getFromLocalStorage} from "./utils/local-storage";
 import useWindowDimensions from "./header/Dimensions";
-import Testimonials from "./carousel/Testimonials";
+
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -26,11 +27,9 @@ const Live = (props) => {
     const {height, width} = useWindowDimensions();
     const {spid} = useParams();
 
-
     const [producerDown, setProducerDown] = useState(false);
     const location = useLocation();
     const [userSlipsValidation, setUserSlipsValidation] = useState();
-
 
     const findPostableSlip = () => {
         let betslips = getBetslip() || {};

@@ -49,10 +49,10 @@ const GamePlay = (props) => {
         let nare_image;
         try {
 
-            nare_image = require(`../../../../src/assets/img/${folder}/${nare_games.toLowerCase()}.png`);
+            nare_image = require(`../../../../src/assets/img/${folder}/${nare_games.toLowerCase()}.webp`);
 
         } catch (error) {
-            console.log("error",error)
+            // console.log("error",error)
 
         }
         return nare_image
@@ -73,7 +73,7 @@ const GamePlay = (props) => {
                                             <div className={'col cursor-pointer'}>
                                                 <div
                                                     className={'mt-1 mb-1 d-flex flex-column shadow-lg virtual-game-container'}>
-                                                    <Link to={{pathname:`/nare-game`, search: `game=${game?.key}`}}
+                                                    <Link to={`/nare-games/${game?.key}`}
                                                           className=""
                                                           key={game.key}>
                                                         <p className={'text-center bold text-elipsis text-uppercase'}>

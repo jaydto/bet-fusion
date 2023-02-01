@@ -3,10 +3,12 @@ import SideBar from "../../sidebar/awesome/Sidebar";
 import Footer from "../../footer/footer";
 import React from "react";
 
-import twentyPercentDepositBonus from '../../../assets/img/banner/products/Bet_Nare_20_ gift.webp'
+import twentyPercentDepositBonus from '../../../assets/img/banner/products/Bet_Nare_20_gift.webp'
 import firstDeposit from '../../../assets/img/banner/products/Bet_Nare_20_Stake_Booster.webp'
 import multibetCashback from '../../../assets/img/banner/products/Bet_Nare_100_Cashback.webp'
 import karibuGiftWallet from "../../../assets/img/banner/products/Bet_Nare_3000_karibu_gift.webp"
+
+
 
 import {Table} from "react-bootstrap";
 import Right from "../../right";
@@ -37,7 +39,7 @@ const Promotions = () => {
                                         {/*                It is Christmas come early in BetNare, 5 JOGOOS & 2 MBUZI’s UP*/}
                                         {/*                FOR GRABS DAILY*/}
                                         {/*            </h5>*/}
-                                        {/*            /!*<img src={krisi} className={'rounded'}/>*!/*/}
+                                        {/*            <img src={krisi} className={'rounded'}/>*/}
                                         {/*            <div className="col-md-12">*/}
                                         {/*                ✅*/}
                                         {/*                This applies to both Multibets and Single bets.*/}

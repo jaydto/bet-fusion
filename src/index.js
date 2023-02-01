@@ -6,14 +6,14 @@ import './assets/css/application.css';
 import './assets/css/tolkits.css';
 import './assets/css/sidebar-menu.css';
 import './index.css';
-
 import Store from './context/store';
 import ReactGA from 'react-ga4';
 import Loading from "./components/loading/Loading";
 import {BrowserRouter, Navigate, Route, Routes, useNavigate} from "react-router-dom";
 
 
-
+const TRACKING_ID = "G-5NLSN9BLN4";
+ReactGA.initialize(TRACKING_ID);
 
 const Index = React.lazy(() => import('./components/index'));
 const CompetitionsMatches = React.lazy(
@@ -22,6 +22,8 @@ const CompetitionsMatches = React.lazy(
 const MatchAllMarkets = React.lazy(() => import('./components/competition/all-markets'));
 
 const Profile =React.lazy(()=>import( "./components/pages/Accounts/Profile"));
+const BetslipShareDecode = React.lazy(() => import('./components/betslip/BetslipShareDecode'))
+
 
 const Jackpot = React.lazy(() => import('./components/jackpot'));
 
@@ -82,20 +84,19 @@ const ProtectedRoute = React.lazy(
     () => import('./components/utils/protected-route')
 );
 
-
 const PrintMatches = React.lazy(() => import('./components/pages/downloads'))
 
 const Casino = React.lazy(() => import('./components/pages/casino/Casino'))
 
 const LiveCasino = React.lazy(() => import('./components/pages/casino/LiveCasino'))
 
-const SpribeGamePlay = React.lazy(() => import('./components/pages/virtuals/SpribeGamePlay'))
-
-const SpribeGames = React.lazy(() => import('./components/pages/virtuals/SpribeGames'))
-
 const Virtuals = React.lazy(() => import('./components/pages/casino/Virtuals'))
 
 const CasinoGamePlay = React.lazy(() => import('./components/pages/casino/GamePlay'))
+
+const SpribeGamePlay = React.lazy(() => import('./components/pages/virtuals/SpribeGamePlay'))
+
+const SpribeGames = React.lazy(() => import('./components/pages/virtuals/SpribeGames'))
 
 const Promotions = React.lazy(() => import('./components/pages/promotions/Promotions'))
 
@@ -105,7 +106,7 @@ const PageNotFound = React.lazy(() => import('./components/pages/404/NotFound'))
 
 
 const Logout = () => {
-    let navigate =  useNavigate();
+    let navigate = useNavigate();
 
     const out = useCallback(() => {
         localStorage.clear();
@@ -118,45 +119,32 @@ const Logout = () => {
     return null;
 }
 
-const TRACKING_ID = "G-5NLSN9BLN4";
-ReactGA.initialize(TRACKING_ID);
-
 const container = document.getElementById("app");
 render((
     <Store>
-        <BrowserRouter >
-            <Suspense fallback={<Loading/>}>
+        <BrowserRouter>
+            <Suspense fallback={<p> Loading ... </p>}>
                 <Routes>
                     <Route path="*" element={<Navigate to="/404"/>}/>
-                    <Route exact path="/" element={<Index/>}>
-                        <Route exact path="/highlights" element={<Index/>}/>
-                        <Route exact path="/upcoming" element={<Index/>}/>
-                        <Route exact path="/tomorrow" element={<Index/>}/>
-                    </Route>
-                    <Route exact path="/virtuals"  element={<Virtuals/>}/>
-                    <Route exact path="gameplay"  element={<CasinoGamePlay/>}/>
-                    {/*<Route exact path="/casino" element={<Casino/>}/>*/}
-                    {/*<Route exact path="/live-casino" element={<LiveCasino/>}/>*/}
+                    <Route exact path="/" element={<Index/>}/>
+                    <Route exact path="/share" element={<BetslipShareDecode/>}/>
+                    <Route exact path="/virtuals" element={<Virtuals/>}/>
                     <Route exact path="/livescore" element={<LiveScore/>}/>
                     <Route exact path="/404" element={<PageNotFound/>}/>
                     <Route exact path={"/profile"} element={<Profile/>}/>
-                    <Route exact path= "/competition"
-                           element={<CompetitionsMatches/>}
-                    />
+                    <Route exact path="/casino" element={<Casino/>}/>
+                    <Route exact path="/live-casino" element={<LiveCasino/>}/>
+                    <Route exact path="/gameplay/:game_id/:live" element={<CasinoGamePlay/>}/>
+                    <Route exact path="/nare-games/:game" element={<SpribeGamePlay/>}/>
                     <Route exact path="/nare-games" element={<SpribeGames/>}/>
-                    <Route exact path="/nare-game" element={<SpribeGamePlay/>}/>
+                    <Route exact path="/highlights" element={<Index/>}/>
+                    <Route exact path="/upcoming" element={<Index/>}/>
+                    <Route exact path="/tomorrow" element={<Index/>}/>
+                    <Route exact path="/competition/:id" element={<CompetitionsMatches/>}/>
                     <Route exact path="/competition/:sportid/:categoryid/:competitionid"
-                           element={<CompetitionsMatches/>}
-                           loader={async ({params})=>{
-                               return fetch(`/competition/${params.sportid}/${params.categoryid}/${params.competitionid}`)
-                           }}
-                    />
-                    <Route exact path="/match/"
-                           element={<MatchAllMarkets/>}
-                    />
-                    <Route exact path="/match/"
-                           element={<MatchAllMarkets live/>}
-                    />
+                           element={<CompetitionsMatches/>}/>
+                    <Route exact path="/match/:id" element={<MatchAllMarkets/>}/>
+                    <Route exact path="/match/live/:id" element={<MatchAllMarkets live/>}/>
                     <Route exact path="/jackpot" element={<Jackpot/>}/>
                     <Route exact path="/live" element={<Live/>}/>
                     <Route exact path="/live/:spid" element={<Live/>}/>

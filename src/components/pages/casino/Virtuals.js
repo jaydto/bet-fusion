@@ -100,12 +100,11 @@ const Virtuals = (props) => {
                                                         <div className="overlay shadow-sm row">
                                                             <ButtonGroup aria-label="Basic example">
                                                                 <Button variant="warning"
-                                                                        onClick={() => launchGame(game?.game_id, false)}>
-                                                                    Play Demo
-                                                                </Button>
-                                                                <Button variant="danger"
+                                                                        style={{backgroundColor: "#ec5b0b", color: "white"}}
                                                                         onClick={() => launchGame(game?.game_id, true)}>
-                                                                    Play Game
+                                                                    <strong>
+                                                                        Play Game
+                                                                    </strong>
                                                                 </Button>
                                                             </ButtonGroup>
                                                         </div>

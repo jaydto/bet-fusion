@@ -3,7 +3,7 @@ import {setLocalStorage, getFromLocalStorage} from './local-storage';
 const ENC_KEY = '2bdVweTeI42s5mkLdYHyklTMxQS5gLA7MDS6FA9cs1uobDXeruACDic0YSU3si04JGZe4Y';
 export const BASE_URL = 'https://api.betnare.com';
 // const BASE_URL = 'http://127.0.0.1:5000';
-
+//
 const makeRequest = async ({url, method, data = null, use_jwt = false}) => {
 
     url = BASE_URL + url;
@@ -26,7 +26,7 @@ const makeRequest = async ({url, method, data = null, use_jwt = false}) => {
             ...data,
             iat: Math.floor(Date.now() / 1000) + (1 * 60)
         };
-        console.log("Payload ",payload)
+        // console.log("Payload ",payload)
         jwt = sign(payload, ENC_KEY);
 
         url += (url.match(/\?/g) ? '&' : '?') + 'token=' + jwt;

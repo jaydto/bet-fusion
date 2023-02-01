@@ -11,8 +11,7 @@ const Header = React.lazy(() => import('../../header/header'));
 const SideBar = React.lazy(() => import('../../sidebar/awesome/Sidebar'));
 const Footer = React.lazy(() => import('../../footer/footer'));
 const Right = React.lazy(() => import('../../right/index'));
-
-// const downloadAPKFile = React.lazy(() => import('../../../assets/betnare.apk'));
+const downloadAPKFile = React.lazy(() => import('../../../assets/betnare.apk'));
 
 
 const MobileApp = () => {
@@ -26,7 +25,7 @@ const MobileApp = () => {
     })
 
     const getDownloadFile = () => {
-        return "downloadAPKFile;"
+        return downloadAPKFile;
     }
 
     return (

@@ -3,7 +3,7 @@ import {Context} from '../../context/store';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
-import bgJackpot from '../../assets/img/banner/jackpots/bg-jackpot.png'
+import bgJackpot from '../../assets/img/banner/products/Bet_Nare_300k_Jackpot_New.webp'
 import {
     addToSlip,
     removeFromSlip,
@@ -26,6 +26,10 @@ import myGif from '../../assets/img/gif/fire5.gif'
 import {Input} from "@material-ui/core";
 import useWindowDimensions from "../header/Dimensions";
 import {Link} from "react-router-dom";
+import {toast} from "react-toastify";
+import Notify from "../utils/Notify";
+import Testimonials from "../carousel/Testimonials";
+
 
 const clean = (_str) => {
     _str = _str.replace(/[^A-Za-z0-9\-]/g, '');
@@ -36,7 +40,7 @@ const EmptyTextRow = (props) => {
     const {odd_key, classname} = props;
 
     return (
-        <div className={`${classname} btn btn-disabled match-detail col c-btn`}
+        <button className={`${classname} btn btn-disabled match-detail col c-btn`}
              style={{
                  width: "100%",
                  height: "40px",
@@ -54,7 +58,7 @@ const EmptyTextRow = (props) => {
                  effect="blur"
                  alt="--"/>
          </span>
-        </div>
+        </button>
     );
 };
 
@@ -146,6 +150,7 @@ const MatchHeaderRow = (props) => {
             }
         })
 
+
         setExtraMarketDisplays(extraMarkets)
 
     }
@@ -162,19 +167,18 @@ const MatchHeaderRow = (props) => {
 
         }
     }, [first_match?.parent_match_id])
-    //console.log(extraMarketDisplays)
 
     const checkJackpot=()=>{
         if (jackpot) {
-            return {top:"130px",positio:"sticky"}
+            return {top:"130px",position:"sticky"}
         }else{
-            return {top:"161px",positio:"sticky"}
+            return {top:"161px",position:"sticky"}
         }
     }
 
     return (
 
-        <Row className={`full-mobile sticky-top ${jackpot?'sticky-jackpot ':'sticky-responsive '}px-lg-3`}>
+        <Row className={`full-mobile sticky-top mx-1 ${jackpot?'sticky-jackpot ':'sticky-responsive '}px-lg-3`}>
             <div className="top-matches d-flex position-sticky sticky-top shadow-lg"
                  style={{opacity: "1", top: "100px"}}>
                 <div className={"size-info  d-flex col-xs-12 pad left-text"}>
@@ -197,14 +201,11 @@ const MatchHeaderRow = (props) => {
                                 <div className={'bold'}>
                                     3 WAY
                                 </div>
-
                                 <div className={'c-btn-group align-self-end'}>
                                     <a className="c-btn-header text-white">1</a>
                                     <a className="c-btn-header text-white">X</a>
                                     <a className="c-btn-header text-white">2</a>
                                 </div>
-
-
                             </div>
                         </div>}
                     {/*conditional render of different views for mobile and desktop*/}
@@ -260,14 +261,12 @@ const MatchHeaderRow = (props) => {
                             ))}
                         </>
                     )}
-
                     <div
                         className="bet-fix events-odd pad undefined align-items-md-start align-items-lg-center more-markets-container m-lg-2 col-3 d-flex h-100 d-flex align-self-center justify-content-md-start justify-content-lg-center
                               ">
                         <LazyLoadImage src={myGif} className={'fire '}/>
                     </div>
                 </div>
-
             </div>
         </Row>
     )
@@ -284,37 +283,78 @@ const MoreMarketsHeaderRow = (props) => {
         match_time,
         score,
         live,
-        match_status
+        sport_id,
+        parent_match_id,
+        match_status,
+        tags
     } = props;
+
+
+    useEffect(()=>{
+        window.SIR('addWidget', '#sr-widget', 'match.lmtPlus', {
+            branding:{tabs:{option: "icon", variant: "fullWidth"}},
+            goalBannerImage: "https://storage.googleapis.com/nareimages/logo-white.webp",
+            logo:["https://storage.googleapis.com/nareimages/logo-dark.webp"],
+            momentum: "disable",
+            matchId: parent_match_id ,
+            collapseTo:"disable",
+            layout: "double",
+            scoreboard:"extended",
+            detailedScoreboard: "disable",
+
+        });
+    })
+
+
+
+
+    let lmtIncludes=[79,85,82,80, 107]
+    // console.log("sport_id", lmtIncludes.includes(sport_id))
 
     return (
         <Row>
-            <Row className="panel-header primary-bg">
 
-                <h4 className="inline-block">
-                    {home_team} <small> - </small> {away_team}
-                </h4>
-                {live &&
+            {(live || lmtIncludes.includes(sport_id)) ?
+                <div id="sr-widget" className='mt-1 pt-2'></div> : <Row className="panel-header primary-bg">
+                    <h4 className="inline-block">
+                        {home_team} <small> - </small> {away_team}
+                        {
+                            tags?.length ?
+                                tags?.map(tag => (
+                                    <span className="tag" key={tag.name}
+                                          style={{
+                                              backgroundColor: `${tag.background_color}`,
+                                              color: `${tag.color}`
+                                          }}
+                                    >
+                                {tag.name}
+                            </span>
+                                ))
+                                : ""
+                        }
+                    </h4>
+                    {live &&
+                        <Row className="header-text">
+                            <Col style={{
+                                color: "#cc5500",
+                                marginBottom: "5px"
+                            }}> {match_status === 'Ended' && 'Ended '} {score}</Col>
+                        </Row>
+                    }
                     <Row className="header-text">
-                        <Col style={{
-                            color: "#cc5500",
-                            marginBottom: "5px"
-                        }}> {match_status === 'Ended' && 'Ended '} {score}</Col>
+                        <Col>{category} {competition}</Col>
                     </Row>
-                }
-                <Row className="header-text">
-                    <Col>{category} {competition}</Col>
-                </Row>
-                {match_status !== 'Ended' &&
-                    <Row className="start-time">
-                        {live
-                            ? <Col>Live: <span style={{color: "#cc5500"}}>{match_time || match_status}</span></Col>
-                            : <Col>Start: {start_time}</Col>}
+                    {match_status !== 'Ended' &&
+                        <Row className="start-time">
+                            {live
+                                ? <Col>Live: <span style={{color: "#cc5500"}}>{match_time || match_status}</span></Col>
+                                : <Col>Start: {start_time}</Col>}
 
-                        <Col>Game ID: {game_id} </Col>
-                    </Row>
-                }
-            </Row>
+                            <Col>Game ID: {game_id} </Col>
+                        </Row>
+                    }
+                </Row>
+            }
         </Row>
     )
 }
@@ -335,7 +375,7 @@ const SideBets = (props) => {
                     <FontAwesomeIcon className={"icon-size"} icon={faChartLine}/>
                 </a>
                     <Link className="side" title={'More Markets'}
-                          to={`/match?live=${live ? 'live' : ''}&id=${
+                          to={`/match/${live ? 'live' : ''}${
                               live ? match.parent_match_id : match?.match_id}`
                           }>+{match.side_bets}
                     </Link>
@@ -344,22 +384,6 @@ const SideBets = (props) => {
     )
 
 }
-// window.addEventListener('error', e => {
-//     // prompt user to confirm refresh
-//     if (/Loading chunk [\d]+ failed/.test(e.message)) {
-//         window.location.reload();
-//     }
-// });
-
-
-// App.addListener("appUrlOpen",data=>{
-//     if(Capacitor.isNativePlatform){
-//         if(data.url("https://s5.sir.sportradar.com")){
-//
-//             Browser.open(url);
-//         }
-//     }
-// })
 
 const OddButton = (props) => {
     const {match, mkt, detail, live, jackpot, subType, marketKey} = props
@@ -479,6 +503,7 @@ const OddButton = (props) => {
         let home_team = event.currentTarget.getAttribute("home_team");
         let away_team = event.currentTarget.getAttribute("away_team");
         let sport_name = event.currentTarget.getAttribute("sport_name");
+        let sport_id = event.currentTarget.getAttribute("sport_id");
         let market_active = event.currentTarget.getAttribute("market_active");
         let cstm = clean(mid + "" + stid + oddk + (marketKey !== undefined ? marketKey : ''))
 
@@ -494,6 +519,7 @@ const OddButton = (props) => {
             "bet_type": bet_type,
             "odd_type": odd_type,
             "sport_name": sport_name,
+            "sport_id": sport_id,
             "live": live,
             "ucn": cstm,
             "market_active": market_active,
@@ -502,7 +528,11 @@ const OddButton = (props) => {
 
         // console.log("Slip", slip)
         // console.log(cstm)
-
+        const maxPickReached=()=>{
+            setPicked('')
+            Notify(message)
+        }
+       let message= {status: 401, message: 'Maximum selections reached', token: ''}
         if (cstm === ucn) {
             let betslip;
             if (picked === 'picked') {
@@ -513,7 +543,7 @@ const OddButton = (props) => {
                 setPicked('');
             } else {
                 betslip = jackpot !== true
-                    ? addToSlip(slip)
+                    ? (getBetslip()&&Object.keys(getBetslip())?.length<=49)||getBetslip()==null?addToSlip(slip):maxPickReached()
                     : addToJackpotSlip(slip);
 
                 dispatch({type: "SET", key: reference, payload: cstm});
@@ -525,7 +555,7 @@ const OddButton = (props) => {
     return (
         <button
             ref={ref}
-            className={`home-team  ${match.match_id} ${ucn} ${picked} c-btn`}
+            className={`home-team ${match.match_id} ${ucn} ${picked} c-btn`}
             home_team={match.home_team}
             odd_type={match?.name || match?.market_name || "1X2"}
             bet_type={live ? 1 : 0}
@@ -538,6 +568,7 @@ const OddButton = (props) => {
             custom={ucn}
             id={ucn}
             sport_name={match.sport_name}
+            sport_id={match.sport_id}
             sub_type_id={match.sub_type_id}
             special_bet_value={match?.special_bet_value || ''}
             onClick={handleButtonOnClick}>
@@ -711,7 +742,6 @@ const MatchRow = (props) => {
     for (let i = 0; i < append; i++) {
         loops.push(i)
     }
-    // console.log(extraMarketDisplays.length)
     return (
         <div className="top-matches d-flex flex-sm-column flex-lg-row ">
             <div
@@ -732,8 +762,7 @@ const MatchRow = (props) => {
                         <>ID: {match?.game_id}</>
                     </div>
                     <div className={`col align-items-center col-xs-12 match-detail-container px-2 change-match only-mobile ${jackpot?"align-self-center":""}`}>
-                        <Link to={jackpot ? '#' : `/match?live=${live ? 'live' : ''}&id=${
-                              live ? match.parent_match_id : match?.match_id}`}>
+                        <Link to={jackpot ? '#' : `/match/${live ? 'live/' + match.parent_match_id : match.match_id}`}>
                             <div className="d-flex flex-column">
                                 <div className="compt-detail overflow-ellipsis">
                                     <small>{match.category} | {match.competition_name}</small>
@@ -753,7 +782,21 @@ const MatchRow = (props) => {
 
                                 </div>
                             </div>
-                        </Link>   </div>
+                        </Link>
+                        {
+                            match.tags?.length ?
+                                match.tags.map(tag => (
+                                    <span className="tag" key={tag.name}
+                                          style={{
+                                              backgroundColor: `${tag.background_color}`,
+                                              color: `${tag.color}`,
+                                          }}
+                                    >
+                                {tag.name}
+                            </span>
+                                ))
+                                : ""
+                        }</div>
                     <div className={'to-tabview'}>
                         {!pdown && !jackpot &&
                             <SideBets match={match} live={live} style={{d: "inline"}}/>}
@@ -1053,50 +1096,36 @@ export const MarketList = (props) => {
 
 }
 
-// export const JackpotHeader = (props) => {
-//     const {jackpot} = props
-//
-//     return (
-//         <Container>
-//             <Row className="top-matches jackpot-resize"
-//                  style={{backgroundImage: `url(${bgJackpot})`, backgroundRepeat: 'no-repeat', height: "75px"}}>
-//                 <Row className="jp-header-text">
-//                     <div className="jp-header-top">
-//                         {jackpot?.type} - {jackpot?.total_games} GAMES {jackpot?.name}
-//                     </div>
-//                 </Row>
-//                 <Row className="jp-header-text mb-2">
-//                     <div className="jackpot-amount mt-3">
-//                         <CurrencyFormat
-//                             value={jackpot?.jackpot_amount}
-//                             displayType={'text'}
-//                             thousandSeparator={true} prefix={'KES'}/>
-//                     </div>
-//                 </Row>
-//
-//             </Row>
-//         </Container>
-//     )
-//
-// }
+export const JackpotHeader = (props) => {
+    const {jackpot} = props
+
+    return (
+        <Container>
+            <Row className="top-matches jackpot-resize"
+                 style={{backgroundImage: `url(${bgJackpot})`, backgroundRepeat: 'no-repeat', height: "75px"}}>
+                <Row className="jp-header-text">
+                    <div className="jp-header-top">
+                        {jackpot?.type} - {jackpot?.total_games} GAMES {jackpot?.name}
+                    </div>
+                </Row>
+                <Row className="jp-header-text mb-2">
+                    <div className="jackpot-amount mt-3">
+                        <CurrencyFormat
+                            value={jackpot?.jackpot_amount}
+                            displayType={'text'}
+                            thousandSeparator={true} prefix={'KES'}/>
+                    </div>
+                </Row>
+
+            </Row>
+        </Container>
+    )
+
+}
 
 export const JackpotMatchList = (props) => {
     const {matches, jackpotData} = props;
     const [selections, setSelections] = useState([])
-
-    // useEffect(()=>{
-
-        // const storedItem = localStorage.getItem('jackpotbetslip');
-// if(storedItem){
-//
-// }
-
-    //
-    //
-    // },[])
-    // const storedItem = localStorage.getItem('jackpotbetslip');
-    // console.log("selection1",storedItem)
-
 
     const randomize = async () => {
         matches?.data?.forEach((match, index) => {
@@ -1115,7 +1144,6 @@ export const JackpotMatchList = (props) => {
             })
         })
         setSelections(selections)
-
     }
 
 

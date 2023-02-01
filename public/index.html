@@ -1,45 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <!-- Google Tag Manager -->
-    <script>(function (w, d, s, l, i) {
+    <script>
+      (function (w, d, s, l, i) {
         w[l] = w[l] || [];
         w[l].push({
-            'gtm.start':
-                new Date().getTime(), event: 'gtm.js'
+          "gtm.start": new Date().getTime(),
+          event: "gtm.js",
         });
         var f = d.getElementsByTagName(s)[0],
-            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
         j.async = true;
-        j.src =
-            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
         f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-PZ5V4GR');</script>
-    <script type="text/javascript">(function (c, l, a, r, i, t, y) {
-        c[a] = c[a] || function () {
-            (c[a].q = c[a].q || []).push(arguments)
-        };
+      })(window, document, "script", "dataLayer", "GTM-PZ5V4GR");
+    </script>
+    <script type="text/javascript">
+      (function (c, l, a, r, i, t, y) {
+        c[a] =
+          c[a] ||
+          function () {
+            (c[a].q = c[a].q || []).push(arguments);
+          };
         t = l.createElement(r);
         t.async = 1;
         t.src = "https://www.clarity.ms/tag/" + i + "?ref=gtm2";
         y = l.getElementsByTagName(r)[0];
         y.parentNode.insertBefore(t, y);
-    })(window, document, "clarity", "script", "ez9iby6sl0");</script>
+      })(window, document, "clarity", "script", "ez9iby6sl0");
+    </script>
     <!-- End Google Tag Manager -->
-    <meta charset="utf-8"/>
-    <link rel="icon" href="%PUBLIC_URL%/favicon.png"/>
-    <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#000000"/>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
     <meta
-            name="description"
-            content="Betnare, giving the experience of betting like no other"
+      name="description"
+      content="Betnare, giving the experience of betting like no other"
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png"/>
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json"/>
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -50,30 +56,8 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>Betnare</title>
-    <!--bitrix chat script-->
-<!--    <script>-->
-<!--        (function(w,d,u){-->
-<!--            var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/60000|0);-->
-<!--            var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);-->
-<!--        })(window,document,'https://cdn.bitrix24.com/b24014665/crm/site_button/loader_4_pj81kv.js');-->
-<!--    </script>-->
-
-    <script src="https://dga.pragmaticplaylive.net/dgaAPI.js"></script>
-    <script src="https://client.pragmaticplaylive.net/desktop/assets/api/fullscreenApi.js"></script>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10991240939"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-
-        gtag('js', new Date());
-        gtag('config', 'AW-10991240939');
-    </script>
-    <!-- Tawk.to Script-->
-    <script type="text/javascript">
+    <!--Start of Tawk.to Script-->
+    <!-- <script type="text/javascript">
         var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
         (function () {
             var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
@@ -96,54 +80,108 @@
             s1.setAttribute('crossorigin', '*');
             s0.parentNode.insertBefore(s1, s0);
         })();
+    </script> -->
+
+    <!--End of Tawk.to Script-->
+
+    <!--   Start of  Bitrix-->
+    <script>
+      (function (w, d, u) {
+        var s = d.createElement("script");
+        s.async = true;
+        s.src = u + "?" + ((Date.now() / 60000) | 0);
+        var h = d.getElementsByTagName("script")[0];
+        h.parentNode.insertBefore(s, h);
+      })(
+        window,
+        document,
+        "https://cdn.bitrix24.com/b24014665/crm/site_button/loader_4_pj81kv.js"
+      );
     </script>
-    <!--End of  Tawk.to Script-->
+    <!--    live match tracker-->
+    <script
+      type="application/javascript"
+      src="https://widgets.sir.sportradar.com/db1070bd52c9f321c66fd763a52e2af8/widgetloader"
+      async
+    ></script>
+    <!--end of-->
+
+    <!--    End of Bitrix-->
+
+    <script src="https://dga.pragmaticplaylive.net/dgaAPI.js"></script>
+    <script src="https://client.pragmaticplaylive.net/desktop/assets/api/fullscreenApi.js"></script>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=AW-10991240939"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+
+      gtag("js", new Date());
+      gtag("config", "AW-10991240939");
+    </script>
+
     <!-- Eskimi DSP Pixel Code -->
     <script>
-        !function (f, e, t, u, n, s, p) {
-            if (f.esk) return;
-            n = f.esk = function () {
-                n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-            };
-            if (!f.___esk) f.___esk = n;
-            n.push = n;
-            n.loaded = !0;
-            n.queue = [];
-            s = e.createElement(t);
-            s.async = !0;
-            s.src = u;
-            p = e.getElementsByTagName(t)[0];
-            p.parentNode.insertBefore(s, p)
-        }(window, document, 'script', 'https://dsp-media.eskimi.com/assets/js/e/gtr.min.js?_=0.0.0.3');
-        esk('init', '26048');
+      !(function (f, e, t, u, n, s, p) {
+        if (f.esk) return;
+        n = f.esk = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f.___esk) f.___esk = n;
+        n.push = n;
+        n.loaded = !0;
+        n.queue = [];
+        s = e.createElement(t);
+        s.async = !0;
+        s.src = u;
+        p = e.getElementsByTagName(t)[0];
+        p.parentNode.insertBefore(s, p);
+      })(
+        window,
+        document,
+        "script",
+        "https://dsp-media.eskimi.com/assets/js/e/gtr.min.js?_=0.0.0.3"
+      );
+      esk("init", "26048");
     </script>
     <script>
-        function gtag_report_conversion(url) {
-            var callback = function () {
-                if (typeof (url) != 'undefined') {
-                    window.location = url;
-                }
-            };
-            gtag('event', 'conversion', {
-                'send_to': 'AW-10991240939/GdurCO6x5IAYEOuNhPko',
-                'event_callback': callback
-            });
-            return false;
-        }
+      function gtag_report_conversion(url) {
+        var callback = function () {
+          if (typeof url != "undefined") {
+            window.location = url;
+          }
+        };
+        gtag("event", "conversion", {
+          send_to: "AW-10991240939/GdurCO6x5IAYEOuNhPko",
+          event_callback: callback,
+        });
+        return false;
+      }
     </script>
     <!-- End Eskimi DSP Pixel Code -->
-</head>
-<body onscroll="getScrollLength()">
-<!-- Google Tag Manager (noscript) -->
-<noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PZ5V4GR"
-            height="0" width="0" style="display:none;visibility:hidden"></iframe>
-</noscript>
-<!-- End Google Tag Manager (noscript) -->
-<noscript>You need to enable JavaScript to run this app.</noscript>
-<div id="app"></div>
-<script src="index.js"></script>
-<!--
+  </head>
+  <body onscroll="getScrollLength()">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-PZ5V4GR"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="app"></div>
+    <!--
   This HTML file is a template.
   If you open it directly in the browser, you will see an empty page.
 
@@ -153,12 +191,15 @@
   To begin the development, run `npm start` or `yarn start`.
   To create a production bundle, use `npm run build` or `yarn build`.
 -->
-</body>
-<script>
+  </body>
+  <script>
     function getScrollLength() {
-        if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight - 350) {
-            document.dispatchEvent(new Event('scrollEnd'))
-        }
+      if (
+        window.innerHeight + window.scrollY >=
+        document.body.scrollHeight - 350
+      ) {
+        document.dispatchEvent(new Event("scrollEnd"));
+      }
     }
-</script>
+  </script>
 </html>

@@ -33,7 +33,8 @@ const Index = (props) => {
     const [fetching, setFetching] = useState(false)
     const homePageRef = useRef()
     const [utmSource, setUtmSource] = useState('')
-
+    const widthRef = useRef(null);
+    const widthComponentRef = useRef(null);
     const findPostableSlip = () => {
         let betslips = getBetslip() || {};
         var values = Object.keys(betslips).map(function (key) {
@@ -56,13 +57,11 @@ const Index = (props) => {
 
         let method = betslip ? "POST" : "GET";
 
-
         let tab = location.pathname.replace("/", "") || 'highlights';
 
         endpoint += "?page=" + (page || 1) + `&limit=${limit || 50}&tab=` + tab
 
         let url = new URL(window.location.href)
-
 
         let sport_id = url.searchParams.get('sport_id')
 
@@ -144,8 +143,6 @@ const Index = (props) => {
 
     }, []);
 
-
-
     useEffect(() => {
         checkThreeWay()
         fetchData();
@@ -167,7 +164,7 @@ const Index = (props) => {
     document.addEventListener('scrollEnd', (event) => {
         if (!fetching) {
             setFetching(true)
-            setLimit(limit + 10)
+            setLimit(limit + 50)
         }
     })
 

@@ -33,7 +33,6 @@ const Jackpot = (props) => {
     // };
 
     const fetchData = useCallback(async (jackpot_id = '', jackpot_status = '') => {
-        // let betslip=findPostableSlip();
         let match_endpoint = "/v1/matches/jackpot";
         if (jackpot_id !== '') {
             match_endpoint += '?jackpot_id=' + jackpot_id
@@ -48,8 +47,6 @@ const Jackpot = (props) => {
         let [m_status, m_result] = match_result;
         if (m_status === 200) {
             setMatches(m_result);
-            console.log("jackpot results",m_result)
-
         }
 
     }, []);
@@ -131,8 +128,8 @@ const Jackpot = (props) => {
                                                 onChange={loadJPResults}/>
                                     </div>
 
-                                    {/*<JackpotHeader jackpot={matches?.meta}/>*/}
-                                    <img src={Jackpot300k}/>
+                                    <JackpotHeader jackpot={matches?.meta}/>
+                                    {/*<img src={Jackpot300k}/>*/}
 
                                     <div className="matches full-mobile sticky-top container">
                                         <div

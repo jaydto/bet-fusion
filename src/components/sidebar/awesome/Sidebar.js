@@ -53,7 +53,7 @@ const Sidebar = (props) => {
         return () => {
             abortController.abort();
         };
-    }, [fetchData]);
+    }, []);
 
     const [width, setWidth] = useState(window.innerWidth);
 
@@ -105,11 +105,11 @@ const Sidebar = (props) => {
             display: 'flex',
             overflow: 'auto initial',
             zIndex: 10,
-            top: "10.5rem"
+            marginRight: '2px',
+            top: "12.5rem"
         }}
-             className={`vh-100 text-white sticky-top d-none d-md-block up`}>
+             className={`vh-100 text-white sticky-top d-none d-md-block up `}>
             <ProSidebar
-
                 style={{backgroundColor: '#16202c !important'}}
                 image={false}
                 onToggle={handleToggleSidebar}
@@ -152,28 +152,17 @@ const Sidebar = (props) => {
                                      icon={<img style={{borderRadius: '50%', height: '20px'}}
                                                 src={getSportImageIcon(competition.sport_name)}/>}
                                      key={index}>
-
-                                {/*{index === 0 && ( <MenuItem icon={<img*/}
-                                {/*    src={getSportImageIcon('/img/flags-1-1/worldcup.png', 'img/flags-1-1', true)}*/}
-                                {/*    style={{borderRadius: "50%", height: "20px"}}></img>}>*/}
-                                {/*    <Link onClick={() => gaEventTracker(`Today Games ${competition?.sport_name}`)}*/}
-                                {/*          to={{pathname: "/competition",search: "competitionid=18585&sub_type_id=1,18,29&limit=500&c=worldcup"}}*/}
-                                {/*          >*/}
-                                {/*        <strong>Fifa World Cup</strong>*/}
-                                {/*    </Link>*/}
-                                {/*</MenuItem>)}*/}
-
                                 {index === 0 && (
-
                                     <SubMenu title={'Top Leagues'}>
                                         {competitions?.top_soccer?.map((top_league, index) => (
                                             <MenuItem key={`l_${index}`}
                                                       icon={<img
                                                           src={getSportImageIcon(top_league?.flag, 'img/flags-1-1', true)}
                                                           style={{borderRadius: "50%", height: "20px"}}></img>}>
-                                                <Link  style={{paddingLeft: "4px",width:"max-content"}}  to={{pathname: `/competition`,search: `competitionid=${top_league.competition_id}&sub_type_id=${getDefaultMarketsForSport(competition)}`}}>
-                                                        {top_league?.competition_name}
-                                                </Link>
+                                                <a onClick={() => gaEventTracker(`Top Leagues ${top_league?.competition_name}`)}
+                                                   href={`/competition/${top_league.sport_id}/${top_league.category_id}/${top_league.competition_id}?sport_id=${competition.sport_id}&sub_type_id=${getDefaultMarketsForSport(competition)}`}>
+                                                    {top_league?.competition_name}
+                                                </a>
                                             </MenuItem>
                                         ))}
                                     </SubMenu>
@@ -190,14 +179,13 @@ const Sidebar = (props) => {
                                             >
                                                 {country?.competitions.map((league, leagueKey) => (
                                                     <MenuItem key={`${leagueKey}_league`}>
-                                                        <Link to={{pathname:`/competition`,search:`competitionid=${league.competition_id}&sub_type_id=${getDefaultMarketsForSport(competition)}`}}
+                                                        <a href={`/competition/${competition.sport_id}/${country.category_id}/${league.competition_id}?sport_id=${competition.sport_id}&sub_type_id=${getDefaultMarketsForSport(competition)}`}
                                                            onClick={() => {
                                                                setLocalStorage('active_item', competition.sport_id);
                                                                gaEventTracker(league?.competition_name)
                                                            }}>
                                                             {league.competition_name}
-                                                        </Link>
-
+                                                        </a>
                                                     </MenuItem>
                                                 ))}
                                             </SubMenu>

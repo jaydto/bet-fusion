@@ -10,9 +10,10 @@ import {
 } from 'react-accessible-accordion';
 
 import '../assets/css/accordion.react.css';
+import Testimonials from "./carousel/Testimonials";
 import {getFromLocalStorage} from "./utils/local-storage";
 import useWindowDimensions from "./header/Dimensions";
-import Testimonials from "./carousel/Testimonials";
+
 
 const Header = React.lazy(()=>import('./header/header'));
 const Footer = React.lazy(()=>import('./footer/footer'));
@@ -56,7 +57,7 @@ const MyBets = (props) => {
     }, []);
 
     useEffect(() => {
-        fetchData();
+       fetchData();
     }, [fetchData]);
 
     const BetItemHeader = (props) => {
@@ -128,7 +129,7 @@ const MyBets = (props) => {
     }
 
     const BetslipHeader = () => {
-
+        
         return (
             <div className={`container slipheader`} >
                 <div className="row">
@@ -149,7 +150,7 @@ const MyBets = (props) => {
     const BetslipItem = (props) => {
         const { betslip } = props;
 
-
+		
         return (
             <div className={`container kumbafu`}  key={betslip.game_id}>
                 <div className="row">
@@ -168,44 +169,43 @@ const MyBets = (props) => {
     }
 
     const MyBetsList = (props) => {
-        return (
-            <Accordion className={"px-1 accordion-bg"} >
-                {state?.mybets && state.mybets.map((bet) => (
-                    <AccordionItem
-                        key = {bet.bet_id}
-                        uuid = { bet.bet_id }
-                    >
-                        <AccordionItemHeading>
-                            <AccordionItemButton>
-                                <BetItem bet={bet}  key={bet.id}/>
-                            </AccordionItemButton>
-                        </AccordionItemHeading>
-                        <AccordionItemPanel>
-                            <BetslipHeader />
-                            {  bet.betslip?.map((betslip) => (
-                                <BetslipItem
-                                    betslip={betslip}
-                                    key={betslip.bet_slip_id}
-                                />
-                            ))
-                            }
-                            { isLoading && <p>Loading ... </p>}
-                        </AccordionItemPanel>
-                    </AccordionItem>
-                ))}
-            </Accordion>
-        );
+		return (
+         <Accordion className={"bg-dark px-1"} >
+			{state?.mybets && state.mybets.map((bet) => (
+				<AccordionItem
+                    key = {bet.bet_id}
+                    uuid = { bet.bet_id }>
+					<AccordionItemHeading >
+                        <AccordionItemButton >
+							<BetItem bet={bet}  key={bet.id}/>
+						</AccordionItemButton>
+					</AccordionItemHeading>
+					<AccordionItemPanel >
+                     <BetslipHeader />
+					{  bet.betslip?.map((betslip) => (
+                         <BetslipItem 
+                            betslip={betslip}  
+                            key={betslip.bet_slip_id}
+                         />  
+                       ))
+                    }
+                    { isLoading && <p>Loading ... </p>}
+					</AccordionItemPanel>
+				</AccordionItem>
+			))}
+		</Accordion>
+	    );
 
     }
 
     const PageTitle = () => {
-        return (
+       return (
             <div className='col-md-12 primary-bg p-4 text-center'>
                 <h4 className="inline-block">
                     MY BETS
                 </h4>
             </div>
-        )
+       )
     }
     return (
         <>
@@ -213,7 +213,7 @@ const MyBets = (props) => {
             <div className={(width<=514?state?.user?"user_logged":"amt":"amt")}>
                 <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions/>
-                    <div className="gz home moz-clip" >
+                    <div className="gz home" style={{width: '100%'}}>
                         <div className="homepage">
                             <CarouselLoader/>
                             <Testimonials/>

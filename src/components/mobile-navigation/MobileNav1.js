@@ -98,12 +98,12 @@ const MobileNav1 = (props) => {
         return allsports?.default_display_markets
     }
 
-    const getSportImageIcon = (sport_name, folder = 'svg', topLeagues = false) => {
+    const getSportImageIcon = (sport_name, folder = 'sports', topLeagues = false) => {
 
         let default_img = 'default_sport'
         let sport_image;
         try {
-            sport_image = topLeagues ? require(`../../../src/assets${sport_name}`) : require(`../../../src/assets/${folder}/${sport_name}.svg`);
+            sport_image = topLeagues ? require(`../../../src/assets${sport_name}`) : require(`../../../src/assets/svg/${folder}/${sport_name}.png`);
         } catch (error) {
             sport_image = require(`../../../src/assets/${folder}/${default_img}.svg`);
         }
@@ -166,17 +166,17 @@ const MobileNav1 = (props) => {
                 </td>
 
 
-                <td style={{paddingLeft: "4px"}} className={window.location.search.includes('Premier League') ? 'active  ' : 'menu-t'}
-                    onClick={() => gaEventTracker('Premier League')}>
-                    <Link className="cg fm ox anl url-link d-flex flex-column align-items-center"
-                          to={{pathname: "/competition",search: "competitionid=16805&sub_type_id=1&limit=500&c=Premier League"}}
-                          title="Fifa World Cup"
-                    >
-                        <img src={Premier_League} className={'world-cup'}
-                             style={{height: "25px", borderRadius: "0 !important"}}></img>
-                        <strong>Premier League</strong>
-                    </Link>
-                </td>
+                {/*<td style={{paddingLeft: "4px"}} className={window.location.search.includes('Premier League') ? 'active  ' : 'menu-t'}*/}
+                {/*    onClick={() => gaEventTracker('Premier League')}>*/}
+                {/*    <Link className="cg fm ox anl url-link d-flex flex-column align-items-center"*/}
+                {/*          to={{pathname: `/competition`,search: `competitionid=16805&sub_type_id=1`}}>*/}
+                {/*          title="Fifa World Cup"*/}
+                {/*    >*/}
+                {/*        <img src={Premier_League} className={'world-cup'}*/}
+                {/*             style={{height: "25px", borderRadius: "0 !important"}}></img>*/}
+                {/*        <strong>Premier League</strong>*/}
+                {/*    </Link>*/}
+                {/*</td>*/}
 
                 {sport?.all_sports.map((allsports, index) => (
                 <td key={index} className={`menu-t sport-check ${pathname===allsports.sport_id?"active":""}`} style={{paddingLeft: "4px"}}>

@@ -83,12 +83,12 @@ const Sidebar = (props) => {
         return () => window.removeEventListener("resize", updateDimensions);
     }, [width]);
 
-    const getSportImageIcon = (sport_name, folder = 'svg', topLeagues = false) => {
+    const getSportImageIcon = (sport_name, folder = 'sports', topLeagues = false) => {
 
         let default_img = 'default_sport'
         let sport_image;
         try {
-            sport_image = topLeagues ? require(`../../../assets${sport_name}`) : require(`../../../assets/${folder}/${sport_name}.svg`);
+            sport_image = topLeagues ? require(`../../../assets/svg/${sport_name}`) : require(`../../../assets/svg/${folder}/${sport_name}.png`);
         } catch (error) {
             sport_image = require(`../../../assets/${folder}/${default_img}.svg`);
         }

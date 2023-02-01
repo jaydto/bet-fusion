@@ -91,20 +91,21 @@ const MobileNav2 = (props) => {
         <table  style={{width: "100%", textAlign: "center"}}>
             <tbody>
             <tr className={"d-flex league-row"}>
-                {sport?.top_soccer.map((top_soccer, index) => (
-                    <td key={index} className={` d-flex menu-t sport-check ${pathname===top_soccer.competition_id?" active":""}`} style={{paddingLeft: "4px",textAlign: 'center',lineHeight: '1.5'}}>
-                        <Link  style={{paddingRight: "4px",width:"max-content"}}  to={{pathname: `/competition`,search: `competitionid=${top_soccer.competition_id}&sub_type_id=1`}}>
+                {sport?.top_soccer.map((top_league, index) => (
+                    <td key={index} className={` d-flex menu-t sport-check ${pathname===top_league.competition_id?" active":""}`} style={{paddingLeft: "4px",textAlign: 'center',lineHeight: '1.5'}}>
+                        <Link  style={{paddingRight: "4px",width:"max-content"}}  to={{pathname: `/competition`,search: `competitionid=${top_league.competition_id}&sub_type_id=1`}}>
                             {/*<div className="menu-img">*/}
                             {/*    */}
                             {/*</div>*/}
+                            {/*`/competition/${top_league.sport_id}/${top_league.category_id}/${top_league.competition_id}?sport_id=79&sub_type_id=1`*/}
                             <div className="inner-div active d-flex align-items-center justify-content-center">
                                 <LazyLoadImage
                                     className="side-icon"
-                                    src={getSportImageIcon(top_soccer.competition_name)}
+                                    src={getSportImageIcon(top_league.competition_name)}
                                     alt=""
                                     style={{height: "20px"}} alt="#"
                                 />
-                                {top_soccer.competition_name}
+                                {top_league.competition_name}
                             </div>
 
                         </Link>

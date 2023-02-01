@@ -126,7 +126,7 @@ const HeaderNav = (props) => {
                     <li className={`${pathname.includes('Premier') || (window.location.href.includes("Premier")) ? 'active px-2' : 'px-2'}`}
                         onClick={() => gaEventTracker('Premier League')}>
                         <Link className="cg fm ox anl url-link"
-                              to="/competition/79/8076/16805?sport_id=79&sub_type_id=1,18,29&limit=500&c=Premier League"
+                              to={{pathname: `/competition`,search: `competitionid=16805&sub_type_id=1`}}>
                               title="Premier League">
                             <div className={'notification-item'}>
                                 <img src={Premier_League} className={'Premier League'}

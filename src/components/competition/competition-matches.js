@@ -23,7 +23,10 @@ const CompetitionMatches = (props) => {
     const [matches, setMatches] = useState(null);
     const [state, dispatch] = useContext(Context);
     const {height, width} = useWindowDimensions();
-    const {sportid, categoryid, competitionid} = useParams();
+    let {sportid, categoryid, competitionid} = useParams();
+    const url = new URL(window.location)
+    let    competitioni1= url.searchParams.get('competitionid')
+
     const [producerDown, setProducerDown] = useState(false);
     const [userSlipsValidation, setUserSlipsValidation] = useState();
     const [fetching, setFetching] = useState(false)
@@ -37,13 +40,20 @@ const CompetitionMatches = (props) => {
         });
         return values;
     };
+    const optionMatch=()=>{
+        if(competitioni1){
+            return competitioni1
+        }
+        else return competitionid
+    }
+
 
     useInterval(async () => {
         if (!shouldFetch) {
             return;
         }
         setFetching(true)
-        let endpoint = "/v1/sports/competition?id=" + competitionid + "&page=" + (page || 1) + "&sport_id=79";
+        let endpoint = "/v1/sports/competition?id="+optionMatch()+"&page="+(page || 1)+"&sport_id=79";
         let sub_types = new URL(window.location).searchParams.get('sub_type_id')
         endpoint += sub_types ? '&sub_type_id=' + sub_types : ''
         let betslip = findPostableSlip();
@@ -65,7 +75,7 @@ const CompetitionMatches = (props) => {
         if (!fetching && shouldFetch) {
             setFetching(true);
             let betslip = findPostableSlip();
-            let endpoint = "/v1/sports/competition?id=" + competitionid + "&page=" + (page || 1);
+            let endpoint = "/v1/sports/competition?id="+optionMatch()+"&page=" + (page || 1);
             let sub_types = new URL(window.location).searchParams.get('sub_type_id')
             endpoint += sub_types ? '&sub_type_id=' + sub_types : ''
             makeRequest({url: endpoint, method: "post", data: betslip}).then(([status, result]) => {

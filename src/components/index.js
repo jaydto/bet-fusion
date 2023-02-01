@@ -21,6 +21,9 @@ const Index = (props) => {
     const [user, setUser] = useState(getFromLocalStorage("user"));
     const gaEventTracker = useAnalyticsEventTracker('Home');
     const location = useLocation();
+    const [tab, setTab] = useState('highlights');
+    const [sportID, setSportID] = useState(79);
+    const [loading, setLoading] = useState(false);
 
     const {height, width} = useWindowDimensions();
     const [matches, setMatches] = useState([]);
@@ -91,6 +94,7 @@ const Index = (props) => {
             if (status == 200) {
                 setMatches(matches.length > 0 ? {...matches, ...result?.data} : result?.data || result)
                 setFetching(false)
+                setLoading(false)
                 // setMatches(result?.data || result)
                 if (result?.slip_data) {
                     setUserSlipsValidation(result?.slip_data)
@@ -134,6 +138,7 @@ const Index = (props) => {
             if (status == 200) {
                 setMatches(matches.length > 0 ? {...matches, ...result?.data} : result?.data || result)
                 setFetching(false)
+                setLoading(false)
                 if (result?.slip_data) {
                     setUserSlipsValidation(result?.slip_data)
                 }
@@ -189,6 +194,41 @@ const Index = (props) => {
         configureCampaignCookie()
     }, [utmSource])
 
+    useEffect(() => {
+        let new_tab = ""
+        const new_sport_id = Number(new URL(window.location).searchParams.get("sport_id"))
+
+        if (window.location.href.includes("highlights")) {
+            new_tab = ("highlights")
+        }
+
+        if (window.location.href.includes("upcoming")) {
+            new_tab = ("upcoming")
+
+        }
+
+        if (window.location.href.includes("tomorrow")) {
+            new_tab = ('tomorrow')
+        }
+
+        if (new_tab !== tab) {
+            setTab(new_tab)
+            setLoading(true)
+        }
+
+
+        if (sportID !== new_sport_id) {
+            setSportID(new_sport_id)
+            setLoading(true)
+            setMatches([])
+            console.log("loading_matches", new_sport_id)
+        } else {
+
+        }
+
+    })
+
+
 
     return (<>
         <Header/>
@@ -202,15 +242,20 @@ const Index = (props) => {
 
                         <MainTabs tab={location.pathname.replace("/", "")}/>
                         {/* <MobileCategories/> */}
-                        <MatchList
-                            live={false}
-                            matches={matches}
-                            pdown={producerDown}
-                            three_way={threeWay}
-                        />
-                    </div>
-                    <div className={`text-center mt-2 text-white ${fetching ? 'd-block' : 'd-none'}`}>
-                        <Spinner animation={'grow'} size={'lg'}/>
+                        {loading ?
+                            <div className={`text-center mt-2 text-white d-block`}>
+                                <Spinner animation={'grow'} size={'lg'}/>
+                            </div> : <MatchList
+                                live={false}
+                                fetching={fetching}
+                                matches={matches}
+                                pdown={producerDown}
+                                three_way={threeWay}
+
+                            />
+                        }
+
+
                     </div>
                 </div>
                 <Right betslipValidationData={userSlipsValidation} jackpotData={matches?.meta}/>

@@ -1,7 +1,6 @@
 import Row from 'react-bootstrap/Row';
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
-import useWindowDimensions from "./Dimensions";
 import {getFromLocalStorage} from "../utils/local-storage";
 
 
@@ -11,7 +10,6 @@ const MainTabs = (props) => {
     const u_class = tab === 'upcoming' ? "home-tabs-active" : "home-tabs";
     const h_class = (!tab || tab === 'highlights') ? "home-tabs-active" : "home-tabs";
     const t_class = tab === 'tomorrow' ? "home-tabs-active" : "home-tabs";
-    const {height, width} = useWindowDimensions();
     const [user, setUser] = useState(getFromLocalStorage("user"));
 
     const getLink = (tab) => {
@@ -23,25 +21,25 @@ const MainTabs = (props) => {
         Object.keys(params).forEach((param, val) => {
             url.searchParams.set(param, params[param])
         })
+        return url.searchParams
 
-        window.location = url
     }
 
     return (
-        <Row className={"full-mobile "+`${width<=767?user?"highlight-logged-in-menu":"highlight-menu":"highlight-menu"}`}>
+        <Row className={"full-mobile " + `${user ? "highlight-logged-in-menu" : "highlight-menu"}`}>
             <Row className="top-matches d-flex flex-row ">
                 <div className="col bg-black text-center">
-                    <Link className={`cursor-pointer w-100 ${u_class}`} onClick={() => getLink('upcoming')}>
+                    <Link className={`cursor-pointer w-100 ${u_class}`} to={'/upcoming?' + getLink()}>
                         <span className="col-sm-11 main-header">Upcoming</span>
                     </Link>
                 </div>
                 <div className="col bg-black text-center">
-                    <Link className={`cursor-pointer w-100 ${h_class}`} onClick={() => getLink('highlights')}>
+                    <Link className={`cursor-pointer w-100 ${h_class}`} to={'/highlights?' + getLink()}>
                         <span className="col-sm-11 main-header">Highlights</span>
                     </Link>
                 </div>
                 <div className="col bg-black text-center">
-                    <Link className={`cursor-pointer w-100 ${t_class}`} onClick={() => getLink('tomorrow')}>
+                    <Link className={`cursor-pointer w-100 ${t_class}`} to={'/tomorrow?' + getLink()}>
                         <span className="col-sm-11 main-header">Tomorrow</span>
                     </Link>
                 </div>

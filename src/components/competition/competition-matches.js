@@ -23,7 +23,9 @@ const CompetitionMatches = (props) => {
     const [matches, setMatches] = useState(null);
     const [state, dispatch] = useContext(Context);
     const {height, width} = useWindowDimensions();
+    const [loading,setLoading]=useState(false);
     let {sportid, categoryid, competitionid} = useParams();
+    const [competitionID, SetcompetitionID] = useState(1)
     const url = new URL(window.location)
     let    competitioni1= url.searchParams.get('competitionid')
 
@@ -61,6 +63,7 @@ const CompetitionMatches = (props) => {
         await makeRequest({url: endpoint, method: method, data: betslip}).then(([status, result]) => {
             if (status == 200) {
                 setMatches(result?.data || result)
+                setLoading(false)
                 setShouldFetch(result?.data.length > 0)
                 if (result?.slip_data) {
                     setUserSlipsValidation(result?.slip_data)
@@ -73,6 +76,7 @@ const CompetitionMatches = (props) => {
 
     const fetchPagedData = useCallback(() => {
         if (!fetching && shouldFetch) {
+            setLoading(false)
             setFetching(true);
             let betslip = findPostableSlip();
             let endpoint = "/v1/sports/competition?id="+optionMatch()+"&page=" + (page || 1);
@@ -108,6 +112,20 @@ const CompetitionMatches = (props) => {
             setLimit(limit + 50)
         }
     })
+    useEffect(() => {
+        const new_competition_id = Number(optionMatch())
+
+        if (competitionID !== new_competition_id) {
+            SetcompetitionID(new_competition_id)
+            setLoading(true)
+            setMatches([])
+            console.log("loading_id",new_competition_id)
+
+        } else {
+
+        }
+
+    })
 
     return (
         <>
@@ -119,14 +137,18 @@ const CompetitionMatches = (props) => {
                         <div className="homepage">
                             <CarouselLoader/>
                             <Testimonials/>
-                            {matches && <MatchList
-                                live={false}
-                                matches={matches}
-                                pdown={producerDown}
-                            />}
-                        </div>
-                        <div className={`text-center mt-2 text-white ${fetching ? 'd-block' : 'd-none'}`}>
-                            <Spinner animation={'grow'} size={'lg'}/>
+                            {console.log("loading_competitions",loading)}
+                            {loading?
+                                <div className={`text-center mt-2 text-white d-block`}>
+                                    <Spinner animation={'grow'} size={'lg'}/>
+                                </div>:
+                                matches && <MatchList
+                                    live={false}
+                                    matches={matches}
+                                    pdown={producerDown}
+                                />
+                            }
+
                         </div>
                     </div>
                     <Right betslipValidationData={userSlipsValidation}/>

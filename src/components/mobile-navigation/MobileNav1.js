@@ -129,7 +129,7 @@ const MobileNav1 = (props) => {
                 <td  className={ window.location.search.includes('aviator') ? 'active' : 'menu-t'}
                      onClick={() => gaEventTracker('Aviator')} style={{paddingLeft: "4px"}}>
                     <Link className="cg fm ox anl url-link d-flex flex-column align-items-center"
-                          to={{pathname:"/nare-game", search:"game=aviator"}}
+                          to="/nare-games/aviator"
                           title="Kanyonde">
                         <div className="menu-img">
                             <LazyLoadImage src={kanyonde} style={{height: "25px" }}/>

@@ -744,7 +744,7 @@ const MatchRow = (props) => {
                 <div className="size-info  d-flex col-xs-12 pad left-text flex-row live-col">
 
 
-                    <div className={`d-flex flex-column px-1 justify-content-sm-center change-date1 mobile-remove ${jackpot?"jackpot-width":""}`}>
+                    <div className={`d-flex flex-column px-1 justify-content-sm-center justify-content-md-start change-date1 mobile-remove ${jackpot?"jackpot-width":""}`}>
                         {live &&
                             <>
                                 <small style={{color: "green"}}> {match?.match_status} </small>

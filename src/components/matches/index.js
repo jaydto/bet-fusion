@@ -754,7 +754,7 @@ const MatchRow = (props) => {
 
                         <span className={'date-size wrapping px-3'}>
                                                 {(live && match?.match_time) ?
-                                                    <>{`${match.match_time}'`}</> : new Date(match?.start_time).getDate()+"/"+(Number(new Date(match?.start_time).getMonth())+1) + " "+ match?.match_time}
+                                                    <>{`${match.match_time}'`}</> : new Date(match?.start_time).getDate()+"/"+(Number(new Date(match?.start_time).getMonth())+1) + " "+ (match?.match_time==undefined?"":match?.match_time)} {jackpot? (new Date(match?.start_time).getHours())+":"+new Date(match?.start_time).getMinutes():""}
                                             </span>
                         <>ID: {match?.game_id}</>
                     </div>
@@ -825,9 +825,9 @@ const MatchRow = (props) => {
                                             </span>
                                         </div>
                                         <div className="d-flex flex-row px-1 justify-content-end change-date1 mobile-only">
-                                           <span className={'date-size wrapping px-3'}>
+                                            <span className={'date-size wrapping px-3'}>
                                                 {(live && match?.match_time) ?
-                                                    <>{`${match.match_time}'`}</> : new Date(match?.start_time).getDate()+"/"+(Number(new Date(match?.start_time).getMonth())+1) + " "+ match?.match_time}
+                                                    <>{`${match.match_time}'`}</> : new Date(match?.start_time).getDate()+"/"+(Number(new Date(match?.start_time).getMonth())+1) + " "+ (match?.match_time==undefined?"":match?.match_time)} {jackpot? (new Date(match?.start_time).getHours())+":"+new Date(match?.start_time).getMinutes():""}
                                             </span>
                                             <div className={"px-1 wrapping"}>ID: {match?.game_id}</div>
 

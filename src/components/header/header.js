@@ -243,7 +243,7 @@ const Header = (props) => {
                     </Navbar.Brand>
                     <div className={` col-9 change-size ${width>767?"desk-top":""}`} id="navbar-collapse-main " >
                         <div
-                            className="col-md-11 col-sm-12 col-lg-8 right disable-ipad to-navcheck justify-content-end">
+                            className="col-md-11 col-sm-12 col-lg-8 right fix-view-2 disable-ipad to-navcheck justify-content-end">
                             {user ? <ProfileMenu user={user}/> : <HeaderLogin setUser={setUser}/>}
                         </div>
                         <div

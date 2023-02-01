@@ -92,7 +92,7 @@ const LiveSideBar = (props) => {
                                                                 <span className={`badge  live-slide d-flex align-items-center`} style={{
                                                                     float: "right",
                                                                     color: "#fff",
-                                                                    backgroundColor:"red!important",
+                                                                    backgroundColor:"red",
                                                                     borderRadius: "12px",
                                                                     height:"24px"
                                                                 }}>

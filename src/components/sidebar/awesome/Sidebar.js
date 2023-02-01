@@ -88,7 +88,7 @@ const Sidebar = (props) => {
         let default_img = 'default_sport'
         let sport_image;
         try {
-            sport_image = topLeagues ? require(`../../../assets/svg/${sport_name}`) : require(`../../../assets/svg/${folder}/${sport_name}.png`);
+            sport_image = topLeagues ? require(`../../../assets/img/${folder}/${sport_name}.svg`) : require(`../../../assets/svg/${folder}/${sport_name}.png`);
         } catch (error) {
             sport_image = require(`../../../assets/${folder}/${default_img}.svg`);
         }
@@ -157,7 +157,7 @@ const Sidebar = (props) => {
                                         {competitions?.top_soccer?.map((top_league, index) => (
                                             <MenuItem key={`l_${index}`}
                                                       icon={<img
-                                                          src={getSportImageIcon(top_league?.flag, 'img/flags-1-1', true)}
+                                                          src={getSportImageIcon(top_league?.competition_name, 'leagues', true)}
                                                           style={{borderRadius: "50%", height: "20px"}}></img>}>
                                                 <a onClick={() => gaEventTracker(`Top Leagues ${top_league?.competition_name}`)}
                                                    href={`/competition/${top_league.sport_id}/${top_league.category_id}/${top_league.competition_id}?sport_id=${competition.sport_id}&sub_type_id=${getDefaultMarketsForSport(competition)}`}>

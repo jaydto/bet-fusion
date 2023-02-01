@@ -85,7 +85,7 @@ const HeaderNav = (props) => {
                         </strong></Link>
                     </li>
 
-                    <li className={pathname.includes('aviator') ? 'active live-bg' : ''}
+                    <li className={pathname.includes('aviator') ? 'active live-bg mx-3' : 'mx-3'}
                         onClick={() => gaEventTracker('Aviator')}>
                         <Link className="url-link  anl cg ox"
                               to="/nare-games/aviator"
@@ -123,11 +123,11 @@ const HeaderNav = (props) => {
                             </span>
                         </Link>
                     </li>
-                    <li className={`${pathname.includes('Premier') || (window.location.href.includes("Premier")) ? 'active px-2' : 'px-2'}`}
+                    <li className={`${pathname.includes('Premier') || (window.location.href.includes("Premier")) ? 'active px-2 mx-2' : 'px-2 mx-2'}`}
                         onClick={() => gaEventTracker('Premier League')}>
                         <Link className="cg fm ox anl url-link"
-                              to={{pathname: `/competition`,search: `competitionid=16805&sub_type_id=1`}}>
-                              title="Premier League">
+                              to={{pathname: `/competition`,search: `competitionid=16805&sub_type_id=1&c=Premier League`}}>
+
                             <div className={'notification-item'}>
                                 <img src={Premier_League} className={'Premier League'}
                                      style={{height: "20px", borderRadius: "0 !important"}}></img>

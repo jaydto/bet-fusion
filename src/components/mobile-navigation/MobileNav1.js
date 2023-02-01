@@ -130,12 +130,12 @@ const MobileNav1 = (props) => {
                      onClick={() => gaEventTracker('Aviator')} style={{paddingLeft: "4px"}}>
                     <Link className="cg fm ox anl url-link d-flex flex-column align-items-center"
                           to="/nare-games/aviator"
-                          title="Kanyonde">
+                          title="Aviator">
                         <div className="menu-img">
                             <LazyLoadImage src={kanyonde} style={{height: "25px" }}/>
                             <span className=" badge" style={{color:"white",background:"red"
                                 ,marginTop:"-5px", borderRadius: "10px 0 15px 0", marginLeft:"-10px"}}>NEW</span>
-                        </div>   <strong> Kanyonde</strong>
+                        </div>   <strong> Aviator</strong>
                     </Link>
 
                 </td>

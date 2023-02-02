@@ -1754,6 +1754,7 @@ header {
 
     .top-matches div {
         min-height: 26px;
+        justify-content:end;
     }
 
     .home-tabs .main-header, .home-tabs-active .main-header {
@@ -9503,6 +9504,8 @@ ul.sport {
 }
 
 @media (max-width: 767px) {
+    .sticky-jackpot{
+        top:0px;}
     .d-content {
         display: contents;
     }
@@ -16064,9 +16067,9 @@ img.zoom-img {
         min-width:40px!important;
 
     }
-    /*.matches .top-matches button{*/
-    /*    width:33%!important;*/
-    /*}*/
+    .matches .top-matches button{
+        width:33%!important;
+    }
     .margin-l-mobile{
         margin-left: 0.2rem;
     }

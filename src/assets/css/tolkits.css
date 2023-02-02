@@ -8194,6 +8194,9 @@ ul.sport {
     /*.tablet-view{*/
     /*    display: none;*/
     /*}*/
+    .width-button-odd{
+        width:100% !important
+    }
     .slip-top{
         margin-top:6rem;
     }
@@ -8290,9 +8293,10 @@ ul.sport {
     }
 
     .c-btn-group > .c-btn {
-        width: 100% !important;
+        width: 100% ;
         /*height: 20px !important;*/
     }
+
 
     .c-btn-header {
         height: 24px !important;
@@ -16064,15 +16068,13 @@ img.zoom-img {
         height: 35px!important;
         line-height: 30px!important;
         font-weight: 400;
-        min-width:40px!important;
+        min-width:40px;
 
     }
     /*.matches .top-matches button{*/
     /*    width:33%!important;*/
     /*}*/
-    .c-resize{
-        width:33%!important
-    }
+
     .margin-l-mobile{
         margin-left: 0.2rem;
     }
@@ -16572,6 +16574,9 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 .gametime {
     color: #a3a300;
     font-size: 12px;
+}
+.c-resize{
+    min-width:33%!important
 }
 
 .home-team.disabled, .disabled, .draw.disabled, .away_team.disabled, .market-butt.disabled {

@@ -40,7 +40,7 @@ const EmptyTextRow = (props) => {
     const {odd_key, classname,live} = props;
 
     return (
-        <button className={`${classname} btn btn-disabled match-detail col c-btn ${live?"c-resize":""}`}
+        <button className={`${classname} btn btn-disabled match-detail col c-btn ${live?"c-resize":"width-button-odd"}`}
              style={{
                  width: "100%",
                  height: "40px",
@@ -550,7 +550,7 @@ const OddButton = (props) => {
     return (
         <button
             ref={ref}
-            className={`home-team ${match.match_id} ${ucn} ${picked} c-btn ${live?"c-resize":""}`}
+            className={`home-team ${match.match_id} ${ucn} ${picked} c-btn ${live?"c-resize":"width-button-odd"}`}
             home_team={match.home_team}
             odd_type={match?.name || match?.market_name || "1X2"}
             bet_type={live ? 1 : 0}
@@ -604,7 +604,7 @@ const MarketRow = (props) => {
             && fullmatch.odd_active == 1
         )
             ? <OddButton match={fullmatch} detail mkt={"detail"} live={live}/>
-            : <EmptyTextRow odd_key={fullmatch?.odd_key}/>;
+            :<EmptyTextRow odd_key={match?.odd_key} live={live}/>;
     }
 
     return (
@@ -847,19 +847,19 @@ const MatchRow = (props) => {
                                     match.market_active == 1 && match.odds.home_odd_active == 1)
                                     ? <OddButton match={match} mkt="home_team" live={live} jackpot={jackpot}/>
                                     : <EmptyTextRow odd_key={match?.odd_key} live={live}/>) :
-                                match?.odds?.home_odd ? <EmptyTextRow odd_key={match?.odd_key}/> : ''
+                                match?.odds?.home_odd ? <EmptyTextRow odd_key={match?.odd_key} live={live}/> : ''
                         }
 
                             {match?.odds?.neutral_odd ? ((!pdown && match?.odds?.neutral_odd && match.odds.neutral_odd !== 'NaN' &&
                                 match.market_active == 1 && match.odds.neutral_odd_active == 1|| jackpot)
                                 ? <OddButton match={match} mkt="draw" live={live} jackpot={jackpot}/>
-                                : <EmptyTextRow odd_key={match?.odd_key}/>) : ''
+                                : <EmptyTextRow odd_key={match?.odd_key} live={live}/>) : ''
                             }
                             {match?.odds?.away_odd ? (match?.odds?.away_odd && (!pdown && match?.odds?.away_odd && match.odds.away_odd !== 'NaN' &&
                                     match.market_active == 1 && match.odds.away_odd_active == 1|| jackpot)
                                     ? <OddButton match={match} mkt="away_team" live={live} jackpot={jackpot}/>
-                                    : <EmptyTextRow odd_key={match?.odd_key}/>) :
-                                match?.odds?.away_odd ? <EmptyTextRow odd_key={match?.odd_key}/> : ''
+                                    : <EmptyTextRow odd_key={match?.odd_key} live={live}/>) :
+                                match?.odds?.away_odd ? <EmptyTextRow odd_key={match?.odd_key} live={live}/> : ''
                             }
 
                         </div>
@@ -890,20 +890,20 @@ const MatchRow = (props) => {
                             match?.odds?.home_odd ? (match?.odds?.home_odd && (!pdown && match?.odds?.home_odd && match.odds.home_odd !== 'NaN' &&
                                     match.market_active == 1 && match.odds.home_odd_active == 1)
                                     ? <OddButton match={match} mkt="home_team" live={live} jackpot={jackpot}/>
-                                    : <EmptyTextRow odd_key={match?.odd_key}/>) :
-                                match?.odds?.home_odd ? <EmptyTextRow odd_key={match?.odd_key}/> : ''
+                                    :<EmptyTextRow odd_key={match?.odd_key} live={live}/>) :
+                                match?.odds?.home_odd ? <EmptyTextRow odd_key={match?.odd_key} live={live}/> : ''
                         }
 
                             {match?.odds?.neutral_odd ? ((!pdown && match?.odds?.neutral_odd && match.odds.neutral_odd !== 'NaN' &&
                                 match.market_active == 1 && match.odds.neutral_odd_active == 1|| jackpot)
                                 ? <OddButton match={match} mkt="draw" live={live} jackpot={jackpot}/>
-                                : <EmptyTextRow odd_key={match?.odd_key}/>) : ''
+                                : <EmptyTextRow odd_key={match?.odd_key} live={live}/>) : ''
                             }
                             {match?.odds?.away_odd ? (match?.odds?.away_odd && (!pdown && match?.odds?.away_odd && match.odds.away_odd !== 'NaN' &&
                                     match.market_active == 1 && match.odds.away_odd_active == 1|| jackpot)
                                     ? <OddButton match={match} mkt="away_team" live={live} jackpot={jackpot}/>
-                                    : <EmptyTextRow odd_key={match?.odd_key}/>) :
-                                match?.odds?.away_odd ? <EmptyTextRow odd_key={match?.odd_key}/> : ''
+                                    : <EmptyTextRow odd_key={match?.odd_key} live={live}/>) :
+                                match?.odds?.away_odd ?<EmptyTextRow odd_key={match?.odd_key} live={live}/> : ''
                             }
 
                         </div>:""}
@@ -954,7 +954,7 @@ const MatchRow = (props) => {
                                                                                 odd_data
                                                                             })}
                                                                             key={odd_key} live={live}/>) : (
-                                                                        <EmptyTextRow odd_key={match?.odd_key}/>
+                                                                        <EmptyTextRow odd_key={match?.odd_key} live={live}/>
                                                                     )
                                                                 }
                                                             </div>
@@ -1001,7 +1001,7 @@ const MatchRow = (props) => {
                                         Object.entries(odds || {}).map(([odd_key, odd_data]) => {
                                             return odd_data?.odd_active == 1 && odd_data.market_active == 1 ? (<OddButton
                                                 match={getUpdatedMatchFromOdds({match, marketName, odd_key, odd_data})}
-                                                key={odd_key} live={live}/>) : (<EmptyTextRow odd_key={match?.odd_key}/>)
+                                                key={odd_key} live={live}/>) : (<EmptyTextRow odd_key={match?.odd_key} live={live}/>)
                                         })
                                     }
                                 </div>
@@ -1011,8 +1011,8 @@ const MatchRow = (props) => {
 
                         {!live && loops?.map(() => (
                             <div className={`c-btn-group align-self-center to-deskview`}>
-                                <EmptyTextRow odd_key={match?.odd_key}/>
-                                <EmptyTextRow odd_key={match?.odd_key}/>
+                                <EmptyTextRow odd_key={match?.odd_key} live={live}/>
+                                <EmptyTextRow odd_key={match?.odd_key} live={live}/>
                             </div>
                         ))}
 

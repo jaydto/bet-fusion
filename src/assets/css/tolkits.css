@@ -16067,8 +16067,11 @@ img.zoom-img {
         min-width:40px!important;
 
     }
-    .matches .top-matches button{
-        width:33%!important;
+    /*.matches .top-matches button{*/
+    /*    width:33%!important;*/
+    /*}*/
+    .c-resize{
+        width:33%!important
     }
     .margin-l-mobile{
         margin-left: 0.2rem;

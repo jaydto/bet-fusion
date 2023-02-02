@@ -37,10 +37,10 @@ const clean = (_str) => {
 }
 
 const EmptyTextRow = (props) => {
-    const {odd_key, classname} = props;
+    const {odd_key, classname,live} = props;
 
     return (
-        <button className={`${classname} btn btn-disabled match-detail col c-btn`}
+        <button className={`${classname} btn btn-disabled match-detail col c-btn ${live?"c-resize":""}`}
              style={{
                  width: "100%",
                  height: "40px",
@@ -550,7 +550,7 @@ const OddButton = (props) => {
     return (
         <button
             ref={ref}
-            className={`home-team ${match.match_id} ${ucn} ${picked} c-btn`}
+            className={`home-team ${match.match_id} ${ucn} ${picked} c-btn ${live?"c-resize":""}`}
             home_team={match.home_team}
             odd_type={match?.name || match?.market_name || "1X2"}
             bet_type={live ? 1 : 0}
@@ -846,7 +846,7 @@ const MatchRow = (props) => {
                             match?.odds?.home_odd ? (match?.odds?.home_odd && (!pdown && match?.odds?.home_odd && match.odds.home_odd !== 'NaN' &&
                                     match.market_active == 1 && match.odds.home_odd_active == 1)
                                     ? <OddButton match={match} mkt="home_team" live={live} jackpot={jackpot}/>
-                                    : <EmptyTextRow odd_key={match?.odd_key}/>) :
+                                    : <EmptyTextRow odd_key={match?.odd_key} live={live}/>) :
                                 match?.odds?.home_odd ? <EmptyTextRow odd_key={match?.odd_key}/> : ''
                         }
 

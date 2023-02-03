@@ -973,16 +973,7 @@ const MatchRow = (props) => {
                             ))
                             }
 
-                                {/*{!live && loops?.map(() => (*/}
-                                {/*    <div className='d-flex w-100 justify-content-center align-items-baseline'>*/}
-                                {/*        <div className="c-btn-group align-self-center d-none">*/}
-                                {/*        </div>*/}
-                                {/*        <div className={`c-btn-group align-self-center`}>*/}
-                                {/*            <EmptyTextRow odd_key={match?.odd_key}/>*/}
-                                {/*            <EmptyTextRow odd_key={match?.odd_key}/>*/}
-                                {/*        </div>*/}
-                                {/*    </div>*/}
-                                {/*))}*/}
+                      
 
                         </>
                         }

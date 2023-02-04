@@ -51,6 +51,9 @@ const ResponsibleGambling = React.lazy(
 const AntimoneyLaundering = React.lazy(
     () => import('./components/pages/anti-money-laundering')
 );
+const Countries =React.lazy(
+    ()=> import('./components/countries/Countries')
+)
 const PrivacyPolicy = React.lazy(
     () => import('./components/pages/privacy-policy/index')
 );
@@ -140,6 +143,7 @@ render((
                     <Route exact path="/highlights" element={<Index/>}/>
                     <Route exact path="/upcoming" element={<Index/>}/>
                     <Route exact path="/tomorrow" element={<Index/>}/>
+                    <Route exact path="/countries" element={<Countries/>}/>
                     <Route exact path="/competition/:id" element={<CompetitionsMatches/>}/>
                     <Route exact path= "/competition"
                            element={<CompetitionsMatches/>}/>

@@ -18,7 +18,7 @@ import { Link } from "react-router-dom";
 import Header from "../header/header";
 import Right from "../right";
 
-const Sidebar = (props) => {
+const Countries = (props) => {
   const gaEventTracker = useAnalyticsEventTracker("Navigation");
   const [collapsed, setCollapsed] = useState(false);
 
@@ -217,4 +217,4 @@ const Sidebar = (props) => {
   );
 };
 
-export default Sidebar;
+export default Countries;

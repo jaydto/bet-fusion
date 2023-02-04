@@ -60,6 +60,17 @@ const SidebarMobile = (props) => {
                         </div>
                     </MenuItem>
                 </Menu>
+                <Menu>
+                    <MenuItem className={"d-flex justify-content-between"}>
+                        <div className={"d-flex gap-4 align-items-center"} onClick={() => gaEventTracker('Visit App Page')}>
+                            <FontAwesomeIcon icon={faMobile}/>
+                            <Link className="" to="/app" title="App">
+                                App
+                        </Link>
+                        </div>
+                    </MenuItem>
+                </Menu>
+            
 
                 <Menu>
                     <MenuItem className={"d-flex justify-content-between"}>

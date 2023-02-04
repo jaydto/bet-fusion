@@ -91,8 +91,16 @@ const Countries = (props) => {
   const getSportImageIcon = (
     sport_name,
     folder = "sports",
-    topLeagues = false
+    topLeagues = false,
+    flag=false
   ) => {
+    if (flag){
+      let splitString = sport_name.split(" ");
+      sport_name = (splitString[0].substr(0, 2)).toString().toLowerCase();
+      
+    }
+
+    
     // console.log("images_names", sport_name)
 
     let default_img = "default_sport";
@@ -178,8 +186,9 @@ const Countries = (props) => {
                             <img
                               style={{ borderRadius: "50%", height: "20px" }}
                               src={getSportImageIcon(
-                                country.cat_flag,
+                                country.category_name,
                                 "flags-1-1",
+                                true,
                                 true
                               )}
                             />

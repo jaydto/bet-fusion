@@ -83,17 +83,33 @@ const Sidebar = (props) => {
         return () => window.removeEventListener("resize", updateDimensions);
     }, [width]);
 
-    const getSportImageIcon = (sport_name, folder = 'sports', topLeagues = false) => {
-
-        let default_img = 'default_sport'
+    const getSportImageIcon = (
+        sport_name,
+        folder = "sports",
+        topLeagues = false,
+        flag=false
+      ) => {
+        if (flag){
+          let splitString = sport_name.split(" ");
+          sport_name = (splitString[0].substr(0, 2)).toString().toLowerCase();
+          
+        }
+    
+        
+        // console.log("images_names", sport_name)
+    
+        let default_img = "default_sport";
         let sport_image;
         try {
-            sport_image = topLeagues ? require(`../../../assets/img/${folder}/${sport_name}.svg`) : require(`../../../assets/svg/${folder}/${sport_name}.png`);
+          sport_image = topLeagues
+            ? require(`../../../assets/img/${folder}/${sport_name}.svg`)
+            : require(`../../../assets/svg/${folder}/${sport_name}.png`);
         } catch (error) {
-            sport_image = require(`../../../assets/img/${default_img}.svg`);
+          sport_image = require(`../../../assets/img/${default_img}.svg`);
         }
-        return sport_image
-    }
+        return sport_image;
+      };
+    
 
     const getDefaultMarketsForSport = (competition) => {
         return competition?.default_display_markets
@@ -174,7 +190,7 @@ const Sidebar = (props) => {
                                             <SubMenu title={country.category_name}
                                                      onClick={() => gaEventTracker(`${country?.category_name}`)}
                                                      icon={<img style={{borderRadius: '50%', height: '20px'}}
-                                                                src={getSportImageIcon(country.cat_flag, 'img/flags-1-1')}
+                                                                src={getSportImageIcon(country.category_name, 'img/flags-1-1',true, true)}
                                                      />}
                                             >
                                                 {country?.competitions.map((league, leagueKey) => (

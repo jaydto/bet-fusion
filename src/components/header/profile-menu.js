@@ -63,7 +63,7 @@ const ProfileMenu = (props) => {
                                 </Link>
                             </div>
                         </div>
-                        <div className="col d-flex flex-column text-white align-items-end">
+                        <div className="col d-flex flex-column text-white align-items-start">
                             <div className={"profile-wrap"}>
                               <span className="font-btn ">
                               <span className=" space-icons">

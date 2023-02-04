@@ -111,6 +111,14 @@ const Countries = (props) => {
     return competition?.default_display_markets;
   };
 
+  const checkScreen=()=>{
+    if(width<=514){
+        return '19.5rem'
+    }else {
+        return '12.5rem'
+    }
+  }
+
   return (
     <div>
       <Header />
@@ -119,7 +127,7 @@ const Countries = (props) => {
           display: "flex",
           overflow: "auto initial",
           zIndex: 10,
-          marginTop:'12.5rem',
+          marginTop:checkScreen(),
           marginRight: "2px",
           top: "12.5rem",
           marginBottom:"6rem"

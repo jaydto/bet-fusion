@@ -584,6 +584,12 @@ const BetslipSubmitForm = (props) => {
                                 id="net-amount">{formatNumber(jackpot ? jackpotData?.jackpot_amount : (hasMultiBetBoost ? netWinBoosted : netWin))}</span>
                             </td>
                         </tr>
+                        {state?.user&&<tr className="hide-on-affix">
+                                        <td>NARE BOOST</td>
+                                        <td>
+                                            <b>{multiBoostAmount}</b>
+                                        </td>
+                                    </tr>}
                         <tr className="bet-win-tr hide-on-affix">
                             <td colSpan="100%">
                                 <SubmitButton

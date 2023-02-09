@@ -236,7 +236,7 @@ const Sidebar = (props) => {
                         icon={
                           <img
                             style={{ borderRadius: "50%", height: "20px" }}
-                            src={etSportImageIcon(
+                            src={getSportImageIcon(
                                 country.category_name,
                                 "flags-1-1",
                                 true,

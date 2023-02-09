@@ -205,7 +205,7 @@ const MatchHeaderRow = (props) => {
                     {!live && !jackpot && extraMarketDisplays.length > 0 && (
                         <>
                             {extraMarketDisplays?.map((extra_market) => (
-                                <div className={'d-flex flex-column text-white'}>
+                                <div key={extra_market.id} className={'d-flex flex-column text-white'}>
                                     <span className={'small text-center text-uppercase bold'}>
                                         {extra_market.name}
                                     </span>
@@ -590,9 +590,9 @@ const MarketRow = (props) => {
             </Row>
 
             {markets && markets.map((mkt_odds) => {
-                // console.log(mkt_odds)
+               //  console.log(mkt_odds)
                 return (<>
-                    <Col className="match-detail" style={{width: width, float: "left"}}>
+                    <Col key={mkt_odds.id} className="match-detail" style={{width: width, float: "left"}}>
                         <MktOddsButton
                             match={match}
                             mktodds={mkt_odds}
@@ -722,21 +722,21 @@ const MatchRow = (props) => {
                 {!jackpot && <>
                     {Object.entries(match?.extra_odds || {}).map(([marketName, odds], index) => (
                         marketName !== '' && (
-                            <div className={`c-btn-group m-lg-1 align-self-center`}>
+                            <div className={`c-btn-group m-lg-1 align-self-center`} key={marketName}>
                                 {
                                     Object.entries(odds || {}).map(([odd_key, odd_data]) => {
                                         return odd_data?.odd_active == 1 && odd_data.market_active == 1 ? (<OddButton
                                             match={getUpdatedMatchFromOdds({match, marketName, odd_key, odd_data})}
-                                            key={odd_key} live={live}/>) : (<EmptyTextRow odd_key={match?.odd_key}/>)
+                                            key={odd_key} live={live}/>) : (<EmptyTextRow key={odd_key} odd_key={match?.odd_key}/>)
                                     })
                                 }
                             </div>
                         )
                     ))
                     }
-                    {!live && loops?.map(() => (
-                        <div className={`c-btn-group align-self-center`}>
-                            <EmptyTextRow odd_key={match?.odd_key}/>
+                    {!live && loops?.map((loop) => (
+                        <div key={loop} className={`c-btn-group align-self-center`}>
+                            <EmptyTextRow  odd_key={match?.odd_key}/>
                             <EmptyTextRow odd_key={match?.odd_key}/>
                         </div>
                     ))}

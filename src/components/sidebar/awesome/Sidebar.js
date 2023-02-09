@@ -110,7 +110,7 @@ const Sidebar = (props) => {
         ? require(`../../../assets/img/${folder}/${sport_name}.svg`)
         : require(`../../../assets/svg/${folder}/${sport_name}.png`);
     } catch (error) {
-      sport_image = require(`../../assets/img/${default_img}.svg`);
+      sport_image = require(`../../../assets/img/${default_img}.svg`);
     }
     return sport_image;
   };
@@ -236,12 +236,12 @@ const Sidebar = (props) => {
                         icon={
                           <img
                             style={{ borderRadius: "50%", height: "20px" }}
-                            src={getSportImageIcon(
-                              country.category_name,
-                              "img/flags-1-1",
-                              true,
-                              true
-                            )}
+                            src={etSportImageIcon(
+                                country.category_name,
+                                "flags-1-1",
+                                true,
+                                true
+                              )}
                           />
                         }
                       >

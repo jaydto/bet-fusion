@@ -15,8 +15,7 @@ import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import { Link } from "react-router-dom";
-import Header from "../header/header";
-import Right from "../right";
+
 
 const Countries = (props) => {
   const gaEventTracker = useAnalyticsEventTracker("Navigation");
@@ -119,25 +118,16 @@ const Countries = (props) => {
     return competition?.default_display_markets;
   };
 
-  const checkScreen=()=>{
-    if(width<=514){
-        return '19.5rem'
-    }else {
-        return '12.5rem'
-    }
-  }
-
   return (
     <div>
-      <Header />
       <div
         style={{
           display: "flex",
           overflow: "auto initial",
           zIndex: 10,
-          marginTop:checkScreen(),
+        
           marginRight: "2px",
-          top: "12.5rem",
+        
           marginBottom:"6rem"
         }}
         className={`vh-100 text-white sticky-top   up `}
@@ -229,7 +219,6 @@ const Countries = (props) => {
           </SidebarContent>
         </ProSidebar>
       </div>
-      <Right/>
     </div>
   );
 };

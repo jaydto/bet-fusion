@@ -9,6 +9,7 @@ import useAnalyticsEventTracker from '../components/analytics/useAnalyticsEventT
 import {getFromLocalStorage, setLocalStorage} from "./utils/local-storage";
 import useWindowDimensions from "./header/Dimensions";
 import Testimonials from "./carousel/Testimonials";
+import Countries from "./countries/Countries";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -206,11 +207,15 @@ const Index = (props) => {
             new_tab = ("upcoming")
 
         }
-
         if (window.location.href.includes("tomorrow")) {
             new_tab = ('tomorrow')
         }
+        if(window.location.href.includes("countries")){
+            new_tab=('countries')
+        }
+        console.log("tabs", tab)
 
+        // console.log("tabs", new_tab)
         if (new_tab !== tab) {
             setTab(new_tab)
             setLoading(true)
@@ -230,6 +235,8 @@ const Index = (props) => {
 
 
 
+
+
     return (<>
         <Header/>
         <div className={(width <= 514 ? user ? "user_logged" : "amt" : "amt ")} >
@@ -242,10 +249,12 @@ const Index = (props) => {
 
                         <MainTabs tab={location.pathname.replace("/", "")}/>
                         {/* <MobileCategories/> */}
-                        {loading ?
+                       {/* <MobileCategories/> */}
+                       {loading ?
                             <div className={`text-center mt-2 text-white d-block`}>
                                 <Spinner animation={'grow'} size={'lg'}/>
-                            </div> : <MatchList
+                            </div> : tab=='countries'?<Countries/>:
+                            <MatchList
                                 live={false}
                                 fetching={fetching}
                                 matches={matches}
@@ -254,6 +263,7 @@ const Index = (props) => {
 
                             />
                         }
+
 
 
                     </div>

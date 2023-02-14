@@ -38,6 +38,8 @@ const EmptyTextRow = (props) => {
     return (
         <button className={`${classname} btn btn-disabled match-detail col c-btn`}
              style={{
+                 display:"flex",
+                 justifyContent:"space-between",
                  width: "100%",
                  height: "30px",
                  padding: "2px",
@@ -46,7 +48,7 @@ const EmptyTextRow = (props) => {
                  opacity: 1
              }}>
             {odd_key && <span className="et label btn-disabled ">{odd_key}</span>}
-            <span className="label label-inverse">
+            <span className="label label-inverse align-self-end">
              <LazyLoadImage
                  style={{opacity: "0.3", width: "15px"}}
                  src={padlock}
@@ -543,7 +545,7 @@ const OddButton = (props) => {
                 (<>
                       <span
                           className="label label-inverse blueish">
-                        {match.odd_key}
+                        {match.display_name || match?.odd_key}
                       </span>
                     <span
                         className="label label-inverse blueish odd-value">

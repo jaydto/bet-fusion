@@ -37,16 +37,17 @@ const EmptyTextRow = (props) => {
 
     return (
         <button className={`${classname} btn btn-disabled match-detail col c-btn`}
-             style={{
-                 display:"flex",
-                 justifyContent:"space-between",
-                 width: "100%",
-                 height: "30px",
-                 padding: "2px",
-                 color: "#fff",
-                 background: "#334c5c",
-                 opacity: 1
-             }}>
+                style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    paddingLeft: "2px",
+                    paddingRight: "10px",
+                    width: "100%",
+                    height: "30px",
+                    color: "#fff",
+                    background: "#334c5c",
+                    opacity: 1
+                }}>
             {odd_key && <span className="et label btn-disabled ">{odd_key}</span>}
             <span className="label label-inverse align-self-end">
              <LazyLoadImage
@@ -159,21 +160,18 @@ const MatchHeaderRow = (props) => {
         }
     }, [first_match?.parent_match_id])
 
-    const checkJackpot=()=>{
+    const checkJackpot = () => {
         if (jackpot) {
-            return {top:"130px",positio:"sticky"}
-        }else{
-            if (user){
-                return {top:"150px",positio:"sticky"}
+            return {top: "130px", positio: "sticky"}
+        } else {
+            if (user) {
+                return {top: "150px", positio: "sticky"}
+            } else {
+                return {top: "162px", positio: "sticky"}
             }
-            else{
-                return {top:"162px",positio:"sticky"}
-            }
-           
+
         }
     }
-
-
 
 
     return (
@@ -256,72 +254,70 @@ const MoreMarketsHeaderRow = (props) => {
     } = props;
 
 
-    useEffect(()=>{
+    useEffect(() => {
         window.SIR('addWidget', '#sr-widget', 'match.lmtPlus', {
-            branding:{tabs:{option: "icon", variant: "fullWidth"}},
+            branding: {tabs: {option: "icon", variant: "fullWidth"}},
             goalBannerImage: "https://storage.googleapis.com/nareimages/logo-white.webp",
-            logo:["https://storage.googleapis.com/nareimages/logo-dark.webp"],
+            logo: ["https://storage.googleapis.com/nareimages/logo-dark.webp"],
             momentum: "disable",
-            matchId: parent_match_id ,
-            collapseTo:"disable",
+            matchId: parent_match_id,
+            collapseTo: "disable",
             layout: "double",
-            scoreboard:"extended",
+            scoreboard: "extended",
             detailedScoreboard: "disable",
 
         });
     })
 
 
-
-
-    let lmtIncludes=[79,85,82,80, 107]
+    let lmtIncludes = [79, 85, 82, 80, 107]
     // console.log("sport_id", lmtIncludes.includes(sport_id))
 
     return (
         <Row>
 
-            {(live||lmtIncludes.includes(sport_id)) ?
-                <div id="sr-widget" className='mt-1 pt-2' ></div> :  <Row className="panel-header primary-bg">
-                <h4 className="inline-block">
-                    {home_team} <small> - </small> {away_team}
+            {(live || lmtIncludes.includes(sport_id)) ?
+                <div id="sr-widget" className='mt-1 pt-2'></div> : <Row className="panel-header primary-bg">
+                    <h4 className="inline-block">
+                        {home_team} <small> - </small> {away_team}
                         {
                             tags?.length ?
-                            tags?.map(tag => (
-                                <span className="tag" key={tag.name}
-                                      style={{
-                                          backgroundColor: `${tag.background_color}`,
-                                          color: `${tag.color}`
-                                      }}
-                                >
+                                tags?.map(tag => (
+                                    <span className="tag" key={tag.name}
+                                          style={{
+                                              backgroundColor: `${tag.background_color}`,
+                                              color: `${tag.color}`
+                                          }}
+                                    >
                                 {tag.name}
                             </span>
-                            ))
-                            : ""
+                                ))
+                                : ""
                         }
-                </h4>
-                {live &&
+                    </h4>
+                    {live &&
+                        <Row className="header-text">
+                            <Col style={{
+                                color: "#cc5500",
+                                marginBottom: "5px"
+                            }}> {match_status === 'Ended' && 'Ended '} {score}</Col>
+                        </Row>
+                    }
                     <Row className="header-text">
-                        <Col style={{
-                            color: "#cc5500",
-                            marginBottom: "5px"
-                        }}> {match_status === 'Ended' && 'Ended '} {score}</Col>
+                        <Col>{category} {competition}</Col>
                     </Row>
-                }
-                <Row className="header-text">
-                    <Col>{category} {competition}</Col>
-                </Row>
-                {match_status !== 'Ended' &&
-                    <Row className="start-time">
-                        {live
-                            ? <Col>Live: <span style={{color: "#cc5500"}}>{match_time || match_status}</span></Col>
-                            : <Col>Start: {start_time}</Col>}
+                    {match_status !== 'Ended' &&
+                        <Row className="start-time">
+                            {live
+                                ? <Col>Live: <span style={{color: "#cc5500"}}>{match_time || match_status}</span></Col>
+                                : <Col>Start: {start_time}</Col>}
 
-                        <Col>Game ID: {game_id} </Col>
-                    </Row>
-                }
-            </Row>
+                            <Col>Game ID: {game_id} </Col>
+                        </Row>
+                    }
+                </Row>
             }
-           </Row>
+        </Row>
     )
 }
 const SideBets = (props) => {
@@ -490,11 +486,11 @@ const OddButton = (props) => {
 
         // console.log("Slip", slip)
         // console.log(cstm)
-        const maxPickReached=()=>{
+        const maxPickReached = () => {
             setPicked('')
             Notify(message)
         }
-       let message= {status: 401, message: 'Maximum selections reached', token: ''}
+        let message = {status: 401, message: 'Maximum selections reached', token: ''}
         if (cstm === ucn) {
             let betslip;
             if (picked === 'picked') {
@@ -505,7 +501,7 @@ const OddButton = (props) => {
                 setPicked('');
             } else {
                 betslip = jackpot !== true
-                    ? (getBetslip()&&Object.keys(getBetslip())?.length<=49)||getBetslip()==null?addToSlip(slip):maxPickReached()
+                    ? (getBetslip() && Object.keys(getBetslip())?.length <= 49) || getBetslip() == null ? addToSlip(slip) : maxPickReached()
                     : addToJackpotSlip(slip);
 
                 dispatch({type: "SET", key: reference, payload: cstm});
@@ -542,7 +538,12 @@ const OddButton = (props) => {
                 )
             }
             {detail &&
-                (<>
+                (<span style={{
+                    paddingLeft: "10px",
+                    paddingRight: "10px",
+                    display: "flex",
+                    justifyContent: "space-between"
+                }}>
                       <span
                           className="label label-inverse blueish">
                         {match.display_name || match?.odd_key}
@@ -551,7 +552,7 @@ const OddButton = (props) => {
                         className="label label-inverse blueish odd-value">
                             {oddValue}
                      </span>
-                </>)}
+                </span>)}
         </button>
     )
 }
@@ -592,7 +593,7 @@ const MarketRow = (props) => {
             </Row>
 
             {markets && markets.map((mkt_odds) => {
-               //  console.log(mkt_odds)
+                //  console.log(mkt_odds)
                 return (<>
                     <Col key={mkt_odds.id} className="match-detail" style={{width: width, float: "left"}}>
                         <MktOddsButton
@@ -687,14 +688,14 @@ const MatchRow = (props) => {
                     match.tags?.length ?
                         match.tags.map(tag => (
                             <span className="tag" key={tag.name}
-                                 style={{
-                                     backgroundColor: `${tag.background_color}`,
-                                     color: `${tag.color}`,
-                                 }}
-                                 >
+                                  style={{
+                                      backgroundColor: `${tag.background_color}`,
+                                      color: `${tag.color}`,
+                                  }}
+                            >
                                 {tag.name}
                             </span>
-                            ))
+                        ))
                         : ""
                 }
             </div>
@@ -729,7 +730,8 @@ const MatchRow = (props) => {
                                     Object.entries(odds || {}).map(([odd_key, odd_data]) => {
                                         return odd_data?.odd_active == 1 && odd_data.market_active == 1 ? (<OddButton
                                             match={getUpdatedMatchFromOdds({match, marketName, odd_key, odd_data})}
-                                            key={odd_key} live={live}/>) : (<EmptyTextRow key={odd_key} odd_key={match?.odd_key}/>)
+                                            key={odd_key} live={live}/>) : (
+                                            <EmptyTextRow key={odd_key} odd_key={match?.odd_key}/>)
                                     })
                                 }
                             </div>
@@ -738,7 +740,7 @@ const MatchRow = (props) => {
                     }
                     {!live && loops?.map((loop) => (
                         <div key={loop} className={`c-btn-group align-self-center`}>
-                            <EmptyTextRow  odd_key={match?.odd_key}/>
+                            <EmptyTextRow odd_key={match?.odd_key}/>
                             <EmptyTextRow odd_key={match?.odd_key}/>
                         </div>
                     ))}
@@ -796,7 +798,7 @@ export const MarketList = (props) => {
             }
             <div className="web-element">
                 <div className="col-md-12 position-sticky shadow-lg primary-bg mb-1"
-                     style={{top: "135px", height: "40px", backgroundColor: "#3c5a6c !important"}}>
+                     style={{top: "120px", height: "40px", backgroundColor: "#3c5a6c !important"}}>
                     <Input type="text" className={'form-control h-100  border-0'}
                            style={{
                                fontSize: "14px",

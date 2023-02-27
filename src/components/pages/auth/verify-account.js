@@ -2,6 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import {Formik, Form} from 'formik';
 import makeRequest from "../../utils/fetch-request";
 import {useParams} from "react-router-dom";
+import {setLocalStorage} from "../../utils/local-storage";
 
 const Header = React.lazy(() => import('../../header/header'));
 const SideBar = React.lazy(() => import('../../sidebar/awesome/Sidebar'));
@@ -25,7 +26,6 @@ const VerifyAccount = (props) => {
         let code = new URL(window.location).searchParams.get('code')
         let msisdn = new URL(window.location).searchParams.get('msisdn')
         if (code !== null && msisdn !== null) {
-            console.log("Handling account verification")
             setInputDisabled(true)
             handleSubmit({
                 mobile: msisdn,
@@ -46,10 +46,11 @@ const VerifyAccount = (props) => {
             response.success ? setSuccess(true) : setSuccess(false)
 
             if (status === 200 || status === 201) {
+                setLocalStorage('user', response?.success?.user);
                 let timer = setInterval(() => {
                     clearInterval(timer)
                     window.location.href = "/"
-                }, 3000)
+                }, 1000)
             }
 
         }).catch((err) => {

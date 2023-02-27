@@ -1,6 +1,7 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {Formik, Form} from 'formik';
 import makeRequest from "../../utils/fetch-request";
+import {useParams} from "react-router-dom";
 
 const Header = React.lazy(() => import('../../header/header'));
 const SideBar = React.lazy(() => import('../../sidebar/awesome/Sidebar'));
@@ -8,6 +9,8 @@ const Right = React.lazy(() => import('../../right/index'));
 const Footer = React.lazy(() => import('../../footer/footer'));
 
 const VerifyAccount = (props) => {
+
+    const [inputDisabled, setInputDisabled] = useState(false)
 
     const [success, setSuccess] = useState(false);
     const [message, setMessage] = useState(null);
@@ -18,6 +21,22 @@ const VerifyAccount = (props) => {
         code: ''
     }
 
+    const verifyAccount = () => {
+        let code = new URL(window.location).searchParams.get('code')
+        let msisdn = new URL(window.location).searchParams.get('msisdn')
+        if (code !== null && msisdn !== null) {
+            setInputDisabled(true)
+            handleSubmit({
+                mobile: msisdn,
+                code: code
+            })
+        }
+    }
+
+    useEffect(() => {
+        verifyAccount()
+    }, [])
+
     const handleSubmit = values => {
         let endpoint = '/v1/verify';
         makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
@@ -25,10 +44,13 @@ const VerifyAccount = (props) => {
             setMessage(response.success ? response.success.message : response.error.message);
             response.success ? setSuccess(true) : setSuccess(false)
 
-            let timer = setInterval(() => {
-                clearInterval(timer)
-                window.location.href = "/"
-            }, 3000)
+            if (status === 200 || status === 201) {
+                let timer = setInterval(() => {
+                    clearInterval(timer)
+                    window.location.href = "/"
+                }, 3000)
+            }
+
         }).catch((err) => {
 
         })
@@ -134,6 +156,7 @@ const VerifyAccount = (props) => {
                         <div className="form-group row d-flex justify-content-left mb-4">
                             <div className="col-md-3">
                                 <button type="submit"
+                                        disabled={inputDisabled}
                                         onClick={submitForm}
                                         className='btn btn-lg btn-primary mt-5 col-md-12 deposit-withdraw-button'>
                                     Verify Account
@@ -170,8 +193,8 @@ const VerifyAccount = (props) => {
             <Header/>
             <div className="amt">
                 <div className="d-flex flex-row justify-content-between">
-                    <SideBar loadCompetitions />
-                    <div className="gz home"  style={{width:'auto'}}>
+                    <SideBar loadCompetitions/>
+                    <div className="gz home" style={{width: 'auto'}}>
                         <div className="homepage">
                             <FormTitle/>
                             <div className="col-md-12 mt-2 text-white p-2">

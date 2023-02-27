@@ -156,7 +156,7 @@ render((
                     <Route exact path="/how-to-play" element={<HowToPlay/>}/>
                     <Route exact path="/signup" element={<Signup/>}/>
                     <Route exact path="/reset-password" element={<ResetPassword/>}/>
-                    <Route exact path="/verify-account" element={<VerifyAccount/>}/>
+                    <Route exact path="/verify" element={<VerifyAccount/>}/>
                     <Route exact path="/app" element={<MobileApp/>}/>
                     <Route exact path="/logout" element={<Logout/>}/>
                     <Route exact path="/print-matches" element={<PrintMatches/>}/>

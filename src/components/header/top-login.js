@@ -10,7 +10,7 @@ import fire from "../../assets/img/fire.webp"
 import {setLocalStorage} from '../utils/local-storage';
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 
-export const  Notify = (message) => {
+export const Notify = (message) => {
     let options = {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
@@ -44,7 +44,6 @@ const HeaderLogin = (props) => {
         msisdn: "",
         password: ""
     }
-
 
 
     const dispatchUser = useCallback(() => {
@@ -168,12 +167,14 @@ const HeaderLogin = (props) => {
         <Container className="top-login-section">
             <Row className="" style={{float: "right"}}>
                 <div className="col-12">
-                    <a className="" href="/signup" title="Join now" onClick={() => gaEventTracker('Register')}>
+                    <a className="badge bg-warning text-dark" href="/signup" title="Join now"
+                       style={{color: "black !important"}}
+                       onClick={() => gaEventTracker('Register')}>
                         <span className="register-label">Register now!</span>
                     </a>
-                    <a className="m-lg-2 badge bg-success d-none" href="/verify-account" title="Verify Account"
+                    <a className="m-lg-2 badge bg-success" href="/verify" title="Verify Account"
                        onClick={() => gaEventTracker('Verify')}>
-                        <span className="register-label">Verify Account</span>
+                        <span className="verify-label">Verify Account</span>
                     </a>
                 </div>
             </Row>

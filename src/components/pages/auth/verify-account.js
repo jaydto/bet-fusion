@@ -25,6 +25,7 @@ const VerifyAccount = (props) => {
         let code = new URL(window.location).searchParams.get('code')
         let msisdn = new URL(window.location).searchParams.get('msisdn')
         if (code !== null && msisdn !== null) {
+            console.log("Handling account verification")
             setInputDisabled(true)
             handleSubmit({
                 mobile: msisdn,

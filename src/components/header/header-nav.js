@@ -90,12 +90,12 @@ const HeaderNav = (props) => {
                         </Link>
                     </li>
                     <li className={`${pathname === '/live-casino' || pathname.includes("gameplay") ? 'active' : ''}`}>
-                        <Link className="url-link fm anl cg ox " to="/live-casino" title="Live Casino">
+                        <a className="url-link fm anl cg ox " href="/live-casino" title="Live Casino">
                             <span>
                                 {/*<img src={casino} width={"20px"} height={"20px"}/>&nbsp;*/}
                                 <strong>Live Casino</strong>
                             </span>
-                        </Link>
+                        </a>
                     </li>
 
                     <li className={pathname.includes('aviator') ? 'active live-bg' : ''}

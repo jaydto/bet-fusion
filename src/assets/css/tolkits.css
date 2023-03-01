@@ -6929,7 +6929,7 @@ ul.sport {
 
 .e {
     float: left;
-    padding: 3px 15px;
+    /*padding: 3px 15px;*/
     font-size: 18px;
     line-height: 22px;
 }
@@ -9005,7 +9005,7 @@ fieldset[disabled] .pa .fu:focus {
     padding: 4px;
     margin-right: 10px;
     margin-left: 9px;
-    letter-spacing: 1px;
+    /*letter-spacing: 1px;*/
 }
 
 .pc .navbar-nav > .active > a,

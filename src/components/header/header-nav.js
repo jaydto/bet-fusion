@@ -84,16 +84,23 @@ const HeaderNav = (props) => {
                         <Link className={`url-link fm anl cg ox `}
                               to="/live" title="Live">
                             <strong>
-                                {/*<img src={live} width={"20px"} height={"20px"}/>&nbsp;*/}
                                 Live
                             </strong>
                         </Link>
                     </li>
+                    <li className={`${pathname === '/casino' || pathname.includes("gameplay") ? 'active' : ''}`}>
+                        <a className="url-link fm anl cg ox " href="/casino" title="Live Casino">
+                            <span>
+                                <strong>Casino</strong>
+                                    <span className="notify-badge badge">NEW</span>
+                            </span>
+                        </a>
+                    </li>
                     <li className={`${pathname === '/live-casino' || pathname.includes("gameplay") ? 'active' : ''}`}>
                         <a className="url-link fm anl cg ox " href="/live-casino" title="Live Casino">
                             <span>
-                                {/*<img src={casino} width={"20px"} height={"20px"}/>&nbsp;*/}
                                 <strong>Live Casino</strong>
+                                    <span className="notify-badge badge">NEW</span>
                             </span>
                         </a>
                     </li>
@@ -105,7 +112,6 @@ const HeaderNav = (props) => {
                               title="Aviator">
                             <strong>
                                 <div className={'d-flex menu-item'}>
-                                    {/*<img src={kanyonde} className={""} style={{height: '20px'}}/> */}
                                     Aviator
                                     <span className="notify-badge badge">NEW</span>
                                 </div>
@@ -145,10 +151,7 @@ const HeaderNav = (props) => {
                               to="/competition/79/8076/16805?sport_id=79&sub_type_id=1,18,29&limit=500&c=Premier League"
                               title="Premier League">
                             <div className={'notification-item'}>
-                                {/*<img src={Premier_League} className={'Premier League'}*/}
-                                {/*     style={{height: "20px", borderRadius: "0 !important"}}></img>*/}
                                 <strong>Premier League</strong>
-                                <span className="notify-badge badge">NEW</span>
                             </div>
                         </Link>
                     </li>

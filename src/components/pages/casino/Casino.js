@@ -69,12 +69,14 @@ const Casino = (props) => {
                                     <div
                                         className="shadow-sm p-2 shadow-sm casino-category-container mt-2">
                                         {categories?.map((category) => (
-                                            <Button bg="warning"
-                                                    style={{marginRight: '2px'}}
-                                                    className={`cursor-pointer text-center casino-category casino-category-button`}
-                                                    onClick={() => getCategoryGames(category)}>
+                                            category?.game_type_id !== "rgs-vsb"
+                                            && <Button bg="warning"
+                                                       style={{marginRight: '2px'}}
+                                                       className={`cursor-pointer text-center casino-category casino-category-button`}
+                                                       onClick={() => getCategoryGames(category)}>
                                                 {(category?.game_type_description)}
                                             </Button>
+
                                         ))}
                                     </div>
                                 </div>

@@ -50,6 +50,7 @@ const BetslipSubmitForm = (props) => {
         jackpotData,
         bonusBet,
     } = props;
+
     const [hasMultiBetBoost, setHasMultiBetBoost] = useState(true);
     const [multiBoostAmount, setMultiBoostAmount] = useState(0);
     const [showShareModal, setShowShareModal] = useState(false);
@@ -59,7 +60,7 @@ const BetslipSubmitForm = (props) => {
     const [state, dispatch] = useContext(Context);
     const [loadingShare, setLoadingShare] = useState(false);
 
-    const [stake, setStake] = useState(jackpot?10:100);
+    const [stake, setStake] = useState(jackpot?parseInt(jackpotData?.bet_amount):100);
     const [stakeBoosted, setStakeBoosted] = useState(100);
 
     const [stakeAfterTax, setStakeAfterTax] = useState(0);
@@ -82,6 +83,7 @@ const BetslipSubmitForm = (props) => {
     const [awardMultiGift, setAwardMultiGift] = useState(false);
 
     const [betslipKey, setBetslipKey] = useState("betslip");
+    
 
     useEffect(() => {
         if (jackpot) {

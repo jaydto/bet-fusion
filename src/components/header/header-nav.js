@@ -31,7 +31,7 @@ const HeaderNav = (props) => {
     const [matches, setMatches] = useState([])
     const searchInputRef = useRef(null)
     const [showLoadingModal, setShowLoadingModal] = useState(false);
-   
+
 
     useEffect(() => {
         fetchMatches()
@@ -71,19 +71,17 @@ const HeaderNav = (props) => {
     })
 
     const LoginCheck = (game) => {
-        console.log("here here")
-        if (game=="crashlite"){
-            state?.user!==null?window.location.href="shaks/Crashlite":setShowLoadingModal(true);
+        if (game == "crashlite") {
+            state?.user !== null ? window.location.href = "shaks/Crashlite" : setShowLoadingModal(true);
+        } else {
+            state?.user !== null ? window.location.href = "gameplay/1301/1" : setShowLoadingModal(true);
         }
-        else{
-                state?.user!==null?window.location.href="gameplay/1301/1":setShowLoadingModal(true);
-        }
-      };
-      
+    };
+
     return (
         <>
-              {showLoadingModal && ( <LoginModal setShowLoadingModal={setShowLoadingModal} visible={showLoadingModal}/>)}
-        
+            {showLoadingModal && (<LoginModal setShowLoadingModal={setShowLoadingModal} visible={showLoadingModal}/>)}
+
             <Container id="navbar-collapse-main"
                        className={`d-none d-sm-flex d-flex flex-row  header-menu ${searching ? 'hidden' : 'd-block'}`}>
 
@@ -104,7 +102,7 @@ const HeaderNav = (props) => {
                             </strong>
                         </Link>
                     </li>
-                     <li className={pathname === '/jackpot' ? 'active' : ''}
+                    <li className={pathname === '/jackpot' ? 'active' : ''}
                         onClick={() => gaEventTracker('Visit Jackpot Page')}>
                         <Link className="cg fm ox anl url-link" to="/jackpot" title="Jackpot">
                             <strong>
@@ -126,7 +124,7 @@ const HeaderNav = (props) => {
                             </strong>
                         </Link>
                     </li>
-                
+
                     <li className={`${pathname === '/casino' || pathname.includes("gameplay") ? 'active' : ''}`}>
                         <a className="url-link fm anl cg ox " href="/casino" title="Live Casino">
                             <span>
@@ -144,8 +142,9 @@ const HeaderNav = (props) => {
                         </a>
                     </li> */}
 
-                        <li className={`${pathname === '/gameplay' || pathname.includes("gameplay") ? 'active' : ''}`}>
-                        <a className="url-link fm anl cg ox " href="#" onClick={()=>LoginCheck("spaceman")} title="Space Man">
+                    <li className={`${pathname === '/gameplay' || pathname.includes("gameplay") ? 'active' : ''}`}>
+                        <a className="url-link fm anl cg ox " href="#" onClick={() => LoginCheck("spaceman")}
+                           title="Space Man">
                             <span>
                                 <strong>Spaceman</strong>
                                     <span className="notify-badge badge">NEW</span>
@@ -178,7 +177,7 @@ const HeaderNav = (props) => {
                             </strong>
                         </Link>
                     </li>
-                  
+
                     <li className={`${pathname.includes('Premier') || (window.location.href.includes("Premier")) ? 'active px-2' : 'px-2'}`}
                         onClick={() => gaEventTracker('Premier League')}>
                         <Link className="cg fm ox anl url-link"
@@ -190,7 +189,6 @@ const HeaderNav = (props) => {
                         </Link>
                     </li>
 
-                   
 
                     <li className={pathname === '/app' ? 'active' : ''}
                         onClick={() => gaEventTracker('Visit App Page')}>
@@ -211,7 +209,7 @@ const HeaderNav = (props) => {
                                 Casino
                             </a>
                         </li>
-                       
+
                         <li>
                             <Link className="url-link fm anl cg ox" to="/livescore"
                                   title="Live Score" onClick={() => gaEventTracker('Visit Live Score Page')}>

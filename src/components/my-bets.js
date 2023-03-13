@@ -115,7 +115,7 @@ const MyBets = (props) => {
                     <div className="col">{ bet.possible_win}</div>
                     <div className="col">{ bet.tax}</div>
                     { canCancel == false 
-                        ? <div className="col">{ betStatus}</div>
+                        ? <div className={`col ${betStatus=="LOST"?"text-warning":betStatus=="WON"?"text-success":""}`}>{ betStatus}</div>
                         : cancelBetMarkup() 
                     }
                 </div>

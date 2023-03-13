@@ -44,7 +44,7 @@ const ProfileMenu = (props) => {
                                 <strong style={{color: "#FFB200"}}> KSH {formatNumber(user.balance) || 0}</strong>
                             </div>
                             <div><FontAwesomeIcon
-                                icon={faGifts}/> Nare Boost <strong>
+                                icon={faGifts}/> Nare Booster <strong>
                                 KSH {formatNumber(user.gift_balance) || 0}</strong></div>
                         </div>
                         <div className="col d-flex flex-column text-white">

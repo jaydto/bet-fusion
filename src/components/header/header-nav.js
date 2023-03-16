@@ -142,7 +142,7 @@ const HeaderNav = (props) => {
                         </a>
                     </li> */}
                      <li className={`${pathname === '/gameplay' || pathname.includes("gameplay") ? 'active' : ''}`}>
-                        <a className="url-link fm anl cg ox " href="#" onClick={() => LoginCheck("Crashlite")}
+                        <a className="url-link fm anl cg ox " href="#" onClick={() => LoginCheck("crashlite")}
                            title="CrashLite">
                             <span>
                                 <strong>Crashlite</strong>

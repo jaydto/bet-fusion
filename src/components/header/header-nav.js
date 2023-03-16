@@ -72,9 +72,9 @@ const HeaderNav = (props) => {
 
     const LoginCheck = (game) => {
         if (game == "crashlite") {
-            state?.user !== null ? window.location.href = "shaks/Crashlite" : setShowLoadingModal(true);
+            state?.user !== null ? window.location.href = "/shaks/Crashlite" : setShowLoadingModal(true);
         } else {
-            state?.user !== null ? window.location.href = "gameplay/1301/1" : setShowLoadingModal(true);
+            state?.user !== null ? window.location.href = "/gameplay/1301/1" : setShowLoadingModal(true);
         }
     };
 

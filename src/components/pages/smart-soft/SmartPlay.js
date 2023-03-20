@@ -11,7 +11,9 @@ import {faFire} from "@fortawesome/free-solid-svg-icons";
 
 const SmartPlay = (props) => {
 
-    const {game} = useParams()
+    const url = new URL(window.location)
+    const game= url.searchParams.get('game')
+    const category=url.searchParams.get('category')
     const [gameUrl, setGameUrl] = useState('')
     const [token, setUserToken] = useState('')
     const [user_id, setUserID] = useState('')
@@ -34,7 +36,8 @@ const SmartPlay = (props) => {
         let payload = {
             "profile_id": user.profile_id,
             "token": user.token,
-            "game": game === undefined ? 'JetX' : game.toLowerCase()
+            "game":game,
+            "gameCategory":category
         }
 
         await makeRequest({url: endpoint, method: method, data: payload}).then(([status, result]) => {
@@ -81,7 +84,9 @@ const SmartPlay = (props) => {
                                             &nbsp;<FontAwesomeIcon icon={faFire} style={{color: "orangered"}}/>
                                         </div>
                                     </>
-                                )}
+                                )}{
+                                    console.log("game_url", gameUrl)
+                                }
                                 <iframe className={'mt-3 shadow-lg'} allowFullScreen webkitallowfullscreen
                                         mozallowfullscreen
                                         src={gameUrl} title="Gadme" width={'100%'} height={'600px'}></iframe>

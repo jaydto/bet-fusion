@@ -33,7 +33,7 @@ const SmartSoft = (props) => {
         await makeRequest({url: endpoint, method: method}).then(([status, result]) => {
             if (status === 200) {
                 setGames(result?.games)
-                // setCategories(result?.gameCategory)
+                setCategories(result?.gameCategory)
                 console.log("results", result)
                 setGamesLoaded(true)
             }
@@ -87,9 +87,9 @@ const SmartSoft = (props) => {
                                     <div className={'col cursor-pointer'}>
                                         <div
                                             className={'mt-1 mb-1 d-flex flex-column shadow-lg virtual-game-container'}>
-                                            <Link to={`/smart-soft/${game?.gameName}`}
+                                            <Link to={{pathname:`/smart-play`, search: `game=${game?.gameName}&category=${game?.gameCategory}`}}
                                                   className=""
-                                                  key={game.key}>
+                                                  key={game.id}>
                                                 <p className={'text-center bold text-elipsis text-uppercase'}>
                                                     {game?.gameName}
                                                 </p>

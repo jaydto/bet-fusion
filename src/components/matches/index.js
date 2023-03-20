@@ -40,9 +40,9 @@ const EmptyTextRow = (props) => {
                 style={{
                     display: "flex",
                     justifyContent: "space-between",
-                    paddingLeft: "11px",
-                    paddingBottom:'10px',
-                    paddingRight: "10px",
+                    paddingLeft: "16px",
+                    paddingBottom:'12px',
+                    paddingRight: "8px",
                     width: "100%",
                     height: "30px",
                     color: "#fff",

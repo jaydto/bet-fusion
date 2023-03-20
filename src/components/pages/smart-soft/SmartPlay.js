@@ -50,17 +50,17 @@ const SmartPlay = (props) => {
         });
     }
 
-    // const configureDemoGame = () => {
-    //     setGameUrl(`https://demo.spribe.io/launch/${game || 'aviator'}?currency=USD&lang=EN&return_url=https://betnare.com`)
-    //     setGameUrlLoaded(true)
-    //     setDemo(true)
-    // }
+    const configureDemoGame = () => {
+        setGameUrl(`https://www.smartsoftgaming.com/GameDemo/${game || 'JetX'}?currency=USD&lang=EN&return_url=https://betnare.com`)
+        setGameUrlLoaded(true)
+        setDemo(true)
+    }
 
 
     useEffect(() => {
-        isLoggedIn &&
-            createToken() 
-            // configureDemoGame()
+        isLoggedIn ?
+            createToken() :
+            configureDemoGame()
 
     }, [])
     return (

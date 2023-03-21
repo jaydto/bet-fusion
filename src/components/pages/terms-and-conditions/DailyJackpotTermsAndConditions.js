@@ -182,39 +182,39 @@ const DailyJackpotTermsAndConditions = () =>
                     <AccordionItemPanel className={'accordion-item-panel'}>
                         <ul>
                             <li>
-                                I.	Daily Jackpot players are eligible as WINNERS when they make 11/11 correct Predictions. They also WIN various Bonus Prizes when they make ZERO (0/11) Correct predictions and ELEVEN (11) Correct Predictions.
+                                	Daily Jackpot players are eligible as WINNERS when they make 11/11 correct Predictions. They also WIN various Bonus Prizes when they make ZERO (0/11) Correct predictions and ELEVEN (11) Correct Predictions.
                             </li>
                             <li>
-                                II.	Where ONE (1) or MORE games are CANCELLED, INTERRUPTED, ABANDONED, SUSPENDED or POSTPONED, BetNare may at its discretion, AWARD the Jackpot BET ID with the highest correct predictions within 48 hours of CANCELLATION or REFUND ALL STAKES collected on the SPECIFIC JACKPOT.
+                                	Where ONE (1) or MORE games are CANCELLED, INTERRUPTED, ABANDONED, SUSPENDED or POSTPONED, BetNare may at its discretion, AWARD the Jackpot BET ID with the highest correct predictions within 48 hours of CANCELLATION or REFUND ALL STAKES collected on the SPECIFIC JACKPOT.
                             </li>
                             <li>
-                                III.	ZERO out of ELEVEN outcomes - In an instance THAT a player gets 0/11 CORRECT predictions on the Running Jackpot, they automatically get a (FREE TICKET) onto the next available BetNare Daily Jackpot. This Offer is ONLY available to players who get ZERO out of the ELEVEN available jackpot games to play from.
+                                	ZERO out of ELEVEN outcomes - In an instance THAT a player gets 0/11 CORRECT predictions on the Running Jackpot, they automatically get a (FREE TICKET) onto the next available BetNare Daily Jackpot. This Offer is ONLY available to players who get ZERO out of the ELEVEN available jackpot games to play from.
                             </li>
                             <li>
-                                IV.	TEN OUT OF ELEVEN outcomes - BetNare Jackpot contains 11 games, the Jackpot bonuses are from 10 correct games. The Jackpot bonus amount shall vary between the Jackpot Bonuses. The prize allocated to the Bonus winners is completely at BetNare’s discretion. Any Jackpot Bonus shall be divided equally among the Jackpot bonus winners if there is more than ONE winner within the respective class.
+                                	TEN OUT OF ELEVEN outcomes - BetNare Jackpot contains 11 games, the Jackpot bonuses are from 10 correct games. The Jackpot bonus amount shall vary between the Jackpot Bonuses. The prize allocated to the Bonus winners is completely at BetNare’s discretion. Any Jackpot Bonus shall be divided equally among the Jackpot bonus winners if there is more than ONE winner within the respective class.
                             </li>
                         </ul>
                         <h4>
-                            BetNare Half a Milli Daily Jackpot
+                            BETNARE HALF A MILLI DAILY JACKPOT
                         </h4>
                         <ul>
                             <li>
-                                •	Jackpot Amount; Kenya Shillings 500,000/=
+                                	Jackpot Amount; Kenya Shillings 500,000/=
                             </li>
                             <li>
-                                •	Stake 10/=
+                                	Stake 10/=
                             </li>
                             <li>
-                                •	11 Soccer Pre-Match.
+                                	11 Soccer Pre-Match.
                             </li>
                             <li>
-                                •	Market Picks – 3-Way markets Only.
+                                	Market Picks – 3-Way markets Only.
                             </li>
                             <li>
-                                •	The Jackpot has bonuses – 0/11 Correct predictions and 10/11 Correct predictions.
+                                	The Jackpot has bonuses – 0/11 Correct predictions and 10/11 Correct predictions.
                             </li>
                             <li>
-                                •	BetNare will also award the Player with the highest Correct predictions randomly.
+                                	BetNare will also award the Player with the highest Correct predictions randomly.
                             </li>
                         </ul>
                     </AccordionItemPanel>

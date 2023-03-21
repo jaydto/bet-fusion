@@ -124,6 +124,19 @@ const HeaderNav = (props) => {
                             </strong>
                         </Link>
                     </li>
+                    <li className={pathname.includes('JetX') ? 'active live-bg' : ''}
+                        onClick={() => gaEventTracker('Jetx')}>
+                        <Link className="url-link fm anl cg ox"
+                              to={{pathname:"/smart-play", search:"game=JetX&category=JetX"}}
+                              title="JetX">
+                            <strong>
+                                <div className={'d-flex menu-item'}>
+                                   JetX
+                                    <span className="notify-badge badge">NEW</span>
+                                </div>
+                            </strong>
+                        </Link>
+                    </li>
 
                     <li className={`${pathname === '/casino' || pathname.includes("gameplay") ? 'active' : ''}`}>
                         <a className="url-link fm anl cg ox " href="/casino" title="Live Casino">
@@ -136,7 +149,7 @@ const HeaderNav = (props) => {
                     <li className={`${pathname === '/smart-soft' || pathname.includes("gameplay") ? 'active' : ''}`}>
                         <a className="url-link fm anl cg ox " href="/smart-soft" title="SmartSoft">
                             <span>
-                                <strong>SmartSoft</strong>
+                                <strong>X-games</strong>
                                     <span className="notify-badge badge">NEW</span>
                             </span>
                         </a>

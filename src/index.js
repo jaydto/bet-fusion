@@ -98,6 +98,7 @@ const SpribeGamePlay = React.lazy(() => import('./components/pages/virtuals/Spri
 
 const SpribeGames = React.lazy(() => import('./components/pages/virtuals/SpribeGames'))
 
+const SmartSoftPlay = React.lazy(() => import('./components/pages/smart-soft/smart-soft'))
 
 const SmartPlay = React.lazy(() => import('./components/pages/smart-soft/SmartPlay'))
 

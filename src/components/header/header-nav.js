@@ -159,15 +159,14 @@ const HeaderNav = (props) => {
                             </span>
                         </a>
                     </li>
-
-                    {/* <li className={`${pathname === '/live-casino' || pathname.includes("gameplay") ? 'active' : ''}`}>
-                        <a className="url-link fm anl cg ox " href="/live-casino" title="Live Casino">
+                    <li className={`${pathname === '/smart-soft' || pathname.includes("smart-soft") ? 'active' : ''}`}>
+                        <a className="url-link fm anl cg ox " href="/smart-soft" title="SmartSoft">
                             <span>
-                                <strong>Live Casino</strong>
+                                <strong>X-games</strong>
                                     <span className="notify-badge badge">NEW</span>
                             </span>
                         </a>
-                    </li> */}
+                    </li>
 
                     <li className={`${pathname == '/gameplay' || pathname.includes("1301") ? 'active' : ''}`}>
                         <a className="url-link fm anl cg ox " href="#" onClick={() => LoginCheck("spaceman")}

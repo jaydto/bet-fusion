@@ -15,6 +15,7 @@ import ShaksGames from "../shaks/shaksGames";
 import { ToastContainer } from "react-toastify";
 import Notify from "../../utils/Notify";
 import { Context } from "../../../context/store";
+import SmartGames from "../smart-soft/shaksGames";
 
 
 const GamePlay = (props) => {
@@ -75,7 +76,7 @@ const GamePlay = (props) => {
                             <div className="col-md-12">
                                 <div className="homepage">
                                     <div className={'row row-cols-4 text-white p-2 shadow-sm mt-2'}>
-
+                                        <SmartGames/>
                                         <ShaksGames/>
                                         {gamesLoaded && games?.map((game) => (
                                             <div className={'col cursor-pointer'}>

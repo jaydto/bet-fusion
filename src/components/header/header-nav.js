@@ -72,12 +72,12 @@ const HeaderNav = (props) => {
 
     const LoginCheck = (game) => {
         if (game == "crashlite") {
-            state?.user !== null ? window.location.href = "shaks/Crashlite" : setShowLoadingModal(true);
+            state?.user !== null ? window.location.href = "/shaks/Crashlite" : setShowLoadingModal(true);
         }else if(game == "JetX"){
             state?.user !== null ? window.location.href = "/smart-play?game=JetX&category=JetX" : setShowLoadingModal(true);
         }
         else {
-            state?.user !== null ? window.location.href = "gameplay/1301/1" : setShowLoadingModal(true);
+            state?.user !== null ? window.location.href = "/gameplay/1301/1" : setShowLoadingModal(true);
         }
     };
 
@@ -159,14 +159,7 @@ const HeaderNav = (props) => {
                             </span>
                         </a>
                     </li>
-                    <li className={`${pathname === '/smart-soft' || pathname.includes("gameplay") ? 'active' : ''}`}>
-                        <a className="url-link fm anl cg ox " href="/smart-soft" title="SmartSoft">
-                            <span>
-                                <strong>X-games</strong>
-                                    <span className="notify-badge badge">NEW</span>
-                            </span>
-                        </a>
-                    </li>
+
                     {/* <li className={`${pathname === '/live-casino' || pathname.includes("gameplay") ? 'active' : ''}`}>
                         <a className="url-link fm anl cg ox " href="/live-casino" title="Live Casino">
                             <span>

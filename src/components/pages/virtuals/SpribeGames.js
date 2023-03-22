@@ -3,19 +3,15 @@ import Header from "../../header/header";
 import Footer from "../../footer/footer";
 import {Link, useParams} from "react-router-dom";
 import makeRequest from "../../utils/fetch-request";
-import Skeleton, {SkeletonTheme} from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import {getFromLocalStorage} from "../../utils/local-storage";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faFire} from "@fortawesome/free-solid-svg-icons";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import {Button, ButtonGroup} from "react-bootstrap";
 import SideBar from "../../sidebar/awesome/Sidebar";
 import ShaksGames from "../shaks/shaksGames";
-import { ToastContainer } from "react-toastify";
-import Notify from "../../utils/Notify";
+
 import { Context } from "../../../context/store";
-import SmartGames from "../smart-soft/shaksGames";
+
 
 
 const GamePlay = (props) => {
@@ -76,7 +72,7 @@ const GamePlay = (props) => {
                             <div className="col-md-12">
                                 <div className="homepage">
                                     <div className={'row row-cols-4 text-white p-2 shadow-sm mt-2'}>
-                                        <SmartGames/>
+
                                         <ShaksGames/>
                                         {gamesLoaded && games?.map((game) => (
                                             <div className={'col cursor-pointer'}>

@@ -40,7 +40,7 @@ const ShaksGames = (props) => {
         let shaks_image;
         try {
 
-            shaks_image = require(`../../src/assets/img/${folder}/${game.toLowerCase()}.png`);
+            shaks_image = require(`/src/assets/img/${folder}/${game.toLowerCase()}.png`);
 
         } catch (error) {
             // console.log("error",error)

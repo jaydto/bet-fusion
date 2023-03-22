@@ -141,6 +141,7 @@ render((
                     <Route exact path="/nare-games/:game" element={<SpribeGamePlay/>}/>
                     <Route exact path="/nare-games" element={<SpribeGames/>}/>
                     <Route exact path="/smart-play" element={<SmartPlay/>}/>
+                    <Route exact path="/smart-soft" element={<SmartSoftPlay/>}/>
                      <Route exact path="/shaks/:game" element={<ShaksGamePlay/>}/>
                     <Route exact path="/highlights" element={<Index/>}/>
                     <Route exact path="/upcoming" element={<Index/>}/>

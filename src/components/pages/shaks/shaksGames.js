@@ -35,12 +35,12 @@ const ShaksGames = (props) => {
         getShaksGames()
     }, [])
 
-    const getFastGamesImages = (game, folder = 'shaks') => {
+    const getShaksGamesImages = (game, folder = 'shaks') => {
 
         let shaks_image;
         try {
 
-            shaks_image = require(`../../assets/img/${folder}/${game.toLowerCase()}.png`);
+            shaks_image = require(`../../src/assets/img/${folder}/${game.toLowerCase()}.png`);
 
         } catch (error) {
             // console.log("error",error)
@@ -78,7 +78,7 @@ const ShaksGames = (props) => {
                                 {game?.name}
                             </p>
                             <LazyLoadImage
-                                src={getFastGamesImages(game.name)}
+                                src={getShaksGamesImages(game.name)}
                                 alt=""
                                 // style={state?.user==null?{filter:"brightness(0.5)"}:{}}
                             />

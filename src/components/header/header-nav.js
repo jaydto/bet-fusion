@@ -71,12 +71,10 @@ const HeaderNav = (props) => {
     })
 
     const LoginCheck = (game) => {
-        if (game == "crashlite") {
-            state?.user !== null ? window.location.href = "/shaks/Crashlite" : setShowLoadingModal(true);
-        }
-        else {
+       
             state?.user !== null ? window.location.href = "/gameplay/1301/1" : setShowLoadingModal(true);
-        }
+        
+       
     };
 
     return (
@@ -125,15 +123,7 @@ const HeaderNav = (props) => {
                             </strong>
                         </Link>
                     </li>
-                    <li className={`${pathname == '/shaks' || pathname.includes("Crashlite") ? 'active' : ''}`}>
-                        <a className="url-link fm anl cg ox " href="#" onClick={() => LoginCheck("crashlite")}
-                           title="CrashLite">
-                            <span>
-                                <strong>Crashlite</strong>
-                                    <span className="notify-badge badge">NEW</span>
-                            </span>
-                        </a>
-                    </li>
+                  
                 
                     <li className={`${pathname === '/casino'  ? 'active' : ''}`}>
                         <a className="url-link fm anl cg ox " href="/casino" title="Live Casino">

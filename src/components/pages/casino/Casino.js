@@ -95,7 +95,7 @@ const Casino = (props) => {
                                                             <p className={'text-center bold text-elipsis text-uppercase'}>
                                                                 {game?.game_name}
                                                             </p>
-                                                            {console.log("categories",checkGame)}
+                                                            {/* {console.log("categories",checkGame)} */}
                                                             <LazyLoadImage src={`${checkGame=="drops-n-wins"?game?.drops_and_wins_image_url:game?.game_icon}`}
                                                                            className={'virtual-game-image'}/>
                                                         </div>

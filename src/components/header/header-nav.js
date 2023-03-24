@@ -73,8 +73,6 @@ const HeaderNav = (props) => {
     const LoginCheck = (game) => {
         if (game == "crashlite") {
             state?.user !== null ? window.location.href = "/shaks/Crashlite" : setShowLoadingModal(true);
-        }else if(game == "JetX"){
-            state?.user !== null ? window.location.href = "/smart-play?game=JetX&category=JetX" : setShowLoadingModal(true);
         }
         else {
             state?.user !== null ? window.location.href = "/gameplay/1301/1" : setShowLoadingModal(true);
@@ -136,21 +134,7 @@ const HeaderNav = (props) => {
                             </span>
                         </a>
                     </li>
-                    <li className={pathname=='/smart-play'||pathname.includes('JetX') ? 'active live-bg' : ''}
-                        onClick={() => gaEventTracker('Jetx')}>
-                        <Link className="url-link fm anl cg ox"
-                              to="#"
-                              title="JetX"
-                              onClick={() =>LoginCheck("JetX")}>
-                            <strong>
-                                <div className={'d-flex menu-item'}>
-                                   JetX
-                                    <span className="notify-badge badge">NEW</span>
-                                </div>
-                            </strong>
-                        </Link>
-                    </li>
-
+                
                     <li className={`${pathname === '/casino'  ? 'active' : ''}`}>
                         <a className="url-link fm anl cg ox " href="/casino" title="Live Casino">
                             <span>
@@ -159,15 +143,7 @@ const HeaderNav = (props) => {
                             </span>
                         </a>
                     </li>
-                    <li className={`${pathname === '/smart-soft' || pathname.includes("smart-soft") ? 'active' : ''}`}>
-                        <a className="url-link fm anl cg ox " href="/smart-soft" title="SmartSoft">
-                            <span>
-                                <strong>X-games</strong>
-                                    <span className="notify-badge badge">NEW</span>
-                            </span>
-                        </a>
-                    </li>
-
+                    
                     <li className={`${pathname == '/gameplay' || pathname.includes("1301") ? 'active' : ''}`}>
                         <a className="url-link fm anl cg ox " href="#" onClick={() => LoginCheck("spaceman")}
                            title="Space Man">

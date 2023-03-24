@@ -8,7 +8,6 @@ import {getFromLocalStorage} from "../../utils/local-storage";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import {Button, ButtonGroup} from "react-bootstrap";
 import SideBar from "../../sidebar/awesome/Sidebar";
-import ShaksGames from "../shaks/shaksGames";
 
 import { Context } from "../../../context/store";
 
@@ -73,7 +72,7 @@ const GamePlay = (props) => {
                                 <div className="homepage">
                                     <div className={'row row-cols-4 text-white p-2 shadow-sm mt-2'}>
 
-                                        <ShaksGames/>
+                                    
                                         {gamesLoaded && games?.map((game) => (
                                             <div className={'col cursor-pointer'}>
                                                 <div

@@ -79,7 +79,6 @@ const Casino = (props) => {
                                                        onClick={() => getCategoryGames(category)}>
                                                 {(category?.game_type_description)}
                                             </Button>
-
                                         ))}
                                     </div>
                                 </div>

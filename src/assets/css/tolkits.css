@@ -423,6 +423,9 @@ header, li a, .thedate span {
 .homepage img {
     width: 100%;
 }
+.smart-images img {
+    height:160px;
+}
 
 .homepage .header-holder {
     margin-top: 10px;

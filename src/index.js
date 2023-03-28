@@ -104,7 +104,6 @@ const LiveScore = React.lazy(() => import('./components/pages/livescore/LiveScor
 
 const PageNotFound = React.lazy(() => import('./components/pages/404/NotFound'))
 
-
 const Logout = () => {
     let navigate = useNavigate();
 
@@ -136,6 +135,8 @@ render((
                     <Route exact path="/gameplay/:game_id/:live" element={<CasinoGamePlay/>}/>
                     <Route exact path="/nare-games/:game" element={<SpribeGamePlay/>}/>
                     <Route exact path="/nare-games" element={<SpribeGames/>}/>
+                  
+                  
                     <Route exact path="/highlights" element={<Index/>}/>
                     <Route exact path="/upcoming" element={<Index/>}/>
                     <Route exact path="/tomorrow" element={<Index/>}/>

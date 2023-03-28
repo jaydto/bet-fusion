@@ -19,8 +19,8 @@ const MatchList = React.lazy(() => import('./matches/index'));
 const Right = React.lazy(() => import('./right/index'));
 const SideBar = React.lazy(() => import('./sidebar/awesome/Sidebar'))
 const Index = (props) => {
-    const gaEventTracker = useAnalyticsEventTracker('Home');
     const location = useLocation();
+    const gaEventTracker = useAnalyticsEventTracker(location);
     const [matches, setMatches] = useState([]);
     const [limit, setLimit] = useState(50);
     const [producerDown, setProducerDown] = useState(false);
@@ -31,6 +31,7 @@ const Index = (props) => {
     const [fetching, setFetching] = useState(false)
     const homePageRef = useRef()
     const [utmSource, setUtmSource] = useState('')
+    const [bTag, setBTag] = useState('')
     const widthRef = useRef(null);
     const widthComponentRef = useRef(null);
     const findPostableSlip = () => {
@@ -166,9 +167,27 @@ const Index = (props) => {
         }
     }
 
+    const configureBTagCookie = () => {
+
+        let url = new URL(window.location)
+
+        let b_tag = url.searchParams.get('btag')
+
+        if (b_tag !== null) {
+            setLocalStorage('btag', b_tag)
+        }
+
+
+    }
+
+
     useEffect(() => {
         configureCampaignCookie()
     }, [utmSource])
+
+    useEffect(() => {
+        configureBTagCookie()
+    }, [bTag])
 
 
 

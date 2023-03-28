@@ -13,6 +13,7 @@ const Casino = (props) => {
     const [user] = useState(getFromLocalStorage("user"));
 
     const [categories, setCategories] = useState([])
+    const [checkGame, setCheckGame]=useState('')
 
     const [games, setGames] = useState([])
 
@@ -30,6 +31,7 @@ const Casino = (props) => {
 
     const getCategoryGames = (category) => {
         setGames([])
+        setCheckGame(category?.game_type_id)
         fetchGames(category?.game_type_id)
     }
 
@@ -68,6 +70,7 @@ const Casino = (props) => {
                                 <div className="col-md-12">
                                     <div
                                         className="shadow-sm p-2 shadow-sm casino-category-container mt-2">
+
                                         {categories?.map((category) => (
                                             category?.game_type_id !== "rgs-vsb"
                                             && <Button bg="warning"
@@ -76,7 +79,6 @@ const Casino = (props) => {
                                                        onClick={() => getCategoryGames(category)}>
                                                 {(category?.game_type_description)}
                                             </Button>
-
                                         ))}
                                     </div>
                                 </div>
@@ -92,7 +94,8 @@ const Casino = (props) => {
                                                             <p className={'text-center bold text-elipsis text-uppercase'}>
                                                                 {game?.game_name}
                                                             </p>
-                                                            <LazyLoadImage src={`${game.game_icon}`}
+                                                            {/* {console.log("categories",checkGame)} */}
+                                                            <LazyLoadImage src={`${checkGame=="drops-n-wins"?game?.drops_and_wins_image_url:game?.game_icon}`}
                                                                            className={'virtual-game-image'}/>
                                                         </div>
                                                         <div className="overlay shadow-sm row">

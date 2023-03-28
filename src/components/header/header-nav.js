@@ -71,11 +71,10 @@ const HeaderNav = (props) => {
     })
 
     const LoginCheck = (game) => {
-        if (game == "crashlite") {
-            state?.user !== null ? window.location.href = "shaks/Crashlite" : setShowLoadingModal(true);
-        } else {
-            state?.user !== null ? window.location.href = "gameplay/1301/1" : setShowLoadingModal(true);
-        }
+       
+            state?.user !== null ? window.location.href = "/gameplay/1301/1" : setShowLoadingModal(true);
+        
+       
     };
 
     return (
@@ -124,8 +123,9 @@ const HeaderNav = (props) => {
                             </strong>
                         </Link>
                     </li>
-
-                    <li className={`${pathname === '/casino' || pathname.includes("gameplay") ? 'active' : ''}`}>
+                  
+                
+                    <li className={`${pathname === '/casino'  ? 'active' : ''}`}>
                         <a className="url-link fm anl cg ox " href="/casino" title="Live Casino">
                             <span>
                                 <strong>Casino</strong>
@@ -133,16 +133,8 @@ const HeaderNav = (props) => {
                             </span>
                         </a>
                     </li>
-                    {/* <li className={`${pathname === '/live-casino' || pathname.includes("gameplay") ? 'active' : ''}`}>
-                        <a className="url-link fm anl cg ox " href="/live-casino" title="Live Casino">
-                            <span>
-                                <strong>Live Casino</strong>
-                                    <span className="notify-badge badge">NEW</span>
-                            </span>
-                        </a>
-                    </li> */}
-
-                    <li className={`${pathname === '/gameplay' || pathname.includes("gameplay") ? 'active' : ''}`}>
+                    
+                    <li className={`${pathname == '/gameplay' || pathname.includes("1301") ? 'active' : ''}`}>
                         <a className="url-link fm anl cg ox " href="#" onClick={() => LoginCheck("spaceman")}
                            title="Space Man">
                             <span>
@@ -151,7 +143,7 @@ const HeaderNav = (props) => {
                             </span>
                         </a>
                     </li>
-                    <li className={`${pathname === '/virtuals' || pathname.includes("gameplay") ? 'active' : ''}`}>
+                    <li className={`${pathname == '/virtuals' ? 'active' : ''}`}>
                         <Link className="url-link fm anl cg ox" to="/virtuals" title="Virtuals">
                             <span className={''}>
                                 <strong>
@@ -203,14 +195,15 @@ const HeaderNav = (props) => {
                     </li>
 
                     <>
-                        <li className={`${pathname === '/casino' || pathname.includes("gameplay") ? 'active' : ''} d-none`}>
+                        <li className={`${pathname.includes("casino") ? 'active' : ''} d-none`}>
                             <a className="g url-link" href="/casino" title="Casino">
                                 {/*<FontAwesomeIcon icon={faDice}/>*/}
                                 Casino
                             </a>
                         </li>
+                       
 
-                        <li>
+                        <li className={pathname === '/livescore' ? 'active' : ''}>
                             <Link className="url-link fm anl cg ox" to="/livescore"
                                   title="Live Score" onClick={() => gaEventTracker('Visit Live Score Page')}>
                             <span>

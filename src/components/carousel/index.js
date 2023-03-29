@@ -11,7 +11,7 @@ import karibuGiftWallet from "../../assets/img/banner/products/Bet_Nare_3000_kar
 import Aviator from "../../assets/img/banner/products/Aviator.webp"
 import jackpot from "../../assets/img/banner/products/HalfMilliJP.webp"
 import Drops from "../../assets/img/banner/products/DropsAndWins Web.webp"
-import ManCity from "../../assets/img/banner/products/ACMilanvsTottenham.webp"
+import ManCity from "../../assets/img/banner/products/City.webp"
 
 const banners = [
 

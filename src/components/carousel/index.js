@@ -14,7 +14,7 @@ import Drops from "../../assets/img/banner/products/DropsAndWins Web.webp"
 import liverpoolArsenal from "../../assets/img/banner/upcoming/LivArsenal.webp"
 
 const banners = [
-    {src: liverpoolArsenal, url: "/betnare.com/match/32799223"},
+    {src: liverpoolArsenal, url: "/match/32799223"},
     {src: Aviator, url: "/nare-games/aviator"},
     {src: karibuGiftWallet, url: "/promotions"},
     {src: jackpot, url: "/jackpot"},

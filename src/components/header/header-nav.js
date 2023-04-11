@@ -70,12 +70,17 @@ const HeaderNav = (props) => {
         checkEnvironment()
     })
 
+
     const LoginCheck = (game) => {
-       
+        if(game == "JetX"){
+            state?.user !== null ? window.location.href = "/smart-play?game=JetX&category=JetX" : setShowLoadingModal(true);
+        }else {
             state?.user !== null ? window.location.href = "/gameplay/1301/1" : setShowLoadingModal(true);
-        
+        }
        
     };
+
+
 
     return (
         <>

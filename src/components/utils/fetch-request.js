@@ -1,9 +1,9 @@
 import {setLocalStorage, getFromLocalStorage} from './local-storage';
 
 const ENC_KEY = '2bdVweTeI42s5mkLdYHyklTMxQS5gLA7MDS6FA9cs1uobDXeruACDic0YSU3si04JGZe4Y';
-// const BASE_URL = 'https://api.betnare.com';
+const BASE_URL = 'https://api.betnare.com';
 // const BASE_URL = 'http://127.0.0.1:5000';
-const BASE_URL = 'https://testapi.betnare.co.ke';
+// const BASE_URL = 'https://testapi.betnare.co.ke';
 
 const makeRequest = async ({url, method, data = null, use_jwt = false}) => {
 

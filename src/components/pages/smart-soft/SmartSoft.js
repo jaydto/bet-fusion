@@ -84,6 +84,7 @@ const SmartSoft = (props) => {
                             <div className={'row row-cols-4 text-white p-2 shadow-sm mt-2'}>
                                 {console.log("games",games )}
                                 {gamesLoaded && games?.map((game) => (
+                                    game.gameName!=="TripleSeven"&&
                                     <div className={'col cursor-pointer'}>
                                         <div
                                             className={'mt-1 mb-1 d-flex flex-column shadow-lg virtual-game-container'}>

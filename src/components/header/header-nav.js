@@ -27,6 +27,7 @@ const HeaderNav = (props) => {
     const [test, setTest] = useState(false)
     const [state,] = useContext(Context);
     const pathname = window.location.pathname;
+    const searchTerm=window.location.search
     const [searching, setSearching] = useState(false)
     const [matches, setMatches] = useState([])
     const searchInputRef = useRef(null)
@@ -149,7 +150,7 @@ const HeaderNav = (props) => {
                         </a>
                     </li>
 
-                    <li className={pathname.includes('JetX') ? 'active live-bg' : ''}
+                    <li className={searchTerm.includes('JetX') ? 'active live-bg' : ''}
                         onClick={() => gaEventTracker('Jetx')}>
                         <Link className="url-link fm anl cg ox"
                               to="#"

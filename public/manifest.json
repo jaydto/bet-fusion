@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Betnare",
+  "name": "Betnare",
   "icons": [
     {
       "src": "fire.ico",
@@ -8,12 +8,12 @@
       "type": "image/x-icon"
     },
     {
-      "src": "fire2.png",
+      "src": "fire.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "fire.png",
+      "src": "fire2.png",
       "type": "image/png",
       "sizes": "512x512"
     }

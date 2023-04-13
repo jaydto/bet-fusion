@@ -165,14 +165,14 @@ const HeaderNav = (props) => {
                         </Link>
                     </li>
 
-                    <li className={`${pathname === '/smart-soft'  ? 'active' : ''}`}>
-                        <a className="url-link fm anl cg ox " href="/smart-soft" title="SmartSoft">
-                            <span>
-                                <strong>X-games</strong>
-                                    <span className="notify-badge badge">NEW</span>
-                            </span>
-                        </a>
-                    </li>
+                    {/*<li className={`${pathname === '/smart-soft'  ? 'active' : ''}`}>*/}
+                    {/*    <a className="url-link fm anl cg ox " href="/smart-soft" title="SmartSoft">*/}
+                    {/*        <span>*/}
+                    {/*            <strong>X-games</strong>*/}
+                    {/*                <span className="notify-badge badge">NEW</span>*/}
+                    {/*        </span>*/}
+                    {/*    </a>*/}
+                    {/*</li>*/}
 
                     <li className={`${pathname == '/virtuals' ? 'active' : ''}`}>
                         <Link className="url-link fm anl cg ox" to="/virtuals" title="Virtuals">

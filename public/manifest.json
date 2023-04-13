@@ -8,12 +8,14 @@
       "type": "image/x-icon"
     },
     {
+
       "src": "fire2.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "fire.png",
+
+      "src": "fire2.png",
       "type": "image/png",
       "sizes": "512x512"
     }

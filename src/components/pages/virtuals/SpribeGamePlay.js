@@ -88,7 +88,7 @@ const GamePlay = (props) => {
                                         src={gameUrl} title="Gadme" width={'100%'} height={'600px'}></iframe>
                             </>}
                             {pathname=="aviator"||pathname.includes("aviator")&&
-                                <div className={'card rounded-3 e '} style={{color:"#999",background:"transparent", textDecoration:"none", listStyle:"none",fontSize:'11px'}}>
+                                <div className={'card rounded-3 e '} style={{color:"#999",background:"transparent", textDecoration:"none", listStyle:"none",fontSize:'14px'}}>
                                     <div className={'card-body p-3'}>
                                         <h3 className={'text-center text-warning flashy'}>WIN Upto 2,000,000/= na AVIATOR daily. </h3>
                                         <br/>

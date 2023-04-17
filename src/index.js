@@ -12,6 +12,7 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/css/application.css';
 import './assets/css/tolkits.css';
+import './assets/css/newCss.css'
 import './assets/css/sidebar-menu.css';
 import './index.css';
 import Store from './context/store';

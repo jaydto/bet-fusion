@@ -47,11 +47,11 @@ const SmartSoft = (props) => {
     const getSmartGamesImages = (smart_images, folder = 'smart-soft') => {
 
         let smart_image;
-        console.log("smart", smart_images)
+        console.log("smart", smart_images.toLowerCase())
         let default_img = 'default_sport'
         try {
 
-            smart_image = require(`../../../assets/img/${folder}/${smart_images}.png`);
+            smart_image = require(`../../../assets/img/${folder}/${smart_images.toLowerCase()}.png`);
 
         } catch (error) {
             // console.log("error",error) 

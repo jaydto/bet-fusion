@@ -1,0 +1,16 @@
+
+.flashy{
+    opacity: 0;
+    animation: flashyShow 2s ease-in-out infinite;
+}
+@keyframes flashyShow {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}

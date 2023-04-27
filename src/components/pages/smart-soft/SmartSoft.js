@@ -47,7 +47,7 @@ const SmartSoft = (props) => {
     const getSmartGamesImages = (smart_images, folder = 'smart-soft') => {
 
         let smart_image;
-        console.log("smart", smart_images)
+        // console.log("smart", smart_images)
         let default_img = 'default_sport'
         try {
 
@@ -95,7 +95,7 @@ const SmartSoft = (props) => {
                                                     {game?.gameName}
                                                 </p>
                                                 <LazyLoadImage
-                                                    src={ getSmartGamesImages(game?.gameName)}
+                                                    src={ getSmartGamesImages(game?.gameName.toLowerCase())}
                                                     alt="smart-soft"
                                                    
                                                 />

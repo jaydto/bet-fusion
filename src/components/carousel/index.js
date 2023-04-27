@@ -12,7 +12,7 @@ import Aviator from "../../assets/img/banner/products/Aviator.webp"
 import jackpot from "../../assets/img/banner/products/HalfMilliJP.webp"
 import Drops from "../../assets/img/banner/products/DropsAndWins Web.webp"
 import Drops260 from  '../../assets/img/banner/products/Pragmatic260.webp'
-import Drops65 from '../../assets/img/banner/products/Pragmatic260.webp'
+import Drops65 from '../../assets/img/banner/products/pragmatic65.webp'
 
 const banners = [
     {src: Drops260, url: "/casino"},

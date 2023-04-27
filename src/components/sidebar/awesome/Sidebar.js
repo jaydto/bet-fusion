@@ -127,7 +127,7 @@ const Sidebar = (props) => {
         marginRight: "2px",
         top: "12.5rem",
       }}
-      className={`vh-100 text-white sticky-top d-none d-md-block up `}
+      className={`vh-100 text-white sticky-top d-none d-md-none d-lg-block up `}
     >
       <ProSidebar
         style={{ backgroundColor: "#16202c !important" }}

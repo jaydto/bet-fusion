@@ -5,6 +5,7 @@ import {Context} from '../../context/store';
 import kanyonde from "../../../src/assets/img/mobile/aviator.webp"
 import Premier_League from "../../assets/img/leagues/Premier League.svg"
 import live from "../../assets/img/live.png"
+import casino from "../../assets/img/casino/casino.png"
 
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {
@@ -13,21 +14,25 @@ import {
     faQuestionCircle,
     faTimes,
     faLaptop,
-    faMagic, faInfo, faDice, faFire, faPlaneDeparture, faFireAlt
+    faMagic, faInfo, faDice, faFireAlt
 } from '@fortawesome/free-solid-svg-icons'
 import makeRequest from "../utils/fetch-request";
 import {faMobile, faCoins} from "@fortawesome/free-solid-svg-icons";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {Link} from "react-router-dom";
+import LoginModal from '../modals/LoginModal';
 
 const HeaderNav = (props) => {
     const gaEventTracker = useAnalyticsEventTracker('Navigation');
     const [test, setTest] = useState(false)
     const [state,] = useContext(Context);
     const pathname = window.location.pathname;
+    const searchTerm=window.location.search
     const [searching, setSearching] = useState(false)
     const [matches, setMatches] = useState([])
     const searchInputRef = useRef(null)
+    const [showLoadingModal, setShowLoadingModal] = useState(false);
+
 
     useEffect(() => {
         fetchMatches()
@@ -65,8 +70,23 @@ const HeaderNav = (props) => {
     useEffect(() => {
         checkEnvironment()
     })
+
+
+    const LoginCheck = (game) => {
+        if(game == "JetX"){
+            state?.user !== null ? window.location.href = "/smart-play?game=JetX&category=JetX" : setShowLoadingModal(true);
+        }else {
+            state?.user !== null ? window.location.href = "/gameplay/1301/1" : setShowLoadingModal(true);
+        }
+
+    };
+
+
+
     return (
         <>
+            {showLoadingModal && (<LoginModal setShowLoadingModal={setShowLoadingModal} visible={showLoadingModal}/>)}
+
             <Container id="navbar-collapse-main"
                        className={`d-none d-sm-flex d-flex flex-row  header-menu ${searching ? 'hidden' : 'd-block'}`}>
 
@@ -77,100 +97,151 @@ const HeaderNav = (props) => {
                         <Link className="cg fm ox anl url-link not-selectable " to="/"
                               title="Home"><strong>Home</strong></Link>
                     </li>
-                    <li className={pathname.includes('live') ? 'active' : ''} onClick={() => gaEventTracker('Visit Live Page')}>
+
+                    <li className={pathname.includes('live') && pathname.includes('casino') === false && pathname.includes('livescore') === false ? 'active' : ''}
+                        onClick={() => gaEventTracker('Visit Live Page')}>
                         <Link className={`url-link fm anl cg ox `}
                               to="/live" title="Live">
                             <strong>
-                            <img src={live} width={"25px"} height={"26px"}/>&nbsp;Live
-                        </strong></Link>
+                                Live
+                            </strong>
+                        </Link>
+                    </li>
+                    <li className={pathname === '/jackpot' ? 'active' : ''}
+                        onClick={() => gaEventTracker('Visit Jackpot Page')}>
+                        <Link className="cg fm ox anl url-link" to="/jackpot" title="Jackpot">
+                            <strong>
+                                {/*<FontAwesomeIcon icon={faCoins}/> */}
+                                Jackpot</strong>
+                        </Link>
                     </li>
 
-                    <li className={pathname.includes('aviator') ? 'active live-bg mx-3' : 'mx-3'}
+                    <li className={pathname.includes('aviator') ? 'active live-bg' : ''}
                         onClick={() => gaEventTracker('Aviator')}>
-                        <Link className="url-link  anl cg ox"
+                        <Link className="url-link fm anl cg ox"
                               to="/nare-games/aviator"
                               title="Aviator">
                             <strong>
-                                <div className={'notification-item d-flex'}>
-                                    <img src={kanyonde} className={"-image"} style={{height: '25px'}}/>
+                                <div className={'d-flex menu-item'}>
                                     Aviator
                                     <span className="notify-badge badge">NEW</span>
                                 </div>
                             </strong>
                         </Link>
                     </li>
-                    <li className={pathname.includes('nare-games') ? 'active' : ''}
-                        onClick={() => gaEventTracker('Nare Games')} title={"Nare Games"}>
-                        <Link className="url-link fm anl cg ox"
-                              to="/nare-games"
-                              title="Nare Games">
 
-                            <strong className={"px-1"}>
-                                <FontAwesomeIcon icon={faFireAlt} style={{color: "orange"}}/> Nare Games
-                                <span className="notify-badge badge">NEW</span>
-                                </strong>
+
+                    <li className={`${pathname === '/casino'  ? 'active' : ''}`}>
+                        <a className="url-link fm anl cg ox " href="/casino" title="Live Casino">
+                            <span>
+                                <strong>Casino</strong>
+                                    <span className="notify-badge badge">NEW</span>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li className={`${pathname == '/gameplay' || pathname.includes("1301") ? 'active' : ''}`}>
+                        <a className="url-link fm anl cg ox " href="#" onClick={() => LoginCheck("spaceman")}
+                           title="Space Man">
+                            <span>
+                                <strong>Spaceman</strong>
+                                    <span className="notify-badge badge">NEW</span>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li className={searchTerm.includes('JetX') ? 'active live-bg' : ''}
+                        onClick={() => gaEventTracker('Jetx')}>
+                        <Link className="url-link fm anl cg ox"
+                              to="#"
+                              title="JetX"
+                              onClick={() =>LoginCheck("JetX")}>
+                            <strong>
+                                <div className={'d-flex menu-item'}>
+                                    JetX
+                                    <span className="notify-badge badge">NEW</span>
+                                </div>
+                            </strong>
                         </Link>
                     </li>
-                    <li className={`${pathname === '/virtuals' || pathname.includes("gameplay") ? 'active' : ''}`}>
+
+                    <li className={`${pathname === '/smart-soft'  ? 'active' : ''}`}>
+                        <a className="url-link fm anl cg ox " href="/smart-soft" title="SmartSoft">
+                            <span>
+                                <strong>X-games</strong>
+                                    <span className="notify-badge badge">NEW</span>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li className={`${pathname == '/virtuals' ? 'active' : ''}`}>
                         <Link className="url-link fm anl cg ox" to="/virtuals" title="Virtuals">
                             <span className={''}>
                                 <strong>
                                     <div className={'notification-item'}>
-                                        <FontAwesomeIcon icon={faLaptop}/> Virtuals
+                                        {/*<FontAwesomeIcon icon={faLaptop}/> */}
+                                        Virtuals
                                         <span className="notify-badge badge">NEW</span>
                                     </div>
                                 </strong>
                             </span>
                         </Link>
                     </li>
-                    <li className={`${pathname.includes('Premier') || (window.location.href.includes("Premier")) ? 'active px-2 mx-2' : 'px-2 mx-2'}`}
+                    <li className={pathname.includes('nare-games') && pathname.includes('aviator') === false ? 'active' : ''}
+                        onClick={() => gaEventTracker('Nare Games')} title={"Nare Games"}>
+                        <Link className="url-link fm anl cg ox"
+                              to="/nare-games"
+                              title="Nare Games">
+
+                            <strong className={"px-1"}>
+                                {/*<FontAwesomeIcon icon={faFireAlt} style={{color: "orange"}}/> */}
+                                Nare Games
+                                <span className="notify-badge badge">NEW</span>
+                            </strong>
+                        </Link>
+                    </li>
+
+                    <li className={`${pathname.includes('Premier') || (window.location.href.includes("Premier")) ? 'active px-2' : 'px-2'}`}
                         onClick={() => gaEventTracker('Premier League')}>
                         <Link className="cg fm ox anl url-link"
-                              to={{pathname: `/competition`,search: `competitionid=16805&sub_type_id=1&c=Premier League`}}>
-
+                              to="/competition/79/8076/16805?sport_id=79&sub_type_id=1,18,29&limit=500&c=Premier League"
+                              title="Premier League">
                             <div className={'notification-item'}>
-                                <img src={Premier_League} className={'Premier League'}
-                                     style={{height: "20px", borderRadius: "0 !important"}}></img>
                                 <strong>Premier League</strong>
-                                <span className="notify-badge badge">NEW</span>
                             </div>
                         </Link>
                     </li>
 
-                    <li className={pathname === '/jackpot' ? 'active' : ''}
-                        onClick={() => gaEventTracker('Visit Jackpot Page')}>
-                        <Link className="cg fm ox anl url-link" to="/jackpot" title="Jackpot">
-                            <strong><FontAwesomeIcon icon={faCoins}/> Jackpot</strong>
-                        </Link>
-                    </li>
 
                     <li className={pathname === '/app' ? 'active' : ''}
                         onClick={() => gaEventTracker('Visit App Page')}>
                         <Link className="url-link fm anl cg ox" to="/app" title="App">
                             <span>
-                                <strong><FontAwesomeIcon icon={faMobile}/> APP</strong>
+                                <strong>
+                                    {/*<FontAwesomeIcon icon={faMobile}/>*/}
+                                    APP
+                                </strong>
                             </span>
                         </Link>
                     </li>
 
                     <>
-                        <li className={`${pathname === '/live-casino' || pathname.includes("gameplay") ? 'active' : ''} d-none`}>
-                            <a className="g url-link" href="/live-casino" title="Live Casino">
-                            <span>
-                                <FontAwesomeIcon icon={faFire} className={'text-warning'}/> Live Casino
-                            </span>
-                            </a>
-                        </li>
-                        <li className={`${pathname === '/casino' || pathname.includes("gameplay") ? 'active' : ''} d-none`}>
+                        <li className={`${pathname.includes("casino") ? 'active' : ''} d-none`}>
                             <a className="g url-link" href="/casino" title="Casino">
-                                <FontAwesomeIcon icon={faDice}/> Casino
+                                {/*<FontAwesomeIcon icon={faDice}/>*/}
+                                Casino
                             </a>
                         </li>
-                        <li>
+
+
+                        <li className={pathname === '/livescore' ? 'active' : ''}>
                             <Link className="url-link fm anl cg ox" to="/livescore"
                                   title="Live Score" onClick={() => gaEventTracker('Visit Live Score Page')}>
                             <span>
-                                <strong><FontAwesomeIcon icon={faInfo}/> Live Score</strong>
+                                <strong>
+                                    {/*<FontAwesomeIcon icon={faInfo}/> */}
+                                    Live Score
+                                </strong>
                             </span>
                             </Link>
                         </li>
@@ -179,7 +250,10 @@ const HeaderNav = (props) => {
                     <li className={pathname.includes("promotions") ? 'active' : ''}
                         onClick={() => gaEventTracker('Visit Promotions Page')}>
                         <Link className="url-link fm anl cg ox" to="/promotions" title="Promotions">
-                            <strong><FontAwesomeIcon icon={faMagic}/> Promos</strong>
+                            <strong>
+                                {/*<FontAwesomeIcon icon={faMagic}/>*/}
+                                Promos
+                            </strong>
                         </Link>
                     </li>
                     <li className={pathname === '/print-matches' ? 'spacing-end' : 'spacing-end'}>

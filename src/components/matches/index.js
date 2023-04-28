@@ -832,11 +832,11 @@ const MatchRow = (props) => {
                                             <div className={"px-1 wrapping"}>ID: {match?.game_id}</div>
 
                                         </div>
-                                        <div className='d-flex justify-content-around mobile-remove'>
-                                            <a className="c-btn-header text-white w-100">1</a>
-                                            <a className="c-btn-header text-white w-100">X</a>
-                                            <a className="c-btn-header text-white w-100">2</a>
-                                        </div>
+                                        {/*<div className='d-flex justify-content-around mobile-remove'>*/}
+                                        {/*    <a className="c-btn-header text-white w-100">1</a>*/}
+                                        {/*    <a className="c-btn-header text-white w-100">X</a>*/}
+                                        {/*    <a className="c-btn-header text-white w-100">2</a>*/}
+                                        {/*</div>*/}
 
 
                                     </div>
@@ -978,7 +978,7 @@ const MatchRow = (props) => {
                         </>
                         }
                     </div>
-                    <div className={'to-tabview mobile-only justify-content-end'}>
+                    <div className={'to-tabview mobile-to-desktop-options justify-content-end'}>
                         {!pdown && !jackpot &&
                             <SideBets match={match} live={live} style={{d: "inline"}}/>}
                     </div>

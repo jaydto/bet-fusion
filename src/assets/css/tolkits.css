@@ -8078,6 +8078,13 @@ ul.sport {
     /*.tablet-view{*/
     /*    display: none;*/
     /*}*/
+    .top-login-section {
+        display: none;
+
+    }
+    .to-navcheck{
+        display: none;
+    }
     .desktop-ipad-size{
         display: block!important;
     }
@@ -16059,10 +16066,10 @@ img.zoom-img {
     }
 }
 @media (max-width: 1259px){
-    .top-login-section {
-        display: none;
-
+    .mobile-to-desktop-options{
+        display: flex!important;
     }
+
     .slip-body >tr{
         line-height:11.5px;
         white-space: nowrap;
@@ -16267,10 +16274,6 @@ img.zoom-img {
         height: 2rem!important  ;
     }
 
-
-    .to-navcheck{
-        display: none;
-    }
     .image-size{
         width:100% ;
     }

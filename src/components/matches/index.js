@@ -29,7 +29,7 @@ import {Link} from "react-router-dom";
 import {toast} from "react-toastify";
 import Notify from "../utils/Notify";
 import Testimonials from "../carousel/Testimonials";
-
+import './matches.css'
 
 const clean = (_str) => {
     _str = _str.replace(/[^A-Za-z0-9\-]/g, '');
@@ -741,7 +741,7 @@ const MatchRow = (props) => {
         <div className="top-matches d-flex flex-sm-column flex-lg-row ">
             <div
                 className="to-deskview to-block to-tabview  mx-lg-0 px-sm-4 px-md-4 px-lg-0  py-md-4 py-lg-0 container-size ">
-                <div className="size-info  d-flex col-xs-12 pad left-text flex-row live-col">
+                <div className="size-info mobile-for-desktop d-flex col-xs-12 pad left-text flex-row live-col">
 
 
                     <div className={`d-flex flex-column px-1 justify-content-sm-center justify-content-md-start change-date1 mobile-remove ${jackpot?"jackpot-width":""}`}>
@@ -752,7 +752,7 @@ const MatchRow = (props) => {
                             </>
                         }
 
-                        <span className={'date-size wrapping px-3'}>
+                        <span className={'date-size wrapping px-3 date-remove'}>
                                                 {(live && match?.match_time) ?
                                                     <>{`${match.match_time}'`}</> : new Date(match?.start_time).getDate()+"/"+(Number(new Date(match?.start_time).getMonth())+1) + " "+ (match?.match_time==undefined?"":match?.match_time)} {jackpot? (new Date(match?.start_time).getHours())+":"+new Date(match?.start_time).getMinutes():""}
                                             </span>

@@ -15,12 +15,15 @@ import {Navbar, Offcanvas} from "react-bootstrap";
 import SidebarMobile from "../sidebar/awesome/SidebarMobile";
 import MobileNav1 from "../mobile-navigation/MobileNav1";
 import MobileProfile from "./MobileProfile";
+// const CompetitionsMatches = React.lazy(
+//     () => import('./components/competition/competition-matches')
+// );
 import useWindowDimensions from "./Dimensions";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCloudDownloadAlt, faCoins, faSearch, faTimes} from "@fortawesome/free-solid-svg-icons";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import ListGroup from "react-bootstrap/ListGroup";
-import MobileNav2 from "../mobile-navigation/MobileNav2";
+const  MobileNav2=React.lazy(()=>import( "../mobile-navigation/MobileNav2"));
 const ProfileMenu = React.lazy(() => import('./profile-menu'));
 const HeaderLogin = React.lazy(() => import('./top-login'));
 const HeaderNav = React.lazy(() => import('./header-nav'));
@@ -189,7 +192,7 @@ const Header = (props) => {
     return (
         <>
             <Navbar expand="md"   className="mb-0 ck pt-sm-0 pt-md-3 pc os app-navbar top-nav" fixed="top" variant="dark">
-                <Container fluid className={'d-flex justify-content-between mobile-change'}>
+                <Container fluid className={'d-flex justify-content-between mobile-change desktop-ipad-size'}>
                     <Navbar.Brand className="e logo align-self-start menu-control" title="Betnare">
                         <Link to={{pathname: "/"}} className="col-4 resize-mobile">
                             <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"

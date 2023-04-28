@@ -1,0 +1,10 @@
+
+
+@media (max-width: 1259px){
+    .mobile-for-desktop{
+        display:block!important
+    }
+    .date-remove{
+        display: none!important;
+    }
+}

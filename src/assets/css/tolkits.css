@@ -139,7 +139,8 @@ input, select, textarea {
 }
 
 .mobile-menu {
-    background: #1f2f38;
+    /*background: #1f2f38;*/
+    background-color:#16202C!important;
     position: fixed;
     bottom: 0;
     visibility:visible;
@@ -154,7 +155,7 @@ input, select, textarea {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #1f2f38;
+    /*background-color: #1f2f38;*/
     width: 80%;
     border-radius: 5px;
     flex-direction: column;
@@ -193,7 +194,8 @@ input, select, textarea {
 }
 
 .pro-sidebar > .pro-sidebar-inner {
-    background-color: #253743 !important;
+    /*background-color: #253743 !important;*/
+    background:#16202C!important;
 }
 
 .pro-sidebar .pro-menu .pro-menu-item.pro-sub-menu .pro-inner-list-item {
@@ -1638,6 +1640,8 @@ header {
     .top-matches div {
         min-height: 26px;
         justify-content:end;
+        background-color:#16202C;
+        /*background:#16202C;*/
     }
 
     .home-tabs .main-header, .home-tabs-active .main-header {
@@ -2070,7 +2074,8 @@ events-header {
 
 .support .mail {
     padding: 5px 0;
-    background: #efefef;
+    /*background: #efefef;*/
+    background: #16202C;
     font-size: 13px;
     color: #212121;
 }
@@ -2173,7 +2178,8 @@ events-header {
 }
 
 .second-nav {
-    background: #1f2f38 !important;
+    /*background: #1f2f38 !important;*/
+    background:#16202C!important;
     font-size: 12px;
     box-shadow: 0 1px 2px #16202c;
     -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
@@ -2288,7 +2294,7 @@ events-header {
 }
 
 .matches .top-matches {
-    background: #253743;
+    /*background: #253743;*/
     padding-top: 10px;
     padding-bottom: 3px;
     margin-bottom: 0px;
@@ -2603,7 +2609,7 @@ html {
 body {
     font-size: 14px;
     line-height: 1.8;
-    background: #16202c;
+    background: #16202C;
     max-width: 100% !important
 }
 
@@ -3308,6 +3314,9 @@ p {
 @media (min-width: 768px) {
     .df {
         font-size: 21px;
+    }
+    .navbar-expand-md .offcanvas{
+        display:none!important
     }
 }
 
@@ -5251,6 +5260,9 @@ input[type="button"].btn-block {
     }
     .by {
         width: 100%;
+    }
+    .off-canvas {
+        display: none;
     }
 }
 
@@ -7287,9 +7299,9 @@ ul.sport {
 }
 
 @media (max-width: 640px), (max-width: 574px) {
-    .image-size {
-        width: 100px !important;
-    }
+    /*.image-size {*/
+    /*    width: 100px !important;*/
+    /*}*/
 
     .font-btn {
         font-size: 10px;
@@ -7499,9 +7511,8 @@ ul.sport {
     }
 
     .e.logo {
-        padding: 10px 0px !important;
+        padding: 0px 0px !important;
     }
-
     .second-nav {
         top: 90px;
         background: #16202c !important;
@@ -8073,11 +8084,40 @@ ul.sport {
     .tablet-view{
         display:flex;
     }
+    .mobile-profile1{
+        display:none;
+    }
 }
 @media (max-width: 991px) {
+    .logo{
+        padding-top:0px!important
+    }
     /*.tablet-view{*/
     /*    display: none;*/
     /*}*/
+    .mobile-profile1{
+        display:flex;
+        width:auto;
+    }
+    .gn{
+        padding:0px!important;
+    }
+    .display-ipad-more-options{
+        display:none;
+    }
+    .mobile-to-desktop-options{
+        display: flex!important;
+    }
+    .app-header-nav {
+        padding-left: 4px;
+        margin-top: -25px !important;
+    }
+    .app-navbar .e img {
+        max-width: 130px !important;
+    }
+    .image-size{
+        width:100% ;
+    }
     .top-login-section {
         display: none;
 
@@ -8125,7 +8165,7 @@ ul.sport {
         display: flex!important;
     }
     .matches .top-matches{
-        border-bottom: 1px solid #334c5c!important;
+        /*border-bottom: 1px solid #334c5c!important;*/
     }
     .border-info{
         border: 1px solid black;
@@ -12115,6 +12155,12 @@ button.close {
 }
 
 @media (min-width: 769px) and (max-width: 991px) {
+    .logo {
+        position: relative;
+        color: #fff !important;
+        /* padding-top: 8px; */
+        padding-top: 4px;
+    }
     /*.change-display {*/
     /*    flex-wrap: nowrap;*/
     /*    font-size: 11px;*/
@@ -12152,6 +12198,9 @@ button.close {
     .sj {
         display: block !important;
     }
+    .navbar-expand-md .navbar-toggler {
+         display: flex!important;
+    }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
@@ -12167,6 +12216,13 @@ button.close {
 }
 
 @media (min-width: 992px) and (max-width: 1259px) {
+    .justify-spacing-ipad{
+        justify-content:center!important;
+    }
+    .display-ipad-more-options{
+        display:flex;
+        justify-content:end;
+    }
     .fix-view-2{
         width:77.8% !important;
     }
@@ -12306,6 +12362,9 @@ button.close {
 /*}*/
 
 @media (min-width: 1260px) {
+    .display-ipad-more-options{
+        display:flex;
+    }
     .sf {
         display: block !important;
     }
@@ -15998,7 +16057,8 @@ img.zoom-img {
 }
 
 .top-matches:nth-child(2n) {
-    background: #253743;
+    /*background: #253743;*/
+    background: #16202C;
 }
 
 .top-matches:nth-child(2n + 1) {
@@ -16061,13 +16121,19 @@ img.zoom-img {
 
 @media (max-width: 1259px) and (min-width: 768px){
     /*todo changed mobile display here*/
+    .display-ipad-dates{
+        display:flex!important;
+    }
     .mobile-only{
         display: none;
     }
+    .display-ipad-remove-id{
+        display:none!important;
+    }
 }
 @media (max-width: 1259px){
-    .mobile-to-desktop-options{
-        display: flex!important;
+    .compt-teams{
+        display:block!important;
     }
 
     .slip-body >tr{
@@ -16187,7 +16253,7 @@ img.zoom-img {
     }
     .menu-t .menu-img {
         width: 100% !important;
-        height: 3.2rem !important;
+        height: 2.8rem !important;
         text-align: center;
         padding: 5px 0px;
     }
@@ -16217,7 +16283,8 @@ img.zoom-img {
         display: inline-block;
         overflow-y: hidden;
         overflow-x: auto;
-        background: #1f2f38;
+        /*background: #1f2f38;*/
+        background:#16202C!important;
         -webkit-overflow-scrolling: touch;
     }
     .card-small {
@@ -16274,9 +16341,6 @@ img.zoom-img {
         height: 2rem!important  ;
     }
 
-    .image-size{
-        width:100% ;
-    }
     .to-profile-check{
         display:flex;
     }
@@ -16286,7 +16350,7 @@ img.zoom-img {
     .to-tabview:empty{
         display:none!important;
     }
-    .checking:empty{
+    .markets-container-data-check checking:empty{
         display:none;
     }
     .to-deskview:empty{
@@ -16351,6 +16415,11 @@ img.zoom-img {
         width: 3rem;
     }
 }
+@media (max-width: 572px){
+    .remove-on-mobile{
+        display:none!important
+    }
+}
 @media (max-width: 400px){
 
     .top-matches .side{
@@ -16385,10 +16454,6 @@ img.zoom-img {
         margin-top: 70px;
     }
 
-    .app-header-nav {
-        padding-left: 4px;
-        margin-top: -25px !important;
-    }
 
     .password-change {
 
@@ -16399,9 +16464,7 @@ img.zoom-img {
         display: none;
     }
 
-    .app-navbar .e img {
-        max-width: 130px !important;
-    }
+
 
     .thedate {
         display: none;
@@ -16415,9 +16478,6 @@ img.zoom-img {
 @media (min-width: 767px) {
     .mobile-only{
         display: flex;
-    }
-    .off-canvas {
-        display: none;
     }
 
     .visible-mobile {
@@ -16773,7 +16833,8 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 .betslip-container {
     position: sticky !important;
     top: 12.5rem;
-    background: #253743 !important;
+    /*background: #253743 !important;*/
+    background:#16202C!important;
 }
 .to-profile-check:empty{
     display:none;
@@ -16924,6 +16985,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 
     line-height: 20px;
     /*background-color: black;*/
+    /*background: rgb(51, 76, 92);*/
     background: rgb(51, 76, 92);
 }
 /*
@@ -17171,7 +17233,8 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 }
 
 .profile-bg {
-    background: #253743;
+    /*background: #253743;*/
+    background:#16202C;
 }
 
 .user-style {

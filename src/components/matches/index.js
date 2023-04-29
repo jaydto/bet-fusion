@@ -744,7 +744,7 @@ const MatchRow = (props) => {
                 <div className="size-info mobile-for-desktop d-flex col-xs-12 pad left-text flex-row live-col">
 
 
-                    <div className={`d-flex flex-column px-1 justify-content-sm-center justify-content-md-start change-date1 mobile-remove ${jackpot?"jackpot-width":""}`}>
+                    <div className={`d-flex flex-column px-1 justify-content-sm-center justify-content-md-start change-date1 mobile-remove display-ipad-remove-id ${jackpot?"jackpot-width":""}`}>
                         {live &&
                             <>
                                 <small style={{color: "green"}}> {match?.match_status} </small>
@@ -752,7 +752,7 @@ const MatchRow = (props) => {
                             </>
                         }
 
-                        <span className={'date-size wrapping px-3 date-remove'}>
+                        <span className={'date-size wrapping px-3 date-remove display-ipad-remove-id'}>
                                                 {(live && match?.match_time) ?
                                                     <>{`${match.match_time}'`}</> : new Date(match?.start_time).getDate()+"/"+(Number(new Date(match?.start_time).getMonth())+1) + " "+ (match?.match_time==undefined?"":match?.match_time)} {jackpot? (new Date(match?.start_time).getHours())+":"+new Date(match?.start_time).getMinutes():""}
                                             </span>
@@ -802,7 +802,7 @@ const MatchRow = (props) => {
 
                 </div>
                 <hr className={"to-block m-sm-1 m-md-1 m-lg-0"}/>
-                <div className="col d-flex  flex-row space-bets justify-content-lg-between  card-small">
+                <div className="col d-flex  flex-row space-bets justify-content-lg-between  justify-spacing-ipad card-small">
 
                     {width>767?
                         <div className={"d-flex to-flex-1"}>
@@ -824,7 +824,7 @@ const MatchRow = (props) => {
                                                 ))}
                                             </span>
                                         </div>
-                                        <div className="d-flex flex-row px-1 justify-content-end change-date1 mobile-only">
+                                        <div className="d-flex flex-row px-1 justify-content-end change-date1 mobile-only display-ipad-dates">
                                             <span className={'date-size wrapping px-3'}>
                                                 {(live && match?.match_time) ?
                                                     <>{`${match.match_time}'`}</> : new Date(match?.start_time).getDate()+"/"+(Number(new Date(match?.start_time).getMonth())+1) + " "+ (match?.match_time==undefined?"":match?.match_time)} {jackpot? (new Date(match?.start_time).getHours())+":"+new Date(match?.start_time).getMinutes():""}
@@ -832,11 +832,7 @@ const MatchRow = (props) => {
                                             <div className={"px-1 wrapping"}>ID: {match?.game_id}</div>
 
                                         </div>
-                                        {/*<div className='d-flex justify-content-around mobile-remove'>*/}
-                                        {/*    <a className="c-btn-header text-white w-100">1</a>*/}
-                                        {/*    <a className="c-btn-header text-white w-100">X</a>*/}
-                                        {/*    <a className="c-btn-header text-white w-100">2</a>*/}
-                                        {/*</div>*/}
+
 
 
                                     </div>
@@ -886,7 +882,7 @@ const MatchRow = (props) => {
 
                         </div>
                         :""}
-                    {width<=767?<div className="c-btn-group align-self-center checking">{
+                    {width<=767?<div className="c-btn-group align-self-center markets-container-data-check  ">{
                             match?.odds?.home_odd ? (match?.odds?.home_odd && (!pdown && match?.odds?.home_odd && match.odds.home_odd !== 'NaN' &&
                                     match.market_active == 1 && match.odds.home_odd_active == 1)
                                     ? <OddButton match={match} mkt="home_team" live={live} jackpot={jackpot}/>
@@ -1009,7 +1005,7 @@ const MatchRow = (props) => {
 
                     </>
                     }
-                    <div className={'to-deskview'}>
+                    <div className={'display-ipad-more-options'}>
 
                         {!pdown && !jackpot &&
                             <SideBets match={match} live={live} style={{d: "inline"}}/>}

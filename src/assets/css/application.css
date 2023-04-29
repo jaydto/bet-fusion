@@ -242,7 +242,8 @@ h4.inline-block {
 }
 
 .betslip {
-    background: #1c313b;
+    /*background: #1c313b;*/
+    background:#16202C;
     padding: 5px;
     padding-top: 1px;
     font-size: 14px;

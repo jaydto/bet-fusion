@@ -591,57 +591,69 @@ const OddButton = (props) => {
 
 
 const MarketRow = (props) => {
-    const {markets, match, market_id, width, live, pdown} = props;
+    const { markets, match, market_id, width, live, pdown, allMarkets } = props;
 
     const MktOddsButton = (props) => {
-        const {match, mktodds, live, pdown} = props;
-        const fullmatch = {...match, ...mktodds};
+        const { match, mktodds, live, pdown } = props;
+        const fullmatch = { ...match, ...mktodds };
         // console.log("Market odds", fullmatch)
-        return (
-            !pdown
-            && fullmatch?.odd_value !== 'NaN'
-            && fullmatch.market_active == 1
-            && fullmatch.odd_active == 1
-        )
-            ? <OddButton match={fullmatch} detail mkt={"detail"} live={live}/>
-            :<EmptyTextRow odd_key={match?.odd_key} live={live}/>;
-    }
+        return !pdown &&
+        fullmatch?.odd_value !== "NaN" &&
+        fullmatch.market_active == 1 &&
+        fullmatch.odd_active == 1 ? (
+            <OddButton
+                match={fullmatch}
+                detail
+                mkt={"detail"}
+                live={live}
+                allMarkets={allMarkets}
+            />
+        ) : (
+            <EmptyTextRow odd_key={fullmatch?.odd_key} allMarkets={allMarkets} />
+        );
+    };
 
     return (
         <div className="top-matches match">
             <Row className="top-matches header">
-                {live &&
+                {live && (
                     <div
                         style={{
                             width: "2px",
                             marginTop: "-5px",
                             marginRight: "5px",
-                            opacity: 0.6
-                        }}>
-                        <ColoredCircle color="#cc5500"/>
+                            opacity: 0.6,
+                        }}
+                    >
+                        <ColoredCircle color="#cc5500" />
                     </div>
-                }
+                )}
                 {market_id}
             </Row>
 
-            {markets && markets.map((mkt_odds) => {
-                // console.log(mkt_odds)
-                return (<>
-                    <Col className="match-detail" style={{width: width, float: "left"}}>
-                        <MktOddsButton
-                            match={match}
-                            mktodds={mkt_odds}
-                            live={live}
-                            pdown={pdown}
-                        />
-                    </Col>
-                </>)
-            })
-            }
+            {markets &&
+                markets.map((mkt_odds) => {
+                    //  console.log(mkt_odds)
+                    return (
+                        <>
+                            <Col
+                                key={mkt_odds.id}
+                                className="match-detail"
+                                style={{ width: width, float: "left" }}
+                            >
+                                <MktOddsButton
+                                    match={match}
+                                    mktodds={mkt_odds}
+                                    live={live}
+                                    pdown={pdown}
+                                />
+                            </Col>
+                        </>
+                    );
+                })}
         </div>
-    )
-}
-
+    );
+};
 const ColoredCircle = ({color}) => {
     const styles = {backgroundColor: color};
     return color ? (
@@ -1020,61 +1032,106 @@ const MatchRow = (props) => {
 }
 
 export const MarketList = (props) => {
+    const [hasMore, setHasMore] = useState(true);
+    const { live, allMarkets, pdown } = props;
+    const { height, width } = useWindowDimensions();
+    const [state, dispatch] = useContext(Context);
 
-    const {live, matchwithmarkets, pdown} = props;
+    // State for managing the filtered markets
+    const [filters, setFilters] = useState({});
+    const [perPage, setPerPage] = useState(10);
+    const [currentPage, setCurrentPage] = useState(1);
 
-    const [filters, setFilters] = useState({})
+
+    //  fetching More Markets from redux state
+    const matchwithmarkets = allMarkets
+        ? state?.all_markets
+        : dispatch({ type: "SET", key: "all_markets", payload: null });
+
+
 
     const filterMarkets = (value) => {
-        let filtered = []
-        let elements = Array.from(Object.entries(matchwithmarkets?.data?.odds || {}))
+        let filtered = [];
+        let elements = Array.from(
+            Object.entries(matchwithmarkets?.data?.odds || {})
+        );
         elements.filter((mkt_id, markets) => {
             if (mkt_id[0].toLowerCase().includes(value)) {
-                filtered[mkt_id[0]] = mkt_id[1]
+                filtered[mkt_id[0]] = mkt_id[1];
             }
-            return []
-        })
+            return [];
+        });
 
-        let match = filters?.data?.match
+        let match = filters?.data?.match;
 
-        let ob = ({
+        let ob = {
             data: {
                 match: match,
-                odds: Object.assign({}, filtered)
-            }
-        })
+                odds: Object.assign({}, filtered),
+            },
+        };
 
-        setFilters(ob)
-    }
+        setFilters(ob);
+    };
+
+
 
     useEffect(() => {
-        setFilters(matchwithmarkets)
-    }, [matchwithmarkets])
+        setFilters(matchwithmarkets);
+
+    }, [matchwithmarkets]);
+
+
+    const startIndex = (currentPage - 1) * perPage;
+    const endIndex = startIndex + perPage;
+    const marketsToShow = Object.entries(filters?.data?.odds || {}).slice(startIndex, endIndex);
+
+
+    const handleScroll = (event) => {
+        const element = event.target;
+        console.log("scrolling ", element)
+        if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+            setCurrentPage((currentPage) => currentPage + 1);
+        }
+    };
+
 
     return (
-        <div className="matches full-width">
-            {!filters
-                ? <div className="top-matches">Event not available for betting.</div>
-                : <MoreMarketsHeaderRow
-                    {...filters?.data?.match}
-                    score={filters?.data?.match?.score}
-                    live={live}
-                />
-            }
-            <Row className="web-element px-3">
-                <div className="col-md-12 position-sticky shadow-lg primary-bg mb-1 remove-top px-0"
-                     style={{top: "135px", height: "40px", backgroundColor: "#3c5a6c !important"}}>
-                    <Input type="text" className={'form-control h-100  border-0'}
-                           style={{
-                               fontSize: "14px",
-                               backgroundColor: "#3c5a6c",
-                               color: "#FFF"
-                           }}
-                           onInput={(event) => filterMarkets(event.target.value)}
-                           placeholder={'Type to search for market ...'}/>
+        <div onScroll={handleScroll} className="matches full-width" style={{marginBottom:"0px"}}>
+
+            <div className="web-element" style={{marginBottom:"7px"}}>
+                {!filters ? (
+                    <div className="top-matches">Event not available for betting.</div>
+                ) : (
+                    <MoreMarketsHeaderRow
+                        {...filters?.data?.match}
+                        score={filters?.data?.match?.score}
+                        live={live}
+                    />
+                )}
+                <div
+                    className="col-md-12 position-sticky shadow-lg primary-bg mb-1 px-2 py-1"
+                    style={{ height: "42px", backgroundColor: "#3c5a6c !important" }}
+                >
+                    <Input
+                        type="text"
+                        className={"form-control h-100  border-0 text-default "}
+                        style={{
+                            fontSize: "14px",
+                            borderRadius: "9px",
+                            backgroundColor: "#fff",
+                            color: "grey",
+                            height: "40px!important",
+                        }}
+                        onInput={(event) => filterMarkets(event.target.value)}
+                        placeholder={"Type to search for market ..."}
+                    />
                 </div>
-                {Object.entries(filters?.data?.odds || {}).map(([mkt_id, markets]) => {
-                    return <MarketRow
+
+
+                {marketsToShow.map(([mkt_id, markets]) => {
+                    return  <MarketRow
+                        allMarkets={allMarkets}
                         market_id={mkt_id}
                         markets={markets}
                         width={markets.length === 3 ? "33.333%" : "50%"}
@@ -1083,13 +1140,15 @@ export const MarketList = (props) => {
                         live={live}
                         pdown={pdown}
                     />
+
                 })
                 }
-            </Row>
-        </div>
-    )
 
-}
+
+            </div>
+        </div>
+    );
+};
 
 export const JackpotHeader = (props) => {
     const {jackpot} = props

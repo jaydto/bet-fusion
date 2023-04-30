@@ -2270,9 +2270,13 @@ events-header {
     text-transform: uppercase !important;
 }
 
+/*todo changed styling of buttons*/
 .matches .top-matches button {
     height: 30px;
-    border-radius: 2px !important;
+    border-radius: 20px !important;
+    margin-right: 4px;
+    outline: none;
+    box-sizing: border-box;
 }
 
 .home-team {
@@ -2304,7 +2308,7 @@ events-header {
     color: #fff;
     font-size: 12px;
     opacity: 0.8;
-    border-bottom: 1px solid #334c5c;
+    /*border-bottom: 1px solid #334c5c;*/
 }
 
 .mobi #search-event {

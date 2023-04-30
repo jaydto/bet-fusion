@@ -22,6 +22,7 @@ const Right = React.lazy(()=>import('../right'));
 const MatchAllMarkets = (props) => {
     const [page, setPage] = useState(1);
     const [producerDown, setProducerDown] = useState(false);
+    const [allMarkets,setAllMarkets]=useState(true)
 
     let url = new URL(window.location)
     const live = url.searchParams.get('live')
@@ -52,7 +53,9 @@ const MatchAllMarkets = (props) => {
 
         makeRequest({url:endpoint, method:method, data:betslip}).then(([_status, response]) => {
             setMatchWithMarkets(response?.data || response );
+            dispatch({type: "SET", key: "all_markets", payload: response?.data||response});
             if(response?.slip_data) {
+                dispatch({type: "SET", key: "user_slip_validation", payload: response?.slip_data});
                 setUserSlipsValidation(response?.slip_data);
             }
             setProducerDown(response?.producer_status === 1);
@@ -69,6 +72,7 @@ const MatchAllMarkets = (props) => {
                 : "/v1/matches?id="+id;
 
             await makeRequest({url: endpoint, method: "POST", data: betslip}).then(([status, result]) => {
+                dispatch({type: "SET", key: "all_markets", payload: result?.data||result});
                 setMatchWithMarkets(result?.data|| result)
                 setProducerDown(result?.producer_status === 1);
                 setIsLoading(false);
@@ -91,11 +95,16 @@ const MatchAllMarkets = (props) => {
             <div className={(width<=514?state?.user?"user_logged":"amt":"amt")}>
                 <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions />
-                    <div className="gz home"  style={{width:'100%'}}>
+                    <div className="gz home" style={{ width: "100%" ,marginBottom:"5rem"}}>
                         <div className="homepage">
-                            <MarketList live={live}
-                                        matchwithmarkets={matchwithmarkets}
-                                        pdown={producerDown} />
+
+                            <MarketList
+                                allMarkets={allMarkets}
+                                live={live}
+                                matchwithmarkets={state?.all_markets}
+                                pdown={producerDown}
+                            />
+
                         </div>
                     </div>
 

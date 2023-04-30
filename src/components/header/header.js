@@ -237,7 +237,7 @@ const Header = (props) => {
                                     </Link>
                                 </div>
                                 <div className="">
-                                    <Link className="cg  login-color login-size btn bg-warning" to={"/signup"} title="Join now" onClick={() => gaEventTracker('Register')}>
+                                    <Link className="cg  login-color login-size btn bg-warning text-light" to={"/signup"} title="Join now" onClick={() => gaEventTracker('Register')}>
                                         <span className=" ">Register</span>
                                     </Link>
                                 </div>

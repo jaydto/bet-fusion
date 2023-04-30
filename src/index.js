@@ -1,29 +1,33 @@
 import React, {useEffect, useCallback, Suspense} from "react";
 import {render} from "react-dom";
+
+import {
+    BrowserRouter, Navigate,
+    Route,
+    Routes,
+    useNavigate,
+} from 'react-router-dom'
+
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/css/application.css';
 import './assets/css/tolkits.css';
 import './assets/css/sidebar-menu.css';
 import './index.css';
+import './assets/css/newCss.css'
+
 import Store from './context/store';
 import ReactGA from 'react-ga4';
-import Loading from "./components/loading/Loading";
-import {BrowserRouter, Navigate, Route, Routes, useNavigate} from "react-router-dom";
-
 
 const TRACKING_ID = "G-5NLSN9BLN4";
 ReactGA.initialize(TRACKING_ID);
 
 const Index = React.lazy(() => import('./components/index'));
 const CompetitionsMatches = React.lazy(
-    () => import('./components/competition/competition-matches')
+    () => import('./components/competition-matches')
 );
-const MatchAllMarkets = React.lazy(() => import('./components/competition/all-markets'));
-
-const Profile =React.lazy(()=>import( "./components/pages/Accounts/Profile"));
 const BetslipShareDecode = React.lazy(() => import('./components/betslip/BetslipShareDecode'))
-
+const MatchAllMarkets = React.lazy(() => import('./components/all-markets'));
 
 const Jackpot = React.lazy(() => import('./components/jackpot'));
 
@@ -51,7 +55,6 @@ const ResponsibleGambling = React.lazy(
 const AntimoneyLaundering = React.lazy(
     () => import('./components/pages/anti-money-laundering')
 );
-
 const PrivacyPolicy = React.lazy(
     () => import('./components/pages/privacy-policy/index')
 );
@@ -68,9 +71,7 @@ const Deposit = React.lazy(
 const Signup = React.lazy(
     () => import('./components/pages/signup')
 );
-const Login=React.lazy(
-    ()=>import('./components/pages/Login')
-);
+
 const ResetPassword = React.lazy(
     () => import('./components/pages/auth/reset-password')
 )
@@ -99,12 +100,19 @@ const SpribeGamePlay = React.lazy(() => import('./components/pages/virtuals/Spri
 
 const SpribeGames = React.lazy(() => import('./components/pages/virtuals/SpribeGames'))
 
+const SmartSoftPlay = React.lazy(() => import('./components/pages/smart-soft/smart-soft'))
+
+const SmartPlay = React.lazy(() => import('./components/pages/smart-soft/SmartPlay'))
+
 const Promotions = React.lazy(() => import('./components/pages/promotions/Promotions'))
 
 const LiveScore = React.lazy(() => import('./components/pages/livescore/LiveScore'))
 
 const PageNotFound = React.lazy(() => import('./components/pages/404/NotFound'))
 
+const ShaksGamePlay=React.lazy(()=>import('./components/pages/shaks/ShaksGamePlay') )
+
+const Kiron=React.lazy(()=>import('./components/pages/Kiron/index'))
 
 const Logout = () => {
     let navigate = useNavigate();
@@ -132,22 +140,24 @@ render((
                     <Route exact path="/virtuals" element={<Virtuals/>}/>
                     <Route exact path="/livescore" element={<LiveScore/>}/>
                     <Route exact path="/404" element={<PageNotFound/>}/>
-                    <Route exact path={"/profile"} element={<Profile/>}/>
                     <Route exact path="/casino" element={<Casino/>}/>
                     <Route exact path="/live-casino" element={<LiveCasino/>}/>
                     <Route exact path="/gameplay/:game_id/:live" element={<CasinoGamePlay/>}/>
                     <Route exact path="/nare-games/:game" element={<SpribeGamePlay/>}/>
                     <Route exact path="/nare-games" element={<SpribeGames/>}/>
+                    <Route exact path="/smart-play" element={<SmartPlay/>}/>
+                    <Route exact path="/smart-soft" element={<SmartSoftPlay/>}/>
+                    <Route exact path="/shaks/:game" element={<ShaksGamePlay/>}/>
+                    <Route exact path={"/nare-league"} element={<Kiron/>}/>
+                    <Route exact path={"/results"} element={<Kiron/>}/>
+                    <Route exact path={"/standing"} element={<Kiron/>}/>
+                    <Route exact path={"/bet-history"} element={<ProtectedRoute><Kiron/></ProtectedRoute>}/>
                     <Route exact path="/highlights" element={<Index/>}/>
                     <Route exact path="/upcoming" element={<Index/>}/>
                     <Route exact path="/tomorrow" element={<Index/>}/>
-                  
                     <Route exact path="/competition/:id" element={<CompetitionsMatches/>}/>
-                    <Route exact path= "/competition"
-                           element={<CompetitionsMatches/>}/>
                     <Route exact path="/competition/:sportid/:categoryid/:competitionid"
                            element={<CompetitionsMatches/>}/>
-
                     <Route exact path="/match/:id" element={<MatchAllMarkets/>}/>
                     <Route exact path="/match/live/:id" element={<MatchAllMarkets live/>}/>
                     <Route exact path="/jackpot" element={<Jackpot/>}/>
@@ -161,9 +171,8 @@ render((
                     <Route exact path="/terms-and-conditions" element={<TermsAndConditions/>}/>
                     <Route exact path="/how-to-play" element={<HowToPlay/>}/>
                     <Route exact path="/signup" element={<Signup/>}/>
-                    <Route exact path="/login" element={<Login/>}/>
                     <Route exact path="/reset-password" element={<ResetPassword/>}/>
-                    <Route exact path="/verify-account" element={<VerifyAccount/>}/>
+                    <Route exact path="/verify" element={<VerifyAccount/>}/>
                     <Route exact path="/app" element={<MobileApp/>}/>
                     <Route exact path="/logout" element={<Logout/>}/>
                     <Route exact path="/print-matches" element={<PrintMatches/>}/>
@@ -179,7 +188,6 @@ render((
                 </Routes>
             </Suspense>
         </BrowserRouter>
-
     </Store>
 ), container);
 

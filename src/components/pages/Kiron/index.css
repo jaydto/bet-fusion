@@ -1,0 +1,307 @@
+.to-block {
+    display: flex!important;
+}
+.container-size {
+    width: 100%!important;
+}
+.size-info {
+    width: 39%;
+}
+.space-bets {
+    flex-direction: column !important;
+}
+.matches .top-matches .kiron-btn {
+    height: 30px;
+    border-radius: 20px !important;
+    margin-right: 4px;
+    outline: none;
+    height: 35px;
+    box-sizing: border-box;
+}
+
+.opt-color{
+    background: #ffc107!important;
+}
+.menu-t div.inner-div {
+    /* background-color: #2D4352; */
+    color: #FFFFFF;
+    white-space: nowrap;
+    border-radius: 4px;
+    padding: 3px 5px;
+    border: none;
+}
+.highlight {
+    border-bottom: 3px solid yellow!important;
+    color: yellow!important;
+}
+
+
+/*spinner */
+.kiron-competitions{
+    display: flex;
+}
+.kiron-competition-active{
+    opacity: 1 !important;
+    color: #FFC107 !important;
+}
+.kiron-competition{
+    color: white;
+    background-color: #2D4352;
+    width: 24%;
+    margin-right: 2px;
+    padding: 5px;
+    border-radius: 5px;
+    opacity: 0.6;
+}
+.competition-active{
+    opacity: 1;
+    color: #FFC107;
+}
+.kiron-match{
+    display: flex;
+    color: white;
+    font-size: 13px;
+    justify-content: space-between;
+    border-bottom: black thin solid;
+    margin-bottom: 5px;
+    padding: 15px;
+    align-items: center;
+}
+.kiron-menu-items{
+    display: flex;
+    font-size: 12px;
+}
+.kiron-menu-item{
+    width: 33%;
+    background-color: grey;
+    color: white;
+    text-align: center;
+    padding: 5px;
+    border-right: #2D4352 thin solid;
+}
+.kiron-events{
+    background-color: grey;
+    border-right: #2D4352 thin solid;
+    margin-right: 1px;
+}
+.kiron-period-active{
+    background-color: #FFC107;
+    color: black !important;
+}
+.kiron-market-active{
+    font-weight: bold;
+    background-color: #FFC107 !important;
+    color: black !important;
+}
+.kiron-odd-active{
+    background-color: #FFC107 !important;
+    color: black !important;
+}
+.kiron-markets{
+    background-color: #0E131B;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 22px;
+    margin-right: 5px;
+}
+.kiron-odds{
+    display: flex;
+    width: 50%;
+}
+.kiron-odds button{
+    color: #FFFFFF;
+    text-decoration: none;
+    display: block;
+    width: calc(100% * (1/2));
+    text-align: center;
+    padding: 8px 0px;
+    border: none;
+    outline: none;
+    background: #2D4352;
+    border-radius: 5px;
+    height: 50px;
+    box-sizing: border-box;
+    margin-right: 2px;
+}
+.kiron-loader{
+    width: 100%;
+    height: 400px;
+    display: block;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.match-start {
+    color: white;
+    margin-bottom: -113px;
+}
+.loading {
+    display: flex;
+    justify-content: center;
+}
+.loading::after {
+    content: "";
+    width: 220px;
+    height: 220px;
+    border: 23px solid #DDDDDD;
+    border-top-color: #009579;
+    border-radius: 50%;
+    animation: loading 1s ease infinite;
+}
+.kiron-playout-score-display{
+    display: flex;
+    /* background-color: red; */
+    padding: 4px 8px;
+    margin: 0px 4px;
+    align-items: center;
+    width: 20%;
+    justify-content: space-evenly;
+}
+.kiron-playout-score{
+    font-size: 15px;
+    color: #FFC107;
+}
+.kiron-playout-score-animation{
+    background-color: red;
+    padding: 0px 5px;
+    color: white;
+    animation: scoreblink 1s linear infinite;
+}
+@keyframes scoreblink{
+    0%{opacity: 0;}
+    50%{opacity: .5;}
+    100%{opacity: 1;}
+}
+.result-score{
+    padding:4px 8px;
+    margin: 0px 4px;
+}
+@keyframes loading {
+    to {
+        transform: rotate(1turn);
+    }
+}
+.kiron-matches-playout{
+    margin-top: -3px;
+    display: none;
+}
+.kiron-matches{
+    display: block;
+}
+.kiron-match-playout{
+    display: flex;
+    color: white;
+    font-size: 13px;
+    justify-content: center;
+    border-bottom: black thin solid;
+    margin-bottom: 5px;
+    padding: 15px;
+}
+.kiron-match-result{
+    display: flex;
+    color: white;
+    font-size: 13px;
+    justify-content: center;
+    border-bottom: black thin solid;
+    margin-bottom: 5px;
+    padding: 15px;
+}
+.kiron-extra-teams{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+.kiron-teams{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.kiron-playout-display{
+    padding: 4px 8px;
+    display: flex;
+    width: 40%;
+    justify-content: space-between;
+    align-items: center;
+}
+.kiron-bet-button{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.kiron-label {
+    text-align: left;
+    /* display: inline-block; */
+    /* float: left; */
+    color: #FFFFFF;
+    font-size: 10px;
+    white-space: pre-line;
+    overflow: hidden;
+    /* text-overflow: ellipsis; */
+    opacity: .6;
+    margin-bottom: 3px;
+}
+.results-title{
+    color: #FFC107;
+    font-size: 13px;
+    padding: 2px;
+    text-align: center;
+    margin-top: 5px;
+}
+.playout-title{
+    background-color: #FFC107;
+    font-size: 13px;
+    padding: 2px;
+}
+.top-counter{
+    background-color: red;
+    color: white;
+}
+.kiron-extra{
+    color: #fff;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.kiron-extra:nth-child(2){
+    margin-top: 5px;
+}
+.kiron-odds-extra{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 10px;
+}
+.kiron-odds-extra button{
+    color: #FFFFFF;
+    text-decoration: none;
+    display: block;
+    width: calc(100% * (1/5));
+    text-align: center;
+    padding: 8px 0px;
+    border: none;
+    outline: none;
+    background: #2D4352;
+    border-radius: 5px;
+    height: 50px;
+    box-sizing: border-box;
+    margin-right: 2px;
+    margin: 2px;
+}
+.kiron-loader{
+    width: 100%;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.red-txt {
+    color: #d32027;
+}
+.white-txt{
+    color: #fff2f2;
+}
+.black-txt{
+    color:#000000;
+}

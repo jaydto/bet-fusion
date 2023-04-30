@@ -1,0 +1,135 @@
+:root {
+    --blue: #1e90ff;
+    --white: #ffffff;
+    --black: #000000;
+}
+.league-games-wrapper {
+    width: 100%;
+    float: left;
+    overflow-y: auto;
+    background-color: #fff;
+}
+.playing-games-wrapper {
+    padding-bottom: 0 !important;
+}
+.float-left {
+    float: left !important;
+}
+.league-wrapper {
+    padding-bottom: 0 !important;
+    min-height: auto !important;
+}
+.league-wrapper {
+    width: 100%;
+    float: left;
+    background-color: #ffffff;
+    padding-bottom: 2em;
+    min-height: 83vh;
+}
+.blink {
+    animation: blink-animation 0.5s steps(5, start) infinite;
+    -webkit-animation: blink-animation 0.5s steps(5, start) infinite;
+}
+.blink {
+    font-weight: 500;
+    display: inline-block;
+    padding: 0 2px;
+    color: #222;
+    vertical-align: middle;
+}
+.blink {
+    background: #fed451;
+}
+.blink {
+    font-weight: 500;
+    display: inline-block;
+    padding: 0 2px;
+    color: #222;
+    vertical-align: middle;
+}
+
+.text-right a {
+    outline: none;
+    -webkit-transition: all 0.5s ease 0s;
+    transition: all 0.5s ease 0s;
+}
+.text-right {
+    text-align: right !important;
+}
+.home-team-r {
+    font-size: var(--font-medium);
+    text-transform: none !important;
+}
+.live-match-selection {
+    border-bottom: 1px solid #f1f1f1;
+    font-size: 1.13em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+}
+
+.live-match-selection .col-6 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0 !important;
+    margin-bottom: 2px;
+}
+.team-jersey {
+    height: 30px;
+}
+.home-team-r {
+    font-size: var(--font-medium);
+    text-transform: none !important;
+}
+.home-team-r, .away-team-r {
+    white-space: nowrap;
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    line-height: 10px;
+}
+.green-txt {
+    color: #009d75;
+}
+
+.league-wrapper {
+    width: 100%;
+    float: left;
+    background-color: #ffffff;
+    padding-bottom: 2em;
+    min-height: 83vh;
+}
+.league-wrapper {
+    padding-bottom: 0 !important;
+    min-height: auto !important;
+    height: 100vh;
+}
+.league-wrapper .matches-wrapper {
+    padding-top: 0 !important;
+}
+
+.team-jersey {
+    height: 30px;
+}
+
+.green-txt {
+    color: #009d75;
+}
+.standing-wrapper {
+    margin:0;
+    width: 100%;
+    float: left;
+    background-color: orange;
+    border-bottom: 1px solid yellow;
+    font-weight: 400;
+    color: #fff;
+    font-size: 1em;
+    text-transform: capitalize;
+}
+.standing-heading {
+    color: #fff;
+    font-size: 1.3em;
+}

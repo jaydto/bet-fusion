@@ -1,0 +1,80 @@
+.kiron-period{
+    color: #fff;
+    border-right: 2px solid #0a1f2f;
+    padding: 0.6em;
+    font-size: 14px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: capitalize;
+}
+.kiron-value{
+    background:#34495e;
+}
+.periods::-webkit-scrollbar{
+    display:none;
+}
+.period-height{
+    height:40px;
+}
+.period-card{
+    height:50px
+}
+.container-period{
+    height:51px;
+}
+@media (max-width: 767px){
+    .period-height{
+        height:30px;
+    }
+    .period-card{
+        height:20px;
+    }
+    .container-period{
+        height:40px;
+    }
+    .kiron-period{
+        /*padding:0 0.6em 0 0.6em;*/
+        padding-top:0.2px;
+
+    }
+    .kiron-table{
+        height:38px;
+    }
+}
+#countdown-timer {
+    /* position: absolute; */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* margin: auto; */
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0px 0px 5px black;
+    text-align: center;
+    z-index: 1;
+    margin-left: -62px;
+    height: 43px;
+    margin-top: -2px;
+    /* width: 100%; */
+    /* margin-bottom: -39px; */
+    border-radius: 3px;
+}
+.count-red {
+    background: #e50b0b;
+    display: flex;
+    align-items: center;
+    width: 62px;
+    justify-content: center;
+}
+.count-green {
+    background: #1B5E20;
+    display: flex;
+    align-items: center;
+    width: 62px;
+    justify-content: center;
+}
+

@@ -30,7 +30,7 @@ const BetslipShareDecode = () => {
                 })
                 // setLocalStorage('betslip', (result?.success), 1 * 60 * 60 * 1000);
             }else{
-                Notify(message)
+                setLocalStorage("betslip-share-code-invalid",message)
             }
 
         });

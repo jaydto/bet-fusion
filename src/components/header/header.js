@@ -231,14 +231,14 @@ const Header = (props) => {
                         {width<=572&&width>375?user?"":
                             <div className="col-sm-2 mobile-profile1">
                                 <div className="">
-                                    <Link className="cg  login-color login-size btn bg-success " to={"/verify-account"} title="Verify Account"
+                                    <Link className="cg  login-color login-size btn bg-success text-light" to={"/verify-account"} title="Verify Account"
                                           onClick={() => gaEventTracker('Verify')}>
-                                        <span className="register-label">Verify</span>
+                                        <span className="register-label text-light">Verify</span>
                                     </Link>
                                 </div>
                                 <div className="">
                                     <Link className="cg  login-color login-size btn bg-warning text-light" to={"/signup"} title="Join now" onClick={() => gaEventTracker('Register')}>
-                                        <span className=" ">Register</span>
+                                        <span className="text-light ">Register</span>
                                     </Link>
                                 </div>
 
@@ -250,8 +250,8 @@ const Header = (props) => {
                         {width<=375?user?"":
                             <div className="col-sm-2 mobile-profile1">
                                 <div className="">
-                                    <Link className="cg  login-color login-size btn bg-warning" to={"/signup"} title="Join now" onClick={() => gaEventTracker('Register')}>
-                                        <span className=" ">Register</span>
+                                    <Link className="cg  login-color login-size btn bg-warning text-light" to={"/signup"} title="Join now" onClick={() => gaEventTracker('Register')}>
+                                        <span className=" text-light">Register</span>
                                     </Link>
                                 </div>
 
@@ -358,14 +358,14 @@ const Header = (props) => {
                             {width>572&&width<=991?user?"":
                                 <div className="col-sm-6 mobile-profile1">
                                     <div className="">
-                                        <Link className="cg  login-color login-size btn bg-success " to={"/verify-account"} title="Verify Account"
+                                        <Link className="cg  login-color login-size btn bg-success text-light " to={"/verify-account"} title="Verify Account"
                                               onClick={() => gaEventTracker('Verify')}>
-                                            <span className="register-label">Verify </span>
+                                            <span className="register-label text-light">Verify </span>
                                         </Link>
                                     </div>
                                     <div className="">
-                                        <Link className="cg  login-color login-size btn bg-warning" to={"/signup"} title="Join now" onClick={() => gaEventTracker('Register')}>
-                                            <span className=" ">Register</span>
+                                        <Link className="cg  login-color login-size btn bg-warning text-light" to={"/signup"} title="Join now" onClick={() => gaEventTracker('Register')}>
+                                            <span className="text-light ">Register</span>
                                         </Link>
                                     </div>
                                     <Link to={"/login"} className="cg login-color login-size btn" type="submit">

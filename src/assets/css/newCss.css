@@ -14,3 +14,15 @@
         opacity: 1;
     }
 }
+.sport_dropdowns {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.tabcontent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}

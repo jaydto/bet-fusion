@@ -12379,6 +12379,11 @@ button.close {
 /*}*/
 
 @media (min-width: 1260px) {
+
+    .matches .top-matches button{
+        width:53px!important;
+        border-radius: 0.5rem!important;
+    }
     .display-ipad-more-options{
         display:flex;
     }

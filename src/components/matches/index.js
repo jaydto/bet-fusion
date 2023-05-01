@@ -457,19 +457,19 @@ const SideBets = (props) => {
 }
 
 const OddButton = (props) => {
-  const {match, mkt, detail, live, jackpot, subType, marketKey} = props
-  // console.log("MKT are ", mkt)
-  const [ucn, setUcn] = useState('');
-  // console.log(ucn)
-  const [picked, setPicked] = useState('');
-  // console.log("Picked", picked?picked:'na')
+  const { match, mkt, detail, live, jackpot, subType, marketKey, allMarkets } =
+      props;
+
+  const [ucn, setUcn] = useState("");
+
+  const [picked, setPicked] = useState("");
+
   const [oddValue, setOddValue] = useState(null);
 
   const [state, dispatch] = useContext(Context);
   const ref = useRef();
   let reference = match.match_id + "_selected";
-  const [betslip_key, setBetslipKey] = useState('betslip');
-
+  const [betslip_key, setBetslipKey] = useState("betslip");
   const updateBeslipKey = useCallback(() => {
     if (jackpot) {
       setBetslipKey("jackpotbetslip");
@@ -478,30 +478,35 @@ const OddButton = (props) => {
 
   useEffect(() => {
     updateBeslipKey();
-  }, [updateBeslipKey])
-
-  // here
+  }, [updateBeslipKey]);
 
   const updatePickedChoices = useCallback(() => {
-    let betslip = jackpot ? getJackpotBetslip(): (getBetslip() || {});
-    // console.log("jackpot slip",state?.[betslip_key] )
-    // console.log("jackpot_bet", getJackpotBetslip())
-    // let betslip = getBetslip() || {};
+    const betslip = jackpot ? getJackpotBetslip() : getBetslip() || {};
+
     let uc = clean(
-        match.match_id
-        + "" + match.sub_type_id
-        + (match?.[mkt] || match?.odd_key || 'draw')
+        match.match_id +
+        "" +
+        match.sub_type_id +
+        (match?.[mkt] || match?.odd_key || "draw")
     );
-    // here
-    // console.log(betslip?.[match.match_id]?.match_id)
-    // console.log(uc)
-    if ((betslip?.[match.match_id]?.match_id == match.match_id)
-        && uc == betslip?.[match.match_id]?.ucn) {
-      setPicked('picked');
+    console.log("picked_here_pre_before",betslip?.[match.match_id]?.match_id+" match: "+match.match_id+" uc: "+uc+"slip: "+betslip?.[match.match_id]?.ucn )
+
+    if (
+        betslip?.[match.match_id]?.match_id == match.match_id &&
+        uc == betslip?.[match.match_id]?.ucn
+    ) {
+
+      setPicked("picked");
+      console.log("picked_here_pre",betslip?.[match.match_id]?.match_id+" match: "+match.match_id+" uc: "+uc+"slip: "+betslip?.[match.match_id]?.ucn )
     } else {
-      setPicked('');
+      console.log("picked_here_remove")
+      setPicked("");
     }
-  }, [picked, state[betslip_key]])
+  }, [picked, state[betslip_key]]);
+
+  useEffect(() => {
+    updatePickedChoices();
+  }, [updatePickedChoices]);
 
   useEffect(() => {
     updatePickedChoices();
@@ -509,24 +514,24 @@ const OddButton = (props) => {
 
   const updateOddValue = useCallback(() => {
     if (match) {
+      const { match_id, sub_type_id, odds, odd_key } = match;
+
       let uc = clean(
-          match.match_id
-          + "" + match.sub_type_id
-          + (match?.[mkt] || match?.odd_key || 'draw')
+          match_id + "" + sub_type_id + (match?.[mkt] || odd_key || "draw")
       );
       setUcn(uc);
-      if (mkt === 'home_team') {
-
-        setOddValue(match.odds.home_odd)
-
-      } else if (mkt === 'away_team') {
-
-        setOddValue(match.odds.away_odd)
-
-      } else if (mkt === 'draw') {
-        setOddValue(match.odds.neutral_odd)
-      } else {
-        setOddValue(match.odd_value);
+      switch (mkt) {
+        case "home_team":
+          setOddValue(odds.home_odd);
+          break;
+        case "away_team":
+          setOddValue(odds.away_odd);
+          break;
+        case "draw":
+          setOddValue(odds.neutral_odd || odd_key);
+          break;
+        default:
+          setOddValue(match.odd_value);
       }
     }
   }, [match]);
@@ -537,133 +542,155 @@ const OddButton = (props) => {
 
   const updateMatchPicked = useCallback(() => {
     if (state?.[reference]) {
-      if (state?.[reference].startsWith('remove.')) {
-        setPicked('');
+      if (state?.[reference].startsWith("remove.")) {
+        setPicked("");
       } else {
         let uc = clean(
-            match.match_id
-            + "" + match.sub_type_id
-            + (match?.[mkt] || match?.odd_key || 'draw')
+            match.match_id +
+            "" +
+            match.sub_type_id +
+            (match?.[mkt] || match?.odd_key || "draw")
         );
-        // console.log(uc)
-        //
-        // console.log(state?.[reference])
 
         if (state?.[reference] === uc) {
-          setPicked('picked')
+
+          setPicked("picked");
+          console.log("picked_here_pre_2")
         } else {
-          setPicked('');
+          // console.log("picked_here_remove")
+          setPicked("");
         }
       }
     }
-  }, [state?.[reference]])
+  }, [state?.[reference]]);
 
   useEffect(() => {
     updateMatchPicked();
-  }, [updateMatchPicked])
+  }, [updateMatchPicked]);
+
+  let message = {
+    status: 401,
+    message: "Maximum selections reached",
+    token: "",
+  };
+  const maxPickReached = () => {
+    setPicked("");
+    Notify(message);
+  };
 
   const handleButtonOnClick = (event) => {
-    let pmid = event.currentTarget.getAttribute("parent_match_id");
-    let mid = event.currentTarget.getAttribute("match_id");
-    let stid = event.currentTarget.getAttribute("sub_type_id");
-    let sbv = event.currentTarget.getAttribute("special_bet_value");
-    let oddk = event.currentTarget.getAttribute("odd_key");
-    let odd_value = event.currentTarget.getAttribute("odd_value");
-    let bet_type = event.currentTarget.getAttribute("bet_type");
-    let odd_type = event.currentTarget.getAttribute("odd_type");
-    let home_team = event.currentTarget.getAttribute("home_team");
-    let away_team = event.currentTarget.getAttribute("away_team");
-    let sport_name = event.currentTarget.getAttribute("sport_name");
-    let sport_id = event.currentTarget.getAttribute("sport_id");
-    let market_active = event.currentTarget.getAttribute("market_active");
-    let cstm = clean(mid + "" + stid + oddk + (marketKey !== undefined ? marketKey : ''))
-
-    let slip = {
-      "match_id": mid,
-      "parent_match_id": pmid,
-      "special_bet_value": sbv,
-      "sub_type_id": stid,
-      "bet_pick": oddk,
-      "odd_value": odd_value,
-      "home_team": home_team,
-      "away_team": away_team,
-      "bet_type": bet_type,
-      "odd_type": odd_type,
-      "sport_name": sport_name,
-      "sport_id": sport_id,
-      "live": live,
-      "ucn": cstm,
-      "market_active": market_active,
-      "position": match?.pos || 0
-    }
-
+    const attributes = {
+      parent_match_id: event.currentTarget.getAttribute("parent_match_id"),
+      match_id: event.currentTarget.getAttribute("match_id"),
+      sub_type_id: event.currentTarget.getAttribute("sub_type_id"),
+      special_bet_value: event.currentTarget.getAttribute("special_bet_value"),
+      odd_key: event.currentTarget.getAttribute("odd_key"),
+      odd_value: event.currentTarget.getAttribute("odd_value"),
+      bet_type: event.currentTarget.getAttribute("bet_type"),
+      odd_type: event.currentTarget.getAttribute("odd_type"),
+      home_team: event.currentTarget.getAttribute("home_team"),
+      away_team: event.currentTarget.getAttribute("away_team"),
+      sport_name: event.currentTarget.getAttribute("sport_name"),
+      market_active: event.currentTarget.getAttribute("market_active"),
+    };
+    let cstm = clean(
+        attributes.match_id +
+        "" +
+        attributes.sub_type_id +
+        attributes.odd_key +
+        (marketKey !== undefined ? marketKey : "")
+    );
     // console.log("Slip", slip)
-    // console.log(cstm)
-    const maxPickReached=()=>{
-      setPicked('')
-      Notify(message)
+    {
+      console.log("display_name", match?.display_name);
     }
-    let message= {status: 401, message: 'Maximum selections reached', token: ''}
+    const slip = {
+      match_id: attributes.match_id,
+      parent_match_id: attributes.parent_match_id,
+      special_bet_value: attributes.special_bet_value,
+      sub_type_id: attributes.sub_type_id,
+      bet_pick: attributes.odd_key,
+      odd_value: attributes.odd_value,
+      home_team: attributes.home_team,
+      away_team: attributes.away_team,
+      bet_type: attributes.bet_type,
+      odd_type: attributes.odd_type,
+      sport_name: attributes.sport_name,
+      live: live,
+      ucn: clean(
+          `${attributes.match_id}${attributes.sub_type_id}${attributes.odd_key}${
+              marketKey !== undefined ? marketKey : ""
+          }`
+      ),
+      market_active: attributes.market_active,
+      position: match?.pos || 0,
+    };
+
+
     if (cstm === ucn) {
+      // console.log("cstn pre start: ",cstm+" ucn: "+ucn )
       let betslip;
-      if (picked === 'picked') {
-        betslip = jackpot !== true
-            ? removeFromSlip(mid)
-            : removeFromJackpotSlip(mid);
+      if (picked === "picked") {
+        console.log("cstn pre remove: ",cstm+" ucn: "+ucn )
+        betslip =
+            jackpot !== true
+                ? removeFromSlip(attributes.match_id)
+                : removeFromJackpotSlip(attributes.match_id);
 
-        setPicked('');
+        setPicked("");
       } else {
-        betslip = jackpot !== true
-            ? (getBetslip()&&Object.keys(getBetslip())?.length<=49)||getBetslip()==null?addToSlip(slip):maxPickReached()
-            : addToJackpotSlip(slip);
+        // console.log("cstn pre slip: ",cstm+" ucn: "+ucn )
+        betslip =
+            jackpot !== true
+                ? (getBetslip() && Object.keys(getBetslip())?.length <= 29) ||
+                getBetslip() == null
+                    ? addToSlip(slip)
+                    : maxPickReached()
+                : addToJackpotSlip(slip);
 
-        dispatch({type: "SET", key: reference, payload: cstm});
+        dispatch({ type: "SET", key: reference, payload: cstm });
       }
-      dispatch({type: "SET", key: betslip_key, payload: betslip});
+      dispatch({ type: "SET", key: betslip_key, payload: betslip });
     }
   };
 
   return (
       <button
           ref={ref}
-          className={`home-team ${match.match_id} ${ucn} ${picked} c-btn ${live?"c-resize":"width-button-odd"}`}
+          className={`home-team ${allMarkets ? "all-markets" : ""} ${
+              match.match_id
+          } ${ucn} ${picked} c-btn`}
           home_team={match.home_team}
           odd_type={match?.name || match?.market_name || "1X2"}
           bet_type={live ? 1 : 0}
           away_team={match.away_team}
           market_active={match.market_active}
           odd_value={oddValue}
-          odd_key={match?.[mkt] || match?.odd_key || 'draw'}
+          odd_key={match?.[mkt] || match?.odd_key || "draw"}
           parent_match_id={match.parent_match_id}
           match_id={match.match_id}
           custom={ucn}
           id={ucn}
-          sport_name={match.sport_name}
+          sport_name={match?.sport_name}
           sport_id={match.sport_id}
           sub_type_id={match.sub_type_id}
-          special_bet_value={match?.special_bet_value || ''}
-          onClick={handleButtonOnClick}>
-        {!detail &&
-            (
-                <span className="theodds odd-fix">
-                            {oddValue}
-                        </span>
-            )
-        }
-        {detail &&
-            (<>
-                      <span
-                          className="label label-inverse blueish">
-                        {match.odd_key}
-                      </span>
-              <span
-                  className="label label-inverse blueish odd-value">
-                            {oddValue}
-                     </span>
-            </>)}
+          special_bet_value={match?.special_bet_value || ""}
+          onClick={handleButtonOnClick}
+      >
+        {!detail && <span className="theodds odd-fix">{oddValue}</span>}
+        {detail && (
+            <>
+          <span className="label label-inverse blueish">
+            {match.display_name}
+          </span>
+              <span className="label label-inverse blueish odd-value">
+            {oddValue}
+          </span>
+            </>
+        )}
       </button>
-  )
-}
+  );
+};
 
 const MarketRow = (props) => {
   const { markets, match, market_id, width, live, pdown, allMarkets } = props;

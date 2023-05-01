@@ -9415,7 +9415,7 @@ ul.sport {
     }
     .betslip-container {
         position: sticky !important;
-        top: 120px !important;
+        /*top: 120px !important;*/
         background: #253743 !important;
     }
 
@@ -12381,7 +12381,7 @@ button.close {
 @media (min-width: 1260px) {
 
     .matches .top-matches button{
-        width:53px!important;
+        /*width:53px!important;*/
         border-radius: 0.5rem!important;
     }
     .display-ipad-more-options{
@@ -16851,10 +16851,11 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     border-radius: 0.3rem;
     font-size: 14px !important;
 }
+/*todo check height of right betslip*/
 
 .betslip-container {
-    position: sticky !important;
-    top: 12.5rem;
+    /*position: sticky !important;*/
+    /*top: 12.5rem;*/
     /*background: #253743 !important;*/
     background:#16202C!important;
 }

@@ -1,111 +1,98 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useState} from 'react';
 import QuickLogin from './quick-login';
 import CompanyInfo from './company-info';
 import BetSlip from './betslip';
 import {faTimes} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {Badge} from "react-bootstrap";
-import MobileMenu from '../mobile-menu';
-import useWindowDimensions from "../header/Dimensions";
-import {getBetslip, getJackpotBetslip} from "../utils/betslip";
+import {getBetslip, getJackpotBetslip, getKironSlip} from "../utils/betslip";
 import {Context} from "../../context/store";
+import KironSlip from "./kironslip-submit-form";
+import Kironslip from "./kironslip";
 
 const AlertMessage = (props) => {
-    return (<div className={`alert alert-dismissible ${props.classname}`} role='alert'>
-        <button type='button' className='close' data-dismiss='alert' aria-label='Close'><span
-            aria-hidden='true'>×</span>
-        </button>
-        {props.message}
-    </div>)
+    return (
+        <div className={`alert alert-dismissible ${props.classname}`} role='alert'>
+            <button type='button' className='close' data-dismiss='alert' aria-label='Close'><span
+                aria-hidden='true'>×</span>
+            </button>
+            {props.message}
+        </div>
+    )
 }
 
 const Right = (props) => {
-    const {jackpot, betslipValidationData, jackpotData, slipJackpot} = props;
+    const {jackpot, betslipValidationData, jackpotData, kiron, kironValidation} = props;
     const [betSlipMobile, setBetSlipMobile] = useState(false)
-    const {height, width} = useWindowDimensions();
-    const {profile} = props;
-    const {deposit} = props;
-    const {app} = props;
-    const {withdraw} = props;
     const [state, dispatch] = useContext(Context);
-
-    const [jackpotCount, setJackpotCount] = useState(false);
-    const [betslipCount, setBetslipCount] = useState(0);
-    let betslip_key="jackpotbetslip"
-
-    // useEffect(() => {
-    //     // Define the getBetslip and getJackpotBetslip functions here
-    //     const betsipCount = jackpot === true ?
-    //         getJackpotBetslip() != null ? Object.keys(getJackpotBetslip())?.length : 0
-    //         :
-    //         getBetslip() ? Object.keys(getBetslip()).length : 0;
-    //     setBetslipCount(betslipCount);
-    // }, [jackpot]);
-
-    return (<div
-        className={`col-md-3 ${deposit || withdraw || app ? "width-all" : "gn"} betslip-container sticky-top ${width <= 991 ? "remove-width" : "vh-100"} overflow-scroll tablet-view`}>
-        <div className="betslip-container d-none d-lg-block" style={{overflowY: "auto"}}>
-            {props?.message && <AlertMessage classname={props.classname} message={props.message}/>}
-            <div className="bet-option-list " id=''>
-                <div className="bet alu block-shadow">
-                    <header>
-                        <div className="betslip-header d-flex justify-content-between">
+    console.log("kiron", kiron)
+    //todo top height style ={{top:"13.5rem"
+    return (
+        <div className="col-md-3 gn betslip-container sticky-top vh-100 overflow-scroll betslip-container-mozilla" style={kiron&&{ width:'25%'}}>
+            <div className="betslip-container d-none d-md-block">
+                {props?.message && <AlertMessage classname={props.classname} message={props.message}/>}
+                <div className="bet-option-list " id=''>
+                    <div className="bet alu block-shadow">
+                        <header>
+                            <div className="betslip-header d-flex justify-content-between">
                     <span className="col-sm-2 bkmrk d-none">
                         <i className="fa fa-bookmark" aria-hidden="true"></i></span>
-                            <span className="col-sm-8 slp">BETSLIP</span>
-                            <span className="col-sm-2  text-white d-flex align-items-center">
-                                     <Badge pill
-                                            bg="warning nav__betslip d-flex justify-content-center align-items-center">
-                                         {/*{console.log("jackpot_all",state?.[betslip_key])}*/}
+                                <span className="col-sm-8 slp">BETSLIP</span>
+                                <span className="col-sm-2 slip-counter text-white">
 
-                                         {(jackpot === true ?
-                                             getJackpotBetslip() ? Object.keys(getJackpotBetslip()).length : 0
-                                             :
-                                             getBetslip() ? Object.keys(getBetslip()).length : 0)}
+                                    <Badge pill
+                                           bg="warning nav__betslip d-flex justify-content-center align-items-center">
+         {/*{console.log("jackpot_all",state?.[betslip_key])}*/}
 
-
+                                        {(jackpot === true ?
+                                            getJackpotBetslip() ? Object.keys(getJackpotBetslip()).length : 0
+                                            :kiron==true?
+                                                getKironSlip()?Object.keys(getKironSlip()).length:0:
+                                                getBetslip() ? Object.keys(getBetslip()).length : 0)}
                                     </Badge>
                                 </span>
+                            </div>
+                        </header>
+                        <button id="slip-button-close" type="button" className="close mobi" aria-hidden="true">
+                            X
+                        </button>
+                        <div id="betslip" className="betslip">
+                            {kiron==true?<Kironslip kironValidation={kironValidation} kiron={kiron} />
+                                :<BetSlip jackpot={jackpot} betslipValidationData={betslipValidationData}
+                                          jackpotData={jackpotData} />}
+
                         </div>
-                    </header>
-                    <button id="slip-button-close" type="button" className="close mobi" aria-hidden="true">
-                        X
-                    </button>
-                    <div id="betslip" className="betslip">
-                        <BetSlip jackpot={jackpot} betslipValidationData={betslipValidationData}
-                                 jackpotData={jackpotData}/>
+                        <QuickLogin/>
                     </div>
-                    <QuickLogin/>
                 </div>
+                <CompanyInfo/>
             </div>
-            <CompanyInfo/>
-        </div>
-        <div
-            className={`fixed-bottom text-white d-block d-md-none shadow-lg betslip-container-mobile ${betSlipMobile ? 'd-block' : 'd-none'}`}>
-            <div className="bet-option-list sticky-top mobile-slip" id=''>
-                <div className="bet alu  block-shadow">
-                    <header style={{marginTop: "35px"}}>
-                        <div className="betslip-header d-flex justify-content-between">
-                            <span className="col-sm-8 slp">BETSLIP</span>
-                            <span className="col-sm-2 slip-counter d-flex justify-content-center"
-                                  title={'Hide BetSlip'} onClick={() => setBetSlipMobile(false)}>
+            <div
+                className={`fixed-bottom text-white d-block d-md-none shadow-lg betslip-container-mobile ${betSlipMobile ? 'd-block' : 'd-none'}`}>
+                <div className="bet-option-list sticky-top" id=''>
+                    <div className="bet alu  block-shadow">
+                        <header style={{marginTop: "60px"}}>
+                            <div className="betslip-header d-flex justify-content-between">
+                                <span className="col-sm-8 slp">BETSLIP</span>
+                                <span className="col-sm-2 slip-counter d-flex justify-content-center"
+                                      title={'Hide BetSlip'} onClick={() => setBetSlipMobile(false)}>
                                     <FontAwesomeIcon icon={faTimes} className={'align-self-center'}/>
                                 </span>
+                            </div>
+                        </header>
+                        <div id="betslip" className="betslip">]
+                            <BetSlip jackpot={jackpot} betslipValidationData={betslipValidationData}/>
                         </div>
-                    </header>
-                    <div id="betslip" className="betslip">
-                        <BetSlip jackpot={jackpot} betslipValidationData={betslipValidationData}/>
+                        <QuickLogin/>
                     </div>
-                    <QuickLogin/>
                 </div>
             </div>
+            <div
+                className={`${betSlipMobile ? 'd-none' : 'd-block'} d-block d-md-none fixed-bottom text-center text-white bg-info bet-slip-footer-toggle`}
+                onClick={() => setBetSlipMobile(true)}>
+                Click to show BetSlip
+            </div>
         </div>
-        <div
-
-            className={`${betSlipMobile ? 'd-none' : 'd-block'} tablet-only fixed-bottom text-center text-white bg-info bet-slip-footer-toggle`}>
-
-            <MobileMenu jackpot={jackpot} betslipValidationData={betslipValidationData} jackpotData={jackpotData}/>
-        </div>
-    </div>)
+    )
 }
 export default Right;

@@ -182,6 +182,15 @@ const Header = (props) => {
     };
 
     const expand = "md"
+    const pathname = window.location.pathname;
+    useEffect(()=>{
+        if(pathname=='nare-league'){
+            dispatch({type: "SET", key: "kiron_page", payload:true});
+        }else{
+            dispatch({type: "SET", key: "kiron_page", payload:false});
+        }
+
+    },[ pathname ])
     return (
         <>
             <Navbar expand="md"   className="mb-0 ck pt-sm-0 pt-md-3 pc os app-navbar top-nav" fixed="top" variant="dark">

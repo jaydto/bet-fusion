@@ -240,8 +240,9 @@ const marketChoice = () => {
 };
 
 export const MatchRow = (props) => {
-  const {  match, three_way, competition_id, } = props;
+  const {  match, three_way, competition_id} = props;
 
+  const [state,dispatch]=useContext(Context)
   const [market, setMarket] = useState("1x2");
 
   const [threeWay, setThreeWay] = useState(false);
@@ -345,12 +346,10 @@ export const MatchRow = (props) => {
                 </div>
               </div>
 
-              <div className="col d-flex  flex-row space-bets justify-content-lg-between ">
+              <div className={`col d-flex  flex-row  space-bets  justify-content-lg-between `}>
                 {/*mobile*/}
                 <div className="d-flex ">
-                  {match.odds.map((odd, index) => (
-                  console.log("matches new", match?.odd_type)
-                  ))}
+
 
                           {match.odds.map((odd, index) => (
                                <OddButton

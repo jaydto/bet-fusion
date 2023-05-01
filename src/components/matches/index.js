@@ -40,7 +40,7 @@ const EmptyTextRow = (props) => {
   const {odd_key, classname,live} = props;
 
   return (
-      <button className={`${classname} btn btn-disabled match-detail col c-btn ${live?"c-resize":"width-button-odd"}`}
+      <button className={`${classname} home-team btn btn-disabled match-detail c-btn ${live?"c-resize":"width-button-odd"}`}
               style={{
                 width: "100%",
                 height: "40px",
@@ -122,6 +122,7 @@ const MatchHeaderRow = (props) => {
   let sport = categories?.all_sports?.filter((category) => category.sport_id == sport_id)
   const [sportName, setSportName] = useState(sport!=null?sport?.[0].sport_name || 'Soccer':"");    const [showX, setShowX] = useState(true);
   const [market, setMarket] = useState('1x2');
+  const [state,dispatch]=useContext(Context)
   const [marketCols, setMarketCols] = useState(3)
   const [user, setUser] = useState(getFromLocalStorage("user"));
   const [extraMarketDisplays, setExtraMarketDisplays] = useState([])
@@ -189,7 +190,7 @@ const MatchHeaderRow = (props) => {
             <div className={'col match-detail-container'}></div>
           </div>
           {/*match heading*/}
-          <div className={'col  to-deskview flex-row justify-content-between space-bets'}>
+          <div className={`col  to-deskview flex-row justify-content-between ${state?.kiron_page==true&&' space-bets '}`}>
             {threeWay &&
                 <div className="d-flex flex-row ">
                   <div className="d-flex flex-column text-center text-white fit-ipad ">
@@ -790,6 +791,7 @@ const MatchRow = (props) => {
   const [sportName, setSportName] = useState(sport?.[0].sport_name || 'Soccer');
   const [showX, setShowX] = useState(true);
   const [market, setMarket] = useState('1x2');
+  const [state,dispatch]=useContext(Context)
   const {height, width} = useWindowDimensions();
 
   const [threeWay, setThreeWay] = useState(false)
@@ -917,9 +919,9 @@ const MatchRow = (props) => {
 
           </div>
           <hr className={"to-block m-sm-1 m-md-1 m-lg-0"}/>
-          <div className="col d-flex  flex-row space-bets justify-content-lg-between  justify-spacing-ipad card-small">
+          <div className={`col d-flex  flex-row   ${width>1259?'':'space-bets'} justify-content-lg-between  justify-spacing-ipad card-small`}>
 
-            {width>767?
+            {width>991?
                 <div className={"d-flex to-flex-1"}>
                   <div className="c-btn-group align-self-center to-flex-1 to-tabview">
                     {threeWay &&

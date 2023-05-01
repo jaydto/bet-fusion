@@ -160,7 +160,7 @@ const Sidebar = (props) => {
                   </>
                 ) : (
                   <>
-                    <FontAwesomeIcon icon={faArrowLeft} /> Top Leagues
+                    <FontAwesomeIcon icon={faArrowLeft} /> Hide
                   </>
                 )}
               </span>

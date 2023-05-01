@@ -231,11 +231,11 @@ const MobileNav1 = (props) => {
 
                     </td> */}
 
-                <td  className={ pathname=="/kiron"||pathname.includes('kiron') ? 'active' : 'menu-t m-auto'}
+                <td  className={ pathname=="/nare-league"||pathname.includes('nare-league') ? 'active' : 'menu-t m-auto'}
                      onClick={() => gaEventTracker('gameplay')} style={{paddingLeft: "4px"}}>
                     <Link className="cg fm ox anl url-link d-flex flex-column align-items-center"
-                          to={"/kiron"}
-                          title="Kiron"
+                          to={"/nare-league"}
+                          title="Nare League"
                     >
                         <div className="menu-img">
                             <img src={kiron} style={{height: "21px", marginTop:"-6px", width:"36px" }}/>

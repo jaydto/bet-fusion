@@ -2,29 +2,40 @@ import React, {
     useLayoutEffect,
     useState,
     useCallback,
+    useContext,
+    useEffect,
 } from "react";
-import {useParams} from 'react-router-dom';
+import { useParams } from "react-router-dom";
 
-
-import makeRequest from "./utils/fetch-request";
+import makeRequest from "../components/utils/fetch-request";
 import useInterval from "../hooks/set-interval.hook";
-import {getBetslip} from './utils/betslip' ;
+import { getBetslip } from "../components//utils/betslip";
 
-import {MarketList} from './matches/index';
-
-const Header = React.lazy(() => import('./header/header'));
-const Footer = React.lazy(() => import('./footer/footer'));
+import { MarketList } from "../components/matches";
+import { Context } from "../context/store";
+import useWindowDimensions from "../components/header/Dimensions";
+const Footer=React.lazy(()=>import( "./footer/footer"));
 const SideBar = React.lazy(() => import('./sidebar/awesome/Sidebar'));
-const Right = React.lazy(() => import('./right/index'));
+// import MobileNav2 from "../mobile-navigation/MobileNav2";
+
+const Header = React.lazy(() => import("../components/header/header"));
+const Right = React.lazy(() => import("../components/right"));
 
 const MatchAllMarkets = (props) => {
     const [page, setPage] = useState(1);
     const [producerDown, setProducerDown] = useState(false);
-    const {live} = props;
-    const [matchwithmarkets, setMatchWithMarkets] = useState();
-    const [userSlipsValidation, setUserSlipsValidation] = useState();
+    const [allMarkets,setAllMarkets]=useState(true)
+    const params=useParams()
+    let url = new URL(window.location);
+    const {live} = props
+    const id = params.id
 
-    const params = useParams();
+
+
+    // const [userSlipsValidation, setUserSlipsValidation] = useState();
+    const { height, width } = useWindowDimensions();
+    const [state, dispatch] = useContext(Context);
+
     const [isLoading, setIsLoading] = useState(false);
 
     const findPostableSlip = () => {
@@ -34,37 +45,46 @@ const MatchAllMarkets = (props) => {
         });
         return values;
     };
-    useInterval(() => {
-        let endpoint = live
-            ? "/v1/matches/live?id=" + params.id
-            : "/v1/matches?id=" + params.id;
+    useInterval(
+        () => {
+            let endpoint = live
+                ? "/v1/matches/live?id=" + id
+                : "/v1/matches?id=" + id;
 
-        let betslip = findPostableSlip();
-        let method = betslip ? "POST" : "GET";
+            let betslip = findPostableSlip();
+            let method = betslip ? "POST" : "GET";
 
-        makeRequest({url: endpoint, method: method, data: betslip}).then(([_status, response]) => {
-            setMatchWithMarkets(response?.data || response);
-            if (response?.slip_data) {
-                setUserSlipsValidation(response?.slip_data);
-            }
-            setProducerDown(response?.producer_status === 1);
-        });
-    }, (live ? 2000 : null));
-
-
+            makeRequest({ url: endpoint, method: method, data: betslip }).then(
+                ([_status, response]) => {
+                    dispatch({type: "SET", key: "all_markets", payload: response?.data||response});
+                    // setMatchWithMarkets(response?.data || response);
+                    if (response?.slip_data) {
+                        dispatch({type: "SET", key: "user_slip_validation", payload: response?.slip_data});
+                        // setUserSlipsValidation(response?.slip_data);
+                    }
+                    setProducerDown(response?.producer_status === 1);
+                }
+            );
+        },
+        live ? 2000 : null
+    );
+    // console.log("all-markets",Object.keys(state?.all_markets.data.odds));
     const fetchPagedData = useCallback(async () => {
-        if (!isLoading && !isNaN(+params.id)) {
+        if (!isLoading && !isNaN(+id)) {
             setIsLoading(true);
             let betslip = findPostableSlip();
             let endpoint = live
-                ? "/v1/matches/live?id=" + params.id
-                : "/v1/matches?id=" + params.id;
+                ? "/v1/matches/live?id=" + id
+                : "/v1/matches?id=" + id;
 
-            await makeRequest({url: endpoint, method: "POST", data: betslip}).then(([status, result]) => {
-                setMatchWithMarkets(result?.data || result)
-                setProducerDown(result?.producer_status === 1);
-                setIsLoading(false);
-            });
+            await makeRequest({ url: endpoint, method: "POST", data: betslip }).then(
+                ([status, result]) => {
+                    dispatch({type: "SET", key: "all_markets", payload: result?.data||result});
+                    // setMatchWithMarkets(result?.data || result);
+                    setProducerDown(result?.producer_status === 1);
+                    setIsLoading(false);
+                }
+            );
         }
     }, []);
 
@@ -76,25 +96,35 @@ const MatchAllMarkets = (props) => {
         };
     }, [fetchPagedData]);
 
-    return (
-        <>
+
+
+    return (<>
             <Header/>
+
             <div className="amt">
                 <div className="d-flex flex-row justify-content-between">
-                    <SideBar loadCompetitions/>
-                    <div className="gz home" style={{width: '100%'}}>
+                    <div className="gz home" style={{ width: "100%" ,marginBottom:"5rem"}}>
+                        *<SideBar loadCompetitions/>
                         <div className="homepage">
-                            <MarketList live={live}
-                                        matchwithmarkets={matchwithmarkets}
-                                        pdown={producerDown}/>
+
+                            <MarketList
+                                allMarkets={allMarkets}
+                                live={live}
+                                matchwithmarkets={state?.all_markets}
+                                pdown={producerDown}
+                            />
+
                         </div>
                     </div>
-                    <Right betslipValidationData={userSlipsValidation}/>
+
+                    {/*<div className={"mobile-top"}>*/}
+                        <Right betslipValidationData={state?.user_slip_validation} />
+                    {/*</div>*/}
                 </div>
             </div>
-            <Footer/>
+            {/*<Footer/>*/}
         </>
-    )
-}
+    );
+};
 
 export default MatchAllMarkets;

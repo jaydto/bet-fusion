@@ -104,7 +104,7 @@ const MatchAllMarkets = (props) => {
             <div className="amt">
                 <div className="d-flex flex-row justify-content-between">
                     <div className="gz home" style={{ width: "100%" ,marginBottom:"5rem"}}>
-                        *<SideBar loadCompetitions/>
+                        <SideBar loadCompetitions/>
                         <div className="homepage">
 
                             <MarketList
@@ -122,7 +122,7 @@ const MatchAllMarkets = (props) => {
                     {/*</div>*/}
                 </div>
             </div>
-            {/*<Footer/>*/}
+            <Footer/>
         </>
     );
 };

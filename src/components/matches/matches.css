@@ -1,27 +1,14 @@
-/* .matches .top-matches button{
-    background: #2D4352!important;
-    border: none;
-    border: 1px solid #16202C!important;
-    padding: 8px 3px;
-    outline: none;
-    border-radius: 19px!important;
-    flex-grow: 1;
-    width: calc(100% * (1/3) - 10px - 1px);
-    margin: 2px;
-} */
-/* .all-markets{
-    background: #2D4352!important;
-    border: none;
-    border: 1px solid #16202C!important;
-    padding: 8px 3px;
-    outline: none;
-    border-radius: 19px!important;
-    flex-grow: 1;
-    width: calc(100% * (1/3) - 10px - 1px);
-    margin: 2px;
 
-} */
-.matches .top-matches .match-detail .all-markets{
+@media (max-width: 1259px){
+    .mobile-for-desktop{
+        display:block!important
+    }
+    .date-remove{
+        display: none!important;
+    }
+}
+
+.matches .top-matches .match-detail .all-markets {
     /* background: #2D4352!important; */
     border: none;
     border: 1px solid #16202C!important;
@@ -33,7 +20,6 @@
     margin: 2px;
     display: flex;
     justify-content: space-around;
-
 }
 /*
 Using formula solid
@@ -44,7 +30,7 @@ $cl: #ffffff;
 $base: #0E0E29;
 */
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&subset=latin,latin-ext");
-/*  
+/*
 .sr-bb {
   font-family: "Roboto", "Noto", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   text-align: left;
@@ -3724,4 +3710,4 @@ $base: #0E0E29;
     font-weight: bolder;
     margin-top: 7px;
 }
- /*end lmt styling*/
+/*end lmt styling*/

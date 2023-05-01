@@ -876,20 +876,32 @@ header, li a, .thedate span {
     display: inline-block;
 }
 
+/*.matches .top-matches .match-detail button {*/
+/*    cursor: pointer;*/
+/*    border: 1px solid #3c5a6c !important;*/
+/*    color: #fff !important;*/
+/*    float: left;*/
+/*    min-width: 100%;*/
+/*    margin-right: 0px;*/
+/*    background: #334c5c;*/
+/*    border-top: none !important;*/
+/*    border-radius: 0px !important;*/
+/*    text-align: left;*/
+/*    font-weight: 20 !important;*/
+/*}*/
 .matches .top-matches .match-detail button {
-    cursor: pointer;
-    border: 1px solid #3c5a6c !important;
-    color: #fff !important;
-    float: left;
-    min-width: 100%;
-    margin-right: 0px;
     background: #334c5c;
-    border-top: none !important;
-    border-radius: 0px !important;
+    border: 1px solid #3c5a6c!important;
+    border-radius: 0!important;
+    border-top: none!important;
+    color: #fff!important;
+    cursor: pointer;
+    float: left;
+    font-weight: 20!important;
+    margin-right: 0;
+    min-width: 100%;
     text-align: left;
-    font-weight: 20 !important;
 }
-
 .match-detail button .label {
     color: #fff !important;
 }
@@ -957,10 +969,11 @@ header, li a, .thedate span {
 
 .matches .top-matches.header {
     background: #101B25;
-    padding: 10px;
     opacity: 1;
+    display: flex;
+    justify-content: center;
     color: #fff !important;
-    font-size: 15px;
+    font-size: 11px;
     font-family: inherit;
     text-transform: uppercase;
     font-weight: bolder;
@@ -1636,12 +1649,10 @@ header {
     .container {
         padding: 0 !important;
     }
-
     .top-matches div {
-        min-height: 26px;
-        justify-content:end;
-        background-color:#16202C;
-        /*background:#16202C;*/
+        min-height: 24px;
+        justify-content: end;
+        background: #16202C;
     }
 
     .home-tabs .main-header, .home-tabs-active .main-header {
@@ -7464,10 +7475,12 @@ ul.sport {
     .container {
         padding: 0 !important;
     }
-
     .top-matches div {
-        min-height: 26px;
+        min-height: 24px;
+        justify-content: end;
+        background: #16202C;
     }
+    /*}*/
 
     .home-tabs .main-header,
     .home-tabs-active .main-header {

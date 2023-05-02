@@ -176,7 +176,7 @@ const MatchHeaderRow = (props) => {
 
       <Row className={`full-mobile sticky-top ${jackpot?'sticky-jackpot ':user?"sticky-user":'sticky-responsive '}px-lg-3`}>
         <div className="top-matches d-flex position-sticky sticky-top shadow-lg"
-             style={{opacity: "1", top: "100px"}}>
+             style={{opacity: "1", top: "100px", background:'#16202C'}}>
           <div className={"size-info  d-flex col-xs-12 pad left-text"}>
             <div className="col pad left-text d-flex">
               <div className="align-self-center col">
@@ -431,31 +431,87 @@ const MoreMarketsHeaderRow = (props) => {
 };
 
 
-const SideBets = (props) => {
-  const {match, live} = props;
-  const [picked,] = useState();
+// const SideBets = (props) => {
+//   const {match, live} = props;
+//   const [picked,] = useState();
+//
+//
+//   return (
+//       <div
+//           className={`bet-fix events-odd pad ${picked} align-self-center more-markets-container m-lg-2 `}>
+//         {(match?.side_bets > 1) && <>
+//           <a className="side"
+//              href={`https://s5.sir.sportradar.com/betnaremts/en/match/${match.parent_match_id}`}
+//              target={"_blank"}
+//              title={'View Stats'}>
+//             <FontAwesomeIcon className={"icon-size"} icon={faChartLine}/>
+//           </a>
+//           <Link className="side" title={'More Markets'}
+//                 to={`/match/${live ? 'live' : ''}${
+//                     live ? match.parent_match_id : match?.match_id}`
+//                 }>+{match.side_bets}
+//           </Link>
+//         </>}
+//       </div>
+//   )
+//
+// }
 
+const SideBets = (props) => {
+  const { match, live, jackpot } = props;
+  const [picked] = useState();
 
   return (
       <div
-          className={`bet-fix events-odd pad ${picked} align-self-center more-markets-container m-lg-2 `}>
-        {(match?.side_bets > 1) && <>
-          <a className="side"
-             href={`https://s5.sir.sportradar.com/betnaremts/en/match/${match.parent_match_id}`}
-             target={"_blank"}
-             title={'View Stats'}>
-            <FontAwesomeIcon className={"icon-size"} icon={faChartLine}/>
-          </a>
-          <Link className="side" title={'More Markets'}
-                to={`/match/${live ? 'live' : ''}${
-                    live ? match.parent_match_id : match?.match_id}`
-                }>+{match.side_bets}
-          </Link>
-        </>}
+          className={`bet-fix events-odd pad ${picked} align-self-center more-markets-container m-lg-2 align-items-center `}
+      >
+        {/* {console.log("match_id", "jackpot"+jackpot+"match"+match.side_bets)} */}
+        {jackpot && (
+            <a
+                className="side w-auto bold "
+                href={`https://s5.sir.sportradar.com/betnaremts/en/match/${match.parent_match_id}`}
+                target={"_blank"}
+                style={{ color: "aqua",padding:'0px 13px'}}
+                title={"View Stats"}
+            >
+              {" "}
+              Stats
+              {/* <FontAwesomeIcon className={"icon-size"} icon={faChartLine}/> */}
+            </a>
+        )}
+        {match?.side_bets > 1 && (
+            <>
+              {/* {console.log("jackpot")} */}
+              <a
+                  className="side w-auto bold"
+                  href={`https://s5.sir.sportradar.com/betnaremts/en/match/${match.parent_match_id}`}
+                  target={"_blank"}
+                  style={{ color: "aqua" }}
+                  title={"View Stats"}
+              >
+                {" "}
+               <span className={'stats-mobile'}>Stats</span>
+                <span className={'stats-desktop'}><FontAwesomeIcon className={"icon-size"} icon={faChartLine}/> </span>
+              </a>
+              <span className={'stats-mobile'}>|</span>
+              <a
+                  className="side text-warning w-auto "
+                  style={{ whiteSpace: "nowrap" }}
+                  title={"More Markets"}
+                  href={`/match?live=${live ? "live" : ""}&id=${
+                      live ? match.parent_match_id : match?.match_id
+                  }`}
+              >
+                <strong className="small bold">
+                  <span className={'stats-mobile'}>+{match.side_bets} More Markets</span>
+                  <span className={'stats-desktop'}>+{match.side_bets}</span>
+                </strong>
+              </a>
+            </>
+        )}
       </div>
-  )
-
-}
+  );
+};
 
 const OddButton = (props) => {
   const { match, mkt, detail, live, jackpot, subType, marketKey, allMarkets } =
@@ -921,7 +977,7 @@ const MatchRow = (props) => {
           <hr className={"to-block m-sm-1 m-md-1 m-lg-0"}/>
           <div className={`col d-flex  flex-row   ${width>1259?'':'space-bets'} justify-content-lg-between  justify-spacing-ipad card-small`}>
 
-            {width>991?
+            {width>767?
                 <div className={"d-flex to-flex-1"}>
                   <div className="c-btn-group align-self-center to-flex-1 to-tabview">
                     {threeWay &&

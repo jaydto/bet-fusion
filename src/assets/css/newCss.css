@@ -26,3 +26,74 @@
     align-items: center;
 
 }
+.login-size {
+    background: #2D4352;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-left: 5px;
+    height: 2.3rem;
+    line-height: 1;
+    cursor: pointer;
+}
+.style-mobile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: center!important;
+    /* margin-right: 1rem; */
+    /* gap: 1rem; */
+}
+
+.tag {
+    border-radius: 8px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-right: 10px;
+    font-size: 12px;
+    font-weight: bold;
+}
+@media (min-width: 1260px) {
+    /*.jackpot-width{*/
+    /*    width:min-content!important;*/
+    /*}*/
+    .stats-mobile{
+        display:none;
+    }
+    .stats-desktop{
+        display:flex
+    }
+
+}
+@media (max-width: 1259px) {
+    /*.jackpot-width{*/
+    /*    width:min-content!important;*/
+    /*}*/
+    .stats-mobile{
+        display:flex;
+    }
+    .stats-desktop{
+        display:none;
+    }
+
+}
+@media (max-width: 767px){
+    .tag {
+
+        font-size: 7px;
+
+    }
+}
+@media (max-width: 375px){
+    .image-size{
+        width:98px!important;
+    }
+    .amt {
+        margin-top: 11.5rem !important;
+    }
+    .sticky-testimony {
+        top: 136px!important;
+    }
+    .highlight-menu {
+        top: 163px;
+    }
+}

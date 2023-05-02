@@ -8101,11 +8101,15 @@ ul.sport {
     .tablet-view{
         display:flex;
     }
+    /*todo display buttons login register verify*/
     .mobile-profile1{
-        display:none;
+        display:flex;
     }
 }
 @media (max-width: 991px) {
+    .top-matches .side{
+        background: transparent;
+    }
     .logo{
         padding-top:0px!important
     }
@@ -8367,6 +8371,7 @@ ul.sport {
     /*.jackpot-width{*/
     /*    width:min-content!important;*/
     /*}*/
+
     .to-profile-check{
         display:none;
     }
@@ -16062,7 +16067,7 @@ img.zoom-img {
     position: relative;
     color: #fff !important;
     /*padding-top: 8px;*/
-    padding-top: 20px;
+    padding-top: 4px;
 }
 
 .panel {
@@ -16153,6 +16158,17 @@ img.zoom-img {
         display:none!important;
     }
 }
+.register-button {
+    color: #ffffff;
+    background-color: #ffc107;
+    border-color: #24367e;
+    height: 29px;
+    padding: 0px 10px;
+    margin-top: 1px;
+    border-radius: 0.3rem;
+    font-size: 14px !important;
+}
+
 @media (max-width: 1259px){
     .compt-teams{
         display:block!important;
@@ -16216,14 +16232,8 @@ img.zoom-img {
         /*line-height: 2;*/
         height: 2.3rem!important;
     }
-    /*todo changed here mobile css*/
-    .style-mobile{
-        display: none;
-        justify-content: center;
-        align-items: center;
-        /*margin-right: 1rem;*/
-        /*gap:1rem;*/
-    }
+
+
     .font-btn{
         /*width: max-content!important;*/
     }
@@ -16302,11 +16312,12 @@ img.zoom-img {
     .menu-wrapper {
         max-width: 100vw;
         width: 100vw;
+        max-width: 767px;
         display: inline-block;
         overflow-y: hidden;
         overflow-x: auto;
-        /*background: #1f2f38;*/
-        background:#16202C!important;
+        background: #16202C!important;
+        /* background: orange!important; */
         -webkit-overflow-scrolling: touch;
     }
     .card-small {
@@ -16420,11 +16431,8 @@ img.zoom-img {
     .font-btn{
         font-size: 14px;
     }
-.change-size{
-    width: 100%;
-}
-    .style-mobile{
-        justify-content: center!important;
+    .change-size{
+        width: 100%;
     }
     .menu-control{
         width: 100%;

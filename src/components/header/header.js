@@ -238,7 +238,7 @@ const Header = (props) => {
                         </div>:""}
 
                         {width<=572&&width>375?user?"":
-                            <div className="col-sm-2 mobile-profile1">
+                            <div className="col-sm-2 mobile-profile1 align-items-center">
                                 <div className="">
                                     <Link className="cg  login-color login-size btn bg-success text-light" to={"/verify-account"} title="Verify Account"
                                           onClick={() => gaEventTracker('Verify')}>
@@ -257,7 +257,7 @@ const Header = (props) => {
 
                             </div>:""}
                         {width<=375?user?"":
-                            <div className="col-sm-2 mobile-profile1">
+                            <div className="col-sm-2 mobile-profile1 align-items-center">
                                 <div className="">
                                     <Link className="cg  login-color login-size btn bg-warning text-light" to={"/signup"} title="Join now" onClick={() => gaEventTracker('Register')}>
                                         <span className=" text-light">Register</span>
@@ -365,7 +365,7 @@ const Header = (props) => {
                             </div>:""}
 
                             {width>572&&width<=991?user?"":
-                                <div className="col-sm-6 mobile-profile1">
+                                <div className="col-sm-6 align-items-center mobile-profile1">
                                     <div className="">
                                         <Link className="cg  login-color login-size btn bg-success text-light " to={"/verify-account"} title="Verify Account"
                                               onClick={() => gaEventTracker('Verify')}>

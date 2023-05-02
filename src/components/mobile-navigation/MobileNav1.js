@@ -18,18 +18,13 @@ import kiron from "../../../src/assets/img/kiron/kiron.png"
 import fire from '../../assets/img/fire.webp'
 import {getFromLocalStorage,setLocalStorage} from "../utils/local-storage";
 import makeRequest from "../utils/fetch-request";
-// import worldCup from "../../../src/assets/img/leagues/worldcup.png"
-// import Premier_League from "../../../src/assets/img/leagues/Premier League.svg"
+import Premier_League from "../../../src/assets/img/leagues/Premier League.svg"
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
-// import {App} from "@capacitor/app";
-// import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-// import {faFireAlt, faPlaneDeparture} from "@fortawesome/free-solid-svg-icons";
-// import { Capacitor } from '@capacitor/core';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faFireAlt, faPlaneDeparture} from "@fortawesome/free-solid-svg-icons";
 // import crash from  '../../assets/img/shaks/02.webp'
-
 import { Context } from '../../context/store';
 import LoginModal from '../modals/LoginModal';
-
 
 const MobileNav1 = (props) => {
     const [showLoadingModal, setShowLoadingModal] = useState(false);
@@ -231,7 +226,7 @@ const MobileNav1 = (props) => {
 
                     </td> */}
 
-                <td  className={ pathname=="/nare-league"||pathname.includes('nare-league') ? 'active' : 'menu-t m-auto'}
+                <td  className={ pathname=="/kiron"||pathname.includes('kiron') ? 'active' : 'menu-t m-auto'}
                      onClick={() => gaEventTracker('gameplay')} style={{paddingLeft: "4px"}}>
                     <Link className="cg fm ox anl url-link d-flex flex-column align-items-center"
                           to={"/nare-league"}
@@ -242,7 +237,7 @@ const MobileNav1 = (props) => {
                             <span className=" badge" style={{color:"white",background:"red"
                                 ,marginTop:"-5px", borderRadius: "10px 0 15px 0", marginLeft:"1px", padding:"0.3px 3px ", fontSize:"5.5px"}}>NEW</span>
                         </div>
-                        <strong className={"text-light m-auto"}> kiron</strong>
+                        <strong className={"text-light m-auto"}> Nare League</strong>
                     </Link>
 
                 </td>

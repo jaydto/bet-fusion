@@ -9,6 +9,7 @@ import {getBetslip, getJackpotBetslip, getKironSlip} from "../utils/betslip";
 import {Context} from "../../context/store";
 import KironSlip from "./kironslip-submit-form";
 import Kironslip from "./kironslip";
+import MobileMenu from "../mobile-menu";
 
 const AlertMessage = (props) => {
     return (
@@ -88,9 +89,10 @@ const Right = (props) => {
                 </div>
             </div>
             <div
-                className={`${betSlipMobile ? 'd-none' : 'd-block'} d-block d-md-none fixed-bottom text-center text-white bg-info bet-slip-footer-toggle`}
-                onClick={() => setBetSlipMobile(true)}>
-                Click to show BetSlip
+
+                className={`${betSlipMobile ? 'd-none' : 'd-block'} tablet-only fixed-bottom text-center text-white bg-info bet-slip-footer-toggle`}>
+
+                <MobileMenu jackpot={jackpot} betslipValidationData={betslipValidationData} jackpotData={jackpotData}/>
             </div>
         </div>
     )

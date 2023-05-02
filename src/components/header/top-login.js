@@ -10,6 +10,10 @@ import fire from "../../assets/img/fire.webp"
 import {setLocalStorage} from '../utils/local-storage';
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {Link} from "react-router-dom";
+import {ButtonGroup} from "react-bootstrap";
+import LoginModal from "../modals/LoginModal";
+import RegisterModal from "../modals/RegisterModal";
+import VerifyModal from "../modals/VerifyModal";
 
 export const  Notify = (message) => {
     let options = {
@@ -111,7 +115,7 @@ const HeaderLogin = (props) => {
             <>
                 <Form className="ow og i web-element">
                     <Row className={`${login?"d-flex flex-column":""}`}>
-                        <div className={`${login?"w-100 ": "col-5"}`}>
+                        <div className={`${login?"w-100 ": "col-4"}`}>
                             <input type="text"
                                    name="msisdn"
                                    className={`${login?"w-100 input-field button-radius":""}top-login-input-field ${errors.msisdn && 'text-danger'}`}
@@ -126,7 +130,7 @@ const HeaderLogin = (props) => {
                         </span>
                         </div>
 
-                        <div className={`${login?"w-100 ": "col-5"}`}>
+                        <div className={`${login?"w-100 ": "col-4"}`}>
                             <input type="password"
                                    name="password"
                                    className={`${login?"w-100 input-field button-radius":""}top-login-input-field ${errors.password && 'text-danger'} `}
@@ -142,10 +146,13 @@ const HeaderLogin = (props) => {
                                 <span className={`${login?"sticky-hidden text-warning px-2 d-flex justify-content-end":"sticky-hidden"}`}>Forgot Password?</span>
                             </Link>
                         </div>
-                        <div className={`${login?"w-100":"col-sm-2"}`}>
+                        <div className={`${login?"w-100":"col-4 d-flex gap-3 justify-content-end"}`}>
                             <button className={`${login?"w-100 button-radius input-field btn-font": " "}cg login-button btn`} type="submit">
                                 {isLoading ? <span>Logging In ...</span> : <span>Login</span>}
                             </button>
+                            <Link className="cg register-button btn btn-warning" to={"/signup"} title="Join now" onClick={() => gaEventTracker('Register')}>
+                                <span className="register-label">Register </span>
+                            </Link>
                         </div>
                         <Row className={`${login?"d-flex":"d-none"}`} style={{float: "right"}}>
                             <div className="col-12">
@@ -180,9 +187,9 @@ const HeaderLogin = (props) => {
         <Container className={`${login?"d-flex flex-column mx-2":"top-login-section"}`}>
             <Row className={`${login?"d-none":""}`} style={{float: "right"}}>
                 <div className="col-12">
-                    <Link className="" to={"/signup"} title="Join now" onClick={() => gaEventTracker('Register')}>
-                        <span className="register-label">Register now!</span>
-                    </Link>
+                    {/*<Link className="" to={"/signup"} title="Join now" onClick={() => gaEventTracker('Register')}>*/}
+                    {/*    <span className="register-label">Register now!</span>*/}
+                    {/*</Link>*/}
                     <Link className="m-lg-2 badge bg-success d-none" to={"/verify-account"} title="Verify Account"
                        onClick={() => gaEventTracker('Verify')}>
                         <span className="register-label">Verify Account</span>
@@ -198,3 +205,53 @@ const HeaderLogin = (props) => {
     )
 }
 export default React.memo(HeaderLogin);
+
+// const HeaderLogin=()=>{
+//     const gaEventTracker = useAnalyticsEventTracker('Navigation');
+//     const [showLoadingModal, setShowLoadingModal] = useState(false);
+//     const [showRegisterModal, setShowRegisterModal] = useState(false);
+//     const [showVerifyModal, setShowVerifyModal] = useState(false);
+//     const [state,dispatch]=useContext(Context)
+//     const LoginCheck = (userAction) => {
+//        if(userAction=='Login'){
+//            state?.user !== null ? window.location.href = "/" : setShowLoadingModal(true);
+//        }else if(userAction=='Register'){
+//            state?.user !== null ? window.location.href = "/" :  setShowRegisterModal(true);
+//        }else{
+//            state?.user !== null ? window.location.href = "/" : setShowVerifyModal(true);
+//        }
+//
+//     };
+//     return (
+//         <>
+//         {showLoadingModal && (<LoginModal setShowLoadingModal={setShowLoadingModal} visible={showLoadingModal}/>)}
+//             {showLoadingModal && (<RegisterModal setShowRegisterModal={setShowRegisterModal} visible={showRegisterModal}/>)}
+//             {showLoadingModal && (<VerifyModal setShowVerifyModal={setShowVerifyModal} visible={showVerifyModal}/>)}
+//         <div className={"d-flex justify-content-end"}>
+//             <div className="col pad-2 mt-3 mobile-profile1 justify-content-end">
+//             <div className="">
+//                 <Link className="cg  login-color login-size btn bg-success text-light" to={'#'} title="Verify Account"
+//                       onClick={() => {
+//                           gaEventTracker('Verify');LoginCheck('Verify')
+//                       }}>
+//                     <span className="register-label text-light">Verify</span>
+//                 </Link>
+//             </div>
+//             <div className="">
+//                 <Link className="cg  login-color login-size btn bg-warning text-light" to={"#"} title="Join now" onClick={() => {
+//                     gaEventTracker('Register');LoginCheck('Register')
+//                 }}>
+//                     <span className="text-light ">Register</span>
+//                 </Link>
+//             </div>
+//
+//             <Link to={"#"} className="cg  login-color login-size btn text-light" type="submit" style={{background:'rgb(82, 121, 148)'}} onClick={()=>{LoginCheck('Login')}}>
+//                 <span>Login</span>
+//             </Link>
+//
+//         </div>
+//         </div>
+// </>
+//     )
+// }
+// export default React.memo(HeaderLogin);

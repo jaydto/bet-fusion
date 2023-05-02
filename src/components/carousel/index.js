@@ -9,18 +9,21 @@ import stakeBooster from '../../assets/img/banner/products/Bet_Nare_20_Stake_Boo
 import dailyDepositGift from '../../assets/img/banner/products/Bet_Nare_20_gift.webp'
 import karibuGiftWallet from "../../assets/img/banner/products/Bet_Nare_3000_karibu_gift.webp"
 import Aviator from "../../assets/img/banner/products/Aviator.webp"
-import jackpot from "../../assets/img/banner/products/Bet_Nare_300k_Jackpot_New.webp"
-
-
+import jackpot from "../../assets/img/banner/products/HalfMilliJP.webp"
+import Drops from "../../assets/img/banner/products/DropsAndWins Web.webp"
+import Drops260 from  '../../assets/img/banner/products/Pragmatic260.webp'
+import Drops65 from '../../assets/img/banner/products/pragmatic65.webp'
 
 const banners = [
-
+    {src: Drops260, url: "/casino"},
+    {src: Drops65, url: "/casino"},
     {src: Aviator, url: "/nare-games/aviator"},
     {src: karibuGiftWallet, url: "/promotions"},
     {src: jackpot, url: "/jackpot"},
     {src: stakeBooster, url: "/promotions"},
     {src: dailyDepositGift, url: "/deposit"},
     {src: cashback, url: "/promotions"},
+    {src: Drops, url: "/casino"}
 ]
 
 const CarouselLoader = (props) => {

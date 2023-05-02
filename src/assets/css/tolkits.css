@@ -15310,7 +15310,7 @@ fieldset[disabled] .tw.active {
 
 .anl img {
     height: 35px;
-    width: 35px;
+    /*width: 35px;*/
 }
 
 .anm > li {

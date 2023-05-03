@@ -5,6 +5,7 @@
     font-size: 14px;
     text-align: center;
     display: flex;
+    padding-left:0px;
     align-items: center;
     justify-content: center;
     text-transform: capitalize;

@@ -118,7 +118,7 @@ const KironPlayouts = (props) => {
             </section>
             <div className="league-games-wrapper">
 
-                <div>
+                <div className={'w-100'}>
                     <div className="playing-games-wrapper float-left w-100 small">
                         <div className="league-wrapper">
 

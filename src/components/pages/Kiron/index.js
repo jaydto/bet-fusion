@@ -1,7 +1,7 @@
 import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
 import Header from "../../header/header";
 import KironTabs from "./KironTabs/KironTabs";
-
+import logo from "../../../assets/img/Logo.webp";
 import KironCompetitions from "./competitions/KironCompetitions";
 import MatchList from "./matches";
 import makeRequest from "../../utils/fetch-request";
@@ -21,9 +21,19 @@ import Standing from "./standing";
 import KironBetHistory from "./bet-history/KironBetHistory";
 import Complex from "../../skeleton/Complex";
 import KironPlayouts from "./playout";
+import {Navbar, Offcanvas} from "react-bootstrap";
+import Container from "react-bootstrap/Container";
+import {LazyLoadImage} from 'react-lazy-load-image-component';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faCloudDownloadAlt} from "@fortawesome/free-solid-svg-icons/faCloudDownloadAlt";
+import {faCoins} from "@fortawesome/free-solid-svg-icons/faCoins";
+import SidebarMobile from "../../sidebar/awesome/SidebarMobile";
+import {faSearch} from "@fortawesome/free-solid-svg-icons";
+import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 
 const Kiron = () => {
     const [state,dispatch]=useContext(Context)
+    const gaEventTracker = useAnalyticsEventTracker('Navigation');
     const [loading, setLoading] = useState(false)
     const [tab, setTab] = useState('kiron')
     const [fetching, setFetching] = useState(false)
@@ -236,10 +246,97 @@ console.log("variable_state",state?.current_selection_period?.start)
     return (
         <>
 
+    <Navbar expand="lg" className="mb-0 ck pc os app-navbar top-nav header-mobile-kiron" fixed="top" variant="dark">
+        <Container fluid className={'d-flex justify-content-between mobile-change'}>
+            <Navbar.Brand className="e logo align-self-start menu-control w-100 d-flex justify-content-between" title="Betnare">
+                <Link to={{pathname: "/"}} className="col-4 resize-mobile">
+                    <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"
+                                   className={"image-size "}/>
+                </Link>
+                {width <=991 ? user?
+                    <div className="col-md-3  d-flex  right justify-content-center align-items-center w-change2">
+                        <div>
+                            <Link
+                                to={{pathname: "/deposit"}}
+                                className={"deposit-button"} style={{fontSize:"10px"}}>
+                                      <span className="">
+                                       <span className=" space-icons"> <FontAwesomeIcon
+                                           icon={faCloudDownloadAlt}/></span>
+                                          DEPOSIT
+                                      </span>
+                            </Link>
+                        </div>
+                        <div>
+                            <Link
+                                to={{pathname: "/my-bets"}}
+                                className={"deposit-button"} style={{fontSize:"10px", marginRight:"12px"}}>
+                                      <span className="text-warning">
+                                       <span className=" space-icons"><FontAwesomeIcon icon={faCoins} className={"text-warning"}/>
+                                           </span>
+                                          MY BETS
+                                      </span>
+                            </Link>
+                        </div>
+                    </div>
+                    :"" : ""}
+                {
+                    width<=991&&
+                    <>
+
+                        <div className="col-sm-2 mobile-profile1 align-items-center" style={{marginLeft:'auto'}}>
+                            <div className="">
+                                <Link className="cg  login-color login-size btn bg-success text-light" to={"/verify"} title="Verify Account"
+                                      onClick={() => gaEventTracker('Verify')}>
+                                    <span className="register-label text-light mobile-remove-verify">Verify</span>
+                                </Link>
+                            </div>
+                            <div className="">
+                                <Link className="cg  login-color login-size btn bg-warning text-light" to={"/signup"} title="Join now" onClick={() => gaEventTracker('Register')}>
+                                    <span className="text-light ">Register</span>
+                                </Link>
+                            </div>
+
+                            <Link to={"/login"} className="cg  login-color login-size btn" type="submit">
+                                <span>Login</span>
+                            </Link>
+
+                        </div>
+                        <div className="col-1 button-toggle mx-2" style={{width: "3.1rem"}}>
+                            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"lg"}`} className="px-3 py-3" onClick={toggle}/>
+                        </div>
+                    </>
+
+                }
+
+            </Navbar.Brand>
+
+            <Navbar.Offcanvas
+                style={{width: "80%", height: "100%",zIndex: "9999", marginTop: "0px",overflowY:"auto"}}
+                className='off-canvas background-primary p-0'
+                id={`offcanvasNavbar-expand-${expand}`}
+                aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+                placement="start">
+                <Offcanvas.Header closeButton className='text-white' closeVariant={"white"}>
+                    <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
+                        <div className="col-3">
+                            <div>
+                                <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"/>
+                            </div>
+                        </div>
+                    </Offcanvas.Title>
+                </Offcanvas.Header>
+                <Offcanvas.Body className={(width<=514?user?"":"":"")}>
+                    <SidebarMobile/>
+                </Offcanvas.Body>
+            </Navbar.Offcanvas>
+        </Container>
+    </Navbar>
+    <div className={'header-desktop-kiron'}>
         <Header/>
-        <div className="amt">
+    </div>
+        <div className="kiron-amt">
             <div className="d-flex flex-row">
-            <div className="d-flex flex-column" style={{width:"75%",marginTop:"2px"}}>
+            <div className="d-flex flex-column kiron-size" style={{marginTop:"2px"}}>
                     <KironCompetitions/>
                 {!inPlay&&<KironTabs tab={location.pathname.replace("/", "")} user={userLogged}/>}
                 {tab == "results" ? <KironResults/>:tab == "standing" ?<Standing/>:tab == "bet-history" ?<KironBetHistory/>:<>

@@ -11,6 +11,7 @@
 }
 .playing-games-wrapper {
     padding-bottom: 0 !important;
+    width:100%!important;
 }
 .float-left {
     float: left !important;

@@ -156,6 +156,7 @@ render((
                     <Route exact path={"/bet-history"} element={<ProtectedRoute><Kiron/></ProtectedRoute>}/>
                     <Route exact path="/highlights" element={<Index/>}/>
                     <Route exact path="/upcoming" element={<Index/>}/>
+                    <Route exact path= "/countries" element={<Index/>}/>
                     <Route exact path="/tomorrow" element={<Index/>}/>
                     <Route exact path={"/betslip"} element={<BetslipPage/>}/>
                     <Route exact path="/betslip-slip" element={<BetslipPage/>}/>

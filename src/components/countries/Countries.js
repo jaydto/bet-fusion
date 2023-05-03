@@ -147,7 +147,7 @@ const Countries = (props) => {
                     <img
                       style={{
                         borderRadius: "50%",
-                        height: "20px",
+                        height: "25px",
                         display: "block",
                       }}
                       src={getSportImageIcon(competition.sport_name)}

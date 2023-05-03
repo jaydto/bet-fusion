@@ -35,9 +35,9 @@ const CarouselLoader = (props) => {
     return (
         <Carousel indicators={false}>
             {banners.map((banner, idx) => (
-                <Carousel.Item key={idx}>
+                <Carousel.Item key={idx} className={'banner-height'}>
                     <LazyLoadImage
-                        className="d-block w-100 cursor-pointer"
+                        className="d-block w-100 cursor-pointer banner-height"
                         style={{display: imageLoaded ? 'block' : 'none'}}
                         src={banner.src}
                         onLoad={onImageLoaded}

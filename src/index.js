@@ -114,6 +114,8 @@ const ShaksGamePlay=React.lazy(()=>import('./components/pages/shaks/ShaksGamePla
 
 const Kiron=React.lazy(()=>import('./components/pages/Kiron/index'))
 
+const BetslipPage =React.lazy(()=> import("./components/pages/betslip/betslipPage"))
+
 const Logout = () => {
     let navigate = useNavigate();
 
@@ -155,6 +157,9 @@ render((
                     <Route exact path="/highlights" element={<Index/>}/>
                     <Route exact path="/upcoming" element={<Index/>}/>
                     <Route exact path="/tomorrow" element={<Index/>}/>
+                    <Route exact path={"/betslip"} element={<BetslipPage/>}/>
+                    <Route exact path="/betslip-slip" element={<BetslipPage/>}/>
+                    <Route exact path="/betslip-jackpot" element={<BetslipPage/>}/>
                     <Route exact path="/competition/:id" element={<CompetitionsMatches/>}/>
                     <Route exact path="/competition/:sportid/:categoryid/:competitionid"
                            element={<CompetitionsMatches/>}/>

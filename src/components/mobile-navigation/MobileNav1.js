@@ -177,7 +177,7 @@ const MobileNav1 = (props) => {
                         <div className="menu-img">
                             <LazyLoadImage src={aviator} style={{height: "24px", marginTop:"-6px", width:"35px" }}/>
                             <span className=" badge" style={{color:"white",background:"red"
-                                ,marginTop:"-5px", borderRadius: "10px 0 15px 0", marginLeft:"1px", padding:"0.6px 4px ", fontSize:"5.5px"}}>NEW</span>
+                                ,marginTop:"-5px", borderRadius: "10px 0 15px 0", marginLeft:"1px", padding:"0.6px 4px ", fontSize:"5.5px",position:'absolute',top:'8px',left:'15px'}}>NEW</span>
                         </div>
                         <strong className={"text-light m-auto"}> Aviator</strong>
                     </Link>
@@ -191,7 +191,7 @@ const MobileNav1 = (props) => {
                         <div className="menu-img">
                             <img src={casino1} style={{height: "23px", marginTop:"-6px" }}/>
                             <span className=" badge" style={{color:"white",background:"red"
-                                ,marginTop:"-5px", borderRadius: "10px 0 15px 0", marginLeft:"1px", padding:"0.6px 4px ", fontSize:"5.5px"}}>NEW</span>
+                                ,marginTop:"-5px", borderRadius: "10px 0 15px 0", marginLeft:"1px", padding:"0.6px 4px ", fontSize:"5.5px",position:'absolute',top:'8px',left:"11px"}}>NEW</span>
                         </div>
                         <strong className={"text-light"}>Casino</strong>
                     </Link>
@@ -233,9 +233,9 @@ const MobileNav1 = (props) => {
                           title="Nare League"
                     >
                         <div className="menu-img">
-                            <img src={kiron} style={{height: "21px", marginTop:"-6px", width:"36px" }}/>
+                            <img src={kiron} style={{height: "21px", marginTop:"-7px", width:"36px" }}/>
                             <span className=" badge" style={{color:"white",background:"red"
-                                ,marginTop:"-5px", borderRadius: "10px 0 15px 0", marginLeft:"1px", padding:"0.3px 3px ", fontSize:"5.5px"}}>NEW</span>
+                                ,marginTop:"-5px", borderRadius: "10px 0 15px 0", marginLeft:"1px", padding:"0.3px 3px ", fontSize:"5.5px",position:'absolute',top:'5px',left:'30px'}}>NEW</span>
                         </div>
                         <strong className={"text-light m-auto"}> Nare League</strong>
                     </Link>
@@ -251,7 +251,7 @@ const MobileNav1 = (props) => {
                         <div className="menu-img">
                             <img src={spaceman} style={{height: "24px", marginTop:"-6px", width:"32px" }}/>
                             <span className=" badge" style={{color:"white",background:"red"
-                                ,marginTop:"-5px", borderRadius: "10px 0 15px 0", marginLeft:"1px", padding:"0.3px 3px ", fontSize:"5.5px"}}>NEW</span>
+                                ,marginTop:"-5px", borderRadius: "10px 0 15px 0", marginLeft:"1px", padding:"0.3px 3px ", fontSize:"5.5px",position:'absolute',top:'3px', left:'26px'}}>NEW</span>
                         </div>
                         <strong className={"text-light m-auto"}> spaceman</strong>
                     </Link>
@@ -266,9 +266,9 @@ const MobileNav1 = (props) => {
                           to="/nare-games"
                           title="Nare Games">
                         <div className="menu-img d-flex justify-content-center">
-                            <img src={fire} style={{height: "26px", marginTop:"-5px"}}/>
+                            <img src={fire} style={{height: "29px", marginTop:"-7px"}}/>
                             <span className=" badge" style={{color:"white",background:"red"
-                                ,marginTop:"10px", borderRadius: "10px 0 15px 0", marginLeft:"1px", padding:"0.9px 3px ",height:"8px", fontSize:"5.5px"}}>NEW</span>
+                                ,marginTop:"10px", borderRadius: "10px 0 15px 0", marginLeft:"1px", padding:"0.9px 3px ",height:"8px", fontSize:"5.5px",position:'absolute',top:'-5px'}}>NEW</span>
                         </div><strong className={"text-light"}> Nare Games</strong>
                     </Link>
 

@@ -498,7 +498,7 @@ const SideBets = (props) => {
                   className="side text-warning w-auto "
                   style={{ whiteSpace: "nowrap" }}
                   title={"More Markets"}
-                  href={`/match?live=${live ? "live" : ""}&id=${
+                  href={`/match/${live ? "live" : ""}${
                       live ? match.parent_match_id : match?.match_id
                   }`}
               >
@@ -925,7 +925,7 @@ const MatchRow = (props) => {
                   </>
               }
 
-              <span className={'date-size wrapping px-3 date-remove display-ipad-remove-id'}>
+              <span className={'date-size wrapping px-sm-3 px-0 date-remove display-ipad-remove-id'}>
                                                 {(live && match?.match_time) ?
                                                     <>{`${match.match_time}'`}</> : new Date(match?.start_time).getDate()+"/"+(Number(new Date(match?.start_time).getMonth())+1) + " "+ (match?.match_time==undefined?"":match?.match_time)} {jackpot? (new Date(match?.start_time).getHours())+":"+new Date(match?.start_time).getMinutes():""}
                                             </span>

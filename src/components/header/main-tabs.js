@@ -50,7 +50,7 @@ const MainTabs = (props) => {
                         <span className="col-sm-11 main-header">Tomorrow</span>
                     </Link>
                 </div>
-                <div className="col bg-black text-center">
+                <div className="col bg-black text-center sports_only-mobile">
                     <Link className={`cursor-pointer w-100 ${c_class}`} to={'/countries?'+getLink() }>
                         <span className="col-sm-11 main-header">Sports</span>
                     </Link>

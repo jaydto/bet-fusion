@@ -105,10 +105,7 @@
         scroll-margin-top: 140px;
     }
 }
-@media (max-width: 1259px) {
-    /*.jackpot-width{*/
-    /*    width:min-content!important;*/
-    /*}*/
+@media (max-width: 1259px) and (min-width: 991px) {
     .sticky-testimony {
         position: sticky;
         position: -webkit-sticky;
@@ -124,6 +121,13 @@
         opacity: 1;
         z-index: 1999 !important;
     }
+}
+
+@media (max-width: 1259px) {
+    /*.jackpot-width{*/
+    /*    width:min-content!important;*/
+    /*}*/
+
     .sticky-logged-in-testimony {
         position: sticky;
         top: 87px;
@@ -286,5 +290,17 @@
 @media (min-width:991px){
     .desktop-ipad-size{
         width:100vw!important;;
+    }
+}
+
+@media (min-width: 375px) and (max-width: 575px){
+    .app-navbar .e img {
+        max-width: 123px !important;
+    }
+    .highlight-menu {
+        position: sticky;
+        top: 159.5px;
+        opacity: 1;
+        z-index: 1999 !important;
     }
 }

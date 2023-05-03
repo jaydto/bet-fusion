@@ -8108,6 +8108,13 @@ ul.sport {
         display:flex;
     }
 }
+@media (min-width:768px) and (max-width: 991px){
+    .amt {
+        margin-top: 123px !important;
+    }
+}
+
+
 @media (max-width: 991px) {
     .sticky-logged-in-testimony {
         position: sticky;
@@ -8118,7 +8125,7 @@ ul.sport {
         background: #000;
     }
     .size-1 {
-        width: 34%;
+        width: 12%;
     }
     .top-matches .side{
         background: transparent;
@@ -16219,9 +16226,9 @@ img.zoom-img {
         color: aqua;
     }
     .login-button{
-        border-radius: 1rem!important;
+        /*border-radius: 1rem!important;*/
         /*line-height: 2;*/
-        height: 2.3rem!important;
+        /*height: 2.3rem!important;*/
     }
 
 

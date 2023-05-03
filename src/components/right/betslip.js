@@ -44,7 +44,7 @@ const BetSlip = (props) => {
 
     useEffect(() => {
         if (state[betslipKey]) {
-            jackpot && Object.keys(getJackpotBetslip()).length == 0
+            jackpot && Object.keys(getJackpotBetslip()||{}).length == 0
                 ? setBetslipsData(null)
                 :setBetslipsData(state[betslipKey]);
             // console.log("size of slip",Object.keys(getJackpotBetslip).length )

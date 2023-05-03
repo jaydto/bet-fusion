@@ -7154,7 +7154,7 @@ ul.sport {
 
 .e {
     float: left;
-    padding: 3px 15px;
+    padding: 3px 1px;
     font-size: 18px;
     line-height: 22px;
 }
@@ -8355,7 +8355,7 @@ ul.sport {
     }
 
     .amt {
-        margin-top: 130px !important;
+        /*margin-top: 130px !important;*/
         scroll-margin-top: 140px;
     }
 }

@@ -248,7 +248,7 @@ const Header = (props) => {
                             </div>
                             <div className="col-sm-2 mobile-profile1 align-items-center">
                             <div className="">
-                            <Link className="cg  login-color login-size btn bg-success text-light" to={"/verify-account"} title="Verify Account"
+                            <Link className="cg  login-color login-size btn bg-success text-light" to={"/verify"} title="Verify Account"
                             onClick={() => gaEventTracker('Verify')}>
                             <span className="register-label text-light">Verify</span>
                             </Link>
@@ -270,7 +270,7 @@ const Header = (props) => {
                         {width<=572&&width>375?user?"":
                             <div className="col-sm-2 mobile-profile1 align-items-center">
                                 <div className="">
-                                    <Link className="cg  login-color login-size btn bg-success text-light" to={"/verify-account"} title="Verify Account"
+                                    <Link className="cg  login-color login-size btn bg-success text-light" to={"/verify"} title="Verify Account"
                                           onClick={() => gaEventTracker('Verify')}>
                                         <span className="register-label text-light">Verify</span>
                                     </Link>
@@ -396,7 +396,7 @@ const Header = (props) => {
                             {width>572&&width<=991?user?"":
                                 <div className="col-sm-6 align-items-center mobile-profile1">
                                     <div className="">
-                                        <Link className="cg  login-color login-size btn bg-success text-light " to={"/verify-account"} title="Verify Account"
+                                        <Link className="cg  login-color login-size btn bg-success text-light " to={"/verify"} title="Verify Account"
                                               onClick={() => gaEventTracker('Verify')}>
                                             <span className="register-label text-light">Verify </span>
                                         </Link>

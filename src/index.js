@@ -116,6 +116,8 @@ const Kiron=React.lazy(()=>import('./components/pages/Kiron/index'))
 
 const BetslipPage =React.lazy(()=> import("./components/pages/betslip/betslipPage"))
 
+const Login=React.lazy(()=>import('./components/pages/Login'));
+
 const Logout = () => {
     let navigate = useNavigate();
 
@@ -138,6 +140,7 @@ render((
                 <Routes>
                     <Route path="*" element={<Navigate to="/404"/>}/>
                     <Route exact path="/" element={<Index/>}/>
+                    <Route exact path="/login" element={<Login/>}/>
                     <Route exact path="/share" element={<BetslipShareDecode/>}/>
                     <Route exact path="/virtuals" element={<Virtuals/>}/>
                     <Route exact path="/livescore" element={<LiveScore/>}/>

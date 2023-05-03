@@ -64,7 +64,7 @@ const Login = () => {
 
 
     const FormTitle = () => {
-        return (<div className='col-md-12 primary-bg p-4 text-center w-100'>
+        return (<div className='col-md-12 primary-bg py-3 text-center w-100 top-login-mobile' style={{margin:'0px'}}>
             <h4 className="inline-block">
                 Login
             </h4>
@@ -84,43 +84,16 @@ const Login = () => {
     return (
         <React.Fragment>
             <Header/>
-            <div className="amt">
+            <div >
                 {user?setTimeout(navigate("/"),500):""}
                 <div className={"d-flex flex-row justify-content-between"}>
                     <div className="gz home w-100">
-                        <div className="homepage px-4 mx-2 d-flex flex-column align-items-center justify-content-center">
+                        <div className="homepage d-flex flex-column align-items-center justify-content-center login-page">
                             <FormTitle/>
                             <LoginInstructions/>
                             <HeaderLogin setUser={setUser} login={true}/>
 
-                {/*            <div*/}
-                {/*                className={" d-flex align-items-center justify-content-center text-success w-100 font-input"}>*/}
-                {/*                {message?.status == 200 ? message?.message : ""}*/}
-
-                {/*            </div>*/}
-                {/*            <Row className={"w-100 modal-body "} style={{float: "right"}}>*/}
-                {/*                <ToastContainer/>*/}
-
-                {/*                <LoginForm/>*/}
-                {/*                <div className="col-12">*/}
-                {/*                    <Link className="d-flex justify-content-center w-100" to={"/signup"}*/}
-                {/*                          title="Join now"*/}
-                {/*                          onClick={() => gaEventTracker('Register')}>*/}
-                {/*        <span*/}
-                {/*            className="register-label text-warning font-input ">Don't have an account! Register now!</span>*/}
-                {/*                    </Link>*/}
-                {/*                    <Link className="m-lg-2 badge bg-success d-none" to={"/verify-account"}*/}
-                {/*                          title="Verify Account"*/}
-                {/*                          onClick={() => gaEventTracker('Verify')}>*/}
-                {/*                        <span className="register-label">Verify Account</span>*/}
-                {/*                    </Link>*/}
-                {/*                </div>*/}
-
-
-                {/*            </Row>*/}
-
-
-                {/*        </div>*/}
+              
                     </div>
                     <div className={"mobile-only mobile-top"}>
                         <Right/>

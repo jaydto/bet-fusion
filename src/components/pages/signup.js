@@ -155,7 +155,7 @@ const Signup = (props) => {
                 <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions/>
                     <div className="gz home">
-                        <div className="homepage">
+                        <div className="homepage sign-up-size">
                             <FormTitle/>
                             <div className="col-md-12 mt-2 text-white p-2">
                                 {message && <Alert/>}

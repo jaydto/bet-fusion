@@ -113,7 +113,7 @@ const HeaderLogin = (props) => {
         }
         return (
             <>
-                <Form className="ow og i web-element">
+                <Form className="ow og i web-element" style={login&&{width:'80vw'}}>
                     <Row className={`${login?"d-flex flex-column":""}`}>
                         <div className={`${login?"w-100 ": "col-4"}`}>
                             <input type="text"
@@ -150,7 +150,7 @@ const HeaderLogin = (props) => {
                             <button className={`${login?"w-100 button-radius input-field btn-font": " "}cg login-button btn`} type="submit">
                                 {isLoading ? <span>Logging In ...</span> : <span>Login</span>}
                             </button>
-                            <Link className="cg register-button btn btn-warning" to={"/signup"} title="Join now" onClick={() => gaEventTracker('Register')}>
+                            <Link className="cg register-button btn btn-warning" to={"/signup"} title="Join now" onClick={() => gaEventTracker('Register')} style={login&&{display:'none'}}>
                                 <span className="register-label">Register </span>
                             </Link>
                         </div>
@@ -196,7 +196,7 @@ const HeaderLogin = (props) => {
                     </Link>
                 </div>
             </Row>
-            <Row style={{float: "right"}}>
+            <Row style={{float: "right"}} className={login&&'d-flex justify-content-center align-items-center flex-column w-100'}>
                 <ToastContainer/>
                 <LoginForm/>
             </Row>

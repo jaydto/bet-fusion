@@ -150,6 +150,9 @@
 
 }
 @media (max-width: 767px){
+    .top-login-mobile{
+        margin-top:135px!important;
+    }
     .banner-height{
         height: 90px!important;
     }
@@ -254,6 +257,12 @@
     }
 }
 @media (max-width: 991px){
+    .login-page{
+        height:80vh;
+    }
+    .sign-up-size{
+        width:100vw!important;
+    }
     .sports_only-mobile{
         display: flex;
     }

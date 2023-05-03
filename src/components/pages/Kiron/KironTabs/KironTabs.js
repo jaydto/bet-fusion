@@ -35,24 +35,24 @@ const KironTabs = (props) => {
     return (
         <div className={"full-mobile px-2 "}>
             <Row className="top-matches d-flex flex-row ">
-                <div className="col bg-black text-center">
+                <div className="col bg-black text-center kiron-tabs-padding">
                     <Link className={`cursor-pointer w-100 ${h_class}`} to={'/nare-league?' + getLink()}>
                         <span className="col-sm-11 main-header">Markets</span>
                     </Link>
                 </div>
-                <div className="col bg-black text-center">
+                <div className="col bg-black text-center kiron-tabs-padding">
                     <Link className={`cursor-pointer w-100 ${u_class}`} to={'/results?' }>
                         <span className="col-sm-11 main-header">Results</span>
                     </Link>
                 </div>
 
-                <div className="col bg-black text-center">
+                <div className="col bg-black text-center kiron-tabs-padding">
                     <Link className={`cursor-pointer w-100 ${t_class}`} to={'/standing?' }>
                         <span className="col-sm-11 main-header">Standing</span>
                     </Link>
                 </div>
                 {user&&
-                    <div className="col bg-black text-center">
+                    <div className="col bg-black text-center kiron-tabs-padding">
                         <Link className={`cursor-pointer w-100 ${b_class}`} to={'/bet-history?' }>
                             <span className="col-sm-11 main-header"><FontAwesomeIcon icon={faReceipt}/>&nbsp; Bet History</span>
                         </Link>

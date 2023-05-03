@@ -188,6 +188,9 @@
 .kiron-matches{
     display: block;
 }
+.kiron-tabs-padding{
+    padding:3px!important
+}
 .kiron-match-playout{
     display: flex;
     color: white;

@@ -254,7 +254,7 @@ console.log("variable_state",state?.current_selection_period?.start)
                                    className={"image-size "}/>
                 </Link>
                 {width <=991 ? user?
-                    <div className="col-md-3  d-flex  right justify-content-center align-items-center w-change2">
+                    <div className="col-md-3  d-flex  right justify-content-center align-items-center w-change2" style={{marginLeft: 'auto'}}>
                         <div>
                             <Link
                                 to={{pathname: "/deposit"}}
@@ -283,15 +283,17 @@ console.log("variable_state",state?.current_selection_period?.start)
                     width<=991&&
                     <>
 
-                        <div className="col-sm-2 mobile-profile1 align-items-center" style={{marginLeft:'auto'}}>
+                        {!user&&<div className="col-sm-2 mobile-profile1 align-items-center" style={{marginLeft: 'auto'}}>
                             <div className="">
-                                <Link className="cg  login-color login-size btn bg-success text-light" to={"/verify"} title="Verify Account"
+                                <Link className="cg  login-color login-size btn bg-success text-light" to={"/verify"}
+                                      title="Verify Account"
                                       onClick={() => gaEventTracker('Verify')}>
                                     <span className="register-label text-light mobile-remove-verify">Verify</span>
                                 </Link>
                             </div>
                             <div className="">
-                                <Link className="cg  login-color login-size btn bg-warning text-light" to={"/signup"} title="Join now" onClick={() => gaEventTracker('Register')}>
+                                <Link className="cg  login-color login-size btn bg-warning text-light" to={"/signup"}
+                                      title="Join now" onClick={() => gaEventTracker('Register')}>
                                     <span className="text-light ">Register</span>
                                 </Link>
                             </div>
@@ -300,7 +302,7 @@ console.log("variable_state",state?.current_selection_period?.start)
                                 <span>Login</span>
                             </Link>
 
-                        </div>
+                        </div>}
                         <div className="col-1 button-toggle mx-2" style={{width: "3.1rem"}}>
                             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"lg"}`} className="px-3 py-3" onClick={toggle}/>
                         </div>

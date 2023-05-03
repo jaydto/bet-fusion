@@ -126,16 +126,7 @@ input, select, textarea {
     .betslip-submit-form{
         display:contents;
     }
-    .bet-table{
-        display:flex;
-        justify-content:end;
-    }
-    .slip-body{
-        width:50%;
-        line-height: 8.5px;
-        display:flow-root;
-        padding-left:10%;
-    }
+
 }
 
 .mobile-menu {

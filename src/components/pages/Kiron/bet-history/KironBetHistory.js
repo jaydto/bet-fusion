@@ -91,7 +91,7 @@ const KironBetHistory = (props) => {
 
     const KironItemHeader = (props) => {
         return (
-            <div className={`container`} style={Styles.headers}>
+            <div className={`container-fluid`} style={Styles.headers}>
                 <div className="row">
                     <div className="col">CREATED</div>
                     <div className="col">ID</div>
@@ -107,7 +107,7 @@ const KironBetHistory = (props) => {
         const { bet } = props;
 
         return (
-            <div className={`container`} style={Styles.bet} key={bet.bet_id}>
+            <div className={`container-fluid`} style={Styles.bet} key={bet.bet_id}>
                 <div className="row">
                     <div className="col">{ bet.bet_date}</div>
                     <div className="col">{ bet.bet_id}</div>

@@ -115,6 +115,7 @@ select::after{
     }
 }
 @media (max-width: 1259px) and (min-width: 991px) {
+
     .sticky-testimony {
         position: sticky;
         position: -webkit-sticky;
@@ -165,9 +166,9 @@ select::after{
 
 }
 @media (max-width: 767px){
-    .top-login-mobile{
-        margin-top:135px!important;
-    }
+    /*.top-login-mobile{*/
+    /*    margin-top:135px!important;*/
+    /*}*/
     .banner-height{
         height: 90px!important;
     }
@@ -282,8 +283,17 @@ select::after{
     .kiron-size{
         width:75%;
     }
+    .kiron-betslip-size{
+        width:25%!important;
+    }
 }
 @media (max-width: 991px){
+    .kiron-betslip-size{
+        width:0px!important;
+    }
+    .slip-max{
+        max-height:53vh!important;
+    }
     .top-matches div {
         min-height: 24px;
         justify-content: unset;

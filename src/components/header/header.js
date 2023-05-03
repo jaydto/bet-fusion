@@ -237,7 +237,7 @@ const Header = (props) => {
                             ></span>
                             </Link>
                         </div>
-                            :width<=991&&
+                            :width<=991&&!user&&
                             <>
                             <div className={` align-items-center  ${searching ? 'd-none' : 'd-flex'}`}>
                                 <Link className="" to={"#"} title="Search"

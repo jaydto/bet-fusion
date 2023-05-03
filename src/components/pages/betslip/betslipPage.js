@@ -18,6 +18,7 @@ import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCloudDownloadAlt} from "@fortawesome/free-solid-svg-icons/faCloudDownloadAlt";
 import {faCoins} from "@fortawesome/free-solid-svg-icons/faCoins";
+import KironSlip from "../../right/kironslip";
 
 const BetslipPage = () => {
   const { height, width } = useWindowDimensions();
@@ -28,6 +29,8 @@ const BetslipPage = () => {
   let url = new URL(window.location);
   const [state, dispatch] = useContext(Context);
   const jp = url.searchParams.get("jackpot");
+  const nL=url.searchParams.get("nare-league")
+  const nare_league=nL=='true'?true:false
   const jackpot = jp == "true" ? true : false;
   const slipParam = url.searchParams.get("betslipValidationData");
   const jackpotParam = url.searchParams.get("jackpotData");
@@ -62,13 +65,17 @@ const BetslipPage = () => {
       new_tab = "betslip-jackpot";
     }
 
+    if (window.location.href.includes("betslip-nare")) {
+      new_tab = "betslip-nare";
+    }
+
     // console.log("tabs", new_tab)
     if (new_tab !== tab) {
       setTab(new_tab);
       setLoading(true);
     }
   });
-  console.log("slip_check", jackpot);
+  console.log("tab_slip", tab);
 
   return (
     <>
@@ -110,15 +117,17 @@ const BetslipPage = () => {
                 width<=991&&
                 <>
 
-                  <div className="col-sm-2 mobile-profile1 align-items-center" style={{marginLeft:'auto'}}>
+                  {!user&&<div className="col-sm-2 mobile-profile1 align-items-center" style={{marginLeft: 'auto'}}>
                     <div className="">
-                      <Link className="cg  login-color login-size btn bg-success text-light" to={"/verify"} title="Verify Account"
+                      <Link className="cg  login-color login-size btn bg-success text-light" to={"/verify"}
+                            title="Verify Account"
                             onClick={() => gaEventTracker('Verify')}>
                         <span className="register-label text-light mobile-remove-verify">Verify</span>
                       </Link>
                     </div>
                     <div className="">
-                      <Link className="cg  login-color login-size btn bg-warning text-light" to={"/signup"} title="Join now" onClick={() => gaEventTracker('Register')}>
+                      <Link className="cg  login-color login-size btn bg-warning text-light" to={"/signup"}
+                            title="Join now" onClick={() => gaEventTracker('Register')}>
                         <span className="text-light ">Register</span>
                       </Link>
                     </div>
@@ -127,7 +136,7 @@ const BetslipPage = () => {
                       <span>Login</span>
                     </Link>
 
-                  </div>
+                  </div>}
                   <div className="col-1 button-toggle mx-2" style={{width: "3.1rem"}}>
                     <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"lg"}`} className="px-3 py-3" onClick={toggle}/>
                   </div>
@@ -182,12 +191,12 @@ const BetslipPage = () => {
                   className={ " d-flex flex-column w-100 justify-content-end"}
                   style={{ height: "100%" }}
                 >
-                
-                  <Betslip
-                    jackpot={jackpot ? true : false}
-                    betslipValidationData={betslipValidationData}
-                    jackpotData={jackpotData}
-                  />
+
+                  {nare_league ? <KironSlip/> : <Betslip
+                      jackpot={jackpot ? true : false}
+                      betslipValidationData={betslipValidationData}
+                      jackpotData={jackpotData}
+                  />}
                 </div>
               </div>
             </div>

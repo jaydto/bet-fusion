@@ -614,7 +614,7 @@ const KironslipSubmitForm = (props) => {
                                     </tr>
                                 )}
                                 <tr className="bet-win-tr hide-on-affix">
-                                    <td>{"kiron Amount"}</td>
+                                    <td>{"Nare Amount"}</td>
                                     <td>
                                         KES.{" "}
                                         <span id="net-amount">

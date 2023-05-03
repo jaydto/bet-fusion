@@ -51,6 +51,7 @@ const KironPlayouts = (props) => {
     }, [newData]);
 
     let totalSeconds = 0;
+
     useEffect(()=>{
         if (isCountdownTimerActive) {
 

@@ -19,7 +19,7 @@ import {
 import { getFromLocalStorage } from "../utils/local-storage";
 import { Link } from "react-router-dom";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
-import { getJackpotBetslip, getBetslip } from "../utils/betslip";
+import {getJackpotBetslip, getBetslip, getKironSlip} from "../utils/betslip";
 import { Context } from "../../context/store";
 import useWindowDimensions from "../header/Dimensions";
 // import Decoder from "../right/decoder";
@@ -31,7 +31,7 @@ const MobileMenu = (props) => {
     // console.log("props aere here ", props)
 
     const [liveSports, setLiveSports] = useState();
-    const { jackpot, betslipValidationData, jackpotData } = props;
+    const { jackpot, betslipValidationData, jackpotData,kiron} = props;
     const [betSlipMobile, setBetSlipMobile] = useState(false);
     const gaEventTracker = useAnalyticsEventTracker("Navigation");
     const pathname = window.location.pathname;
@@ -136,7 +136,7 @@ const MobileMenu = (props) => {
                     <p>Virtuals</p>
                 </Link>
 
-                <Link to={{pathname:`${jackpot?"/betslip-jackpot":"/betslip-slip"}`, search:`jackpot=${jackpot? jackpot: false}&betslipValidationData=${betslipValidationData?encodeURIComponent(JSON.stringify(betslipValidationData)):false}&jackpotData=${jackpotData?encodeURIComponent(JSON.stringify(jackpotData)):false}`}}
+                <Link to={{pathname:`${jackpot?"/betslip-jackpot":kiron?`/betslip-nare`:"/betslip-slip"}`, search:`jackpot=${jackpot? jackpot: false}&betslipValidationData=${betslipValidationData?encodeURIComponent(JSON.stringify(betslipValidationData)):false}&jackpotData=${jackpotData?encodeURIComponent(JSON.stringify(jackpotData)):false}&nare-league=${kiron}`}}
                     //  onClick={()=>window.location.href=`${jackpot?"/betslip-jackpot":"/betslip-slip"}?jackpot=${jackpot? jackpot: false}&betslipValidationData=${betslipValidationData?encodeURIComponent(JSON.stringify(betslipValidationData)):false}&jackpotData=${jackpotData?encodeURIComponent(JSON.stringify(jackpotData)):false}`}
                       className={` nav__betslip bloc-icon bet-slip-footer-toggle text-white`}
 
@@ -156,14 +156,16 @@ const MobileMenu = (props) => {
                         pill
                         bg="warning nav__betslip d-flex justify-content-center align-items-center"
                     >
-                        {console.log("lo-jackpot",jackpot)}
+                        {console.log("value for iron",kiron)}
 
                         {/*fixed size 50 for bets clicked*/}
                         {jackpot === true&&jackpot!=undefined
                             ? getJackpotBetslip() != null
                                 ? Object.keys(getJackpotBetslip())?.length
                                 : 0
-                            : getBetslip()
+                            :kiron==true?getKironSlip()!=null?
+                              Object.keys(getKironSlip()).length:0
+                                : getBetslip()
                                 ? Object.keys(getBetslip()).length <= 50
                                     ? Object.keys(getBetslip()).length
                                     : 50

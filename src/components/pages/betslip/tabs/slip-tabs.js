@@ -13,6 +13,7 @@ const SlipTabs = (props) => {
 
     const u_class = tab === 'betslip-slip' ? "home-tabs-active" : "home-tabs";
     const c_class = tab === "betslip-jackpot" ? "home-tabs-active" : "home-tabs";
+    const n_class = tab === "betslip-nare" ? "home-tabs-active" : "home-tabs";
    
     const [user, setUser] = useState(getFromLocalStorage("user"));
 
@@ -30,26 +31,37 @@ const SlipTabs = (props) => {
         // const params = Object.fromEntries(urlSearchParams.entries());
         console.log("pathname", tab=="betslip-jackpot"?true:false)
         url.pathname = `/${tab}`+replaceQueryParam("jackpot", tab=="betslip-jackpot"?true:false, window.location.search)
+        url.pathname = `/${tab}`+replaceQueryParam("nare-league", tab=="betslip-nare"?true:false, window.location.search)
         tab=="betslip-jackpot"?new URL(window.location).searchParams.set('jackpot', true): new URL(window.location).searchParams.set('jackpot', false)
+        tab=='betslip-nare'?new URL(window.location).searchParams.set('nare-league', true): new URL(window.location).searchParams.set('nare-league', false)
         // Object.keys(params).forEach((param, val) => {
             url.searchParams.set("jackpot",tab=="betslip-jackpot"? true:false)
+            url.searchParams.set("nare-league",tab=="betslip-nare"? true:false)
         // })
        
         return url.searchParams
 
     }
     const jackpot=url.searchParams.get("jackpot")
+    const nare_league=url.searchParams.get("nare-league")
+
     console.log("jackpot_checking", jackpot)
 
     return (
         <div className={"full-mobile mb-1 "}>
             <Row className="top-matches d-flex flex-row ">
             
-                {jackpot=="false"&&<div className="col text-center">
-                    <Link className={`cursor-pointer rounded border-0  w-100 bold ${u_class}`}  to={'/betslip-slip?' + getLink()} style={{background:"#ea5d0b"}}>
-                        <span className="col-sm-11 main-header">BETSLIP</span>
+                {jackpot=="false"&&nare_league=='true'?<div className="col text-center">
+                    <Link className={`cursor-pointer rounded border-0  w-100 bold ${n_class}`}  to={'/betslip-nare?' + getLink()} style={{background:"#ea5d0b"}}>
+                        <span className="col-sm-11 main-header">NARESLIP</span>
                     </Link>
-                </div>}
+                </div>:
+                    <div className="col text-center">
+                        <Link className={`cursor-pointer rounded border-0  w-100 bold ${u_class}`}  to={'/betslip-slip?' + getLink()} style={{background:"#ea5d0b"}}>
+                            <span className="col-sm-11 main-header">BETSLIP</span>
+                        </Link>
+                    </div>
+                }
                 {jackpot=="true"&&<div className="col  text-center">
                     <Link className={`cursor-pointer rounded border-0 w-100 bold ${c_class}`} to={'/betslip-jackpot?' + getLink()} style={{background:"#ea5d0b"}}>
                         <span className="col-sm-11 main-header">JACKPOT</span>

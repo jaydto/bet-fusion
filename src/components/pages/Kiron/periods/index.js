@@ -303,7 +303,10 @@ const KironPeriods= (props) => {
 
     },[state?.current_selection_period])
 
-let totalSeconds = timeAfter;
+    //todo check if inplay time is  over
+   const time= (new Date(Date.parse(`${new Date().toDateString()} ${getTime(firstMatchEndTime)}`))-new Date().getTime())/1000
+    console.log("time_check",time)
+    let totalSeconds = timeAfter;
     useEffect(() => {
 
         if (isCountdownTimerActive) {
@@ -379,6 +382,25 @@ let totalSeconds = timeAfter;
     console.log("check_inPlayTime",isCountdownTimerActive)
     console.log("check_timeInPlay",timeAfter)
     console.log("check_timeLeftBeforeMatchStarts",timeLeft)
+    const kironTabVisible=()=>{
+        const time= (new Date(Date.parse(`${new Date().toDateString()} ${getTime(firstMatchEndTime)}`))-new Date().getTime())/1000
+
+        document.addEventListener("visibilitychange", (event) => {
+            if (document.visibilityState == "visible") {
+                if(window.location.pathname=="/nare-league"){
+                    if(time<=0){
+                        fetchData()
+                        console.log("switched tab",time)
+                    }
+                }
+            }
+        })
+    }
+
+    useEffect(()=>{
+        kironTabVisible()
+    },[])
+
     return (
         kiron&&<div className={ `  container-period ` } style={{background:" #162024"}}>
             <table className={'kiron-table'} style={{width: "100%", textAlign: "center", display:'flex'}}>

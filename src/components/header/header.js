@@ -202,15 +202,15 @@ const Header = (props) => {
                                  className={"image-size "} style={user?{marginBottom:"0px" }:{marginBottom:"11px", width:'auto'}}/>
                         </Link>
 
-                        {width <=991 ? user?
-                                <div className="col-md-3  d-flex  right justify-content-center align-items-center w-change2">
+                        {width <=991&&user&&
+                                <div className="col-md-6  d-flex  right justify-content-end align-items-center w-change2 gap-2" style={{marginLeft:'auto'}}>
                                     <div>
                                         <Link
                                             to={{pathname: "/deposit"}}
                                             className={"deposit-button size-font-user-action"} >
                                       <span className="">
-                                       <span className=" space-icons"> <FontAwesomeIcon
-                                           icon={faCloudDownloadAlt}/></span>
+                                       <span className=" "> <FontAwesomeIcon
+                                           icon={faCloudDownloadAlt}/></span>&nbsp;
                                           DEPOSIT
                                       </span>
                                         </Link>
@@ -220,50 +220,69 @@ const Header = (props) => {
                                             to={{pathname: "/my-bets"}}
                                             className={"deposit-button size-font-user-action"} style={{marginRight:"12px"}}>
                                       <span className="text-warning">
-                                       <span className=" space-icons"><FontAwesomeIcon icon={faCoins} className={"text-warning"}/>
-                                           </span>
+                                       <span className=" "><FontAwesomeIcon icon={faCoins} className={"text-warning"}/>
+                                           </span>&nbsp;
                                           MY BETS
                                       </span>
                                         </Link>
                                     </div>
+                                    <div className='d-flex align-items-baseline'>
+                                        <div className={` align-items-center  ${searching ? 'd-none' : 'd-flex'}`}>
+                                            <Link className="" to={"#"} title="Search"
+                                                  onClick={() => showSearchBar()} style={{height:'14px'}}>
+                                                <span className="border-radius-search p-2 text-dark bg-light"><FontAwesomeIcon  icon={faSearch}/> </span><span
+                                            ></span>
+                                            </Link>
+                                        </div>
+                                    </div>
+                                    <div className="col-1 button-toggle space-button" style={{width: "4.1rem", overflowY:"auto",marginLeft:'20px'}}>
+                                        <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"lg"}`} className="px-3 py-3" onClick={toggle} />
+                                    </div>
                                 </div>
-                                :""
-                            : ""}
-                        {width<=572?
-                            <div className={` align-items-center ${searching ? 'd-none' : 'd-flex'}`}>
-                            <Link className="" to={"#"} title="Search"
-                                  onClick={() => showSearchBar()}>
-                                <span className="search-icon-size"><FontAwesomeIcon icon={faSearch}/> </span><span
-                            ></span>
-                            </Link>
-                        </div>
-                            :width<=991&&!user&&
+                              }
+                        {/*{width<=572?*/}
+                        {/*    <div className={` align-items-center ${searching ? 'd-none' : 'd-flex'}`}>*/}
+                        {/*    <Link className="" to={"#"} title="Search"*/}
+                        {/*          onClick={() => showSearchBar()}>*/}
+                        {/*        <span className="search-icon-size"><FontAwesomeIcon icon={faSearch}/> </span><span*/}
+                        {/*    ></span>*/}
+                        {/*    </Link>*/}
+                        {/*</div>*/}
+
+                        {width<=991&&
                             <>
-                            <div className={` align-items-center  ${searching ? 'd-none' : 'd-flex'}`}>
-                                <Link className="" to={"#"} title="Search"
-                                      onClick={() => showSearchBar()} style={{height:'14px'}}>
-                                    <span className="border-radius-search p-2 text-dark bg-light"><FontAwesomeIcon  icon={faSearch}/> </span><span
-                                ></span>
-                                </Link>
-                            </div>
-                            <div className="col-sm-2 mobile-profile1 align-items-center">
-                            <div className="">
-                            <Link className="cg  login-color login-size btn bg-success text-light" to={"/verify"} title="Verify Account"
-                            onClick={() => gaEventTracker('Verify')}>
-                            <span className="register-label text-light">Verify</span>
-                            </Link>
-                            </div>
-                            <div className="">
-                            <Link className="cg  login-color login-size btn bg-warning text-light" to={"/signup"} title="Join now" onClick={() => gaEventTracker('Register')}>
-                            <span className="text-light ">Register</span>
-                            </Link>
-                            </div>
 
-                            <Link to={"/login"} className="cg  login-color login-size btn" type="submit">
-                            <span>Login</span>
-                            </Link>
+                                {!user&&<div className="col-sm-2 mobile-profile1 align-items-center" style={{marginLeft:'auto'}}>
+                                    <div className="">
+                                        <Link className="cg  login-color login-size btn bg-success text-light"
+                                              to={"/verify"} title="Verify Account"
+                                              onClick={() => gaEventTracker('Verify')}>
+                                            <span className="register-label text-light">Verify</span>
+                                        </Link>
+                                    </div>
+                                    <div className="">
+                                        <Link className="cg  login-color login-size btn bg-warning text-light"
+                                              to={"/signup"} title="Join now"
+                                              onClick={() => gaEventTracker('Register')}>
+                                            <span className="text-light ">Register</span>
+                                        </Link>
+                                    </div>
 
-                            </div>
+                                    <Link to={"/login"} className="cg  login-color login-size btn" type="submit">
+                                        <span>Login</span>
+                                    </Link>
+                                    <div className={` align-items-center  ${searching ? 'd-none' : 'd-flex'}`}>
+                                        <Link className="" to={"#"} title="Search"
+                                              onClick={() => showSearchBar()} style={{height:'14px'}}>
+                                            <span className="border-radius-search p-2 text-dark bg-light"><FontAwesomeIcon  icon={faSearch}/> </span><span
+                                        ></span>
+                                        </Link>
+                                    </div>
+                                    <div className="col-1 button-toggle space-button" style={{width: "4.1rem", overflowY:"auto",marginLeft:'20px'}}>
+                                        <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"lg"}`} className="px-3 py-3" onClick={toggle} />
+                                    </div>
+
+                                </div>}
 </>
                           }
 
@@ -299,10 +318,6 @@ const Header = (props) => {
                                 </Link>
 
                             </div>:""}
-
-                            <div className="col-1 button-toggle space-button" style={{width: "4.1rem", overflowY:"auto"}}>
-                                <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"lg"}`} className="px-3 py-3" onClick={toggle} />
-                            </div>
                     </Navbar.Brand>
 
 
@@ -414,11 +429,11 @@ const Header = (props) => {
 
 
                             {/*{user ? searching?"": <MobileProfile user={user}/> : ""}*/}
-                            {width > 572 && width<=991 ? <div
-                                className="col-1 button-toggle space-button">
-                                <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"lg"}`} className="px-3 py-3"/>
-                            </div> : ""
-                            }
+                            {/*{width > 572 && width<=991 ? <div*/}
+                            {/*    className="col-1 button-toggle space-button">*/}
+                            {/*    <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"lg"}`} className="px-3 py-3"/>*/}
+                            {/*</div> : ""*/}
+                            {/*}*/}
 
                         </div>
 

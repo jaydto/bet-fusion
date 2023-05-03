@@ -8,7 +8,7 @@ import makeRequest from "../../utils/fetch-request";
 
 import {Context} from "../../../context/store";
 import {Link, useLocation, useNavigate} from "react-router-dom";
-import KironPeriods from "./periods";
+import KironPeriods, {getTime} from "./periods";
 import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
 import useWindowDimensions from "../../header/Dimensions";
 
@@ -77,6 +77,7 @@ const Kiron = () => {
     const seconds = String(now.getSeconds()).padStart(2, '0'); // Pad with a leading zero if necessary
     const kiron_first_round=getFromLocalStorage("kiron_first_round");
     const kiron_first_period=getFromLocalStorage("kiron_first_period");
+    const firstMatchEndTime=getFromLocalStorage('kiron_end_time')
     const [isCountdownTimerActive, setIsCountdownTimerActive] = useState(false);
     const [kironPeriods, setKironPeriods] = useState(kiron_first_period)
     const dateString = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
@@ -241,6 +242,25 @@ console.log("variable_state",state?.current_selection_period?.start)
         }
 
     })
+
+    // const kironTabVisible=()=>{
+    //     const time= (new Date(Date.parse(`${new Date().toDateString()} ${getTime(firstMatchEndTime)}`))-new Date().getTime())/1000
+    //
+    //     document.addEventListener("visibilitychange", (event) => {
+    //         if (document.visibilityState == "visible") {
+    //             if(window.location.pathname=="/nare-league"){
+    //                 if(time<=0){
+    //                     fetchData()
+    //                 }
+    //             }
+    //         }
+    //     })
+    // }
+    //
+    // useEffect(()=>{
+    //     kironTabVisible()
+    // },[])
+
 
 
     return (

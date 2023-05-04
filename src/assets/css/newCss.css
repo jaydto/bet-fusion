@@ -118,6 +118,10 @@ select::after{
 }
 
 @media (min-width: 1260px) {
+    .container-sticky-top{
+        position: sticky!important;
+        top:10.5rem!important;
+    }
     .sticky-logged-in-testimony {
         position: sticky;
         top: 110px;

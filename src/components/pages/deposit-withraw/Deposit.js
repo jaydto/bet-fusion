@@ -201,7 +201,9 @@ const Deposit = (props) => {
 
             <div className={`${mobile?"":"amt"}`}>
                 <div className="d-flex flex-row justify-content-between">
-                    <SideBar loadCompetitions/>
+                   <div className={`${mobile?'d-none':'d-flex'}`}>
+                       <SideBar loadCompetitions/>
+                   </div>
                     <div className="gz home" style={{width: '100%',overflowX:'clip'}}>
                         <div className="homepage">
                             <div className={`${mobile?"d-none":""}`}>
@@ -223,7 +225,7 @@ const Deposit = (props) => {
                     <Right deposit={true}/>
                 </div>
             </div>
-            <div className={`${mobile?"d-none":"mobile-remove"}`}>
+            <div className={`${mobile?"d-none":"footer-mobile-none"}`}>
                 <Footer/>
             </div>
 

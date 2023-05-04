@@ -114,7 +114,7 @@ const Live = (props) => {
                     <Right betslipValidationData={userSlipsValidation} jackpotData={matches?.meta}/>
                 </div>
             </div>
-            <div className={"mobile-remove"}>
+            <div className={"footer-mobile-none"}>
             <Footer/>
             </div>
         </>

@@ -185,7 +185,7 @@ const VerifyAccount = (props) => {
                     <Right/>
                 </div>
             </div>
-            <div className={"mobile-remove"}>
+            <div className={"footer-mobile-none"}>
             <Footer/>
             </div>
         </React.Fragment>

@@ -228,7 +228,7 @@ const MyBets = (props) => {
 
                 </div>
             </div>
-            <div className={"mobile-remove mobile-top"}>
+            <div className={"footer-mobile-none mobile-top"}>
                 <Footer/>
             </div>
 

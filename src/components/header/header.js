@@ -29,7 +29,6 @@ const HeaderLogin = React.lazy(() => import('./top-login'));
 const HeaderNav = React.lazy(() => import('./header-nav'));
 
 const Header = (props) => {
-    const {height, width} = useWindowDimensions();
     const gaEventTracker = useAnalyticsEventTracker('Navigation');
     const [user, setUser] = useState(getFromLocalStorage("user"));
     const [, dispatch] = useContext(Context);
@@ -54,6 +53,7 @@ const Header = (props) => {
     }, [searching])
 
     const fetchMatches = async (search) => {
+
         if (search && search.length >= 3) {
             gaEventTracker('Searching')
             let method = "POST"
@@ -159,7 +159,7 @@ const Header = (props) => {
 
     const showSearchBar = () => {
         setSearching(true)
-        searchInputRef.current.focus()
+        // searchInputRef.current.focus()
         gaEventTracker('Clicked on Search')
     }
 
@@ -202,58 +202,53 @@ const Header = (props) => {
                                  className={"image-size "} style={user?{marginBottom:"0px" }:{marginBottom:"11px", width:'auto'}}/>
                         </Link>
 
-                        {width <=991&&user&&
-                                <div className="col-md-6  d-flex  right justify-content-end align-items-center w-change2 gap-2" style={{marginLeft:'auto'}}>
-                                    <div>
-                                        <Link
-                                            to={{pathname: "/deposit"}}
-                                            className={"deposit-button size-font-user-action"} >
+                        {user &&
+                            <div
+                                className="col-md-6  d-flex  right justify-content-end align-items-center w-change2 gap-2 ipad-show"
+                                style={{marginLeft: 'auto'}}>
+                                <div>
+                                    <Link
+                                        to={{pathname: "/deposit"}}
+                                        className={"deposit-button size-font-user-action"}>
                                       <span className="">
                                        <span className=" "> <FontAwesomeIcon
                                            icon={faCloudDownloadAlt}/></span>&nbsp;
                                           DEPOSIT
                                       </span>
-                                        </Link>
-                                    </div>
-                                    <div>
-                                        <Link
-                                            to={{pathname: "/my-bets"}}
-                                            className={"deposit-button size-font-user-action"} style={{marginRight:"12px"}}>
+                                    </Link>
+                                </div>
+                                <div>
+                                    <Link
+                                        to={{pathname: "/my-bets"}}
+                                        className={"deposit-button size-font-user-action"}
+                                        style={{marginRight: "12px"}}>
                                       <span className="text-warning">
                                        <span className=" "><FontAwesomeIcon icon={faCoins} className={"text-warning"}/>
                                            </span>&nbsp;
                                           MY BETS
                                       </span>
+                                    </Link>
+                                </div>
+                                <div className='d-flex align-items-baseline'>
+                                    <div className={` align-items-center  ${searching ? 'd-none' : 'd-flex'}`}>
+                                        <Link className="" to={"#"} title="Search"
+                                              onClick={() => showSearchBar()}>
+                                            <span
+                                                className="border-radius-search p-2 text-dark bg-light justify-content-center d-flex"><FontAwesomeIcon
+                                                icon={faSearch}/> </span><span
+                                        ></span>
                                         </Link>
                                     </div>
-                                    <div className='d-flex align-items-baseline'>
-                                        <div className={` align-items-center  ${searching ? 'd-none' : 'd-flex'}`}>
-                                            <Link className="" to={"#"} title="Search"
-                                                  onClick={() => showSearchBar()} style={{height:'14px'}}>
-                                                <span className="border-radius-search p-2 text-dark bg-light"><FontAwesomeIcon  icon={faSearch}/> </span><span
-                                            ></span>
-                                            </Link>
-                                        </div>
-                                    </div>
-                                    <div className="col-1 button-toggle space-button" style={{width: "4.1rem", overflowY:"auto",marginLeft:'20px'}}>
-                                        <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"lg"}`} className="px-3 py-3" onClick={toggle} />
-                                    </div>
                                 </div>
-                              }
-                        {/*{width<=572?*/}
-                        {/*    <div className={` align-items-center ${searching ? 'd-none' : 'd-flex'}`}>*/}
-                        {/*    <Link className="" to={"#"} title="Search"*/}
-                        {/*          onClick={() => showSearchBar()}>*/}
-                        {/*        <span className="search-icon-size"><FontAwesomeIcon icon={faSearch}/> </span><span*/}
-                        {/*    ></span>*/}
-                        {/*    </Link>*/}
-                        {/*</div>*/}
-
-                        {width<=991&&
-                            <>
-
-                                {!user&&<div className="col-sm-2 mobile-profile1 align-items-center" style={{marginLeft:'auto'}}>
-                                    <div className="">
+                                <div className="col-1 button-toggle space-button"
+                                     style={{width: "4.1rem", overflowY: "auto", marginLeft: '20px'}}>
+                                    <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"lg"}`}
+                                                   className="px-3 py-3" onClick={toggle}/>
+                                </div>
+                            </div>}
+                                <>
+                                {!user&&<div className="col-sm-2 mobile-profile1 align-items-center gap-3 ipad-show" style={{marginLeft:'auto'}}>
+                                    <div className="remove-verify">
                                         <Link className="cg  login-color login-size btn bg-success text-light"
                                               to={"/verify"} title="Verify Account"
                                               onClick={() => gaEventTracker('Verify')}>
@@ -271,12 +266,14 @@ const Header = (props) => {
                                     <Link to={"/login"} className="cg  login-color login-size btn" type="submit">
                                         <span>Login</span>
                                     </Link>
-                                    <div className={` align-items-center  ${searching ? 'd-none' : 'd-flex'}`}>
-                                        <Link className="" to={"#"} title="Search"
-                                              onClick={() => showSearchBar()} style={{height:'14px'}}>
-                                            <span className="border-radius-search p-2 text-dark bg-light"><FontAwesomeIcon  icon={faSearch}/> </span><span
-                                        ></span>
-                                        </Link>
+                                    <div className='d-flex align-items-baseline'>
+                                        <div className={` align-items-center  ${searching ? 'd-none' : 'd-flex'}`}>
+                                            <Link className="" to={"#"} title="Search"
+                                                  onClick={() => showSearchBar()} >
+                                                <span className="border-radius-search p-2 text-dark bg-light justify-content-center d-flex"><FontAwesomeIcon  icon={faSearch}/> </span><span
+                                            ></span>
+                                            </Link>
+                                        </div>
                                     </div>
                                     <div className="col-1 button-toggle space-button" style={{width: "4.1rem", overflowY:"auto",marginLeft:'20px'}}>
                                         <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"lg"}`} className="px-3 py-3" onClick={toggle} />
@@ -284,157 +281,15 @@ const Header = (props) => {
 
                                 </div>}
 </>
-                          }
 
-                        {width<=572&&width>375?user?"":
-                            <div className="col-sm-2 mobile-profile1 align-items-center">
-                                <div className="">
-                                    <Link className="cg  login-color login-size btn bg-success text-light" to={"/verify"} title="Verify Account"
-                                          onClick={() => gaEventTracker('Verify')}>
-                                        <span className="register-label text-light">Verify</span>
-                                    </Link>
-                                </div>
-                                <div className="">
-                                    <Link className="cg  login-color login-size btn bg-warning text-light" to={"/signup"} title="Join now" onClick={() => gaEventTracker('Register')}>
-                                        <span className="text-light ">Register</span>
-                                    </Link>
-                                </div>
 
-                                <Link to={"/login"} className="cg  login-color login-size btn" type="submit">
-                                    <span>Login</span>
-                                </Link>
-
-                            </div>:""}
-                        {width<=375?user?"":
-                            <div className="col-sm-2 mobile-profile1 align-items-center">
-                                <div className="">
-                                    <Link className="cg  login-color login-size btn bg-warning text-light" to={"/signup"} title="Join now" onClick={() => gaEventTracker('Register')}>
-                                        <span className=" text-light">Register</span>
-                                    </Link>
-                                </div>
-
-                                <Link to={"/login"} className="cg  login-color login-size btn" type="submit">
-                                    <span>Login</span>
-                                </Link>
-
-                            </div>:""}
                     </Navbar.Brand>
 
-
-                    <div className={` col-9 change-size ${width>991?"desk-top":" remove-on-mobile"}`} id="navbar-collapse-main " >
+                    {/*todo check information provided for a user*/}
+                    <div className={` col-9 change-size desk-top`} id="navbar-collapse-main " >
                         <div
-                            className="col-md-11 col-sm-12 col-lg-8 right fix-view-2 disable-ipad to-navcheck justify-content-end">
+                            className="col-md-11 col-sm-12 col-lg-7 right fix-view-2 disable-ipad to-navcheck justify-content-end">
                             {user ? <ProfileMenu user={user}/> : <HeaderLogin setUser={setUser}/>}
-                        </div>
-                        <div
-                            className="col-md-11 col-sm-12 col-lg-8 right to-profilecheck w-100 justify-content-end mobile-profile1">
-                            {/*{width > 572 ? user?*/}
-                            {/*    <div className="col-md-3  d-flex flex-column right justify-content-center align-items-center w-change2">*/}
-                            {/*        <div>*/}
-                            {/*            <Link*/}
-                            {/*                to={{pathname: "/deposit"}}*/}
-                            {/*                className={"deposit-button"}>*/}
-                            {/*          <span className="">*/}
-                            {/*           <span className=" space-icons"> <FontAwesomeIcon*/}
-                            {/*               icon={faCloudDownloadAlt}/></span>*/}
-                            {/*              DEPOSIT*/}
-                            {/*          </span>*/}
-                            {/*            </Link>*/}
-                            {/*        </div>*/}
-                            {/*    </div>*/}
-                            {/*    :"" : ""}*/}
-                            {/*{width<=572?*/}
-                                <Container id="navbar-collapse-main"
-                                           className={`fadeIn header-menu d-flex justify-content-center px-4 ${searching ? 'd-block' : 'd-none'}`}>
-                                    <ListGroup as="ul" xs="9" horizontal className="nav navbar-nav og ale ss col-md-6 text-center w-100">
-                                        <div className="d-flex">
-                                            <div className="col-md-10 w-100 px-4">
-                                                <input type="text" placeholder={'Start typing to search for team ...'} ref={searchInputRef}
-                                                       onInput={(event) => fetchMatches(event.target.value)}
-                                                       className={'form-control input-field border-0  text-default bg-light no-border-radius'}  style={{background: "#2D4352"}}/>
-                                            </div>
-
-                                            <button className={'btn text-white -align-right'} onClick={() => dismissSearch()}>
-                                                <FontAwesomeIcon icon={faTimes}/> Close
-                                            </button>
-                                        </div>
-                                        <div
-                                            className={`autocomplete-box  rounded position-fixed bg-white border-dark col-md-5 mt-1 shadow-lg text-start`}
-                                            onClick={() => gaEventTracker('View Search Results')}>
-                                            {matches.map((match, index) => (
-                                                <Link to={`/?search=${match.home_team}`} key={index} onClick={()=> window.location.href=`/?search=${match.home_team}`}>
-                                                    <li>
-                                                        {match.home_team}
-                                                    </li>
-                                                </Link>
-                                            ))}
-                                        </div>
-                                    </ListGroup>
-                                </Container>
-                            {/*:""}*/}
-
-                            {/*{width<=991&&width>572? <div className={`${searching?"col-sm-5":"col px-4"}  align-items-center justify-content-end  d-flex`}>*/}
-                            {/*    <Link className={`${searching ? 'd-none' : 'd-flex'}`}to={"#"} title="Search"*/}
-                            {/*          onClick={() => showSearchBar()}>*/}
-                            {/*        <span className=""><FontAwesomeIcon icon={faSearch}/> </span><span*/}
-                            {/*    ></span>*/}
-                            {/*    </Link>*/}
-                            {/*    <Container id="navbar-collapse-main"*/}
-                            {/*               className={`fadeIn header-menu d-flex justify-content-center px-4 ${searching ? 'd-block' : 'd-none'}`}>*/}
-                            {/*        <ListGroup as="ul" xs="9" horizontal className="nav navbar-nav og ale ss col-md-6 text-center">*/}
-                            {/*            <div className="d-flex">*/}
-                            {/*                <div className="col-md-10">*/}
-                            {/*                    <input type="text" placeholder={'Start typing to search for team ...'} ref={searchInputRef}*/}
-                            {/*                           onInput={(event) => fetchMatches(event.target.value)}*/}
-                            {/*                           className={'form-control bg-light input-field border-0 bg-dark text-default no-border-radius'}  autoFocus={true} style={{background: "#2D4352"}}/>*/}
-                            {/*                </div>*/}
-
-                            {/*                <button className={'btn text-white -align-right'} onClick={() => dismissSearch()}>*/}
-                            {/*                    <FontAwesomeIcon icon={faTimes}/> Close*/}
-                            {/*                </button>*/}
-                            {/*            </div>*/}
-                            {/*            <div*/}
-                            {/*                className={`autocomplete-box rounded position-fixed bg-white border-dark col-md-5 mt-1 shadow-lg text-start`}*/}
-                            {/*                onClick={() => gaEventTracker('View Search Results')}>*/}
-                            {/*                {matches.map((match, index) => (*/}
-                            {/*                    <Link to={`/?search=${match.home_team}`} key={index} onClick={()=> window.location.href=`/?search=${match.home_team}`}>*/}
-                            {/*                        <li>*/}
-                            {/*                            {match.home_team}*/}
-                            {/*                        </li>*/}
-                            {/*                    </Link>*/}
-                            {/*                ))}*/}
-                            {/*            </div>*/}
-                            {/*        </ListGroup>*/}
-                            {/*    </Container>*/}
-                            {/*</div>:""}*/}
-
-                            {width>572&&width<=991?user?"":
-                                <div className="col-sm-6 align-items-center mobile-profile1">
-                                    <div className="">
-                                        <Link className="cg  login-color login-size btn bg-success text-light " to={"/verify"} title="Verify Account"
-                                              onClick={() => gaEventTracker('Verify')}>
-                                            <span className="register-label text-light">Verify </span>
-                                        </Link>
-                                    </div>
-                                    <div className="">
-                                        <Link className="cg  login-color login-size btn bg-warning text-light" to={"/signup"} title="Join now" onClick={() => gaEventTracker('Register')}>
-                                            <span className="text-light ">Register</span>
-                                        </Link>
-                                    </div>
-                                    <Link to={"/login"} className="cg login-color login-size btn" type="submit">
-                                        <span>Login</span>
-                                    </Link>
-
-                                </div>:""}
-
-
-                            {/*{user ? searching?"": <MobileProfile user={user}/> : ""}*/}
-                            {/*{width > 572 && width<=991 ? <div*/}
-                            {/*    className="col-1 button-toggle space-button">*/}
-                            {/*    <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"lg"}`} className="px-3 py-3"/>*/}
-                            {/*</div> : ""*/}
-                            {/*}*/}
-
                         </div>
 
                     </div>
@@ -444,7 +299,35 @@ const Header = (props) => {
                         <HeaderNav/>
                     </Row>
                     <Row className={"mobile-only"}>
-                        <MobileNav1/>
+                        {searching?
+                            <Container id="navbar-collapse-main"
+                                       className={`fadeIn header-menu d-flex justify-content-center px-4 d-block`}>
+                                <ListGroup as="ul" xs="9" horizontal className="nav navbar-nav og ale ss col-md-6 text-center w-100 d-flex">
+                                    <div className="d-flex">
+                                        <div className="col-md-10  px-4" style={{width:'90vw',marginLeft:'5vw'}}>
+                                            <input type="text" placeholder={'Start typing to search for team ...'} ref={searchInputRef}
+                                                   onInput={(event) => fetchMatches(event.target.value)}
+                                                   className={'form-control input-field border-0  text-default bg-light no-border-radius'}  style={{background: "#2D4352"}}/>
+                                        </div>
+
+                                        <button className={'btn text-warning align-right d-flex justify-content-center align-items-center flex-column'} onClick={() => dismissSearch()}>
+                                            <FontAwesomeIcon icon={faTimes}/> Close
+                                        </button>
+                                    </div>
+                                    <div style={{marginLeft:'90px', marginTop:'33px'}}
+                                        className={`autocomplete-box  rounded position-fixed bg-white border-dark col-md-5 shadow-lg text-start`}
+                                        onClick={() => gaEventTracker('View Search Results')}>
+                                        {matches.map((match, index) => (
+                                            <Link to={`/?search=${match.home_team}`} key={index} onClick={()=> window.location.href=`/?search=${match.home_team}`}>
+                                                <li>
+                                                    {match.home_team}
+                                                </li>
+                                            </Link>
+                                        ))}
+                                    </div>
+                                </ListGroup>
+                            </Container>
+                        :<MobileNav1/>}
                         <MobileNav2/>
                     </Row>
 

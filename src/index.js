@@ -118,6 +118,8 @@ const BetslipPage =React.lazy(()=> import("./components/pages/betslip/betslipPag
 
 const Login=React.lazy(()=>import('./components/pages/Login'));
 
+const Profile =React.lazy(()=>import( "./components/pages/Accounts/Profile"));
+
 const Logout = () => {
     let navigate = useNavigate();
 
@@ -157,6 +159,7 @@ render((
                     <Route exact path={"/results"} element={<Kiron/>}/>
                     <Route exact path={"/standing"} element={<Kiron/>}/>
                     <Route exact path={"/bet-history"} element={<ProtectedRoute><Kiron/></ProtectedRoute>}/>
+                    <Route exact path={"/profile"} element={<Profile/>}/>
                     <Route exact path="/highlights" element={<Index/>}/>
                     <Route exact path="/upcoming" element={<Index/>}/>
                     <Route exact path= "/countries" element={<Index/>}/>

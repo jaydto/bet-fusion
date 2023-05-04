@@ -7,7 +7,7 @@ import {
     faChevronRight,
     faQuestionCircle,
     faGifts,
-    faDollarSign, faSmile, faListOl
+    faDollarSign, faSmile, faListOl, faCloudDownloadAlt, faHome
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {formatNumber} from "../../utils/betslip";
@@ -55,37 +55,47 @@ const  userIn={
         <>
             <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark">
                 <Container fluid className={'d-flex justify-content-between mobile-change'}>
-                    <Navbar.Brand className="e logo align-self-start menu-control" title="Betnare">
+                    <Navbar.Brand className="e logo align-self-start menu-control d-flex w-100" title="Betnare">
                         <Link to={{pathname: "/"}} className="col-4 resize-mobile">
                             <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"
                                            className={"image-size "}/>
                         </Link>
-
-
-                        {width <= 514 ?
-
-                            <div className="col-1 button-toggle mx-2" style={{width: "3.1rem"}}>
-                                <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"md"}`} className="px-3 py-3" />
-                            </div> : ""}
-                    </Navbar.Brand>
-                    <div className="col-9  " id="navbar-collapse-main">
-
                         <div
-                            className="col-md-10 col-sm-12 col-lg-8 right to-profilecheck w-100 justify-content-end style-mobile">
-
-
-                            {width > 514 ? <div
-                                className="col-1 button-toggle mx-2">
-                                <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"md"}`} className="px-3 py-3"/>
-                            </div> : ""
-                            }
-
+                            className="col-md-6  d-flex  right justify-content-end align-items-center w-change2 gap-2 "
+                            style={{marginLeft: 'auto'}}>
+                            <div>
+                                <Link
+                                    to={{pathname: "/"}}
+                                    className={"deposit-button size-font-user-action"} title={'HOME'}>
+                                      <span className="">
+                                       <span className=" "> <FontAwesomeIcon
+                                           icon={faHome}/></span>&nbsp;
+                                          HOME
+                                      </span>
+                                </Link>
+                            </div>
+                            <div>
+                                <Link
+                                    to={{pathname: "/logout"}}
+                                    className={"deposit-button size-font-user-action"}
+                                    style={{marginRight: "12px"}} title={'LOGOUT'}>
+                                      <span className="text-warning">
+                                       <span className=" "><FontAwesomeIcon icon={faCoins} className={"text-warning"}/>
+                                           </span>&nbsp;
+                                         LOGOUT
+                                      </span>
+                                </Link>
+                            </div>
+                        <div className="col-1 button-toggle mx-2" style={{width: "3.1rem"}}>
+                            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"md"}`} className="px-3 py-3 user-profile" />
+                        </div>
                         </div>
 
-                    </div>
+                    </Navbar.Brand>
+
                     <Navbar.Offcanvas
                         style={{width: "80%", height: "100%",zIndex: "9999", marginTop: "0px"}}
-                        className='off-canvas background-primary p-0'
+                        className='off-canvas background-primary p-0 user-profile'
                         id={`offcanvasNavbar-expand-${expand}`}
                         aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
                         placement="start">

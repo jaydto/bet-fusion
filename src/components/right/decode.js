@@ -68,7 +68,7 @@ const DecodeCode = () => {
                                         betslip </label>
                                     <div className={"d-flex flex-column"}>
                                         <input
-                                            className="text-dark deposit-input form-control col input-field"
+                                            className="text-dark deposit-input form-control col input-field-decode"
                                             id="code"
                                             ref={inputRef}
                                             onChange={(e) => handleChanges(e)}

@@ -90,7 +90,7 @@ const MobileNav2 = (props) => {
         {/*{sport==null?setSport(getFromLocalStorage ("categories")):""}*/}
         <table  style={{width: "100%", textAlign: "center"}}>
             <tbody>
-            <tr className={"d-flex league-row"}>
+            <tr className={"d-flex league-row-mobile"}>
                 {sport?.top_soccer.map((top_league, index) => (
                     <td key={index} className={` d-flex menu-t sport-check ${pathname===top_league.competition_id?" active":""}`} style={{paddingLeft: "4px",textAlign: 'center',lineHeight: '1.5'}}>
                         <Link  style={{paddingRight: "4px",width:"max-content"}}  to={{pathname: `/competition`,search: `competitionid=${top_league.competition_id}&sub_type_id=1`}}>

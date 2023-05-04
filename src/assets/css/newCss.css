@@ -87,6 +87,10 @@ select::after{
     font-size: 12px;
     font-weight: bold;
 }
+.input-field-decode{
+    line-height: 33px;
+    border: none;
+}
 .banner-height{
     height: 150px!important;
 }
@@ -251,7 +255,7 @@ select::after{
         padding: 8px 5px !important;
 
     }
-    .league-row{
+    .league-row-mobile{
         display:none!important;
     }
     .header-mobile-kiron{
@@ -282,7 +286,8 @@ select::after{
     }
 }
 @media (max-width: 991px){
-    .league-row{
+
+    .league-row-mobile{
         white-space: nowrap;
         height:3rem;
         overflow-x: auto;

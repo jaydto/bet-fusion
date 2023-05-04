@@ -449,7 +449,10 @@ header, li a, .thedate span {
     max-height: 280px;
     overflow-y: auto;
 }
-
+.autocomplete-box{
+    max-height: 42vh;
+    /*height: 53vh;*/
+}
 .search-input.active .autocomplete-box {
     padding: 10px 8px;
     opacity: 1;
@@ -1683,10 +1686,6 @@ header {
         max-width: 100px !important;
     }
 
-    .e.logo {
-        padding: 8px 5px !important;
-
-    }
 
     .second-nav {
         /*top: 80px !important;*/
@@ -1856,16 +1855,7 @@ header {
     opacity: 1;
 }
 
-.sticky-testimony {
-    position: sticky;
-    position: -webkit-sticky;
-    top: 117px;
-    /*width:100%;*/
-    background-color: black;
-    z-index: 150;
-    opacity: 1;
 
-}
 
 .betslip-container-mozilla {
     margin-left: 2px
@@ -7539,7 +7529,7 @@ ul.sport {
     }
 
     .amt {
-        padding-top: 140px !important;
+        padding-top: 105px !important;
     }
 
     .shrink-header .icon-holder img {
@@ -8028,17 +8018,14 @@ ul.sport {
     /*margin-left: -10%;*/
 }
 
-.sticky-responsive {
-    position: sticky;
-    top: 144px
-}
+
 .sticky-user{
     top:150px;
     position:sticky;
 }
-.sticky-jackpot{
-    top:114px;
-    position:sticky;
+.sticky-jackpot {
+    top: 106px;
+    position: sticky;
 }
 
 @media (min-width: 768px) {
@@ -8107,7 +8094,7 @@ ul.sport {
 }
 @media (min-width:768px) and (max-width: 991px){
     .amt {
-        margin-top: 123px !important;
+        margin-top: 113px !important;
     }
 }
 
@@ -8388,9 +8375,7 @@ ul.sport {
     /*.jackpot-width{*/
     /*    width:min-content!important;*/
     /*}*/
-    .app-header-nav {
-        margin-top: 54px;
-    }
+
     .to-profile-check{
         display:none;
     }
@@ -9561,12 +9546,6 @@ ul.sport {
     .top-nav::-webkit-scrollbar{
         display:none!important;
         padding-bottom:0px!important;
-    }
-    .league-row{
-        white-space: nowrap;
-        height:3rem;
-        overflow-x: auto;
-        overflow-y: hidden;
     }
     .jackpot-resize{
         height:100px!important;
@@ -16122,9 +16101,7 @@ img.zoom-img {
 .to-check-change{
     display:flex;
 }
-.user_logged {
-    margin-top: 13.5rem!important;
-}
+
 .notify-badge {
     background: red;
     border-radius: 10px 0 15px 0;
@@ -16908,7 +16885,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 
 @media only screen and (max-width: 576px) {
     .amt {
-        margin-top: 12.5rem !important;
+        margin-top: 8.5rem !important;
         padding-top: 20px !important;
         /* scroll-margin-top: 140px; */
     }

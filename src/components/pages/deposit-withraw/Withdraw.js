@@ -68,7 +68,7 @@ const Withdrawal = (props) => {
 
         return (
             <>
-                <div className="form-group row d-flex justify-content-center">
+                <div className="form-group row d-flex justify-content-center deposit-widthdraw-input-desktop">
                     <div className={`${mobile?"d-none":"col-md-12"}`}>
                         <label>Phone Number</label>
                         <input
@@ -83,7 +83,7 @@ const Withdrawal = (props) => {
                         {errors.msisdn &&  <div className='text-danger'> {errors.msisdn} </div>  }
                     </div>
                 </div>
-                <div className="form-group row d-flex justify-content-center mt-5">
+                <div className="form-group row d-flex justify-content-center mt-5 deposit-widthdraw-input-desktop">
                     <div className="col-md-12">
                         <label>Amount to Withdraw</label>
                         <input
@@ -98,11 +98,13 @@ const Withdrawal = (props) => {
                         {errors.amount &&  <div className='text-danger'> {errors.amount} </div>  }
                     </div>
                 </div>
-                <div className="w-50 d-flex align-items-start">
+                <div className="form-group row d-flex justify-content-left mb-4">
+                <div className=" d-flex align-items-start deposit-withdraw-button-desktop ">
                     <button type={"submit"}
                             className='btn btn-lg btn-primary mt-5 w-100 deposit-withdraw-button' >
                         WITHDRAW
                     </button>
+                </div>
                 </div>
             </>
         )

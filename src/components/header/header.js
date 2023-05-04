@@ -195,7 +195,7 @@ const Header = (props) => {
     return (
         <>
             <Navbar expand="md"   className="mb-0 ck pt-sm-0 pt-md-3 pc os app-navbar top-nav" fixed="top" variant="dark">
-                <div className={'d-flex justify-content-between mobile-change desktop-ipad-size'}>
+                <div className={'w-100 d-flex justify-content-between mobile-change desktop-ipad-size'}>
                     <div className={"d-flex w-100 directions-header-nav"}>
                     <Navbar.Brand className={`e logo align-self-start menu-control d-flex justify-content-between w-100`} title="Betnare">
                         <Link to={{pathname: "/"}} className="col-4 resize-mobile" style={{ marginLeft:"-5px"}}>
@@ -305,17 +305,17 @@ const Header = (props) => {
                                        className={`fadeIn header-menu d-flex justify-content-center px-4 d-block`}>
                                 <ListGroup as="ul" xs="9" horizontal className="nav navbar-nav og ale ss col-md-6 text-center w-100 d-flex">
                                     <div className="d-flex">
-                                        <div className="col-md-10  px-4" style={{width:'90vw',marginLeft:'5vw'}}>
+                                        <div className="col-md-10  px-4" style={{width:'90vw',marginLeft:'3vw'}}>
                                             <input type="text" placeholder={'Start typing to search for team ...'} ref={searchInputRef}
                                                    onInput={(event) => fetchMatches(event.target.value)}
-                                                   className={'form-control input-field border-0  text-default bg-light no-border-radius'}  style={{background: "#2D4352"}}/>
+                                                   className={'form-control input-field-search border-0  text-default bg-light no-border-radius'}  style={{background: "#2D4352"}}/>
                                         </div>
 
                                         <button className={'btn text-warning align-right d-flex justify-content-center align-items-center flex-column'} onClick={() => dismissSearch()}>
                                             <FontAwesomeIcon icon={faTimes}/> Close
                                         </button>
                                     </div>
-                                    <div style={{marginLeft:'90px', marginTop:'33px'}}
+                                    <div style={{marginLeft:'29.2px', marginTop:'33px',width:'83.6vw', overflowY:'auto', borderRadius:'2px'}}
                                         className={`autocomplete-box  rounded position-fixed bg-white border-dark col-md-5 shadow-lg text-start`}
                                         onClick={() => gaEventTracker('View Search Results')}>
                                         {matches.map((match, index) => (
@@ -329,7 +329,6 @@ const Header = (props) => {
                                 </ListGroup>
                             </Container>
                         :<MobileNav1/>}
-                        <MobileNav2/>
                     </Row>
 
                     <Navbar.Offcanvas

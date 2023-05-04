@@ -6,7 +6,7 @@ const CompanyInfo = (props) => {
 
     return (
         <div className="qv rc alu show-on-affix">
-            <div className="qv rc alu paybill block-shadow bottom-std-margin-spacing">
+            <div className="qv rc alu paybill block-shadow bottom-std-margin-spacing card px-2" style={{background:"transparent"}}>
                 <div className="">
                     <div
                         className="contact-us black-bg capitalize text-white text-uppercase std-block-head bold">

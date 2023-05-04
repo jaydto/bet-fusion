@@ -10,6 +10,7 @@ import {getFromLocalStorage, setLocalStorage} from "./utils/local-storage";
 import useWindowDimensions from "./header/Dimensions";
 import Testimonials from "./carousel/Testimonials";
 import Countries from "./countries/Countries";
+import MobileNav2 from "./mobile-navigation/MobileNav2";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -244,6 +245,7 @@ const Index = (props) => {
                 <SideBar loadCompetitions/>
                 <div className="gz home match-overflow" >
                     <div className="homepage" ref={homePageRef} >
+                        <MobileNav2/>
                         <CarouselLoader/>
                         <Testimonials/>
 

@@ -118,6 +118,19 @@ select::after{
 }
 
 @media (min-width: 1260px) {
+    .sticky-logged-in-testimony {
+        position: sticky;
+        top: 110px;
+        z-index: 1999 !important;
+        opacity: 1;
+        background: #253743;
+    }
+    .highlight-logged-in-menu {
+        position: sticky;
+        top: 137.5px;
+        opacity: 1;
+        z-index: 1999 !important;
+    }
     .deposit-withdraw-button-desktop{
         margin: auto;
         width: 98.5%;

@@ -32,17 +32,25 @@ select::after{
 
 }
 .profile-btn{
-    background: #527994FF;
-    border-radius: 3px;
-    text:white;
+    background: #28374e;
+    padding: 3px 15px;
+    border-radius: 2px;
 }
 
 .font-btn:hover{
     color:#ffda22!important;
 }
 .profile-btn:hover{
-    background:#6c92ad;
     color:#ffda22!important;
+}
+.profile-desktop-style{
+    margin-top: 74px;
+    color: #FFFFFFFF!important;
+    position: sticky;
+    top: 72px;
+    background: #1f2f38 !important;
+    z-index: 1000;
+
 }
 .user-profile {
     display: flex!important;

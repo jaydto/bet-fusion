@@ -7,7 +7,7 @@ import {
     faChevronRight,
     faQuestionCircle,
     faGifts,
-    faDollarSign, faSmile, faListOl, faCloudDownloadAlt, faHome
+    faDollarSign, faSmile, faListOl, faCloudDownloadAlt, faHome, faPowerOff
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {formatNumber} from "../../utils/betslip";
@@ -30,6 +30,7 @@ import makeRequest from "../../utils/fetch-request";
 import {Formik} from "formik";
 import DepositProfile from "./component/DepositProfile";
 import WithdrawProfile from "./component/WithdrawProfile";
+import HeaderNav from "../../header/header-nav";
 
 
 
@@ -44,15 +45,14 @@ const Profile = () => {
 
     const gaEventTracker = useAnalyticsEventTracker('Navigation');
 
-const  userIn={
-    marginTop: "4rem"
-}
-
-
+    const  userIn={
+        marginTop: width<=991?"4rem":'0rem'
+        // marginTop:'4rem'
+    }
 
 
     return (
-        <>
+        <div>
             <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark">
                 <Container fluid className={'d-flex justify-content-between mobile-change'}>
                     <Navbar.Brand className="e logo align-self-start menu-control d-flex w-100" title="Betnare">
@@ -80,7 +80,7 @@ const  userIn={
                                     className={"deposit-button size-font-user-action"}
                                     style={{marginRight: "12px"}} title={'LOGOUT'}>
                                       <span className="text-warning">
-                                       <span className=" "><FontAwesomeIcon icon={faCoins} className={"text-warning"}/>
+                                       <span className=" "><FontAwesomeIcon icon={faPowerOff} className={"text-warning"}/>
                                            </span>&nbsp;
                                          LOGOUT
                                       </span>
@@ -114,8 +114,11 @@ const  userIn={
                     </Navbar.Offcanvas>
                 </Container>
             </Navbar>
+           <div className={'desk-top profile-desktop-style' } >
+               <HeaderNav/>
+           </div>
 
-            <div className="row d-flex flex-column gap-3 px-4 py-4 justify-content-center align-items-center">
+            <div className="row d-flex flex-column gap-3 px-4 py-sm-4 py-lg-0 justify-content-center align-items-center" style={{maxWidth: "991px", margin: "auto"}}>
                 <div style={userIn}>
                     <div className={"card-body d-flex flex-column align-items-center gap-2"}>
                         <div className={"bg-warning user-style"}>
@@ -249,7 +252,7 @@ const  userIn={
             <div className={"mobile-only mobile-top"}>
                 <Right profile={true}/>
             </div>
-        </>
+        </div>
 
     );
 };

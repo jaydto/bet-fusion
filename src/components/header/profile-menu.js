@@ -2,7 +2,7 @@ import React from "react";
 import {
     faLock,
     faCloudUploadAlt,
-    faCloudDownloadAlt, faGifts, faDollarSign, faListOl, faSmile, faUserAlt, faList, faMoneyBillWave
+    faCloudDownloadAlt, faGifts, faDollarSign, faListOl, faSmile, faUserAlt, faList, faMoneyBillWave, faCoins
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {formatNumber} from "../utils/betslip";
@@ -20,7 +20,7 @@ const ProfileMenu = (props) => {
                         <div className="col-3 d-flex flex-column text-white align-items-center"  title={'CASH'}>
                             <div className={"profile-wrap"}>
                                 <FontAwesomeIcon
-                                    icon={faMoneyBillWave}/> CASH
+                                    icon={faCoins}/> CASH
                                 <strong style={{color: "#FFB200"}}> KSH {formatNumber(user.balance) || 0}</strong>
                             </div>
                             {/*<div className={"profile-wrap"}><FontAwesomeIcon*/}
@@ -66,15 +66,15 @@ const ProfileMenu = (props) => {
                             {/*</div>*/}
 
                         </div>
-                        <div className="col-3 d-flex flex-column text-white align-items-center btn profile-btn" title={'PROFILE'} >
-                            <div className={"profile-wrap"}>
-                              <Link className="font-btn text-light">
-                              <Link className=" space-icons text-light" to={'/profile'}>
-                                  <FontAwesomeIcon icon={faUserAlt}/> </Link>
+                        <div className="col-3 d-flex flex-column text-white align-items-center " title={'PROFILE'} >
+                            <Link className={"profile-wrap btn profile-btn"} to={'/profile'}>
+                              <div className="font-btn text-light" >
+                              <div className=" space-icons text-light" >
+                                  <FontAwesomeIcon icon={faUserAlt}/> </div>
                                   {/*{user?.msisdn}*/}
                                   PROFILE
-                              </Link>
-                            </div>
+                              </div>
+                            </Link>
                             {/*<div className={'d-flex flex-row justify-content-around'}>*/}
                             {/*    <div className={"profile-wrap"}>*/}
                             {/*        <Link to={{pathname: "/my-bets"}} title={"My Bets"} className={'text-white'}>*/}

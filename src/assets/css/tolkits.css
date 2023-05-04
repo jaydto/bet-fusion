@@ -4731,7 +4731,7 @@ fieldset[disabled] a.cg {
 }
 
 .fm {
-    color: #7a3048;
+    color: #FFF;
     background-color: #FFFFFF;
     border-color: #FFFFFF;
 }
@@ -7328,6 +7328,9 @@ ul.sport {
     }
 }
 
+.fm{
+    color: #fff;
+}
 
 @media (max-width: 767px) {
 

@@ -96,7 +96,7 @@ select::after{
     border: none;
 }
 .input-field-search {
-    height: 44px!important;
+    height: 30px!important;
     line-height: 40px;
     border: none;
 }

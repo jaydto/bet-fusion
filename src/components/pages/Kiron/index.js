@@ -386,7 +386,9 @@ console.log("variable_state",state?.current_selection_period?.start)
                 <Right kiron={true} kironValidation={kironValidation}/>
             </div>
         </div>
-            <Footer/>
+            <div className={'footer-mobile-none'}>
+                <Footer/>
+            </div>
         </>
     );
 };

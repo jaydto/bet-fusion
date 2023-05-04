@@ -405,7 +405,7 @@ const KironPeriods= (props) => {
         kiron&&<div className={ `  container-period ` } style={{background:" #162024"}}>
             <table className={'kiron-table'} style={{width: "100%", textAlign: "center", display:'flex'}}>
                 <tbody className={"d-flex periods"} style={{overflowX: "auto"}} >
-                <tr className={"d-flex league-row gap-2 justify-content-center align-items-center  kiron-period"} ref={kironPeriodsRef} style={{ flex: '0 0 auto', overflowX:"hidden" }}>
+                <tr className={"d-flex league-row gap-2 justify-content-center align-items-center  kiron-period"} ref={kironPeriodsRef} style={{ flex: '0 0 auto', overflowX:"hidden",height:'50px' }}>
                     {
                         // loading ?
                         // <td className={`text-center mt-2 text-white d-block`}>

@@ -43,7 +43,6 @@ const Right = (props) => {
 
                                     <Badge pill
                                            bg="warning nav__betslip d-flex justify-content-center align-items-center">
-         {/*{console.log("jackpot_all",state?.[betslip_key])}*/}
 
                                         {(jackpot === true ?
                                             getJackpotBetslip() ? Object.keys(getJackpotBetslip()).length : 0

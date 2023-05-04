@@ -13,22 +13,14 @@ import {
     faCoins,
     faTimes,
 } from "@fortawesome/free-solid-svg-icons";
-// import BetSlip from "../right/betslip";
-// import QuickLogin from "../right/quick-login";
 
-import { getFromLocalStorage } from "../utils/local-storage";
 import { Link } from "react-router-dom";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {getJackpotBetslip, getBetslip, getKironSlip} from "../utils/betslip";
 import { Context } from "../../context/store";
 import useWindowDimensions from "../header/Dimensions";
-// import Decoder from "../right/decoder";
-// import DecodeCode from "../right/decoder";
-// import { Form } from "formik";
-// import { toast } from "react-toastify";
 
 const MobileMenu = (props) => {
-    // console.log("props aere here ", props)
 
     const [liveSports, setLiveSports] = useState();
     const { jackpot, betslipValidationData, jackpotData,kiron} = props;
@@ -39,9 +31,6 @@ const MobileMenu = (props) => {
     const [state, dispatch] = useContext(Context);
     const [className, setClassName] = useState("");
     const { height, width } = useWindowDimensions();
-
-    const [showComment, setShowComment] = useState(false);
-
 
     const fetchData = useCallback(() => {
         let endpoint = "/v1/sports?live=1";
@@ -57,12 +46,10 @@ const MobileMenu = (props) => {
     let totalCount = 0;
 
     useEffect(() => {
-        // Calculate the remaining screen height
-        // const screenHeight = window.innerHeight;
-        // console.log("screenHeight",height)
+
         const remainingScreenHeight =
             height - (jackpot ? (state?.user ? 295 : 260) : state?.user ? 295 : 250);
-        // Set the pop up component height to be 20% of the remaining screen height
+
         setPopUpHeight(remainingScreenHeight);
     }, []);
 
@@ -74,13 +61,7 @@ const MobileMenu = (props) => {
             abortController.abort();
         };
     }, [fetchData]);
-    // useEffect(() => {
-    //     if (window.innerWidth < 967) {
-    //         setClassName('slip-max-height');
-    //     }
-    // }, []);
 
-    // console.log("Props bs", betslip)
     return (
         <div>
             <div
@@ -138,32 +119,21 @@ const MobileMenu = (props) => {
 
                 <Link to={{pathname:`${jackpot?"/betslip-jackpot":kiron?`/betslip-nare`:"/betslip-slip"}`, search:`jackpot=${jackpot? jackpot: false}&betslipValidationData=${betslipValidationData?encodeURIComponent(JSON.stringify(betslipValidationData)):false}&jackpotData=${jackpotData?encodeURIComponent(JSON.stringify(jackpotData)):false}&nare-league=${kiron}`}}
                     //  onClick={()=>window.location.href=`${jackpot?"/betslip-jackpot":"/betslip-slip"}?jackpot=${jackpot? jackpot: false}&betslipValidationData=${betslipValidationData?encodeURIComponent(JSON.stringify(betslipValidationData)):false}&jackpotData=${jackpotData?encodeURIComponent(JSON.stringify(jackpotData)):false}`}
-                      className={` nav__betslip bloc-icon bet-slip-footer-toggle text-white`}
-
-                    // onClick={() => {
-                    //   setBetSlipMobile(
-                    //     jackpot
-                    //       ? Object.keys(getJackpotBetslip())?.length == 0
-                    //         ? false
-                    //         : true
-                    //       : true
-                    //   );
-                    // }}
-                >
-
-
+                      className={` nav__betslip bloc-icon bet-slip-footer-toggle text-white`}>
+                    {console.log("kiron_live", kiron)}
                     <Badge
                         pill
                         bg="warning nav__betslip d-flex justify-content-center align-items-center"
                     >
-                        {console.log("value for iron",kiron)}
+                        {console.log("value for kiron",kiron)}
+                        {console.log("value for jackpot",kiron+'pathname'+pathname)}
 
                         {/*fixed size 50 for bets clicked*/}
-                        {jackpot === true&&jackpot!=undefined
+                        {jackpot === true&&jackpot!=undefined||pathname=="betslip-jackpot"
                             ? getJackpotBetslip() != null
                                 ? Object.keys(getJackpotBetslip())?.length
                                 : 0
-                            :kiron==true?getKironSlip()!=null?
+                            :kiron==true||pathname=="betslip-nare"?getKironSlip()!=null?
                               Object.keys(getKironSlip()).length:0
                                 : getBetslip()
                                 ? Object.keys(getBetslip()).length <= 50
@@ -174,7 +144,6 @@ const MobileMenu = (props) => {
                     </Badge>
                 </Link>
 
-                {/*{console.log("liveSports",Object.values(liveSports)[0])}*/}
 
                 <Link
                     to={`/live`}
@@ -188,7 +157,7 @@ const MobileMenu = (props) => {
                     <p>
                         Live <span className={"text-light"}>({totalCount || 0})</span>
                     </p>
-                    {/*{console.log("livesports",liveSports)}*/}
+
                 </Link>
 
                 {state?.user ? (

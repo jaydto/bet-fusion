@@ -11,9 +11,9 @@ const SlipTabs = (props) => {
     const url = new URL(window.location)
     
 
-    const u_class = tab === 'betslip-slip' ? "home-tabs-active" : "home-tabs";
-    const c_class = tab === "betslip-jackpot" ? "home-tabs-active" : "home-tabs";
-    const n_class = tab === "betslip-nare" ? "home-tabs-active" : "home-tabs";
+    // const u_class = tab === 'betslip-slip' ? "home-tabs-active" : "home-tabs";
+    // const c_class = tab === "betslip-jackpot" ? "home-tabs-active" : "home-tabs";
+    // const n_class = tab === "betslip-nare" ? "home-tabs-active" : "home-tabs";
    
     const [user, setUser] = useState(getFromLocalStorage("user"));
 
@@ -44,29 +44,32 @@ const SlipTabs = (props) => {
     }
     const jackpot=url.searchParams.get("jackpot")
     const nare_league=url.searchParams.get("nare-league")
+    const pathname = window.location.pathname;
+    console.log("jackpot_checking", jackpot=='true')
 
-    console.log("jackpot_checking", jackpot)
-
+    console.log("pathname_tab", pathname)
     return (
         <div className={"full-mobile mb-1 "}>
             <Row className="top-matches d-flex flex-row ">
-            
-                {jackpot=="false"&&nare_league=='true'?<div className="col text-center">
-                    <Link className={`cursor-pointer rounded border-0  w-100 bold ${n_class}`}  to={'/betslip-nare?' + getLink()} style={{background:"#ea5d0b"}}>
+                {pathname=="betslip-jackpot"&&
+                    <div className="col  text-center">
+                        <Link className={`cursor-pointer rounded border-0 w-100 bold home-tabs`} to={'/betslip-jackpot?' + getLink()} style={{background:"#ea5d0b"}}>
+                            <span className="col-sm-11 main-header">JACKPOT</span>
+                        </Link>
+                    </div>}
+                {pathname=='betslip-nare'&&<div className="col text-center">
+                    <Link className={`cursor-pointer rounded border-0  w-100 bold home-tabs`}  to={'/betslip-nare?' + getLink()} style={{background:"#ea5d0b"}}>
                         <span className="col-sm-11 main-header">NARESLIP</span>
                     </Link>
-                </div>:
+                </div>}
+                {pathname=='betslip-slip'&&
                     <div className="col text-center">
-                        <Link className={`cursor-pointer rounded border-0  w-100 bold ${u_class}`}  to={'/betslip-slip?' + getLink()} style={{background:"#ea5d0b"}}>
+                        <Link className={`cursor-pointer rounded border-0  w-100 bold home-tabs`}  to={'/betslip-slip?' + getLink()} style={{background:"#ea5d0b"}}>
                             <span className="col-sm-11 main-header">BETSLIP</span>
                         </Link>
                     </div>
                 }
-                {jackpot=="true"&&<div className="col  text-center">
-                    <Link className={`cursor-pointer rounded border-0 w-100 bold ${c_class}`} to={'/betslip-jackpot?' + getLink()} style={{background:"#ea5d0b"}}>
-                        <span className="col-sm-11 main-header">JACKPOT</span>
-                    </Link>
-                </div>}
+
               
               
             </Row>

@@ -305,7 +305,7 @@ const Header = (props) => {
                                        className={`fadeIn header-menu d-flex justify-content-center px-4 d-block`}>
                                 <ListGroup as="ul" xs="9" horizontal className="nav navbar-nav og ale ss col-md-6 text-center w-100 d-flex">
                                     <div className="d-flex">
-                                        <div className="col-md-10  px-4" style={{width:'90vw',marginLeft:'3vw'}}>
+                                        <div className="col-md-12  px-2" style={{width:'90vw',marginLeft:'2vw'}}>
                                             <input type="text" placeholder={'Start typing to search for team ...'} ref={searchInputRef}
                                                    onInput={(event) => fetchMatches(event.target.value)}
                                                    className={'form-control input-field-search border-0  text-default bg-light no-border-radius'}  style={{background: "#2D4352"}}/>

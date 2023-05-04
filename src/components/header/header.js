@@ -23,6 +23,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCloudDownloadAlt, faCoins, faSearch, faTimes} from "@fortawesome/free-solid-svg-icons";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import ListGroup from "react-bootstrap/ListGroup";
+import {formatNumber} from "../utils/betslip";
 const  MobileNav2=React.lazy(()=>import( "../mobile-navigation/MobileNav2"));
 const ProfileMenu = React.lazy(() => import('./profile-menu'));
 const HeaderLogin = React.lazy(() => import('./top-login'));
@@ -218,16 +219,16 @@ const Header = (props) => {
                                     </Link>
                                 </div>
                                 <div>
-                                    <Link
-                                        to={{pathname: "/my-bets"}}
-                                        className={"deposit-button size-font-user-action"}
+
+                                    <div
+                                        className={"deposit-button size-font-user-action d-flex align-items-center"}
                                         style={{marginRight: "12px"}}>
                                       <span className="text-warning">
                                        <span className=" "><FontAwesomeIcon icon={faCoins} className={"text-warning"}/>
                                            </span>&nbsp;
-                                          MY BETS
+                                          KSH {formatNumber(user.balance) || 0}
                                       </span>
-                                    </Link>
+                                    </div>
                                 </div>
                                 <div className='d-flex align-items-baseline'>
                                     <div className={` align-items-center  ${searching ? 'd-none' : 'd-flex'}`}>

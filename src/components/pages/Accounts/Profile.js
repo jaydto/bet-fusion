@@ -53,9 +53,9 @@ const Profile = () => {
 
     return (
         <div>
-            <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark">
+            <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
                 <Container fluid className={'d-flex justify-content-between mobile-change'}>
-                    <Navbar.Brand className="e logo align-self-start menu-control d-flex w-100" title="Betnare">
+                    <Navbar.Brand className="e logo align-self-start menu-control d-flex w-100" title="Betnare" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
                         <Link to={{pathname: "/"}} className="col-4 resize-mobile">
                             <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"
                                            className={"image-size "}/>
@@ -66,7 +66,7 @@ const Profile = () => {
                             <div>
                                 <Link
                                     to={{pathname: "/"}}
-                                    className={"deposit-button size-font-user-action"} title={'HOME'}>
+                                    className={"deposit-button size-font-user-action"} title={'HOME'} style={{fontSize:'14px'}}>
                                       <span className="">
                                        <span className=" "> <FontAwesomeIcon
                                            icon={faHome}/></span>&nbsp;
@@ -78,7 +78,7 @@ const Profile = () => {
                                 <Link
                                     to={{pathname: "/logout"}}
                                     className={"deposit-button size-font-user-action"}
-                                    style={{marginRight: "12px"}} title={'LOGOUT'}>
+                                    style={{marginRight: "12px",fontSize:'14px'}} title={'LOGOUT'}>
                                       <span className="text-warning">
                                        <span className=" "><FontAwesomeIcon icon={faPowerOff} className={"text-warning"}/>
                                            </span>&nbsp;
@@ -115,7 +115,7 @@ const Profile = () => {
                 </Container>
             </Navbar>
            <div className={'desk-top profile-desktop-style' } >
-               <HeaderNav/>
+               <HeaderNav profile={true}/>
            </div>
 
             <div className="row d-flex flex-column gap-3 px-4 py-sm-4 py-lg-0 justify-content-center align-items-center" style={{maxWidth: "991px", margin: "auto"}}>

@@ -23,6 +23,7 @@ import {Link} from "react-router-dom";
 import LoginModal from '../modals/LoginModal';
 
 const HeaderNav = (props) => {
+    const {profile}=props
     const gaEventTracker = useAnalyticsEventTracker('Navigation');
     const [test, setTest] = useState(false)
     const [state,] = useContext(Context);
@@ -87,8 +88,8 @@ const HeaderNav = (props) => {
         <>
             {showLoadingModal && (<LoginModal setShowLoadingModal={setShowLoadingModal} visible={showLoadingModal}/>)}
 
-            <Container id="navbar-collapse-main"
-                       className={`d-none d-sm-flex d-flex flex-row  header-menu ${searching ? 'hidden' : 'd-block'}`}>
+            <Container  fluid id="navbar-collapse-main"
+                       className={`d-none d-sm-flex d-flex flex-row  header-menu  ${searching ? 'hidden' : 'd-block'}`}>
 
                 <ListGroup as="ul" xs="12" horizontal
                            className="nav navbar-nav og d-flex ale ss  col-lg-12 col-md-12 col-sm-12 change-display">

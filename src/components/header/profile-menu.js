@@ -17,10 +17,10 @@ const ProfileMenu = (props) => {
                 <>
                     <div className="row w-100 d-flex align-items-center justify-content-end pt-3 px-3 ">
 
-                        <div className="col-3 d-flex flex-column text-white align-items-center"  title={'CASH'}>
-                            <div className={"profile-wrap"}>
+                        <div className="col d-flex flex-column text-white align-items-end"  title={'CASH'}>
+                            <div className={"profile-wrap"} style={{color: "#FFB200"}}>
                                 <FontAwesomeIcon
-                                    icon={faCoins}/> CASH
+                                    icon={faCoins}/>
                                 <strong style={{color: "#FFB200"}}> KSH {formatNumber(user.balance) || 0}</strong>
                             </div>
                             {/*<div className={"profile-wrap"}><FontAwesomeIcon*/}
@@ -42,16 +42,16 @@ const ProfileMenu = (props) => {
                         {/*        </Link>*/}
                         {/*    </div>*/}
                         {/*</div>*/}
-                        <div className="col-3 d-flex flex-column text-white align-items-end">
+                        <div className="col-3 d-flex flex-column text-white align-items-start">
                             <div className={"profile-wrap"}>
                                 <Link
                                     to={{pathname: "/deposit"}}
                                     className={"deposit-button"}
                                     title={'DEPOSIT FUNDS'}>
                                       <span className="">
-                                       <span className=" space-icons"> <FontAwesomeIcon
+                                       <span className=" "> <FontAwesomeIcon
                                            icon={faCloudDownloadAlt}/></span>
-                                          <strong>DEPOSIT FUNDS</strong>
+                                          <strong> DEPOSIT FUNDS</strong>
                                       </span>
                                 </Link>
                             </div>
@@ -66,13 +66,13 @@ const ProfileMenu = (props) => {
                             {/*</div>*/}
 
                         </div>
-                        <div className="col-3 d-flex flex-column text-white align-items-center " title={'PROFILE'} >
+                        <div className="col-3 d-flex flex-column text-white align-items-end " title={'PROFILE'} >
                             <Link className={"profile-wrap btn profile-btn"} to={'/profile'}>
                               <div className="font-btn text-light" >
-                              <div className=" space-icons text-light" >
+                              <div className="space-icons text-light" >
                                   <FontAwesomeIcon icon={faUserAlt}/> </div>
                                   {/*{user?.msisdn}*/}
-                                  PROFILE
+                                  <strong>PROFILE</strong>
                               </div>
                             </Link>
                             {/*<div className={'d-flex flex-row justify-content-around'}>*/}

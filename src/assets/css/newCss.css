@@ -44,11 +44,11 @@ select::after{
     color:#ffda22!important;
 }
 .profile-desktop-style{
-    margin-top: 74px;
+    margin-top: 66px;
     color: #FFFFFFFF!important;
     position: sticky;
-    top: 72px;
-    background: #1f2f38 !important;
+    /*top: 72px;*/
+    background: #16202C  !important;
     z-index: 1000;
 
 }

@@ -221,9 +221,9 @@ const Deposit = (props) => {
                     </div>
 
                 </div>
-                <div className={`${mobile?"d-none":"mobile-top"}`}>
-                    <Right deposit={true}/>
-                </div>
+                {/*<div className={`${mobile?"d-none":"mobile-top"}`}>*/}
+                {/*    <Right deposit={true}/>*/}
+                {/*</div>*/}
             </div>
             <div className={`${mobile?"d-none":"footer-mobile-none"}`}>
                 <Footer/>

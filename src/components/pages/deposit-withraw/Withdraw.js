@@ -194,9 +194,9 @@ const Withdrawal = (props) => {
                             </div>
                         </div>
                     </div>
-                    <div className={`${mobile?"d-none":"mobile-top"}`}>
-                        <Right withdraw={true}/>
-                    </div>
+                    {/*<div className={`${mobile?"d-none":"mobile-top"}`}>*/}
+                    {/*    <Right withdraw={true}/>*/}
+                    {/*</div>*/}
                 </div>
             </div>
             <div className={`${mobile?"d-none":"footer-mobile-none"}`}>

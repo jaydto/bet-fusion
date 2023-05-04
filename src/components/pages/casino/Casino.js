@@ -71,18 +71,18 @@ const Casino = (props) => {
                     <div className="gz home" style={{width: '100%'}}>
                         <div className="homepage">
                             <div className="col-md-12 d-flex flex-column">
-                                <div className="col-md-12">
+                                <div className="col-md-12 casino-scroll" >
                                     <div
-                                        className="shadow-sm  shadow-sm casino-category-container mt-2 d-flex justify-content-center align-items-center overflow-auto" style={{paddingBottom:"5px"}}>
+                                        className="shadow-sm p-2 shadow-sm casino-category-container mt-2">
+
                                         {categories?.map((category) => (
-                                            category?.game_type_id=="rgs-vsb"?"":
-                                                <Button bg="warning"
-                                                        style={{marginRight: '2px', minWidth:"34%", height:"25px", padding: "0px"}}
-                                                        className={`cursor-pointer text-center casino-category casino-category-button `}
-                                                        onClick={() => getCategoryGames(category)}>
-                                                    {(category?.game_type_description)}
-                                                    {/*{console.log("categories", category)}*/}
-                                                </Button>
+                                            category?.game_type_id !== "rgs-vsb"
+                                            && <Button bg="warning"
+                                                       style={{marginRight: '2px'}}
+                                                       className={`cursor-pointer text-center casino-category casino-category-button`}
+                                                       onClick={() => getCategoryGames(category)}>
+                                                {(category?.game_type_description)}
+                                            </Button>
                                         ))}
                                     </div>
                                 </div>

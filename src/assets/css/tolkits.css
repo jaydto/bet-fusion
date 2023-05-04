@@ -226,12 +226,15 @@ input, select, textarea {
 }
 
 .casino-category-container {
-    display: flex;
-    position: sticky !important;
-    flex-direction: row !important;
-    justify-content: space-around;
     align-items: flex-start;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important;
+    box-shadow: 0 5px 15px rgba(0,0,0,.35)!important;
+    display: flex;
+    flex-direction: row!important;
+    justify-content: space-around;
+    position: -webkit-sticky!important;
+    position: sticky!important;
+    width:fit-content;
+    overflow: auto;
 }
 
 .shark-1 {
@@ -17205,7 +17208,9 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     margin-right: 5px;
     padding: 5px 15px;
     white-space: nowrap;
+    width:fit-content;
 }
+
 
 .casino-category-button:hover {
     background: #ffc428;

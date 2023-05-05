@@ -53,7 +53,9 @@ select::after{
 .expired-bg{
     background: transparent!important;
 }
-
+.virtual.casino-category{
+    width: 80vw;
+}
 .login-size {
     background: #2D4352;
     padding: 5px 10px;
@@ -163,6 +165,7 @@ select::after{
 
 }
 @media (max-width: 1259px) {
+
     .container-sticky-top{
         position: sticky!important;
         top:9.5rem!important;
@@ -215,7 +218,9 @@ select::after{
     }
 }
 @media (max-width: 1259px) and (min-width: 991px) {
-
+    .virtual.casino-category {
+        width: 75.5vw;
+    }
     .sticky-testimony {
         position: sticky;
         position: -webkit-sticky;
@@ -244,6 +249,9 @@ select::after{
     }
 }
 @media (min-width: 992px){
+    .extra-markets-mobile-date{
+        display:none;
+    }
     .league-row-mobile{
         display: none!important;
     }
@@ -286,7 +294,21 @@ select::after{
 }
 
 @media (max-width: 991px){
-
+    .virtual.casino-category{
+        width: 99vw;
+    }
+    .checking:empty{
+        display:none;
+    }
+    .to-tabview:empty{
+        display:none;
+    }
+    .to-flex-1 >chcking:empty{
+        display:none;
+    }
+    .extra-markets-mobile-date{
+        display:flex;
+    }
     .sticky-responsive {
         position: sticky;
         top: 0px!important;
@@ -492,14 +514,14 @@ select::after{
     .image-size{
         width:98px!important;
     }
-    .amt {
-        margin-top: 11.5rem !important;
-    }
+    /*.amt {*/
+    /*    margin-top: 11.5rem !important;*/
+    /*}*/
     .sticky-testimony {
-        top: 130px!important;
+        /*top: 130px!important;*/
     }
     .highlight-menu {
-        top: 157px;
+        /*top: 157px;*/
     }
 }
 @media (min-width:200px) and (max-width: 420px){

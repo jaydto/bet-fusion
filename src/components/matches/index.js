@@ -1086,19 +1086,15 @@ const MatchRow = (props) => {
                     marketName !== '' && (
                         <div key={index}
                              className={'d-flex to-flex-1 my-lg-0  w-100'}>
-                          {/*<div*/}
-                          {/*    className="c-btn-group align-self-center justify-content-center  flex-md-column text-center  flex-sm-row text-center to-tabview mobile-remove">*/}
-                          {/*  <h4>{(marketName)}</h4>*/}
 
-                          {/*</div>*/}
-                          {/*    <div className="d-none flex-row px-1 justify-content-end change-date1 mobile-only">*/}
-                          {/*        <span className={'date-size px-1 wrapping'}>*/}
-                          {/*            {(live && match?.match_time) ?*/}
-                          {/*                <>{`${match.match_time}'`}</> : match?.start_time}*/}
-                          {/*        </span>*/}
-                          {/*    <div className={"px-1 wrapping"}>ID: {match?.game_id}</div>*/}
+                              <div className=" flex-row px-1 justify-content-end change-date1 extra-markets-mobile-date">
+                                  <span className={'date-size px-1 wrapping'}>
+                                      {(live && match?.match_time) ?
+                                          <>{`${match.match_time}'`}</> : match?.start_time}
+                                  </span>
+                              <div className={"px-1 wrapping"}>ID: {match?.game_id}</div>
 
-                          {/*</div>*/}
+                          </div>
 
                           <div
                               className={`c-btn-group m-lg-1  align-self-center px-2 to-tabview justify-content-center flex-sm-row flex-md-row flex-lg-row `}>

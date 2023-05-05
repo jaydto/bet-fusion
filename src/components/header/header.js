@@ -18,7 +18,6 @@ import MobileProfile from "./MobileProfile";
 // const CompetitionsMatches = React.lazy(
 //     () => import('./components/competition/competition-matches')
 // );
-import useWindowDimensions from "./Dimensions";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCloudDownloadAlt, faCoins, faSearch, faTimes} from "@fortawesome/free-solid-svg-icons";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
@@ -52,8 +51,8 @@ const Header = (props) => {
     useEffect(() => {
         fetchMatches()
     }, [searching])
-
     const fetchMatches = async (search) => {
+        console.log("searching_value", search)
 
         if (search && search.length >= 3) {
             gaEventTracker('Searching')
@@ -306,7 +305,7 @@ const Header = (props) => {
                                 <ListGroup as="ul" xs="9" horizontal className="nav navbar-nav og ale ss col-md-6 text-center w-100 d-flex">
                                     <div className="d-flex">
                                         <div className="col-md-12  px-2" style={{width:'90vw',marginLeft:'2vw'}}>
-                                            <input type="text" placeholder={'Start typing to search for team ...'} ref={searchInputRef}
+                                            <input type="text" placeholder={'Start typing to search for team ...'}  autoFocus={true} ref={searchInputRef}
                                                    onInput={(event) => fetchMatches(event.target.value)}
                                                    className={'form-control input-field-search border-0  text-default bg-light no-border-radius'}  style={{background: "#2D4352"}}/>
                                         </div>
@@ -319,7 +318,7 @@ const Header = (props) => {
                                         className={`autocomplete-box  rounded position-fixed bg-white border-dark col-md-5 shadow-lg text-start`}
                                         onClick={() => gaEventTracker('View Search Results')}>
                                         {matches.map((match, index) => (
-                                            <Link to={`/?search=${match.home_team}`} key={index} onClick={()=> window.location.href=`/?search=${match.home_team}`}>
+                                            <Link to={`/?search=${match.home_team}&sub_type_id=1`} key={index} onClick={()=> window.location.href=`/?search=${match.home_team}&sub_type_id=1`}>
                                                 <li>
                                                     {match.home_team}
                                                 </li>

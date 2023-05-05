@@ -240,7 +240,7 @@ const Index = (props) => {
 
     return (<>
         <Header/>
-        <div className={(width <= 575 ? user ? "user_logged" : "amt" : "amt ")} >
+        <div className={( user ? "user_logged" : "amt" )} >
             <div className="d-flex flex-row justify-content-between">
                 <SideBar loadCompetitions/>
                 <div className="gz home match-overflow" >

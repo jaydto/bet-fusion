@@ -16130,7 +16130,8 @@ img.zoom-img {
         width:100%;
     }
     .virtual-width{
-        width:50%;
+        width:33%;
+        margin:auto;
     }
     .font-slip{
         font-size:11px;

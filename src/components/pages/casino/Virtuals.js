@@ -73,7 +73,7 @@ const Virtuals = (props) => {
                                 <div className="col-md-12">
                                     <div className="game-categories shadow-sm  p-2 shadow-sm casino-category-container">
                                         <button
-                                            className={`cursor-pointer text-center casino-category`}
+                                            className={`cursor-pointer text-center virtual casino-category`}
                                             autoFocus
                                             onClick={() => getCategoryGames('rgs-vsb')}>
                                             <h3 className={'text-uppercase'}>

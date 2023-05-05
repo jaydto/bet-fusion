@@ -236,7 +236,7 @@ const Signup2 = (props) => {
                 <div className="d-flex flex-row justify-content-between">
 
                     <div className=" home" style={{margin:'auto'}}>
-                        <div className="homepage sign-up-size">
+                        <div className="homepage sign-up-size" style={{marginTop:'54px'}}>
                             <FormTitle/>
                             <div className="col-md-12 mt-2 text-white p-2">
                                 {message && <Alert/>}

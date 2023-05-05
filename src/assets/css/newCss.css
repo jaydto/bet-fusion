@@ -85,7 +85,7 @@ select::after{
     background: #527994FF;
     /*background-color: #FFC107;*/
     border-color: #24367e;
-    height: 29px;
+    height: 27px;
     padding: 0px 10px;
     margin-top: 1px;
     border-radius: 0.3rem;
@@ -102,6 +102,17 @@ select::after{
     border-radius: 0.3rem;
     font-size: 14px !important;
 }
+.register-button {
+    color: #ffffff;
+    background-color: #ffc107;
+    border-color: #24367e;
+    height: 27px;
+    padding: 3px 10px;
+    margin-top: 1px;
+    border-radius: 0.3rem;
+    font-size: 14px !important;
+}
+
 .login-size {
     background: #2D4352;
     padding: 5px 10px;
@@ -280,6 +291,9 @@ select::after{
     }
 }
 @media (max-width: 1259px) and (min-width: 991px) {
+    .top-login-desktop-input{
+        padding-top: 0.5rem;
+    }
     .welcome-img{
         height: 145px;
         margin: auto;

@@ -296,7 +296,7 @@ const KironPeriods= (props) => {
     },[state?.current_selection_period])
 
 
-
+let totalSeconds)=timeAfter;
 
     useEffect(() => {
         //calculation to include the right time inPlay
@@ -307,15 +307,15 @@ const KironPeriods= (props) => {
         let time_play = gettime;
         let duration=Math.round((new Date(Date.parse(`${new Date().toDateString()} ${endingTime}`)).getTime()- new Date(Date.parse(`${new Date().toDateString()} ${time_play}`)).getTime())/1000);
         console.log("time_duration",duration)
-        let timePeriod = new Date(Date.parse(`${new Date().toDateString()} ${time_play}`));
-        let firstRound = timePeriod.getTime();
-        let now = new Date().getTime();
-        let diff= firstRound<=now&&now-firstRound
-        let initialTime = diff!=false&&Math.floor(diff / 1000);
-        console.log("Check_time_check",initialTime)
-        // let totalSeconds= initialTime!=false?initialTime>=duration?88:Math.round((initialTime*90)/duration):90
-        let totalSeconds=Math.round((initialTime*90)/duration)
-        console.log("check_total_inPlay_time", totalSeconds)
+        // let timePeriod = new Date(Date.parse(`${new Date().toDateString()} ${time_play}`));
+        // let firstRound = timePeriod.getTime();
+        // let now = new Date().getTime();
+        // let diff= firstRound<=now&&now-firstRound
+        // let initialTime = diff!=false&&Math.floor(diff / 1000);
+        // console.log("Check_time_check",initialTime)
+        // // let totalSeconds= initialTime!=false?initialTime>=duration?88:Math.round((initialTime*90)/duration):90
+        // let totalSeconds=Math.round((initialTime*90)/duration)
+        // console.log("check_total_inPlay_time", totalSeconds)
 
         if (isCountdownTimerActive) {
             if(state?.current_selection_period?.start.length>0){
@@ -338,14 +338,14 @@ const KironPeriods= (props) => {
                  time_play = gettime;
                  duration=Math.round((new Date(Date.parse(`${new Date().toDateString()} ${endingTime}`)).getTime()- new Date(Date.parse(`${new Date().toDateString()} ${time}`)).getTime())/1000);
                 console.log("time_duration",duration)
-                 timePeriod = new Date(Date.parse(`${new Date().toDateString()} ${time}`));
-                 firstRound = timePeriod.getTime();
+                 // timePeriod = new Date(Date.parse(`${new Date().toDateString()} ${time}`));
+                 // firstRound = timePeriod.getTime();
                  now = new Date().getTime();
-                 diff= firstRound<=now&&now-firstRound
-                 initialTime = diff!=false&&Math.floor(diff / 1000);
+                 // diff= firstRound<=now&&now-firstRound
+                 // initialTime = diff!=false&&Math.floor(diff / 1000);
                 console.log("Check_time_check",initialTime)
                 // let totalSeconds= initialTime!=false?initialTime>=duration?88:Math.round((initialTime*90)/duration):90
-                 totalSeconds=Math.round((initialTime*90)/duration)
+                //  totalSeconds=Math.round((initialTime*90)/duration)
                 console.log("check_total_inPlay_time", totalSeconds)
 
                 ++totalSeconds;

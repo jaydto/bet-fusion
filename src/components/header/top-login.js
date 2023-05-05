@@ -114,7 +114,7 @@ const HeaderLogin = (props) => {
         return (
             <>
                 <Form className="ow og i web-element" style={login&&{width:'97vw'}}>
-                    <Row className={`${login?"d-flex flex-column":""}`}>
+                    <Row className={`${login?"d-flex flex-column":"top-login-desktop-input"}`}>
                         <div className={`${login?"w-100 ": "col-4"}`}>
                             <input type="text"
                                    name="msisdn"
@@ -147,7 +147,7 @@ const HeaderLogin = (props) => {
                             </Link>
                         </div>
                         <div className={`${login?"w-100":"col-4 d-flex gap-3 justify-content-end"}`}>
-                            <button className={`${login?"w-100 button-radius input-field btn-font": " "}cg login-button btn bold`} type="submit">
+                            <button className={`${login?"w-100 button-radius input-field btn-font": " "} cg ${login?' login-button2 mt-4 ':' login-button '}btn bold`} type="submit">
                                 {isLoading ? <span>Logging In ...</span> : <span>LOGIN</span>}
                             </button>
                             <Link className="cg register-button btn btn-warning" to={"/signup"} title="Join now" onClick={() => gaEventTracker('Register')} style={login&&{display:'none'}}>

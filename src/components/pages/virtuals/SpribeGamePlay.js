@@ -13,9 +13,9 @@ import Right from "../../right";
 
 const GamePlay = (props) => {
 
-    // const {game} = useParams()
+    const {game} = useParams()
     const url = new URL(window.location)
-    const game= url.searchParams.get('game')
+    // const game= url.searchParams.get('game')
     const [gameUrl, setGameUrl] = useState('')
     const [token, setUserToken] = useState('')
     const [user_id, setUserID] = useState('')

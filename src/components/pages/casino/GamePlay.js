@@ -11,10 +11,10 @@ import {Stack} from "react-bootstrap";
 import useWindowDimensions from "../../header/Dimensions";
 
 const GamePlay = (props) => {
-    let url = new URL(window.location)
-    const live = url.searchParams.get('live')
-    const game_id= url.searchParams.get('game_id')
-
+    // let url = new URL(window.location)
+    // const live = url.searchParams.get('live')
+    // const game_id= url.searchParams.get('game_id')
+    const {game,game_id,live} = useParams()
 
     const [gameUrl, setGameUrl] = useState('')
 
@@ -83,7 +83,7 @@ const GamePlay = (props) => {
                 <div className="d-flex flex-row justify-content-between">
                     <div className="col-md-12 virtual-width-mobile">
                         <div className="homepage">
-                            <CategoryGames/>
+                            {/*<CategoryGames/>*/}
                             <div
                                 className={`col-md-12 ${gameUrlLoaded ? 'd-none' : 'd-block'}`}>
                                 <SkeletonTheme baseColor="#0e131b" highlightColor="#3f6878">

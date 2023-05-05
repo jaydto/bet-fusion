@@ -307,11 +307,11 @@ let totalSeconds=timeAfter;
         let time_play = gettime;
         let duration=Math.round((new Date(Date.parse(`${new Date().toDateString()} ${endingTime}`)).getTime()- new Date(Date.parse(`${new Date().toDateString()} ${time_play}`)).getTime())/1000);
         console.log("time_duration",duration)
-        // let timePeriod = new Date(Date.parse(`${new Date().toDateString()} ${time_play}`));
-        // let firstRound = timePeriod.getTime();
-        // let now = new Date().getTime();
-        // let diff= firstRound<=now&&now-firstRound
-        // let initialTime = diff!=false&&Math.floor(diff / 1000);
+        let timePeriod = new Date(Date.parse(`${new Date().toDateString()} ${time_play}`));
+        let firstRound = timePeriod.getTime();
+        let now = new Date().getTime();
+        let diff= firstRound<=now&&now-firstRound
+        let initialTime = diff!=false&&Math.floor(diff / 1000);
         // console.log("Check_time_check",initialTime)
         // // let totalSeconds= initialTime!=false?initialTime>=duration?88:Math.round((initialTime*90)/duration):90
         // let totalSeconds=Math.round((initialTime*90)/duration)

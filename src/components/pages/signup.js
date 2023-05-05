@@ -3,6 +3,7 @@ import {Formik, Form} from 'formik';
 import makeRequest from "../utils/fetch-request";
 import mpesa from '../../assets/img/mpesa-3.png'
 import {clearTrackingData, setLocalStorage, setTrackingData} from "../utils/local-storage";
+import {Link} from "react-router-dom";
 
 const Header = React.lazy(() => import('../header/header'));
 const SideBar = React.lazy(() => import('../sidebar/awesome/Sidebar'));
@@ -117,11 +118,14 @@ const Signup = (props) => {
                             </div>
                         </div>
                         <div className="form-group row d-flex justify-content-left mb-4">
-                            <div className="col-md-3">
+                            <div className="col">
                                 <button type={"submit"}
-                                        className='btn btn-lg btn-primary mt-5 w-100 deposit-withdraw-button' >
+                                        className='btn btn-lg w-100 button-radius input-field btn-font cg login-button btn ' style={{marginTop:"47px"}}>
                                     SIGNUP
                                 </button>
+                                <Link className={`d-flex justify-content-center w-100`} to={"/verify"} title="Verify" >
+                                    <span className={`text-warning font-input register-label`}>Already have a verification code ?  </span>
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -159,6 +163,7 @@ const Signup = (props) => {
                             <FormTitle/>
                             <div className="col-md-12 mt-2 text-white p-2">
                                 {message && <Alert/>}
+                                {success?setTimeout(window.location.href="/verify",1000):""}
                                 <div className="modal-body pb-0" data-backdrop="static">
                                     <SignupForm/>
                                 </div>

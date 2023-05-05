@@ -17,6 +17,23 @@
     align-items: center;
 
 }
+input{
+    background: #2d3641!important;
+    border-radius: 3px!important;
+
+}
+input:hover{
+    border: 0.1px solid #a5660f !important;
+}
+.input-bg-user{
+    background: #2d3641!important;
+    border-radius: 3px!important;
+
+
+}
+.input-bg-user:focus{
+    border: 0.1px solid #a5660f !important;
+}
 select::after{
     color:aqua!important;
     background: #0a6cce!important;
@@ -56,6 +73,28 @@ select::after{
 .virtual.casino-category{
     width: 80vw;
 }
+.login-button {
+    color: #000;
+    background: #527994FF;
+    /*background-color: #FFC107;*/
+    border-color: #24367e;
+    height: 29px;
+    padding: 0px 10px;
+    margin-top: 1px;
+    border-radius: 0.3rem;
+    font-size: 14px !important;
+}
+.login-button2 {
+    color: #000;
+    /*background: #527994FF;*/
+    background-color: #FFC107;
+    border-color: #24367e;
+    height: 29px;
+    padding: 0px 10px;
+    margin-top: 1px;
+    border-radius: 0.3rem;
+    font-size: 14px !important;
+}
 .login-size {
     background: #2D4352;
     padding: 5px 10px;
@@ -73,7 +112,10 @@ select::after{
     /* margin-right: 1rem; */
     /* gap: 1rem; */
 }
-
+.sign-up-size{
+    max-width: 991px;
+    margin: auto;
+}
 .tag {
     border-radius: 8px;
     padding-left: 5px;
@@ -119,6 +161,11 @@ select::after{
 
 /*media queries*/
 @media (min-width: 1260px) {
+    .welcome-img{
+        height: 145px;
+        margin: auto;
+        width: 98%!important;
+    }
     .container-sticky-top{
         position: sticky!important;
         top:10.5rem!important;
@@ -218,6 +265,11 @@ select::after{
     }
 }
 @media (max-width: 1259px) and (min-width: 991px) {
+    .welcome-img{
+        height: 145px;
+        margin: auto;
+        width: 98%!important;
+    }
     .virtual.casino-category {
         width: 75.5vw;
     }

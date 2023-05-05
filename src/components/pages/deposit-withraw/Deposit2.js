@@ -5,21 +5,31 @@ import makeRequest from "../../utils/fetch-request";
 import mpesa from '../../../assets/img/mpesa.png'
 import {Context} from '../../../context/store';
 import {getBetslip} from '../../utils/betslip'
-import {clearTrackingData, setTrackingData} from "../../utils/local-storage";
-
+import {clearTrackingData, getFromLocalStorage, setTrackingData} from "../../utils/local-storage";
+import {Navbar, Offcanvas} from "react-bootstrap";
+import Container from "react-bootstrap/Container";
+import {Link} from "react-router-dom";
+import {LazyLoadImage} from "react-lazy-load-image-component";
+import logo from "../../../assets/img/Logo.webp";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faHome, faPowerOff} from "@fortawesome/free-solid-svg-icons";
+import SidebarMobile from "../../sidebar/awesome/SidebarMobile";
+import HeaderNav from "../../header/header-nav";
+import useWindowDimensions from "../../header/Dimensions";
+import '../Accounts/card.css'
 const Header = React.lazy(() => import('../../header/header'));
 const Footer = React.lazy(() => import('../../footer/footer'));
-const SideBar = React.lazy(() => import('../../sidebar/awesome/Sidebar'));
-const Right = React.lazy(() => import('../../right/index'));
 
 
-const Deposit = (props) => {
+const Deposit2 = (props) => {
 
     const [state, dispatch] = useContext(Context);
     const [success, setSuccess] = useState(false);
     const [message, setMessage] = useState(null);
     const {mobile} = props
-
+    const expand = "md"
+    const {height, width} = useWindowDimensions();
+    const [user, setUser] = useState(getFromLocalStorage("user"));
 
     const initialValues = {
         amount: '',
@@ -59,7 +69,7 @@ const Deposit = (props) => {
 
     const FormTitle = () => {
         return (
-            <div className='col-md-12 primary-bg p-4 text-center'>
+            <div className='col-md-12  p-4 text-center' style={{background:'transparent'}}>
                 <h4 className="inline-block">
                     DEPOSIT FUNDS (MOBILE MONEY)
                 </h4>
@@ -161,10 +171,10 @@ const Deposit = (props) => {
                                 <img src={mpesa} alt=""/>
                             </div>
                         </div>
-                        <hr className={`${mobile?"d-none":""}`}/>
+                        {/*<hr className={`${mobile?"d-none":""}`}/>*/}
 
                         <DepositFormFields onFieldChanged={onFieldChanged} values={values} errors={errors}/>
-                        <hr className={`${mobile?"d-none":"mt-4"}`}/>
+                        {/*<hr className={`${mobile?"d-none":"mt-4"}`}/>*/}
                         <div className={`${mobile?"d-none":""}`}>
                             <PaymentInstructions />
                         </div>
@@ -176,6 +186,8 @@ const Deposit = (props) => {
     }
 
     const DepositForm = (props) => {
+
+
         return (
             <Formik
                 initialValues={initialValues}
@@ -195,28 +207,92 @@ const Deposit = (props) => {
 
     return (
         <React.Fragment>
-            <div className={`${mobile?"d-none":""}`}>
-            <Header/>
+            <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
+                <Container fluid className={'d-flex justify-content-between mobile-change'}>
+                    <Navbar.Brand className="e logo align-self-start menu-control d-flex w-100" title="Betnare" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
+                        <Link to={{pathname: "/"}} className="col-4 resize-mobile">
+                            <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"
+                                           className={"image-size "}/>
+                        </Link>
+                        <div
+                            className="col-md-6  d-flex  right justify-content-end align-items-center w-change2 gap-2 "
+                            style={{marginLeft: 'auto'}}>
+                            <div>
+                                <Link
+                                    to={{pathname: "/"}}
+                                    className={"deposit-button size-font-user-action"} title={'HOME'} style={{fontSize:'14px'}}>
+                                      <span className="">
+                                       <span className=" "> <FontAwesomeIcon
+                                           icon={faHome}/></span>&nbsp;
+                                          HOME
+                                      </span>
+                                </Link>
+                            </div>
+                            {user&&<div>
+                                <Link
+                                    to={{pathname: "/logout"}}
+                                    className={"deposit-button size-font-user-action"}
+                                    style={{marginRight: "12px", fontSize: '14px'}} title={'LOGOUT'}>
+                                      <span className="text-warning">
+                                       <span className=" "><FontAwesomeIcon icon={faPowerOff}
+                                                                            className={"text-warning"}/>
+                                           </span>&nbsp;
+                                          LOGOUT
+                                      </span>
+                                </Link>
+                            </div>}
+                            <div className="col-1 button-toggle mx-2" style={{width: "3.1rem"}}>
+                                <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"md"}`} className="px-3 py-3 user-profile" />
+                            </div>
+                        </div>
+
+                    </Navbar.Brand>
+
+                    <Navbar.Offcanvas
+                        style={{width: "80%", height: "100%",zIndex: "9999", marginTop: "0px"}}
+                        className='off-canvas background-primary p-0 user-profile'
+                        id={`offcanvasNavbar-expand-${expand}`}
+                        aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+                        placement="start">
+                        <Offcanvas.Header closeButton className='text-white' closeVariant={"white"}>
+                            <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
+                                <div className="col-3">
+                                    <div>
+                                        <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"/>
+                                    </div>
+                                </div>
+                            </Offcanvas.Title>
+                        </Offcanvas.Header>
+                        <Offcanvas.Body className={(width<=575?user?"":"":"")}>
+                            <SidebarMobile/>
+                        </Offcanvas.Body>
+                    </Navbar.Offcanvas>
+                </Container>
+            </Navbar>
+            <div className={'desk-top profile-desktop-style' } >
+                <HeaderNav profile={true}/>
             </div>
 
-            <div className={`${mobile?"":"amt"}`}>
-                <div className="d-flex flex-row justify-content-between">
-                   <div className={`${mobile?'d-none':'d-flex'}`}>
-                       <SideBar loadCompetitions/>
-                   </div>
-                    <div className="gz home" style={{width: '100%',overflowX:'clip'}}>
-                        <div className="homepage">
-                            <div className={`${mobile?"d-none":""}`}>
-                                <FormTitle/>
 
-                            </div>
-                            <div className={`col-md-12 mt-2 text-white p-2 ${mobile?"profile-bg card-radius":""}`}>
+            <div className={``}>
+                <div className="d-flex flex-column justify-content-between">
+                    <div className="gz home" style={{width: '100%',overflowX:'clip', border:'none'}}>
+                        <div className="homepage ">
+
+                            <div className={`col-md-12 my-4 text-white p-2  card-radius`}  style={{margin:'auto',maxWidth:'991px',marginTop:'20px',background:'transparent'}}>
+                                <div className={`my-4`}>
+                                    <FormTitle/>
+
+                                </div>
                                 <Alert/>
                                 <div className="modal-body pb-0" data-backdrop="static">
 
                                     <DepositForm/>
                                 </div>
                             </div>
+                        </div>
+                        <div className={`card-radius`} style={{maxWidth:'991px', margin:'auto'}}>
+                            <Footer deposit2={true}/>
                         </div>
                     </div>
 
@@ -225,13 +301,11 @@ const Deposit = (props) => {
                 {/*    <Right deposit={true}/>*/}
                 {/*</div>*/}
             </div>
-            <div className={`${mobile?"d-none":"footer-mobile-none"}`}>
-                <Footer/>
-            </div>
+
 
         </React.Fragment>
     )
 
 }
 
-export default Deposit
+export default Deposit2

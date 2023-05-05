@@ -101,7 +101,7 @@ const Withdrawal = (props) => {
                 <div className="form-group row d-flex justify-content-left mb-4">
                 <div className=" d-flex align-items-start deposit-withdraw-button-desktop ">
                     <button type={"submit"}
-                            className='btn btn-lg btn-primary mt-5 w-100 deposit-withdraw-button' >
+                            className='btn btn-lg w-100 button-radius input-field btn-font cg login-button2 btn bold' style={{marginTop:"47px"}}>
                         WITHDRAW
                     </button>
                 </div>

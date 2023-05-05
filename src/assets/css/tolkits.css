@@ -16763,6 +16763,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     border: none;
     font-size: 14px;
     text-transform: uppercase;
+    background: #527994;
 }
 
 .input-square {
@@ -16795,16 +16796,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     text-shadow: 0px 0px 20px rgb(0 0 0 / 94%), 0px 2px 0px #ea9203;
 }
 
-.login-button {
-    color: #ffffff;
-    background-color: #527994;
-    border-color: #24367e;
-    height: 29px;
-    padding: 0px 10px;
-    margin-top: 1px;
-    border-radius: 0.3rem;
-    font-size: 14px !important;
-}
+
 /*todo check height of right betslip*/
 
 .betslip-container {

@@ -123,7 +123,7 @@ const MobileMenu = (props) => {
                     {console.log("kiron_live", kiron)}
                     <Badge
                         pill
-                        bg="warning nav__betslip d-flex justify-content-center align-items-center"
+                        bg="warning nav__betslip d-flex justify-content-center align-items-center text-dark"
                     >
                         {console.log("value for kiron",kiron)}
                         {console.log("value for jackpot",kiron+'pathname'+pathname)}
@@ -131,15 +131,15 @@ const MobileMenu = (props) => {
                         {/*fixed size 50 for bets clicked*/}
                         {jackpot === true&&jackpot!=undefined||pathname=="/betslip-jackpot"
                             ? getJackpotBetslip() != null
-                                ? Object.keys(getJackpotBetslip())?.length
-                                : 0
+                                ? <strong>{Object.keys(getJackpotBetslip())?.length}</strong>
+                                : <strong>0</strong>
                             :kiron==true||pathname=="/betslip-nare"?getKironSlip()!=null?
-                              Object.keys(getKironSlip()).length:0
+                              Object.keys(getKironSlip()).length:<strong>0</strong>
                                 : getBetslip()
                                 ? Object.keys(getBetslip()).length <= 50
-                                    ? Object.keys(getBetslip()).length
-                                    : 50
-                                : 0}
+                                    ? <strong>{Object.keys(getBetslip()).length}</strong>
+                                        : <strong>50</strong>
+                                : <strong>0</strong>}
                         {/*{console.log("betslip_validation: ",betslipValidationData +" jackpot: " +jackpot+" jackpotData: "+Object.keys(getJackpotBetslip()))}*/}
                     </Badge>
                 </Link>

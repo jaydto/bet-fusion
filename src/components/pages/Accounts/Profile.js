@@ -249,9 +249,9 @@ const Profile = () => {
                 </div>
 
             </div>
-            <div className={"mobile-only mobile-top"}>
-                <Right profile={true}/>
-            </div>
+            {/*<div className={"mobile-only mobile-top"}>*/}
+            {/*    <Right profile={true}/>*/}
+            {/*</div>*/}
         </div>
 
     );

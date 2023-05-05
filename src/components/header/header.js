@@ -248,33 +248,35 @@ const Header = (props) => {
                                 </div>}
                                     <>
                                     {!user&&<div className="col-sm-2 mobile-profile1 align-items-center gap-3 ipad-show" style={{marginLeft:'auto'}}>
-                                        <div className="remove-verify">
+                                        {pathname!=='/signup'&&<div className="remove-verify">
                                             <Link className="cg  login-color login-size btn bg-success text-light"
                                                   to={"/verify"} title="Verify Account"
                                                   onClick={() => gaEventTracker('Verify')}>
                                                 <span className="register-label text-light">Verify</span>
                                             </Link>
-                                        </div>
-                                        <div className="">
+                                        </div>}
+                                        {pathname!=='/signup'&&<div className="">
                                             <Link className="cg  login-color login-size btn bg-warning text-light"
                                                   to={"/signup"} title="Join now"
                                                   onClick={() => gaEventTracker('Register')}>
                                                 <span className="text-light ">Register</span>
                                             </Link>
-                                        </div>
+                                        </div>}
 
-                                        <Link to={"/login"} className="cg  login-color login-size btn" type="submit">
+                                        {pathname!=='/signup'&&<Link to={"/login"} className="cg  login-color login-size btn" type="submit" style={{backgroundColor:'#527994FF'}}>
                                             <span>Login</span>
-                                        </Link>
-                                        <div className='d-flex align-items-baseline'>
+                                        </Link>}
+                                        {pathname!=='/signup'&&<div className='d-flex align-items-baseline'>
                                             <div className={` align-items-center  ${searching ? 'd-none' : 'd-flex'}`}>
                                                 <Link className="" to={"#"} title="Search"
-                                                      onClick={() => showSearchBar()} >
-                                                    <span className="border-radius-search p-2 text-dark bg-light justify-content-center d-flex"><FontAwesomeIcon  icon={faSearch}/> </span><span
+                                                      onClick={() => showSearchBar()}>
+                                                    <span
+                                                        className="border-radius-search p-2 text-dark bg-light justify-content-center d-flex"><FontAwesomeIcon
+                                                        icon={faSearch}/> </span><span
                                                 ></span>
                                                 </Link>
                                             </div>
-                                        </div>
+                                        </div>}
                                         <div className="col-1 button-toggle space-button" style={{width: "4.1rem", overflowY:"auto",marginLeft:'20px'}}>
                                             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"lg"}`} className="px-3 py-3" onClick={toggle} />
                                         </div>
@@ -307,7 +309,7 @@ const Header = (props) => {
                                         <div className="col-md-12  px-2" style={{width:'90vw',marginLeft:'2vw'}}>
                                             <input type="text" placeholder={'Start typing to search for team ...'}  autoFocus={true} ref={searchInputRef}
                                                    onInput={(event) => fetchMatches(event.target.value)}
-                                                   className={'form-control input-field-search border-0  text-default bg-light no-border-radius'}  style={{background: "#2D4352"}}/>
+                                                   className={'form-control input-field-search border-0  text-default bg-light no-border-radius input-bg-user'}  style={{background: "#2D4352"}}/>
                                         </div>
 
                                         <button className={'btn text-warning align-right d-flex justify-content-center align-items-center flex-column'} onClick={() => dismissSearch()}>
@@ -327,7 +329,7 @@ const Header = (props) => {
                                     </div>
                                 </ListGroup>
                             </Container>
-                        :<MobileNav1/>}
+                        :pathname!=='/signup'&&<MobileNav1/>}
                     </Row>
 
                     <Navbar.Offcanvas

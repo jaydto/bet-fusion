@@ -1,19 +1,4 @@
 
-.flashy{
-    opacity: 0;
-    animation: flashyShow 2s ease-in-out infinite;
-}
-@keyframes flashyShow {
-    0% {
-        opacity: 0;
-    }
-    50% {
-        opacity: 0.5;
-    }
-    100% {
-        opacity: 1;
-    }
-}
 .casino-scroll{
     overflow-x: auto;
 }
@@ -36,6 +21,9 @@ select::after{
     color:aqua!important;
     background: #0a6cce!important;
 
+}
+.pro-sidebar .pro-menu a:hover {
+    color: #FFC428!important;
 }
 .profile-btn{
     background: #28374e;
@@ -61,6 +49,11 @@ select::after{
 .user-profile {
     display: flex!important;
 }
+
+.expired-bg{
+    background: transparent!important;
+}
+
 .login-size {
     background: #2D4352;
     padding: 5px 10px;
@@ -122,6 +115,7 @@ select::after{
 }
 
 
+/*media queries*/
 @media (min-width: 1260px) {
     .container-sticky-top{
         position: sticky!important;
@@ -285,8 +279,12 @@ select::after{
         width:100vw!important;;
     }
 }
-@media (max-width: 991px){
 
+@media (max-width: 991px){
+    .sticky-responsive {
+        position: sticky;
+        top: 0px!important;
+    }
     .league-row-mobile{
         white-space: nowrap;
         height:3rem;
@@ -376,6 +374,24 @@ select::after{
     /*.top-login-mobile{*/
     /*    margin-top:135px!important;*/
     /*}*/
+    .amt {
+        padding-top: 110px !important;
+    }
+    .sticky-testimony{
+        position: sticky;
+        top: 107px!important;
+        z-index: 1999 !important;
+    }
+
+
+    .highlight-menu{
+        position: sticky;
+        top: 136px;
+        opacity: 1;
+        z-index: 1999 !important;
+
+
+    }
     .banner-height{
         height: 90px!important;
     }
@@ -425,7 +441,7 @@ select::after{
     }
     .highlight-menu {
         position: sticky;
-        top: 159.5px;
+        top: 134.5px;
         opacity: 1;
         z-index: 1999 !important;
     }
@@ -479,6 +495,20 @@ select::after{
 }
 
 
-
-
+/*animations*/
+.flashy{
+    opacity: 0;
+    animation: flashyShow 2s ease-in-out infinite;
+}
+@keyframes flashyShow {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
 

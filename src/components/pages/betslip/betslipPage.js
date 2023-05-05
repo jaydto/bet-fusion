@@ -161,7 +161,7 @@ const BetslipPage = () => {
                 </div>
               </Offcanvas.Title>
             </Offcanvas.Header>
-            <Offcanvas.Body className={(width<=514?user?"":"":"")}>
+            <Offcanvas.Body className={(width<=575?user?"":"":"")}>
               <SidebarMobile/>
             </Offcanvas.Body>
           </Navbar.Offcanvas>

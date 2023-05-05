@@ -89,8 +89,8 @@
     max-width: 150px;
     overflow: hidden;
     text-overflow: ellipsis;
-    display: inline-block;
-    line-height: 10px;
+    /*display: inline-block;*/
+    /*line-height: 10px;*/
 }
 .green-txt {
     color: #009d75;

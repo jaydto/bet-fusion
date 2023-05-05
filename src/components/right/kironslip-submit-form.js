@@ -538,21 +538,6 @@ const KironslipSubmitForm = (props) => {
                                     </tr>
                                 )}
 
-                                <tr id="odd-change-text">
-                                    <td colSpan="2">
-                                        <label className="checkbox">
-                                            <input
-                                                type="checkbox"
-                                                className="odds-change-box"
-                                                name={"accept_all_odds_change"}
-                                                id={"accept-all-odds-change"}
-                                                checked={values?.accept_all_odds_change}
-                                                onChange={(e) => onFieldChanged(e)}
-                                            />{" "}
-                                            Accept any odds change
-                                        </label>
-                                    </td>
-                                </tr>
                                 <tr>
                                     <td>Stake</td>
                                     <td>

@@ -30,6 +30,7 @@ import {faCoins} from "@fortawesome/free-solid-svg-icons/faCoins";
 import SidebarMobile from "../../sidebar/awesome/SidebarMobile";
 import {faSearch} from "@fortawesome/free-solid-svg-icons";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
+import {formatNumber} from "../../utils/betslip";
 
 const Kiron = () => {
     const [state,dispatch]=useContext(Context)
@@ -268,67 +269,73 @@ console.log("variable_state",state?.current_selection_period?.start)
 
     <Navbar expand="lg" className="mb-0 ck pc os app-navbar top-nav header-mobile-kiron" fixed="top" variant="dark">
         <Container fluid className={'d-flex justify-content-between mobile-change'}>
-            <Navbar.Brand className="e logo align-self-start menu-control w-100 d-flex justify-content-between" title="Betnare">
-                <Link to={{pathname: "/"}} className="col-4 resize-mobile">
-                    <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"
-                                   className={"image-size "}/>
+            <Navbar.Brand className={`e logo align-self-start menu-control d-flex justify-content-between w-100`} title="Betnare">
+                <Link to={{pathname: "/"}} className="col-4 resize-mobile" style={{ marginLeft:"-5px"}}>
+                    <img src={logo} alt="Betnare" title="Betnare" effects="blur"
+                         className={"image-size "} style={user?{marginBottom:"0px" }:{marginBottom:"11px", width:'auto'}}/>
                 </Link>
-                {width <=991 ? user?
-                    <div className="col-md-3  d-flex  right justify-content-center align-items-center w-change2" style={{marginLeft: 'auto'}}>
+
+                {user &&
+                    <div
+                        className="col-md-6  d-flex  right justify-content-end align-items-center w-change2 gap-2 ipad-show"
+                        style={{marginLeft: 'auto'}}>
                         <div>
                             <Link
                                 to={{pathname: "/deposit"}}
-                                className={"deposit-button"} style={{fontSize:"10px"}}>
+                                className={"deposit-button size-font-user-action"}>
                                       <span className="">
-                                       <span className=" space-icons"> <FontAwesomeIcon
-                                           icon={faCloudDownloadAlt}/></span>
+                                       <span className=" "> <FontAwesomeIcon
+                                           icon={faCloudDownloadAlt}/></span>&nbsp;
                                           DEPOSIT
                                       </span>
                             </Link>
                         </div>
                         <div>
-                            <Link
-                                to={{pathname: "/my-bets"}}
-                                className={"deposit-button"} style={{fontSize:"10px", marginRight:"12px"}}>
+
+                            <div
+                                className={"deposit-button size-font-user-action d-flex align-items-center"}
+                                style={{marginRight: "12px"}}>
                                       <span className="text-warning">
-                                       <span className=" space-icons"><FontAwesomeIcon icon={faCoins} className={"text-warning"}/>
-                                           </span>
-                                          MY BETS
+                                       <span className=" "><FontAwesomeIcon icon={faCoins} className={"text-warning"}/>
+                                           </span>&nbsp;
+                                          KSH {formatNumber(user.balance) || 0}
                                       </span>
+                            </div>
+                        </div>
+                        <div className="col-1 button-toggle space-button"
+                             style={{width: "4.1rem", overflowY: "auto", marginLeft: '20px'}}>
+                            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"lg"}`}
+                                           className="px-3 py-3" onClick={toggle}/>
+                        </div>
+                    </div>}
+                <>
+                    {!user&&<div className="col-sm-2 mobile-profile1 align-items-center gap-3 ipad-show" style={{marginLeft:'auto'}}>
+                        <div className="remove-verify">
+                            <Link className="cg  login-color login-size btn bg-success text-light"
+                                  to={"/verify"} title="Verify Account"
+                                  onClick={() => gaEventTracker('Verify')}>
+                                <span className="register-label text-light">Verify</span>
                             </Link>
                         </div>
-                    </div>
-                    :"" : ""}
-                {
-                    width<=991&&
-                    <>
-
-                        {!user&&<div className="col-sm-2 mobile-profile1 align-items-center" style={{marginLeft: 'auto'}}>
-                            <div className="">
-                                <Link className="cg  login-color login-size btn bg-success text-light" to={"/verify"}
-                                      title="Verify Account"
-                                      onClick={() => gaEventTracker('Verify')}>
-                                    <span className="register-label text-light mobile-remove-verify">Verify</span>
-                                </Link>
-                            </div>
-                            <div className="">
-                                <Link className="cg  login-color login-size btn bg-warning text-light" to={"/signup"}
-                                      title="Join now" onClick={() => gaEventTracker('Register')}>
-                                    <span className="text-light ">Register</span>
-                                </Link>
-                            </div>
-
-                            <Link to={"/login"} className="cg  login-color login-size btn" type="submit">
-                                <span>Login</span>
+                        <div className="">
+                            <Link className="cg  login-color login-size btn bg-warning text-light"
+                                  to={"/signup"} title="Join now"
+                                  onClick={() => gaEventTracker('Register')}>
+                                <span className="text-light ">Register</span>
                             </Link>
-
-                        </div>}
-                        <div className="col-1 button-toggle mx-2" style={{width: "3.1rem"}}>
-                            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"lg"}`} className="px-3 py-3" onClick={toggle}/>
                         </div>
-                    </>
 
-                }
+                        <Link to={"/login"} className="cg  login-color login-size btn" type="submit">
+                            <span>Login</span>
+                        </Link>
+
+                        <div className="col-1 button-toggle space-button" style={{width: "4.1rem", overflowY:"auto",marginLeft:'20px'}}>
+                            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"lg"}`} className="px-3 py-3" onClick={toggle} />
+                        </div>
+
+                    </div>}
+                </>
+
 
             </Navbar.Brand>
 
@@ -367,7 +374,8 @@ console.log("variable_state",state?.current_selection_period?.start)
                     <KironMoreMarkets/>
                     {loading ?matches.length>0&&matches?.map((match, index) => (
                         <Complex key={index}/>)):closed? <div className="kiron-loader" id="kiron-loader">
-                            <div className="match-start">
+                            <div className="match-start d-flex flex-column align-items-center justify-content-center " style={{marginTop:'120px'}}>
+                                Game  Weeek<span id={'game_week'}></span>
                                 Match Starts In <span id="countdown"></span>
                             </div>
                             <div className="loading loading--full-height"></div>

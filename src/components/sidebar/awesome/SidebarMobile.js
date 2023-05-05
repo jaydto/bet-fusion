@@ -45,7 +45,7 @@ const SidebarMobile = (props) => {
                     <MenuItem>
                         <div className={"d-flex gap-4 align-items-center"}>
                             <FontAwesomeIcon icon={faCloudDownloadAlt}/>
-                            <Link to={"/deposit"} className={"text-warning"}>Deposit</Link>
+                            <Link to={"/deposit"} className={""}>Deposit</Link>
                         </div>
 
                     </MenuItem>
@@ -147,10 +147,10 @@ const SidebarMobile = (props) => {
 
             </SidebarContent>
             <SidebarFooter className={"background-primary"}>
-                <Footer/>
                 {user ? <Menu className={"w-100 "}>
                     <MenuItem className={"w-100 sidebar-mobile"}> <Link className={"logout-btn"} to={"/logout"}>Logout</Link> </MenuItem>
                 </Menu> : ""}
+                <Footer/>
             </SidebarFooter>
         </ProSidebar>)
 }

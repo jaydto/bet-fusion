@@ -41,7 +41,7 @@ const TermsAndConditions = (props) => {
     return (
         <>
             <Header/>
-            <div className={(width<=514?state?.user?"user_logged":"amt":"amt")}>
+            <div className={(width<=575?state?.user?"user_logged":"amt":"amt")}>
                 <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions/>
                     <div className="gz home mobile-width-full">

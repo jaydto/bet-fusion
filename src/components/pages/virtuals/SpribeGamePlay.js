@@ -68,7 +68,7 @@ const GamePlay = (props) => {
     return (
         <>
             <Header/>
-            <div className={(width<=514?user?"user_logged":"amt":"amt")}>
+            <div className={(width<=575?user?"user_logged":"amt":"amt")}>
                 <div className="d-flex flex-row justify-content-between">
                     <div className="col-md-12 w-100">
                         <div className="homepage">

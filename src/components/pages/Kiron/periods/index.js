@@ -26,6 +26,7 @@ const KironPeriods= (props) => {
     const [timerInterval, setTimerInterval] = useState(null);
     const [isContinuing,setIsContinuing]=useState(false)
     const firstMatchEndTime=getFromLocalStorage('kiron_end_time')
+    const firstMatchStartTime=getFromLocalStorage('kiron_first_period')
     const [startCount, setStartCount]=useState(false)
 
     const kironSearch1 = getFromLocalStorage('kiron_search_data') || {}; // Use empty object as default value if kiron_search_data is null or undefined
@@ -77,9 +78,6 @@ const KironPeriods= (props) => {
 
         const newCompetition2= {competition_id:new URL(window.location).searchParams.get('competition_id') || getFromLocalStorage('kiron_search_data')?.competition_id||'2'}
 
-        // const [competition_result] = await Promise.all([
-        //     makeRequest({url: endpoint, method: method, data: newCompetition2}),
-        // ])
         makeRequest({url: endpoint, method: method, data: newCompetition2}).then(([c_status, c_result] ) =>{
 
             if (c_status === 200) {
@@ -94,6 +92,7 @@ const KironPeriods= (props) => {
                 dispatch({ type: "SET", key: 'periods_first', payload:  firstItem?.start_time})
                 setLocalStorage('kiron-periods', c_result);
                 setLocalStorage('kiron_first_period', firstItem?.start_time);
+                setLocalStorage('kiron_first_week', firstItem?.round_number);
                 setLocalStorage('kiron_first_round', firstItem?.round_id);
                 setLocalStorage('kiron_end_time', firstItem?.end_time)
             } else {
@@ -140,12 +139,10 @@ const KironPeriods= (props) => {
     }
 
 
-
-
     useEffect(() => {
         console.log("newCompetitionChanged", newCompetition)
         fetchData()
-    }, [newCompetition])
+    }, [getFromLocalStorage('kiron_search_data')?.competition_id])
 
     useEffect(() => {
         if (isCountdownTimerActive==false) {
@@ -163,7 +160,7 @@ const KironPeriods= (props) => {
 
     useEffect(() => {
       fetchData()
-    }, [newCompetition]);
+    }, [getFromLocalStorage('kiron_search_data')?.competition_id]);
 
     useEffect(() => {
         let timerInterval;
@@ -217,7 +214,7 @@ const KironPeriods= (props) => {
             initialTime -= 1;
             // console.log("time_time", initialTime)
 
-            if (initialTime > 5) {
+            if (initialTime > 5 ) {
                 setTimerColor('count-red');
                 setClosed(false);
             } else if (initialTime <= 10 && initialTime > 0) {
@@ -228,6 +225,7 @@ const KironPeriods= (props) => {
                 }else{
                     setClosed(true);
                 }
+                document.getElementById('game_week').innerHTML=getFromLocalStorage('kiron_first_week')
                 document.getElementById('countdown').innerHTML = timer;
             } else {
                 if(state?.current_selection_period?.start.length>0){
@@ -285,29 +283,39 @@ const KironPeriods= (props) => {
                 console.log("TimessTime==now&&now<eTime ")
                 setInPlay(true)
             } else if(sTime<now&&now<eTime){
-                // if(initialTime>1){
-                //     console.log("TimesGreatersTime<now&&now<eTime",initialTime)
-                //     setInPlay(false)
-                // }else{
+
                     console.log("TimessTime<now&&now<eTime",initialTime)
                     setInPlay(true)
-                // }
+
             }
 
-            // else if(sTime>now&&now<eTime){
-            //     console.log("TimessTime>now&&now<eTime")
-            //     setInPlay(false)
-            // }
+
 
         }
 
     },[state?.current_selection_period])
 
-    //todo check if inplay time is  over
-   const time= (new Date(Date.parse(`${new Date().toDateString()} ${getTime(firstMatchEndTime)}`))-new Date().getTime())/1000
-    console.log("time_check",time)
-    let totalSeconds = timeAfter;
+
+
+
     useEffect(() => {
+        //calculation to include the right time inPlay
+        let startTime=getFromLocalStorage('kiron_first_period')
+        let endTime=getFromLocalStorage('kiron_end_time')
+        let gettime = getTime(startTime);
+        let endingTime= getTime(endTime)
+        let time_play = gettime;
+        let duration=Math.round((new Date(Date.parse(`${new Date().toDateString()} ${endingTime}`)).getTime()- new Date(Date.parse(`${new Date().toDateString()} ${time_play}`)).getTime())/1000);
+        console.log("time_duration",duration)
+        let timePeriod = new Date(Date.parse(`${new Date().toDateString()} ${time_play}`));
+        let firstRound = timePeriod.getTime();
+        let now = new Date().getTime();
+        let diff= firstRound<=now&&now-firstRound
+        let initialTime = diff!=false&&Math.floor(diff / 1000);
+        console.log("Check_time_check",initialTime)
+        // let totalSeconds= initialTime!=false?initialTime>=duration?88:Math.round((initialTime*90)/duration):90
+        let totalSeconds=Math.round((initialTime*90)/duration)
+        console.log("check_total_inPlay_time", totalSeconds)
 
         if (isCountdownTimerActive) {
             if(state?.current_selection_period?.start.length>0){
@@ -315,11 +323,31 @@ const KironPeriods= (props) => {
             }else if(state?.current_selection_period?.start.length==0){
                 setInPlay(true)
             }
-
+            //calculation to help include kenyan league
+            const time= Math.floor((new Date(Date.parse(`${new Date().toDateString()} ${getTime(firstMatchEndTime)}`))-new Date(Date.parse(`${new Date().toDateString()} ${getTime(firstMatchStartTime)}`)))/90)
+            console.log("interval_time", time)
             // setInPlay(true);
-            const timerVar = setInterval(countTimer, 722);
+            const timerVar = setInterval(countTimer, time);
             setTimeLeft(getTime(Date.now()))
             function countTimer() {
+                //calculation to include the right time inPlay
+                 startTime=getFromLocalStorage('kiron_first_period')
+                 endTime=getFromLocalStorage('kiron_end_time')
+                 gettime = getTime(startTime);
+                 endingTime= getTime(endTime)
+                 time_play = gettime;
+                 duration=Math.round((new Date(Date.parse(`${new Date().toDateString()} ${endingTime}`)).getTime()- new Date(Date.parse(`${new Date().toDateString()} ${time}`)).getTime())/1000);
+                console.log("time_duration",duration)
+                 timePeriod = new Date(Date.parse(`${new Date().toDateString()} ${time}`));
+                 firstRound = timePeriod.getTime();
+                 now = new Date().getTime();
+                 diff= firstRound<=now&&now-firstRound
+                 initialTime = diff!=false&&Math.floor(diff / 1000);
+                console.log("Check_time_check",initialTime)
+                // let totalSeconds= initialTime!=false?initialTime>=duration?88:Math.round((initialTime*90)/duration):90
+                 totalSeconds=Math.round((initialTime*90)/duration)
+                console.log("check_total_inPlay_time", totalSeconds)
+
                 ++totalSeconds;
                 const seconds = totalSeconds;
                 console.log("secondstime", seconds)
@@ -357,6 +385,7 @@ const KironPeriods= (props) => {
     }, [isCountdownTimerActive,newCompetition,state?.current_selection_period?.start]);
 
 
+
     function getTimeInSeconds(timeString) {
         const [minutes, seconds] = timeString.split(':');
         const secondsArray = seconds.split('0').map(Number);
@@ -382,6 +411,8 @@ const KironPeriods= (props) => {
     console.log("check_inPlayTime",isCountdownTimerActive)
     console.log("check_timeInPlay",timeAfter)
     console.log("check_timeLeftBeforeMatchStarts",timeLeft)
+
+
     const kironTabVisible=()=>{
         const time= (new Date(Date.parse(`${new Date().toDateString()} ${getTime(firstMatchEndTime)}`))-new Date().getTime())/1000
 
@@ -407,11 +438,6 @@ const KironPeriods= (props) => {
                 <tbody className={"d-flex periods"} style={{overflowX: "auto"}} >
                 <tr className={"d-flex league-row gap-2 justify-content-center align-items-center  kiron-period"} ref={kironPeriodsRef} style={{ flex: '0 0 auto', overflowX:"hidden",height:'50px' }}>
                     {
-                        // loading ?
-                        // <td className={`text-center mt-2 text-white d-block`}>
-                        //     <Element/>
-                        // </td>
-                        // :
                         kiron?.map((kiron_options, index) => {
                             const time = getTime(kiron_options.start_time);
                             const isFirst = index === 0;
@@ -428,7 +454,7 @@ const KironPeriods= (props) => {
                                             {isFirst && timeLeft&&isCountdownTimerActive==false? (
                                                 getTimeInSeconds(timeLeft)>0&&<div  style={{color:'#fff'}} className={`countdown-timer`} >{timeLeft}</div>
                                             ) :isFirst && timeAfter? (
-                                                <div style={{color:'#fff'}}    className={`countdown-timer `} >{ended?ended:'00:'+timeAfter}</div>
+                                                <div style={{color:'#fff'}}    className={`countdown-timer `} >{ended?ended:"LIVE'"+timeAfter}</div>
                                             ):(
                                                 <div style={{color:'#fff'}}   id={`x${time}`}>{time}</div>
                                             )}

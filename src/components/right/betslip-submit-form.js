@@ -33,6 +33,7 @@ import {
     faShare,
 } from "@fortawesome/free-solid-svg-icons";
 import {Spinner} from "react-bootstrap";
+import {Switch} from "@material-ui/core";
 
 const Float = (equation, precision = 4) => {
     return Math.round(equation * 10 ** precision) / 10 ** precision;
@@ -469,6 +470,9 @@ const BetslipSubmitForm = (props) => {
         );
     };
 
+    const label = { inputProps: { 'aria-label': 'accept_all_odds_change',
+        'value':'accept_all_odds_change'} };
+
     return (
         <Formik
             initialValues={initialValues}
@@ -482,9 +486,9 @@ const BetslipSubmitForm = (props) => {
                 const {isValid, errors, values, submitForm, setFieldValue} = props;
 
                 const onFieldChanged = (ev) => {
+                    console.log("event_value",ev)
                     let field = ev.target.name;
-                    let value =
-                        ev.target.type === "checkbox" ? ev.target.checked : ev.target.value;
+                    let value = ev.target.type === "checkbox" ? ev.target.checked : ev.target.value;
                     if (field == "bet_amount") {
                         value = value.replace(/[^\d]/g, "");
                         setFieldValue(field, value);
@@ -493,6 +497,7 @@ const BetslipSubmitForm = (props) => {
                         setFieldValue(field, value);
                     }
                 };
+
 
             return (<FormikForm name="betslip-submit-form">
                 <Alert/>
@@ -524,16 +529,17 @@ const BetslipSubmitForm = (props) => {
                         </tr>}
                         <tr id="odd-change-text">
                             <td colSpan="2">
-                                <label className="checkbox">
+                                {/*<label className="checkbox">*/}
 
-                                    <input type="checkbox"
-                                           className="odds-change-box"
-                                           name={"accept_all_odds_change"}
-                                           id={"accept-all-odds-change"}
-                                           checked={values?.accept_all_odds_change}
-                                           onChange={(e) => onFieldChanged(e)}
-                                    /> Accept any odds change
-                                </label>
+                                {/*    <input type="checkbox"*/}
+                                {/*           className="odds-change-box"*/}
+                                {/*           name={"accept_all_odds_change"}*/}
+                                {/*           id={"accept-all-odds-change"}*/}
+                                {/*           checked={values?.accept_all_odds_change}*/}
+                                {/*           onChange={(e) => onFieldChanged(e)}*/}
+                                {/*    /> Accept any odds change*/}
+                                {/*</label>*/}
+                                <Switch id={"accept-all-odds-change"} {...label} className="odds-change-box" name={"accept_all_odds_change"} checked={values?.accept_all_odds_change} defaultChecked color={'warning'} onChange={(e)=>onFieldChanged(e)}/> Accept any odds change
                             </td>
                         </tr>
                         <tr>

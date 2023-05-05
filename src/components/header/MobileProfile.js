@@ -11,8 +11,8 @@ const MobileProfile = (props) => {
     return (<>
         {user && (
             <div className={"d-flex justify-content-between mobile-width"}>
-                <div className={`${width<=514?"mobile-wrap":""} ale ss profile d-flex flex-row row  tablet-design justify-content-between align-items-center `}>
-                    <div className={`${width<=514?"col":"col-3"} d-flex  right justify-content-center px-1`}>
+                <div className={`${width<=575?"mobile-wrap":""} ale ss profile d-flex flex-row row  tablet-design justify-content-between align-items-center `}>
+                    <div className={`${width<=575?"col":"col-3"} d-flex  right justify-content-center px-1`}>
 
                         <span className=" d-flex ">
                             <div className={"d-flex align-items-center gap-1 px-1"}>
@@ -28,7 +28,7 @@ const MobileProfile = (props) => {
 
                     </div>
 
-                    <div className={`${width<=514?"col":"col-3"}  d-flex  right justify-content-center px-1 `}>
+                    <div className={`${width<=575?"col":"col-3"}  d-flex  right justify-content-center px-1 `}>
                         <div>
 
                             <Link to={{pathname: "/redeem-points"}} className={'link-info text-info '}
@@ -49,7 +49,7 @@ const MobileProfile = (props) => {
 
                     </div>
 
-                    <div className={`${width<=514?"col":"col-3"} d-flex justify-content-center text-white`}>
+                    <div className={`${width<=575?"col":"col-3"} d-flex justify-content-center text-white`}>
                         <div>
                         <span className=" py-2 px-2 d-flex ">
                         <span className={"d-flex align-items-center px-1 gap-1"}>
@@ -62,7 +62,7 @@ const MobileProfile = (props) => {
                         </span>
                         </div>
                     </div>
-                    <div className={`${width<=514?"col":"col-3"}  d-flex  right justify-content-center px-1  align-items-center  `}>
+                    <div className={`${width<=575?"col":"col-3"}  d-flex  right justify-content-center px-1  align-items-center  `}>
                         <div>
                         <span className=" py-2 px-2 d-flex ">
                         <span className={"d-flex align-items-center px-1 gap-1"}>

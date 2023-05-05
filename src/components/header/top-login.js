@@ -113,7 +113,7 @@ const HeaderLogin = (props) => {
         }
         return (
             <>
-                <Form className="ow og i web-element" style={login&&{width:'80vw'}}>
+                <Form className="ow og i web-element" style={login&&{width:'97vw'}}>
                     <Row className={`${login?"d-flex flex-column":""}`}>
                         <div className={`${login?"w-100 ": "col-4"}`}>
                             <input type="text"
@@ -196,10 +196,10 @@ const HeaderLogin = (props) => {
                     </Link>
                 </div>
             </Row>
-            <Row style={{float: "right"}} className={login&&'d-flex justify-content-center align-items-center flex-column w-100'}>
+            <div style={{float: "right"}} className={`${login?' d-flex justify-content-center align-items-center flex-column w-100 container-fluid' :' row '}`}>
                 <ToastContainer/>
                 <LoginForm/>
-            </Row>
+            </div>
 
         </Container>
     )

@@ -339,7 +339,7 @@ const Header = (props) => {
                         placement="start">
                         <Offcanvas.Header closeButton className='text-white' closeVariant={"white"} onClick={toggle}>
                             <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                                <div className="col-3">
+                                <div className="col-5">
                                     <div>
                                         <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"/>
                                     </div>

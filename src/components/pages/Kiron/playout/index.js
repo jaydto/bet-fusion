@@ -131,7 +131,7 @@ const KironPlayouts = (props) => {
                                                 <div className="row px-3">
                                                     <div className="col-6 text-right pt-1"><span className="team-jersey"><img
                                                         src={results?.home_team_image}
-                                                        alt="Nare League"/></span> <a href="#"
+                                                        alt="Nare League"  style={{height: '32px'}}/></span> <a href="#"
                                                                                       style={{color: "var(--black)"}}>
                                                         <span className="home-team-r bold px-2">{results.home_team}</span>
                                                         {/*{console.log("check_score",handleScore(playout,results) )}*/}
@@ -146,7 +146,7 @@ const KironPlayouts = (props) => {
                                                         </a>
                                                         <span className="team-jersey"><img
                                                             src={results?.away_team_image}
-                                                            alt="Nare League"/></span>
+                                                            alt="Nare League" style={{height: '32px'}}/></span>
                                                     </div>
                                                     {/*<div className="col-12">*/}
                                                     {/*    <div className="row">*/}

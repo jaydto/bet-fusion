@@ -296,7 +296,7 @@ const KironPeriods= (props) => {
     },[state?.current_selection_period])
 
 
-let totalSeconds)=timeAfter;
+let totalSeconds=timeAfter;
 
     useEffect(() => {
         //calculation to include the right time inPlay

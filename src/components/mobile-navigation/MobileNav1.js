@@ -11,6 +11,7 @@ import jackpot from "../../../src/assets/img/mobile/jackpot.png";
 import home from "../../../src/assets/img/mobile/home.png"
 import soccer from "../../../src/assets/svg/sports/Soccer.png"
 import casino from "../../assets/img/casino/casino1.png"
+import jetX from "../../assets/img/mobile/jetx.webp"
 import casino1 from "../../assets/img/casino/casino.png"
 import aviator from "../../../src/assets/img/aviator.webp"
 import spaceman from "../../../src/assets/img/spaceman.webp"
@@ -32,11 +33,13 @@ const MobileNav1 = (props) => {
     // console.log("allsports_from_local",sport)
     const [state, dispatch] =useContext(Context)
 
+    const searchTerm=window.location.search
+
     const gaEventTracker = useAnalyticsEventTracker('Navigation');
+
     const pathname = window.location.pathname;
 
     const [activeClass, setActiveClass] = useState('');
-
 
     const activeClick = useCallback(() => {
         if(activeClass === ''){
@@ -127,17 +130,15 @@ const MobileNav1 = (props) => {
         event.currentTarget.classList.add('highlight');
     }
     const LoginCheck = (game) => {
-        if (game==="crashlite"){
-            state?.user!==null?window.location.href="/shaks?game=Crashlite":setShowLoadingModal(true);
-        }
-        else {
-            state?.user!==null?window.location.href="/gameplay?game_id=1301&live=1":setShowLoadingModal(true);
-            // pathname:"/gameplay", search:"game_id=130&live=1"}
+        if(game == "JetX"){
+            state?.user !== null ? window.location.href = "/smart-play?game=JetX&category=JetX" : setShowLoadingModal(true);
+        }else {
+            state?.user !== null ? window.location.href = "/gameplay/1301/1" : setShowLoadingModal(true);
         }
 
     };
 
-    return (<div className="menu-wrapper">
+    return (<div className="menu-wrapper mobile-nav-remove">
         {/*{sport==null?setSport(getFromLocalStorage("categories")):""}*/}
         {showLoadingModal && ( <LoginModal setShowLoadingModal={setShowLoadingModal} visible={showLoadingModal}/>)}
         <table className="menu-table" style={{width: "100%", textAlign: "center", marginLeft:"-9px"}}>
@@ -172,7 +173,7 @@ const MobileNav1 = (props) => {
                 <td  className={ window.location.search.includes('aviator') ? 'menu-t m-auto active' : 'menu-t m-auto'}
                      onClick={() => gaEventTracker('Aviator')} style={{paddingLeft: "4px"}}>
                     <Link className="cg fm ox anl url-link d-flex flex-column align-items-center"
-                          to={{pathname:"/nare-game", search:"game=aviator"}}
+                          to={{pathname:"/nare-games/aviator"}}
                           title="Aviator">
                         <div className="menu-img">
                             <LazyLoadImage src={aviator} style={{height: "24px", marginTop:"-6px", width:"35px" }}/>
@@ -196,6 +197,21 @@ const MobileNav1 = (props) => {
                         <strong className={"text-light"}>Casino</strong>
                     </Link>
 
+                </td>
+                <td className={searchTerm.includes('JetX') ? 'active live-bg' : 'menu-t m-auto'}
+                    onClick={() => gaEventTracker('Jetx')}>
+                    <Link className="cg fm ox anl url-link d-flex flex-column align-items-center"
+                          to="#"
+                          title="JetX"
+                          onClick={() =>LoginCheck("JetX")}>
+
+                            <div className={' menu-img'}>
+                                <img src={jetX} style={{height: "23px", marginTop:"-6px" }}/>
+                                <span className=" badge" style={{color:"white",background:"red"
+                                    ,marginTop:"-5px", borderRadius: "10px 0 15px 0", marginLeft:"1px", padding:"0.6px 4px ", fontSize:"5.5px",position:'absolute',top:'5px',left:"32px"}}>NEW</span>
+                            </div>
+                            <strong className={"text-light"}>JetX</strong>
+                    </Link>
                 </td>
                 {/* <td  className={ window.location.search.includes('gameplay') ? 'active' : 'menu-t m-auto'}
                     style={{paddingLeft: "10px"}}>

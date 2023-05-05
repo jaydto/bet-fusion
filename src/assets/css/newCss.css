@@ -244,7 +244,12 @@ select::after{
     }
 }
 @media (min-width: 992px){
-
+    .league-row-mobile{
+        display: none!important;
+    }
+    .mobile-nav-remove{
+        display: none!important;
+    }
     .e.logo {
         padding: 8px 5px !important;
 
@@ -281,6 +286,7 @@ select::after{
 }
 
 @media (max-width: 991px){
+
     .sticky-responsive {
         position: sticky;
         top: 0px!important;
@@ -491,6 +497,28 @@ select::after{
     }
     .highlight-menu {
         top: 157px;
+    }
+}
+@media (min-width:320px) and (max-width: 420px){
+    .app-navbar .e img {
+        max-width: 90px !important;
+    }
+    .border-radius-search {
+        border-radius: 10px !important;
+        height: 20px;
+        width: 20px;
+    }
+    .size-font-user-action {
+        font-size: 8px!important;
+    }
+    .user_logged {
+        margin-top: 10.7rem!important;
+    }
+    .highlight-logged-in-menu {
+        top: 132.5px!important;
+    }
+    .sticky-logged-in-testimony {
+        top: 104.5px!important;
     }
 }
 

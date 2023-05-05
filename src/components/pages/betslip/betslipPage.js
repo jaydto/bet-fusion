@@ -36,10 +36,15 @@ const BetslipPage = () => {
   const jackpot = jp == "true" ? true : false;
   const slipParam = url.searchParams.get("betslipValidationData");
   const jackpotParam = url.searchParams.get("jackpotData");
-  console.log("slipParam", slipParam);
-  console.log("jackpotParam", jackpotParam);
+  const nareParams=url.searchParams.get('nare-league')
+  const pathname = window.location.pathname;
+
+  console.log("nare_on", nare_league);
   const betslipValidationData =
     slipParam && JSON.parse(decodeURIComponent(slipParam));
+  const nareData=
+      nareParams&&JSON.parse(decodeURIComponent(slipParam))
+  console.log("nare_params", nareData);
   const jackpotData =
     jackpotParam && JSON.parse(decodeURIComponent(jackpotParam));
 
@@ -201,7 +206,7 @@ const BetslipPage = () => {
                     style={{ height: "100%" }}
                   >
 
-                    {nare_league ? <KironSlip/> : <Betslip
+                    {nare_league ? <KironSlip kironValidation={nareData} kiron={nare_league||pathname=='/betslip-nare'}/> : <Betslip
                         jackpot={jackpot ? true : false}
                         betslipValidationData={betslipValidationData}
                         jackpotData={jackpotData}

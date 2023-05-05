@@ -23,7 +23,7 @@ import useWindowDimensions from "../header/Dimensions";
 const MobileMenu = (props) => {
 
     const [liveSports, setLiveSports] = useState();
-    const { jackpot, betslipValidationData, jackpotData,kiron} = props;
+    const { jackpot, betslipValidationData, jackpotData,kironValidation, kiron} = props;
     const [betSlipMobile, setBetSlipMobile] = useState(false);
     const gaEventTracker = useAnalyticsEventTracker("Navigation");
     const pathname = window.location.pathname;
@@ -116,8 +116,8 @@ const MobileMenu = (props) => {
                     <img src={VirtualSvg} alt=""></img>
                     <p>Virtuals</p>
                 </Link>
-
-                <Link to={{pathname:`${jackpot?"/betslip-jackpot":kiron?`/betslip-nare`:"/betslip-slip"}`, search:`jackpot=${jackpot? jackpot: false}&betslipValidationData=${betslipValidationData?encodeURIComponent(JSON.stringify(betslipValidationData)):false}&jackpotData=${jackpotData?encodeURIComponent(JSON.stringify(jackpotData)):false}&nare-league=${kiron}`}}
+                {console.log("slip data new", betslipValidationData+' jackpot: '+jackpot+" kiron_data"+kironValidation+"kiron"+kiron+" jackpotData: "+jackpotData)}
+                <Link to={{pathname:`${jackpot?"/betslip-jackpot":kiron?`/betslip-nare`:"/betslip-slip"}`, search:`${jackpot!==undefined?'jackpot='+jackpot:''}${betslipValidationData!==undefined ?'betslipValidationData='+encodeURIComponent(JSON.stringify(betslipValidationData)):''}${jackpotData!==undefined?'&jackpotData='+encodeURIComponent(JSON.stringify(jackpotData)):''}${kiron!==undefined?'nare-league='+kiron:''}${kironValidation!==undefined ? '&nareData='+encodeURIComponent(JSON.stringify(kironValidation)):''}`}}
                     //  onClick={()=>window.location.href=`${jackpot?"/betslip-jackpot":"/betslip-slip"}?jackpot=${jackpot? jackpot: false}&betslipValidationData=${betslipValidationData?encodeURIComponent(JSON.stringify(betslipValidationData)):false}&jackpotData=${jackpotData?encodeURIComponent(JSON.stringify(jackpotData)):false}`}
                       className={` nav__betslip bloc-icon bet-slip-footer-toggle text-white`}>
                     {console.log("kiron_live", kiron)}
@@ -129,11 +129,11 @@ const MobileMenu = (props) => {
                         {console.log("value for jackpot",kiron+'pathname'+pathname)}
 
                         {/*fixed size 50 for bets clicked*/}
-                        {jackpot === true&&jackpot!=undefined||pathname=="betslip-jackpot"
+                        {jackpot === true&&jackpot!=undefined||pathname=="/betslip-jackpot"
                             ? getJackpotBetslip() != null
                                 ? Object.keys(getJackpotBetslip())?.length
                                 : 0
-                            :kiron==true||pathname=="betslip-nare"?getKironSlip()!=null?
+                            :kiron==true||pathname=="/betslip-nare"?getKironSlip()!=null?
                               Object.keys(getKironSlip()).length:0
                                 : getBetslip()
                                 ? Object.keys(getBetslip()).length <= 50

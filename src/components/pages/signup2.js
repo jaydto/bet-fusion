@@ -95,7 +95,7 @@ const Signup2 = (props) => {
             <Form>
                 <div className="pt-0">
                     <div className="row">
-                        <div className='col-md-12'>
+                        <div className='row'>
                             <img src={ karibu} alt="" className={''}/>
                         </div>
                         {/*<hr/>*/}

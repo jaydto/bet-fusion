@@ -18,22 +18,28 @@
 
 }
 input{
-    background: #2d3641!important;
+    background: #28374e!important;
     border-radius: 3px!important;
+    color:#fff!important;
+    font-weight: bold;
+    box-sizing: border-box;
+    border: 0.1px groove #2d3641!important;
 
 }
-input:hover{
-    border: 0.1px solid #a5660f !important;
+input:focus{
+    border: 0.1px inset #a5660f !important;
+    box-sizing: border-box;
 }
 .input-bg-user{
-    background: #2d3641!important;
+    background: #28374e!important;;
     border-radius: 3px!important;
-
+    border: 0.1px groove #2d3641!important;
 
 }
 .input-bg-user:focus{
-    border: 0.1px solid #a5660f !important;
+    border: 0.1px inset #a5660f !important;
 }
+
 select::after{
     color:aqua!important;
     background: #0a6cce!important;
@@ -46,6 +52,7 @@ select::after{
     background: #28374e;
     padding: 3px 15px;
     border-radius: 2px;
+    color:white;
 }
 
 .font-btn:hover{
@@ -74,7 +81,7 @@ select::after{
     width: 80vw;
 }
 .login-button {
-    color: #000;
+    color: #fff2f2;
     background: #527994FF;
     /*background-color: #FFC107;*/
     border-color: #24367e;
@@ -127,6 +134,14 @@ select::after{
 .input-field-decode{
     line-height: 33px;
     border: none;
+    color:#fff!important;
+    font-weight: bold;
+}
+.input-field-login {
+    line-height: 26px;
+    border: none;
+    color: #fff!important;
+    font-weight: bold;
 }
 .banner-height{
     height: 150px!important;
@@ -311,7 +326,7 @@ select::after{
         display: none!important;
     }
     .e.logo {
-        padding: 8px 5px !important;
+        padding: 0px 5px !important;
 
     }
     .league-row-mobile{

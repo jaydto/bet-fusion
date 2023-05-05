@@ -64,7 +64,7 @@ const DecodeCode = () => {
                         <form>
                             <div className="form-group row d-flex justify-content-center ">
                                 <div className="col-md-12">
-                                    <label className={"text-bold h4 text-center"}> Enter your betslip share code to load
+                                    <label className={"text-bold h4 text-center mb-4"}> Enter betslip share code to load
                                         betslip </label>
                                     <div className={"d-flex flex-column"}>
                                         <input
@@ -84,7 +84,7 @@ const DecodeCode = () => {
                                             <div className=" d-flex align-items-start">
                                                 <button type={"button"} onClick={() => handleslip(code)}
                                                         className='btn btn-lg  w-100 deposit-withdraw-button text-white d-flex align-items-center justify-content-center'
-                                                        style={{backgroundColor: "#527994", borderRadius: "0.3rem"}}>
+                                                        style={{backgroundColor: "#FFC107", borderRadius: "0.3rem"}}>
                                                     <strong>
                                                         LOAD SLIP
                                                     </strong>&nbsp;

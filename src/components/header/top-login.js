@@ -118,8 +118,8 @@ const HeaderLogin = (props) => {
                         <div className={`${login?"w-100 ": "col-4"}`}>
                             <input type="text"
                                    name="msisdn"
-                                   className={`${login?"w-100 input-field button-radius":""}top-login-input-field ${errors.msisdn && 'text-danger'}`}
-                                   data-action="grow"
+                                   className={`${login?"w-100 input-field button-radius":""}  text-dark deposit-input form-control col input-field-login  ${errors.msisdn && 'text-danger'}`}
+                                   // data-action="grow"
                                    placeholder={errors.msisdn || "+254........."}
                                    onChange={ev => onFieldChanged(ev)}
                                    value={values.msisdn}
@@ -133,8 +133,8 @@ const HeaderLogin = (props) => {
                         <div className={`${login?"w-100 ": "col-4"}`}>
                             <input type="password"
                                    name="password"
-                                   className={`${login?"w-100 input-field button-radius":""}top-login-input-field ${errors.password && 'text-danger'} `}
-                                   data-action="grow"
+                                   className={`${login?"w-100 input-field button-radius":""} text-dark deposit-input form-control col input-field-login  ${errors.password && 'text-danger'} `}
+                                   // data-action="grow"
                                    placeholder={errors.password || "Password"}
                                    onChange={ev => onFieldChanged(ev)}
                                    value={values.password}
@@ -147,11 +147,11 @@ const HeaderLogin = (props) => {
                             </Link>
                         </div>
                         <div className={`${login?"w-100":"col-4 d-flex gap-3 justify-content-end"}`}>
-                            <button className={`${login?"w-100 button-radius input-field btn-font": " "}cg login-button btn`} type="submit">
-                                {isLoading ? <span>Logging In ...</span> : <span>Login</span>}
+                            <button className={`${login?"w-100 button-radius input-field btn-font": " "}cg login-button btn bold`} type="submit">
+                                {isLoading ? <span>Logging In ...</span> : <span>LOGIN</span>}
                             </button>
                             <Link className="cg register-button btn btn-warning" to={"/signup"} title="Join now" onClick={() => gaEventTracker('Register')} style={login&&{display:'none'}}>
-                                <span className="register-label">Register </span>
+                                <span className="register-label bold">REGISTER </span>
                             </Link>
                         </div>
                         <Row className={`${login?"d-flex":"d-none"}`} style={{float: "right"}}>
@@ -161,7 +161,7 @@ const HeaderLogin = (props) => {
                                 </Link>
                                 <Link className="m-lg-2 badge bg-success d-none" to={"/verify-account"} title="Verify Account"
                                       onClick={() => gaEventTracker('Verify')}>
-                                    <span className="register-label">Verify Account</span>
+                                    <span className="register-label">VERIFY ACCOUNT</span>
                                 </Link>
                             </div>
                         </Row>
@@ -192,7 +192,7 @@ const HeaderLogin = (props) => {
                     {/*</Link>*/}
                     <Link className="m-lg-2 badge bg-success d-none" to={"/verify-account"} title="Verify Account"
                        onClick={() => gaEventTracker('Verify')}>
-                        <span className="register-label">Verify Account</span>
+                        <span className="register-label">VERIFY ACCOUNT</span>
                     </Link>
                 </div>
             </Row>

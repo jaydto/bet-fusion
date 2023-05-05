@@ -442,6 +442,9 @@ select::after{
 
 }
 @media (min-width: 375px) and (max-width: 575px){
+    .amt {
+        margin-top: 0.1rem !important;
+    }
     .app-navbar .e img {
         max-width: 123px !important;
     }

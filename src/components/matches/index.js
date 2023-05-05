@@ -1086,11 +1086,11 @@ const MatchRow = (props) => {
                     marketName !== '' && (
                         <div key={index}
                              className={'d-flex to-flex-1 my-lg-0  w-100'}>
-                          <div
-                              className="c-btn-group align-self-center justify-content-center  flex-md-column text-center  flex-sm-row text-center to-tabview mobile-remove">
-                            <h4>{(marketName)}</h4>
+                          {/*<div*/}
+                          {/*    className="c-btn-group align-self-center justify-content-center  flex-md-column text-center  flex-sm-row text-center to-tabview mobile-remove">*/}
+                          {/*  <h4>{(marketName)}</h4>*/}
 
-                          </div>
+                          {/*</div>*/}
                           {/*    <div className="d-none flex-row px-1 justify-content-end change-date1 mobile-only">*/}
                           {/*        <span className={'date-size px-1 wrapping'}>*/}
                           {/*            {(live && match?.match_time) ?*/}
@@ -1108,10 +1108,10 @@ const MatchRow = (props) => {
                                   (
                                       <div key={index}
                                            className={"d-flex flex-column w-100 margin-l-mobile px-sm-1 px-md-1 px-lg-1 "}>
-                                        <div
-                                            className=" c-btn-header text-white w-100 to-tabview flex-column px-sm-1 px-lg-0 px-md-1 mobile-remove ">
-                                          {(odd_key)}
-                                        </div>
+                                        {/*<div*/}
+                                        {/*    className=" c-btn-header text-white w-100 to-tabview flex-column px-sm-1 px-lg-0 px-md-1 mobile-remove ">*/}
+                                        {/*  {(odd_key)}*/}
+                                        {/*</div>*/}
                                         <div className=" c-btn-group  align-self-center">
                                           {odd_data?.odd_active == 1 && odd_data.market_active == 1 ?
                                               (

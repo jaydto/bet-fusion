@@ -182,7 +182,7 @@ const BetslipPage = () => {
       <div
         className=" "
         style={{ height:"100%" }}>
-          <div className={"w-100 "}  style={{ height:"85vh" }}>
+          <div className={"w-100 "}  style={{ height:"89vh" }}>
             <div className="bet-option-list w-100" id="" style={{ bottom: "0", height:"100%" }}>
               <div
                 className="bet alu  block-shadow d-flex flex-column"

@@ -16859,14 +16859,6 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 }
 
 
-@media only screen and (max-width: 576px) {
-    .amt {
-        margin-top: 8.5rem !important;
-        padding-top: 20px !important;
-        /* scroll-margin-top: 140px; */
-    }
-}
-
 .overflow-ellipsis {
 
 }

@@ -499,7 +499,7 @@ select::after{
         top: 157px;
     }
 }
-@media (min-width:320px) and (max-width: 420px){
+@media (min-width:200px) and (max-width: 420px){
     .app-navbar .e img {
         max-width: 90px !important;
     }

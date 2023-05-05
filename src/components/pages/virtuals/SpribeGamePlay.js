@@ -16,6 +16,7 @@ const GamePlay = (props) => {
     const {game} = useParams()
     const url = new URL(window.location)
     // const game= url.searchParams.get('game')
+    const pathname = window.location.pathname;
     const [gameUrl, setGameUrl] = useState('')
     const [token, setUserToken] = useState('')
     const [user_id, setUserID] = useState('')
@@ -91,6 +92,50 @@ const GamePlay = (props) => {
                                         mozallowfullscreen
                                         src={gameUrl} title="Gadme" width={'100%'} height={'600px'}></iframe>
                             </>}
+                            {pathname=="aviator"||pathname.includes("aviator")&&
+                                <div className={'card rounded-3 e '} style={{color:"#999",background:"transparent", textDecoration:"none", listStyle:"none",fontSize:'14px'}}>
+                                    <div className={'card-body p-3'}>
+                                        <h3 className={'text-center text-warning flashy'}>WIN Upto 2,000,000/= na AVIATOR daily. </h3>
+                                        <br/>
+                                        <h3 className={'text-center'}>How to Play Aviator</h3>
+                                        <ul>
+                                            <li >
+                                                Fly Aviator to WIN Upto 2,000,000/= Daily. Choose your bet amount and press confirm. Use AUTO-BET function for a guaranteed WIN. Minimum Bet – KSH 10. Maximum Bet – KSH 5,000. Maximum Win per Bet is KSH 2,000,000. Maximize your Winnings with the Double Bet feature by adding another bet anytime and set different values.
+                                            </li>
+                                            <li >
+                                                Once the countdown expires, the Aviator will take flight and start collecting a growing WIN multiplier. Press the “Cashout” button at any point to claim your winnings.
+                                            </li>
+                                            <li >
+                                                When using the “AUTO CASHOUT”, money will be withdrawn when the MULTIPLIER exceeds the chosen AUTO-CASHOUT index. Example; If you had chosen 1.5X Index, it will cashout automatically at 1.5X and WINNINGS credited in your account.
+                                            </li>
+
+                                        </ul>
+                                        <br/>
+                                        <h3 className={'text-center'}>How to Win Aviator</h3>
+                                        <ul>
+                                            <li>
+                                                Press the Cashout button before the Aviator Plane flies away.
+                                            </li>
+                                            <li>
+                                                Aviator features a Double Bet Feature that allows a second bet during play. The second bet is set and activated independently of the first one and can be cashed out without cashing the initial set bet.
+                                            </li>
+                                        </ul>
+                                        <br/>
+                                        <h3 className={'text-center'}>Aviator Freebets </h3>
+                                        <ul>
+                                            <li>
+                                                Play Aviator on BetNare & Get Freebets every time.
+                                            </li>
+                                            <li>
+                                                Register now on https://betnare.com/nare-games/aviator and become a potential winner.
+                                            </li>
+                                            <li>
+                                                Sign Up to play Aviator here https://betnare.com/nare-games/aviator .
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </div>}
                         </div>
                     </div>
                 </div>

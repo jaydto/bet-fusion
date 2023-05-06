@@ -91,9 +91,14 @@ const HeaderNav = (props) => {
             <Container  fluid id="navbar-collapse-main"
                        className={`d-none d-sm-flex d-flex flex-row  header-menu  ${searching ? 'hidden' : 'd-block'}`}>
 
-                <ListGroup as="ul" xs="12" horizontal
-                           className="nav navbar-nav og d-flex ale ss  col-lg-12 col-md-12 col-sm-12 change-display">
 
+                {/*<ListGroup as="ul" xs="12" horizontal*/}
+                {/*           className="nav navbar-nav og d-flex ale ss  col-lg-2 col-md-2 col-sm-2 change-display" >*/}
+
+                {/*   */}
+                {/*</ListGroup>*/}
+                <ListGroup as="ul" xs="12" horizontal
+                           className="nav navbar-nav og d-flex ale ss  col-lg-9 col-md-9 col-sm-9 change-display" style={{margin:'0px 10px 0px 0px'}}>
                     <li className={pathname === '/' ? "active" : ''} onClick={() => gaEventTracker('Visit Homepage')}>
                         <Link className="cg fm ox anl url-link not-selectable " to="/"
                               title="Home"><strong>Home</strong></Link>
@@ -116,7 +121,6 @@ const HeaderNav = (props) => {
                                 Jackpot</strong>
                         </Link>
                     </li>
-
                     <li className={pathname.includes('aviator') ? 'active live-bg' : ''}
                         onClick={() => gaEventTracker('Aviator')}>
                         <Link className="url-link fm anl cg ox"
@@ -266,6 +270,11 @@ const HeaderNav = (props) => {
                             </strong>
                         </Link>
                     </li>
+
+                </ListGroup>
+                <ListGroup
+                    as="ul" xs="12" horizontal
+                    className="nav navbar-nav og d-flex ale ss  col-lg-3 col-md-3 col-sm-3 change-display">
                     <li className={pathname === '/print-matches' ? 'spacing-end' : 'spacing-end'}>
                         <a className="url-link fm anl cg ox fix-display" href="#" title="Search"
                            onClick={() => showSearchBar()}>
@@ -284,7 +293,7 @@ const HeaderNav = (props) => {
                             <span className={'hide2'}><strong>Help</strong></span>
                         </a>
                     </li>
-                    <li className={pathname === '/print-matches' ? 'active py-3' : 'fa-border py-md-0 py-lg-3 py-sm-0 d-flex align-items-center'}
+                    <li className={pathname === '/print-matches' ? 'active py-3' : ' py-md-0 py-lg-3 py-sm-0 d-flex align-items-center'}
                         onClick={() => gaEventTracker('Visit Print Matches')}>
                         <a className="url-link fm anl cg ox fix-print" href="/print-matches" title="Print Matches">
                             <span className=" space-icons"><FontAwesomeIcon icon={faPrint}/> </span>Print <span
@@ -294,6 +303,8 @@ const HeaderNav = (props) => {
                 </ListGroup>
 
             </Container>
+
+
             <Container id="navbar-collapse-main"
                        className={`fadeIn header-menu d-flex justify-content-center px-4 ${searching ? 'd-block' : 'd-none'}`}>
                 <ListGroup as="ul" xs="9" horizontal className="nav navbar-nav og ale ss col-md-6 text-center">

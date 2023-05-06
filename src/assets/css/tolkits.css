@@ -2188,7 +2188,7 @@ events-header {
 .top-nav {
     top: -2px;
     padding-top: 10px;
-    background: #16202c;
+    background: #16202c!important;
     background-size: cover;
     background-position: center center;
     padding-bottom: 17px;
@@ -3979,22 +3979,12 @@ legend {
     border-bottom: 1px solid #e5e5e5;
 }
 
-label {
-    display: inline-block;
-    max-width: 100%;
-    margin-bottom: 5px;
-}
 
 input[type="search"] {
     box-sizing: border-box;
 }
 
-input[type="radio"], input[type="checkbox"] {
-    margin: 4px 0 0;
-    margin-top: 1px \9;
-    line-height: normal;
-    margin-right: 6px;
-}
+
 
 input[type="file"] {
     display: block;
@@ -7798,9 +7788,7 @@ ul.sport {
 }
 
 @media (min-width: 768px) {
-    .amt {
-        margin-top: 95px !important;
-    }
+
 
     .disp-sidebar {
         display: flex;
@@ -8654,7 +8642,7 @@ ul.sport {
     }
 
     .gn {
-        width: 20%;
+        width: 23%;
         padding: 0px 2px;
     }
 
@@ -9605,10 +9593,6 @@ ul.sport {
         float: left !important;
     }
 
-    .og {
-        float: right !important;
-        margin-right: -15px;
-    }
 
     .og ~ .og {
         margin-right: 0;
@@ -15918,12 +15902,6 @@ img.zoom-img {
     font-weight: bold;
 }
 
-.sticky-hidden {
-    /* overflow: hidden; */
-    /* height: auto; */
-    color: #ffffffb3;
-    text-shadow: none !important;
-}
 
 .bottom-std-margin-spacing {
     margin-bottom: 15px !important;

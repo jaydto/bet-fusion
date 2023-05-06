@@ -17,6 +17,18 @@
     align-items: center;
 
 }
+.top-nav{
+    min-height:72px;
+    padding: 11px 4px 5px 0px;
+
+}
+label {
+    font-weight: 600;
+    display: inline-flex;
+    padding-bottom: 5px;
+    max-width: 100%;
+    font-size: 14px;
+}
 input{
     background: #28374e!important;
     border-radius: 3px!important;
@@ -112,7 +124,13 @@ select::after{
     border-radius: 0.3rem;
     font-size: 14px !important;
 }
-
+.sticky-hidden {
+    /* overflow: hidden; */
+    /* height: auto; */
+    color: #ffffffb3;
+    text-shadow: none !important;
+    font-weight: 600;
+}
 .login-size {
     background: #2D4352;
     padding: 5px 10px;
@@ -121,6 +139,27 @@ select::after{
     height: 2.3rem;
     line-height: 1;
     cursor: pointer;
+}
+.pro-sidebar.collapsed {
+    width: 80px!important;
+    min-width: 80px!important;
+}
+.pro-sidebar {
+    color: #adadad;
+    height: 100%;
+    width: 225px!important;
+    min-width: 215px!important;
+    text-align: left;
+    transition: width, left, right, 0.3s;
+    position: relative;
+    z-index: 1009;
+}
+input[type="radio"], input[type="checkbox"] {
+    margin: 2px 0 0;
+    margin-top: 1px \9;
+    line-height: normal;
+    margin-right: 6px;
+    margin-left: 2px;
 }
 .style-mobile {
     display: flex;
@@ -220,7 +259,7 @@ select::after{
         margin: auto;
     }
     .app-header-nav {
-        margin-top: 58px;
+        margin-top: 62px;
     }
     .kiron-amt{
         margin-top: 115px !important;
@@ -290,7 +329,13 @@ select::after{
         scroll-margin-top: 140px;
     }
 }
+@media (min-width: 1024px) and (max-width: 1259px){
+    .top-login-margin{
+        margin-right:21px;
+    }
+}
 @media (max-width: 1259px) and (min-width: 991px) {
+
     .top-login-desktop-input{
         padding-top: 0.5rem;
     }
@@ -325,8 +370,14 @@ select::after{
     }
 }
 @media (min-width: 992px) and (max-width: 1160px) {
+    /*.app-header-nav {*/
+    /*    margin-top: 42px;*/
+    /*}*/
+
     .app-header-nav {
-        margin-top: 42px;
+        margin-top: 53px;
+        /*background: #17162c!important;*/
+        padding: 7px 14px 0px 0px;
     }
 }
 @media (min-width: 992px){
@@ -461,6 +512,18 @@ select::after{
         width:30px;
     }
 }
+@media (min-width:768px){
+    .amt {
+        margin-top: 117px!important;
+    }
+    .og {
+        float: right !important;
+        margin-right: -8px;
+    }
+    .top-login-paddings{
+        padding-top:5px;
+    }
+}
 @media (min-width: 768px) and (max-width: 991px){
     .e.logo {
         padding: 0px 0px !important;
@@ -522,7 +585,8 @@ select::after{
         margin-right: 0px;
     }
     .top-nav{
-        padding-top:0px
+        padding-top:0px;
+        min-height:72px;
     }
     .tag {
 

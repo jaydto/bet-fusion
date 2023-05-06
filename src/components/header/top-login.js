@@ -113,7 +113,7 @@ const HeaderLogin = (props) => {
         }
         return (
             <>
-                <Form className="ow og i web-element" style={login&&{width:'97vw'}}>
+                <Form className="ow right i web-element top-login-paddings" style={login&&{width:'97vw'}}>
                     <Row className={`${login?"d-flex flex-column":"top-login-desktop-input"}`}>
                         <div className={`${login?"w-100 ": "col-4"}`}>
                             <input type="text"
@@ -126,7 +126,7 @@ const HeaderLogin = (props) => {
                             />
                             <br/>
                             <span className={`${login?"sticky-hidden text-warning d-flex justify-content-end font-input my-2":"sticky-hidden"}`}>
-                            <label><input type="checkbox" name="remember" value="1"/>Remember me</label>
+                            <label><input type="checkbox" name="remember" value="1"/><span>Remember me</span></label>
                         </span>
                         </div>
 
@@ -185,7 +185,7 @@ const HeaderLogin = (props) => {
 
     return (
         <Container className={`${login?"d-flex flex-column mx-2":"top-login-section"}`}>
-            <Row className={`${login?"d-none":""}`} style={{float: "right"}}>
+            <div className={`${login?"d-none":"w-100"}`} style={{float: "right"}}>
                 <div className="col-12">
                     {/*<Link className="" to={"/signup"} title="Join now" onClick={() => gaEventTracker('Register')}>*/}
                     {/*    <span className="register-label">Register now!</span>*/}
@@ -195,8 +195,8 @@ const HeaderLogin = (props) => {
                         <span className="register-label">VERIFY ACCOUNT</span>
                     </Link>
                 </div>
-            </Row>
-            <div style={{float: "right"}} className={`${login?' d-flex justify-content-center align-items-center flex-column w-100 container-fluid' :' row '}`}>
+            </div>
+            <div style={{float: "right"}} className={`${login?' d-flex justify-content-center align-items-center flex-column w-100 container-fluid' :' w-100 top-login-margin '}`}>
                 <ToastContainer/>
                 <LoginForm/>
             </div>

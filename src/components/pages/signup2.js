@@ -95,9 +95,9 @@ const Signup2 = (props) => {
             <Form>
                 <div className="pt-0">
                     <div className="row">
-                        <div className='row'>
-                            <img src={ karibu} alt="" className={''}/>
-                        </div>
+                        {/*<div className='row'>*/}
+                        {/*    <img src={ karibu} alt="" className={''}/>*/}
+                        {/*</div>*/}
                         {/*<hr/>*/}
                         <div className="form-group container-lg row d-flex justify-content-center mt-5">
                             <div className="col-md-12">
@@ -137,7 +137,7 @@ const Signup2 = (props) => {
                                     <strong>SIGNUP</strong>
                                 </button>
                                 <Link className={`d-flex justify-content-center w-100 mt-3`} to={"/verify"} title="Verify" >
-                                    <span className={`text-success font-input register-label`} style={{fontSize:'18px'}}>Already have a verification code ?  </span>
+                                    <span className={`text-warning font-input register-label`} style={{fontSize:'18px'}}>Already have a verification code ?  </span>
                                 </Link>
                             </div>
                         </div>
@@ -167,7 +167,7 @@ const Signup2 = (props) => {
 
     return (
         <React.Fragment>
-            <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
+            <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark" >
                 <Container fluid className={'d-flex justify-content-between mobile-change'}>
                     <Navbar.Brand className="e logo align-self-start menu-control d-flex w-100" title="Betnare" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
                         <Link to={{pathname: "/"}} className="col-4 resize-mobile">
@@ -229,7 +229,7 @@ const Signup2 = (props) => {
                     </Navbar.Offcanvas>
                 </Container>
             </Navbar>
-            <div className={'desk-top profile-desktop-style' } >
+            <div className={'desk-top profile-desktop-style' } style={{padding:'20px',position:'sticky',top:'50px'}} >
                 <HeaderNav profile={true}/>
             </div>
             <div className="">

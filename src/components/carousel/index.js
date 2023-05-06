@@ -13,9 +13,12 @@ import jackpot from "../../assets/img/banner/products/HalfMilliJP.webp"
 import Drops from "../../assets/img/banner/products/DropsAndWins Web.webp"
 import Drops260 from  '../../assets/img/banner/products/Pragmatic260.webp'
 import Drops65 from '../../assets/img/banner/products/pragmatic65.webp'
+import Intermillan from  '../../assets/img/banner/products/RomavsInter.webp'
+import Liverpool from '../../assets/img/banner/products/LiverpoolvsBrentford.webp'
 
 const banners = [
-
+    {src: Liverpool, url: "/match/32877038"},
+    {src: Intermillan, url: "/match/32877032"},
     {src: Drops260, url: "/casino"},
     {src: Drops65, url: "/casino"},
     {src: Aviator, url: "/nare-games/aviator"},

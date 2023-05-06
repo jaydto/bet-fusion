@@ -207,7 +207,7 @@ const Deposit2 = (props) => {
 
     return (
         <React.Fragment>
-            <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
+            <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark" >
                 <Container fluid className={'d-flex justify-content-between mobile-change'}>
                     <Navbar.Brand className="e logo align-self-start menu-control d-flex w-100" title="Betnare" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
                         <Link to={{pathname: "/"}} className="col-4 resize-mobile">
@@ -269,7 +269,7 @@ const Deposit2 = (props) => {
                     </Navbar.Offcanvas>
                 </Container>
             </Navbar>
-            <div className={'desk-top profile-desktop-style' } >
+            <div className={'desk-top profile-desktop-style' } style={{padding:'20px',position:'sticky',top:'50px'}} >
                 <HeaderNav profile={true}/>
             </div>
 

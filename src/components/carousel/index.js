@@ -17,8 +17,6 @@ import Intermillan from  '../../assets/img/banner/products/RomavsInter.webp'
 import Liverpool from '../../assets/img/banner/products/LiverpoolvsBrentford.webp'
 
 const banners = [
-
-
     {src: Liverpool, url: "/match/32877038"},
     {src: Intermillan, url: "/match/32877032"},
     {src: Drops260, url: "/casino"},

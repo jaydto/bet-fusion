@@ -193,7 +193,7 @@ const Header = (props) => {
     },[ pathname ])
     return (
         <>
-            <Navbar expand="md"   className="mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar top-nav" fixed="top" variant="dark">
+            <Navbar expand="md"   className={`mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${user?'top-nav-login':'top-nav'}`} fixed="top" variant="dark">
                 <div className={'w-100 d-flex justify-content-between mobile-change desktop-ipad-size'}>
                     <div className={"d-flex w-100 directions-header-nav"}>
                         <Navbar.Brand className={`e logo align-self-start menu-control d-flex justify-content-between w-100`} title="Betnare">
@@ -234,7 +234,7 @@ const Header = (props) => {
                                             <Link className="" to={"#"} title="Search"
                                                   onClick={() => showSearchBar()}>
                                                 <span
-                                                    className="border-radius-search p-2 text-dark bg-light justify-content-center d-flex"><FontAwesomeIcon
+                                                    className="border-radius-search p-2 align-items-center text-dark bg-light justify-content-center d-flex"><FontAwesomeIcon
                                                     icon={faSearch}/> </span><span
                                             ></span>
                                             </Link>
@@ -290,14 +290,14 @@ const Header = (props) => {
                         {/*todo check information provided for a user*/}
                         <div className={` col-10 change-size desk-top`} id="navbar-collapse-main " >
                             <div
-                                className="col-md-11 col-sm-12 col-lg-7 right fix-view-2 disable-ipad to-navcheck justify-content-end">
+                                className="col-md-11 col-sm-12 col-lg-7 right fix-view-2 disable-ipad to-navcheck justify-content-end pt-lg-0 pt-md-3">
                                 {user ? <ProfileMenu user={user}/> : <HeaderLogin setUser={setUser}/>}
                             </div>
 
                         </div>
                     </div>
 
-                    <Row className="second-nav ck pc os app-navbar app-header-nav to-navcheck ">
+                    <Row className={`second-nav ck pc os app-navbar ${user?' app-header-nav-login ':' app-header-nav '} to-navcheck `}>
                         <HeaderNav/>
                     </Row>
                     <Row className={"mobile-only"}>

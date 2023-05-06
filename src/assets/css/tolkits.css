@@ -1418,6 +1418,9 @@ button {
 .shrink-header .top-nav {
     top: -4px;
 }
+.shrink-header .top-nav-login {
+    top: -4px;
+}
 
 .treeview-menu.menu-open {
     background: #3f6878 !important;
@@ -2186,6 +2189,16 @@ events-header {
 }
 
 .top-nav {
+    top: -2px;
+    padding-top: 10px;
+    background: #16202c!important;
+    background-size: cover;
+    background-position: center center;
+    padding-bottom: 17px;
+    background-size: cover;
+    z-index: 9999 !important;
+}
+.top-nav-login {
     top: -2px;
     padding-top: 10px;
     background: #16202c!important;
@@ -7257,10 +7270,6 @@ ul.sport {
         margin-top: 113px !important;
     }
 
-    .disable-ipad {
-        margin-top: -12px;
-        font-size: 12px;
-    }
 
     .market-odds {
         flex-basis: auto;
@@ -7284,6 +7293,9 @@ ul.sport {
     }
 
     .app-header-nav {
+        margin-top: -4px !important;
+    }
+    .app-header-nav-login {
         margin-top: -4px !important;
     }
 }
@@ -8065,6 +8077,9 @@ ul.sport {
     .app-header-nav {
         margin-top: 105px !important;
     }
+    .app-header-nav-login {
+        margin-top: 105px !important;
+    }
 }
 @media (min-width: 992px){
     .tablet-only{
@@ -8122,7 +8137,11 @@ ul.sport {
     .app-header-nav {
         padding-left: 4px;
         margin-top: -25px !important;
+    }.app-header-nav-login {
+        padding-left: 4px;
+        margin-top: -25px !important;
     }
+
     .app-navbar .e img {
         max-width: 130px !important;
     }
@@ -8309,6 +8328,9 @@ ul.sport {
     }
 
     .app-header-nav {
+        margin-top: 48px;
+    }
+    .app-header-nav-login {
         margin-top: 48px;
     }
 
@@ -9258,6 +9280,9 @@ ul.sport {
         top: 0px;
     }
 
+    .shrink-header .top-nav-login {
+        top: 0px;
+    }
     .shrink-header .profile a {
         display: none;
     }
@@ -9272,7 +9297,10 @@ ul.sport {
         top: 0px;
         z-index: 9999 !important;
     }
-
+    .top-nav-login {
+        top: 0px;
+        z-index: 9999 !important;
+    }
     .navbar-nav .open .dropdown-menu > li > a,
     .navbar-nav .open .dropdown-menu .oe {
         padding: 5px 15px 5px 25px;
@@ -9440,9 +9468,6 @@ ul.sport {
         justify-content: start !important;
     }
 
-    .app-navbar .e img {
-        max-width: 160px !important;
-    }
 }
 
 @media (max-width: 767px) {
@@ -9508,6 +9533,10 @@ ul.sport {
         display:none!important;
     }
     .top-nav::-webkit-scrollbar{
+        display:none!important;
+        padding-bottom:0px!important;
+    }
+    .top-nav-login::-webkit-scrollbar{
         display:none!important;
         padding-bottom:0px!important;
     }
@@ -12412,6 +12441,9 @@ button.close {
 
 @media (min-width: 865px) and (max-width: 991px) {
     .app-header-nav {
+        top: 62px
+    }
+    .app-header-nav-login {
         top: 62px
     }
 }
@@ -16155,6 +16187,9 @@ img.zoom-img {
         /*width: max-content!important;*/
     }
     .top-nav{
+        padding-bottom: 0px;
+    }
+    .top-nav-login{
         padding-bottom: 0px;
     }
     /*mobile header slider*/

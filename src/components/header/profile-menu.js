@@ -15,7 +15,7 @@ const ProfileMenu = (props) => {
         <>
             {user && (
                 <>
-                    <div className="row w-100 d-flex align-items-center justify-content-end pt-3 px-3 ">
+                    <div className="row w-100 d-flex align-items-center justify-content-end px-3 ">
 
                         <div className="col d-flex flex-column text-white align-items-end"  title={'CASH'}>
                             <div className={"profile-wrap"} style={{color: "#FFB200"}}>

@@ -53,7 +53,7 @@ const Profile = () => {
 
     return (
         <div>
-            <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
+            <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark" >
                 <Container fluid className={'d-flex justify-content-between mobile-change'}>
                     <Navbar.Brand className="e logo align-self-start menu-control d-flex w-100" title="Betnare" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
                         <Link to={{pathname: "/"}} className="col-4 resize-mobile">
@@ -74,21 +74,22 @@ const Profile = () => {
                                       </span>
                                 </Link>
                             </div>
-                            <div>
+                            {user&&<div>
                                 <Link
                                     to={{pathname: "/logout"}}
                                     className={"deposit-button size-font-user-action"}
-                                    style={{marginRight: "12px",fontSize:'14px'}} title={'LOGOUT'}>
+                                    style={{marginRight: "12px", fontSize: '14px'}} title={'LOGOUT'}>
                                       <span className="text-warning">
-                                       <span className=" "><FontAwesomeIcon icon={faPowerOff} className={"text-warning"}/>
+                                       <span className=" "><FontAwesomeIcon icon={faPowerOff}
+                                                                            className={"text-warning"}/>
                                            </span>&nbsp;
-                                         LOGOUT
+                                          LOGOUT
                                       </span>
                                 </Link>
+                            </div>}
+                            <div className="col-1 button-toggle mx-2" style={{width: "3.1rem"}}>
+                                <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"md"}`} className="px-3 py-3 user-profile" />
                             </div>
-                        <div className="col-1 button-toggle mx-2" style={{width: "3.1rem"}}>
-                            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"md"}`} className="px-3 py-3 user-profile" />
-                        </div>
                         </div>
 
                     </Navbar.Brand>
@@ -114,9 +115,9 @@ const Profile = () => {
                     </Navbar.Offcanvas>
                 </Container>
             </Navbar>
-           <div className={'desk-top profile-desktop-style' } >
-               <HeaderNav profile={true}/>
-           </div>
+            <div className={'desk-top profile-desktop-style' } style={{padding:'10px 0',position:'sticky',top:'63px'}} >
+                <HeaderNav profile={true}/>
+            </div>
 
             <div className="row d-flex flex-column gap-3 px-4 py-sm-4 py-lg-0 justify-content-center align-items-center" style={{maxWidth: "991px", margin: "auto"}}>
                 <div style={userIn}>

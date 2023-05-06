@@ -269,7 +269,7 @@ const Deposit2 = (props) => {
                     </Navbar.Offcanvas>
                 </Container>
             </Navbar>
-            <div className={'desk-top profile-desktop-style' } style={{padding:'20px',position:'sticky',top:'50px'}} >
+            <div className={'desk-top profile-desktop-style' } style={{padding:'10px 0',position:'sticky',top:'63px'}} >
                 <HeaderNav profile={true}/>
             </div>
 

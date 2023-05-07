@@ -67,9 +67,9 @@ const Casino = (props) => {
                     <div className="gz home" style={{width: '100%'}}>
                         <div className="homepage">
                             <div className="col-md-12 d-flex flex-column">
-                                <div className="col-md-12">
+                                <div className="col-md-12 d-flex casino-scroll" >
                                     <div
-                                        className="shadow-sm p-2 shadow-sm casino-category-container mt-2">
+                                        className="shadow-sm p-2 shadow-sm casino-category-container mt-2 w-100">
 
                                         {categories?.map((category) => (
                                             category?.game_type_id !== "rgs-vsb"

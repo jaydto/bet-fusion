@@ -45,14 +45,14 @@
 }
 
 
-.casino-category-container {
-    display: flex;
-    position: sticky !important;
-    flex-direction: row !important;
-    justify-content: space-around;
-    align-items: flex-start;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important;
-}
+/*.casino-category-container {*/
+/*    display: flex;*/
+/*    position: sticky !important;*/
+/*    flex-direction: row !important;*/
+/*    justify-content: space-around;*/
+/*    align-items: flex-start;*/
+/*    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important;*/
+/*}*/
 
 .shark-1 {
     position: sticky;
@@ -66,17 +66,17 @@
     flex-direction: row;
 }
 
-.casino-category {
-    width: 100%;
-    border-radius: 5px;
-    background-color: #0e131b;
-    padding: 2px;
-    color: white;
-    position: sticky !important;
-    top: 4rem;
-    margin-left: 2px;
-    outline: none !important;
-}
+/*.casino-category {*/
+/*    width: 100%;*/
+/*    border-radius: 5px;*/
+/*    background-color: #0e131b;*/
+/*    padding: 2px;*/
+/*    color: white;*/
+/*    position: sticky !important;*/
+/*    top: 4rem;*/
+/*    margin-left: 2px;*/
+/*    outline: none !important;*/
+/*}*/
 
 .virtual-game-container {
     box-shadow: 0px 1px 5px 3px #253743 !important;
@@ -725,11 +725,22 @@ header, li a, .thedate span {
 }
 
 .text-center {
-    text-align: center;
     display: block;
     margin: auto;
     max-width: 100%;
     overflow: auto;
+    text-align: center;
+}
+.casino-category, .virtual-game-container {
+    background-color: #0e131b;
+    border-radius: 5px;
+    color: #fff;
+    margin-left: 2px;
+    outline: none!important;
+    padding: 2px;
+    position: -webkit-sticky!important;
+    position: sticky!important;
+    top: 4rem;
 }
 
 .text-center img {
@@ -15854,15 +15865,15 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     }
 }
 
-.casino-category-button {
-    border: thin solid rgba(0, 0, 0, 0.15);
-    padding: 5px 15px;
-    margin-right: 5px;
-    border-radius: 25px;
-    white-space: nowrap;
-    font-weight: bold;
-    font-size: 16px;
-}
+/*.casino-category-button {*/
+/*    border: thin solid rgba(0, 0, 0, 0.15);*/
+/*    padding: 5px 15px;*/
+/*    margin-right: 5px;*/
+/*    border-radius: 25px;*/
+/*    white-space: nowrap;*/
+/*    font-weight: bold;*/
+/*    font-size: 16px;*/
+/*}*/
 
 .casino-category-button:hover {
     background: #ffc428;

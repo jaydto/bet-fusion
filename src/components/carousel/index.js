@@ -13,8 +13,10 @@ import jackpot from "../../assets/img/banner/products/HalfMilliJP.webp"
 import Drops from "../../assets/img/banner/products/DropsAndWins Web.webp"
 import Drops260 from  '../../assets/img/banner/products/Pragmatic260.webp'
 import Drops65 from '../../assets/img/banner/products/pragmatic65.webp'
+import Real from '../../assets/img/banner/products/RealMadridvsManCity.webp'
 
 const banners = [
+    {src: Real, url: "/match/32868848"},
     {src: Drops260, url: "/casino"},
     {src: Drops65, url: "/casino"},
     {src: Aviator, url: "/nare-games/aviator"},

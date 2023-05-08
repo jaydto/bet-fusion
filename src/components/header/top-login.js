@@ -14,6 +14,7 @@ import {ButtonGroup} from "react-bootstrap";
 import LoginModal from "../modals/LoginModal";
 import RegisterModal from "../modals/RegisterModal";
 import VerifyModal from "../modals/VerifyModal";
+import {Switch} from "@material-ui/core";
 
 export const  Notify = (message) => {
     let options = {
@@ -111,22 +112,29 @@ const HeaderLogin = (props) => {
             let value = ev.target.value;
             setFieldValue(field, value);
         }
+        const label = { inputProps: { 'aria-label': 'remember me',
+                'value':'Remember me'} };
+
         return (
             <>
-                <Form className="ow right i web-element top-login-paddings" style={login&&{width:'97vw'}}>
+                <Form className={`ow right i web-element top-login-paddings ${login&&'width-centric-page top-login-background-img'}`}>
                     <Row className={`${login?"d-flex flex-column":"top-login-desktop-input"}`}>
                         <div className={`${login?"w-100 ": "col-4"}`}>
                             <input type="text"
                                    name="msisdn"
                                    className={`${login?"w-100 input-field button-radius":""}  text-dark deposit-input form-control col input-field-login  ${errors.msisdn && 'text-danger'}`}
                                    // data-action="grow"
-                                   placeholder={errors.msisdn || "+254........."}
+                                   placeholder={errors.msisdn || "+254987654389"}
                                    onChange={ev => onFieldChanged(ev)}
                                    value={values.msisdn}
                             />
                             <br/>
                             <span className={`${login?"sticky-hidden text-warning d-flex justify-content-end font-input my-2":"sticky-hidden"}`}>
-                            <label><input type="checkbox" name="remember" value="1"/><span>Remember me</span></label>
+                            {/*<label>*/}
+                                {/*<input type="checkbox" name="remember" value="1"/><span>Remember me</span></label>*/}
+                            <div className={'text-warning'}>
+                                <Switch id={"remember-me"} {...label} className="odds-change-box" name={"accept_all_odds_change"}  defaultChecked color={'warning'} /> Remember Me
+                            </div>
                         </span>
                         </div>
 
@@ -157,7 +165,7 @@ const HeaderLogin = (props) => {
                         <Row className={`${login?"d-flex":"d-none"}`} style={{float: "right"}}>
                             <div className="col-12">
                                 <Link className={`${login?"d-flex justify-content-center w-100":""}`} to={"/signup"} title="Join now" onClick={() => gaEventTracker('Register')}>
-                                    <span className={`${login?"text-warning font-input ":""}register-label`}>{login?"Dont have an account! Register now ": "Register now!"}</span>
+                                    <span className={`${login?"text-warning font-input ":""} register-label my-3`}>{login?"Dont have an account! Register now ": "Register now!"}</span>
                                 </Link>
                                 <Link className="m-lg-2 badge bg-success d-none" to={"/verify-account"} title="Verify Account"
                                       onClick={() => gaEventTracker('Verify')}>

@@ -218,8 +218,10 @@ const MyBets = (props) => {
                             <CarouselLoader/>
                             <Testimonials/>
                             <PageTitle />
-                            <BetItemHeader />
-                            <MyBetsList  />
+                           <div className={'top-login-background-img-bg'}>
+                               <BetItemHeader />
+                               <MyBetsList  />
+                           </div>
                         </div>
                     </div>
 

@@ -185,8 +185,8 @@ input, select, textarea {
 }
 
 .pro-sidebar > .pro-sidebar-inner {
-    /*background-color: #253743 !important;*/
-    background:#16202C!important;
+    /* background-color: #253743 !important; */
+    background: #141d28!important;
 }
 
 .pro-sidebar .pro-menu .pro-menu-item.pro-sub-menu .pro-inner-list-item {
@@ -16802,12 +16802,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 
 /*todo check height of right betslip*/
 
-.betslip-container {
-    /*position: sticky !important;*/
-    /*top: 12.5rem;*/
-    /*background: #253743 !important;*/
-    background:#16202C!important;
-}
+
 .to-profile-check:empty{
     display:none;
 }

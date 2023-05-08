@@ -72,7 +72,7 @@ const Deposit2 = React.lazy(
 
 //todo changed from signup
 const Signup = React.lazy(
-    () => import('./components/pages/signup2')
+    () => import('./components/pages/registerTwo')
 );
 
 const ResetPassword = React.lazy(
@@ -119,7 +119,7 @@ const Kiron=React.lazy(()=>import('./components/pages/Kiron/index'))
 
 const BetslipPage =React.lazy(()=> import("./components/pages/betslip/betslipPage"))
 
-const Login=React.lazy(()=>import('./components/pages/Login'));
+const Login=React.lazy(()=>import('./components/pages/loginTwo'));
 
 const Profile =React.lazy(()=>import( "./components/pages/Accounts/Profile"));
 

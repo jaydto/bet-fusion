@@ -176,7 +176,7 @@ const MatchHeaderRow = (props) => {
 
       <Row className={`full-mobile sticky-top ${jackpot?'sticky-jackpot ':user?"sticky-user":'sticky-responsive '}px-lg-3`}>
         <div className="top-matches d-flex position-sticky sticky-top shadow-lg"
-             style={{opacity: "1", top: "100px", background:'#16202C'}}>
+             style={{opacity: "1", top: "100px", background:'#141d28'}}>
           <div className={"size-info  d-flex col-xs-12 pad left-text"}>
             <div className="col pad left-text d-flex">
               <div className="align-self-center col">
@@ -1361,10 +1361,10 @@ export const JackpotMatchList = (props) => {
 
 
   return (
-      <div className="matches full-width mt-1">
+      <div className="matches full-width mt-1 ">
 
         <MatchHeaderRow jackpot={true} first_match={matches ? matches[0] : []}/>
-        <div className={'row d-flex flex-row justify-content-between shadow-lg'}>
+        <div className={'row d-flex flex-row justify-content-between shadow-lg '}>
           <div className="col-md-12 text-center shadow-lg">
             <div className={'text-white col'}>
               Wekelea Jackpot Bet bila worries na Nare Auto pick.
@@ -1379,7 +1379,7 @@ export const JackpotMatchList = (props) => {
             </div>
           </div>
         </div>
-        <Row className="web-element">
+        <Row className="web-element top-login-background-img-bg">
           {matches && Object.entries(matches?.data).map(([key, match]) => (
               <MatchRow match={match} jackpot key={key}/>
           ))
@@ -1402,7 +1402,7 @@ const MatchList = (props) => {
         {/*<LiveSidebar/>*/}
         {matches && <MatchHeaderRow live={live} first_match={matches ? matches[0] : {}}/>}
 
-        <Row className="web-element px-lg-3">
+        <Row className="web-element px-lg-3 top-login-background-img-bg">
           {matches &&
               Object.entries(matches).map(([key, match]) => (
                   <MatchRow match={match} key={key} live={live} pdown={pdown} three_way={three_way}/>

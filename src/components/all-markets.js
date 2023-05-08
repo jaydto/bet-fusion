@@ -101,7 +101,7 @@ const MatchAllMarkets = (props) => {
     return (<>
             <Header/>
 
-            <div className="amt">
+            <div className="amt top-login-background-img-bg">
                 <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions/>
                     <div className="gz home" style={{ width: "100%" ,marginBottom:"5rem"}}>

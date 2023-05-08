@@ -89,7 +89,7 @@ const Jackpot = (props) => {
     return (
         <>
             <Header/>
-            <div className={(width<=575?user?"user_logged":"amt":"amt")}>
+            <div className={(width<=575?user?"user_logged ":"amt":"amt")}>
                 <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions/>
                     <div className="gz home" style={{width: "100%", overflowX: "clip"}}>

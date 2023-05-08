@@ -1,9 +1,24 @@
+:root {
+    --betnare-primary:#16202C;
+    --betnare-secondary: #2c3c44;
+    --betnare-button-login: #FFC107;
+    --betnare-button-register: #ffffff;
 
+}
 .casino-scroll{
     overflow-x: auto;
 }
 .casino-scroll::-webkit-scrollbar{
     display: none;
+}
+.directions-header-nav{
+    background: #141d28;
+}
+.betslip-container {
+    /*position: sticky !important;*/
+    /*top: 12.5rem;*/
+    /*background: #253743 !important;*/
+    background:#141d28!important;
 }
 .sport_dropdowns {
     display: flex;
@@ -21,6 +36,9 @@
     min-height:72px;
     padding: 11px 4px 5px 0px;
 
+}
+.form-title-centric{
+    font-size: 30px;
 }
 .top-nav-login {
     min-height: 68px;
@@ -70,7 +88,43 @@ select::after{
     border-radius: 2px;
     color:white;
 }
+.width-centric-page{
+    width:36vw;
+}
 
+.top-login-background-img-bg{
+    background-image:url("../../assets/img/auth/backtop.webp");
+    /*transform: rotate(45deg);*/
+    background-position: top left;
+}
+
+.top-login-background-img-bg-page{
+    background-image:url("../../assets/img/auth/backtop.webp") !important;
+    background-repeat: no-repeat;
+    /*transform: rotate(45deg);*/
+    background-position: top left;
+}
+.top-login-background-img-bg-page::before{
+    background-image:url("../../assets/img/auth/backimg.webp") !important;
+    background-repeat: no-repeat;
+    /*transform: rotate(45deg);*/
+    background-position: top left;
+}
+.top-login-background-img-bg-down{
+    background-image:url("../../assets/img/auth/backimg.webp")!important;
+    background-repeat: no-repeat;
+    background-position: bottom right;
+}
+.top-login-background-img-bg-down::after{
+    background-image:url("../../assets/img/auth/backimg.webp")!important;
+    background-repeat: no-repeat;
+    background-position: bottom right;
+}
+.width-page-centric{
+    box-shadow:5px 7px 30px 8px #2c3c44;
+    width:60%;
+    margin:auto;
+}
 .font-btn:hover{
     color:#ffda22!important;
 }
@@ -151,7 +205,7 @@ select::after{
 .pro-sidebar {
     color: #adadad;
     height: 100%;
-    width: 225px!important;
+    width: 247px!important;
     min-width: 215px!important;
     text-align: left;
     transition: width, left, right, 0.3s;
@@ -452,6 +506,23 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 @media (max-width: 991px){
+    .top-login-background-img{
+        background-image:url("../../assets/img/auth/backimg.webp") ;
+    }
+    .w-change3{
+        width:28%;
+    }
+    .form-title-centric{
+        font-size: 20px;
+    }
+    .width-page-centric{
+        box-shadow: none;
+        width:100%;
+        margin:auto;
+    }
+    .width-centric-page{
+        width:76vw;
+    }
     .virtual.casino-category{
         width: 99vw;
     }
@@ -510,9 +581,7 @@ input[type="radio"], input[type="checkbox"] {
     .kiron-size{
         width:100vw;
     }
-    .login-page{
-        height:80vh;
-    }
+
     .sign-up-size{
         width:100vw!important;
     }
@@ -630,6 +699,9 @@ input[type="radio"], input[type="checkbox"] {
 
 }
 @media (max-width: 575px){
+    .width-centric-page {
+        width: 92vw;
+    }
     .remove-on-smaller-screen{
         display:none;
     }
@@ -703,10 +775,27 @@ input[type="radio"], input[type="checkbox"] {
     .app-navbar .e img {
         max-width: 90px !important;
     }
+    .button-toggle {
+       margin-left: 6px;
+    }
+    .login-size {
+        background: #2D4352;
+        padding: 3px 4px;
+        margin-left: 0px;
+        height: 2.0rem;
+        display: flex;
+    }
+    .app-navbar .e img {
+        max-width: 96px !important;
+        margin-bottom: 4px!important;
+        height: 25px;
+    }
     .border-radius-search {
         border-radius: 10px !important;
         height: 20px;
         width: 20px;
+        align-items: center;
+        justify-content: center;
     }
     .size-font-user-action {
         font-size: 8px!important;

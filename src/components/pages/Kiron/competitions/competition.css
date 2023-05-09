@@ -60,7 +60,7 @@ img{
     background-color: transparent;
     text-decoration: none;
 }
-@media (min-width:200px) and (max-width: 420px){
+@media (min-width:200px) and (max-width: 991px){
     .app-countries-icons {
         margin-top: 28px!important;
     }

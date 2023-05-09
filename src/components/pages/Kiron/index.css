@@ -189,7 +189,8 @@
     display: block;
 }
 .kiron-tabs-padding{
-    padding:3px!important
+    padding:3px!important;
+    white-space: nowrap;
 }
 .kiron-match-playout{
     display: flex;

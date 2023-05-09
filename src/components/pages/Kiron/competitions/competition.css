@@ -5,7 +5,6 @@
     overflow-x: hidden;
     overflow-y: hidden;
     background: #34495e;
-    /*margin-top:47px;*/
     max-height:59px;
 }
 .country-flag-icon .icon img {
@@ -60,4 +59,9 @@ img{
     vertical-align: baseline;
     background-color: transparent;
     text-decoration: none;
+}
+@media (min-width:200px) and (max-width: 420px){
+    .app-countries-icons {
+        margin-top: 28px!important;
+    }
 }

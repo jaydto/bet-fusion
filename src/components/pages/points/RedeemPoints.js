@@ -172,9 +172,6 @@ const RedeemPoints = (props) => {
                             </div>
                         </div>
                     </div>
-                    <div className={"mobile-top"}>
-                        <Right/>
-                    </div>
                 </div>
             </div>
             <div className={"footer-mobile-none"}>

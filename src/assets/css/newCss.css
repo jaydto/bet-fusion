@@ -14,3 +14,44 @@
         opacity: 1;
     }
 }
+.casino-category-container {
+    align-items: flex-start;
+    box-shadow: 0 5px 15px rgba(0,0,0,.35)!important;
+    display: flex;
+    flex-direction: row!important;
+    justify-content: space-around;
+    overflow: auto;
+    position: -webkit-sticky!important;
+    position: sticky!important;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+}
+
+.casino-category-button {
+    border: thin solid rgba(0,0,0,.15);
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 700;
+    margin-right: 5px;
+    padding: 5px 15px;
+    white-space: nowrap;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+}
+.casino-category {
+    width: fit-content;
+    border-radius: 11px;
+    padding: 0 8px!important;
+    background-color: #0e131b;
+    padding: 2px;
+    color: white;
+    position: sticky !important;
+    top: 4rem;
+    margin-left: 2px;
+    outline: none !important;
+}
+.casino-scroll {
+    overflow-x: auto;
+}

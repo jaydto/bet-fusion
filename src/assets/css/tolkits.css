@@ -1610,7 +1610,7 @@ header {
     .top-matches div {
         min-height: 24px;
         justify-content: end;
-        background: #16202C;
+        /*background: #16202C;*/
     }
 
     .home-tabs .main-header, .home-tabs-active .main-header {
@@ -2158,8 +2158,7 @@ events-header {
 }
 .top-nav-login {
     top: -2px;
-    padding-top: 10px;
-    background: #16202c!important;
+    padding-top: var(--betnare-header-bg)!important;
     background-size: cover;
     background-position: center center;
     padding-bottom: 17px;
@@ -2263,19 +2262,7 @@ events-header {
     font-weight: bold !important;
 }
 
-.matches .top-matches {
-    /*background: #253743;*/
-    padding-top: 10px;
-    padding-bottom: 3px;
-    margin-bottom: 0px;
-    padding-left: 10px;
-    padding-right: 10px;
-    font-weight: normal;
-    color: #fff;
-    font-size: 12px;
-    opacity: 0.8;
-    /*border-bottom: 1px solid #334c5c;*/
-}
+
 
 .mobi #search-event {
     padding-top: 0;
@@ -2789,13 +2776,6 @@ footer a {
     color: #fff;
 }
 
-.betslip-header {
-    clear: both;
-    background: #4c372a;
-    color: #fff;
-    text-shadow: 0px 0px 1px #fbe2a4;
-    font-family: arial;
-}
 
 .bkmrk, .slp {
     padding: 8px 0 6px 15px;
@@ -7427,7 +7407,7 @@ ul.sport {
     .top-matches div {
         min-height: 24px;
         justify-content: end;
-        background: #16202C;
+        /*background: #16202C;*/
     }
     /*}*/
 
@@ -17153,7 +17133,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 
 .profile-bg {
     /*background: #253743;*/
-    background:#16202C;
+    background: var(--betnare-primary);
 }
 
 .user-style {

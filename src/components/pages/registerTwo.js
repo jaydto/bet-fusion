@@ -113,7 +113,7 @@ const RegisterTwo = props => {
 								<label>Mobile Number</label>
 								<input
 									value={values.msisdn}
-									className="text-dark deposit-input form-control col-md-12 input-field input-bg-user"
+									className="text-light deposit-input form-control col-md-12 input-field input-bg-user"
 									id="msisdn"
 									name="msisdn"
 									type="text"
@@ -129,7 +129,7 @@ const RegisterTwo = props => {
 								<label>Password</label>
 								<input
 									value={values.password}
-									className="text-dark deposit-input form-control col-md-12 input-field input-bg-user"
+									className="text-light deposit-input form-control col-md-12 input-field input-bg-user"
 									id="password"
 									name="password"
 									type="password"
@@ -175,12 +175,12 @@ const RegisterTwo = props => {
 	};
 	return (
 		<div style={{height:'100vh', background:'#16202C'}}>
-			<div className={'ipad-show'}>
+			<div className={''}>
 				<Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
 					<Container fluid className={'d-flex justify-content-between mobile-change top-login-background-img'}>
 						<Navbar.Brand className="e logo align-self-start menu-control d-flex w-100" title="Betnare" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
 							<Link to={'/'}>
-								<FontAwesomeIcon icon={faBackspace}/>
+								<FontAwesomeIcon icon={faBackspace}/> HOME
 							</Link>
 							<div
 								className="col-md-6  d-flex  right justify-content-end align-items-center w-change3 gap-2 top-login-background-img-bg-page"
@@ -225,11 +225,12 @@ const RegisterTwo = props => {
 						</div>
 						<Row justify="center">
 							<Col xs={0} sm={0} md={0} lg={20}>
+								<h1 className="text-white text-center" style={{fontSize:"40px", marginBottom:'14px'}}>Welcome to</h1>
+
 								<Link to={'/'}>
 									<img className="img-fluid mb-5" src={authImg} alt=""/>
 								</Link>
 
-								<h1 className="text-white text-center" style={{fontSize:"30px"}}>Welcome to betnare</h1>
 								<p className="text-white px-3 d-flex align-items-center justify-content-center mt-3" style={{fontSize:"16px", opacity:'0.5px'}}>Bet ni Moto<img src={fire}  style={{width:"20px"}} alt={'betnare'}/></p>
 							</Col>
 						</Row>
@@ -261,7 +262,7 @@ const RegisterTwo = props => {
 												<div className="homepage d-flex flex-column align-items-center justify-content-center login-page">
 													<div className="col-md-12 mt-2 text-white p-2">
 													{message && <Alert/>}
-													{success?setTimeout(window.location.href="/verify",1000):""}
+													{success?setTimeout(window.location.href="/verify",1500):""}
 													<div className="modal-body pb-0" data-backdrop="static">
 														<SignupForm/>
 													</div>

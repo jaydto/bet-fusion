@@ -122,7 +122,7 @@ const HeaderLogin = (props) => {
                         <div className={`${login?"w-100 ": "col-4"}`}>
                             <input type="text"
                                    name="msisdn"
-                                   className={`${login?"w-100 input-field button-radius":""}  text-dark deposit-input form-control col input-field-login  ${errors.msisdn && 'text-danger'}`}
+                                   className={`${login?"w-100 input-field button-radius":""}  text-light deposit-input form-control col input-field-login  ${errors.msisdn && 'text-danger'}`}
                                    // data-action="grow"
                                    placeholder={errors.msisdn || "+254987654389"}
                                    onChange={ev => onFieldChanged(ev)}
@@ -141,7 +141,7 @@ const HeaderLogin = (props) => {
                         <div className={`${login?"w-100 ": "col-4"}`}>
                             <input type="password"
                                    name="password"
-                                   className={`${login?"w-100 input-field button-radius":""} text-dark deposit-input form-control col input-field-login  ${errors.password && 'text-danger'} `}
+                                   className={`${login?"w-100 input-field button-radius":""} text-light deposit-input form-control col input-field-login  ${errors.password && 'text-danger'} `}
                                    // data-action="grow"
                                    placeholder={errors.password || "Password"}
                                    onChange={ev => onFieldChanged(ev)}

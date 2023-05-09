@@ -118,7 +118,7 @@ const ResetPassword = (props) => {
                                 <label>Mobile Number</label>
                                 <input
                                     value={values.mobile}
-                                    className="text-dark deposit-input form-control col-md-12 input-field"
+                                    className="text-light deposit-input form-control col-md-12 input-field"
                                     id="mobile"
                                     name="mobile"
                                     type="text"
@@ -164,7 +164,7 @@ const ResetPassword = (props) => {
                                     <label>OTP</label>
                                     <input
                                         value={values.code}
-                                        className="text-dark deposit-input form-control col-md-12 input-field"
+                                        className="text-light deposit-input form-control col-md-12 input-field"
                                         id="otp"
                                         name="code"
                                         type="text"
@@ -181,7 +181,7 @@ const ResetPassword = (props) => {
                                     <label>Password</label>
                                     <input
                                         value={values.password}
-                                        className="text-dark deposit-input form-control col-md-12 input-field"
+                                        className="text-light deposit-input form-control col-md-12 input-field"
                                         id="password"
                                         name="password"
                                         type="password"
@@ -198,7 +198,7 @@ const ResetPassword = (props) => {
                                     <label>Confirm Password</label>
                                     <input
                                         value={values.repeat_password}
-                                        className="text-dark deposit-input form-control col-md-12 input-field"
+                                        className="text-light deposit-input form-control col-md-12 input-field"
                                         id="confirm_password"
                                         name="repeat_password"
                                         type="password"

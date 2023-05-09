@@ -104,7 +104,7 @@ const Signup2 = (props) => {
                                 <label>Mobile Number</label>
                                 <input
                                     value={values.msisdn}
-                                    className="text-dark deposit-input form-control col-md-12 input-field input-bg-user"
+                                    className="text-light deposit-input form-control col-md-12 input-field input-bg-user"
                                     id="msisdn"
                                     name="msisdn"
                                     type="text"
@@ -120,7 +120,7 @@ const Signup2 = (props) => {
                                 <label>Password</label>
                                 <input
                                     value={values.password}
-                                    className="text-dark deposit-input form-control col-md-12 input-field input-bg-user"
+                                    className="text-light deposit-input form-control col-md-12 input-field input-bg-user"
                                     id="password"
                                     name="password"
                                     type="password"

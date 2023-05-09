@@ -27,6 +27,8 @@ const Right = (props) => {
     const [betSlipMobile, setBetSlipMobile] = useState(false)
     const [state, dispatch] = useContext(Context);
     console.log("kiron", kiron)
+
+
     //todo top height style ={{top:"13.5rem"
     return (
         <div className={`col-md-3 gn betslip-container sticky-top vh-100 overflow-scroll betslip-container-mozilla container-sticky-top top-login-background-img-bg ${kiron&&'kiron-betslip-size'}`}>
@@ -34,23 +36,23 @@ const Right = (props) => {
                 {props?.message && <AlertMessage classname={props.classname} message={props.message}/>}
                 <div className="bet-option-list " id=''>
                     <div className="bet alu block-shadow">
-                        <header>
-                            <div className="betslip-header d-flex justify-content-between">
-                    <span className="col-sm-2 bkmrk d-none">
-                        <i className="fa fa-bookmark" aria-hidden="true"></i></span>
-                                <span className="col-sm-8 slp">BETSLIP</span>
-                                <span className="col-sm-2 slip-counter text-white">
+                        <header className={'d-flex justify-content-between gap-2'}>
+                            <div className="betslip-header d-flex justify-content-between w-100">
+                            <span className="col-sm-2 bkmrk d-none">
+                            <i className="fa fa-bookmark" aria-hidden="true"></i></span>
+                                    <span className="col-sm-8 slp">BETSLIP</span>
+                                    <span className="col-sm-2 slip-counter text-white">
 
-                                    <Badge pill
-                                           bg="warning nav__betslip d-flex justify-content-center align-items-center">
+                                        <Badge pill
+                                               bg="warning nav__betslip d-flex justify-content-center align-items-center">
 
-                                        {(jackpot === true ?
-                                            getJackpotBetslip() ? Object.keys(getJackpotBetslip()).length : 0
-                                            :kiron==true?
-                                                getKironSlip()?Object.keys(getKironSlip()).length:0:
-                                                getBetslip() ? Object.keys(getBetslip()).length : 0)}
-                                    </Badge>
-                                </span>
+                                            {(jackpot === true ?
+                                                getJackpotBetslip() ? Object.keys(getJackpotBetslip()).length : 0
+                                                :kiron==true?
+                                                    getKironSlip()?Object.keys(getKironSlip()).length:0:
+                                                    getBetslip() ? Object.keys(getBetslip()).length : 0)}
+                                        </Badge>
+                                    </span>
                             </div>
                         </header>
                         <button id="slip-button-close" type="button" className="close mobi" aria-hidden="true">

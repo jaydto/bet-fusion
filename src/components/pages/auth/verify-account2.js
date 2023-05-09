@@ -29,6 +29,7 @@ const backgroundStyle = {
 const VerifyAccount2 = props => {
     const [message, setMessage] = useState(null);
     // const {setUser} = props;
+    const [isMobileNumberValid, setIsMobileNumberValid] = useState(false);
     const navigate = useNavigate();
     const expand = "md"
     const {height, width} = useWindowDimensions();
@@ -64,15 +65,14 @@ const VerifyAccount2 = props => {
     const handleSubmit = values => {
         let endpoint = '/v1/verify';
         makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
-            setSuccess(status === 200 || status === 201)
             setMessage(response.success ? response.success.message : response.error.message);
             response.success ? setSuccess(true) : setSuccess(false)
 
-            if (status === 200 || status === 201) {
+            if (response?.success) {
                 setLocalStorage('user', response?.success?.user);
                 let timer = setInterval(() => {
                     clearInterval(timer)
-                    window.location.href = "/"
+                    window.location.href = "/deposit"
                 }, 1000)
             }
 
@@ -105,15 +105,20 @@ const VerifyAccount2 = props => {
         }
 
         makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
-            setSuccess(status === 200 || status === 201);
+            console.log("status_verify", status)
             setMessage(response.success ? response.success.message : response.error.message);
-            response.error ? setSuccess(false) : setSuccess(true)
+            let timer = setInterval(() => {
+                setIsMobileNumberValid(false)
+                clearInterval(timer)
+            }, 3000)
+            response?.success&&timer()
+            response.error ? setSuccess(false) : setSuccess(false)
         })
     }
 
     const FormTitle = () => {
         return (
-            <div className='col-md-12 col-md-12  pt-4 text-center text-light py-3 text-center w-100 top-login-mobile' style={{margin:'0px' }}>
+            <div className='col-md-12  pt-4 text-center text-light' >
                 <h4 className="inline-block">
                     VERIFY YOUR PHONE NUMBER
                 </h4>
@@ -124,7 +129,6 @@ const VerifyAccount2 = props => {
 
     const MyVerifyAccountForm = (props) => {
         const {errors, values, submitForm, setFieldValue} = props;
-        const [isMobileNumberValid, setIsMobileNumberValid] = useState(false);
 
         const onFieldChanged = (ev) => {
             let field = ev.target.name;
@@ -144,7 +148,7 @@ const VerifyAccount2 = props => {
                                     <div className="col-md-12 mb-3">
                                         <input
                                             value={values.mobile}
-                                            className="h-100 text-dark deposit-input form-control col-md-12 input-field"
+                                            className="h-100 text-light deposit-input form-control col-md-12 input-field"
                                             id="mobile"
                                             name="mobile"
                                             type="text"
@@ -179,7 +183,7 @@ const VerifyAccount2 = props => {
                                 <label>Code (OTP)</label>
                                 <input
                                     value={code !== null ? code : values.code}
-                                    className="text-dark deposit-input form-control col-md-12 input-field"
+                                    className="text-light deposit-input form-control col-md-12 input-field"
                                     id="code"
                                     name="code"
                                     type="code"
@@ -226,12 +230,12 @@ const VerifyAccount2 = props => {
 
     return (
         <div style={{height:'100vh', background:'#16202C'}}>
-            <div className={'ipad-show'}>
+            <div className={''}>
                 <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
                     <Container fluid className={'d-flex justify-content-between mobile-change top-login-background-img'}>
                         <Navbar.Brand className="e logo align-self-start menu-control d-flex w-100" title="Betnare" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
                             <Link to={'/'}>
-                                <FontAwesomeIcon icon={faBackspace}/>
+                                <FontAwesomeIcon icon={faBackspace}/> HOME
                             </Link>
                             <div
                                 className="col-md-6  d-flex  right justify-content-end align-items-center w-change3 gap-2 top-login-background-img-bg-page"
@@ -280,7 +284,7 @@ const VerifyAccount2 = props => {
                                     <img className="img-fluid mb-5" src={authImg} alt=""/>
                                 </Link>
 
-                                <h1 className="text-white text-center" style={{fontSize:"30px"}}>Welcome to betnare</h1>
+                                <h1 className="text-white text-center" style={{fontSize:"30px"}}>Verify Your Account</h1>
                                 <p className="text-white px-3 d-flex align-items-center justify-content-center mt-3" style={{fontSize:"16px", opacity:'0.5px'}}>Bet ni Moto<img src={fire}  style={{width:"20px"}} alt={'betnare'}/></p>
                             </Col>
                         </Row>
@@ -306,15 +310,16 @@ const VerifyAccount2 = props => {
                                 <div className={'d-flex'}>
                                     {/**/}
                                     <div >
-                                        {user?setTimeout(navigate("/"),500):""}
+                                        {/*{user?setTimeout(navigate("/"),500):""}*/}
+                                        {/*{success?setTimeout(window.location.href="/deposit",1000):""}*/}
                                         <div className={"d-flex flex-row justify-content-between"}>
                                             <div className=" w-100">
                                                 <div className="homepage d-flex flex-column align-items-center justify-content-center login-page">
 
-                                                    <div className="col-md-12 mt-2 text-white px-2">
+                                                    <div className="col-md-12 mt-2 text-white p-2">
                                                         {message && <Alert/>}
-                                                        {success?setTimeout(window.location.href="/deposit",1000):""}
-                                                        <div className="pb-0" data-backdrop="static">
+                                                        {success?setTimeout(window.location.href="/deposit",2000):""}
+                                                        <div className="modal-body pb-0" data-backdrop="static">
                                                             <VerifyAccountForm/>
                                                         </div>
                                                     </div>

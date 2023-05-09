@@ -107,7 +107,7 @@ const Deposit3= props => {
                         <label className={'text-light'}>Phone Number</label>
                         <input
                             readOnly={true}
-                            className="text-dark deposit-input form-control input-field"
+                            className="text-light deposit-input form-control input-field"
                             id="msisdn"
                             name="msisdn"
                             type="text"
@@ -122,7 +122,7 @@ const Deposit3= props => {
                         <label className={'text-light'}>Amount to Deposit</label>
                         <input
                             onChange={ev => onFieldChanged(ev)}
-                            className="text-dark deposit-input form-control col-md-12 input-field"
+                            className="text-light deposit-input form-control col-md-12 input-field"
                             id="amount"
                             name="amount"
                             type="text"

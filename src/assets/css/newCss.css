@@ -6,10 +6,28 @@
     --banner-background: url(../../assets/img/auth/img-17.webp)!important;
     --betnare-header-bg:#141d28;
     --betnare-side-bg:#121a23;
+    --betslip-header:#4c372a;
+    --betslip-mybets:#cd28ec;
+    --button-radius:3px;
+    --betnare-odds-body:#2d3641;
 
 }
 .casino-scroll{
     overflow-x: auto;
+}
+
+.matches .top-matches {
+    /*background: var(--betnare-odds-body);*/
+    padding-top: 10px;
+    padding-bottom: 3px;
+    margin-bottom: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-weight: normal;
+    color: #fff;
+    font-size: 12px;
+    opacity: 0.8;
+    /*border-bottom: 1px solid #334c5c;*/
 }
 .clip-get-size{
     -webkit-clip-path: circle(50% at 11% 20%);
@@ -20,9 +38,46 @@
     display: none;
 }
 .directions-header-nav{
-    background: var(--betnare-header-bg);
+    /*background: var(--betnare-header-bg);*/
 }
+.betslip-mybets {
+    clear: both;
+    background: var(--betslip-mybets);
+    border-radius:var(--button-radius);
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+    text-shadow: 0px 0px 1px #fbe2a4;
+    font-family: arial;
+}
+.betslip-header {
+    clear: both;
+    background: var(--betslip-header);
+    border-radius:var(--button-radius);
+    color: #fff;
+    cursor: pointer;
+    text-shadow: 0px 0px 1px #fbe2a4;
+    font-family: arial;
+}
+.mybets-slip{
+    background: #5980be!important;
+    /*background: rgb(2,0,36)!important;*/
+    /*background: -moz-linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(89,128,190,1) 22%, rgba(56,159,214,1) 44%, rgba(109,109,175,1) 59%, rgba(90,89,150,1) 99%, rgba(23,190,238,1) 100%)!important;*/
+    /*background: -webkit-linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(89,128,190,1) 22%, rgba(56,159,214,1) 44%, rgba(109,109,175,1) 59%, rgba(90,89,150,1) 99%, rgba(23,190,238,1) 100%)!important;*/
+    /*background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(89,128,190,1) 22%, rgba(56,159,214,1) 44%, rgba(109,109,175,1) 59%, rgba(90,89,150,1) 99%, rgba(23,190,238,1) 100%)!important;*/
+    /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024",endColorstr="#17beee",GradientType=1)!important;*/
+}
+/*.bet-option-list li {*/
+/*    background: rgb(23,190,238);*/
+/*    background: linear-gradient(0deg, rgba(23,190,238,1) 0%, rgba(66,14,148,0.6909138655462185) 1%, rgba(62,29,156,0.8533788515406162) 99%, rgba(40,120,202,1) 100%)!important;*/
+/*}*/
 
+.card-bet-details{
+    background: var(--betnare-primary)!important;
+    color: var(--white)!important;
+    padding:10px;
+    margin-bottom: 5px;
+}
 .pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item:hover .pro-icon-wrapper .pro-icon {
     animation: none !important;
 }
@@ -107,6 +162,7 @@
 .top-nav-login {
     min-height: 68px;
     padding: 1px 0px 5px 0px;
+    background: var(--betnare-header-bg);
 }
 label {
     font-weight: 600;
@@ -582,6 +638,9 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 @media (max-width: 991px){
+    .mybets-remove-on-mobile{
+        display:none
+    }
     .top-login-background-img{
         background-image:url("../../assets/img/auth/backimg.webp") ;
     }

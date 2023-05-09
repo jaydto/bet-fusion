@@ -847,12 +847,23 @@ input[type="radio"], input[type="checkbox"] {
         /*top: 157px;*/
     }
 }
+
+@media (max-width: 420px){
+    .size-font-user-action {
+        font-size: 11px!important;
+    }
+    .app-navbar .e img {
+        max-width: 96px !important;
+        margin-bottom: 4px!important;
+        height: 25px;
+    }
+}
 @media (min-width:200px) and (max-width: 420px){
     .app-navbar .e img {
         max-width: 90px !important;
     }
     .button-toggle {
-       margin-left: 6px;
+       margin-left: 6px!important;
     }
     .login-size {
         background: #2D4352;
@@ -861,11 +872,7 @@ input[type="radio"], input[type="checkbox"] {
         height: 2.0rem;
         display: flex;
     }
-    .app-navbar .e img {
-        max-width: 96px !important;
-        margin-bottom: 4px!important;
-        height: 25px;
-    }
+
     .border-radius-search {
         border-radius: 10px !important;
         height: 20px;
@@ -873,9 +880,7 @@ input[type="radio"], input[type="checkbox"] {
         align-items: center;
         justify-content: center;
     }
-    .size-font-user-action {
-        font-size: 11px!important;
-    }
+
     .user_logged {
         margin-top: 10.7rem!important;
     }
@@ -887,7 +892,31 @@ input[type="radio"], input[type="checkbox"] {
     }
 }
 
+@media (min-width:300px) and (max-width: 375px){
+    .size-font-user-action {
+        font-size: 9px!important;
+    }
 
+}
+@media (min-width:200px) and (max-width: 300px){
+    .size-font-user-action {
+        font-size: 7px!important;
+    }
+    .button-toggle{
+
+        width: 2.6rem!important;
+        overflow-y: auto!important;
+        height: 26px!important;
+        padding: 0px!important;
+        display: contents!important;
+
+    }
+    .app-navbar .e img {
+        max-width: 87px !important;
+        margin-bottom: 4px!important;
+        height: 23px;
+    }
+}
 /*animations*/
 .flashy{
     opacity: 0;

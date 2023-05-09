@@ -199,9 +199,8 @@ const Header = (props) => {
                         <Navbar.Brand className={`e logo align-self-start menu-control d-flex justify-content-between w-100`} title="Betnare">
                             <Link to={{pathname: "/"}} className="col-4 resize-mobile" style={{ marginLeft:"-5px"}}>
                                 <img src={logo} alt="Betnare" title="Betnare" effects="blur"
-                                     className={"image-size "} style={user?{marginBottom:"0px" }:{marginBottom:"11px", width:'auto'}}/>
+                                     className={`image-size ${!user&&'logo-top'}`} style={user?{marginBottom:"0px" }:{marginBottom:"11px", width:'auto'}}/>
                             </Link>
-
                             {user &&
                                 <div
                                     className="col-md-6  d-flex  right justify-content-end align-items-center w-change2 gap-2 ipad-show"

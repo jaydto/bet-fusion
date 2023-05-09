@@ -18,6 +18,7 @@ import './assets/css/newCss.css'
 
 import Store from './context/store';
 import ReactGA from 'react-ga4';
+const Deposit3=React.lazy(()=>import("./components/pages/deposit-withraw/Deposit3"));
 // import Deposit2 from "./components/pages/deposit-withraw/Deposit2";
 
 const TRACKING_ID = "G-5NLSN9BLN4";
@@ -76,11 +77,11 @@ const Signup = React.lazy(
 );
 
 const ResetPassword = React.lazy(
-    () => import('./components/pages/auth/reset-password')
+    () => import('./components/pages/auth/reset-password2')
 )
 
 const VerifyAccount = React.lazy(
-    () => import('./components/pages/auth/verify-account')
+    () => import('./components/pages/auth/verify-account2')
 )
 
 const MobileApp = React.lazy(() => import('./components/pages/app'))
@@ -194,7 +195,7 @@ render((
                     <Route exact path="/print-matches" element={<PrintMatches/>}/>
                     <Route exact path="/promotions" element={<Promotions/>}/>
                     <Route exact path="/deposit"
-                           element={<ProtectedRoute><Deposit2/> </ProtectedRoute>}/>
+                           element={<ProtectedRoute><Deposit3/> </ProtectedRoute>}/>
                     <Route exact path="/withdraw"
                            element={<ProtectedRoute><Withdraw/></ProtectedRoute>}/>
                     <Route exact path="/redeem-points"

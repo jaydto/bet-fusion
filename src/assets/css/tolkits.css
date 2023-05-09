@@ -175,51 +175,6 @@ input, select, textarea {
     width:100%;
 }
 
-.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item:hover .pro-icon-wrapper .pro-icon {
-    animation: none !important;
-}
-
-
-.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item > .pro-icon-wrapper {
-    background-color: unset !important;
-}
-
-.pro-sidebar > .pro-sidebar-inner {
-    /* background-color: #253743 !important; */
-    background: #141d28!important;
-}
-
-.pro-sidebar .pro-menu .pro-menu-item.pro-sub-menu .pro-inner-list-item {
-    background-color: #16202c !important;
-}
-
-.pro-sidebar.collapsed .pro-menu > ul > .pro-menu-item.pro-sub-menu > .pro-inner-list-item > .popper-inner {
-    /*background-color: #16202c !important;*/
-    background-color: #253743 !important;
-}
-
-.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item {
-    /*padding: 0.9px 15px !important;*/
-}
-
-.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item {
-    padding: 0.5px 25px 0px 12px !important;
-}
-
-.pc .navbar-nav > .active > a.live-bg {
-    background: transparent !important;
-}
-
-.virtual-game-image {
-    cursor: pointer;
-    /*height: 40px;*/
-    /*width: 40px;*/
-}
-
-.accordion__button::before {
-    display: none !important;
-}
-
 
 .size-date {
     width: 20%;
@@ -396,7 +351,8 @@ header, li a, .thedate span {
     outline: none;
     border: none;
     color: whitesmoke;
-    background: #22323e !important;
+    /*background: #22323e !important;*/
+    background: var(--betnare-side-bg)!important;
     padding: 20px;
     font-size: 16px;
     color: whitesmoke;
@@ -520,11 +476,13 @@ header, li a, .thedate span {
 }
 
 .accordion-container {
-    /*background: #1E3948 !important;*/
+    background: var(--betnare-primary) !important;
+
 }
 
 .accordion-item-panel {
-    background: #1E3948 !important;
+    /*background: #1E3948 !important;*/
+    background: var(--betnare-primary);
     padding: 10px 35px;
     line-height: 30px;
     font-size: 16px;
@@ -15960,11 +15918,11 @@ img.zoom-img {
     background: #7a2c46;
 }
 
-.betslip-container {
-    position: sticky !important;
-    /*top: 5px !important;*/
-    background: #253743 !important;
-}
+/*.betslip-container {*/
+/*    position: sticky !important;*/
+/*    !*top: 5px !important;*!*/
+/*    background: #253743 !important;*/
+/*}*/
 .slip-max-height{
     display:grid;
     align-items: end;

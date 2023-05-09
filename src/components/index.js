@@ -243,7 +243,7 @@ const Index = (props) => {
         <div className={`${user ? "user_logged " : "amt "} `} >
             <div className="d-flex flex-row justify-content-between">
                 <SideBar loadCompetitions/>
-                <div className="gz home match-overflow" >
+                <div className="gz home match-overflow " >
                     <div className="homepage" ref={homePageRef} >
                         <MobileNav2/>
                         <CarouselLoader/>

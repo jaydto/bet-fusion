@@ -129,11 +129,11 @@ const HeaderLogin = (props) => {
                                    value={values.msisdn}
                             />
                             <br/>
-                            <span className={`${login?"sticky-hidden text-warning d-flex justify-content-end font-input my-2":"sticky-hidden"}`}>
+                            <span className={`${login?"sticky-hidden text-warning d-flex justify-content-end font-input my-2":"sticky-hidden top-sticky-hidden"}`}>
                             {/*<label>*/}
                                 {/*<input type="checkbox" name="remember" value="1"/><span>Remember me</span></label>*/}
-                            <div className={'text-warning'}>
-                                <Switch id={"remember-me"} {...label} className="odds-change-box" name={"accept_all_odds_change"}  defaultChecked color={'warning'} /> Remember Me
+                            <div className={`${login&&'text-warning'}`}>
+                                <Switch id={"remember-me"} {...label} className="odds-change-box" name={"accept_all_odds_change"}  defaultChecked color="primary" /> Remember Me
                             </div>
                         </span>
                         </div>

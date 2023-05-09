@@ -539,7 +539,7 @@ const BetslipSubmitForm = (props) => {
                                 {/*           onChange={(e) => onFieldChanged(e)}*/}
                                 {/*    /> Accept any odds change*/}
                                 {/*</label>*/}
-                                <Switch id={"accept-all-odds-change"} {...label} className="odds-change-box" name={"accept_all_odds_change"} checked={values?.accept_all_odds_change} defaultChecked color={'warning'} onChange={(e)=>onFieldChanged(e)}/> Accept any odds change
+                                <Switch id={"accept-all-odds-change"} {...label} className="odds-change-box" name={"accept_all_odds_change"} checked={values?.accept_all_odds_change} defaultChecked color="primary" onChange={(e)=>onFieldChanged(e)}/> Accept any odds change
                             </td>
                         </tr>
                         <tr>

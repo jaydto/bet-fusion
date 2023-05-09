@@ -3,22 +3,86 @@
     --betnare-secondary: #2c3c44;
     --betnare-button-login: #FFC107;
     --betnare-button-register: #ffffff;
+    --banner-background: url(../../assets/img/auth/img-17.webp)!important;
+    --betnare-header-bg:#141d28;
+    --betnare-side-bg:#121a23;
 
 }
 .casino-scroll{
     overflow-x: auto;
 }
+.clip-get-size{
+    -webkit-clip-path: circle(50% at 11% 20%);
+    clip-path: circle(50% at 11% 20%);
+    background: var(--betnare-header-bg);
+}
 .casino-scroll::-webkit-scrollbar{
     display: none;
 }
 .directions-header-nav{
-    background: #141d28;
+    background: var(--betnare-header-bg);
 }
+
+.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item:hover .pro-icon-wrapper .pro-icon {
+    animation: none !important;
+}
+
+
+.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item > .pro-icon-wrapper {
+    background-color: unset !important;
+}
+
+.pro-sidebar > .pro-sidebar-inner {
+    /* background-color: #253743 !important; */
+    /*background: #141d28!important;*/
+    background: var(--betnare-header-bg)!important;
+    /*background-position: center;*/
+}
+
+.pro-sidebar .pro-menu .pro-menu-item.pro-sub-menu .pro-inner-list-item {
+    background-color: #16202c !important;
+}
+
+.pro-sidebar.collapsed .pro-menu > ul > .pro-menu-item.pro-sub-menu > .pro-inner-list-item > .popper-inner {
+    /*background-color: #16202c !important;*/
+    background-color: #253743 !important;
+}
+
+.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item {
+    /*padding: 0.9px 15px !important;*/
+}
+
+.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item {
+    padding: 0.5px 25px 0px 12px !important;
+}
+
+.pc .navbar-nav > .active > a.live-bg {
+    background: transparent !important;
+}
+
+.virtual-game-image {
+    cursor: pointer;
+    /*height: 40px;*/
+    /*width: 40px;*/
+}
+
+.accordion__button::before {
+    display: none !important;
+}
+
+
+/*.banner-img{*/
+/*    background-image:url('../../assets/img/auth/img-17.webp')!important;*/
+/*    !*background-repeat: no-repeat;*!*/
+/*    background-position: center;*/
+/*    !*background-size: cover;*!*/
+/*}*/
+
 .betslip-container {
     /*position: sticky !important;*/
     /*top: 12.5rem;*/
     /*background: #253743 !important;*/
-    background:#141d28!important;
+    background: var(--betnare-header-bg)!important;
 }
 .sport_dropdowns {
     display: flex;
@@ -92,34 +156,34 @@ select::after{
     width:36vw;
 }
 
-.top-login-background-img-bg{
-    background-image:url("../../assets/img/auth/backtop.webp");
-    /*transform: rotate(45deg);*/
-    background-position: top left;
-}
+/*.top-login-background-img-bg{*/
+/*    background-image:url("../../assets/img/auth/backtop.webp");*/
+/*    !*transform: rotate(45deg);*!*/
+/*    background-position: top left;*/
+/*}*/
 
-.top-login-background-img-bg-page{
-    background-image:url("../../assets/img/auth/backtop.webp") !important;
-    background-repeat: no-repeat;
-    /*transform: rotate(45deg);*/
-    background-position: top left;
-}
-.top-login-background-img-bg-page::before{
-    background-image:url("../../assets/img/auth/backimg.webp") !important;
-    background-repeat: no-repeat;
-    /*transform: rotate(45deg);*/
-    background-position: top left;
-}
-.top-login-background-img-bg-down{
-    background-image:url("../../assets/img/auth/backimg.webp")!important;
-    background-repeat: no-repeat;
-    background-position: bottom right;
-}
-.top-login-background-img-bg-down::after{
-    background-image:url("../../assets/img/auth/backimg.webp")!important;
-    background-repeat: no-repeat;
-    background-position: bottom right;
-}
+/*.top-login-background-img-bg-page{*/
+/*    background-image:url("../../assets/img/auth/backtop.webp") !important;*/
+/*    background-repeat: no-repeat;*/
+/*    !*transform: rotate(45deg);*!*/
+/*    background-position: top left;*/
+/*}*/
+/*.top-login-background-img-bg-page::before{*/
+/*    background-image:url("../../assets/img/auth/backimg.webp") !important;*/
+/*    background-repeat: no-repeat;*/
+/*    !*transform: rotate(45deg);*!*/
+/*    background-position: top left;*/
+/*}*/
+/*.top-login-background-img-bg-down{*/
+/*    background-image:url("../../assets/img/auth/backimg.webp")!important;*/
+/*    background-repeat: no-repeat;*/
+/*    background-position: bottom right;*/
+/*}*/
+/*.top-login-background-img-bg-down::after{*/
+/*    background-image:url("../../assets/img/auth/backimg.webp")!important;*/
+/*    background-repeat: no-repeat;*/
+/*    background-position: bottom right;*/
+/*}*/
 .width-page-centric{
     box-shadow:5px 7px 30px 8px #2c3c44;
     width:60%;
@@ -270,7 +334,7 @@ input[type="radio"], input[type="checkbox"] {
 .sticky-testimony {
     position: sticky;
     position: -webkit-sticky;
-    top: 110px;
+    top: 111px;
     /*width:100%;*/
     background-color: black;
     z-index: 150;
@@ -278,15 +342,27 @@ input[type="radio"], input[type="checkbox"] {
 }
 .sticky-responsive {
     position: sticky;
-    top: 138px
+    top: 139px
 }
 
-
+.header-sports{
+    background: var(--betnare-header-bg);
+    opacity: 1!important;
+    top: 100px;
+}
 /*media queries*/
 @media (min-width: 1260px) {
+    .logo-top{
+        margin-top: 13px;
+    }
     .app-navbar .e img {
         max-width: 194px;
         height: 33px;
+
+    }
+    .top-sticky-hidden{
+        margin-top:-4px;
+        display: flex;
     }
     .welcome-img{
         height: 145px;
@@ -321,7 +397,7 @@ input[type="radio"], input[type="checkbox"] {
         margin: auto;
     }
     .app-header-nav {
-        margin-top: 62px;
+        margin-top: 66px;
     }
     .app-header-nav-login{
         margin-top: 49px;
@@ -798,7 +874,7 @@ input[type="radio"], input[type="checkbox"] {
         justify-content: center;
     }
     .size-font-user-action {
-        font-size: 8px!important;
+        font-size: 11px!important;
     }
     .user_logged {
         margin-top: 10.7rem!important;

@@ -1,13 +1,6 @@
 import React, {useContext, useEffect, useState, useCallback} from "react";
 import {Context} from '../../../../context/store';
 import makeRequest, {BASE_URL} from '../../../utils/fetch-request';
-import {
-    Accordion,
-    AccordionItem,
-    AccordionItemButton,
-    AccordionItemHeading,
-    AccordionItemPanel,
-} from 'react-accessible-accordion';
 
 import '../../../../assets/css/accordion.react.css';
 import axios from "axios";
@@ -22,13 +15,13 @@ const Styles = {
         background:'#22323e !important',
     },
     headers: {
-        background:'#18242f',
+        // background:'#18242f',
         color:'#ffffff',
         padding: '10px 40px 10px',
         fontSize: '12px'
     },
     bet:{
-        background:'#1e2d3b',
+        // background:'#1e2d3b',
         padding: '10px',
         color: '#fff',
         opacity: 0.8,
@@ -105,7 +98,6 @@ const KironBetHistory = (props) => {
     }
     const BetItem = (props) => {
         const { bet } = props;
-
         return (
             <div className={`container-fluid`} style={Styles.bet} key={bet.bet_id}>
                 <div className="row">
@@ -124,7 +116,7 @@ const KironBetHistory = (props) => {
     const BetslipHeader = () => {
 
         return (
-            <div className={` slipheader`} >
+            <div className={` slipheader `} >
                 <div className="row">
 
                     <div className="col">Home</div>
@@ -139,63 +131,111 @@ const KironBetHistory = (props) => {
     }
 
     const BetslipItem = (props) => {
-        const { betslip } = props;
+
+        console.log("prematch_betslip", state?.kironbetdetails)
 
 
         return (
-            <div className={` kumbafu`}  key={betslip.game_id}>
-                <div className="row">
-                    <div className="col">{ betslip.home_team}</div>
-                    <div className="col">{ betslip.away_team}</div>
-                    <div className="col">{ betslip.odd_value}</div>
-                    <div className="col">{ betslip.bet_pick}</div>
-                    <div className="col">{ betslip.outcome}</div>
-                    <div className={`col `}><span className={` badge`} style={{
-                        marginTop:"10px", borderRadius: "7px", marginLeft:"1px", padding:"2.9px 9px "}}>{betslip.status==="3"?<FontAwesomeIcon icon={faTimes} style={{color: "yellow", fontSize:"19px"}} size={"lg"}/>:betslip.status==="5"?<FontAwesomeIcon icon={faCheck} style={{color: "green", fontSize:"19px"}} size={"lg"} />:betslip.status==="1"?<FontAwesomeIcon icon={faQuestionCircle} style={{color: "orange", fontSize:"19px"}} size={"lg"}/>:<FontAwesomeIcon icon={faBan} style={{color: "darkgray", fontSize:"19px"}} size={"lg"}/>}</span></div>
-                </div>
-            </div>
+
+            state?.kironbetdetails!==undefined&&state?.kironbetdetails.map((betlip_detail,id)=>(
+              <div className={` kumbafu`}  key={betlip_detail.game_id}>
+                  <div className="row">
+                      <div className="col">{ betlip_detail.home_team}</div>
+                      <div className="col">{ betlip_detail.away_team}</div>
+                      <div className="col">{betlip_detail.odd_value}</div>
+                      <div className="col">{ betlip_detail.bet_pick}</div>
+                      <div className="col">{ betlip_detail.outcome}</div>
+                      <div className={`col `}><span className={` badge`} style={{
+                          marginTop:"10px", borderRadius: "7px", marginLeft:"1px", padding:"2.9px 9px "}}>{betlip_detail.status==="3"?<FontAwesomeIcon icon={faTimes} style={{color: "yellow", fontSize:"19px"}} size={"lg"}/>:betlip_detail.status==="5"?<FontAwesomeIcon icon={faCheck} style={{color: "green", fontSize:"19px"}} size={"lg"} />:betlip_detail.status==="1"?<FontAwesomeIcon icon={faQuestionCircle} style={{color: "orange", fontSize:"19px"}} size={"lg"}/>:<FontAwesomeIcon icon={faBan} style={{color: "darkgray", fontSize:"19px"}} size={"lg"}/>}</span></div>
+                  </div>
+              </div>
+            )
+    )
         )
     }
-    // const handleBetClick = (event, uuid) => {
-    //     if (uuid === activeItem) {
-    //         setActiveItem(null);
-    //     } else {
-    //         setActiveItem(uuid);
-    //     }
-    // };
 
-    console.log("bethistory",state?.kironbethistory )
+
+    const [activeIndex, setActiveIndex] = useState(null);
+    const [isOpen, setIsOpen] = useState(false);
+    const fetchDataDetails = useCallback(async(id) => {
+        if(isLoading) return;
+        let endpoint = "/v1/nare-league/bet-details";
+        const data={
+            'bet_id':id
+        }
+
+        const API_URL = BASE_URL
+
+        const token = user?.token
+
+        const headers = {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+            "accept": "*/*"
+        };
+        const options={
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'same-origin',
+            redirect: 'follow',
+            referrerPolicy: 'no-referrer',
+        }
+
+        axios.post(`${API_URL}${endpoint}`,data ,{headers: headers,
+            ...options})
+            .then(response => {
+                if (response.status === 200) {
+                    dispatch({type: "SET", key: "kironbetdetails", payload: response.data});
+                    setIsLoading(false);
+
+                } else {
+                    console.log('Request failed:', response.status);
+                    // handle the error condition
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
+
+    }, []);
+
+    const handleAccordionClick = (id) => {
+        if (id === activeIndex) {
+            // if the clicked bet is already active, close the panel
+            setIsOpen(false);
+            setActiveIndex(null);
+        } else {
+            // otherwise, open the panel for the clicked bet
+            setIsOpen(true);
+            setActiveIndex(id);
+            fetchDataDetails(id)
+
+        }
+    };
+
+
     const KironHistoryList = (props) => {
 
         return (
-            <Accordion className={"bg-dark"} >
+       <div className="accordion">
                 { state?.kironbethistory !==null&&state?.kironbethistory !==undefined &&  state?.kironbethistory.map((bet) => (
-                    <AccordionItem
-                        key = {bet.bet_id}
-                        uuid = { bet.bet_id }
-                        // onClick={(event) => handleBetClick(event, bet.bet_id)}
-                        // isExpanded={activeItem === bet.bet_id}
-                        // isCollapsible={activeItem !== bet.bet_id}
-                    >
-                        <AccordionItemHeading >
-                            <AccordionItemButton >
-                                <BetItem bet={bet}  key={bet.bet_id}/>
-                            </AccordionItemButton>
-                        </AccordionItemHeading>
-                        <AccordionItemPanel >
+                <React.Fragment key={bet?.bet_id}>
+                    <div className="accordion-item bet-history-kiron">
+                    <h2 className="accordion-header " id="headingOne">
+                <button className="accordion-button bet-history-button" onClick={()=>handleAccordionClick(bet?.bet_id)}>
+                    <BetItem bet={bet}  key={bet.bet_id}/>
+                </button>
+                    </h2>
+                    </div>
+                    {isOpen && activeIndex === bet.bet_id && (
+                        <div className="accordion-panel">
                             <BetslipHeader />
-                            {  bet.bet_slip?.map((betslip) => (
-                                <BetslipItem
-                                    betslip={betslip}
-                                    key={betslip.match_id}
-                                />
-                            ))
-                            }
-                            { isLoading && <p>Loading ... </p>}
-                        </AccordionItemPanel>
-                    </AccordionItem>
-                ))}
-            </Accordion>
+                            <BetslipItem />
+                        </div>
+                    )}</React.Fragment>
+                    ))}
+            </div>
         );
 
     }

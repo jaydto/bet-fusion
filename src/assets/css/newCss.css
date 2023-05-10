@@ -815,8 +815,8 @@ input[type="radio"], input[type="checkbox"] {
     .top-matches div {
         min-height: 24px;
         justify-content: unset;
-        background: #16202C;
-    }
+        /*background: #16202C;*/
+    }g
     .header-mobile-kiron{
         display:flex;
     }

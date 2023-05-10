@@ -897,14 +897,16 @@ input[type="radio"], input[type="checkbox"] {
     }
     .sticky-testimony{
         position: sticky;
-        top: 107px!important;
+        /*top: 107px!important;*/
+        top:0px;
         z-index: 1999 !important;
     }
 
 
     .highlight-menu{
         position: sticky;
-        top: 136px;
+        /*top: 136px;*/
+        top:0px;
         opacity: 1;
         z-index: 1999 !important;
 

@@ -17,6 +17,11 @@
 .casino-scroll{
     overflow-x: auto;
 }
+. styling-matches{
+    -webkit-box-shadow: 0px 4px 5px 0px rgba(40,55,78,1);
+    -moz-box-shadow: 0px 4px 5px 0px rgba(40,55,78,1);
+    box-shadow: 0px 4px 5px 0px rgba(40,55,78,1);
+}
 .shadow-testimonials {
     box-shadow: 3px 4px 5px -1px rgba(44,60,68,0.71);
     -webkit-box-shadow: 3px 4px 5px -1px rgba(44,60,68,0.71);
@@ -350,10 +355,21 @@ select::after{
     width: 80px!important;
     min-width: 80px!important;
 }
+/*.pro-sidebar {*/
+/*    color: #adadad;*/
+/*    height: 100%;*/
+/*    width: 247px!important;*/
+/*    min-width: 215px!important;*/
+/*    text-align: left;*/
+/*    transition: width, left, right, 0.3s;*/
+/*    position: relative;*/
+/*    z-index: 1009;*/
+/*}*/
+
 .pro-sidebar {
     color: #adadad;
     height: 100%;
-    width: 247px!important;
+    width: 300px!important;
     min-width: 215px!important;
     text-align: left;
     transition: width, left, right, 0.3s;
@@ -466,7 +482,7 @@ input[type="radio"], input[type="checkbox"] {
     .app-navbar .e img {
         max-width: 194px;
         height: 33px;
-
+        margin-left: -5px;
     }
     .top-sticky-hidden{
         margin-top:-4px;

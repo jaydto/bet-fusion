@@ -13,17 +13,21 @@ import jackpot from "../../assets/img/banner/products/HalfMilliJP.webp"
 import Drops from "../../assets/img/banner/products/DropsAndWins Web.webp"
 import Drops260 from  '../../assets/img/banner/products/Pragmatic260.webp'
 import Drops65 from '../../assets/img/banner/products/pragmatic65.webp'
+import Miller from '../../assets/img/banner/products/MilanvsInter.webp'
+import Av2 from '../../assets/img/banner/products/Aviator2.webp'
+import Juventus from '../../assets/img/banner/products/JuventusvsSevilla.webp'
 
 const banners = [
-    {src: Drops260, url: "/casino"},
-    {src: Drops65, url: "/casino"},
-    {src: Aviator, url: "/nare-games/aviator"},
-    {src: karibuGiftWallet, url: "/promotions"},
-    {src: jackpot, url: "/jackpot"},
-    {src: stakeBooster, url: "/promotions"},
-    {src: dailyDepositGift, url: "/deposit"},
-    {src: cashback, url: "/promotions"},
-    {src: Drops, url: "/casino"}
+    {src: Juventus, url: "/"},
+    {src: Miller, url: "/promotions"},
+    {src: Av2, url: "/nare-games/aviator"},
+    // {src: Aviator, url: "/nare-games/aviator"},
+    // {src: karibuGiftWallet, url: "/promotions"},
+    // {src: jackpot, url: "/jackpot"},
+    // {src: stakeBooster, url: "/promotions"},
+    // {src: dailyDepositGift, url: "/deposit"},
+    // {src: cashback, url: "/promotions"},
+    // {src: Drops, url: "/casino"}
 ]
 
 const CarouselLoader = (props) => {

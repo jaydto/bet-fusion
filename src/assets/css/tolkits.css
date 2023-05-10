@@ -1806,15 +1806,6 @@ header {
     }
 }
 
-.logged-in-testimony {
-    position: sticky;
-    position: -webkit-sticky;
-    top: 122px;
-    /*width:100%;*/
-    background-color: black;
-    z-index: 150;
-    opacity: 1;
-}
 
 
 
@@ -8019,14 +8010,7 @@ ul.sport {
 
 
 @media (max-width: 991px) {
-    .sticky-logged-in-testimony {
-        position: sticky;
-        top: 137px;
-        border-radius: 7px;
-        z-index: 1999 !important;
-        opacity: 1;
-        background: #000;
-    }
+
     .size-1 {
         width: 12%;
     }

@@ -486,6 +486,17 @@ input[type="radio"], input[type="checkbox"] {
     opacity: 1!important;
     top: 100px;
 }
+.logged-in-testimony {
+    position: sticky;
+    position: -webkit-sticky;
+    /*top: 122px;*/
+    /*width:100%;*/
+    top:0px;
+    background-color: black;
+    z-index: 150;
+    opacity: 1;
+}
+
 /*media queries*/
 @media (min-width: 1260px) {
     .profile-top{
@@ -618,8 +629,22 @@ input[type="radio"], input[type="checkbox"] {
         margin-right:21px;
     }
 }
-@media (max-width: 1259px) and (min-width: 991px) {
 
+@media (max-width: 1259px) and (min-width: 991px) {
+    .sticky-logged-in-testimony {
+        position: sticky;
+        /*top: 137px;*/
+        top:0px;
+        border-radius: 7px;
+        z-index: 1999 !important;
+        opacity: 1;
+        background: #000;
+    }
+
+    .sticky-user{
+        top:0px;
+        position:sticky;
+    }
     .top-login-desktop-input{
         padding-top: 0.5rem;
     }
@@ -715,12 +740,17 @@ input[type="radio"], input[type="checkbox"] {
     }
 }
 @media (min-width: 991px){
+
     .desktop-ipad-size{
         width:100vw!important;;
     }
 }
 
 @media (max-width: 991px){
+    .sticky-user {
+        top: 0px;
+        position: sticky;
+    }
     .mybets-remove-on-mobile{
         display:none
     }
@@ -859,6 +889,9 @@ input[type="radio"], input[type="checkbox"] {
     /*.top-login-mobile{*/
     /*    margin-top:135px!important;*/
     /*}*/
+    .user_logged {
+        margin-top: 10.7rem;
+    }
     .amt {
         padding-top: 110px !important;
     }
@@ -889,7 +922,8 @@ input[type="radio"], input[type="checkbox"] {
     }
     .highlight-logged-in-menu {
         position: sticky;
-        top: 133.5px;
+        /*top: 133.5px;*/
+        top:0px;
         opacity: 1;
         z-index: 1999 !important;
     }
@@ -944,10 +978,12 @@ input[type="radio"], input[type="checkbox"] {
 }
 @media (max-width: 514px) {
     .sticky-logged-in-testimony {
-        top: 104.5px!important;
+        /*top: 104.5px!important;*/
+        top:0px;
     }
     .highlight-logged-in-menu {
-        top: 132.5px!important;
+        /*top: 132.5px!important;*/
+        top:0px;
     }
     .size-font-user-action {
         font-size: 14px!important;
@@ -974,7 +1010,8 @@ input[type="radio"], input[type="checkbox"] {
         top: 136.5px!important;
     }
     .highlight-logged-in-menu {
-        top: 163.5px!important;
+        /*top: 163.5px!important;*/
+        top:0px;
     }
     .image-size{
         width:98px!important;
@@ -1027,11 +1064,14 @@ input[type="radio"], input[type="checkbox"] {
         margin-top: 10.7rem!important;
     }
     .highlight-logged-in-menu {
-        top: 132.5px!important;
+        /*top: 132.5px!important;*/
+        top:0px;
     }
     .sticky-logged-in-testimony {
-        top: 104.5px!important;
+        /*top: 104.5px!important;*/
+        top:0px;
     }
+
 }
 
 @media (min-width:300px) and (max-width: 375px){

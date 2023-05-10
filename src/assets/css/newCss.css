@@ -10,12 +10,20 @@
     --betslip-mybets:#cd28ec;
     --button-radius:3px;
     --betnare-odds-body:#2d3641;
+    --betnare-input:#28374e;
+    --betnare-shadow-borders:#2c3c44;
 
 }
 .casino-scroll{
     overflow-x: auto;
 }
-
+.shadow-testimonials {
+    box-shadow: 3px 4px 5px -1px rgba(44,60,68,0.71);
+    -webkit-box-shadow: 3px 4px 5px -1px rgba(44,60,68,0.71);
+    -moz-box-shadow: 3px 4px 5px -1px rgba(44,60,68,0.71);
+    border: none!important;
+    z-index: 2100;
+}
 .matches .top-matches {
     /*background: var(--betnare-odds-body);*/
     padding-top: 10px;
@@ -165,10 +173,24 @@
 .form-title-centric{
     font-size: 30px;
 }
+.second-nav-list{
+    background: var(--betnare-header-bg);
+}
 .top-nav-login {
-    min-height: 68px;
+    min-height: 77px;
     padding: 1px 0px 5px 0px;
     background: var(--betnare-header-bg);
+}
+.pc .navbar-nav > li > a {
+    color: #f0f0f0;
+    padding: 2px;
+    margin-right: 10px;
+    margin-left: 9px;
+    letter-spacing: 1px;
+}
+
+b, strong {
+    font-weight: 500;
 }
 label {
     font-weight: 600;
@@ -390,6 +412,14 @@ input[type="radio"], input[type="checkbox"] {
     line-height: 40px;
     border: none;
 }
+.sticky-user{
+    top:135px;
+    position:sticky;
+}
+.sticky-jackpot {
+    top: 106px;
+    position: sticky;
+}
 .user_logged{
     margin-top:10rem;
 }
@@ -414,6 +444,9 @@ input[type="radio"], input[type="checkbox"] {
 }
 /*media queries*/
 @media (min-width: 1260px) {
+    .profile-top{
+        margin-top:60px;
+    }
     .logo-top{
         margin-top: 13px;
     }
@@ -438,13 +471,13 @@ input[type="radio"], input[type="checkbox"] {
     .sticky-logged-in-testimony {
         position: sticky;
         top: 110px;
-        z-index: 1999 !important;
+        /*z-index: 1999 !important;*/
         opacity: 1;
         background: #253743;
     }
     .highlight-logged-in-menu {
         position: sticky;
-        top: 137.5px;
+        top: 0px;
         opacity: 1;
         z-index: 1999 !important;
     }

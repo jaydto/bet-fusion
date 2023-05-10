@@ -152,7 +152,7 @@ const MyBets = (props) => {
 
 		
         return (
-            <div className={`container kumbafu`}  key={betslip.game_id}>
+            <div className={`container accordion-betslips-style`}  key={betslip.game_id}>
                 <div className="row">
                     <div className="col">{ betslip.start_time}</div>
                     <div className="col">{ betslip.home_team}</div>

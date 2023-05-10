@@ -115,11 +115,11 @@ const Profile = () => {
                     </Navbar.Offcanvas>
                 </Container>
             </Navbar>
-            <div className={'desk-top profile-desktop-style' } style={{padding:'10px 0',position:'sticky',top:'63px'}} >
-                <HeaderNav profile={true}/>
-            </div>
+            {/*<div className={'desk-top profile-desktop-style' } style={{padding:'10px 0',position:'sticky',top:'63px'}} >*/}
+            {/*    <HeaderNav profile={true}/>*/}
+            {/*</div>*/}
 
-            <div className="row d-flex flex-column gap-3 px-4 py-sm-4 py-lg-0 justify-content-center align-items-center" style={{maxWidth: "991px", margin: "auto"}}>
+            <div className="row d-flex flex-column gap-3 px-4 py-sm-4 py-lg-0 justify-content-center align-items-center profile-top" style={{ margin: "auto"}}>
                 <div style={userIn}>
                     <div className={"card-body d-flex flex-column align-items-center gap-2"}>
                         <div className={"bg-warning user-style"}>

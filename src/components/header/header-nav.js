@@ -274,7 +274,7 @@ const HeaderNav = (props) => {
                 </ListGroup>
                 <ListGroup
                     as="ul" xs="12" horizontal
-                    className="nav navbar-nav og d-flex ale ss  col-lg-3 col-md-3 col-sm-3 change-display">
+                    className="nav navbar-nav og d-flex ale ss  col-lg-3 col-md-3 col-sm-3 change-display second-nav-list">
                     <li className={pathname === '/print-matches' ? 'spacing-end' : 'spacing-end'}>
                         <a className="url-link fm anl cg ox fix-display" href="#" title="Search"
                            onClick={() => showSearchBar()}>

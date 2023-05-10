@@ -24,7 +24,7 @@ const Testimonials = () => {
     }, []);
 
     return (
-        <div className={"testimonials-style border border-warning d-flex "+`${user?"sticky-logged-in-testimony":"sticky-testimony"}`}>
+        <div className={"testimonials-style  shadow-testimonials d-flex "+`${user?"sticky-logged-in-testimony":"sticky-testimony"}`}>
                 <div className={'text-warning bg-black size-1 d-flex'} style={{zIndex:"200", whiteSpace:'nowrap'}}><span className={'stats-desktop'}>Recent</span>&nbsp;Winners</div>
 
                     <ul className={' d-flex text-light flex-nowrap testimonial-style size-2'}  >

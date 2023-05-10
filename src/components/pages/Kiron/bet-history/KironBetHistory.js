@@ -33,6 +33,7 @@ const KironBetHistory = (props) => {
     const [state, dispatch] = useContext(Context);
     const [isLoading, setIsLoading] = useState(false);
     let user = getFromLocalStorage('user');
+    const [betLoading, setBetLoading]=useState(false)
     // const [itemState, setItemState] = useState({});
     const [activeItem, setActiveItem] = useState(null);
 
@@ -91,7 +92,7 @@ const KironBetHistory = (props) => {
                     <div className="col">GAMES</div>
                     <div className="col">BET AMOUNT</div>
                     <div className="col">POSSIBLE WIN</div>
-                    <div className="col">State</div>
+                    <div className="col">Status</div>
                 </div>
             </div>
         );
@@ -137,20 +138,21 @@ const KironBetHistory = (props) => {
 
         return (
 
-            state?.kironbetdetails!==undefined&&state?.kironbetdetails.map((betlip_detail,id)=>(
-              <div className={` kumbafu`}  key={betlip_detail.game_id}>
+            state?.kironbetdetails!==undefined&&!betLoading?state?.kironbetdetails.map((betlip_detail,id)=>(
+              <div className={`accordion-betslips-style`}  key={betlip_detail.game_id}>
                   <div className="row">
-                      <div className="col">{ betlip_detail.home_team}</div>
-                      <div className="col">{ betlip_detail.away_team}</div>
-                      <div className="col">{betlip_detail.odd_value}</div>
-                      <div className="col">{ betlip_detail.bet_pick}</div>
-                      <div className="col">{ betlip_detail.outcome}</div>
-                      <div className={`col `}><span className={` badge`} style={{
-                          marginTop:"10px", borderRadius: "7px", marginLeft:"1px", padding:"2.9px 9px "}}>{betlip_detail.status==="3"?<FontAwesomeIcon icon={faTimes} style={{color: "yellow", fontSize:"19px"}} size={"lg"}/>:betlip_detail.status==="5"?<FontAwesomeIcon icon={faCheck} style={{color: "green", fontSize:"19px"}} size={"lg"} />:betlip_detail.status==="1"?<FontAwesomeIcon icon={faQuestionCircle} style={{color: "orange", fontSize:"19px"}} size={"lg"}/>:<FontAwesomeIcon icon={faBan} style={{color: "darkgray", fontSize:"19px"}} size={"lg"}/>}</span></div>
+                      <div className="col  d-flex  align-items-center">{ betlip_detail.home_team}</div>
+                      <div className="col  d-flex  align-items-center">{ betlip_detail.away_team}</div>
+                      <div className="col  d-flex  align-items-center">{betlip_detail.odd_value}</div>
+                      <div className="col  d-flex  align-items-center">{ betlip_detail.bet_pick}</div>
+                      <div className="col  d-flex  align-items-center">{ betlip_detail.outcome}</div>
+                      <div className={`col  d-flex  align-items-center `}><span className={` badge`} style={{
+                         borderRadius: "7px", marginLeft:"1px", padding:"2.9px 9px "}}>{betlip_detail.status===3?<FontAwesomeIcon icon={faTimes} style={{color: "yellow", fontSize:"19px"}} size={"lg"}/>:betlip_detail.status===5?<FontAwesomeIcon icon={faCheck} style={{color: "green", fontSize:"19px"}} size={"lg"} />:betlip_detail.status===1?<FontAwesomeIcon icon={faQuestionCircle} style={{color: "orange", fontSize:"19px"}} size={"lg"}/>:<FontAwesomeIcon icon={faBan} style={{color: "darkgray", fontSize:"19px"}} size={"lg"}/>}</span></div>
                   </div>
-              </div>
-            )
-    )
+              </div>)
+            ):<div className={`text-center mt-2 text-white d-block`}>
+                <Spinner animation={'grow'} size={'lg'}/>
+            </div>
         )
     }
 
@@ -163,7 +165,7 @@ const KironBetHistory = (props) => {
         const data={
             'bet_id':id
         }
-
+        setBetLoading(true)
         const API_URL = BASE_URL
 
         const token = user?.token
@@ -187,6 +189,7 @@ const KironBetHistory = (props) => {
                 if (response.status === 200) {
                     dispatch({type: "SET", key: "kironbetdetails", payload: response.data});
                     setIsLoading(false);
+                    setBetLoading(false)
 
                 } else {
                     console.log('Request failed:', response.status);

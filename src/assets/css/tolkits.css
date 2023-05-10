@@ -1609,7 +1609,7 @@ header {
     }
     .top-matches div {
         min-height: 24px;
-        justify-content: end;
+        justify-content: flex-end;
         /*background: #16202C;*/
     }
 
@@ -2297,11 +2297,6 @@ a:hover {
 
 abbr[title] {
     border-bottom: 1px dotted;
-}
-
-b,
-strong {
-    font-weight: bold;
 }
 
 dfn {
@@ -7057,12 +7052,12 @@ ul.sport {
 .nav-options-finance {
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: baseline;
 }
 
 .nav-option-content {
-    justify-content: end;
+    justify-content: flex-end;
     align-items: end;
     align-items: baseline;
 }
@@ -7954,15 +7949,6 @@ ul.sport {
     /*margin-left: -10%;*/
 }
 
-
-.sticky-user{
-    top:150px;
-    position:sticky;
-}
-.sticky-jackpot {
-    top: 106px;
-    position: sticky;
-}
 
 @media (min-width: 768px) {
     .fk .ez .ff {
@@ -9403,7 +9389,7 @@ ul.sport {
     }
 
     .nav-helpers {
-        justify-content: start !important;
+        justify-content: flex-start !important;
     }
 
 }
@@ -9678,13 +9664,6 @@ fieldset[disabled] .pa .fu:focus {
     background-color: transparent;
 }
 
-.pc .navbar-nav > li > a {
-    color: #f0f0f0;
-    padding: 4px;
-    margin-right: 10px;
-    margin-left: 9px;
-    letter-spacing: 1px;
-}
 
 .pc .navbar-nav > .active > a,
 .pc .navbar-nav > .active > a:hover,
@@ -12144,7 +12123,7 @@ button.close {
     }
     .display-ipad-more-options{
         display:flex;
-        justify-content:end;
+        justify-content:flex-end;
     }
     .fix-view-2{
         width:77.8% !important;
@@ -16310,7 +16289,7 @@ img.zoom-img {
     }
     .resize-mobile{
         display: flex;
-        justify-content: start;
+        justify-content: flex-start;
         align-items: center;
         padding-right: 0.2rem;
         padding-left: 0;

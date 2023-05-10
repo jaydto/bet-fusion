@@ -174,7 +174,7 @@ const MatchHeaderRow = (props) => {
 
   return (
 
-      <Row className={`full-mobile sticky-top ${jackpot?'sticky-jackpot ':user?"sticky-user":'sticky-responsive '}px-lg-3`}>
+      <Row className={`full-mobile sticky-top ${jackpot?'sticky-jackpot ':user?"sticky-user ":'sticky-responsive '}px-lg-3`}>
         <div className="top-matches d-flex position-sticky sticky-top shadow-lg header-sports"
            >
           <div className={"size-info  d-flex col-xs-12 pad left-text"}>

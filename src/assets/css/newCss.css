@@ -873,14 +873,16 @@ input[type="radio"], input[type="checkbox"] {
     }
     .sticky-logged-in-testimony {
         position: sticky;
-        top: 112px!important;
+        /*top: 112px!important;*/
+        top:0px;
         z-index: 1999 !important;
         opacity: 1;
         background: #253743;
     }
     .highlight-logged-in-menu {
         position: sticky;
-        top: 139.5px!important;
+        /*top: 139.5px!important;*/
+        top:0px;
         opacity: 1;
         z-index: 1999 !important;
     }
@@ -917,7 +919,8 @@ input[type="radio"], input[type="checkbox"] {
     }
     .sticky-logged-in-testimony {
         position: sticky;
-        top: 105px;
+        /*top: 105px;*/
+        top:0px;
         z-index: 1999 !important;
         opacity: 1;
         background: #253743;
@@ -973,7 +976,8 @@ input[type="radio"], input[type="checkbox"] {
     }
     .highlight-menu {
         position: sticky;
-        top: 134.5px;
+        /*top: 134.5px;*/
+        top:0px;
         opacity: 1;
         z-index: 1999 !important;
     }
@@ -1009,7 +1013,8 @@ input[type="radio"], input[type="checkbox"] {
         margin-top: 14.5rem!important;
     }
     .sticky-logged-in-testimony {
-        top: 136.5px!important;
+        /*top: 136.5px!important;*/
+        top:0px;
     }
     .highlight-logged-in-menu {
         /*top: 163.5px!important;*/
@@ -1023,9 +1028,11 @@ input[type="radio"], input[type="checkbox"] {
     /*}*/
     .sticky-testimony {
         /*top: 130px!important;*/
+        top:0px;
     }
     .highlight-menu {
         /*top: 157px;*/
+        top:0px
     }
 }
 

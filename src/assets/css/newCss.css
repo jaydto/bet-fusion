@@ -203,7 +203,7 @@ input{
     background: #28374e!important;
     border-radius: 3px!important;
     color:#fff!important;
-    font-weight: bold;
+    font-weight: bold!important;
     box-sizing: border-box;
     border: 0.1px groove #2d3641!important;
 
@@ -428,11 +428,15 @@ input[type="radio"], input[type="checkbox"] {
     position: -webkit-sticky;
     top: 111px;
     /*width:100%;*/
-    background-color: black;
-    z-index: 150;
+    /*background-color: black;*/
+    z-index: 2000;
     opacity: 1;
 }
 .sticky-responsive {
+    position: sticky;
+    top: 137px
+}
+.sticky-responsive-logged {
     position: sticky;
     top: 139px
 }
@@ -470,7 +474,7 @@ input[type="radio"], input[type="checkbox"] {
     }
     .sticky-logged-in-testimony {
         position: sticky;
-        top: 110px;
+        top: 109.2px;
         /*z-index: 1999 !important;*/
         opacity: 1;
         background: #253743;

@@ -2146,16 +2146,7 @@ events-header {
     color: #443b24;
 }
 
-.top-nav {
-    top: -2px;
-    padding-top: 10px;
-    background: #16202c!important;
-    background-size: cover;
-    background-position: center center;
-    padding-bottom: 17px;
-    background-size: cover;
-    z-index: 9999 !important;
-}
+
 .top-nav-login {
     top: -2px;
     padding-top: var(--betnare-header-bg)!important;

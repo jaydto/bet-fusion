@@ -53,6 +53,19 @@
 .directions-header-nav{
     /*background: var(--betnare-header-bg);*/
 }
+.top-nav {
+    top: -2px;
+    padding-top: 10px;
+    background: var(--betnare-header-bg);
+    background-size: cover;
+    background-position: center center;
+    padding-bottom: 17px;
+    background-size: cover;
+    z-index: 9999 !important;
+}
+.shadow-box-body{
+    box-shadow:10px 10px 10px 10px #000;
+}
 .betslip-mybets {
     clear: both;
     background: var(--betslip-mybets);
@@ -179,7 +192,9 @@
     font-size: 30px;
 }
 .second-nav-list{
-    background: var(--betnare-header-bg);
+    box-shadow: -3px 0px 0px 0px var(--betnare-header-bg);
+    -webkit-box-shadow: -3px 0px 0px 0px var(--betnare-header-bg);
+    -moz-box-shadow: -3px 0px 0px 0px var(--betnare-header-bg);
 }
 .top-nav-login {
     min-height: 77px;

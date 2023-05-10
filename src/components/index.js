@@ -241,7 +241,7 @@ const Index = (props) => {
     return (<>
         <Header/>
         <div className={`${user ? "user_logged " : "amt "} `} >
-            <div className="d-flex flex-row justify-content-between">
+            <div className="d-flex flex-row justify-content-between shadow-top-body" >
                 <SideBar loadCompetitions/>
                 <div className="gz home match-overflow " >
                     <div className="homepage" ref={homePageRef} >

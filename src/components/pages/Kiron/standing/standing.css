@@ -12,6 +12,7 @@
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
+    margin-right:10px;
 }
 .match-standing-wrapper table {
     border-collapse: collapse;

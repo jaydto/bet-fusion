@@ -1,14 +1,17 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import "./standing.css"
 import makeRequest from "../../../utils/fetch-request";
+import {getFromLocalStorage} from "../../../utils/local-storage";
 
 
 const Standing = () => {
     const [standings, setStandings] = useState([]);
     const [fetching, setFetching] = useState(false);
     const [loading, setLoading] = useState(false);
+    const kironSearchCompetition=getFromLocalStorage("kiron_search_data")?.competition_id
+
     const [newData, setNewData] = useState({
-        round_id: '3'
+        competition_id: '3'
     });
     let endpoint = "/v1/nare-league/standings"
     const fetchData = useCallback(async () => {
@@ -41,7 +44,9 @@ const Standing = () => {
             <section className="standing-wrapper text-center pt-1 pb-1">
                 <div className="container">
                     <div className="row">
-                        <div className="col-12 pb-2"><span className="standing-heading">English League #2804999</span>
+                        <div className="col-12 pb-2">
+                        <span
+                            className="standing-heading">{kironSearchCompetition==1?"Kenyan ":kironSearchCompetition==2?"English ":kironSearchCompetition==3?"Spanish ":"Italian "}League</span>
                         </div>
                         <div className="col-12"><span className="standing-time">STANDING</span></div>
                     </div>
@@ -49,7 +54,7 @@ const Standing = () => {
             </section>
             <div className="league-wrapper">
                 <div className="match-standing-wrapper pt-0">
-                    <table className={"mx-3 table"}>
+                    <table className={"mx-1 table"}>
                         <tbody>
                         <tr className="table-header">
                             <th className={''}>P</th>
@@ -57,19 +62,30 @@ const Standing = () => {
                             <th className={''}>Pts</th>
                             <th className={'text-center'}>Form</th>
                         </tr>
-                        <tr>
-                            <td>1</td>
-                            <td className="playing-teams-r"><span className="team-badge">
-                              </span>
-                                <div>West Ham</div>
-                            </td>
-                            <td>29</td>
-                            <td><span className="team-form"><span className="btn btn-sm btn-danger"  style={{width:'18%'}}>L</span><span
-                                className="btn btn-sm btn-success" style={{width:'18%'}}>W</span><span
-                                className="btn btn-sm btn-success" style={{width:'18%'}}>W</span><span
-                                className="btn btn-sm btn-success" style={{width:'18%'}}>W</span><span
-                                className="btn btn-sm btn-dark" style={{width:'18%'}}>D</span></span></td>
-                        </tr>
+                        { standings &&
+                            Object.entries(standings).map(([key, standing]) => (
+                                <tr>
+                                <td>{standing?.position}</td>
+                                <td className="playing-teams-r">
+                                    <span className="team-badge">
+                                         <img
+                                             src={standing?.icon_url}
+                                             alt="Nare League"/>&nbsp;
+                                        {standing?.team_name}
+                                  </span>
+                                </td>
+                                <td>{standing?.points}</td>
+
+                                    <td><span className="team-form">
+                                       {Array.from(standing?.form)?.map((item) => (
+                                           <span title={`${item=='L'?' Lost':item=='W'?' Won ':' Draw '}`} className={`btn btn-sm ${item=='L'?' btn-danger ':item=='W'?' btn-success ':' btn-dark '} mx-1`} style={{width: '18%', cursor:'default'}}><strong className={'bold'}>{item}</strong></span>
+                                       ))}
+                                         </span>
+                                    </td>
+
+
+                        </tr>)
+                            )}
                         
                         </tbody>
                     </table>

@@ -46,8 +46,10 @@ const KironResults = () => {
             <section className="standing-wrapper text-center pt-2 pb-2">
             <div className="container">
                 <div className="row">
-                    <div className="col-12 pb-2"><span
-                        className="standing-heading">{kironSearchCompetition==1?"Kenyan ":kironSearchCompetition==2?"English ":kironSearchCompetition==3?"Spanish ":"Italian "}League</span></div>
+                    <div className="col-12 pb-2">
+                        <span
+                        className="standing-heading">{kironSearchCompetition==1?"Kenyan ":kironSearchCompetition==2?"English ":kironSearchCompetition==3?"Spanish ":"Italian "}League</span>
+                    </div>
                     <div className="col-12"><span className="standing-time">15:38</span></div>
                 </div>
             </div>

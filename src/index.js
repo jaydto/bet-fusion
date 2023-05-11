@@ -149,6 +149,7 @@ render((
                     <Route exact path="/" element={<Test/>}/>
                     <Route exact path="/highlights" element={<Test/>}/>
                     <Route exact path="/upcoming" element={<Test/>}/>
+                    <Route exact path="/tomorrow" element={<Test/>}/>
                     <Route exact path= "/countries" element={<Test/>}/>
                     <Route exact path="/login" element={<Login/>}/>
                     <Route exact path="/share" element={<BetslipShareDecode/>}/>
@@ -168,8 +169,7 @@ render((
                     <Route exact path={"/standing"} element={<Kiron/>}/>
                     <Route exact path={"/bet-history"} element={<ProtectedRoute><Kiron/></ProtectedRoute>}/>
                     <Route exact path={"/profile"} element={<Profile/>}/>
-                    <Route exact path="/tomorrow" element={<Index/>}/>
-                    <Route exact path={"/betslip"} element={<BetslipPage/>}/>
+                     <Route exact path={"/betslip"} element={<BetslipPage/>}/>
                     <Route exact path="/betslip-slip" element={<BetslipPage/>}/>
                     <Route exact path="/betslip-nare" element={<BetslipPage/>}/>
                     <Route exact path="/betslip-jackpot" element={<BetslipPage/>}/>

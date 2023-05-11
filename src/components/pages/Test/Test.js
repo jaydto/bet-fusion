@@ -12,6 +12,7 @@ import MobileNav2 from "../../mobile-navigation/MobileNav2";
 import Testimonials from "../../carousel/Testimonials";
 import {Spinner} from "react-bootstrap";
 import Countries from "../../countries/Countries";
+import TestSkeleton from "./Skeleton/TestSkeleton";
 
 const Header = React.lazy(() => import('../../header/header'));
 const Footer = React.lazy(() => import('../../footer/footer'));
@@ -252,7 +253,8 @@ const  Test= () => {
                 {/* <MobileCategories/> */}
                 {loading ?
                     <div className={`text-center mt-2 text-white d-block`}>
-                        <Spinner animation={'grow'} size={'lg'}/>
+                        {/*<Spinner animation={'grow'} size={'lg'}/>*/}
+                        <TestSkeleton/>
                     </div> : tab=='countries'?<Countries/>:
                         <MatchList
                             live={false}

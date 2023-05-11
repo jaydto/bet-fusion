@@ -354,7 +354,7 @@ select::after{
 }
 .login-button {
     color: #fff2f2;
-    background: #527994FF;
+    background: var(--button-color);
     /*background-color: #FFC107;*/
     border-color: #24367e;
     height: 27px;

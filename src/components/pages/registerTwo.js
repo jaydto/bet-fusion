@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react'
 import { Row, Col } from "antd";
 import authImg from '../../assets/img/Logo.webp'
-import fire from '../../assets/img/fire.webp'
+
 
 import {Link, useNavigate} from "react-router-dom";
 import HeaderLogin from "../header/top-login";
@@ -19,6 +19,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft, faBackspace, faBackward, faHome, faLessThan, faPowerOff} from "@fortawesome/free-solid-svg-icons";
 import SidebarMobile from "../sidebar/awesome/SidebarMobile";
 import makeRequest from "../utils/fetch-request";
+import betNiMoto from '../../assets/img/BetniMoto.webp'
 import {Form, Formik} from "formik";
 const backgroundStyle = {
 	backgroundImage: `url(${backgroundURL})`,
@@ -179,7 +180,7 @@ const RegisterTwo = props => {
 				<Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
 					<Container fluid className={'d-flex justify-content-between mobile-change top-login-background-img'}>
 						<Navbar.Brand className="e logo align-self-start menu-control d-flex w-100" title="Betnare" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
-							<Link to={'/'}>
+							<Link to={'/'} className={'text-light'}>
 								<FontAwesomeIcon icon={faBackspace}/> HOME
 							</Link>
 							<div
@@ -231,7 +232,7 @@ const RegisterTwo = props => {
 									<img className="img-fluid mb-5" src={authImg} alt=""/>
 								</Link>
 
-								<p className="text-white px-3 d-flex align-items-center justify-content-center mt-3" style={{fontSize:"16px", opacity:'0.5px'}}>Bet ni Moto<img src={fire}  style={{width:"20px"}} alt={'betnare'}/></p>
+								<p className="text-white px-3 d-flex align-items-center justify-content-center mt-3" style={{fontSize:"16px", opacity:'0.5px'}}><img src={betNiMoto}  style={{width:"150px"}} alt={'betnare'}/></p>
 							</Col>
 						</Row>
 						<div className="d-flex justify-content-end pb-4">

@@ -1,13 +1,12 @@
 import React, {useCallback, useContext, useEffect, useRef, useState} from 'react'
 import { Row, Col } from "antd";
 import authImg from '../../../assets/img/Logo.webp'
-import fire from '../../../assets/img/fire.webp'
+import betNiMoto from '../../../assets/img/BetniMoto.webp'
 
 import {Link, useNavigate} from "react-router-dom";
 
 import useWindowDimensions from "../../header/Dimensions";
 import {clearTrackingData, getFromLocalStorage, setLocalStorage, setTrackingData} from "../../utils/local-storage";
-import {toast} from "react-toastify";
 import only18 from '../../../assets/img/auth/18only.png'
 import backgroundURL from '../../../assets/img/auth/img-17.webp'
 import {Navbar, Offcanvas} from "react-bootstrap";
@@ -39,7 +38,6 @@ const backgroundStyle = {
 
 const Deposit3= props => {
     const [message, setMessage] = useState(null);
-    // const {setUser} = props;
     const navigate = useNavigate();
     const expand = "md"
     const {height, width} = useWindowDimensions();
@@ -231,7 +229,7 @@ const Deposit3= props => {
                 <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
                     <Container fluid className={'d-flex justify-content-between mobile-change top-login-background-img'}>
                         <Navbar.Brand className="e logo align-self-start menu-control d-flex w-100 " title="Betnare" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
-                            <Link to={'/'}>
+                            <Link to={'/'} className={'text-light'}>
                                 <FontAwesomeIcon icon={faBackspace}/> Home
                             </Link>
 
@@ -284,7 +282,7 @@ const Deposit3= props => {
                                 </Link>
 
                                 <h1 className="text-white text-center" style={{fontSize:"30px"}}>Deposit Cash Into Your Account</h1>
-                                <p className="text-white px-3 d-flex align-items-center justify-content-center mt-3" style={{fontSize:"16px", opacity:'0.5px'}}>Bet ni Moto<img src={fire}  style={{width:"20px"}} alt={'betnare'}/></p>
+                                <p className="text-white px-3 d-flex align-items-center justify-content-center mt-3" style={{fontSize:"16px", opacity:'0.5px'}}><img src={betNiMoto}  style={{width:"150px"}} alt={'betnare'}/></p>
                             </Col>
                         </Row>
                         <div className="d-flex justify-content-end pb-4">

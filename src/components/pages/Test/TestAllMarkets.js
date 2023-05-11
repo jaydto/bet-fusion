@@ -1,8 +1,8 @@
-import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
+import React, {useCallback, useContext, useEffect, useLayoutEffect, useRef, useState} from 'react';
 import './test.css'
 import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
-import {useLocation} from "react-router-dom";
+import {useLocation, useParams} from "react-router-dom";
 import useWindowDimensions from "../../header/Dimensions";
 import {Context} from "../../../context/store";
 import {getBetslip} from "../../utils/betslip";
@@ -12,6 +12,7 @@ import MobileNav2 from "../../mobile-navigation/MobileNav2";
 import Testimonials from "../../carousel/Testimonials";
 import {Spinner} from "react-bootstrap";
 import Countries from "../../countries/Countries";
+import {MarketList} from "../../matches";
 
 const Header = React.lazy(() => import('../../header/header'));
 const Footer = React.lazy(() => import('../../footer/footer'));
@@ -21,26 +22,22 @@ const MatchList = React.lazy(() => import('../../matches/index'));
 const Right = React.lazy(() => import('../../right/index'));
 const SideBar = React.lazy(() => import('../../sidebar/awesome/Sidebar'))
 const  TestAllMarkets= () => {
-    const [user, setUser] = useState(getFromLocalStorage("user"));
-    const gaEventTracker = useAnalyticsEventTracker('Home');
-    const location = useLocation();
-    const [tab, setTab] = useState('highlights');
-    const [sportID, setSportID] = useState(79);
-    const [loading, setLoading] = useState(false);
-
-    const {height, width} = useWindowDimensions();
-    const [matches, setMatches] = useState([]);
-    const [limit, setLimit] = useState(20);
-    const [producerDown, setProducerDown] = useState(false);
-    const [threeWay, setThreeWay] = useState(false);
     const [page, setPage] = useState(1);
-    const [userSlipsValidation, setUserSlipsValidation] = useState();
+    const [producerDown, setProducerDown] = useState(false);
+    const [allMarkets,setAllMarkets]=useState(true)
+    const params=useParams()
+    let url = new URL(window.location);
+    const {live} = props
+    const id = params.id
+
+
+
+    // const [userSlipsValidation, setUserSlipsValidation] = useState();
+    const { height, width } = useWindowDimensions();
     const [state, dispatch] = useContext(Context);
-    const [fetching, setFetching] = useState(false)
-    const homePageRef = useRef()
-    const [utmSource, setUtmSource] = useState('')
-    const widthRef = useRef(null);
-    const widthComponentRef = useRef(null);
+
+    const [isLoading, setIsLoading] = useState(false);
+
     const findPostableSlip = () => {
         let betslips = getBetslip() || {};
         var values = Object.keys(betslips).map(function (key) {
@@ -48,233 +45,92 @@ const  TestAllMarkets= () => {
         });
         return values;
     };
+    useInterval(
+        () => {
+            let endpoint = live
+                ? "/v1/matches/live?id=" + id
+                : "/v1/matches?id=" + id;
 
+            let betslip = findPostableSlip();
+            let method = betslip ? "POST" : "GET";
 
-    useInterval(async () => {
-        // console.log("location",location.pathname)
-        if(location.pathname==="/")
-            setFetching(true)
-        else
-            setFetching(false)
-
-        let endpoint = "/v1/matches";
-
-        let betslip = findPostableSlip();
-
-        let method = betslip ? "POST" : "GET";
-
-        let tab = location.pathname.replace("/", "") || 'highlights';
-
-        endpoint += "?page=" + (page || 1) + `&limit=${limit || 50}&tab=` + tab
-
-        let url = new URL(window.location.href)
-
-        let sport_id = url.searchParams.get('sport_id')
-
-        if (sport_id !== null) {
-            endpoint += " &sport_id=" + sport_id
-        }
-        //splitting before api call
-        let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29").split(",")
-        // console.log("subtypes",sub_types[0]);
-        if (width <= 1259) {
-            // console.log("condition has been met ", [sub_types[0]])
-            sub_types = [sub_types[0]]
-        }
-
-        endpoint = endpoint.replaceAll(" ", '')
-
-        endpoint += `&sub_type_id=` + (sub_types || "1,18,29")
-
-
-        let search_term = url.searchParams.get('search')
-
-        if (search_term !== null) {
-            return
-        }
-
-        await makeRequest({url: endpoint, method: method, data: betslip}).then(([status, result]) => {
-            if (status == 200) {
-                setMatches(matches.length > 0 ? {...matches, ...result?.data} : result?.data || result)
-                setFetching(false)
-                setLoading(false)
-                // setMatches(result?.data || result)
-                if (result?.slip_data) {
-                    setUserSlipsValidation(result?.slip_data)
+            makeRequest({ url: endpoint, method: method, data: betslip }).then(
+                ([_status, response]) => {
+                    dispatch({type: "SET", key: "all_markets", payload: response?.data||response});
+                    // setMatchWithMarkets(response?.data || response);
+                    if (response?.slip_data) {
+                        dispatch({type: "SET", key: "user_slip_validation", payload: response?.slip_data});
+                        // setUserSlipsValidation(response?.slip_data);
+                    }
+                    setProducerDown(response?.producer_status === 1);
                 }
-                setProducerDown(result?.producer_status === 1);
-            }
-        });
-    }, 3000);
+            );
+        },
+        live ? 2000 : null
+    );
+    // console.log("all-markets",Object.keys(state?.all_markets.data.odds));
+    const fetchPagedData = useCallback(async () => {
+        if (!isLoading && !isNaN(+id)) {
+            setIsLoading(true);
+            let betslip = findPostableSlip();
+            let endpoint = live
+                ? "/v1/matches/live?id=" + id
+                : "/v1/matches?id=" + id;
 
-    const fetchData = useCallback(async () => {
-        setFetching(true)
-        let tab = location.pathname.replace("/", "") || 'highlights';
-        let betslip = findPostableSlip();
-        let endpoint = "/v1/matches?page=" + (page || 1) + `&limit=${limit || 50}&tab=` + tab;
-        let url = new URL(window.location.href)
-        let sport_id = url.searchParams.get('sport_id')
-
-        if (sport_id !== null) {
-            endpoint += " &sport_id=" + sport_id
-        }
-
-        endpoint = endpoint.replaceAll(" ", '')
-
-
-        let search_term = url.searchParams.get('search')
-        if (search_term !== null) {
-            endpoint += ' &search=' + search_term
-        }
-        //splitting before api call
-        let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29").split(",")
-        console.log("subtypes", sub_types[0]);
-        if (width <= 1259) {
-            // console.log("condition has been met ", [sub_types[0]])
-            sub_types = [sub_types[0]]
-        }
-
-        endpoint += `&sub_type_id=` + (sub_types || "1,18,29")
-
-
-        await makeRequest({url: endpoint, method: "POST", data: betslip}).then(([status, result]) => {
-            if (status == 200) {
-                setMatches(matches.length > 0 ? {...matches, ...result?.data} : result?.data || result)
-                setFetching(false)
-                setLoading(false)
-                if (result?.slip_data) {
-                    setUserSlipsValidation(result?.slip_data)
+            await makeRequest({ url: endpoint, method: "POST", data: betslip }).then(
+                ([status, result]) => {
+                    dispatch({type: "SET", key: "all_markets", payload: result?.data||result});
+                    // setMatchWithMarkets(result?.data || result);
+                    setProducerDown(result?.producer_status === 1);
+                    setIsLoading(false);
                 }
-                setProducerDown(result?.producer_status === 1);
-            }
-        });
-
+            );
+        }
     }, []);
 
-    useEffect(() => {
-        checkThreeWay()
-        fetchData();
-        let cachedSlips = getBetslip("betslip");
-        if (cachedSlips) {
-            dispatch({type: "SET", key: "betslip", payload: cachedSlips});
-        }
+    useLayoutEffect(() => {
+        const abortController = new AbortController();
+        fetchPagedData();
         return () => {
-            setMatches(null);
+            abortController.abort();
         };
-    }, [fetchData]);
-
-    const checkThreeWay = () => {
-        let url = new URL(window.location)
-        let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29").split(",")
-        setThreeWay(sub_types.includes("1"))
-    }
-
-    document.addEventListener('scrollEnd', (event) => {
-        if (!fetching) {
-            setFetching(true)
-            setLimit(limit + 50)
-        }
-    })
-
-    const configureCampaignCookie = () => {
-
-        let url = new URL(window.location)
-
-        let utm_source = url.searchParams.get('utm_source')
-
-        let utm_campaign = url.searchParams.get('utm_campaign')
-
-        if (utm_source !== null) {
-            setLocalStorage('utm_source', utm_source)
-        }
-
-        if (utm_campaign !== null) {
-            setLocalStorage('utm_campaign', utm_campaign)
-        }
-    }
-
-    useEffect(() => {
-        configureCampaignCookie()
-    }, [utmSource])
-
-    useEffect(() => {
-        let new_tab = ""
-        const new_sport_id = Number(new URL(window.location).searchParams.get("sport_id"))
-
-        if (window.location.href.includes("highlights")) {
-            new_tab = ("highlights")
-        }
-
-        if (window.location.href.includes("upcoming")) {
-            new_tab = ("upcoming")
-
-        }
-        if (window.location.href.includes("tomorrow")) {
-            new_tab = ('tomorrow')
-        }
-        if(window.location.href.includes("countries")){
-            new_tab=('countries')
-        }
-        console.log("tabs", tab)
-
-        // console.log("tabs", new_tab)
-        if (new_tab !== tab) {
-            setTab(new_tab)
-            setLoading(true)
-        }
+    }, [fetchPagedData]);
 
 
-        if (sportID !== new_sport_id) {
-            setSportID(new_sport_id)
-            setLoading(true)
-            setMatches([])
-            console.log("loading_matches", new_sport_id)
-        } else {
-
-        }
-
-    })
 
 
     return (
-        <dif className={'flex-item'}>
+        <div className={'flex-item'}>
             <div className="item4"><Header/></div>
             <div className="flex-container">
-                <div className="item1"> <SideBar loadCompetitions/></div>
-                <div className="item2"><div className="gz home match-overflow " >
-                    <div className="homepage" ref={homePageRef} >
-                        <MobileNav2/>
-                        <CarouselLoader/>
-                        <Testimonials/>
+                <div className="item1">
+                    <SideBar loadCompetitions/>
+                </div>
+                <div className="item2">
+                    <div className="gz home" style={{ width: "100%" ,marginBottom:"5rem"}}>
 
-                        <MainTabs tab={location.pathname.replace("/", "")}/>
-                        {/* <MobileCategories/> */}
-                        {/* <MobileCategories/> */}
-                        {loading ?
-                            <div className={`text-center mt-2 text-white d-block`}>
-                                <Spinner animation={'grow'} size={'lg'}/>
-                            </div> : tab=='countries'?<Countries/>:
-                                <MatchList
-                                    live={false}
-                                    fetching={fetching}
-                                    matches={matches}
-                                    pdown={producerDown}
-                                    three_way={threeWay}
+                        <div className="homepage">
 
-                                />
-                        }
+                            <MarketList
+                                allMarkets={allMarkets}
+                                live={live}
+                                matchwithmarkets={state?.all_markets}
+                                pdown={producerDown}
+                            />
 
-
-
+                        </div>
                     </div>
-                </div></div>
-                <div className="item3"><Right betslipValidationData={userSlipsValidation} jackpotData={matches?.meta} test={true}/></div>
+                </div>
+                <div className="item3">
+                    <Right betslipValidationData={state?.user_slip_validation} />
+                </div>
 
             </div>
-            <div className="item6"><div className={"footer-mobile-none"}>
+            <div className="item6">
+                <div className={"footer-mobile-none"}>
                 <Footer/>
             </div></div>
-        </dif>
+        </div>
 
     );
 };

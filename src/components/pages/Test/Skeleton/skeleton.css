@@ -1,0 +1,36 @@
+.layout {
+    width: 100%;
+
+    display: flex;
+    gap: 16px;
+}
+
+.grow1 { flex-grow: 1; }
+
+.blink-2 {
+    -webkit-animation: blink-2 1.5s infinite both;
+    animation: blink-2 1.5s infinite both;
+}
+
+@-webkit-keyframes blink-2 {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.2;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes blink-2 {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.2;
+    }
+    100% {
+        opacity: 1;
+    }
+}

@@ -64,6 +64,9 @@
     -webkit-box-shadow: 0px -1px 16px 6px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px -1px 16px 6px rgba(0,0,0,0.75);
 }
+.carousel.slide{
+    background: var(--betnare-primary);
+}
 .item3 {
     /* flex:1 1 auto; */
     flex-grow:1;

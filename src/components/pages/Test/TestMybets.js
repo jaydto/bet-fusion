@@ -20,7 +20,7 @@ const MainTabs = React.lazy(() => import('../../header/main-tabs'));
 const MatchList = React.lazy(() => import('../../matches/index'));
 const Right = React.lazy(() => import('../../right/index'));
 const SideBar = React.lazy(() => import('../../sidebar/awesome/Sidebar'))
-const  Test= () => {
+const  TestMyBets= () => {
     const [user, setUser] = useState(getFromLocalStorage("user"));
     const gaEventTracker = useAnalyticsEventTracker('Home');
     const location = useLocation();
@@ -129,7 +129,7 @@ const  Test= () => {
         //splitting before api call
         let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29").split(",")
         console.log("subtypes", sub_types[0]);
-        if (width <= 767) {
+        if (width <= 1259) {
             // console.log("condition has been met ", [sub_types[0]])
             sub_types = [sub_types[0]]
         }
@@ -237,46 +237,46 @@ const  Test= () => {
 
 
     return (
-<dif className={'flex-item'}>
-    <div className="item4"><Header/></div>
-    <div className="flex-container">
-        <div className="item1"> <SideBar loadCompetitions/></div>
-        <div className="item2"><div className="gz home match-overflow " >
-            <div className="homepage" ref={homePageRef} >
-                <MobileNav2/>
-                <CarouselLoader/>
-                <Testimonials/>
+        <dif className={'flex-item'}>
+            <div className="item4"><Header/></div>
+            <div className="flex-container">
+                <div className="item1"> <SideBar loadCompetitions/></div>
+                <div className="item2"><div className="gz home match-overflow " >
+                    <div className="homepage" ref={homePageRef} >
+                        <MobileNav2/>
+                        <CarouselLoader/>
+                        <Testimonials/>
 
-                <MainTabs tab={location.pathname.replace("/", "")}/>
-                {/* <MobileCategories/> */}
-                {/* <MobileCategories/> */}
-                {loading ?
-                    <div className={`text-center mt-2 text-white d-block`}>
-                        <Spinner animation={'grow'} size={'lg'}/>
-                    </div> : tab=='countries'?<Countries/>:
-                        <MatchList
-                            live={false}
-                            fetching={fetching}
-                            matches={matches}
-                            pdown={producerDown}
-                            three_way={threeWay}
+                        <MainTabs tab={location.pathname.replace("/", "")}/>
+                        {/* <MobileCategories/> */}
+                        {/* <MobileCategories/> */}
+                        {loading ?
+                            <div className={`text-center mt-2 text-white d-block`}>
+                                <Spinner animation={'grow'} size={'lg'}/>
+                            </div> : tab=='countries'?<Countries/>:
+                                <MatchList
+                                    live={false}
+                                    fetching={fetching}
+                                    matches={matches}
+                                    pdown={producerDown}
+                                    three_way={threeWay}
 
-                        />
-                }
+                                />
+                        }
 
 
+
+                    </div>
+                </div></div>
+                <div className="item3"><Right betslipValidationData={userSlipsValidation} jackpotData={matches?.meta} test={true}/></div>
 
             </div>
-        </div></div>
-        <div className="item3"><Right betslipValidationData={userSlipsValidation} jackpotData={matches?.meta} test={true}/></div>
-
-    </div>
-    <div className="item6"><div className={"footer-mobile-none"}>
-        <Footer/>
-    </div></div>
-</dif>
+            <div className="item6"><div className={"footer-mobile-none"}>
+                <Footer/>
+            </div></div>
+        </dif>
 
     );
 };
 
-export default Test;
+export default TestMyBets;

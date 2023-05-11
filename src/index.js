@@ -19,6 +19,7 @@ import './tailwind.css';
 
 import Store from './context/store';
 import ReactGA from 'react-ga4';
+
 const Deposit3=React.lazy(()=>import("./components/pages/deposit-withraw/Deposit3"));
 // import Deposit2 from "./components/pages/deposit-withraw/Deposit2";
 
@@ -31,12 +32,21 @@ const CompetitionsMatches = React.lazy(
 );
 const BetslipShareDecode = React.lazy(() => import('./components/betslip/BetslipShareDecode'))
 const MatchAllMarkets = React.lazy(() => import('./components/all-markets'));
+
+
+
 const Test=React.lazy(()=>import('./components/pages/Test/Test'));
+const  TestLive=React.lazy(()=>import('./components/pages/Test/TestLive'));
+
+
+
+
 const Jackpot = React.lazy(() => import('./components/jackpot'));
 
 const Live = React.lazy(
     () => import('./components/live')
 );
+
 const MyBets = React.lazy(
     () => import('./components/my-bets')
 );
@@ -151,6 +161,8 @@ render((
                     <Route exact path="/upcoming" element={<Test/>}/>
                     <Route exact path="/tomorrow" element={<Test/>}/>
                     <Route exact path= "/countries" element={<Test/>}/>
+                    <Route exact path="/live" element={<TestLive/>}/>
+                    <Route exact path="/live/:spid" element={<TestLive/>}/>
                     <Route exact path="/login" element={<Login/>}/>
                     <Route exact path="/share" element={<BetslipShareDecode/>}/>
                     <Route exact path="/virtuals" element={<Virtuals/>}/>
@@ -179,8 +191,8 @@ render((
                     <Route exact path="/match/:id" element={<MatchAllMarkets/>}/>
                     <Route exact path="/match/live/:id" element={<MatchAllMarkets live/>}/>
                     <Route exact path="/jackpot" element={<Jackpot/>}/>
-                    <Route exact path="/live" element={<Live/>}/>
-                    <Route exact path="/live/:spid" element={<Live/>}/>
+                    <Route exact path="/live1" element={<Live/>}/>
+                    <Route exact path="/live1/:spid" element={<Live/>}/>
                     <Route exact path="/privacy-policy" element={<PrivacyPolicy/>}/>
                     <Route exact path="/anti-money-laundering" element={<AntimoneyLaundering/>}/>
                     <Route exact path="/responsible-gambling" element={<ResponsibleGambling/>}/>

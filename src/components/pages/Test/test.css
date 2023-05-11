@@ -68,6 +68,11 @@
     /* flex:1 1 auto; */
     flex-grow:1;
 }
+@media (min-width: 1260px){
+    .item2{
+        width:65%;
+    }
+}
 @media (max-width: 1259px){
     .item2 {
         width:70%;

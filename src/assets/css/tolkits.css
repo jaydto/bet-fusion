@@ -16698,10 +16698,9 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 /*}*/
 
 .filters-modal .modal-content {
-    background-color: #16202c;
+    background-color: var(--betnare-primary);
     color: #fff;
 }
-
 .market-item:hover {
     background-color: #253743;
     transition: .5s;

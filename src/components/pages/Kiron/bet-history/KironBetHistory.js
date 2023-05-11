@@ -138,7 +138,7 @@ const KironBetHistory = (props) => {
 
         return (
 
-            state?.kironbetdetails!==undefined&&!betLoading?state?.kironbetdetails.map((betlip_detail,id)=>(
+            state?.kironbetdetails!==undefined&&state?.kironbetdetails!==null&&!betLoading?state?.kironbetdetails.map((betlip_detail,id)=>(
               <div className={`accordion-betslips-style`}  key={betlip_detail.game_id}>
                   <div className="row">
                       <div className="col  d-flex  align-items-center">{ betlip_detail.home_team}</div>

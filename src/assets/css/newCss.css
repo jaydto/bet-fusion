@@ -22,6 +22,8 @@
     --width-side-sm:14.813rem;
     --button-color:#334c5c;
     --testimonial-top-md:10.5rem;
+    --font-size-bet-body:1.5rem;
+    --font-size-bet-body-sm:1.3rem;
 
 }
 body {
@@ -238,6 +240,9 @@ body {
     letter-spacing: 1px;
 }
 
+.bet-body {
+    font-size: var(--font-size-bet-body);
+}
 b, strong {
     font-weight: 500;
 }
@@ -627,6 +632,9 @@ input[type="radio"], input[type="checkbox"] {
 
 }
 @media (max-width: 1259px) {
+    .bet-body {
+        font-size: var(--font-size-side-sm);
+    }
     .home-tabs-active{
         padding:13px;
     }

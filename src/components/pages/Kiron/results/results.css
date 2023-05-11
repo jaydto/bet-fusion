@@ -23,7 +23,7 @@
 .league-wrapper {
     width: 100%;
     float: left;
-    background-color: #ffffff;
+    /*background-color: #ffffff;*/
     padding-bottom: 2em;
     min-height: 83vh;
 }
@@ -99,7 +99,7 @@
 .league-wrapper {
     width: 100%;
     float: left;
-    background-color: #ffffff;
+    /*background-color: #ffffff;*/
     padding-bottom: 2em;
     min-height: 83vh;
 }

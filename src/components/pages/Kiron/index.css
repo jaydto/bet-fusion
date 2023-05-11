@@ -18,6 +18,10 @@
     height: 35px;
     box-sizing: border-box;
 }
+.container-sticky-top {
+    position: sticky!important;
+    top: 0.5rem!important;
+}
 
 .opt-color{
     background: #ffc107!important;

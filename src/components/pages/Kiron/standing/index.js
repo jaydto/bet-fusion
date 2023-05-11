@@ -55,7 +55,7 @@ const Standing = () => {
             <div className="league-wrapper">
                 <div className="match-standing-wrapper pt-0">
                     <table className={"mx-1 table"}>
-                        <tbody>
+                        <tbody style={{background:'#fff'}}>
                         <tr className="table-header">
                             <th className={''}>P</th>
                             <th className={''}>Team</th>

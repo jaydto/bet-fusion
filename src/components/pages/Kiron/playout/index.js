@@ -129,35 +129,28 @@ const KironPlayouts = (props) => {
                                         <div className="live-match-selection pt-1 pb-1">
                                             <div className="container">
                                                 <div className="row px-3">
-                                                    <div className="col-6 text-right pt-1"><span className="team-jersey"><img
-                                                        src={results?.home_team_image}
-                                                        alt="Nare League"  style={{height: '32px'}}/></span> <a href="#"
-                                                                                      style={{color: "var(--black)"}}>
-                                                        <span className="home-team-r bold px-2">{results.home_team}</span>
-                                                        {/*{console.log("check_score",handleScore(playout,results) )}*/}
-                                                        <span className={`mr-2 ${handleScore_home(results.home_scores.filter((score) => score <= playout).length,results.away_scores.filter((score) => score <= playout).length)?'kiron-playout-score-animation kiron-playout-score':'red-txt'}`}>
+
+                                                    <div className="col-6 text-right pt-1">
+                                                        <span className="team-jersey">
+                                                            <img src={results?.home_team_image} alt="Nare League"  style={{height: '32px'}}/>
+                                                        </span>
+                                                        <a href="#" style={{color: "var(--black)"}}  className={"d-flex justify-content-between align-items-center"}>
+                                                            <span className="home-team-r bold px-2">{results.home_team}</span>
+                                                            <span className={`mr-2 ${handleScore_home(results.home_scores.filter((score) => score <= playout).length,results.away_scores.filter((score) => score <= playout).length)?' kiron-playout-score-animation kiron-playout-score':'red-txt'}`}>
                                                             { results.home_scores.filter((score) => score <= playout).length}
-                                                        </span></a></div>
+                                                            </span>
+                                                        </a>
+                                                    </div>
 
                                                     <div className="col-6 text-left pt-1">
                                                         <a href="#" className={"d-flex justify-content-between align-items-center"} style={{color: "var(--black)"}}>
-                                                            <span className={`mr-2  ${handleScore_away(results.home_scores.filter((score) => score <= playout).length,results.away_scores.filter((score) => score <= playout).length)?'kiron-playout-score-animation kiron-playout-score':'red-txt'}`}> { results.away_scores.filter((score) => score <= playout).length}</span>
+                                                            <span className={`mr-2  ${handleScore_away(results.home_scores.filter((score) => score <= playout).length,results.away_scores.filter((score) => score <= playout).length)?' kiron-playout-score-animation kiron-playout-score':'red-txt'}`}> { results.away_scores.filter((score) => score <= playout).length}</span>
                                                             <span className="away-team-r bold px-2">{results.away_team}</span>
                                                         </a>
                                                         <span className="team-jersey"><img
                                                             src={results?.away_team_image}
                                                             alt="Nare League" style={{height: '32px'}}/></span>
                                                     </div>
-                                                    {/*<div className="col-12">*/}
-                                                    {/*    <div className="row">*/}
-                                                    {/*        <div className="col-time text-right"><span*/}
-                                                    {/*            className="score-time"><span>41'</span></span></div>*/}
-                                                    {/*        <div className="col-time-c text-center"><strong*/}
-                                                    {/*            className="score-time"></strong></div>*/}
-                                                    {/*        <div className="col-time text-left"><span*/}
-                                                    {/*            className="score-time"><span></span></span></div>*/}
-                                                    {/*    </div>*/}
-                                                    {/*</div>*/}
                                                 </div>
                                             </div>
                                         </div>

@@ -353,6 +353,9 @@ select::after{
 .virtual.casino-category{
     width: 80vw;
 }
+.kiron-size {
+    overflow-x: auto;
+}
 .login-button {
     color: #fff2f2;
     background: var(--button-color);
@@ -932,8 +935,10 @@ input[type="radio"], input[type="checkbox"] {
     .kiron-amt{
         margin-top: 45px !important;
     }
-    .kiron-size{
-        width:100vw;
+    .kiron-size {
+        width: 100vw;
+        overflow-x: auto;
+        margin-bottom: 12px;
     }
 
     .sign-up-size{

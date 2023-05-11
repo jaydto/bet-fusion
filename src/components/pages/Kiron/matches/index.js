@@ -322,8 +322,8 @@ export const MatchRow = (props) => {
 
             </div>
           </div>:
-          <div  className="top-matches d-flex flex-sm-column flex-lg-row ">
-            <div className="to-deskview to-block to-tabview  mx-lg-0 px-sm-4 px-md-4 py-3 pb-4  container-size ">
+          <div  className="top-matches d-flex flex-sm-column flex-lg-row px-0">
+            <div className="to-deskview to-block to-tabview  mx-lg-0 px-sm-4 px-md-0 py-3 pb-4  container-size ">
               <div className="size-info  d-flex col-xs-12 pad left-text flex-row live-col">
 
                 <div className={`col text-left playing-teams-wrap  align-items-center col-xs-12 match-detail-container change-match px-1`}>
@@ -532,7 +532,7 @@ const MatchList = (props) => {
   return (
     <div className="matches full-width table table-striped">
 
-        <div className="web-element px-lg-3 ">
+        <div className="web-element px-lg-0 ">
           {
               matches &&
               Object.entries(matches).map(([key, match]) => (

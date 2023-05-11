@@ -129,7 +129,8 @@ const PageNotFound = React.lazy(() => import('./components/pages/404/NotFound'))
 
 const ShaksGamePlay=React.lazy(()=>import('./components/pages/shaks/ShaksGamePlay') )
 
-const Kiron=React.lazy(()=>import('./components/pages/Kiron/index'))
+// const Kiron=React.lazy(()=>import('./components/pages/Kiron/index'))
+const Kiron=React.lazy(()=>import('./components/pages/Kiron/KironTest'))
 
 const BetslipPage =React.lazy(()=> import("./components/pages/betslip/betslipPage"))
 

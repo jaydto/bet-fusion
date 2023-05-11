@@ -474,9 +474,7 @@ input[type="radio"], input[type="checkbox"] {
     color: #fff!important;
     font-weight: bold;
 }
-.banner-height{
-    height: 150px!important;
-}
+
 .input-field {
     height: 44px!important;
     line-height: 40px;
@@ -1025,9 +1023,7 @@ input[type="radio"], input[type="checkbox"] {
 
 
     }
-    .banner-height{
-        height: 90px!important;
-    }
+
     .sticky-logged-in-testimony {
         position: sticky;
         /*top: 105px;*/

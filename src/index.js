@@ -31,7 +31,7 @@ const CompetitionsMatches = React.lazy(
 );
 const BetslipShareDecode = React.lazy(() => import('./components/betslip/BetslipShareDecode'))
 const MatchAllMarkets = React.lazy(() => import('./components/all-markets'));
-
+const Test=React.lazy(()=>import('./components/pages/Test/Test'));
 const Jackpot = React.lazy(() => import('./components/jackpot'));
 
 const Live = React.lazy(
@@ -146,7 +146,10 @@ render((
             <Suspense fallback={<p> Loading ... </p>}>
                 <Routes>
                     <Route path="*" element={<Navigate to="/404"/>}/>
-                    <Route exact path="/" element={<Index/>}/>
+                    <Route exact path="/" element={<Test/>}/>
+                    <Route exact path="/highlights" element={<Test/>}/>
+                    <Route exact path="/upcoming" element={<Test/>}/>
+                    <Route exact path= "/countries" element={<Test/>}/>
                     <Route exact path="/login" element={<Login/>}/>
                     <Route exact path="/share" element={<BetslipShareDecode/>}/>
                     <Route exact path="/virtuals" element={<Virtuals/>}/>
@@ -165,9 +168,6 @@ render((
                     <Route exact path={"/standing"} element={<Kiron/>}/>
                     <Route exact path={"/bet-history"} element={<ProtectedRoute><Kiron/></ProtectedRoute>}/>
                     <Route exact path={"/profile"} element={<Profile/>}/>
-                    <Route exact path="/highlights" element={<Index/>}/>
-                    <Route exact path="/upcoming" element={<Index/>}/>
-                    <Route exact path= "/countries" element={<Index/>}/>
                     <Route exact path="/tomorrow" element={<Index/>}/>
                     <Route exact path={"/betslip"} element={<BetslipPage/>}/>
                     <Route exact path="/betslip-slip" element={<BetslipPage/>}/>
@@ -195,6 +195,7 @@ render((
                     <Route exact path="/logout" element={<Logout/>}/>
                     <Route exact path="/print-matches" element={<PrintMatches/>}/>
                     <Route exact path="/promotions" element={<Promotions/>}/>
+                    <Route exact path="/test" element={<Index/>}/>
                     <Route exact path="/deposit"
                            element={<ProtectedRoute><Deposit3/> </ProtectedRoute>}/>
                     <Route exact path="/withdraw"

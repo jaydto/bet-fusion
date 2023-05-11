@@ -174,7 +174,7 @@ const MatchHeaderRow = (props) => {
 
   return (
 
-      <Row className={`full-mobile sticky-top ${jackpot?'sticky-jackpot ':user?"sticky-user ":'sticky-responsive '}px-lg-3`}>
+      <Row className={`full-mobile sticky-top ${jackpot?'sticky-jackpot ':user?"sticky-user ":'sticky-responsive no-sticky '}px-lg-3`}>
         <div className="top-matches d-flex position-sticky sticky-top shadow-lg header-sports">
           <div className={"size-info  d-flex col-xs-12 pad left-text"}>
             <div className="col pad left-text d-flex">
@@ -985,7 +985,7 @@ const MatchRow = (props) => {
                             {/*<div className="font-weight-bold mobile-remove">*/}
                             {/*    <h4 className="font-weight-bold mobile-remove"> 3 WAY</h4>*/}
                             {/*</div>*/}
-                            <div className={"d-sm-flex d-md-none"}>
+                            <div className={"d-sm-none d-md-none"}>
                                             <span className='d-flex justify-content-start'>
                                                 {match?.tags?.map((tag)=>(
                                                     <span className='px-2 w-100 ' style={{color:tag?.color, backgroundColor:tag?.background_color, fontSize:"8px", borderRadius:"10px", marginLeft:"3px", width:"4px", marginTop:"8px"}}>

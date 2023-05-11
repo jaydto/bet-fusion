@@ -23,7 +23,7 @@ const AlertMessage = (props) => {
 }
 
 const Right = (props) => {
-    const {jackpot, betslipValidationData, jackpotData, kiron, kironValidation} = props;
+    const {jackpot, betslipValidationData, jackpotData, kiron, kironValidation,test} = props;
     const [betSlipMobile, setBetSlipMobile] = useState(false)
     const [state, dispatch] = useContext(Context);
     console.log("kiron", kiron)
@@ -31,7 +31,7 @@ const Right = (props) => {
 
     //todo top height style ={{top:"13.5rem"
     return (
-        <div className={`col-md-3 gn betslip-container sticky-top vh-100 overflow-scroll betslip-container-mozilla container-sticky-top top-login-background-img-bg ${kiron&&'kiron-betslip-size'}`}>
+        <div className={`col-md-3 ${test?'w-100':'gn'} betslip-container sticky-top vh-100 overflow-scroll betslip-container-mozilla container-sticky-top top-login-background-img-bg ${kiron&&'kiron-betslip-size'}`}>
             <div className="betslip-container d-none d-md-block">
                 {props?.message && <AlertMessage classname={props.classname} message={props.message}/>}
                 <div className="bet-option-list " id=''>

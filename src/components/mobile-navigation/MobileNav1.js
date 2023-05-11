@@ -138,7 +138,7 @@ const MobileNav1 = (props) => {
 
     };
 
-    return (<div className="menu-wrapper mobile-nav-remove">
+    return (<div className="menu-wrapper mobile-nav-remove ">
         {/*{sport==null?setSport(getFromLocalStorage("categories")):""}*/}
         {showLoadingModal && ( <LoginModal setShowLoadingModal={setShowLoadingModal} visible={showLoadingModal}/>)}
         <table className="menu-table" style={{width: "100%", textAlign: "center", marginLeft:"-9px"}}>

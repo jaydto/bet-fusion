@@ -376,7 +376,7 @@ let totalSeconds=timeAfter;
                         setInPlay(false)
                         fetchData()
                         setTimeAfter(null)
-                        }, 1500);
+                        }, 3000);
                 }
             }
 

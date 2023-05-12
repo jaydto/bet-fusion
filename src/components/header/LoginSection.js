@@ -65,7 +65,7 @@ const LoginSection= (props) => {
                     </Link>
                 </div>
             </div>
-            <div style={{float: "right"}} className={` d-flex justify-content-center align-items-center flex-column w-100 container-fluid`}>
+            <div style={{float: "right"}} className={` d-flex justify-content-center align-items-center flex-column w-100 container-fluid login-top`}>
                 <div className={`w-100`}>
                     <Link to={'/login'} className={`cg text-light border-0`} type="submit">
                         <span style={{color:'aqua'}}>LOGIN</span>

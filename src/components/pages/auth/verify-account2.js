@@ -234,8 +234,8 @@ const VerifyAccount2 = props => {
                 <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
                     <Container fluid className={'d-flex justify-content-between mobile-change top-login-background-img'}>
                         <Navbar.Brand className="e logo align-self-start menu-control d-flex w-100" title="Betnare" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
-                            <Link to={'/'}>
-                                <FontAwesomeIcon icon={faBackspace}/> HOME
+                            <Link to={'/'} className={'text-light'}>
+                                <FontAwesomeIcon icon={faBackspace}/>&nbsp; HOME
                             </Link>
                             <div
                                 className="col-md-6  d-flex  right justify-content-end align-items-center w-change3 gap-2 top-login-background-img-bg-page"

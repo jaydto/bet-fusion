@@ -23,6 +23,7 @@ import {faCloudDownloadAlt, faCoins, faSearch, faTimes} from "@fortawesome/free-
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import ListGroup from "react-bootstrap/ListGroup";
 import {formatNumber} from "../utils/betslip";
+import LoginSection from "./LoginSection";
 const  MobileNav2=React.lazy(()=>import( "../mobile-navigation/MobileNav2"));
 const ProfileMenu = React.lazy(() => import('./profile-menu'));
 const HeaderLogin = React.lazy(() => import('./top-login'));
@@ -290,7 +291,7 @@ const Header = (props) => {
                         <div className={` col-10 change-size desk-top`} id="navbar-collapse-main " >
                             <div
                                 className="col-md-11 col-sm-12 col-lg-7 right fix-view-2 disable-ipad to-navcheck justify-content-end pt-lg-0 pt-md-3">
-                                {user ? <ProfileMenu user={user}/> : <HeaderLogin setUser={setUser}/>}
+                                {user ? <ProfileMenu user={user}/> : <LoginSection/>}
                             </div>
 
                         </div>
@@ -299,7 +300,7 @@ const Header = (props) => {
                     <Row className={`second-nav ck pc os app-navbar ${user?' app-header-nav-login ':' app-header-nav '} to-navcheck `}>
                         <HeaderNav/>
                     </Row>
-                    <Row className={"mobile-only"}>
+                    <div className={"mobile-only min-mobile-size w-100"}>
                         {searching?
                             <Container id="navbar-collapse-main"
                                        className={`fadeIn header-menu d-flex justify-content-center px-4 d-block`}>
@@ -329,7 +330,7 @@ const Header = (props) => {
                                 </ListGroup>
                             </Container>
                         :pathname!=='/signup'&&<MobileNav1/>}
-                    </Row>
+                    </div>
 
                     <Navbar.Offcanvas
                         style={{width: "80%", height: "100%",zIndex: "9999", marginTop: "0px", overflowY:"auto"}}

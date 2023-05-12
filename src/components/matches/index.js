@@ -1273,7 +1273,7 @@ export const MarketList = (props) => {
           >
             <Input
                 type="text"
-                className={"form-control h-100  border-0 text-default "}
+                className={"form-control h-100  border-0 text-default all-markkets-search "}
                 style={{
                   fontSize: "14px",
                   borderRadius: "9px",

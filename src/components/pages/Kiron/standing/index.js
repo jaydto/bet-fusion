@@ -57,15 +57,15 @@ const Standing = () => {
                     <table className={"mx-1 table"}>
                         <tbody style={{background:'#fff'}}>
                         <tr className="table-header">
-                            <th className={''}>P</th>
+                            <th className={''}>Position</th>
                             <th className={''}>Team</th>
-                            <th className={''}>Pts</th>
+                            <th className={''}>Points</th>
                             <th className={'text-center'}>Form</th>
                         </tr>
                         { standings &&
                             Object.entries(standings).map(([key, standing]) => (
                                 <tr>
-                                <td>{standing?.position}</td>
+                                <td className={''}>{standing?.position}</td>
                                 <td className="playing-teams-r">
                                     <span className="team-badge">
                                          <img

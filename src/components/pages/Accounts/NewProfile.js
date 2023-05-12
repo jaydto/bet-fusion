@@ -1,40 +1,35 @@
 import React, {useState} from 'react';
-import "./card.css";
-import Right from "../../right";
-import {
-    faCoins,
-    faUser,
-    faChevronRight,
-    faQuestionCircle,
-    faGifts,
-    faDollarSign, faSmile, faListOl, faCloudDownloadAlt, faHome, faPowerOff
-} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {formatNumber} from "../../utils/betslip";
-import {clearTrackingData, getFromLocalStorage, setTrackingData} from "../../utils/local-storage";
-import useWindowDimensions from "../../header/Dimensions";
-
-
-import {Link, useNavigate} from "react-router-dom";
-import Header from "../../header/header";
+import MobileNav2 from "../../mobile-navigation/MobileNav2";
+import Testimonials from "../../carousel/Testimonials";
+import TestSkeleton from "../Test/Skeleton/TestSkeleton";
+import Countries from "../../countries/Countries";
 import {Navbar, Offcanvas} from "react-bootstrap";
+import Container from "react-bootstrap/Container";
+import {Link, useNavigate} from "react-router-dom";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import logo from "../../../assets/img/Logo.webp";
-import Container from "react-bootstrap/Container";
-
-
-
-import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {
+    faChevronRight,
+    faCoins,
+    faDollarSign,
+    faGifts,
+    faHome,
+    faListOl,
+    faPowerOff, faQuestionCircle,
+    faSmile,
+    faUser
+} from "@fortawesome/free-solid-svg-icons";
 import SidebarMobile from "../../sidebar/awesome/SidebarMobile";
-import makeRequest from "../../utils/fetch-request";
-import {Formik} from "formik";
+import SideNav from "./SideNav";
+import {formatNumber} from "../../utils/betslip";
 import DepositProfile from "./component/DepositProfile";
 import WithdrawProfile from "./component/WithdrawProfile";
-import HeaderNav from "../../header/header-nav";
+import {getFromLocalStorage} from "../../utils/local-storage";
+import useWindowDimensions from "../../header/Dimensions";
+import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 
-
-
-const Profile = () => {
+const NewProfile = () => {
     const navigate = useNavigate();
 
     const [user, setUser] = useState(getFromLocalStorage("user"));
@@ -49,11 +44,10 @@ const Profile = () => {
         marginTop: width<=991?"4rem":'0rem'
         // marginTop:'4rem'
     }
-
-
     return (
-        <div>
-            <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark" >
+        <div className={'flex-item'}>
+            <div className="item4">
+                <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark" >
                 <Container fluid className={'d-flex justify-content-between mobile-change'}>
                     <Navbar.Brand className="e logo align-self-start menu-control d-flex w-100" title="Betnare" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
                         <Link to={{pathname: "/"}} className="col-4 resize-mobile">
@@ -115,59 +109,61 @@ const Profile = () => {
                     </Navbar.Offcanvas>
                 </Container>
             </Navbar>
+            </div>
+            <div className="flex-container">
+                <div className="item1"> <SideNav/></div>
+                <div className="item2">
+                    <div className="row d-flex flex-column gap-3 px-4 py-sm-4 py-lg-0 justify-content-center align-items-center profile-top" style={{ margin: "auto"}}>
+                        <div style={userIn}>
+                            <div className={"card-body d-flex flex-column align-items-center gap-2"}>
+                                <div className={"bg-warning user-style"}>
+                                    <FontAwesomeIcon icon={faUser} className={"text-light"}
+                                                     style={{height: "3rem", width: "3rem"}}/>
+                                </div>
+                                <span className=" text-warning"> {user?.msisdn}</span>
+                            </div>
 
-
-            <div className="row d-flex flex-column gap-3 px-4 py-sm-4 py-lg-0 justify-content-center align-items-center profile-top" style={{ margin: "auto"}}>
-                <div style={userIn}>
-                    <div className={"card-body d-flex flex-column align-items-center gap-2"}>
-                        <div className={"bg-warning user-style"}>
-                            <FontAwesomeIcon icon={faUser} className={"text-light"}
-                                             style={{height: "3rem", width: "3rem"}}/>
                         </div>
-                        <span className=" text-warning"> {user?.msisdn}</span>
-                    </div>
 
-                </div>
+                        <div className=" w-100 ">
 
-                <div className=" w-100 ">
-
-                    <div className="card-radius profile-bg text-light">
-                        <div className="card-body d-flex justify-content-between gap-2 ">
-                            <div className={" profile-bg"}>
-                                <div className="card-body ">
+                            <div className="card-radius profile-bg text-light">
+                                <div className="card-body d-flex justify-content-between gap-2 ">
+                                    <div className={" profile-bg"}>
+                                        <div className="card-body ">
                                     <span
                                         className="font-btn py-2 d-flex flex-column">
                                         <span className={"d-flex align-items-center gap-2"}><FontAwesomeIcon
                                             icon={faDollarSign}/> Cash</span>
                                 <strong style={{color: "#FFB200"}}> KSH {formatNumber(user.balance) || 0}</strong> </span>
-                                </div>
-                            </div>
-                            <div className={"d-flex align-items-center"}>
-                                <div className={"line-between"}></div>
-                            </div>
+                                        </div>
+                                    </div>
+                                    <div className={"d-flex align-items-center"}>
+                                        <div className={"line-between"}></div>
+                                    </div>
 
-                            <div className={"profile-bg"}>
-                                <div className="card-body ">
+                                    <div className={"profile-bg"}>
+                                        <div className="card-body ">
                                     <span className="font-btn py-2 px-2 d-flex flex-column">
                                         <span className={"d-flex align-items-center gap-2"}>
                                             <FontAwesomeIcon
                                                 icon={faSmile}/> Bonus
                                         </span>
                                 <strong>KSH {formatNumber(user.bonus) || 0}</strong> </span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
 
-                <div className=" w-100 ">
+                        <div className=" w-100 ">
 
-                    <div className="card-radius profile-bg text-light">
+                            <div className="card-radius profile-bg text-light">
 
-                        <div className="card-body d-flex justify-content-between gap-2 ">
+                                <div className="card-body d-flex justify-content-between gap-2 ">
 
-                            <div className={"profile-bg"}>
-                                <div className="card-body "><span className="font-btn py-2 px-2 d-flex flex-column">
+                                    <div className={"profile-bg"}>
+                                        <div className="card-body "><span className="font-btn py-2 px-2 d-flex flex-column">
                                         <span className={"d-flex align-items-center gap-2"}>
                                     <FontAwesomeIcon
                                         icon={faGifts}/> Gift </span>
@@ -176,35 +172,35 @@ const Profile = () => {
                                     KSH {formatNumber(user.bonus) || 0}</strong>
                                     </span>
                                 </span>
-                                </div>
-                            </div>
-                            <div className={"d-flex align-items-center"}>
-                                <div className={"line-between"}></div>
-                            </div>
-                            <div className={" profile-bg"}>
-                                <div className="card-body ">
-                                    <Link to={{pathname: "/redeem-points"}}
-                                          className={'link-info text-info font-btn py-2 px-2 d-flex flex-column'} title={'Click to Redeem'}>
+                                        </div>
+                                    </div>
+                                    <div className={"d-flex align-items-center"}>
+                                        <div className={"line-between"}></div>
+                                    </div>
+                                    <div className={" profile-bg"}>
+                                        <div className="card-body ">
+                                            <Link to={{pathname: "/redeem-points"}}
+                                                  className={'link-info text-info font-btn py-2 px-2 d-flex flex-column'} title={'Click to Redeem'}>
                                         <span className={"d-flex align-items-center gap-2"}>
                                            <FontAwesomeIcon
                                                icon={faListOl}/> Points
                                         </span>
-                                        <span>
+                                                <span>
                                             <strong> {formatNumber(user.points_balance) || 0}</strong>
                                         </span>
 
-                                    </Link>
+                                            </Link>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
 
-                <div className=" w-100">
-                    <div className="card card-radius profile-bg text-light">
-                        <div className="card-body">
-                            <div>
-                                <Link to={{pathname: "/my-bets"}} className={"btn text-white w-100 d-content"}>
+                        <div className=" w-100">
+                            <div className="card card-radius profile-bg text-light">
+                                <div className="card-body">
+                                    <div>
+                                        <Link to={{pathname: "/my-bets"}} className={"btn text-white w-100 d-content"}>
                                     <span className="font-btn pad-2  justify-content-between">
                                     <span className="d-flex align-items-center gap-3 ">
                                         <FontAwesomeIcon icon={faCoins} style={{height:"2.5rem", width:"2.5rem"}} className={"text-warning"}/>
@@ -214,46 +210,47 @@ const Profile = () => {
                                         <FontAwesomeIcon icon={faChevronRight} className={"text-warning"} />
 
                                      </span>
-                                </Link>
+                                        </Link>
+                                    </div>
+
+                                </div>
                             </div>
-
                         </div>
-                    </div>
-                </div>
 
-              <DepositProfile/>
-                <WithdrawProfile/>
+                        <DepositProfile/>
+                        <WithdrawProfile/>
 
-                <div className=" w-100">
-                    <div className="card card-radius profile-bg text-light">
-                        <div className="card-body d-flex flex-column align-items-start">
-                        <div className={"card-title"}><h4>Support</h4></div>
+                        <div className=" w-100">
+                            <div className="card card-radius profile-bg text-light">
+                                <div className="card-body d-flex flex-column align-items-start">
+                                    <div className={"card-title"}><h4>Support</h4></div>
 
-                            <Link to={"/how-to-play"} className={"d-flex gap-3 align-items-center text-light justify-content-between w-100"}>
+                                    <Link to={"/how-to-play"} className={"d-flex gap-3 align-items-center text-light justify-content-between w-100"}>
                                 <span className={"d-flex gap-3 align-items-center"}>
                                     <FontAwesomeIcon icon={faQuestionCircle}/>
                                 Help and support
                                 </span>
 
-                                <FontAwesomeIcon icon={faChevronRight}/>
-                            </Link>
-                            <hr className={"w-100 my-2"}/>
-                            <span className={"text-warning d-flex justify-content-center w-100"}>
+                                        <FontAwesomeIcon icon={faChevronRight}/>
+                                    </Link>
+                                    <hr className={"w-100 my-2"}/>
+                                    <span className={"text-warning d-flex justify-content-center w-100"}>
                                 <Link to={"/logout"}>Sign out</Link>
                             </span>
 
 
+                                </div>
+                            </div>
                         </div>
+
                     </div>
+
                 </div>
 
             </div>
-            {/*<div className={"mobile-only mobile-top"}>*/}
-            {/*    <Right profile={true}/>*/}
-            {/*</div>*/}
         </div>
 
     );
 };
 
-export default Profile;
+export default NewProfile;

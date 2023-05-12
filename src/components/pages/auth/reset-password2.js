@@ -137,22 +137,27 @@ const ResetPassword2 = props => {
             setFieldValue(field, value);
         }
         return (
-            <Form className={`${otp_sent ? 'd-none' : 'd-block'}`}>
+            <Form className={`${otp_sent ? 'd-none' : ''}`}>
                 <div className="pt-0">
-                    <div className="row">
-                        <div className="form-group row d-flex justify-content-center ">
+                    <div className="w-100">
+
+                        <div className="form-group row d-flex justify-content-center mt-3">
                             <div className="col-md-12">
                                 <label>Mobile Number</label>
-                                <input
-                                    value={values.mobile}
-                                    className="text-light deposit-input form-control col-md-12 input-field"
-                                    id="mobile"
-                                    name="mobile"
-                                    type="text"
-                                    placeholder='Phone number'
-                                    onChange={ev => onFieldChanged(ev)}
-                                />
-                                {errors.mobile && <div className='text-danger'> {errors.mobile} </div>}
+                                <div className="row">
+                                    <div className="col-md-12 mb-3">
+                                        <input
+                                            value={values.mobile}
+                                            className="text-light deposit-input form-control col-md-12 input-field input-bg-user"
+                                            id="mobile"
+                                            name="mobile"
+                                            type="text"
+                                            placeholder='Phone number'
+                                            onChange={ev => onFieldChanged(ev)}
+                                        />
+                                        {errors.mobile && <div className='text-danger'> {errors.mobile} </div>}
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -286,12 +291,12 @@ const ResetPassword2 = props => {
 
     return (
         <div style={{height:'100vh', background:'#16202C'}}>
-            <div className={'ipad-show'}>
+            <div className={''}>
                 <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
                     <Container fluid className={'d-flex justify-content-between mobile-change top-login-background-img'}>
                         <Navbar.Brand className="e logo align-self-start menu-control d-flex w-100" title="Betnare" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
-                            <Link to={'/'}>
-                                <FontAwesomeIcon icon={faBackspace}/>
+                            <Link to={'/'} className={'text-light'}>
+                                <FontAwesomeIcon icon={faBackspace}/>&nbsp; HOME
                             </Link>
                             <div
                                 className="col-md-6  d-flex  right justify-content-end align-items-center w-change3 gap-2 top-login-background-img-bg-page"
@@ -358,25 +363,25 @@ const ResetPassword2 = props => {
                 <div className={'col-lg-8 col-sm-12 top-login-background-img-bg-down top-login-background-img-bg-page'} >
 
                     <div className="w-100 d-flex flex-column justify-content-center h-100 top-login-background-img-bg-page">
-                        <div className={'width-page-centric'}>
+                        <div className={'width-page-centric reset-pass'}>
                             <FormTitle/>
 
                             <Row justify="center">
 
-                                <div className={'d-flex'}>
+                                <div className={'d-flex w-100'}>
                                     {/**/}
-                                    <div >
+                                    <div className={'w-100'}>
                                         {user?setTimeout(navigate("/"),500):""}
                                         <div className={"d-flex flex-row justify-content-between"}>
                                             <div className=" w-100">
                                                 <div className="homepage d-flex flex-column align-items-center justify-content-center login-page">
 
-                                                    <div className="col-md-12 mt-2 text-white px-2">
+                                                    <div className="col-md-12 mt-2 text-white px-2 w-100">
                                                         {message && <Alert/>}
                                                         {success?setTimeout(window.location.href="/deposit",1000):""}
-                                                        <div className=" pb-0" data-backdrop="static">
+                                                        <div className="modal-body pb-0" data-backdrop="static">
                                                             <OptForm/>
-                                                            <PasswordResetForm/>
+                                                            {/*<PasswordResetForm/>*/}
                                                         </div>
                                                     </div>
 

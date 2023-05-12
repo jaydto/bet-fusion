@@ -265,7 +265,7 @@ const  TestKiron= () => {
 
 
     return (
-        <dif className={'flex-item'}>
+        <div className={'flex-item'}>
             <div className="item4">
                 <Navbar expand="lg" className="mb-0 ck pc os app-navbar top-nav header-mobile-kiron" fixed="top" variant="dark">
                 <Container fluid className={'d-flex justify-content-between mobile-change'}>
@@ -368,7 +368,7 @@ const  TestKiron= () => {
                 <div className="item2" style={{width:'100%'}}>
                     <div className="d-flex flex-row">
                         <div className="d-flex flex-row kiron-size" style={{marginTop:"2px", width:'100%'}}>
-                        <div className="d-flex flex-column kiron-size" style={{marginTop:"2px"}}>
+                        <div className="d-flex flex-column kiron-size" style={{marginTop:"2px", overflowY:'auto'}}>
                         <KironCompetitions/>
                         {!inPlay&&<KironTabs tab={location.pathname.replace("/", "")} user={userLogged}/>}
                         {tab == "results" ? <KironResults/>:tab == "standing" ?<Standing/>:tab == "bet-history" ?<KironBetHistory/>:<>
@@ -377,8 +377,8 @@ const  TestKiron= () => {
                             <KironMoreMarkets/>
                             {loading ?matches.length>0&&matches?.map((match, index) => (
                                 <Complex key={index}/>)):closed? <div className="kiron-loader" id="kiron-loader">
+                                Game  Weeek<span id={'game_week'}></span>
                                 <div className="match-start d-flex flex-column align-items-center justify-content-center " style={{marginTop:'120px'}}>
-                                    Game  Weeek<span id={'game_week'}></span>
                                     Match Starts In <span id="countdown"></span>
                                 </div>
                                 <div className="loading loading--full-height"></div>
@@ -407,7 +407,7 @@ const  TestKiron= () => {
                 <div className={"footer-mobile-none"}>
                 <Footer/>
             </div></div>
-        </dif>
+        </div>
 
     );
 };

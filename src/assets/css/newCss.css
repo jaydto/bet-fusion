@@ -215,11 +215,11 @@ body {
     align-items: center;
 
 }
-.top-nav{
-    min-height:72px;
-    padding: 11px 4px 5px 0px;
-
+.top-nav {
+    min-height: 55px;
+    padding: 5px 1px 2px 0px;
 }
+
 .form-title-centric{
     font-size: 30px;
 }
@@ -229,7 +229,7 @@ body {
     -moz-box-shadow: -3px 0px 0px 0px var(--betnare-header-bg);
 }
 .top-nav-login {
-    min-height: 77px;
+    min-height: 60px;
     padding: 1px 0px 5px 0px;
     background: var(--betnare-header-bg);
 }
@@ -323,6 +323,19 @@ select::after{
 /*    background-repeat: no-repeat;*/
 /*    background-position: bottom right;*/
 /*}*/
+.all-markkets-search{
+background: var(--betnare-input)!important;
+    border:none!important;
+    border-radius: var(--button-radius) !important;
+}
+.all-markkets-search input{
+    background: var(--betnare-input)!important;
+    border:none!important;
+    color: #fff!important;
+}
+.all-markkets-search:focus{
+
+}
 .width-page-centric{
     box-shadow:5px 7px 30px 8px #2c3c44;
     width:60%;
@@ -353,9 +366,7 @@ select::after{
 .virtual.casino-category{
     width: 80vw;
 }
-.kiron-size {
-    overflow-x: auto;
-}
+
 .login-button {
     color: #fff2f2;
     background: var(--button-color);
@@ -458,6 +469,7 @@ input[type="radio"], input[type="checkbox"] {
     max-width: 991px;
     margin: auto;
 }
+
 .tag {
     border-radius: 8px;
     padding-left: 5px;
@@ -489,12 +501,12 @@ input[type="radio"], input[type="checkbox"] {
     line-height: 40px;
     border: none;
 }
-.sticky-user{
-    top:135px;
-    position:sticky;
+.sticky-user {
+    top: 126px;
+    position: sticky;
 }
 .sticky-jackpot {
-    top: 106px;
+    top: 98px;
     position: sticky;
 }
 .user_logged{
@@ -521,7 +533,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 .sticky-responsive {
     position: sticky;
-    top: 136px
+    top: 123px
 }
 .sticky-responsive-logged {
     position: sticky;
@@ -546,11 +558,14 @@ input[type="radio"], input[type="checkbox"] {
 
 /*media queries*/
 @media (min-width: 1260px) {
-    .sticky-testimony{
-        top:111px;
+    #jp-nare-pick-button{
+        margin-left:-38px;
+    }
+    .sticky-testimony {
+        top: 96px;
     }
     .top-login-paddings{
-    padding-top:5px;
+    padding-top:20px;
     }
     .pro-sidebar {
         color: #adadad;
@@ -572,8 +587,8 @@ input[type="radio"], input[type="checkbox"] {
         margin-top: 13px;
     }
     .app-navbar .e img {
-        max-width: 194px;
-        height: 33px;
+        max-width: 188px;
+        height: 26px;
         margin-left: -5px;
     }
     .top-sticky-hidden{
@@ -585,14 +600,14 @@ input[type="radio"], input[type="checkbox"] {
         margin: auto;
         width: 98%!important;
     }
-    .container-sticky-top{
+    .container-sticky-top {
         position: sticky!important;
-        top:11rem!important;
+        top: 9.5rem!important;
     }
     .sticky-logged-in-testimony {
         position: sticky;
-        top: 109.2px;
-        /*z-index: 1999 !important;*/
+        top: 99px;
+        /* z-index: 1999 !important; */
         opacity: 1;
         background: #253743;
     }
@@ -613,10 +628,10 @@ input[type="radio"], input[type="checkbox"] {
         margin: auto;
     }
     .app-header-nav {
-        margin-top: 66px;
+        margin-top: 51px;
     }
-    .app-header-nav-login{
-        margin-top: 49px;
+    .app-header-nav-login {
+        margin-top: 47px;
     }
     .kiron-amt{
         margin-top: 115px !important;
@@ -818,12 +833,6 @@ input[type="radio"], input[type="checkbox"] {
     .sports_only-mobile{
         display: none;
     }
-    .kiron-size{
-        width:75%;
-    }
-    .kiron-betslip-size{
-        width:25%!important;
-    }
     .ipad-show{
         display:none!important
     }
@@ -839,6 +848,14 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 @media (max-width: 991px){
+
+    .sticky-jackpot {
+        top: 0px;
+        position: sticky;
+    }
+    .reset-pass{
+        width:100vw!important;
+    }
     .app-navbar .e img {
         max-width: 130px !important;
         margin-bottom: -11px!important;/*added this for test*/
@@ -862,9 +879,9 @@ input[type="radio"], input[type="checkbox"] {
     .mybets-remove-on-mobile{
         display:none
     }
-    .top-login-background-img{
-        background-image:url("../../assets/img/auth/backimg.webp") ;
-    }
+    /*.top-login-background-img{*/
+    /*    background-image:url("../../assets/img/auth/backimg.webp") ;*/
+    /*}*/
     .w-change3{
         width:28%;
     }
@@ -968,7 +985,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 @media (min-width:768px){
     .amt {
-        margin-top: 117px!important;
+        margin-top: 100px!important;
     }
     .og {
         float: right !important;
@@ -1069,6 +1086,13 @@ input[type="radio"], input[type="checkbox"] {
 
 }
 @media (max-width: 575px){
+    .menu-t .menu-img {
+        height: 2.3rem !important;
+    }
+    table.menu-table tr {
+
+        height: 5rem;
+    }
     .app-navbar .e img {
         margin-bottom: 0px!important;
     }
@@ -1118,6 +1142,45 @@ input[type="radio"], input[type="checkbox"] {
     /*.mobile-remove-verify{*/
     /*    display:none;*/
     /*}*/
+
+    .top-matches div {
+        min-height: 22px;
+        /*justify-content: flex-end;*/
+    }
+    .c-btn-group> .c-btn {
+        height: 25px!important;
+        line-height: 17px!important;
+        font-weight: 400;
+        min-width: 44px;
+        width: 100%;
+        /* margin-left: auto; */
+    }
+    /*.matches .top-matches {*/
+    /*    padding-right: 0rem!important;*/
+    /*    padding-left: 0rem!important;*/
+    /*}*/
+    .app-navbar .e img {
+        margin-left: 5px;
+    }
+    .size-info {
+        width: 50%!important;
+    }
+    .top-matches .side{
+        font-size: 10px;
+    }
+    .matches .top-matches{
+        font-size: 10px;
+    }
+    .odd-fix {
+        font-size: 12px;
+    }
+    .compt-teams {
+        font-size: 10px;
+        text-transform: uppercase !important;
+    }
+    .matches .top-matches button {
+        height: 32px;
+    }
     .ipad-show {
         margin-right: 6px;
     }
@@ -1246,4 +1309,6 @@ input[type="radio"], input[type="checkbox"] {
         opacity: 1;
     }
 }
+
+
 

@@ -39,7 +39,7 @@ const  TestApp= () => {
 
 
     return (
-        <dif className={'flex-item'}>
+        <div className={'flex-item'}>
             <div className="item4"><Header/></div>
             <div className="flex-container">
                 <div className="item1"> <SideBar loadCompetitions/></div>
@@ -113,7 +113,7 @@ const  TestApp= () => {
             <div className="item6"><div className={"footer-mobile-none"}>
                 <Footer/>
             </div></div>
-        </dif>
+        </div>
 
     );
 };

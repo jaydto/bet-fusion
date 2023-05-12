@@ -146,6 +146,7 @@ tr td:nth-child(4) {
 .match-standing-wrapper table tr td:nth-child(1) {
     width: 2.5em;
     border: 1px solid #f1f1f1;
+    text-align: center;
 }
 match-standing-wrapper table tr td:nth-child(1) {
     text-align: center;
@@ -190,4 +191,9 @@ table tr td:nth-child(3) {
 tr td:nth-child(4) {
     width: 115px;
     text-align: center;
+}
+@media (max-width: 375px){
+    .team-badge {
+        gap: 6px;
+    }
 }

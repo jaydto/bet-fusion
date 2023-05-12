@@ -16,7 +16,7 @@ import './assets/css/sidebar-menu.css';
 import './index.css';
 import './assets/css/newCss.css'
 import './tailwind.css';
-
+// import './assets/css/Themes.css'
 import Store from './context/store';
 import ReactGA from 'react-ga4';
 
@@ -41,7 +41,7 @@ const  TestLive=React.lazy(()=>import('./components/pages/Test/TestLive'));
 
 
 
-const Jackpot = React.lazy(() => import('./components/jackpot'));
+const Jackpot = React.lazy(() => import('./components/pages/Test/TestJackpot'));
 
 const Live = React.lazy(
     () => import('./components/live')

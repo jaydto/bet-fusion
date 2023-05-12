@@ -117,31 +117,31 @@ const HeaderLogin = (props) => {
 
         return (
             <>
-                <Form className={`ow right i web-element top-login-paddings ${login&&'width-centric-page top-login-background-img'}`}>
-                    <Row className={`${login?"d-flex flex-column":"top-login-desktop-input"}`}>
-                        <div className={`${login?"w-100 ": "col-4"}`}>
+                <Form className={`ow right i web-element top-login-paddings  width-centric-page top-login-background-img`}>
+                    <Row className={`d-flex flex-column`} >
+                        <div className={`w-100 `}>
                             <input type="text"
                                    name="msisdn"
-                                   className={`${login?"w-100 input-field button-radius":""}  text-light deposit-input form-control col input-field-login  ${errors.msisdn && 'text-danger'}`}
+                                   className={`w-100 input-field button-radius text-light deposit-input form-control col input-field-login  ${errors.msisdn && 'text-danger'}`}
                                    // data-action="grow"
                                    placeholder={errors.msisdn || "+254987654389"}
                                    onChange={ev => onFieldChanged(ev)}
                                    value={values.msisdn}
                             />
                             <br/>
-                            <span className={`${login?"sticky-hidden text-warning d-flex justify-content-end font-input my-2":"sticky-hidden top-sticky-hidden"}`}>
+                            <span className={`sticky-hidden text-warning d-flex justify-content-end font-input my-2`}>
                             {/*<label>*/}
                                 {/*<input type="checkbox" name="remember" value="1"/><span>Remember me</span></label>*/}
-                            <div className={`${login&&'text-warning'}`}>
+                            <div className={`text-warning`}>
                                 <Switch id={"remember-me"} {...label} className="odds-change-box" name={"accept_all_odds_change"}  defaultChecked color="primary" /> Remember Me
                             </div>
                         </span>
                         </div>
 
-                        <div className={`${login?"w-100 ": "col-4"}`}>
+                        <div className={`w-100 `}>
                             <input type="password"
                                    name="password"
-                                   className={`${login?"w-100 input-field button-radius":""} text-light deposit-input form-control col input-field-login  ${errors.password && 'text-danger'} `}
+                                   className={`w-100 input-field button-radius text-light deposit-input form-control col input-field-login  ${errors.password && 'text-danger'} `}
                                    // data-action="grow"
                                    placeholder={errors.password || "Password"}
                                    onChange={ev => onFieldChanged(ev)}
@@ -151,11 +151,12 @@ const HeaderLogin = (props) => {
                             <input type="hidden" name="ref" value="{props.refURL}"/>
                             <Link to={"/reset-password"} title="Reset password"
                                onClick={() => gaEventTracker('Reset Password')}>
-                                <span className={`${login?"sticky-hidden text-warning px-2 d-flex justify-content-end":"sticky-hidden"}`}>Forgot Password?</span>
+                                <span className={`sticky-hidden text-warning px-2 d-flex justify-content-end"`}>Forgot Password?</span>
                             </Link>
                         </div>
-                        <div className={`${login?"w-100":"col-4 d-flex gap-3 justify-content-end"}`}>
-                            <button className={`${login?"w-100 button-radius input-field btn-font": " "} cg ${login?' login-button2 mt-4 ':' login-button '}btn bold`} type="submit">
+
+                        <div className={`w-100`}>
+                            <button className={`w-100 button-radius input-field btn-font cg  login-button2 mt-4 btn bold`} type="submit">
                                 {isLoading ? <span>Logging In ...</span> : <span>LOGIN</span>}
                             </button>
                             <Link className="cg register-button btn btn-warning" to={"/signup"} title="Join now" onClick={() => gaEventTracker('Register')} style={login&&{display:'none'}}>
@@ -165,7 +166,7 @@ const HeaderLogin = (props) => {
                         <Row className={`${login?"d-flex":"d-none"}`} style={{float: "right"}}>
                             <div className="col-12">
                                 <Link className={`${login?"d-flex justify-content-center w-100":""}`} to={"/signup"} title="Join now" onClick={() => gaEventTracker('Register')}>
-                                    <span className={`${login?"text-warning font-input ":""} register-label my-3`}>{login?"Dont have an account! Register now ": "Register now!"}</span>
+                                    <span className={`text-warning font-input } register-label my-3`}>Dont have an account! Register now </span>
                                 </Link>
                                 <Link className="m-lg-2 badge bg-success d-none" to={"/verify-account"} title="Verify Account"
                                       onClick={() => gaEventTracker('Verify')}>
@@ -192,8 +193,8 @@ const HeaderLogin = (props) => {
     }
 
     return (
-        <Container className={`${login?"d-flex flex-column mx-2":"top-login-section"}`}>
-            <div className={`${login?"d-none":"w-100"}`} style={{float: "right"}}>
+        <Container className={`d-flex flex-column mx-2`}>
+            <div className={`d-none`} style={{float: "right"}}>
                 <div className="col-12">
                     {/*<Link className="" to={"/signup"} title="Join now" onClick={() => gaEventTracker('Register')}>*/}
                     {/*    <span className="register-label">Register now!</span>*/}
@@ -204,7 +205,7 @@ const HeaderLogin = (props) => {
                     </Link>
                 </div>
             </div>
-            <div style={{float: "right"}} className={`${login?' d-flex justify-content-center align-items-center flex-column w-100 container-fluid' :' w-100 top-login-margin '}`}>
+            <div style={{float: "right"}} className={` d-flex justify-content-center align-items-center flex-column w-100 container-fluid`}>
                 <ToastContainer/>
                 <LoginForm/>
             </div>

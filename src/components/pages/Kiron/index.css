@@ -5,7 +5,7 @@
     width: 100%!important;
 }
 .size-info {
-    width: 39%;
+    width: 50%;
 }
 .space-bets {
     flex-direction: column !important;
@@ -312,4 +312,38 @@
 }
 .black-txt{
     color:#000000;
+}
+
+.kiron-size {
+    overflow-x: auto;
+}
+
+@media (max-width: 376px){
+    .double-chance-market{
+        margin-left:15px!important;
+        height:30px;
+    }
+    .size-market-kiron{
+        height:28px!important;
+        line-height: 0;
+    }
+    .matches .top-matches .kiron-btn {
+        height: 30px;
+        border-radius: 10px !important;
+        margin-right: 4px;
+        outline: none;
+        height: 35px;
+        box-sizing: border-box;
+        width: 46px;
+        height: 29px;
+    }
+}
+
+@media (min-width:992px){
+    .kiron-size{
+        width:75%;
+    }
+    .kiron-betslip-size{
+        width:25%!important;
+    }
 }

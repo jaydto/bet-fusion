@@ -12,6 +12,14 @@ import MobileNav2 from "../../mobile-navigation/MobileNav2";
 import Testimonials from "../../carousel/Testimonials";
 import {Spinner} from "react-bootstrap";
 import Countries from "../../countries/Countries";
+import TestSkeleton from "./Skeleton/TestSkeleton";
+import Tabs from "react-bootstrap/Tabs";
+import Tab from "react-bootstrap/Tab";
+import Jackpot300k from "../../../assets/img/banner/products/Bet_Nare_300k_Jackpot_New.webp";
+import {JackpotMatchList} from "../../matches";
+import Select from "react-select";
+import Container from "react-bootstrap/Container";
+import DailyJackpotTermsAndConditions from "../terms-and-conditions/DailyJackpotTermsAndConditions";
 
 const Header = React.lazy(() => import('../../header/header'));
 const Footer = React.lazy(() => import('../../footer/footer'));
@@ -21,255 +29,188 @@ const MatchList = React.lazy(() => import('../../matches/index'));
 const Right = React.lazy(() => import('../../right/index'));
 const SideBar = React.lazy(() => import('../../sidebar/awesome/Sidebar'))
 const  TestJackpot= () => {
+    const [matches, setMatches] = useState(null);
+    const [finishedJackpots, setFinishedJackpots] = useState([])
     const [user, setUser] = useState(getFromLocalStorage("user"));
-    const gaEventTracker = useAnalyticsEventTracker('Home');
-    const location = useLocation();
-    const [tab, setTab] = useState('highlights');
-    const [sportID, setSportID] = useState(79);
-    const [loading, setLoading] = useState(false);
-
     const {height, width} = useWindowDimensions();
-    const [matches, setMatches] = useState([]);
-    const [limit, setLimit] = useState(20);
-    const [producerDown, setProducerDown] = useState(false);
-    const [threeWay, setThreeWay] = useState(false);
-    const [page, setPage] = useState(1);
-    const [userSlipsValidation, setUserSlipsValidation] = useState();
-    const [state, dispatch] = useContext(Context);
-    const [fetching, setFetching] = useState(false)
-    const homePageRef = useRef()
-    const [utmSource, setUtmSource] = useState('')
-    const widthRef = useRef(null);
-    const widthComponentRef = useRef(null);
-    const findPostableSlip = () => {
-        let betslips = getBetslip() || {};
-        var values = Object.keys(betslips).map(function (key) {
-            return betslips[key];
-        });
-        return values;
-    };
 
+    // const findPostableSlip = () => {
+    //     let betslips = getJackpotBetslip() || {};
+    //     var values = Object.keys(betslips).map(function (key) {
+    //         return betslips[key];
+    //     });
+    //     return values;
+    // };
 
-    useInterval(async () => {
-        // console.log("location",location.pathname)
-        if(location.pathname==="/")
-            setFetching(true)
-        else
-            setFetching(false)
-
-        let endpoint = "/v1/matches";
-
-        let betslip = findPostableSlip();
-
-        let method = betslip ? "POST" : "GET";
-
-        let tab = location.pathname.replace("/", "") || 'highlights';
-
-        endpoint += "?page=" + (page || 1) + `&limit=${limit || 50}&tab=` + tab
-
-        let url = new URL(window.location.href)
-
-        let sport_id = url.searchParams.get('sport_id')
-
-        if (sport_id !== null) {
-            endpoint += " &sport_id=" + sport_id
+    const fetchData = useCallback(async (jackpot_id = '', jackpot_status = '') => {
+        let match_endpoint = "/v1/matches/jackpot";
+        if (jackpot_id !== '') {
+            match_endpoint += '?jackpot_id=' + jackpot_id
         }
-        //splitting before api call
-        let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29").split(",")
-        // console.log("subtypes",sub_types[0]);
-        if (width <= 1259) {
-            // console.log("condition has been met ", [sub_types[0]])
-            sub_types = [sub_types[0]]
+        if (jackpot_status !== '') {
+            match_endpoint += "&jackpot_status=" + jackpot_status
         }
 
-        endpoint = endpoint.replaceAll(" ", '')
-
-        endpoint += `&sub_type_id=` + (sub_types || "1,18,29")
-
-
-        let search_term = url.searchParams.get('search')
-
-        if (search_term !== null) {
-            return
+        const [match_result] = await Promise.all([
+            makeRequest({url: match_endpoint, method: "get", data: null})
+        ]);
+        let [m_status, m_result] = match_result;
+        if (m_status === 200) {
+            setMatches(m_result);
         }
-
-        await makeRequest({url: endpoint, method: method, data: betslip}).then(([status, result]) => {
-            if (status == 200) {
-                setMatches(matches.length > 0 ? {...matches, ...result?.data} : result?.data || result)
-                setFetching(false)
-                setLoading(false)
-                // setMatches(result?.data || result)
-                if (result?.slip_data) {
-                    setUserSlipsValidation(result?.slip_data)
-                }
-                setProducerDown(result?.producer_status === 1);
-            }
-        });
-    }, 3000);
-
-    const fetchData = useCallback(async () => {
-        setFetching(true)
-        let tab = location.pathname.replace("/", "") || 'highlights';
-        let betslip = findPostableSlip();
-        let endpoint = "/v1/matches?page=" + (page || 1) + `&limit=${limit || 50}&tab=` + tab;
-        let url = new URL(window.location.href)
-        let sport_id = url.searchParams.get('sport_id')
-
-        if (sport_id !== null) {
-            endpoint += " &sport_id=" + sport_id
-        }
-
-        endpoint = endpoint.replaceAll(" ", '')
-
-
-        let search_term = url.searchParams.get('search')
-        if (search_term !== null) {
-            endpoint += ' &search=' + search_term
-        }
-        //splitting before api call
-        let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29").split(",")
-        console.log("subtypes", sub_types[0]);
-        if (width <= 1259) {
-            // console.log("condition has been met ", [sub_types[0]])
-            sub_types = [sub_types[0]]
-        }
-
-        endpoint += `&sub_type_id=` + (sub_types || "1,18,29")
-
-
-        await makeRequest({url: endpoint, method: "POST", data: betslip}).then(([status, result]) => {
-            if (status == 200) {
-                setMatches(matches.length > 0 ? {...matches, ...result?.data} : result?.data || result)
-                setFetching(false)
-                setLoading(false)
-                if (result?.slip_data) {
-                    setUserSlipsValidation(result?.slip_data)
-                }
-                setProducerDown(result?.producer_status === 1);
-            }
-        });
 
     }, []);
 
-    useEffect(() => {
-        checkThreeWay()
-        fetchData();
-        let cachedSlips = getBetslip("betslip");
-        if (cachedSlips) {
-            dispatch({type: "SET", key: "betslip", payload: cachedSlips});
+    const jackpotHistory = useCallback(async () => {
+
+        let endpoint = "/v1/matches/jp-history"
+
+        const [match_result] = await Promise.all([
+            makeRequest({url: endpoint, method: "get", data: null})
+        ]);
+
+        let [m_status, m_result] = match_result;
+
+        if (m_status === 200) {
+            m_result?.map((result) => {
+                result.value = result
+                result.label = result?.jackpot_name
+                return result
+            })
+            setFinishedJackpots(m_result)
         }
+    })
+
+    useEffect(() => {
+
+        const abortController = new AbortController();
+        fetchData();
+        jackpotHistory()
+
         return () => {
-            setMatches(null);
+            abortController.abort();
         };
     }, [fetchData]);
 
-    const checkThreeWay = () => {
-        let url = new URL(window.location)
-        let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29").split(",")
-        setThreeWay(sub_types.includes("1"))
+    const loadJPResults = (jackpot) => {
+        fetchData(jackpot?.jackpot_event_id, jackpot?.jackpot_status)
     }
-
-    document.addEventListener('scrollEnd', (event) => {
-        if (!fetching) {
-            setFetching(true)
-            setLimit(limit + 50)
-        }
-    })
-
-    const configureCampaignCookie = () => {
-
-        let url = new URL(window.location)
-
-        let utm_source = url.searchParams.get('utm_source')
-
-        let utm_campaign = url.searchParams.get('utm_campaign')
-
-        if (utm_source !== null) {
-            setLocalStorage('utm_source', utm_source)
-        }
-
-        if (utm_campaign !== null) {
-            setLocalStorage('utm_campaign', utm_campaign)
-        }
-    }
-
-    useEffect(() => {
-        configureCampaignCookie()
-    }, [utmSource])
-
-    useEffect(() => {
-        let new_tab = ""
-        const new_sport_id = Number(new URL(window.location).searchParams.get("sport_id"))
-
-        if (window.location.href.includes("highlights")) {
-            new_tab = ("highlights")
-        }
-
-        if (window.location.href.includes("upcoming")) {
-            new_tab = ("upcoming")
-
-        }
-        if (window.location.href.includes("tomorrow")) {
-            new_tab = ('tomorrow')
-        }
-        if(window.location.href.includes("countries")){
-            new_tab=('countries')
-        }
-        console.log("tabs", tab)
-
-        // console.log("tabs", new_tab)
-        if (new_tab !== tab) {
-            setTab(new_tab)
-            setLoading(true)
-        }
-
-
-        if (sportID !== new_sport_id) {
-            setSportID(new_sport_id)
-            setLoading(true)
-            setMatches([])
-            console.log("loading_matches", new_sport_id)
-        } else {
-
-        }
-
-    })
-
 
     return (
-        <dif className={'flex-item'}>
+        <div className={'flex-item'}>
             <div className="item4"><Header/></div>
             <div className="flex-container">
                 <div className="item1"> <SideBar loadCompetitions/></div>
-                <div className="item2"><div className="gz home match-overflow " >
-                    <div className="homepage" ref={homePageRef} >
-                        <MobileNav2/>
-                        <CarouselLoader/>
-                        <Testimonials/>
+                <div className="item2" style={{width:'145%'}}>
+                    <div className="gz home" style={{width: "100%", overflowX: "clip"}}>
+                        <div className="homepage">
+                            <Tabs
+                                variant={'tabs'}
+                                defaultActiveKey="home"
+                                id=""
+                                className="background-primary "
+                                justify>
+                                <Tab eventKey="home" title="Jackpot" className={'background-primary'}>
+                                    <img src={Jackpot300k}/>
+                                    {matches?.data?.length > 0 ? (
+                                        <>
+                                            {/*<JackpotHeader jackpot={matches?.meta}/>*/}
+                                            <JackpotMatchList matches={matches}/>
+                                        </>
+                                    ) : (
+                                        <div
+                                            className={'text-white col-md-12 text-center background-primary shadow mt-2 p-3'}>
+                                            There are no active jackpots at the moment.
+                                        </div>
+                                    )}
+                                </Tab>
+                                <Tab eventKey="results" title="Results">
+                                    <div className="row shadow-lg">
+                                        <h4 className={'text-white'}>Jackpot Results</h4>
+                                        <Select options={finishedJackpots} className={'bg-secondary'}
+                                                menuPortalTarget={document.body}
+                                                menuPosition="fixed"
+                                                isSearchable={true}
+                                                styles={{
+                                                    menuPortal: (provided) => ({...provided, zIndex: 9999}),
+                                                    menu: (provided) => ({...provided, zIndex: 9999})
+                                                }}
+                                                onChange={loadJPResults}/>
+                                    </div>
 
-                        <MainTabs tab={location.pathname.replace("/", "")}/>
-                        {/* <MobileCategories/> */}
-                        {/* <MobileCategories/> */}
-                        {loading ?
-                            <div className={`text-center mt-2 text-white d-block`}>
-                                <Spinner animation={'grow'} size={'lg'}/>
-                            </div> : tab=='countries'?<Countries/>:
-                                <MatchList
-                                    live={false}
-                                    fetching={fetching}
-                                    matches={matches}
-                                    pdown={producerDown}
-                                    three_way={threeWay}
-                                />}
+                                    {/*<JackpotHeader jackpot={matches?.meta}/>*/}
+                                    <img src={Jackpot300k}/>
+
+                                    <div className="matches full-mobile sticky-top container">
+                                        <div
+                                            className="top-matches d-flex position-sticky shadow-lg p-4 mt-5 text-white ">
+                                            <div className="col-md-3 col-sm-3 bold">
+                                                TIME
+                                            </div>
+                                            <div className="col-md-3 col-sm-4 bold">
+                                                MATCH COMPETITION
+                                            </div>
+                                            <div className="col-md-3 col-sm-3 bold">
+                                                MATCH OUTCOME
+                                            </div>
+                                            <div className="col-md-2 col-sm-4 bold">
+                                                WINNING OUTCOME
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {matches?.data.map((match, index) => (
+                                        <div className={'matches full-width'} key={index}>
+                                            <Container className={`${width<=767?"":"web-element"}`}>
+                                                <div
+                                                    className="col-md-12 shadow d-flex flex-row p-2 text-white top-matches">
+                                                    <div className="col-md-3  col-sm-3">
+                                                        {match?.start_time}
+                                                    </div>
+                                                    <div className="col-md-4  col-sm-4 d-flex flex-column">
+                                                        <div className={'small'}>
+                                                            {match?.category} | {match?.competition_name}
+                                                        </div>
+                                                        <div>
+                                                            <div className={'bold'}>
+                                                                {match?.home_team}
+                                                            </div>
+                                                            <div className={'bold'}>
+                                                                {match?.away_team}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-md-3 col-sm-3">
+                                                        {match?.outcome || '-'}
+                                                    </div>
+                                                    <div className="col-md-2 col-sm-2">
+                                                        {match?.winning_outcome || '-'}
+                                                    </div>
+                                                </div>
+                                            </Container>
+                                        </div>
+                                    ))}
+                                </Tab>
+                                <Tab eventKey="terms" title="Terms & Conditions">
+                                    <DailyJackpotTermsAndConditions/>
+                                </Tab>
+                            </Tabs>
+
+
+                        </div>
+
                     </div>
-                </div></div>
-                <div className="item3"><Right betslipValidationData={userSlipsValidation} jackpotData={matches?.meta} test={true}/></div>
+                </div>
+                <div className="item3">
+                    <Right jackpot={true} jackpotData={matches?.meta}  test={true}/>
+                </div>
 
             </div>
             <div className="item6"><div className={"footer-mobile-none"}>
                 <Footer/>
             </div></div>
-        </dif>
+        </div>
+
 
     );
 };

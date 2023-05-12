@@ -48,7 +48,13 @@ const KironPlayouts = (props) => {
 
         fetchData();
 
-    }, [newData]);
+    }, [fetchData]);
+
+    useEffect(() => {
+
+        fetchData();
+
+    }, [getFromLocalStorage("kiron_first_round")]);
 
     let totalSeconds = 0;
 

@@ -61,7 +61,7 @@ const Standing = () => {
             </section>
             <div className="league-wrapper">
                 <div className="match-standing-wrapper pt-0">
-                    <table className={"mx-1 table"}>
+                    {!loading?<table className={"mx-1 table"}>
                         <tbody style={{background:'#fff'}}>
                         <tr className="table-header">
                             <th className={''}>Position</th>
@@ -69,7 +69,7 @@ const Standing = () => {
                             <th className={''}>Points</th>
                             <th className={'text-center'}>Form</th>
                         </tr>
-                        { standings &&!loading?
+                        { standings &&
                             Object.entries(standings).map(([key, standing]) => (
                                 <tr>
                                     <td className={''}>{standing?.position}</td>
@@ -92,13 +92,13 @@ const Standing = () => {
 
 
                                 </tr>)
-                            ): <div className={`text-center mt-2 text-white d-block w-100`}>
-                                <Spinner animation={'grow'} size={'lg'}/>
-                            </div>
+                            )
                         }
                         
                         </tbody>
-                    </table>
+                    </table>: <div className={`text-center mt-2 text-white d-block w-100`}>
+                        <Spinner animation={'grow'} size={'lg'}/>
+                    </div>}
                 </div>
             </div>
         </div>

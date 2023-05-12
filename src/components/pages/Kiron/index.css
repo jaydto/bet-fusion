@@ -165,9 +165,9 @@
     font-size: 15px;
     color: #FFC107;
 }
-.kiron-playout-score-animation{
+.kiron-playout-score-animation {
     background-color: red;
-    padding: 0px 5px;
+    padding: 0px 9px;
     color: white;
     animation: scoreblink 1s linear infinite;
 }

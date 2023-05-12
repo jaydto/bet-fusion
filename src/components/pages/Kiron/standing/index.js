@@ -11,16 +11,16 @@ const Standing = () => {
     const kironSearchCompetition=getFromLocalStorage("kiron_search_data")?.competition_id
 
     const [newData, setNewData] = useState({
-        competition_id: '3'
+        competition_id: getFromLocalStorage("kiron_search_data")?.competition_id
     });
     let endpoint = "/v1/nare-league/standings"
     const fetchData = useCallback(async () => {
-
+        setLoading(true)
         endpoint = endpoint.replaceAll(" ", '')
 
-        const kiron_data= newData
-
-
+        const kiron_data= {
+            competition_id: getFromLocalStorage("kiron_search_data")?.competition_id
+        }
         console.log(kiron_data)
         await makeRequest({url: endpoint, method: "POST", data:kiron_data }).then(([status, result]) => {
             if (status == 200) {
@@ -38,6 +38,12 @@ const Standing = () => {
         fetchData();
 
     }, [newData]);
+
+    useEffect(() => {
+        setNewData(getFromLocalStorage("kiron_search_data")?.competition_id)
+        fetchData();
+
+    }, [getFromLocalStorage("kiron_search_data")?.competition_id]);
 
     return (
         <div>

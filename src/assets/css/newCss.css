@@ -574,7 +574,7 @@ input[type="radio"], input[type="checkbox"] {
         color: #adadad;
         height: 100%;
         width: var(--width-side)!important;
-        /*min-width: 215px!important;*/
+        min-width: 215px!important;
         text-align: left;
         transition: width, left, right, 0.3s;
         position: relative;

@@ -2,7 +2,7 @@ import React, {useCallback, useEffect, useState} from 'react';
 import "./results.css"
 import {getFromLocalStorage} from "../../../utils/local-storage";
 import makeRequest from "../../../utils/fetch-request";
-import {Spinner} from "loading-animations-react";
+import {Spinner} from "react-bootstrap";
 
 const KironResults = () => {
     const [fetching, setFetching] = useState(false)

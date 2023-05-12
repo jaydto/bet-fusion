@@ -2,22 +2,25 @@ import React, {useCallback, useEffect, useState} from 'react';
 import "./results.css"
 import {getFromLocalStorage} from "../../../utils/local-storage";
 import makeRequest from "../../../utils/fetch-request";
+import {Spinner} from "loading-animations-react";
 
 const KironResults = () => {
     const [fetching, setFetching] = useState(false)
     const [loading, setLoading] = useState(false)
     const [resulted, setResulted] = useState([]);
-    let endpoint = "/v1/nare-league/live"
+    let endpoint = "/v1/nare-league/results"
     const kironSearchCompetition=getFromLocalStorage("kiron_search_data")?.competition_id
+    const newCompetition=new URL(window.location).searchParams.get('competition_id')||getFromLocalStorage('kiron_search_data')?.competition_id||'2'
     const [newData, setNewData] = useState({
-        round_id: '116892538'
+        competition_id: newCompetition
     });
 
     const fetchData = useCallback(async () => {
-
+        setLoading(true)
         endpoint = endpoint.replaceAll(" ", '')
 
-        const kiron_data= newData
+        const kiron_data= {
+            competition_id: getFromLocalStorage('kiron_search_data')?.competition_id}
 
 
         console.log(kiron_data)
@@ -38,71 +41,75 @@ const KironResults = () => {
     useEffect(() => {
         fetchData();
 
-    }, [newData]);
+    },[fetchData])
+
+    useEffect(() => {
+        fetchData();
+
+    }, [getFromLocalStorage('kiron_search_data')?.competition_id]);
 
     console.log("resulted", resulted)
     return (
         <>
-            <section className="standing-wrapper text-center pt-2 pb-2">
-            <div className="container">
-                <div className="row">
-                    <div className="col-12 pb-2">
-                        <span
-                        className="standing-heading">{kironSearchCompetition==1?"Kenyan ":kironSearchCompetition==2?"English ":kironSearchCompetition==3?"Spanish ":"Italian "}League</span>
-                    </div>
-                    <div className="col-12"><span className="standing-time">15:38</span></div>
-                </div>
-            </div>
-        </section>
-            <div className="league-games-wrapper">
+            {resulted &&!loading?
+                Object.entries(resulted).map(([key, league]) => (
+                    <>
+                        <section className="standing-wrapper text-center pt-2 pb-2">
+                            <div className="container">
+                                <div className="row">
+                                    <div className="col-12 pb-2">
+                                <span
+                                    className="standing-heading-r"><strong>{league?.competition_name.toUpperCase()} LEAGUE&nbsp; WEEK {league?.round_number}&nbsp;#{league?.round_id}</strong></span>
+                                    </div>
+                                    <div className="col-12"><span className="standing-time">{league?.event_time}</span></div>
+                                </div>
+                            </div>
+                        </section>
+                        {Object.entries(league?.matches).map(([key, results]) => (
+                            <div className="league-games-wrapper">
+                                <div className={'w-100'}>
+                                    <div className="playing-games-wrapper float-left w-100 small">
+                                        <div className="league-wrapper-r">
+                                            <div className="matches-wrapper pt-2">
 
-            <div className={'w-100'}>
-                <div className="playing-games-wrapper float-left w-100 small">
-                    <div className="league-wrapper">
+                                                <div className="live-match-selection pt-1 pb-1">
+                                                    <div className="container">
+                                                        <div className="row px-3">
+                                                            <div className="col-6 text-right pt-1"><span className="team-jersey"><img
+                                                                src={results?.home_icon}
+                                                                alt="Nare League"/></span> <a href="#"
+                                                                                              style={{color: "var(--black)"}}>
+                                                                <span className="home-team-r bold px-2">{results.home_team}</span>
+                                                                <span className="ml-2 red-txt">{results.home_score}</span></a></div>
 
-                        <div className="matches-wrapper pt-2">
-                            {resulted &&
-                                Object.entries(resulted).map(([key, results]) => (
-                                    <div className="live-match-selection pt-1 pb-1">
-                                        <div className="container">
-                                            <div className="row px-3">
-                                                <div className="col-6 text-right pt-1"><span className="team-jersey"><img
-                                                    src={results?.home_team_image}
-                                                    alt="Nare League"/></span> <a href="#"
-                                                                                      style={{color: "var(--black)"}}>
-                                                    <span className="home-team-r bold px-2">{results.home_team}</span>
-                                                    <span className="ml-2 black-txt">{results.home_scores?.length}</span></a></div>
+                                                            <div className="col-6 text-left pt-1">
+                                                                <a href="#" className={"d-flex justify-content-between align-items-center"} style={{color: "var(--black)"}}>
+                                                                    <span className="mr-2 red-txt">{results.away_score}</span>
+                                                                    <span className="away-team-r bold px-2">{results.away_team}</span>
+                                                                </a>
+                                                                <span className="team-jersey"><img
+                                                                    src={results?.away_icon}
+                                                                    alt="Nare League"/></span>
+                                                            </div>
 
-                                                <div className="col-6 text-left pt-1">
-                                                    <a href="#" className={"d-flex justify-content-between align-items-center"} style={{color: "var(--black)"}}>
-                                                    <span className="mr-2 red-txt">{results.away_scores?.length}</span>
-                                                    <span className="away-team-r bold px-2">{results.away_team}</span>
-                                                </a>
-                                                    <span className="team-jersey"><img
-                                                        src={results?.away_team_image}
-                                                        alt="Nare League"/></span>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                {/*<div className="col-12">*/}
-                                                {/*    <div className="row">*/}
-                                                {/*        <div className="col-time text-right"><span*/}
-                                                {/*            className="score-time"><span>41'</span></span></div>*/}
-                                                {/*        <div className="col-time-c text-center"><strong*/}
-                                                {/*            className="score-time"></strong></div>*/}
-                                                {/*        <div className="col-time text-left"><span*/}
-                                                {/*            className="score-time"><span></span></span></div>*/}
-                                                {/*    </div>*/}
-                                                {/*</div>*/}
+
                                             </div>
+
                                         </div>
                                     </div>
-                                ))}
-                        </div>
+                                </div>
 
-                    </div>
+                            </div>
+                        ))}
+                    </>
+                )):  <div className={`text-center mt-2 text-white d-block`}>
+                    <Spinner animation={'grow'} size={'lg'}/>
                 </div>
-            </div>
+            }
 
-        </div>
         </>
 
 

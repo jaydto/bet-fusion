@@ -114,6 +114,7 @@
 
 .team-jersey {
     height: 30px;
+    width: 30px;
 }
 
 .green-txt {
@@ -130,7 +131,7 @@
     font-size: 1em;
     text-transform: capitalize;
 }
-.standing-heading {
-    color: #fff;
+.standing-heading-r {
+    color: #000;
     font-size: 1.3em;
 }

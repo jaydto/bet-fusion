@@ -3,6 +3,8 @@ import MobileNav2 from "../../mobile-navigation/MobileNav2";
 import Testimonials from "../../carousel/Testimonials";
 import TestSkeleton from "../Test/Skeleton/TestSkeleton";
 import Countries from "../../countries/Countries";
+import './test.css'
+import './card.css'
 import {Navbar, Offcanvas} from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import {Link, useNavigate} from "react-router-dom";
@@ -113,7 +115,7 @@ const NewProfile = () => {
             <div className="flex-container">
                 <div className="item1"> <SideNav/></div>
                 <div className="item2">
-                    <div className="row d-flex flex-column gap-3 px-4 py-sm-4 py-lg-0 justify-content-center align-items-center profile-top" style={{ margin: "auto"}}>
+                    <div className="row d-flex flex-column gap-3 px-4 py-sm-4 py-lg-0 justify-content-center align-items-center profile-top" style={{ margin: "auto", maxWidth:'991px'}}>
                         <div style={userIn}>
                             <div className={"card-body d-flex flex-column align-items-center gap-2"}>
                                 <div className={"bg-warning user-style"}>
@@ -125,11 +127,11 @@ const NewProfile = () => {
 
                         </div>
 
-                        <div className=" w-100 ">
+                        <div className=" w-100 " id={'cash'}>
 
                             <div className="card-radius profile-bg text-light">
                                 <div className="card-body d-flex justify-content-between gap-2 ">
-                                    <div className={" profile-bg"}>
+                                    <div className={" profile-bg"} >
                                         <div className="card-body ">
                                     <span
                                         className="font-btn py-2 d-flex flex-column">
@@ -156,7 +158,7 @@ const NewProfile = () => {
                             </div>
                         </div>
 
-                        <div className=" w-100 ">
+                        <div className=" w-100 " id={'gift'}>
 
                             <div className="card-radius profile-bg text-light">
 
@@ -196,7 +198,7 @@ const NewProfile = () => {
                             </div>
                         </div>
 
-                        <div className=" w-100">
+                        <div className=" w-100" id={'mybets'}>
                             <div className="card card-radius profile-bg text-light">
                                 <div className="card-body">
                                     <div>
@@ -216,11 +218,16 @@ const NewProfile = () => {
                                 </div>
                             </div>
                         </div>
+                        <div id={'deposit'}>
+                            <DepositProfile/>
+                        </div>
 
-                        <DepositProfile/>
-                        <WithdrawProfile/>
+                        <div id={'withdraw'}>
+                            <WithdrawProfile/>
+                        </div>
 
-                        <div className=" w-100">
+
+                        <div className=" w-100" id={'support'}>
                             <div className="card card-radius profile-bg text-light">
                                 <div className="card-body d-flex flex-column align-items-start">
                                     <div className={"card-title"}><h4>Support</h4></div>

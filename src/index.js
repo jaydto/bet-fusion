@@ -136,7 +136,7 @@ const BetslipPage =React.lazy(()=> import("./components/pages/betslip/betslipPag
 
 const Login=React.lazy(()=>import('./components/pages/loginTwo'));
 
-const Profile =React.lazy(()=>import( "./components/pages/Accounts/Profile"));
+const Profile =React.lazy(()=>import( "./components/pages/Accounts/NewProfile"));
 
 const Logout = () => {
     let navigate = useNavigate();

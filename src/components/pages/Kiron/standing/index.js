@@ -2,6 +2,7 @@ import React, {useCallback, useEffect, useState} from 'react';
 import "./standing.css"
 import makeRequest from "../../../utils/fetch-request";
 import {getFromLocalStorage} from "../../../utils/local-storage";
+import {Spinner} from "loading-animations-react";
 
 
 const Standing = () => {
@@ -68,19 +69,19 @@ const Standing = () => {
                             <th className={''}>Points</th>
                             <th className={'text-center'}>Form</th>
                         </tr>
-                        { standings &&
+                        { standings &&!loading?
                             Object.entries(standings).map(([key, standing]) => (
                                 <tr>
-                                <td className={''}>{standing?.position}</td>
-                                <td className="playing-teams-r">
+                                    <td className={''}>{standing?.position}</td>
+                                    <td className="playing-teams-r">
                                     <span className="team-badge">
                                          <img
                                              src={standing?.icon_url}
                                              alt="Nare League"/>&nbsp;
                                         {standing?.team_name}
                                   </span>
-                                </td>
-                                <td>{standing?.points}</td>
+                                    </td>
+                                    <td>{standing?.points}</td>
 
                                     <td><span className="team-form">
                                        {Array.from(standing?.form)?.map((item) => (
@@ -90,8 +91,11 @@ const Standing = () => {
                                     </td>
 
 
-                        </tr>)
-                            )}
+                                </tr>)
+                            ): <div className={`text-center mt-2 text-white d-block w-100`}>
+                                <Spinner animation={'grow'} size={'lg'}/>
+                            </div>
+                        }
                         
                         </tbody>
                     </table>

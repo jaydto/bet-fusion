@@ -15,8 +15,8 @@ import Manu from "../../assets/img/banner/products/ManuvsWolves.webp"
 
 
 const banners = [
-    {src: Aviator, url: "/match/32892215"},
-    {src: karibuGiftWallet, url: "/match/32892337"},
+    {src: Arsenal, url: "/match/32892215"},
+    {src: Manu, url: "/match/32892337"},
     {src: Aviator, url: "/nare-games/aviator"},
     {src: karibuGiftWallet, url: "/promotions"},
     {src: jackpot, url: "/jackpot"},

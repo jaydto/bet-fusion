@@ -10,13 +10,9 @@ import dailyDepositGift from '../../assets/img/banner/products/Bet_Nare_20_gift.
 import karibuGiftWallet from "../../assets/img/banner/products/Bet_Nare_3000_karibu_gift.webp"
 import Aviator from "../../assets/img/banner/products/Aviator.webp"
 import jackpot from "../../assets/img/banner/products/HalfMilliJP.webp"
-import Arsenal from "../../assets/img/banner/products/ArsenalvsBrighton.webp"
-import Manu from "../../assets/img/banner/products/ManuvsWolves.webp"
 
 
 const banners = [
-    {src: Arsenal, url: "/match/32892215"},
-    {src: Manu, url: "/match/32892337"},
     {src: Aviator, url: "/nare-games/aviator"},
     {src: karibuGiftWallet, url: "/promotions"},
     {src: jackpot, url: "/jackpot"},

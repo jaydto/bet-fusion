@@ -106,7 +106,7 @@ const NewProfile = () => {
                             </Offcanvas.Title>
                         </Offcanvas.Header>
                         <Offcanvas.Body className={(width<=575?user?"":"":"")}>
-                            {/*<SidebarMobile/>*/}
+                            <SidebarMobile/>
                         </Offcanvas.Body>
                     </Navbar.Offcanvas>
                 </Container>

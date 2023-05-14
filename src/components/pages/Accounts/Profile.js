@@ -53,7 +53,7 @@ const Profile = () => {
 
     return (
         <div>
-            <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark" >
+            <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav " fixed="top" variant="dark" >
                 <Container fluid className={'d-flex justify-content-between mobile-change'}>
                     <Navbar.Brand className="e logo align-self-start menu-control d-flex w-100" title="Betnare" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
                         <Link to={{pathname: "/"}} className="col-4 resize-mobile">

@@ -1,52 +1,63 @@
-@media (prefers-color-scheme: light) {
-    :root {
-        /* Light mode variables go here */
-        --betnare-primary:#fff;
-        --betnare-secondary: #fff;
-        --betnare-button-login: #fff;
-        --betnare-button-register: #ffffff;
-        --banner-background: url(../../assets/img/auth/img-17.webp)!important;
-        --betnare-header-bg:#fff;
-        --betnare-side-bg:#fff;
-        --betslip-header:#fff;
-        --betslip-mybets:#fff;
-        --button-radius:3px;
-        --betnare-odds-body:#fff;
-        --betnare-input:#fff;
-        --betnare-shadow-borders:#fff;
-        --betnare-font-size-nav:14px;
-        --betnare-font-size-small:12px;
-        --font-size-side:1.8rem;
-        --font-size-side-sm:1.3rem;
-        --body-line-weight:2;
-        --body-line-weight-sm:1;
-        --width-side:18.75rem;
-        --width-side-sm:14.813rem;
-        --button-color:#fff;
-        --testimonial-top-md:10.5rem;
-        --font-size-bet-body:1.4rem;
-        --font-size-bet-body-sm:1.3rem;
-    }
-}
-.custom-checkbox-input{
-    visibility: hidden;
-}
-/* Fallback for older browsers or manual mode */
-.custom-checkbox-input:checked {
-    /* light mode variables go here */
-
-    --betnare-primary:#fff;
-    --betnare-secondary: #fff;
-    --betnare-button-login: #fff;
+:root {
+    --betnare-primary:#16202C;
+    --betnare-secondary: #2c3c44;
+    --betnare-footer:#16202C;
+    --footer-color:#fff;
+    --betnare-button-login: #FFC107;
     --betnare-button-register: #ffffff;
     --banner-background: url(../../assets/img/auth/img-17.webp)!important;
-    --betnare-header-bg:#fff;
+    --betnare-header-bg:#141d28;
+    --betnare-side-bg:#121a23;
+    --betslip-header:#4c372a;
+    --betslip-mybets:#cd28ec;
+    --button-radius:3px;
+    --betnare-odds-body:#2d3641;
+    --betnare-input:#28374e;
+    --betnare-shadow-borders:#2c3c44;
+    --betnare-font-size-nav:14px;
+    --betnare-font-size-small:12px;
+    --font-size-side:1.8rem;
+    --font-size-side-sm:1.3rem;
+    --body-line-weight:2;
+    --body-line-weight-sm:1;
+    --width-side:18.75rem;
+    --width-side-sm:14.813rem;
+    --button-color:#334c5c;
+    --testimonial-top-md:10.5rem;
+    --font-size-bet-body:1.4rem;
+    --font-size-bet-body-sm:1.3rem;
+    --light: #fff;
+    --dark:#000;
+    --grey:#adadad;
+    --aqua:#adadad;
+    --tab-color:#05070a;
+    --nav-top-color:#f0f0f0;
+    --aqua-text:aqua;
+    --footer-links:whitesmoke;
+    --jackpot-header:#16202C;
+    --white:#fff;
+
+}
+
+.light-theme {
+    /* light mode variables go here */
+
+    --betnare-primary:#f0f0f0;
+    --footer-color:#05070a;
+    --footer-links:#05070a;
+    --betnare-secondary: #fff;
+    --betnare-button-login:  #FFC107;
+    --betnare-footer:#adadad;
+    --jackpot-header:#f0f0f0;
+    --betnare-button-register: #ffffff;
+    --banner-background: url(../../assets/img/auth/img-17.webp)!important;
+    --betslip-header:#4c372a;
     --betnare-side-bg:#fff;
-    --betslip-header:#fff;
+    --betnare-header-bg:#f0f0f0;
     --betslip-mybets:#fff;
     --button-radius:3px;
     --betnare-odds-body:#fff;
-    --betnare-input:#fff;
+    --betnare-input:#2c3c44;
     --betnare-shadow-borders:#fff;
     --betnare-font-size-nav:14px;
     --betnare-font-size-small:12px;
@@ -60,4 +71,16 @@
     --testimonial-top-md:10.5rem;
     --font-size-bet-body:1.4rem;
     --font-size-bet-body-sm:1.3rem;
+    --light: #000;
+    --grey:#000;
+    --aqua:#adadad;
+    --tab-color: #adadad;
+    --cancel:#030928;
+    --betnare-light-blue:#4f768e;
+    --light-blue-variant:#334c5c;
+    --secondary:#fdd835;
+    --variant2:#1f2f38;
+    --nav-top-color:#05070a;
+    --aqua-text:#05070a;
+
 }

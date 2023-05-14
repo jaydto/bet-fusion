@@ -137,22 +137,22 @@ const HeaderNav = (props) => {
 
 
                     <li className={`${pathname === '/casino'  ? 'active' : ''}`}>
-                        <a className="url-link fm anl cg ox " href="/casino" title="Live Casino">
+                        <Link className="url-link fm anl cg ox " to="/casino" title="Live Casino">
                             <span>
                                 <strong>Casino</strong>
                                     <span className="notify-badge badge">NEW</span>
                             </span>
-                        </a>
+                        </Link>
                     </li>
 
                     <li className={`${pathname == '/gameplay' || pathname.includes("1301") ? 'active' : ''}`}>
-                        <a className="url-link fm anl cg ox " href="#" onClick={() => LoginCheck("spaceman")}
+                        <Link className="url-link fm anl cg ox " to="#" onClick={() => LoginCheck("spaceman")}
                            title="Space Man">
                             <span>
                                 <strong>Spaceman</strong>
                                     <span className="notify-badge badge">NEW</span>
                             </span>
-                        </a>
+                        </Link>
                     </li>
 
                     <li className={searchTerm.includes('JetX') ? 'active live-bg' : ''}
@@ -171,21 +171,21 @@ const HeaderNav = (props) => {
                     </li>
 
                     <li className={`${pathname === '/nare-league'  ? 'active' : ''}`}>
-                        <a className="url-link fm anl cg ox " href="/nare-league" title="Nare League">
+                        <Link className="url-link fm anl cg ox " to="/nare-league" title="Nare League">
                             <span>
                                 <strong>Nare League</strong>
                                     <span className="notify-badge badge">NEW</span>
                             </span>
-                        </a>
+                        </Link>
                     </li>
 
                     <li className={`${pathname === '/smart-soft'  ? 'active' : ''}`}>
-                        <a className="url-link fm anl cg ox " href="/smart-soft" title="SmartSoft">
+                        <Link className="url-link fm anl cg ox " to="/smart-soft" title="SmartSoft">
                             <span>
                                 <strong>X-games</strong>
                                     <span className="notify-badge badge">NEW</span>
                             </span>
-                        </a>
+                        </Link>
                     </li>
 
                     <li className={`${pathname == '/virtuals' ? 'active' : ''}`}>
@@ -241,10 +241,10 @@ const HeaderNav = (props) => {
 
                     <>
                         <li className={`${pathname.includes("casino") ? 'active' : ''} d-none`}>
-                            <a className="g url-link" href="/casino" title="Casino">
+                            <Link className="g url-link" to="/casino" title="Casino">
                                 {/*<FontAwesomeIcon icon={faDice}/>*/}
                                 Casino
-                            </a>
+                            </Link>
                         </li>
 
 
@@ -276,29 +276,29 @@ const HeaderNav = (props) => {
                     as="ul" xs="12" horizontal
                     className="nav navbar-nav og d-flex ale ss  col-lg-3 col-md-3 col-sm-3 change-display second-nav-list">
                     <li className={pathname === '/print-matches' ? 'spacing-end' : 'spacing-end'}>
-                        <a className="url-link fm anl cg ox fix-display" href="#" title="Search"
+                        <Link className="url-link fm anl cg ox fix-display" to="#" title="Search"
                            onClick={() => showSearchBar()}>
                             <span className=" space-icons">
                                 <strong><FontAwesomeIcon icon={faSearch}/> </strong>
                             </span>
                             <strong><span className={'hide2'}>Search </span></strong>
-                        </a>
+                        </Link>
                     </li>
                     <li className={pathname === '/how-to-play' ? 'active' : ''}
                         onClick={() => gaEventTracker('Visit How To Play Page')}>
-                        <a className="url-link fm anl cg ox fix-display" href="/how-to-play" title="How to play">
+                        <Link className="url-link fm anl cg ox fix-display" to="/how-to-play" title="How to play">
                             <span className=" space-icons">
                                 <strong><FontAwesomeIcon icon={faQuestionCircle}/> </strong>
                             </span>
                             <span className={'hide2'}><strong>Help</strong></span>
-                        </a>
+                        </Link>
                     </li>
                     <li className={pathname === '/print-matches' ? 'active py-3' : ' py-md-0 py-lg-3 py-sm-0 d-flex align-items-center'}
                         onClick={() => gaEventTracker('Visit Print Matches')}>
-                        <a className="url-link fm anl cg ox fix-print" href="/print-matches" title="Print Matches">
+                        <Link className="url-link fm anl cg ox fix-print" to="/print-matches" title="Print Matches">
                             <span className=" space-icons"><FontAwesomeIcon icon={faPrint}/> </span>Print <span
                             className={'hide1'}>Matches</span>
-                        </a>
+                        </Link>
                     </li>
                 </ListGroup>
 

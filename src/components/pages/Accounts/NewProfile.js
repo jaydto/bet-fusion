@@ -49,10 +49,10 @@ const NewProfile = () => {
     return (
         <div className={'flex-item'}>
             <div className="item4">
-                <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark" >
+                <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav profile-top-nav" fixed="top" variant="dark" >
                 <Container fluid className={'d-flex justify-content-between mobile-change'}>
                     <Navbar.Brand className="e logo align-self-start menu-control d-flex w-100" title="Betnare" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
-                        <Link to={{pathname: "/"}} className="col-4 resize-mobile">
+                        <Link to={{pathname: "/"}} className="col-4 resize-mobile d-flex align-items-center">
                             <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"
                                            className={"image-size "}/>
                         </Link>
@@ -115,7 +115,7 @@ const NewProfile = () => {
             <div className="flex-container">
                 <div className="item1"> <SideNav/></div>
                 <div className="item2">
-                    <div className="row d-flex flex-column gap-3 px-4 py-sm-4 py-lg-0 justify-content-center align-items-center profile-top" style={{ margin: "auto", maxWidth:'991px'}}>
+                    <div className="row d-flex flex-column gap-3 px-4 py-sm-4 py-lg-0 justify-content-center align-items-center profile-top " style={{ margin: "auto", maxWidth:'991px'}}>
                         <div style={userIn}>
                             <div className={"card-body d-flex flex-column align-items-center gap-2"}>
                                 <div className={"bg-warning user-style"}>

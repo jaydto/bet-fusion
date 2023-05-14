@@ -343,7 +343,7 @@ header, li a, .thedate span {
 }
 
 .accordion-button:not(.collapsed) {
-    color: white;
+    color: var(--light);
     border: none;
 }
 
@@ -530,7 +530,7 @@ header, li a, .thedate span {
 
 
 .home-tabs {
-    background: #05070a;
+    background: var(--tab-color);
     border-right: 3px solid transparent;
     border-top: 3px solid transparent;
     padding: 6px 5px;
@@ -543,7 +543,7 @@ header, li a, .thedate span {
 
 .cancel {
     color: #fff;
-    background: #030928;
+    background: var(--cancel);
     display: block;
     width: 100px;
     margin: 10px auto 10px;
@@ -2613,7 +2613,7 @@ img {
 
 footer {
     background: #dddbdb;
-    color: #fff;
+    color: var(--footer-color);
     padding: 0;
     font-size: 16px;
     margin-top: 2px;
@@ -2748,13 +2748,13 @@ footer a {
 }
 
 .footer-custom ul li {
-    color: whitesmoke;
+    color: var(--footer-links);
     text-decoration: none;
     opacity: 0.75;
 }
 
 .footer-custom ul li a {
-    color: whitesmoke;
+    color: var(--footer-links);
 }
 
 .footer-upper {
@@ -9607,7 +9607,8 @@ fieldset[disabled] .pa .fu:focus {
 .pc .navbar-nav > li > a:hover,
 .pc .navbar-nav > li > a:focus {
     color: #ffffff;
-    background-color: transparent;
+    background-color:  var(--betnare-button-login);
+    border-radius: 5px;
 }
 
 
@@ -16684,7 +16685,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 }
 
 .background-primary {
-    background-color: #16202c !important;
+    background-color: var(--jackpot-header) !important;
 }
 
 .modal-50w {

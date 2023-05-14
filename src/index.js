@@ -16,7 +16,7 @@ import './assets/css/sidebar-menu.css';
 import './index.css';
 import './assets/css/newCss.css'
 import './tailwind.css';
-// import './assets/css/Themes.css'
+import './assets/css/Themes.css'
 import Store from './context/store';
 import ReactGA from 'react-ga4';
 

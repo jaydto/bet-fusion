@@ -27,19 +27,17 @@ const TRACKING_ID = "G-5NLSN9BLN4";
 ReactGA.initialize(TRACKING_ID);
 
 const Index = React.lazy(() => import('./components/index'));
+
 const CompetitionsMatches = React.lazy(
     () => import('./components/competition-matches')
 );
 const BetslipShareDecode = React.lazy(() => import('./components/betslip/BetslipShareDecode'))
+
 const MatchAllMarkets = React.lazy(() => import('./components/all-markets'));
 
-
-
 const Test=React.lazy(()=>import('./components/pages/Test/Test'));
+
 const  TestLive=React.lazy(()=>import('./components/pages/Test/TestLive'));
-
-
-
 
 const Jackpot = React.lazy(() => import('./components/pages/Test/TestJackpot'));
 
@@ -50,30 +48,39 @@ const Live = React.lazy(
 const MyBets = React.lazy(
     () => import('./components/my-bets')
 );
+
 const HowToPlay = React.lazy(
     () => import('./components/pages/HowToPlay')
 );
+
 const TermsAndConditions = React.lazy(
     () => import('./components/pages/terms-and-conditions/index')
 );
+
 const CookiePolicy = React.lazy(
     () => import('./components/pages/cookie-policy/index')
 );
+
 const DisputeResolution = React.lazy(
     () => import('./components/pages/dispute-resolution/index')
 );
+
 const ResponsibleGambling = React.lazy(
     () => import('./components/pages/responsible-gambling')
 );
+
 const AntimoneyLaundering = React.lazy(
     () => import('./components/pages/anti-money-laundering')
 );
+
 const PrivacyPolicy = React.lazy(
     () => import('./components/pages/privacy-policy/index')
 );
+
 const Withdraw = React.lazy(
     () => import('./components/pages/deposit-withraw/Withdraw')
 );
+
 const RedeemPoints = React.lazy(
     () => import('./components/pages/points/RedeemPoints2')
 );

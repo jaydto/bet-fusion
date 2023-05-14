@@ -106,14 +106,16 @@ const NewProfile = () => {
                             </Offcanvas.Title>
                         </Offcanvas.Header>
                         <Offcanvas.Body className={(width<=575?user?"":"":"")}>
-                            <SidebarMobile/>
+                            {/*<SidebarMobile/>*/}
                         </Offcanvas.Body>
                     </Navbar.Offcanvas>
                 </Container>
             </Navbar>
             </div>
             <div className="flex-container">
-                <div className="item1"> <SideNav/></div>
+                <div className="item1">
+                    <SideNav/>
+                </div>
                 <div className="item2">
                     <div className="row d-flex flex-column gap-3 px-4 py-sm-4 py-lg-0 justify-content-center align-items-center profile-top " style={{ margin: "auto", maxWidth:'991px'}}>
                         <div style={userIn}>

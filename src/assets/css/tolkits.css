@@ -1013,23 +1013,6 @@ header, li a, .thedate span {
     padding: 2px;
 }
 
-.top-matches .side {
-    background: #1e2d36;
-    padding: 2px 8px 2px 5px;
-    outline-style: none;
-    outline: none;
-    text-align: center;
-    float: right;
-    font-size: 12px;
-    height: 40px;
-    width: 35px;
-    line-height: 30px;
-    border-radius: 3px;
-    opacity: 0.8;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 button {
 
@@ -3578,7 +3561,7 @@ pre code {
 }
 
 table {
-    background-color: transparent;
+    background-color: var(--betnare-primary);
     width: 100%;
 }
 
@@ -4725,8 +4708,8 @@ fieldset[disabled] .fm.fl {
 }
 
 .primary-bg {
-    background: #0e131b;
-    color: #fff;
+    background: var(--betnare-primary);
+    color: var(--light);
 }
 
 .fp:focus,

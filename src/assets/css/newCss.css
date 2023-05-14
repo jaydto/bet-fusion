@@ -457,9 +457,30 @@ input[type="radio"], input[type="checkbox"] {
     /* margin-right: 1rem; */
     /* gap: 1rem; */
 }
+.top-matches .side {
+    background: #1e2d36;
+    padding: 2px 8px 2px 5px;
+    outline-style: none;
+    outline: none;
+    text-align: center;
+    float: right;
+    font-size: 12px;
+    height: 40px;
+    width: 35px;
+    line-height: 30px;
+    border-radius: 3px;
+    opacity: 0.8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:var(--aqua-text)!important;
+}
+.more-markets-text{
+    color:var(--more-markets-text) !important
+}
 .second-nav {
     /*background: #1f2f38 !important;*/
-    background:var(--betnare-primary)!important;
+    background:var(--top-header-nav)!important;
     font-size: var(--betnare-font-size-nav);
     box-shadow: 0 1px 2px #16202c;
     -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
@@ -673,7 +694,7 @@ input[type="radio"], input[type="checkbox"] {
     .pro-sidebar {
         color: #adadad;
         height: 100%;
-        width: var(--width-side-sm)!important;
+        /*width: var(--width-side-sm)!important;*/
         min-width: 215px!important;
         text-align: left;
         transition: width, left, right, 0.3s;
@@ -692,7 +713,7 @@ input[type="radio"], input[type="checkbox"] {
         top: 94px;
         z-index: 1999 !important;
         opacity: 1;
-        background: #253743;
+        background: var(--testimonial);
     }
     .highlight-logged-in-menu {
         position: sticky;
@@ -754,7 +775,7 @@ input[type="radio"], input[type="checkbox"] {
         border-radius: 7px;
         z-index: 1999 !important;
         opacity: 1;
-        background: #000;
+        background: var(--testimonial);
     }
 
     .sticky-user{
@@ -796,6 +817,13 @@ input[type="radio"], input[type="checkbox"] {
     }
 }
 @media (min-width: 992px) and (max-width: 1160px) {
+    .flex-item >div {
+        /* border: 3px solid #ffcc80; */
+        border-radius: 5px;
+        padding: 10px 0px;
+
+        /* overflow-y: scroll; */
+    }
     /*.app-header-nav {*/
     /*    margin-top: 42px;*/
     /*}*/
@@ -1013,7 +1041,7 @@ input[type="radio"], input[type="checkbox"] {
         top:0px;
         z-index: 1999 !important;
         opacity: 1;
-        background: #253743;
+        background: var(--testimonial);
     }
     .highlight-logged-in-menu {
         position: sticky;

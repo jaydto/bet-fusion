@@ -26,15 +26,15 @@ const Styles = {
         background:'#22323e !important',
     },
     headers: {
-        background:'#18242f',
-        color:'#ffffff',
+        background:'var(--betnare-header-bg)',
+        color:'var(--light)',
         padding: '10px 10px 10px 40px',
         fontSize: '12px'
     },
     bet:{
-        background:'#1e2d3b',
+        background:'var(--mybets-slip)',
         padding: '10px',
-        color: '#fff',
+        color: 'var(--light)',
         opacity: 0.8,
         marginBottom: '1px'
     }
@@ -170,7 +170,7 @@ const MyBets = (props) => {
 
     const MyBetsList = (props) => {
 		return (
-         <Accordion className={"bg-dark px-1"} >
+         <Accordion className={" px-1"} >
 			{state?.mybets && state.mybets.map((bet) => (
 				<AccordionItem
                     key = {bet.bet_id}

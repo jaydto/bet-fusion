@@ -16,14 +16,14 @@ const Styles = {
     },
     headers: {
         // background:'#18242f',
-        color:'#ffffff',
+        color:'var(--light)',
         padding: '10px 40px 10px',
         fontSize: '12px'
     },
     bet:{
         // background:'#1e2d3b',
         padding: '10px',
-        color: '#fff',
+        color: 'var(--light)',
         opacity: 0.8,
         marginBottom: '1px'
     }

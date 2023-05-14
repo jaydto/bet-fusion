@@ -10,6 +10,7 @@
     --betnare-side-bg:#121a23;
     --betslip-header:#4c372a;
     --betslip-mybets:#cd28ec;
+    --mybets-slip:#1e2d3b;
     --button-radius:3px;
     --betnare-odds-body:#2d3641;
     --betnare-input:#28374e;
@@ -36,6 +37,11 @@
     --footer-links:whitesmoke;
     --jackpot-header:#16202C;
     --white:#fff;
+    --testimonial:#253743;
+    --white-darken:#16202C;
+    --more-markets-text:#FFC107;
+    --kiron-competition:#34495e;
+    --top-header-nav:#16202C;
 
 }
 
@@ -43,11 +49,14 @@
     /* light mode variables go here */
 
     --betnare-primary:#f0f0f0;
+    --testimonial: #f0f0f0;
+    --top-header-nav:#f0f0f0;
     --footer-color:#05070a;
     --footer-links:#05070a;
     --betnare-secondary: #fff;
     --betnare-button-login:  #FFC107;
     --betnare-footer:#adadad;
+    --mybets-slip:#f0f0f0;
     --jackpot-header:#f0f0f0;
     --betnare-button-register: #ffffff;
     --banner-background: url(../../assets/img/auth/img-17.webp)!important;
@@ -82,5 +91,7 @@
     --variant2:#1f2f38;
     --nav-top-color:#05070a;
     --aqua-text:#05070a;
+    --white-darken:#fafafa;
+    --kiron-competition:#fafafa;
 
 }

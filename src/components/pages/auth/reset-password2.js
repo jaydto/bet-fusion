@@ -75,8 +75,9 @@ const ResetPassword2 = props => {
 
             let timer = setInterval(() => {
                 clearInterval(timer)
-                window.location.href = "/"
+                navigate("/")
             }, 3000)
+
         })
     }
 
@@ -191,8 +192,8 @@ const ResetPassword2 = props => {
                     <div className="row">
                         <div className="col-md-12">
                             <div className="col-md-12">
-                                <div className="form-group row d-flex justify-content-center mt-5">
-                                    <label>OTP</label>
+                                <div className="form-group row d-flex justify-content-center mt-1">
+                                    <label className={'text-center'}>Enter OTP</label>
                                     <input
                                         value={values.code}
                                         className="text-light deposit-input form-control col-md-12 input-field"
@@ -206,8 +207,14 @@ const ResetPassword2 = props => {
                                         {errors.code}
                                     </div>}
                                 </div>
+                                <hr/>
+                                <div>
+                                    <h2 className={'text-center'}>
+                                        Enter New Passwords
+                                    </h2>
+                                </div>
                             </div>
-                            <div className="form-group row d-flex justify-content-center mt-5">
+                            <div className="form-group w-100 d-flex justify-content-center mt-5">
                                 <div className="col-md-12">
                                     <label>Password</label>
                                     <input
@@ -224,7 +231,7 @@ const ResetPassword2 = props => {
                                     </div>}
                                 </div>
                             </div>
-                            <div className="form-group row d-flex justify-content-center mt-5">
+                            <div className="form-group w-100 d-flex justify-content-center mt-5">
                                 <div className="col-md-12">
                                     <label>Confirm Password</label>
                                     <input
@@ -244,8 +251,8 @@ const ResetPassword2 = props => {
                             </div>
                         </div>
 
-                        <div className="form-group row d-flex justify-content-left mb-4">
-                            <div className="col-md-3">
+                        <div className="form-group w-100 d-flex justify-content-left mb-4">
+                            <div className="col">
                                 <button type="submit"
                                         onClick={submitForm}
                                         className='btn btn-lg btn-primary mt-5 col-md-12 deposit-withdraw-button'>
@@ -258,7 +265,6 @@ const ResetPassword2 = props => {
             </Form>
         );
     }
-
     const OptForm = (props) => {
         return (
             <Formik
@@ -371,17 +377,16 @@ const ResetPassword2 = props => {
                                 <div className={'d-flex w-100'}>
                                     {/**/}
                                     <div className={'w-100'}>
-                                        {user?setTimeout(navigate("/"),500):""}
+
                                         <div className={"d-flex flex-row justify-content-between"}>
                                             <div className=" w-100">
                                                 <div className="homepage d-flex flex-column align-items-center justify-content-center login-page">
 
                                                     <div className="col-md-12 mt-2 text-white px-2 w-100">
                                                         {message && <Alert/>}
-                                                        {success?setTimeout(window.location.href="/deposit",1000):""}
                                                         <div className="modal-body pb-0" data-backdrop="static">
                                                             <OptForm/>
-                                                            {/*<PasswordResetForm/>*/}
+                                                            <PasswordResetForm/>
                                                         </div>
                                                     </div>
 

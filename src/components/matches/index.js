@@ -494,7 +494,7 @@ const SideBets = (props) => {
               </a>
               <span className={'stats-mobile'}>|</span>
               <a
-                  className="side text-warning w-auto "
+                  className="side text-warning w-auto more-markets-text"
                   style={{ whiteSpace: "nowrap" }}
                   title={"More Markets"}
                   href={`/match/${live ? "live" : ""}${
@@ -502,8 +502,8 @@ const SideBets = (props) => {
                   }`}
               >
                 <strong className="small bold">
-                  <span className={'stats-mobile'}>+{match.side_bets} More Markets</span>
-                  <span className={'stats-desktop'}>+{match.side_bets}</span>
+                  <span className={'stats-mobile more-markets-text'}>+{match.side_bets} More Markets</span>
+                  <span className={'stats-desktop more-markets-text'}>+{match.side_bets}</span>
                 </strong>
               </a>
             </>

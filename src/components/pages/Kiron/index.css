@@ -20,7 +20,7 @@
 }
 .container-sticky-top {
     position: sticky!important;
-    top: 0.5rem!important;
+    top: 0.5rem;
 }
 
 .opt-color{
@@ -314,9 +314,6 @@
     color:#000000;
 }
 
-.kiron-size {
-    overflow-x: auto;
-}
 
 @media (max-width: 376px){
     .double-chance-market{

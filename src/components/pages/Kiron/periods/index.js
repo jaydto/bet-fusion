@@ -448,7 +448,7 @@ let totalSeconds=timeAfter;
                                 <td key={index} id={`kiron-period-${index}`} className={` d-flex menu-t sport-check w-100 period-card ${pathname === kiron_options.round_id ? " active" : ""}`}
                                     style={{textAlign: 'center',lineHeight: '1.5'}}>
                                     <div style={{width:"100%", color:"#000"}} >
-                                        <div className={`card inner-div active d-flex align-items-center kiron-value flex-column justify-content-center link period-height ${isFirst? timeLeft&&isCountdownTimerActive==false?'count-red':timeAfter&&isCountdownTimerActive==true?'count-green':'':''}`}
+                                        <div className={` inner-div active d-flex align-items-center kiron-value flex-column justify-content-center link period-height ${isFirst? timeLeft&&isCountdownTimerActive==false?'count-red':timeAfter&&isCountdownTimerActive==true?'count-green':'':''}`}
                                              onClick={(event)=>{handleLinkClick(event);handleNextSelected( startTime,roundId,endTime )}}
                                              style={{width:'60px',cursor:'pointer'}}>
                                             {isFirst && timeLeft&&isCountdownTimerActive==false? (

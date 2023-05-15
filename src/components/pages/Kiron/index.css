@@ -28,7 +28,7 @@
 }
 .menu-t div.inner-div {
     /* background-color: #2D4352; */
-    color: #FFFFFF;
+    color: var(--light);
     white-space: nowrap;
     border-radius: 4px;
     padding: 3px 5px;

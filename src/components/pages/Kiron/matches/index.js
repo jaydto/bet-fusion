@@ -348,7 +348,7 @@ export const MatchRow = (props) => {
 
               <div className={`col d-flex  flex-row  space-bets  justify-content-lg-between `}>
                 {/*mobile*/}
-                <div className="d-flex ">
+                <div className="d-flex w-100">
 
 
                           {match.odds.map((odd, index) => (

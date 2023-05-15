@@ -31,9 +31,9 @@ const AntiMoneyLaundering = () => {
                                     ANTI-MONEY LAUNDERING
                                 </h4>
                             </div>
-                            <div className="col-md-12 mt-2 text-white p-2 text-center">
+                            <div className="col-md-12 mt-1 text-white p-1 text-center">
                             </div>
-                            <div className="col-md-12 mt-2 p-5 text-white accordion-container">
+                            <div className="col-md-12 mt-1 p-1 text-white accordion-container">
                                 <Accordion allowMultipleExpanded={false} allowZeroExpanded={true}>
                                     <AccordionItem>
                                         <AccordionItemHeading>

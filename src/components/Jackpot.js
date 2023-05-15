@@ -1,34 +1,34 @@
 import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
 import './test.css'
-import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
-import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
+import {getFromLocalStorage, setLocalStorage} from "./utils/local-storage";
+import useAnalyticsEventTracker from "./analytics/useAnalyticsEventTracker";
 import {useLocation} from "react-router-dom";
-import useWindowDimensions from "../../header/Dimensions";
-import {Context} from "../../../context/store";
-import {getBetslip} from "../../utils/betslip";
-import useInterval from "../../../hooks/set-interval.hook";
-import makeRequest from "../../utils/fetch-request";
-import MobileNav2 from "../../mobile-navigation/MobileNav2";
-import Testimonials from "../../carousel/Testimonials";
+import useWindowDimensions from "./header/Dimensions";
+import {Context} from "../context/store";
+import {getBetslip} from "./utils/betslip";
+import useInterval from "../hooks/set-interval.hook";
+import makeRequest from "./utils/fetch-request";
+import MobileNav2 from "./mobile-navigation/MobileNav2";
+import Testimonials from "./carousel/Testimonials";
 import {Spinner} from "react-bootstrap";
-import Countries from "../../countries/Countries";
-import TestSkeleton from "./Skeleton/TestSkeleton";
+import Countries from "./countries/Countries";
+
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
-import Jackpot300k from "../../../assets/img/banner/products/Bet_Nare_300k_Jackpot_New.webp";
-import {JackpotMatchList} from "../../matches";
+import Jackpot300k from "../assets/img/banner/products/Bet_Nare_300k_Jackpot_New.webp";
+import {JackpotMatchList} from "./matches";
 import Select from "react-select";
 import Container from "react-bootstrap/Container";
-import DailyJackpotTermsAndConditions from "../terms-and-conditions/DailyJackpotTermsAndConditions";
+import DailyJackpotTermsAndConditions from "./pages/terms-and-conditions/DailyJackpotTermsAndConditions";
 
-const Header = React.lazy(() => import('../../header/header'));
-const Footer = React.lazy(() => import('../../footer/footer'));
-const CarouselLoader = React.lazy(() => import('../../carousel/index'));
-const MainTabs = React.lazy(() => import('../../header/main-tabs'));
-const MatchList = React.lazy(() => import('../../matches/index'));
-const Right = React.lazy(() => import('../../right/index'));
-const SideBar = React.lazy(() => import('../../sidebar/awesome/Sidebar'))
-const  TestJackpot= () => {
+const Header = React.lazy(() => import('./header/header'));
+const Footer = React.lazy(() => import('./footer/footer'));
+const CarouselLoader = React.lazy(() => import('./carousel'));
+const MainTabs = React.lazy(() => import('./header/main-tabs'));
+const MatchList = React.lazy(() => import('./matches'));
+const Right = React.lazy(() => import('./right'));
+const SideBar = React.lazy(() => import('./sidebar/awesome/Sidebar'))
+const  Jackpot= () => {
     const [matches, setMatches] = useState(null);
     const [finishedJackpots, setFinishedJackpots] = useState([])
     const [user, setUser] = useState(getFromLocalStorage("user"));
@@ -215,4 +215,4 @@ const  TestJackpot= () => {
     );
 };
 
-export default TestJackpot;
+export default Jackpot;

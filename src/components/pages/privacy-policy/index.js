@@ -13,16 +13,18 @@ import Right from '../../right/index'
 import SideBar from '../../sidebar/awesome/Sidebar'
 import useWindowDimensions from "../../header/Dimensions";
 import {Context} from "../../../context/store";
+import '../../test.css'
 
 const PrivacyPolicy = () => {
     const {height, width} = useWindowDimensions();
     const [state, dispatch] = useContext(Context);
+
     return (
-        <>
-            <Header/>
-            <div className={(width<=575?state?.user?"user_logged":"amt":"amt")}>
-                <div className="d-flex flex-row justify-content-between">
-                    <SideBar/>
+        <div className={'flex-item'}>
+            <div className="item4"><Header/></div>
+            <div className="flex-container">
+                <div className="item1"> <SideBar loadCompetitions/></div>
+                <div className="item2" style={{width:'100%'}}>
                     <div className="gz home w-100">
                         <div className="homepage">
                             <div className='col-md-12 primary-bg p-4 text-center'>
@@ -32,7 +34,7 @@ const PrivacyPolicy = () => {
                             </div>
                             <div className="col-md-12 mt-2 text-white p-2 text-center">
                             </div>
-                            <div className="col-md-12 mt-2 p-5 text-white accordion-container">
+                            <div className="col-md-12 mt-1 p-1 text-white accordion-container">
                                 <Accordion allowMultipleExpanded={false} allowZeroExpanded={true}>
                                     <AccordionItem>
                                         <AccordionItemHeading>
@@ -250,13 +252,16 @@ const PrivacyPolicy = () => {
                             </div>
                         </div>
                     </div>
-                    <Right/>
                 </div>
-            </div>
-            <div className={"footer-mobile-none"}>
-            <Footer/>
-            </div>
-        </>)
-}
+                <div className="item3"><Right  test={true}/></div>
 
-export default PrivacyPolicy
+            </div>
+            <div className="item6"><div className={"footer-mobile-none"}>
+                <Footer/>
+            </div></div>
+        </div>
+
+    );
+};
+
+export default PrivacyPolicy;

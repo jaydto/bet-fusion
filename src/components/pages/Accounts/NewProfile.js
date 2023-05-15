@@ -1,8 +1,4 @@
 import React, {useState} from 'react';
-import MobileNav2 from "../../mobile-navigation/MobileNav2";
-import Testimonials from "../../carousel/Testimonials";
-import TestSkeleton from "../Test/Skeleton/TestSkeleton";
-import Countries from "../../countries/Countries";
 import './test.css'
 import './card.css'
 import {Navbar, Offcanvas} from "react-bootstrap";

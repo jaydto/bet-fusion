@@ -1,25 +1,28 @@
-import React, {useContext, useEffect, useCallback, useState, useRef} from "react";
-import {useLocation} from 'react-router-dom';
-import {Context} from '../context/store';
-import makeRequest from './utils/fetch-request';
-import {getBetslip} from './utils/betslip' ;
-import useInterval from "../hooks/set-interval.hook";
-import {Spinner} from "react-bootstrap";
-import useAnalyticsEventTracker from '../components/analytics/useAnalyticsEventTracker';
+import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
+import './test.css'
 import {getFromLocalStorage, setLocalStorage} from "./utils/local-storage";
+import useAnalyticsEventTracker from "./analytics/useAnalyticsEventTracker";
+import {useLocation} from "react-router-dom";
 import useWindowDimensions from "./header/Dimensions";
-import Testimonials from "./carousel/Testimonials";
-import Countries from "./countries/Countries";
+import {Context} from "../context/store";
+import {getBetslip} from "./utils/betslip";
+import useInterval from "../hooks/set-interval.hook";
+import makeRequest from "./utils/fetch-request";
 import MobileNav2 from "./mobile-navigation/MobileNav2";
+import Testimonials from "./carousel/Testimonials";
+import {Spinner} from "react-bootstrap";
+import Countries from "./countries/Countries";
+import Skeleton1 from "./skeleton/skeleton";
+
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
-const CarouselLoader = React.lazy(() => import('./carousel/index'));
+const CarouselLoader = React.lazy(() => import('./carousel'));
 const MainTabs = React.lazy(() => import('./header/main-tabs'));
-const MatchList = React.lazy(() => import('./matches/index'));
-const Right = React.lazy(() => import('./right/index'));
+const MatchList = React.lazy(() => import('./matches'));
+const Right = React.lazy(() => import('./right'));
 const SideBar = React.lazy(() => import('./sidebar/awesome/Sidebar'))
-const Index = (props) => {
+const  Index= () => {
     const [user, setUser] = useState(getFromLocalStorage("user"));
     const gaEventTracker = useAnalyticsEventTracker('Home');
     const location = useLocation();
@@ -128,7 +131,7 @@ const Index = (props) => {
         //splitting before api call
         let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29").split(",")
         console.log("subtypes", sub_types[0]);
-        if (width <= 767) {
+        if (width <= 1259) {
             // console.log("condition has been met ", [sub_types[0]])
             sub_types = [sub_types[0]]
         }
@@ -235,48 +238,48 @@ const Index = (props) => {
     })
 
 
+    return (
+<div className={'flex-item'}>
+    <div className="item4"><Header/></div>
+    <div className="flex-container">
+        <div className="item1"> <SideBar loadCompetitions/></div>
+        <div className="item2"><div className="gz home match-overflow " >
+            <div className="homepage" ref={homePageRef} >
+                <MobileNav2/>
+                <CarouselLoader/>
+                <Testimonials/>
+
+                <MainTabs tab={location.pathname.replace("/", "")}/>
+                {/* <MobileCategories/> */}
+                {/* <MobileCategories/> */}
+                {loading ?
+                    <div className={`text-center mt-2 text-white d-block`}>
+                        {/*<Spinner animation={'grow'} size={'lg'}/>*/}
+                        <Skeleton1/>
+                    </div> : tab=='countries'?<Countries/>:
+                        <MatchList
+                            live={false}
+                            fetching={fetching}
+                            matches={matches}
+                            pdown={producerDown}
+                            three_way={threeWay}
+
+                        />
+                }
 
 
 
-    return (<>
-        <Header/>
-        <div className={`${user ? "user_logged " : "amt "} `} >
-            <div className="d-flex flex-row justify-content-between shadow-top-body" >
-                <SideBar loadCompetitions/>
-                <div className="gz home match-overflow " >
-                    <div className="homepage" ref={homePageRef} >
-                        <MobileNav2/>
-                        <CarouselLoader/>
-                        <Testimonials/>
-
-                        <MainTabs tab={location.pathname.replace("/", "")}/>
-                        {/* <MobileCategories/> */}
-                       {/* <MobileCategories/> */}
-                       {loading ?
-                            <div className={`text-center mt-2 text-white d-block`}>
-                                <Spinner animation={'grow'} size={'lg'}/>
-                            </div> : tab=='countries'?<Countries/>:
-                            <MatchList
-                                live={false}
-                                fetching={fetching}
-                                matches={matches}
-                                pdown={producerDown}
-                                three_way={threeWay}
-
-                            />
-                        }
-
-
-
-                    </div>
-                </div>
-                <Right betslipValidationData={userSlipsValidation} jackpotData={matches?.meta}/>
             </div>
-        </div>
-        <div className={"footer-mobile-none"}>
-            <Footer/>
-        </div>
-    </>)
-}
+        </div></div>
+        <div className="item3"><Right betslipValidationData={userSlipsValidation} jackpotData={matches?.meta} test={true}/></div>
 
-export default Index
+    </div>
+    <div className="item6"><div className={"footer-mobile-none"}>
+        <Footer/>
+    </div></div>
+</div>
+
+    );
+};
+
+export default Index;

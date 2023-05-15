@@ -1,27 +1,24 @@
-import React, {useContext, useLayoutEffect, useEffect, useCallback, useState, useMemo} from "react";
-import {useLocation, useParams} from 'react-router-dom';
-import makeRequest from './utils/fetch-request';
-import {getJackpotBetslip, getBetslip} from './utils/betslip' ;
-
-import matches from "./utils/fetch-request";
-import useInterval from "../hooks/set-interval.hook";
-import {Context} from '../context/store';
-import Testimonials from "./carousel/Testimonials";
-
-import {getFromLocalStorage} from "./utils/local-storage";
+import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
+import './test.css'
+import {getFromLocalStorage, setLocalStorage} from "./utils/local-storage";
+import useAnalyticsEventTracker from "./analytics/useAnalyticsEventTracker";
+import {useLocation, useParams} from "react-router-dom";
 import useWindowDimensions from "./header/Dimensions";
-
+import {Context} from "../context/store";
+import {getBetslip} from "./utils/betslip";
+import useInterval from "../hooks/set-interval.hook";
+import makeRequest from "./utils/fetch-request";
+import Testimonials from "./carousel/Testimonials";
+import LiveSideBar from "./sidebar/live-sidebar";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
-const LiveSideBar = React.lazy(() => import('./sidebar/live-sidebar'));
-const CarouselLoader = React.lazy(() => import('./carousel/index'));
-const SearchBar = React.lazy(() => import('./header/search-bar'));
-const MatchList = React.lazy(() => import('./matches/index'));
-const Right = React.lazy(() => import('./right/index'));
-
-
-const Live = (props) => {
+const CarouselLoader = React.lazy(() => import('./carousel'));
+const MainTabs = React.lazy(() => import('./header/main-tabs'));
+const MatchList = React.lazy(() => import('./matches'));
+const Right = React.lazy(() => import('./right'));
+const SideBar = React.lazy(() => import('./sidebar/awesome/Sidebar'))
+const  Live= () => {
     const [matches, setMatches] = useState();
     const [state, dispatch] = useContext(Context);
     const {height, width} = useWindowDimensions();
@@ -90,15 +87,17 @@ const Live = (props) => {
         };
     }, [fetchData]);
 
+
     return (
-        <>
-            <Header/>
-            <div className={`${width<=575?state?.user?"user_logged ":"amt":"amt"}`}>
-                <div className="d-flex flex-row justify-content-between ">
+        <div className={'flex-item'}>
+            <div className="item4"><Header/></div>
+            <div className="flex-container">
+                <div className="item1">
                     <div className={"mobile-remove"}>
                         <LiveSideBar/>
                     </div>
-
+                </div>
+                <div className="item2">
                     <div className="gz home match-overflow" >
                         <div className="homepage">
                             <CarouselLoader/>
@@ -111,14 +110,18 @@ const Live = (props) => {
                             {matches && <MatchList live matches={matches} pdown={producerDown}/>}
                         </div>
                     </div>
-                    <Right betslipValidationData={userSlipsValidation} jackpotData={matches?.meta}/>
                 </div>
-            </div>
-            <div className={"footer-mobile-none"}>
-            <Footer/>
-            </div>
-        </>
-    )
-}
+                <div className="item3">
+                    <Right betslipValidationData={userSlipsValidation} jackpotData={matches?.meta} test={true}/>
+                </div>
 
-export default Live
+            </div>
+            <div className="item6"><div className={"footer-mobile-none"}>
+                <Footer/>
+            </div></div>
+        </div>
+
+    );
+};
+
+export default Live;

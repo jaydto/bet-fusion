@@ -1,24 +1,16 @@
-import React, {useContext, useEffect} from "react";
-import 'react-accessible-accordion/dist/fancy-example.css';
-import DownloadLink from "react-download-link";
-import mobileBanner from '../../../assets/img/mobile/APPDownload.png'
-import {Link} from "react-router-dom";
+import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
+import '../../test.css'
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
-import useWindowDimensions from "../../header/Dimensions";
-import {Context} from "../../../context/store";
+import {Link, useLocation} from "react-router-dom";
+import mobileBanner from "../../../assets/img/mobile/APPDownload.png";
 
 const Header = React.lazy(() => import('../../header/header'));
-const SideBar = React.lazy(() => import('../../sidebar/awesome/Sidebar'));
 const Footer = React.lazy(() => import('../../footer/footer'));
-const Right = React.lazy(() => import('../../right/index'));
+const Right = React.lazy(() => import('../../right'));
+const SideBar = React.lazy(() => import('../../sidebar/awesome/Sidebar'))
 const downloadAPKFile = React.lazy(() => import('../../../assets/betnare.apk'));
-
-
-const MobileApp = () => {
+const  Index= () => {
     const gaEventTracker = useAnalyticsEventTracker('App');
-    const {height, width} = useWindowDimensions();
-    const [state,dispatch]=useContext(Context);
-
 
     useEffect(() => {
         gaEventTracker('App Page')
@@ -28,12 +20,13 @@ const MobileApp = () => {
         return downloadAPKFile;
     }
 
+
     return (
-        <>
-            <Header/>
-            <div className={(width<=575?state?.user?"user_logged":"amt":"amt")}>
-            <div className="d-flex flex-row justify-content-between">
-                    <SideBar loadCompetitions/>
+        <div className={'flex-item'}>
+            <div className="item4"><Header/></div>
+            <div className="flex-container">
+                <div className="item1"> <SideBar loadCompetitions/></div>
+                <div className="item2" style={{width:'100%'}}>
                     <div className="gz home" style={{width: '100%',overflowX: 'clip'}}>
                         <div className="homepage">
                             <div
@@ -94,17 +87,18 @@ const MobileApp = () => {
                             </div>
                         </div>
                     </div>
-                    <div className={"mobile-top"}>
-                        <Right app={true}/>
-                    </div>
-
                 </div>
-            </div>
-            <div className="mobile-remove ">
-            <Footer/>
-            </div>
-        </>
-    )
-}
+                <div className="item3">
+                    <Right app={true} test={true}/>
+                </div>
 
-export default MobileApp
+            </div>
+            <div className="item6"><div className={"footer-mobile-none"}>
+                <Footer/>
+            </div></div>
+        </div>
+
+    );
+};
+
+export default Index;

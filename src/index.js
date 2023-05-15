@@ -26,20 +26,17 @@ const Deposit3=React.lazy(()=>import("./components/pages/deposit-withraw/Deposit
 const TRACKING_ID = "G-5NLSN9BLN4";
 ReactGA.initialize(TRACKING_ID);
 
-const Index = React.lazy(() => import('./components/index'));
+const Index = React.lazy(() => import('./components'));
 
 const CompetitionsMatches = React.lazy(
-    () => import('./components/competition-matches2')
+    () => import('./components/competition-matches')
 );
 const BetslipShareDecode = React.lazy(() => import('./components/betslip/BetslipShareDecode'))
 
 const MatchAllMarkets = React.lazy(() => import('./components/all-markets'));
 
-const Test=React.lazy(()=>import('./components/pages/Test/Test'));
 
-const  TestLive=React.lazy(()=>import('./components/pages/Test/TestLive'));
-
-const Jackpot = React.lazy(() => import('./components/pages/Test/TestJackpot'));
+const Jackpot = React.lazy(() => import('./components/Jackpot'));
 
 const Live = React.lazy(
     () => import('./components/live')
@@ -74,7 +71,7 @@ const AntimoneyLaundering = React.lazy(
 );
 
 const PrivacyPolicy = React.lazy(
-    () => import('./components/pages/privacy-policy/index')
+    () => import('./components/pages/privacy-policy')
 );
 
 const Withdraw = React.lazy(
@@ -103,7 +100,7 @@ const VerifyAccount = React.lazy(
 )
 
 // const MobileApp = React.lazy(() => import('./components/pages/app'))
-const MobileApp = React.lazy(() => import('./components/pages/Test/TestApp'))
+const MobileApp = React.lazy(() => import('./components/pages/app'))
 
 
 const ProtectedRoute = React.lazy(
@@ -137,7 +134,7 @@ const PageNotFound = React.lazy(() => import('./components/pages/404/NotFound'))
 const ShaksGamePlay=React.lazy(()=>import('./components/pages/shaks/ShaksGamePlay') )
 
 // const Kiron=React.lazy(()=>import('./components/pages/Kiron/index'))
-const Kiron=React.lazy(()=>import('./components/pages/Kiron/KironTest'))
+const Kiron=React.lazy(()=>import('./components/pages/Kiron'))
 
 const BetslipPage =React.lazy(()=> import("./components/pages/betslip/betslipPage"))
 
@@ -166,13 +163,13 @@ render((
             <Suspense fallback={<p> Loading ... </p>}>
                 <Routes>
                     <Route path="*" element={<Navigate to="/404"/>}/>
-                    <Route exact path="/" element={<Test/>}/>
-                    <Route exact path="/highlights" element={<Test/>}/>
-                    <Route exact path="/upcoming" element={<Test/>}/>
-                    <Route exact path="/tomorrow" element={<Test/>}/>
-                    <Route exact path= "/countries" element={<Test/>}/>
-                    <Route exact path="/live" element={<TestLive/>}/>
-                    <Route exact path="/live/:spid" element={<TestLive/>}/>
+                    <Route exact path="/" element={<Index/>}/>
+                    <Route exact path="/highlights" element={<Index/>}/>
+                    <Route exact path="/upcoming" element={<Index/>}/>
+                    <Route exact path="/tomorrow" element={<Index/>}/>
+                    <Route exact path= "/countries" element={<Index/>}/>
+                    <Route exact path="/live" element={<Live/>}/>
+                    <Route exact path="/live/:spid" element={<Live/>}/>
                     <Route exact path="/login" element={<Login/>}/>
                     <Route exact path="/share" element={<BetslipShareDecode/>}/>
                     <Route exact path="/virtuals" element={<Virtuals/>}/>
@@ -217,7 +214,6 @@ render((
                     <Route exact path="/logout" element={<Logout/>}/>
                     <Route exact path="/print-matches" element={<PrintMatches/>}/>
                     <Route exact path="/promotions" element={<Promotions/>}/>
-                    <Route exact path="/test" element={<Index/>}/>
                     <Route exact path="/deposit"
                            element={<ProtectedRoute><Deposit3/> </ProtectedRoute>}/>
                     <Route exact path="/withdraw"

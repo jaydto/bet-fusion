@@ -1,6 +1,6 @@
 import React from 'react';
 import './skeleton.css'
-const TestSkeleton = () => {
+const Skeleton1 = () => {
     return (
         <div className="center-body">
             <div className="loader-circle-9">Loading
@@ -10,4 +10,4 @@ const TestSkeleton = () => {
     );
 };
 
-export default TestSkeleton;
+export default Skeleton1;

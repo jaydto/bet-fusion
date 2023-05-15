@@ -16,6 +16,7 @@ import Right from "../../right";
 import KironMoreMarkets from "./kironMoreMarkets";
 import Footer from "../../footer/footer";
 import './index.css'
+import './ccontainer.css'
 import KironResults from "./results";
 import Standing from "./standing";
 import KironBetHistory from "./bet-history/KironBetHistory";
@@ -32,7 +33,7 @@ import {faSearch} from "@fortawesome/free-solid-svg-icons";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 import {formatNumber} from "../../utils/betslip";
 
-const Kiron = () => {
+const  TestKiron= () => {
     const [state,dispatch]=useContext(Context)
     const gaEventTracker = useAnalyticsEventTracker('Navigation');
     const [loading, setLoading] = useState(false)
@@ -90,8 +91,8 @@ const Kiron = () => {
     useEffect(() => {
         const userLog=state?.userLogged||getFromLocalStorage("user")?.token
 
-                console.log('userValue')
-                setUserLogged(userLog)
+        console.log('userValue')
+        setUserLogged(userLog)
 
     }, [getUser])
 
@@ -136,7 +137,7 @@ const Kiron = () => {
 
     useEffect(() => {
         const abortController = new AbortController();
-       console.log("abortController")
+        console.log("abortController")
         fetchData();
 
         return () => {
@@ -165,11 +166,11 @@ const Kiron = () => {
 
 
         await makeRequest({url: endpoint, method: "POST", data:kiron_data }).then(([status, result]) => {
-             if (status == 200) {
+            if (status == 200) {
                 setMatches(matches.length > 0 ? {...matches, ...result?.data} : result?.data || result)
                 setFetching(false)
                 setLoading(false)
-                 console.log("slip_data", result)
+                console.log("slip_data", result)
                 if (result?.event_time) {
                     setLoading(false)
                     setKironValidation(result?.slip_data)
@@ -188,7 +189,7 @@ const Kiron = () => {
         const kiron_market=getFromLocalStorage("kiron_search_data")?.market_id
         const kiron_first_period=getFromLocalStorage("kiron_first_period")
 
-console.log("variable_state",state?.current_selection_period?.start)
+        console.log("variable_state",state?.current_selection_period?.start)
         const newCompetitionId = new URL(window.location).searchParams.get('competition_id')||kiron_competition||'2'
         const newPeriod = state?.current_selection_period?.start?
             state?.current_selection_period?.start:
@@ -263,145 +264,152 @@ console.log("variable_state",state?.current_selection_period?.start)
     // },[])
 
 
-
     return (
-        <>
+        <div className={'flex-item'}>
+            <div className="item4">
+                <Navbar expand="lg" className="mb-0 ck pc os app-navbar top-nav header-mobile-kiron" fixed="top" variant="dark">
+                <Container fluid className={'d-flex justify-content-between mobile-change'}>
+                    <Navbar.Brand className={`e logo align-self-start menu-control d-flex justify-content-between w-100`} title="Betnare">
+                        <Link to={{pathname: "/"}} className="col-4 resize-mobile" style={{ marginLeft:"-5px"}}>
+                            <img src={logo} alt="Betnare" title="Betnare" effects="blur"
+                                 className={"image-size "} style={user?{marginBottom:"0px" }:{marginBottom:"11px", width:'auto'}}/>
+                        </Link>
 
-    <Navbar expand="lg" className="mb-0 ck pc os app-navbar top-nav header-mobile-kiron" fixed="top" variant="dark">
-        <Container fluid className={'d-flex justify-content-between mobile-change'}>
-            <Navbar.Brand className={`e logo align-self-start menu-control d-flex justify-content-between w-100`} title="Betnare">
-                <Link to={{pathname: "/"}} className="col-4 resize-mobile" style={{ marginLeft:"-5px"}}>
-                    <img src={logo} alt="Betnare" title="Betnare" effects="blur"
-                         className={"image-size "} style={user?{marginBottom:"0px" }:{marginBottom:"11px", width:'auto'}}/>
-                </Link>
-
-                {user &&
-                    <div
-                        className="col-md-6  d-flex  right justify-content-end align-items-center w-change2 gap-2 ipad-show"
-                        style={{marginLeft: 'auto'}}>
-                        <div>
-                            <Link
-                                to={{pathname: "/deposit"}}
-                                className={"deposit-button size-font-user-action"}>
+                        {user &&
+                            <div
+                                className="col-md-6  d-flex  right justify-content-end align-items-center w-change2 gap-2 ipad-show"
+                                style={{marginLeft: 'auto'}}>
+                                <div>
+                                    <Link
+                                        to={{pathname: "/deposit"}}
+                                        className={"deposit-button size-font-user-action"}>
                                       <span className="">
                                        <span className=" "> <FontAwesomeIcon
                                            icon={faCloudDownloadAlt}/></span>&nbsp;
                                           DEPOSIT
                                       </span>
-                            </Link>
-                        </div>
-                        <div>
+                                    </Link>
+                                </div>
+                                <div>
 
-                            <div
-                                className={"deposit-button size-font-user-action d-flex align-items-center"}
-                                style={{marginRight: "12px"}}>
+                                    <div
+                                        className={"deposit-button size-font-user-action d-flex align-items-center"}
+                                        style={{marginRight: "12px"}}>
                                       <span className="text-warning">
                                        <span className=" "><FontAwesomeIcon icon={faCoins} className={"text-warning"}/>
                                            </span>&nbsp;
                                           KSH {formatNumber(user.balance) || 0}
                                       </span>
-                            </div>
-                        </div>
-                        <div className="col-1 button-toggle space-button"
-                             style={{width: "4.1rem", overflowY: "auto", marginLeft: '20px'}}>
-                            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"lg"}`}
-                                           className="px-3 py-3" onClick={toggle}/>
-                        </div>
-                    </div>}
-                <>
-                    {!user&&<div className="col-sm-2 mobile-profile1 align-items-center gap-3 ipad-show" style={{marginLeft:'auto'}}>
-                        <div className="remove-verify">
-                            <Link className="cg  login-color login-size btn bg-success text-light"
-                                  to={"/verify"} title="Verify Account"
-                                  onClick={() => gaEventTracker('Verify')}>
-                                <span className="register-label text-light">Verify</span>
-                            </Link>
-                        </div>
-                        <div className="">
-                            <Link className="cg  login-color login-size btn bg-warning text-light"
-                                  to={"/signup"} title="Join now"
-                                  onClick={() => gaEventTracker('Register')}>
-                                <span className="text-light ">Register</span>
-                            </Link>
-                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-1 button-toggle space-button"
+                                     style={{width: "4.1rem", overflowY: "auto", marginLeft: '20px'}}>
+                                    <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"lg"}`}
+                                                   className="px-3 py-3" onClick={toggle}/>
+                                </div>
+                            </div>}
+                        <>
+                            {!user&&<div className="col-sm-2 mobile-profile1 align-items-center gap-3 ipad-show" style={{marginLeft:'auto'}}>
+                                <div className="remove-verify">
+                                    <Link className="cg  login-color login-size btn bg-success text-light"
+                                          to={"/verify"} title="Verify Account"
+                                          onClick={() => gaEventTracker('Verify')}>
+                                        <span className="register-label text-light">Verify</span>
+                                    </Link>
+                                </div>
+                                <div className="">
+                                    <Link className="cg  login-color login-size btn bg-warning text-light"
+                                          to={"/signup"} title="Join now"
+                                          onClick={() => gaEventTracker('Register')}>
+                                        <span className="text-light ">Register</span>
+                                    </Link>
+                                </div>
 
-                        <Link to={"/login"} className="cg  login-color login-size btn" type="submit">
-                            <span>Login</span>
-                        </Link>
+                                <Link to={"/login"} className="cg  login-color login-size btn" type="submit">
+                                    <span>Login</span>
+                                </Link>
 
-                        <div className="col-1 button-toggle space-button" style={{width: "4.1rem", overflowY:"auto",marginLeft:'20px'}}>
-                            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"lg"}`} className="px-3 py-3" onClick={toggle} />
-                        </div>
+                                <div className="col-1 button-toggle space-button" style={{width: "4.1rem", overflowY:"auto",marginLeft:'20px'}}>
+                                    <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"lg"}`} className="px-3 py-3" onClick={toggle} />
+                                </div>
 
-                    </div>}
-                </>
+                            </div>}
+                        </>
 
 
-            </Navbar.Brand>
+                    </Navbar.Brand>
 
-            <Navbar.Offcanvas
-                style={{width: "80%", height: "100%",zIndex: "9999", marginTop: "0px",overflowY:"auto"}}
-                className='off-canvas background-primary p-0'
-                id={`offcanvasNavbar-expand-${expand}`}
-                aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-                placement="start">
-                <Offcanvas.Header closeButton className='text-white' closeVariant={"white"}>
-                    <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                        <div className="col-3">
-                            <div>
-                                <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"/>
-                            </div>
-                        </div>
-                    </Offcanvas.Title>
-                </Offcanvas.Header>
-                <Offcanvas.Body className={(width<=514?user?"":"":"")}>
-                    <SidebarMobile/>
-                </Offcanvas.Body>
-            </Navbar.Offcanvas>
-        </Container>
-    </Navbar>
-    <div className={'header-desktop-kiron'}>
-        <Header/>
-    </div>
-        <div className="kiron-amt">
-            <div className="d-flex flex-row">
-            <div className="d-flex flex-column kiron-size" style={{marginTop:"2px"}}>
-                    <KironCompetitions/>
-                {!inPlay&&<KironTabs tab={location.pathname.replace("/", "")} user={userLogged}/>}
-                {tab == "results" ? <KironResults/>:tab == "standing" ?<Standing/>:tab == "bet-history" ?<KironBetHistory/>:<>
-                    <KironPeriods setClosed={setClosed} setInPlay={setInPlay} setPlayout={setPlayout}
-                                  isCountdownTimerActive={isCountdownTimerActive} setIsCountdownTimerActive={setIsCountdownTimerActive}/>
-                    <KironMoreMarkets/>
-                    {loading ?matches.length>0&&matches?.map((match, index) => (
-                        <Complex key={index}/>)):closed? <div className="kiron-loader" id="kiron-loader">
-                            <div className="match-start d-flex flex-column align-items-center justify-content-center " style={{marginTop:'120px'}}>
+                    <Navbar.Offcanvas
+                        style={{width: "80%", height: "100%",zIndex: "9999", marginTop: "0px",overflowY:"auto"}}
+                        className='off-canvas background-primary p-0'
+                        id={`offcanvasNavbar-expand-${expand}`}
+                        aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+                        placement="start">
+                        <Offcanvas.Header closeButton className='text-white' closeVariant={"white"}>
+                            <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
+                                <div className="col-3">
+                                    <div>
+                                        <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"/>
+                                    </div>
+                                </div>
+                            </Offcanvas.Title>
+                        </Offcanvas.Header>
+                        <Offcanvas.Body className={(width<=514?user?"":"":"")}>
+                            <SidebarMobile/>
+                        </Offcanvas.Body>
+                    </Navbar.Offcanvas>
+                </Container>
+            </Navbar>
+                <div className={'header-desktop-kiron'}>
+                    <Header/>
+                </div></div>
+            <div className="flex-container kiron-test" >
+                <div className={'item-1 d-none'}></div>
+                <div className="item2" style={{width:'100%'}}>
+                    <div className="d-flex flex-row">
+                        <div className="d-flex flex-row kiron-size" style={{marginTop:"2px", width:'100%'}}>
+                        <div className="d-flex flex-column kiron-size" style={{marginTop:"2px", overflowY:'auto'}}>
+                        <KironCompetitions/>
+                        {!inPlay&&<KironTabs tab={location.pathname.replace("/", "")} user={userLogged}/>}
+                        {tab == "results" ? <KironResults/>:tab == "standing" ?<Standing/>:tab == "bet-history" ?<KironBetHistory/>:<>
+                            <KironPeriods setClosed={setClosed} setInPlay={setInPlay} setPlayout={setPlayout}
+                                          isCountdownTimerActive={isCountdownTimerActive} setIsCountdownTimerActive={setIsCountdownTimerActive}/>
+                            <KironMoreMarkets/>
+                            {loading ?matches.length>0&&matches?.map((match, index) => (
+                                <Complex key={index}/>)):closed? <div className="kiron-loader" id="kiron-loader">
                                 Game  Weeek<span id={'game_week'}></span>
-                                Match Starts In <span id="countdown"></span>
-                            </div>
-                            <div className="loading loading--full-height"></div>
-                        </div>:inPlay?<KironPlayouts playout={playout} isCountdownTimerActive={isCountdownTimerActive}/>:
-                        <MatchList
-                            fetching={fetching}
-                            matches={matches}
-                            competition_id={newData?.competition_id}
-                            three_way={threeWay}
+                                <div className="match-start d-flex flex-column align-items-center justify-content-center " style={{marginTop:'120px'}}>
+                                    Match Starts In <span id="countdown"></span>
+                                </div>
+                                <div className="loading loading--full-height"></div>
+                            </div>:inPlay?<KironPlayouts playout={playout} isCountdownTimerActive={isCountdownTimerActive}/>:
+                                <MatchList
+                                    fetching={fetching}
+                                    matches={matches}
+                                    competition_id={newData?.competition_id}
+                                    three_way={threeWay}
 
-                        />
-                    }
-                </>
-                }
+                                />
+                            }
+                        </>
+                        }
+                    </div>
+                            {/*<div className="item3 ">*/}
+                                <Right kiron={true} kironValidation={kironValidation} test={true}/>
+                            {/*</div>*/}
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
-
-            <Right kiron={true} kironValidation={kironValidation}/>
-
-
-            </div>
-        </div>
-            <div className={'footer-mobile-none'}>
+            <div className="item6">
+                <div className={"footer-mobile-none"}>
                 <Footer/>
-            </div>
-        </>
+            </div></div>
+        </div>
+
     );
 };
 
-export default Kiron;
+export default TestKiron;

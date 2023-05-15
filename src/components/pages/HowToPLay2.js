@@ -8,7 +8,7 @@ import {
     AccordionItemPanel,
 } from "react-accessible-accordion";
 import "react-accessible-accordion/dist/fancy-example.css";
-
+import '../test.css'
 import makeRequest from "../utils/fetch-request";
 import { getFromLocalStorage, setLocalStorage } from "../utils/local-storage";
 
@@ -39,8 +39,8 @@ const  HowToPlay= (props) => {
             <div className="item4"><Header/></div>
             <div className="flex-container">
                 <div className="item1"> <SideBar loadCompetitions/></div>
-                <div className="item2">
-                    <div className="gz home" style={{width: '100%'}}>
+                <div className="item2" style={{width:'100%'}}>
+                    <div className=" home" >
                         <div className="homepage">
                             <div className='col-md-12 primary-bg p-4 text-center'>
                                 <h4 className="inline-block"> HOW TO PLAY </h4>

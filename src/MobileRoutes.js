@@ -5,7 +5,7 @@ import React, {useCallback, useEffect} from "react";
 import {Navigate, Route, Routes, useNavigate} from "react-router-dom";
 import Profile from "./components/pages/Accounts/Profile";
 
-const Index = React.lazy(() => import('./components/index'));
+const Index = React.lazy(() => import('./components'));
 const CompetitionsMatches = React.lazy(
     () => import('./components/competition/competition-matches')
 );
@@ -38,7 +38,7 @@ const AntimoneyLaundering = React.lazy(
     () => import('./components/pages/anti-money-laundering')
 );
 const PrivacyPolicy = React.lazy(
-    () => import('./components/pages/privacy-policy/index')
+    () => import('./components/pages/privacy-policy')
 );
 const Withdraw = React.lazy(
     () => import('./components/pages/deposit-withraw/Withdraw')

@@ -6,6 +6,7 @@ import {
     AccordionItemButton,
     AccordionItemPanel,
 } from 'react-accessible-accordion';
+import '../../test.css'
 import 'react-accessible-accordion/dist/fancy-example.css';
 import useWindowDimensions from "../../header/Dimensions";
 import {Context} from "../../../context/store";
@@ -14,15 +15,18 @@ const SideBar = React.lazy(()=>import('../../sidebar/awesome/Sidebar'));
 const Footer = React.lazy(()=>import('../../footer/footer'));
 const Right = React.lazy(()=>import('../../right/index'));
 
+
+
 const CookiePolicy = () => {
     const {height, width} = useWindowDimensions();
     const [state, dispatch] = useContext(Context);
+
     return (
-        <>
-            <Header/>
-            <div className={(width<=575?state?.user?"user_logged":"amt":"amt")}>
-            <div className="d-flex flex-row justify-content-between">
-                    <SideBar  loadCompetitions/>
+        <div className={'flex-item'}>
+            <div className="item4"><Header/></div>
+            <div className="flex-container">
+                <div className="item1"> <SideBar loadCompetitions/></div>
+                <div className="item2" style={{width:'100%'}}>
                     <div className="gz home w-100">
                         <div className="homepage">
                             <div className='col-md-12 primary-bg p-4 text-center'>
@@ -106,14 +110,16 @@ const CookiePolicy = () => {
                             </div>
                         </div>
                     </div>
-                    <Right/>
                 </div>
-            </div>
-            <div className={"footer-mobile-none"}>
-            <Footer/>
-            </div>
-        </>
-    )
-}
+                <div className="item3"><Right  test={true}/></div>
 
-export default CookiePolicy
+            </div>
+            <div className="item6"><div className={"footer-mobile-none"}>
+                <Footer/>
+            </div></div>
+        </div>
+
+    );
+};
+
+export default CookiePolicy;

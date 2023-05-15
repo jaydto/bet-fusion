@@ -1,27 +1,24 @@
-import React, {
-    useLayoutEffect,
-    useState,
-    useCallback,
-    useContext,
-    useEffect,
-} from "react";
-import { useParams } from "react-router-dom";
-
-import makeRequest from "../components/utils/fetch-request";
+import React, {useCallback, useContext, useEffect, useLayoutEffect, useRef, useState} from 'react';
+import './test.css'
+import {getFromLocalStorage, setLocalStorage} from "./utils/local-storage";
+import useAnalyticsEventTracker from "./analytics/useAnalyticsEventTracker";
+import {useLocation, useParams} from "react-router-dom";
+import useWindowDimensions from "./header/Dimensions";
+import {Context} from "../context/store";
+import {getBetslip} from "./utils/betslip";
 import useInterval from "../hooks/set-interval.hook";
-import { getBetslip } from "../components//utils/betslip";
+import makeRequest from "./utils/fetch-request";
 
-import { MarketList } from "../components/matches";
-import { Context } from "../context/store";
-import useWindowDimensions from "../components/header/Dimensions";
-const Footer=React.lazy(()=>import( "./footer/footer"));
-const SideBar = React.lazy(() => import('./sidebar/awesome/Sidebar'));
-// import MobileNav2 from "../mobile-navigation/MobileNav2";
+import {MarketList} from "./matches";
 
-const Header = React.lazy(() => import("../components/header/header"));
-const Right = React.lazy(() => import("../components/right"));
-
-const MatchAllMarkets = (props) => {
+const Header = React.lazy(() => import('./header/header'));
+const Footer = React.lazy(() => import('./footer/footer'));
+const CarouselLoader = React.lazy(() => import('./carousel'));
+const MainTabs = React.lazy(() => import('./header/main-tabs'));
+const MatchList = React.lazy(() => import('./matches'));
+const Right = React.lazy(() => import('./right'));
+const SideBar = React.lazy(() => import('./sidebar/awesome/Sidebar'))
+const  AllMarkets= (props) => {
     const [page, setPage] = useState(1);
     const [producerDown, setProducerDown] = useState(false);
     const [allMarkets,setAllMarkets]=useState(true)
@@ -98,12 +95,15 @@ const MatchAllMarkets = (props) => {
 
 
 
-    return (<>
-            <Header/>
 
-            <div className="amt top-login-background-img-bg">
-                <div className="d-flex flex-row justify-content-between">
+    return (
+        <div className={'flex-item'}>
+            <div className="item4"><Header/></div>
+            <div className="flex-container">
+                <div className="item1">
                     <SideBar loadCompetitions/>
+                </div>
+                <div className="item2">
                     <div className="gz home" style={{ width: "100%" ,marginBottom:"5rem"}}>
 
                         <div className="homepage">
@@ -117,15 +117,19 @@ const MatchAllMarkets = (props) => {
 
                         </div>
                     </div>
-
-                    {/*<div className={"mobile-top"}>*/}
-                        <Right betslipValidationData={state?.user_slip_validation} />
-                    {/*</div>*/}
                 </div>
+                <div className="item3">
+                    <Right betslipValidationData={state?.user_slip_validation} />
+                </div>
+
             </div>
-            <Footer/>
-        </>
+            <div className="item6">
+                <div className={"footer-mobile-none"}>
+                <Footer/>
+            </div></div>
+        </div>
+
     );
 };
 
-export default MatchAllMarkets;
+export default AllMarkets;

@@ -50,7 +50,7 @@ const MyBets = React.lazy(
 );
 
 const HowToPlay = React.lazy(
-    () => import('./components/pages/HowToPlay')
+    () => import('./components/pages/HowToPLay2')
 );
 
 const TermsAndConditions = React.lazy(

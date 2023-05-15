@@ -2192,7 +2192,7 @@ events-header {
 }
 
 .home-team {
-    background: #334c5c !important;
+    background: #334c5c;
     color: #fff;
     font-weight: 150 !important;
 }
@@ -16757,7 +16757,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 .c-btn:hover,
 .c-btn:focus {
     cursor: pointer;
-    background-color: red;
+    /*background-color: red;*/
     color: #fff;
 }
 

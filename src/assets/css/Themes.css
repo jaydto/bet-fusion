@@ -45,6 +45,8 @@
     --side-stats:aqua;
     --betlip-list:#58849e;
     --toggle-btn:transparent;
+    --picked:#fdd835;
+    --secondary:#fdd835;
 
 }
 
@@ -97,5 +99,7 @@
     --white-darken:#fafafa;
     --kiron-competition:#fafafa;
     --toggle-btn:#000;
+    --picked:#fdd835;
+
 
 }

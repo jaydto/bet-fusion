@@ -207,7 +207,7 @@ h4.inline-block {
 
 
 .picked, .match-detail .picked {
-    background: var(--secondary) !important;
+    background: var(--picked) !important;
     color: var(--dark) !important;
     border: none;
     font-weight: normal !important;

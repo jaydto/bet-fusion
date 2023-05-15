@@ -31,7 +31,7 @@ const Right = (props) => {
 
     //todo top height style ={{top:"13.5rem"
     return (
-        <div className={`col-md-3 ${test?'':'gn'} betslip-container sticky-top vh-100 overflow-scroll betslip-container-mozilla container-sticky-top top-login-background-img-bg ${kiron&&'kiron-betslip-size'}`}>
+        <div className={`col ${test?'':'gn'} betslip-container sticky-top vh-100 overflow-scroll betslip-container-mozilla container-sticky-top top-login-background-img-bg ${kiron&&'kiron-betslip-size'}`}>
             <div className="betslip-container d-none d-md-block">
                 {props?.message && <AlertMessage classname={props.classname} message={props.message}/>}
                 <div className="bet-option-list " id=''>

@@ -530,7 +530,7 @@ input[type="radio"], input[type="checkbox"] {
     border: none;
 }
 .sticky-user {
-    top: 126px;
+    top: 124px;
     position: sticky;
 }
 .sticky-jackpot {
@@ -637,7 +637,7 @@ input[type="radio"], input[type="checkbox"] {
     }
     .sticky-logged-in-testimony {
         position: sticky;
-        top: 99px;
+        top: 97px;
         /* z-index: 1999 !important; */
         opacity: 1;
         background: #253743;

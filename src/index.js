@@ -29,7 +29,7 @@ ReactGA.initialize(TRACKING_ID);
 const Index = React.lazy(() => import('./components/index'));
 
 const CompetitionsMatches = React.lazy(
-    () => import('./components/competition-matches')
+    () => import('./components/competition-matches2')
 );
 const BetslipShareDecode = React.lazy(() => import('./components/betslip/BetslipShareDecode'))
 

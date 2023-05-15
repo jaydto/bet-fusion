@@ -1319,6 +1319,9 @@ input[type="radio"], input[type="checkbox"] {
     .home-tabs .main-header, .home-tabs-active .main-header {
         font-size: 10px;
     }
+    .home-tabs {
+        padding: 5px 1px;
+    }
 
 }
 @media (min-width:200px) and (max-width: 300px){

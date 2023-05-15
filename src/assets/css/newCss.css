@@ -633,7 +633,7 @@ input[type="radio"], input[type="checkbox"] {
     }
     .container-sticky-top {
         position: sticky!important;
-        top: 9.5rem!important;
+        top: 9.5rem;
     }
     .sticky-logged-in-testimony {
         position: sticky;

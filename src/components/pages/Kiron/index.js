@@ -16,7 +16,7 @@ import Right from "../../right";
 import KironMoreMarkets from "./kironMoreMarkets";
 import Footer from "../../footer/footer";
 import './index.css'
-import './ccontainer.css'
+import './container.css'
 import KironResults from "./results";
 import Standing from "./standing";
 import KironBetHistory from "./bet-history/KironBetHistory";

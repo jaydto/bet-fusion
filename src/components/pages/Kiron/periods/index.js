@@ -8,26 +8,31 @@ import Element from "../../../skeleton/Element";
 import {Context} from "../../../../context/store";
 
 
+
+
 export const getTime=(time)=>{
     const start = new Date(time);
     const startTimeString = start.toLocaleTimeString('en-Us', {hour12:false,hour: '2-digit',minute: '2-digit'});
     return (startTimeString)
 }
 
+let timerInterval;
+let timerVar;
+
 const KironPeriods= (props) => {
     const {setClosed,setInPlay, setPlayout,setIsCountdownTimerActive,isCountdownTimerActive}=props
     const [state, dispatch] = useContext(Context);
     let [kiron, setKiron] = useState(getFromLocalStorage('kiron-periods'));
     const [timeLeft, setTimeLeft] = useState(0);
+    const [timeDuration, setTimeDuration] = useState(0);
     const [timeAfter, setTimeAfter] = useState(null);
     const [ended, setEnded] = useState(false);
-    // const [loading,setLoading]=useState(false)
     const [timerColor, setTimerColor] = useState('count-green');
-    const [timerInterval, setTimerInterval] = useState(null);
     const [isContinuing,setIsContinuing]=useState(false)
     const firstMatchEndTime=getFromLocalStorage('kiron_end_time')
     const firstMatchStartTime=getFromLocalStorage('kiron_first_period')
-    const [startCount, setStartCount]=useState(false)
+    const [count, setCount]=useState(false)
+
 
     const kironSearch1 = getFromLocalStorage('kiron_search_data') || {}; // Use empty object as default value if kiron_search_data is null or undefined
     const kironPeriodsRef = useRef(null);
@@ -37,41 +42,11 @@ const KironPeriods= (props) => {
         competition_id:newCompetition
     })
 
-
-    const prevNewData = useRef(initialCompetition);
-
-
-    useEffect(() => {
-        console.log("competition2", initialCompetition)
-        console.log("competition3", initialCompetition)
-        if (prevNewData.current.competition_id !== initialCompetition?.competition_id ){
-            // setLoading(true)
-            dispatch({type: "SET", key: "loading", payload:true});
-            console.log("competition", initialCompetition)
-            const payload={
-                start:'',
-                round:'',
-                end:''
-            }
-            dispatch({ type: "SET", key: 'current_selection_period', payload: payload })
-            prevNewData.current = initialCompetition;
-        }
-    }, [initialCompetition]);
-
-
-    useEffect(() => {
-        const abortController = new AbortController();
-        // setInPlay(false)
-        fetchData();
-
-        return () => {
-            abortController.abort();
-        };
-    }, []);
-
-
-
     const fetchData = useCallback(async () => {
+        // clearInterval(timerVar)
+        setCount(true)
+        setTimeAfter(null)
+        setInPlay(false)
         setIsCountdownTimerActive(false);
         let endpoint = "/v1/nare-league/periods";
         let method="POST"
@@ -82,6 +57,9 @@ const KironPeriods= (props) => {
 
             if (c_status === 200) {
                 // setLoading(false)
+                setTimeAfter(null)
+                setIsCountdownTimerActive(false)
+                setInPlay(false)
                 dispatch({type: "SET", key: "loading", payload:false});
                 setKiron(c_result);
                 dispatch({ type: "SET", key: 'periods_data', payload: c_result })
@@ -95,39 +73,17 @@ const KironPeriods= (props) => {
                 setLocalStorage('kiron_first_week', firstItem?.round_number);
                 setLocalStorage('kiron_first_round', firstItem?.round_id);
                 setLocalStorage('kiron_end_time', firstItem?.end_time)
-            } else {
+            }
+            else {
                 fetchData()
             }
 
         })
 
-
-
     }, []);
 
 
-    useEffect(()=>{
-        const links = document.querySelectorAll('.link');
-        links.forEach((link) => link.classList.remove('highlight'));
-        console.log("links",links)
-        const kironSearch = getFromLocalStorage('kiron_search_data') || {}; // Use empty object as default value if kiron_search_data is null or undefined
-        const competition1 = new URL(window.location).searchParams.get('competition_id')||kironSearch?.competition_id||'2'
-
-        if(initialCompetition?.competition_id!==competition1){
-            // setLoading(true)
-            dispatch({type: "SET", key: "loading", payload:true});
-            setTimeAfter(null)
-            console.log("competition_local", competition1)
-            setCompetition({
-                competition_id:competition1
-            })
-            fetchData()
-        }
-
-
-    },[kironSearch1?.competition_id])
-    // console.log("competition",initialCompetition)
-    const pathname = window.location.pathname;
+    const prevNewData = useRef(initialCompetition);
 
     const handleLinkClick=(event)=> {
         // remove highlight class from all links
@@ -140,17 +96,65 @@ const KironPeriods= (props) => {
 
 
     useEffect(() => {
-        console.log("newCompetitionChanged", newCompetition)
+        if (prevNewData.current.competition_id !== initialCompetition?.competition_id ){
+            // setLoading(true)
+            dispatch({type: "SET", key: "loading", payload:true});
+            const payload={
+                start:'',
+                round:'',
+                end:''
+            }
+            dispatch({ type: "SET", key: 'current_selection_period', payload: payload })
+            prevNewData.current = initialCompetition;
+        }
+    }, [initialCompetition]);
+
+
+    useEffect(()=>{
+        const links = document.querySelectorAll('.link');
+        links.forEach((link) => link.classList.remove('highlight'));
+
+        const payload={
+            start:'',
+            round:'',
+            end:''
+        }
+        dispatch({ type: "SET", key: 'current_selection_period', payload: payload })
+
+        const kironSearch = getFromLocalStorage('kiron_search_data') || {}; // Use empty object as default value if kiron_search_data is null or undefined
+        const competition1 = new URL(window.location).searchParams.get('competition_id')||kironSearch?.competition_id||'2'
+
+        if(initialCompetition?.competition_id!==competition1){
+            // setLoading(true)
+            dispatch({type: "SET", key: "loading", payload:true});
+            setTimeAfter(null)
+            setIsCountdownTimerActive(false)
+            setInPlay(false)
+            setCompetition({
+                competition_id:competition1
+            })
+        }
+
+    },[kironSearch1?.competition_id, window.location.pathname])
+
+    const pathname = window.location.pathname;
+
+
+    useEffect(() => {
+        setTimeAfter(null)
+        setIsCountdownTimerActive(false)
+        setInPlay(false)
         fetchData()
+        setInPlay(false)
     }, [getFromLocalStorage('kiron_search_data')?.competition_id])
 
     useEffect(() => {
         if (isCountdownTimerActive==false) {
-            console.log("Timesinitial_time_use", timeLeft);
+
             setClosed(false)
             setIsCountdownTimerActive(false)
             setInPlay(false)
-            fetchData();
+            clearInterval(timerVar)
             if (timeLeft< 0) {
                 setTimeLeft(0);
             }
@@ -158,26 +162,18 @@ const KironPeriods= (props) => {
         }
     }, [isCountdownTimerActive]);
 
-    useEffect(() => {
-      fetchData()
-    }, [getFromLocalStorage('kiron_search_data')?.competition_id]);
 
     useEffect(() => {
-        let timerInterval;
-        const first_period=getFromLocalStorage("kiron_first_period")
         setInPlay(false);
-        console.log("periods_first",state?.periods_first)
         let timeLocal = getFromLocalStorage("kiron_first_period") ?? state?.periods_first
 
         if (!timeLocal) {
-            // fetchData();
+
             return
         }
 
-        let gettime = getTime(timeLocal);
-        let time = gettime;
-        let timePeriod = new Date(Date.parse(`${new Date().toDateString()} ${time}`));
-        let firstRound = timePeriod.getTime();
+        let timePeriod = Date.parse(timeLocal)
+        let firstRound = timePeriod;
         let now = new Date().getTime();
         let diff = (firstRound - now);
         let initialTime = Math.floor(diff / 1000);
@@ -190,19 +186,19 @@ const KironPeriods= (props) => {
         let timer = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 
         setTimeLeft(timer);
-        setStartCount(false)
+
 
         if (minutes < 0 || (minutes === 0 && seconds === 0)) {
-            // setTimeLeft(0)
             clearInterval(timerInterval);
         }
 
         function timeBefore() {
+            // if(isCountdownTimerActive!=false){
+            //     return
+            // }
             timeLocal = getFromLocalStorage("kiron_first_period")
-            gettime = getTime(timeLocal);
-            time = gettime;
-            timePeriod = new Date(Date.parse(`${new Date().toDateString()} ${time}`));
-            firstRound = timePeriod.getTime();
+            timePeriod = Date.parse(timeLocal)
+            firstRound = timePeriod
             now = new Date().getTime();
             diff = firstRound - now - 1000;
             seconds = initialTime % 60;
@@ -212,12 +208,12 @@ const KironPeriods= (props) => {
 
             setTimeLeft(timer);
             initialTime -= 1;
-            // console.log("time_time", initialTime)
 
-            if (initialTime > 5 ) {
+
+            if (initialTime > 10 ) {
                 setTimerColor('count-red');
                 setClosed(false);
-            } else if (initialTime <= 10 && initialTime > 0) {
+            } else if (initialTime <= 9 && initialTime > 0) {
                 setTimerColor('count-red');
                 // if todo if in another selection close/spinner should be false
                 if(state?.current_selection_period?.start.length>0){
@@ -225,8 +221,8 @@ const KironPeriods= (props) => {
                 }else{
                     setClosed(true);
                 }
-                document.getElementById('game_week').innerHTML=getFromLocalStorage('kiron_first_week')
-                document.getElementById('countdown').innerHTML = timer;
+                document.getElementById('game_week').innerHTML="Game Week "+getFromLocalStorage('kiron_first_week')
+                document.getElementById('countdown').innerHTML ='Match Starts In '+ timer;
             } else {
                 if(state?.current_selection_period?.start.length>0){
                     setInPlay(false)
@@ -246,21 +242,15 @@ const KironPeriods= (props) => {
         timerInterval = setInterval(timeBefore, 1000);
 
         return () => clearInterval(timerInterval);
-    }, [newCompetition,getFromLocalStorage('kiron_first_round'),state?.current_selection_period?.start ,getFromLocalStorage('kiron_first_period'),startCount]);
+    }, [getFromLocalStorage('kiron_search_data')?.competition_id,state?.current_selection_period?.start ,getFromLocalStorage('kiron_first_period'),isCountdownTimerActive]);
 
 
     useEffect(()=>{
-        console.log("Timescheck_before_load",state?.current_selection_period?.start&&state?.current_selection_period?.start.length>0)
-        console.log("Timescheck_before_load1",state?.current_selection_period?.start)
-        console.log("Timescheck_before_load2",state?.current_selection_period?.start.length)
-        console.log("Timescheck_before_load3",state?.current_selection_period?.start.length>0)
-
         if(state?.current_selection_period?.start>0){
             setInPlay(false)
             setClosed(false)
-            console.log("Timescheck_after_load",state?.current_selection_period?.start)
+
         }else if(state?.current_selection_period?.start.length==0){
-            console.log("Timescheck_after_load2",state?.current_selection_period?.start)
             const kiron_end=getFromLocalStorage('kiron_end_time')
             const kiron_start=getFromLocalStorage('kiron_first_period')
 
@@ -280,77 +270,59 @@ const KironPeriods= (props) => {
             let initialTime = Math.floor(diff / 1000);
 
             if(sTime==now&&now<eTime ){
-                console.log("TimessTime==now&&now<eTime ")
+
                 setInPlay(true)
             } else if(sTime<now&&now<eTime){
-
-                    console.log("TimessTime<now&&now<eTime",initialTime)
-                    setInPlay(true)
+                setInPlay(true)
 
             }
-
-
 
         }
 
     },[state?.current_selection_period])
 
 
-let totalSeconds=timeAfter;
-
     useEffect(() => {
         //calculation to include the right time inPlay
         let startTime=getFromLocalStorage('kiron_first_period')
-        let endTime=getFromLocalStorage('kiron_end_time')
-        let gettime = getTime(startTime);
-        let endingTime= getTime(endTime)
-        let time_play = gettime;
-        let duration=Math.round((new Date(Date.parse(`${new Date().toDateString()} ${endingTime}`)).getTime()- new Date(Date.parse(`${new Date().toDateString()} ${time_play}`)).getTime())/1000);
-        console.log("time_duration",duration)
-        let timePeriod = new Date(Date.parse(`${new Date().toDateString()} ${time_play}`));
-        let firstRound = timePeriod.getTime();
-        let now = new Date().getTime();
-        let diff= firstRound<=now&&now-firstRound
-        let initialTime = diff!=false&&Math.floor(diff / 1000);
-        // console.log("Check_time_check",initialTime)
-        // // let totalSeconds= initialTime!=false?initialTime>=duration?88:Math.round((initialTime*90)/duration):90
-        // let totalSeconds=Math.round((initialTime*90)/duration)
-        // console.log("check_total_inPlay_time", totalSeconds)
+
+        let timeInPlay=(new Date().getTime()-Date.parse(startTime))/1000;
+        let timeMapping=(Math.round((timeInPlay)*(90/65)))
+
 
         if (isCountdownTimerActive) {
             if(state?.current_selection_period?.start.length>0){
                 setInPlay(false)
             }else if(state?.current_selection_period?.start.length==0){
                 setInPlay(true)
+            }else if(timeAfter==false){
+                setIsCountdownTimerActive(false)
+                setInPlay(false)
             }
-            //calculation to help include kenyan league
-            const time= Math.floor((new Date(Date.parse(`${new Date().toDateString()} ${getTime(firstMatchEndTime)}`))-new Date(Date.parse(`${new Date().toDateString()} ${getTime(firstMatchStartTime)}`)))/90)
-            console.log("interval_time", time)
-            // setInPlay(true);
-            const timerVar = setInterval(countTimer, time);
+
+            timerVar = setInterval(countTimer, 722);
             setTimeLeft(getTime(Date.now()))
             function countTimer() {
+                if(isCountdownTimerActive!=true){
+                    return
+                }
                 //calculation to include the right time inPlay
-                 startTime=getFromLocalStorage('kiron_first_period')
-                 endTime=getFromLocalStorage('kiron_end_time')
-                 gettime = getTime(startTime);
-                 endingTime= getTime(endTime)
-                 time_play = gettime;
-                 duration=Math.round((new Date(Date.parse(`${new Date().toDateString()} ${endingTime}`)).getTime()- new Date(Date.parse(`${new Date().toDateString()} ${time}`)).getTime())/1000);
-                console.log("time_duration",duration)
-                 // timePeriod = new Date(Date.parse(`${new Date().toDateString()} ${time}`));
-                 // firstRound = timePeriod.getTime();
-                 now = new Date().getTime();
-                 // diff= firstRound<=now&&now-firstRound
-                 // initialTime = diff!=false&&Math.floor(diff / 1000);
-                console.log("Check_time_check",initialTime)
-                // let totalSeconds= initialTime!=false?initialTime>=duration?88:Math.round((initialTime*90)/duration):90
-                //  totalSeconds=Math.round((initialTime*90)/duration)
-                console.log("check_total_inPlay_time", totalSeconds)
+                startTime=getFromLocalStorage('kiron_first_period')
 
-                ++totalSeconds;
-                const seconds = totalSeconds;
-                console.log("secondstime", seconds)
+                timeInPlay=(new Date().getTime()-Date.parse(startTime))/1000;
+                timeMapping=(Math.round((timeInPlay)*(90/65)))
+
+                if(timeMapping<0){
+                    setInPlay(false)
+                    setIsCountdownTimerActive(false)
+                    setEnded(true)
+                    setInPlay(false)
+                    setTimerColor('count-red');
+                }
+
+                ++timeMapping;
+                const seconds = timeMapping;
+
                 setEnded(null)
                 if(state?.current_selection_period?.start&&state?.current_selection_period?.start.length>0){
                     setInPlay(false)
@@ -358,25 +330,24 @@ let totalSeconds=timeAfter;
                     setInPlay(true)
                 }
                 // setTimeAfter(seconds)
-                if (seconds < 90) {
+                if (seconds < 90 ) {
                     setTimeAfter(seconds)
                     setPlayout(seconds)
                     // if(state?.)//todo when in another selection inPlay False spinner close
                 } else {
-                    console.log("checkEndINPLay", seconds)
+
                     setIsCountdownTimerActive(false);
 
                     setTimeAfter(null)
 
                     clearInterval(timerVar);
-                    // fetchData()
-                    setStartCount(true)
+
                     setEnded('Ended')
                     setTimeout(()=>{
                         setInPlay(false)
                         fetchData()
                         setTimeAfter(null)
-                        }, 3000);
+                    }, 100);
                 }
             }
 
@@ -385,13 +356,12 @@ let totalSeconds=timeAfter;
     }, [isCountdownTimerActive,newCompetition,state?.current_selection_period?.start]);
 
 
-
     function getTimeInSeconds(timeString) {
         const [minutes, seconds] = timeString.split(':');
         const secondsArray = seconds.split('0').map(Number);
         const totalSeconds = (secondsArray[1] !== 0 ? secondsArray[1] : secondsArray[0]) ?? Number(seconds);
 
-        console.log("allSeconds",totalSeconds)
+
         return totalSeconds < 0 ? 0 : totalSeconds;
     }
 
@@ -402,15 +372,10 @@ let totalSeconds=timeAfter;
             round:round,
             end:end
         }
-        console.log("start_round_end", start+" round "+round+" end "+end)
-        console.log("payload_period: ",payload)
+
         dispatch({ type: "SET", key: 'current_selection_period', payload: payload })
 
     }
-
-    console.log("check_inPlayTime",isCountdownTimerActive)
-    console.log("check_timeInPlay",timeAfter)
-    console.log("check_timeLeftBeforeMatchStarts",timeLeft)
 
 
     const kironTabVisible=()=>{
@@ -420,8 +385,11 @@ let totalSeconds=timeAfter;
             if (document.visibilityState == "visible") {
                 if(window.location.pathname=="/nare-league"){
                     if(time<=0){
+                        setInPlay(false)
+                        setTimeAfter(false)
+                        setIsCountdownTimerActive(false)
                         fetchData()
-                        console.log("switched tab",time)
+
                     }
                 }
             }
@@ -431,6 +399,7 @@ let totalSeconds=timeAfter;
     useEffect(()=>{
         kironTabVisible()
     },[])
+
 
     return (
         kiron&&<div className={ `  container-period ` } style={{background:" #162024"}}>

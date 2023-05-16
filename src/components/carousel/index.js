@@ -14,7 +14,7 @@ import MancityReal from "../../assets/img/banner/products/MancityReal.webp"
 
 
 const banners = [
-    {src: MancityReal, url: "/match/32913952"},
+    {src: MancityReal, url: "/match/32912162"},
     {src: Aviator, url: "/nare-games/aviator"},
     {src: karibuGiftWallet, url: "/promotions"},
     {src: jackpot, url: "/jackpot"},

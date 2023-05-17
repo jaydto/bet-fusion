@@ -19,6 +19,8 @@ const HeaderLogin = React.lazy(() => import('./top-login'));
 const HeaderNav = React.lazy(() => import('./header-nav'));
 
 const Header = (props) => {
+    const [utmSource, setUtmSource] = useState('')
+    const [bTag, setBTag] = useState('')
     const [user, setUser] = useState(getFromLocalStorage("user"));
     const [, dispatch] = useContext(Context);
     const history = useNavigate();
@@ -72,6 +74,45 @@ const Header = (props) => {
             setSettings(cached_settings);
         }
     })
+
+    const configureCampaignCookie = () => {
+
+        let url = new URL(window.location)
+
+        let utm_source = url.searchParams.get('utm_source')
+
+        let utm_campaign = url.searchParams.get('utm_campaign')
+
+        if (utm_source !== null) {
+            setLocalStorage('utm_source', utm_source)
+        }
+
+        if (utm_campaign !== null) {
+            setLocalStorage('utm_campaign', utm_campaign)
+        }
+    }
+
+    const configureBTagCookie = () => {
+
+        let url = new URL(window.location)
+
+        let b_tag = url.searchParams.get('btag')
+
+        if (b_tag !== null) {
+            setLocalStorage('btag', b_tag)
+        }
+
+    }
+
+
+    useEffect(() => {
+        configureCampaignCookie()
+    }, [utmSource])
+
+    useEffect(() => {
+        configureBTagCookie()
+    }, [bTag])
+
 
     useEffect(() => {
 
@@ -153,27 +194,27 @@ const Header = (props) => {
                     <Row className="second-nav ck pc os app-navbar app-header-nav">
                         <HeaderNav/>
                     </Row>
-               { /**
-                    <Navbar.Offcanvas
-                        style={{width: "100% !important", height: "100%"}}
-                        className='off-canvas background-primary p-0'
-                        id={`offcanvasNavbar-expand-${expand}`}
-                        aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-                        placement="start">
-                        <Offcanvas.Header closeButton className='text-white'>
-                            <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                                <div className="col-3">
-                                    <div>
-                                        <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"/>
-                                    </div>
-                                </div>
-                            </Offcanvas.Title>
-                        </Offcanvas.Header>
-                        <Offcanvas.Body>
-                            <SidebarMobile/>
-                        </Offcanvas.Body>
-                    </Navbar.Offcanvas>
-                **/ }
+                    { /**
+                     <Navbar.Offcanvas
+                     style={{width: "100% !important", height: "100%"}}
+                     className='off-canvas background-primary p-0'
+                     id={`offcanvasNavbar-expand-${expand}`}
+                     aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+                     placement="start">
+                     <Offcanvas.Header closeButton className='text-white'>
+                     <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
+                     <div className="col-3">
+                     <div>
+                     <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"/>
+                     </div>
+                     </div>
+                     </Offcanvas.Title>
+                     </Offcanvas.Header>
+                     <Offcanvas.Body>
+                     <SidebarMobile/>
+                     </Offcanvas.Body>
+                     </Navbar.Offcanvas>
+                     **/}
                 </Container>
             </Navbar>
         </>

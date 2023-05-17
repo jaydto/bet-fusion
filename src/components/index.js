@@ -30,10 +30,6 @@ const Index = (props) => {
     const [state, dispatch] = useContext(Context);
     const [fetching, setFetching] = useState(false)
     const homePageRef = useRef()
-    const [utmSource, setUtmSource] = useState('')
-    const [bTag, setBTag] = useState('')
-    const widthRef = useRef(null);
-    const widthComponentRef = useRef(null);
     const findPostableSlip = () => {
         let betslips = getBetslip() || {};
         var values = Object.keys(betslips).map(function (key) {
@@ -75,7 +71,7 @@ const Index = (props) => {
             return
         }
 
-       return await makeRequest({url: endpoint, method: method, data: betslip}).then(([status, result]) => {
+        return await makeRequest({url: endpoint, method: method, data: betslip}).then(([status, result]) => {
             if (status == 200) {
                 setMatches(matches.length > 0 ? {...matches, ...result?.data} : result?.data || result)
                 setFetching(false)
@@ -150,52 +146,10 @@ const Index = (props) => {
         }
     })
 
-    const configureCampaignCookie = () => {
-
-        let url = new URL(window.location)
-
-        let utm_source = url.searchParams.get('utm_source')
-
-        let utm_campaign = url.searchParams.get('utm_campaign')
-
-        if (utm_source !== null) {
-            setLocalStorage('utm_source', utm_source)
-        }
-
-        if (utm_campaign !== null) {
-            setLocalStorage('utm_campaign', utm_campaign)
-        }
-    }
-
-    const configureBTagCookie = () => {
-
-        let url = new URL(window.location)
-
-        let b_tag = url.searchParams.get('btag')
-
-        if (b_tag !== null) {
-            setLocalStorage('btag', b_tag)
-        }
-
-
-    }
-
-
-    useEffect(() => {
-        configureCampaignCookie()
-    }, [utmSource])
-
-    useEffect(() => {
-        configureBTagCookie()
-    }, [bTag])
-
-
-
-
-        // useEffect(() => {
-        //     // set the width of the carousel to the width of the other component
-        //     widthRef.current.style.width = widthComponentRef.current.offsetWidth + 'px';
-        // }, []);
+    // useEffect(() => {
+    //     // set the width of the carousel to the width of the other component
+    //     widthRef.current.style.width = widthComponentRef.current.offsetWidth + 'px';
+    // }, []);
 
     return (
         <>
@@ -203,8 +157,8 @@ const Index = (props) => {
             <div className="amt">
                 <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions/>
-                    <div className="gz home match-overflow " >
-                        <div className="homepage " ref={homePageRef} >
+                    <div className="gz home match-overflow ">
+                        <div className="homepage " ref={homePageRef}>
                             <CarouselLoader/>
                             <Testimonials/>
 

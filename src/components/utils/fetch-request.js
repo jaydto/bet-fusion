@@ -14,6 +14,8 @@ const makeRequest = async ({url, method, data = null, use_jwt = false}) => {
 
     let user = getFromLocalStorage('user');
 
+    let bTag = getFromLocalStorage('btag')
+
     const updateUserSession = () => {
         if (user) {
             setLocalStorage('user', user);
@@ -23,6 +25,9 @@ const makeRequest = async ({url, method, data = null, use_jwt = false}) => {
 
     if (use_jwt) {
         const sign = require('jwt-encode');
+        if (bTag !== null) {
+            data.btag = bTag
+        }
         const payload = {
             ...data,
             iat: Math.floor(Date.now() / 1000) + (1 * 60)
@@ -56,8 +61,8 @@ const makeRequest = async ({url, method, data = null, use_jwt = false}) => {
             request['body'] = JSON.stringify(data)
         }
 
-         const response = await fetch(url, request);
-        let result =  await response.json();
+        const response = await fetch(url, request);
+        let result = await response.json();
         let status = response?.status;
         return [status, result];
     } catch (err) {

@@ -82,7 +82,7 @@ const Index = (props) => {
                 setProducerDown(result?.producer_status === 1);
             }
         })
-    }, 3000);
+    }, 20000);
 
     const fetchData = useCallback(async () => {
         setFetching(true)

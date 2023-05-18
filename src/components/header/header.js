@@ -329,7 +329,7 @@ const Header = (props) => {
                                     </div>
                                 </ListGroup>
                             </Container>
-                        :pathname!=='/signup'&&<MobileNav1/>}
+                        :(pathname!=='/signup')&&pathname!=='/nare-league'&&<MobileNav1/>}
                     </div>
 
                     <Navbar.Offcanvas

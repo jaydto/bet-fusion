@@ -302,12 +302,13 @@ select::after{
 /*    background-position: top left;*/
 /*}*/
 
-/*.top-login-background-img-bg-page{*/
-/*    background-image:url("../../assets/img/auth/backtop.webp") !important;*/
-/*    background-repeat: no-repeat;*/
-/*    !*transform: rotate(45deg);*!*/
-/*    background-position: top left;*/
-/*}*/
+.top-login-background-img-bg-page{
+    /*background-image:url("../../assets/img/auth/backtop.webp") !important;*/
+    /*background-repeat: no-repeat;*/
+    /*transform: rotate(45deg);*/
+    background: var(--betnare-primary);
+    /*background-position: top left;*/
+}
 /*.top-login-background-img-bg-page::before{*/
 /*    background-image:url("../../assets/img/auth/backimg.webp") !important;*/
 /*    background-repeat: no-repeat;*/
@@ -1058,6 +1059,11 @@ input[type="radio"], input[type="checkbox"] {
     }
 }
 @media (max-width: 767px){
+    .top-matches div {
+        min-height: 27px;
+        justify-content: unset;
+        /* background: #16202C; */
+    }
     /*.top-login-mobile{*/
     /*    margin-top:135px!important;*/
     /*}*/
@@ -1188,8 +1194,8 @@ input[type="radio"], input[type="checkbox"] {
     /*}*/
 
     .top-matches div {
-        min-height: 22px;
-        /*justify-content: flex-end;*/
+        min-height: 24px;
+        /* justify-content: flex-end; */
     }
     .c-btn-group> .c-btn {
         height: 25px!important;

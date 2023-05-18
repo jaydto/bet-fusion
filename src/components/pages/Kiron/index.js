@@ -194,10 +194,7 @@ const  TestKiron= () => {
 
     return (
         <div className={'flex-item'}>
-            <div className="item4">
-                <div className={'header-desktop-kiron'}>
-                    <Header/>
-                </div></div>
+            <div className="item4"><Header kiron={true}/></div>
             <div className="flex-container kiron-test" >
                 <div className={'item-1 d-none'}></div>
                 <div className="item2" style={{width:'100%'}}>

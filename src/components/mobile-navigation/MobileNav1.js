@@ -15,7 +15,7 @@ import jetX from "../../assets/img/mobile/jetx.webp"
 import casino1 from "../../assets/img/casino/casino.png"
 import aviator from "../../../src/assets/img/aviator.webp"
 import spaceman from "../../../src/assets/img/spaceman.webp"
-import kiron from "../../../src/assets/img/kiron/kiron.png"
+import kiron from "../../../src/assets/img/kiron/nare-league.webp"
 import fire from '../../assets/img/fire.webp'
 import {getFromLocalStorage,setLocalStorage} from "../utils/local-storage";
 import makeRequest from "../utils/fetch-request";
@@ -249,7 +249,7 @@ const MobileNav1 = (props) => {
                           title="Nare League"
                     >
                         <div className="menu-img">
-                            <img src={kiron} style={{height: "21px", marginTop:"-7px", width:"36px" }}/>
+                            <img src={kiron} style={{height: "37px", marginTop:"-7px", width:"48px" }}/>
                             <span className=" badge" style={{color:"white",background:"red"
                                 ,marginTop:"-5px", borderRadius: "10px 0 15px 0", marginLeft:"1px", padding:"0.3px 3px ", fontSize:"5.5px",position:'absolute',top:'5px',left:'50px'}}>NEW</span>
                         </div>

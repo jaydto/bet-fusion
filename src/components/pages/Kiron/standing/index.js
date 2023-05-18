@@ -7,44 +7,32 @@ import {Spinner} from "react-bootstrap";
 
 const Standing = () => {
     const [standings, setStandings] = useState([]);
-    const [fetching, setFetching] = useState(false);
     const [loading, setLoading] = useState(false);
-    const kironSearchCompetition=getFromLocalStorage("kiron_search_data")?.competition_id
 
-    const [newData, setNewData] = useState({
-        competition_id: getFromLocalStorage("kiron_search_data")?.competition_id
-    });
+    const newCompetition=new URL(window.location).searchParams.get('competition_id')
+
     let endpoint = "/v1/nare-league/standings"
     const fetchData = useCallback(async () => {
         setLoading(true)
         endpoint = endpoint.replaceAll(" ", '')
 
         const kiron_data= {
-            competition_id: getFromLocalStorage("kiron_search_data")?.competition_id
+            competition_id: new URL(window.location).searchParams.get('competition_id')||getFromLocalStorage("kiron_search_data")?.competition_id
         }
-        console.log(kiron_data)
         await makeRequest({url: endpoint, method: "POST", data:kiron_data }).then(([status, result]) => {
             if (status == 200) {
-                setStandings(standings.length > 0 ? {...standings, ...result?.data} : result?.data || result)
-                setFetching(false)
+                setStandings(result?.data || result)
                 setLoading(false)
-                console.log("standings",result)
 
             }
         });
 
     }, []);
 
-    useEffect(() => {
-        fetchData();
-
-    }, [newData]);
 
     useEffect(() => {
-        setNewData(getFromLocalStorage("kiron_search_data")?.competition_id)
         fetchData();
-
-    }, [getFromLocalStorage("kiron_search_data")?.competition_id]);
+    }, [newCompetition]);
 
     return (
         <div>
@@ -52,8 +40,8 @@ const Standing = () => {
                 <div className="container">
                     <div className="row">
                         <div className="col-12 pb-2">
-                        <span
-                            className="standing-heading">{kironSearchCompetition==1?"Kenyan ":kironSearchCompetition==2?"English ":kironSearchCompetition==3?"Spanish ":"Italian "}League</span>
+                       <span
+                           className="standing-heading">{newCompetition==1?"KENYAN ":newCompetition==2?"ENGLISH ":newCompetition==3?"SPANISH ":"ITALIAN "} LEAGUE</span>
                         </div>
                         <div className="col-12"><span className="standing-time">STANDING</span></div>
                     </div>

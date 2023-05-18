@@ -9,44 +9,30 @@ const KironResults = () => {
     const [loading, setLoading] = useState(false)
     const [resulted, setResulted] = useState([]);
     let endpoint = "/v1/nare-league/results"
-    const kironSearchCompetition=getFromLocalStorage("kiron_search_data")?.competition_id
-    const newCompetition=new URL(window.location).searchParams.get('competition_id')||getFromLocalStorage('kiron_search_data')?.competition_id||'2'
-    const [newData, setNewData] = useState({
-        competition_id: newCompetition
-    });
 
     const fetchData = useCallback(async () => {
         setLoading(true)
         endpoint = endpoint.replaceAll(" ", '')
 
         const kiron_data= {
-            competition_id: getFromLocalStorage('kiron_search_data')?.competition_id}
-
-
-        console.log(kiron_data)
+            competition_id:new URL(window.location).searchParams.get('competition_id')||getFromLocalStorage("kiron_search_data")?.competition_id
+        }
         await makeRequest({url: endpoint, method: "POST", data:kiron_data }).then(([status, result]) => {
             if (status == 200) {
-                setResulted(resulted.length > 0 ? {...resulted, ...result?.data} : result?.data || result)
+                setResulted(  result?.data || result)
                 setFetching(false)
                 setLoading(false)
-                console.log("resulting",result)
-                if (result?.slip_data) {
 
-                }
             }
         });
 
     }, []);
 
-    useEffect(() => {
-        fetchData();
-
-    },[fetchData])
 
     useEffect(() => {
         fetchData();
+    }, [new URL(window.location).searchParams.get('competition_id')]);
 
-    }, [getFromLocalStorage('kiron_search_data')?.competition_id]);
 
     console.log("resulted", resulted)
     return (

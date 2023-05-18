@@ -13,6 +13,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import logo from '../../assets/img/Logo.webp';
 import {Navbar, Offcanvas} from "react-bootstrap";
 import SidebarMobile from "../sidebar/awesome/SidebarMobile";
+import Notify from "../utils/Notify";
 
 const ProfileMenu = React.lazy(() => import('./profile-menu'));
 const HeaderLogin = React.lazy(() => import('./top-login'));
@@ -172,6 +173,16 @@ const Header = (props) => {
         updateUserOnLogin()
     }, [updateUserOnLogin])
 
+
+    useEffect(()=>{
+        const slip_shared_invalid=getFromLocalStorage('betslip-share-code-invalid')
+        if ( slip_shared_invalid!== null && Object.keys(slip_shared_invalid).length > 0 ){
+            Notify(slip_shared_invalid)
+            setLocalStorage('slip_shared_invalid',null)
+
+        }
+
+    },[getFromLocalStorage('betslip-share-code-invalid')])
     const expand = "md"
     return (
         <>

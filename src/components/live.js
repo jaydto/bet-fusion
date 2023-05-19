@@ -52,7 +52,7 @@ const  Live= () => {
                 setProducerDown(result?.producer_status === 1);
             }
         });
-    }, 2000);
+    }, 4000);
 
     const fetchData = useCallback(async () => {
         let endpoint = "/v1/matches/live";

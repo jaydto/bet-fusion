@@ -11,6 +11,7 @@ import useInterval from "../hooks/set-interval.hook";
 import {getBetslip} from './utils/betslip' ;
 
 import {MarketList} from './matches/index';
+import LiveSideBar from "./sidebar/live-sidebar";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -81,7 +82,7 @@ const MatchAllMarkets = (props) => {
             <Header/>
             <div className="amt">
                 <div className="d-flex flex-row justify-content-between">
-                    <SideBar loadCompetitions/>
+                    {window.location.pathname.includes('/match/live')?<LiveSideBar/>:<SideBar loadCompetitions/>}
                     <div className="gz home" style={{width: '100%'}}>
                         <div className="homepage">
                             <MarketList live={live}

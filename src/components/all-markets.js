@@ -10,6 +10,7 @@ import useInterval from "../hooks/set-interval.hook";
 import makeRequest from "./utils/fetch-request";
 
 import {MarketList} from "./matches";
+import LiveSideBar from "./sidebar/live-sidebar";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -91,7 +92,7 @@ const  AllMarkets= (props) => {
         return () => {
             abortController.abort();
         };
-    }, [fetchPagedData]);
+    }, []);
 
 
 
@@ -101,9 +102,9 @@ const  AllMarkets= (props) => {
             <div className="item4"><Header/></div>
             <div className="flex-container">
                 <div className="item1">
-                    <SideBar loadCompetitions/>
+                    {window.location.pathname.includes('/match/live')?<LiveSideBar/>:<SideBar loadCompetitions/>}
                 </div>
-                <div className="item2">
+                <div className="item2" style={{width:'145%'}}>
                     <div className="gz home" style={{ width: "100%" ,marginBottom:"5rem"}}>
 
                         <div className="homepage">
@@ -119,7 +120,7 @@ const  AllMarkets= (props) => {
                     </div>
                 </div>
                 <div className="item3">
-                    <Right betslipValidationData={state?.user_slip_validation} />
+                    <Right betslipValidationData={state?.user_slip_validation} test={true}  />
                 </div>
 
             </div>

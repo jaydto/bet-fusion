@@ -77,15 +77,18 @@ const  Live= () => {
 
 
     useEffect(() => {
+        const abort=new AbortController()
+
         fetchData();
         let cachedSlips = getBetslip("betslip");
         if (cachedSlips) {
             dispatch({type: "SET", key: "betslip", payload: cachedSlips});
         }
+        setMatches(null)
         return () => {
-            setMatches(null);
+            abort.abort()
         };
-    }, [fetchData]);
+    }, []);
 
 
     return (

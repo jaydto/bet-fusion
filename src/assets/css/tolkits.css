@@ -9590,7 +9590,7 @@ fieldset[disabled] .pa .fu:focus {
 .pc .navbar-nav > li > a:hover,
 .pc .navbar-nav > li > a:focus {
     color: #ffffff;
-    background-color:  var(--betnare-button-login);
+    /*background-color:  var();*/
     border-radius: 5px;
 }
 

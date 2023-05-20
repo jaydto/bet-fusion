@@ -974,10 +974,10 @@ input[type="radio"], input[type="checkbox"] {
     }
     .league-row-mobile {
         white-space: nowrap;
-        height: 2.3rem;
+        /*height: 2.3rem;*/
         overflow-x: auto;
         overflow-y: hidden;
-        margin-bottom: 6px;
+        /*margin-bottom: 6px;*/
         /* line-height: 2; */
     }
     .desk-top{

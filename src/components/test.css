@@ -151,8 +151,8 @@
         /* border: 3px solid #ffcc80; */
         border-radius: 5px;
         padding: 5px 0px;
-        height: max-content;
         /* overflow-y: scroll; */
+        /*margin-top: auto;*/
     }
 }
 @media  (max-width: 575px){
@@ -166,7 +166,7 @@
         background: var(--betnare-primary);
         /* border: 3px solid #ffcc80; */
         border-radius: 5px;
-        padding: 5px 0px;
+        padding: 3px 0px;
         height: max-content;
         /* overflow-y: scroll; */
     }

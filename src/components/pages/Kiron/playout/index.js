@@ -67,7 +67,7 @@ const KironPlayouts = (props) => {
                     }
                 })
             }
-            console.log("totalEmpty", totalEmptyPlayouts)
+            // console.log("totalEmpty", totalEmptyPlayouts)
             if (totalEmptyPlayouts == state?.playout_data?.playouts?.length) {
                 timeVar=setTimeout(() => {
                     fetchData()

@@ -80,7 +80,7 @@ const LiveSideBar = (props) => {
                     <SidebarContent className={"sidebar-live "}>
                         <Menu iconShape="circle live-inner"  >
                             {liveSports && Object.entries(liveSports).map(([index, livesport]) => (
-                                    <Menu iconShape="circle inner-live live-items"  >
+                                    <Menu iconShape="circle inner-live live-items" key={index} >
                                         <MenuItem className={"live-items"}>
                                             <Link className="col-12"
                                                   to={`/live/${livesport.sport_id}`}>

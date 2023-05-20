@@ -23,11 +23,8 @@ import {Formik, Form as FormikForm, useFormikContext} from "formik";
 import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
-import {Button, ButtonGroup} from "react-bootstrap";
 import {
-    faCheck,
     faCut,
-    faFire,
     faFireAlt,
     faGift,
     faShare,

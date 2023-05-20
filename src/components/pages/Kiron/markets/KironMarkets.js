@@ -35,7 +35,7 @@ const KironMarkets = (props) => {
                 makeRequest({url: endpoint, method: method, data: null}),
             ]);
             let [c_status, c_result] = competition_result
-            console.log('kirons',c_result)
+            // console.log('kirons',c_result)
             if (c_status === 200) {
                 setKiron(c_result);
                 setLocalStorage('kiron-categories', c_result);

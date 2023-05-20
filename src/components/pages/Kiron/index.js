@@ -92,7 +92,7 @@ const  TestKiron= () => {
             },600)
 
         }
-        console.log("page_change")
+        // console.log("page_change")
 
     }, [window.location.pathname,newData]);
 

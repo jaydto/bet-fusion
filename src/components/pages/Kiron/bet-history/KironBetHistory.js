@@ -68,7 +68,7 @@ const KironBetHistory = (props) => {
                         setIsLoading(false);
 
                 } else {
-                    console.log('Request failed:', response.status);
+                    // console.log('Request failed:', response.status);
                     // handle the error condition
                 }
             })
@@ -133,7 +133,7 @@ const KironBetHistory = (props) => {
 
     const BetslipItem = (props) => {
 
-        console.log("prematch_betslip", state?.kironbetdetails)
+        // console.log("prematch_betslip", state?.kironbetdetails)
 
 
         return (
@@ -192,7 +192,7 @@ const KironBetHistory = (props) => {
                     setBetLoading(false)
 
                 } else {
-                    console.log('Request failed:', response.status);
+                    // console.log('Request failed:', response.status);
                     // handle the error condition
                 }
             })

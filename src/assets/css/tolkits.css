@@ -9366,7 +9366,7 @@ ul.sport {
         flex-wrap:nowrap;
         overflow-x: auto;
     }
-    .league-container{
+    .league-container {
         max-width: 100vw;
         width: 100vw;
         display: inline-block;
@@ -9376,11 +9376,10 @@ ul.sport {
         display: flex;
         align-items: center;
         overflow-x: auto;
-        padding-left:0px;
+        padding-left: 0px;
         background: #162024;
         padding-top: 6px;
-        height: 2.5rem;
-
+        height: 3.5rem;
     }
     .league-container::-webkit-scrollbar{
         display:none!important;

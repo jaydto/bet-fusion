@@ -972,12 +972,13 @@ input[type="radio"], input[type="checkbox"] {
         position: sticky;
         top: 0px!important;
     }
-    .league-row-mobile{
+    .league-row-mobile {
         white-space: nowrap;
-        height:3rem;
+        height: 2.3rem;
         overflow-x: auto;
         overflow-y: hidden;
-        margin-bottom:6px;
+        margin-bottom: 6px;
+        /* line-height: 2; */
     }
     .desk-top{
         display: none;

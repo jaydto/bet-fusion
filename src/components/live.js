@@ -49,7 +49,7 @@ const Live = (props) => {
                 setProducerDown(result?.producer_status === 1);
             }
         });
-    }, 2000);
+    }, 5000);
 
     const fetchData = useCallback(async () => {
         let endpoint = "/v1/matches/live";

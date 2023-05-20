@@ -10,7 +10,7 @@ import useInterval from "../hooks/set-interval.hook";
 import makeRequest from "./utils/fetch-request";
 import MobileNav2 from "./mobile-navigation/MobileNav2";
 import Testimonials from "./carousel/Testimonials";
-import {Spinner} from "react-bootstrap";
+
 import Countries from "./countries/Countries";
 import Skeleton1 from "./skeleton/skeleton";
 
@@ -41,8 +41,6 @@ const  Index= () => {
     const [fetching, setFetching] = useState(false)
     const homePageRef = useRef()
     const [utmSource, setUtmSource] = useState('')
-    const widthRef = useRef(null);
-    const widthComponentRef = useRef(null);
     const findPostableSlip = () => {
         let betslips = getBetslip() || {};
         var values = Object.keys(betslips).map(function (key) {
@@ -76,25 +74,19 @@ const  Index= () => {
         if (sport_id !== null) {
             endpoint += " &sport_id=" + sport_id
         }
-        //splitting before api call
         let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29").split(",")
-        // console.log("subtypes",sub_types[0]);
         if (width <= 1259) {
-            // console.log("condition has been met ", [sub_types[0]])
             sub_types = [sub_types[0]]
         }
 
         endpoint = endpoint.replaceAll(" ", '')
-
         endpoint += `&sub_type_id=` + (sub_types || "1,18,29")
-
 
         let search_term = url.searchParams.get('search')
 
         if (search_term !== null) {
             return
         }
-
         await makeRequest({url: endpoint, method: method, data: betslip}).then(([status, result]) => {
             if (status == 200) {
                 setMatches(matches.length > 0 ? {...matches, ...result?.data} : result?.data || result)
@@ -107,7 +99,7 @@ const  Index= () => {
                 setProducerDown(result?.producer_status === 1);
             }
         });
-    }, 3000);
+    }, 20000);
 
     const fetchData = useCallback(async () => {
         setFetching(true)

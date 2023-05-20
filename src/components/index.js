@@ -155,7 +155,7 @@ const  Index= () => {
         return () => {
             setMatches(null);
         };
-    }, [fetchData]);
+    }, []);
 
     const checkThreeWay = () => {
         let url = new URL(window.location)

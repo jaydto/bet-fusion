@@ -3,7 +3,7 @@ import {Context} from '../../context/store';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
-import bgJackpot from '../../assets/img/banner/products/Bet_Nare_300k_Jackpot_New.webp'
+import bgJackpot from '../../assets/img/banner/products/jackpot.webp'
 import {
   addToSlip,
   removeFromSlip,
@@ -1265,7 +1265,7 @@ export const MarketList = (props) => {
                   score={filters?.data?.match?.score}
                   live={live}
               />
-          )}
+          )
           }
           <div
               className="col-md-12 position-sticky shadow-lg primary-bg mb-1 px-2 py-1"

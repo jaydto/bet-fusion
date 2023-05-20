@@ -25,6 +25,7 @@ import WithdrawProfile from "./component/WithdrawProfile";
 import {getFromLocalStorage} from "../../utils/local-storage";
 import useWindowDimensions from "../../header/Dimensions";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
+import SidebarMobile from "../../sidebar/awesome/SidebarMobile";
 
 const NewProfile = () => {
     const navigate = useNavigate();
@@ -86,7 +87,7 @@ const NewProfile = () => {
                     </Navbar.Brand>
 
                     <Navbar.Offcanvas
-                        style={{width: "80%", height: "100%",zIndex: "9999", marginTop: "0px"}}
+                        style={{width: "21%", height: "100%",zIndex: "9999", marginTop: "8rem"}}
                         className='off-canvas background-primary p-0 user-profile'
                         id={`offcanvasNavbar-expand-${expand}`}
                         aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
@@ -95,14 +96,15 @@ const NewProfile = () => {
                             <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
                                 <div className="col-3">
                                     <div>
-                                        <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"/>
+                                        <h2>
+                                            Profile
+                                        </h2>
                                     </div>
                                 </div>
                             </Offcanvas.Title>
                         </Offcanvas.Header>
                         <Offcanvas.Body className={(width<=575?user?"":"":"")}>
-                      
-                            <SideNav/>
+                            <SidebarMobile/>
                         </Offcanvas.Body>
                     </Navbar.Offcanvas>
                 </Container>
@@ -116,7 +118,7 @@ const NewProfile = () => {
                     <div className="row d-flex flex-column gap-3 px-4 py-sm-4 py-lg-0 justify-content-center align-items-center profile-top " style={{ margin: "auto", maxWidth:'991px'}}>
                         <div style={userIn}>
                             <div className={"card-body d-flex flex-column align-items-center gap-2"}>
-                                <div className={"bg-warning user-style"}>
+                                <div className={"bg-warning user-style"} id={'cash'}>
                                     <FontAwesomeIcon icon={faUser} className={"text-light"}
                                                      style={{height: "3rem", width: "3rem"}}/>
                                 </div>
@@ -125,7 +127,7 @@ const NewProfile = () => {
 
                         </div>
 
-                        <div className=" w-100 " id={'cash'}>
+                        <div className=" w-100 " id={'gift'}>
 
                             <div className="card-radius profile-bg text-light">
                                 <div className="card-body d-flex justify-content-between gap-2 ">
@@ -134,7 +136,7 @@ const NewProfile = () => {
                                     <span
                                         className="font-btn py-2 d-flex flex-column">
                                         <span className={"d-flex align-items-center gap-2"}><FontAwesomeIcon
-                                            icon={faDollarSign}/> Cash</span>
+                                            icon={faDollarSign}   /> Cash</span>
                                 <strong style={{color: "#FFB200"}}> KSH {formatNumber(user.balance) || 0}</strong> </span>
                                         </div>
                                     </div>
@@ -156,7 +158,7 @@ const NewProfile = () => {
                             </div>
                         </div>
 
-                        <div className=" w-100 " id={'gift'}>
+                        <div className=" w-100 " id={'mybets'}>
 
                             <div className="card-radius profile-bg text-light">
 
@@ -196,7 +198,7 @@ const NewProfile = () => {
                             </div>
                         </div>
 
-                        <div className=" w-100" id={'mybets'}>
+                        <div className=" w-100" >
                             <div className="card card-radius profile-bg text-light">
                                 <div className="card-body">
                                     <div>
@@ -204,7 +206,7 @@ const NewProfile = () => {
                                     <span className="font-btn pad-2  justify-content-between">
                                     <span className="d-flex align-items-center gap-3 ">
                                         <FontAwesomeIcon icon={faCoins} style={{height:"2.5rem", width:"2.5rem"}} className={"text-warning"}/>
-                                        <div className={"card-title text-warning"}><h4>My Bets</h4></div>
+                                        <div  className={"card-title text-warning"} > <h4>My Bets</h4></div>
                                     </span>
 
                                         <FontAwesomeIcon icon={faChevronRight} className={"text-warning"} />

@@ -47,14 +47,14 @@
     --toggle-btn:transparent;
     --picked:#fdd835;
     --secondary:#fdd835;
-
+    --tabs-home:#000;
 }
 
 .light-theme {
     /* light mode variables go here */
-
+    --tabs-home:#fofofo;
+    --testimonial:#fofofo;
     --betnare-primary:#f0f0f0;
-    --testimonial: #f0f0f0;
     --top-header-nav:#f0f0f0;
     --footer-color:#05070a;
     --footer-links:#05070a;

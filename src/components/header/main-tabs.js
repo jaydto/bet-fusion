@@ -35,22 +35,22 @@ const MainTabs = (props) => {
         <Row className={"full-mobile " + `${user ? "highlight-logged-in-menu" : "highlight-menu"}`}>
             <Row className="top-matches d-flex flex-row ">
             
-                <div className="col bg-black text-center">
+                <div className="col tab-home text-center">
                     <Link className={`cursor-pointer w-100 ${u_class}`} to={'/upcoming?' + getLink()}>
                         <span className="col-sm-11 main-header">Upcoming</span>
                     </Link>
                 </div>
-                <div className="col bg-black text-center">
+                <div className="col tab-home text-center">
                     <Link className={`cursor-pointer w-100 ${h_class}`} to={'/highlights?' + getLink()}>
                         <span className="col-sm-11 main-header">Highlights</span>
                     </Link>
                 </div>
-                <div className="col bg-black text-center">
+                <div className="col tab-home text-center">
                     <Link className={`cursor-pointer w-100 ${t_class}`} to={'/tomorrow?' + getLink()}>
                         <span className="col-sm-11 main-header">Tomorrow</span>
                     </Link>
                 </div>
-                <div className="col bg-black text-center sports_only-mobile">
+                <div className="col tab-home text-center sports_only-mobile">
                     <Link className={`cursor-pointer w-100 ${c_class}`} to={'/countries?'+getLink() }>
                         <span className="col-sm-11 main-header">Sports</span>
                     </Link>

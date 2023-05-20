@@ -1,17 +1,10 @@
 import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
 import './test.css'
 import {getFromLocalStorage, setLocalStorage} from "./utils/local-storage";
-import useAnalyticsEventTracker from "./analytics/useAnalyticsEventTracker";
-import {useLocation} from "react-router-dom";
 import useWindowDimensions from "./header/Dimensions";
-import {Context} from "../context/store";
-import {getBetslip} from "./utils/betslip";
-import useInterval from "../hooks/set-interval.hook";
 import makeRequest from "./utils/fetch-request";
-import MobileNav2 from "./mobile-navigation/MobileNav2";
-import Testimonials from "./carousel/Testimonials";
-import {Spinner} from "react-bootstrap";
-import Countries from "./countries/Countries";
+import jackpot from '../assets/img/banner/products/jackpot.webp';
+
 
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
@@ -34,13 +27,6 @@ const  Jackpot= () => {
     const [user, setUser] = useState(getFromLocalStorage("user"));
     const {height, width} = useWindowDimensions();
 
-    // const findPostableSlip = () => {
-    //     let betslips = getJackpotBetslip() || {};
-    //     var values = Object.keys(betslips).map(function (key) {
-    //         return betslips[key];
-    //     });
-    //     return values;
-    // };
 
     const fetchData = useCallback(async (jackpot_id = '', jackpot_status = '') => {
         let match_endpoint = "/v1/matches/jackpot";
@@ -111,7 +97,7 @@ const  Jackpot= () => {
                                 className="background-primary "
                                 justify>
                                 <Tab eventKey="home" title="Jackpot" className={'background-primary'}>
-                                    <img src={Jackpot300k}/>
+                                    <img src={jackpot}/>
                                     {matches?.data?.length > 0 ? (
                                         <>
                                             {/*<JackpotHeader jackpot={matches?.meta}/>*/}

@@ -5,19 +5,19 @@ const SideNav = () => {
     const [show, setShow]=useState(false)
 
     return(
-        <div>
-            <aside id="sidebar">
-
+        <div style={{position:'sticky',top:'10rem'}}>
+            <aside id="sidebar" style={{background:'#1f2f38', padding:'10px', borderRadius:"4px"}}>
+                <h2>Profile</h2>
                 <div className="dot"></div>
                 <div class="sidebar_content sidebar_body">
                     <nav class="side_navlinks">
                         <ul>
-                            <li><Link  to={'#cash'}>Cash</Link></li>
-                            <li><Link to={'#gift'} >Gift</Link></li>
-                            <li><Link to="#">Deposit</Link></li>
-                            <li><Link to="#">Withdraw</Link></li>
-                            <li> <Link to={'#support'} >Support</Link></li>
-                            <li><Link to={'#mybets'} >Mybets</Link></li>
+                            <li><a  href={'/profile#cash'}>Cash</a></li>
+                            <li><a href={'/profile#gift'} >Gift</a></li>
+                            <li><a href={'/profile#mybets'} >Mybets</a></li>
+                            <li><a href="/profile#deposit">Deposit</a></li>
+                            <li><a href="/profile#withdraw">Withdraw</a></li>
+                            <li> <a href={'/profile#support'} >Support</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -27,11 +27,8 @@ const SideNav = () => {
 
                 <div class="sidebar_content sidebar_foot">
                     <p>
-                        &#169;
-                        <script>
-                            document.write(new Date().getFullYear());
-                        </script>
-                        &#160;Support
+                        &#169; Betnare 2023
+
                     </p>
                 </div>
             </aside>

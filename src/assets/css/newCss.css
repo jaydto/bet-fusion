@@ -494,6 +494,9 @@ input[type="radio"], input[type="checkbox"] {
 .pro-sidebar .pro-menu a {
     color: var(--aqua)!important;
 }
+.tab-home{
+    background: var(--tabs-home);
+}
 .sign-up-size{
     max-width: 991px;
     margin: auto;
@@ -644,7 +647,7 @@ input[type="radio"], input[type="checkbox"] {
         top: 97px;
         /* z-index: 1999 !important; */
         opacity: 1;
-        background: #253743;
+        background: var(--testimonial);
     }
     .highlight-logged-in-menu {
         position: sticky;

@@ -12,7 +12,7 @@ const SkeletonLoader = () => {
     }
     return (
         <div className="container skeleton-loader" id="skeleton-loader">
-            <div className="col-sm-6 col-md-12">
+            <div className="col-sm-12 col-md-12">
                 <div className="movie--isloading">
                     <div className="loading-content">
                         <div className="loading-text-container">
@@ -25,7 +25,7 @@ const SkeletonLoader = () => {
                     </div>
                 </div>
             </div>
-            <div className="col-sm-6 col-md-12">
+            <div className="col-sm-12 col-md-12">
                 <div className="movie--isloading">
                     <div className="loading-content">
                         <div className="loading-text-container">
@@ -38,7 +38,7 @@ const SkeletonLoader = () => {
                     </div>
                 </div>
             </div>
-            <div className="col-sm-6 col-md-12">
+            <div className="col-sm-12 col-md-12">
                 <div className="movie--isloading">
                     <div className="loading-content">
                         <div className="loading-text-container">
@@ -51,7 +51,7 @@ const SkeletonLoader = () => {
                     </div>
                 </div>
             </div>
-            <div className="col-sm-6 col-md-12">
+            <div className="col-sm-12 col-md-12">
                 <div className="movie--isloading">
                     <div className="loading-content">
                         <div className="loading-text-container">
@@ -64,7 +64,7 @@ const SkeletonLoader = () => {
                     </div>
                 </div>
             </div>
-            <div className="col-sm-6 col-md-12">
+            <div className="col-sm-12 col-md-12">
                 <div className="movie--isloading">
                     <div className="loading-content">
                         <div className="loading-text-container">
@@ -77,7 +77,7 @@ const SkeletonLoader = () => {
                     </div>
                 </div>
             </div>
-            <div className="col-sm-6 col-md-12">
+            <div className="col-sm-12 col-md-12">
                 <div className="movie--isloading">
                     <div className="loading-content">
                         <div className="loading-text-container">
@@ -90,7 +90,7 @@ const SkeletonLoader = () => {
                     </div>
                 </div>
             </div>
-            <div className="col-sm-6 col-md-12">
+            <div className="col-sm-12 col-md-12">
                 <div className="movie--isloading">
                     <div className="loading-content">
                         <div className="loading-text-container">
@@ -103,7 +103,7 @@ const SkeletonLoader = () => {
                     </div>
                 </div>
             </div>
-            <div className="col-sm-6 col-md-12">
+            <div className="col-sm-12 col-md-12">
                 <div className="movie--isloading">
                     <div className="loading-content">
                         <div className="loading-text-container">
@@ -116,7 +116,7 @@ const SkeletonLoader = () => {
                     </div>
                 </div>
             </div>
-            <div className="col-sm-6 col-md-12">
+            <div className="col-sm-12 col-md-12">
                 <div className="movie--isloading">
                     <div className="loading-content">
                         <div className="loading-text-container">
@@ -129,7 +129,7 @@ const SkeletonLoader = () => {
                     </div>
                 </div>
             </div>
-            <div className="col-sm-6 col-md-12">
+            <div className="col-sm-12 col-md-12">
                 <div className="movie--isloading">
                     <div className="loading-content">
                         <div className="loading-text-container">

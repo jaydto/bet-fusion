@@ -597,7 +597,7 @@ const BetslipSubmitForm = (props) => {
                         <tr className="bet-win-tr hide-on-affix">
                             <td colSpan="100%">
                                 <SubmitButton
-                                    id="place_bet_button"
+                                    id="place_bet_button_submit"
                                     className="place-bet-btn bold "
                                     title="PLACE BET"
                                 ></SubmitButton>
@@ -644,19 +644,6 @@ const BetslipSubmitForm = (props) => {
                                 </button>
                             </td>
 
-
-                            {/*<td className={"bet-align-right"}>*/}
-                            {/*    <button className="place-bet-btn"*/}
-                            {/*            type="button"*/}
-                            {/*            onClick={() => handleRemoveAll()}>REMOVE ALL*/}
-                            {/*    </button>*/}
-                            {/*</td>*/}
-                            {/*<td className={"bet-align-left"}>*/}
-                            {/*    <SubmitButton id="place_bet_button"*/}
-                            {/*                  disabled={jackpot && Object.entries(betslip || []).length != JSON.stringify(jackpotData?.total_games)}*/}
-                            {/*                  className="place-bet-btn bold"*/}
-                            {/*                  title="PLACE BET"/>*/}
-                            {/*</td>*/}
                         </tr>
                         </tbody>
                     </table>

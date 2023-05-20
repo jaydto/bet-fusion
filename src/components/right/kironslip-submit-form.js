@@ -460,7 +460,7 @@ const KironslipSubmitForm = (props) => {
             <button
                 type={"submit"}
                 {...rest}
-                id={"place_bet_button"}
+                id={"place_bet_button_nare"}
                 style={{padding: "7px", width: "100%",borderRadius: "0.7rem"}}
                 className={`${
                     disabled ? "disabled" : ""
@@ -613,7 +613,7 @@ const KironslipSubmitForm = (props) => {
                                 <tr id="odd-change-text">
                                     <td className={"d-flex"} style={{whiteSpace: "nowrap"}}>
                                         <SubmitButton
-                                            id="place_bet_button"
+                                            id="place_bet_button_nare_submit"
                                             className="place-bet-btn bold "
                                             title="PLACE BET"
                                         ></SubmitButton>

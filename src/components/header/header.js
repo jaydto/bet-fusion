@@ -53,7 +53,6 @@ const Header = (props) => {
         fetchMatches()
     }, [searching])
     const fetchMatches = async (search) => {
-        console.log("searching_value", search)
 
         if (search && search.length >= 3) {
             gaEventTracker('Searching')
@@ -102,7 +101,6 @@ const Header = (props) => {
 
             let [c_status, c_result] = result
 
-            // console.log("C Result is now ", c_result?.message)
 
             if (c_status === 200) {
                 setSettings(c_result?.message);

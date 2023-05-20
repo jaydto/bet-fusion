@@ -198,7 +198,7 @@ const BetslipSubmitForm = (props) => {
 
         makeRequest({url: endpoint, method: method, data: payload, use_jwt: use_jwt})
             .then(([status, response]) => {
-                console.log("Status code is ", status)
+
 
                 if (status === 200 || status == 201 || status == 204) {
                     setMessage(response);
@@ -486,7 +486,7 @@ const BetslipSubmitForm = (props) => {
                 const {isValid, errors, values, submitForm, setFieldValue} = props;
 
                 const onFieldChanged = (ev) => {
-                    console.log("event_value",ev)
+
                     let field = ev.target.name;
                     let value = ev.target.type === "checkbox" ? ev.target.checked : ev.target.value;
                     if (field == "bet_amount") {

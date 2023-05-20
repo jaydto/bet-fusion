@@ -26,7 +26,7 @@ const Right = (props) => {
     const {jackpot, betslipValidationData, jackpotData, kiron, kironValidation,test} = props;
     const [betSlipMobile, setBetSlipMobile] = useState(false)
     const [state, dispatch] = useContext(Context);
-    console.log("kiron", kiron)
+
 
 
     //todo top height style ={{top:"13.5rem"

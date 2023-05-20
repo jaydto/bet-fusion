@@ -86,7 +86,7 @@ const SmartPlay = (props) => {
                                         </div>
                                     </>
                                 )}{
-                                console.log("game_url", gameUrl)
+
                             }
                                 <iframe className={'mt-3 shadow-lg'} allowFullScreen webkitallowfullscreen
                                         mozallowfullscreen

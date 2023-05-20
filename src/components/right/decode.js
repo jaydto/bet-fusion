@@ -30,7 +30,7 @@ const DecodeCode = () => {
         }
         setLoading(true)
         await makeRequest({url: endpoint, method: "POST", data: data}).then(([status, result]) => {
-            // console.log(result?.success)
+
 
             if (status == 200) {
                 Object.entries(result?.success).map(([match_id, match]) => {

@@ -130,7 +130,7 @@ const  Index= () => {
         }
         //splitting before api call
         let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29").split(",")
-        console.log("subtypes", sub_types[0]);
+
         if (width <= 1259) {
             // console.log("condition has been met ", [sub_types[0]])
             sub_types = [sub_types[0]]
@@ -217,7 +217,7 @@ const  Index= () => {
         if(window.location.href.includes("countries")){
             new_tab=('countries')
         }
-        console.log("tabs", tab)
+
 
         // console.log("tabs", new_tab)
         if (new_tab !== tab) {
@@ -230,7 +230,7 @@ const  Index= () => {
             setSportID(new_sport_id)
             setLoading(true)
             setMatches([])
-            console.log("loading_matches", new_sport_id)
+
         } else {
 
         }

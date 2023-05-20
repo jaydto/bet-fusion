@@ -20,7 +20,7 @@ const MainTabs = (props) => {
         const urlSearchParams = new URLSearchParams(window.location.search);
         const url = new URL(window.location)
         const params = Object.fromEntries(urlSearchParams.entries());
-        // console.log("pathname", params)
+
         url.pathname = `/${tab}`
         url.searchParams.set('sport_id', 79)
         Object.keys(params).forEach((param, val) => {

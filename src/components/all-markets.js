@@ -66,7 +66,6 @@ const  AllMarkets= (props) => {
         },
         live ? 2000 : null
     );
-    // console.log("all-markets",Object.keys(state?.all_markets.data.odds));
     const fetchPagedData = useCallback(async () => {
         if (!isLoading && !isNaN(+id)) {
             setIsLoading(true);

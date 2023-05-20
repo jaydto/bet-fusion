@@ -52,7 +52,7 @@ const Virtuals = (props) => {
         if (userState?.token) {
             return window.location.href = `/gameplay?game_id=${game_id}&live=${live ? '1' : '0'}`
         }
-        {console.log("live",live)}
+
 
         return showLoginNotification()
     }

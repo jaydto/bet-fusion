@@ -545,7 +545,6 @@ const OddButton = (props) => {
         match.sub_type_id +
         (match?.[mkt] || match?.odd_key || "draw")
     );
-    console.log("picked_here_pre_before",betslip?.[match.match_id]?.match_id+" match: "+match.match_id+" uc: "+uc+"slip: "+betslip?.[match.match_id]?.ucn )
 
     if (
         betslip?.[match.match_id]?.match_id == match.match_id &&
@@ -553,9 +552,8 @@ const OddButton = (props) => {
     ) {
 
       setPicked("picked");
-      console.log("picked_here_pre",betslip?.[match.match_id]?.match_id+" match: "+match.match_id+" uc: "+uc+"slip: "+betslip?.[match.match_id]?.ucn )
-    } else {
-      console.log("picked_here_remove")
+ } else {
+
       setPicked("");
     }
   }, [picked, state[betslip_key]]);
@@ -611,7 +609,7 @@ const OddButton = (props) => {
         if (state?.[reference] === uc) {
 
           setPicked("picked");
-          console.log("picked_here_pre_2")
+
         } else {
           // console.log("picked_here_remove")
           setPicked("");
@@ -658,7 +656,7 @@ const OddButton = (props) => {
     );
     // console.log("Slip", slip)
     {
-      console.log("display_name", match?.display_name);
+
     }
     const slip = {
       match_id: attributes.match_id,
@@ -687,7 +685,7 @@ const OddButton = (props) => {
       // console.log("cstn pre start: ",cstm+" ucn: "+ucn )
       let betslip;
       if (picked === "picked") {
-        console.log("cstn pre remove: ",cstm+" ucn: "+ucn )
+
         betslip =
             jackpot !== true
                 ? removeFromSlip(attributes.match_id)
@@ -1246,7 +1244,7 @@ export const MarketList = (props) => {
 
   const handleScroll = (event) => {
     const element = event.target;
-    console.log("scrolling ", element)
+
     if (element.scrollHeight - element.scrollTop === element.clientHeight) {
       setCurrentPage((currentPage) => currentPage + 1);
     }

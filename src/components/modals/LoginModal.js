@@ -31,7 +31,7 @@ const LoginModal = (props) => {
       };
       
       const dispatchUser = useCallback(() => {
-        console.log("here user")
+
         if (message !== null) {
             Notify(message);
 
@@ -51,7 +51,7 @@ const LoginModal = (props) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         let endpoint = '/v1/login';
-        console.log("data", formData)
+
         
         makeRequest({url: endpoint, method: 'POST', data: formData}).then(([status, response]) => {
 
@@ -107,7 +107,7 @@ const LoginModal = (props) => {
                 onChange={handleChange}
                 autoFocus
                 />
-              { console.log("here modal 2", visible)}
+
             </Form.Group>
              <Form.Group className="mb-3" controlId="Form.ControlInput2">
               <Form.Label>Password</Form.Label>

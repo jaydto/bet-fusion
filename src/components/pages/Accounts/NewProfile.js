@@ -18,7 +18,6 @@ import {
     faSmile,
     faUser
 } from "@fortawesome/free-solid-svg-icons";
-import SidebarMobile from "../../sidebar/awesome/SidebarMobile";
 import SideNav from "./SideNav";
 import {formatNumber} from "../../utils/betslip";
 import DepositProfile from "./component/DepositProfile";
@@ -102,7 +101,8 @@ const NewProfile = () => {
                             </Offcanvas.Title>
                         </Offcanvas.Header>
                         <Offcanvas.Body className={(width<=575?user?"":"":"")}>
-                            <SidebarMobile/>
+                      
+                            <SideNav/>
                         </Offcanvas.Body>
                     </Navbar.Offcanvas>
                 </Container>

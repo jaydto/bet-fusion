@@ -11,7 +11,6 @@ import {Context} from "../../../../context/store";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./matches.css";
-import useWindowDimensions from "../../../header/Dimensions";
 import {
   addToJackpotSlip, addToKironSlip,
   addToSlip,
@@ -299,9 +298,8 @@ export const MatchRow = (props) => {
                 <div className="d-flex w-100">
                   <div className="btn-odd-option text-center bold">
                     <div className="btn-wrapper">
-                      {/*{console.log("matches", match)}*/}
                       {match.odds.map((odd, index) => (
-                           <OddButton
+                          <OddButton
                               key={index}
                               oddkey={Object.keys(odd)[0]}
                               odds={Object.values(odd)[0]}
@@ -332,13 +330,13 @@ export const MatchRow = (props) => {
                     <div className="compt-teams d-flex flex-xl-column flex-column ">
                       <div className="team-badge">
                         <img src={match?.home_team_image}/>
-                      <div className={"bold team"}>
-                        {match.home_team_name}
-                      </div>
+                        <div className={"bold team"}>
+                          {match.home_team_name}
+                        </div>
                       </div>
                       <div className="team-badge">
                         <img src={match?.away_team_image}/>
-                      <div className={"bold team"}>{match.away_team_name}</div>
+                        <div className={"bold team"}>{match.away_team_name}</div>
                       </div>
                     </div>
 
@@ -348,25 +346,25 @@ export const MatchRow = (props) => {
 
               <div className={`col d-flex  flex-row  space-bets  justify-content-lg-between `}>
                 {/*mobile*/}
-                <div className="d-flex w-100 justify-content-end">
+                <div className="d-flex ">
 
 
-                          {match.odds.map((odd, index) => (
-                               <OddButton
-                                   key={index}
-                                   oddkey={Object.keys(odd)[0]}
-                                   odds={Object.values(odd)[0]}
-                                   marketName={match?.odd_type}
-                                   eventTime={match?.event_time}
-                                   parentId={match?.parent_match_id}
-                                   marketId={match?.market_id}
-                                   homeTeam={match?.home_team_name}
-                                   awayTeam={match?.away_team_name}
-                                   competition_id={match?.competition_id}
-                                   round_id={match?.round_id}
-                              />
-                          ))}
-                        </div>
+                  {match.odds.map((odd, index) => (
+                      <OddButton
+                          key={index}
+                          oddkey={Object.keys(odd)[0]}
+                          odds={Object.values(odd)[0]}
+                          marketName={match?.odd_type}
+                          eventTime={match?.event_time}
+                          parentId={match?.parent_match_id}
+                          marketId={match?.market_id}
+                          homeTeam={match?.home_team_name}
+                          awayTeam={match?.away_team_name}
+                          competition_id={match?.competition_id}
+                          round_id={match?.round_id}
+                      />
+                  ))}
+                </div>
 
 
               </div>
@@ -483,7 +481,7 @@ const   OddButton = (props) => {
       dispatch({type: "SET", key: reference, payload: cstm});
 
       setPicked('picked')
-  }
+    }
     dispatch({type: "SET", key: betslip_key, payload: betslip});
 
 
@@ -518,24 +516,22 @@ const   OddButton = (props) => {
 };
 
 const MatchList = (props) => {
-  const [hasMore, setHasMore] = useState(true);
-  const { height, width } = useWindowDimensions();
+  const [state,]=useContext(Context)
   const {
-    matches,
     pdown,
     three_way,
     fetching,
     competition_id
   } = props;
- 
+
 
   return (
-    <div className="matches full-width table table-striped">
+      <div className="matches full-width table table-striped">
 
         <div className="web-element px-lg-0 ">
           {
-              matches &&
-              Object.entries(matches).map(([key, match]) => (
+              state?.nare_league_matches&&
+              Object.entries(state?.nare_league_matches).map(([key, match]) => (
                   <MatchRow
                       match={match}
                       key={key}
@@ -551,11 +547,11 @@ const MatchList = (props) => {
                 <Spinner animation={"grow"} size={"lg"} />
               </div>
           )}
-          {matches !== null && matches.length === 0 && (
+          {state?.nare_league_matches !== null && state?.nare_league_matches?.length === 0 && (
               <div className="top-matches row  mx-2">No events found.</div>
           )}
         </div>
-    </div>
+      </div>
   );
 };
 export default MatchList;

@@ -22,19 +22,13 @@ import KironBetHistory from "./bet-history/KironBetHistory";
 import SkeletonLoader from "./skeletonLoader/SkeletonLoader";
 import KironPlayouts from "./playout";
 
-import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
-import {formatNumber} from "../../utils/betslip";
-
 const  TestKiron= () => {
     const [state,dispatch]=useContext(Context)
-    const gaEventTracker = useAnalyticsEventTracker('Navigation');
     const [loading, setLoading] = useState(false)
     const [tab, setTab] = useState('kiron')
     const [fetching, setFetching] = useState(false)
     const [kironValidation, setKironValidation] = useState();
-    const [matches, setMatches] = useState([]);
-    const [closed, setClosed] = useState(false);
-    // const [inPlay, setInPlay] = useState(false);
+    // const [matches, setMatches] = useState([]);
     const [playout, setPlayout] =useState(null)
 
     let endpoint = "/v1/nare-league/matches"
@@ -84,19 +78,28 @@ const  TestKiron= () => {
         }
     }, [newData]);
 
-    useEffect(() => {
-        // checkThreeWay()
-        if(window.location.pathname=="/nare-league"){
-            fetchData();
-        }
 
-    }, [newData,window.location.pathname]);
+    useEffect(() => {
+        dispatch({type: "SET", key: 'playout_data', payload: null})
+        dispatch({type: "SET", key: 'close_spinner', payload:false})
+        dispatch({type:'SET',key:'nare_league_matches', payload:null })
+        setLoading(true)
+        if(window.location.pathname=="/nare-league"){
+            setLoading(true)
+            setTimeout(()=>{
+                setLoading(true)
+                fetchData();
+            },1000)
+
+        }
+        console.log("page_change")
+
+    }, [window.location.pathname,newData]);
 
 
 
 
     const fetchData =useCallback(async ()  => {
-        // if(!pathname){return}
         endpoint = endpoint.replaceAll(" ", '')
 
 
@@ -114,7 +117,8 @@ const  TestKiron= () => {
 
         await makeRequest({url: endpoint, method: "POST", data:kiron_data }).then(([status, result]) => {
             if (status == 200) {
-                setMatches(matches.length > 0 ? {...matches, ...result?.data} : result?.data || result)
+                dispatch({type: "SET", key: 'nare_league_matches', payload: result?.data || result})
+                // setMatches(matches.length > 0 ? {...matches, ...result?.data} : result?.data || result)
                 setFetching(false)
                 setLoading(false)
                 if (result?.event_time) {
@@ -192,41 +196,44 @@ const  TestKiron= () => {
 
     })
 
+
     return (
         <div className={'flex-item'}>
-            <div className="item4"><Header kiron={true}/></div>
+            <div className="item4">
+                <div >
+                    <Header/>
+                </div></div>
             <div className="flex-container kiron-test" >
                 <div className={'item-1 d-none'}></div>
                 <div className="item2" style={{width:'100%'}}>
                     <div className="d-flex flex-row">
                         <div className="d-flex flex-row kiron-size" style={{marginTop:"2px", width:'100%'}}>
-                        <div className="d-flex flex-column kiron-size" style={{marginTop:"2px", overflowY:'auto'}}>
-                        <KironCompetitions/>
-                        {!state?.inPlay&&<KironTabs tab={location.pathname.replace("/", "")} user={userLogged}/>}
-                        {tab == "results" ? <KironResults/>:tab == "standing" ?<Standing/>:tab == "bet-history" ?<KironBetHistory/>:<>
-                            <KironPeriods setClosed={setClosed} setPlayout={setPlayout}
-                                          isCountdownTimerActive={isCountdownTimerActive} setIsCountdownTimerActive={setIsCountdownTimerActive}/>
-                            {!state?.inPlay&&<KironMoreMarkets/>}
-                            {loading ?
-                                <SkeletonLoader/>:closed? <div className="kiron-loader" id="kiron-loader">
-                                Game  Weeek<span id={'game_week'}></span>
-                                <div className="match-start d-flex flex-column align-items-center justify-content-center " style={{marginTop:'120px'}}>
-                                 <span id="countdown"></span>
-                                </div>
-                                <div className="loading loading--full-height"></div>
-                            </div>:state?.inPlay?<KironPlayouts playout={playout} isCountdownTimerActive={isCountdownTimerActive}/>:
-                                <MatchList
-                                    fetching={fetching}
-                                    matches={matches}
-                                    competition_id={newData?.competition_id}
+                            <div className="d-flex flex-column kiron-size" style={{marginTop:"2px", overflowY:'auto'}}>
+                                <KironCompetitions/>
+                                {!state?.inPlay&&<KironTabs tab={location.pathname.replace("/", "")} user={userLogged}/>}
+                                {tab == "results" ? <KironResults/>:tab == "standing" ?<Standing/>:tab == "bet-history" ?<KironBetHistory/>:<>
+                                    <KironPeriods  setPlayout={setPlayout}
+                                                   isCountdownTimerActive={isCountdownTimerActive} setIsCountdownTimerActive={setIsCountdownTimerActive}/>
+                                    {!state?.inPlay&&<KironMoreMarkets/>}
+                                    {loading ?
+                                        <SkeletonLoader/>:state?.close_spinner? <div className="kiron-loader" id="kiron-loader">
+                                            <span id={'game_week'}></span>
+                                            <div className="match-start d-flex flex-column align-items-center justify-content-center " style={{marginTop:'120px'}}>
+                                                <span id="countdown"></span>
+                                            </div>
+                                            <div className="loading loading--full-height"></div>
+                                        </div>:state?.inPlay?<KironPlayouts playout={playout} isCountdownTimerActive={isCountdownTimerActive}/>:
+                                            <MatchList
+                                                fetching={fetching}
+                                                competition_id={newData?.competition_id}
 
-                                />
-                            }
-                        </>
-                        }
-                    </div>
+                                            />
+                                    }
+                                </>
+                                }
+                            </div>
                             {/*<div className="item3 ">*/}
-                                <Right kiron={true} kironValidation={kironValidation} nareleague={true}/>
+                            <Right kiron={true} kironValidation={kironValidation} nareleague={true}/>
                             {/*</div>*/}
                         </div>
                     </div>
@@ -236,8 +243,8 @@ const  TestKiron= () => {
             </div>
             <div className="item6">
                 <div className={"footer-mobile-none"}>
-                <Footer/>
-            </div></div>
+                    <Footer/>
+                </div></div>
         </div>
 
     );

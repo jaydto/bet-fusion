@@ -6,21 +6,24 @@ import {Context} from "../../../../context/store";
 
 const KironPlayouts = (props) => {
     const {playout, isCountdownTimerActive} = props
+    const [success, setSuccess] = useState(false)
     const [fetching, setFetching] = useState(false)
     const [loading, setLoading] = useState(false)
-    const [resulted, setResulted] = useState([]);
+    // const [resulted, setResulted] = useState([]);
     const [state, dispatch] = useContext(Context);
     const [lastScorer, setLastScorer] = useState(null);
     const [timeAfter, setTimeAfter] = useState(null);
     const kironSearchCompetition = getFromLocalStorage("kiron_search_data")?.competition_id
     const kironSearchRoundId = getFromLocalStorage("kiron_first_round") || new URL(window.location).searchParams.get('round_id')
     let endpoint = "/v1/nare-league/live"
+    let timeVar;
 
     const [newData, setNewData] = useState({
         round_id: kironSearchRoundId
     });
 
     const fetchData = useCallback(async () => {
+        setSuccess(false)
 
         endpoint = endpoint.replaceAll(" ", '')
 
@@ -28,10 +31,10 @@ const KironPlayouts = (props) => {
 
         await makeRequest({url: endpoint, method: "POST", data: kiron_data}).then(([status, result]) => {
             if (status == 200) {
-                dispatch({type: "SET", key: 'playout_data', payload: resulted})
-                setResulted(result?.data || result)
+                dispatch({type: "SET", key: 'playout_data', payload: result?.data || result})
                 setFetching(false)
                 setLoading(false)
+                setSuccess(true)
 
                 if (result?.slip_data) {
 
@@ -41,44 +44,46 @@ const KironPlayouts = (props) => {
 
     }, []);
 
-    useEffect(() => {
-
-        fetchData();
-
-    }, []);
 
     useEffect(() => {
+        if(state?.start_playout|| !state?.Ended){
+            setTimeout(()=>{
+                fetchData();
+            },500)
 
-        fetchData();
-
-    }, [getFromLocalStorage("kiron_first_round")]);
-
-
-
-    let totalSeconds = 0;
-
-    useEffect(() => {
-        if (isCountdownTimerActive) {
-
-            const timerVar = setInterval(countTimer, 1000);
-
-            function countTimer() {
-                ++totalSeconds;
-                const seconds = totalSeconds;
-                if (seconds < 7) {
-                    //do nothing
-                } else {
-                    setTimeAfter(null)
-                    fetchData()
-                    clearInterval(timerVar);
-                }
-            }
-
-
-            return () => clearInterval(timerVar);
         }
 
-    }, [isCountdownTimerActive])
+
+    }, [getFromLocalStorage('kiron_first_round')]);
+
+
+    useEffect(() => {
+        let totalEmptyPlayouts = 0;
+        if (isCountdownTimerActive) {
+            {
+                state?.playout_data?.playouts?.map((results, key) => {
+                    if (results.home_scores.length == 0 && results.away_scores.length == 0) {
+                        ++totalEmptyPlayouts
+                    }
+                })
+            }
+            console.log("totalEmpty", totalEmptyPlayouts)
+            if (totalEmptyPlayouts == state?.playout_data?.playouts?.length) {
+                timeVar=setTimeout(() => {
+                    fetchData()
+                }, 5000)
+
+            }else{
+                if(success){
+                    return clearTimeout(timeVar)
+                }
+
+
+            }
+
+        }
+
+    }, [success])
 
 
     const handleScore_home = (home_score, away_score) => {
@@ -117,10 +122,10 @@ const KironPlayouts = (props) => {
                             <span className="standing-heading d-flex  flex-column
                             ">{kironSearchCompetition == 1 ? "KENYAN" : kironSearchCompetition == 2 ? "ENGLISH " : kironSearchCompetition == 3 ? "SPANISH" : "ITALIAN"} LEAGUE</span>
                             <span><strong>
-                                GAME WEEK {resulted?.game_week}
+                                GAME WEEK {state?.playout_data?.game_week}
                             </strong> </span> &nbsp;  <span>
                             <strong>
-                                TOTAL SELECTIONS {resulted?.selections||0}
+                                TOTAL SELECTIONS {state?.playout_data?.selections || 0}
                             </strong>
                         </span>
                         </div>
@@ -133,7 +138,7 @@ const KironPlayouts = (props) => {
                     <div className="playing-games-wrapper float-left w-100 small">
                         <div className="league-wrapper">
                             <div className="matches-wrapper pt-2">
-                                {resulted?.playouts?.map((results, key) => (
+                                {state?.playout_data?.playouts?.map((results, key) => (
                                     <div>
                                         <div className="live-match-selection pt-1 pb-1" key={key}>
                                             <div className="container">
@@ -146,8 +151,10 @@ const KironPlayouts = (props) => {
                                                         </span>
                                                         <a href="#" style={{color: "var(--black)"}}
                                                            className={"d-flex justify-content-between align-items-center"}>
-                                                            <span className="home-team-r bold px-2">{results.home_team}</span>
-                                                            <span className={`mr-2 bold ${handleScore_home(results.home_scores.filter((score) => score <= playout).length, results.away_scores.filter((score) => score <= playout).length) ? ' kiron-playout-score-animation kiron-playout-score' : 'red-txt'}`}>
+                                                            <span
+                                                                className="home-team-r bold px-2">{results.home_team}</span>
+                                                            <span
+                                                                className={`mr-2 bold ${handleScore_home(results.home_scores.filter((score) => score <= playout).length, results.away_scores.filter((score) => score <= playout).length) ? `${state?.Ended?'': 'kiron-playout-score-animation kiron-playout-score'}`: 'red-txt'}`}>
                                                             {results.home_scores.filter((score) => score <= playout).length}
                                                             </span>
                                                         </a>
@@ -157,7 +164,8 @@ const KironPlayouts = (props) => {
                                                         <a href="#"
                                                            className={"d-flex justify-content-between align-items-center"}
                                                            style={{color: "var(--black)"}}>
-                                                            <span className={`mr-2 bold ${handleScore_away(results.home_scores.filter((score) => score <= playout).length, results.away_scores.filter((score) => score <= playout).length) ? ' kiron-playout-score-animation kiron-playout-score' : 'red-txt'}`}> {results.away_scores.filter((score) => score <= playout).length}</span>
+                                                            <span
+                                                                className={`mr-2 bold ${handleScore_away(results.home_scores.filter((score) => score <= playout).length, results.away_scores.filter((score) => score <= playout).length) ?`${state?.Ended?'': 'kiron-playout-score-animation kiron-playout-score'}`: 'red-txt'}`}> {results.away_scores.filter((score) => score <= playout).length}</span>
                                                             <span
                                                                 className="away-team-r bold px-2">{results.away_team}</span>
 
@@ -171,10 +179,16 @@ const KironPlayouts = (props) => {
 
                                         </div>
                                         {results?.bet_pick !== null &&
-                                            <div>
-                                             <span
-                                                 className="away-team-r bold px-2 bg-success w-100">&nbsp;
-                                                 <span className={'text-warning'}>Bet Pick</span>:&nbsp;<span className={'text-black'}>{results?.bet_pick}</span>&nbsp;
+                                            <div className={'w-100 d-flex'}>
+                                             <span className="w-100  d-flex  justify-content-center bold px-2 bg-success w-100" style={{fontSize:'13px',height:'23px'}}>
+                                                 &nbsp;
+                                                 <span className={'text-warning '}>Bet Pick:&nbsp;
+                                                     <span className={'text-light kiron_choice'}>{results?.bet_pick}</span>&nbsp;
+                                                 </span>
+
+                                                 <span className={'text-warning'}>Market :&nbsp;
+                                                     <span className={'text-light kiron_choice'}>{results?.market}</span></span>
+
 
                                              </span>
                                             </div>
@@ -188,12 +202,12 @@ const KironPlayouts = (props) => {
                 </div>
 
             </div>
-
-
         </>
 
 
-);
+    );
 };
 
 export default KironPlayouts;
+
+

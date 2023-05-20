@@ -34,6 +34,7 @@ const Standing = () => {
         fetchData();
     }, [newCompetition]);
 
+
     return (
         <div>
             <section className="standing-wrapper text-center pt-1 pb-1">
@@ -55,6 +56,7 @@ const Standing = () => {
                             <th className={''}>Position</th>
                             <th className={''}>Team</th>
                             <th className={''}>Points</th>
+                            <th className={''}>Played</th>
                             <th className={'text-center'}>Form</th>
                         </tr>
                         { standings &&
@@ -70,7 +72,7 @@ const Standing = () => {
                                   </span>
                                     </td>
                                     <td>{standing?.points}</td>
-
+                                    <td>{standing?.games_played}</td>
                                     <td><span className="team-form">
                                        {Array.from(standing?.form)?.map((item) => (
                                            <span title={`${item=='L'?' Lost':item=='W'?' Won ':' Draw '}`} className={`btn btn-sm ${item=='L'?' btn-danger ':item=='W'?' btn-success ':' btn-dark '} mx-1`} style={{width: '18%', cursor:'default'}}><strong className={'bold'}>{item}</strong></span>

@@ -17,7 +17,7 @@ let timerInterval;
 let timerVar;
 
 const KironPeriods= (props) => {
-    const {setClosed, setPlayout,setIsCountdownTimerActive,isCountdownTimerActive}=props
+    const { setPlayout,setIsCountdownTimerActive,isCountdownTimerActive}=props
     const [state, dispatch] = useContext(Context);
     const [timeLeft, setTimeLeft] = useState(0);
     const [timeAfter, setTimeAfter] = useState(null);
@@ -59,7 +59,7 @@ const KironPeriods= (props) => {
                 setLocalStorage('kiron_end_time', firstItem?.end_time)
             }
             else {
-                // fetchData()
+                fetchData()
             }
 
         })
@@ -121,14 +121,11 @@ const KironPeriods= (props) => {
     useEffect(() => {
         clearInterval(timerVar)
         clearInterval(timerInterval)
-        // setIsCountdownTimerActive(false)
-        // todo check remove periods
-        // dispatch({ type: "SET", key: 'periods_data', payload: null })
         dispatch({type: "SET", key: "inPlay", payload:false});
-        setClosed(false)
+        // setClosed(false)
+        dispatch({type: "SET", key: 'close_spinner', payload:false})
         dispatch({ type: "SET", key: 'periods_first', payload: null })
         dispatch({type: "SET", key: 'playout_data', payload:null})
-
         fetchData()
 
     }, [newCompetition])
@@ -136,10 +133,9 @@ const KironPeriods= (props) => {
     useEffect(() => {
         if (isCountdownTimerActive==false) {
 
-            setClosed(false)
+            // setClosed(false)
+            dispatch({type: "SET", key: 'close_spinner', payload:false})
             setIsCountdownTimerActive(false)
-            // setInPlay(false)
-            // dispatch({type: "SET", key: "inPlay", payload:false});
             dispatch({type: "SET", key: 'playout_data', payload:null})
             clearInterval(timerVar)
             if (timeLeft< 0) {
@@ -151,7 +147,6 @@ const KironPeriods= (props) => {
 
 
     useEffect(() => {
-        // setInPlay(false);
         dispatch({type: "SET", key: "inPlay", payload:false});
         let timeLocal = state?.periods_first??getFromLocalStorage("kiron_first_period")
 
@@ -184,8 +179,7 @@ const KironPeriods= (props) => {
             if(isCountdownTimerActive!=false){
                 return
             }
-            setClosed(false);
-            // setInPlay(false)
+            dispatch({type: "SET", key: 'close_spinner', payload:false})
             dispatch({type: "SET", key: "inPlay", payload:false});
             timeLocal = state?.periods_first??getFromLocalStorage("kiron_first_period")
             firstRound= Date.parse(timeLocal)
@@ -202,32 +196,27 @@ const KironPeriods= (props) => {
 
 
             if (initialTime > 10 &&initialTime<60) {
-                // setTimerColor('count-red');
 
             } else if (initialTime <= 9 && initialTime > 0) {
-                // setTimerColor('count-red');
                 //todo if in another selection close/spinner should be false
                 if(state?.current_selection_period?.start.length>0){
-                    setClosed(false);
-                }else{
-                    setClosed(true);
 
+                    dispatch({type: "SET", key: 'close_spinner', payload:false})
+                }else{
+                    // setClosed(true);
+                    dispatch({type: "SET", key: 'close_spinner', payload:true})
                 }
                 document.getElementById('game_week').innerHTML="Game Week "+getFromLocalStorage('kiron_first_week')
                 document.getElementById('countdown').innerHTML ='Match Starts In '+ timer;
             } else if(initialTime <= 0) {
                 if(state?.current_selection_period?.start.length>0){
-                    // setInPlay(false)
                     dispatch({type: "SET", key: "inPlay", payload:false});
                 }else{
-                    // setInPlay(true)
+
                     dispatch({type: "SET", key: "inPlay", payload:true});
                 }
-                // setTimerColor('count-green');
                 setIsCountdownTimerActive(true);
-                setClosed(false);
-                // setTimerColor('count-green');
-                setClosed(false);
+                dispatch({type: "SET", key: 'close_spinner', payload:false})
 
                 clearInterval(timerInterval);
             }
@@ -243,7 +232,8 @@ const KironPeriods= (props) => {
         if(state?.current_selection_period?.start>0){
             // setInPlay(false)
             dispatch({type: "SET", key: "inPlay", payload:false});
-            setClosed(false)
+            // setClosed(false)
+            dispatch({type: "SET", key: 'close_spinner', payload:false})
 
         }else if(state?.current_selection_period?.start.length==0){
             const kiron_end=getFromLocalStorage('kiron_end_time')
@@ -410,7 +400,6 @@ const KironPeriods= (props) => {
     useEffect(()=>{
         kironTabVisible()
     },[])
-
 
     return (
         <div className={ `  container-period ` } style={{background:" #162024"}}>

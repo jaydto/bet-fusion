@@ -33,8 +33,6 @@ const KironResults = () => {
         fetchData();
     }, [new URL(window.location).searchParams.get('competition_id')]);
 
-
-    console.log("resulted", resulted)
     return (
         <>
             {resulted &&!loading?

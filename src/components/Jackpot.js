@@ -4,11 +4,8 @@ import {getFromLocalStorage, setLocalStorage} from "./utils/local-storage";
 import useWindowDimensions from "./header/Dimensions";
 import makeRequest from "./utils/fetch-request";
 import jackpot from '../assets/img/banner/products/jackpot.webp';
-
-
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
-import Jackpot300k from "../assets/img/banner/products/Bet_Nare_300k_Jackpot_New.webp";
 import {JackpotMatchList} from "./matches";
 import Select from "react-select";
 import Container from "react-bootstrap/Container";

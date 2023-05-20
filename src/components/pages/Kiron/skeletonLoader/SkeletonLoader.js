@@ -110,9 +110,9 @@ const SkeletonLoader = () => {
                             <div className="loading-main-text" style={backgroundLoader}></div>
                             <div className="loading-sub-text" style={backgroundLoader}></div>
                         </div>
-                        <div className="loading-btn" style={backgroundLoader}></div>
-                        <div className="loading-btn" style={backgroundLoader}></div>
-                        <div className="loading-btn" style={backgroundLoader}></div>
+                        <div className="loading-btn" style={backgroundLoaderbtn}></div>
+                        <div className="loading-btn" style={backgroundLoaderbtn}></div>
+                        <div className="loading-btn" style={backgroundLoaderbtn}></div>
                     </div>
                 </div>
             </div>

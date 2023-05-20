@@ -89,7 +89,7 @@ const  TestKiron= () => {
             setTimeout(()=>{
                 setLoading(true)
                 fetchData();
-            },1000)
+            },600)
 
         }
         console.log("page_change")

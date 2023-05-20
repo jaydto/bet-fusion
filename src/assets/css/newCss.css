@@ -494,6 +494,9 @@ input[type="radio"], input[type="checkbox"] {
 .pro-sidebar .pro-menu a {
     color: var(--aqua)!important;
 }
+.size-all-markets{
+    width:145%;
+}
 .tab-home{
     background: var(--tabs-home);
 }
@@ -896,6 +899,9 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 @media (max-width: 991px){
+    .size-all-markets{
+        width:100%;
+    }
 
     .sticky-jackpot {
         top: 0px;

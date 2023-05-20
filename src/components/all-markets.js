@@ -104,7 +104,7 @@ const  AllMarkets= (props) => {
                 <div className="item1">
                     {window.location.pathname.includes('/match/live')?<LiveSideBar/>:<SideBar loadCompetitions/>}
                 </div>
-                <div className="item2" style={{width:'145%'}}>
+                <div className="item2 size-all-markets" >
                     <div className="gz home" style={{ width: "100%" ,marginBottom:"5rem"}}>
 
                         <div className="homepage">

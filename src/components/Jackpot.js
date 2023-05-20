@@ -84,7 +84,7 @@ const  Jackpot= () => {
             <div className="item4"><Header/></div>
             <div className="flex-container">
                 <div className="item1"> <SideBar loadCompetitions/></div>
-                <div className="item2" style={{width:'145%'}}>
+                <div className="item2 size-all-markets" >
                     <div className="gz home" style={{width: "100%", overflowX: "clip"}}>
                         <div className="homepage">
                             <Tabs

@@ -859,6 +859,9 @@ input[type="radio"], input[type="checkbox"] {
     }
 }
 @media (min-width: 992px){
+    .size-all-markets{
+        width:145%!important;
+    }
     .extra-markets-mobile-date{
         display:none;
     }

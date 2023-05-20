@@ -64,7 +64,7 @@ const  AllMarkets= (props) => {
                 }
             );
         },
-        live ? 2000 : null
+        live ? 5000 : null
     );
     const fetchPagedData = useCallback(async () => {
         if (!isLoading && !isNaN(+id)) {

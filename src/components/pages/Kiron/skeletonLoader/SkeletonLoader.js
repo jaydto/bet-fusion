@@ -3,11 +3,9 @@ import './skeletonLoader.css'
 const SkeletonLoader = () => {
 
     const backgroundLoader={
-        // backgroundImage: "-o-linear-gradient(left, #ECECEC 0px, #ddd 40px, #ECECEC 80px)",
         backgroundImage: "linear-gradient(90deg, #ececec 0px, #ddd 40px, #ececec 80px)"
     }
     const backgroundLoaderbtn={
-        // backgroundImage: "-o-linear-gradient(left, #ECECEC 0px, #ddd 40px, #ECECEC 80px)",
         backgroundImage: "-webkit-linear-gradient(left, #2D4352 0px, #ddd 40px, #2D4352 80px)"
     }
     return (

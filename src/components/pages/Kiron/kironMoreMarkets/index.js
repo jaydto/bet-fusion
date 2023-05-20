@@ -98,7 +98,7 @@ const KironMoreMarkets= (props) => {
         <div className="market-option">
             <div className="tabcontent pt-2 pb-2">
                 <div className="sport_dropdowns">
-                    <div className="double-chance-market text-start" style={{marginLeft:'20px'}}>
+                    <div className="double-chance-market text-start" style={{marginLeft:'1rem'}}>
                         <Button  to={`/nare-league?sub_type_id=3`} type="button" className={`text-light btn size-market-kiron size-market-kiron ${pathname.includes(`sub_type_id=3`)&& 'btn-warning '} `}>1X2</Button>
                     </div>
                     <div className="double-chance-market text-center">

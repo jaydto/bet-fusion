@@ -50,7 +50,7 @@ const  Index= () => {
     };
 
 
-    useInterval(async () => {
+   const resetInterval= useInterval(async () => {
         // console.log("location",location.pathname)
         if(location.pathname==="/")
             setFetching(true)
@@ -101,6 +101,8 @@ const  Index= () => {
         });
     }, 20000);
 
+
+
     const fetchData = useCallback(async () => {
         setFetching(true)
         let tab = location.pathname.replace("/", "") || 'highlights';
@@ -146,6 +148,7 @@ const  Index= () => {
     }, []);
 
     useEffect(() => {
+        clearInterval(resetInterval)
         checkThreeWay()
         fetchData();
         let cachedSlips = getBetslip("betslip");
@@ -155,7 +158,7 @@ const  Index= () => {
         return () => {
             setMatches(null);
         };
-    }, []);
+    }, [window.location.pathname]);
 
     const checkThreeWay = () => {
         let url = new URL(window.location)

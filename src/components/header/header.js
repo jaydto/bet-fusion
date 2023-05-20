@@ -14,10 +14,7 @@ import logo from '../../assets/img/Logo.webp';
 import {Navbar, Offcanvas} from "react-bootstrap";
 import SidebarMobile from "../sidebar/awesome/SidebarMobile";
 import MobileNav1 from "../mobile-navigation/MobileNav1";
-import MobileProfile from "./MobileProfile";
-// const CompetitionsMatches = React.lazy(
-//     () => import('./components/competition/competition-matches')
-// );
+
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCloudDownloadAlt, faCoins, faSearch, faTimes} from "@fortawesome/free-solid-svg-icons";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
@@ -327,7 +324,7 @@ const Header = (props) => {
                                     </div>
                                 </ListGroup>
                             </Container>
-                        :(pathname!=='/signup')&&pathname!=='/nare-league'&&<MobileNav1/>}
+                        :(pathname!=='/signup')&&pathname!=='/nare-league'&&pathname!=='/results'&& pathname!=='/standings'&&pathname!=='/playouts'&&pathname!=='/standing'&&pathname!=='/bet-history'&&<MobileNav1/>}
                     </div>
 
                     <Navbar.Offcanvas

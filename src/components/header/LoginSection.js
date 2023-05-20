@@ -46,9 +46,9 @@ const LoginSection= (props) => {
                         <span className="register-label bold">REGISTER </span>
                     </Link>
 
-                    <div className="cg " onClick={()=>handleThemeChange()}>
-                        {!themeLight?<FontAwesomeIcon icon={faAdjust} style={{fontSize:'20px'}} className={'text-light'}/>:<FontAwesomeIcon icon={faSun} className={'text-warning'} style={{fontSize:'20px'}}/>}
-                    </div>
+                    {/*<div className="cg " onClick={()=>handleThemeChange()}>*/}
+                    {/*    {!themeLight?<FontAwesomeIcon icon={faAdjust} style={{fontSize:'20px'}} className={'text-light'}/>:<FontAwesomeIcon icon={faSun} className={'text-warning'} style={{fontSize:'20px'}}/>}*/}
+                    {/*</div>*/}
                 </div>
 
             </div>

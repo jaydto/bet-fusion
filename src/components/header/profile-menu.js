@@ -11,7 +11,7 @@ import {
     faList,
     faMoneyBillWave,
     faCoins,
-    faAdjust,
+    // faAdjust,
     faSun
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -73,12 +73,12 @@ const ProfileMenu = (props) => {
                                 <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"md"}`} className="px-3 py-3"/>
                             </div>
                         </div>
-                        <div className="w-auto d-flex  text-white align-items-end"  title={'Theme'}>
-                            <div className="cg " onClick={()=>handleThemeChange()}>
-                                {!themeLight?<FontAwesomeIcon icon={faAdjust} style={{fontSize:'20px'}} className={'text-light'}/>:<FontAwesomeIcon icon={faSun} className={'text-warning'} style={{fontSize:'20px'}}/>}
-                            </div>
+                        {/*<div className="w-auto d-flex  text-white align-items-end"  title={'Theme'}>*/}
+                        {/*    <div className="cg " onClick={()=>handleThemeChange()}>*/}
+                        {/*        {!themeLight?<FontAwesomeIcon icon={faAdjust} style={{fontSize:'20px'}} className={'text-light'}/>:<FontAwesomeIcon icon={faSun} className={'text-warning'} style={{fontSize:'20px'}}/>}*/}
+                        {/*    </div>*/}
 
-                        </div>
+                        {/*</div>*/}
                     </div>
                 </>
 

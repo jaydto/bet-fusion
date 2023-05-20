@@ -122,7 +122,7 @@ const  Jackpot= () => {
                                     </div>
 
                                     {/*<JackpotHeader jackpot={matches?.meta}/>*/}
-                                    <img src={Jackpot300k}/>
+                                    <img src={Jackpot}/>
 
                                     <div className="matches full-mobile sticky-top container">
                                         <div

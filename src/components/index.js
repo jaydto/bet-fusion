@@ -246,8 +246,7 @@ const  Index= () => {
                 <Testimonials/>
 
                 <MainTabs tab={location.pathname.replace("/", "")}/>
-                {/* <MobileCategories/> */}
-                {/* <MobileCategories/> */}
+
                 {loading ?
                     <div className={`text-center mt-2 text-white d-block`}>
                         {/*<Spinner animation={'grow'} size={'lg'}/>*/}

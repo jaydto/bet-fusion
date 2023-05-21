@@ -3,7 +3,6 @@ import Carousel from 'react-bootstrap/Carousel';
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
-import Bayern from '../../assets/img/banner/products/BayernvsLeipzig.webp'
 import Mancity from '../../assets/img/banner/products/ManCItyvsChelsea.webp'
 import instant from '../../assets/img/banner/products/3kintant.webp'
 import bonus from '../../assets/img/banner/products/20Bonus.webp'
@@ -17,8 +16,6 @@ import jackpot from '../../assets/img/banner/products/jackpot.webp'
 
 
 const banners = [
-
-    {src: Bayern, url: "/match/32905790"},
     {src: Mancity, url: "/match/32907505"},
     {src: instant, url: "/promotions"},
     {src: bonus, url: "/promotions"},

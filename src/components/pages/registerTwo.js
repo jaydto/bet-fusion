@@ -289,4 +289,4 @@ const RegisterTwo = props => {
 	)
 }
 
-export default RegisterTwo
+export default React.memo(RegisterTwo)

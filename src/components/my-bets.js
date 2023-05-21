@@ -238,4 +238,4 @@ const MyBets = (props) => {
     )
 }
 
-export default MyBets
+export default React.memo(MyBets)

@@ -61,4 +61,4 @@ const MainTabs = (props) => {
 
 }
 
-export default MainTabs;
+export default React.memo(MainTabs);

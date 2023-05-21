@@ -165,4 +165,4 @@ const RegisterModal = (props) => {
 
     );
 };
-export default RegisterModal
+export default React.memo(RegisterModal);

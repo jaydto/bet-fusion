@@ -76,4 +76,4 @@ const BetslipShareModal = (props) => {
 
     );
 };
-export default BetslipShareModal
+export default React.memo(BetslipShareModal);

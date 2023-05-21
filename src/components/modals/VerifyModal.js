@@ -136,4 +136,4 @@ const VerifyModal = (props) => {
 
     );
 };
-export default VerifyModal
+export default React.memo(VerifyModal)

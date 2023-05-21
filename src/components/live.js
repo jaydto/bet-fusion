@@ -127,4 +127,4 @@ const  Live= () => {
     );
 };
 
-export default Live;
+export default React.memo(Live);

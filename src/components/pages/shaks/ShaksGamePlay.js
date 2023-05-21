@@ -97,4 +97,4 @@ const ShaksGamePlay = (props) => {
     )
 }
 
-export default ShaksGamePlay
+export default React.memo(ShaksGamePlay)

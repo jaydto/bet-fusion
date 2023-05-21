@@ -138,4 +138,4 @@ const SmartPlay = (props) => {
     )
 }
 
-export default SmartPlay
+export default React.memo(SmartPlay)

@@ -155,4 +155,4 @@ const SidebarMobile = (props) => {
         </ProSidebar>)
 }
 
-export default SidebarMobile
+export default React.memo(SidebarMobile);

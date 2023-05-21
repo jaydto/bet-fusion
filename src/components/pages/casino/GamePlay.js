@@ -146,4 +146,4 @@ const GamePlay = (props) => {
     )
 }
 
-export default GamePlay
+export default React.memo(GamePlay)

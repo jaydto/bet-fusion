@@ -136,4 +136,4 @@ const LoginModal = (props) => {
 
     );
 };
-export default LoginModal
+export default React.memo(LoginModal)

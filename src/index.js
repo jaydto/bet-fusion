@@ -20,11 +20,11 @@ import './assets/css/Themes.css'
 import Store from './context/store';
 import ReactGA from 'react-ga4';
 
-const Deposit3=React.lazy(()=>import("./components/pages/deposit-withraw/Deposit3"));
-// import Deposit2 from "./components/pages/deposit-withraw/Deposit2";
 
 const TRACKING_ID = "G-5NLSN9BLN4";
 ReactGA.initialize(TRACKING_ID);
+
+const Deposit3=React.lazy(()=>import("./components/pages/deposit-withraw/Deposit3"));
 
 const Index = React.lazy(() => import('./components'));
 
@@ -81,12 +81,7 @@ const Withdraw = React.lazy(
 const RedeemPoints = React.lazy(
     () => import('./components/pages/points/RedeemPoints2')
 );
-//todo changed from deposit
-const Deposit2 = React.lazy(
-    () => import('./components/pages/deposit-withraw/Deposit2')
-);
 
-//todo changed from signup
 const Signup = React.lazy(
     () => import('./components/pages/registerTwo')
 );

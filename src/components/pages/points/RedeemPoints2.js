@@ -37,7 +37,7 @@ const backgroundStyle = {
 }
 
 
-const Deposit3= props => {
+const RedeemPoints= props => {
     const [message, setMessage] = useState(null);
     // const {setUser} = props;
     const navigate = useNavigate();
@@ -302,5 +302,5 @@ const Deposit3= props => {
     )
 }
 
-export default Deposit3
+export default React.memo(RedeemPoints)
 

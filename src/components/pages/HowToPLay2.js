@@ -906,4 +906,4 @@ const  HowToPlay= (props) => {
     );
 };
 
-export default HowToPlay
+export default React.memo(HowToPlay)

@@ -30,4 +30,4 @@ const MobileCategories = () => {
     )
 }
 
-export default MobileCategories
+export default React.memo(MobileCategories);

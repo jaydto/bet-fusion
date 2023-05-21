@@ -1414,4 +1414,4 @@ const MatchList = (props) => {
       </div>
   )
 }
-export default MatchList;
+export default React.memo(MatchList);

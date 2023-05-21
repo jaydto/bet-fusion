@@ -98,4 +98,4 @@ const Right = (props) => {
         </div>
     )
 }
-export default Right;
+export default React.memo(Right);

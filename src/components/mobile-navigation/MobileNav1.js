@@ -52,9 +52,6 @@ const MobileNav1 = (props) => {
     // dispatch({type:"SET", key: "sport", payload: {}})
 
 
-
-
-
     const fetchData = useCallback(async () => {
         let cached_competitions = getFromLocalStorage('categories');
         let endpoint = "/v1/categories";

@@ -78,4 +78,4 @@ const Betslip = (props) => {
     );
 };
 
-export default Betslip;
+export default React.memo(Betslip);

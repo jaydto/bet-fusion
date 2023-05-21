@@ -45,4 +45,4 @@ const LiveScore = () => {
         </>)
 }
 
-export default LiveScore
+export default React.memo(LiveScore)

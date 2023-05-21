@@ -173,4 +173,4 @@ const AntiMoneyLaundering = () => {
     );
 };
 
-export default AntiMoneyLaundering;
+export default React.memo(AntiMoneyLaundering);

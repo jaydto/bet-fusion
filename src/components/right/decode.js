@@ -108,4 +108,4 @@ const DecodeCode = () => {
     );
 };
 
-export default DecodeCode;
+export default React.memo(DecodeCode);

@@ -43,4 +43,4 @@ const CompanyInfo = (props) => {
     )
 
 }
-export default CompanyInfo;
+export default React.memo(CompanyInfo);

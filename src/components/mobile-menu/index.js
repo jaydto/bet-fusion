@@ -171,4 +171,4 @@ const MobileMenu = (props) => {
         </div>
     );
 };
-export default MobileMenu;
+export default React.memo(MobileMenu);

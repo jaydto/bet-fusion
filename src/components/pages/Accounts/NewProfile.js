@@ -260,4 +260,4 @@ const NewProfile = () => {
     );
 };
 
-export default NewProfile;
+export default React.memo(NewProfile);

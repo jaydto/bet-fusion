@@ -83,4 +83,4 @@ const MobileProfile = (props) => {
     </>);
 };
 
-export default MobileProfile;
+export default React.memo(MobileProfile);

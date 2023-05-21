@@ -133,4 +133,4 @@ const Virtuals = (props) => {
 }
 
 
-export default Virtuals;
+export default React.memo(Virtuals);

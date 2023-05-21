@@ -61,4 +61,4 @@ const ExitModal = (props) => {
 
     );
 };
-export default ExitModal
+export default React.memo(ExitModal)

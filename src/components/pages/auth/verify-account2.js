@@ -344,5 +344,5 @@ const VerifyAccount2 = props => {
     )
 }
 
-export default VerifyAccount2
+export default React.memo(VerifyAccount2);
 

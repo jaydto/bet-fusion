@@ -87,4 +87,4 @@ const ProfileMenu = (props) => {
     );
 };
 
-export default ProfileMenu;
+export default React.memo(ProfileMenu);

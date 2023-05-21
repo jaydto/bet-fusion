@@ -338,5 +338,5 @@ const Deposit3= props => {
     )
 }
 
-export default Deposit3
+export default React.memo(Deposit3)
 

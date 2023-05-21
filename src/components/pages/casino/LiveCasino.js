@@ -239,4 +239,4 @@ const LiveCasino = (props) => {
 }
 
 
-export default LiveCasino;
+export default React.memo(LiveCasino);

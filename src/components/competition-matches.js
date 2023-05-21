@@ -133,4 +133,4 @@ const   CompetitionMatches= () => {
     );
 };
 
-export default CompetitionMatches;
+export default React.memo(CompetitionMatches);

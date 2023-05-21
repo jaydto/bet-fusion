@@ -133,4 +133,4 @@ const Casino = (props) => {
 }
 
 
-export default Casino;
+export default React.memo(Casino);

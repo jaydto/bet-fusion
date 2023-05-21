@@ -198,4 +198,4 @@ const  Jackpot= () => {
     );
 };
 
-export default Jackpot;
+export default React.memo(Jackpot);

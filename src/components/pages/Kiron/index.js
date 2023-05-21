@@ -250,4 +250,4 @@ const  TestKiron= () => {
     );
 };
 
-export default TestKiron;
+export default React.memo(TestKiron);

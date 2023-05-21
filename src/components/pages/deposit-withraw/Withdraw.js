@@ -208,4 +208,4 @@ const Withdrawal = (props) => {
     )
 }
 
-export default Withdrawal;
+export default React.memo(Withdrawal);

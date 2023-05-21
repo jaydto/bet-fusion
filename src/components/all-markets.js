@@ -132,4 +132,4 @@ const  AllMarkets= (props) => {
     );
 };
 
-export default AllMarkets;
+export default React.memo(AllMarkets);

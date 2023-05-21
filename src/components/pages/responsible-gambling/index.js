@@ -179,4 +179,4 @@ const ResponsibleGambling = () => {
     )
 }
 
-export default ResponsibleGambling
+export default React.memo(ResponsibleGambling)

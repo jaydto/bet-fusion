@@ -158,4 +158,4 @@ const LiveSideBar = (props) => {
     //     </div>
     // )
 }
-export default LiveSideBar;
+export default React.memo(LiveSideBar);

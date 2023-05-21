@@ -140,4 +140,4 @@ const DisputeResolution = () => {
     );
 };
 
-export default DisputeResolution;
+export default React.memo(DisputeResolution);

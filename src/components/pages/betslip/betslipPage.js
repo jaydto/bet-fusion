@@ -224,4 +224,4 @@ const BetslipPage = () => {
   );
 };
 
-export default BetslipPage;
+export default React.memo(BetslipPage);

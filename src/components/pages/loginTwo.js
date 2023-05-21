@@ -199,4 +199,4 @@ const LoginTwo = props => {
 	)
 }
 
-export default LoginTwo
+export default React.memo(LoginTwo)

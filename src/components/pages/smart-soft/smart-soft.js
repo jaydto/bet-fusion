@@ -120,4 +120,4 @@ const SmartSoft = (props) => {
     )
 }
 
-export default SmartSoft
+export default React.memo(SmartSoft)

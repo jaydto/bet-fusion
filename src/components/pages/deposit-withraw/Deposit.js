@@ -234,4 +234,4 @@ const Deposit = (props) => {
 
 }
 
-export default Deposit
+export default React.memo(Deposit)

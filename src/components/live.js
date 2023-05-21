@@ -36,7 +36,7 @@ const  Live= () => {
         return values;
     };
 
-    useInterval(async () => {
+    const ResetInterval=useInterval(async () => {
         let endpoint = "/v1/matches/live";
         if (spid) {
             endpoint += "?spid=" + spid;
@@ -80,6 +80,7 @@ const  Live= () => {
         const abort=new AbortController()
 
         fetchData();
+        clearInterval(ResetInterval)
         let cachedSlips = getBetslip("betslip");
         if (cachedSlips) {
             dispatch({type: "SET", key: "betslip", payload: cachedSlips});

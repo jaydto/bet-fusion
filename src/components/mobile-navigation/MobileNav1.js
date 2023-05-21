@@ -248,8 +248,9 @@ const MobileNav1 = (props) => {
                           to={"/nare-league"}
                           title="Nare League"
                     >
+
                         <div className="menu-img">
-                            <img src={kiron} style={{height: "37px", marginTop:"-7px", width:"48px" }}/>
+                            <img src={kiron} style={{height: "40px", marginTop:"-10px", width:"46px" }}/>
                             <span className=" badge" style={{color:"white",background:"red"
                                 ,marginTop:"-5px", borderRadius: "10px 0 15px 0", marginLeft:"1px", padding:"0.3px 3px ", fontSize:"5.5px",position:'absolute',top:'5px',left:'50px'}}>NEW</span>
                         </div>

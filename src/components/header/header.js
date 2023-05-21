@@ -229,7 +229,7 @@ const Header = (props) => {
                                             <Link className="" to={"#"} title="Search"
                                                   onClick={() => showSearchBar()}>
                                                 <span
-                                                    className="border-radius-search p-2 align-items-center text-dark bg-light justify-content-center d-flex"><FontAwesomeIcon
+                                                    className="border-radius-search p-2 align-items-center  justify-content-center d-flex"><FontAwesomeIcon
                                                     icon={faSearch}/> </span><span
                                             ></span>
                                             </Link>
@@ -266,7 +266,7 @@ const Header = (props) => {
                                                 <Link className="" to={"#"} title="Search"
                                                       onClick={() => showSearchBar()}>
                                                     <span
-                                                        className="border-radius-search p-2 text-dark bg-light justify-content-center d-flex"><FontAwesomeIcon
+                                                        className="border-radius-search p-2  justify-content-center d-flex"><FontAwesomeIcon
                                                         icon={faSearch}/> </span><span
                                                 ></span>
                                                 </Link>

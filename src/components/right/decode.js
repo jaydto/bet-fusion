@@ -59,7 +59,7 @@ const DecodeCode = () => {
 
         <React.Fragment>
             <div className=" ">
-                <div className="card card-radius profile-bg text-light p-0 mt-2">
+                <div className="card card-radius decode-bg text-light p-0 mt-2">
                     <div className="card-body p-3" style={{overflow: "hidden"}}>
                         <form>
                             <div className="form-group row d-flex justify-content-center ">

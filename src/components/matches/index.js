@@ -116,22 +116,16 @@ const marketChoice = () => {
 
 const MatchHeaderRow = (props) => {
   const {live, first_match, jackpot} = props;
-  //const [state, ]  = useContext(Context);
   const categories = getFromLocalStorage('categories')
   const sport_id = new URL(window.location).searchParams.get('sport_id') || 79
   let sport = categories?.all_sports?.filter((category) => category.sport_id == sport_id)
   const [sportName, setSportName] = useState(sport!=null?sport?.[0].sport_name || 'Soccer':"");    const [showX, setShowX] = useState(true);
   const [market, setMarket] = useState('1x2');
-  const [state,dispatch]=useContext(Context)
-  const [marketCols, setMarketCols] = useState(3)
-  const [user, setUser] = useState(getFromLocalStorage("user"));
+  const [state,]=useContext(Context)
+  const [user, ] = useState(getFromLocalStorage("user"));
   const [extraMarketDisplays, setExtraMarketDisplays] = useState([])
-
   const [threeWay, setThreeWay] = useState(false)
-
   const getSelectedMarkets = () => {
-
-
     const markets = marketChoice();
 
     let url = new URL(window.location)
@@ -152,7 +146,6 @@ const MatchHeaderRow = (props) => {
       }
     })
 
-
     setExtraMarketDisplays(extraMarkets)
 
   }
@@ -169,8 +162,6 @@ const MatchHeaderRow = (props) => {
 
     }
   }, [first_match?.parent_match_id])
-
-
 
   return (
 
@@ -193,9 +184,7 @@ const MatchHeaderRow = (props) => {
             {threeWay &&
                 <div className="d-flex flex-row ">
                   <div className="d-flex flex-column text-center text-white fit-ipad ">
-                    {/*<div className={'bold'}>*/}
-                    {/*    3 WAY*/}
-                    {/*</div>*/}
+
                     <div className={'c-btn-group align-self-end'}>
                       <a className="c-btn-header text-white">1</a>
                       <a className="c-btn-header text-white">X</a>
@@ -207,9 +196,9 @@ const MatchHeaderRow = (props) => {
             {/*mobile*/}
             <div className={" separations to-tabview"}>
               {!live && !jackpot && extraMarketDisplays.length > 0 &&
-                  extraMarketDisplays?.map((extra_market) => (
+                  extraMarketDisplays?.map((extra_market,index) => (
 
-                      <div className={'d-flex flex-row'}>
+                      <div className={'d-flex flex-row'} key={index}>
                         <div className={'d-flex flex-column text-center text-white fit-ipad'}>
                                     <span className={'small'}>
                                         {extra_market.name}
@@ -257,8 +246,7 @@ const MatchHeaderRow = (props) => {
                 </>
             )}
             <div
-                className="bet-fix events-odd pad undefined align-items-md-start align-items-lg-center more-markets-container m-lg-2 col-3 d-flex h-100 d-flex align-self-center justify-content-md-start justify-content-lg-center
-                              ">
+                className="bet-fix events-odd pad undefined align-items-md-start align-items-lg-center more-markets-container m-lg-2 col-3 d-flex h-100 d-flex align-self-center justify-content-md-start justify-content-lg-center">
               <LazyLoadImage src={myGif} className={'fire '}/>
             </div>
           </div>
@@ -429,33 +417,6 @@ const MoreMarketsHeaderRow = (props) => {
   );
 };
 
-
-// const SideBets = (props) => {
-//   const {match, live} = props;
-//   const [picked,] = useState();
-//
-//
-//   return (
-//       <div
-//           className={`bet-fix events-odd pad ${picked} align-self-center more-markets-container m-lg-2 `}>
-//         {(match?.side_bets > 1) && <>
-//           <a className="side"
-//              href={`https://s5.sir.sportradar.com/betnaremts/en/match/${match.parent_match_id}`}
-//              target={"_blank"}
-//              title={'View Stats'}>
-//             <FontAwesomeIcon className={"icon-size"} icon={faChartLine}/>
-//           </a>
-//           <Link className="side" title={'More Markets'}
-//                 to={`/match/${live ? 'live' : ''}${
-//                     live ? match.parent_match_id : match?.match_id}`
-//                 }>+{match.side_bets}
-//           </Link>
-//         </>}
-//       </div>
-//   )
-//
-// }
-
 const SideBets = (props) => {
   const { match, live, jackpot } = props;
   const [picked] = useState();
@@ -464,7 +425,7 @@ const SideBets = (props) => {
       <div
           className={`bet-fix events-odd pad ${picked} align-self-center more-markets-container m-lg-2 align-items-center `}
       >
-        {/* {console.log("match_id", "jackpot"+jackpot+"match"+match.side_bets)} */}
+
         {jackpot && (
             <a
                 className="side w-auto bold "
@@ -475,12 +436,10 @@ const SideBets = (props) => {
             >
               {" "}
               Stats
-              {/* <FontAwesomeIcon className={"icon-size"} icon={faChartLine}/> */}
             </a>
         )}
         {match?.side_bets > 1 && (
             <>
-              {/* {console.log("jackpot")} */}
               <a
                   className="side w-auto bold"
                   href={`https://s5.sir.sportradar.com/betnaremts/en/match/${match.parent_match_id}`}
@@ -844,7 +803,6 @@ const MatchRow = (props) => {
   const [sportName, setSportName] = useState(sport?.[0].sport_name || 'Soccer');
   const [showX, setShowX] = useState(true);
   const [market, setMarket] = useState('1x2');
-  const [state,dispatch]=useContext(Context)
   const {height, width} = useWindowDimensions();
 
   const [threeWay, setThreeWay] = useState(false)
@@ -856,13 +814,9 @@ const MatchRow = (props) => {
     let url = new URL(window.location)
 
     let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29").split(",")
-    // console.log("subtypes",sub_types[0]);
     if(width<=767){
-      // console.log("condition has been met ", [sub_types[0]])
       sub_types=[sub_types[0]]
     }
-
-
 
     if (sub_types.includes("1")) {
       setThreeWay(true)
@@ -878,7 +832,7 @@ const MatchRow = (props) => {
       }
     })
 
-    // console.log("extra-markets",extraMarkets);
+
 
     setExtraMarketDisplays(extraMarkets)
 
@@ -980,13 +934,10 @@ const MatchRow = (props) => {
                     {threeWay &&
                         <div className="d-flex flex-row ">
                           <div className="d-flex flex-column text-center text-white fit-ipad w-100">
-                            {/*<div className="font-weight-bold mobile-remove">*/}
-                            {/*    <h4 className="font-weight-bold mobile-remove"> 3 WAY</h4>*/}
-                            {/*</div>*/}
                             <div className={"d-sm-none d-md-none"}>
                                             <span className='d-flex justify-content-start'>
-                                                {match?.tags?.map((tag)=>(
-                                                    <span className='px-2 w-100 ' style={{color:tag?.color, backgroundColor:tag?.background_color, fontSize:"8px", borderRadius:"10px", marginLeft:"3px", width:"4px", marginTop:"8px"}}>
+                                                {match?.tags?.map((tag,index)=>(
+                                                    <span key={index} className='px-2 w-100 ' style={{color:tag?.color, backgroundColor:tag?.background_color, fontSize:"8px", borderRadius:"10px", marginLeft:"3px", width:"4px", marginTop:"8px"}}>
                                                             <strong>
                                                             {tag.name}
                                                             </strong>
@@ -1002,8 +953,6 @@ const MatchRow = (props) => {
                               <div className={"px-1 wrapping"}>ID: {match?.game_id}</div>
 
                             </div>
-
-
 
                           </div>
                         </div>}
@@ -1074,8 +1023,6 @@ const MatchRow = (props) => {
 
             </div>:""}
 
-
-
             {/*mobile  display and odds*/}
             <div className={"to-profile-check separations to-flex-2"}>
               {match?.competition_name!="World Cup"&&!jackpot  &&  <>
@@ -1101,10 +1048,6 @@ const MatchRow = (props) => {
                                   (
                                       <div key={index}
                                            className={"d-flex flex-column w-100 margin-l-mobile px-sm-1 px-md-1 px-lg-1 "}>
-                                        {/*<div*/}
-                                        {/*    className=" c-btn-header text-white w-100 to-tabview flex-column px-sm-1 px-lg-0 px-md-1 mobile-remove ">*/}
-                                        {/*  {(odd_key)}*/}
-                                        {/*</div>*/}
                                         <div className=" c-btn-group  align-self-center">
                                           {odd_data?.odd_active == 1 && odd_data.market_active == 1 ?
                                               (
@@ -1145,7 +1088,6 @@ const MatchRow = (props) => {
                   <SideBets match={match} live={live} style={{d: "inline"}}/>}
             </div>
             {/*desktop display of odds*/}
-
             {!jackpot && <>
               {Object.entries(match?.extra_odds || {}).map(([marketName, odds], index) => (
                   marketName !== '' && (
@@ -1396,7 +1338,6 @@ const MatchList = (props) => {
 
   return (
       <div className="matches full-width">
-        {/*<LiveSidebar/>*/}
         {matches && <MatchHeaderRow live={live} first_match={matches ? matches[0] : {}}/>}
 
         <Row className="web-element px-lg-3 top-login-background-img-bg ">

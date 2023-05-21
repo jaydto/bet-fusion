@@ -14,6 +14,9 @@ body {
 .top-matches a {
     color:var(--light)!important;
 }
+.decode-bg{
+    background: var(--betnare-primary);
+}
 .footer-custom {
     color: whitesmoke;
     border-bottom: 0px solid #fff;

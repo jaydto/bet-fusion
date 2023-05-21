@@ -13,6 +13,7 @@ import Testimonials from "./carousel/Testimonials";
 
 import Countries from "./countries/Countries";
 import Skeleton1 from "./skeleton/skeleton";
+import {Spinner} from "react-bootstrap";
 
 
 const Header = React.lazy(() => import('./header/header'));

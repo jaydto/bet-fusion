@@ -169,7 +169,6 @@ const  Index= () => {
 
     document.addEventListener('scrollEnd', (event) => {
         if (!fetching) {
-            clearInterval(resetInterval)
             setFetching(true)
             setLimit(limit + 50)
         }

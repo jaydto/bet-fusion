@@ -1,16 +1,13 @@
 import React, { useEffect, useState, useCallback, useContext} from 'react';
 import {
     Link,
-    useParams,
 } from "react-router-dom";
 
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import promo from "../../../src/assets/img/mobile/fire.png";
 import jackpot from "../../../src/assets/img/mobile/jackpot.png";
-import home from "../../../src/assets/img/mobile/home.png"
 import soccer from "../../../src/assets/svg/sports/Soccer.png"
-import casino from "../../assets/img/casino/casino1.png"
 import jetX from "../../assets/img/mobile/jetx.webp"
 import casino1 from "../../assets/img/casino/casino.png"
 import aviator from "../../../src/assets/img/aviator.webp"
@@ -19,11 +16,8 @@ import kiron from "../../../src/assets/img/kiron/nare-league.webp"
 import fire from '../../assets/img/fire.webp'
 import {getFromLocalStorage,setLocalStorage} from "../utils/local-storage";
 import makeRequest from "../utils/fetch-request";
-import Premier_League from "../../../src/assets/img/leagues/Premier League.svg"
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faFireAlt, faPlaneDeparture} from "@fortawesome/free-solid-svg-icons";
-// import crash from  '../../assets/img/shaks/02.webp'
+
 import { Context } from '../../context/store';
 import LoginModal from '../modals/LoginModal';
 
@@ -48,9 +42,6 @@ const MobileNav1 = (props) => {
             setActiveClass('');
         }
     }, [activeClass]);
-    // let [sport,setSport] =useState( getFromLocalStorage('categories'));
-    // dispatch({type:"SET", key: "sport", payload: {}})
-
 
     const fetchData = useCallback(async () => {
         let cached_competitions = getFromLocalStorage('categories');
@@ -69,13 +60,10 @@ const MobileNav1 = (props) => {
 
                 setLocalStorage('categories', c_result);
 
-
-                // console.log("all_sports_from_fetch",c_result)
             } else {
                 fetchData()
             }
         } else {
-            // setSport(cached_competitions);
             dispatch({type:"SET", key: "sport", payload: cached_competitions})
 
         }
@@ -91,17 +79,9 @@ const MobileNav1 = (props) => {
             abortController.abort();
         };
     }, []);
-    // console.log('sports',sport)
-
 
     const default_img = 'default_sport';
-    let sport_image;
 
-    try {
-        sport_image = require(`../../assets/svg/sports/${state.sport?.sport_name}.svg`);
-    } catch(error){
-        sport_image = require(`../../assets/svg/sports/${default_img}.svg`);
-    }
     const getDefaultMarketsForSport = (allsports) => {
         return allsports?.default_display_markets
     }
@@ -136,7 +116,6 @@ const MobileNav1 = (props) => {
     };
 
     return (<div className="menu-wrapper mobile-nav-remove ">
-        {/*{sport==null?setSport(getFromLocalStorage("categories")):""}*/}
         {showLoadingModal && ( <LoginModal setShowLoadingModal={setShowLoadingModal} visible={showLoadingModal}/>)}
         <table className="menu-table" style={{width: "100%", textAlign: "center", marginLeft:"-9px"}}>
             <tbody>
@@ -181,7 +160,7 @@ const MobileNav1 = (props) => {
                     </Link>
 
                 </td>
-                <td  className={pathname.includes('live') && pathname.includes('casino') === false && pathname.includes('livescore') === false ? 'active' :'menu-t m-auto'}
+                <td  className={pathname.includes('casino') && pathname.includes('casino') === false && pathname.includes('livescore') === false ? 'active' :'menu-t m-auto'}
                      style={{paddingLeft: "10px"}}>
                     <Link className="cg fm ox anl url-link d-flex flex-column align-items-center"
                           to={{pathname:"/casino"}}

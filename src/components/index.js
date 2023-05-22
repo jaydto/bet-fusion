@@ -1,6 +1,6 @@
 import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
 import './test.css'
-import {getFromLocalStorage, setLocalStorage} from "./utils/local-storage";
+import {setLocalStorage} from "./utils/local-storage";
 import useAnalyticsEventTracker from "./analytics/useAnalyticsEventTracker";
 import {useLocation} from "react-router-dom";
 import useWindowDimensions from "./header/Dimensions";
@@ -15,7 +15,6 @@ import Countries from "./countries/Countries";
 import Skeleton1 from "./skeleton/skeleton";
 import {Spinner} from "react-bootstrap";
 
-
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
 const CarouselLoader = React.lazy(() => import('./carousel'));
@@ -23,8 +22,8 @@ const MainTabs = React.lazy(() => import('./header/main-tabs'));
 const MatchList = React.lazy(() => import('./matches'));
 const Right = React.lazy(() => import('./right'));
 const SideBar = React.lazy(() => import('./sidebar/awesome/Sidebar'))
-const  Index= () => {
-    const [user, setUser] = useState(getFromLocalStorage("user"));
+const Index = () => {
+    const [scrollEndedActive, setScrollEndedActive] = useState(false)
     const gaEventTracker = useAnalyticsEventTracker('Home');
     const location = useLocation();
     const [tab, setTab] = useState('highlights');
@@ -33,15 +32,17 @@ const  Index= () => {
 
     const {height, width} = useWindowDimensions();
     const [matches, setMatches] = useState([]);
-    const [limit, setLimit] = useState(20);
+    // const [limit, setLimit] = useState(20);
     const [producerDown, setProducerDown] = useState(false);
     const [threeWay, setThreeWay] = useState(false);
-    const [page, setPage] = useState(1);
+    const [page,] = useState(1);
     const [userSlipsValidation, setUserSlipsValidation] = useState();
     const [state, dispatch] = useContext(Context);
+    const [clear, setClear] = useState(false)
     const [fetching, setFetching] = useState(false)
     const homePageRef = useRef()
-    const [utmSource, setUtmSource] = useState('')
+    const [utmSource,] = useState('')
+    let prevLimit = state?.limit
     const findPostableSlip = () => {
         let betslips = getBetslip() || {};
         var values = Object.keys(betslips).map(function (key) {
@@ -50,10 +51,15 @@ const  Index= () => {
         return values;
     };
 
+    useEffect(() => {
+        const abort = new AbortController()
+        dispatch({type: 'SET', key: 'limit', payload: 50})
+        fetchData()
+        return abort.abort()
+    }, [])
 
-   const resetInterval= useInterval(async () => {
-        // console.log("location",location.pathname)
-        if(location.pathname==="/")
+    const resetInterval = useInterval(async () => {
+        if (location.pathname === "/")
             setFetching(true)
         else
             setFetching(false)
@@ -66,7 +72,7 @@ const  Index= () => {
 
         let tab = location.pathname.replace("/", "") || 'highlights';
 
-        endpoint += "?page=" + (page || 1) + `&limit=${limit || 50}&tab=` + tab
+        endpoint += "?page=" + (page || 1) + `&limit=${state?.limit || 20}&tab=` + tab
 
         let url = new URL(window.location.href)
 
@@ -101,13 +107,13 @@ const  Index= () => {
         });
     }, 20000);
 
-
-
     const fetchData = useCallback(async () => {
         setFetching(true)
+        setScrollEndedActive(true) // todo; additional checks
         let tab = location.pathname.replace("/", "") || 'highlights';
         let betslip = findPostableSlip();
-        let endpoint = "/v1/matches?page=" + (page || 1) + `&limit=${limit || 50}&tab=` + tab;
+
+        let endpoint = "/v1/matches?page=" + (page || 1) + `&limit=${state?.limit || 50}&tab=` + tab;
         let url = new URL(window.location.href)
         let sport_id = url.searchParams.get('sport_id')
 
@@ -126,7 +132,6 @@ const  Index= () => {
         let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29").split(",")
 
         if (width <= 1259) {
-            // console.log("condition has been met ", [sub_types[0]])
             sub_types = [sub_types[0]]
         }
 
@@ -138,6 +143,7 @@ const  Index= () => {
                 setMatches(matches.length > 0 ? {...matches, ...result?.data} : result?.data || result)
                 setFetching(false)
                 setLoading(false)
+                setScrollEndedActive(false)
                 if (result?.slip_data) {
                     setUserSlipsValidation(result?.slip_data)
                 }
@@ -150,7 +156,6 @@ const  Index= () => {
     useEffect(() => {
         clearInterval(resetInterval)
         checkThreeWay()
-        fetchData();
         let cachedSlips = getBetslip("betslip");
         if (cachedSlips) {
             dispatch({type: "SET", key: "betslip", payload: cachedSlips});
@@ -160,6 +165,16 @@ const  Index= () => {
         };
     }, [window.location.pathname]);
 
+    // useEffect(() => {
+    //     console.log("state_limit", state?.limit)
+    //     console.log("previous_limit", prevLimit)
+    //     if (state?.limit != undefined && state?.limit != null && state?.limit != NaN) {
+    //         clearInterval(resetInterval)
+    //         fetchData();
+    //
+    //     }
+    // }, [state?.limit])
+
     const checkThreeWay = () => {
         let url = new URL(window.location)
         let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29").split(",")
@@ -167,10 +182,27 @@ const  Index= () => {
     }
 
     document.addEventListener('scrollEnd', (event) => {
-        if (!fetching) {
-            setFetching(true)
-            setLimit(limit + 50)
-        }
+setFetching(true)
+        let timer = setTimeout(() => {
+            if (!scrollEndedActive) {
+                // we need to fetch more matches ...
+                fetchData()
+                console.log("No Active scroll ended, we can fetch matches at this point ...")
+
+            } else {
+                console.log("We have an active scroll ended, we cannot fetch matches at this point ...")
+            }
+
+        }, 1000)
+
+        clearTimeout(timer)
+
+        // if (!fetching) {
+        //     clearInterval(resetInterval)
+        //     // setFetching(true)
+        //     console.log("scroll_end_state", state)
+        //     /**/dispatch({type:'SET', key:'limit', payload:state?.limit?state?.limit+50:50})
+        // }
     })
 
     const configureCampaignCookie = () => {
@@ -209,8 +241,8 @@ const  Index= () => {
         if (window.location.href.includes("tomorrow")) {
             new_tab = ('tomorrow')
         }
-        if(window.location.href.includes("countries")){
-            new_tab=('countries')
+        if (window.location.href.includes("countries")) {
+            new_tab = ('countries')
         }
 
 
@@ -233,48 +265,53 @@ const  Index= () => {
 
 
     return (
-<div className={'flex-item'}>
-    <div className="item4"><Header/></div>
-    <div className="flex-container">
-        <div className="item1"> <SideBar loadCompetitions/></div>
-        <div className="item2"><div className="gz home match-overflow " >
-            <div className="homepage" ref={homePageRef} >
-                <MobileNav2/>
-                <CarouselLoader/>
-                <Testimonials/>
+        <div className={'flex-item'}>
+            <div className="item4"><Header/></div>
+            <div className="flex-container">
+                <div className="item1"><SideBar loadCompetitions/></div>
+                <div className="item2">
+                    <div className="gz home match-overflow ">
+                        <div className="homepage" ref={homePageRef}>
+                            <MobileNav2/>
+                            <CarouselLoader/>
+                            <Testimonials/>
 
-                <MainTabs tab={location.pathname.replace("/", "")}/>
+                            <MainTabs tab={location.pathname.replace("/", "")}/>
 
-                {loading ?
-                    <div className={`text-center mt-2 text-white d-block`}>
-                        <Skeleton1/>
-                    </div> : tab=='countries'?<Countries/>:
-                        <div>
-                            <MatchList
-                                live={false}
-                                fetching={fetching}
-                                matches={matches}
-                                pdown={producerDown}
-                                three_way={threeWay}
+                            {loading ?
+                                <div className={`text-center mt-2 text-white d-block`}>
+                                    <Skeleton1/>
+                                </div> : tab == 'countries' ? <Countries/> :
+                                    <div>
+                                        <MatchList
+                                            live={false}
+                                            fetching={fetching}
+                                            matches={matches}
+                                            pdown={producerDown}
+                                            three_way={threeWay}
 
-                            />
-                            <div className={`text-center mt-2 text-white ${fetching ? 'd-block' : 'd-none'}`}>
-                                <Spinner animation={'grow'} size={'lg'}/>
-                            </div>
+                                        />
+                                        <div
+                                            className={`text-center mt-2 text-white ${fetching ? 'd-block' : 'd-none'}`}>
+                                            <Spinner animation={'grow'} size={'lg'}/>
+                                        </div>
+                                    </div>
+
+                            }
+
                         </div>
-
-                }
+                    </div>
+                </div>
+                <div className="item3"><Right betslipValidationData={userSlipsValidation} jackpotData={matches?.meta}
+                                              test={true}/></div>
 
             </div>
+            <div className="item6">
+                <div className={"footer-mobile-none"}>
+                    <Footer/>
+                </div>
+            </div>
         </div>
-        </div>
-        <div className="item3"><Right betslipValidationData={userSlipsValidation} jackpotData={matches?.meta} test={true}/></div>
-
-    </div>
-    <div className="item6"><div className={"footer-mobile-none"}>
-        <Footer/>
-    </div></div>
-</div>
 
     );
 };

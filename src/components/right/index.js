@@ -25,11 +25,8 @@ const AlertMessage = (props) => {
 const Right = (props) => {
     const {jackpot, betslipValidationData, jackpotData, kiron, kironValidation,test} = props;
     const [betSlipMobile, setBetSlipMobile] = useState(false)
-    const [state, dispatch] = useContext(Context);
 
 
-
-    //todo top height style ={{top:"13.5rem"
     return (
         <div className={`col ${test?'':'gn'} betslip-container sticky-top vh-100 overflow-scroll betslip-container-mozilla container-sticky-top top-login-background-img-bg ${kiron&&'kiron-betslip-size'}`}>
             <div className="betslip-container d-none d-md-block">

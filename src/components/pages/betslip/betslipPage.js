@@ -27,9 +27,8 @@ const BetslipPage = () => {
   const gaEventTracker = useAnalyticsEventTracker('Navigation');
   const [tab, setTab] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [user, setUser] = useState(getFromLocalStorage("user"));
+  const [user, ] = useState(getFromLocalStorage("user"));
   let url = new URL(window.location);
-  const [state, dispatch] = useContext(Context);
   const jp = url.searchParams.get("jackpot");
   const nL=url.searchParams.get("nare-league")
   const nare_league=nL=='true'?true:false

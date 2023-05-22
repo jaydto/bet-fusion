@@ -27,8 +27,7 @@ const MobileMenu = (props) => {
     const [betSlipMobile, setBetSlipMobile] = useState(false);
     const gaEventTracker = useAnalyticsEventTracker("Navigation");
     const pathname = window.location.pathname;
-    const [state, ] = useContext(Context);
-    const { height,} = useWindowDimensions();
+    const [state,dispatch ] = useContext(Context);
 
     const fetchData = useCallback(() => {
         let endpoint = "/v1/sports?live=1";
@@ -36,6 +35,7 @@ const MobileMenu = (props) => {
             ([c_status, c_result]) => {
                 if (c_status === 200) {
                     setLiveSports(c_result?.data);
+
                 }
             }
         );
@@ -108,10 +108,9 @@ const MobileMenu = (props) => {
                     <p>Virtuals</p>
                 </Link>
 
-                <Link to={{pathname:`${jackpot?"/betslip-jackpot":kiron?`/betslip-nare`:"/betslip-slip"}`, search:`${jackpot!==undefined?'jackpot='+jackpot:''}${betslipValidationData!==undefined ?'betslipValidationData='+encodeURIComponent(JSON.stringify(betslipValidationData)):''}${jackpotData!==undefined?'&jackpotData='+encodeURIComponent(JSON.stringify(jackpotData)):''}${kiron!==undefined?'nare-league='+kiron:''}${kironValidation!==undefined ? '&nareData='+encodeURIComponent(JSON.stringify(kironValidation)):''}`}}
-                    //  onClick={()=>window.location.href=`${jackpot?"/betslip-jackpot":"/betslip-slip"}?jackpot=${jackpot? jackpot: false}&betslipValidationData=${betslipValidationData?encodeURIComponent(JSON.stringify(betslipValidationData)):false}&jackpotData=${jackpotData?encodeURIComponent(JSON.stringify(jackpotData)):false}`}
+                <Link to={ {pathname:`${jackpot?"/betslip-jackpot":kiron?`/betslip-nare`:"/betslip-slip"}`, search:`${jackpot!==undefined?'jackpot='+jackpot:''}${kiron!==undefined?'nare-league='+kiron:''}`}}
+                    /*{pathname:`${jackpot?"/betslip-jackpot":kiron?`/betslip-nare`:"/betslip-slip"}`, search:`${jackpot!==undefined?'jackpot='+jackpot:''}${betslipValidationData!==undefined ?'betslipValidationData='+encodeURIComponent(JSON.stringify(betslipValidationData)):''}${jackpotData!==undefined?'&jackpotData='+encodeURIComponent(JSON.stringify(jackpotData)):''}${kiron!==undefined?'nare-league='+kiron:''}${kironValidation!==undefined ? '&nareData='+encodeURIComponent(JSON.stringify(kironValidation)):''}`}*/
                       className={` nav__betslip bloc-icon bet-slip-footer-toggle text-white`}>
-
                     <Badge
                         pill
                         bg="warning nav__betslip d-flex justify-content-center align-items-center text-dark"

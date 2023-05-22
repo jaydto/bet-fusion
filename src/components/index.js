@@ -215,7 +215,6 @@ const  Index= () => {
         }
 
 
-        // console.log("tabs", new_tab)
         if (new_tab !== tab) {
             setTab(new_tab)
             setLoading(true)
@@ -249,7 +248,6 @@ const  Index= () => {
 
                 {loading ?
                     <div className={`text-center mt-2 text-white d-block`}>
-                        {/*<Spinner animation={'grow'} size={'lg'}/>*/}
                         <Skeleton1/>
                     </div> : tab=='countries'?<Countries/>:
                         <div>
@@ -268,10 +266,9 @@ const  Index= () => {
 
                 }
 
-
-
             </div>
-        </div></div>
+        </div>
+        </div>
         <div className="item3"><Right betslipValidationData={userSlipsValidation} jackpotData={matches?.meta} test={true}/></div>
 
     </div>

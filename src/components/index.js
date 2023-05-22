@@ -169,6 +169,7 @@ const  Index= () => {
 
     document.addEventListener('scrollEnd', (event) => {
         if (!fetching) {
+            clearInterval(resetInterval)
             setFetching(true)
             setLimit(limit + 50)
         }
@@ -252,14 +253,20 @@ const  Index= () => {
                         {/*<Spinner animation={'grow'} size={'lg'}/>*/}
                         <Skeleton1/>
                     </div> : tab=='countries'?<Countries/>:
-                        <MatchList
-                            live={false}
-                            fetching={fetching}
-                            matches={matches}
-                            pdown={producerDown}
-                            three_way={threeWay}
+                        <div>
+                            <MatchList
+                                live={false}
+                                fetching={fetching}
+                                matches={matches}
+                                pdown={producerDown}
+                                three_way={threeWay}
 
-                        />
+                            />
+                            <div className={`text-center mt-2 text-white ${fetching ? 'd-block' : 'd-none'}`}>
+                                <Spinner animation={'grow'} size={'lg'}/>
+                            </div>
+                        </div>
+
                 }
 
 

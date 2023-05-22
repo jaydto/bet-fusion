@@ -43,6 +43,7 @@ const  AllMarkets= (props) => {
         });
         return values;
     };
+
     useInterval(
         () => {
             let endpoint = live
@@ -66,6 +67,7 @@ const  AllMarkets= (props) => {
         },
         live ? 5000 : null
     );
+
     const fetchPagedData = useCallback(async () => {
         if (!isLoading && !isNaN(+id)) {
             setIsLoading(true);

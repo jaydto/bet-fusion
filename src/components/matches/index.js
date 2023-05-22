@@ -1334,7 +1334,7 @@ export const JackpotMatchList = (props) => {
 }
 
 const MatchList = (props) => {
-  const {live, matches, pdown, three_way} = props;
+  const {live, matches, pdown,fetching, three_way} = props;
 
   return (
       <div className="matches full-width">

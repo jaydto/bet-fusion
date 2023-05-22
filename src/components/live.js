@@ -109,8 +109,6 @@ const  Live= () => {
                             <div className={`${width<=767?"d-block":"d-none"}`}>
                                 <LiveSideBar/>
                             </div>
-
-                            {/*hello*/}
                             {matches && <MatchList live matches={matches} pdown={producerDown}/>}
                         </div>
                     </div>

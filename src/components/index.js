@@ -32,7 +32,7 @@ const Index = () => {
 
     const {height, width} = useWindowDimensions();
     const [matches, setMatches] = useState([]);
-    // const [limit, setLimit] = useState(20);
+    const [limit, setLimit] = useState(50);
     const [producerDown, setProducerDown] = useState(false);
     const [threeWay, setThreeWay] = useState(false);
     const [page,] = useState(1);
@@ -42,7 +42,7 @@ const Index = () => {
     const [fetching, setFetching] = useState(false)
     const homePageRef = useRef()
     const [utmSource,] = useState('')
-    let prevLimit = state?.limit
+    const prevLimit = useRef(limit);
     const findPostableSlip = () => {
         let betslips = getBetslip() || {};
         var values = Object.keys(betslips).map(function (key) {
@@ -53,7 +53,6 @@ const Index = () => {
 
     useEffect(() => {
         const abort = new AbortController()
-        dispatch({type: 'SET', key: 'limit', payload: 50})
         fetchData()
         return abort.abort()
     }, [])
@@ -72,7 +71,7 @@ const Index = () => {
 
         let tab = location.pathname.replace("/", "") || 'highlights';
 
-        endpoint += "?page=" + (page || 1) + `&limit=${state?.limit || 20}&tab=` + tab
+        endpoint += "?page=" + (page || 1) + `&limit=${limit || 50}&tab=` + tab
 
         let url = new URL(window.location.href)
 
@@ -108,7 +107,7 @@ const Index = () => {
     }, 20000);
 
     const fetchData = useCallback(async () => {
-        setFetching(true)
+        // setFetching(true)
         setScrollEndedActive(true) // todo; additional checks
         let tab = location.pathname.replace("/", "") || 'highlights';
         let betslip = findPostableSlip();
@@ -165,15 +164,16 @@ const Index = () => {
         };
     }, [window.location.pathname]);
 
-    // useEffect(() => {
-    //     console.log("state_limit", state?.limit)
-    //     console.log("previous_limit", prevLimit)
-    //     if (state?.limit != undefined && state?.limit != null && state?.limit != NaN) {
-    //         clearInterval(resetInterval)
-    //         fetchData();
-    //
-    //     }
-    // }, [state?.limit])
+    useEffect(()=>{
+        console.log("prevLimit", prevLimit)
+        console.log("limit",limit)
+        if(prevLimit!=limit){
+            prevLimit.current=limit
+            fetchData()
+
+        }
+
+    },[limit])
 
     const checkThreeWay = () => {
         let url = new URL(window.location)
@@ -182,28 +182,18 @@ const Index = () => {
     }
 
     document.addEventListener('scrollEnd', (event) => {
-setFetching(true)
-        let timer = setTimeout(() => {
-            if (!scrollEndedActive) {
-                // we need to fetch more matches ...
-                fetchData()
-                console.log("No Active scroll ended, we can fetch matches at this point ...")
 
-            } else {
-                console.log("We have an active scroll ended, we cannot fetch matches at this point ...")
-            }
 
-        }, 1000)
+        if (!fetching) {
+            clearInterval(resetInterval)
+            setLimit(limit+50)
+            setFetching(true)
+            console.log("scroll_end_state", state)
 
-        clearTimeout(timer)
-
-        // if (!fetching) {
-        //     clearInterval(resetInterval)
-        //     // setFetching(true)
-        //     console.log("scroll_end_state", state)
-        //     /**/dispatch({type:'SET', key:'limit', payload:state?.limit?state?.limit+50:50})
-        // }
+            // fetchData()
+        }
     })
+
 
     const configureCampaignCookie = () => {
 

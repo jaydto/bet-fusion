@@ -13,8 +13,6 @@ import spaceman from '../../assets/img/banner/products/SpaceMan.webp'
 import jackpot from '../../assets/img/banner/products/jackpot.webp'
 
 
-
-
 const banners = [
     {src: Mancity, url: "/match/32907505"},
     {src: instant, url: "/promotions"},

@@ -93,7 +93,6 @@ const  Index= () => {
                 setMatches(matches.length > 0 ? {...matches, ...result?.data} : result?.data || result)
                 setFetching(false)
                 setLoading(false)
-                // setMatches(result?.data || result)
                 if (result?.slip_data) {
                     setUserSlipsValidation(result?.slip_data)
                 }

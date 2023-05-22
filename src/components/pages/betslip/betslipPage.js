@@ -192,7 +192,7 @@ const BetslipPage = () => {
                 className="bet alu  block-shadow d-flex flex-column"
                 style={{ height: "100%" }}
               >
-                <div style={{position:"sticky",top:"45px",zIndex:"2000", width:"100%"}}>
+                <div style={{position:"sticky",top:"7rem",zIndex:"2000", width:"100%"}}>
                   <SlipTabs tab={tab} />
                 </div>
                 <div

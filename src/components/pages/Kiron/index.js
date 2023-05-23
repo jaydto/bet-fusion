@@ -65,18 +65,21 @@ const  TestKiron= () => {
 
     useEffect(() => {
 
-        if (
-            prevNewData.current.competition_id !== newData.competition_id ||
-            // prevNewData.current.period !== newData.period ||
-            prevNewData.current.round_id !== newData.competition_id ||
-            prevNewData.current.market_id !== newData.market_id) {
-            setLoading(true)
 
-            prevNewData.current = newData;
+            if (
+                !state?.inPlay&&prevNewData.current.competition_id !== newData.competition_id ||
+                // prevNewData.current.period !== newData.period ||
+                prevNewData.current.round_id !== newData.competition_id ||
+                prevNewData.current.market_id !== newData.market_id) {
+                setLoading(true)
 
-            setLocalStorage('kiron_search_data', newData);
+                prevNewData.current = newData;
 
-        }
+                setLocalStorage('kiron_search_data', newData);
+
+            }
+
+
     }, [newData]);
 
 
@@ -87,9 +90,12 @@ const  TestKiron= () => {
         setLoading(true)
         if(window.location.pathname=="/nare-league"){
             setLoading(true)
+            console.log("inPlay", state?.inPlay)
             setTimeout(()=>{
                 setLoading(true)
-                fetchData();
+                if(!state?.inPlay){
+                    fetchData();
+                }
             },600)
 
         }
@@ -135,28 +141,18 @@ const  TestKiron= () => {
 
     useEffect(() => {
         const kiron_competition=getFromLocalStorage("kiron_search_data")?.competition_id
-        const kiron_period=getFromLocalStorage("kiron_search_data")?.period
         const kiron_market=getFromLocalStorage("kiron_search_data")?.market_id
-        const kiron_first_period=getFromLocalStorage("kiron_first_period")
-
 
         const newCompetitionId = new URL(window.location).searchParams.get('competition_id')||kiron_competition||'2'
         const newPeriod = state?.current_selection_period?.start||state?.period_first
-            // state?.current_selection_period?.start:
-            // state?.current_selection_period?.start.length==0||state?.current_selection_period?.start==null||state?.current_selection_period?.start==undefined?
-            //     kiron_first_period||kiron_period:
-            //     state?.current_selection_period?.start
 
         const newRoundId = state?.current_selection_period?.round||state?.period_first_round
         const newMarket = new URL(window.location).searchParams.get('sub_type_id') ||kiron_market|'3'
 
-
-        if ((newData.competition_id !== newCompetitionId) ||
-            // newData.competition_id !== newCompetitionId && newData.period !== newPeriod ||
+        if ((!state?.inPlay&&newData.competition_id !== newCompetitionId) ||
             newData.round_id !== newRoundId ||
             newData.market_id !== newMarket) {
             setNewData({
-                // period: newPeriod,
                 competition_id: newCompetitionId,
                 market_id: newMarket,
                 round_id: newRoundId
@@ -216,7 +212,7 @@ const  TestKiron= () => {
                                     {!state?.inPlay&&<KironMoreMarkets/>}
                                     {loading ?
                                         <SkeletonLoader/>:state?.close_spinner? <div className="kiron-loader" id="kiron-loader">
-                                            <span id={'game_week'}></span>
+                                            <span id={'game_week text-white'}></span>
                                             <div className="match-start d-flex flex-column align-items-center justify-content-center " style={{marginTop:'120px'}}>
                                                 <span id="countdown"></span>
                                             </div>

@@ -123,7 +123,6 @@ const KironPeriods= (props) => {
         clearInterval(timerVar)
         clearInterval(timerInterval)
         dispatch({type: "SET", key: "inPlay", payload:false});
-        // setClosed(false)
         dispatch({type: "SET", key: 'close_spinner', payload:false})
         dispatch({ type: "SET", key: 'periods_first', payload: null })
         dispatch({type: "SET", key: 'playout_data', payload:null})
@@ -133,8 +132,6 @@ const KironPeriods= (props) => {
 
     useEffect(() => {
         if (isCountdownTimerActive==false) {
-
-            // setClosed(false)
             dispatch({type: "SET", key: 'close_spinner', payload:false})
             setIsCountdownTimerActive(false)
             dispatch({type: "SET", key: 'playout_data', payload:null})
@@ -246,8 +243,9 @@ const KironPeriods= (props) => {
 
             if(sTime<=now&&now<eTime ){
                 // setInPlay(true)
-                dispatch({type: "SET", key: "loading", payload:true});
-            } else if(sTime<now&&now<eTime){
+                // dispatch({type: "SET", key: "loading", payload:true});
+                dispatch({type: "SET", key: "inPlay", payload:true});
+            } else if(sTime>now&&now<eTime){
                 // setInPlay(true)
                 dispatch({type: "SET", key: "inPlay", payload:false});
 

@@ -131,7 +131,7 @@
     .item2 {
         /* flex:2 1 auto; */
         flex-grow: 6;
-        width: 98%;
+        width: 100%;
         box-shadow: none;
     }
     .item1{

@@ -1184,17 +1184,18 @@ export const MarketList = (props) => {
   const marketsToShow = Object.entries(filters?.data?.odds || {}).slice(startIndex, endIndex);
 
 
-  const handleScroll = (event) => {
-    const element = event.target;
-
-    if (element.scrollHeight - element.scrollTop === element.clientHeight) {
-      setCurrentPage((currentPage) => currentPage + 1);
-    }
+  const onScroll = (event) => {
+    console.log("Got to scroll end fetch")
+    // const element = event.target;
+    //
+    // if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+    //   setCurrentPage((currentPage) => currentPage + 1);
+    // }
   };
 
 
   return (
-      <div onScroll={handleScroll} className="matches full-width" style={{marginBottom:"0px"}}>
+      <div  className="matches full-width" style={{marginBottom:"0px"}}>
 
         <div className="web-element" style={{marginBottom:"7px"}}>
           {!filters ? (
@@ -1335,9 +1336,12 @@ export const JackpotMatchList = (props) => {
 
 const MatchList = (props) => {
   const {live, matches, pdown,fetching, three_way} = props;
+  const listInnerRef = useRef();
+
+
 
   return (
-      <div className="matches full-width">
+      <div className="matches full-width"  >
         {matches && <MatchHeaderRow live={live} first_match={matches ? matches[0] : {}}/>}
 
         <Row className="web-element px-lg-3 top-login-background-img-bg ">

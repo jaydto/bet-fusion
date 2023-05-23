@@ -97,8 +97,6 @@ const  TestKiron= () => {
     }, [window.location.pathname,newData]);
 
 
-
-
     const fetchData =useCallback(async ()  => {
         endpoint = endpoint.replaceAll(" ", '')
 

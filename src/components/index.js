@@ -32,17 +32,17 @@ const Index = () => {
 
     const {height, width} = useWindowDimensions();
     const [matches, setMatches] = useState([]);
-    const [limit, setLimit] = useState(50);
+    const [limit, setLimit] = useState(20);
     const [producerDown, setProducerDown] = useState(false);
     const [threeWay, setThreeWay] = useState(false);
     const [page,] = useState(1);
     const [userSlipsValidation, setUserSlipsValidation] = useState();
     const [state, dispatch] = useContext(Context);
-    const [clear, setClear] = useState(false)
     const [fetching, setFetching] = useState(false)
     const homePageRef = useRef()
     const [utmSource,] = useState('')
     const prevLimit = useRef(limit);
+    const [reset, setReset] = useState(0);
     const findPostableSlip = () => {
         let betslips = getBetslip() || {};
         var values = Object.keys(betslips).map(function (key) {
@@ -57,11 +57,7 @@ const Index = () => {
         return abort.abort()
     }, [])
 
-    const resetInterval = useInterval(async () => {
-        if (location.pathname === "/")
-            setFetching(true)
-        else
-            setFetching(false)
+     useInterval(() => {
 
         let endpoint = "/v1/matches";
 
@@ -71,7 +67,7 @@ const Index = () => {
 
         let tab = location.pathname.replace("/", "") || 'highlights';
 
-        endpoint += "?page=" + (page || 1) + `&limit=${limit || 50}&tab=` + tab
+        endpoint += "?page=" + (page || 1) + `&limit=${prevLimit.current }&tab=` + tab
 
         let url = new URL(window.location.href)
 
@@ -93,7 +89,7 @@ const Index = () => {
         if (search_term !== null) {
             return
         }
-        await makeRequest({url: endpoint, method: method, data: betslip}).then(([status, result]) => {
+        makeRequest({url: endpoint, method: method, data: betslip}).then(([status, result]) => {
             if (status == 200) {
                 setMatches(matches.length > 0 ? {...matches, ...result?.data} : result?.data || result)
                 setFetching(false)
@@ -104,7 +100,7 @@ const Index = () => {
                 setProducerDown(result?.producer_status === 1);
             }
         });
-    }, 20000);
+    }, 20000,reset);
 
     const fetchData = useCallback(async () => {
         // setFetching(true)
@@ -112,7 +108,7 @@ const Index = () => {
         let tab = location.pathname.replace("/", "") || 'highlights';
         let betslip = findPostableSlip();
 
-        let endpoint = "/v1/matches?page=" + (page || 1) + `&limit=${state?.limit || 50}&tab=` + tab;
+        let endpoint = "/v1/matches?page=" + (page || 1) + `&limit=${prevLimit.current }&tab=` + tab;
         let url = new URL(window.location.href)
         let sport_id = url.searchParams.get('sport_id')
 
@@ -152,48 +148,11 @@ const Index = () => {
 
     }, []);
 
-    useEffect(() => {
-        clearInterval(resetInterval)
-        checkThreeWay()
-        let cachedSlips = getBetslip("betslip");
-        if (cachedSlips) {
-            dispatch({type: "SET", key: "betslip", payload: cachedSlips});
-        }
-        return () => {
-            setMatches(null);
-        };
-    }, [window.location.pathname]);
-
-    useEffect(()=>{
-        console.log("prevLimit", prevLimit)
-        console.log("limit",limit)
-        if(prevLimit!=limit){
-            prevLimit.current=limit
-            fetchData()
-
-        }
-
-    },[limit])
-
     const checkThreeWay = () => {
         let url = new URL(window.location)
         let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29").split(",")
         setThreeWay(sub_types.includes("1"))
     }
-
-    document.addEventListener('scrollEnd', (event) => {
-
-
-        if (!fetching) {
-            clearInterval(resetInterval)
-            setLimit(limit+50)
-            setFetching(true)
-            console.log("scroll_end_state", state)
-
-            // fetchData()
-        }
-    })
-
 
     const configureCampaignCookie = () => {
 
@@ -254,13 +213,58 @@ const Index = () => {
     })
 
 
+    useEffect(() => {
+        setReset(c => c + 1);
+
+        checkThreeWay()
+        let cachedSlips = getBetslip("betslip");
+        if (cachedSlips) {
+            dispatch({type: "SET", key: "betslip", payload: cachedSlips});
+        }
+        return () => {
+            setMatches(null);
+        };
+    }, [window.location.pathname]);
+
+
+    useEffect(()=>{
+
+        if(prevLimit.current!==limit&&limit>prevLimit.current){
+            setReset(c => c + 1);
+            console.log("currrent limit changed", prevLimit.current)
+            prevLimit.current=limit
+
+        }
+
+
+    },[limit])
+
+    console.log("limit", limit)
+    useEffect(()=>{
+
+        if(prevLimit.current!==20){
+            console.log("fired here")
+            fetchData()
+        }
+
+    },[prevLimit.current])
+
+    document.addEventListener('scrollEnd', (event) => {
+        if (!fetching) {
+            setFetching(true)
+            setLimit(limit + 20)
+        }
+    })
+
+
+
     return (
-        <div className={'flex-item'}>
+        <div className={'flex-item'}  >
             <div className="item4"><Header/></div>
-            <div className="flex-container">
+            <div className="flex-container" >
                 <div className="item1"><SideBar loadCompetitions/></div>
                 <div className="item2">
-                    <div className="gz home match-overflow ">
+                    <div className="gz home match-overflow " >
                         <div className="homepage" ref={homePageRef}>
                             <MobileNav2/>
                             <CarouselLoader/>
@@ -272,7 +276,7 @@ const Index = () => {
                                 <div className={`text-center mt-2 text-white d-block`}>
                                     <Skeleton1/>
                                 </div> : tab == 'countries' ? <Countries/> :
-                                    <div>
+                                    <div >
                                         <MatchList
                                             live={false}
                                             fetching={fetching}

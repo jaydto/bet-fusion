@@ -51,11 +51,6 @@ const Index = () => {
         return values;
     };
 
-    useEffect(() => {
-        const abort = new AbortController()
-        fetchData()
-        return abort.abort()
-    }, [])
 
      useInterval(() => {
 
@@ -215,6 +210,7 @@ const Index = () => {
 
     useEffect(() => {
         setReset(c => c + 1);
+        fetchData();
 
         checkThreeWay()
         let cachedSlips = getBetslip("betslip");

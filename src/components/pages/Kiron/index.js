@@ -67,7 +67,8 @@ const  TestKiron= () => {
 
         if (
             prevNewData.current.competition_id !== newData.competition_id ||
-            prevNewData.current.period !== newData.period ||
+            // prevNewData.current.period !== newData.period ||
+            prevNewData.current.round_id !== newData.competition_id ||
             prevNewData.current.market_id !== newData.market_id) {
             setLoading(true)
 
@@ -151,11 +152,11 @@ const  TestKiron= () => {
 
 
         if ((newData.competition_id !== newCompetitionId) ||
-            newData.competition_id !== newCompetitionId && newData.period !== newPeriod ||
+            // newData.competition_id !== newCompetitionId && newData.period !== newPeriod ||
             newData.round_id !== newRoundId ||
             newData.market_id !== newMarket) {
             setNewData({
-                period: newPeriod,
+                // period: newPeriod,
                 competition_id: newCompetitionId,
                 market_id: newMarket,
                 round_id: newRoundId

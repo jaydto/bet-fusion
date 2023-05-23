@@ -219,8 +219,4 @@ tr td:nth-child(4) {
         gap: 6px;
     }
 }
-@media (max-width:991px) and (min-width:767px){
-    .app-countries-icons {
-        margin-top: 56px!important;
-    }
-}
+

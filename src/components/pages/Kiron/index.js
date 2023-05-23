@@ -140,13 +140,13 @@ const  TestKiron= () => {
 
 
         const newCompetitionId = new URL(window.location).searchParams.get('competition_id')||kiron_competition||'2'
-        const newPeriod = state?.current_selection_period?.start?
-            state?.current_selection_period?.start:
-            state?.current_selection_period?.start.length==0||state?.current_selection_period?.start==null||state?.current_selection_period?.start==undefined?
-                kiron_first_period||kiron_period:
-                state?.current_selection_period?.start
+        const newPeriod = state?.current_selection_period?.start||state?.period_first
+            // state?.current_selection_period?.start:
+            // state?.current_selection_period?.start.length==0||state?.current_selection_period?.start==null||state?.current_selection_period?.start==undefined?
+            //     kiron_first_period||kiron_period:
+            //     state?.current_selection_period?.start
 
-        const newRoundId = state?.current_selection_period?.round
+        const newRoundId = state?.current_selection_period?.round||state?.period_first_round
         const newMarket = new URL(window.location).searchParams.get('sub_type_id') ||kiron_market|'3'
 
 
@@ -155,7 +155,6 @@ const  TestKiron= () => {
             newData.round_id !== newRoundId ||
             newData.market_id !== newMarket) {
             setNewData({
-                period: newPeriod,
                 competition_id: newCompetitionId,
                 market_id: newMarket,
                 round_id: newRoundId

@@ -363,7 +363,7 @@ const KironslipSubmitForm = (props) => {
     }, []);
 
     useEffect(()=>{
-        console.log("showExpired")
+
         showRemoveExpired()
     },[Date.now()])
 

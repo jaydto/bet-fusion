@@ -90,7 +90,6 @@ const KironMoreMarkets= (props) => {
         return (startTimeString)
     }
 
-    console.log("pathname", pathname)
 
     return (
         options&&

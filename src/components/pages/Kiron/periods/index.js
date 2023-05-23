@@ -52,6 +52,7 @@ const KironPeriods= (props) => {
                 const firstKey = keys[0];
                 const firstItem = c_result[firstKey];
                 dispatch({ type: "SET", key: 'periods_first', payload:  firstItem?.start_time})
+                dispatch({ type: "SET", key: 'periods_first_round', payload:  firstItem?.round_id})
                 setLocalStorage('kiron-periods', c_result);
                 setLocalStorage('kiron_first_period', firstItem?.start_time);
                 setLocalStorage('kiron_first_week', firstItem?.round_number);

@@ -155,6 +155,7 @@ const  TestKiron= () => {
             newData.round_id !== newRoundId ||
             newData.market_id !== newMarket) {
             setNewData({
+                period: newPeriod,
                 competition_id: newCompetitionId,
                 market_id: newMarket,
                 round_id: newRoundId

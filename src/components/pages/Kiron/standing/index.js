@@ -75,7 +75,7 @@ const Standing = () => {
                                     <td>{standing?.games_played}</td>
                                     <td><span className="team-form">
                                        {Array.from(standing?.form)?.map((item) => (
-                                           <span title={`${item=='L'?' Lost':item=='W'?' Won ':' Draw '}`} className={`btn btn-sm ${item=='L'?' btn-danger ':item=='W'?' btn-success ':' btn-dark '} mx-1`} style={{width: '18%', cursor:'default'}}><strong className={'bold'}>{item}</strong></span>
+                                           <span title={`${item=='L'?' Lost':item=='W'?' Won ':' Draw '}`} className={`size-form btn btn-sm ${item=='L'?' btn-danger ':item=='W'?' btn-success ':' btn-dark '} mx-1`} style={{width: '18%', cursor:'default'}}><strong className={'bold'}>{item}</strong></span>
                                        ))}
                                          </span>
                                     </td>

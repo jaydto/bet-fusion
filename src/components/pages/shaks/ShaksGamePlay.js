@@ -16,7 +16,7 @@ const ShaksGamePlay = (props) => {
     const [token, setUserToken] = useState('')
     const [user_id, setUserID] = useState('')
     const [demo, setDemo] = useState(false)
-    console.log("game_name", game)
+
 
     const [games] = useState(getFromLocalStorage('category_games'))
 
@@ -47,13 +47,6 @@ const ShaksGamePlay = (props) => {
             }
         });
     }
-
-    console.log("game_url", game.trim())
-    // const configureDemoGame = () => {
-    //     setGameUrl(`https://staging.shacksevo.co/${game||'penaldo'}?`)
-    //     setGameUrlLoaded(true)
-    //     setDemo(true)
-    // }
 
 
     useEffect(() => {

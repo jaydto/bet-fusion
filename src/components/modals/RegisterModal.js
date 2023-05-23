@@ -33,7 +33,6 @@ const RegisterModal = (props) => {
       };
       
       const dispatchUser = useCallback(() => {
-        console.log("here user")
         if (message !== null) {
             Notify(message);
 
@@ -135,7 +134,6 @@ const RegisterModal = (props) => {
                 autoFocus
                 />
 
-              { console.log("here modal 2", visible)}
             </Form.Group>
              <Form.Group className="mb-3" controlId="Form.ControlInput2">
               <Form.Label>Password</Form.Label>

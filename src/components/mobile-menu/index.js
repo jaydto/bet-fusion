@@ -129,7 +129,6 @@ const MobileMenu = (props) => {
                                     ? <strong>{Object.keys(getBetslip()).length}</strong>
                                         : <strong>50</strong>
                                 : <strong>0</strong>}
-                        {/*{console.log("betslip_validation: ",betslipValidationData +" jackpot: " +jackpot+" jackpotData: "+Object.keys(getJackpotBetslip()))}*/}
                     </Badge>
                 </Link>
 

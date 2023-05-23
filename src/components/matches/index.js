@@ -566,11 +566,8 @@ const OddButton = (props) => {
         );
 
         if (state?.[reference] === uc) {
-
           setPicked("picked");
-
         } else {
-          // console.log("picked_here_remove")
           setPicked("");
         }
       }
@@ -613,7 +610,7 @@ const OddButton = (props) => {
         attributes.odd_key +
         (marketKey !== undefined ? marketKey : "")
     );
-    // console.log("Slip", slip)
+
     {
 
     }
@@ -1182,17 +1179,6 @@ export const MarketList = (props) => {
   const startIndex = (currentPage - 1) * perPage;
   const endIndex = startIndex + perPage;
   const marketsToShow = Object.entries(filters?.data?.odds || {}).slice(startIndex, endIndex);
-
-
-  const onScroll = (event) => {
-    console.log("Got to scroll end fetch")
-    // const element = event.target;
-    //
-    // if (element.scrollHeight - element.scrollTop === element.clientHeight) {
-    //   setCurrentPage((currentPage) => currentPage + 1);
-    // }
-  };
-
 
   return (
       <div  className="matches full-width" style={{marginBottom:"0px"}}>

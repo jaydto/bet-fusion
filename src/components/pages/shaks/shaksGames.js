@@ -29,7 +29,7 @@ const ShaksGames = (props) => {
             }
         });
     }
-    console.log("games", games)
+
 
     useEffect(() => {
         getShaksGames()
@@ -53,8 +53,7 @@ const ShaksGames = (props) => {
     useEffect(()=>{
         setLocation(locationH.pathname)
     })
-    
-    console.log("location", location)
+
     const LoginCheck = (game) => {
         
 
@@ -64,7 +63,7 @@ const ShaksGames = (props) => {
 
     return (
         <> 
-            {console.log("games", games)}
+
             {showLoadingModal && ( <LoginModal setShowLoadingModal={setShowLoadingModal} visible={showLoadingModal} location={location}/>)}
             {gamesLoaded && games?.map((game) => (
                 <div className={'col cursor-pointer'}>

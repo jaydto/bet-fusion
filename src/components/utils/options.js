@@ -43,7 +43,6 @@ function LinkSelect(props) {
         const searchParams = new URLSearchParams(location.search);
         const hasSubTypeId = searchParams.has('sub_type_id');
         const subTypeId = getFromLocalStorage('kiron_search_data')?.sub_type_id || '3';
-        console.log("sub_type",subTypeId)
         const updatedPathname = hasSubTypeId ? location.search : `sub_type_id=${subTypeId}`;
         setPathname(updatedPathname);
     }, [location.search]);
@@ -56,20 +55,14 @@ function LinkSelect(props) {
         dispatch({type: "SET", key: "loading", payload:true});
         navigate(selectedValue);
     };
-    console.log("pathname_split",pathname.split('?')[1] )
-    console.log("pathname_one",options.filter((option)=>option.to==pathname.split('?')[1]).length>0)
 
     const showOptions = () => {
         const matchingOption = options.find(option => option.to === pathname.split('?')[1]);
-        console.log("matching_options", matchingOption)
 
         const matchingOptionLabel = matchingOption ? matchingOption  : {
             "to": "Select Market",
             "label": "More Markets"
         };
-        // const matchingOptionLabel = matchingOption ? `${matchingOption.label} - ${matchingOption.to}` : '';
-
-        console.log("matchingOptionLabel",matchingOptionLabel)
 
         const otherOptions = options.filter(option => option.to !== pathname.split('?')[1]);
 
@@ -77,9 +70,6 @@ function LinkSelect(props) {
             to: option.to,
             label: option.label
         }))];
-
-        console.log("optionsLabel", optionLabels);
-        //${pathname.includes(`${option.to}`) && 'opt-color'}
 
         return optionLabels.map((option, index) => (
             <LinkOption key={index} to={`${option.to}`} pathname={pathname} className={`btn `}>

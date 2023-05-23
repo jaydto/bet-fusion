@@ -231,19 +231,16 @@ const Index = () => {
 
         if(prevLimit.current!==limit&&limit>prevLimit.current){
             setReset(c => c + 1);
-            console.log("currrent limit changed", prevLimit.current)
+
             prevLimit.current=limit
 
         }
 
-
     },[limit])
 
-    console.log("limit", limit)
     useEffect(()=>{
 
         if(prevLimit.current!==20){
-            console.log("fired here")
             fetchData()
         }
 

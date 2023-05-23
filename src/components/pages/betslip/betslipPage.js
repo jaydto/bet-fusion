@@ -38,19 +38,15 @@ const BetslipPage = () => {
   const nareParams=url.searchParams.get('nare-league')
   const pathname = window.location.pathname;
 
-  console.log("nare_on", nare_league);
+
   const betslipValidationData =
     slipParam && JSON.parse(decodeURIComponent(slipParam));
   const nareData=
       nareParams&&JSON.parse(decodeURIComponent(slipParam))
-  console.log("nare_params", nareData);
+
   const jackpotData =
     jackpotParam && JSON.parse(decodeURIComponent(jackpotParam));
 
-  console.log(
-    "jackpot_param",
-    jackpotData + "slipParam: " + betslipValidationData + "jackpot: " + jackpot
-  );
 
   const [isOpen, setIsOpen] = useState(false);
   const expand = "lg";

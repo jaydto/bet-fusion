@@ -100,7 +100,7 @@ const Countries = (props) => {
     }
 
     
-    // console.log("images_names", sport_name)
+
 
     let default_img = "default_sport";
     let sport_image;

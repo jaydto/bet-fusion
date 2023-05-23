@@ -141,7 +141,7 @@ const BetHistory = (props) => {
                         })
                     )}
                 </ul>
-            </div>{console.log("bet_details",showDetails)}
+            </div>
             {showDetails !== null &&
                 <div className="bottom">
                 <BetHistoryDetails bet={showDetails}/>

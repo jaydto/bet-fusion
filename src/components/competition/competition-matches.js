@@ -119,7 +119,7 @@ const CompetitionMatches = (props) => {
             SetcompetitionID(new_competition_id)
             setLoading(true)
             setMatches([])
-            console.log("loading_id",new_competition_id)
+
 
         } else {
 
@@ -137,7 +137,6 @@ const CompetitionMatches = (props) => {
                         <div className="homepage">
                             <CarouselLoader/>
                             <Testimonials/>
-                            {console.log("loading_competitions",loading)}
                             {loading?
                                 <div className={`text-center mt-2 text-white d-block`}>
                                     <Spinner animation={'grow'} size={'lg'}/>

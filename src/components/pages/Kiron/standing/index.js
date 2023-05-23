@@ -56,7 +56,7 @@ const Standing = () => {
                             <th className={''}>Position</th>
                             <th className={''}>Team</th>
                             <th className={''}>Points</th>
-                            <th className={''}>Played</th>
+                            <th className={''} style={{textAlign:'center'}}>Played</th>
                             <th className={'text-center'}>Form</th>
                         </tr>
                         { standings &&

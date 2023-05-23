@@ -150,7 +150,7 @@ const KironslipSubmitForm = (props) => {
                 setSubmitting(false);
                 return false;
             }
-            console.log("betslip", betslip)
+
 
             const betDataArray = kiron&& Object.values(betslip).map(bet => ({
                 parent_match_id: parseInt(bet.parent_match_id),
@@ -161,7 +161,6 @@ const KironslipSubmitForm = (props) => {
                 odd_type: bet.odd_type,
                 odd_value: parseFloat(bet.odd_value)
             }));
-            console.log("betslip", betDataArray)
 
             let payload ={
                 amount: values.bet_amount,
@@ -352,9 +351,9 @@ const KironslipSubmitForm = (props) => {
         });
 
         let parentMatchId = data.map((item) => item.parent_match_id).filter(item => item !== undefined);
-        console.log("expiredparentMatchId", parentMatchId)
+
         let initialTime = data.map((item) => item.initialTime);
-        console.log("expiredtime", initialTime)
+
         setExpired(parentMatchId)
 
         const status = initialTime.some((exp) => exp < 10);
@@ -375,26 +374,22 @@ const KironslipSubmitForm = (props) => {
 
         Object.entries(betslips).map(([match_id, match]) => {
             let start_time=match?.start_time
-            console.log("diff_match_end_start_time",match)
             let gettime = getTime(start_time)
-            console.log("diff_match_end_time",gettime)
+
             let timePeriod = new Date(Date.parse(`${new Date().toDateString()} ${gettime}`));
             let firstRound = timePeriod.getTime();
             let now = new Date().getTime();
             let diff = (firstRound - now);
             let initialTime = Math.floor(diff / 1000);
             // let seconds = initialTime % 60;
-            console.log("diff_match_end",initialTime)
+
             if(initialTime<10){
-                console.log("diff_match_end_In",initialTime)
                 let match_selector = match?.parent_match_id+"_selectedK"
                 let ucn =clean_rep(
                     match?.parent_match_id + "" +match?.market_id +""+match?.odd_key)
                 dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
                 let betslip=removeFromKironSlip(match?.parent_match_id)
                 dispatch({ type: "SET", key: 'kironbetslip', payload: betslip });
-                console.log("diff_match_end_In",initialTime)
-
             }
 
 

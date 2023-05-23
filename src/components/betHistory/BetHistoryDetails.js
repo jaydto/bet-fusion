@@ -4,8 +4,7 @@ import {Card, CardActionArea, Typography} from "@material-ui/core";
 
 const BetHistoryDetails= props => {
         const {bet}=props
-    console.log("betslip_details_obtained", bet)
-    console.log("betslip_details_obtained2", bet.bet_id)
+
         const [betStatus, setBetStatus] = useState(bet.status_desc);
         const [canCancel, setCanCancel] = useState(bet.can_cancel === 1);
 

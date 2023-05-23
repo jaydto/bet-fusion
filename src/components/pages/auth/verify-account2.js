@@ -105,7 +105,7 @@ const VerifyAccount2 = props => {
         }
 
         makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
-            console.log("status_verify", status)
+
             setMessage(response.success ? response.success.message : response.error.message);
             let timer = setInterval(() => {
                 setIsMobileNumberValid(false)

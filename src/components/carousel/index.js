@@ -13,7 +13,7 @@ import jackpot from "../../assets/img/banner/products/HalfMilliJP.webp"
 import Brighton from "../../assets/img/banner/products/BrightonvsManCity.webp"
 
 const banners = [
-    {src: Brighton, url: "/match/32921258"},
+    {src: Brighton, url: "/match/32921688"},
     {src: Aviator, url: "/nare-games/aviator"},
     {src: karibuGiftWallet, url: "/promotions"},
     {src: jackpot, url: "/jackpot"},

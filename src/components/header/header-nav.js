@@ -64,9 +64,11 @@ const HeaderNav = (props) => {
 
     const LoginCheck = (game) => {
         if(game == "JetX"){
-            state?.user !== null ? window.location.href = "/smart-play?game=JetX&category=JetX" :  navigate('/login')
-        }else {
-            state?.user !== null ? window.location.href = "/gameplay/1301/1" : navigate('/login')
+            state?.user !== null ? window.location.href = "/smart-play?game=JetX&category=JetX" :  window.location.href = "/login"
+        }else if(game=='spaceman'){
+            state?.user !== null ? window.location.href = "/gameplay/1301/1" : window.location.href = "/login"
+        }else{
+                state?.user !== null ? window.location.href = "casino" : window.location.href = "/login"
         }
 
     };
@@ -123,7 +125,7 @@ const HeaderNav = (props) => {
                     </li>
 
                     <li className={`${pathname === '/casino'  ? 'active' : ''}`}>
-                        <Link className="url-link fm anl cg ox " to="/casino" title="Live Casino">
+                        <Link className="url-link fm anl cg ox " to="#" title="Live Casino" onClick={() => LoginCheck("casino")}>
                             <span>
                                 <strong>Casino</strong>
                                     <span className="notify-badge badge">NEW</span>

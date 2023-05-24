@@ -4,12 +4,12 @@
 .top-nav{
     background: var(--betnare-header-bg);
 }
-.profile-sidebar{
+.profile-sidebar {
     top: 0;
     left: 0;
     width: 292px;
-    /*border-right: 1px solid rgba(0,0,0,.2);*/
-
+    /* border-right: 1px solid rgba(0,0,0,.2); */
+    overflow-y: clip;
 }
 
 .text-profile {
@@ -109,7 +109,7 @@
 }
 @media (min-width: 1260px){
     .profile-width-side {
-        min-width: 400px!important;
+        min-width: 366px!important;
         background: var(--betnare-header-bg)!important;
         padding-left: 0rem;
         margin-top: 11rem;
@@ -124,12 +124,13 @@
 
     }
     .user-profile-style {
-        width: 450px;
+        width: 348px;
         height: 154px;
         display: flex;
         justify-content: center;
         align-items: center;
         border-radius: 3rem;
+        border: 1px solid yellow;
     }
     .profile-title{
         fontSize:61px;
@@ -140,8 +141,7 @@
         position: absolute;
         top: 20rem;
         z-index: 1000;
-        border-bottom: 1px solid yellow;
-        left:3rem;
+        left:2rem;
     }
 
 
@@ -193,8 +193,10 @@
         width: 20rem!important
 
     }
-    .text-profile-number{
-        font-size:18px;
+    .text-profile-number {
+        font-size: 18px;
+        border-bottom: 1px solid yellow;
+        width: 100%;
     }
 
     .banner-profile{
@@ -268,7 +270,7 @@
         width:100vw;
     }
     .flex-item >div{
-        background: var(--betnare-primary);
+        background: var(--betnare-header-bg);
         align-items: flex-start;
     }
     .profile-title{

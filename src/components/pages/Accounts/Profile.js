@@ -26,13 +26,8 @@ import Container from "react-bootstrap/Container";
 
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 import SidebarMobile from "../../sidebar/awesome/SidebarMobile";
-import makeRequest from "../../utils/fetch-request";
-import {Formik} from "formik";
 import DepositProfile from "./component/DepositProfile";
 import WithdrawProfile from "./component/WithdrawProfile";
-import HeaderNav from "../../header/header-nav";
-
-
 
 const Profile = () => {
     const navigate = useNavigate();

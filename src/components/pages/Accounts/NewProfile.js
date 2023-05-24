@@ -18,7 +18,6 @@ import {
     faSmile,
     faUser
 } from "@fortawesome/free-solid-svg-icons";
-import SideNav from "./SideNav";
 import {formatNumber} from "../../utils/betslip";
 import DepositProfile from "./component/DepositProfile";
 import WithdrawProfile from "./component/WithdrawProfile";
@@ -26,6 +25,10 @@ import {getFromLocalStorage} from "../../utils/local-storage";
 import useWindowDimensions from "../../header/Dimensions";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 import SidebarMobile from "../../sidebar/awesome/SidebarMobile";
+import SidebarProfile from "../../sidebar/sidebarProfile";
+import authImg from "../../../assets/img/Logo.webp";
+import betNiMoto from "../../../assets/img/BetniMoto.webp";
+import Row from "react-bootstrap/Row";
 
 const NewProfile = () => {
     const navigate = useNavigate();
@@ -43,10 +46,10 @@ const NewProfile = () => {
         // marginTop:'4rem'
     }
     return (
-        <div className={'flex-item'}>
-            <div className="item4">
-                <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav profile-top-nav" fixed="top" variant="dark" >
-                <Container fluid className={'d-flex justify-content-between mobile-change'}>
+        <div className={'flex-item py-0'}>
+            <div className="item4 profile-img-banner">
+                <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav profile-top-nav" fixed="top" variant="dark" style={{background:'transparent'}}>
+                <Container fluid className={'d-flex justify-content-between mobile-change mobile-profile'}>
                     <Navbar.Brand className="e logo align-self-start menu-control d-flex w-100" title="Betnare" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
                         <Link to={{pathname: "/"}} className="col-4 resize-mobile d-flex align-items-center">
                             <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"
@@ -58,7 +61,7 @@ const NewProfile = () => {
                             <div>
                                 <Link
                                     to={{pathname: "/"}}
-                                    className={"deposit-button size-font-user-action"} title={'HOME'} style={{fontSize:'14px'}}>
+                                    className={"deposit-button size-font-user-action"} title={'HOME'} style={{fontSize:'18px'}}>
                                       <span className="">
                                        <span className=" "> <FontAwesomeIcon
                                            icon={faHome}/></span>&nbsp;
@@ -70,7 +73,7 @@ const NewProfile = () => {
                                 <Link
                                     to={{pathname: "/logout"}}
                                     className={"deposit-button size-font-user-action"}
-                                    style={{marginRight: "12px", fontSize: '14px'}} title={'LOGOUT'}>
+                                    style={{marginRight: "12px", fontSize: '18px'}} title={'LOGOUT'}>
                                       <span className="text-warning">
                                        <span className=" "><FontAwesomeIcon icon={faPowerOff}
                                                                             className={"text-warning"}/>
@@ -109,21 +112,34 @@ const NewProfile = () => {
                     </Navbar.Offcanvas>
                 </Container>
             </Navbar>
+                <div className={'banner-profile'}>
+                    <Row className="banner-info">
+                        <div >
+                            <h1 className="text-white d-flex justify-content-center align-items-end profile-title" >PROFILE PAGE</h1>
+                            <p className="text-white px-3 d-flex align-items-center justify-content-center mt-3" style={{fontSize:"16px", opacity:'0.5px'}}><img src={betNiMoto}  className={'remove-mobile-profile'} style={{width:"205px"}} alt={'betnare'}/></p>
+                        </div>
+                    </Row>
+                </div>
+
             </div>
-            <div className="flex-container">
-                <div className="item1">
-                    <SideNav/>
+
+                <div className={"card-body d-flex flex-column  gap-2 icon-style-profile"}>
+                    <div className={"bg-warning user-profile-style"} id={'cash'}>
+                        <FontAwesomeIcon icon={faUser} className={"text-light icon-size-profile-user"}
+                        />
+                    </div>
+                    <span className=" text-warning text-center text-profile-number"> {user?.msisdn}</span>
+                </div>
+
+
+            <div className="flex-container profile-style" style={{padding:'0px 2px '}}>
+                <div className="item1 profile-sidebar">
+                    <SidebarProfile profile_side={true}/>
                 </div>
                 <div className="item2">
-                    <div className="row d-flex flex-column gap-3 px-4 py-sm-4 py-lg-0 justify-content-center align-items-center profile-top " style={{ margin: "auto", maxWidth:'991px'}}>
+                    <div className="row d-flex flex-column gap-3 px-4 py-sm-4 py-lg-0 justify-content-center align-items-center profile-top " style={{ margin: "auto"}}>
                         <div style={userIn}>
-                            <div className={"card-body d-flex flex-column align-items-center gap-2"}>
-                                <div className={"bg-warning user-style"} id={'cash'}>
-                                    <FontAwesomeIcon icon={faUser} className={"text-light"}
-                                                     style={{height: "3rem", width: "3rem"}}/>
-                                </div>
-                                <span className=" text-warning"> {user?.msisdn}</span>
-                            </div>
+
 
                         </div>
 

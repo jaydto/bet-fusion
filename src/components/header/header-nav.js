@@ -2,28 +2,18 @@ import React, {useContext, useEffect, useState, useRef} from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Container from 'react-bootstrap/Container';
 import {Context} from '../../context/store';
-import kanyonde from "../../../src/assets/img/mobile/aviator.webp"
-import Premier_League from "../../assets/img/leagues/Premier League.svg"
-import live from "../../assets/img/live.png"
-import casino from "../../assets/img/casino/casino.png"
-
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {
     faSearch,
     faPrint,
     faQuestionCircle,
     faTimes,
-    faLaptop,
-    faMagic, faInfo, faDice, faFireAlt
 } from '@fortawesome/free-solid-svg-icons'
 import makeRequest from "../utils/fetch-request";
-import {faMobile, faCoins} from "@fortawesome/free-solid-svg-icons";
-import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
-import {Link} from "react-router-dom";
-import LoginModal from '../modals/LoginModal';
 
+import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
+import {Link, useNavigate} from "react-router-dom";
 const HeaderNav = (props) => {
-    const {profile}=props
     const gaEventTracker = useAnalyticsEventTracker('Navigation');
     const [test, setTest] = useState(false)
     const [state,] = useContext(Context);
@@ -32,8 +22,7 @@ const HeaderNav = (props) => {
     const [searching, setSearching] = useState(false)
     const [matches, setMatches] = useState([])
     const searchInputRef = useRef(null)
-    const [showLoadingModal, setShowLoadingModal] = useState(false);
-
+    let navigate = useNavigate();
 
     useEffect(() => {
         fetchMatches()
@@ -75,9 +64,9 @@ const HeaderNav = (props) => {
 
     const LoginCheck = (game) => {
         if(game == "JetX"){
-            state?.user !== null ? window.location.href = "/smart-play?game=JetX&category=JetX" : setShowLoadingModal(true);
+            state?.user !== null ? window.location.href = "/smart-play?game=JetX&category=JetX" :  navigate('/login')
         }else {
-            state?.user !== null ? window.location.href = "/gameplay/1301/1" : setShowLoadingModal(true);
+            state?.user !== null ? window.location.href = "/gameplay/1301/1" : navigate('/login')
         }
 
     };
@@ -86,8 +75,6 @@ const HeaderNav = (props) => {
 
     return (
         <>
-            {showLoadingModal && (<LoginModal setShowLoadingModal={setShowLoadingModal} visible={showLoadingModal}/>)}
-
             <Container  fluid id="navbar-collapse-main"
                        className={`d-none d-sm-flex d-flex flex-row  header-menu  ${searching ? 'hidden' : 'd-block'}`}>
 
@@ -134,7 +121,6 @@ const HeaderNav = (props) => {
                             </strong>
                         </Link>
                     </li>
-
 
                     <li className={`${pathname === '/casino'  ? 'active' : ''}`}>
                         <Link className="url-link fm anl cg ox " to="/casino" title="Live Casino">

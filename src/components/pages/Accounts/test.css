@@ -4,6 +4,23 @@
 .top-nav{
     background: var(--betnare-header-bg);
 }
+.profile-sidebar{
+    top: 0;
+    left: 0;
+    width: 292px;
+    /*border-right: 1px solid rgba(0,0,0,.2);*/
+
+}
+
+.text-profile {
+    font-size: 19px;
+    font-weight: 700;
+    padding-left: 29px;
+}
+.flex-container.profile-style {
+    margin-top: 0px;
+    background: var(--betnare-header-bg);
+}
 .flex-item {
 
     display: flex;
@@ -13,7 +30,7 @@
     flex-wrap: nowrap;
     /*background-color: #bbdefb;*/
     height: 100vh;
-    padding: 15px 0px;
+    padding: 0px 0px;
     gap: 5px;
 
 }
@@ -91,13 +108,70 @@
     flex-grow:1;
 }
 @media (min-width: 1260px){
-    .item2{
-        width:65%;
+    .profile-width-side {
+        min-width: 400px!important;
+        background: var(--betnare-header-bg)!important;
+        padding-left: 0rem;
+        margin-top: 11rem;
+        padding-left: 2.5rem;
     }
+    .banner-info{
+        height: 40vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+    }
+    .user-profile-style {
+        width: 450px;
+        height: 154px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 3rem;
+    }
+    .profile-title{
+        fontSize:61px;
+    }
+    .icon-style-profile {
+        width: -moz-fit-content;
+        width: fit-content;
+        position: absolute;
+        top: 20rem;
+        z-index: 1000;
+        border-bottom: 1px solid yellow;
+        left:3rem;
+    }
+
+
 }
 @media (max-width: 1259px){
     .item2 {
         width:70%;
+    }
+    .icon-style-profile {
+        width: -moz-fit-content;
+        width: fit-content;
+        position: absolute;
+        top: 12rem;
+        z-index: 20000;
+        border-bottom: 1px solid yellow;
+        left:1rem;
+    }
+    profile-width-side {
+        min-width: 342px!important;
+        background: var(--betnare-header-bg)!important;
+        padding-left: 0rem;
+        margin-top: 11rem;
+    }
+    .user-profile-style {
+        width: 321px;
+        height: 154px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 3rem;
     }
 }
 @media (min-width: 1200px) and (max-width: 1240px){
@@ -113,7 +187,76 @@
         padding: 5px;
     }
 }
+@media (min-width: 992px){
+    .icon-size-profile-user{
+        height: 11rem;
+        width: 20rem!important
+
+    }
+    .text-profile-number{
+        font-size:18px;
+    }
+
+    .banner-profile{
+        width:100vw;
+        height:20vw;
+    }
+    .banner-info {
+        height: 34vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    /*.user-profile-style {*/
+    /*    width: 128px;*/
+    /*    height: 136px;*/
+    /*    display: flex;*/
+    /*    justify-content: center;*/
+    /*    align-items: center;*/
+    /*    border-radius: 3rem;*/
+    /*}*/
+
+    .profile-title{
+        fontSize:61px;
+    }
+
+}
 @media (max-width: 991px){
+    .icon-size-profile-user{
+        height: 3rem;
+        width: 3rem!important;
+
+    }
+    .banner-profile{
+        width:100vw;
+        height:25vw;
+    }
+    .banner-info{
+        height: 40vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+    }
+    .icon-style-profile {
+        width: -moz-fit-content;
+        width: fit-content;
+        position: absolute;
+        top: 21rem;
+        z-index: 20000;
+        left: 33rem;
+    }
+    .user-profile-style {
+        width: 100%;
+        height: 31px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 3rem;
+        background: transparent!important;
+    }
     .kiron-test{
         padding-top:0px!important;
         margin-top:0px!important;
@@ -127,6 +270,9 @@
     .flex-item >div{
         background: var(--betnare-primary);
         align-items: flex-start;
+    }
+    .profile-title{
+        fontSize:31px;
     }
     .item2 {
         /* flex:2 1 auto; */
@@ -154,6 +300,34 @@
     }
 }
 @media (max-width: 767px){
+    .banner-profile{
+        width:100vw;
+        height:25vw;
+    }
+    .icon-style-profile {
+        width: -moz-fit-content;
+        width: fit-content;
+        position: absolute;
+        top: 13rem;
+        z-index: 20000;
+        left: 15rem;
+    }
+    .user-profile-style {
+        width: 100%;
+        height: 31px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 3rem;
+        background: transparent!important;
+    }
+    .banner-info {
+        height: 44vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
     .item2 {
         /* flex:2 1 auto; */
         flex-grow: 6;
@@ -162,6 +336,16 @@
     }
 }
 @media  (max-width: 575px){
+    .remove-mobile-profile{
+        display: none;
+    }
+
+    .profile-title{
+        fontSize:17px;
+    }
+    .mobile-profile{
+        margin-top:-36px;
+    }
     .item2 {
         /* flex:2 1 auto; */
         flex-grow: 6;
@@ -169,6 +353,16 @@
         box-shadow: none;
     }
 
+}
+@media (max-width:374px){
+    .icon-style-profile {
+        width: -moz-fit-content;
+        width: fit-content;
+        position: absolute;
+        top: 10rem;
+        z-index: 20000;
+        left: 10rem;
+    }
 }
 
 
@@ -225,4 +419,48 @@
 {
     display: none;
 }
+
+
+.fade-in {
+    -webkit-animation: fade-in 4s cubic-bezier(0.390, 0.575, 0.565, 1.000) infinite both;
+    animation: fade-in 4s cubic-bezier(0.390, 0.575, 0.565, 1.000) infinite both;
+}
+/* ----------------------------------------------
+ * Generated by Animista on 2023-5-24 13:22:27
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info.
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation fade-in
+ * ----------------------------------------
+ */
+@-webkit-keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+.profile-img-banner {
+    background: url(http://localhost:3000/static/media/img-17.570ba2f4677a1324c079.webp)!important;
+    background-position: center!important;
+    background-repeat: no-repeat!important;
+    background-size: cover!important;
+    width: 100vw;
+}
+
 

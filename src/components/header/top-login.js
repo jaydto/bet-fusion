@@ -10,10 +10,6 @@ import fire from "../../assets/img/fire.webp"
 import {setLocalStorage} from '../utils/local-storage';
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {Link} from "react-router-dom";
-import {ButtonGroup} from "react-bootstrap";
-import LoginModal from "../modals/LoginModal";
-import RegisterModal from "../modals/RegisterModal";
-import VerifyModal from "../modals/VerifyModal";
 import {Switch} from "@material-ui/core";
 
 export const  Notify = (message) => {
@@ -215,52 +211,3 @@ const HeaderLogin = (props) => {
 }
 export default React.memo(HeaderLogin);
 
-// const HeaderLogin=()=>{
-//     const gaEventTracker = useAnalyticsEventTracker('Navigation');
-//     const [showLoadingModal, setShowLoadingModal] = useState(false);
-//     const [showRegisterModal, setShowRegisterModal] = useState(false);
-//     const [showVerifyModal, setShowVerifyModal] = useState(false);
-//     const [state,dispatch]=useContext(Context)
-//     const LoginCheck = (userAction) => {
-//        if(userAction=='Login'){
-//            state?.user !== null ? window.location.href = "/" : setShowLoadingModal(true);
-//        }else if(userAction=='Register'){
-//            state?.user !== null ? window.location.href = "/" :  setShowRegisterModal(true);
-//        }else{
-//            state?.user !== null ? window.location.href = "/" : setShowVerifyModal(true);
-//        }
-//
-//     };
-//     return (
-//         <>
-//         {showLoadingModal && (<LoginModal setShowLoadingModal={setShowLoadingModal} visible={showLoadingModal}/>)}
-//             {showLoadingModal && (<RegisterModal setShowRegisterModal={setShowRegisterModal} visible={showRegisterModal}/>)}
-//             {showLoadingModal && (<VerifyModal setShowVerifyModal={setShowVerifyModal} visible={showVerifyModal}/>)}
-//         <div className={"d-flex justify-content-end"}>
-//             <div className="col pad-2 mt-3 mobile-profile1 justify-content-end">
-//             <div className="">
-//                 <Link className="cg  login-color login-size btn bg-success text-light" to={'#'} title="Verify Account"
-//                       onClick={() => {
-//                           gaEventTracker('Verify');LoginCheck('Verify')
-//                       }}>
-//                     <span className="register-label text-light">Verify</span>
-//                 </Link>
-//             </div>
-//             <div className="">
-//                 <Link className="cg  login-color login-size btn bg-warning text-light" to={"#"} title="Join now" onClick={() => {
-//                     gaEventTracker('Register');LoginCheck('Register')
-//                 }}>
-//                     <span className="text-light ">Register</span>
-//                 </Link>
-//             </div>
-//
-//             <Link to={"#"} className="cg  login-color login-size btn text-light" type="submit" style={{background:'rgb(82, 121, 148)'}} onClick={()=>{LoginCheck('Login')}}>
-//                 <span>Login</span>
-//             </Link>
-//
-//         </div>
-//         </div>
-// </>
-//     )
-// }
-// export default React.memo(HeaderLogin);

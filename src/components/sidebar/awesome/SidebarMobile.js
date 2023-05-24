@@ -1,5 +1,5 @@
 import {Menu, MenuItem, ProSidebar, SidebarContent, SidebarFooter, SidebarHeader, SubMenu} from "react-pro-sidebar";
-import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
+import {getFromLocalStorage, } from "../../utils/local-storage";
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import Footer from "../../footer/footer";

@@ -10,7 +10,7 @@ import {
     faStream,
     faMagic,
     faMobile,
-    faCloudDownloadAlt
+    faCloudDownloadAlt, faPowerOff, faHandsHelping
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
@@ -105,6 +105,7 @@ const SidebarProfile = (props) => {
                 </MenuItem>
 
             </Menu>
+
             <Menu>
 
                 <MenuItem>
@@ -137,6 +138,24 @@ const SidebarProfile = (props) => {
                         <Link to={"/promotions"} className={'text-profile'}>Promotions</Link>
                     </div>
                 </MenuItem>
+            </Menu>
+            <Menu>
+                <MenuItem>
+                    <div className={"d-flex gap-4 align-items-center px-3"}>
+                        <FontAwesomeIcon icon={faHandsHelping}/>
+                        <Link to={"/how-to-play"} className={'text-profile'}>How to Play</Link>
+                    </div>
+                </MenuItem>
+
+            </Menu>
+            <Menu>
+                <MenuItem>
+                    <div className={"d-flex gap-4 align-items-center px-3"}>
+                        <FontAwesomeIcon icon={faPowerOff}/>
+                        <Link to={"/logout"} className={'text-profile'}>Logout</Link>
+                    </div>
+                </MenuItem>
+
             </Menu>
 
 

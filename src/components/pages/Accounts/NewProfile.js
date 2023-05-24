@@ -8,26 +8,20 @@ import {LazyLoadImage} from "react-lazy-load-image-component";
 import logo from "../../../assets/img/Logo.webp";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
-    faChevronRight,
-    faCoins,
     faDollarSign,
     faGifts,
     faHome,
     faListOl,
-    faPowerOff, faQuestionCircle,
+    faPowerOff,
     faSmile,
-    faUser
 } from "@fortawesome/free-solid-svg-icons";
 import {formatNumber} from "../../utils/betslip";
 import DepositProfile from "./component/DepositProfile";
 import WithdrawProfile from "./component/WithdrawProfile";
 import {getFromLocalStorage} from "../../utils/local-storage";
 import useWindowDimensions from "../../header/Dimensions";
-import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 import SidebarMobile from "../../sidebar/awesome/SidebarMobile";
 import SidebarProfile from "../../sidebar/sidebarProfile";
-import betNiMoto from "../../../assets/img/BetniMoto.webp";
-import Row from "react-bootstrap/Row";
 import PointsProfile from "./component/PointsProfile";
 
 const NewProfile = () => {
@@ -106,17 +100,6 @@ const NewProfile = () => {
                     </Container>
                 </Navbar>
                 <div className={'banner-profile'}>
-                    <Row className="banner-info">
-                        <div>
-                            <h1 className="text-white d-flex justify-content-center align-items-end profile-title">PROFILE
-                                PAGE</h1>
-                            <p className="text-white px-3 d-flex align-items-center justify-content-center mt-3"
-                               style={{fontSize: "16px", opacity: '0.5px'}}><img src={betNiMoto}
-                                                                                 className={'remove-mobile-profile'}
-                                                                                 style={{width: "205px"}}
-                                                                                 alt={'betnare'}/></p>
-                        </div>
-                    </Row>
                 </div>
 
             </div>
@@ -124,13 +107,6 @@ const NewProfile = () => {
 
             <div className="flex-container profile-style" style={{padding: '0px 2px '}}>
                 <div className="item1 profile-sidebar">
-                    <div className={"card-body d-flex flex-column  gap-2 icon-style-profile"}>
-                        <div className={"bg-warning user-profile-style"} id={'cash'}>
-                            <FontAwesomeIcon icon={faUser} className={"text-light icon-size-profile-user"}
-                            />
-                        </div>
-                        <span className=" text-warning text-center text-profile-number"> {user?.msisdn}</span>
-                    </div>
                     <SidebarProfile profile_side={true}/>
                 </div>
                 <div className="item2">
@@ -194,21 +170,17 @@ const NewProfile = () => {
                                         <div className={"d-flex align-items-center"}>
                                             <div className={"line-between"}></div>
                                         </div>
-                                        <div className={" profile-bg"}>
-                                            <div className="card-body ">
-                                                <Link to={{pathname: "/mybets"}}
-                                                      className={'link-info text-info font-btn py-2 px-2 d-flex flex-column'}
-                                                      title={'Click to Redeem'}>
-                                                                <span
-                                                                    className={"d-flex align-items-center gap-2 text-warning"}>
-                                                                   <FontAwesomeIcon
-                                                                       icon={faCoins} className={"text-warning"}/> My bets
-                                                                </span>
-                                                    <span>
-
-                                                                </span>
-
-                                                </Link>
+                                        <div className={"profile-bg"}>
+                                            <div className="card-body "><span
+                                                className="font-btn py-2 px-2 d-flex flex-column">
+                                                                <span className={"d-flex align-items-center gap-2"}>
+                                                            <FontAwesomeIcon
+                                                                icon={faListOl}/> Points </span>
+                                                            <span>
+                                                                <strong>
+                                                             {formatNumber(user.points_balance) || 0}</strong>
+                                                            </span>
+                                                        </span>
                                             </div>
                                         </div>
                                     </div>

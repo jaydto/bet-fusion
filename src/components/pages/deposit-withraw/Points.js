@@ -114,8 +114,6 @@ const Points = (props) => {
                 <div className="pt-0">
                     <div className={`${mobile?"card-title":"d-none"}`}>
                         <h4>REDEEM POINTS</h4>
-                        <div className={'bold text-warning d-flex w-100 gap-4 align-items-center'}>
-                            <h4>Total Redeemable Points:</h4> <h4>{formatNumber(user.points_balance) || 0}</h4></div>
                         </div>
 
                     <div className="row">

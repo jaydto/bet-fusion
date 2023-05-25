@@ -313,22 +313,6 @@ const Affiliate = () => {
                                 </div>
                             </div>
                         </section>
-                        <section className={'affiliate-info affiliate-payment-section'}>
-                            <div>
-                                <h1 className={'text-center text-light'}>
-                                    Payment Methods
-                                </h1>
-                                <div className={'affiliate-info-work-container'}>
-                                    <p className={'affiliate-info-work-text'}>
-                                        Your well-deserved monthly commissions won’t make you wait, as in our system we
-                                        guarantee only fast and secure payments.
-                                    </p>
-                                </div>
-                                <div className={'affiliate-payment-img'}>
-                                    <img  src={'https://storage.googleapis.com/nareimages/affiliate/mpesa.svg'} alt={'betnare mpesa'}/>
-                                </div>
-                            </div>
-                        </section>
                         <section className={'affiliate-info affiliate-about-section'}>
                             <div className={'d-flex affiliate-about-container'}>
                                 <div
@@ -348,8 +332,22 @@ const Affiliate = () => {
                                 </div>
                             </div>
                         </section>
-
-
+                        <section className={'affiliate-info affiliate-payment-section'}>
+                            <div>
+                                <h1 className={'text-center text-light'}>
+                                    Payment Methods
+                                </h1>
+                                <div className={'affiliate-info-work-container'}>
+                                    <p className={'affiliate-info-work-text'}>
+                                        Your well-deserved monthly commissions won’t make you wait, as in our system we
+                                        guarantee only fast and secure payments.
+                                    </p>
+                                </div>
+                                <div className={'affiliate-payment-img'}>
+                                    <img  src={'https://storage.googleapis.com/nareimages/affiliate/mpesa.svg'} alt={'betnare mpesa'}/>
+                                </div>
+                            </div>
+                        </section>
                     </div>
 
 

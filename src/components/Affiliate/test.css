@@ -1,5 +1,7 @@
 
-
+:root{
+    --betnare-primary:#141d28
+}
 .flex-item {
 
     display: flex;
@@ -21,6 +23,7 @@
     height: max-content;
     /* overflow-y: scroll; */
 }
+
 .item4{
     /* flex:1 1 auto; */
     flex-grow:2;
@@ -173,6 +176,33 @@
 
 }
 
+.user-profile {
+    display: flex!important;
+}
 
+.banner-profile {
+    width: 100vw;
+    height: 3vw;
+}
+
+.profile-img-banner {
+    background: url('https://storage.googleapis.com/nareimages/affiliate/home_bg.png')!important;
+    border-top:2px double yellow;
+    margin-top:10px;
+    background-position: center!important;
+    background-repeat: no-repeat!important;
+    background-size: cover!important;
+    width: 100vw;
+    height:70vh!important;
+}
+.affiliate-about-container{
+
+}
+.affiliate-about-container-element{
+
+}
+.affiliate-about-container-element-banner{
+
+}
 
 

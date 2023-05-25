@@ -198,7 +198,7 @@ const Affiliate = () => {
                                 </div>
                             </div>
                             <div className={'d-flex w-100 flex-column gap-4 '}>
-                                <div className={'container '}>
+                                <div className={'container card-medium '}>
                                     <div className={'d-flex gap-4 affiliate-card-smal card-feature-column'}>
                                         <div
                                             className="col-lg-4 col-sm-10 col-md-10 card text-center affiliate-info-work-card  affiliate-featured-cards">
@@ -255,7 +255,7 @@ const Affiliate = () => {
                                     </div>
 
                                 </div>
-                                <div className={'container '}>
+                                <div className={'container card-medium'}>
                                     <div className={'d-flex gap-4 affiliate-card-smal card-feature-column '}>
                                         <div
                                             className="col-lg-4 col-sm-10 col-md-10 card text-center affiliate-info-work-card affiliate-featured-cards ">

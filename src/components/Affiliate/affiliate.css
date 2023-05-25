@@ -179,6 +179,9 @@ footer.affiliate-footer{
     }
 }
 @media (min-width:992px) and (max-width:1259px){
+    .container.card-medium{
+        width:100%
+    }
     .affiliate-info-work-card-body {
         padding: 2rem;
         background: #fff;
@@ -200,7 +203,33 @@ footer.affiliate-footer{
         word-spacing: 2px;
     }
 }
-
+@media (min-width:992px) and (max-width:1150px){
+    .back-to-top {
+        height: 5rem;
+        width: 94%;
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 18px;
+    }
+    .container.card-medium {
+        width: 100vw;
+        padding: 0px;
+        margin: auto;
+        margin-left: -10px;
+    }
+    .affiliate-info-work-card-body {
+        padding: 1rem;
+        background: #fff;
+        height: 30rem;
+        overflow-y: hidden;
+    }
+    .affiliate-info-work-card-body-text-title {
+        font-size: 1.6rem;
+        font-weight: 800;
+        opacity: 0.9;
+        white-space: nowrap;
+    }
+}
 @media (min-width:767px) and (max-width:991px){
     .position-info {
         position: absolute;
@@ -233,6 +262,9 @@ footer.affiliate-footer{
     }
 }
 @media (min-width:425px) and (max-width:767px){
+    .affiliate-to-top {
+        top: 51rem;
+    }
     .size-font-user-action{
         font-size:16px!important;
     }
@@ -292,6 +324,9 @@ footer.affiliate-footer{
     }
 }
 @media (max-width:425px) and (min-width:375px){
+    .affiliate-to-top {
+        top: 53rem;
+    }
     .app-navbar .e img {
         max-width: 110px !important;
     }
@@ -358,6 +393,9 @@ footer.affiliate-footer{
 }
 
 @media (max-width:374px) and (min-width:250px){
+    .affiliate-to-top {
+        top: 53rem;
+    }
     .app-navbar .e img {
         max-width: 90px !important;
     }
@@ -425,6 +463,9 @@ footer.affiliate-footer{
     }
 }
 @media (max-width:250px) {
+    .affiliate-to-top {
+        top: 53rem;
+    }
     .app-navbar .e img {
         max-width: 70px !important;
     }

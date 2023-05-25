@@ -10,7 +10,7 @@ import './card.css'
 import './affiliate.css'
 // import SidebarMobile from "../sidebar/awesome/SidebarMobile";
 import {Context} from "../../context/store";
-import {faHome, faPowerOff} from "@fortawesome/free-solid-svg-icons";
+import {faArrowUp, faHandPointUp, faHome, faPowerOff} from "@fortawesome/free-solid-svg-icons";
 
 const Footer = React.lazy(() => import('../footer/footer'));
 const Affiliate = () => {
@@ -66,7 +66,7 @@ const Affiliate = () => {
                         </Container>
                     </Navbar>
                 </div>
-                <div className="flex-container profile-style" style={{padding: '0px 2px '}}>
+                <div className="flex-container profile-style" style={{padding: '0px 2px '}} id={'top'}>
                     <div className="item2">
                         <div className={'profile-img-banner'}>
                             <div>
@@ -352,6 +352,9 @@ const Affiliate = () => {
 
 
                 </div>
+                <a className={'back-to-top'} href={"/affiliate#top"}>
+                    <FontAwesomeIcon icon={faArrowUp}  className={'affiliate-to-top'}/>
+                </a>
                 <footer className={'affiliate-footer'}>
                     <Footer affiliate={true}/>
                 </footer>

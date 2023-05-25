@@ -160,8 +160,10 @@ footer.affiliate-footer{
     height: 4rem;
     position: fixed;
     top: 70rem;
-    color:chocolate;
+    color:whitesmoke;
+    background: var(--betnare-primary);
     box-shadow: 3px 4px 3px 3px rgba(0,0,0,0.75);
+
 
 
 }

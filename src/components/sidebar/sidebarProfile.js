@@ -10,7 +10,7 @@ import {
     faStream,
     faMagic,
     faMobile,
-    faCloudDownloadAlt, faPowerOff, faHandsHelping
+    faCloudDownloadAlt, faPowerOff, faHandsHelping, faAddressBook
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
@@ -22,13 +22,19 @@ const SidebarProfile = (props) => {
 
     const prevChoice=useRef('')
     const showCentricPage=(userChoice)=>{
+        console.log("start_user_Choice",userChoice)
+        console.log("start_user_prevChoice",prevChoice)
+
         if(prevChoice.current==''){
+                console.log("current_choice", prevChoice)
             dispatch({ type: "SET", key: `profile_${userChoice}`, payload: `profile_${userChoice}` });
-            prevChoice.current=state?.[`profile_${userChoice}`]
-        }else{
+            prevChoice.current=`profile_${userChoice}`
+        }
+        else{
+                console.log("current_choice_else", prevChoice.current)
             dispatch({ type: "SET", key: prevChoice.current, payload: null });
             dispatch({ type: "SET", key: `profile_${userChoice}`, payload: `profile_${userChoice}` });
-            prevChoice.current=state?.[`profile_${userChoice}`]
+            prevChoice.current=`profile_${userChoice}`
         }
 
 
@@ -83,6 +89,15 @@ const SidebarProfile = (props) => {
                         <FontAwesomeIcon icon={faPrint}/>
                         <div className={'text-profile'} onClick={()=>showCentricPage('withdraw')}>Withdraw</div>
                     </div>
+                </MenuItem>
+            </Menu>
+            <Menu>
+                <MenuItem>
+                    <div className={"d-flex gap-4 align-items-center px-3"}>
+                        <FontAwesomeIcon icon={faAddressBook}/>
+                        <div className={'text-profile'} onClick={()=>showCentricPage('points')}>Points</div>
+                    </div>
+
                 </MenuItem>
             </Menu>
             <Menu>

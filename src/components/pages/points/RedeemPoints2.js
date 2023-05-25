@@ -1,13 +1,9 @@
-import React, {useCallback, useContext, useEffect, useRef, useState} from 'react'
+import React, { useContext, useEffect, useState} from 'react'
 import { Row, Col } from "antd";
 import authImg from '../../../assets/img/Logo.webp'
 import fire from '../../../assets/img/fire.webp'
-
 import {Link, useNavigate} from "react-router-dom";
-
-import useWindowDimensions from "../../header/Dimensions";
-import {clearTrackingData, getFromLocalStorage, setLocalStorage, setTrackingData} from "../../utils/local-storage";
-import {toast} from "react-toastify";
+import { getFromLocalStorage} from "../../utils/local-storage";
 import only18 from '../../../assets/img/auth/18only.png'
 import backgroundURL from '../../../assets/img/auth/img-17.webp'
 import {Navbar, Offcanvas} from "react-bootstrap";
@@ -16,20 +12,13 @@ import {LazyLoadImage} from "react-lazy-load-image-component";
 import logo from "../../../assets/img/Logo.webp";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
-    faAngleLeft,
     faBackspace,
-    faBackward,
-    faDoorClosed,
-    faHome,
-    faLessThan,
-    faPowerOff
 } from "@fortawesome/free-solid-svg-icons";
 import SidebarMobile from "../../sidebar/awesome/SidebarMobile";
 import makeRequest from "../../utils/fetch-request";
 import {Form, Formik} from "formik";
 import {Context} from "../../../context/store";
 import {getBetslip} from "../../utils/betslip";
-import mpesa from "../../../assets/img/mpesa.png";
 const backgroundStyle = {
     backgroundImage: `url(${backgroundURL})`,
     backgroundRepeat: 'no-repeat',
@@ -39,15 +28,12 @@ const backgroundStyle = {
 
 const RedeemPoints= props => {
     const [message, setMessage] = useState(null);
-    // const {setUser} = props;
     const navigate = useNavigate();
     const expand = "md"
-    const {height, width} = useWindowDimensions();
     const [user, setUser] = useState(getFromLocalStorage("user"));
 
     const [state, dispatch] = useContext(Context);
     const [success, setSuccess] = useState(false);
-    const {mobile} = props
 
     const initialValues = {
         points: ''
@@ -56,7 +42,6 @@ const RedeemPoints= props => {
     const handleSubmit = values => {
         let endpoint = '/redeem-points';
         makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
-            // console.log("Status", status)
             if (status === 200 || status === 201) {
                 setSuccess(true);
                 setMessage(response?.message);

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import './test.css'
 import './card.css'
 import {Navbar, Offcanvas} from "react-bootstrap";
@@ -23,10 +23,15 @@ import useWindowDimensions from "../../header/Dimensions";
 import SidebarMobile from "../../sidebar/awesome/SidebarMobile";
 import SidebarProfile from "../../sidebar/sidebarProfile";
 import PointsProfile from "./component/PointsProfile";
+import {Context} from "../../../context/store";
+import MybetsProfile from "./component/mybets";
 
 const NewProfile = () => {
-    const [user, setUser] = useState(getFromLocalStorage("user"));
+    const [user, ] = useState(getFromLocalStorage("user"));
     const {height, width} = useWindowDimensions();
+    const [state, dispatch]=useContext(Context)
+    const profile_states=(state?.profile_cash==undefined&&state?.profile_gift==undefined&&state?.profile_deposit==undefined&&state?.profile_points==undefined&&state?.profile_withdraw==undefined&&state?.profile_mybets==undefined)
+
     const expand = "md"
     return (
         <div className={'flex-item py-0'}>
@@ -113,9 +118,8 @@ const NewProfile = () => {
                     <div
                         className="row d-flex flex-column gap-3 px-4 py-sm-4 py-lg-0 justify-content-center align-items-center profile-top "
                         style={{margin: "auto"}}>
-
                         <div className={'d-flex gap-3 py-3'}>
-                            <div className=" col " id={'gift'}>
+                            {(profile_states||state?.profile_cash!=null)&&<div className=" col " id={'gift'}>
 
                                 <div className="card-radius profile-bg text-light">
                                     <div className="card-body d-flex justify-content-between gap-2 ">
@@ -146,9 +150,9 @@ const NewProfile = () => {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>}
 
-                            <div className=" col " id={'mybets'}>
+                            {(profile_states||state?.profile_gift!=null)&&<div className=" col " id={'mybets'}>
 
                                 <div className="card-radius profile-bg text-light">
 
@@ -185,22 +189,27 @@ const NewProfile = () => {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>}
                         </div>
                         <div className={'d-flex gap-3'}>
-                            <div id={'withdraw'} className={'col'}>
+                            {(profile_states||state?.profile_withdraw!=null  )&&<div id={'withdraw'} className={'col'}>
                                 <WithdrawProfile/>
-                            </div>
+                            </div>}
                             <div id={'deposit'} className={'col'}>
-                                <DepositProfile/>
+                                {(profile_states||state?.profile_deposit!=null)&&<DepositProfile/>}
                             </div>
                         </div>
-                        <div className={'d-flex gap-1 '}>
+                        {(profile_states||state?.profile_points!=null)&&<div className={'d-flex gap-1 '}>
 
                             <div id={'points'} className={'col d-flex gap-3 '}>
                                 <div id={'points'} className={'col'}><PointsProfile/></div>
                             </div>
-                        </div>
+                        </div>}
+                        {(state?.profile_mybets=='profile_mybets')&&<div className={'d-flex gap-1 '}>
+                            <div id={'points'} className={'col d-flex gap-3 '}>
+                                <div id={'points'} className={'col'}><MybetsProfile/></div>
+                            </div>
+                        </div>}
 
                     </div>
 

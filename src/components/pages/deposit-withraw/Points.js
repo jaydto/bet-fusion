@@ -16,37 +16,43 @@ const Points = (props) => {
     const [success, setSuccess] = useState(false);
     const [message, setMessage] = useState(null);
     const {mobile} = props
-    const [user, ] = useState(getFromLocalStorage("user"));
-
-
 
     const initialValues = {
-        amount: '',
-        msisdn: state?.user?.msisdn
+        points: ''
     }
 
     const handleSubmit = values => {
-        let endpoint = '/stk/deposit';
-        setTrackingData(values)
+        let endpoint = '/redeem-points';
         makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
-            setSuccess(status === 200 || status === 201);
-            setMessage(response);
-            clearTrackingData()
+            if (status === 200 || status === 201) {
+                setSuccess(true);
+                setMessage(response?.message);
+            } else {
+                setSuccess(false);
+                setMessage(response?.error);
+            }
         })
     }
+
 
     const validate = values => {
 
         let errors = {}
 
-        if (!values.msisdn || !values.msisdn.match(/(254|0|)?[71]\d{8}/g)) {
-            errors.msisdn = 'Please enter a valid phone number'
-        }
-
-        if (!values.amount || values.amount < 1 || values.amount > 70000) {
-            errors.amount = "Please enter amount between KES 1.00 and KES 70,000.00";
+        if (!values.points || values.points < 1) {
+            errors.points = "Please enter 1 or more points to redeem";
         }
         return errors
+    }
+
+    const FormTitle = () => {
+        return (
+            <div className='col-md-12 primary-bg p-4 text-center'>
+                <h4 className="inline-block">
+                   REDEEM NARE POINTS
+                </h4>
+            </div>
+        )
     }
 
     useEffect(() => {
@@ -55,17 +61,6 @@ const Points = (props) => {
             dispatch({type: "SET", key: "betslip", payload: betslip});
         }
     }, [])
-
-    const FormTitle = () => {
-        return (
-            <div className='col-md-12 primary-bg p-4 text-center'>
-                <h4 className="inline-block">
-                    Redeem Points
-                </h4>
-            </div>
-        )
-    }
-
 
     const RedeemFormFields = (props) => {
         const {values, errors, onFieldChanged} = props;
@@ -79,20 +74,20 @@ const Points = (props) => {
                         <input
                             onChange={ev => onFieldChanged(ev)}
                             className="text-dark deposit-input form-control col-md-12 input-field"
-                            id="amount"
-                            name="amount"
-                            type="text"
-                            value={values.amount}
-                            placeholder='Enter Amount'
+                            id="points_profile"
+                            name="points"
+                            type="number"
+                            value={values.points}
+                            placeholder='Enter Points To Redeem'
                         />
-                        {errors.amount && <div className='text-danger'> {errors.amount} </div>}
+                        {errors.points && <div className='text-danger'> {errors.points} </div>}
                     </div>
                 </div>
                 <div className="form-group row d-flex justify-content-left mb-4">
                     <div className=" d-flex align-items-start deposit-withdraw-button-desktop">
                         <button type={"submit"}
                                 className='btn btn-lg w-100 button-radius input-field btn-font cg login-button2 btn bold' style={{marginTop:"47px"}}>
-                            Redeeem
+                            Redeeem Points
                         </button>
                     </div>
                 </div>
@@ -100,6 +95,27 @@ const Points = (props) => {
         )
     }
 
+    const PaymentInstructions = (props) => {
+        return (
+            <>
+                <label className='header text-info'>Redeem Points Instructions</label>
+                <div className="container">
+                    <div className="row">
+                        <div className="col  text-light"> 1. Enter the number of points to redeem.</div>
+                    </div>
+                    <div className="row">
+                        <div className="col text-light"> 2. Click on Redeem Points Button.</div>
+                    </div>
+                    <div className="row">
+                        <div className="col text-light"> 3. Points will be credited to your bonus wallet.</div>
+                    </div>
+                    <div className="row">
+                        <div className="col text-light"> 4. You accumulate Nare Points by placing cash bets.</div>
+                    </div>
+                </div>
+            </>
+        );
+    }
     const MyRedeemForm = (props) => {
         const {errors, values, setFieldValue} = props;
 
@@ -117,13 +133,6 @@ const Points = (props) => {
                         </div>
 
                     <div className="row">
-                        <div className='col-md-7 text-center'>
-                            <div className={`${mobile?"d-none":'col-md-7 text-center'}`}>
-                                <img src={mpesa} alt=""/>
-                            </div>
-                        </div>
-                        <hr className={`${mobile?"d-none":""}`}/>
-
                         <RedeemFormFields onFieldChanged={onFieldChanged} values={values} errors={errors}/>
                         <hr className={`${mobile?"d-none":"mt-4"}`}/>
 
@@ -154,10 +163,6 @@ const Points = (props) => {
 
     return (
         <React.Fragment>
-            <div className={`${mobile?"d-none":""}`}>
-            <Header/>
-            </div>
-
             <div className={`${mobile?"":"amt"}`}>
                 <div className="d-flex flex-row justify-content-between">
 

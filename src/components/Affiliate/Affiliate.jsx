@@ -132,7 +132,7 @@ const Affiliate = () => {
 
                                                     <p className="card-text text-dark affiliate-info-work-card-body-text">Sit
                                                         back and relax while waiting for your monthly
-                                                        commissions...</p>
+                                                        commissions.</p>
 
                                                 </div>
                                             </div>
@@ -316,7 +316,7 @@ const Affiliate = () => {
                                 </div>
                             </div>
                         </section>
-                        <section className={'affiliate-info affiliate-about-section'}>
+                        <section className={'affiliate-info affiliate-about-section affiliate-commission-section'}>
                             <div className={'d-flex affiliate-about-container'}>
                                 <div
                                     className={'col affiliate-about-container-element affiliate-about-container-element-banner-commisions'}>

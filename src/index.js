@@ -30,6 +30,11 @@ const MatchAllMarkets = React.lazy(() => import('./components/all-markets'));
 
 const Jackpot = React.lazy(() => import('./components/jackpot'));
 
+
+const Affiliate = React.lazy(
+    () => import('./components/Affiliate/Affiliate')
+)
+
 const Live = React.lazy(
     () => import('./components/live')
 );
@@ -172,6 +177,8 @@ render((
                            element={<ProtectedRoute><Deposit/> </ProtectedRoute>}/>
                     <Route exact path="/withdraw"
                            element={<ProtectedRoute><Withdraw/></ProtectedRoute>}/>
+                    <Route exact path="/affiliate"
+                           element={<ProtectedRoute><Affiliate/></ProtectedRoute>}/>
                     <Route exact path="/redeem-points"
                            element={<ProtectedRoute><RedeemPoints/></ProtectedRoute>}/>
                     <Route exact path="/my-bets"

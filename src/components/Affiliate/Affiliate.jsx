@@ -4,6 +4,7 @@ const Affiliate = () => {
 	return (
 		<>
 			<header>
+<h4> We are in affiliate page</h4>
 
 			</header>
 			<section className={'hero-banner'}>

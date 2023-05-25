@@ -102,12 +102,13 @@ const Affiliate = () => {
                                                 <div className="card-body affiliate-info-work-card-body">
                                                     <img
                                                         src={'https://storage.googleapis.com/nareimages/affiliate/step1.png'}/>
+                                                    <h5 className="card-title text-dark affiliate-info-work-card-body-text-title">Register</h5>
+
                                                     <p className="card-text text-dark affiliate-info-work-card-body-text">With
                                                         supporting text below as a natural
                                                         lead-in
                                                         to additional
                                                         content.</p>
-                                                    <h5 className="card-title text-dark affiliate-info-work-card-body-text-title">Register</h5>
 
                                                 </div>
                                             </div>
@@ -115,10 +116,11 @@ const Affiliate = () => {
                                                 <div className="card-body affiliate-info-work-card-body">
                                                     <img
                                                         src={'https://storage.googleapis.com/nareimages/affiliate/step2.png'}/>
+                                                    <h5 className="card-title text-dark affiliate-info-work-card-body-text-title">Promote</h5>
                                                     <p className="card-text text-dark affiliate-info-work-card-body-text">Every
                                                         user that you send gets a cookie that is valid for 30 days,
-                                                        in case they're not ready to sign-up on the first go..</p>
-                                                    <h5 className="card-title text-dark affiliate-info-work-card-body-text-title">Register</h5>
+                                                        in case they're not ready to sign-up on the first go</p>
+
 
                                                 </div>
                                             </div>
@@ -126,10 +128,11 @@ const Affiliate = () => {
                                                 <div className="card-body affiliate-info-work-card-body">
                                                     <img
                                                         src={'https://storage.googleapis.com/nareimages/affiliate/step3.png'}/>
+                                                    <h5 className="card-title text-dark affiliate-info-work-card-body-text-title">Earn</h5>
+
                                                     <p className="card-text text-dark affiliate-info-work-card-body-text">Sit
                                                         back and relax while waiting for your monthly
                                                         commissions...</p>
-                                                    <h5 className="card-title text-dark affiliate-info-work-card-body-text-title">Earn</h5>
 
                                                 </div>
                                             </div>

@@ -25,12 +25,13 @@ import SidebarProfile from "../../sidebar/sidebarProfile";
 import PointsProfile from "./component/PointsProfile";
 import {Context} from "../../../context/store";
 import MybetsProfile from "./component/mybets";
+import App from "./component/app";
 
 const NewProfile = () => {
     const [user, ] = useState(getFromLocalStorage("user"));
     const {height, width} = useWindowDimensions();
     const [state, dispatch]=useContext(Context)
-    const profile_states=(state?.profile_cash==undefined&&state?.profile_gift==undefined&&state?.profile_deposit==undefined&&state?.profile_points==undefined&&state?.profile_withdraw==undefined&&state?.profile_mybets==undefined)
+    const profile_states=(state?.profile_cash==undefined&&state?.profile_gift==undefined&&state?.profile_deposit==undefined&&state?.profile_points==undefined&&state?.profile_withdraw==undefined&&state?.profile_mybets==undefined&&state?.profile_app==undefined)
 
     const expand = "md"
     return (
@@ -73,7 +74,7 @@ const NewProfile = () => {
                                       </span>
                                     </Link>
                                 </div>}
-                                <div className="col-1 button-toggle mx-2" style={{width: "3.1rem"}}>
+                                <div className="col-1 button-toggle mx-2 stats-mobile" style={{width: "3.1rem"}}>
                                     <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"md"}`}
                                                    className="px-3 py-3 user-profile"/>
                                 </div>
@@ -193,11 +194,12 @@ const NewProfile = () => {
                         </div>
                         <div className={'d-flex gap-3'}>
                             {(profile_states||state?.profile_withdraw!=null  )&&<div id={'withdraw'} className={'col'}>
-                                <WithdrawProfile/>
+                                   <WithdrawProfile/>
                             </div>}
+                            {(profile_states||state?.profile_deposit!=null)&&
                             <div id={'deposit'} className={'col'}>
-                                {(profile_states||state?.profile_deposit!=null)&&<DepositProfile/>}
-                            </div>
+                                <DepositProfile/>
+                            </div>}
                         </div>
                         {(profile_states||state?.profile_points!=null)&&<div className={'d-flex gap-1 '}>
 
@@ -208,6 +210,11 @@ const NewProfile = () => {
                         {(state?.profile_mybets=='profile_mybets')&&<div className={'d-flex gap-1 '}>
                             <div id={'points'} className={'col d-flex gap-3 '}>
                                 <div id={'points'} className={'col'}><MybetsProfile/></div>
+                            </div>
+                        </div>}
+                        {(state?.profile_app=='profile_app')&&<div className={'d-flex gap-1 '}>
+                            <div id={'points'} className={'col d-flex gap-3 '}>
+                                <div id={'points'} className={'col'}><App/></div>
                             </div>
                         </div>}
 

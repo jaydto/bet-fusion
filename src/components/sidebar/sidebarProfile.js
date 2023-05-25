@@ -10,7 +10,7 @@ import {
     faStream,
     faMagic,
     faMobile,
-    faCloudDownloadAlt, faPowerOff, faHandsHelping, faAddressBook
+    faCloudDownloadAlt, faPowerOff, faHandsHelping, faAddressBook, faHandPointRight
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
@@ -45,7 +45,20 @@ const SidebarProfile = (props) => {
         style={{width: "100%"}}
         image={false}>
         <SidebarHeader className={""}>
-            <h2 className={'bold px-1'}>Profile</h2>
+            <div className={'d-flex gap-4 align-items-center justify-content-start'}>
+                <h2 className={'bold px-1'}>Profile </h2>
+                <h5 className={'text-warning'}>+{state?.user?.msisdn}</h5>
+            </div>
+            <Menu>
+                <MenuItem>
+                    <div className={"d-flex gap-4 align-items-center px-3"}>
+                        <FontAwesomeIcon icon={faHandPointRight}/>
+                        <div className={'text-profile'} onClick={()=>showCentricPage('all')}>Balance</div>
+                    </div>
+
+                </MenuItem>
+            </Menu>
+
              <Menu>
                 <MenuItem>
                     <div className={"d-flex gap-4 align-items-center px-3"}>
@@ -114,37 +127,14 @@ const SidebarProfile = (props) => {
             <Menu>
                 <MenuItem>
                     <div className={"d-flex gap-4 align-items-center px-3"}>
-                        <FontAwesomeIcon icon={faHome}/>
-                        <Link to={"/"} className={'text-profile'}>Home</Link>
-                    </div>
-                </MenuItem>
-
-            </Menu>
-
-            <Menu>
-
-                <MenuItem>
-                    <div className={"d-flex gap-4 align-items-center px-3"}>
                         <FontAwesomeIcon icon={faMobile}/>
-                        <Link className={'text-profile'} to={"/app"} title="App"
-                              onClick={() => gaEventTracker('Visit App Page')}>
-                            App
-                        </Link>
-
+                        <div className={'text-profile'}  onClick={() => {
+                            gaEventTracker('Visit App Page');
+                            showCentricPage('app')
+                        }}>App</div>
                     </div>
                 </MenuItem>
             </Menu>
-
-            <Menu>
-
-                <MenuItem>
-                    <div className={"d-flex gap-4 align-items-center text-profile px-3"}>
-                        <FontAwesomeIcon icon={faStream}/>
-                        <Link to={"/live"} className={'text-profile'}>Live</Link>
-                    </div>
-                </MenuItem>
-            </Menu>
-
             <Menu>
 
                 <MenuItem>
@@ -159,15 +149,6 @@ const SidebarProfile = (props) => {
                     <div className={"d-flex gap-4 align-items-center px-3"}>
                         <FontAwesomeIcon icon={faHandsHelping}/>
                         <Link to={"/how-to-play"} className={'text-profile'}>How to Play</Link>
-                    </div>
-                </MenuItem>
-
-            </Menu>
-            <Menu>
-                <MenuItem>
-                    <div className={"d-flex gap-4 align-items-center px-3"}>
-                        <FontAwesomeIcon icon={faPowerOff}/>
-                        <Link to={"/logout"} className={'text-profile'}>Logout</Link>
                     </div>
                 </MenuItem>
 

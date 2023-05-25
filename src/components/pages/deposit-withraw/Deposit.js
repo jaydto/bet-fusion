@@ -66,14 +66,45 @@ const Deposit = (props) => {
             </div>
         )
     }
-
+    const PaymentInstructions = (props) => {
+        return (
+            <>
+                <label className='text-light'>Deposit Instructions</label>
+                <div className="container">
+                    <div className="row">
+                        <div className="col text-light"> 1. Enter the amount you want to deposit.</div>
+                    </div>
+                    <div className="row">
+                        <div className="col text-light"> 2. Click on the deposit button.</div>
+                    </div>
+                    <div className="row">
+                        <div className="col text-light"> 3. Check your phone for an M-Pesa Request.</div>
+                    </div>
+                    <div className="row">
+                        <div className="col text-light"> 4. Enter your M-Pesa Pin to confirm the transaction.</div>
+                    </div>
+                    <div className="row">
+                        <div className="col text-light"> 5. On successful payment, you will receive an M-Pesa
+                            Confirmation.
+                        </div>
+                    </div>
+                </div>
+            </>
+        );
+    }
 
     const DepositFormFields = (props) => {
         const {values, errors, onFieldChanged} = props;
 
         return (
             <>
-             <div className="form-group row d-flex justify-content-center mt-5 deposit-widthdraw-input-desktop">
+                <div className="btn-group w-50 gap-2" role="group" aria-label="Basic example">
+                    <button type="button" className="btn btn-secondary">50</button>
+                    <button type="button" className="btn btn-primary">100</button>
+                    <button type="button" className="btn btn-warning">500</button>
+                    <button type="button" className="btn btn-success">1000</button>
+                </div>
+             <div className="form-group row d-flex justify-content-center mt-3 deposit-widthdraw-input-desktop">
                     <div className="col-md-12">
                         <label>Amount to Deposit</label>
                         <input
@@ -92,7 +123,7 @@ const Deposit = (props) => {
                     <div className=" d-flex align-items-start deposit-withdraw-button-desktop">
                         <button type={"submit"}
                                 className='btn btn-lg w-100 button-radius input-field btn-font cg login-button2 btn bold' style={{marginTop:"47px"}}>
-                            Deposit
+                            DEPOSIT
                         </button>
                     </div>
                 </div>
@@ -112,17 +143,14 @@ const Deposit = (props) => {
             <Form className="shadow-sm rounded border-0">
                 <div className="pt-0">
                     <div className={`${mobile?"card-title":"d-none"}`}><h4>DEPOSIT</h4></div>
+
                     <div className="row">
-                        <div className='col-md-7 text-center'>
-                            <div className={`${mobile?"d-none":'col-md-7 text-center'}`}>
-                                <img src={mpesa} alt=""/>
-                            </div>
-                        </div>
-                        <hr className={`${mobile?"d-none":""}`}/>
 
                         <DepositFormFields onFieldChanged={onFieldChanged} values={values} errors={errors}/>
 
-
+                        {state?.profile_deposit=='profile_deposit'&&<div>
+                            <PaymentInstructions/>
+                        </div>}
                     </div>
                 </div>
             </Form>

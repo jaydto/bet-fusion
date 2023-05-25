@@ -87,7 +87,7 @@ const Points = (props) => {
                     <div className=" d-flex align-items-start deposit-withdraw-button-desktop">
                         <button type={"submit"}
                                 className='btn btn-lg w-100 button-radius input-field btn-font cg login-button2 btn bold' style={{marginTop:"47px"}}>
-                            Redeeem Points
+                            REDEEM POINTS
                         </button>
                     </div>
                 </div>

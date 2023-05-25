@@ -70,7 +70,7 @@ const Affiliate = () => {
                     <div className="item2">
                         <div className={'profile-img-banner'}>
                             <div>
-                                <div className={'position-info w-25 d-flex flex-column'}>
+                                <div className={'position-info  affiliate-bg-info d-flex flex-column'}>
                                     <h1 className={'bold text-light'}>BETNARE AFFILIATE</h1>
                                     <p className={' bold text-light text-style-affiliate'}>
                                         BetNare Affiliate offers one of the most competitive online Affiliate Programs
@@ -97,8 +97,8 @@ const Affiliate = () => {
                                 </div>
                                 <div>
                                     <div className={'container '}>
-                                        <div className={'d-flex gap-2'}>
-                                            <div className="col-3 card text-center affiliate-info-work-card ">
+                                        <div className={'d-flex gap-2 affiliate-card-small'}>
+                                            <div className="col-lg-3 col-sm-10 col-md-10 card text-center affiliate-info-work-card ">
                                                 <div className="card-body affiliate-info-work-card-body">
                                                     <img
                                                         src={'https://storage.googleapis.com/nareimages/affiliate/step1.png'}/>
@@ -112,7 +112,7 @@ const Affiliate = () => {
 
                                                 </div>
                                             </div>
-                                            <div className="col-3 card text-center affiliate-info-work-card ">
+                                            <div className="col-lg-3 col-sm-10 col-md-10 card text-center affiliate-info-work-card ">
                                                 <div className="card-body affiliate-info-work-card-body">
                                                     <img
                                                         src={'https://storage.googleapis.com/nareimages/affiliate/step2.png'}/>
@@ -124,7 +124,7 @@ const Affiliate = () => {
 
                                                 </div>
                                             </div>
-                                            <div className="col-3 card text-center affiliate-info-work-card ">
+                                            <div className="col-lg-3 col-sm-10 col-md-10 card text-center affiliate-info-work-card ">
                                                 <div className="card-body affiliate-info-work-card-body">
                                                     <img
                                                         src={'https://storage.googleapis.com/nareimages/affiliate/step3.png'}/>
@@ -147,16 +147,15 @@ const Affiliate = () => {
                         <section className={'affiliate-form'}>
                             <iframe
                                 src="https://docs.google.com/forms/d/e/1FAIpQLSduBrzEhePDYgzrKiuwPCoJfVLrYahu5AjBI_bkjUUgAdsSCg/viewform?embedded=true"
-                                width="1280"
-                                height="2100"
                                 frameBorder="0"
+                                className={'affiliate-form-iframe'}
                                 marginHeight="0"
                                 marginWidth="0">Loading…
                             </iframe>
 
                         </section>
                         <section className={'affiliate-info affiliate-about-section'}>
-                            <div className={'d-flex affiliate-about-container'}>
+                            <div className={'d-flex affiliate-about-container affiliate-card-small affiliate-height-container-sm'}>
                                 <div className={'col affiliate-about-container-element'}>
                                     <h1 className={'affiliate-about-container-element-header'}>
                                         About Us
@@ -198,11 +197,11 @@ const Affiliate = () => {
                                     </p>
                                 </div>
                             </div>
-                            <div className={'d-flex w-100 flex-column gap-4'}>
+                            <div className={'d-flex w-100 flex-column gap-4 '}>
                                 <div className={'container '}>
-                                    <div className={'d-flex gap-4'}>
+                                    <div className={'d-flex gap-4 affiliate-card-smal card-feature-column'}>
                                         <div
-                                            className="col-4 card text-center affiliate-info-work-card  affiliate-featured-cards">
+                                            className="col-lg-4 col-sm-10 col-md-10 card text-center affiliate-info-work-card  affiliate-featured-cards">
                                             <div className="card-body affiliate-info-work-card-body">
                                                 <div className="card-header affiliate-info-work-card-body-header ">
                                                     <img
@@ -220,7 +219,7 @@ const Affiliate = () => {
                                             </div>
                                         </div>
                                         <div
-                                            className="col-4 card text-center affiliate-info-work-card  affiliate-featured-cards">
+                                            className="col-lg-4 col-sm-10 col-md-10 card text-center affiliate-info-work-card  affiliate-featured-cards">
                                             <div className="card-body affiliate-info-work-card-body">
                                                 <div className="card-header affiliate-info-work-card-body-header ">
                                                     <img
@@ -237,7 +236,7 @@ const Affiliate = () => {
                                             </div>
                                         </div>
                                         <div
-                                            className="col-4 card text-center affiliate-info-work-card affiliate-featured-cards">
+                                            className="col-lg-4 col-sm-10 col-md-10 card text-center affiliate-info-work-card affiliate-featured-cards">
                                             <div className="card-body affiliate-info-work-card-body ">
                                                 <div className="card-header affiliate-info-work-card-body-header ">
                                                     <img
@@ -257,9 +256,9 @@ const Affiliate = () => {
 
                                 </div>
                                 <div className={'container '}>
-                                    <div className={'d-flex gap-4'}>
+                                    <div className={'d-flex gap-4 affiliate-card-smal card-feature-column '}>
                                         <div
-                                            className="col-4 card text-center affiliate-info-work-card affiliate-featured-cards ">
+                                            className="col-lg-4 col-sm-10 col-md-10 card text-center affiliate-info-work-card affiliate-featured-cards ">
                                             <div className="card-body affiliate-info-work-card-body">
                                                 <div className="card-header affiliate-info-work-card-body-header ">
                                                     <img
@@ -277,7 +276,7 @@ const Affiliate = () => {
                                             </div>
                                         </div>
                                         <div
-                                            className="col-4 card text-center affiliate-info-work-card affiliate-featured-cards ">
+                                            className="col-lg-4 col-sm-10 col-md-10 card text-center affiliate-info-work-card affiliate-featured-cards ">
                                             <div className="card-body affiliate-info-work-card-body">
                                                 <div className="card-header affiliate-info-work-card-body-header ">
                                                     <img
@@ -294,7 +293,7 @@ const Affiliate = () => {
                                             </div>
                                         </div>
                                         <div
-                                            className="col-4 card text-center affiliate-info-work-card affiliate-featured-cards ">
+                                            className="col-lg-4 col-sm-10 col-md-10 card text-center affiliate-info-work-card affiliate-featured-cards ">
                                             <div className="card-body affiliate-info-work-card-body">
                                                 <div className="card-header affiliate-info-work-card-body-header ">
                                                     <img
@@ -316,8 +315,8 @@ const Affiliate = () => {
                                 </div>
                             </div>
                         </section>
-                        <section className={'affiliate-info affiliate-about-section affiliate-commission-section'}>
-                            <div className={'d-flex affiliate-about-container'}>
+                        <section className={'affiliate-info affiliate-about-section affiliate-commission-section '}>
+                            <div className={'d-flex affiliate-about-container affiliate-card-small affiliate-height-container-sm'}>
                                 <div
                                     className={'col affiliate-about-container-element affiliate-about-container-element-banner-commisions'}>
                                 </div>

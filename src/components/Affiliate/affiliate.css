@@ -114,11 +114,10 @@
     display: flex;
 
 }
-.affiliate-info-work-card.affiliate-featured-cards{
-
+.affiliate-info-work-card.affiliate-featured-cards {
     height: 30rem;
     border-radius: 6px!important;
-
+    overflow-y: hidden;
 }
 .affiliate-about-container-element-banner-commisions{
     background: url('https://storage.googleapis.com/nareimages/affiliate/commission.png');
@@ -168,6 +167,288 @@ footer.affiliate-footer{
     background: var(--betnare-primary);
     box-shadow: 3px 4px 3px 3px rgba(0,0,0,0.75);
 
+}
 
+@media (min-width:1260px) {
+    .affiliate-form-iframe{
+        width:1280px;
+        height:2100px;
+    }
+    .affiliate-bg-info{
+        width:25%
+    }
+}
+@media (min-width:992px) and (max-width:1259px){
+    .affiliate-info-work-card-body {
+        padding: 2rem;
+        background: #fff;
+        height: 30rem;
+        overflow-y: hidden;
+    }
+    .affiliate-form-iframe{
+        width:1000px;
+        height:2100px;
+    }
+    .affiliate-bg-info{
+        width:35%
+    }
+    .text-style-affiliate {
+        overflow-wrap: break-word;
+        line-height: 1.5;
+        font-size: 2rem;
+        font-weight: 400;
+        word-spacing: 2px;
+    }
+}
 
+@media (min-width:767px) and (max-width:991px){
+    .position-info {
+        position: absolute;
+        top: 24rem;
+        left: 10rem;
+        line-height: 7;
+    }
+    .text-style-affiliate {
+        overflow-wrap: break-word;
+        line-height: 1.5;
+        font-size: 2rem;
+        font-weight: 400;
+        word-spacing: 2px;
+    }
+    .affiliate-bg-info{
+        width:50%
+    }
+    .affiliate-form-iframe{
+        width:700px;
+        height:2100px;
+    }
+    .affiliate-card-small{
+        flex-direction: column;
+    }
+    .card-feature-column{
+        flex-direction: column
+    }
+    .affiliate-height-container-sm{
+
+    }
+}
+@media (min-width:425px) and (max-width:767px){
+    .affiliate-info-work-card-body-text-title {
+        font-size: 1.9rem;
+        font-weight: 800;
+        opacity: 0.9;
+        white-space: nowrap;
+    }
+    .affiliate-info-work-card-body-text {
+        font-size: 1.7rem;
+        font-weight: 600;
+        opacity: 0.6;
+    }
+    .affiliate-info-work-card-body {
+        padding: 5rem;
+        background: #fff;
+        height: 30rem;
+    }
+    .affiliate-about-section.affiliate-commission-section {
+        padding: 1rem;
+    }
+    .affiliate-info-work-container {
+        padding: 1rem;
+        display: flex;
+        justify-content: center;
+        opacity: 0.9;
+    }
+    .position-info {
+        position: absolute;
+        top: 24rem;
+        left: 10rem;
+        line-height: 7;
+    }
+    .text-style-affiliate {
+        overflow-wrap: break-word;
+        line-height: 1.5;
+        font-size: 2rem;
+        font-weight: 400;
+        word-spacing: 2px;
+    }
+    .affiliate-bg-info{
+        width:75%
+    }
+    .affiliate-form-iframe{
+        width:450px;
+        height:2100px;
+    }
+    .affiliate-card-small{
+        flex-direction: column;
+    }
+    .card-feature-column{
+        flex-direction: column
+    }
+    .affiliate-height-container-sm{
+
+    }
+}
+@media (max-width:425px) and (min-width:375px){
+    .affiliate-info-work-card-body-text {
+        font-size: 1.3rem;
+        font-weight: 600;
+        opacity: 0.6;
+    }
+    .affiliate-info-work-card-body-text-title {
+        font-size: 1.7rem;
+        font-weight: 800;
+        opacity: 0.9;
+        white-space: nowrap;
+    }
+    .affiliate-info-work-card-body {
+        padding: 2rem;
+        background: #fff;
+        height: 30rem;
+    }
+    .affiliate-about-section.affiliate-commission-section {
+        padding: 1rem;
+    }
+    .affiliate-info-work-container {
+        padding: 1rem;
+        display: flex;
+        justify-content: center;
+        opacity: 0.9;
+    }
+    .position-info {
+        position: absolute;
+        top: 13rem;
+        left: 10rem;
+        line-height: 7;
+    }
+    .text-style-affiliate {
+        overflow-wrap: break-word;
+        line-height: 1.5;
+        font-size: 2rem;
+        font-weight: 400;
+        word-spacing: 2px;
+    }
+    .affiliate-form-iframe {
+        width: 375px;
+        height: 2100px;
+    }
+    .affiliate-card-small{
+        flex-direction: column;
+    }
+    .card-feature-column{
+        flex-direction: column
+    }
+    .affiliate-height-container-sm{
+
+    }
+    .affiliate-bg-info{
+        width:64%
+    }
+}
+
+@media (max-width:374px) and (min-width:250px){
+    .affiliate-info-work-card-body-text {
+        font-size: 1.3rem;
+        font-weight: 600;
+        opacity: 0.6;
+    }
+    .affiliate-info-work-card-body-text-title {
+        font-size: 1rem;
+        font-weight: 800;
+        opacity: 0.9;
+        white-space: nowrap;
+    }
+    .affiliate-info-work-card-body {
+        padding: 2rem;
+        background: #fff;
+        height: 35rem;
+        overflow-y: hidden;
+    }
+    .affiliate-about-section.affiliate-commission-section {
+        padding: 1rem;
+    }
+    .affiliate-info-work-container {
+        padding: 1rem;
+        display: flex;
+        justify-content: center;
+        opacity: 0.9;
+    }
+    .position-info {
+        position: absolute;
+        top: 11rem;
+        left: 6rem;
+        line-height: 7;
+    }
+    .text-style-affiliate {
+        overflow-wrap: break-word;
+        line-height: 1.5;
+        font-size: 2rem;
+        font-weight: 400;
+        word-spacing: 2px;
+    }
+
+    .affiliate-bg-info{
+        width:74%
+    }
+    .affiliate-form-iframe {
+        width: 292px;
+        height: 2100px;
+    }
+    .affiliate-card-small{
+        flex-direction: column;
+    }
+    .card-feature-column{
+        flex-direction: column
+    }
+    .affiliate-height-container-sm{
+
+    }
+}
+@media (max-width:250px) {
+    .affiliate-info-work-card-body-text-title {
+        font-size: 0.7rem;
+        font-weight: 800;
+        opacity: 0.9;
+        white-space: nowrap;
+    }
+    .affiliate-info-work-card-body {
+        padding: 1rem;
+        background: #fff;
+        height: 40rem;
+    }
+    .affiliate-info-work-container {
+        padding: 1rem;
+        display: flex;
+        justify-content: center;
+        opacity: 0.9;
+    }
+    .position-info {
+        position: absolute;
+        top: 24rem;
+        left: 10rem;
+        line-height: 7;
+    }
+    .text-style-affiliate {
+        overflow-wrap: break-word;
+        line-height: 1.5;
+        font-size: 2rem;
+        font-weight: 400;
+        word-spacing: 2px;
+    }
+
+    .affiliate-bg-info{
+        width:100%
+    }
+    .affiliate-card-small{
+        flex-direction: column;
+    }
+    .card-feature-column{
+        flex-direction: column
+    }
+    .affiliate-form-iframe {
+        width: 180px;
+        height: 2100px;
+    }
+    .affiliate-height-container-sm{
+
+    }
 }

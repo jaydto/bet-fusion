@@ -59,36 +59,10 @@ const Affiliate = () => {
                                       </span>
                                         </Link>
                                     </div>}
-                                    <div className="col-1 button-toggle mx-2 stats-mobile" style={{width: "3.1rem"}}>
-                                        <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"md"}`}
-                                                       className="px-3 py-3 user-profile"/>
-                                    </div>
                                 </div>
 
                             </Navbar.Brand>
 
-                            <Navbar.Offcanvas
-                                style={{width: "21%", height: "100%", zIndex: "9999", marginTop: "8rem"}}
-                                className='off-canvas background-primary p-0 d-none'
-                                id={`offcanvasNavbar-expand-${expand}`}
-                                aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-                                placement="start">
-                                <Offcanvas.Header closeButton className='text-white' closeVariant={"white"}>
-                                    <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                                        <div className="col-3">
-                                            <div>
-                                                <h2>
-                                                    Profile
-                                                </h2>
-                                            </div>
-                                        </div>
-                                    </Offcanvas.Title>
-                                </Offcanvas.Header>
-                                {/* eslint-disable-next-line react/jsx-no-undef */}
-                                <Offcanvas.Body>
-                                    {/*<SidebarMobile/>*/}
-                                </Offcanvas.Body>
-                            </Navbar.Offcanvas>
                         </Container>
                     </Navbar>
                 </div>
@@ -165,6 +139,17 @@ const Affiliate = () => {
                                 </div>
                             </div>
 
+
+                        </section>
+                        <section className={'affiliate-form'}>
+                            <iframe
+                                src="https://docs.google.com/forms/d/e/1FAIpQLSduBrzEhePDYgzrKiuwPCoJfVLrYahu5AjBI_bkjUUgAdsSCg/viewform?embedded=true"
+                                width="1280"
+                                height="2100"
+                                frameBorder="0"
+                                marginHeight="0"
+                                marginWidth="0">Loading…
+                            </iframe>
 
                         </section>
                         <section className={'affiliate-info affiliate-about-section'}>
@@ -328,6 +313,22 @@ const Affiliate = () => {
                                 </div>
                             </div>
                         </section>
+                        <section className={'affiliate-info affiliate-payment-section'}>
+                            <div>
+                                <h1 className={'text-center text-light'}>
+                                    Payment Methods
+                                </h1>
+                                <div className={'affiliate-info-work-container'}>
+                                    <p className={'affiliate-info-work-text'}>
+                                        Your well-deserved monthly commissions won’t make you wait, as in our system we
+                                        guarantee only fast and secure payments.
+                                    </p>
+                                </div>
+                                <div className={'affiliate-payment-img'}>
+                                    <img  src={'https://storage.googleapis.com/nareimages/affiliate/mpesa.svg'} alt={'betnare mpesa'}/>
+                                </div>
+                            </div>
+                        </section>
                         <section className={'affiliate-info affiliate-about-section'}>
                             <div className={'d-flex affiliate-about-container'}>
                                 <div
@@ -347,32 +348,8 @@ const Affiliate = () => {
                                 </div>
                             </div>
                         </section>
-                        <section className={'affiliate-form'}>
-                            <iframe
-                                src="https://docs.google.com/forms/d/e/1FAIpQLSduBrzEhePDYgzrKiuwPCoJfVLrYahu5AjBI_bkjUUgAdsSCg/viewform?embedded=true"
-                                width="1280"
-                                height="2100"
-                                frameborder="0"
-                                marginheight="0"
-                                marginwidth="0">Loading…</iframe>
 
-                        </section>
-                        <section className={'affiliate-info affiliate-payment-section'}>
-                            <div>
-                                <h1 className={'text-center text-light'}>
-                                    Payment Methods
-                                </h1>
-                                <div className={'affiliate-info-work-container'}>
-                                    <p className={'affiliate-info-work-text'}>
-                                        Your well-deserved monthly commissions won’t make you wait, as in our system we
-                                        guarantee only fast and secure payments.
-                                    </p>
-                                </div>
-                                <div className={'affiliate-payment-img'}>
-                                    <img  src={'https://storage.googleapis.com/nareimages/affiliate/mpesa.svg'} alt={'betnare mpesa'}/>
-                                </div>
-                            </div>
-                        </section>
+
                     </div>
 
 

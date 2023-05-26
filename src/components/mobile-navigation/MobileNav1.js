@@ -110,9 +110,11 @@ const MobileNav1 = (props) => {
     const LoginCheck = (game) => {
         if(game == "JetX"){
             state?.user !== null ? window.location.href = "/smart-play?game=JetX&category=JetX" : setShowLoadingModal(true);
-        }else {
+        }else if(game=='spaceman'){
             state?.user !== null ? window.location.href = "/gameplay/1301/1" : setShowLoadingModal(true);
-        }
+        }else {
+         state?.user !== null ? window.location.href = "/casino" : setShowLoadingModal(true);
+    }
 
     };
 
@@ -192,7 +194,7 @@ const MobileNav1 = (props) => {
                                     style={{height: "23px", marginTop:"-6px"}}
                                 />
                                 <span className=" badge" style={{color:"white",background:"red"
-                                    ,marginTop:"-5px", borderRadius: "10px 0 15px 0", marginLeft:"1px", padding:"0.3px 3px ", fontSize:"5.5px",position:'absolute',top:'5px', left:'32px'}}>NEW</span>
+                                    ,marginTop:"-5px", borderRadius: "10px 0 15px 0", marginLeft:"1px", padding:"0.3px 3px ", fontSize:"5.5px",position:'absolute',top:'5px',left:'32px'}}>NEW</span>
                             </div>
                             <strong style={{textAlign: "center"}}>
                                 Casino
@@ -203,8 +205,9 @@ const MobileNav1 = (props) => {
                 </td>
 
                 <td  className={`menu-t m-auto sport-check  `} style={{paddingLeft: "4px"}} >
-                    <Link className="inner-div more-sports active cg  ox anl url-link d-flex flex-column align-items-center" to={`#`}   onClick={()=>LoginCheck('Jetx')}>
+                    <Link className="inner-div more-sports active cg  ox anl url-link d-flex flex-column align-items-center" to={`#`}  onClick={()=>LoginCheck('JetX')} >
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center ${window.location.search.includes('Jetx')?"active":""}`}>
+
                             <div className="menu-img ">
                                 <img
                                     className="side-icon"
@@ -213,10 +216,10 @@ const MobileNav1 = (props) => {
                                     style={{height: "23px", marginTop:"-6px"}}
                                 />
                                 <span className=" badge" style={{color:"white",background:"red"
-                                    ,marginTop:"-5px", borderRadius: "10px 0 15px 0", marginLeft:"1px", padding:"0.3px 3px ", fontSize:"5.5px",position:'absolute',top:'5px', left:'30px'}}>NEW</span>
+                                    ,marginTop:"-5px", borderRadius: "10px 0 15px 0", marginLeft:"1px", padding:"0.3px 3px ", fontSize:"5.5px",position:'absolute',top:'5px',left:'26px'}}>NEW</span>
                             </div>
                             <strong style={{textAlign: "center"}}>
-                                Jetx
+                               JetX
                             </strong>
                         </div>
                     </Link>
@@ -251,50 +254,70 @@ const MobileNav1 = (props) => {
 
                     </td> */}
 
-                <td  className={ pathname=="/nare-league"||pathname.includes('kiron') ? 'active' : 'nare-league menu-t m-auto'}
-                     onClick={() => gaEventTracker('gameplay')} style={{paddingLeft: "4px"}}>
-                    <Link className="inner-div active cg  ox anl url-link d-flex flex-column align-items-center"
-                          to={"/nare-league"}
-                          title=" League"
-                    >
-                        <div className="menu-img">
-                            <img src={kiron} style={{height: "40px", marginTop:"-10px", width:"46px" }}/>
-                            <span className=" badge" style={{color:"white",background:"red"
-                                ,marginTop:"-5px", borderRadius: "10px 0 15px 0", marginLeft:"1px", padding:"0.3px 3px ", fontSize:"5.5px",position:'absolute',top:'5px',left:'32px'}}>NEW</span>
+                <td  className={`menu-t m-auto sport-check nare-league `} style={{paddingLeft: "4px"}} >
+                    <Link className="inner-div more-sports active cg  ox anl url-link d-flex flex-column align-items-center" to={`/nare-league`}   >
+                        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center  ${pathname.includes('/nare-league')?"active":""}`}>
+
+                            <div className="menu-img  ">
+                                <img
+                                    className="side-icon"
+                                    src={kiron}
+                                    alt=""
+                                    style={{height: "23px", marginTop:"-6px"}}
+                                />
+                                <span className=" badge" style={{color:"white",background:"red"
+                                    ,marginTop:"-5px", borderRadius: "10px 0 15px 0", marginLeft:"1px", padding:"0.3px 3px ", fontSize:"5.5px",position:'absolute',top:'5px',left:'32px'}}>NEW</span>
+                            </div>
+                            <strong style={{textAlign: "center"}}>
+                                League
+                            </strong>
                         </div>
-                        <strong className={"text-light m-auto"}> League</strong>
                     </Link>
 
                 </td>
 
-                <td  className={ window.location.search.includes('gameplay') ? 'active' : 'menu-t m-auto'}
-                     onClick={() => gaEventTracker('gameplay')} style={{paddingLeft: "4px"}}>
-                    <Link className="inner-div active cg  ox anl url-link d-flex flex-column align-items-center"
-                          to={"#"}
-                          title="SpaceMan"
-                          onClick={()=>LoginCheck("spaceman")}>
-                        <div className="menu-img">
-                            <img src={spaceman} style={{height: "24px", marginTop:"-6px", width:"32px" }}/>
-                            <span className=" badge" style={{color:"white",background:"red"
-                                ,marginTop:"-5px", borderRadius: "10px 0 15px 0", marginLeft:"1px", padding:"0.3px 3px ", fontSize:"5.5px",position:'absolute',top:'5px', left:'50px'}}>NEW</span>
+                <td  className={`menu-t m-auto sport-check  `} style={{paddingLeft: "4px"}} >
+                    <Link className="inner-div more-sports active cg  ox anl url-link d-flex flex-column align-items-center" to={`#`}  onClick={()=>LoginCheck('spaceman')} >
+                        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center ${window.location.search.includes('spaceman')?"active":""}`}>
+
+                            <div className="menu-img ">
+                                <img
+                                    className="side-icon"
+                                    src={spaceman}
+                                    alt=""
+                                    style={{height: "23px", marginTop:"-6px", width:'30px'}}
+                                />
+                                <span className=" badge" style={{color:"white",background:"red"
+                                    ,marginTop:"-5px", borderRadius: "10px 0 15px 0", marginLeft:"1px", padding:"0.3px 3px ", fontSize:"5.5px",position:'absolute',top:'5px',left:'32px'}}>NEW</span>
+                            </div>
+                            <strong style={{textAlign: "center"}}>
+                                Spaceman
+                            </strong>
                         </div>
-                        <strong className={"text-light m-auto"}> spaceman</strong>
                     </Link>
 
                 </td>
 
 
 
-                <td className={window.location.href.includes('nare-games') ? 'menu-t m-auto active ' : ' menu-t m-auto nare-games'}
-                    onClick={() => gaEventTracker('Nare Games')} style={{paddingLeft: "0px"}}>
-                    <Link className="inner-div active cg  ox anl url-link d-flex flex-column align-items-center"
-                          to="/nare-games"
-                          title="Nare Games">
-                        <div className="menu-img d-flex justify-content-center ">
-                            <img src={fire} style={{height: "29px", marginTop:"-7px"}}/>
-                            <span className=" badge" style={{color:"white",background:"red"
-                                ,marginTop:"10px", borderRadius: "10px 0 15px 0", marginLeft:"1px", padding:"0.9px 3px ",height:"8px", fontSize:"5.5px",position:'absolute',top:'-9px', left:'50px'}}>NEW</span>
-                        </div><strong className={"text-light"}> Nare Games</strong>
+                <td  className={`menu-t m-auto sport-check  `} style={{paddingLeft: "4px"}} >
+                    <Link className="inner-div more-sports active cg  ox anl url-link d-flex flex-column align-items-center" to={`/nare-games`}   >
+                        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center ${window.location.pathname.includes('nare-games')?"active":""}`}>
+
+                            <div className="menu-img ">
+                                <img
+                                    className="side-icon"
+                                    src={fire}
+                                    alt=""
+                                    style={{height: "23px", marginTop:"-6px"}}
+                                />
+                                <span className=" badge" style={{color:"white",background:"red"
+                                    ,marginTop:"-5px", borderRadius: "10px 0 15px 0", marginLeft:"1px", padding:"0.3px 3px ", fontSize:"5.5px",position:'absolute',top:'5px',left:'32px'}}>NEW</span>
+                            </div>
+                            <strong style={{textAlign: "center"}}>
+                                Nare Games
+                            </strong>
+                        </div>
                     </Link>
 
                 </td>

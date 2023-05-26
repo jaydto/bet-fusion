@@ -190,13 +190,13 @@ const Index = () => {
 
 
         if (new_tab !== tab) {
-            setReset(c => c + 1)
             setTab(new_tab)
             setLoading(true)
         }
 
 
         if (sportID !== new_sport_id) {
+
             setSportID(new_sport_id)
             setLoading(true)
             setMatches([])
@@ -220,7 +220,7 @@ const Index = () => {
         return () => {
             setMatches(null);
         };
-    }, [window.location.pathname]);
+    }, [window.location.pathname,window.location.search]);
 
 
     useEffect(()=>{

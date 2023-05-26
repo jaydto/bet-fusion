@@ -280,9 +280,9 @@ footer.affiliate-footer{
     .affiliate-bg-info{
         width:50%
     }
-    .affiliate-form-iframe{
-        width:992px;
-        height:2100px;
+    .affiliate-form-iframe {
+        width: 768px;
+        height: 2100px;
     }
     .affiliate-card-small{
         flex-direction: column;

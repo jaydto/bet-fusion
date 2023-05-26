@@ -72,7 +72,7 @@ const VerifyAccount2 = props => {
                 setLocalStorage('user', response?.success?.user);
                 let timer = setInterval(() => {
                     clearInterval(timer)
-                    window.location.href = "/deposit"
+                    window.location.href = "/"
                 }, 1000)
             }
 
@@ -310,15 +310,14 @@ const VerifyAccount2 = props => {
                                 <div className={'d-flex'}>
                                     {/**/}
                                     <div >
-                                        {/*{user?setTimeout(navigate("/"),500):""}*/}
-                                        {/*{success?setTimeout(window.location.href="/deposit",1000):""}*/}
+
                                         <div className={"d-flex flex-row justify-content-between"}>
                                             <div className=" w-100">
                                                 <div className="homepage d-flex flex-column align-items-center justify-content-center login-page">
 
                                                     <div className="col-md-12 mt-2 text-white p-2">
                                                         {message && <Alert/>}
-                                                        {success?setTimeout(window.location.href="/deposit",2000):""}
+                                                        {success?setTimeout(window.location.href="/",2000):""}
                                                         <div className="modal-body pb-0" data-backdrop="static">
                                                             <VerifyAccountForm/>
                                                         </div>

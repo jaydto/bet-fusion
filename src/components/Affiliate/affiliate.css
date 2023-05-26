@@ -204,6 +204,15 @@ footer.affiliate-footer{
     }
 }
 @media (min-width:992px) and (max-width:1150px){
+    .affiliate-to-top {
+        font-size: 5rem;
+        height: 4rem;
+        position: fixed;
+        top: 91rem;
+        color: whitesmoke;
+        background: var(--betnare-primary);
+        box-shadow: 3px 4px 3px 3px rgba(0,0,0,0.75);
+    }
     .back-to-top {
         height: 5rem;
         width: 94%;
@@ -248,7 +257,7 @@ footer.affiliate-footer{
         width:50%
     }
     .affiliate-form-iframe{
-        width:700px;
+        width:992px;
         height:2100px;
     }
     .affiliate-card-small{
@@ -262,6 +271,10 @@ footer.affiliate-footer{
     }
 }
 @media (min-width:425px) and (max-width:767px){
+    .affiliate-cards-container {
+        border-top: 2px solid yellow;
+        padding: 4rem;
+    }
     .affiliate-to-top {
         top: 51rem;
     }
@@ -324,6 +337,10 @@ footer.affiliate-footer{
     }
 }
 @media (max-width:425px) and (min-width:375px){
+    .affiliate-cards-container {
+        border-top: 2px solid yellow;
+        padding: 4rem;
+    }
     .affiliate-to-top {
         top: 53rem;
     }
@@ -348,9 +365,14 @@ footer.affiliate-footer{
         white-space: nowrap;
     }
     .affiliate-info-work-card-body {
-        padding: 2rem;
+        padding: 0.5rem;
         background: #fff;
-        height: 30rem;
+        height: 20rem;
+    }
+    .affiliate-info-work-card.affiliate-featured-cards {
+        height: 20rem;
+        border-radius: 6px!important;
+        overflow-y: hidden;
     }
     .affiliate-about-section.affiliate-commission-section {
         padding: 1rem;
@@ -364,13 +386,29 @@ footer.affiliate-footer{
     .position-info {
         position: absolute;
         top: 13rem;
-        left: 10rem;
+        left: 6rem;
         line-height: 7;
+    }
+    .affiliate-payment-section {
+        /* background: #ffc107; */
+        padding: 1.5rem;
+        /* box-shadow: 3px 4px 3px 3px rgba(0,0,0,0.75); */
+    }
+    .affiliate-info-work-text {
+        font-size: 1.8rem;
+        color: #fff;
+        font-weight: 400;
+        display: flex;
+        width: 96%;
+        justify-content: center;
+        word-spacing: 2px;
+        overflow-wrap: break-word;
+        text-align: center;
     }
     .text-style-affiliate {
         overflow-wrap: break-word;
         line-height: 1.5;
-        font-size: 2rem;
+        font-size: 1.7rem;
         font-weight: 400;
         word-spacing: 2px;
     }
@@ -390,9 +428,40 @@ footer.affiliate-footer{
     .affiliate-bg-info{
         width:64%
     }
+    .affiliate-container-element-commission {
+        margin-top: 0rem;
+    }
 }
 
 @media (max-width:374px) and (min-width:250px){
+    .affiliate-info-work-text {
+        font-size: 1.8rem;
+        color: #fff;
+        font-weight: 400;
+        display: flex;
+        width: 96%;
+        justify-content: center;
+        word-spacing: 2px;
+        overflow-wrap: break-word;
+        text-align: center;
+    }
+    .affiliate-container-element-commission {
+        margin-top: 0rem;
+    }
+    .affiliate-payment-section {
+        /* background: #ffc107; */
+        padding: 1.5rem;
+        /* box-shadow: 3px 4px 3px 3px rgba(0,0,0,0.75); */
+    }
+    .affiliate-info-work-card.affiliate-featured-cards {
+        height: 24rem;
+        border-radius: 6px!important;
+        overflow-y: hidden;
+    }
+    .affiliate-cards-container {
+        border-top: 2px solid yellow;
+        padding: 4rem;
+    }
     .affiliate-to-top {
         top: 53rem;
     }
@@ -422,6 +491,7 @@ footer.affiliate-footer{
         height: 35rem;
         overflow-y: hidden;
     }
+
     .affiliate-about-section.affiliate-commission-section {
         padding: 1rem;
     }
@@ -463,6 +533,9 @@ footer.affiliate-footer{
     }
 }
 @media (max-width:250px) {
+    .affiliate-container-element-commission {
+        margin-top: 0rem;
+    }
     .affiliate-to-top {
         top: 53rem;
     }
@@ -521,5 +594,9 @@ footer.affiliate-footer{
     }
     .affiliate-height-container-sm{
 
+    }
+    .affiliate-cards-container {
+        border-top: 2px solid yellow;
+        padding: 3rem;
     }
 }

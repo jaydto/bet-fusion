@@ -178,7 +178,7 @@ render((
                     <Route exact path="/withdraw"
                            element={<ProtectedRoute><Withdraw/></ProtectedRoute>}/>
                     <Route exact path="/affiliate"
-                           element={<ProtectedRoute><Affiliate/></ProtectedRoute>}/>
+                           element={<Affiliate/>}/>
                     <Route exact path="/redeem-points"
                            element={<ProtectedRoute><RedeemPoints/></ProtectedRoute>}/>
                     <Route exact path="/my-bets"

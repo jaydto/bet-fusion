@@ -259,6 +259,15 @@ const HeaderNav = (props) => {
                         </Link>
                     </li>
 
+                    <li className={pathname.includes("promotions") ? 'active' : ''}
+                        onClick={() => gaEventTracker('Visited Affiliate Page')}>
+                        <Link className="url-link fm anl cg ox" to="/affiliate" title="Affiliate">
+                            <strong>
+                                Affiliate
+                            </strong>
+                        </Link>
+                    </li>
+
                 </ListGroup>
                 <ListGroup
                     as="ul" xs="12" horizontal

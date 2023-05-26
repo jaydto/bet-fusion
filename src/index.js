@@ -137,6 +137,8 @@ const Login=React.lazy(()=>import('./components/pages/loginTwo'));
 
 const Profile =React.lazy(()=>import( "./components/pages/Accounts/NewProfile"));
 
+const Affiliate =React.lazy(()=>import( "./components/Affiliate/Affiliate"));
+
 const Logout = () => {
     let navigate = useNavigate();
 
@@ -211,6 +213,8 @@ render((
                     <Route exact path="/promotions" element={<Promotions/>}/>
                     <Route exact path="/deposit"
                            element={<ProtectedRoute><Deposit3/> </ProtectedRoute>}/>
+                    <Route exact path="/affiliate"
+                           element={<ProtectedRoute><Affiliate/> </ProtectedRoute>}/>
                     <Route exact path="/withdraw"
                            element={<ProtectedRoute><Withdraw/></ProtectedRoute>}/>
                     <Route exact path="/redeem-points"

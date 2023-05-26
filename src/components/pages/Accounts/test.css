@@ -21,7 +21,7 @@
     margin-top: 0px;
     background: var(--betnare-header-bg);
 }
-.flex-item {
+.flex-item-profile {
 
     display: flex;
     justify-content: space-between;
@@ -48,7 +48,7 @@
     border-radius: 11px;
     box-shadow: 2px 3px 10px 2px rgba(0,0,0,0.3);
 }
-.flex-item >div{
+.flex-item-profile >div{
     background: var(--betnare-primary);
     /*border: 3px solid #ffcc80;*/
     border-radius: 5px;
@@ -56,12 +56,12 @@
     height: max-content;
     /*overflow-y: scroll;*/
 }
-.item4{
+.item-profile4{
     /* flex:1 1 auto; */
     flex-grow:2;
     align-self:auto;
 }
-.item5{
+.item-profile5{
     /* flex:1 1 auto; */
     flex-grow:1;
     align-self:auto;
@@ -81,19 +81,19 @@
     flex-grow: 4;
     height: max-content;
 }
-.item6{
+.item-profile6{
     /* flex:1 1 auto; */
     flex-grow:3;
     align-self:auto;
 }
 
-.item1 {
+.item-profile1 {
     /* flex:1 1 auto; */
     flex-grow:1;
     align-self:auto;
 }
 
-.item2 {
+.item-profile2 {
     /* flex:2 1 auto; */
     flex-grow:3;
     /*box-shadow: 0px -1px 16px 6px rgba(0,0,0,0.75);*/
@@ -103,7 +103,7 @@
 .carousel.slide{
     background: var(--betnare-primary);
 }
-.item3 {
+.item-profile3 {
     /* flex:1 1 auto; */
     flex-grow:1;
 }
@@ -152,7 +152,7 @@
 
 }
 @media (max-width: 1259px){
-    .item2 {
+    .item-profile2 {
         width:70%;
     }
     .banner-profile {
@@ -184,7 +184,7 @@
     }
 }
 @media (min-width: 1200px) and (max-width: 1240px){
-    .item2{
+    .item-profile2{
         width: 60%;
     }
 }
@@ -193,7 +193,7 @@
         width: 100vw;
         height: 3vw;
     }
-    .item2{
+    .item-profile2{
         width: 58%;
     }
     .home-tabs-active {
@@ -276,23 +276,23 @@
     .flex-container{
         flex-direction: column;
     }
-    .flex-item{
+    .flex-item-profile{
         width:100vw;
     }
-    .flex-item >div{
+    .flex-item-profile >div{
         background: var(--betnare-header-bg);
         align-items: flex-start;
     }
     .profile-title{
         fontSize:31px;
     }
-    .item2 {
+    .item-profile2 {
         /* flex:2 1 auto; */
         flex-grow: 6;
         width: 100%;
         box-shadow: none;
     }
-    .item1{
+    .item-profile1{
         display: none;
     }
     .flex-container {
@@ -300,7 +300,7 @@
         flex-grow: 12;
     }
 
-    .item4{
+    .item-profile4{
 
     }
     /*.item3{*/

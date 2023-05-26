@@ -35,8 +35,8 @@ const NewProfile = () => {
 
     const expand = "md"
     return (
-        <div className={'flex-item py-0'}>
-            <div className="item4 profile-img-banner">
+        <div className={'flex-item-profile py-0'}>
+            <div className="item-profile4 profile-img-banner">
                 <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav profile-top-nav" fixed="top"
                         variant="dark" style={{background: 'transparent'}}>
                     <Container fluid className={'d-flex justify-content-between mobile-change mobile-profile'}>
@@ -74,35 +74,11 @@ const NewProfile = () => {
                                       </span>
                                     </Link>
                                 </div>}
-                                <div className="col-1 button-toggle mx-2 stats-mobile" style={{width: "3.1rem"}}>
-                                    <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"md"}`}
-                                                   className="px-3 py-3 user-profile"/>
-                                </div>
+
                             </div>
 
                         </Navbar.Brand>
 
-                        <Navbar.Offcanvas
-                            style={{width: "21%", height: "100%", zIndex: "9999", marginTop: "8rem"}}
-                            className='off-canvas background-primary p-0 user-profile'
-                            id={`offcanvasNavbar-expand-${expand}`}
-                            aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-                            placement="start">
-                            <Offcanvas.Header closeButton className='text-white' closeVariant={"white"}>
-                                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                                    <div className="col-3">
-                                        <div>
-                                            <h2>
-                                                Profile
-                                            </h2>
-                                        </div>
-                                    </div>
-                                </Offcanvas.Title>
-                            </Offcanvas.Header>
-                            <Offcanvas.Body className={(width <= 575 ? user ? "" : "" : "")}>
-                                <SidebarMobile/>
-                            </Offcanvas.Body>
-                        </Navbar.Offcanvas>
                     </Container>
                 </Navbar>
                 <div className={'banner-profile'}>
@@ -112,10 +88,10 @@ const NewProfile = () => {
 
 
             <div className="flex-container profile-style" style={{padding: '0px 2px '}}>
-                <div className="item1 profile-sidebar">
+                <div className="item-profile1 profile-sidebar">
                     <SidebarProfile profile_side={true}/>
                 </div>
-                <div className="item2">
+                <div className="item-profile2">
                     <div
                         className="row d-flex flex-column gap-3 px-4 py-sm-4 py-lg-0 justify-content-center align-items-center profile-top "
                         style={{margin: "auto"}}>

@@ -389,6 +389,9 @@ background: var(--betnare-input)!important;
     border-radius: 0.3rem;
     font-size: 14px !important;
 }
+.markets-container-data-check:empty{
+    display:none;
+}
 .login-button2 {
     color: #000;
     /*background: #527994FF;*/
@@ -1061,6 +1064,14 @@ input[type="radio"], input[type="checkbox"] {
 
 }
 @media (min-width: 768px) and (max-width: 991px){
+    .size-info {
+        width: 52%!important;
+    }
+    .compt-teams {
+        font-size: 13px;
+        text-transform: uppercase !important;
+        word-spacing: 4px;
+    }
     .e.logo {
         padding: 0px 0px !important;
     }
@@ -1081,14 +1092,17 @@ input[type="radio"], input[type="checkbox"] {
     }
 }
 @media (max-width: 767px){
+    .extra-markets-mobile-date{
+        display:none;
+    }
     .top-matches div {
         min-height: 27px;
         justify-content: unset;
-        /* background: #16202C; */
+
+        padding-left: 0.1rem!important;
+        padding-right: 0rem!important;
+        /*margin-bottom: 0.4rem;*/
     }
-    /*.top-login-mobile{*/
-    /*    margin-top:135px!important;*/
-    /*}*/
     .home-tabs-active {
         padding: 7px;
     }
@@ -1147,9 +1161,7 @@ input[type="radio"], input[type="checkbox"] {
         min-height:72px;
     }
     .tag {
-
-        font-size: 7px;
-
+        font-size: 10px;
     }
     .image-size{
         width:138px;
@@ -1159,11 +1171,11 @@ input[type="radio"], input[type="checkbox"] {
 }
 @media (max-width: 575px){
     .menu-t .menu-img {
-        height: 2.3rem !important;
+        height: 2.7rem !important;
     }
     table.menu-table tr {
-
         height: 5rem;
+        margin-left: 1rem;
     }
     .app-navbar .e img {
         margin-bottom: 0px!important;
@@ -1263,8 +1275,9 @@ input[type="radio"], input[type="checkbox"] {
     .size-font-user-action {
         font-size: 11px!important;
     }
-    .size-1{
-        width:23%!important;
+    .size-1 {
+        width: 23%!important;
+        line-height: 1.5;
     }
     .user_logged {
         margin-top: 14.5rem!important;
@@ -1293,7 +1306,12 @@ input[type="radio"], input[type="checkbox"] {
     }
 }
 
+
 @media (max-width: 420px){
+
+    .mybets-remove-on-mobile{
+        display: none;
+    }
     .size-font-user-action {
         font-size: 11px!important;
     }
@@ -1303,6 +1321,7 @@ input[type="radio"], input[type="checkbox"] {
         height: 25px;
     }
 }
+
 @media (min-width:200px) and (max-width: 420px){
     .app-navbar .e img {
         max-width: 90px !important;
@@ -1342,7 +1361,7 @@ input[type="radio"], input[type="checkbox"] {
 
 @media (min-width:300px) and (max-width: 375px){
     .size-font-user-action {
-        font-size: 9px!important;
+        font-size: 8px!important;
     }
     .home-tabs .main-header, .home-tabs-active .main-header {
         font-size: 10px;

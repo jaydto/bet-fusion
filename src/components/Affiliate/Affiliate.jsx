@@ -36,7 +36,7 @@ const Affiliate = () => {
                                     <div>
                                         <Link
                                             to={{pathname: "/"}}
-                                            className={"deposit-button size-font-user-action"} title={'HOME'}
+                                            className={"deposit-button size-font-user-action-affiliate"} title={'HOME'}
                                             style={{fontSize: '18px'}}>
                                       <span className="">
                                        <span className=" "> <FontAwesomeIcon
@@ -49,7 +49,7 @@ const Affiliate = () => {
                                     {state?.user && <div>
                                         <Link
                                             to={{pathname: "/logout"}}
-                                            className={"deposit-button size-font-user-action"}
+                                            className={"deposit-button size-font-user-action-affiliate"}
                                             style={{marginRight: "12px", fontSize: '18px'}} title={'LOGOUT'}>
                                       <span className="text-warning">
                                        <span className=" "><FontAwesomeIcon icon={faPowerOff}

@@ -302,7 +302,7 @@ footer.affiliate-footer{
     .affiliate-to-top {
         top: 51rem;
     }
-    .size-font-user-action{
+    .size-font-user-action-affiliate{
         font-size:16px!important;
     }
     .affiliate-info-work-card-body-text-title {
@@ -371,7 +371,7 @@ footer.affiliate-footer{
     .app-navbar .e img {
         max-width: 110px !important;
     }
-    .size-font-user-action{
+    .size-font-user-action-affiliate{
         font-size:14px!important;
     }
     .affiliate-about-section.affiliate-commission-section {
@@ -492,7 +492,7 @@ footer.affiliate-footer{
     .app-navbar .e img {
         max-width: 90px !important;
     }
-    .size-font-user-action{
+    .size-font-user-action-affiliate{
         font-size:12px!important;
     }
     .affiliate-about-section.affiliate-commission-section {
@@ -534,7 +534,7 @@ footer.affiliate-footer{
     .text-style-affiliate {
         overflow-wrap: break-word;
         line-height: 1.5;
-        font-size: 2rem;
+        font-size: 1.6rem;
         font-weight: 400;
         word-spacing: 2px;
     }
@@ -566,7 +566,7 @@ footer.affiliate-footer{
     .app-navbar .e img {
         max-width: 70px !important;
     }
-    .size-font-user-action{
+    .size-font-user-action-affiliate{
         font-size:10px!important;
     }
     .affiliate-about-section.affiliate-commission-section {

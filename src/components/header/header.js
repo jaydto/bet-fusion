@@ -16,7 +16,7 @@ import SidebarMobile from "../sidebar/awesome/SidebarMobile";
 import MobileNav1 from "../mobile-navigation/MobileNav1";
 
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCloudDownloadAlt, faCoins, faSearch, faTimes} from "@fortawesome/free-solid-svg-icons";
+import {faCloudDownloadAlt, faCoins, faList, faSearch, faTimes} from "@fortawesome/free-solid-svg-icons";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import ListGroup from "react-bootstrap/ListGroup";
 import {formatNumber} from "../utils/betslip";
@@ -201,13 +201,14 @@ const Header = (props) => {
                                 <div
                                     className="col-md-6  d-flex  right justify-content-end align-items-center w-change2 gap-2 ipad-show"
                                     style={{marginLeft: 'auto'}}>
+
                                     <div>
                                         <Link
                                             to={{pathname: "/deposit"}}
                                             className={"deposit-button size-font-user-action"}>
                                           <span className="">
                                            <span className=" "> <FontAwesomeIcon
-                                               icon={faCloudDownloadAlt}/></span>&nbsp;
+                                               icon={faCloudDownloadAlt} /></span>&nbsp;
                                               DEPOSIT
                                           </span>
                                         </Link>
@@ -223,6 +224,17 @@ const Header = (props) => {
                                               KSH {formatNumber(user.balance) || 0}
                                           </span>
                                         </div>
+                                    </div>
+                                    <div className={'mybets-remove-on-mobile'}>
+                                        <Link
+                                            to={{pathname: "/mybets"}}
+                                            className={"deposit-button size-font-user-action"}>
+                                          <span className={"text-success"}>
+                                           <span className=" "> <FontAwesomeIcon
+                                               icon={faList}/></span>&nbsp;
+                                              MY BETS
+                                          </span>
+                                        </Link>
                                     </div>
                                     <div className='d-flex align-items-baseline'>
                                         <div className={` align-items-center  ${searching ? 'd-none' : 'd-flex'}`}>

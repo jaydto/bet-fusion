@@ -10,7 +10,6 @@ import useInterval from "../hooks/set-interval.hook";
 import makeRequest from "./utils/fetch-request";
 import MobileNav2 from "./mobile-navigation/MobileNav2";
 import Testimonials from "./carousel/Testimonials";
-
 import Countries from "./countries/Countries";
 import Skeleton1 from "./skeleton/skeleton";
 import {Spinner} from "react-bootstrap";
@@ -191,6 +190,7 @@ const Index = () => {
 
 
         if (new_tab !== tab) {
+            setReset(c => c + 1)
             setTab(new_tab)
             setLoading(true)
         }

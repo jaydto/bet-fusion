@@ -178,7 +178,31 @@ footer.affiliate-footer{
         width:25%
     }
 }
-@media (min-width:992px) and (max-width:1259px){
+@media (min-width: 1150px) and (max-width: 1259px){
+    .affiliate-form-iframe {
+        width: 1200px;
+        height: 2100px;
+    }
+    .affiliate-bg-info {
+        width: 50%;
+    }
+    .affiliate-to-top {
+        font-size: 5rem;
+        height: 4rem;
+        position: fixed;
+        top: 94rem;
+        color: whitesmoke;
+        background: var(--betnare-primary);
+        box-shadow: 3px 4px 3px 3px rgba(0,0,0,0.75);
+    }
+    .affiliate-info-work-card-body {
+        padding: 2rem;
+        background: #fff;
+        height: 30rem;
+        overflow-y: hidden;
+    }
+}
+@media (min-width:992px) and (max-width:1149px){
     .container.card-medium{
         width:100%
     }

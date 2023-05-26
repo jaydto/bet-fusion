@@ -1,9 +1,7 @@
 import {useEffect, useState} from "react";
 import makeRequest from "../utils/fetch-request";
-import {useParams} from "react-router-dom";
 import {setLocalStorage} from "../utils/local-storage";
 import {addToSlip} from "../utils/betslip";
-import Notify from "../utils/Notify";
 
 const BetslipShareDecode = () => {
 

@@ -13,6 +13,7 @@ import casino1 from "../../assets/img/casino/casino.png"
 import aviator from "../../../src/assets/img/aviator.webp"
 import spaceman from "../../../src/assets/img/spaceman.webp"
 import kiron from "../../../src/assets/img/kiron/nare-league.webp"
+import Affiliate from "../../../src/assets/img/mobile/affiliate-marketing.png"
 import fire from '../../assets/img/fire.webp'
 import {getFromLocalStorage,setLocalStorage} from "../utils/local-storage";
 import makeRequest from "../utils/fetch-request";
@@ -300,6 +301,18 @@ const MobileNav1 = (props) => {
                             </div>
                             <div style={{textAlign: "center"}}>
                                 Promos
+                            </div>
+                        </div>
+                    </Link>
+                </td>
+                <td className={`menu-t m-auto ${pathname==="/affiliate"?"active":""}`} style={{paddingLeft: "4px"}}>
+                    <Link to="/affiliate">
+                        <div className="inner-div active">
+                            <div className="menu-img">
+                                <img src={Affiliate}  style={{height: "23px", marginTop:"-6px"}} />
+                            </div>
+                            <div style={{textAlign: "center"}}>
+                                Affiliate
                             </div>
                         </div>
                     </Link>

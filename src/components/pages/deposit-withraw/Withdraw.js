@@ -96,16 +96,15 @@ const Withdrawal = (props) => {
                             placeholder='Enter Amount'
                         />
                         {errors.amount &&  <div className='text-danger'> {errors.amount} </div>  }
+                        <div className=" d-flex align-items-start deposit-withdraw-button-desktop-profile  mb-3 ">
+                            <button type={"submit"}
+                                    className='btn btn-lg w-100 button-radius input-field btn-font cg login-button2 btn bold' style={{marginTop:"38px"}}>
+                                WITHDRAW
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div className="form-group row d-flex justify-content-left mb-4">
-                <div className=" d-flex align-items-start deposit-withdraw-button-desktop ">
-                    <button type={"submit"}
-                            className='btn btn-lg w-100 button-radius input-field btn-font cg login-button2 btn bold' style={{marginTop:"47px"}}>
-                        WITHDRAW
-                    </button>
-                </div>
-                </div>
+
             </>
         )
     }

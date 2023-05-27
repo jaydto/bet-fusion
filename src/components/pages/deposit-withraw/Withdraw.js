@@ -164,6 +164,9 @@ const Withdrawal = (props) => {
                 render = {(props) => <MyWithdrawalForm {...props} /> } />
         );
     }
+    message&&setTimeout(()=>{
+        setMessage(null)
+    },6000)
 
     const Alert = (props) => {
         let c = success ? 'success' : 'danger';

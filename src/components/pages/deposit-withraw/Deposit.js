@@ -199,6 +199,9 @@ const Deposit = (props) => {
                 render={(props) => <MyDepositForm {...props} />}/>
         );
     }
+    message&&setTimeout(()=>{
+        setMessage(null)
+    },6000)
 
     const Alert = (props) => {
         let c = success ? 'success' : 'danger';

@@ -20,25 +20,25 @@ const SidebarProfile = (props) => {
     const {profile_side}=props
     const [state, dispatch] = useContext(Context);
 
-    const prevChoice=useRef('')
-    const showCentricPage=(userChoice)=>{
-        console.log("start_user_Choice",userChoice)
-        console.log("start_user_prevChoice",prevChoice)
+const prevChoice=useRef('')
+const showCentricPage=(userChoice)=>{
+console.log("start_user_Choice",userChoice)
+console.log("start_user_prevChoice",prevChoice)
 
-        if(prevChoice.current==''){
-                console.log("current_choice", prevChoice)
-            dispatch({ type: "SET", key: `profile_${userChoice}`, payload: `profile_${userChoice}` });
-            prevChoice.current=`profile_${userChoice}`
-        }
-        else{
-                console.log("current_choice_else", prevChoice.current)
-            dispatch({ type: "SET", key: prevChoice.current, payload: null });
-            dispatch({ type: "SET", key: `profile_${userChoice}`, payload: `profile_${userChoice}` });
-            prevChoice.current=`profile_${userChoice}`
-        }
+if(prevChoice.current==''){
+        console.log("current_choice", prevChoice)
+    dispatch({ type: "SET", key: `profile_${userChoice}`, payload: `profile_${userChoice}` });
+    prevChoice.current=`profile_${userChoice}`
+}
+else{
+        console.log("current_choice_else", prevChoice.current)
+    dispatch({ type: "SET", key: prevChoice.current, payload: null });
+    dispatch({ type: "SET", key: `profile_${userChoice}`, payload: `profile_${userChoice}` });
+    prevChoice.current=`profile_${userChoice}`
+}
 
 
-    }
+}
     const gaEventTracker = useAnalyticsEventTracker('Navigation');
     return (<ProSidebar
         className={` ${profile_side&&' profile-width-side'}`}

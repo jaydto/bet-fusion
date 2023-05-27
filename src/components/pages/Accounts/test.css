@@ -201,6 +201,9 @@
     }
 }
 @media (min-width: 992px){
+    .mobile-profile-links{
+        display:none;
+    }
     .icon-size-profile-user{
         height: 11rem;
         width: 20rem!important
@@ -235,14 +238,28 @@
 
 }
 @media (max-width: 991px){
+    .styling-nav-profile {
+        /* border-radius: 6px; */
+        background: var(--betnare-header-bg);
+    }
+    .mobile-profile-links {
+        display: flex;
+        width: 100%;
+        align-items: flex-end;
+        justify-content: center;
+    }
+    .mobile-profile-columns{
+        flex-direction: column;
+    }
     .icon-size-profile-user{
         height: 3rem;
         width: 3rem!important;
 
     }
-    .banner-profile{
-        width:100vw;
-        height:25vw;
+    .banner-profile {
+        width: 100vw;
+        height: 10vw;
+        display: flex;
     }
     .banner-info{
         height: 40vh;
@@ -312,9 +329,9 @@
     }
 }
 @media (max-width: 767px){
-    .banner-profile{
-        width:100vw;
-        height:25vw;
+    .banner-profile {
+        width: 100vw;
+        height: 13vw;
     }
     .icon-style-profile {
         width: -moz-fit-content;

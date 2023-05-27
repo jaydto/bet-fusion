@@ -123,7 +123,7 @@ const MobileNav1 = (props) => {
         <table className="menu-table" style={{width: "100%", textAlign: "center", marginLeft:"-9px"}}>
             <tbody>
             <tr className={"tr-style mobile-nav-top"}>
-                <td  className={`menu-t m-auto sport-check  `} style={{paddingLeft: "4px"}} >
+                <td  className={`menu-t m-auto sport-check  `}  >
                     <Link className="inner-div more-sports active cg  ox anl url-link d-flex flex-column align-items-center" to={`/`}   >
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center ${pathname===`/`?"active":""}`}>
                             {/* {console.log('all sports',allsports.sport_name)} */}
@@ -142,7 +142,7 @@ const MobileNav1 = (props) => {
                     </Link>
 
                 </td>
-                <td  className={`menu-t m-auto sport-check  `} style={{paddingLeft: "4px"}} >
+                <td  className={`menu-t m-auto sport-check  `}  >
                     <Link className="inner-div more-sports active cg  ox anl url-link d-flex flex-column align-items-center" to={`/jackpot`}   >
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center ${pathname===`/jackpot`?"active":""}`}>
 
@@ -161,7 +161,7 @@ const MobileNav1 = (props) => {
                     </Link>
 
                 </td>
-                <td  className={`menu-t m-auto sport-check  `} style={{paddingLeft: "4px"}} >
+                <td  className={`menu-t m-auto sport-check  `}  >
                     <Link className="inner-div more-sports active cg  ox anl url-link d-flex flex-column align-items-center" to={`/nare-games/Aviator`}   >
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center ${window.location.search.includes('Aviator')?"active":""}`}>
 
@@ -182,7 +182,7 @@ const MobileNav1 = (props) => {
                     </Link>
 
                 </td>
-                <td  className={`menu-t m-auto sport-check  `} style={{paddingLeft: "4px"}} >
+                <td  className={`menu-t m-auto sport-check  `}  >
                     <Link className="inner-div more-sports active cg  ox anl url-link d-flex flex-column align-items-center" to={`#`} onClick={()=>LoginCheck('casino')}   >
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center ${pathname===`/casino`?"active":""}`}>
 
@@ -204,7 +204,7 @@ const MobileNav1 = (props) => {
 
                 </td>
 
-                <td  className={`menu-t m-auto sport-check  `} style={{paddingLeft: "4px"}} >
+                <td  className={`menu-t m-auto sport-check  `}  >
                     <Link className="inner-div more-sports active cg  ox anl url-link d-flex flex-column align-items-center" to={`#`}  onClick={()=>LoginCheck('JetX')} >
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center ${window.location.search.includes('Jetx')?"active":""}`}>
 
@@ -240,7 +240,7 @@ const MobileNav1 = (props) => {
 
                 </td> */}
                 {/* <td  className={ window.location.search.includes('Crashlite') ? 'active' : 'menu-t'}
-                        onClick={() => gaEventTracker('Crashlite')} style={{paddingLeft: "4px"}}>
+                        onClick={() => gaEventTracker('Crashlite')} >
                         <Link className="cg fm ox anl url-link d-flex flex-column align-items-center pb-3"
                             to={"#"}
                             title="Crashlite" style={{width:"60px"}}
@@ -254,7 +254,7 @@ const MobileNav1 = (props) => {
 
                     </td> */}
 
-                <td  className={`menu-t m-auto sport-check nare-league `} style={{paddingLeft: "4px"}} >
+                <td  className={`menu-t m-auto sport-check nare-league `}  >
                     <Link className="inner-div more-sports active cg  ox anl url-link d-flex flex-column align-items-center" to={`/nare-league`}   >
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center  ${pathname.includes('/nare-league')?"active":""}`}>
 
@@ -276,7 +276,7 @@ const MobileNav1 = (props) => {
 
                 </td>
 
-                <td  className={`menu-t m-auto sport-check  `} style={{paddingLeft: "4px"}} >
+                <td  className={`menu-t m-auto sport-check  `}  >
                     <Link className="inner-div more-sports active cg  ox anl url-link d-flex flex-column align-items-center" to={`#`}  onClick={()=>LoginCheck('spaceman')} >
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center ${window.location.search.includes('spaceman')?"active":""}`}>
 
@@ -300,7 +300,7 @@ const MobileNav1 = (props) => {
 
 
 
-                <td  className={`menu-t m-auto sport-check  `} style={{paddingLeft: "4px"}} >
+                <td  className={`menu-t m-auto sport-check  `}  >
                     <Link className="inner-div more-sports active cg  ox anl url-link d-flex flex-column align-items-center" to={`/nare-games`}   >
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center ${window.location.pathname.includes('nare-games')?"active":""}`}>
 
@@ -324,7 +324,7 @@ const MobileNav1 = (props) => {
 
                 {state.sport?.all_sports.map((allsports, index) => (
                         allsports.sport_id!==79&&(
-                            <td key={index} className={`menu-t m-auto sport-check  `} style={{paddingLeft: "4px"}} onClick={handleLinkClick}>
+                            <td key={index} className={`menu-t m-auto sport-check  `}  onClick={handleLinkClick}>
                                 <Link className="inner-div more-sports active cg  ox anl url-link d-flex flex-column align-items-center" to={`/highlights?sport_id=${allsports.sport_id}&sub_type_id=${getDefaultMarketsForSport(allsports)}`}   >
                                     <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center ${pathname===`/highlights?sport_id=${allsports.sport_id}`?"active":""}`}>
                                         <div className="menu-img ">
@@ -344,7 +344,7 @@ const MobileNav1 = (props) => {
                             </td>)
                     )
                 )}
-                <td  className={`menu-t m-auto sport-check  `} style={{paddingLeft: "4px"}} >
+                <td  className={`menu-t m-auto sport-check  `}  >
                     <Link className="inner-div more-sports active cg  ox anl url-link d-flex flex-column align-items-center" to={`/affiliate`}   >
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center ${pathname===`/affiliate`?"active":""}`}>
                             <div className="menu-img ">
@@ -363,7 +363,7 @@ const MobileNav1 = (props) => {
 
                 </td>
 
-                <td  className={`menu-t m-auto sport-check  `} style={{paddingLeft: "4px"}} >
+                <td  className={`menu-t m-auto sport-check  `}  >
                     <Link className="inner-div more-sports active cg  ox anl url-link d-flex flex-column align-items-center" to={`/promotions`}   >
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center ${pathname===`/promotions`?"active":""}`}>
                             <div className="menu-img ">

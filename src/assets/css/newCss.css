@@ -255,8 +255,15 @@ b, strong {
 .profile-top-nav{
     min-height:78px!important;
 }
-
-
+.search-results-box{
+    background: var(--betnare-input);
+    color:var(--light);
+    margin-top: 3px;
+    width:82%;
+}
+.list-group-horizontal::-webkit-scrollbar {
+    display: none;
+}
 label {
     font-weight: 600;
     display: inline-flex;
@@ -1104,7 +1111,7 @@ input[type="radio"], input[type="checkbox"] {
         /*margin-bottom: 0.4rem;*/
     }
     .home-tabs-active {
-        padding: 7px;
+        padding: 3px;
     }
     .home-tabs {
         padding: 5px 3px;
@@ -1175,7 +1182,7 @@ input[type="radio"], input[type="checkbox"] {
     }
     table.menu-table tr {
         height: 5rem;
-        margin-left: 1rem;
+        margin-left: 0rem;
     }
     .app-navbar .e img {
         margin-bottom: 0px!important;
@@ -1244,7 +1251,7 @@ input[type="radio"], input[type="checkbox"] {
     /*    padding-left: 0rem!important;*/
     /*}*/
     .app-navbar .e img {
-        margin-left: 5px;
+        margin-left: 0px;
     }
     .size-info {
         width: 50%!important;
@@ -1308,17 +1315,23 @@ input[type="radio"], input[type="checkbox"] {
 
 
 @media (max-width: 420px){
-
+    .search-results-box {
+        background: var(--betnare-input);
+        color: var(--light);
+        margin-top: 3px;
+        width: 80%;
+    }
     .mybets-remove-on-mobile{
         display: none;
     }
     .size-font-user-action {
         font-size: 11px!important;
+        font-weight: 800;
     }
     .app-navbar .e img {
         max-width: 96px !important;
         margin-bottom: 4px!important;
-        height: 25px;
+        /*height: 25px;*/
     }
 }
 
@@ -1361,7 +1374,8 @@ input[type="radio"], input[type="checkbox"] {
 
 @media (min-width:300px) and (max-width: 375px){
     .size-font-user-action {
-        font-size: 8px!important;
+        font-size: 11px!important;
+        font-weight: 800;
     }
     .home-tabs .main-header, .home-tabs-active .main-header {
         font-size: 10px;

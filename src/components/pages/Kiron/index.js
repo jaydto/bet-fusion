@@ -193,14 +193,14 @@ const  TestKiron= () => {
 
 
     return (
-        <div className={'flex-item'}>
-            <div className="item4">
+        <div className={'flex-item-kiron'}>
+            <div className="item-kiron4">
                 <div >
                     <Header/>
                 </div></div>
             <div className="flex-container kiron-test" >
-                <div className={'item-1 d-none'}></div>
-                <div className="item2" style={{width:'100%'}}>
+                <div className={'item-kiron-1 d-none'}></div>
+                <div className="item-kiron2" style={{width:'100%'}}>
                     <div className="d-flex flex-row">
                         <div className="d-flex flex-row kiron-size" style={{marginTop:"2px", width:'100%'}}>
                             <div className="d-flex flex-column kiron-size" style={{marginTop:"2px", overflowY:'auto'}}>
@@ -227,7 +227,7 @@ const  TestKiron= () => {
                                 </>
                                 }
                             </div>
-                            {/*<div className="item3 ">*/}
+                            {/*<div className="item-kiron3 ">*/}
                             <Right kiron={true} kironValidation={kironValidation} nareleague={true}/>
                             {/*</div>*/}
                         </div>

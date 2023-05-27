@@ -68,7 +68,7 @@ const Affiliate = () => {
                 </div>
                 <div className="flex-container profile-style" style={{padding: '0px 2px '}} id={'top'}>
                     <div className="item2">
-                        <div className={'profile-img-banner'}>
+                        <div className={'profile-img-banner-affiliate'}>
                             <div>
                                 <div className={'position-info  affiliate-bg-info d-flex flex-column'}>
                                     <h1 className={'bold text-light'}>BETNARE AFFILIATE</h1>

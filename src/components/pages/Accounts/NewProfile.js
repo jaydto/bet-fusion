@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useRef, useState} from 'react';
 import './test.css'
 import './card.css'
 import {Navbar, Offcanvas} from "react-bootstrap";
@@ -8,8 +8,9 @@ import {LazyLoadImage} from "react-lazy-load-image-component";
 import logo from "../../../assets/img/Logo.webp";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
+    faCoins,
     faDollarSign,
-    faGifts,
+    faGifts, faHandsHelping,
     faHome,
     faListOl,
     faPowerOff,
@@ -29,13 +30,34 @@ import App from "./component/app";
 
 const NewProfile = () => {
     const [user, ] = useState(getFromLocalStorage("user"));
-    const {height, width} = useWindowDimensions();
     const [state, dispatch]=useContext(Context)
     const profile_states=(state?.profile_cash==undefined&&state?.profile_gift==undefined&&state?.profile_deposit==undefined&&state?.profile_points==undefined&&state?.profile_withdraw==undefined&&state?.profile_mybets==undefined&&state?.profile_app==undefined)
-
     const expand = "md"
+    setTimeout(()=>
+        !user?window.location.href='/':''
+    ,3000)
+    const prevChoice=useRef('')
+    const showCentricPage=(userChoice)=>{
+        console.log("start_user_Choice",userChoice)
+        console.log("start_user_prevChoice",prevChoice)
+
+        if(prevChoice.current==''){
+            console.log("current_choice", prevChoice)
+            dispatch({ type: "SET", key: `profile_${userChoice}`, payload: `profile_${userChoice}` });
+            prevChoice.current=`profile_${userChoice}`
+        }
+        else{
+            console.log("current_choice_else", prevChoice.current)
+            dispatch({ type: "SET", key: prevChoice.current, payload: null });
+            dispatch({ type: "SET", key: `profile_${userChoice}`, payload: `profile_${userChoice}` });
+            prevChoice.current=`profile_${userChoice}`
+        }
+
+
+    }
     return (
         <div className={'flex-item-profile py-0'}>
+
             <div className="item-profile4 profile-img-banner">
                 <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav profile-top-nav" fixed="top"
                         variant="dark" style={{background: 'transparent'}}>
@@ -82,6 +104,51 @@ const NewProfile = () => {
                     </Container>
                 </Navbar>
                 <div className={'banner-profile'}>
+                    <div className={'mobile-profile-links'}>
+                        <div className={'d-flex w-100 justify-content-center styling-nav-profile'}>
+                            {user && <div>
+                                <Link
+                                    to={'#'} onClick={()=>showCentricPage('mybets')}
+                                    className={"deposit-button size-font-user-action"}
+                                    style={{marginRight: "12px", fontSize: '18px'}} title={'MYBETS'}>
+                                      <span className="">
+                                       <span className=" "><FontAwesomeIcon icon={faListOl}
+                                                                            className={""}/>
+                                           </span>&nbsp;
+                                          MY BETS
+                                      </span>
+                                </Link>
+                            </div>}
+                            {user && <div>
+                                <Link
+                                    to={'#'} onClick={()=>showCentricPage('all')}
+                                    className={"deposit-button size-font-user-action"}
+                                    style={{marginRight: "12px", fontSize: '18px'}} title={'BALANCE'}>
+                                      <span className="text-warning">
+                                       <span className=" "><FontAwesomeIcon icon={faCoins}
+                                                                            className={"text-warning"}/>
+                                           </span>&nbsp;
+                                          BALANCE
+                                      </span>
+                                </Link>
+                            </div>}
+                            {user && <div>
+                                <Link
+                                    to={'/affiliate'}
+                                    className={"deposit-button size-font-user-action"}
+                                    style={{marginRight: "12px", fontSize: '18px'}} title={'AFFILIATE'}>
+                                      <span className="">
+                                       <span className=" "><FontAwesomeIcon icon={faHandsHelping}
+                                                                            className={""}/>
+                                           </span>&nbsp;
+                                          AFFILIATE
+                                      </span>
+                                </Link>
+                            </div>}
+                        </div>
+
+                    </div>
+
                 </div>
 
             </div>
@@ -95,7 +162,7 @@ const NewProfile = () => {
                     <div
                         className="row d-flex flex-column gap-3 px-4 py-sm-4 py-lg-0 justify-content-center align-items-center profile-top "
                         style={{margin: "auto"}}>
-                        <div className={'d-flex gap-3 py-3'}>
+                        <div className={'d-flex gap-3 py-3 mobile-profile-columns'}>
                             {(profile_states||state?.profile_cash!=null)&&<div className=" col " id={'gift'}>
 
                                 <div className="card-radius profile-bg text-light">
@@ -108,7 +175,7 @@ const NewProfile = () => {
                                                                     className={"d-flex align-items-center gap-2"}><FontAwesomeIcon
                                                                     icon={faDollarSign}/> Cash</span>
                                                         <strong
-                                                            style={{color: "#FFB200"}}> KSH {formatNumber(user.balance) || 0}</strong> </span>
+                                                            style={{color: "#FFB200"}}> KSH {formatNumber(user?.balance) || 0}</strong> </span>
                                             </div>
                                         </div>
                                         <div className={"d-flex align-items-center"}>
@@ -122,7 +189,7 @@ const NewProfile = () => {
                                                                     <FontAwesomeIcon
                                                                         icon={faSmile}/> Bonus
                                                                 </span>
-                                                        <strong>KSH {formatNumber(user.bonus) || 0}</strong> </span>
+                                                        <strong>KSH {formatNumber(user?.bonus) || 0}</strong> </span>
                                             </div>
                                         </div>
                                     </div>
@@ -143,7 +210,7 @@ const NewProfile = () => {
                                                                 icon={faGifts}/> Gift </span>
                                                             <span>
                                                                 <strong>
-                                                            KSH {formatNumber(user.bonus) || 0}</strong>
+                                                            KSH {formatNumber(user?.bonus) || 0}</strong>
                                                             </span>
                                                         </span>
                                             </div>
@@ -159,7 +226,7 @@ const NewProfile = () => {
                                                                 icon={faListOl}/> Points </span>
                                                             <span>
                                                                 <strong>
-                                                             {formatNumber(user.points_balance) || 0}</strong>
+                                                             {formatNumber(user?.points_balance) || 0}</strong>
                                                             </span>
                                                         </span>
                                             </div>
@@ -168,7 +235,7 @@ const NewProfile = () => {
                                 </div>
                             </div>}
                         </div>
-                        <div className={'d-flex gap-3'}>
+                        <div className={'d-flex gap-3 mobile-profile-columns'}>
                             {(profile_states||state?.profile_withdraw!=null  )&&<div id={'withdraw'} className={'col'}>
                                    <WithdrawProfile/>
                             </div>}
@@ -177,18 +244,18 @@ const NewProfile = () => {
                                 <DepositProfile/>
                             </div>}
                         </div>
-                        {(profile_states||state?.profile_points!=null)&&<div className={'d-flex gap-1 '}>
+                        {(profile_states||state?.profile_points!=null)&&<div className={'d-flex gap-1 mobile-profile-columns'}>
 
                             <div id={'points'} className={'col d-flex gap-3 '}>
                                 <div id={'points'} className={'col'}><PointsProfile/></div>
                             </div>
                         </div>}
-                        {(state?.profile_mybets=='profile_mybets')&&<div className={'d-flex gap-1 '}>
+                        {(state?.profile_mybets=='profile_mybets')&&<div className={'d-flex gap-1 mobile-profile-columns'}>
                             <div id={'points'} className={'col d-flex gap-3 '}>
                                 <div id={'points'} className={'col'}><MybetsProfile/></div>
                             </div>
                         </div>}
-                        {(state?.profile_app=='profile_app')&&<div className={'d-flex gap-1 '}>
+                        {(state?.profile_app=='profile_app')&&<div className={'d-flex gap-1  mobile-profile-columns'}>
                             <div id={'points'} className={'col d-flex gap-3 '}>
                                 <div id={'points'} className={'col'}><App/></div>
                             </div>

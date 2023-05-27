@@ -309,33 +309,33 @@ const Header = (props) => {
                     </Row>
                     <div className={"mobile-only min-mobile-size w-100"}>
                         {searching?
-                            <Container id="navbar-collapse-main"
-                                       className={`fadeIn header-menu d-flex justify-content-center px-4 d-block`}>
-                                <ListGroup as="ul" xs="9" horizontal className="nav navbar-nav og ale ss col-md-6 text-center w-100 d-flex">
-                                    <div className="d-flex">
-                                        <div className="col-md-12  px-2" style={{width:'90vw',marginLeft:'2vw'}}>
+                            <div id="navbar-collapse-main"
+                                       className={`fadeIn header-menu d-flex justify-content-center w-100 d-block`}>
+                                <ListGroup as="ul" xs="9" horizontal className="nav navbar-nav og ale ss col-12 text-center w-100 d-flex">
+                                    <div className="d-flex w-100">
+                                        <div className="col-10  px-2" style={{marginLeft:'2vw'}}>
                                             <input type="text" placeholder={'Start typing to search for team ...'}  autoFocus={true} ref={searchInputRef}
                                                    onInput={(event) => fetchMatches(event.target.value)}
                                                    className={'form-control input-field-search border-0  text-default bg-light no-border-radius input-bg-user'}  style={{background: "#2D4352"}}/>
+                                            <div className="col-10" style={{ overflowY:'auto', borderRadius:'2px'}}
+                                                 className={`autocomplete-box  rounded position-fixed  search-results-box border-dark col-md-5 shadow-lg text-start`}
+                                                 onClick={() => gaEventTracker('View Search Results')}>
+                                                {matches.map((match, index) => (
+                                                    <Link to={`/?search=${match.home_team}&sub_type_id=1`} key={index} onClick={()=> window.location.href=`/?search=${match.home_team}&sub_type_id=1`}>
+                                                        <li>
+                                                            {match.home_team}
+                                                        </li>
+                                                    </Link>
+                                                ))}
+                                            </div>
                                         </div>
-
-                                        <button className={'btn text-warning align-right d-flex justify-content-center align-items-center flex-column'} onClick={() => dismissSearch()}>
+                                        <button className={'col-2 btn text-warning align-right d-flex justify-content-center align-items-center flex-column'} onClick={() => dismissSearch()}>
                                             <FontAwesomeIcon icon={faTimes}/> Close
                                         </button>
                                     </div>
-                                    <div style={{marginLeft:'29.2px', marginTop:'33px',width:'83.6vw', overflowY:'auto', borderRadius:'2px'}}
-                                        className={`autocomplete-box  rounded position-fixed bg-white border-dark col-md-5 shadow-lg text-start`}
-                                        onClick={() => gaEventTracker('View Search Results')}>
-                                        {matches.map((match, index) => (
-                                            <Link to={`/?search=${match.home_team}&sub_type_id=1`} key={index} onClick={()=> window.location.href=`/?search=${match.home_team}&sub_type_id=1`}>
-                                                <li>
-                                                    {match.home_team}
-                                                </li>
-                                            </Link>
-                                        ))}
-                                    </div>
+
                                 </ListGroup>
-                            </Container>
+                            </div>
                         :(pathname!=='/signup')&&pathname!=='/nare-league'&&pathname!=='/results'&& pathname!=='/standing'&&pathname!=='/playouts'&&pathname!=='/standing  '&&pathname!=='/bet-history'&&<MobileNav1/>}
                     </div>
 

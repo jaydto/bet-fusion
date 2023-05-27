@@ -421,6 +421,8 @@ header, li a, .thedate span {
     width: 100%;
     border-radius: 3px;
     cursor: pointer;
+    color:var(--light);
+    line-height:1.5;
 }
 
 .search-input.active .autocomplete-box li {
@@ -7968,7 +7970,7 @@ ul.sport {
         white-space: nowrap;
         overflow-x: hidden;
         overflow-y: hidden;
-        background: var(--kiron-competition);
+        background: var(--betnare-header-bg);
         max-height: 59px;
     }
 
@@ -16054,6 +16056,7 @@ img.zoom-img {
     }
 
     .menu-table .menu-t {
+        min-width: 8rem;
     }
     .menu-wrapper::-webkit-scrollbar {
         display: none;
@@ -16320,8 +16323,8 @@ img.zoom-img {
     .thedate {
         display: none;
     }
-    .match-detail-container{
-        width:80%!important;
+    .match-detail-container {
+        width: 100%!important;
     }
 
 }

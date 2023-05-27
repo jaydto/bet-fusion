@@ -22,30 +22,40 @@ const Deposit = (props) => {
 
 
     const initialValues = {
-        amount: '',
+        amount: state?.depositValue?state?.depositValue:'',
         msisdn: state?.user?.msisdn
     }
 
     const handleSubmit = values => {
-        let endpoint = '/stk/deposit';
-        setTrackingData(values)
-        makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
-            setSuccess(status === 200 || status === 201);
-            setMessage(response);
-            clearTrackingData()
-        })
+        console.log("hello here")
+            let endpoint = '/stk/deposit';
+            setTrackingData(values)
+            makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
+                setSuccess(status === 200 || status === 201);
+                setMessage(response);
+                clearTrackingData()
+            }
+        )
+
+
     }
 
     const validate = values => {
-
         let errors = {}
-
         if (!values.msisdn || !values.msisdn.match(/(254|0|)?[71]\d{8}/g)) {
             errors.msisdn = 'Please enter a valid phone number'
+            dispatch({type: "SET", key: "depositValidateError", payload: {
+                    msisdn:'Please enter a valid phone number',
+                    amount:''
+                }});
         }
 
-        if (values.amount || values.amount < 1 || values.amount > 70000) {
-            errors.amount = "Please enter amount between KES 1.00 and KES 70,000.00";
+        if (!values.amount || values.amount < 1 || values.amount > 70000) {
+            errors.msisdn = 'Please enter amount between KES 1.00 and KES 70,000.00'
+            dispatch({type: "SET", key: "depositValidateError", payload: {
+                    msisdn:'',
+                    amount:'Please enter amount between KES 1.00 and KES 70,000.00'
+                }});
         }
         return errors
     }
@@ -93,15 +103,23 @@ const Deposit = (props) => {
         );
     }
 
-    const prevDeposit=useRef(0)
-    const  incementDepositValue=(ev=0,value)=>{
-        dispatch({type: "SET", key: "depositValue", payload:ev>0?ev:prevDeposit.current+value });
-        prevDeposit.current=prevDeposit.current!=0?ev>0?ev:prevDeposit.current+value:value
 
-    }
     const DepositFormFields = (props) => {
-        const {values, errors, onFieldChanged} = props;
+        const {values, onFieldChanged} = props;
+        state?.depositValidateError?.amount&&setTimeout(()=>{
+            dispatch({type: "SET", key: "depositValidateError", payload: {
+                    msisdn:'',
+                    amount:''
+                }});
+        },5000)
+        const prevDeposit=useRef(Number(values?.amount))
+        const  incementDepositValue=(value)=>{
 
+            prevDeposit.current=Number(values?.amount!=''?values?.amount:0)
+            dispatch({type: "SET", key: "depositValue", payload:prevDeposit.current+value });
+            prevDeposit.current=prevDeposit.current!=0?prevDeposit.current+value:values?.amount||0
+
+        }
         return (
             <>
                 <div className="btn-group w-50 gap-3" role="group" aria-label="Basic example">
@@ -111,39 +129,38 @@ const Deposit = (props) => {
                     <button type="button" onClick={()=>incementDepositValue(500)} className="deposit-buttons-value">+500</button>
                     <button type="button" onClick={()=>incementDepositValue(1000)} className="deposit-buttons-value">+1000</button>
                 </div>
-             <div className="form-group row d-flex justify-content-center mt-3 deposit-widthdraw-input-desktop">
+             <div className="form-group w-100 d-flex justify-content-center mt-3 deposit-widthdraw-input-desktop">
                     <div className="col-md-12">
                         {console.log("depositValue",state?.depositValue)}
                         <label>Amount to Deposit</label>
                         <input
                             onChange={ev => {
-                                onFieldChanged(ev||state?.depositValue);
-                                incementDepositValue(ev=ev,0)
-
+                                onFieldChanged(ev);
                             }}
                             className="text-light deposit-input form-control col-md-12 input-field"
                             id="amount"
                             name="amount"
                             type="number"
-                            value={values.amount||Number(state?.depositValue)}
+                            value={(values.amount=''?0:values.amount)||Number(state?.depositValue)}
                             placeholder='Enter Amount'
                         />
-                        {errors.amount && <div className='text-danger'> {errors.amount} </div>}
+
+                        {state?.depositValidateError?.amount && <div className='text-danger'> {state?.depositValidateError?.amount} </div>}
+                        <div className=" d-flex align-items-start deposit-withdraw-button-desktop-profile  mb-3">
+                            <button type={"submit"}
+                                    className='btn btn-lg w-100 button-radius input-field btn-font cg login-button2 btn bold' style={{marginTop:"30px"}}>
+                                DEPOSIT
+                            </button>
+                        </div>
                     </div>
+
                 </div>
-                <div className="form-group row d-flex justify-content-left mb-4">
-                    <div className=" d-flex align-items-start deposit-withdraw-button-desktop">
-                        <button type={"submit"}
-                                className='btn btn-lg w-100 button-radius input-field btn-font cg login-button2 btn bold' style={{marginTop:"47px"}}>
-                            DEPOSIT
-                        </button>
-                    </div>
-                </div>
+
             </>
         )
     }
     const MyDepositForm = (props) => {
-        const {errors, values, setFieldValue} = props;
+        const { values, setFieldValue} = props;
 
         const onFieldChanged = (ev) => {
             let field = ev.target.name;
@@ -158,7 +175,7 @@ const Deposit = (props) => {
 
                     <div className="row">
 
-                        <DepositFormFields onFieldChanged={onFieldChanged} values={values} errors={errors}/>
+                        <DepositFormFields onFieldChanged={onFieldChanged} values={values} />
 
                         {state?.profile_deposit=='profile_deposit'&&<div>
                             <PaymentInstructions/>
@@ -173,7 +190,9 @@ const Deposit = (props) => {
         return (
             <Formik
                 initialValues={initialValues}
-                onSubmit={handleSubmit}
+                onSubmit={
+                    handleSubmit
+                }
                 validateOnChange={false}
                 validateOnBlur={false}
                 validate={validate}

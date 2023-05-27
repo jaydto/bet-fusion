@@ -684,6 +684,13 @@ input[type="radio"], input[type="checkbox"] {
         margin-left: 16px;
         margin-top: 16px;
     }
+    .deposit-withdraw-button-desktop-profile {
+        margin: auto;
+        width: 100.5%;
+        padding: 0px;
+        margin-left: 3px;
+        margin-top: 0px;
+    }
     .deposit-widthdraw-input-desktop{
         margin: auto;
     }

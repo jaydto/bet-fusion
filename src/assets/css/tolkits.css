@@ -11237,6 +11237,7 @@ button.close {
 .modal-body {
     position: relative;
     padding: 15px;
+    max-height: 29rem;
 }
 
 .rp {

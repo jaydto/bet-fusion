@@ -44,7 +44,7 @@ const Deposit = (props) => {
             errors.msisdn = 'Please enter a valid phone number'
         }
 
-        if (!values.amount || values.amount < 1 || values.amount > 70000) {
+        if (values.amount || values.amount < 1 || values.amount > 70000) {
             errors.amount = "Please enter amount between KES 1.00 and KES 70,000.00";
         }
         return errors
@@ -94,9 +94,9 @@ const Deposit = (props) => {
     }
 
     const prevDeposit=useRef(0)
-    const  incementDepositValue=(value)=>{
-        dispatch({type: "SET", key: "depositValue", payload:prevDeposit.current+value });
-        prevDeposit.current=prevDeposit.current!=0?prevDeposit.current+value:value
+    const  incementDepositValue=(ev=0,value)=>{
+        dispatch({type: "SET", key: "depositValue", payload:ev>0?ev:prevDeposit.current+value });
+        prevDeposit.current=prevDeposit.current!=0?ev>0?ev:prevDeposit.current+value:value
 
     }
     const DepositFormFields = (props) => {
@@ -113,14 +113,19 @@ const Deposit = (props) => {
                 </div>
              <div className="form-group row d-flex justify-content-center mt-3 deposit-widthdraw-input-desktop">
                     <div className="col-md-12">
+                        {console.log("depositValue",state?.depositValue)}
                         <label>Amount to Deposit</label>
                         <input
-                            onChange={ev => onFieldChanged(ev)}
+                            onChange={ev => {
+                                onFieldChanged(ev||state?.depositValue);
+                                incementDepositValue(ev=ev,0)
+
+                            }}
                             className="text-light deposit-input form-control col-md-12 input-field"
                             id="amount"
                             name="amount"
-                            type="text"
-                            value={values.amount||state?.depositValue}
+                            type="number"
+                            value={values.amount||Number(state?.depositValue)}
                             placeholder='Enter Amount'
                         />
                         {errors.amount && <div className='text-danger'> {errors.amount} </div>}

@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, {useState, useContext, useEffect, useRef} from 'react';
 
 import {Formik, Form} from 'formik';
 import makeRequest from "../../utils/fetch-request";
@@ -93,27 +93,34 @@ const Deposit = (props) => {
         );
     }
 
+    const prevDeposit=useRef(0)
+    const  incementDepositValue=(value)=>{
+        dispatch({type: "SET", key: "depositValue", payload:prevDeposit.current+value });
+        prevDeposit.current=prevDeposit.current!=0?prevDeposit.current+value:value
+
+    }
     const DepositFormFields = (props) => {
         const {values, errors, onFieldChanged} = props;
 
         return (
             <>
-                <div className="btn-group w-50 gap-2" role="group" aria-label="Basic example">
-                    <button type="button" className="btn btn-secondary">50</button>
-                    <button type="button" className="btn btn-primary">100</button>
-                    <button type="button" className="btn btn-warning">500</button>
-                    <button type="button" className="btn btn-success">1000</button>
+                <div className="btn-group w-50 gap-3" role="group" aria-label="Basic example">
+                    <button type="button" onClick={()=>incementDepositValue(10)} className="deposit-buttons-value">+10</button>
+                    <button type="button" onClick={()=>incementDepositValue(50)} className="deposit-buttons-value">+50</button>
+                    <button type="button" onClick={()=>incementDepositValue(100)} className="deposit-buttons-value">+100</button>
+                    <button type="button" onClick={()=>incementDepositValue(500)} className="deposit-buttons-value">+500</button>
+                    <button type="button" onClick={()=>incementDepositValue(1000)} className="deposit-buttons-value">+1000</button>
                 </div>
              <div className="form-group row d-flex justify-content-center mt-3 deposit-widthdraw-input-desktop">
                     <div className="col-md-12">
                         <label>Amount to Deposit</label>
                         <input
                             onChange={ev => onFieldChanged(ev)}
-                            className="text-dark deposit-input form-control col-md-12 input-field"
+                            className="text-light deposit-input form-control col-md-12 input-field"
                             id="amount"
                             name="amount"
                             type="text"
-                            value={values.amount}
+                            value={values.amount||state?.depositValue}
                             placeholder='Enter Amount'
                         />
                         {errors.amount && <div className='text-danger'> {errors.amount} </div>}

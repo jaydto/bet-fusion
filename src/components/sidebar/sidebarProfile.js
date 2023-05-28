@@ -1,5 +1,5 @@
 import {Menu, MenuItem, ProSidebar, SidebarContent, SidebarHeader} from "react-pro-sidebar";
-import React, {useContext, useRef} from "react";
+import React, {useContext, useEffect, useRef} from "react";
 import {Link} from "react-router-dom";
 import 'react-pro-sidebar/dist/css/styles.css';
 import {
@@ -39,6 +39,12 @@ else{
 
 
 }
+    useEffect(()=>{
+        const abort=new AbortController()
+        dispatch({ type: "SET", key: `profile_all`, payload: `profile_all` });
+        return abort.abort
+    },[])
+
     const gaEventTracker = useAnalyticsEventTracker('Navigation');
     return (<ProSidebar
         className={` ${profile_side&&' profile-width-side'}`}

@@ -429,9 +429,7 @@ header, li a, .thedate span {
     display: block;
 }
 
-.autocomplete-box li:hover {
-    background: #efefef;
-}
+
 
 .search-input .icon {
     position: absolute;

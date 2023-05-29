@@ -30,7 +30,7 @@ import Affiliate from "../../Affiliate/Affiliate";
 const NewProfile = () => {
     const [user, ] = useState(getFromLocalStorage("user"));
     const [state, dispatch]=useContext(Context)
-    const profile_states=(state?.profile_cash==undefined&&state?.profile_gift==undefined&&state?.profile_deposit==undefined&&state?.profile_points==undefined&&state?.profile_withdraw==undefined&&state?.profile_mybets==undefined&&state?.profile_app==undefined)
+    const profile_states=(state?.profile_cash==undefined&&state?.profile_gift==undefined&&state?.profile_deposit==undefined&&state?.profile_points==undefined&&state?.profile_withdraw==undefined&&state?.profile_mybets==undefined&&state?.profile_app==undefined )
     const expand = "md"
     setTimeout(()=>
         !user?window.location.href='/':''
@@ -58,7 +58,7 @@ const NewProfile = () => {
         <div className={'flex-item-profile py-0'}>
 
             <div className="item-profile4 profile-img-banner">
-                <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav profile-top-nav" fixed="top"
+                <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav profile-top-nav top-nav-profile" fixed="top"
                         variant="dark" style={{background: 'transparent'}}>
                     <Container fluid className={'d-flex justify-content-between mobile-change mobile-profile'}>
                         <Navbar.Brand className="e logo align-self-start menu-control d-flex w-100" title="Betnare"
@@ -105,10 +105,10 @@ const NewProfile = () => {
                 <div className={'banner-profile'}>
                     <div className={'mobile-profile-links'}>
                         <div className={'d-flex w-100 justify-content-center styling-nav-profile'}>
-                            {user && <div>
+                             <div>
                                 <Link
                                     to={'#'} onClick={()=>showCentricPage('mybets')}
-                                    className={"deposit-button size-font-user-action"}
+                                    className={"  size-font-user-action"}
                                     style={{marginRight: "12px", fontSize: '18px'}} title={'MYBETS'}>
                                       <span className="">
                                        <span className=" "><FontAwesomeIcon icon={faListOl}
@@ -117,11 +117,11 @@ const NewProfile = () => {
                                           MY BETS
                                       </span>
                                 </Link>
-                            </div>}
-                            {user && <div>
+                            </div>
+                           <div>
                                 <Link
                                     to={'#'} onClick={()=>showCentricPage('all')}
-                                    className={"deposit-button size-font-user-action"}
+                                    className={" size-font-user-action"}
                                     style={{marginRight: "12px", fontSize: '18px'}} title={'BALANCE'}>
                                       <span className="text-warning">
                                        <span className=" "><FontAwesomeIcon icon={faCoins}
@@ -130,11 +130,10 @@ const NewProfile = () => {
                                           BALANCE
                                       </span>
                                 </Link>
-                            </div>}
-                            {user && <div>
+                            </div>
                                 <Link
                                     to={'/affiliate'}
-                                    className={"deposit-button size-font-user-action"}
+                                    className={" size-font-user-action"}
                                     style={{marginRight: "12px", fontSize: '18px'}} title={'AFFILIATE'}>
                                       <span className="">
                                        <span className=" "><FontAwesomeIcon icon={faHandsHelping}
@@ -143,7 +142,6 @@ const NewProfile = () => {
                                           AFFILIATE
                                       </span>
                                 </Link>
-                            </div>}
                         </div>
 
                     </div>
@@ -166,12 +164,12 @@ const NewProfile = () => {
 
                                 <div className="card-radius profile-bg text-light">
                                     <div className="card-body d-flex justify-content-between gap-2 ">
-                                        <div className={" profile-bg"}>
-                                            <div className="card-body ">
+                                        <div className={" profile-bg col"}>
+                                            <div className="card-body d-flex justify-content-start ">
                                                             <span
                                                                 className="font-btn py-2 d-flex flex-column">
                                                                 <span
-                                                                    className={"d-flex align-items-center gap-2"}><FontAwesomeIcon
+                                                                    className={"d-flex align-items-center gap-2 w-100"}><FontAwesomeIcon
                                                                     icon={faDollarSign}/> Cash</span>
                                                         <strong
                                                             style={{color: "#FFB200"}}> KSH {formatNumber(user?.balance) || 0}</strong> </span>
@@ -181,10 +179,10 @@ const NewProfile = () => {
                                             <div className={"line-between"}></div>
                                         </div>
 
-                                        <div className={"profile-bg"}>
-                                            <div className="card-body ">
+                                        <div className={"profile-bg col"}>
+                                            <div className="card-body d-flex justify-content-end">
                                                             <span className="font-btn py-2 px-2 d-flex flex-column">
-                                                                <span className={"d-flex align-items-center gap-2"}>
+                                                                <span className={"d-flex align-items-center gap-2 w-100"}>
                                                                     <FontAwesomeIcon
                                                                         icon={faSmile}/> Bonus
                                                                 </span>
@@ -201,10 +199,10 @@ const NewProfile = () => {
 
                                     <div className="card-body d-flex justify-content-between gap-2 ">
 
-                                        <div className={"profile-bg"}>
-                                            <div className="card-body "><span
+                                        <div className={"profile-bg col"}>
+                                            <div className="card-body d-flex justify-content-start"><span
                                                 className="font-btn py-2 px-2 d-flex flex-column">
-                                                                <span className={"d-flex align-items-center gap-2"}>
+                                                                <span className={"d-flex align-items-center gap-2 w-100"}>
                                                             <FontAwesomeIcon
                                                                 icon={faGifts}/> Gift </span>
                                                             <span>
@@ -217,13 +215,13 @@ const NewProfile = () => {
                                         <div className={"d-flex align-items-center"}>
                                             <div className={"line-between"}></div>
                                         </div>
-                                        <div className={"profile-bg"}>
-                                            <div className="card-body "><span
+                                        <div className={"profile-bg col"}>
+                                            <div className="card-body d-flex justify-content-end"><span
                                                 className="font-btn py-2 px-2 d-flex flex-column">
-                                                                <span className={"d-flex align-items-center gap-2"}>
+                                                                <span className={"d-flex align-items-center gap-2 w-100"}>
                                                             <FontAwesomeIcon
                                                                 icon={faListOl}/> Points </span>
-                                                            <span>
+                                                            <span className={'w-100'}>
                                                                 <strong>
                                                              {formatNumber(user?.points_balance) || 0}</strong>
                                                             </span>

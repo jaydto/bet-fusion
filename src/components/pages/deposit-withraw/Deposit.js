@@ -123,13 +123,12 @@ const Deposit = (props) => {
         return (
             <>
                 <div className="btn-group w-50 gap-3" role="group" aria-label="Basic example">
-                    <button type="button" onClick={()=>incementDepositValue(10)} className="deposit-buttons-value">+10</button>
-                    <button type="button" onClick={()=>incementDepositValue(50)} className="deposit-buttons-value">+50</button>
                     <button type="button" onClick={()=>incementDepositValue(100)} className="deposit-buttons-value">+100</button>
+                    <button type="button" onClick={()=>incementDepositValue(200)} className="deposit-buttons-value">+200</button>
                     <button type="button" onClick={()=>incementDepositValue(500)} className="deposit-buttons-value">+500</button>
                     <button type="button" onClick={()=>incementDepositValue(1000)} className="deposit-buttons-value">+1000</button>
-                </div>
-             <div className="form-group w-100 d-flex justify-content-center mt-3 deposit-widthdraw-input-desktop">
+             </div>
+             <div className="form-group w-100 row d-flex justify-content-center mt-3 deposit-widthdraw-input-desktop">
                     <div className="col-md-12">
                         {console.log("depositValue",state?.depositValue)}
                         <label>Amount to Deposit</label>
@@ -141,7 +140,7 @@ const Deposit = (props) => {
                             id="amount"
                             name="amount"
                             type="number"
-                            value={(values.amount=''?0:values.amount)||Number(state?.depositValue)}
+                            value={(values.amount==''?0||values.amount:values.amount||Number(state?.depositValue))}
                             placeholder='Enter Amount'
                         />
 

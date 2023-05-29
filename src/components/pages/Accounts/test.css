@@ -5,10 +5,13 @@
     background: var(--betnare-header-bg);
 }
 .deposit-buttons-value{
+    padding: 0 10px;
+    border-radius: 20px;
+    box-shadow: unset !important;
+    border: thin solid #1D535F;
     background: transparent;
     font-weight: 800;
-    box-shadow: -1px 2px 2px 0px var(--betnare-shadow-borders);
-    border: none;
+
 }
 .profile-sidebar {
     top: 0;
@@ -335,6 +338,20 @@
     }
 }
 @media (max-width: 767px){
+    .top-nav.top-nav-profile {
+        padding-top: 34px;
+        min-height: 39px!important;
+        margin: auto;
+    }
+    .deposit-buttons-value{
+       font-size: 11px;
+
+    }
+    .flex-item-profile >div {
+        padding: 0px 0px;
+
+
+    }
     .banner-profile {
         width: 100vw;
         height: 13vw;
@@ -489,9 +506,8 @@
     }
 }
 
-
 .profile-img-banner {
-    background: url(http://localhost:3000/static/media/img-17.570ba2f4677a1324c079.webp)!important;
+    background: url('../../../assets/img/auth/img-17.webp')!important;
     background-position: center!important;
     background-repeat: no-repeat!important;
     background-size: cover!important;

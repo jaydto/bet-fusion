@@ -74,6 +74,9 @@
     flex-grow:1;
 }
 @media (min-width: 1260px){
+    .kiron-font-size{
+        font-size: 12px;
+    }
     .item-kiron2{
         width:65%;
     }
@@ -148,6 +151,9 @@
     }
 }
 @media (max-width: 767px){
+    .kiron-font-size{
+        font-size: 11px;
+    }
     .flex-item-kiron >div {
 
         padding: 4px 0px;

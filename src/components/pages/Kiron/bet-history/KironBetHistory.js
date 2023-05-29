@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState, useCallback} from "react";
 import {Context} from '../../../../context/store';
-import makeRequest, {BASE_URL} from '../../../utils/fetch-request';
+import  {BASE_URL} from '../../../utils/fetch-request';
 
 import '../../../../assets/css/accordion.react.css';
 import axios from "axios";
@@ -18,7 +18,6 @@ const Styles = {
         // background:'#18242f',
         color:'var(--light)',
         padding: '10px 40px 10px',
-        fontSize: '12px'
     },
     bet:{
         // background:'#1e2d3b',
@@ -85,7 +84,7 @@ const KironBetHistory = (props) => {
 
     const KironItemHeader = (props) => {
         return (
-            <div className={`container-fluid`} style={Styles.headers}>
+            <div className={`container-fluid kiron-font-size`} style={Styles.headers}>
                 <div className="row">
                     <div className="col">CREATED</div>
                     <div className="col">ID</div>
@@ -139,7 +138,7 @@ const KironBetHistory = (props) => {
         return (
 
             state?.kironbetdetails!==undefined&&state?.kironbetdetails!==null&&!betLoading?state?.kironbetdetails.map((betlip_detail,id)=>(
-              <div className={`accordion-betslips-style`}  key={betlip_detail.game_id}>
+              <div className={`accordion-betslips-style kiron-font-size`}  key={betlip_detail.game_id}>
                   <div className="row">
                       <div className="col  d-flex  align-items-center">{ betlip_detail.home_team}</div>
                       <div className="col  d-flex  align-items-center">{ betlip_detail.away_team}</div>

@@ -10,6 +10,7 @@
 .space-bets {
     flex-direction: column !important;
 }
+
 .matches .top-matches .kiron-btn {
     height: 30px;
     border-radius: 20px !important;

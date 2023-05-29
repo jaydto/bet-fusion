@@ -317,7 +317,7 @@ const HeaderNav = (props) => {
                         </button>
                     </div>
                     <div
-                        className={`autocomplete-box position-fixed bg-white border-dark col-md-5 mt-1 shadow-lg text-start`}
+                        className={`autocomplete-box search-results-box position-fixed  border-dark col-md-5 mt-1 shadow-lg text-start`}
                         onClick={() => gaEventTracker('View Search Results')}>
                         {matches.map((match, index) => (
                             <a href={`/?search=${match.home_team}`} key={index}>

@@ -956,7 +956,7 @@ input[type="radio"], input[type="checkbox"] {
         text-transform: none;
         padding-top: 1px;
         color: var(--always-white);
-        background: transparent url(http://localhost:3000/static/media/new_badge.4f8c51513aebcb1b7537.webp) no-repeat;
+        background: transparent url(../../assets/img/mobile/new_badge.webp) no-repeat;
         background-size: 35px 16px;
         width: 28px;
         height: 13px;

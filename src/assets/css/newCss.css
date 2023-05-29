@@ -952,7 +952,7 @@ input[type="radio"], input[type="checkbox"] {
         padding: 1px 5px;
         position: absolute;
         font-size: var(--font-tiny);
-        font-weight: var(--font-weight-normal);
+        font-weight: bolder;
         text-transform: none;
         padding-top: 1px;
         color: var(--always-white);

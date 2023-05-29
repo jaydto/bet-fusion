@@ -259,10 +259,10 @@ const Index = () => {
                 <div className="item2">
                     <div className="gz home match-overflow " >
                         <div className="homepage" ref={homePageRef}>
+
                             <MobileNav2/>
                             <CarouselLoader/>
                             <Testimonials/>
-
                             <MainTabs tab={location.pathname.replace("/", "")}/>
 
                             {loading ?

@@ -10,7 +10,7 @@ import {
     faStream,
     faMagic,
     faMobile,
-    faCloudDownloadAlt, faPowerOff, faHandsHelping, faAddressBook, faHandPointRight
+    faCloudDownloadAlt, faPowerOff, faHandsHelping, faAddressBook, faHandPointRight, faHeartbeat
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
@@ -122,8 +122,8 @@ else{
             <Menu>
                 <MenuItem className={"d-flex justify-content-between"}>
                     <div className={"d-flex gap-4 align-items-center px-3"}>
-                        <FontAwesomeIcon icon={faPrint}/>
-                        <div className={'text-profile'} onClick={()=>showCentricPage('support')} >Support</div>
+                        <FontAwesomeIcon icon={faHeartbeat}/>
+                        <div className={'text-profile'} onClick={()=>showCentricPage('affiliate')} >Affiliate</div>
                     </div>
                 </MenuItem>
             </Menu>

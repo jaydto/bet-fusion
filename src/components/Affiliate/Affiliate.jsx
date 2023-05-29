@@ -13,13 +13,15 @@ import {Context} from "../../context/store";
 import {faArrowUp, faHandPointUp, faHome, faPowerOff} from "@fortawesome/free-solid-svg-icons";
 
 const Footer = React.lazy(() => import('../footer/footer'));
-const Affiliate = () => {
+const Affiliate = (props) => {
+    const {profile}=props
     const [state, dispatch] = useContext(Context)
     const expand = "md"
     return (
         <>
             <div className={'flex-item py-0'}>
-                <div className="item4 border-header-affiliate ">
+                {!profile&&
+                    <div className="item4 border-header-affiliate ">
                     <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav profile-top-nav" fixed="top"
                             variant="dark">
                         <Container fluid
@@ -65,7 +67,7 @@ const Affiliate = () => {
 
                         </Container>
                     </Navbar>
-                </div>
+                </div>}
                 <div className="flex-container profile-style" style={{padding: '0px 2px '}} id={'top'}>
                     <div className="item2">
                         <div className={'profile-img-banner-affiliate'}>

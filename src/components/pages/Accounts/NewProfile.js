@@ -20,13 +20,12 @@ import {formatNumber} from "../../utils/betslip";
 import DepositProfile from "./component/DepositProfile";
 import WithdrawProfile from "./component/WithdrawProfile";
 import {getFromLocalStorage} from "../../utils/local-storage";
-import useWindowDimensions from "../../header/Dimensions";
-import SidebarMobile from "../../sidebar/awesome/SidebarMobile";
 import SidebarProfile from "../../sidebar/sidebarProfile";
 import PointsProfile from "./component/PointsProfile";
 import {Context} from "../../../context/store";
-import MybetsProfile from "./component/mybets";
+import MybetsProfile from "./component/my-bets";
 import App from "./component/app";
+import Affiliate from "../../Affiliate/Affiliate";
 
 const NewProfile = () => {
     const [user, ] = useState(getFromLocalStorage("user"));
@@ -252,7 +251,7 @@ const NewProfile = () => {
                         </div>}
                         {(state?.profile_mybets=='profile_mybets')&&<div className={'d-flex gap-1 mobile-profile-columns'}>
                             <div id={'points'} className={'col d-flex gap-3 '}>
-                                <div id={'points'} className={'col'}><MybetsProfile/></div>
+                                <div id={'points'} className={'col'}><MybetsProfile mobile={true}/></div>
                             </div>
                         </div>}
                         {(state?.profile_app=='profile_app')&&<div className={'d-flex gap-1  mobile-profile-columns'}>

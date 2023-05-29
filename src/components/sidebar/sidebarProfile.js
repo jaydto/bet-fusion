@@ -17,37 +17,33 @@ import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {Context} from "../../context/store";
 
 const SidebarProfile = (props) => {
-    const {profile_side}=props
+    const {profile_side} = props
     const [state, dispatch] = useContext(Context);
 
-const prevChoice=useRef('')
-const showCentricPage=(userChoice)=>{
-console.log("start_user_Choice",userChoice)
-console.log("start_user_prevChoice",prevChoice)
+    const prevChoice = useRef('')
+    const showCentricPage = (userChoice) => {
 
-if(prevChoice.current==''){
-        console.log("current_choice", prevChoice)
-    dispatch({ type: "SET", key: `profile_${userChoice}`, payload: `profile_${userChoice}` });
-    prevChoice.current=`profile_${userChoice}`
-}
-else{
-        console.log("current_choice_else", prevChoice.current)
-    dispatch({ type: "SET", key: prevChoice.current, payload: null });
-    dispatch({ type: "SET", key: `profile_${userChoice}`, payload: `profile_${userChoice}` });
-    prevChoice.current=`profile_${userChoice}`
-}
+        if (prevChoice.current == '') {
 
+            dispatch({type: "SET", key: `profile_${userChoice}`, payload: `profile_${userChoice}`});
+            prevChoice.current = `profile_${userChoice}`
+        } else {
 
-}
-    useEffect(()=>{
-        const abort=new AbortController()
-        dispatch({ type: "SET", key: `profile_all`, payload: `profile_all` });
+            dispatch({type: "SET", key: prevChoice.current, payload: null});
+            dispatch({type: "SET", key: `profile_${userChoice}`, payload: `profile_${userChoice}`});
+            prevChoice.current = `profile_${userChoice}`
+        }
+
+    }
+    useEffect(() => {
+        const abort = new AbortController()
+        dispatch({type: "SET", key: `profile_all`, payload: `profile_all`});
         return abort.abort
-    },[])
+    }, [])
 
     const gaEventTracker = useAnalyticsEventTracker('Navigation');
     return (<ProSidebar
-        className={` ${profile_side&&' profile-width-side'}`}
+        className={` ${profile_side && ' profile-width-side'}`}
         style={{width: "100%"}}
         image={false}>
         <SidebarHeader className={""}>
@@ -59,54 +55,52 @@ else{
                 <MenuItem>
                     <div className={"d-flex gap-4 align-items-center px-3"}>
                         <FontAwesomeIcon icon={faHandPointRight}/>
-                        <div className={'text-profile'} onClick={()=>showCentricPage('all')}>Balance</div>
+                        <div className={'text-profile'} onClick={() => showCentricPage('all')}>Balance</div>
                     </div>
 
                 </MenuItem>
             </Menu>
+            {/*<Menu>*/}
+            {/*    <MenuItem>*/}
+            {/*        <div className={"d-flex gap-4 align-items-center px-3"}>*/}
+            {/*            <FontAwesomeIcon icon={faUser}/>*/}
+            {/*            <div className={'text-profile'} onClick={() => showCentricPage('cash')}>Cash</div>*/}
+            {/*        </div>*/}
 
-             <Menu>
-                <MenuItem>
-                    <div className={"d-flex gap-4 align-items-center px-3"}>
-                        <FontAwesomeIcon icon={faUser}/>
-                        <div className={'text-profile'} onClick={()=>showCentricPage('cash')}>Cash</div>
-                    </div>
+            {/*    </MenuItem>*/}
+            {/*</Menu>*/}
 
-                </MenuItem>
-            </Menu>
+            {/*<Menu>*/}
+            {/*    <MenuItem>*/}
+            {/*        <div className={"d-flex gap-4 align-items-center px-3"}>*/}
+            {/*            <FontAwesomeIcon icon={faCloudDownloadAlt}/>*/}
+            {/*            <div className={'text-profile'} onClick={() => showCentricPage('gift')}>Gift</div>*/}
+            {/*        </div>*/}
 
-             <Menu>
-                <MenuItem>
-                    <div className={"d-flex gap-4 align-items-center px-3"}>
-                        <FontAwesomeIcon icon={faCloudDownloadAlt}/>
-                        <div  className={'text-profile'} onClick={()=>showCentricPage('gift')} >Gift</div>
-                    </div>
-
-                </MenuItem>
-            </Menu>
+            {/*    </MenuItem>*/}
+            {/*</Menu>*/}
             <Menu>
                 <MenuItem className={"d-flex justify-content-between"}>
                     <div className={"d-flex gap-4 align-items-center px-3"}>
                         <FontAwesomeIcon icon={faQuestionCircle}/>
-                        <div className={'text-profile'} onClick={()=>showCentricPage('mybets')} >Mybets</div>
+                        <div className={'text-profile'} onClick={() => showCentricPage('mybets')}>Mybets</div>
                     </div>
                 </MenuItem>
             </Menu>
             <Menu>
                 <MenuItem className={"d-flex justify-content-between"}>
-                    <div className={"d-flex gap-4 align-items-center px-3"} onClick={() => gaEventTracker('Visit App Page')}>
+                    <div className={"d-flex gap-4 align-items-center px-3"}
+                         onClick={() => gaEventTracker('Visit App Page')}>
                         <FontAwesomeIcon icon={faMobile}/>
-                        <div className={'text-profile'} onClick={()=>showCentricPage('deposit')}>Deposit</div>
+                        <div className={'text-profile'} onClick={() => showCentricPage('deposit')}>Deposit</div>
                     </div>
                 </MenuItem>
             </Menu>
-
-
             <Menu>
                 <MenuItem className={"d-flex justify-content-between"}>
                     <div className={"d-flex gap-4 align-items-center px-3"}>
                         <FontAwesomeIcon icon={faPrint}/>
-                        <div className={'text-profile'} onClick={()=>showCentricPage('withdraw')}>Withdraw</div>
+                        <div className={'text-profile'} onClick={() => showCentricPage('withdraw')}>Withdraw</div>
                     </div>
                 </MenuItem>
             </Menu>
@@ -114,35 +108,34 @@ else{
                 <MenuItem>
                     <div className={"d-flex gap-4 align-items-center px-3"}>
                         <FontAwesomeIcon icon={faAddressBook}/>
-                        <div className={'text-profile'} onClick={()=>showCentricPage('points')}>Points</div>
+                        <div className={'text-profile'} onClick={() => showCentricPage('points')}>Points</div>
                     </div>
 
                 </MenuItem>
             </Menu>
             <Menu>
-                <MenuItem className={"d-flex justify-content-between"}>
+                <MenuItem>
                     <div className={"d-flex gap-4 align-items-center px-3"}>
-                        <FontAwesomeIcon icon={faHeartbeat}/>
-                        <div className={'text-profile'} onClick={()=>showCentricPage('affiliate')} >Affiliate</div>
+                        <FontAwesomeIcon icon={faMobile}/>
+                        <div className={'text-profile'} onClick={() => {
+                            gaEventTracker('Visit App Page');
+                            showCentricPage('app')
+                        }}>App
+                        </div>
                     </div>
                 </MenuItem>
             </Menu>
         </SidebarHeader>
         <SidebarContent className={""}>
-
             <Menu>
-                <MenuItem>
-                    <div className={"d-flex gap-4 align-items-center px-3"}>
-                        <FontAwesomeIcon icon={faMobile}/>
-                        <div className={'text-profile'}  onClick={() => {
-                            gaEventTracker('Visit App Page');
-                            showCentricPage('app')
-                        }}>App</div>
-                    </div>
+                <MenuItem className={"d-flex justify-content-between"}>
+                    <Link className={"d-flex gap-4 align-items-center px-3"} to={'/affiliate'}>
+                        <FontAwesomeIcon icon={faHeartbeat}/>
+                        <div className={'text-profile'}>Affiliate</div>
+                    </Link>
                 </MenuItem>
             </Menu>
             <Menu>
-
                 <MenuItem>
                     <div className={"d-flex gap-4 align-items-center text-profile px-3"}>
                         <FontAwesomeIcon icon={faMagic}/>

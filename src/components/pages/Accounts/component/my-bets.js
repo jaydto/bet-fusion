@@ -109,7 +109,8 @@ const MyBets = (props) => {
                     <div className="col text-center mybets-font overflow-hidden">{ bet.possible_win}</div>
                     <div className="col text-center mybets-font overflow-hidden">{ bet.tax}</div>
                     { canCancel == false
-                        ? <div className="col text-center mybets-font overflow-hidden">{ betStatus}</div>
+                        ? <div className={`col text-center`}><span className={` badge ${betStatus=="LOST"?"bg-dark text-warning":betStatus=="WON"?"bg-success":betStatus=="PENDING"?"bg-dark ":""}`} style={{color:"white"
+                            ,marginTop:"10px", borderRadius: "7px", marginLeft:"1px", padding:"2.9px 9px "}}>{betStatus=="LOST"?"NOT WON":betStatus}</span></div>
                         : cancelBetMarkup()
                     }
                 </div>
@@ -151,7 +152,11 @@ const MyBets = (props) => {
                     <div className="col">{ betslip.bet_pick}</div>
                     <div className="col px-1">{ betslip.outcomes}</div>
                     <div className="col">{ betslip.ft_result}</div>
-                    <div className="col">{ betslip.status}</div>
+                    <div className="col ">
+                        {<span className={` badge ${betslip.status=="LOST"?"bg-dark text-warning":betslip.status=="WON"?"bg-success":betslip.status=="PENDING"?"bg-dark ":""}`} style={{color:"white"
+                        ,marginTop:"10px", borderRadius: "7px", marginLeft:"1px", padding:"2.9px 9px "}}>{betslip.status=="LOST"?"NOT WON":betslip.status}
+                        </span>}
+                    </div>
                 </div>
             </div>
         )

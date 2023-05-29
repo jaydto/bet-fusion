@@ -52,6 +52,7 @@
     --font-tiny:8px;
     --font-weight-normal:normal;
     --always-white:#fff;
+    --badge-bg:url(../../assets/img/mobile/new_badge.webp);
 }
 
 .light-theme {

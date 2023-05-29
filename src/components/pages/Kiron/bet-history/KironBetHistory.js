@@ -84,7 +84,7 @@ const KironBetHistory = (props) => {
 
     const KironItemHeader = (props) => {
         return (
-            <div className={`container-fluid kiron-font-size`} style={Styles.headers}>
+            <div className={`container-fluid kiron-font-size kiron-bet-history`} style={Styles.headers}>
                 <div className="row">
                     <div className="col">CREATED</div>
                     <div className="col">ID</div>
@@ -101,12 +101,12 @@ const KironBetHistory = (props) => {
         return (
             <div className={`container-fluid`} style={Styles.bet} key={bet.bet_id}>
                 <div className="row">
-                    <div className="col">{ bet.bet_date}</div>
-                    <div className="col">{ bet.bet_id}</div>
-                    <div className="col">{ bet.total_games}</div>
-                    <div className="col">{ bet.bet_amount}</div>
-                    <div className="col">{ bet.possible_win}</div>
-                    <div className={`col `}><span className={` badge ${bet.bet_status==="3"?"bg-dark text-warning":bet.bet_status==="5"?"bg-success":bet.bet_status==="1"?"bg-dark ":""}`} style={{color:"white"
+                    <div className="col kiron-font-size">{ bet.bet_date}</div>
+                    <div className="col kiron-font-size">{ bet.bet_id}</div>
+                    <div className="col kiron-font-size">{ bet.total_games}</div>
+                    <div className="col kiron-font-size">{ bet.bet_amount}</div>
+                    <div className="col kiron-font-size">{ bet.possible_win}</div>
+                    <div className={`col kiron-font-size `}><span className={` badge ${bet.bet_status==="3"?"bg-dark text-warning":bet.bet_status==="5"?"bg-success":bet.bet_status==="1"?"bg-dark ":""}`} style={{color:"white"
                             ,marginTop:"10px", borderRadius: "7px", marginLeft:"1px", padding:"2.9px 9px "}}>{bet.bet_status==="3"?"NOT WON":bet.bet_status==="5"?"WON":bet.bet_status==="1"?"PENDING":""}</span></div>
                 </div>
             </div>
@@ -119,12 +119,12 @@ const KironBetHistory = (props) => {
             <div className={` slipheader `} >
                 <div className="row">
 
-                    <div className="col">Home</div>
-                    <div className="col">Away</div>
-                    <div className="col">Odds</div>
-                    <div className="col">Pick</div>
-                    <div className="col">Outcome</div>
-                    <div className="col">Status</div>
+                    <div className="col kiron-font-size">Home</div>
+                    <div className="col kiron-font-size">Away</div>
+                    <div className="col kiron-font-size">Odds</div>
+                    <div className="col kiron-font-size">Pick</div>
+                    <div className="col kiron-font-size">Outcome</div>
+                    <div className="col kiron-font-size">Status</div>
                 </div>
             </div>
         )
@@ -140,12 +140,12 @@ const KironBetHistory = (props) => {
             state?.kironbetdetails!==undefined&&state?.kironbetdetails!==null&&!betLoading?state?.kironbetdetails.map((betlip_detail,id)=>(
               <div className={`accordion-betslips-style kiron-font-size`}  key={betlip_detail.game_id}>
                   <div className="row">
-                      <div className="col  d-flex  align-items-center">{ betlip_detail.home_team}</div>
-                      <div className="col  d-flex  align-items-center">{ betlip_detail.away_team}</div>
-                      <div className="col  d-flex  align-items-center">{betlip_detail.odd_value}</div>
-                      <div className="col  d-flex  align-items-center">{ betlip_detail.bet_pick}</div>
-                      <div className="col  d-flex  align-items-center">{ betlip_detail.outcome}</div>
-                      <div className={`col  d-flex  align-items-center `}><span className={` badge`} style={{
+                      <div className="col  d-flex  align-items-center kiron-font-size">{ betlip_detail.home_team}</div>
+                      <div className="col  d-flex  align-items-center kiron-font-size">{ betlip_detail.away_team}</div>
+                      <div className="col  d-flex  align-items-center kiron-font-size">{betlip_detail.odd_value}</div>
+                      <div className="col  d-flex  align-items-center kiron-font-size">{ betlip_detail.bet_pick}</div>
+                      <div className="col  d-flex  align-items-center kiron-font-size">{ betlip_detail.outcome}</div>
+                      <div className={`col  d-flex  align-items-center  kiron-font-size`}><span className={` badge`} style={{
                          borderRadius: "7px", marginLeft:"1px", padding:"2.9px 9px "}}>{betlip_detail.status===3?<FontAwesomeIcon icon={faTimes} style={{color: "yellow", fontSize:"19px"}} size={"lg"}/>:betlip_detail.status===5?<FontAwesomeIcon icon={faCheck} style={{color: "green", fontSize:"19px"}} size={"lg"} />:betlip_detail.status===1?<FontAwesomeIcon icon={faQuestionCircle} style={{color: "orange", fontSize:"19px"}} size={"lg"}/>:<FontAwesomeIcon icon={faBan} style={{color: "darkgray", fontSize:"19px"}} size={"lg"}/>}</span></div>
                   </div>
               </div>)

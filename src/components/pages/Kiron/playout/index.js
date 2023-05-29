@@ -7,12 +7,9 @@ import {Context} from "../../../../context/store";
 const KironPlayouts = (props) => {
     const {playout, isCountdownTimerActive} = props
     const [success, setSuccess] = useState(false)
-    const [fetching, setFetching] = useState(false)
-    const [loading, setLoading] = useState(false)
     // const [resulted, setResulted] = useState([]);
     const [state, dispatch] = useContext(Context);
-    const [lastScorer, setLastScorer] = useState(null);
-    const [timeAfter, setTimeAfter] = useState(null);
+
     const kironSearchCompetition = getFromLocalStorage("kiron_search_data")?.competition_id
     const kironSearchRoundId = getFromLocalStorage("kiron_first_round") || new URL(window.location).searchParams.get('round_id')
     let endpoint = "/v1/nare-league/live"
@@ -32,8 +29,6 @@ const KironPlayouts = (props) => {
         await makeRequest({url: endpoint, method: "POST", data: kiron_data}).then(([status, result]) => {
             if (status == 200) {
                 dispatch({type: "SET", key: 'playout_data', payload: result?.data || result})
-                setFetching(false)
-                setLoading(false)
                 setSuccess(true)
 
                 if (result?.slip_data) {

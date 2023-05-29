@@ -118,7 +118,7 @@ const HeaderNav = (props) => {
                             <strong>
                                 <div className={'d-flex menu-item'}>
                                     Aviator
-                                    <span className="notify-badge badge">NEW</span>
+                                    <span className="new-alert-badge">NEW</span>
                                 </div>
                             </strong>
                         </Link>
@@ -128,7 +128,7 @@ const HeaderNav = (props) => {
                         <Link className="url-link fm anl cg ox " to="#" title="Live Casino" onClick={() => LoginCheck("casino")}>
                             <span>
                                 <strong>Casino</strong>
-                                    <span className="notify-badge badge">NEW</span>
+                                    <span className="new-alert-badge">NEW</span>
                             </span>
                         </Link>
                     </li>
@@ -138,7 +138,7 @@ const HeaderNav = (props) => {
                            title="Space Man">
                             <span>
                                 <strong>Spaceman</strong>
-                                    <span className="notify-badge badge">NEW</span>
+                                    <span className="new-alert-badge">NEW</span>
                             </span>
                         </Link>
                     </li>
@@ -152,7 +152,7 @@ const HeaderNav = (props) => {
                             <strong>
                                 <div className={'d-flex menu-item'}>
                                     JetX
-                                    <span className="notify-badge badge">NEW</span>
+                                    <span className="new-alert-badge">NEW</span>
                                 </div>
                             </strong>
                         </Link>
@@ -162,7 +162,7 @@ const HeaderNav = (props) => {
                         <Link className="url-link fm anl cg ox " to="/nare-league" title="Nare League">
                             <span>
                                 <strong>Nare League</strong>
-                                    <span className="notify-badge badge">NEW</span>
+                                    <span className="new-alert-badge">NEW</span>
                             </span>
                         </Link>
                     </li>
@@ -171,7 +171,7 @@ const HeaderNav = (props) => {
                         <Link className="url-link fm anl cg ox " to="/smart-soft" title="SmartSoft">
                             <span>
                                 <strong>X-games</strong>
-                                    <span className="notify-badge badge">NEW</span>
+                                    <span className="new-alert-badge">NEW</span>
                             </span>
                         </Link>
                     </li>
@@ -183,7 +183,7 @@ const HeaderNav = (props) => {
                                     <div className={'notification-item'}>
                                         {/*<FontAwesomeIcon icon={faLaptop}/> */}
                                         Virtuals
-                                        <span className="notify-badge badge">NEW</span>
+                                        <span className="new-alert-badge">NEW</span>
                                     </div>
                                 </strong>
                             </span>
@@ -198,7 +198,7 @@ const HeaderNav = (props) => {
                             <strong className={"px-1"}>
                                 {/*<FontAwesomeIcon icon={faFireAlt} style={{color: "orange"}}/> */}
                                 Nare Games
-                                <span className="notify-badge badge">NEW</span>
+                                <span className="new-alert-badge">NEW</span>
                             </strong>
                         </Link>
                     </li>
@@ -290,11 +290,11 @@ const HeaderNav = (props) => {
                             <span className={'hide2'}><strong>Help</strong></span>
                         </Link>
                     </li>
-                    <li className={pathname === '/print-matches' ? 'active py-3' : ' py-md-0 py-lg-3 py-sm-0 d-flex align-items-center'}
+                    <li className={pathname === '/print-matches' ? 'active py-3' : ' py-md-0 py-lg-3 py-sm-0 d-flex align-items-center gap-1'}
                         onClick={() => gaEventTracker('Visit Print Matches')}>
                         <Link className="url-link fm anl cg ox fix-print" to="/print-matches" title="Print Matches">
                             <span className=" space-icons"><FontAwesomeIcon icon={faPrint}/> </span>Print <span
-                            className={'hide1'}>Matches</span>
+                            className={'hide1'}> Matches</span>
                         </Link>
                     </li>
                 </ListGroup>

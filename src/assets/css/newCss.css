@@ -141,9 +141,9 @@ input.text-white{
 .accordion-item.bet-history-kiron{
     background: var(--betnare-primary)!important;
 }
-.accordion-button.bet-history-button{
-    padding: 1px;
-    padding-left:7px;
+.accordion-button.bet-history-button {
+    padding: 10px;
+    padding-left: 7px;
     background: var(--betnare-primary)!important;
 }
 .pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item > .pro-icon-wrapper {
@@ -506,7 +506,25 @@ input[type="radio"], input[type="checkbox"] {
     -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
     -webkit-box-shadow: 0 1px 2px #16202c;
 }
-
+.new-alert-badge {
+    right: -10px;
+    margin-top: 5px !important;
+    padding: 1px 5px;
+    position: absolute;
+    font-size: var(--font-tiny);
+    font-weight: var(--font-weight-normal);
+    text-transform: none;
+    padding-top: 1px;
+    color: var(--always-white);
+    background: transparent url(http://localhost:3000/static/media/new_badge.4f8c51513aebcb1b7537.webp) no-repeat;
+    background-size: 35px 16px;
+    width: 28px;
+    height: 19px;
+    text-align: center;
+    top: -7px;
+    flex-direction: column-reverse;
+    display: flex;
+}
 .pro-sidebar{
  color:var(--grey) !important
 }
@@ -928,6 +946,25 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 @media (max-width: 991px){
+    .new-alert-badge {
+        right: -10px;
+        margin-top: 5px !important;
+        padding: 1px 5px;
+        position: absolute;
+        font-size: var(--font-tiny);
+        font-weight: var(--font-weight-normal);
+        text-transform: none;
+        padding-top: 1px;
+        color: var(--always-white);
+        background: transparent url(http://localhost:3000/static/media/new_badge.4f8c51513aebcb1b7537.webp) no-repeat;
+        background-size: 35px 16px;
+        width: 28px;
+        height: 14px;
+        text-align: center;
+        top: -7px;
+        flex-direction: column-reverse;
+        display: flex;
+    }
     .size-all-markets{
         width:100%;
     }

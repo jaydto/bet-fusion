@@ -198,7 +198,7 @@ const  TestKiron= () => {
                 <div >
                     <Header/>
                 </div></div>
-            <div className="flex-container kiron-test" >
+            <div className="flex-container-kiron kiron-test" >
                 <div className={'item-kiron-1 d-none'}></div>
                 <div className="item-kiron2" style={{width:'100%'}}>
                     <div className="d-flex flex-row">

@@ -49,6 +49,9 @@
     --secondary:#fdd835;
     --tabs-home:#000;
     --betnare-mobile-nav:#192533;
+    --font-tiny:8px;
+    --font-weight-normal:normal;
+    --always-white:#fff;
 }
 
 .light-theme {

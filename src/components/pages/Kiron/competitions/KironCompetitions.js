@@ -74,7 +74,7 @@ const KironCompetitions = (props) => {
 
     return (
         kiron&&
-        <div className="app-countries-icons mt-2">
+        <div className="app-countries-icons mt-4">
             <div className="container-fluid">
                 <div className="d-flex">
                     {kiron?.map((kiron_options, index) => (

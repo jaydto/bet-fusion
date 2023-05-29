@@ -62,8 +62,8 @@ const Standing = () => {
                         { standings &&
                             Object.entries(standings).map(([key, standing]) => (
                                 <tr>
-                                    <td className={''}>{standing?.position}</td>
-                                    <td className="playing-teams-r">
+                                    <td className={'standings-menu'}>{standing?.position}</td>
+                                    <td className="playing-teams-r standings-menu">
                                     <span className="team-badge">
                                          <img
                                              src={standing?.icon_url}
@@ -71,9 +71,9 @@ const Standing = () => {
                                         {standing?.team_name}
                                   </span>
                                     </td>
-                                    <td>{standing?.points}</td>
-                                    <td>{standing?.games_played}</td>
-                                    <td><span className="team-form">
+                                    <td className={'standings-menu'}>{standing?.points}</td>
+                                    <td className={'standings-menu'}>{standing?.games_played}</td>
+                                    <td className={'standings-menu'}><span className="team-form">
                                        {Array.from(standing?.form)?.map((item) => (
                                            <span title={`${item=='L'?' Lost':item=='W'?' Won ':' Draw '}`} className={`size-form btn btn-sm ${item=='L'?' btn-danger ':item=='W'?' btn-success ':' btn-dark '} mx-1`} style={{width: '18%', cursor:'default'}}><strong className={'bold'}>{item}</strong></span>
                                        ))}

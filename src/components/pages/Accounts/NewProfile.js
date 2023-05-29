@@ -186,7 +186,7 @@ const NewProfile = () => {
                                                                     <FontAwesomeIcon
                                                                         icon={faSmile}/> Bonus
                                                                 </span>
-                                                        <strong>KSH {formatNumber(user?.bonus) || 0}</strong> </span>
+                                                        <strong className={'w-100'}>KSH {formatNumber(user?.bonus) || 0}</strong> </span>
                                             </div>
                                         </div>
                                     </div>

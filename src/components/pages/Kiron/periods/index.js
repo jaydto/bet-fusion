@@ -414,7 +414,7 @@ const KironPeriods= (props) => {
                             const roundId = isFirst ? '' : kiron_options?.round_id;
                             const endTime = isFirst ? '' : kiron_options?.end_time;
                             return (
-                                <td key={index} id={`kiron-period-${index}`} className={` d-flex menu-t sport-check w-100 period-card ${pathname === kiron_options.round_id ? " active" : ""}`}
+                                <td key={index} id={`kiron-period-${index}`} className={` d-flex menu-t sport-check w-100 period-card standings-menu ${pathname === kiron_options.round_id ? " active" : ""}`}
                                     style={{textAlign: 'center',lineHeight: '1.5'}}>
                                     <div style={{width:"100%", color:"#000"}} >
                                         <div className={` inner-div active d-flex align-items-center kiron-value flex-column justify-content-center link period-height ${isFirst? timeLeft&&isCountdownTimerActive==false?'count-red':timeAfter&&isCountdownTimerActive==true?'count-green':'':''}`}

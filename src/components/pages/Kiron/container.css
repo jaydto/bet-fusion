@@ -33,16 +33,15 @@
     align-self:auto;
 }
 
-.flex-container {
-
+.flex-container-kiron {
     display: flex;
     justify-content: space-between;
     /* flex-flow: nowrap; */
     flex-wrap: nowrap;
     background-color: var(--betnare-primary);
     height: 100%;
-    padding: 15px;
-    margin-top:63px;
+    padding: 20px 0px 0px 0px;
+    margin-top: 63px;
     gap: 5px;
     flex-grow: 4;
     height: max-content;
@@ -115,7 +114,7 @@
         padding-top:0px!important;
         margin-top:0px!important;
     }
-    .flex-container{
+    .flex-container-kiron{
         flex-direction: column;
     }
     .flex-item-kiron{
@@ -134,7 +133,7 @@
     .item-kiron1{
         display: none;
     }
-    .flex-container {
+    .flex-container-kiron {
         width: 100%;
         flex-grow: 12;
     }
@@ -151,6 +150,10 @@
     }
 }
 @media (max-width: 767px){
+    .kiron-bet-history{
+        padding: 9px 4px!important;
+    }
+
     .kiron-font-size{
         font-size: 11px;
     }
@@ -167,6 +170,9 @@
     }
 }
 @media  (max-width: 575px){
+    .kiron-font-size {
+        font-size: 10px;
+    }
     .item-kiron2 {
         /* flex:2 1 auto; */
         flex-grow: 6;

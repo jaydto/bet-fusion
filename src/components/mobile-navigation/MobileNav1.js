@@ -172,8 +172,7 @@ const MobileNav1 = (props) => {
                                     alt=""
                                     style={{height: "23px", marginTop:"-6px"}}
                                 />
-                                <span className=" badge" style={{color:"white",background:"red"
-                                    ,marginTop:"-5px", borderRadius: "10px 0 15px 0", marginLeft:"1px", padding:"0.3px 3px ", fontSize:"5.5px",position:'absolute',top:'5px', left:'32px'}}>NEW</span>
+                                <span className=" new-alert-badge" >NEW</span>
                             </div>
                             <strong style={{textAlign: "center"}}>
                                 Aviator
@@ -193,8 +192,7 @@ const MobileNav1 = (props) => {
                                     alt=""
                                     style={{height: "23px", marginTop:"-6px"}}
                                 />
-                                <span className=" badge" style={{color:"white",background:"red"
-                                    ,marginTop:"-5px", borderRadius: "10px 0 15px 0", marginLeft:"1px", padding:"0.3px 3px ", fontSize:"5.5px",position:'absolute',top:'5px',left:'32px'}}>NEW</span>
+                                <span className="new-alert-badge" >NEW</span>
                             </div>
                             <strong style={{textAlign: "center"}}>
                                 Casino
@@ -215,8 +213,7 @@ const MobileNav1 = (props) => {
                                     alt=""
                                     style={{height: "23px", marginTop:"-6px"}}
                                 />
-                                <span className=" badge" style={{color:"white",background:"red"
-                                    ,marginTop:"-5px", borderRadius: "10px 0 15px 0", marginLeft:"1px", padding:"0.3px 3px ", fontSize:"5.5px",position:'absolute',top:'5px',left:'26px'}}>NEW</span>
+                                <span className=" new-alert-badge" >NEW</span>
                             </div>
                             <strong style={{textAlign: "center"}}>
                                JetX
@@ -232,7 +229,7 @@ const MobileNav1 = (props) => {
                           title="Live Casino">
                         <div className="menu-img">
                             <LazyLoadImage src={casino} style={{height: "23px", marginTop:"-6px" }}/>
-                            <span className=" badge" style={{color:"white",background:"red"
+                            <span className=" new-alert-badge" style={{color:"white",background:"red"
                                 ,marginTop:"-5px", borderRadius: "10px 0 15px 0", marginLeft:"1px", padding:"0.3px 3px ", fontSize:"5.5px"}}>NEW</span>
                        </div>
                          <strong className={"text-light"}>Live Casino</strong>
@@ -246,7 +243,7 @@ const MobileNav1 = (props) => {
                             title="Crashlite" style={{width:"60px"}}
                             onClick={()=>LoginCheck("crashlite")}>
                         <div className="menu-img d-flex justify-content-center ">
-                        <span className=" badge crash" style={{color:"white",background:"red"
+                        <span className=" new-alert-badge crash" style={{color:"white",background:"red"
                                 ,marginTop:"1px", borderRadius: "10px 0 15px 0", marginLeft:"1px", padding:"0.6px 3px ",height:"7px", fontSize:"5.5px"}}>NEW</span>
                             </div>
                                     <LazyLoadImage src={crash} style={{height: "32px", marginTop:"-13px" }}/>
@@ -265,8 +262,7 @@ const MobileNav1 = (props) => {
                                     alt=""
                                     style={{height: "23px", marginTop:"-6px"}}
                                 />
-                                <span className=" badge" style={{color:"white",background:"red"
-                                    ,marginTop:"-5px", borderRadius: "10px 0 15px 0", marginLeft:"1px", padding:"0.3px 3px ", fontSize:"5.5px",position:'absolute',top:'5px',left:'32px'}}>NEW</span>
+                                <span className=" new-alert-badge" >NEW</span>
                             </div>
                             <strong style={{textAlign: "center"}}>
                                 League
@@ -287,8 +283,7 @@ const MobileNav1 = (props) => {
                                     alt=""
                                     style={{height: "23px", marginTop:"-6px", width:'30px'}}
                                 />
-                                <span className=" badge" style={{color:"white",background:"red"
-                                    ,marginTop:"-5px", borderRadius: "10px 0 15px 0", marginLeft:"1px", padding:"0.3px 3px ", fontSize:"5.5px",position:'absolute',top:'5px',left:'32px'}}>NEW</span>
+                                <span className=" new-alert-badge" >NEW</span>
                             </div>
                             <strong style={{textAlign: "center"}}>
                                 Spaceman
@@ -311,8 +306,7 @@ const MobileNav1 = (props) => {
                                     alt=""
                                     style={{height: "23px", marginTop:"-6px"}}
                                 />
-                                <span className=" badge" style={{color:"white",background:"red"
-                                    ,marginTop:"-5px", borderRadius: "10px 0 15px 0", marginLeft:"1px", padding:"0.3px 3px ", fontSize:"5.5px",position:'absolute',top:'5px',left:'32px'}}>NEW</span>
+                                <span className=" new-alert-badge" >NEW</span>
                             </div>
                             <strong style={{textAlign: "center"}}>
                                 Nare Games

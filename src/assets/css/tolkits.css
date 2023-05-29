@@ -907,7 +907,7 @@ header, li a, .thedate span {
     opacity: 1;
     color: #292828 !important;
     font-size: 15px;
-    border: 1px solid #2a4054;
+    border: none;
     border-radius: 3px;
     margin-bottom: 10px;
 }
@@ -916,7 +916,7 @@ header, li a, .thedate span {
     background: #101B25;
     opacity: 1;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     color: #fff !important;
     font-size: 11px;
     font-family: inherit;

@@ -507,23 +507,23 @@ input[type="radio"], input[type="checkbox"] {
     -webkit-box-shadow: 0 1px 2px #16202c;
 }
 .new-alert-badge {
-    right: -10px;
-    margin-top: 5px !important;
-    padding: 1px 5px;
-    position: absolute;
+    background: transparent url(../../assets/img/mobile/new_badge.webp) no-repeat;
+    background-size: 35px 16px;
+    color: var(--always-white);
+    display: flex;
+    flex-direction: column-reverse;
     font-size: var(--font-tiny);
     font-weight: var(--font-weight-normal);
-    text-transform: none;
-    padding-top: 1px;
-    color: var(--always-white);
-    background: transparent url('../../assets/img/mobile/new_badge.webp') no-repeat;
-    background-size: 35px 16px;
-    width: 28px;
-    height: 19px;
+    height: 17px;
+    margin-top: 5px!important;
+    padding: 1px;
+    position: absolute;
+    right: -20px;
     text-align: center;
+    text-transform: none;
     top: -9px;
-    flex-direction: column-reverse;
-    display: flex;
+    width: 28px;
+    font-weight: bolder;
 }
 .pro-sidebar{
  color:var(--grey) !important
@@ -947,7 +947,7 @@ input[type="radio"], input[type="checkbox"] {
 
 @media (max-width: 991px){
     .new-alert-badge {
-        right: -10px;
+        right: -16px;
         margin-top: 5px !important;
         padding: 1px 5px;
         position: absolute;
@@ -956,10 +956,10 @@ input[type="radio"], input[type="checkbox"] {
         text-transform: none;
         padding-top: 1px;
         color: var(--always-white);
-        background: transparent url('../../assets/img/mobile/new_badge.webp') no-repeat;
+        background: transparent url(http://localhost:3000/static/media/new_badge.4f8c51513aebcb1b7537.webp) no-repeat;
         background-size: 35px 16px;
         width: 28px;
-        height: 14px;
+        height: 13px;
         text-align: center;
         top: -7px;
         flex-direction: column-reverse;

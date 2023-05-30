@@ -450,6 +450,9 @@ background: var(--betnare-input)!important;
     display: flex;
     justify-content: space-around;
 }
+.mobile-profile-columns:empty{
+    display:none!important;
+}
 .home-tabs-active {
     background: #28374e;
     border-right: 3px solid #a7164600;

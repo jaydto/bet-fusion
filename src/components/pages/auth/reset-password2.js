@@ -166,7 +166,7 @@ const ResetPassword2 = props => {
                             <div className="col">
                                 <button type="submit"
                                         onClick={submitForm}
-                                        className=' btn btn-lg w-100 button-radius input-field btn-font cg login-button btn' style={{whiteSpace:'nowrap',fontSize:"12px",marginTop:"20px"}}>
+                                        className=' btn btn-lg w-100 button-radius input-field btn-font cg login-button btn button-page' style={{whiteSpace:'nowrap',fontSize:"12px",marginTop:"20px"}}>
                                     Send OTP
                                 </button>
                             </div>

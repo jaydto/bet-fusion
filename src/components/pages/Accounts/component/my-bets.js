@@ -58,8 +58,8 @@ const MyBets = (props) => {
                     <div className="col  text-center mybets-font overflow-hidden">BET ID</div>
                     <div className="col text-center mybets-font overflow-hidden">GAMES</div>
                     <div className="col text-center mybets-font overflow-hidden">AMOUNT</div>
-                    <div className="col text-center mybets-font overflow-hidden">WINNINGS</div>
-                    <div className="col text-center mybets-font overflow-hidden">Status</div>
+                    <div className="col text-center mybets-font overflow-hidden">WIN</div>
+                    <div className="col text-center mybets-font overflow-hidden">STATUS</div>
                 </div>
             </div>
         );

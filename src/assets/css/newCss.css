@@ -761,9 +761,9 @@ input[type="radio"], input[type="checkbox"] {
         justify-content: center;
         margin-left: 10px;
     }
-    .profile-top{
-        margin-top:60px;
-        width:96%;
+    .profile-top {
+        margin-top: 60px;
+        width: 100%;
     }
     .logo-top{
         margin-top: 13px;

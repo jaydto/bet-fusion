@@ -118,11 +118,11 @@
 }
 @media (min-width: 1260px){
     .profile-width-side {
-        min-width: 316px!important;
+        min-width: 310px!important;
         background: var(--betnare-header-bg)!important;
         padding-left: 0rem;
         margin-top: 0rem;
-        padding-left: 2.5rem;
+        padding-left: 1.5rem;
         z-index: 100!important;
         position: fixed!important;
     }

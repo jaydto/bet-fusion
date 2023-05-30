@@ -25,7 +25,6 @@ import PointsProfile from "./component/PointsProfile";
 import {Context} from "../../../context/store";
 import MybetsProfile from "./component/my-bets";
 import App from "./component/app";
-import Affiliate from "../../Affiliate/Affiliate";
 
 const NewProfile = () => {
     const [user, ] = useState(getFromLocalStorage("user"));
@@ -131,6 +130,7 @@ const NewProfile = () => {
                                       </span>
                                 </Link>
                             </div>
+                            <div>
                                 <Link
                                     to={'/affiliate'}
                                     className={" size-font-user-action"}
@@ -142,6 +142,8 @@ const NewProfile = () => {
                                           AFFILIATE
                                       </span>
                                 </Link>
+                            </div>
+                            
                         </div>
 
                     </div>

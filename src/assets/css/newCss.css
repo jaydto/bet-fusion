@@ -452,7 +452,7 @@ background: var(--betnare-input)!important;
     box-shadow: 5px 7px 30px 8px #2c3c44;
     width: 60%;
     margin: auto;
-    min-height: 800px;
+    min-height: 600px;
 }
 .register-button {
     color: #ffffff;

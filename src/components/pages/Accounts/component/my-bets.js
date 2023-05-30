@@ -52,7 +52,7 @@ const MyBets = (props) => {
 
     const BetItemHeader = (props) => {
         return (
-            <div className={`${width<=767?"w-100":'container'}`} style={Styles.headers}>
+            <div className={`${width<=767?"w-100 header-styling-mobile":'container'}`} style={Styles.headers}>
                 <div className="row">
                     <div className="col text-center mybets-font overflow-hidden">CREATED</div>
                     <div className="col  text-center mybets-font overflow-hidden">ID</div>
@@ -60,7 +60,7 @@ const MyBets = (props) => {
                     <div className="col text-center mybets-font overflow-hidden">BET AMOUNT</div>
                     <div className="col text-center mybets-font overflow-hidden">POSSIBLE WIN</div>
                     <div className="col text-center mybets-font overflow-hidden">TAX</div>
-                    <div className="col text-center mybets-font overflow-hidden">State</div>
+                    <div className="col text-center mybets-font overflow-hidden">Status</div>
                 </div>
             </div>
         );
@@ -109,7 +109,7 @@ const MyBets = (props) => {
                     <div className="col text-center mybets-font overflow-hidden">{ bet.possible_win}</div>
                     <div className="col text-center mybets-font overflow-hidden">{ bet.tax}</div>
                     { canCancel == false
-                        ? <div className={`col text-center`}><span className={` badge ${betStatus=="LOST"?"bg-dark text-warning":betStatus=="WON"?"bg-success":betStatus=="PENDING"?"bg-dark ":""}`} style={{color:"white"
+                        ? <div className={`col text-center mybets-styling-mobile`}><span className={` badge ${betStatus=="LOST"?"bg-dark text-warning":betStatus=="WON"?"bg-success":betStatus=="PENDING"?"bg-dark ":""}`} style={{color:"white"
                             ,marginTop:"10px", borderRadius: "7px", marginLeft:"1px", padding:"2.9px 9px "}}>{betStatus=="LOST"?"NOT WON":betStatus}</span></div>
                         : cancelBetMarkup()
                     }

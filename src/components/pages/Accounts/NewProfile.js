@@ -157,7 +157,7 @@ const NewProfile = () => {
                 </div>
                 <div className="item-profile2">
                     <div
-                        className="row d-flex flex-column gap-3 px-4 py-sm-4 py-lg-0 justify-content-center align-items-center profile-top "
+                        className="row d-flex flex-column gap-3 px-lg-4 py-sm-0 py-lg-0 justify-content-center align-items-center profile-top "
                         style={{margin: "auto"}}>
                         <div className={'d-flex gap-3 py-3 mobile-profile-columns'}>
                             {(profile_states||state?.profile_cash!=null)&&<div className=" col " id={'gift'}>

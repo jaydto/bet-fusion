@@ -198,7 +198,7 @@ const VerifyAccount2 = props => {
                                 <button type="submit"
                                         disabled={inputDisabled}
                                         onClick={submitForm}
-                                        className=' btn btn-lg w-100 button-radius input-field btn-font cg login-button btn' style={{marginTop:"47px"}}>
+                                        className=' btn btn-lg w-100 button-radius input-field btn-font cg login-button btn button-page' style={{marginTop:"47px"}}>
                                     VERIFY ACCOUNT
                                 </button>
                             </div>

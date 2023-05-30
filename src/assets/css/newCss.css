@@ -409,6 +409,10 @@ background: var(--betnare-input)!important;
     border-radius: 0.3rem;
     font-size: 14px !important;
 }
+.login-button.button-page{
+    background: var(--betnare-button-login);
+    color: var(--dark);
+}
 .markets-container-data-check:empty{
     display:none;
 }
@@ -432,6 +436,12 @@ background: var(--betnare-input)!important;
     float: left;
     text-align: center;
     border-bottom: 1px solid #FFC428;
+}
+.width-page-centric.register-page {
+    box-shadow: 5px 7px 30px 8px #2c3c44;
+    width: 60%;
+    margin: auto;
+    min-height: 450px;
 }
 .register-button {
     color: #ffffff;

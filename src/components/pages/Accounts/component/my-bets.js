@@ -54,11 +54,11 @@ const MyBets = (props) => {
         return (
             <div className={`${width<=767?"w-100 header-styling-mobile ":'container'}`} style={Styles.headers}>
                 <div className="row">
-                    <div className="col text-center mybets-font overflow-hidden">CREATED</div>
-                    <div className="col  text-center mybets-font overflow-hidden">ID</div>
+                    <div className="col text-center mybets-font overflow-hidden">DATE</div>
+                    <div className="col  text-center mybets-font overflow-hidden">BET ID</div>
                     <div className="col text-center mybets-font overflow-hidden">GAMES</div>
-                    <div className="col text-center mybets-font overflow-hidden">BET AMOUNT</div>
-                    <div className="col text-center mybets-font overflow-hidden">POSSIBLE WIN</div>
+                    <div className="col text-center mybets-font overflow-hidden">AMOUNT</div>
+                    <div className="col text-center mybets-font overflow-hidden">WINNINGS</div>
                     <div className="col text-center mybets-font overflow-hidden">Status</div>
                 </div>
             </div>

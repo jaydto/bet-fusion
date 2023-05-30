@@ -307,7 +307,7 @@ const HeaderNav = (props) => {
                 <ListGroup as="ul" xs="9" horizontal className="nav navbar-nav og ale ss col-md-6 text-center">
                     <div className="d-flex">
                         <div className="col-md-10">
-                            <input type="text" placeholder={'Start typing to search for team ...'} ref={searchInputRef}
+                            <input type="text" placeholder={'Start typing to search for team ...'} autoFocus={true} ref={searchInputRef}
                                    onInput={(event) => fetchMatches(event.target.value)}
                                    className={'form-control input-field border-0 bg-dark text-white no-border-radius'}/>
                         </div>

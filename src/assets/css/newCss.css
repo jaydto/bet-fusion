@@ -268,12 +268,13 @@ b, strong {
 .profile-top-nav{
     min-height:78px!important;
 }
-.search-results-box{
+.search-results-box {
     background: var(--betnare-input);
-    color:var(--light);
+    color: var(--light);
     margin-top: 3px;
-    width:82%;
+    width: 41.2%;
 }
+
 .list-group-horizontal::-webkit-scrollbar {
     display: none;
 }
@@ -987,6 +988,12 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 @media (max-width: 991px){
+    .search-results-box{
+        background: var(--betnare-input);
+        color:var(--light);
+        margin-top: 3px;
+        width:82%;
+    }
     .live-side-badge{
         float: right;
         color: rgb(255, 255, 255);

@@ -444,6 +444,12 @@ background: var(--betnare-input)!important;
     margin: auto;
     min-height: 450px;
 }
+.width-page-centric.pass-reset-page {
+    box-shadow: 5px 7px 30px 8px #2c3c44;
+    width: 60%;
+    margin: auto;
+    min-height: 800px;
+}
 .register-button {
     color: #ffffff;
     background-color: #ffc107;

@@ -369,7 +369,7 @@ const ResetPassword2 = props => {
                 <div className={'col-lg-8 col-sm-12 top-login-background-img-bg-down top-login-background-img-bg-page'} >
 
                     <div className="w-100 d-flex flex-column justify-content-center h-100 top-login-background-img-bg-page">
-                        <div className={'width-page-centric reset-pass'}>
+                        <div className={`width-page-centric reset-pass ${otp_sent&&'pass-reset-page'}`}>
                             <FormTitle/>
 
                             <Row justify="center">

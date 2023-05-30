@@ -1400,7 +1400,15 @@ input[type="radio"], input[type="checkbox"] {
     .mybets-details{
         margin:0px;
     }
-
+    .deposit-buttons-value {
+        padding: 0 10px;
+        border-radius: 20px;
+        box-shadow: unset !important;
+        border: thin solid #1D535F;
+        background: transparent;
+        font-weight: 800;
+        line-height: 2;
+    }
     .header-slip-mybets{
         font-size:13px;
     }

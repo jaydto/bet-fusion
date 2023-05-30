@@ -88,8 +88,8 @@
     }
 }
 @media (min-width: 992px) and (max-width: 1165px) {
-    .item2{
-        width: 58%;
+    .item2 {
+        width: 55%;
     }
     .home-tabs-active {
         padding: 5px;

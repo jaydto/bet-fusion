@@ -442,6 +442,18 @@ background: var(--betnare-input)!important;
     text-align: center;
     border-bottom: 1px solid #FFC428;
 }
+.live-side-badge {
+    float: right;
+    color: rgb(255, 255, 255);
+    background-color: red;
+    border-radius: 12px;
+    height: 17px;
+    width: 17px;
+    display: flex!important;
+    align-items: center!important;
+    justify-content: center;
+    margin-left: 10px;
+}
 .width-page-centric.register-page {
     box-shadow: 5px 7px 30px 8px #2c3c44;
     width: 60%;

@@ -414,6 +414,10 @@ background: var(--betnare-input)!important;
     background: var(--betnare-button-login);
     color: var(--dark);
 }
+.deposit-withdraw-button.button-page{
+    background: var(--betnare-button-login);
+    color: var(--dark);
+}
 .markets-container-data-check:empty{
     display:none;
 }

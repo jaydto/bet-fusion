@@ -255,7 +255,7 @@ const ResetPassword2 = props => {
                             <div className="col">
                                 <button type="submit"
                                         onClick={submitForm}
-                                        className='btn btn-lg btn-primary mt-5 col-md-12 deposit-withdraw-button'>
+                                        className='btn btn-lg btn-primary mt-5 col-md-12 deposit-withdraw-button button-page'>
                                     Reset Password
                                 </button>
                             </div>

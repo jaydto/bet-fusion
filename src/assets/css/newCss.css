@@ -1181,9 +1181,9 @@ input[type="radio"], input[type="checkbox"] {
 }
 @media (max-width: 767px){
     .modal-dialog {
+        margin: 58px;
         position: relative;
         width: auto;
-        margin: 0px;
     }
     .extra-markets-mobile-date{
         display:none;
@@ -1263,6 +1263,11 @@ input[type="radio"], input[type="checkbox"] {
 
 }
 @media (max-width: 575px){
+    .modal-dialog {
+        position: relative;
+        width: auto;
+        margin: 0px;
+    }
     .menu-t .menu-img {
         height: 2.7rem !important;
     }

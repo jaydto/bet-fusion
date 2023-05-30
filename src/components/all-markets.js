@@ -1,7 +1,5 @@
 import React, {useCallback, useContext, useEffect, useLayoutEffect, useRef, useState} from 'react';
 import './test.css'
-import {getFromLocalStorage, setLocalStorage} from "./utils/local-storage";
-import useAnalyticsEventTracker from "./analytics/useAnalyticsEventTracker";
 import {useLocation, useParams} from "react-router-dom";
 import useWindowDimensions from "./header/Dimensions";
 import {Context} from "../context/store";
@@ -27,8 +25,6 @@ const  AllMarkets= (props) => {
     let url = new URL(window.location);
     const {live} = props
     const id = params.id
-
-
 
     // const [userSlipsValidation, setUserSlipsValidation] = useState();
     const { height, width } = useWindowDimensions();

@@ -87,15 +87,9 @@ const LiveSideBar = (props) => {
                                                 <Row>
                                                     <Col className="topl">
                                                         <Row className={'gap-2'} style={{color: "#69819a"}}>
-                                                            <div className={'text-white d-flex align-itens-center'}>
+                                                            <div className={'text-white d-flex align-items-center'}>
                                                                 <span>{livesport.sport_name}</span>&nbsp;
-                                                                <span className={`badge  live-slide d-flex align-items-center`} style={{
-                                                                    float: "right",
-                                                                    color: "#fff",
-                                                                    backgroundColor:"red",
-                                                                    borderRadius: "12px",
-                                                                    height:"24px"
-                                                                }}>
+                                                                <span className={`badge  live-slide  live-side-badge d-flex align-items-center`}>
                                                                         {livesport.count}
                                                                 </span>
                                                             </div>

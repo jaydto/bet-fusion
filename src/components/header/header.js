@@ -120,7 +120,6 @@ const Header = (props) => {
         };
     }, [fetchData]);
 
-
     const NotifyToastContaner = () => {
         return <ToastContainer
             position="top-right"

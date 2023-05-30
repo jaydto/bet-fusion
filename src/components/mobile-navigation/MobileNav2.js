@@ -84,7 +84,9 @@ const MobileNav2 = (props) => {
                                     alt=""
                                     style={{height: "20px"}} alt="#"
                                 />
-                                {top_league.competition_name}
+                             <div>
+                                 {top_league.competition_name}
+                             </div>
                             </div>
 
                         </Link>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, useContext} from 'react';
+import React, {useEffect, useState, useCallback, useContext, useRef} from 'react';
 import {
     Link,
 } from "react-router-dom";
@@ -25,24 +25,13 @@ import LoginModal from '../modals/LoginModal';
 const MobileNav1 = (props) => {
     const [showLoadingModal, setShowLoadingModal] = useState(false);
 
-    // console.log("allsports_from_local",sport)
     const [state, dispatch] =useContext(Context)
 
-    const searchTerm=window.location.search
+    const scrollContainerRef = useRef(null);
 
     const gaEventTracker = useAnalyticsEventTracker('Navigation');
 
     const pathname = window.location.pathname;
-
-    const [activeClass, setActiveClass] = useState('');
-
-    const activeClick = useCallback(() => {
-        if(activeClass === ''){
-            setActiveClass("active-1");
-        } else {
-            setActiveClass('');
-        }
-    }, [activeClass]);
 
     const fetchData = useCallback(async () => {
         let cached_competitions = getFromLocalStorage('categories');
@@ -80,8 +69,6 @@ const MobileNav1 = (props) => {
             abortController.abort();
         };
     }, []);
-
-    const default_img = 'default_sport';
 
     const getDefaultMarketsForSport = (allsports) => {
         return allsports?.default_display_markets
@@ -122,10 +109,10 @@ const MobileNav1 = (props) => {
         {showLoadingModal && ( <LoginModal setShowLoadingModal={setShowLoadingModal} visible={showLoadingModal}/>)}
         <table className="menu-table" style={{width: "100%", textAlign: "center", marginLeft:"-9px"}}>
             <tbody>
-            <tr className={"tr-style mobile-nav-top"}>
+            <tr className={"tr-style mobile-nav-top"} ref={scrollContainerRef}>
                 <td  className={`menu-t m-auto sport-check  `}  >
-                    <Link className="inner-div more-sports active cg  ox anl url-link d-flex flex-column align-items-center" to={`/`}   >
-                        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center ${pathname===`/`?"active":""}`}>
+                    <Link className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center  ${pathname===`/`||pathname=='/highlights'||pathname=='/tomorrow'||pathname=='/countries'||pathname=='/upcoming'?"active_link":""}`} to={`/`}   >
+                        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center`}>
                             {/* {console.log('all sports',allsports.sport_name)} */}
                             <div className="menu-img ">
                                 <img
@@ -143,8 +130,8 @@ const MobileNav1 = (props) => {
 
                 </td>
                 <td  className={`menu-t m-auto sport-check  `}  >
-                    <Link className="inner-div more-sports active cg  ox anl url-link d-flex flex-column align-items-center" to={`/jackpot`}   >
-                        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center ${pathname===`/jackpot`?"active":""}`}>
+                    <Link className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center ${pathname===`/jackpot`?"active_link":""}`} to={`/jackpot`}   >
+                        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
 
                             <div className="menu-img ">
                                 <img
@@ -162,8 +149,8 @@ const MobileNav1 = (props) => {
 
                 </td>
                 <td  className={`menu-t m-auto sport-check  `}  >
-                    <Link className="inner-div more-sports active cg  ox anl url-link d-flex flex-column align-items-center" to={`/nare-games/Aviator`}   >
-                        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center ${window.location.search.includes('Aviator')?"active":""}`}>
+                    <Link className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center ${pathname.includes('Aviator')?"active_link":""}`}  to={`/nare-games/Aviator`}   >
+                        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
 
                             <div className="menu-img ">
                                 <img
@@ -182,8 +169,8 @@ const MobileNav1 = (props) => {
 
                 </td>
                 <td  className={`menu-t m-auto sport-check  `}  >
-                    <Link className="inner-div more-sports active cg  ox anl url-link d-flex flex-column align-items-center" to={`#`} onClick={()=>LoginCheck('casino')}   >
-                        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center ${pathname===`/casino`?"active":""}`}>
+                    <Link className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center ${pathname===`/casino`? " active_link":""}`}  to={`#`} onClick={()=>LoginCheck('casino')}   >
+                        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
 
                             <div className="menu-img ">
                                 <img
@@ -203,8 +190,8 @@ const MobileNav1 = (props) => {
                 </td>
 
                 <td  className={`menu-t m-auto sport-check  `}  >
-                    <Link className="inner-div more-sports active cg  ox anl url-link d-flex flex-column align-items-center" to={`#`}  onClick={()=>LoginCheck('JetX')} >
-                        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center ${window.location.search.includes('Jetx')?"active":""}`}>
+                    <Link className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center  ${window.location.search.includes('JetX')?"active_link":""}`}  to={`#`}  onClick={()=>LoginCheck('JetX')} >
+                        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center`}>
 
                             <div className="menu-img ">
                                 <img
@@ -222,7 +209,7 @@ const MobileNav1 = (props) => {
                     </Link>
 
                 </td>
-                {/* <td  className={ window.location.search.includes('gameplay') ? 'active' : 'menu-t m-auto'}
+                {/* <td  className={ window.location.search.includes('gameplay') ? 'active_link' : 'menu-t m-auto'}
                     style={{paddingLeft: "10px"}}>
                     <Link className="cg fm ox anl url-link d-flex flex-column align-items-center"
                           to={{pathname:"/live-casino"}}
@@ -236,7 +223,7 @@ const MobileNav1 = (props) => {
                     </Link>
 
                 </td> */}
-                {/* <td  className={ window.location.search.includes('Crashlite') ? 'active' : 'menu-t'}
+                {/* <td  className={ window.location.search.includes('Crashlite') ? 'active_link' : 'menu-t'}
                         onClick={() => gaEventTracker('Crashlite')} >
                         <Link className="cg fm ox anl url-link d-flex flex-column align-items-center pb-3"
                             to={"#"}
@@ -252,8 +239,8 @@ const MobileNav1 = (props) => {
                     </td> */}
 
                 <td  className={`menu-t m-auto sport-check nare-league `}  >
-                    <Link className="inner-div more-sports active cg  ox anl url-link d-flex flex-column align-items-center" to={`/nare-league`}   >
-                        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center  ${pathname.includes('/nare-league')?"active":""}`}>
+                    <Link className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center ${pathname.includes('/nare-league')?"active_link":""}`}  to={`/nare-league`}   >
+                        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center  `}>
 
                             <div className="menu-img  ">
                                 <img
@@ -273,8 +260,8 @@ const MobileNav1 = (props) => {
                 </td>
 
                 <td  className={`menu-t m-auto sport-check  `}  >
-                    <Link className="inner-div more-sports active cg  ox anl url-link d-flex flex-column align-items-center" to={`#`}  onClick={()=>LoginCheck('spaceman')} >
-                        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center ${window.location.search.includes('spaceman')?"active":""}`}>
+                    <Link className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center ${pathname.includes('1301')?"active_link":""}`}  to={`#`}  onClick={()=>LoginCheck('spaceman')} >
+                        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
 
                             <div className="menu-img ">
                                 <img
@@ -296,8 +283,8 @@ const MobileNav1 = (props) => {
 
 
                 <td  className={`menu-t m-auto sport-check  `}  >
-                    <Link className="inner-div more-sports active cg  ox anl url-link d-flex flex-column align-items-center" to={`/nare-games`}   >
-                        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center ${window.location.pathname.includes('nare-games')?"active":""}`}>
+                    <Link className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center  ${window.location.pathname.includes('nare-games')?"active_link":""}`}  to={`/nare-games`}   >
+                        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center`}>
 
                             <div className="menu-img ">
                                 <img
@@ -316,31 +303,33 @@ const MobileNav1 = (props) => {
 
                 </td>
 
-                {state.sport?.all_sports.map((allsports, index) => (
-                        allsports.sport_id!==79&&(
-                            <td key={index} className={`menu-t m-auto sport-check  `}  onClick={handleLinkClick}>
-                                <Link className="inner-div more-sports active cg  ox anl url-link d-flex flex-column align-items-center" to={`/highlights?sport_id=${allsports.sport_id}&sub_type_id=${getDefaultMarketsForSport(allsports)}`}   >
-                                    <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center ${pathname===`/highlights?sport_id=${allsports.sport_id}`?"active":""}`}>
-                                        <div className="menu-img ">
-                                            <img
-                                                className="side-icon"
-                                                src={getSportImageIcon(allsports?.sport_name)}
-                                                alt=""
-                                                style={{height: "23px", marginTop:"-6px"}}
-                                            />
-                                        </div>
-                                        <strong style={{textAlign: "center"}}>
-                                            { allsports?.sport_name }
-                                        </strong>
-                                    </div>
-                                </Link>
+                {state.sport?.all_sports.map((allsports, index) => {
 
-                            </td>)
-                    )
-                )}
+
+                    return allsports.sport_id !== 79 && (
+                        <td key={index} className={`menu-t m-auto sport-check `} onClick={handleLinkClick}>
+                            <Link className={`inner-div more-sports cg ox anl url-link d-flex flex-column align-items-center ${state?.active_sport==allsports.sport_id ? 'active_link' : ''}`} to={`/highlights?sport_id=${allsports.sport_id}&sub_type_id=${getDefaultMarketsForSport(allsports)}`}>
+                                <div className="inner-div cg ox anl url-link d-flex flex-column align-items-center">
+                                    <div className="menu-img">
+                                        <img
+                                            className="side-icon"
+                                            src={getSportImageIcon(allsports?.sport_name)}
+                                            alt=""
+                                            style={{ height: "23px", marginTop: "-6px" }}
+                                        />
+                                    </div>
+                                    <strong style={{ textAlign: "center" }}>
+                                        {allsports?.sport_name}
+                                    </strong>
+                                </div>
+                            </Link>
+                        </td>
+                    );
+                })}
+
                 <td  className={`menu-t m-auto sport-check  `}  >
-                    <Link className="inner-div more-sports active cg  ox anl url-link d-flex flex-column align-items-center" to={`/affiliate`}   >
-                        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center ${pathname===`/affiliate`?"active":""}`}>
+                    <Link className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center ${pathname===`/affiliate`?"active_link":""}`}  to={`/affiliate`}   >
+                        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
                             <div className="menu-img ">
                                 <img
                                     className="side-icon"
@@ -358,8 +347,8 @@ const MobileNav1 = (props) => {
                 </td>
 
                 <td  className={`menu-t m-auto sport-check  `}  >
-                    <Link className="inner-div more-sports active cg  ox anl url-link d-flex flex-column align-items-center" to={`/promotions`}   >
-                        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center ${pathname===`/promotions`?"active":""}`}>
+                    <Link className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center ${pathname===`/promotions`?"active_link":""}`}  to={`/promotions`}   >
+                        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
                             <div className="menu-img ">
                                 <img
                                     className="side-icon"

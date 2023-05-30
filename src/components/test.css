@@ -13,6 +13,7 @@
     gap: 5px;
 
 }
+
 .flex-item >div {
     background: var(--betnare-primary);
     /* border: 3px solid #ffcc80; */

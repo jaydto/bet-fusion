@@ -37,10 +37,10 @@ const clean = (_str) => {
 }
 
 const EmptyTextRow = (props) => {
-  const {odd_key, classname,live} = props;
+  const {odd_key, classname,live,allMarkets} = props;
 
   return (
-      <button className={`${classname} home-team btn btn-disabled match-detail c-btn ${live?"c-resize":"width-button-odd"}`}
+      <button className={`${classname} ${allMarkets ? ' all-markets ':''} home-team btn btn-disabled match-detail c-btn ${live?"c-resize":"width-button-odd"}`}
               style={{
                 width: "100%",
                 height: "40px",
@@ -166,7 +166,7 @@ const MatchHeaderRow = (props) => {
   return (
 
       <Row className={`full-mobile sticky-top ${jackpot?'sticky-jackpot ':user?"sticky-user ":'sticky-responsive no-sticky '}px-lg-3`}>
-        <div className="top-matches d-flex position-sticky sticky-top shadow-lg header-sports">
+        <div className="top-matches d-flex position-sticky sticky-top shadow-sports-header header-sports">
           <div className={"size-info  d-flex col-xs-12 pad left-text"}>
             <div className="col pad left-text d-flex">
               <div className="align-self-center col">
@@ -1126,16 +1126,12 @@ const MatchRow = (props) => {
 
 
 export const MarketList = (props) => {
-  const [hasMore, setHasMore] = useState(true);
   const { live, allMarkets, pdown } = props;
-  const { height, width } = useWindowDimensions();
   const [state, dispatch] = useContext(Context);
 
-  // State for managing the filtered markets
   const [filters, setFilters] = useState({});
   const [perPage, setPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
-
 
   //  fetching More Markets from redux state
   const matchwithmarkets = allMarkets

@@ -8189,8 +8189,8 @@ ul.sport {
     }
 
     .app-header-nav {
-        /*margin-top: 48px;*/
-        margin-top: 61px;
+        /* margin-top: 48px; */
+        margin-top: 49px;
     }
     .app-header-nav-login {
         margin-top: 48px;
@@ -16129,6 +16129,7 @@ img.zoom-img {
         border-radius: 4px;
         padding: 2px 5px;
         border: none;
+
     }
 
     .more-sports {

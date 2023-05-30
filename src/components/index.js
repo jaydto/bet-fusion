@@ -42,6 +42,21 @@ const Index = () => {
     const [utmSource,] = useState('')
     const prevLimit = useRef(limit);
     const [reset, setReset] = useState(0);
+
+    let sportValue = new URL(window.location).searchParams.get('sport_id')
+
+    const updateSearchTerm =() => {
+        const params = new URL(window.location).searchParams;
+        const sportId = params.get('sport_id');
+        dispatch({type:"SET", key:'active_sport', payload:sportId});
+
+        console.log("here now")
+    }
+
+    useEffect(() => {
+        updateSearchTerm();
+    }, [sportValue]);
+
     const findPostableSlip = () => {
         let betslips = getBetslip() || {};
         var values = Object.keys(betslips).map(function (key) {

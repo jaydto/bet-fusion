@@ -34,6 +34,9 @@ body {
     margin-top:10px;
     box-shadow: 10px 10px 10px 10px var(--betnare-header-bg);
 }
+.active_link{
+    opacity:1!important;
+}
 .casino-scroll{
     overflow-x: auto;
 }
@@ -201,6 +204,9 @@ input.text-white{
     /*top: 12.5rem;*/
     /*background: #253743 !important;*/
     background: var(--betnare-header-bg)!important;
+}
+.more-sports{
+    opacity: 0.5;
 }
 .sport_dropdowns {
     display: flex;
@@ -658,6 +664,18 @@ input[type="radio"], input[type="checkbox"] {
     .pro-sidebar .pro-menu .pro-menu-item {
         font-size: var(--font-size-side)!important;
     }
+    .live-side-badge{
+        float: right;
+        color: rgb(255, 255, 255);
+        background-color: red;
+        border-radius: 12px;
+        height: 17px;
+        width: 17px;
+        display: flex!important;
+        align-items: center!important;
+        justify-content: center;
+        margin-left: 10px;
+    }
     .profile-top{
         margin-top:60px;
     }
@@ -892,8 +910,8 @@ input[type="radio"], input[type="checkbox"] {
         height: 28px;
     }
     .app-header-nav {
-        margin-top: 53px;
-        /*background: #17162c!important;*/
+        margin-top: 44px;
+        /* background: #17162c!important; */
         padding: 7px 14px 0px 0px;
     }
     .app-header-nav-login {
@@ -946,6 +964,18 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 @media (max-width: 991px){
+    .live-side-badge{
+        float: right;
+        color: rgb(255, 255, 255);
+        background-color: red;
+        border-radius: 12px;
+        height: 17px;
+        width: 17px;
+        display: flex!important;
+        align-items: center!important;
+        justify-content: center;
+        margin-left: 10px;
+    }
     .new-alert-badge {
         right: -16px;
         margin-top: 5px !important;
@@ -1143,6 +1173,11 @@ input[type="radio"], input[type="checkbox"] {
     }
 }
 @media (max-width: 767px){
+    .modal-dialog {
+        position: relative;
+        width: auto;
+        margin: 0px;
+    }
     .extra-markets-mobile-date{
         display:none;
     }
@@ -1232,7 +1267,7 @@ input[type="radio"], input[type="checkbox"] {
         margin-bottom: 0px!important;
     }
     .ipad-show {
-        margin-right: 9px;
+        margin-right: 0px;
     }
     .width-centric-page {
         width: 92vw;
@@ -1277,7 +1312,13 @@ input[type="radio"], input[type="checkbox"] {
     /*.mobile-remove-verify{*/
     /*    display:none;*/
     /*}*/
-
+    .top-matches div {
+        min-height: 27px;
+        justify-content: unset;
+        padding-left: 0.1rem!important;
+        padding-right: 0rem!important;
+        margin-bottom: 0.2rem;
+    }
     .top-matches div {
         min-height: 24px;
         /* justify-content: flex-end; */

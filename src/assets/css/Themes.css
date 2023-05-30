@@ -24,7 +24,7 @@
     --width-side:18.75rem;
     --width-side-sm:14.813rem;
     --button-color:#334c5c;
-    --testimonial-top-md:10.5rem;
+    --testimonial-top-md:9.3rem;
     --font-size-bet-body:1.4rem;
     --font-size-bet-body-sm:1.3rem;
     --light: #fff;
@@ -53,6 +53,9 @@
     --font-weight-normal:normal;
     --always-white:#fff;
     --badge-bg:url(../../assets/img/mobile/new_badge.webp);
+}
+.shadow-sports-header{
+    box-shadow: 0 0.5rem 0.2rem rgba(0,0,0,.175)!important;
 }
 
 .light-theme {

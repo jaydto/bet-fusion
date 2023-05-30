@@ -73,7 +73,7 @@ const Withdrawal = (props) => {
                         <label>Phone Number</label>
                         <input
                             readOnly={true}
-                            className="text-dark deposit-input form-control input-field"
+                            className="text-light deposit-input form-control input-field"
                             id="msisdn"
                             name="msisdn"
                             type="text"
@@ -88,7 +88,7 @@ const Withdrawal = (props) => {
                         <label>Amount to Withdraw</label>
                         <input
                             onChange={ev => onFieldChanged(ev) }
-                            className="text-dark deposit-input form-control col-md-12 input-field"
+                            className="text-light deposit-input form-control col-md-12 input-field"
                             id="amount"
                             name="amount"
                             type="text"

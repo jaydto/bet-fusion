@@ -72,7 +72,7 @@ const RedeemPoints = (props) => {
                         <label>Points to Redeem</label>
                         <input
                             onChange={ev => onFieldChanged(ev)}
-                            className="text-dark deposit-input form-control col-md-12 input-field"
+                            className="text-light deposit-input form-control col-md-12 input-field"
                             id="points"
                             name="points"
                             type="number"

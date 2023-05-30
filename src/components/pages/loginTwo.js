@@ -14,7 +14,7 @@ import Container from "react-bootstrap/Container";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import logo from "../../assets/img/Logo.webp";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faAngleLeft, faBackspace, faBackward, faHome, faLessThan, faPowerOff} from "@fortawesome/free-solid-svg-icons";
+import { faBackspace} from "@fortawesome/free-solid-svg-icons";
 import SidebarMobile from "../sidebar/awesome/SidebarMobile";
 import betNiMoto from '../../assets/img/BetniMoto.webp'
 const backgroundStyle = {
@@ -172,13 +172,23 @@ const LoginTwo = props => {
 								<div className={'d-flex'}>
 									{/**/}
 									<div >
-										{user?setTimeout(navigate("/"),500):""}
+										{user?
+											setTimeout(()=>{
+													if(getFromLocalStorage('ActiveLink')==undefined||getFromLocalStorage('ActiveLink')==null){
+														return navigate("/")
+													}
+													else
+													{
+														navigate(getFromLocalStorage('ActiveLink'))
+														localStorage.removeItem('ActiveLink')
+													}
+											}
+											,500):""}
 										<div className={"d-flex flex-row justify-content-between"}>
 											<div className=" w-100">
 												<div className="homepage d-flex flex-column align-items-center justify-content-center login-page">
 
 													<HeaderLogin setUser={setUser} login={true}/>
-
 
 												</div>
 											</div>

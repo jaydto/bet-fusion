@@ -50,9 +50,15 @@ const Index = () => {
         const sportId = params.get('sport_id');
         dispatch({type:"SET", key:'active_sport', payload:sportId});
     }
+    const updateSearchSport =() => {
+        const params = new URL(window.location).searchParams;
+        const sportName = params.get('sport_name');
+        dispatch({type:"SET", key:'active_sport_name', payload:sportName});
+    }
 
     useEffect(() => {
         updateSearchTerm();
+        updateSearchSport();
     }, [sportValue]);
 
     const findPostableSlip = () => {

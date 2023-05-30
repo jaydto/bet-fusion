@@ -21,16 +21,13 @@ import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import ListGroup from "react-bootstrap/ListGroup";
 import {formatNumber} from "../utils/betslip";
 import LoginSection from "./LoginSection";
-const  MobileNav2=React.lazy(()=>import( "../mobile-navigation/MobileNav2"));
 const ProfileMenu = React.lazy(() => import('./profile-menu'));
-const HeaderLogin = React.lazy(() => import('./top-login'));
 const HeaderNav = React.lazy(() => import('./header-nav'));
 
 const Header = (props) => {
     const gaEventTracker = useAnalyticsEventTracker('Navigation');
     const [user, setUser] = useState(getFromLocalStorage("user"));
     const [, dispatch] = useContext(Context);
-    const history = useNavigate();
     const [searching, setSearching] = useState(false)
     const containerRef = useRef();
     const searchInputRef = useRef(null)
@@ -238,7 +235,9 @@ const Header = (props) => {
                                     <div className='d-flex align-items-baseline'>
                                         <div className={` align-items-center  ${searching ? 'd-none' : 'd-flex'}`}>
                                             <Link className="" to={"#"} title="Search"
-                                                  onClick={() => showSearchBar()}>
+                                                  onClick={() => {
+                                                      showSearchBar();gaEventTracker('Visit Search')
+                                                  }}>
                                                 <span
                                                     className="border-radius-search p-2 align-items-center  justify-content-center d-flex"><FontAwesomeIcon
                                                     icon={faSearch}/> </span><span
@@ -275,7 +274,9 @@ const Header = (props) => {
                                         {pathname!=='/signup'&&<div className='d-flex align-items-baseline'>
                                             <div className={` align-items-center  ${searching ? 'd-none' : 'd-flex'}`}>
                                                 <Link className="" to={"#"} title="Search"
-                                                      onClick={() => showSearchBar()}>
+                                                      onClick={() => {
+                                                          showSearchBar();gaEventTracker('Visit Search')
+                                                      }}>
                                                     <span
                                                         className="border-radius-search p-2  justify-content-center d-flex"><FontAwesomeIcon
                                                         icon={faSearch}/> </span><span
@@ -306,7 +307,6 @@ const Header = (props) => {
                     <Row className={`second-nav ck pc os app-navbar ${user?' app-header-nav-login ':' app-header-nav '} to-navcheck `}>
                         <HeaderNav/>
                     </Row>
-                    <div className={"mobile-only min-mobile-size w-100"}>
                         {searching?
                             <div id="navbar-collapse-main"
                                        className={`fadeIn header-menu d-flex justify-content-center w-100 d-block`}>
@@ -336,7 +336,7 @@ const Header = (props) => {
                                 </ListGroup>
                             </div>
                         :(pathname!=='/signup')&&pathname!=='/nare-league'&&pathname!=='/results'&& pathname!=='/standing'&&pathname!=='/playouts'&&pathname!=='/standing  '&&pathname!=='/bet-history'&&<MobileNav1/>}
-                    </div>
+
 
                     <Navbar.Offcanvas
                         style={{width: "80%", height: "100%",zIndex: "9999", marginTop: "0px", overflowY:"auto"}}

@@ -34,8 +34,10 @@ body {
     margin-top:10px;
     box-shadow: 10px 10px 10px 10px var(--betnare-header-bg);
 }
-.active_link{
-    opacity:1!important;
+.active_link {
+    border-bottom: 1px solid yellow!important;
+    border-radius: 4px;
+    color: yellow!important;
 }
 .casino-scroll{
     overflow-x: auto;
@@ -206,7 +208,7 @@ input.text-white{
     background: var(--betnare-header-bg)!important;
 }
 .more-sports{
-    opacity: 0.5;
+
 }
 .sport_dropdowns {
     display: flex;
@@ -222,7 +224,7 @@ input.text-white{
 }
 .top-nav {
     min-height: 55px;
-    padding: 5px 1px 2px 0px;
+    padding: 0px 1px 0px 0px;
 }
 
 .form-title-centric{
@@ -1119,11 +1121,12 @@ input[type="radio"], input[type="checkbox"] {
     }
     .league-row-mobile {
         white-space: nowrap;
-        /*height: 2.3rem;*/
+        /* height: 2.3rem; */
         overflow-x: auto;
         overflow-y: hidden;
-        /*margin-bottom: 6px;*/
-        /* line-height: 2; */
+        /* margin-bottom: 6px; */
+        line-height: 11;
+        height: 26px;
     }
     .desk-top{
         display: none;
@@ -1318,7 +1321,7 @@ input[type="radio"], input[type="checkbox"] {
     }
     table.menu-table tr {
         height: 5rem;
-        margin-left: 0rem;
+        margin-left: 1rem;
     }
     .app-navbar .e img {
         margin-bottom: 0px!important;

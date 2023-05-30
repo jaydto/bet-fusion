@@ -1,6 +1,6 @@
 import React, {useEffect, useState, useCallback, useContext, useRef} from 'react';
 import {
-    Link,
+    Link
 } from "react-router-dom";
 
 import { LazyLoadImage } from 'react-lazy-load-image-component';
@@ -85,22 +85,30 @@ const MobileNav1 = (props) => {
         }
         return sport_image
     }
-    //click functionality
-    const handleLinkClick=(event)=> {
-        // remove highlight class from all links
-        const links = document.querySelectorAll('.link');
-        links.forEach((link) => link.classList.remove('highlight'));
 
-        // add highlight class to clicked link
-        event.currentTarget.classList.add('highlight');
-    }
     const LoginCheck = (game) => {
         if(game == "JetX"){
-            state?.user !== null ? window.location.href = "/smart-play?game=JetX&category=JetX" : setShowLoadingModal(true);
+            if(state?.user !== null){
+             window.location.href = "/smart-play?game=JetX&category=JetX" }
+            else {
+                setLocalStorage("ActiveLink",'/smart-play?game=JetX&category=JetX')
+                window.location.href='/login'
+            }
         }else if(game=='spaceman'){
-            state?.user !== null ? window.location.href = "/gameplay/1301/1" : setShowLoadingModal(true);
+            if(state?.user !== null){
+                window.location.href = "/gameplay/1301/1"
+            } else{
+                setLocalStorage("ActiveLink",'/gameplay/1301/1')
+                window.location.href='/login'
+            }
         }else {
-         state?.user !== null ? window.location.href = "/casino" : setShowLoadingModal(true);
+         if(state?.user !== null){
+             window.location.href = "/casino"
+         } else{
+             setLocalStorage("ActiveLink",'/casino')
+             window.location.href='/login'
+
+         }
     }
 
     };
@@ -110,8 +118,8 @@ const MobileNav1 = (props) => {
         <table className="menu-table" style={{width: "100%", textAlign: "center", marginLeft:"-9px"}}>
             <tbody>
             <tr className={"tr-style mobile-nav-top"} ref={scrollContainerRef}>
-                <td  className={`menu-t m-auto sport-check  `}  >
-                    <Link className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center  ${pathname===`/`||pathname=='/highlights'||pathname=='/tomorrow'||pathname=='/countries'||pathname=='/upcoming'?"active_link":""}`} to={`/`}   >
+                <td  className={`menu-t  sport-check  ${pathname===`/`||pathname=='/highlights'||pathname=='/tomorrow'||pathname=='/countries'||pathname=='/upcoming'?"active_link":""}`}  >
+                    <Link className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center  `} onClick={() => gaEventTracker('Visit Home Page')}  to={`/`}   >
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center`}>
                             {/* {console.log('all sports',allsports.sport_name)} */}
                             <div className="menu-img ">
@@ -129,27 +137,9 @@ const MobileNav1 = (props) => {
                     </Link>
 
                 </td>
-                <td  className={`menu-t m-auto sport-check  `}  >
-                    <Link className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center ${pathname===`/jackpot`?"active_link":""}`} to={`/jackpot`}   >
-                        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
 
-                            <div className="menu-img ">
-                                <img
-                                    className="side-icon"
-                                    src={jackpot}
-                                    alt=""
-                                    style={{height: "23px", marginTop:"-6px"}}
-                                />
-                            </div>
-                            <strong style={{textAlign: "center"}}>
-                                Jackpot
-                            </strong>
-                        </div>
-                    </Link>
-
-                </td>
-                <td  className={`menu-t m-auto sport-check  `}  >
-                    <Link className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center ${pathname.includes('Aviator')?"active_link":""}`}  to={`/nare-games/Aviator`}   >
+                <td  className={`menu-t m-auto sport-check  ${pathname.includes('Aviator')?"active_link":""}`}  >
+                    <Link className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `} onClick={() => gaEventTracker('Visit Aviator Page')}  to={`/nare-games/Aviator`}   >
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
 
                             <div className="menu-img ">
@@ -168,8 +158,29 @@ const MobileNav1 = (props) => {
                     </Link>
 
                 </td>
-                <td  className={`menu-t m-auto sport-check  `}  >
-                    <Link className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center ${pathname===`/casino`? " active_link":""}`}  to={`#`} onClick={()=>LoginCheck('casino')}   >
+                <td  className={`menu-t m-auto sport-check nare-league ${pathname.includes('/nare-league')?"active_link":""}`}  >
+                    <Link className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `} onClick={() => gaEventTracker('Visit Nare League Page')}  to={`/nare-league`}   >
+                        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center  `}>
+
+                            <div className="menu-img  ">
+                                <img
+                                    className="side-icon"
+                                    src={kiron}
+                                    alt=""
+                                    style={{height: "23px", marginTop:"-6px"}}
+                                />
+                                <span className=" new-alert-badge" >NEW</span>
+                            </div>
+                            <strong style={{textAlign: "center"}}>
+                                League
+                            </strong>
+                        </div>
+                    </Link>
+
+                </td>
+
+                <td  className={`menu-t sport-check ${pathname===`/casino`? " active_link":""} `}  >
+                    <Link className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center `}  to={`#`}  onClick={()=>{LoginCheck('casino');gaEventTracker('Visit Casino Page')}}>
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
 
                             <div className="menu-img ">
@@ -189,8 +200,8 @@ const MobileNav1 = (props) => {
 
                 </td>
 
-                <td  className={`menu-t m-auto sport-check  `}  >
-                    <Link className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center  ${window.location.search.includes('JetX')?"active_link":""}`}  to={`#`}  onClick={()=>LoginCheck('JetX')} >
+                <td  className={`menu-t m-auto sport-check ${window.location.search.includes('JetX')?"active_link":""} `}  >
+                    <Link className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center  `}  to={`#`}  onClick={()=>{LoginCheck('JetX');gaEventTracker('Visit Jetx Page')}} >
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center`}>
 
                             <div className="menu-img ">
@@ -204,6 +215,25 @@ const MobileNav1 = (props) => {
                             </div>
                             <strong style={{textAlign: "center"}}>
                                JetX
+                            </strong>
+                        </div>
+                    </Link>
+
+                </td>
+                <td  className={`menu-t m-auto sport-check  ${pathname===`/jackpot`?"active_link":""}`}  >
+                    <Link className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center `} onClick={() => gaEventTracker('Visit Jackpot Page')} to={`/jackpot`}   >
+                        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
+
+                            <div className="menu-img ">
+                                <img
+                                    className="side-icon"
+                                    src={jackpot}
+                                    alt=""
+                                    style={{height: "23px", marginTop:"-6px"}}
+                                />
+                            </div>
+                            <strong style={{textAlign: "center"}}>
+                                Jackpot
                             </strong>
                         </div>
                     </Link>
@@ -238,29 +268,9 @@ const MobileNav1 = (props) => {
 
                     </td> */}
 
-                <td  className={`menu-t m-auto sport-check nare-league `}  >
-                    <Link className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center ${pathname.includes('/nare-league')?"active_link":""}`}  to={`/nare-league`}   >
-                        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center  `}>
 
-                            <div className="menu-img  ">
-                                <img
-                                    className="side-icon"
-                                    src={kiron}
-                                    alt=""
-                                    style={{height: "23px", marginTop:"-6px"}}
-                                />
-                                <span className=" new-alert-badge" >NEW</span>
-                            </div>
-                            <strong style={{textAlign: "center"}}>
-                                League
-                            </strong>
-                        </div>
-                    </Link>
-
-                </td>
-
-                <td  className={`menu-t m-auto sport-check  `}  >
-                    <Link className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center ${pathname.includes('1301')?"active_link":""}`}  to={`#`}  onClick={()=>LoginCheck('spaceman')} >
+                <td  className={`menu-t m-auto sport-check  ${pathname.includes('1301')?"active_link":""}`}  onClick={() => gaEventTracker('Visit Aviator Page')}>
+                    <Link className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `}  to={`#`}  onClick={()=>{LoginCheck('spaceman');gaEventTracker('Visit SpaceMan Page')}} >
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
 
                             <div className="menu-img ">
@@ -277,13 +287,9 @@ const MobileNav1 = (props) => {
                             </strong>
                         </div>
                     </Link>
-
                 </td>
-
-
-
-                <td  className={`menu-t m-auto sport-check  `}  >
-                    <Link className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center  ${window.location.pathname.includes('nare-games')?"active_link":""}`}  to={`/nare-games`}   >
+                <td  className={`menu-t m-auto sport-check  ${window.location.pathname.includes('nare-games')?"active_link":""} `}  >
+                    <Link className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center `} onClick={() => gaEventTracker('Visit Nare Games Page')} to={`/nare-games`}   >
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center`}>
 
                             <div className="menu-img ">
@@ -307,8 +313,8 @@ const MobileNav1 = (props) => {
 
 
                     return allsports.sport_id !== 79 && (
-                        <td key={index} className={`menu-t m-auto sport-check `} onClick={handleLinkClick}>
-                            <Link className={`inner-div more-sports cg ox anl url-link d-flex flex-column align-items-center ${state?.active_sport==allsports.sport_id ? 'active_link' : ''}`} to={`/highlights?sport_id=${allsports.sport_id}&sub_type_id=${getDefaultMarketsForSport(allsports)}`}>
+                        <td key={index} className={`menu-t m-auto sport-check ${state?.active_sport==allsports.sport_id ? 'active_link' : ''}`} >
+                            <Link className={`inner-div more-sports cg ox anl url-link d-flex flex-column align-items-center `} onClick={() => gaEventTracker(`Visit ${state?.active_sport}/${state?.active_sport_name}  Page`)} to={`/highlights?sport_id=${allsports.sport_id}&sub_type_id=${getDefaultMarketsForSport(allsports)}&sport_name=${allsports.sport_name}`}>
                                 <div className="inner-div cg ox anl url-link d-flex flex-column align-items-center">
                                     <div className="menu-img">
                                         <img
@@ -327,8 +333,8 @@ const MobileNav1 = (props) => {
                     );
                 })}
 
-                <td  className={`menu-t m-auto sport-check  `}  >
-                    <Link className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center ${pathname===`/affiliate`?"active_link":""}`}  to={`/affiliate`}   >
+                <td  className={`menu-t m-auto sport-check  ${pathname===`/affiliate`?"active_link":""}`}  >
+                    <Link className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center `} onClick={() => gaEventTracker('Visit Affiliate Page')}  to={`/affiliate`}   >
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
                             <div className="menu-img ">
                                 <img
@@ -346,8 +352,8 @@ const MobileNav1 = (props) => {
 
                 </td>
 
-                <td  className={`menu-t m-auto sport-check  `}  >
-                    <Link className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center ${pathname===`/promotions`?"active_link":""}`}  to={`/promotions`}   >
+                <td  className={`menu-t m-auto sport-check ${pathname===`/promotions`?"active_link":""} `}  >
+                    <Link className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `} onClick={() => gaEventTracker('Visit Promotion Page')}  to={`/promotions`}   >
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
                             <div className="menu-img ">
                                 <img

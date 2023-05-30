@@ -3,7 +3,6 @@ import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import {Formik, Field, Form} from 'formik';
 import makeRequest from "../utils/fetch-request";
-import {Context} from '../../context/store';
 import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import fire from "../../assets/img/fire.webp"
@@ -101,7 +100,7 @@ const HeaderLogin = (props) => {
 
 
     const MyLoginForm = (props) => {
-        const {isValid, errors, values, submitForm, setFieldValue} = props;
+        const { errors, values, setFieldValue} = props;
 
         const onFieldChanged = (ev) => {
             let field = ev.target.name;
@@ -119,15 +118,12 @@ const HeaderLogin = (props) => {
                             <input type="text"
                                    name="msisdn"
                                    className={`w-100 input-field button-radius text-light deposit-input form-control col input-field-login  ${errors.msisdn && 'text-danger'}`}
-                                   // data-action="grow"
                                    placeholder={errors.msisdn || "+254987654389"}
                                    onChange={ev => onFieldChanged(ev)}
                                    value={values.msisdn}
                             />
                             <br/>
                             <span className={`sticky-hidden text-warning d-flex justify-content-end font-input my-2`}>
-                            {/*<label>*/}
-                                {/*<input type="checkbox" name="remember" value="1"/><span>Remember me</span></label>*/}
                             <div className={`text-warning`}>
                                 <Switch id={"remember-me"} {...label} className="odds-change-box" name={"accept_all_odds_change"}  defaultChecked color="primary" /> Remember Me
                             </div>
@@ -192,9 +188,6 @@ const HeaderLogin = (props) => {
         <Container className={`d-flex flex-column mx-2`}>
             <div className={`d-none`} style={{float: "right"}}>
                 <div className="col-12">
-                    {/*<Link className="" to={"/signup"} title="Join now" onClick={() => gaEventTracker('Register')}>*/}
-                    {/*    <span className="register-label">Register now!</span>*/}
-                    {/*</Link>*/}
                     <Link className="m-lg-2 badge bg-success d-none" to={"/verify-account"} title="Verify Account"
                        onClick={() => gaEventTracker('Verify')}>
                         <span className="register-label">VERIFY ACCOUNT</span>

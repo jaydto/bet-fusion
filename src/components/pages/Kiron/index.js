@@ -28,7 +28,6 @@ const  TestKiron= () => {
     const [tab, setTab] = useState('kiron')
     const [fetching, setFetching] = useState(false)
     const [kironValidation, setKironValidation] = useState();
-    // const [matches, setMatches] = useState([]);
     const [playout, setPlayout] =useState(null)
 
     let endpoint = "/v1/nare-league/matches"

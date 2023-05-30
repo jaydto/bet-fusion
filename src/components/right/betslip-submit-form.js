@@ -59,7 +59,7 @@ const BetslipSubmitForm = (props) => {
     const [state, dispatch] = useContext(Context);
     const [loadingShare, setLoadingShare] = useState(false);
 
-    const [stake, setStake] = useState(100);
+    const [stake, setStake] = useState(jackpot?parseInt(jackpotData?.bet_amount):100);
     const [stakeBoosted, setStakeBoosted] = useState(100);
 
     const [stakeAfterTax, setStakeAfterTax] = useState(0);

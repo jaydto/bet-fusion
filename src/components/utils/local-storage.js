@@ -37,6 +37,12 @@ export const setTrackingData = (data) => {
         data.utm_source = utm_source
     }
 
+    let bTag = getFromLocalStorage('btag')
+
+    if (bTag !== null) {
+        data.btag = bTag;
+    }
+
     if (utm_campaign !== null) {
         data.utm_campaign = utm_campaign
     }

@@ -9,7 +9,6 @@ import multibetCashback from '../../../assets/img/banner/products/Bet_Nare_100_C
 import karibuGiftWallet from "../../../assets/img/banner/products/Bet_Nare_3000_karibu_gift.webp"
 
 
-
 import {Table} from "react-bootstrap";
 import Right from "../../right";
 
@@ -254,10 +253,8 @@ const Promotions = () => {
                                                         matrix
                                                         set on your stake. i.e. The bonus amount is dependent on the
                                                         number of selections.
-
                                                     </ol>
                                                     <hr/>
-
                                                     <Table bordered responsive className={"text-white"}
                                                            style={{backgroundColor: "#1f2f38"}}>
                                                         <thead>
@@ -347,6 +344,11 @@ const Promotions = () => {
                                                     <br/>
                                                     ✅
                                                     The MAXIMUM BONUS that you can receive is KES250.
+                                                    <br/>
+                                                    ✅ Maximum Multi-bet Cashback stake is KES250.
+                                                    <br/>
+                                                    ✅Total Winnings from this bonus bet will be equivalent to the Cash
+                                                    Stake where the Multibet Cashback Bonus was awarded
                                                     <br/>
                                                     ✅ BetNare may, at any time reclaim any bonus amount; Free
                                                     Bets, Nare Points and enhanced payments that you may have

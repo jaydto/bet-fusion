@@ -22,6 +22,11 @@ const DecodeCode = () => {
     }
 
     const handleslip = async (share_code) => {
+        let message = {status: 401, message: 'Betslip share code is required', token: ''}
+
+        if(share_code===""){
+            return  Notify(message)
+        }
 
         let endpoint = "/v1/bs-decode"
 

@@ -245,6 +245,13 @@ input.text-white{
     margin-left: 9px;
     letter-spacing: 1px;
 }
+.menu-t img.nav-mobile{
+    height: 19px!important;
+    margin-top: -6px!important;
+    border-radius: 16px;
+    background: var(--betnare-header-bg);
+    margin-bottom: -7px;
+}
 
 .bet-body {
     font-size: var(--font-size-bet-body);
@@ -1324,7 +1331,7 @@ input[type="radio"], input[type="checkbox"] {
         /* justify-content: flex-end; */
     }
     .c-btn-group> .c-btn {
-        height: 25px!important;
+        height: 28px!important;
         line-height: 17px!important;
         font-weight: 400;
         min-width: 44px;
@@ -1458,8 +1465,8 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 @media (min-width:300px) and (max-width: 375px){
-    .size-font-user-action {
-        font-size: 11px!important;
+    .size-font-user-action.profile-nav{
+        font-size: 12px!important;
         font-weight: 800;
     }
     .home-tabs .main-header, .home-tabs-active .main-header {

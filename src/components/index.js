@@ -49,8 +49,6 @@ const Index = () => {
         const params = new URL(window.location).searchParams;
         const sportId = params.get('sport_id');
         dispatch({type:"SET", key:'active_sport', payload:sportId});
-
-        console.log("here now")
     }
 
     useEffect(() => {

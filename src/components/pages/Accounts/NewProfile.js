@@ -73,7 +73,7 @@ const NewProfile = () => {
                                 <div>
                                     <Link
                                         to={{pathname: "/"}}
-                                        className={"deposit-button size-font-user-action"} title={'HOME'}
+                                        className={"deposit-button size-font-user-action profile-nav"} title={'HOME'}
                                         style={{fontSize: '18px'}}>
                                       <span className="">
                                        <span className=" "> <FontAwesomeIcon
@@ -85,7 +85,7 @@ const NewProfile = () => {
                                 {user && <div>
                                     <Link
                                         to={{pathname: "/logout"}}
-                                        className={"deposit-button size-font-user-action"}
+                                        className={"deposit-button size-font-user-action profile-nav"}
                                         style={{marginRight: "12px", fontSize: '18px'}} title={'LOGOUT'}>
                                       <span className="text-warning">
                                        <span className=" "><FontAwesomeIcon icon={faPowerOff}
@@ -108,7 +108,7 @@ const NewProfile = () => {
                              <div>
                                 <Link
                                     to={'#'} onClick={()=>showCentricPage('mybets')}
-                                    className={"  size-font-user-action"}
+                                    className={"  size-font-user-action "}
                                     style={{marginRight: "12px", fontSize: '18px'}} title={'MYBETS'}>
                                       <span className="">
                                        <span className=" "><FontAwesomeIcon icon={faListOl}

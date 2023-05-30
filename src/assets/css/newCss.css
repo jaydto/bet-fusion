@@ -1397,6 +1397,9 @@ input[type="radio"], input[type="checkbox"] {
 
 }
 @media (max-width: 575px){
+    .mybets-details{
+        margin:0px;
+    }
 
     .header-slip-mybets{
         font-size:13px;

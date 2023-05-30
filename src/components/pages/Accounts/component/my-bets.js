@@ -52,14 +52,13 @@ const MyBets = (props) => {
 
     const BetItemHeader = (props) => {
         return (
-            <div className={`${width<=767?"w-100 header-styling-mobile":'container'}`} style={Styles.headers}>
+            <div className={`${width<=767?"w-100 header-styling-mobile ":'container'}`} style={Styles.headers}>
                 <div className="row">
                     <div className="col text-center mybets-font overflow-hidden">CREATED</div>
                     <div className="col  text-center mybets-font overflow-hidden">ID</div>
                     <div className="col text-center mybets-font overflow-hidden">GAMES</div>
                     <div className="col text-center mybets-font overflow-hidden">BET AMOUNT</div>
                     <div className="col text-center mybets-font overflow-hidden">POSSIBLE WIN</div>
-                    <div className="col text-center mybets-font overflow-hidden">TAX</div>
                     <div className="col text-center mybets-font overflow-hidden">Status</div>
                 </div>
             </div>
@@ -100,16 +99,15 @@ const MyBets = (props) => {
         }
 
         return (
-            <div className={`${width<=767?"w-100":"container"}`} style={Styles.bet} key={bet.bet_id}>
+            <div className={`${width<=767?"w-100 mybets-details":"container"}`} style={Styles.bet} key={bet.bet_id}>
                 <div className="row">
                     <div className="col text-center mybets-font overflow-hidden">{ bet.created}</div>
                     <div className="col text-center mybets-font overflow-hidden">{ bet.bet_id}</div>
                     <div className="col text-center mybets-font overflow-hidden">{ bet.total_matches}</div>
                     <div className="col text-center mybets-font overflow-hidden">{ bet.bet_amount}</div>
                     <div className="col text-center mybets-font overflow-hidden">{ bet.possible_win}</div>
-                    <div className="col text-center mybets-font overflow-hidden">{ bet.tax}</div>
                     { canCancel == false
-                        ? <div className={`col text-center mybets-styling-mobile`}><span className={` badge ${betStatus=="LOST"?"bg-dark text-warning":betStatus=="WON"?"bg-success":betStatus=="PENDING"?"bg-dark ":""}`} style={{color:"white"
+                        ? <div className={`col text-center mybets-styling-mobile`}><span className={` badge  ${betStatus=="LOST"?"bg-dark text-warning":betStatus=="WON"?"bg-success":betStatus=="PENDING"?"bg-dark ":""}`} style={{color:"white"
                             ,marginTop:"10px", borderRadius: "7px", marginLeft:"1px", padding:"2.9px 9px "}}>{betStatus=="LOST"?"NOT WON":betStatus}</span></div>
                         : cancelBetMarkup()
                     }
@@ -118,24 +116,6 @@ const MyBets = (props) => {
         );
     }
 
-    const BetslipHeader = () => {
-        
-        return (
-            <div className={`container slipheader`} >
-                <div className="row">
-                    <div className="col">Start</div>
-                    <div className="col">Home</div>
-                    <div className="col">Away</div>
-                    <div className="col">MKT</div>
-                    <div className="col">Odds</div>
-                    <div className="col">Pick</div>
-                    <div className="col">Outcome</div>
-                    <div className="col">FT</div>
-                    <div className="col">Status</div>
-                </div>
-            </div>
-        )
-    }
 
     const BetslipItem = (props) => {
         const { betslip } = props;
@@ -144,19 +124,67 @@ const MyBets = (props) => {
         return (
             <div className={`container accordion-betslips-style`}  key={betslip.game_id}>
                 <div className="row">
-                    <div className="col">{ betslip.start_time}</div>
-                    <div className="col">{ betslip.home_team}</div>
-                    <div className="col">{ betslip.away_team}</div>
-                    <div className="col">{ betslip.market}</div>
-                    <div className="col">{ betslip.odd_value}</div>
-                    <div className="col">{ betslip.bet_pick}</div>
-                    <div className="col px-1">{ betslip.outcomes}</div>
-                    <div className="col">{ betslip.ft_result}</div>
-                    <div className="col ">
-                        {<span className={` badge ${betslip.status=="LOST"?"bg-dark text-warning":betslip.status=="WON"?"bg-success":betslip.status=="PENDING"?"bg-dark ":""}`} style={{color:"white"
-                        ,marginTop:"10px", borderRadius: "7px", marginLeft:"1px", padding:"2.9px 9px "}}>{betslip.status=="LOST"?"NOT WON":betslip.status}
-                        </span>}
-                    </div>
+                    <div className="card shadow-sm d-flex background-mybets-mobile" style={{background:'transparent',border:'none'}}>
+                        <div className="d-flex flex-column bg-dark mx-4 p-4 card-mybets-radius">
+                            <div className="col d-flex px-4">
+                                <div className={'col '}><h4 className={'header-slip-mybets'}>{betslip.home_team}</h4></div>
+                                <div className={'col text-center'}><h2 className={'text-success'}>VS</h2></div>
+                                <div className={'col text-end'}><h4 className={'header-slip-mybets'}>{betslip.away_team}</h4></div>
+                            </div>
+                            <div className="col d-flex text-center">
+                                <strong style={{color:'dark-orange',paddingBottom:'5px'}}>{betslip.start_time}</strong>
+                            </div>
+                            <div
+                                className="d-flex flex-column px-5 profile-bg mb-3 rounded-3 px-5 mx-3 slip-border-radius-mybets">
+                                <div className="col d-flex ">
+                                    <div className={'col'}>Pick</div>
+                                    <div className={'col text-end'}>{betslip.bet_pick}</div>
+                                </div>
+                                <div className="col d-flex ">
+                                    <div className={'col'}>Market</div>
+                                    <div className={'col text-end'}>{betslip.market}</div>
+                                </div>
+                                <div className="col d-flex ">
+                                    <div className={'col'}>Odd</div>
+                                    <div className={'col text-end'}>{betslip.odd_value}</div>
+                                </div>
+                                <div className="col d-flex ">
+                                    <div className={'col'}>Outcome</div>
+                                    <div className={'col text-end'}>{betslip.outcomes}</div>
+                                </div>
+                                <div className="col d-flex ">
+                                    <div className={'col'}>Status</div>
+                                    <div className={'col text-end'}><span
+                                        className={` badge  ${betslip.status == "LOST" ? "bg-dark text-warning" : betslip.status == "WON" ? "bg-success" : betslip.status == "PENDING" ? "bg-dark " : ""}`}
+                                        style={{
+                                            color: "white"
+                                            ,
+                                            marginTop: "10px",
+                                            borderRadius: "7px",
+                                            marginLeft: "1px",
+                                            padding: "2.9px 9px "
+                                        }}>{betslip.status == "LOST" ? "NOT WON" : betslip.status}
+                              </span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                   </div>
+                    {/*<div className="col mybets-font">{ betslip.start_time}</div>*/}
+                    {/*<div className="col mybets-font">{ betslip.home_team}</div>*/}
+                    {/*<div className="col mybets-font">{ betslip.away_team}</div>*/}
+                    {/*<div className="col mybets-font desk-top">{ betslip.market}</div>*/}
+                    {/*<div className="col mybets-font desk-top">{ betslip.odd_value}</div>*/}
+                    {/*<div className="col mybets-font">{ betslip.bet_pick}</div>*/}
+                    {/*<div className="col mybets-font px-1">{ betslip.outcomes}</div>*/}
+                    {/*<div className="col mybets-font desk-top">{ betslip.ft_result}</div>*/}
+                    {/*<div className="col mybets-font mybets-styling-mobile">*/}
+                    {/*    {<span className={` badge mobile-betslip ${betslip.status=="LOST"?"bg-dark text-warning":betslip.status=="WON"?"bg-success":betslip.status=="PENDING"?"bg-dark ":""}`} style={{color:"white"*/}
+                    {/*    ,marginTop:"10px", borderRadius: "7px", marginLeft:"1px", padding:"2.9px 9px "}}>{betslip.status=="LOST"?"NOT WON":betslip.status}*/}
+                    {/*    </span>}*/}
+                    {/*</div>*/}
                 </div>
             </div>
         )
@@ -175,7 +203,7 @@ const MyBets = (props) => {
 						</AccordionItemButton>
 					</AccordionItemHeading>
 					<AccordionItemPanel >
-                     <BetslipHeader />
+                     {/*<BetslipHeader />*/}
 					{  bet.betslip?.map((betslip) => (
                          <BetslipItem 
                             betslip={betslip}  

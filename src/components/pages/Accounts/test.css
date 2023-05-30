@@ -124,6 +124,7 @@
         margin-top: 0rem;
         padding-left: 2.5rem;
         z-index: 100!important;
+        position: fixed!important;
     }
     .banner-profile {
         width: 100vw;
@@ -198,6 +199,9 @@
     }
 }
 @media (min-width: 992px) and (max-width: 1165px) {
+    .profile-width-side {
+        width: 25%!important;
+    }
     .banner-profile {
         width: 100vw;
         height: 3vw;
@@ -515,6 +519,7 @@
     position: sticky;
     top: 0px;
     z-index: 500;
+    max-height: 9rem;
 }
 
 

@@ -296,6 +296,15 @@ input{
     border: 0.1px groove #2d3641!important;
 
 }
+.slip-border-radius-mybets{
+    border-radius:10px!important;
+    line-height: 1.7;
+}
+
+.card-mybets-radius{
+    border-radius: 20px;
+    line-height: 1;
+}
 input:focus{
     border: 0.1px inset #a5660f !important;
     box-sizing: border-box;
@@ -592,6 +601,15 @@ input[type="radio"], input[type="checkbox"] {
     top: -11px;
     width: 28px;
 }
+.profile-width-side {
+    min-width: 316px!important;
+    background: var(--betnare-header-bg)!important;
+    padding-left: 0rem;
+    margin-top: 0rem;
+    padding-left: 2.5rem;
+    z-index: 100!important;
+    position: fixed!important;
+}
 .pro-sidebar{
  color:var(--grey) !important
 }
@@ -745,6 +763,7 @@ input[type="radio"], input[type="checkbox"] {
     }
     .profile-top{
         margin-top:60px;
+        width:96%;
     }
     .logo-top{
         margin-top: 13px;
@@ -1248,6 +1267,23 @@ input[type="radio"], input[type="checkbox"] {
     }
 }
 @media (max-width: 767px){
+    .mybets-details {
+        background: var(--mybets-slip);
+        padding: 13px!important;
+        color: var(--light);
+        opacity: 0.8;
+        margin-bottom: 1px;
+        border-radius: 6px;
+        margin: 0 6px;
+        border-bottom-left-radius:unset;
+        border-bottom-right-radius:unset;
+    }
+
+    .background-mybets-mobile {
+        background: rgb(33,37,41)!important;
+        border-radius: 3px;
+        margin-bottom: 2px;
+    }
     .modal-dialog {
         margin: 58px;
         position: relative;
@@ -1331,6 +1367,19 @@ input[type="radio"], input[type="checkbox"] {
 
 }
 @media (max-width: 575px){
+
+    .header-slip-mybets{
+        font-size:13px;
+    }
+   .mobile-betslip {
+        color: white;
+        margin-top: 10px!important;
+        border-radius: 7px;
+        margin-left: 1px;
+        padding: 0px 1px!important;
+        line-height: 15px;
+        height: 15px;
+    }
     .modal-dialog {
         position: relative;
         width: auto;
@@ -1389,6 +1438,12 @@ input[type="radio"], input[type="checkbox"] {
     }
 }
 @media (max-width: 375px){
+    /*.mybets-font {*/
+    /*    font-size: 9px;*/
+    /*    font-weight: 600;*/
+    /*    font-feature-settings: "dlig";*/
+    /*    font-variant: discretionary-ligatures;*/
+    /*}*/
     /*.mobile-remove-verify{*/
     /*    display:none;*/
     /*}*/

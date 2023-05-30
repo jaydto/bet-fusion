@@ -9413,10 +9413,12 @@ ul.sport {
         overflow-x: auto;
         /*justify-content:space-between;*/
     }
-    .mybets-font{
+    .mybets-font {
         font-size: 10px;
         font-weight: 600;
+        font-feature-settings: "dlig";
         font-variant: discretionary-ligatures;
+        word-break: break-word;
     }
     .live-items{
         width: auto;

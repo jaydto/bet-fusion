@@ -1,6 +1,6 @@
 
 
-.flex-item {
+.flex-item-kiron {
 
     display: flex;
     justify-content: space-between;
@@ -14,7 +14,7 @@
 
 
 }
-.flex-item >div {
+.flex-item-kiron >div {
     background: var(--betnare-primary);
     /* border: 3px solid #ffcc80; */
     border-radius: 5px;

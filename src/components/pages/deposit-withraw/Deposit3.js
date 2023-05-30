@@ -15,13 +15,8 @@ import {LazyLoadImage} from "react-lazy-load-image-component";
 import logo from "../../../assets/img/Logo.webp";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
-    faAngleLeft,
     faBackspace,
-    faBackward,
-    faDoorClosed,
-    faHome,
-    faLessThan,
-    faPowerOff
+
 } from "@fortawesome/free-solid-svg-icons";
 import SidebarMobile from "../../sidebar/awesome/SidebarMobile";
 import makeRequest from "../../utils/fetch-request";
@@ -299,7 +294,7 @@ const Deposit3= props => {
                 <div className={'col-lg-8 col-sm-12 top-login-background-img-bg-down top-login-background-img-bg-page'} >
 
                     <div className="w-100 d-flex flex-column justify-content-center h-100 top-login-background-img-bg-page">
-                        <div className={'width-page-centric'}>
+                        <div className={'width-page-centric deposit-page'}>
                             <FormTitle/>
 
                             <Row justify="center">

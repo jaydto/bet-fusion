@@ -143,7 +143,7 @@ const NewProfile = () => {
                                       </span>
                                 </Link>
                             </div>
-                            
+
                         </div>
 
                     </div>
@@ -235,20 +235,19 @@ const NewProfile = () => {
                             </div>}
                         </div>
                         <div className={'d-flex gap-3 mobile-profile-columns'}>
-                            {(profile_states||state?.profile_withdraw!=null  )&&<div id={'withdraw'} className={'col'}>
-                                   <WithdrawProfile/>
-                            </div>}
                             {(profile_states||state?.profile_deposit!=null)&&
                             <div id={'deposit'} className={'col'}>
                                 <DepositProfile/>
                             </div>}
                         </div>
-                        {(profile_states||state?.profile_points!=null)&&<div className={'d-flex gap-1 mobile-profile-columns'}>
-
-                            <div id={'points'} className={'col d-flex gap-3 '}>
+                        <div className={'d-flex gap-3 mobile-profile-columns'}>
+                            {(profile_states||state?.profile_withdraw!=null  )&&<div id={'withdraw'} className={'col'}>
+                                <WithdrawProfile/>
+                            </div>}
+                            {(profile_states||state?.profile_points!=null)&&<div id={'points'} className={'col '}>
                                 <div id={'points'} className={'col'}><PointsProfile/></div>
-                            </div>
-                        </div>}
+                            </div>}
+                        </div>
                         {(state?.profile_mybets=='profile_mybets')&&<div className={'d-flex gap-1 mobile-profile-columns'}>
                             <div id={'points'} className={'col d-flex gap-3 '}>
                                 <div id={'points'} className={'col'}><MybetsProfile mobile={true}/></div>

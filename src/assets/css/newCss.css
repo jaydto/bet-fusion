@@ -718,6 +718,16 @@ input[type="radio"], input[type="checkbox"] {
 
 /*media queries*/
 @media (min-width: 1260px) {
+    .mybets-styling-mobile {
+        overflow: hidden;
+        font-size: 15px!important;
+        padding: 0px;
+        margin-left: 0px;
+        font-weight: bolder;
+        text-align: left;
+        display: flex;
+        justify-content: space-around;
+    }
     .width-page-centric.deposit-page {
         box-shadow: 5px 7px 30px 8px #2c3c44;
         width: 60%;
@@ -924,6 +934,16 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 @media (max-width: 1259px) and (min-width: 992px) {
+    .mybets-styling-mobile {
+        overflow: hidden;
+        font-size: 14px!important;
+        padding: 0px;
+        margin-left: 0px;
+        font-weight: bolder;
+        text-align: left;
+        display: flex;
+        justify-content: space-around;
+    }
     .top-login-paddings{
         /*padding-top:5px;*/
         padding-top: 0px;
@@ -978,6 +998,16 @@ input[type="radio"], input[type="checkbox"] {
     }
 }
 @media (min-width: 992px) and (max-width: 1160px) {
+    .mybets-styling-mobile {
+        overflow: hidden;
+        font-size: 13px!important;
+        padding: 0px;
+        margin-left: 0px;
+        font-weight: bolder;
+        text-align: left;
+        display: flex;
+        justify-content: space-around;
+    }
     .flex-item >div {
         /* border: 3px solid #ffcc80; */
         border-radius: 5px;

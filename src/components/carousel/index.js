@@ -40,7 +40,7 @@ const CarouselLoader = (props) => {
                         alt="Batnare"
                         effects="blur"
                         onClick={() => {
-                            window.location.href = banner?.link_url
+                            window.location.href = banner?.desktop_link_url
                         }}
                     />
                 </Carousel.Item>

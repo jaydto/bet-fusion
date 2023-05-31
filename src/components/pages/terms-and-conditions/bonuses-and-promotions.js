@@ -85,35 +85,32 @@ const BonusesAndPromotions = () => {
                         account.
                     </li>
                     <li>
-                        	EACH bonus offer will have its own “TERMS & CONDITIONS” and Customers should ensure that the terms and conditions associated with each individual bonus offer are read and understood prior to accepting the bonus.
+                        BetNare bonus has no expiry.
                     </li>
-                    <li>
-                        	Bonus expiry is midnight (all bonuses)
-                    </li>
-                    <li>
-                            The Maximum and Minimum stake of the bonuses is 100/=
-                    </li>
-                    <li>
-                            Total number of games per slip on bonus related bets is 4
-                    </li>
-                    <li>
-                            Minimum odds per game on bonus related bets is 1.8
-                    </li>
-                    <li>
-                            Minimum total odds per bonus bet is 10.50
-                    </li>
-                    <li>
-                            The maximum pays-out from bonus bets – KES300 per betslip.
-                    </li>
-                    <li>
-                        	All rules on bonus bets will apply.
-                    </li>
-                    <li>
-                        	Promotions are subject to change. All management decisions are final.
-                    </li>
-                    <li>
-                       	In the event of an error when attributing a bonus to a customer account, the company reserves the right to correct such errors by removing any funds that were put into the customer’s account erroneously and by avoid
-                    </li>
+                    {/*<li>*/}
+                    {/*        The Maximum and Minimum stake of the bonuses is 100/=*/}
+                    {/*</li>*/}
+                    {/*<li>*/}
+                    {/*        Total number of games per slip on bonus related bets is 4*/}
+                    {/*</li>*/}
+                    {/*<li>*/}
+                    {/*        Minimum odds per game on bonus related bets is 1.8*/}
+                    {/*</li>*/}
+                    {/*<li>*/}
+                    {/*        Minimum total odds per bonus bet is 10.50*/}
+                    {/*</li>*/}
+                    {/*<li>*/}
+                    {/*        The maximum pays-out from bonus bets – KES300 per betslip.*/}
+                    {/*</li>*/}
+                    {/*<li>*/}
+                    {/*    	All rules on bonus bets will apply.*/}
+                    {/*</li>*/}
+                    {/*<li>*/}
+                    {/*    	Promotions are subject to change. All management decisions are final.*/}
+                    {/*</li>*/}
+                    {/*<li>*/}
+                    {/*   	In the event of an error when attributing a bonus to a customer account, the company reserves the right to correct such errors by removing any funds that were put into the customer’s account erroneously and by avoid*/}
+                    {/*</li>*/}
                 </ol>
                 <p><strong><strong>NB;</strong> APART FROM JACKPOT BONUSES , THE REST CANNOT BE WITHDRAWN</strong></p>
             </AccordionItemPanel>

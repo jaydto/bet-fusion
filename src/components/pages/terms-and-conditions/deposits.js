@@ -77,10 +77,10 @@ const Deposits = () => {
                         transaction
                         in PDF format.
                     </li>
-                    <li>
-                        Betting limits can be set by the player in the ‘Responsible Gaming’
-                        page.
-                    </li>
+                    {/*<li>*/}
+                    {/*    Betting limits can be set by the player in the ‘Responsible Gaming’*/}
+                    {/*    page.*/}
+                    {/*</li>*/}
                     <li>
                         The player acknowledges that BetNare reserves the right to request
                         proof of payments to player’s accounts to confirm a depositing

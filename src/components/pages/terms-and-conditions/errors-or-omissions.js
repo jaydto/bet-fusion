@@ -68,7 +68,11 @@ const ErrorsOrOmissions = () => {
                         and/or bonuses that are credited to Your Account,
                         such circumstances being referred to as an "Error"
                     </li>
+
                 </ul>
+                <strong>
+                    such circumstances being referred to as an "Error"
+                </strong>
                 <p>
                     BetNare reserves the right to:
                 </p>

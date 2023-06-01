@@ -50,8 +50,9 @@
     text-transform: capitalize;
 }
 .standing-heading {
-    color: #fff;
+    color: var(--dark);
     font-size: 1.3em;
+    font-weight: 800;
 }
 .match-standing-wrapper {
     padding-bottom: 0;

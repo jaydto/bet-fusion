@@ -281,6 +281,12 @@
 .more-market-button{
     color:var(--light)
 }
+.more-market-button:hover{
+    color:var(--light) !important;
+}
+.font-bold-md{
+    font-weight:800!important;
+}
 .kiron-extra{
     color: #fff;
     display: flex;

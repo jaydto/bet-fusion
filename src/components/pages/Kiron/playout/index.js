@@ -110,10 +110,10 @@ const KironPlayouts = (props) => {
                         <div className="col-12 pb-2">
                             <span className="standing-heading d-flex  flex-column
                             ">{kironSearchCompetition == 1 ? "KENYAN" : kironSearchCompetition == 2 ? "ENGLISH " : kironSearchCompetition == 3 ? "SPANISH" : "ITALIAN"} LEAGUE</span>
-                            <span><strong>
+                            <span><strong className={'font-bold-md'}>
                                 GAME WEEK {state?.playout_data?.game_week}
                             </strong> </span> &nbsp;  <span>
-                            <strong>
+                            <strong className={'font-bold-md'}>
                                 TOTAL SELECTIONS {state?.playout_data?.selections || 0}
                             </strong>
                         </span>

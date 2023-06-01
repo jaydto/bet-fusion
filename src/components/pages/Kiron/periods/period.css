@@ -25,6 +25,12 @@
 .container-period{
     height:51px;
 }
+.kiron-period:empty{
+    display:none!important;
+}
+.container-period:empty {
+    height: 0px!important;
+}
 @media (max-width: 767px){
     .period-height{
         height:30px;

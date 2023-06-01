@@ -86,6 +86,7 @@ const TestKiron = () => {
         dispatch({type: "SET", key: 'nareLoading', payload: true})
         if (window.location.pathname == "/nare-league") {
             if(state?.inPlay){
+                dispatch({type: "SET", key: 'nareLoading', payload: false})
                 dispatch({type: 'SET', key: 'nare_league_matches', payload: null})
             }
             if (!state?.inPlay&&state?.start_fetching_match&&!state?.periods_ready) {

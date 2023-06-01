@@ -21,6 +21,7 @@ const KironPlayouts = (props) => {
 
     const fetchData = useCallback(async () => {
         setSuccess(false)
+        dispatch({type: "SET", key: 'nareLoading', payload: true})
 
         endpoint = endpoint.replaceAll(" ", '')
 
@@ -32,6 +33,8 @@ const KironPlayouts = (props) => {
                 setSuccess(true)
                 dispatch({type: "SET", key: 'nareLoading', payload: false})
 
+            }else{
+                dispatch({type: "SET", key: 'nareLoading', payload: false})
             }
         });
 

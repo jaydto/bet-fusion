@@ -6,7 +6,7 @@ const Button=(props)=> {
 
     return (
         <Link className={'border-0'} to={to} {...rest}>
-            <button className={`text-light btn border-0`} style={{background:"transparent", fontSize:'13px'}}>{children}</button>
+            <button className={`more-market-button btn border-0`} style={{background:"transparent", fontSize:'13px'}}>{children}</button>
         </Link>
     );
 }

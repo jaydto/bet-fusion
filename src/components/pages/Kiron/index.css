@@ -276,7 +276,7 @@
 .kiron-more-button-color{
     background: var(--betnare-button-login)!important;
     color:var(--dark)!important;
-    font-weight:bold;
+    font-weight:bolder;
 }
 .more-market-button{
     color:var(--light)

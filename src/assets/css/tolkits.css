@@ -8026,9 +8026,6 @@ ul.sport {
     .slip-top{
         margin-top:6rem;
     }
-    .menu-t:hover{
-        border-bottom:thin solid #ffc107 ;
-    }
 
     .bloc-icon .active{
         border-bottom: 1px solid yellow;

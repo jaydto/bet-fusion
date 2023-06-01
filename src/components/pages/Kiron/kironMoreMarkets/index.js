@@ -1,10 +1,8 @@
 import React, {useCallback, useContext, useEffect, useState} from 'react';
-import {Link, useLocation} from "react-router-dom";
-import {LazyLoadImage} from 'react-lazy-load-image-component';
+import { useLocation} from "react-router-dom";
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import {getFromLocalStorage, setLocalStorage} from "../../../utils/local-storage";
 import makeRequest from "../../../utils/fetch-request";
-import useAnalyticsEventTracker from "../../../analytics/useAnalyticsEventTracker";
 
 import Button from "../../../utils/button";
 import LinkSelect from "../../../utils/options";
@@ -104,33 +102,6 @@ const KironMoreMarkets= (props) => {
                 </div>
             </div>
         </div>
-
-
-        // <div className={ `${playgame?"d-none": "league-container"} ` } style={{background:" #162024",}}>
-        //     <table  style={{width: "100%", textAlign: "center", display:'flex'}}>
-        //         <tbody className={"d-flex"} style={{overflowX: "auto"}}>
-        //         <tr className={"d-flex league-row gap-2 justify-content-center align-items-center  "} style={{ flex: '0 0 auto', overflowX:"hidden" }}>
-        //             {kiron?.map((kiron_options, index) => (
-        //                 <td key={index} className={` d-flex menu-t sport-check w-100 ${pathname===kiron_options.round_id?" active":""}`} style={{textAlign: 'center',lineHeight: '1.5'}} >
-        //                     <Link  style={{width:"100%",height:"50px" }}  to={'#'} >
-        //
-        //                         <div className="card bg-dark inner-div active d-flex align-items-center flex-column justify-content-center link" onClick={handleLinkClick} style={{ height:'40px', width:'60px'}}>
-        //
-        //
-        //                             {getTime(kiron_options.start_time)}
-        //                         </div>
-        //
-        //                     </Link>
-        //                 </td>
-        //
-        //             ))}
-        //
-        //         </tr>
-        //         </tbody>
-        //
-        //     </table>
-        //
-        // </div>
     )
 };
 

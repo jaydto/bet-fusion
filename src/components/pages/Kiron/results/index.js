@@ -2,9 +2,9 @@ import React, {useCallback, useEffect, useState} from 'react';
 import "./results.css"
 import makeRequest from "../../../utils/fetch-request";
 import {Spinner} from "react-bootstrap";
+import {getFromLocalStorage} from "../../../utils/local-storage";
 
 const KironResults = () => {
-    const [fetching, setFetching] = useState(false)
     const [loading, setLoading] = useState(false)
     const [resulted, setResulted] = useState([]);
     let endpoint = "/v1/nare-league/results"
@@ -19,7 +19,6 @@ const KironResults = () => {
         await makeRequest({url: endpoint, method: "POST", data:kiron_data }).then(([status, result]) => {
             if (status == 200) {
                 setResulted(  result?.data || result)
-                setFetching(false)
                 setLoading(false)
 
             }

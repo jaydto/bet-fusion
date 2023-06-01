@@ -33,8 +33,6 @@ const KironBetHistory = (props) => {
     const [isLoading, setIsLoading] = useState(false);
     let user = getFromLocalStorage('user');
     const [betLoading, setBetLoading]=useState(false)
-    // const [itemState, setItemState] = useState({});
-    const [activeItem, setActiveItem] = useState(null);
 
     const fetchData = useCallback(async() => {
         if(isLoading) return;

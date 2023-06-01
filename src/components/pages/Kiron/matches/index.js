@@ -22,18 +22,6 @@ const clean = (_str) => {
 };
 
 
-const getUpdatedMatchFromOdds = (props) => {
-  const { match, marketName, odd_key, odd_data } = props;
-  let newMatch = { ...match, ...odd_data };
-  newMatch.name = marketName;
-  newMatch.odd_key = odd_key;
-  newMatch.odd_value = odd_data.odd_value;
-  newMatch.special_bet_value = odd_data.special_bet_value;
-  delete newMatch["odds"];
-  delete newMatch["extra_odds"];
-  return newMatch;
-};
-
 const marketChoice = () => {
   const markets = [
     [
@@ -514,7 +502,7 @@ const MatchList = (props) => {
     fetching,
     competition_id
   } = props;
-
+  {console.log("nareMatch",state?.nare_league_matches)}
 
   return (
       <div className="matches full-width table table-striped">

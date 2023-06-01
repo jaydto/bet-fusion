@@ -70,10 +70,8 @@ const TestKiron = () => {
             // prevNewData.current.period !== newData.period ||
             prevNewData.current.round_id !== newData.round_id ||
             prevNewData.current.market_id !== newData.market_id) {
-            // setLoading(true)
 
             prevNewData.current = newData;
-
 
             setLocalStorage('kiron_search_data', newData);
 
@@ -86,12 +84,15 @@ const TestKiron = () => {
     useEffect(() => {
         dispatch({type: "SET", key: 'playout_data', payload: null})
         dispatch({type: "SET", key: 'close_spinner', payload: false})
-        dispatch({type: 'SET', key: 'nare_league_matches', payload: null})
-        // setLoading(true)
+        setLoading(true)
         if (window.location.pathname == "/nare-league") {
-                if (!state?.inPlay) {
-                    fetchData();
-                }
+            if(state?.inPlay){
+                dispatch({type: 'SET', key: 'nare_league_matches', payload: null})
+            }
+            if (!state?.inPlay&&state?.start_fetching_match) {
+                dispatch({type: 'SET', key: 'nare_league_matches', payload: null})
+                fetchData();
+            }
 
         }
 
@@ -119,13 +120,12 @@ const TestKiron = () => {
             if (status == 200) {
                 dispatch({type: "SET", key: 'nare_league_matches', payload: result?.data || result})
                 dispatch({type: "SET", key: 'start_fetching_match', payload: false})
-                // setMatches(matches.length > 0 ? {...matches, ...result?.data} : result?.data || result)
                 setFetching(false)
                 setLoading(false)
-                if (result?.event_time) {
-                    setLoading(false)
-                    setKironValidation(result?.slip_data)
-                }
+                // if (result?.event_time) {
+                //     setLoading(false)
+                //     setKironValidation(result?.slip_data)
+                // }
             }
         });
 
@@ -192,10 +192,10 @@ const TestKiron = () => {
                     <Header/>
                 </div>
             </div>
-            <div className="flex-container-kiron kiron-test">
+            <div className="flex-container-kiron kiron-test h-100">
                 <div className={'item-kiron-1 d-none'}></div>
                 <div className="item-kiron2" style={{width: '100%'}}>
-                    <div className="d-flex flex-row">
+                    <div className="d-flex flex-row h-100">
                         <div className="d-flex flex-row kiron-size" style={{marginTop: "2px", width: '100%'}}>
                             <div className="d-flex flex-column kiron-size"
                                  style={{marginTop: "2px", overflowY: 'auto'}}>

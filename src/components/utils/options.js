@@ -51,8 +51,15 @@ function LinkSelect(props) {
     const handleSelectChange = (event) => {
         const selectedValue = event.target.value
         dispatch({ type: "SET", key: 'start_fetching_match', payload: true })
+        // dispatch({ type: "SET", key: 'marketActive', payload:new URL(window.location).searchParams.get('sub_type_id') })
         navigate(selectedValue);
     };
+    // useEffect(()=>{
+    //     if(state?.marketActive){
+    //
+    //     }
+    //
+    // },[state?.marketActive])
 
     const showOptions = () => {
         const matchingOption = options.find(option => option.to === pathname.split('?')[1]);

@@ -111,8 +111,12 @@ const TestKiron = () => {
         }
 
         let data = getFromLocalStorage('kiron_search_data')
+        const marketsChoice={
+            competition_id: data?.competition_id ||newData?.competition_id,
+            market_id: new URL(window.location).searchParams.get('sub_type_id'),
+        }
 
-        const kiron_data = data || newData
+        const kiron_data = marketsChoice ||data || newData
 
 
         await makeRequest({url: endpoint, method: "POST", data: kiron_data}).then(([status, result]) => {

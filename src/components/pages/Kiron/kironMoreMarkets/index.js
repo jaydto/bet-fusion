@@ -74,9 +74,16 @@ const KironMoreMarkets= (props) => {
             abortController.abort();
         };
     }, [])
-    const handleMarketChoice=()=>{
+    const handleMarketChoice=(market)=>{
+        // dispatch({ type: "SET", key: 'marketActive', payload:market })
         dispatch({ type: "SET", key: 'start_fetching_match', payload: true })
     }
+    // useEffect(()=>{
+    //     if(state?.marketActive){
+    //
+    //     }
+    //
+    // },[state?.marketActive])
 
     return (
         options&&
@@ -85,13 +92,13 @@ const KironMoreMarkets= (props) => {
             <div className="tabcontent pt-2 pb-2">
                 <div className="sport_dropdowns">
                     <div className="double-chance-market text-start" style={{marginLeft:'1rem'}}>
-                        <Button  to={`/nare-league?sub_type_id=3`} type="button" className={`text-light btn size-market-kiron size-market-kiron ${pathname.includes(`sub_type_id=3`)&& 'btn-warning '} `} onClick={handleMarketChoice}>1X2</Button>
+                        <Button  to={`/nare-league?sub_type_id=3`} type="button" className={`text-light btn size-market-kiron size-market-kiron ${pathname.includes(`sub_type_id=3`)&& 'btn-warning '} `} onClick={()=>handleMarketChoice(3)}>1X2</Button>
                     </div>
                     <div className="double-chance-market text-center">
-                        <Button  to={`/nare-league?sub_type_id=14`} type="button" className={`text-light btn remove-on-smaller-screen size-market-kiron  ${pathname.includes(`sub_type_id=14`)&& 'btn-warning '} `} onClick={handleMarketChoice}>Goal/No Goal</Button>
+                        <Button  to={`/nare-league?sub_type_id=14`} type="button" className={`text-light btn remove-on-smaller-screen size-market-kiron  ${pathname.includes(`sub_type_id=14`)&& 'btn-warning '} `} onClick={()=>handleMarketChoice(14)}>Goal/No Goal</Button>
                     </div>
                     <div className="double-chance-market text-center">
-                        <Button  to={`/nare-league?sub_type_id=8`} type="button" className={`text-light btn remove-on-smaller-screen size-market-kiron  ${pathname.includes(`sub_type_id=8`)&& 'btn-warning '} `}onClick={handleMarketChoice}>Over/Under 2.5</Button>
+                        <Button  to={`/nare-league?sub_type_id=8`} type="button" className={`text-light btn remove-on-smaller-screen size-market-kiron  ${pathname.includes(`sub_type_id=8`)&& 'btn-warning '} `}onClick={()=>handleMarketChoice(8)}>Over/Under 2.5</Button>
                     </div>
                     <div className="double-chance-market text-center">
 

@@ -1,6 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import "./results.css"
-import {getFromLocalStorage} from "../../../utils/local-storage";
 import makeRequest from "../../../utils/fetch-request";
 import {Spinner} from "react-bootstrap";
 

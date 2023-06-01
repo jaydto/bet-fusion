@@ -153,6 +153,12 @@
     border-radius: 50%;
     animation: loading 1s ease infinite;
 }
+#game_week{
+    color:#fff!important;
+}
+#count-down{
+    color:#fff!important
+}
 .kiron-playout-score-display{
     display: flex;
     /* background-color: red; */

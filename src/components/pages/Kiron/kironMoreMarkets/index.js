@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useContext, useEffect, useState} from 'react';
 import {Link, useLocation} from "react-router-dom";
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
@@ -6,17 +6,14 @@ import {getFromLocalStorage, setLocalStorage} from "../../../utils/local-storage
 import makeRequest from "../../../utils/fetch-request";
 import useAnalyticsEventTracker from "../../../analytics/useAnalyticsEventTracker";
 
-
-import LinkOption from "../../../utils/options";
 import Button from "../../../utils/button";
 import LinkSelect from "../../../utils/options";
+import {Context} from "../../../../context/store";
 
 
 const KironMoreMarkets= (props) => {
-    const {playgame}=props;
-    // let [kiron, setKiron] = useState();
     const [options, setOptions] = useState(getFromLocalStorage('kiron-more'));
-
+    const [state,dispatch]=useContext(Context)
 
     const [pathname, setPathname] = useState(() => {
         const searchParams = new URLSearchParams(window.location.search);
@@ -40,10 +37,6 @@ const KironMoreMarkets= (props) => {
         const updatedPathname = hasSubTypeId ? location.search : `sub_type_id=${subTypeId}`;
         setPathname(updatedPathname);
     }, [location.search]);
-
-    const gaEventTracker = useAnalyticsEventTracker('Navigation');
-
-
     const fetchData = useCallback(async () => {
         let cached_competitions = getFromLocalStorage('kiron-more');
         let endpoint = "/v1/nare-league/markets";
@@ -82,14 +75,10 @@ const KironMoreMarkets= (props) => {
         return () => {
             abortController.abort();
         };
-    }, []);
-
-    const getTime=(time)=>{
-        const start = new Date(time);
-        const startTimeString = start.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
-        return (startTimeString)
+    }, [])
+    const handleMarketChoice=()=>{
+        dispatch({ type: "SET", key: 'start_fetching_match', payload: true })
     }
-
 
     return (
         options&&
@@ -98,13 +87,13 @@ const KironMoreMarkets= (props) => {
             <div className="tabcontent pt-2 pb-2">
                 <div className="sport_dropdowns">
                     <div className="double-chance-market text-start" style={{marginLeft:'1rem'}}>
-                        <Button  to={`/nare-league?sub_type_id=3`} type="button" className={`text-light btn size-market-kiron size-market-kiron ${pathname.includes(`sub_type_id=3`)&& 'btn-warning '} `}>1X2</Button>
+                        <Button  to={`/nare-league?sub_type_id=3`} type="button" className={`text-light btn size-market-kiron size-market-kiron ${pathname.includes(`sub_type_id=3`)&& 'btn-warning '} `} onClick={handleMarketChoice}>1X2</Button>
                     </div>
                     <div className="double-chance-market text-center">
-                        <Button  to={`/nare-league?sub_type_id=14`} type="button" className={`text-light btn remove-on-smaller-screen size-market-kiron  ${pathname.includes(`sub_type_id=14`)&& 'btn-warning '} `}>Goal/No Goal</Button>
+                        <Button  to={`/nare-league?sub_type_id=14`} type="button" className={`text-light btn remove-on-smaller-screen size-market-kiron  ${pathname.includes(`sub_type_id=14`)&& 'btn-warning '} `} onClick={handleMarketChoice}>Goal/No Goal</Button>
                     </div>
                     <div className="double-chance-market text-center">
-                        <Button  to={`/nare-league?sub_type_id=8`} type="button" className={`text-light btn remove-on-smaller-screen size-market-kiron  ${pathname.includes(`sub_type_id=8`)&& 'btn-warning '} `}>Over/Under 2.5</Button>
+                        <Button  to={`/nare-league?sub_type_id=8`} type="button" className={`text-light btn remove-on-smaller-screen size-market-kiron  ${pathname.includes(`sub_type_id=8`)&& 'btn-warning '} `}onClick={handleMarketChoice}>Over/Under 2.5</Button>
                     </div>
                     <div className="double-chance-market text-center">
 

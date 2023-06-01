@@ -53,11 +53,11 @@ const Standing = () => {
                     {!loading?<table className={"mx-1 table"}>
                         <tbody style={{background:'#fff'}}>
                         <tr className="table-header">
-                            <th className={''}>Position</th>
-                            <th className={''}>Team</th>
-                            <th className={''}>Points</th>
-                            <th className={''} style={{textAlign:'center'}}>Played</th>
-                            <th className={'text-center'}>Form</th>
+                            <th className={'standings-menu'}>Position</th>
+                            <th className={'standings-menu'}>Team</th>
+                            <th className={'standings-menu'}>Points</th>
+                            <th className={'standings-menu'} style={{textAlign:'center'}}>Played</th>
+                            <th className={'standings-menu text-center'}>Form</th>
                         </tr>
                         { standings &&
                             Object.entries(standings).map(([key, standing]) => (

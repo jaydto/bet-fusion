@@ -7,14 +7,9 @@ import makeRequest from "../../../utils/fetch-request";
 import useAnalyticsEventTracker from "../../../analytics/useAnalyticsEventTracker";
 import "./competition.css"
 
-
-
 const KironCompetitions = (props) => {
-    const {playgame}=props;
     let [kiron, setKiron] = useState(getFromLocalStorage('kiron-competitions'));
     const pathLocation=window.location.pathname
-
-    const gaEventTracker = useAnalyticsEventTracker('Navigation');
     const [pathname, setPathname] = useState(() => {
         const searchParams = new URLSearchParams(window.location.search);
         const hasCompetitionId = searchParams.has('competition_id');
@@ -80,7 +75,7 @@ const KironCompetitions = (props) => {
                     {kiron?.map((kiron_options, index) => (
                     <div key={index} className="league-countries">
                         <div className={`country-flag-icon ${(pathname.includes(`competition_id=${kiron_options?.competition_id}`))?' active-league ':" "} justify-content-center`}>
-                            <Link to={`${pathLocation}?competition_id=${kiron_options.competition_id}`}>
+                            <Link to={`${pathLocation=='/bet-history'?'/nare-league':pathLocation}?competition_id=${kiron_options.competition_id}`}>
                                 <span className="icon">
                                    <LazyLoadImage
                                        className=""

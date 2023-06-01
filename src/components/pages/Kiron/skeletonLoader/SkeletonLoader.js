@@ -9,7 +9,7 @@ const SkeletonLoader = () => {
         backgroundImage: "-webkit-linear-gradient(left, #2D4352 0px, #ddd 40px, #2D4352 80px)"
     }
     return (
-        <div className="container skeleton-loader" id="skeleton-loader">
+        <div className=" skeleton-loader" id="skeleton-loader">
             <div className="col-sm-12 col-md-12">
                 <div className="movie--isloading">
                     <div className="loading-content">

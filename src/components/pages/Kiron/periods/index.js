@@ -58,6 +58,7 @@ const KironPeriods= (props) => {
                 setLocalStorage('kiron_first_week', firstItem?.round_number);
                 setLocalStorage('kiron_first_round', firstItem?.round_id);
                 setLocalStorage('kiron_end_time', firstItem?.end_time)
+                dispatch({ type: "SET", key: 'start_fetching_match', payload: true })
             }
             else {
                 fetchData()
@@ -83,6 +84,7 @@ const KironPeriods= (props) => {
                 end:''
             }
             dispatch({ type: "SET", key: 'current_selection_period', payload: payload })
+            dispatch({ type: "SET", key: 'start_fetching_match', payload: true })
             prevNewData.current = initialCompetition;
         }
     }, [initialCompetition]);
@@ -132,6 +134,7 @@ const KironPeriods= (props) => {
 
     useEffect(() => {
         if (isCountdownTimerActive==false) {
+            dispatch({ type: "SET", key: 'start_fetching_match', payload: true })
             dispatch({type: "SET", key: 'close_spinner', payload:false})
             setIsCountdownTimerActive(false)
             dispatch({type: "SET", key: 'playout_data', payload:null})
@@ -351,14 +354,10 @@ const KironPeriods= (props) => {
     }, [isCountdownTimerActive,newCompetition,state?.current_selection_period?.start]);
 
 
-
-
     function getTimeInSeconds(timeString) {
         const [minutes, seconds] = timeString.split(':');
         const secondsArray = seconds.split('0').map(Number);
         const totalSeconds = (secondsArray[1] !== 0 ? secondsArray[1] : secondsArray[0]) ?? Number(seconds);
-
-
         return totalSeconds < 0 ? 0 : totalSeconds;
     }
 
@@ -371,6 +370,7 @@ const KironPeriods= (props) => {
         }
 
         dispatch({ type: "SET", key: 'current_selection_period', payload: payload })
+        dispatch({ type: "SET", key: 'start_fetching_match', payload: true })
 
     }
 
@@ -414,7 +414,7 @@ const KironPeriods= (props) => {
                             const roundId = isFirst ? '' : kiron_options?.round_id;
                             const endTime = isFirst ? '' : kiron_options?.end_time;
                             return (
-                                <td key={index} id={`kiron-period-${index}`} className={` d-flex menu-t sport-check w-100 period-card standings-menu ${pathname === kiron_options.round_id ? " active" : ""}`}
+                                <td key={index} id={`kiron-period-${kiron_options?.round_id}`} className={` d-flex menu-t sport-check w-100 period-card standings-menu ${pathname === kiron_options.round_id ? " active" : ""}`}
                                     style={{textAlign: 'center',lineHeight: '1.5'}}>
                                     <div style={{width:"100%", color:"#000"}} >
                                         <div className={` inner-div active d-flex align-items-center kiron-value flex-column justify-content-center link period-height ${isFirst? timeLeft&&isCountdownTimerActive==false?'count-red':timeAfter&&isCountdownTimerActive==true?'count-green':'':''}`}

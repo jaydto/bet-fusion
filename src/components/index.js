@@ -117,7 +117,6 @@ const Index = () => {
 
     const fetchData = useCallback(async () => {
         // setFetching(true)
-        setScrollEndedActive(true) // todo; additional checks
         let tab = location.pathname.replace("/", "") || 'highlights';
         let betslip = findPostableSlip();
 

@@ -37,7 +37,6 @@ function LinkSelect(props) {
     });
 
     const location = useLocation();
-    const [selectedValue, setSelectedValue] = useState(pathname);
 
     useEffect(() => {
         const searchParams = new URLSearchParams(location.search);
@@ -51,8 +50,7 @@ function LinkSelect(props) {
 
     const handleSelectChange = (event) => {
         const selectedValue = event.target.value
-        setSelectedValue(selectedValue);
-        dispatch({type: "SET", key: "loading", payload:true});
+        dispatch({ type: "SET", key: 'start_fetching_match', payload: true })
         navigate(selectedValue);
     };
 

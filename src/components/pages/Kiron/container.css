@@ -173,6 +173,11 @@
     .kiron-period {
         /* padding: 0 0.6em 0 0.6em; */
         padding-top: 0.2px;
+        height: 41px!important;
+    }
+    .kiron-period {
+        /* padding: 0 0.6em 0 0.6em; */
+        padding-top: 0.2px;
         height: 38px!important;
     }
     .kiron-font-size {

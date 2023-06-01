@@ -4,26 +4,17 @@ import React, {
   useContext,
   useCallback,
   useRef,
-  useLayoutEffect,
-  useMemo,
 } from "react";
 import {Context} from "../../../../context/store";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import "./matches.css";
 import {
-  addToJackpotSlip, addToKironSlip,
-  addToSlip,
-  getBetslip,
-  getKironSlip, removeFromJackpotSlip, removeFromKironSlip, removeFromSlip,
+ addToKironSlip,
+  getKironSlip, removeFromKironSlip,
 } from "../../../utils/betslip";
 
 import "react-lazy-load-image-component/src/effects/blur.css";
 
 import { Spinner } from "react-bootstrap";
-
-import Notify from "../../../utils/Notify";
-import {getTime} from "../periods";
 
 const clean = (_str) => {
   _str = _str.replace(/[^A-Za-z0-9\-]/g, "");

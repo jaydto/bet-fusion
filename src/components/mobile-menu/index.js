@@ -5,12 +5,11 @@ import LiveSvg from "../../assets/img/mobile/live.png";
 import ProfileSvg from "../../assets/img/mobile/user.png";
 
 import makeRequest from "../utils/fetch-request";
-import { Badge, Button, ToastContainer } from "react-bootstrap";
+import { Badge} from "react-bootstrap";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-    faChevronRight,
-    faCoins,
+
     faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -18,12 +17,11 @@ import { Link } from "react-router-dom";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {getJackpotBetslip, getBetslip, getKironSlip} from "../utils/betslip";
 import { Context } from "../../context/store";
-import useWindowDimensions from "../header/Dimensions";
 
 const MobileMenu = (props) => {
 
     const [liveSports, setLiveSports] = useState();
-    const { jackpot, betslipValidationData, jackpotData,kironValidation, kiron} = props;
+    const { jackpot, kiron} = props;
     const [betSlipMobile, setBetSlipMobile] = useState(false);
     const gaEventTracker = useAnalyticsEventTracker("Navigation");
     const pathname = window.location.pathname;
@@ -115,8 +113,6 @@ const MobileMenu = (props) => {
                         pill
                         bg="warning nav__betslip d-flex justify-content-center align-items-center text-dark"
                     >
-
-
                         {/*fixed size 50 for bets clicked*/}
                         {jackpot === true&&jackpot!=undefined||pathname=="/betslip-jackpot"
                             ? getJackpotBetslip() != null

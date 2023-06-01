@@ -33,9 +33,9 @@ const KironPeriods = (props) => {
         clearInterval(timerVar)
         setTimeAfter(null)
         dispatch({type:'SET',key:'timeAfter', payload:null})
-        dispatch({type: "SET", key: 'nareLoading', payload: true})
         dispatch({type: 'SET', key: 'nare_league_matches', payload: null})
         dispatch({type: 'SET', key: 'playout_data', payload: null})
+        dispatch({type: "SET", key: 'nareLoading', payload: true})
         // dispatch({type: 'SET', key: 'periods_data', payload: null})
         setIsCountdownTimerActive(false);
         let endpoint = "/v1/nare-league/periods";
@@ -78,9 +78,7 @@ const KironPeriods = (props) => {
                 dispatch({type: "SET", key: 'start_fetching_match', payload: true})
                 dispatch({type: "SET", key: 'periods_ready', payload: false})
             }else{
-                setTimeout(()=>{
                     dispatch({type: "SET", key: 'nareLoading', payload: false})
-                },3)
 
             }
         }

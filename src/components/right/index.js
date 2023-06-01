@@ -23,7 +23,7 @@ const AlertMessage = (props) => {
 }
 
 const Right = (props) => {
-    const {jackpot, betslipValidationData, jackpotData, kiron, kironValidation,test} = props;
+    const {jackpot, betslipValidationData, jackpotData, kiron,test} = props;
     const [betSlipMobile, setBetSlipMobile] = useState(false)
 
     return (
@@ -55,7 +55,7 @@ const Right = (props) => {
                             X
                         </button>
                         <div id="betslip" className="betslip">
-                            {kiron==true?<Kironslip kironValidation={kironValidation} kiron={kiron} />
+                            {kiron==true?<Kironslip  kiron={kiron} />
                                 :<BetSlip jackpot={jackpot} betslipValidationData={betslipValidationData}
                                           jackpotData={jackpotData} />}
 
@@ -89,7 +89,7 @@ const Right = (props) => {
 
                 className={`${betSlipMobile ? 'd-none' : 'd-block'} tablet-only fixed-bottom text-center text-white bg-info bet-slip-footer-toggle`}>
 
-                <MobileMenu jackpot={jackpot} betslipValidationData={betslipValidationData} jackpotData={jackpotData} kironValidation={kironValidation} kiron={kiron}/>
+                <MobileMenu jackpot={jackpot} betslipValidationData={betslipValidationData} jackpotData={jackpotData}  kiron={kiron}/>
             </div>
         </div>
     )

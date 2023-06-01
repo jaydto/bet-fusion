@@ -303,33 +303,6 @@ const KironslipSubmitForm = (props) => {
         });
     }, []);
 
-    // const showRemoveExpired= useCallback(() =>{
-    //     let  betslips= getKironSlip()||{}
-    //
-    //    const data= Object.entries(betslips).map(([match_id, match]) => {
-    //         let start_time=match?.start_time
-    //         console.log("diff_match_end_start_time",match)
-    //         let gettime = getTime(start_time)
-    //         console.log("diff_match_end_time",gettime)
-    //         let timePeriod = new Date(Date.parse(`${new Date().toDateString()} ${gettime}`));
-    //         let firstRound = timePeriod.getTime();
-    //         let now = new Date().getTime();
-    //         let diff = (firstRound - now);
-    //         let initialTime = Math.floor(diff / 1000);
-    //         let parent_match_id=match?.parent_match_id
-    //        return initialTime
-    //
-    //     });
-    //
-    //     let expired=[]
-    //     expired.push(...data)
-    //     const status=expired.some(exp=>exp<10
-    //     )
-    //
-    //     setShowExpired(status)
-    //
-    //
-    // },[]);
 
     const showRemoveExpired = useCallback(() => {
         let betslips = getKironSlip() || {};

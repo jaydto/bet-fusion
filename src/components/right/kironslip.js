@@ -16,7 +16,7 @@ const clean_rep = (str) => {
 };
 
 const KironSlip = (props) => {
-    const { kiron,kironValidation } = props;
+    const { kiron } = props;
     const [betslipKey, setBetslipKey] = useState("kironbetslip");
     const [betslipsData, setBetslipsData] = useState(null);
     const [state, dispatch] = useContext(Context);
@@ -303,7 +303,6 @@ const KironSlip = (props) => {
             <div className="bottom">
                 <KironslipSubmitForm
                     setExpired={setExpired}
-                    kironValidation={kironValidation}
                     kiron={kiron}
                     totalOdds={totalOdds}
                     betslip={betslipsData}

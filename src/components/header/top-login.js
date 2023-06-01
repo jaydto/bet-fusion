@@ -26,7 +26,7 @@ export const  Notify = (message) => {
         toast.success(`🚀 ${message.message}`, options);
     } else {
         toast(<div className={"d-flex"}>
-            <img src={fire} alt="" height="24px"/>
+            <img src={fire} alt="" style={{height:"20px", width:'26px'}} />
             <span>
                 {message.message}
             </span>

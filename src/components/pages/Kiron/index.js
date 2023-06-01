@@ -1,13 +1,12 @@
 import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
 import Header from "../../header/header";
 import KironTabs from "./KironTabs/KironTabs";
-import logo from "../../../assets/img/Logo.webp";
 import KironCompetitions from "./competitions/KironCompetitions";
 import MatchList from "./matches";
 import makeRequest from "../../utils/fetch-request";
 
 import {Context} from "../../../context/store";
-import {Link, useLocation, useNavigate} from "react-router-dom";
+import { useLocation} from "react-router-dom";
 import KironPeriods from "./periods";
 import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
 
@@ -26,7 +25,6 @@ const TestKiron = () => {
     const [state, dispatch] = useContext(Context)
     const [tab, setTab] = useState('kiron')
     const [fetching, setFetching] = useState(false)
-    const [kironValidation, setKironValidation] = useState();
     const [playout, setPlayout] = useState(null)
 
     let endpoint = "/v1/nare-league/matches"
@@ -89,8 +87,9 @@ const TestKiron = () => {
                 dispatch({type: "SET", key: 'nareLoading', payload: false})
                 dispatch({type: 'SET', key: 'nare_league_matches', payload: null})
             }
-            if (!state?.inPlay&&state?.start_fetching_match&&!state?.periods_ready) {
+            else if(!state?.inPlay&&state?.start_fetching_match&&!state?.periods_ready) {
                 dispatch({type: 'SET', key: 'nare_league_matches', payload: null})
+                dispatch({type: "SET", key: 'nareLoading', payload: true})
                 fetchData();
             }
 
@@ -118,7 +117,6 @@ const TestKiron = () => {
             market_id: new URL(window.location).searchParams.get('sub_type_id'),
             round_id:state?.current_selection_period?.round
         }
-        console.log("selectionA",marketsChoice)
 
         const kiron_data = new URL(window.location).searchParams.get('sub_type_id')?marketsChoice: data || newData
 
@@ -174,10 +172,10 @@ const TestKiron = () => {
             new_tab = ("results")
 
         }
-        if (window.location.href.includes("standing")) {
+        else if (window.location.href.includes("standing")) {
             new_tab = ('standing')
         }
-        if (window.location.href.includes("bet-history")) {
+        else if (window.location.href.includes("bet-history")) {
             new_tab = ('bet-history')
         }
 
@@ -186,7 +184,7 @@ const TestKiron = () => {
             dispatch({type: "SET", key: 'nareLoading', payload: false})
         }
 
-    })
+    },[window.location.pathname])
 
 
     return (
@@ -232,7 +230,7 @@ const TestKiron = () => {
                                     </>
                                 }
                             </div>
-                            <Right kiron={true} kironValidation={kironValidation} nareleague={true}/>
+                            <Right kiron={true} nareleague={true}/>
 
                         </div>
                     </div>

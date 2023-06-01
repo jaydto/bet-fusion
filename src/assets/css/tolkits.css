@@ -3167,9 +3167,8 @@ h2,
     font-size: 20px;
 }
 
-h3,
-.da {
-    font-size: 24px;
+h3, .da {
+    font-size: 20px;
 }
 
 h4,
@@ -16649,6 +16648,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     font-size: 14px;
     text-transform: uppercase;
     background: #527994;
+    color: var(--dark);
 }
 
 .input-square {

@@ -9,7 +9,7 @@ import LinkSelect from "../../../utils/options";
 import {Context} from "../../../../context/store";
 
 
-const KironMoreMarkets= (props) => {
+const KironMoreMarkets= () => {
     const [options, setOptions] = useState(getFromLocalStorage('kiron-more'));
     const [state,dispatch]=useContext(Context)
 
@@ -78,12 +78,7 @@ const KironMoreMarkets= (props) => {
         // dispatch({ type: "SET", key: 'marketActive', payload:market })
         dispatch({ type: "SET", key: 'start_fetching_match', payload: true })
     }
-    // useEffect(()=>{
-    //     if(state?.marketActive){
-    //
-    //     }
-    //
-    // },[state?.marketActive])
+
 
     return (
         options&&

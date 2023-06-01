@@ -3,8 +3,6 @@ import makeRequest from "../utils/fetch-request";
 import {addToSlip} from "../utils/betslip";
 import Notify from "../utils/Notify";
 import {Spinner} from "react-bootstrap";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faShare} from "@fortawesome/free-solid-svg-icons";
 import {setLocalStorage} from "../utils/local-storage";
 
 
@@ -37,7 +35,7 @@ const DecodeCode = () => {
         await makeRequest({url: endpoint, method: "POST", data: data}).then(([status, result]) => {
 
 
-            if (status == 200) {
+            if (status === 200) {
                 Object.entries(result?.success).map(([match_id, match]) => {
                     match.live = Number(match?.live) !== 0
                     match.bet_type = String(match?.bet_type)
@@ -88,7 +86,7 @@ const DecodeCode = () => {
                                              style={{whiteSpace: "nowrap"}}>
                                             <div className=" d-flex align-items-start">
                                                 <button type={"button"} onClick={() => handleslip(code)}
-                                                        className='btn btn-lg  w-100 deposit-withdraw-button text-white d-flex align-items-center justify-content-center'
+                                                        className='btn btn-lg  w-100 deposit-withdraw-button  d-flex align-items-center justify-content-center'
                                                         style={{backgroundColor: "#FFC107", borderRadius: "0.3rem"}}>
                                                     <strong>
                                                         LOAD SLIP

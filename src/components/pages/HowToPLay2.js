@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState, useContext } from "react";
+import React, {  useEffect,  useContext } from "react";
 
 import {
     Accordion,
@@ -9,12 +9,8 @@ import {
 } from "react-accessible-accordion";
 import "react-accessible-accordion/dist/fancy-example.css";
 import '../test.css'
-import makeRequest from "../utils/fetch-request";
-import { getFromLocalStorage, setLocalStorage } from "../utils/local-storage";
-
 import {getBetslip} from '../utils/betslip' ;
 import {Context} from '../../context/store';
-import {AccordionButton} from "react-bootstrap";
 import useWindowDimensions from "../header/Dimensions";
 
 const Header = React.lazy(() => import("../header/header"));
@@ -23,7 +19,6 @@ const SideBar = React.lazy(() => import("../sidebar/awesome/Sidebar"));
 const Right = React.lazy(() => import("../right/index"));
 
 const  HowToPlay= (props) => {
-    const {height, width} = useWindowDimensions();
 
     const [state, dispatch] = useContext(Context);
 
@@ -153,7 +148,7 @@ const  HowToPlay= (props) => {
                                                         </AccordionItemButton>
                                                     </AccordionItemHeading>
                                                     <AccordionItemPanel className="accordion-item-panel px-2 py-1">
-                                                        <h3>
+                                                        <h3 className={'p-3'}>
                                                             How do I deposit cash into my BetNare account?
                                                         </h3>
                                                         <p className={"px-2"}>

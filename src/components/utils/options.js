@@ -5,8 +5,7 @@ import {getFromLocalStorage} from "./local-storage";
 import {Context} from "../../context/store";
 
 export function LinkOption(props) {
-    const {to,pathname, children, ...rest} = props;
-
+    const {to, pathname, children, ...rest} = props;
 
 
     return (
@@ -18,7 +17,7 @@ export function LinkOption(props) {
 }
 
 function LinkSelect(props) {
-    const { options, ...rest } = props;
+    const {options, ...rest} = props;
     const navigate = useNavigate();
     const [state, dispatch] = useContext(Context);
 
@@ -47,62 +46,46 @@ function LinkSelect(props) {
     }, [location.search]);
 
 
-
     const handleSelectChange = (event) => {
         const selectedValue = event.target.value
-        dispatch({ type: "SET", key: 'start_fetching_match', payload: true })
-        // dispatch({ type: "SET", key: 'marketActive', payload:new URL(window.location).searchParams.get('sub_type_id') })
+        dispatch({type: "SET", key: 'start_fetching_match', payload: true})
         navigate(selectedValue);
     };
-    // useEffect(()=>{
-    //     if(state?.marketActive){
-    //
-    //     }
-    //
-    // },[state?.marketActive])
 
     const showOptions = () => {
         const matchingOption = options.find(option => option.to === pathname.split('?')[1]);
 
-        const matchingOptionLabel = matchingOption ? matchingOption  : {
+        const matchingOptionLabel = matchingOption ? matchingOption : {
             "to": "Select Market",
             "label": "More Markets"
         };
 
         const otherOptions = options.filter(option => option.to !== pathname.split('?')[1]);
 
-        const optionLabels = [matchingOptionLabel , ...otherOptions.map(option => ({
+        const optionLabels = [matchingOptionLabel, ...otherOptions.map(option => ({
             to: option.to,
             label: option.label
         }))];
 
         return optionLabels.map((option, index) => (
-            <LinkOption key={index} to={`${option.to}`} pathname={pathname} className={`btn `}>
+            <LinkOption key={index} to={`${option.to}`} pathname={pathname} className={`btn more-market-button `}>
                 {option.label}
             </LinkOption>
         ));
     };
 
 
-
-
     return (
         <Form.Select
             {...rest}
-            value={`/nare-league=${pathname?pathname:'Select Market'}`}
-            className={`btn ${options.filter((option)=> {
-                   return  option.to === pathname.split('?')[1]
+            value={`/nare-league=${pathname ? pathname : 'Select Market'}`}
+            className={`btn ${options.filter((option) => {
+                    return option.to === pathname.split('?')[1]
                 }
-                
-            ).length>0&&' opt-color' } text-light px-4`}
+            ).length > 0 && ' opt-color'} more-market-button px-4`}
             onChange={handleSelectChange}
-            style={{ fontSize: '12px' }}
+            style={{fontSize: '12px'}}
         >
-            {/*{options.map((option, index) => (*/}
-            {/*    <LinkOption key={index} to={option.to} pathname={pathname}  className={`btn ${pathname.includes(`${option.to}`)&&' opt-color    '}`}>*/}
-            {/*        /!*{options.filter((option)=>option.to==pathname.split('?')[1])?options.filter((option)=>option.to==pathname.split('?')[1])[0].label:option.label}*!/*/}
-            {/*    </LinkOption>*/}
-            {/*))}*/}
             {showOptions()}
         </Form.Select>
     );

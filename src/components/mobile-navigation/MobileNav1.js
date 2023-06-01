@@ -3,7 +3,6 @@ import {
     Link
 } from "react-router-dom";
 
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import promo from "../../../src/assets/img/mobile/fire.png";
 import jackpot from "../../../src/assets/img/mobile/jackpot.png";
@@ -22,7 +21,7 @@ import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import { Context } from '../../context/store';
 import LoginModal from '../modals/LoginModal';
 
-const MobileNav1 = (props) => {
+const MobileNav1 = () => {
     const [showLoadingModal, setShowLoadingModal] = useState(false);
 
     const [state, dispatch] =useContext(Context)
@@ -46,7 +45,6 @@ const MobileNav1 = (props) => {
             if (c_status === 200) {
                 // setSport(c_result);
                 dispatch({type:"SET", key: "sport", payload: c_result})
-
 
                 setLocalStorage('categories', c_result);
 
@@ -87,14 +85,14 @@ const MobileNav1 = (props) => {
     }
 
     const LoginCheck = (game) => {
-        if(game == "JetX"){
+        if(game === "JetX"){
             if(state?.user !== null){
              window.location.href = "/smart-play?game=JetX&category=JetX" }
             else {
                 setLocalStorage("ActiveLink",'/smart-play?game=JetX&category=JetX')
                 window.location.href='/login'
             }
-        }else if(game=='spaceman'){
+        }else if(game==='spaceman'){
             if(state?.user !== null){
                 window.location.href = "/gameplay/1301/1"
             } else{
@@ -118,7 +116,7 @@ const MobileNav1 = (props) => {
         <table className="menu-table" style={{width: "100%", textAlign: "center", marginLeft:"-9px"}}>
             <tbody>
             <tr className={"tr-style mobile-nav-top"} ref={scrollContainerRef}>
-                <td  className={`menu-t  sport-check  ${pathname===`/`||pathname=='/highlights'||pathname=='/tomorrow'||pathname=='/countries'||pathname=='/upcoming'?"active_link":""}`}  >
+                <td  className={`menu-t m-auto   sport-check  ${pathname===`/`||pathname==='/highlights'||pathname==='/tomorrow'||pathname==='/countries'||pathname==='/upcoming'?"active_link":""}`}  >
                     <Link className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center  `} onClick={() => gaEventTracker('Visit Home Page')}  to={`/`}   >
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center`}>
                             {/* {console.log('all sports',allsports.sport_name)} */}
@@ -179,7 +177,7 @@ const MobileNav1 = (props) => {
 
                 </td>
 
-                <td  className={`menu-t sport-check ${pathname===`/casino`? " active_link":""} `}  >
+                <td  className={`menu-t m-auto sport-check ${pathname===`/casino`? " active_link":""} `}  >
                     <Link className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center `}  to={`#`}  onClick={()=>{LoginCheck('casino');gaEventTracker('Visit Casino Page')}}>
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
 
@@ -313,7 +311,7 @@ const MobileNav1 = (props) => {
 
 
                     return allsports.sport_id !== 79 && (
-                        <td key={index} className={`menu-t m-auto sport-check ${state?.active_sport==allsports.sport_id ? 'active_link' : ''}`} >
+                        <td key={index} className={`menu-t m-auto sport-check ${state?.active_sport===allsports.sport_id ? 'active_link' : ''}`} >
                             <Link className={`inner-div more-sports cg ox anl url-link d-flex flex-column align-items-center `} onClick={() => gaEventTracker(`Visit ${state?.active_sport}/${state?.active_sport_name}  Page`)} to={`/highlights?sport_id=${allsports.sport_id}&sub_type_id=${getDefaultMarketsForSport(allsports)}&sport_name=${allsports.sport_name}`}>
                                 <div className="inner-div cg ox anl url-link d-flex flex-column align-items-center">
                                     <div className="menu-img">

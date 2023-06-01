@@ -179,7 +179,10 @@ export default function MatchesList() {
                             </div>
                         </div>
                     </div>
-                    <Right/>
+                    <div className={'ipad-show'}>
+                        <Right/>
+                    </div>
+
                 </div>
             </div>
             <div className={"footer-mobile-none"}>

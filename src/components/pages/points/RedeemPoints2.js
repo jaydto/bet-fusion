@@ -102,7 +102,7 @@ const RedeemPoints= props => {
                 <div className="form-group row d-flex justify-content-left mb-4">
                     <div className="col">
                         <button
-                            className='btn btn-lg btn-primary mt-5 col-md-12 deposit-withdraw-button text-light'>
+                            className='btn btn-lg btn-primary mt-5 col-md-12 deposit-withdraw-button '>
                             Redeem Points
                         </button>
                     </div>

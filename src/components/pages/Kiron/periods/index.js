@@ -244,7 +244,7 @@ const KironPeriods = (props) => {
             }
 
         }
-        console.log("Current selection",state?.current_selection_period)
+
         if (state?.current_selection_period?.start > 0) {
             dispatch({type: "SET", key: "inPlay", payload: false});
             dispatch({type: "SET", key: 'close_spinner', payload: false})

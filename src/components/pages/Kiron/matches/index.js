@@ -502,7 +502,6 @@ const MatchList = (props) => {
     fetching,
     competition_id
   } = props;
-  {console.log("nareMatch",state?.nare_league_matches)}
 
   return (
       <div className="matches full-width table table-striped">

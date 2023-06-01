@@ -121,7 +121,7 @@ const MobileMenu = (props) => {
                         {jackpot === true&&jackpot!=undefined||pathname=="/betslip-jackpot"
                             ? getJackpotBetslip() != null
                                 ? <strong>{Object.keys(getJackpotBetslip())?.length}</strong>
-                                : <strong>0</strong>
+                                : <strong className={'bold'}>0</strong>
                             :kiron==true||pathname=="/betslip-nare"?getKironSlip()!=null?
                               Object.keys(getKironSlip()).length:<strong>0</strong>
                                 : getBetslip()

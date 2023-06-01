@@ -25,7 +25,9 @@
 }
 
 .opt-color{
-    background: #ffc107!important;
+    background: var(--betnare-button-login)!important;
+    color:var(--dark) !important;
+    font-weight: bold;
 }
 .menu-t div.inner-div {
     /* background-color: #2D4352; */
@@ -270,6 +272,14 @@
 .top-counter{
     background-color: red;
     color: white;
+}
+.kiron-more-button-color{
+    background: var(--betnare-button-login)!important;
+    color:var(--dark)!important;
+    font-weight:bold;
+}
+.more-market-button{
+    color:var(--light)
 }
 .kiron-extra{
     color: #fff;

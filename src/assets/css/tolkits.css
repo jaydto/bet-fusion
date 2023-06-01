@@ -899,8 +899,11 @@ header, li a, .thedate span {
 
 .picked .theodds,
 .picked .mobi-odd {
-    color: #fff;
+    color: var(--dark);
     padding: 0px;
+}
+.button-text-color-on-yellow{
+    color:var(--dark)
 }
 
 .matches .top-matches.match {
@@ -2221,11 +2224,13 @@ events-header {
     background: #FFC428 !important;
     color: var(--dark)!important;
 }
-
+.text-weight-md{
+    font-weight:600;
+}
 @media (hover: hover) {
-    .top-matches button:hover {
-        background: #FFC428 !important;
-    }
+    /*.top-matches button:hover {*/
+    /*    background: #FFC428 !important;*/
+    /*}*/
 }
 
 .mobi .draw {
@@ -7571,9 +7576,9 @@ ul.sport {
 }
 
 @media (hover: hover) {
-    .top-matches button:hover {
-        background: #ffc428 !important;
-    }
+    /*.top-matches button:hover {*/
+    /*    background: #ffc428 !important;*/
+    /*}*/
 }
 
 /*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.bu */

@@ -59,7 +59,8 @@ const KironPeriods = (props) => {
                 setLocalStorage('kiron_first_week', firstItem?.round_number);
                 setLocalStorage('kiron_first_round', firstItem?.round_id);
                 setLocalStorage('kiron_end_time', firstItem?.end_time)
-                dispatch({type: "SET", key: 'start_fetching_match', payload: true})
+                dispatch({type: "SET", key: 'nare_league_matches', payload: null})
+                dispatch({type: "SET", key: 'periods_ready', payload: true})
             } else {
                 fetchData()
             }
@@ -67,6 +68,15 @@ const KironPeriods = (props) => {
         })
 
     }, []);
+    useEffect(()=>{
+        if(state?.periods_ready){
+            if(!state?.inPlay){
+                dispatch({type: "SET", key: 'start_fetching_match', payload: true})
+                dispatch({type: "SET", key: 'periods_ready', payload: false})
+            }
+        }
+
+    },[state?.periods_ready])
 
     const prevNewData = useRef(initialCompetition);
 

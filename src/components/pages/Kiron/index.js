@@ -95,7 +95,7 @@ const TestKiron = () => {
 
         }
 
-    }, [ window.location.pathname,state?.start_fetching_match]);
+    }, [ state?.start_fetching_match]);
 
 
     const fetchData = useCallback(async () => {

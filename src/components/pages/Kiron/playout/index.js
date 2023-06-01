@@ -19,7 +19,7 @@ const KironPlayouts = (props) => {
         round_id: kironSearchRoundId
     });
 
-    const gfetchData = useCallback(async () => {
+    const fetchData = useCallback(async () => {
         setSuccess(false)
 
         endpoint = endpoint.replaceAll(" ", '')

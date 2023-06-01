@@ -848,9 +848,6 @@ header, li a, .thedate span {
     min-width: 100%;
     text-align: left;
 }
-.match-detail button .label {
-    color: #fff !important;
-}
 
 .yellow {
     background-color: #ffc428;
@@ -954,9 +951,11 @@ header, li a, .thedate span {
 .match .odd-value {
     color: #ffffff !important;
 }
-
+.picked .blueish{
+    color: var(--dark) !important;
+}
 .picked .odd-value {
-    color: #fff !important;
+    color: var(--dark) !important;
 }
 
 .events-header {
@@ -1923,6 +1922,7 @@ events-header {
     font-weight: inherit;
     font-size: inherit;
     line-height: 1.7;
+    font-weight: 800;
 }
 
 

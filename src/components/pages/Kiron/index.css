@@ -160,9 +160,11 @@
 }
 #game_week{
     color:#fff!important;
+    font-weight:900;
 }
 #count-down{
-    color:#fff!important
+    color:#fff!important;
+    font-weight:900;
 }
 .kiron-playout-score-display{
     display: flex;

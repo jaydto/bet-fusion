@@ -32,6 +32,7 @@ const KironPeriods = (props) => {
     const fetchData = useCallback(async () => {
         clearInterval(timerVar)
         setTimeAfter(null)
+        dispatch({type:'SET',key:'timeAfter', payload:null})
         dispatch({type: "SET", key: 'nareLoading', payload: true})
         dispatch({type: 'SET', key: 'nare_league_matches', payload: null})
         dispatch({type: 'SET', key: 'playout_data', payload: null})
@@ -47,6 +48,7 @@ const KironPeriods = (props) => {
             if (c_status === 200) {
 
                 setTimeAfter(null)
+                dispatch({type:'SET',key:'timeAfter', payload:null})
                 setIsCountdownTimerActive(false)
                 dispatch({type: "SET", key: 'periods_data', payload: c_result})
 
@@ -119,6 +121,7 @@ const KironPeriods = (props) => {
         if (initialCompetition?.competition_id !== competition1) {
 
             setTimeAfter(null)
+            dispatch({type:'SET',key:'timeAfter', payload:null})
             // setIsCountdownTimerActive(false)
             // todo check if i should have in play false at this point
             dispatch({type: "SET", key: "inPlay", payload: false});
@@ -301,6 +304,7 @@ const KironPeriods = (props) => {
 
                 if (seconds < 90) {
                     dispatch({type: "SET", key: 'start_playout', payload: null})
+                    dispatch({type:'SET',key:'timeAfter', payload:seconds})
                     setTimeAfter(seconds)
                     setPlayout(seconds)
 
@@ -319,12 +323,12 @@ const KironPeriods = (props) => {
                     setTimeout(() => {
                         dispatch({type: "SET", key: 'periods_first', payload: null})
                         setTimeAfter(null)
+                        dispatch({type:'SET',key:'timeAfter', payload:null})
                         setIsCountdownTimerActive(false);
-                        setTimeAfter(null)
                         dispatch({type: "SET", key: 'Ended', payload: null})
                         dispatch({type: "SET", key: "inPlay", payload: false});
                         dispatch({type: "SET", key: 'playout_data', payload: null})
-                        dispatch({type: "SET", key: 'periods_data', payload: null})
+                        // dispatch({type: "SET", key: 'periods_data', payload: null})
                         fetchData()
 
                     }, 5000);
@@ -404,6 +408,7 @@ const KironPeriods = (props) => {
                         // setInPlay(false)
                         dispatch({type: "SET", key: "inPlay", payload: false});
                         setTimeAfter(false)
+                        dispatch({type:'SET',key:'timeAfter', payload:false})
                         setIsCountdownTimerActive(false)
                         fetchData()
 

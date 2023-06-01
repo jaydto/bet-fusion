@@ -197,6 +197,11 @@ input.text-white{
     display: none !important;
 }
 
+.top-matches button.picked {
+    background: #FFC428 !important;
+    color: var(--dark)!important;
+    font-size: 12px;
+}
 
 /*.banner-img{*/
 /*    background-image:url('../../assets/img/auth/img-17.webp')!important;*/
@@ -745,6 +750,8 @@ input[type="radio"], input[type="checkbox"] {
     .login-top{
         margin-top:10px;
     }
+
+
     #jp-nare-pick-button{
         margin-left:-38px;
     }
@@ -1268,6 +1275,14 @@ input[type="radio"], input[type="checkbox"] {
     }
 }
 @media (min-width:768px){
+    .matches .top-matches .match-detail .all-markets {
+        font-size: 12px;
+    }
+    .top-matches button.picked {
+        background: #FFC428 !important;
+        color: var(--dark)!important;
+        font-size: 12px;
+    }
     .amt {
         margin-top: 100px!important;
     }
@@ -1306,6 +1321,9 @@ input[type="radio"], input[type="checkbox"] {
     }
 }
 @media (max-width: 767px){
+    .matches .top-matches .match-detail .all-markets {
+        font-size: 12px;
+    }
     .mybets-details {
         background: var(--mybets-slip);
         padding: 13px!important;

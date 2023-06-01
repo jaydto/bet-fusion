@@ -29,7 +29,7 @@ const CarouselLoader = (props) => {
 
     return (
         <Carousel indicators={false}>
-            {banners.map((banner, idx) => (
+            {banners?.map((banner, idx) => (
                 <Carousel.Item key={idx}>
                     <LazyLoadImage
                         title={banner?.title}

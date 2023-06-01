@@ -31,7 +31,7 @@ const Betslip = (props) => {
                     <span className="col-sm-2 bkmrk d-none">
                         <i className="fa fa-bookmark" aria-hidden="true"></i></span>
                                 <span className="col-sm-8 slp">BETSLIP</span>
-                                <span className="col-sm-2 slip-counter text-white">
+                                <span className="col-sm-2 slip-counter ">
                                      <Badge pill bg="dark">
                                       {betslipValidationData?.length || 0}
                                       </Badge>

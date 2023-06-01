@@ -32,10 +32,10 @@ const KironPeriods = (props) => {
     const fetchData = useCallback(async () => {
         clearInterval(timerVar)
         setTimeAfter(null)
-        // dispatch({type: "SET", key: 'nareLoading', payload: true})
+        dispatch({type: "SET", key: 'nareLoading', payload: true})
         dispatch({type: 'SET', key: 'nare_league_matches', payload: null})
         dispatch({type: 'SET', key: 'playout_data', payload: null})
-        dispatch({type: 'SET', key: 'periods_data', payload: null})
+        // dispatch({type: 'SET', key: 'periods_data', payload: null})
         setIsCountdownTimerActive(false);
         let endpoint = "/v1/nare-league/periods";
         let method = "POST"
@@ -75,6 +75,11 @@ const KironPeriods = (props) => {
                 dispatch({type: "SET", key: 'inPlay', payload: false})
                 dispatch({type: "SET", key: 'start_fetching_match', payload: true})
                 dispatch({type: "SET", key: 'periods_ready', payload: false})
+            }else{
+                setTimeout(()=>{
+                    dispatch({type: "SET", key: 'nareLoading', payload: false})
+                },3)
+
             }
         }
 
@@ -107,7 +112,6 @@ const KironPeriods = (props) => {
             start: '', round: '', end: ''
         }
         dispatch({type: "SET", key: 'current_selection_period', payload: payload})
-        //
 
         const kironSearch = getFromLocalStorage('kiron_search_data') || {}; // Use empty object as default value if kiron_search_data is null or undefined
         const competition1 = new URL(window.location).searchParams.get('competition_id') || kironSearch?.competition_id || '2'
@@ -163,7 +167,6 @@ const KironPeriods = (props) => {
 
             return
         }
-
 
         let firstRound = Date.parse(timeLocal)
 
@@ -236,41 +239,7 @@ const KironPeriods = (props) => {
         timerInterval = setInterval(timeBefore, 1000);
 
         return () => clearInterval(timerInterval);
-    }, [getFromLocalStorage('kiron_search_data')?.competition_id, state?.current_selection_period?.start, state?.periods_first ?? getFromLocalStorage("kiron_first_period"), isCountdownTimerActive]);
-
-
-    useEffect(() => {
-        if (state?.current_selection_period!=undefined){
-            if(state?.current_selection_period?.start!=''){
-                dispatch({ type: "SET", key: 'start_fetching_match', payload: true })
-            }
-
-        }
-
-        if (state?.current_selection_period?.start > 0) {
-            dispatch({type: "SET", key: "inPlay", payload: false});
-            dispatch({type: "SET", key: 'close_spinner', payload: false})
-
-        }
-        else if (state?.current_selection_period?.start.length == 0) {
-            const kiron_end = getFromLocalStorage('kiron_end_time')
-            const kiron_start = state?.periods_first ?? getFromLocalStorage("kiron_first_period")
-
-            let sTime = Date.parse(kiron_start)
-            let eTime = Date.parse(kiron_end)
-            let now = new Date().getTime();
-
-            if (sTime <= now && now < eTime) {
-                dispatch({type: "SET", key: "inPlay", payload: true});
-            } else if (sTime > now && now < eTime) {
-                dispatch({type: "SET", key: "inPlay", payload: false});
-
-            }
-
-        }
-
-    }, [state?.current_selection_period])
-
+    }, [getFromLocalStorage('kiron_search_data')?.competition_id, state?.current_selection_period?.start, state?.periods_first ?? getFromLocalStorage("kiron_first_period"), isCountdownTimerActive,state?.periods_data]);
 
     useEffect(() => {
 
@@ -355,6 +324,7 @@ const KironPeriods = (props) => {
                         dispatch({type: "SET", key: 'Ended', payload: null})
                         dispatch({type: "SET", key: "inPlay", payload: false});
                         dispatch({type: "SET", key: 'playout_data', payload: null})
+                        dispatch({type: "SET", key: 'periods_data', payload: null})
                         fetchData()
 
                     }, 5000);
@@ -364,8 +334,45 @@ const KironPeriods = (props) => {
 
             return () => clearInterval(timerVar);
         }
-    }, [isCountdownTimerActive, newCompetition, state?.current_selection_period?.start]);
+    }, [isCountdownTimerActive, newCompetition, state?.current_selection_period?.start,state?.periods_data]);
 
+    useEffect(() => {
+        if (state?.current_selection_period!=undefined){
+            if(state?.current_selection_period?.start!=''){
+                dispatch({ type: "SET", key: 'start_fetching_selection', payload: true })
+            }
+
+        }
+        if (state?.current_selection_period?.start > 0) {
+            dispatch({type: "SET", key: "inPlay", payload: false});
+            dispatch({type: "SET", key: 'close_spinner', payload: false})
+
+        }
+        else if (state?.current_selection_period?.start.length == 0) {
+            const kiron_end = getFromLocalStorage('kiron_end_time')
+            const kiron_start = state?.periods_first ?? getFromLocalStorage("kiron_first_period")
+
+            let sTime = Date.parse(kiron_start)
+            let eTime = Date.parse(kiron_end)
+            let now = new Date().getTime();
+
+            if (sTime <= now && now < eTime) {
+                dispatch({type: "SET", key: "inPlay", payload: true});
+            } else if (sTime > now && now < eTime) {
+                dispatch({type: "SET", key: "inPlay", payload: false});
+
+            }
+
+        }
+
+    }, [state?.current_selection_period])
+
+    useEffect(()=>{
+        if(state?.start_fetching_selection){
+            dispatch({ type: "SET", key: 'start_fetching_match', payload: true })
+            dispatch({ type: "SET", key: 'start_fetching_selection', payload: false})
+        }
+    },[state?.start_fetching_selection])
 
     function getTimeInSeconds(timeString) {
         const [minutes, seconds] = timeString.split(':');

@@ -112,12 +112,15 @@ const TestKiron = () => {
         }
 
         let data = getFromLocalStorage('kiron_search_data')
+        console.log("selection",state?.current_selection_period?.round)
         const marketsChoice={
             competition_id: data?.competition_id ||newData?.competition_id,
             market_id: new URL(window.location).searchParams.get('sub_type_id'),
+            round_id:state?.current_selection_period?.round
         }
+        console.log("selectionA",marketsChoice)
 
-        const kiron_data = marketsChoice ||data || newData
+        const kiron_data = new URL(window.location).searchParams.get('sub_type_id')?marketsChoice: data || newData
 
 
         await makeRequest({url: endpoint, method: "POST", data: kiron_data}).then(([status, result]) => {
@@ -126,10 +129,7 @@ const TestKiron = () => {
                 dispatch({type: "SET", key: 'start_fetching_match', payload: false})
                 setFetching(false)
                 dispatch({type: "SET", key: 'nareLoading', payload: false})
-                // if (result?.event_time) {
-                //     setLoading(false)
-                //     setKironValidation(result?.slip_data)
-                // }
+
             }
         });
 

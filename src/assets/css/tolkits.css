@@ -1173,7 +1173,7 @@ button {
 
 .slip-counter {
     text-align: center;
-    color: #000;
+    color: var(--dark);
     font-size: 20px;
     padding: 5px;
 }
@@ -7355,7 +7355,7 @@ ul.sport {
     .slip-counter {
         background: #bc1b56;
         text-align: center;
-        color: #fff;
+        color: var(--dark);
         font-size: 20px;
         padding: 0 5px;
         display: inline-block;
@@ -8039,7 +8039,7 @@ ul.sport {
     .slip-counter {
         background: #bc1b56;
         text-align: center;
-        color: #fff;
+        color: var(--dark);
         font-size: 20px;
         padding: 0 5px;
         display: inline-block;

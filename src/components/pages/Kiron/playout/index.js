@@ -15,16 +15,16 @@ const KironPlayouts = (props) => {
     let endpoint = "/v1/nare-league/live"
     let timeVar;
 
-    const [newData, setNewData] = useState({
-        round_id: kironSearchRoundId
-    });
 
     const fetchData = useCallback(async () => {
         setSuccess(false)
+        dispatch({type: 'SET', key: 'playout_data', payload: null})
 
         endpoint = endpoint.replaceAll(" ", '')
 
-        const kiron_data = newData
+        const kiron_data = {
+            round_id: kironSearchRoundId
+        }
 
         await makeRequest({url: endpoint, method: "POST", data: kiron_data}).then(([status, result]) => {
             if (status == 200) {
@@ -42,6 +42,8 @@ const KironPlayouts = (props) => {
         if(state?.start_playout|| !state?.Ended){
             if(!state?.periods_ready){
                 fetchData();
+            }else{
+                dispatch({type: "SET", key: 'inPlay', payload: false})
             }
 
         }

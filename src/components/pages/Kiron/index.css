@@ -283,7 +283,8 @@
 }
 
 .more-market-button{
-    color:var(--light)
+    color:var(--light);
+    font-weight:800;
 }
 .more-market-button:hover{
     color:var(--light) !important;

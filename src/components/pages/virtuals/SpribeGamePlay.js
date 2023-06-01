@@ -14,8 +14,6 @@ import Right from "../../right";
 const GamePlay = (props) => {
 
     const {game} = useParams()
-    // const url = new URL(window.location)
-    // const game= url.searchParams.get('game')
     const pathname = window.location.pathname;
     const [gameUrl, setGameUrl] = useState('')
     const [token, setUserToken] = useState('')
@@ -23,7 +21,6 @@ const GamePlay = (props) => {
     const [demo, setDemo] = useState(false)
     const [user, setUser] = useState(getFromLocalStorage("user"));
     const {height, width} = useWindowDimensions();
-    const [games] = useState(getFromLocalStorage('category_games'))
 
     const [isLoggedIn] = useState(getFromLocalStorage('user'))
 

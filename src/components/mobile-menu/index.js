@@ -121,13 +121,13 @@ const MobileMenu = (props) => {
                         {jackpot === true&&jackpot!=undefined||pathname=="/betslip-jackpot"
                             ? getJackpotBetslip() != null
                                 ? <strong>{Object.keys(getJackpotBetslip())?.length}</strong>
-                                : <strong className={'bold'}>0</strong>
+                                : <strong className={'badge-font-weight'}>0</strong>
                             :kiron==true||pathname=="/betslip-nare"?getKironSlip()!=null?
-                              Object.keys(getKironSlip()).length:<strong>0</strong>
+                              Object.keys(getKironSlip()).length:<strong className={'badge-font-weight'}>0</strong>
                                 : getBetslip()
                                 ? Object.keys(getBetslip()).length <= 50
                                     ? <strong>{Object.keys(getBetslip()).length}</strong>
-                                        : <strong>50</strong>
+                                        : <strong className={'badge-font-weight'}>50</strong>
                                 : <strong>0</strong>}
                     </Badge>
                 </Link>

@@ -632,20 +632,20 @@ const KironslipSubmitForm = (props) => {
                         )}
                         <input
                             type="hidden"
-                            name={"user_id"}
-                            id={"user_id"}
+                            name={"user_kiron_id"}
+                            id={"user_kiron_id"}
                             value={state?.user?.profile_id}
                         />
                         <input
                             type="hidden"
-                            name={"total_odd"}
-                            id={"total_odd"}
+                            name={"total_kiron_odd"}
+                            id={"total_kiron_odd"}
                             value={totalOdds}
                         />
                         <input
                             type="hidden"
-                            name={"total_games"}
-                            id={"total_games"}
+                            name={"total_kiron_games"}
+                            id={"total_kiron_games"}
                             value={totalGames}
                         />
                     </FormikForm>

@@ -273,11 +273,15 @@
     background-color: red;
     color: white;
 }
-.kiron-more-button-color{
+.kiron-more-button-color {
     background: var(--betnare-button-login)!important;
-    color:var(--dark)!important;
-    font-weight:bolder;
+    color: var(--dark)!important;
+    font-weight: bold;
 }
+.kiron-more-button-color:hover{
+    color:var(--dark) !important;
+}
+
 .more-market-button{
     color:var(--light)
 }

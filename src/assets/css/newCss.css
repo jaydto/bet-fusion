@@ -472,6 +472,10 @@ background: var(--betnare-input)!important;
     text-align: center;
     border-bottom: 1px solid #FFC428;
 }
+.badge-font-weight{
+    font-weight: 800!important;
+    color:var(--dark)!important;
+}
 .live-side-badge {
     float: right;
     color: rgb(255, 255, 255);

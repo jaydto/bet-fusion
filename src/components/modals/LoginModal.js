@@ -115,6 +115,7 @@ const LoginModal = (props) => {
                 type="password"
                 placeholder="password"
                 name="password"
+                autoComplete={'on'}
                 value={formData.password || ''}
                 style={{padding:"6px"}}
                 onChange={handleChange}

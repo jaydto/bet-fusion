@@ -135,6 +135,7 @@ const HeaderLogin = (props) => {
                                    name="password"
                                    className={`w-100 input-field button-radius text-light deposit-input form-control col input-field-login  ${errors.password && 'text-danger'} `}
                                    // data-action="grow"
+                                    autoComplete={'on'}
                                    placeholder={errors.password || "Password"}
                                    onChange={ev => onFieldChanged(ev)}
                                    value={values.password}

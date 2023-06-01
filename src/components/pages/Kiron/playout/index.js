@@ -21,7 +21,6 @@ const KironPlayouts = (props) => {
 
     const fetchData = useCallback(async () => {
         setSuccess(false)
-        dispatch({type: "SET", key: 'nareLoading', payload: true})
 
         endpoint = endpoint.replaceAll(" ", '')
 
@@ -33,8 +32,6 @@ const KironPlayouts = (props) => {
                 setSuccess(true)
                 dispatch({type: "SET", key: 'nareLoading', payload: false})
 
-            }else{
-                dispatch({type: "SET", key: 'nareLoading', payload: false})
             }
         });
 
@@ -43,10 +40,13 @@ const KironPlayouts = (props) => {
 
     useEffect(() => {
         if(state?.start_playout|| !state?.Ended){
+            if(!state?.periods_ready){
                 fetchData();
+            }
+
         }
 
-    }, [getFromLocalStorage('kiron_first_round')]);
+    }, [state?.period_first_round]);
 
 
     useEffect(() => {
@@ -131,8 +131,8 @@ const KironPlayouts = (props) => {
                         <div className="league-wrapper">
                             <div className="matches-wrapper pt-2">
                                 {state?.playout_data?.playouts?.map((results, key) => (
-                                    <div>
-                                        <div className="live-match-selection pt-1 pb-1" key={key}>
+                                    <div key={key}>
+                                        <div className="live-match-selection pt-1 pb-1" >
                                             <div className="container">
                                                 <div className="row px-3">
 

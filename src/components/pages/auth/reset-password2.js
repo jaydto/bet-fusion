@@ -220,9 +220,10 @@ const ResetPassword2 = props => {
                                     <input
                                         value={values.password}
                                         className="text-light deposit-input form-control col-md-12 input-field"
-                                        id="password"
+                                        id="password_reset"
                                         name="password"
                                         type="password"
+                                        autoComplete={'on'}
                                         placeholder='Password'
                                         onChange={ev => onFieldChanged(ev)}
                                     />

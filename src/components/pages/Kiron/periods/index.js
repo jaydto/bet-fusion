@@ -72,6 +72,7 @@ const KironPeriods = (props) => {
     useEffect(()=>{
         if(state?.periods_ready){
             if(!state?.inPlay){
+                dispatch({type: "SET", key: 'inPlay', payload: false})
                 dispatch({type: "SET", key: 'start_fetching_match', payload: true})
                 dispatch({type: "SET", key: 'periods_ready', payload: false})
             }
@@ -137,7 +138,7 @@ const KironPeriods = (props) => {
         dispatch({type: "SET", key: 'playout_data', payload: null})
         fetchData()
 
-    }, [newCompetition])
+    }, [newCompetition,new URL(window.location).searchParams.get('competition_id')])
 
     useEffect(() => {
         if (isCountdownTimerActive == false) {

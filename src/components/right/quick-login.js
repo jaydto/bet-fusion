@@ -13,7 +13,7 @@ const QuickLogin = (props) => {
             <p>
                 <label>Password *</label>
                 <input type="hidden" name="ref" value={props.refURL} />
-                <input type="password" name="password" className="form-control" placeholder="password"/>
+                <input type="password" name="password" className="form-control" autoComplete={'on'} placeholder="password"/>
             </p>
             <div className="col-sm-12 zero-padding">
                 <div className="col-sm-4 zero-padding">

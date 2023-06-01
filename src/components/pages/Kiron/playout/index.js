@@ -19,7 +19,7 @@ const KironPlayouts = (props) => {
         round_id: kironSearchRoundId
     });
 
-    const fetchData = useCallback(async () => {
+    const gfetchData = useCallback(async () => {
         setSuccess(false)
 
         endpoint = endpoint.replaceAll(" ", '')
@@ -30,10 +30,8 @@ const KironPlayouts = (props) => {
             if (status == 200) {
                 dispatch({type: "SET", key: 'playout_data', payload: result?.data || result})
                 setSuccess(true)
+                dispatch({type: "SET", key: 'nareLoading', payload: false})
 
-                if (result?.slip_data) {
-
-                }
             }
         });
 
@@ -42,12 +40,8 @@ const KironPlayouts = (props) => {
 
     useEffect(() => {
         if(state?.start_playout|| !state?.Ended){
-            setTimeout(()=>{
                 fetchData();
-            },500)
-
         }
-
 
     }, [getFromLocalStorage('kiron_first_round')]);
 

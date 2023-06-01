@@ -88,7 +88,7 @@ const TestKiron = () => {
             if(state?.inPlay){
                 dispatch({type: 'SET', key: 'nare_league_matches', payload: null})
             }
-            if (!state?.inPlay&&state?.start_fetching_match) {
+            if (!state?.inPlay&&state?.start_fetching_match&&!state?.periods_ready) {
                 dispatch({type: 'SET', key: 'nare_league_matches', payload: null})
                 fetchData();
             }

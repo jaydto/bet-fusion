@@ -24,7 +24,6 @@ import KironPlayouts from "./playout";
 
 const TestKiron = () => {
     const [state, dispatch] = useContext(Context)
-    const [loading, setLoading] = useState(false)
     const [tab, setTab] = useState('kiron')
     const [fetching, setFetching] = useState(false)
     const [kironValidation, setKironValidation] = useState();
@@ -84,7 +83,7 @@ const TestKiron = () => {
     useEffect(() => {
         dispatch({type: "SET", key: 'playout_data', payload: null})
         dispatch({type: "SET", key: 'close_spinner', payload: false})
-        setLoading(true)
+        dispatch({type: "SET", key: 'nareLoading', payload: true})
         if (window.location.pathname == "/nare-league") {
             if(state?.inPlay){
                 dispatch({type: 'SET', key: 'nare_league_matches', payload: null})
@@ -100,7 +99,7 @@ const TestKiron = () => {
 
 
     const fetchData = useCallback(async () => {
-        setLoading(true)
+        dispatch({type: "SET", key: 'nareLoading', payload: true})
         endpoint = endpoint.replaceAll(" ", '')
 
 
@@ -121,7 +120,7 @@ const TestKiron = () => {
                 dispatch({type: "SET", key: 'nare_league_matches', payload: result?.data || result})
                 dispatch({type: "SET", key: 'start_fetching_match', payload: false})
                 setFetching(false)
-                setLoading(false)
+                dispatch({type: "SET", key: 'nareLoading', payload: false})
                 // if (result?.event_time) {
                 //     setLoading(false)
                 //     setKironValidation(result?.slip_data)
@@ -150,7 +149,7 @@ const TestKiron = () => {
                 market_id: newMarket,
                 round_id: newRoundId
             });
-            // setLoading(true)
+
 
         }
 
@@ -179,7 +178,7 @@ const TestKiron = () => {
 
         if (new_tab !== tab) {
             setTab(new_tab)
-            setLoading(false)
+            dispatch({type: "SET", key: 'nareLoading', payload: false})
         }
 
     })
@@ -207,7 +206,7 @@ const TestKiron = () => {
                                                       isCountdownTimerActive={isCountdownTimerActive}
                                                       setIsCountdownTimerActive={setIsCountdownTimerActive}/>
                                         {!state?.inPlay && <KironMoreMarkets/>}
-                                        {loading ?
+                                        {state?.nareLoading ?
                                             <SkeletonLoader/> : state?.close_spinner ?
                                                 <div className="kiron-loader" id="kiron-loader">
                                                     <span id='game_week'></span>

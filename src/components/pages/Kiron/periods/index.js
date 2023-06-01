@@ -32,6 +32,7 @@ const KironPeriods = (props) => {
     const fetchData = useCallback(async () => {
         clearInterval(timerVar)
         setTimeAfter(null)
+        dispatch({type: "SET", key: 'nareLoading', payload: true})
         dispatch({type: 'SET', key: 'nare_league_matches', payload: null})
         dispatch({type: 'SET', key: 'playout_data', payload: null})
         setIsCountdownTimerActive(false);

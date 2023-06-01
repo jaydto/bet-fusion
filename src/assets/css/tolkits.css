@@ -2218,7 +2218,8 @@ events-header {
 }
 
 .top-matches button.picked {
-    background: #FFC428 !important
+    background: #FFC428 !important;
+    color: var(--dark)!important;
 }
 
 @media (hover: hover) {

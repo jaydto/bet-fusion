@@ -150,6 +150,9 @@
     }
 }
 @media (max-width: 767px){
+    .full-screen-mobile-kiron{
+        height:100%!important;
+    }
     .kiron-bet-history{
         padding: 9px 4px!important;
     }

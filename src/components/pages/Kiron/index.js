@@ -195,10 +195,10 @@ const TestKiron = () => {
                     <Header/>
                 </div>
             </div>
-            <div className="flex-container-kiron kiron-test h-100">
+            <div className="flex-container-kiron kiron-test full-screen-mobile-kiron">
                 <div className={'item-kiron-1 d-none'}></div>
                 <div className="item-kiron2" style={{width: '100%'}}>
-                    <div className="d-flex flex-row h-100">
+                    <div className="d-flex flex-row full-screen-mobile-kiron">
                         <div className="d-flex flex-row kiron-size" style={{marginTop: "2px", width: '100%'}}>
                             <div className="d-flex flex-column kiron-size"
                                  style={{marginTop: "2px", overflowY: 'auto'}}>

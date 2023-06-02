@@ -557,7 +557,7 @@ header, li a, .thedate span {
 
 .homepage img {
     width: 100%;
-    max-height: 13rem;
+    /*max-height: 13rem;*/
 }
 
 .homepage .header-holder {

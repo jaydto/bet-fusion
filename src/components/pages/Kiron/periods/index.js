@@ -43,7 +43,7 @@ const KironPeriods = (props) => {
         setTimeAfter(null)
         dispatch({type:'SET',key:'timeAfter', payload:null})
         dispatch({type: 'SET', key: 'nare_league_matches', payload: null})
-        // dispatch({type: 'SET', key: 'playout_data', payload: null})
+        dispatch({type: 'SET', key: 'playout_data', payload: null})
         dispatch({type: "SET", key: 'nareLoading', payload: true})
         setIsCountdownTimerActive(false);
         let endpoint = "/v1/nare-league/periods";
@@ -144,6 +144,8 @@ const KironPeriods = (props) => {
         dispatch({type: "SET", key: 'playout_data', payload: null})
         fetchData()
 
+        console.log("there is a change in competition_id",timeLeft )
+        console.log("there is a change in competition_id_playout",timeAfter )
     }, [newCompetition,new URL(window.location).searchParams.get('competition_id')])
 
     useEffect(() => {

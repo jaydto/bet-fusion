@@ -12,11 +12,11 @@ const CarouselLoader = (props) => {
             makeRequest({url: endpoint, method: "GET"})
         ]);
         let [status, carousel_result] = carousel_results;
-
         if (status === 200) {
             setBanners(carousel_result?.images)
         }
     }
+
 
     useEffect(() => {
         getCarouselImages()

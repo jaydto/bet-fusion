@@ -28,7 +28,7 @@ const KironPeriods = (props) => {
 
     const counter=(count)=>{
         count++
-        if(count>3){
+        if(count>4){
             let message =" OOPs, Something went wrong click here to Reload the page"
             dispatch({type:'SET',key:'error_periods', payload:message})
         }
@@ -39,11 +39,11 @@ const KironPeriods = (props) => {
     const prevCount=useRef(0)
 
     const fetchData = useCallback(async () => {
-        clearInterval(timerVar)
+
         setTimeAfter(null)
         dispatch({type:'SET',key:'timeAfter', payload:null})
         dispatch({type: 'SET', key: 'nare_league_matches', payload: null})
-        dispatch({type: 'SET', key: 'playout_data', payload: null})
+        // dispatch({type: 'SET', key: 'playout_data', payload: null})
         dispatch({type: "SET", key: 'nareLoading', payload: true})
         setIsCountdownTimerActive(false);
         let endpoint = "/v1/nare-league/periods";
@@ -83,7 +83,6 @@ const KironPeriods = (props) => {
     useEffect(()=>{
         if(state?.periods_ready){
             if(!state?.inPlay){
-                dispatch({type: "SET", key: 'inPlay', payload: false})
                 dispatch({type: "SET", key: 'start_fetching_match', payload: true})
                 dispatch({type: "SET", key: 'periods_ready', payload: false})
             }else{
@@ -117,11 +116,6 @@ const KironPeriods = (props) => {
         const links = document.querySelectorAll('.link');
         links.forEach((link) => link.classList.remove('highlight'));
 
-        const payload = {
-            start: '', round: '', end: ''
-        }
-        dispatch({type: "SET", key: 'current_selection_period', payload: payload})
-
         const kironSearch = getFromLocalStorage('kiron_search_data') || {}; // Use empty object as default value if kiron_search_data is null or undefined
         const competition1 = new URL(window.location).searchParams.get('competition_id') || kironSearch?.competition_id || '2'
 
@@ -129,7 +123,6 @@ const KironPeriods = (props) => {
 
             setTimeAfter(null)
             dispatch({type:'SET',key:'timeAfter', payload:null})
-            // setIsCountdownTimerActive(false)
             // todo check if i should have in play false at this point
             dispatch({type: "SET", key: "inPlay", payload: false});
             dispatch({type: "SET", key: 'periods_first', payload: null})
@@ -141,7 +134,6 @@ const KironPeriods = (props) => {
     }, [kironSearch1?.competition_id, window.location.pathname])
 
     const pathname = window.location.pathname;
-
 
     useEffect(() => {
         clearInterval(timerVar)
@@ -169,7 +161,6 @@ const KironPeriods = (props) => {
 
 
     useEffect(() => {
-        dispatch({type: "SET", key: "inPlay", payload: false});
 
         let timeLocal = state?.periods_first ?? getFromLocalStorage("kiron_first_period")
 
@@ -193,6 +184,7 @@ const KironPeriods = (props) => {
 
         setTimeLeft(timer);
 
+        dispatch({type: "SET", key: "inPlay", payload: false});
 
         if (minutes < 0 || (minutes === 0 && seconds === 0)) {
             clearInterval(timerInterval);
@@ -208,7 +200,7 @@ const KironPeriods = (props) => {
             firstRound = Date.parse(timeLocal)
 
             now = new Date().getTime();
-            diff = firstRound - now - 1000;
+            diff = firstRound - now ;
             seconds = initialTime % 60;
             minutes = Math.floor(initialTime / 60);
             timer = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
@@ -218,15 +210,12 @@ const KironPeriods = (props) => {
             initialTime -= 1;
 
 
-            if (initialTime > 10 && initialTime < 60) {
-
-            } else if (initialTime <= 9 && initialTime > 0) {
+            if (initialTime <= 10 && initialTime > 0) {
                 //todo if in another selection close/spinner should be false
                 if (state?.current_selection_period?.start.length > 0) {
                     dispatch({type: "SET", key: 'close_spinner', payload: false})
 
                 } else {
-                    // setClosed(true);
                     dispatch({type: "SET", key: 'close_spinner', payload: true})
                 }
                 document.getElementById('game_week').innerHTML = "Game Week " + getFromLocalStorage('kiron_first_week')
@@ -347,37 +336,6 @@ const KironPeriods = (props) => {
         }
     }, [isCountdownTimerActive, newCompetition, state?.current_selection_period?.start,state?.periods_data]);
 
-    useEffect(() => {
-        if (state?.current_selection_period!=undefined){
-            if(!state?.inPlay){
-                dispatch({ type: "SET", key: 'start_fetching_selection', payload: true })
-            }
-
-        }
-        if (state?.current_selection_period?.start > 0) {
-            dispatch({type: "SET", key: "inPlay", payload: false});
-            dispatch({type: "SET", key: 'close_spinner', payload: false})
-
-        }
-        else if (state?.current_selection_period?.start.length == 0) {
-            const kiron_end = getFromLocalStorage('kiron_end_time')
-            const kiron_start = state?.periods_first ?? getFromLocalStorage("kiron_first_period")
-
-            let sTime = Date.parse(kiron_start)
-            let eTime = Date.parse(kiron_end)
-            let now = new Date().getTime();
-
-            if (sTime <= now && now < eTime) {
-                dispatch({type: "SET", key: "inPlay", payload: true});
-            } else if (sTime > now && now < eTime) {
-                dispatch({type: "SET", key: "inPlay", payload: false});
-
-            }
-
-        }
-
-    }, [state?.current_selection_period])
-
     useEffect(()=>{
         if(state?.start_fetching_selection){
             dispatch({ type: "SET", key: 'start_fetching_match', payload: true })
@@ -401,11 +359,24 @@ const KironPeriods = (props) => {
         dispatch({type: "SET", key: 'current_selection_period', payload: payload})
 
     }
+    useEffect(() => {
+        if (state?.current_selection_period!=undefined){
+            if(!state?.inPlay&&state?.current_selection_period?.start!=''){
+                dispatch({ type: "SET", key: 'start_fetching_selection', payload: true })
+            }
+
+        }
+        if (state?.current_selection_period?.start > 0) {
+            dispatch({type: "SET", key: "inPlay", payload: false});
+            dispatch({type: "SET", key: 'close_spinner', payload: false})
+
+        }
+
+
+    }, [state?.current_selection_period?.round])
 
 
     const kironTabVisible = () => {
-        //todo check this part
-        // const time= (new Date(Date.parse(`${new Date().toDateString()} ${getTime()}`))-new Date().getTime())/1000
         const time = (Date.parse(firstMatchEndTime) - new Date().getTime()) / 1000
 
         document.addEventListener("visibilitychange", (event) => {

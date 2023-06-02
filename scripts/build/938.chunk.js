@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbetnare_web=self.webpackChunkbetnare_web||[]).push([[938],{40938:function(e,b,n){n.r(b);n(72791),n(80184)}}]);

@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback} from 'react';
 import {
-  useParams,
+    Link,
+    useParams,
 } from "react-router-dom";
 
 import downArrow from '../../assets/img/down-arrow.svg';
@@ -9,6 +10,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 
 
 export const SportItem = (props) => {
+
     const {
         sport, 
         sport_id, 
@@ -48,7 +50,7 @@ export const SportItem = (props) => {
     
     return (
         <li className={`treeview ${activeClass}`} >
-            <a href="#" onClick={handleMenuToggle}>
+            <Link to={"#"} onClick={handleMenuToggle}>
                 <span style={{"padding":0}}>
                   <img  
                        className="side-icon" 
@@ -58,7 +60,7 @@ export const SportItem = (props) => {
                 </span>
                 <span className="topl"> { sport.sport_name } </span>
                 <img className="down-arrow pull-right" alt="" src={downArrow} />
-            </a>
+            </Link>
             <ul className="treeview-menu">
               {
                   sport?.categories && sport.categories.map(
@@ -80,6 +82,7 @@ export const SportItem = (props) => {
 }
 
 export const CategoryItem = (props) => {
+
     const {category, sport_id, category_id } = props;
     const {sportid, categoryid, competitionid} = useParams();
     const [activeClass, setActiveClass] = useState('');
@@ -109,7 +112,7 @@ export const CategoryItem = (props) => {
 
     return (
         <li className={`treeview ${active}`} >
-           <a href="#" onClick={handleMenuToggle}>
+           <Link to={"#"} onClick={handleMenuToggle}>
                 { category?.cat_flag && 
                     <LazyLoadImage 
                          className="side-icon" 
@@ -119,7 +122,7 @@ export const CategoryItem = (props) => {
                 }
                 {!category?.cat_flag && <span className="side-icon" style={{float:"left"}}>&nbsp;</span>}
                 <span className="topl"> {category.category_name} </span>
-            </a>
+            </Link>
             <ul className={`treeview-menu second-child ${activeClass}`}>
                 { 
                     category.competitions && 
@@ -155,10 +158,10 @@ export const CompetitionItem = (props) => {
 
     return (
         <li className={active}>
-            <a href={`/competition/${sport_id}/${category_id}/${competition.competition_id}`}>
+            <Link to={`/competition/${sport_id}/${category_id}/${competition.competition_id}`}>
               <span className="topl"> {competition.competition_name } </span>
               <span style={{float:"right", color:"#fff"}}>{competition.games_count }</span>
-            </a>
+            </Link>
         </li>
     )
 }

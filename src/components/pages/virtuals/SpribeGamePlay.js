@@ -8,17 +8,19 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import {getFromLocalStorage} from "../../utils/local-storage";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFire} from "@fortawesome/free-solid-svg-icons";
+import useWindowDimensions from "../../header/Dimensions";
+import Right from "../../right";
 
 const GamePlay = (props) => {
 
     const {game} = useParams()
+    const pathname = window.location.pathname;
     const [gameUrl, setGameUrl] = useState('')
     const [token, setUserToken] = useState('')
     const [user_id, setUserID] = useState('')
     const [demo, setDemo] = useState(false)
-    const pathname = window.location.pathname;
-
-    const [games] = useState(getFromLocalStorage('category_games'))
+    const [user, setUser] = useState(getFromLocalStorage("user"));
+    const {height, width} = useWindowDimensions();
 
     const [isLoggedIn] = useState(getFromLocalStorage('user'))
 
@@ -64,9 +66,9 @@ const GamePlay = (props) => {
     return (
         <>
             <Header/>
-            <div className="amt">
+            <div className={(width<=575?user?"user_logged":"amt":"amt")}>
                 <div className="d-flex flex-row justify-content-between">
-                    <div className="col-md-12">
+                    <div className="col-md-12 w-100">
                         <div className="homepage">
                             <div
                                 className={`col-md-12 ${gameUrlLoaded ? 'd-none' : 'd-block'}`}>
@@ -78,7 +80,7 @@ const GamePlay = (props) => {
                                 {demo && (
                                     <>
                                         <div className="alert alert-info">
-                                            This is {game} demo. To play the real game, please Log In.
+                                            This is {game} Demo. To play the real game, please Log In.
                                             &nbsp;<FontAwesomeIcon icon={faFire} style={{color: "orangered"}}/>
                                         </div>
                                     </>
@@ -135,7 +137,13 @@ const GamePlay = (props) => {
                     </div>
                 </div>
             </div>
-            <Footer/>
+            <div className="d-lg-none mobile-top">
+                <Right/>
+            </div>
+            <div className={"mobile-remove"}>
+                <Footer/>
+            </div>
+
         </>
     )
 }

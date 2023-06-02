@@ -11,6 +11,9 @@ import {
 
 import '../assets/css/accordion.react.css';
 import Testimonials from "./carousel/Testimonials";
+import {getFromLocalStorage} from "./utils/local-storage";
+import useWindowDimensions from "./header/Dimensions";
+
 
 const Header = React.lazy(()=>import('./header/header'));
 const Footer = React.lazy(()=>import('./footer/footer'));
@@ -19,27 +22,28 @@ const CarouselLoader = React.lazy(()=>import('./carousel/index'));
 const Right = React.lazy(()=>import('./right/index'));
 
 const Styles = {
-   container: {
-       background:'#22323e !important',
-   },
-   headers: {
-       background:'#18242f', 
-       color:'#ffffff',
-       padding: '10px 40px 10px',
-       fontSize: '12px'
-   },
-   bet:{
-       background:'#1e2d3b',
-       padding: '10px',
-       color: '#fff',
-       opacity: 0.8,
-       marginBottom: '1px'
-   }
+    container: {
+        background:'#22323e !important',
+    },
+    headers: {
+        background:'var(--betnare-header-bg)',
+        color:'var(--light)',
+        padding: '10px 10px 10px 40px',
+        fontSize: '12px'
+    },
+    bet:{
+        background:'var(--mybets-slip)',
+        padding: '10px',
+        color: 'var(--light)',
+        opacity: 0.8,
+        marginBottom: '1px'
+    }
 };
 
 const MyBets = (props) => {
     const [state, dispatch] = useContext(Context);
     const [isLoading, setIsLoading] = useState(false);
+    const {height, width} = useWindowDimensions();
 
     const fetchData = useCallback(async() => {
         if(isLoading) return;
@@ -58,15 +62,16 @@ const MyBets = (props) => {
 
     const BetItemHeader = (props) => {
         return (
-            <div className={`container`} style={Styles.headers}>
+            <div className={`${width<=767?"w-100":'container'}`} style={Styles.headers}>
                 <div className="row">
-                    <div className="col">CREATED</div>
-                    <div className="col">ID</div>
-                    <div className="col">GAMES</div>
-                    <div className="col">BET AMOUNT</div>
-                    <div className="col">POSSIBLE WIN</div>
-                    <div className="col">TAX</div>
-                    <div className="col">State</div>
+                    {/*<div className={`${width<=767?"col":"d-none"}`}></div>*/}
+                    <div className="col text-center mybets-font overflow-hidden">CREATED</div>
+                    <div className="col  text-center mybets-font overflow-hidden">ID</div>
+                    <div className="col text-center mybets-font overflow-hidden">GAMES</div>
+                    <div className="col text-center mybets-font overflow-hidden">BET AMOUNT</div>
+                    <div className="col text-center mybets-font overflow-hidden">POSSIBLE WIN</div>
+                    <div className="col text-center mybets-font overflow-hidden">TAX</div>
+                    <div className="col text-center mybets-font overflow-hidden">State</div>
                 </div>
             </div>
         );
@@ -80,13 +85,13 @@ const MyBets = (props) => {
         const cancelBet = () => {
             let endpoint = '/bet-cancel';
             let data = {
-                    bet_id:bet.bet_id,
-                    cancel_code:101,
+                bet_id:bet.bet_id,
+                cancel_code:101,
             }
             makeRequest({url: endpoint, method: "POST", data: data, use_jwt:true}).then(([status, result]) => {
                 if(status === 201){
-                   setBetStatus('CANCEL RQ');
-                   setCanCancel(false);
+                    setBetStatus('CANCEL RQ');
+                    setCanCancel(false);
                 }
             });
         };
@@ -95,29 +100,28 @@ const MyBets = (props) => {
             return (
                 <div className="col">
                     <button
-                         title="Cancel Bet"
-                         className="col btn btn-sm place-bet-btn "
-                         onClick={()=> cancelBet()} 
-                         >
-                         Cancel
+                        title="Cancel Bet"
+                        className="col btn btn-sm place-bet-btn "
+                        onClick={()=> cancelBet()}
+                    >
+                        Cancel
                     </button>
                 </div>
             )
         }
 
         return (
-            <div className={`container`} style={Styles.bet} key={bet.bet_id}>
+            <div className={`${width<=767?"w-100":"container"}`} style={Styles.bet} key={bet.bet_id}>
                 <div className="row">
-                    <div className="col">{ bet.created}</div>
-                    <div className="col">{ bet.bet_id}</div>
-                    <div className="col">{ bet.total_matches}</div>
-                    <div className="col">{ bet.bet_amount}</div>
-                    <div className="col">{ bet.possible_win}</div>
-                    <div className="col">{ bet.tax}</div>
-                    { canCancel == false 
-                        ? <div className={`col `}><span className={` badge ${betStatus=="LOST"?"bg-dark text-warning":betStatus=="WON"?"bg-success":betStatus=="PENDING"?"bg-dark ":""}`} style={{color:"white"
-                        ,marginTop:"10px", borderRadius: "7px", marginLeft:"1px", padding:"2.9px 9px "}}>{betStatus=="LOST"?"NOT WON":betStatus}</span></div>
-                        : cancelBetMarkup() 
+                    <div className="col text-center mybets-font overflow-hidden">{ bet.created}</div>
+                    <div className="col text-center mybets-font overflow-hidden">{ bet.bet_id}</div>
+                    <div className="col text-center mybets-font overflow-hidden">{ bet.total_matches}</div>
+                    <div className="col text-center mybets-font overflow-hidden">{ bet.bet_amount}</div>
+                    <div className="col text-center mybets-font overflow-hidden">{ bet.possible_win}</div>
+                    <div className="col text-center mybets-font overflow-hidden">{ bet.tax}</div>
+                    { canCancel == false
+                        ? <div className="col text-center mybets-font overflow-hidden">{ betStatus}</div>
+                        : cancelBetMarkup()
                     }
                 </div>
             </div>
@@ -148,7 +152,7 @@ const MyBets = (props) => {
 
 		
         return (
-            <div className={`container kumbafu`}  key={betslip.game_id}>
+            <div className={`container accordion-betslips-style`}  key={betslip.game_id}>
                 <div className="row">
                     <div className="col">{ betslip.start_time}</div>
                     <div className="col">{ betslip.home_team}</div>
@@ -156,10 +160,9 @@ const MyBets = (props) => {
                     <div className="col">{ betslip.market}</div>
                     <div className="col">{ betslip.odd_value}</div>
                     <div className="col">{ betslip.bet_pick}</div>
-                    <div className="col">{ betslip.outcomes}</div>
+                    <div className="col px-1">{ betslip.outcomes}</div>
                     <div className="col">{ betslip.ft_result}</div>
-                    <div className="col">{ <span className={` badge ${betslip.status=="LOST"?"bg-dark text-warning":betslip.status=="WON"?"bg-success":betslip.status=="PENDING"?"bg-dark ":""}`} style={{color:"white"
-                        ,marginTop:"10px", borderRadius: "7px", marginLeft:"1px", padding:"2.9px 9px "}}>{betslip.status=="LOST"?"NOT WON":betslip.status}</span>}</div>
+                    <div className="col">{ betslip.status}</div>
                 </div>
             </div>
         )
@@ -167,10 +170,10 @@ const MyBets = (props) => {
 
     const MyBetsList = (props) => {
 		return (
-         <Accordion className={"bg-dark"} >
+         <Accordion className={" px-1"} >
 			{state?.mybets && state.mybets.map((bet) => (
-				<AccordionItem 
-                    key = {bet.bet_id} 
+				<AccordionItem
+                    key = {bet.bet_id}
                     uuid = { bet.bet_id }>
 					<AccordionItemHeading >
                         <AccordionItemButton >
@@ -207,25 +210,32 @@ const MyBets = (props) => {
     return (
         <>
             <Header user={state?.user}/>
-            <div className="amt">
+            <div className={(width<=575?state?.user?"user_logged":"amt":"amt")}>
                 <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions/>
-                    <div className="gz home" >
+                    <div className="gz home" style={{width: '100%'}}>
                         <div className="homepage">
                             <CarouselLoader/>
-                                <Testimonials/>
-
+                            <Testimonials/>
                             <PageTitle />
-                            <BetItemHeader />
-                            <MyBetsList  />
+                           <div className={'top-login-background-img-bg'}>
+                               <BetItemHeader />
+                               <MyBetsList  />
+                           </div>
                         </div>
                     </div>
-                    <Right/>
+
+                        <Right/>
+
+
                 </div>
             </div>
-            <Footer/>
+            <div className={"footer-mobile-none mobile-top"}>
+                <Footer/>
+            </div>
+
         </>
     )
 }
 
-export default MyBets
+export default React.memo(MyBets)

@@ -1,10 +1,12 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useCallback, useContext, useEffect, useState} from "react";
 import {PDFDownloadLink} from "@react-pdf/renderer";
 import {PdfDocument} from "./Matches";
 import makeRequest from "../../utils/fetch-request";
 import Select from 'react-select'
 import {Card, Tab, Tabs} from "react-bootstrap";
 import {formatNumber} from "../../utils/betslip";
+import {Context} from "../../../context/store";
+import useWindowDimensions from "../../header/Dimensions";
 
 const Header = React.lazy(() => import('../../header/header'));
 const SideBar = React.lazy(() => import('../../sidebar/awesome/Sidebar'));
@@ -19,6 +21,8 @@ export default function MatchesList() {
     const [loaded, setLoaded] = useState(false)
     const [jackpotData, setJackpotData] = useState([])
     const [key, setKey] = useState('home');
+    const {height, width} = useWindowDimensions();
+    const [state, dispatch] = useContext(Context);
     const [isJackpot, setIsJackpot] = useState(false);
     useEffect(() => {
         fetchMatches()
@@ -49,7 +53,7 @@ export default function MatchesList() {
         {value: '30', label: '30'},
         {value: '50', label: '50'},
         {value: '100', label: '100'},
-        {value: '200', label: '200'},
+        {value: '1500', label: '1500'},
         // {value: '5000', label: '5000'},
     ]
 
@@ -90,11 +94,10 @@ export default function MatchesList() {
             setTitle(section)
         }
     }
-
     return (
         <>
             <Header/>
-            <div className="amt">
+            <div className={`${width<=575?state?.user?"user_logged":"amt":"amt"}`}>
                 <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions/>
                     <div className="gz home" style={{width:"100%"}}>
@@ -176,10 +179,15 @@ export default function MatchesList() {
                             </div>
                         </div>
                     </div>
-                    <Right/>
+                    <div className={'ipad-show'}>
+                        <Right/>
+                    </div>
+
                 </div>
             </div>
+            <div className={"footer-mobile-none"}>
             <Footer/>
+            </div>
         </>
     )
 }

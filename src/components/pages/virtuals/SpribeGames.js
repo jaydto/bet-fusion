@@ -1,27 +1,30 @@
-import React, {useEffect, useState, useContext} from "react";
+import React, {useEffect, useState} from "react";
 import Header from "../../header/header";
 import Footer from "../../footer/footer";
 import {Link, useParams} from "react-router-dom";
 import makeRequest from "../../utils/fetch-request";
+import Skeleton, {SkeletonTheme} from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import {getFromLocalStorage} from "../../utils/local-storage";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faFire} from "@fortawesome/free-solid-svg-icons";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import {Button, ButtonGroup} from "react-bootstrap";
 import SideBar from "../../sidebar/awesome/Sidebar";
-
-import { Context } from "../../../context/store";
-
+import useWindowDimensions from "../../header/Dimensions";
+import Right from "../../right";
 
 
 const GamePlay = (props) => {
     const {game_id, live} = useParams()
-    const [state, dispatch] = useContext(Context);
+
 
     const [games, setGames] = useState([])
 
     const [isLoggedIn] = useState(getFromLocalStorage('user'))
 
     const [gamesLoaded, setGamesLoaded] = useState(false)
+    const {height, width} = useWindowDimensions();
 
     const getFastGames = async () => {
 
@@ -42,7 +45,6 @@ const GamePlay = (props) => {
     }, [])
 
     const getFastGamesImages = (nare_games, folder = 'fast-games') => {
-        console.log("nare-games", nare_games)
 
         let nare_image;
         try {
@@ -56,13 +58,9 @@ const GamePlay = (props) => {
         return nare_image
     }
 
-    //  let message= {status: 401, message: 'Please Login to Enjoy an Active Experience of this Games', token: ''}
-    // {!state?.user&&Notify(message);}
-
     return (
         <>
             <Header/>
-            {/* <ToastContainer/> */}
             <div className="amt">
                 <div className="d-flex flex-row ">
                     <SideBar loadCompetitions/>
@@ -70,9 +68,7 @@ const GamePlay = (props) => {
                         <div className="col-md-12 d-flex flex-column">
                             <div className="col-md-12">
                                 <div className="homepage">
-                                    <div className={'row row-cols-4 text-white p-2 shadow-sm mt-2'}>
-
-                                    
+                                    <div className={`  row ${width<767?"row-cols-2":"row-cols-4 "}  text-white p-2 shadow-sm mt-2`}>
                                         {gamesLoaded && games?.map((game) => (
                                             <div className={'col cursor-pointer'}>
                                                 <div
@@ -86,10 +82,10 @@ const GamePlay = (props) => {
                                                         <LazyLoadImage
                                                             src={getFastGamesImages(game.name)}
                                                             alt=""
-
+                                                            alt="#"
                                                         />
-                                                        <div className="overlay shadow-sm w-100 mt-1">
-                                                            <Button variant="warning" className={"w-100"}>
+                                                        <div className="overlay shadow-sm row">
+                                                            <Button variant="warning">
                                                                 Play Game
                                                             </Button>
                                                         </div>
@@ -97,7 +93,6 @@ const GamePlay = (props) => {
                                                 </div>
                                             </div>
                                         ))}
-
                                     </div>
                                 </div>
                             </div>
@@ -105,7 +100,12 @@ const GamePlay = (props) => {
                     </div>
                 </div>
             </div>
-            <Footer/>
+            <div className={"mobile-only mobile-top d-lg-none"}>
+                <Right/>
+            </div>
+            <div className={"mobile-remove"}>
+                <Footer/>
+            </div>
         </>
     )
 }

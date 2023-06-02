@@ -180,12 +180,12 @@
     display: flex!important;
 }
 
-.banner-profile {
+.banner-profile-affiliate {
     width: 100vw;
     height: 3vw;
 }
 
-.profile-img-banner {
+.profile-img-banner-affiliate {
     background: url('https://storage.googleapis.com/nareimages/affiliate/home_bg.png')!important;
     border-top:2px double yellow;
     margin-top:10px;

@@ -50,20 +50,27 @@
     color:#fff;
     animation: fadein 0.35s ease-in;
 }
-.kumbafu {
-   background:#364e5f !important;
-    margin: 0px 0px 1px 0px;
+.accordion-betslips-style {
+    background: #2d3641!important;
+    /*margin: 2px 0px 2px 0px;*/
     width: 100%;
-    padding: 5px;
+    padding: 8px;
     opacity: 0.8;
+    border-radius: 5px;
+    color:#fff;
+    border-bottom: 2px solid var(--betnare-primary);
 }
+/*.accordion-betslips-style:first-of-type{*/
+/*    margin-top:2px!important;*/
+/*}*/
 .slipheader {
-    background: #264e5f;
+    background: #2d3641;
     padding: 5px;
     font-weight: bold;
     font-size: 12px;
     opacity: 0.8;
     margin-bottom: 1px;
+    color: aqua;
 }
 /* -------------------------------------------------- */
 /* ---------------- Animation part ------------------ */

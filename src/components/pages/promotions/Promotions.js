@@ -10,6 +10,7 @@ import karibuGiftWallet from "../../../assets/img/banner/products/Bet_Nare_3000_
 
 
 import {Table} from "react-bootstrap";
+import Right from "../../right";
 
 const Promotions = () => {
     return (
@@ -23,7 +24,7 @@ const Promotions = () => {
                             <div className="col-md-12 d-flex flex-column">
                                 <div className="col-md-12">
                                     <div
-                                        className="game-categories shadow-sm  p-2 shadow-sm casino-category-container text-white">
+                                        className="game-categories shadow-sm  w-auto p-2 shadow-sm casino-category-container text-white">
                                         BETNARE PROMOTIONS
                                     </div>
                                 </div>
@@ -507,11 +508,17 @@ const Promotions = () => {
                         </div>
                     </div>
                 </div>
+                <div className={"mobile-top d-lg-none"}>
+                    <Right/>
+                </div>
             </div>
-            <Footer/>
+            <div className={'footer-mobile-none'}>
+                <Footer/>
+            </div>
+
         </>
 
     )
 }
 
-export default Promotions
+export default React.memo(Promotions)

@@ -1,31 +1,35 @@
-import React, {
-    useLayoutEffect,
-    useState,
-    useCallback,
-} from "react";
-import {useParams} from 'react-router-dom';
-
-
-import makeRequest from "./utils/fetch-request";
+import React, {useCallback, useContext, useEffect, useLayoutEffect, useRef, useState} from 'react';
+import './test.css'
+import {useLocation, useParams} from "react-router-dom";
+import useWindowDimensions from "./header/Dimensions";
+import {Context} from "../context/store";
+import {getBetslip} from "./utils/betslip";
 import useInterval from "../hooks/set-interval.hook";
-import {getBetslip} from './utils/betslip' ;
+import makeRequest from "./utils/fetch-request";
 
-import {MarketList} from './matches/index';
+import {MarketList} from "./matches";
 import LiveSideBar from "./sidebar/live-sidebar";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
-const SideBar = React.lazy(() => import('./sidebar/awesome/Sidebar'));
-const Right = React.lazy(() => import('./right/index'));
-
-const MatchAllMarkets = (props) => {
+const CarouselLoader = React.lazy(() => import('./carousel'));
+const MainTabs = React.lazy(() => import('./header/main-tabs'));
+const MatchList = React.lazy(() => import('./matches'));
+const Right = React.lazy(() => import('./right'));
+const SideBar = React.lazy(() => import('./sidebar/awesome/Sidebar'))
+const  AllMarkets= (props) => {
     const [page, setPage] = useState(1);
     const [producerDown, setProducerDown] = useState(false);
-    const {live} = props;
-    const [matchwithmarkets, setMatchWithMarkets] = useState();
-    const [userSlipsValidation, setUserSlipsValidation] = useState();
+    const [allMarkets,setAllMarkets]=useState(true)
+    const params=useParams()
+    let url = new URL(window.location);
+    const {live} = props
+    const id = params.id
 
-    const params = useParams();
+    // const [userSlipsValidation, setUserSlipsValidation] = useState();
+    const { height, width } = useWindowDimensions();
+    const [state, dispatch] = useContext(Context);
+
     const [isLoading, setIsLoading] = useState(false);
 
     const findPostableSlip = () => {
@@ -35,37 +39,47 @@ const MatchAllMarkets = (props) => {
         });
         return values;
     };
-    useInterval(() => {
-        let endpoint = live
-            ? "/v1/matches/live?id=" + params.id
-            : "/v1/matches?id=" + params.id;
 
-        let betslip = findPostableSlip();
-        let method = betslip ? "POST" : "GET";
+    useInterval(
+        () => {
+            let endpoint = live
+                ? "/v1/matches/live?id=" + id
+                : "/v1/matches?id=" + id;
 
-        makeRequest({url: endpoint, method: method, data: betslip}).then(([_status, response]) => {
-            setMatchWithMarkets(response?.data || response);
-            if (response?.slip_data) {
-                setUserSlipsValidation(response?.slip_data);
-            }
-            setProducerDown(response?.producer_status === 1);
-        });
-    }, (live ? 2000 : null));
+            let betslip = findPostableSlip();
+            let method = betslip ? "POST" : "GET";
 
+            makeRequest({ url: endpoint, method: method, data: betslip }).then(
+                ([_status, response]) => {
+                    dispatch({type: "SET", key: "all_markets", payload: response?.data||response});
+                    // setMatchWithMarkets(response?.data || response);
+                    if (response?.slip_data) {
+                        dispatch({type: "SET", key: "user_slip_validation", payload: response?.slip_data});
+                        // setUserSlipsValidation(response?.slip_data);
+                    }
+                    setProducerDown(response?.producer_status === 1);
+                }
+            );
+        },
+        live ? 5000 : null
+    );
 
     const fetchPagedData = useCallback(async () => {
-        if (!isLoading && !isNaN(+params.id)) {
+        if (!isLoading && !isNaN(+id)) {
             setIsLoading(true);
             let betslip = findPostableSlip();
             let endpoint = live
-                ? "/v1/matches/live?id=" + params.id
-                : "/v1/matches?id=" + params.id;
+                ? "/v1/matches/live?id=" + id
+                : "/v1/matches?id=" + id;
 
-            await makeRequest({url: endpoint, method: "POST", data: betslip}).then(([status, result]) => {
-                setMatchWithMarkets(result?.data || result)
-                setProducerDown(result?.producer_status === 1);
-                setIsLoading(false);
-            });
+            await makeRequest({ url: endpoint, method: "POST", data: betslip }).then(
+                ([status, result]) => {
+                    dispatch({type: "SET", key: "all_markets", payload: result?.data||result});
+                    // setMatchWithMarkets(result?.data || result);
+                    setProducerDown(result?.producer_status === 1);
+                    setIsLoading(false);
+                }
+            );
         }
     }, []);
 
@@ -75,27 +89,45 @@ const MatchAllMarkets = (props) => {
         return () => {
             abortController.abort();
         };
-    }, [fetchPagedData]);
+    }, []);
+
+
+
 
     return (
-        <>
-            <Header/>
-            <div className="amt">
-                <div className="d-flex flex-row justify-content-between">
+        <div className={'flex-item'}>
+            <div className="item4"><Header/></div>
+            <div className="flex-container">
+                <div className="item1">
                     {window.location.pathname.includes('/match/live')?<LiveSideBar/>:<SideBar loadCompetitions/>}
-                    <div className="gz home" style={{width: '100%'}}>
+                </div>
+                <div className="item2 size-all-markets" >
+                    <div className="gz home" style={{ width: "100%" ,marginBottom:"5rem"}}>
+
                         <div className="homepage">
-                            <MarketList live={live}
-                                        matchwithmarkets={matchwithmarkets}
-                                        pdown={producerDown}/>
+
+                            <MarketList
+                                allMarkets={allMarkets}
+                                live={live}
+                                matchwithmarkets={state?.all_markets}
+                                pdown={producerDown}
+                            />
+
                         </div>
                     </div>
-                    <Right betslipValidationData={userSlipsValidation}/>
                 </div>
-            </div>
-            <Footer/>
-        </>
-    )
-}
+                <div className="item3">
+                    <Right betslipValidationData={state?.user_slip_validation} test={true}  />
+                </div>
 
-export default MatchAllMarkets;
+            </div>
+            <div className="item6">
+                <div className={"footer-mobile-none"}>
+                <Footer/>
+            </div></div>
+        </div>
+
+    );
+};
+
+export default React.memo(AllMarkets);

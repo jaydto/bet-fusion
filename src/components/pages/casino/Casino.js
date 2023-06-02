@@ -7,16 +7,16 @@ import SideBar from "../../sidebar/awesome/Sidebar";
 import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
 import Notify from "../../utils/Notify";
 import {Button, ButtonGroup} from "react-bootstrap";
+import useWindowDimensions from "../../header/Dimensions";
 
 const Casino = (props) => {
 
     const [user] = useState(getFromLocalStorage("user"));
 
     const [categories, setCategories] = useState([])
-    const [checkGame, setCheckGame]=useState('')
 
     const [games, setGames] = useState([])
-
+    const {height, width} = useWindowDimensions();
     const fetchGames = async (category = 'vs') => {
         let endpoint = "/v1/casino-games?game-type-id=" + category
         let method = "GET"
@@ -31,7 +31,6 @@ const Casino = (props) => {
 
     const getCategoryGames = (category) => {
         setGames([])
-        setCheckGame(category?.game_type_id)
         fetchGames(category?.game_type_id)
     }
 
@@ -59,17 +58,19 @@ const Casino = (props) => {
     }, [])
 
     return (
+
         <>
             <Header/>
-            <div className="amt">
-                <div className="d-flex flex-row">
+            <div className={(width<=575?user?"user_logged":"amt":"amt")}>
+
+            <div className="d-flex flex-row">
                     <SideBar loadCompetitions/>
                     <div className="gz home" style={{width: '100%'}}>
                         <div className="homepage">
                             <div className="col-md-12 d-flex flex-column">
-                                <div className="col-md-12 d-flex casino-scroll" >
+                                <div className="col-md-12 casino-scroll" >
                                     <div
-                                        className="shadow-sm p-2 shadow-sm casino-category-container mt-2 w-100">
+                                        className="shadow-sm p-2 shadow-sm casino-category-container mt-2">
 
                                         {categories?.map((category) => (
                                             category?.game_type_id !== "rgs-vsb"
@@ -85,7 +86,7 @@ const Casino = (props) => {
                                 <div className="col">
                                     <div className={'row text-white p-2 shadow-sm'}>
                                         {games?.map((game) => (
-                                                <div className={'col-md-2'}>
+                                                <div className={'col-md-2 virtual-width'}>
                                                     <div
                                                         className={'mt-1 mb-1 d-flex flex-column shadow-lg virtual-game-container'}>
                                                         <div onClick={() => launchGame(game?.game_id, true)}
@@ -94,8 +95,7 @@ const Casino = (props) => {
                                                             <p className={'text-center bold text-elipsis text-uppercase'}>
                                                                 {game?.game_name}
                                                             </p>
-                                                            {/* {console.log("categories",checkGame)} */}
-                                                            <LazyLoadImage src={`${checkGame=="drops-n-wins"?game?.drops_and_wins_image_url:game?.game_icon}`}
+                                                            <LazyLoadImage src={`${game.game_icon}`}
                                                                            className={'virtual-game-image'}/>
                                                         </div>
                                                         <div className="overlay shadow-sm row">
@@ -121,11 +121,13 @@ const Casino = (props) => {
                     </div>
                 </div>
             </div>
+            <div className={"footer-mobile-none"}>
             <Footer/>
+            </div>
         </>
     )
 
 }
 
 
-export default Casino;
+export default React.memo(Casino);

@@ -3,6 +3,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import {Link} from "react-router-dom";
 
 const Competitions = (props) => {
     const {competitions } = props;
@@ -12,8 +13,8 @@ const Competitions = (props) => {
             <ul className="aoi nav base-bg">
             {  Object.entries(competitions).map(([index, competition])  => (
                 <li className="li-white-h" key={index}>
-                    <a className="col-12" 
-                        href={`/competition/${competition.competition_id}?sp=${competition.sport_id}`}>
+                    <Link className="col-12"
+                        to={`/competition/${competition.competition_id}?sp=${competition.sport_id}`}>
                         <Row>
                         <Col lg="1" sm="1" md="1" xs="1" style={{padding:0}}>
                             { competition?.flag && 
@@ -28,7 +29,7 @@ const Competitions = (props) => {
                             <Row>{competition.competition_name}</Row>
                         </Col>
                        </Row>
-                    </a>
+                    </Link>
                 </li>)
               )
             }

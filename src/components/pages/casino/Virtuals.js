@@ -3,15 +3,18 @@ import Header from "../../header/header";
 import Footer from "../../footer/footer";
 import makeRequest from "../../utils/fetch-request";
 import {LazyLoadImage} from 'react-lazy-load-image-component';
-import {Link} from "react-router-dom";
+import {Link, Outlet} from "react-router-dom";
 import SideBar from "../../sidebar/awesome/Sidebar";
 import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
 import Notify from "../../utils/Notify";
 import {Button, ButtonGroup} from "react-bootstrap";
+import useWindowDimensions from "../../header/Dimensions";
+import Right from "../../right";
 
 const Virtuals = (props) => {
 
     const [user] = useState(getFromLocalStorage("user"));
+    const {height, width} = useWindowDimensions();
 
     const [categories, setCategories] = useState([])
 
@@ -47,8 +50,9 @@ const Virtuals = (props) => {
         const userState = (getFromLocalStorage("user"));
 
         if (userState?.token) {
-            return window.location.href = `/gameplay/${game_id}/${live ? '1' : '0'}`
+            return window.location.href = `/gameplay?game_id=${game_id}&live=${live ? '1' : '0'}`
         }
+
 
         return showLoginNotification()
     }
@@ -60,7 +64,7 @@ const Virtuals = (props) => {
     return (
         <>
             <Header/>
-            <div className="amt">
+            <div className={(width<=575?user?"user_logged":"amt":"amt")}>
                 <div className="d-flex flex-row">
                     <SideBar loadCompetitions/>
                     <div className="gz home" style={{width: '100%'}}>
@@ -69,7 +73,7 @@ const Virtuals = (props) => {
                                 <div className="col-md-12">
                                     <div className="game-categories shadow-sm  p-2 shadow-sm casino-category-container">
                                         <button
-                                            className={`cursor-pointer text-center casino-category`}
+                                            className={`cursor-pointer text-center virtual casino-category`}
                                             autoFocus
                                             onClick={() => getCategoryGames('rgs-vsb')}>
                                             <h3 className={'text-uppercase'}>
@@ -79,9 +83,9 @@ const Virtuals = (props) => {
                                     </div>
                                 </div>
                                 <div className="col">
-                                    <div className={'row text-white p-2 shadow-sm'}>
+                                    <div className={'row text-white p-2 shadow-sm virtual-size'}>
                                         {games?.map((game) => (
-                                                <div className={'col-md-2'}>
+                                                <div className={'col-md-2 virtual-width'}>
                                                     <div
                                                         className={'mt-1 mb-1 d-flex flex-column shadow-lg virtual-game-container'}>
                                                         <div onClick={() => launchGame(game?.game_id, true)}
@@ -114,12 +118,19 @@ const Virtuals = (props) => {
                         </div>
                     </div>
                 </div>
+                <div className={"mobile-only mobile-top"}>
+                    <Right/>
+                </div>
+
             </div>
+            <div className={"footer-mobile-none"}>
             <Footer/>
+            </div>
+
         </>
     )
 
 }
 
 
-export default Virtuals;
+export default React.memo(Virtuals);

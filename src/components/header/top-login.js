@@ -3,14 +3,15 @@ import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import {Formik, Field, Form} from 'formik';
 import makeRequest from "../utils/fetch-request";
-import {Context} from '../../context/store';
 import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import fire from "../../assets/img/fire.webp"
 import {setLocalStorage} from '../utils/local-storage';
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
+import {Link} from "react-router-dom";
+import {Switch} from "@material-ui/core";
 
-export const Notify = (message) => {
+export const  Notify = (message) => {
     let options = {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
@@ -25,7 +26,7 @@ export const Notify = (message) => {
         toast.success(`🚀 ${message.message}`, options);
     } else {
         toast(<div className={"d-flex"}>
-            <img src={fire} alt="" height="24px"/>
+            <img src={fire} alt="" style={{height:"20px", width:'26px'}} />
             <span>
                 {message.message}
             </span>
@@ -38,12 +39,13 @@ const HeaderLogin = (props) => {
     const gaEventTracker = useAnalyticsEventTracker('Navigation');
     const [isLoading, setIsLoading] = useState(null)
     const [message, setMessage] = useState(null);
-    const {setUser} = props;
+    const {setUser,login} = props;
 
     const initialValues = {
         msisdn: "",
         password: ""
     }
+
 
 
     const dispatchUser = useCallback(() => {
@@ -75,7 +77,6 @@ const HeaderLogin = (props) => {
                     status: status,
                     message: response?.message || "Error attempting to login"
                 };
-                // console.log("data_response", response)
                 Notify(message);
             }
         })
@@ -99,52 +100,73 @@ const HeaderLogin = (props) => {
 
 
     const MyLoginForm = (props) => {
-        const {isValid, errors, values, submitForm, setFieldValue} = props;
+        const { errors, values, setFieldValue} = props;
 
         const onFieldChanged = (ev) => {
             let field = ev.target.name;
             let value = ev.target.value;
             setFieldValue(field, value);
         }
+        const label = { inputProps: { 'aria-label': 'remember me',
+                'value':'Remember me'} };
+
         return (
             <>
-                <Form className="ow og i web-element">
-                    <Row>
-                        <div className="col-5">
+                <Form className={`ow right i web-element top-login-paddings  width-centric-page top-login-background-img`}>
+                    <Row className={`d-flex flex-column`} >
+                        <div className={`w-100 `}>
                             <input type="text"
                                    name="msisdn"
-                                   className={`top-login-input-field ${errors.msisdn && 'text-danger'}`}
-                                   data-action="grow"
-                                   placeholder={errors.msisdn || "+254........."}
+                                   className={`w-100 input-field button-radius text-light deposit-input form-control col input-field-login  ${errors.msisdn && 'text-danger'}`}
+                                   placeholder={errors.msisdn || "+254987654389"}
                                    onChange={ev => onFieldChanged(ev)}
                                    value={values.msisdn}
                             />
                             <br/>
-                            <span className="sticky-hidden">
-                            <label><input type="checkbox" name="remember" value="1"/>Remember me</label>
+                            <span className={`sticky-hidden text-warning d-flex justify-content-end font-input my-2`}>
+                            <div className={`text-warning`}>
+                                <Switch id={"remember-me"} {...label} className="odds-change-box" name={"accept_all_odds_change"}  defaultChecked color="primary" /> Remember Me
+                            </div>
                         </span>
                         </div>
-                        <div className="col-5">
+
+                        <div className={`w-100 `}>
                             <input type="password"
                                    name="password"
-                                   className={`top-login-input-field ${errors.password && 'text-danger'} `}
-                                   data-action="grow"
+                                   className={`w-100 input-field button-radius text-light deposit-input form-control col input-field-login  ${errors.password && 'text-danger'} `}
+                                   // data-action="grow"
+                                    autoComplete={'on'}
                                    placeholder={errors.password || "Password"}
                                    onChange={ev => onFieldChanged(ev)}
                                    value={values.password}
                             />
                             <br/>
                             <input type="hidden" name="ref" value="{props.refURL}"/>
-                            <a href="/reset-password" title="Reset password"
+                            <Link to={"/reset-password"} title="Reset password"
                                onClick={() => gaEventTracker('Reset Password')}>
-                                <span className="sticky-hidden">Forgot Password?</span>
-                            </a>
+                                <span className={`sticky-hidden text-warning px-2 d-flex justify-content-end"`}>Forgot Password?</span>
+                            </Link>
                         </div>
-                        <div className="col-sm-2">
-                            <button className="cg login-button btn" type="submit">
-                                {isLoading ? <span>Logging In ...</span> : <span><strong>LOGIN</strong></span>}
+
+                        <div className={`w-100`}>
+                            <button className={`w-100 button-radius input-field btn-font cg  login-button2 mt-4 btn bold`} type="submit">
+                                {isLoading ? <span>Logging In ...</span> : <span>LOGIN</span>}
                             </button>
+                            <Link className="cg register-button btn btn-warning" to={"/signup"} title="Join now" onClick={() => gaEventTracker('Register')} style={login&&{display:'none'}}>
+                                <span className="register-label bold">REGISTER </span>
+                            </Link>
                         </div>
+                        <Row className={`${login?"d-flex":"d-none"}`} style={{float: "right"}}>
+                            <div className="col-12">
+                                <Link className={`${login?"d-flex justify-content-center w-100":""}`} to={"/signup"} title="Join now" onClick={() => gaEventTracker('Register')}>
+                                    <span className={`text-warning font-input } register-label my-3`}>Dont have an account! Register now </span>
+                                </Link>
+                                <Link className="m-lg-2 badge bg-success d-none" to={"/verify-account"} title="Verify Account"
+                                      onClick={() => gaEventTracker('Verify')}>
+                                    <span className="register-label">VERIFY ACCOUNT</span>
+                                </Link>
+                            </div>
+                        </Row>
                     </Row>
                 </Form>
             </>
@@ -164,25 +186,22 @@ const HeaderLogin = (props) => {
     }
 
     return (
-        <Container className="top-login-section">
-            <Row className="" style={{float: "right"}}>
+        <Container className={`d-flex flex-column mx-2`}>
+            <div className={`d-none`} style={{float: "right"}}>
                 <div className="col-12">
-                    <a className="badge bg-warning text-dark" href="/signup" title="Join now"
-                       style={{color: "black !important"}}
-                       onClick={() => gaEventTracker('Register')}>
-                        <span className="register-label">Register now!</span>
-                    </a>
-                    <a className="m-lg-2 badge bg-success" href="/verify" title="Verify Account"
+                    <Link className="m-lg-2 badge bg-success d-none" to={"/verify-account"} title="Verify Account"
                        onClick={() => gaEventTracker('Verify')}>
-                        <span className="verify-label">Verify Account</span>
-                    </a>
+                        <span className="register-label">VERIFY ACCOUNT</span>
+                    </Link>
                 </div>
-            </Row>
-            <Row style={{float: "right"}}>
+            </div>
+            <div style={{float: "right"}} className={` d-flex justify-content-center align-items-center flex-column w-100 container-fluid`}>
                 <ToastContainer/>
                 <LoginForm/>
-            </Row>
+            </div>
+
         </Container>
     )
 }
 export default React.memo(HeaderLogin);
+

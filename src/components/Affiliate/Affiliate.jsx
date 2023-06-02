@@ -13,13 +13,15 @@ import {Context} from "../../context/store";
 import {faArrowUp, faHandPointUp, faHome, faPowerOff} from "@fortawesome/free-solid-svg-icons";
 
 const Footer = React.lazy(() => import('../footer/footer'));
-const Affiliate = () => {
+const Affiliate = (props) => {
+    const {profile}=props
     const [state, dispatch] = useContext(Context)
     const expand = "md"
     return (
         <>
             <div className={'flex-item py-0'}>
-                <div className="item4 border-header-affiliate ">
+                {!profile&&
+                    <div className="item4 border-header-affiliate ">
                     <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav profile-top-nav" fixed="top"
                             variant="dark">
                         <Container fluid
@@ -36,7 +38,7 @@ const Affiliate = () => {
                                     <div>
                                         <Link
                                             to={{pathname: "/"}}
-                                            className={"deposit-button size-font-user-action"} title={'HOME'}
+                                            className={"deposit-button size-font-user-action-affiliate"} title={'HOME'}
                                             style={{fontSize: '18px'}}>
                                       <span className="">
                                        <span className=" "> <FontAwesomeIcon
@@ -49,7 +51,7 @@ const Affiliate = () => {
                                     {state?.user && <div>
                                         <Link
                                             to={{pathname: "/logout"}}
-                                            className={"deposit-button size-font-user-action"}
+                                            className={"deposit-button size-font-user-action-affiliate"}
                                             style={{marginRight: "12px", fontSize: '18px'}} title={'LOGOUT'}>
                                       <span className="text-warning">
                                        <span className=" "><FontAwesomeIcon icon={faPowerOff}
@@ -65,10 +67,10 @@ const Affiliate = () => {
 
                         </Container>
                     </Navbar>
-                </div>
+                </div>}
                 <div className="flex-container profile-style" style={{padding: '0px 2px '}} id={'top'}>
                     <div className="item2">
-                        <div className={'profile-img-banner'}>
+                        <div className={'profile-img-banner-affiliate'}>
                             <div>
                                 <div className={'position-info  affiliate-bg-info d-flex flex-column'}>
                                     <h1 className={'bold text-light'}>BETNARE AFFILIATE</h1>

@@ -1,18 +1,15 @@
-import React, {useEffect} from "react";
-import 'react-accessible-accordion/dist/fancy-example.css';
-import DownloadLink from "react-download-link";
-import mobileBanner from '../../../assets/img/mobile/APPDownload.png'
-import {Link} from "react-router-dom";
+import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
+import '../../test.css'
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
+import {Link, useLocation} from "react-router-dom";
+import mobileBanner from "../../../assets/img/mobile/APPDownload.png";
 
 const Header = React.lazy(() => import('../../header/header'));
-const SideBar = React.lazy(() => import('../../sidebar/awesome/Sidebar'));
 const Footer = React.lazy(() => import('../../footer/footer'));
-const Right = React.lazy(() => import('../../right/index'));
+const Right = React.lazy(() => import('../../right'));
+const SideBar = React.lazy(() => import('../../sidebar/awesome/Sidebar'))
 const downloadAPKFile = React.lazy(() => import('../../../assets/betnare.apk'));
-
-
-const MobileApp = () => {
+const  Index= () => {
     const gaEventTracker = useAnalyticsEventTracker('App');
 
     useEffect(() => {
@@ -23,29 +20,33 @@ const MobileApp = () => {
         return downloadAPKFile;
     }
 
+
     return (
-        <>
-            <Header/>
-            <div className="amt">
-                <div className="d-flex flex-row justify-content-between">
-                    <SideBar loadCompetitions/>
+        <div className={'flex-item'}>
+            <div className="item4"><Header/></div>
+            <div className="flex-container">
+                <div className="item1"> <SideBar loadCompetitions/></div>
+                <div className="item2" style={{width:'100%'}}>
                     <div className="gz home" style={{width: '100%',overflowX: 'clip'}}>
                         <div className="homepage">
                             <div
-                                className='col-md-12 primary-bg p-4 text-center d-flex flex-row justify-content-between sticky-top'>
+                                className='col-md-12 primary-bg p-4 text-center d-flex flex-row justify-content-between align-items-center sticky-top'>
                                 <h4 className="inline-block">
                                     BETNARE APP
                                 </h4>
+
 
                                 <Link to={'/betnare.apk'}
                                       target={"_blank"}
                                       title={'Download App'}
                                       download={'betnare.apk'}
-                                      className="btn btn-primary btn-lg mb-5 text-white text-decoration-none"
+                                      className="btn btn-primary btn-lg  text-white text-decoration-none"
                                       label="Download App"
                                       filename="betnare.apk"
                                       onClick={()=>gaEventTracker('Downloaded App')}
                                       exportFile={() => getDownloadFile()}>Download Betnare App</Link>
+
+
                             </div>
                             <div className="col-md-12 mt-2 text-white accordion-container text-start">
                                 <hr/>
@@ -81,16 +82,23 @@ const MobileApp = () => {
                                           filename="betnare.apk"
                                           onClick={()=>gaEventTracker('Downloaded App')}
                                           exportFile={() => getDownloadFile()}>Download App Now</Link>
+
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <Right/>
                 </div>
-            </div>
-            <Footer/>
-        </>
-    )
-}
+                <div className="item3">
+                    <Right app={true} test={true}/>
+                </div>
 
-export default MobileApp
+            </div>
+            <div className="item6"><div className={"footer-mobile-none"}>
+                <Footer/>
+            </div></div>
+        </div>
+
+    );
+};
+
+export default React.memo(Index);

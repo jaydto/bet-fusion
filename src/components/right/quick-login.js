@@ -1,4 +1,5 @@
 import React  from 'react';
+import {Link} from "react-router-dom";
 
 
 const QuickLogin = (props) => {
@@ -12,13 +13,13 @@ const QuickLogin = (props) => {
             <p>
                 <label>Password *</label>
                 <input type="hidden" name="ref" value={props.refURL} />
-                <input type="password" name="password" className="form-control" placeholder="password"/>
+                <input type="password" name="password" className="form-control" autoComplete={'on'} placeholder="password"/>
             </p>
             <div className="col-sm-12 zero-padding">
                 <div className="col-sm-4 zero-padding">
                     <input type="submit" className="cg fm" value="Submit" />
                 </div>
-                <div className="col-sm-8 zero-padding"><a href="/signup">Join now</a></div>
+                <div className="col-sm-8 zero-padding"><Link to={"/signup"}>Join now</Link></div>
             </div>
             </form>
         </div>

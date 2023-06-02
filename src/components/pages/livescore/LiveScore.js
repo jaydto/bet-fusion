@@ -1,12 +1,16 @@
 import Header from "../../header/header";
 import Footer from "../../footer/footer";
-import React from "react";
+import React, {useContext} from "react";
+import useWindowDimensions from "../../header/Dimensions";
+import {Context} from "../../../context/store";
 
 const LiveScore = () => {
+    const {height, width} = useWindowDimensions();
+    const [state, dispatch] = useContext(Context);
     return (
         <>
             <Header/>
-            <div className="amt">
+            <div className={(width<=575?state?.user?"user_logged":"amt":"amt")}>
                 <div className="d-flex flex-row">
                     <div className="gz home " style={{width: '100%'}}>
                         <div className="homepage">
@@ -35,8 +39,10 @@ const LiveScore = () => {
                     </div>
                 </div>
             </div>
+            <div className={"mobile-remove"}>
             <Footer/>
+            </div>
         </>)
 }
 
-export default LiveScore
+export default React.memo(LiveScore)

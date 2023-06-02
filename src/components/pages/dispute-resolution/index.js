@@ -5,6 +5,7 @@ import {
     AccordionItemButton,
     AccordionItemPanel,
 } from 'react-accessible-accordion';
+import '../../test.css'
 import 'react-accessible-accordion/dist/fancy-example.css';
 import React from "react";
 import Header from '../../header/header'
@@ -13,13 +14,14 @@ import Footer from '../../footer/footer'
 import Right from '../../right/index'
 
 const DisputeResolution = () => {
+
     return (
-        <>
-            <Header/>
-            <div className="amt">
-                <div className="d-flex flex-row justify-content-between">
-                    <SideBar loadCompetitions />
-                    <div className="gz home">
+        <div className={'flex-item'}>
+            <div className="item4"><Header/></div>
+            <div className="flex-container">
+                <div className="item1"> <SideBar loadCompetitions/></div>
+                <div className="item2" style={{width:'100%'}}>
+                    <div className="gz home w-100">
                         <div className="homepage">
                             <div className='col-md-12 primary-bg p-4 text-center'>
                                 <h4 className="inline-block">
@@ -27,9 +29,9 @@ const DisputeResolution = () => {
                                 </h4>
                             </div>
                             <div className="col-md-12 mt-2 text-white accordion-container ">
-                                <Accordion allowMultipleExpanded={false} 
-                                    allowZeroExpanded={true}
-                                     preExpanded = {["only-child-1"]}>
+                                <Accordion allowMultipleExpanded={false}
+                                           allowZeroExpanded={true}
+                                           preExpanded = {["only-child-1"]}>
                                     <AccordionItem uuid="only-child-1">
                                         <AccordionItemHeading>
                                             <AccordionItemButton className='accordion-button'>
@@ -126,12 +128,16 @@ const DisputeResolution = () => {
                             </div>
                         </div>
                     </div>
-                    <Right/>
                 </div>
-            </div>
-            <Footer/>
-        </>
-    )
-}
+                <div className="item3"><Right  test={true}/></div>
 
-export default DisputeResolution
+            </div>
+            <div className="item6"><div className={"footer-mobile-none"}>
+                <Footer/>
+            </div></div>
+        </div>
+
+    );
+};
+
+export default React.memo(DisputeResolution);

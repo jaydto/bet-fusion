@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import Container from "react-bootstrap/Container";
 import {getFromLocalStorage} from "../utils/local-storage";
+import {Link} from "react-router-dom";
 
 const MobileCategories = () => {
     let categories = getFromLocalStorage('categories');
@@ -12,7 +13,7 @@ const MobileCategories = () => {
                         <div className=""
                              key={index}
                              style={{minWidth: "120px"}}>
-                            <a href={`/upcoming?sport_id=${category.sport_id}/`}
+                            <Link to={`/upcoming?sport_id=${category.sport_id}/`}
                                className={'card card-block mx-1 d-flex flex-column h-100'}>
                                 <img style={{borderRadius: '50%', height: '35px', width: "35px"}}
                                      className={'align-self-center'}
@@ -20,7 +21,7 @@ const MobileCategories = () => {
                                 <span className={'align-self-center'}>
                                 {category?.sport_name}
                            </span>
-                            </a>
+                            </Link>
                         </div>
                     ))}
                 </div>
@@ -29,4 +30,4 @@ const MobileCategories = () => {
     )
 }
 
-export default MobileCategories
+export default React.memo(MobileCategories);

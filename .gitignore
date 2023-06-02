@@ -8,13 +8,21 @@
 /src/Ansible
 # testing
 /coverage
-
+/android
 # production
+/cordova
+
+/ios
 /build
 /cordova
 /ios
 /android
+/ios
+/dist
 
+/cordova
+/capacitor.config.ts
+./cordova/www
 # misc
 .DS_Store
 .env.local

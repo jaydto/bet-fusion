@@ -1,5 +1,5 @@
-import { 
-    getFromLocalStorage, 
+import {
+    getFromLocalStorage,
     setLocalStorage,
     removeItem
 } from './local-storage';
@@ -15,15 +15,37 @@ export const addToSlip = (slip) => {
     return current_slip;
 }
 
+export const addToKironSlip = (slip) => {
+    let current_slip = getFromLocalStorage('kironbetslip');
+    if(current_slip){
+        current_slip[slip.parent_match_id] = slip;
+    } else {
+        current_slip = {[slip.parent_match_id] : slip};
+    }
+    setLocalStorage('kironbetslip', current_slip, 1*60*60*1000);
+    return current_slip;
+}
+
+export const getKironSlip = () => {
+    return getFromLocalStorage('kironbetslip');
+}
+
+export const removeFromKironSlip = (parent_match_id) => {
+    let current_slip = getFromLocalStorage('kironbetslip');
+    delete current_slip[parent_match_id];
+    setLocalStorage('kironbetslip', current_slip, 1*60*60*1000);
+    return current_slip;
+}
+
 export const removeFromSlip = (match_id) => {
-   let current_slip = getFromLocalStorage('betslip');
-   delete current_slip[match_id];
-   setLocalStorage('betslip', current_slip, 1*60*60*1000);
-   return current_slip;
+    let current_slip = getFromLocalStorage('betslip');
+    delete current_slip[match_id];
+    setLocalStorage('betslip', current_slip, 1*60*60*1000);
+    return current_slip;
 }
 
 export const clearSlip = () => {
-   removeItem('betslip');
+    removeItem('betslip');
 }
 export const getBetslip = () => {
     return getFromLocalStorage('betslip');
@@ -45,14 +67,18 @@ export const addToJackpotSlip = (slip) => {
 }
 
 export const removeFromJackpotSlip = (match_id) => {
-   let current_slip = getFromLocalStorage('jackpotbetslip');
-   delete current_slip[match_id];
-   setLocalStorage('jackpotbetslip', current_slip, 1*60*60*1000);
-   return current_slip;
+    let current_slip = getFromLocalStorage('jackpotbetslip');
+    delete current_slip[match_id];
+    setLocalStorage('jackpotbetslip', current_slip, 1*60*60*1000);
+    return current_slip;
 }
 
 export const clearJackpotSlip = () => {
-   removeItem('jackpotbetslip');
+    removeItem('jackpotbetslip');
+}
+
+export const clearKironSlip = () => {
+    removeItem('kironbetslip');
 }
 export const formatNumber = (number) => {
     return number === undefined || number === 0 ? '0.00' : number.toString()

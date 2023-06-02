@@ -53,8 +53,8 @@ const Withdrawals = () => {
                         of the payment method in question.
                     </li>
                     <li>
-                        The maximum self-service withdrawal amount per day will be Kenya
-                        Shillings Twenty Thousand Only (Kshs. 20,000.00).
+                        The maximum self-service withdrawal amount per day, per account will be Kenya Shillings ONE
+                        HUNDRED THOUSAND Only (Kshs. 100,000).
                     </li>
                     <li>
                         Withdrawals from a User’s Account can only be addressed strictly to
@@ -68,23 +68,16 @@ const Withdrawals = () => {
                         method from which player's deposits have originated.
                     </li>
                     <li>
-                        Once a withdrawal request is submitted it can take BetNare up to
-                        forty eight (48) hours to process the request. However, BetNare will
-                        be
-                        doing its best to process withdrawal requests immediately.
+                        Once a withdrawal request is submitted it can take BetNare up to Seventy-Two (72) hours to
+                        process the request. However, BetNare will be doing its best to process withdrawal requests
+                        immediately.
                     </li>
                     <li>
-                        In the instance a CLIENT attempts to withdraw funds that were
-                        deposited but not used for staking, BetNare may levy a processing
-                        fee of
-                        20% upon such withdrawals. BetNare reserves the right to investigate
-                        any
-                        and all suspicious activities related to such withdrawals and report
-                        the
-                        same to the relevant authorities. Additionally, the CLIENT will lose
-                        all
-                        the deposited funds.
-
+                        In the instance a CLIENT attempts to withdraw funds that were deposited but not used for
+                        staking, BetNare may levy up to a processing fee of 50% upon such withdrawals. BetNare reserves
+                        the right to investigate any and all suspicious activities related to such withdrawals and
+                        report the same to the relevant authorities. Additionally, the CLIENT will lose all the
+                        deposited funds.
                     </li>
                     <li>
                         Payouts handled manually through an ordinary bank transfer are

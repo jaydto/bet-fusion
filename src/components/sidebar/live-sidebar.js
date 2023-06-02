@@ -4,11 +4,14 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import {Menu, MenuItem, ProSidebar, SidebarContent, SidebarHeader, SubMenu} from "react-pro-sidebar";
-import 'react-pro-sidebar/dist/css/styles.css';
+import {Link} from "react-router-dom";
+import useWindowDimensions from "../header/Dimensions";
+
 
 const LiveSideBar = (props) => {
 
     const [liveSports, setLiveSports] = useState()
+    const {height, width} = useWindowDimensions();
 
     const fetchData = useCallback(() => {
         let endpoint = "/v1/sports?live=1";
@@ -30,17 +33,17 @@ const LiveSideBar = (props) => {
     }, [fetchData]);
 
     return (
-        <div className="d-md-block" >
+        <div className={`${width<=767?"":"d-md-block w-25 h-100"}`} >
             <div style={{
                 display: 'flex',
                 overflow: 'scroll initial',
                 zIndex: 10,
                 marginRight: '2px',
                 top: "100px",
-                marginTop: "10px"
+                // marginTop: "10px"
             }}
-                 className={`vh-100 text-white sticky-top d-none d-md-block up`}>
-                <ProSidebar
+                 className={`${width<=767?"":"vh-100 text-white sticky-top  d-md-block up"}`}>
+                <ProSidebar className={`${width<=767?"w-100":"live-pro-sidebar"}`}
                     style={{backgroundColor: '#16202c !important'}}
                     image={false}>
                     <SidebarHeader>
@@ -69,35 +72,33 @@ const LiveSideBar = (props) => {
                                 textOverflow: 'ellipsis',
                                 whiteSpace: 'nowrap',
                             }}>
-                            <div className="d-flex">
+                            <div className="d-flex justify-content-sm-center">
                                 LIVE SPORTS
                             </div>
                         </div>
                     </SidebarHeader>
-                    <SidebarContent>
-                        <Menu iconShape="circle">
+                    <SidebarContent className={"sidebar-live "}>
+                        <Menu iconShape="circle live-inner"  >
                             {liveSports && Object.entries(liveSports).map(([index, livesport]) => (
-                                    <Menu iconShape="circle">
-                                        <MenuItem>
-                                            <a className="col-12"
-                                               href={`/live/${livesport.sport_id}`}>
+                                    <Menu iconShape="circle inner-live live-items" key={index} >
+                                        <MenuItem className={"live-items"}>
+                                            <Link className="col-12"
+                                                  to={`/live/${livesport.sport_id}`}>
                                                 <Row>
-                                                    <Col lg="11" md="11" sm="11" xs="11" className="topl">
-                                                        <Row style={{color: "#69819a"}}>
-                                                            <Col className={'text-white'}>{livesport.sport_name} </Col>
-                                                            <Col>
-                                                                <span className={'badge rounded-pill '} style={{
-                                                                    float: "right",
-                                                                    color: "#fff",
-                                                                    background:"red"
-                                                                }}>
+                                                    <Col className="topl">
+                                                        <Row className={'gap-2'} style={{color: "#69819a"}}>
+                                                            <div className={'text-white d-flex align-items-center'}>
+                                                                <span>{livesport.sport_name}</span>&nbsp;
+                                                                <span className={`badge  live-slide  live-side-badge d-flex align-items-center`}>
                                                                         {livesport.count}
                                                                 </span>
-                                                            </Col>
+                                                            </div>
+
+
                                                         </Row>
                                                     </Col>
                                                 </Row>
-                                            </a>
+                                            </Link>
                                         </MenuItem>
                                     </Menu>
                                 )
@@ -151,4 +152,4 @@ const LiveSideBar = (props) => {
     //     </div>
     // )
 }
-export default LiveSideBar;
+export default React.memo(LiveSideBar);

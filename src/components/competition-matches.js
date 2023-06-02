@@ -6,6 +6,7 @@ import useInterval from "../hooks/set-interval.hook";
 import {getBetslip} from './utils/betslip' ;
 import {Spinner} from "react-bootstrap";
 import Testimonials from "./carousel/Testimonials";
+import './test.css'
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -16,8 +17,7 @@ const SearchBar = React.lazy(() => import('./header/search-bar'));
 const MatchList = React.lazy(() => import('./matches/index'));
 const Right = React.lazy(() => import('./right/index'));
 
-
-const CompetitionMatches = (props) => {
+const   CompetitionMatches= () => {
     const [page, setPage] = useState(1);
     const [matches, setMatches] = useState(null);
     const [state, dispatch] = useContext(Context);
@@ -99,11 +99,11 @@ const CompetitionMatches = (props) => {
     })
 
     return (
-        <>
-            <Header/>
-            <div className="amt">
-                <div className="d-flex flex-row justify-content-between">
-                    <SideBar loadCompetitions/>
+        <div className={'flex-item'}>
+            <div className="item4"><Header/></div>
+            <div className="flex-container">
+                <div className="item1"> <SideBar loadCompetitions/></div>
+                <div className="item2"><div className="gz home match-overflow " >
                     <div className="gz home match-overflow" >
                         <div className="homepage">
                             <CarouselLoader/>
@@ -118,12 +118,19 @@ const CompetitionMatches = (props) => {
                             <Spinner animation={'grow'} size={'lg'}/>
                         </div>
                     </div>
-                    <Right betslipValidationData={userSlipsValidation}/>
+                </div></div>
+                <div className="item3">
+                    <Right betslipValidationData={userSlipsValidation} test={true}/>
                 </div>
-            </div>
-            <Footer/>
-        </>
-    )
-}
 
-export default CompetitionMatches;
+
+            </div>
+            <div className="item6"><div className={"footer-mobile-none"}>
+                <Footer/>
+            </div></div>
+        </div>
+
+    );
+};
+
+export default React.memo(CompetitionMatches);

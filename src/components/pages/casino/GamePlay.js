@@ -1,16 +1,22 @@
 import React, {useEffect, useState} from "react";
 import Header from "../../header/header";
 import Footer from "../../footer/footer";
-import {useParams} from "react-router-dom";
+import {useParams, useSearchParams} from "react-router-dom";
 import makeRequest from "../../utils/fetch-request";
 import Skeleton, {SkeletonTheme} from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import {getFromLocalStorage} from "../../utils/local-storage";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import {Stack} from "react-bootstrap";
+import useWindowDimensions from "../../header/Dimensions";
 
 const GamePlay = (props) => {
+    // let url = new URL(window.location)
+    // const live = url.searchParams.get('live')
+    // const game_id= url.searchParams.get('game_id')
     const {game_id, live} = useParams()
+
+    const [user, setUser] = useState(getFromLocalStorage("user"));
 
     const [gameUrl, setGameUrl] = useState('')
 
@@ -47,6 +53,7 @@ const GamePlay = (props) => {
         });
     }
 
+
     const CategoryGames = () => (
 
         <Stack direction="horizontal" gap={1} style={{overflow: "scroll"}}
@@ -75,11 +82,11 @@ const GamePlay = (props) => {
     return (
         <>
             <Header/>
-            <div className="amt">
+            <div className={(user?"user_logged":"amt")}>
                 <div className="d-flex flex-row justify-content-between">
-                    <div className="col-md-12">
+                    <div className="col-md-12 virtual-width-mobile">
                         <div className="homepage">
-                            <CategoryGames/>
+                            {/*<CategoryGames/>*/}
                             <div
                                 className={`col-md-12 ${gameUrlLoaded ? 'd-none' : 'd-block'}`}>
                                 <SkeletonTheme baseColor="#0e131b" highlightColor="#3f6878">
@@ -90,7 +97,7 @@ const GamePlay = (props) => {
                                 <iframe className={'mt-3 shadow-lg'} allowFullScreen
                                         src={gameUrl} title="Gadme" width={'100%'} height={'600px'}></iframe>
                             </>}
-                            {pathname=="1301"||pathname.includes("1301")&&
+                            {!gameUrlLoaded&&(pathname=="1301"||pathname.includes("1301"))&&
                                 <div className={'card rounded-3 e '} style={{color:"#999",background:"transparent", textDecoration:"none", listStyle:"none", fontSize:'14px'}}>
                                     <div className={'card-body p-3'}>
                                         <h3 className={'text-center text-warning flashy'}>WIN Upto 2,500,000/= with Spaceman </h3>
@@ -110,7 +117,7 @@ const GamePlay = (props) => {
                                             <li >
                                                 You can also cashout 50% of your bet and leaving the remaining 50% in play as long as you desire. The Auto CashOut and the 50% Auto Cashout as additional options. The Auto Cash-out feature finishes the game completely crediting you with the current level of winnings. The 50% Auto Cashout feature cashes out half of your stake, allowing you to continue with the remaining half to try and win a bigger prize.
                                                 Get speedy outcomes whenever you play SpaceMan. Utilize the individual betting strategies using Auto
-                                                </li >
+                                            </li >
                                         </ul>
                                         <br/>
                                         <h3 className={'text-center'}>CashOut and Auto Play. </h3>
@@ -128,13 +135,18 @@ const GamePlay = (props) => {
                                     </div>
 
                                 </div>}
+
                         </div>
                     </div>
+
                 </div>
             </div>
-            <Footer/>
+
+            <div className={"footer-mobile-none"}>
+                <Footer/>
+            </div>
         </>
     )
 }
 
-export default GamePlay
+export default React.memo(GamePlay)

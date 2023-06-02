@@ -1,0 +1,10 @@
+@media (max-width:767px){
+.pro-menu > ul{
+    display:block!important;
+    overflow-x: auto;
+    /*justify-content:space-between;*/
+}
+.pro-menu-item > div {
+    width: 100%!important;
+}
+}

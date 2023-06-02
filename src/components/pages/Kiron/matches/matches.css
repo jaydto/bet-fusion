@@ -1,0 +1,196 @@
+
+.matches .top-matches .match-detail .all-markets{
+    /* background: #2D4352!important; */
+    border: none;
+    border: 1px solid #16202C!important;
+    padding: 8px 3px;
+    outline: none;
+    border-radius: 19px!important;
+    flex-grow: 1;
+    width: calc(100% * (1/3) - 10px - 1px);
+    margin: 2px;
+    display: flex;
+    justify-content: space-around;
+
+}
+.btn-wrapper >button {
+    width: 30%!important;
+    border-radius: 10px;
+    margin: 3px;
+
+}
+.checking-odds> button{
+    height:55px!important;
+}
+.playing-teams-wrap {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+/*.top-matches button.picked {*/
+/*    background: #2D4352 !important;*/
+/*}*/
+.new-btn button{
+    border-radius:16px!important;
+    padding:3px;
+}
+
+.event .event-t {
+    justify-content: space-evenly !important;
+}
+.event-t {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5em;
+}
+.event-t .team-badge {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    width: auto !important;
+}
+.team-badge {
+    display: flex;
+    padding-right: 5px;
+    width: 20px !important;
+}
+
+.divider {
+    color: #fff;
+    padding-inline: 1em;
+}
+.event-t .team-badge {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    width: auto !important;
+}
+.team-badge {
+    padding-right: 5px;
+    width: 20px !important;
+}
+.team-badge {
+    padding-right: 5px;
+    width: 20px !important;
+}
+.event-market .btn-odd-option {
+    padding-right: 0;
+}
+.btn-odd-option {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 1em;
+    padding-top: 0.15rem;
+}
+.btn-wrapper {
+    appearance: none;
+    opacity: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex: 1 1;
+}
+.other-markets-wrapper.other-markets .btn-odd-option .odd-selection {
+    width: 56px;
+    margin-bottom: 2px !important;
+    min-width: 56px;
+}
+.btn-odd-option .odd-selection {
+    cursor: pointer;
+}
+.odd-selection {
+    background: #34495e;
+    border-radius: 2px;
+    padding: 3px 0;
+    font-size: 10px;
+    font-weight: 600;
+    margin: 1px;
+    display: flex;
+    flex-direction: column;
+}
+
+.ods-title {
+    width: 100%;
+    top: 6px;
+    color: #fff;
+    font-size: 12px;
+    opacity: 0.3;
+}
+.ods-given {
+    width: 100%;
+    padding: 5px 0;
+    color: #fff;
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+.team-selection-wrapper {
+    width: 100%;
+    float: left;
+    padding: 0.1rem 0;
+}
+.od-wrap {
+    width: 100%;
+    background-color: #0a1f2f;
+}
+.team-selection {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.match-selection {
+    float: left;
+    width: 100%;
+    display: inline;
+}
+.single-match {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    padding: 0;
+}
+.playing-teams-wrap {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.playing-teams-wrap a {
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.playing-teams {
+    font-style: normal;
+    font-weight: 400;
+    line-height: 14px;
+    letter-spacing: 0em;
+    font-size: 1em;
+    text-align: left;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    /* padding: 2px 0; */
+    border: none;
+}
+.playing-teams {
+    font-style: normal;
+    font-weight: 400;
+    line-height: 14px;
+    letter-spacing: 0em;
+    font-size: 1em;
+    text-align: left;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    /* padding: 2px 0; */
+    border: none;
+}

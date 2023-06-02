@@ -230,11 +230,13 @@ const LiveCasino = (props) => {
                     </div>
                 </div>
             </div>
+            <div className={"footer-mobile-none"}>
             <Footer/>
+            </div>
         </>
     )
 
 }
 
 
-export default LiveCasino;
+export default React.memo(LiveCasino);

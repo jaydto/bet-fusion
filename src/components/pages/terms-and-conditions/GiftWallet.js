@@ -17,10 +17,10 @@ const GiftWallet = () => {
             </AccordionItemHeading>
             <AccordionItemPanel className='accordion-item-panel'>
 
-                <p >
+                <p>
                     Register and Get the BetNare Bet Booster of UPTO 3,000/= FREE
                 </p>
-                <p >The client is set to receive Up to 3,000/= to Unlock their Gift Wallet once they REGISTER</p>
+                <p>The client is set to receive Up to 3,000/= to Unlock their Gift Wallet once they REGISTER</p>
                 <br/>
                 <strong className="text-decoration-underline">HOW TO GET THE NARE BOOSTER GIFTS</strong>
                 <ol>
@@ -93,6 +93,12 @@ const GiftWallet = () => {
                         Duplicate accounts will be closed and will not qualify for this offer. Any winnings
                         obtained unlawfully from this bonus will be removed. Promotions and Gifts are
                         created in order to reward our most valued customers.
+                    </li>
+                    <li>
+                        Under suspect of fraud or abuse of this promotion by any customer, we reserve ourselves the
+                        right to remove Gifts and associated winnings from a given account or any associated accounts.
+                        BetNare reserves itself the rights to amend, cancel, reclaim or refuse any promotion at its own
+                        discretion.
                     </li>
 
                 </ol>

@@ -3,8 +3,6 @@ import makeRequest from "../utils/fetch-request";
 import {addToSlip} from "../utils/betslip";
 import Notify from "../utils/Notify";
 import {Spinner} from "react-bootstrap";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faShare} from "@fortawesome/free-solid-svg-icons";
 import {setLocalStorage} from "../utils/local-storage";
 
 
@@ -35,9 +33,9 @@ const DecodeCode = () => {
         }
         setLoading(true)
         await makeRequest({url: endpoint, method: "POST", data: data}).then(([status, result]) => {
-            // console.log(result?.success)
 
-            if (status == 200) {
+
+            if (status === 200) {
                 Object.entries(result?.success).map(([match_id, match]) => {
                     match.live = Number(match?.live) !== 0
                     match.bet_type = String(match?.bet_type)
@@ -64,16 +62,16 @@ const DecodeCode = () => {
 
         <React.Fragment>
             <div className=" ">
-                <div className="card card-radius profile-bg text-light p-0 mt-2">
+                <div className="card card-radius decode-bg text-light p-0 mt-2">
                     <div className="card-body p-3" style={{overflow: "hidden"}}>
                         <form>
                             <div className="form-group row d-flex justify-content-center ">
                                 <div className="col-md-12">
-                                    <label className={"text-bold h4 text-center"}> Enter your betslip share code to load
+                                    <label className={"text-bold h4 text-center mb-4"}> Enter betslip share code to load
                                         betslip </label>
                                     <div className={"d-flex flex-column"}>
                                         <input
-                                            className="text-dark deposit-input form-control col input-field"
+                                            className="text-dark deposit-input form-control col input-field-decode"
                                             id="code"
                                             ref={inputRef}
                                             onChange={(e) => handleChanges(e)}
@@ -88,8 +86,8 @@ const DecodeCode = () => {
                                              style={{whiteSpace: "nowrap"}}>
                                             <div className=" d-flex align-items-start">
                                                 <button type={"button"} onClick={() => handleslip(code)}
-                                                        className='btn btn-lg  w-100 deposit-withdraw-button text-white d-flex align-items-center justify-content-center'
-                                                        style={{backgroundColor: "#527994", borderRadius: "0.3rem"}}>
+                                                        className='btn btn-lg  w-100 deposit-withdraw-button  d-flex align-items-center justify-content-center'
+                                                        style={{backgroundColor: "#FFC107", borderRadius: "0.3rem"}}>
                                                     <strong>
                                                         LOAD SLIP
                                                     </strong>&nbsp;
@@ -113,4 +111,4 @@ const DecodeCode = () => {
     );
 };
 
-export default DecodeCode;
+export default React.memo(DecodeCode);

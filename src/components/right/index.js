@@ -5,8 +5,11 @@ import BetSlip from './betslip';
 import {faTimes} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {Badge} from "react-bootstrap";
-import {getBetslip, getJackpotBetslip} from "../utils/betslip";
+import {getBetslip, getJackpotBetslip, getKironSlip} from "../utils/betslip";
 import {Context} from "../../context/store";
+import KironSlip from "./kironslip-submit-form";
+import Kironslip from "./kironslip";
+import MobileMenu from "../mobile-menu";
 
 const AlertMessage = (props) => {
     return (
@@ -20,44 +23,42 @@ const AlertMessage = (props) => {
 }
 
 const Right = (props) => {
-    const {jackpot, betslipValidationData, jackpotData} = props;
+    const {jackpot, betslipValidationData, jackpotData, kiron,test} = props;
     const [betSlipMobile, setBetSlipMobile] = useState(false)
-    const [state, dispatch] = useContext(Context);
 
     return (
-        <div className="col-md-3 gn betslip-container sticky-top vh-100 overflow-scroll betslip-container-mozilla" style={{top:"13.5rem"}}>
+        <div className={`col ${test?'':'gn'} betslip-container sticky-top vh-100 overflow-scroll betslip-container-mozilla container-sticky-top top-login-background-img-bg ${kiron&&'kiron-betslip-size'}`}>
             <div className="betslip-container d-none d-md-block">
                 {props?.message && <AlertMessage classname={props.classname} message={props.message}/>}
                 <div className="bet-option-list " id=''>
                     <div className="bet alu block-shadow">
-                        <header>
-                            <div className="betslip-header d-flex justify-content-between">
-                    <span className="col-sm-2 bkmrk d-none">
-                        <i className="fa fa-bookmark" aria-hidden="true"></i></span>
-                                <span className="col-sm-8 slp">BETSLIP</span>
-                                <span className="col-sm-2 slip-counter text-white">
+                        <header className={'d-flex justify-content-between gap-2'}>
+                            <div className="betslip-header d-flex justify-content-between w-100">
+                            <span className="col-sm-2 bkmrk d-none">
+                            <i className="fa fa-bookmark" aria-hidden="true"></i></span>
+                                    <span className="col-sm-8 slp">BETSLIP</span>
+                                    <span className="col-sm-2 slip-counter ">
 
+                                        <Badge pill
+                                               bg="warning nav__betslip d-flex justify-content-center align-items-center">
 
-                                    <Badge pill
-                                              bg="warning nav__betslip d-flex justify-content-center align-items-center">
-         {/*{console.log("jackpot_all",state?.[betslip_key])}*/}
-
-                                           {(jackpot === true ?
-                                               getJackpotBetslip() ? Object.keys(getJackpotBetslip()).length : 0
-                                               :
-                                               getBetslip() ? Object.keys(getBetslip()).length : 0)}
-
-
-                                    </Badge>
-                                </span>
+                                            {(jackpot === true ?
+                                                getJackpotBetslip() ? Object.keys(getJackpotBetslip()).length : 0
+                                                :kiron==true?
+                                                    getKironSlip()?Object.keys(getKironSlip()).length:0:
+                                                    getBetslip() ? Object.keys(getBetslip()).length : 0)}
+                                        </Badge>
+                                    </span>
                             </div>
                         </header>
                         <button id="slip-button-close" type="button" className="close mobi" aria-hidden="true">
                             X
                         </button>
                         <div id="betslip" className="betslip">
-                            <BetSlip jackpot={jackpot} betslipValidationData={betslipValidationData}
-                                     jackpotData={jackpotData}/>
+                            {kiron==true?<Kironslip  kiron={kiron} />
+                                :<BetSlip jackpot={jackpot} betslipValidationData={betslipValidationData}
+                                          jackpotData={jackpotData} />}
+
                         </div>
                         <QuickLogin/>
                     </div>
@@ -85,11 +86,12 @@ const Right = (props) => {
                 </div>
             </div>
             <div
-                className={`${betSlipMobile ? 'd-none' : 'd-block'} d-block d-md-none fixed-bottom text-center text-white bg-info bet-slip-footer-toggle`}
-                onClick={() => setBetSlipMobile(true)}>
-                Click to show BetSlip
+
+                className={`${betSlipMobile ? 'd-none' : 'd-block'} tablet-only fixed-bottom text-center text-white bg-info bet-slip-footer-toggle`}>
+
+                <MobileMenu jackpot={jackpot} betslipValidationData={betslipValidationData} jackpotData={jackpotData}  kiron={kiron}/>
             </div>
         </div>
     )
 }
-export default Right;
+export default React.memo(Right);

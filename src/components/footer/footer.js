@@ -5,11 +5,11 @@ import {faFacebook, faInstagram, faTwitter, faYoutube} from "@fortawesome/free-b
 
 
 const Footer = (props) => {
-const {affiliate}=props
+    const {deposit2,profile_side}=props
     return (
-        <footer className={`footer-custom ${affiliate&&' affiliate-footer'}`}>
-            <div className="row">
-                <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3 text-white">
+        <footer className={`footer-custom ${deposit2&&'d-flex flex-column card'}`} style={(deposit2||profile_side)&&{background:'transparent',paddingLeft:'33px'}}>
+            <div className={`row ${profile_side&&' d-flex flex-column '}`}>
+                <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3 text-white" style={deposit2&&{width:'50%'}}>
                     <h5 className={""}>BETNARE</h5>
                     <ul>
                         <li className="">
@@ -32,7 +32,7 @@ const {affiliate}=props
                         </li>
                     </ul>
                 </div>
-                <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3" style={deposit2&&{width:'50%'}}>
                     <h5 className={""}>TERMS AND CONDITIONS</h5>
                     <ul>
                         <li className="">
@@ -52,7 +52,7 @@ const {affiliate}=props
                         </li>
                     </ul>
                 </div>
-                <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3" style={deposit2&&{width:'50%'}}>
                     <h5 className={""}>LEGAL</h5>
                     <ul>
                         <li className="text-danger">
@@ -66,7 +66,7 @@ const {affiliate}=props
                         </li>
                     </ul>
                 </div>
-                <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3" style={deposit2&&{width:'50%'}}>
                     <h5 className={""}>LICENSING</h5>
                     <p>
                         We are licensed and regulated by the Betting Control and Licensing

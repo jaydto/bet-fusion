@@ -1,0 +1,96 @@
+.app-countries-icons {
+    width: 100%;
+    /*max-width: 767px;*/
+    white-space: nowrap;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background: var(--kiron-competition);
+    max-height:59px;
+}
+.country-flag-icon .icon img {
+    width: 47px;
+    margin: 0 auto 7px;
+}
+.league-countries {
+    width: 100%;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.league-countries .country-flag-icon {
+    flex: 1 1;
+}
+.country-flag-icon.active-league {
+    opacity: 1;
+}
+.country-flag-icon {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    opacity: 0.3;
+}
+.country-flag-icon a span {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.country-flag-icon a span {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-weight: 800;
+}
+.error-periods {
+    padding-top: 5px;
+    width: 88%;
+    font-weight: 600;
+    color: var(--light);
+    font-size: 13px;
+    height: 4rem;
+    justify-content: center;
+    display: flex;
+    background: rgba(179, 90, 7, 1) 84%;
+    cursor: pointer;
+    background-blend-mode: normal;
+    transform: translate(0px, 0px) scale(1.3, 1.3);
+    /* box-shadow: 0px 9px 0px 0px rgba(0, 0, 0, 0.3); */
+    /* text-shadow: 0px 13px 0px rgba(0, 0, 0, 0.3); */
+
+    backdrop-filter: brightness(37%);
+    -webkit-backdrop-filter: brightness(37%);
+}
+.error-message-periods{
+    /*width:60%;*/
+    word-break: break-word;
+}
+.text {
+    font: normal normal 16px/1.2 "proxima-nova";
+    letter-spacing: 0px;
+}
+
+.country-name {
+    text-transform: uppercase;
+    font-size: 0.8em;
+    font-weight: 600;
+    color:#fff;
+}
+img{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background-color: transparent;
+    text-decoration: none;
+}
+@media (min-width:200px) and (max-width: 991px){
+    .app-countries-icons {
+        margin-top: 28px!important;
+    }
+}

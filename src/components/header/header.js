@@ -1,5 +1,5 @@
 import React, {useEffect, useCallback, useState, useContext, useRef} from 'react';
-import {useNavigate} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import {LazyLoadImage} from 'react-lazy-load-image-component';
@@ -13,22 +13,53 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import logo from '../../assets/img/Logo.webp';
 import {Navbar, Offcanvas} from "react-bootstrap";
 import SidebarMobile from "../sidebar/awesome/SidebarMobile";
-import Notify from "../utils/Notify";
+import MobileNav1 from "../mobile-navigation/MobileNav1";
 
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faCloudDownloadAlt, faCoins, faList, faSearch, faTimes} from "@fortawesome/free-solid-svg-icons";
+import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
+import ListGroup from "react-bootstrap/ListGroup";
+import {formatNumber} from "../utils/betslip";
+import LoginSection from "./LoginSection";
 const ProfileMenu = React.lazy(() => import('./profile-menu'));
-const HeaderLogin = React.lazy(() => import('./top-login'));
 const HeaderNav = React.lazy(() => import('./header-nav'));
 
 const Header = (props) => {
-    const [utmSource, setUtmSource] = useState('')
-    const [bTag, setBTag] = useState('')
+    const gaEventTracker = useAnalyticsEventTracker('Navigation');
     const [user, setUser] = useState(getFromLocalStorage("user"));
     const [, dispatch] = useContext(Context);
-    const history = useNavigate();
+    const [searching, setSearching] = useState(false)
     const containerRef = useRef();
+    const searchInputRef = useRef(null)
+    const [matches, setMatches] = useState([])
     const {current} = containerRef;
     const [competitions, setCompetitions] = useState({});
     const [settings, setSettings] = useState({});
+    const [isOpen, setIsOpen] = useState(false);
+
+
+    const dismissSearch = () => {
+        setSearching(false)
+        setMatches([])
+    }
+
+    useEffect(() => {
+        fetchMatches()
+    }, [searching])
+    const fetchMatches = async (search) => {
+
+        if (search && search.length >= 3) {
+            gaEventTracker('Searching')
+            let method = "POST"
+            let endpoint = "/v1/matches?page=" + (1) + `&limit=${10}&search=${search}`;
+            await makeRequest({url: endpoint, method: method, data: []}).then(([status, result]) => {
+                if (status === 200) {
+                    setMatches(result?.data || result)
+                }
+            });
+        }
+
+    };
 
     const fetchData = useCallback(async () => {
         let cached_categories = getFromLocalStorage('categories');
@@ -64,7 +95,6 @@ const Header = (props) => {
 
             let [c_status, c_result] = result
 
-            // console.log("C Result is now ", c_result?.message)
 
             if (c_status === 200) {
                 setSettings(c_result?.message);
@@ -76,45 +106,6 @@ const Header = (props) => {
         }
     })
 
-    const configureCampaignCookie = () => {
-
-        let url = new URL(window.location)
-
-        let utm_source = url.searchParams.get('utm_source')
-
-        let utm_campaign = url.searchParams.get('utm_campaign')
-
-        if (utm_source !== null) {
-            setLocalStorage('utm_source', utm_source)
-        }
-
-        if (utm_campaign !== null) {
-            setLocalStorage('utm_campaign', utm_campaign)
-        }
-    }
-
-    const configureBTagCookie = () => {
-
-        let url = new URL(window.location)
-
-        let b_tag = url.searchParams.get('btag')
-
-        if (b_tag !== null) {
-            setLocalStorage('btag', b_tag)
-        }
-
-    }
-
-
-    useEffect(() => {
-        configureCampaignCookie()
-    }, [utmSource])
-
-    useEffect(() => {
-        configureBTagCookie()
-    }, [bTag])
-
-
     useEffect(() => {
 
         const abortController = new AbortController();
@@ -125,7 +116,6 @@ const Header = (props) => {
             abortController.abort();
         };
     }, [fetchData]);
-
 
     const NotifyToastContaner = () => {
         return <ToastContainer
@@ -159,6 +149,12 @@ const Header = (props) => {
 
     }, [current]);
 
+    const showSearchBar = () => {
+        setSearching(true)
+        // searchInputRef.current.focus()
+        gaEventTracker('Clicked on Search')
+    }
+
     const updateUserOnLogin = useCallback(() => {
         dispatch({type: "SET", key: "user", payload: user});
     }, [user?.msisdn, user?.balance]);
@@ -173,60 +169,196 @@ const Header = (props) => {
         updateUserOnLogin()
     }, [updateUserOnLogin])
 
+    const toggle = () => {
+        setIsOpen(!isOpen);
+    };
 
+    const expand = "md"
+    const pathname = window.location.pathname;
     useEffect(()=>{
-        const slip_shared_invalid=getFromLocalStorage('betslip-share-code-invalid')
-        if ( slip_shared_invalid!== null && Object.keys(slip_shared_invalid).length > 0 ){
-            Notify(slip_shared_invalid)
-            setLocalStorage('slip_shared_invalid',null)
-
+        if(pathname=='nare-league'){
+            dispatch({type: "SET", key: "kiron_page", payload:true});
+        }else{
+            dispatch({type: "SET", key: "kiron_page", payload:false});
         }
 
-    },[getFromLocalStorage('betslip-share-code-invalid')])
-    const expand = "md"
+    },[ pathname ])
     return (
         <>
-            <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark">
-                <Container fluid className={'d-flex justify-content-between mobile-change'}>
-                    <Navbar.Brand href="/" className="e logo align-self-start" title="Betnare">
-                        <div className="col-3">
-                            <div>
-                                <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"/>
-                            </div>
-                        </div>
-                    </Navbar.Brand>
-                    <div className="col-9 change-size" id="navbar-collapse-main">
-                        <div className="col-md-10 col-sm-12 col-lg-8 right disable-ipad ">
-                            {user ? <ProfileMenu user={user}/> : <HeaderLogin setUser={setUser}/>}
-                        </div>
+            <Navbar expand="md"   className={`mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${user?'top-nav-login':'top-nav'}`} fixed="top" variant="dark">
+                <div className={'w-100 d-flex justify-content-between mobile-change desktop-ipad-size'}>
+                    <div className={"d-flex w-100 directions-header-nav"}>
+                        <Navbar.Brand className={`e logo align-self-start menu-control d-flex justify-content-between w-100`} title="Betnare">
+                            <Link to={{pathname: "/"}} className="col-4 resize-mobile" style={{ marginLeft:"2px"}}>
+                                <img src={logo} alt="Betnare" title="Betnare" effects="blur"
+                                     className={`image-size ${!user&&'logo-top'}`} style={user?{marginBottom:"0px" }:{marginBottom:"11px", width:'auto'}}/>
+                            </Link>
+                            {user &&
+                                <div
+                                    className="col-md-6  d-flex  right justify-content-end align-items-center w-change2 gap-2 ipad-show"
+                                    style={{marginLeft: 'auto'}}>
 
+                                    <div>
+                                        <Link
+                                            to={{pathname: "/deposit"}}
+                                            className={"deposit-button size-font-user-action"}>
+                                          <span className="">
+                                           <span className=" "> <FontAwesomeIcon
+                                               icon={faCloudDownloadAlt} /></span>&nbsp;
+                                              DEPOSIT
+                                          </span>
+                                        </Link>
+                                    </div>
+                                    <div>
+
+                                        <div
+                                            className={"deposit-button size-font-user-action d-flex align-items-center"}
+                                            style={{marginRight: "12px"}}>
+                                          <span className="text-warning">
+                                           <span className=" "><FontAwesomeIcon icon={faCoins} className={"text-warning"}/>
+                                               </span>&nbsp;
+                                              KSH {formatNumber(user.balance) || 0}
+                                          </span>
+                                        </div>
+                                    </div>
+                                    <div className={'mybets-remove-on-mobile'}>
+                                        <Link
+                                            to={{pathname: "/mybets"}}
+                                            className={"deposit-button size-font-user-action"}>
+                                          <span className={"text-success"}>
+                                           <span className=" "> <FontAwesomeIcon
+                                               icon={faList}/></span>&nbsp;
+                                              MY BETS
+                                          </span>
+                                        </Link>
+                                    </div>
+                                    <div className='d-flex align-items-baseline'>
+                                        <div className={` align-items-center  ${searching ? 'd-none' : 'd-flex'}`}>
+                                            <Link className="" to={"#"} title="Search"
+                                                  onClick={() => {
+                                                      showSearchBar();gaEventTracker('Visit Search')
+                                                  }}>
+                                                <span
+                                                    className="border-radius-search p-2 align-items-center  justify-content-center d-flex"><FontAwesomeIcon
+                                                    icon={faSearch}/> </span><span
+                                            ></span>
+                                            </Link>
+                                        </div>
+                                    </div>
+                                    <div className="col-1 button-toggle space-button"
+                                         style={{width: "4.1rem", overflowY: "auto", marginLeft: '20px'}}>
+                                        <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"lg"}`}
+                                                       className="px-3 py-3" onClick={toggle}/>
+                                    </div>
+                                </div>}
+                                    <>
+                                    {!user&&<div className="col-sm-2 mobile-profile1 align-items-center gap-3 ipad-show" style={{marginLeft:'auto'}}>
+                                        {pathname!=='/signup'&&<div className="remove-verify">
+                                            <Link className="cg  login-color login-size btn bg-success text-light"
+                                                  to={"/verify"} title="Verify Account"
+                                                  onClick={() => gaEventTracker('Verify')}>
+                                                <span className="register-label text-light">Verify</span>
+                                            </Link>
+                                        </div>}
+                                        {pathname!=='/signup'&&<div className="">
+                                            <Link className="cg  login-color login-size btn bg-warning text-light"
+                                                  to={"/signup"} title="Join now"
+                                                  onClick={() => gaEventTracker('Register')}>
+                                                <span className="button-text-color-on-yellow text-weight-md">Register</span>
+                                            </Link>
+                                        </div>}
+
+                                        {pathname!=='/signup'&&<Link to={"/login"} className="cg  login-color login-size btn" type="submit" style={{backgroundColor:'#527994FF'}}>
+                                            <span>Login</span>
+                                        </Link>}
+                                        {pathname!=='/signup'&&<div className='d-flex align-items-baseline'>
+                                            <div className={` align-items-center  ${searching ? 'd-none' : 'd-flex'}`}>
+                                                <Link className="" to={"#"} title="Search"
+                                                      onClick={() => {
+                                                          showSearchBar();gaEventTracker('Visit Search')
+                                                      }}>
+                                                    <span
+                                                        className="border-radius-search p-2  justify-content-center d-flex"><FontAwesomeIcon
+                                                        icon={faSearch}/> </span><span
+                                                ></span>
+                                                </Link>
+                                            </div>
+                                        </div>}
+                                        <div className="col-1 button-toggle space-button" style={{width: "4.1rem", overflowY:"auto",marginLeft:'20px'}}>
+                                            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"lg"}`} className="px-3 py-3" onClick={toggle} />
+                                        </div>
+
+                                    </div>}
+    </>
+
+
+                        </Navbar.Brand>
+
+                        {/*todo check information provided for a user*/}
+                        <div className={` col-10 change-size desk-top`} id="navbar-collapse-main " >
+                            <div
+                                className="col-md-11 col-sm-12 col-lg-7 right fix-view-2 disable-ipad to-navcheck justify-content-end pt-lg-0 pt-md-3">
+                                {user ? <ProfileMenu user={user}/> : <LoginSection/>}
+                            </div>
+
+                        </div>
                     </div>
 
-                    <Row className="second-nav ck pc os app-navbar app-header-nav">
+                    <Row className={`second-nav ck pc os app-navbar ${user?' app-header-nav-login ':' app-header-nav '} to-navcheck `}>
                         <HeaderNav/>
                     </Row>
-                    { /**
-                     <Navbar.Offcanvas
-                     style={{width: "100% !important", height: "100%"}}
-                     className='off-canvas background-primary p-0'
-                     id={`offcanvasNavbar-expand-${expand}`}
-                     aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-                     placement="start">
-                     <Offcanvas.Header closeButton className='text-white'>
-                     <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                     <div className="col-3">
-                     <div>
-                     <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"/>
-                     </div>
-                     </div>
-                     </Offcanvas.Title>
-                     </Offcanvas.Header>
-                     <Offcanvas.Body>
-                     <SidebarMobile/>
-                     </Offcanvas.Body>
-                     </Navbar.Offcanvas>
-                     **/}
-                </Container>
+                        {searching?
+                            <div id="navbar-collapse-main"
+                                       className={`fadeIn header-menu d-flex justify-content-center w-100 d-block`}>
+                                <ListGroup as="ul" xs="9" horizontal className="nav navbar-nav og ale ss col-12 text-center w-100 d-flex">
+                                    <div className="d-flex w-100">
+                                        <div className="col-10  px-2" style={{marginLeft:'2vw'}}>
+                                            <input type="text" placeholder={'Start typing to search for team ...'}  autoFocus={true} ref={searchInputRef}
+                                                   onInput={(event) => fetchMatches(event.target.value)}
+                                                   className={'form-control input-field-search border-0  text-default bg-light no-border-radius input-bg-user'}  style={{background: "#2D4352"}}/>
+                                            <div className="col-10" style={{ overflowY:'auto', borderRadius:'2px'}}
+                                                 className={`autocomplete-box  rounded position-fixed  search-results-box border-dark col-md-5 shadow-lg text-start`}
+                                                 onClick={() => gaEventTracker('View Search Results')}>
+                                                {matches.map((match, index) => (
+                                                    <Link to={`/?search=${match.home_team}&sub_type_id=1`} key={index} onClick={()=> window.location.href=`/?search=${match.home_team}&sub_type_id=1`}>
+                                                        <li>
+                                                            {match.home_team}
+                                                        </li>
+                                                    </Link>
+                                                ))}
+                                            </div>
+                                        </div>
+                                        <button className={'col-2 btn text-warning align-right d-flex justify-content-center align-items-center flex-column'} onClick={() => dismissSearch()}>
+                                            <FontAwesomeIcon icon={faTimes}/> Close
+                                        </button>
+                                    </div>
+
+                                </ListGroup>
+                            </div>
+                        :(pathname!=='/signup')&&pathname!=='/nare-league'&&pathname!=='/results'&& pathname!=='/standing'&&pathname!=='/playouts'&&pathname!=='/standing  '&&pathname!=='/bet-history'&&<MobileNav1/>}
+
+
+                    <Navbar.Offcanvas
+                        style={{width: "80%", height: "100%",zIndex: "9999", marginTop: "0px", overflowY:"auto"}}
+                        className='off-canvas background-primary p-0'
+                        id={`offcanvasNavbar-expand-${expand}`}
+                        aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+                        placement="start">
+                        <Offcanvas.Header closeButton className='text-white' closeVariant={"white"} onClick={toggle}>
+                            <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
+                                <div className="col-5">
+                                    <div>
+                                        <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"/>
+                                    </div>
+                                </div>
+                            </Offcanvas.Title>
+                        </Offcanvas.Header>
+                        <Offcanvas.Body >
+                            <SidebarMobile/>
+                        </Offcanvas.Body>
+                    </Navbar.Offcanvas>
+
+                </div>
             </Navbar>
         </>
 

@@ -50,11 +50,11 @@ const Deposit = (props) => {
                 }});
         }
 
-        if (!values.amount || values.amount < 1 || values.amount > 70000) {
-            errors.msisdn = 'Please enter amount between KES 1.00 and KES 70,000.00'
+        if (!values.amount || values.amount < 1 || values.amount > 100000) {
+            errors.msisdn = 'Please enter amount between KES 1.00 and KES 100,000.00'
             dispatch({type: "SET", key: "depositValidateError", payload: {
                     msisdn:'',
-                    amount:'Please enter amount between KES 1.00 and KES 70,000.00'
+                    amount:'Please enter amount between KES 1.00 and KES 100,000.00'
                 }});
         }
         return errors

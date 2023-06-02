@@ -6,7 +6,7 @@ import betNiMoto from '../../../assets/img/BetniMoto.webp'
 import {Link, useNavigate} from "react-router-dom";
 
 import useWindowDimensions from "../../header/Dimensions";
-import {clearTrackingData, getFromLocalStorage, setLocalStorage, setTrackingData} from "../../utils/local-storage";
+import {clearTrackingData, getFromLocalStorage, setTrackingData} from "../../utils/local-storage";
 import only18 from '../../../assets/img/auth/18only.png'
 import backgroundURL from '../../../assets/img/auth/img-17.webp'
 import {Navbar, Offcanvas} from "react-bootstrap";
@@ -66,8 +66,8 @@ const Deposit3= props => {
             errors.msisdn = 'Please enter a valid phone number'
         }
 
-        if (!values.amount || values.amount < 1 || values.amount > 70000) {
-            errors.amount = "Please enter amount between KES 1.00 and KES 70,000.00";
+        if (!values.amount || values.amount < 1 || values.amount > 100000) {
+            errors.amount = "Please enter amount between KES 1.00 and KES 100,000.00";
         }
         return errors
     }

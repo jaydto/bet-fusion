@@ -40,8 +40,8 @@ const Withdrawal = (props) => {
             errors.msisdn = 'Please enter a valid phone number'
         }
     //Removed the  upper limit  values.amount > 70000
-        if (!values.amount || values.amount < 50 ) {
-            errors.amount = "Please enter amount above KES 50";
+        if (!values.amount || values.amount < 100 ) {
+            errors.amount = "Please enter amount above KES 100";
         }
         return errors
     }

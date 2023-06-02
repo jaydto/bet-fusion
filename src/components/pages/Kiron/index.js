@@ -4,9 +4,10 @@ import KironTabs from "./KironTabs/KironTabs";
 import KironCompetitions from "./competitions/KironCompetitions";
 import MatchList from "./matches";
 import makeRequest from "../../utils/fetch-request";
+import fire from "../../../assets/img/fire.webp"
 
 import {Context} from "../../../context/store";
-import { useLocation} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import KironPeriods from "./periods";
 import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
 
@@ -20,6 +21,7 @@ import Standing from "./standing";
 import KironBetHistory from "./bet-history/KironBetHistory";
 import SkeletonLoader from "./skeletonLoader/SkeletonLoader";
 import KironPlayouts from "./playout";
+
 
 const TestKiron = () => {
     const [state, dispatch] = useContext(Context)
@@ -98,6 +100,8 @@ const TestKiron = () => {
     }, [ state?.start_fetching_match]);
 
 
+
+
     const fetchData = useCallback(async () => {
         dispatch({type: "SET", key: 'nareLoading', payload: true})
         endpoint = endpoint.replaceAll(" ", '')
@@ -128,6 +132,8 @@ const TestKiron = () => {
                 setFetching(false)
                 dispatch({type: "SET", key: 'nareLoading', payload: false})
 
+            }else{
+                dispatch({type: "SET", key: 'nareLoading', payload: false})
             }
         });
 
@@ -188,9 +194,11 @@ const TestKiron = () => {
 
 
     return (
-        <div className={'flex-item-kiron'}>
+
+            <div className={'flex-item-kiron'}>
             <div className="item-kiron4">
                 <div>
+
                     <Header/>
                 </div>
             </div>
@@ -244,6 +252,7 @@ const TestKiron = () => {
                 </div>
             </div>
         </div>
+
 
     );
 };

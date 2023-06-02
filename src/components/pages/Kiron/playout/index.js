@@ -16,9 +16,9 @@ const KironPlayouts = (props) => {
     let timeVar;
 
 
-    const fetchData = useCallback(async () => {
+    const fetchData = async () => {
         setSuccess(false)
-        dispatch({type: 'SET', key: 'playout_data', payload: null})
+        // dispatch({type: 'SET', key: 'playout_data', payload: null})
 
         endpoint = endpoint.replaceAll(" ", '')
 
@@ -35,7 +35,7 @@ const KironPlayouts = (props) => {
             }
         });
 
-    }, []);
+    }
 
 
     useEffect(() => {

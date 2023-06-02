@@ -58,7 +58,7 @@ const KironMoreMarkets= () => {
 
                 setLocalStorage('kiron-more', labeledOptions);
             } else {
-                fetchData()
+                // fetchData()
             }
         } else {
             setOptions(cached_competitions);

@@ -4,17 +4,14 @@ import makeRequest from "../../../utils/fetch-request";
 import './period.css'
 import {Context} from "../../../../context/store";
 
-
 export const getTime = (time) => {
     const start = new Date(time);
     const startTimeString = start.toLocaleTimeString('en-Us', {hour12: false, hour: '2-digit', minute: '2-digit'});
     return (startTimeString)
 }
 
-
 let timerInterval;
 let timerVar;
-
 const KironPeriods = (props) => {
     const {setPlayout, setIsCountdownTimerActive, isCountdownTimerActive} = props
     const [state, dispatch] = useContext(Context);
@@ -29,6 +26,18 @@ const KironPeriods = (props) => {
         competition_id: newCompetition
     })
 
+    const counter=(count)=>{
+        count++
+        if(count>3){
+            let message =" OOPs, Something went wrong click here to Reload the page"
+            dispatch({type:'SET',key:'error_periods', payload:message})
+        }
+        else{
+            fetchData()
+        }
+    }
+    const prevCount=useRef(0)
+
     const fetchData = useCallback(async () => {
         clearInterval(timerVar)
         setTimeAfter(null)
@@ -36,7 +45,6 @@ const KironPeriods = (props) => {
         dispatch({type: 'SET', key: 'nare_league_matches', payload: null})
         dispatch({type: 'SET', key: 'playout_data', payload: null})
         dispatch({type: "SET", key: 'nareLoading', payload: true})
-        // dispatch({type: 'SET', key: 'periods_data', payload: null})
         setIsCountdownTimerActive(false);
         let endpoint = "/v1/nare-league/periods";
         let method = "POST"
@@ -46,7 +54,7 @@ const KironPeriods = (props) => {
         makeRequest({url: endpoint, method: method, data: newCompetition2}).then(([c_status, c_result]) => {
 
             if (c_status === 200) {
-
+                dispatch({type:'SET',key:'error_periods', payload:null})
                 setTimeAfter(null)
                 dispatch({type:'SET',key:'timeAfter', payload:null})
                 setIsCountdownTimerActive(false)
@@ -65,7 +73,8 @@ const KironPeriods = (props) => {
                 dispatch({type: "SET", key: 'nare_league_matches', payload: null})
                 dispatch({type: "SET", key: 'periods_ready', payload: true})
             } else {
-                fetchData()
+                prevCount.current=prevCount.current+1
+                counter(prevCount.current)
             }
 
         })
@@ -340,7 +349,7 @@ const KironPeriods = (props) => {
 
     useEffect(() => {
         if (state?.current_selection_period!=undefined){
-            if(state?.current_selection_period?.start!=''){
+            if(!state?.inPlay){
                 dispatch({ type: "SET", key: 'start_fetching_selection', payload: true })
             }
 

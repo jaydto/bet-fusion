@@ -1,14 +1,15 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useContext, useEffect, useState} from 'react';
 import {Link, useLocation,} from "react-router-dom";
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import {getFromLocalStorage, setLocalStorage} from "../../../utils/local-storage";
 import makeRequest from "../../../utils/fetch-request";
-import useAnalyticsEventTracker from "../../../analytics/useAnalyticsEventTracker";
 import "./competition.css"
+import {Context} from "../../../../context/store";
 
 const KironCompetitions = (props) => {
     let [kiron, setKiron] = useState(getFromLocalStorage('kiron-competitions'));
+    const [state,]=useContext(Context)
     const pathLocation=window.location.pathname
     const [pathname, setPathname] = useState(() => {
         const searchParams = new URLSearchParams(window.location.search);
@@ -48,7 +49,7 @@ const KironCompetitions = (props) => {
                 setKiron(c_result);
                 setLocalStorage('kiron-competitions', c_result);
             } else {
-                fetchData()
+                // fetchData()
             }
         } else {
             setKiron(cached_competitions);
@@ -65,6 +66,10 @@ const KironCompetitions = (props) => {
         };
     }, []);
 
+    const refreshPage=()=>{
+        window.location.reload()
+    }
+
 
 
     return (
@@ -72,7 +77,12 @@ const KironCompetitions = (props) => {
         <div className="app-countries-icons mt-4">
             <div className="container-fluid">
                 <div className="d-flex">
-                    {kiron?.map((kiron_options, index) => (
+                    {state?.error_periods?
+                    <div   className={'error-periods'} onClick={refreshPage}>
+                        {/*{window.location.reload()}*/}
+                        <div className={'error-message-periods'}>{state?.error_periods}</div>
+                    </div >:
+                    kiron?.map((kiron_options, index) => (
                     <div key={index} className="league-countries">
                         <div className={`country-flag-icon ${(pathname.includes(`competition_id=${kiron_options?.competition_id}`))?' active-league ':" "} justify-content-center`}>
                             <Link to={`${pathLocation=='/bet-history'?'/nare-league':pathLocation}?competition_id=${kiron_options.competition_id}`}>

@@ -37,11 +37,7 @@ const Virtuals = (props) => {
     }
 
     const showLoginNotification = () => {
-        let message = {
-            status: 500,
-            message: "Please Log In to continue."
-        }
-        Notify(message)
+        return window.location.href='/login'
     }
 
     const launchGame = (game_id, live = true) => {

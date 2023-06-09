@@ -16,7 +16,7 @@ const Virtuals = (props) => {
     const [user] = useState(getFromLocalStorage("user"));
     const {height, width} = useWindowDimensions();
 
-    const [categories, setCategories] = useState([])
+
 
     const [games, setGames] = useState([])
 
@@ -25,7 +25,6 @@ const Virtuals = (props) => {
         let method = "GET"
         await makeRequest({url: endpoint, method: method}).then(([status, result]) => {
             if (status === 200) {
-                setCategories(result.types)
                 setGames(result.data)
                 setLocalStorage('category_games', result.data)
             }
@@ -50,7 +49,7 @@ const Virtuals = (props) => {
         const userState = (getFromLocalStorage("user"));
 
         if (userState?.token) {
-            return window.location.href = `/gameplay?game_id=${game_id}&live=${live ? '1' : '0'}`
+            return window.location.href = `/gameplay/${game_id}/${live ? '1' : '0'}`
         }
 
 

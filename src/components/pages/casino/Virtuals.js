@@ -3,13 +3,13 @@ import Header from "../../header/header";
 import Footer from "../../footer/footer";
 import makeRequest from "../../utils/fetch-request";
 import {LazyLoadImage} from 'react-lazy-load-image-component';
-import {Link, Outlet} from "react-router-dom";
 import SideBar from "../../sidebar/awesome/Sidebar";
 import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
 import Notify from "../../utils/Notify";
 import {Button, ButtonGroup} from "react-bootstrap";
 import useWindowDimensions from "../../header/Dimensions";
 import Right from "../../right";
+import {ToastContainer} from "react-toastify";
 
 const Virtuals = (props) => {
 
@@ -63,6 +63,7 @@ const Virtuals = (props) => {
     return (
         <>
             <Header/>
+            <ToastContainer/>
             <div className={(width<=575?user?"user_logged":"amt":"amt")}>
                 <div className="d-flex flex-row">
                     <SideBar loadCompetitions/>

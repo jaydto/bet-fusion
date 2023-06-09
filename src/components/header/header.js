@@ -185,6 +185,7 @@ const Header = (props) => {
     },[ pathname ])
     return (
         <>
+            <ToastContainer/>
             <Navbar expand="md"   className={`mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${user?'top-nav-login':'top-nav'}`} fixed="top" variant="dark">
                 <div className={'w-100 d-flex justify-content-between mobile-change desktop-ipad-size'}>
                     <div className={"d-flex w-100 directions-header-nav"}>

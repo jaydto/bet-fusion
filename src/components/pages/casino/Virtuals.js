@@ -3,20 +3,20 @@ import Header from "../../header/header";
 import Footer from "../../footer/footer";
 import makeRequest from "../../utils/fetch-request";
 import {LazyLoadImage} from 'react-lazy-load-image-component';
-import {Link, Outlet} from "react-router-dom";
 import SideBar from "../../sidebar/awesome/Sidebar";
 import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
 import Notify from "../../utils/Notify";
 import {Button, ButtonGroup} from "react-bootstrap";
 import useWindowDimensions from "../../header/Dimensions";
 import Right from "../../right";
+import {ToastContainer} from "react-toastify";
 
 const Virtuals = (props) => {
 
     const [user] = useState(getFromLocalStorage("user"));
     const {height, width} = useWindowDimensions();
 
-    const [categories, setCategories] = useState([])
+
 
     const [games, setGames] = useState([])
 
@@ -25,7 +25,6 @@ const Virtuals = (props) => {
         let method = "GET"
         await makeRequest({url: endpoint, method: method}).then(([status, result]) => {
             if (status === 200) {
-                setCategories(result.types)
                 setGames(result.data)
                 setLocalStorage('category_games', result.data)
             }
@@ -38,11 +37,7 @@ const Virtuals = (props) => {
     }
 
     const showLoginNotification = () => {
-        let message = {
-            status: 500,
-            message: "Please Log In to continue."
-        }
-        Notify(message)
+        return window.location.href='/login'
     }
 
     const launchGame = (game_id, live = true) => {
@@ -50,7 +45,7 @@ const Virtuals = (props) => {
         const userState = (getFromLocalStorage("user"));
 
         if (userState?.token) {
-            return window.location.href = `/gameplay?game_id=${game_id}&live=${live ? '1' : '0'}`
+            return window.location.href = `/gameplay/${game_id}/${live ? '1' : '0'}`
         }
 
 
@@ -64,6 +59,7 @@ const Virtuals = (props) => {
     return (
         <>
             <Header/>
+            <ToastContainer/>
             <div className={(width<=575?user?"user_logged":"amt":"amt")}>
                 <div className="d-flex flex-row">
                     <SideBar loadCompetitions/>

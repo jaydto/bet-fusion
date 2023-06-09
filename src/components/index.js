@@ -23,7 +23,6 @@ const Right = React.lazy(() => import('./right'));
 const SideBar = React.lazy(() => import('./sidebar/awesome/Sidebar'))
 const Index = () => {
     const [scrollEndedActive, setScrollEndedActive] = useState(false)
-    const gaEventTracker = useAnalyticsEventTracker('Home');
     const location = useLocation();
     const [tab, setTab] = useState('highlights');
     const [sportID, setSportID] = useState(79);

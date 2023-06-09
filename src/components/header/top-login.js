@@ -1,7 +1,7 @@
-import React, {useState, useEffect, useContext, useCallback} from 'react'
+import React, {useState, useEffect,  useCallback} from 'react'
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
-import {Formik, Field, Form} from 'formik';
+import {Formik, Form} from 'formik';
 import makeRequest from "../utils/fetch-request";
 import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -196,7 +196,7 @@ const HeaderLogin = (props) => {
                 </div>
             </div>
             <div style={{float: "right"}} className={` d-flex justify-content-center align-items-center flex-column w-100 container-fluid`}>
-                <ToastContainer/>
+
                 <LoginForm/>
             </div>
 

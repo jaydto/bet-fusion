@@ -1178,6 +1178,12 @@ img.nare-league {
 }
 
 @media (max-width: 991px){
+    .pro-sidebar > .pro-sidebar-inner > .pro-sidebar-layout .sidebar-live ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex!important;
+    }
     .search-results-box{
         background: var(--betnare-input);
         color:var(--light);

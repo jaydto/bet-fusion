@@ -727,7 +727,7 @@ const MarketRow = (props) => {
 
   return (
       <div className="top-matches match">
-        <Row className="top-matches header">
+        <Row className="top-matches header d-flex justify-content-center">
           {live && (
               <div
                   style={{

@@ -16312,12 +16312,11 @@ img.zoom-img {
         padding-left: 0.5rem!important;
     }
     .container-size {
-        width: 100%!important;
+        width: 96%!important;
         padding-right: 0.5rem!important;
         padding-left: 0.5rem!important;
         margin-right: 0.5rem!important;
-        /*margin-left: 1.5rem!important;*/
-
+        /* margin-left: 1.5rem!important; */
     }
 }
 

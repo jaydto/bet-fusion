@@ -117,9 +117,12 @@ const Index = () => {
     const fetchData = useCallback(async () => {
         // setFetching(true)
         let tab = location.pathname.replace("/", "") || 'highlights';
+        let tabInfo=window.location.pathname
+        tabInfo=tabInfo.substring(tabInfo.lastIndexOf('/')+1)
+
         let betslip = findPostableSlip();
 
-        let endpoint = "/v1/matches?page=" + (page || 1) + `&limit=${prevLimit.current }&tab=` + tab;
+        let endpoint = "/v1/matches?page=" + (page || 1) + `&limit=${prevLimit.current }&tab=` + tabInfo||tab;
         let url = new URL(window.location.href)
         let sport_id = url.searchParams.get('sport_id')
 

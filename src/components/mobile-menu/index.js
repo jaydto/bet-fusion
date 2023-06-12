@@ -1,8 +1,8 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import HomeSvg from "../../assets/img/mobile/home.png";
-import VirtualSvg from "../../assets/img/mobile/virtual.png";
 import LiveSvg from "../../assets/img/mobile/live.png";
 import ProfileSvg from "../../assets/img/mobile/user.png";
+import kironImg from "../../../src/assets/img/kiron/nare-league.webp"
 
 import makeRequest from "../utils/fetch-request";
 import { Badge} from "react-bootstrap";
@@ -98,12 +98,21 @@ const MobileMenu = (props) => {
                     <img src={HomeSvg} alt="" style={{ width: "30px", height:"25px" }}></img>
                     <p>Home</p>
                 </Link>
+                {/*<Link*/}
+                {/*    to={"/virtuals"}*/}
+                {/*    className={`bloc-icon ${pathname === "/virtuals" ? "active" : ""}`}*/}
+                {/*>*/}
+                {/*    <img src={VirtualSvg} alt=""></img>*/}
+                {/*    <p>Virtuals</p>*/}
+                {/*</Link>*/}
+
                 <Link
-                    to={"/virtuals"}
-                    className={`bloc-icon ${pathname === "/virtuals" ? "active" : ""}`}
+                    to={"/nare-league"}
+                    onClick={() => gaEventTracker("Visit Nare League Page")}
+                    className={`bloc-icon ${pathname === "/nare-league" ? "active" : ""}`}
                 >
-                    <img src={VirtualSvg} alt=""></img>
-                    <p>Virtuals</p>
+                    <img src={kironImg} alt="" className={'nare-league'}></img>
+
                 </Link>
 
                 <Link to={ {pathname:`${jackpot?"/betslip-jackpot":kiron?`/betslip-nare`:"/betslip-slip"}`, search:`${jackpot!==undefined?'jackpot='+jackpot:''}${kiron!==undefined?'nare-league='+kiron:''}`}}

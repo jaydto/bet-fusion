@@ -196,6 +196,12 @@ input.text-white{
     color: var(--dark)!important;
     width: 100%;
 }
+.match-status {
+    color: var(--betnare-button-login)!important;
+}
+.live-status {
+    color: var(--betnare-live);
+}
 #xgames-header {
     font-family: Amita, cursive;
     font-style: italic;
@@ -740,6 +746,24 @@ input[type="radio"], input[type="checkbox"] {
 .user_logged{
     margin-top:10rem;
 }
+img.nare-league {
+    margin-bottom: 30px;
+    height: 80px!important;
+    width: 96px!important;
+}
+.menu-t img.virtuals-icon {
+    height: 30px!important;
+    width: 30px;
+}
+.deposit-buttons-value {
+    padding: 5px 10px;
+    border-radius: 20px;
+    box-shadow: unset !important;
+    border: thin solid #1D535F;
+    background: transparent;
+    font-weight: 800;
+    color: var(--light);
+}
 .sticky-testimony {
     position: sticky;
     position: -webkit-sticky;
@@ -786,6 +810,9 @@ input[type="radio"], input[type="checkbox"] {
 
 /*media queries*/
 @media (min-width: 1260px) {
+    .live-status{
+        display:none;
+    }
     .mybets-styling-mobile {
         overflow: hidden;
         font-size: 15px!important;
@@ -1407,10 +1434,10 @@ input[type="radio"], input[type="checkbox"] {
     .top-matches div {
         min-height: 27px;
         justify-content: unset;
-
         padding-left: 0.1rem!important;
+        white-space: normal;
         padding-right: 0rem!important;
-        /*margin-bottom: 0.4rem;*/
+        /* margin-bottom: 0.4rem; */
     }
     .home-tabs-active {
         padding: 3px;

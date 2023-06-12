@@ -7973,6 +7973,11 @@ ul.sport {
 
 
 @media (max-width: 991px) {
+    .casino-category-container {
+
+        width:fit-content;
+
+    }
     .mobile-nav-top {
         width: 100%;
         /* max-width: 767px; */
@@ -12325,6 +12330,11 @@ button.close {
 }
 
 @media (min-width: 992px) and (max-width: 1259px) {
+    .casino-category-container {
+
+        width:fit-content;
+
+    }
     .su {
         display: none !important;
     }

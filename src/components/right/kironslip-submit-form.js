@@ -3,7 +3,7 @@ import React, {
     useEffect,
     useContext,
     useCallback,
-    useMemo,
+    useMemo, useRef,
 } from "react";
 import {Context} from "../../context/store";
 import {
@@ -17,15 +17,12 @@ import {Formik, Form as FormikForm, useFormikContext} from "formik";
 import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
-    faBolt,
-    faCheck,
     faCut,
-    faFire,
     faFireAlt,
     faGift,
-    faShare, faTrash,
+    faTrash,
 } from "@fortawesome/free-solid-svg-icons";
-import {Spinner} from "react-bootstrap";
+
 import {getTime} from "../pages/Kiron/periods";
 
 const Float = (equation, precision = 4) => {
@@ -33,9 +30,6 @@ const Float = (equation, precision = 4) => {
 };
 
 const KironslipSubmitForm = (props) => {
-    const BetslipShareModal = React.lazy(() =>
-        import("../modals/BetslipShareModal")
-    );
 
     const {
         totalGames,
@@ -82,6 +76,14 @@ const KironslipSubmitForm = (props) => {
             setBetslipKey("kironbetslip");
         }
     }, [kiron]);
+
+    const scrollToRef = useRef(null);
+
+    useEffect(() => {
+        if (scrollToRef.current) {
+            scrollToRef.current.scrollIntoView({ behavior: 'auto' });
+        }
+    }, []);
 
     const ipAddress = useCallback(async () => {
         let ip = await publicIp
@@ -192,11 +194,11 @@ const KironslipSubmitForm = (props) => {
                         dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
 
                     });
-                        clearKironSlip()
-                        setMessage({
-                            status: 201,
-                            message: response?.message,
-                        });
+                    clearKironSlip()
+                    setMessage({
+                        status: 201,
+                        message: response?.message,
+                    });
                     setBetslipsData(null);
                     dispatch({
                         type: "SET",
@@ -284,10 +286,10 @@ const KironslipSubmitForm = (props) => {
     const handleRemoveAll = useCallback(() => {
         let  betslips= getKironSlip()
         Object.entries(betslips).map(([match_id, match]) => {
-          removeFromKironSlip(match_id)
+            removeFromKironSlip(match_id)
             let match_selector = match?.parent_match_id+"_selectedK"
             let ucn =clean_rep(
-                    match?.parent_match_id + "" +match?.market_id +""+match?.odd_key)
+                match?.parent_match_id + "" +match?.market_id +""+match?.odd_key)
 
 
             dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
@@ -317,7 +319,7 @@ const KironslipSubmitForm = (props) => {
             let initialTime = Math.floor(diff / 1000);
             let parent_match_id;
             if(initialTime<10){
-                 parent_match_id= match?.parent_match_id;
+                parent_match_id= match?.parent_match_id;
             }
 
             return { parent_match_id, initialTime };
@@ -429,7 +431,7 @@ const KironslipSubmitForm = (props) => {
                 type={"submit"}
                 {...rest}
                 id={"place_bet_button_nare"}
-                style={{padding: "7px", width: "100%",borderRadius: "0.7rem"}}
+                style={{padding: "10px", width: "100%",borderRadius: "0.7rem"}}
                 className={`${
                     disabled ? "disabled" : ""
                 }'bg-warning bold text-dark cursor-pointer'`}
@@ -472,14 +474,14 @@ const KironslipSubmitForm = (props) => {
                     <FormikForm name="betslip-submit-form">
                         <Alert/>
                         {
-                        awardMultiGift &&
-                        Number(totalGames) > settings?.betnareBonus?.bonusBetLegs ? (
-                            <div className={"alert alert-success"}>
-                                <FontAwesomeIcon icon={faGift}/> {multiBoostMessage}
-                            </div>
-                        ) : (
-                            <></>
-                        )}
+                            awardMultiGift &&
+                            Number(totalGames) > settings?.betnareBonus?.bonusBetLegs ? (
+                                <div className={"alert alert-success"}>
+                                    <FontAwesomeIcon icon={faGift}/> {multiBoostMessage}
+                                </div>
+                            ) : (
+                                <></>
+                            )}
                         {totalGames > 0 && (
                             <table className="bet-table">
                                 {showExpired&&<td colSpan={'100%'} className={""} style={{whiteSpace: "nowrap"}}>
@@ -494,13 +496,13 @@ const KironslipSubmitForm = (props) => {
                                         }}
                                         onClick={() => handleRemoveExpired()}
                                     >
-                                       Remove Expired &nbsp;<FontAwesomeIcon icon={faTrash}/>
+                                        Remove Expired &nbsp;<FontAwesomeIcon icon={faTrash}/>
                                     </button>
                                 </td>}
                                 {(
                                     <tr className="hide-on-affix">
                                         <td>TOTAL ODDS</td>
-                                        <td>
+                                        <td className={"bet-align-right"}>
                                             <b>{Float(totalOdds, 2)}</b>
                                         </td>
                                     </tr>
@@ -508,7 +510,7 @@ const KironslipSubmitForm = (props) => {
 
                                 <tr>
                                     <td>Stake</td>
-                                    <td>
+                                    <td className={"bet-align-right"}>
                                         <div id="betting">
                                             {
                                                 <input
@@ -529,7 +531,7 @@ const KironslipSubmitForm = (props) => {
                                 { (
                                     <tr className="bet-win-tr hide-on-affix">
                                         <td>Possible winnings</td>
-                                        <td>
+                                        <td className={"bet-align-right"}>
                                             KES.{" "}
                                             <span id="pos_win">
                         {formatNumber(
@@ -540,58 +542,14 @@ const KironslipSubmitForm = (props) => {
                                     </tr>
                                 )}
 
-                                <tr className="bet-win-tr hide-on-affix">
-                                    <td> Excise Tax (7.5%)</td>
-                                    <td>
-                                        KES.{" "}
-                                        <span id="tax">
-                      {formatNumber(
-                          hasMultiBetBoost ? exciseTaxBoosted : exciseTax
-                      )}
-                    </span>
-                                    </td>
-                                </tr>
-                                { (
-                                    <tr className="bet-win-tr hide-on-affix">
-                                        <td> Withholding (20%)</td>
-                                        <td>
-                                            KES.{" "}
-                                            <span id="tax">
-                        {formatNumber(
-                            hasMultiBetBoost
-                                ? withholdingTaxBoosted
-                                : withholdingTax
-                        )}
-                      </span>
-                                        </td>
-                                    </tr>
-                                )}
-                                <tr className="bet-win-tr hide-on-affix">
-                                    <td>{"Nare Amount"}</td>
-                                    <td>
-                                        KES.{" "}
-                                        <span id="net-amount">
-                      {formatNumber(
-                           hasMultiBetBoost ? netWinBoosted : netWin
-                      )}
-                    </span>
-                                    </td>
-                                </tr>
 
                                 <tr id="odd-change-text">
-                                    <td className={"d-flex"} style={{whiteSpace: "nowrap"}}>
-                                        <SubmitButton
-                                            id="place_bet_button_nare_submit"
-                                            className="place-bet-btn bold "
-                                            title="PLACE BET"
-                                        ></SubmitButton>
-                                    </td>
                                     <td className={""} style={{whiteSpace: "nowrap"}}>
                                         <button
                                             className="bold btn-secondary   bg-secondary w-100"
                                             type="button"
                                             style={{
-                                                padding: "5px",
+                                                padding: "9px",
                                                 borderRadius: "0.7rem",
                                                 fontSize: "14px",
                                             }}
@@ -599,6 +557,13 @@ const KironslipSubmitForm = (props) => {
                                         >
                                             Clear All <FontAwesomeIcon icon={faCut}/>
                                         </button>
+                                    </td>
+                                    <td className={"d-flex"} style={{whiteSpace: "nowrap"}}>
+                                        <SubmitButton
+                                            id="place_bet_button_nare_submit"
+                                            className="place-bet-btn bold "
+                                            title="PLACE BET"
+                                        ></SubmitButton>
                                     </td>
                                 </tr>
                             </table>
@@ -615,11 +580,11 @@ const KironslipSubmitForm = (props) => {
                             id={"total_kiron_odd"}
                             value={totalOdds}
                         />
-                        <input
-                            type="hidden"
-                            name={"total_kiron_games"}
-                            id={"total_kiron_games"}
-                            value={totalGames}
+                        <input ref={scrollToRef}
+                               type="hidden"
+                               name={"total_kiron_games"}
+                               id={"total_kiron_games"}
+                               value={totalGames}
                         />
                     </FormikForm>
                 );

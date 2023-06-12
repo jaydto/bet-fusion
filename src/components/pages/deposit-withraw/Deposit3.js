@@ -92,9 +92,24 @@ const Deposit3= props => {
 
     const DepositFormFields = (props) => {
         const {values, errors, onFieldChanged} = props;
+        state?.depositValidateError?.amount&&setTimeout(()=>{
+            dispatch({type: "SET", key: "depositValidateError", payload: {
+                    msisdn:'',
+                    amount:''
+                }});
+        },5000)
+        const prevDeposit=useRef(Number(values?.amount))
+        const  incementDepositValue=(value)=>{
+
+            prevDeposit.current=Number(values?.amount!=''?values?.amount:0)
+            dispatch({type: "SET", key: "depositValue", payload:prevDeposit.current+value });
+            prevDeposit.current=prevDeposit.current!=0?prevDeposit.current+value:values?.amount||0
+
+        }
 
         return (
             <>
+
                 <div className="form-group row d-flex justify-content-center deposit-widthdraw-input-desktop">
                     <div className={`${mobile?"d-none":"col-md-12"}`}>
                         <label className={'text-light'}>Phone Number</label>
@@ -110,16 +125,25 @@ const Deposit3= props => {
                         {errors.msisdn && <div className='text-danger'> {errors.msisdn} </div>}
                     </div>
                 </div>
+
                 <div className="form-group row d-flex justify-content-center mt-5 deposit-widthdraw-input-desktop">
+                    <div className="btn-group w-100 gap-3" role="group" aria-label="Basic example">
+                        <button type="button" onClick={()=>incementDepositValue(100)} className="deposit-buttons-value">+100</button>
+                        <button type="button" onClick={()=>incementDepositValue(200)} className="deposit-buttons-value">+200</button>
+                        <button type="button" onClick={()=>incementDepositValue(500)} className="deposit-buttons-value">+500</button>
+                        <button type="button" onClick={()=>incementDepositValue(1000)} className="deposit-buttons-value">+1000</button>
+                    </div>
                     <div className="col-md-12">
                         <label className={'text-light'}>Amount to Deposit</label>
                         <input
-                            onChange={ev => onFieldChanged(ev)}
+                            onChange={ev => {
+                                onFieldChanged(ev);
+                            }}
                             className="text-light deposit-input form-control col-md-12 input-field"
                             id="amount"
                             name="amount"
-                            type="text"
-                            value={values.amount}
+                            type="number"
+                            value={(values.amount==''?0||values.amount:values.amount||Number(state?.depositValue))}
                             placeholder='Enter Amount'
                         />
                         {errors.amount && <div className='text-danger'> {errors.amount} </div>}
@@ -136,7 +160,6 @@ const Deposit3= props => {
             </>
         )
     }
-
 
     const PaymentInstructions = (props) => {
         return (

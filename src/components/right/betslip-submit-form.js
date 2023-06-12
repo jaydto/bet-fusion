@@ -2,8 +2,7 @@ import React, {
     useState,
     useEffect,
     useContext,
-    useCallback,
-    useMemo,
+    useCallback, useRef,
 } from "react";
 import {Context} from "../../context/store";
 import {
@@ -18,7 +17,6 @@ import {
 import publicIp from "public-ip";
 import makeRequest from "../utils/fetch-request";
 import "react-toastify/dist/ReactToastify.css";
-
 import {Formik, Form as FormikForm, useFormikContext} from "formik";
 import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -31,15 +29,16 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {Spinner} from "react-bootstrap";
 import {Switch} from "@material-ui/core";
+const BetslipShareModal = React.lazy(() =>
+    import("../modals/BetslipShareModal")
+);
 
 const Float = (equation, precision = 4) => {
     return Math.round(equation * 10 ** precision) / 10 ** precision;
 };
 
 const BetslipSubmitForm = (props) => {
-    const BetslipShareModal = React.lazy(() =>
-        import("../modals/BetslipShareModal")
-    );
+
 
     const {
         jackpot,
@@ -82,6 +81,14 @@ const BetslipSubmitForm = (props) => {
     const [awardMultiGift, setAwardMultiGift] = useState(false);
 
     const [betslipKey, setBetslipKey] = useState("betslip");
+
+    const scrollToRef = useRef(null);
+
+    useEffect(() => {
+        if (scrollToRef.current) {
+            scrollToRef.current.scrollIntoView({ behavior: 'auto' });
+        }
+    }, []);
 
     useEffect(() => {
         if (jackpot) {
@@ -130,109 +137,109 @@ const BetslipSubmitForm = (props) => {
 
     const handlePlaceBet = useCallback((values,
                                         {setSubmitting, resetForm, setStatus, setErrors}) => {
-        let bs = Object.values(betslip || []);
+            let bs = Object.values(betslip || []);
 
-        let slipHasOddsChange = false;
+            let slipHasOddsChange = false;
 
-        let jackpotMessage = 'jp'
+            let jackpotMessage = 'jp'
 
 
-        if (jackpot) {
-
-            bs = bs.sort(function (a, b) {
-                return Number(a.position) - Number(b.position);
-            });
-
-        }
-
-        for (let slip of bs) {
             if (jackpot) {
-                jackpotMessage += "#" + slip.bet_pick
+
+                bs = bs.sort(function (a, b) {
+                    return Number(a.position) - Number(b.position);
+                });
+
             }
-            if (slip.prev_odds
-                && slip.prev_odds != slip.odd_value
-                && values.accept_all_odds_change === false) {
-                slipHasOddsChange = true;
-                break;
-            }
-        }
 
-        if (slipHasOddsChange === true) {
-            setMessage({
-                status: 400,
-                message: "Slip has events with changed odds, tick "
-                    + " accept odds all odds change box to accept and place bet"
-            });
-            setSubmitting(false);
-            return false;
-        }
-
-        let payload = {
-            bet_string: 'web',
-            app_name: 'desktop',
-            possible_win: possibleWin,
-            profile_id: values.user_id,
-            stake_amount: values.bet_amount,
-            amount: values.bet_amount,
-            bet_total_odds: totalOdds,
-            endCustomerIP: ipv4,
-            channelID: 'web',
-            slip: bs,
-            account: 1,
-            msisdn: state?.user?.msisdn,
-            accept_all_odds_change: values.accept_all_odds_change
-        };
-        let endpoint = '/bet';
-        let method = "GET"
-        let use_jwt = !jackpot
-        if (jackpot) {
-            payload.message = jackpotMessage
-            payload.jackpot_id = jackpotData?.jackpot_event_id
-            payload.slip = ''
-            endpoint = "/jp/bet"
-            method = "POST"
-        }
-
-        makeRequest({url: endpoint, method: method, data: payload, use_jwt: use_jwt})
-            .then(([status, response]) => {
-
-
-                if (status === 200 || status == 201 || status == 204) {
-                    setMessage(response);
-                    //all is good am be quiet
-                    if (jackpot) {
-                        clearJackpotSlip();
-                        setMessage({
-                            status: 201,
-                            message: response?.message,
-                        });
-                    } else {
-                        clearSlip();
-                    }
-                    setBetslipsData(null);
-                    dispatch({
-                        type: "SET",
-                        key: jackpot ? "jackpotbetslip" : "betslip",
-                        payload: {},
-                    });
-                    setLocalStorage('betslip_share_code', null)
-                } else {
-                    let response_message = response?.message;
-                    if (response_message === "" || response_message === undefined) {
-                        response_message = response?.error;
-                        if (response_message === "" || response_message === undefined) {
-                            response_message =
-                                "Something went wrong. Please try again later or contact support. 0701 087 777";
-                        }
-                    }
-                    let qmessage = {
-                        status: status,
-                        message: response_message,
-                    };
-                    setMessage(qmessage);
+            for (let slip of bs) {
+                if (jackpot) {
+                    jackpotMessage += "#" + slip.bet_pick
                 }
+                if (slip.prev_odds
+                    && slip.prev_odds != slip.odd_value
+                    && values.accept_all_odds_change === false) {
+                    slipHasOddsChange = true;
+                    break;
+                }
+            }
+
+            if (slipHasOddsChange === true) {
+                setMessage({
+                    status: 400,
+                    message: "Slip has events with changed odds, tick "
+                        + " accept odds all odds change box to accept and place bet"
+                });
                 setSubmitting(false);
-            });
+                return false;
+            }
+
+            let payload = {
+                bet_string: 'web',
+                app_name: 'desktop',
+                possible_win: possibleWin,
+                profile_id: values.user_id,
+                stake_amount: values.bet_amount,
+                amount: values.bet_amount,
+                bet_total_odds: totalOdds,
+                endCustomerIP: ipv4,
+                channelID: 'web',
+                slip: bs,
+                account: 1,
+                msisdn: state?.user?.msisdn,
+                accept_all_odds_change: values.accept_all_odds_change
+            };
+            let endpoint = '/bet';
+            let method = "GET"
+            let use_jwt = !jackpot
+            if (jackpot) {
+                payload.message = jackpotMessage
+                payload.jackpot_id = jackpotData?.jackpot_event_id
+                payload.slip = ''
+                endpoint = "/jp/bet"
+                method = "POST"
+            }
+
+            makeRequest({url: endpoint, method: method, data: payload, use_jwt: use_jwt})
+                .then(([status, response]) => {
+
+
+                    if (status === 200 || status == 201 || status == 204) {
+                        setMessage(response);
+                        //all is good am be quiet
+                        if (jackpot) {
+                            clearJackpotSlip();
+                            setMessage({
+                                status: 201,
+                                message: response?.message,
+                            });
+                        } else {
+                            clearSlip();
+                        }
+                        setBetslipsData(null);
+                        dispatch({
+                            type: "SET",
+                            key: jackpot ? "jackpotbetslip" : "betslip",
+                            payload: {},
+                        });
+                        setLocalStorage('betslip_share_code', null)
+                    } else {
+                        let response_message = response?.message;
+                        if (response_message === "" || response_message === undefined) {
+                            response_message = response?.error;
+                            if (response_message === "" || response_message === undefined) {
+                                response_message =
+                                    "Something went wrong. Please try again later or contact support. 0701 087 777";
+                            }
+                        }
+                        let qmessage = {
+                            status: status,
+                            message: response_message,
+                        };
+                        setMessage(qmessage);
+                    }
+                    setSubmitting(false);
+                });
         }
     );
 
@@ -377,7 +384,7 @@ const BetslipSubmitForm = (props) => {
                 type={"submit"}
                 {...rest}
                 id={"place_bet_button"}
-                style={{padding: "5px", width: "100%"}}
+                style={{padding: "10px", width: "100%",borderRadius: "0.7rem"}}
                 className={`${
                     disabled ? "disabled" : ""
                 }'bg-warning bold rounded-2 text-dark cursor-pointer'`}
@@ -468,7 +475,8 @@ const BetslipSubmitForm = (props) => {
     };
 
     const label = { inputProps: { 'aria-label': 'accept_all_odds_change',
-        'value':'accept_all_odds_change'} };
+            'value':'accept_all_odds_change'} };
+
 
     return (
         <Formik
@@ -496,178 +504,184 @@ const BetslipSubmitForm = (props) => {
                 };
 
 
-            return (<FormikForm name="betslip-submit-form">
-                <Alert/>
-                {showShareModal && (
-                    <BetslipShareModal
-                        visible={showShareModal}
-                        payload={betSharePayload}
-                        setShowShareModal={setShowShareModal}
-                    />
-                )}
-                {!jackpot &&
-                awardMultiGift &&
-                Number(totalGames) > settings?.betnareBonus?.bonusBetLegs ? (
-                    <div className={"alert alert-success"}>
-                        <FontAwesomeIcon icon={faGift}/> {multiBoostMessage}
-                    </div>
-                ) : (
-                    <></>
-                )}
+                return (<FormikForm name="betslip-submit-form">
+                    <Alert/>
+                    {showShareModal && (
+                        <BetslipShareModal
+                            visible={showShareModal}
+                            payload={betSharePayload}
+                            setShowShareModal={setShowShareModal}
+                        />
+                    )}
 
-                {totalGames > 0 && (
-                    <table className="bet-table">
-                        <tbody className={"slip-body"}>
-                        {!jackpot && <tr className="hide-on-affix">
-                            <td className={"bet-align-left"}>TOTAL ODDS</td>
-                            <td className={"bet-align-right"}>
-                                <b>{Float(totalOdds, 2)}</b>
-                            </td>
-                        </tr>}
-                        <tr id="odd-change-text">
-                            <td colSpan="2">
-                                {/*<label className="checkbox">*/}
 
-                                {/*    <input type="checkbox"*/}
-                                {/*           className="odds-change-box"*/}
-                                {/*           name={"accept_all_odds_change"}*/}
-                                {/*           id={"accept-all-odds-change"}*/}
-                                {/*           checked={values?.accept_all_odds_change}*/}
-                                {/*           onChange={(e) => onFieldChanged(e)}*/}
-                                {/*    /> Accept any odds change*/}
-                                {/*</label>*/}
-                                <Switch id={"accept-all-odds-change"} {...label} className="odds-change-box" name={"accept_all_odds_change"} checked={values?.accept_all_odds_change} defaultChecked color="primary" onChange={(e)=>onFieldChanged(e)}/> Accept any odds change
-                            </td>
-                        </tr>
-                        <tr>
-                            <td className={"bet-align-left"}>Stake</td>
-                            <td className={"bet-align-right"}>
-                                <div id="betting">
-                                    {jackpot ?
-                                        jackpotData?.bet_amount :
-                                        (<input type="text"
-                                                className="bet-select"
-                                                name="bet_amount"
-                                                id="bet_amount"
-                                                value={values.bet_amount}
-                                                onChange={(e) => onFieldChanged(e)}
-                                        />)}
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colSpan="2"></td>
-                        </tr>
-                        {!jackpot && <tr className="bet-win-tr hide-on-affix">
-                            <td className={"bet-align-left"}>Possible winnings</td>
-                            <td className={"bet-align-right"}>
-                                KES. <span
-                                id="pos_win">{formatNumber(hasMultiBetBoost ? possibleWinBoosted : possibleWin)}</span>
-                            </td>
-                        </tr>}
+                    {totalGames > 0 && (
+                        <table className="bet-table w-100">
+                            <tbody className={"slip-body"}>
 
-                        <tr className="bet-win-tr hide-on-affix">
-                            <td className={"bet-align-left"}> Excise Tax (7.5%)</td>
-                            <td className={"bet-align-right"}>KES. <span
-                                id="tax">{formatNumber(hasMultiBetBoost ? exciseTaxBoosted : exciseTax)}</span></td>
-                        </tr>
-                        {jackpot ? (
-                            ''
-                        ) : (
-                            <tr className="bet-win-tr hide-on-affix">
-                                <td className={"bet-align-left"}> Withholding (20%)</td>
-                                <td className={"bet-align-right"}>KES. <span
-                                    id="tax">{formatNumber(hasMultiBetBoost ? withholdingTaxBoosted : withholdingTax)}</span>
+                            {!jackpot &&
+                            awardMultiGift &&
+                            Number(totalGames) > settings?.betnareBonus?.bonusBetLegs ? (
+                                <tr className={"alert alert-success "}>
+                                    <td slip-message-alert colspan="2" className={'slip-message-alert col-2'}  style={{ width: '100%' }}>
+                                        <FontAwesomeIcon icon={faGift}/> {multiBoostMessage}
+                                    </td>
+
+                                </tr>
+                            ) : (
+                                <tr></tr>
+                            )}
+
+                            {!jackpot && <tr className="hide-on-affix">
+                                <td className={"bet-align-left"}>TOTAL ODDS</td>
+                                <td className={"bet-align-right"}>
+                                    <b>{Float(totalOdds, 2)}</b>
+                                </td>
+                            </tr>}
+                            <tr id="odd-change-text">
+                                <td colSpan="2">
+                                    {/*<label className="checkbox">*/}
+
+                                    {/*    <input type="checkbox"*/}
+                                    {/*           className="odds-change-box"*/}
+                                    {/*           name={"accept_all_odds_change"}*/}
+                                    {/*           id={"accept-all-odds-change"}*/}
+                                    {/*           checked={values?.accept_all_odds_change}*/}
+                                    {/*           onChange={(e) => onFieldChanged(e)}*/}
+                                    {/*    /> Accept any odds change*/}
+                                    {/*</label>*/}
+                                    <Switch id={"accept-all-odds-change"} {...label} className="odds-change-box" name={"accept_all_odds_change"} checked={values?.accept_all_odds_change}  color="primary" onChange={(e)=>onFieldChanged(e)}/> Accept any odds change
                                 </td>
                             </tr>
-                        )}
-                        <tr className="bet-win-tr hide-on-affix">
-                            <td className={"bet-align-left"}>{jackpot ? 'Jackpot Amount' : 'Net Amount'}</td>
-                            <td className={"bet-align-right"}>KES. <span
-                                id="net-amount">{formatNumber(jackpot ? jackpotData?.jackpot_amount : (hasMultiBetBoost ? netWinBoosted : netWin))}</span>
-                            </td>
-                        </tr>
-                        {state?.user&&!jackpot&&<tr className="hide-on-affix">
-                                        <td>NARE BOOST</td>
-                                        <td>
-                                            <b>{multiBoostAmount}</b>
-                                        </td>
-                                    </tr>
-                        }
-                        <tr className="bet-win-tr hide-on-affix">
-                            <td colSpan="100%">
-                                <SubmitButton
-                                    id="place_bet_button_submit"
-                                    className="place-bet-btn bold "
-                                    title="PLACE BET"
-                                ></SubmitButton>
-                            </td>
-                        </tr>
-                        <tr id="odd-change-text">
-                            <td className={"d-flex"} style={{whiteSpace: "nowrap"}}>
-                                <button
-                                    id=""
-                                    onClick={() => encodeBetSlip()}
-                                    style={{
-                                        padding: "5px",
-                                        backgroundColor: "#3f9ad1",
-                                        whiteSpace: "nowrap",
-                                        fontSize: "14px",
-                                        borderRadius: "0.3rem",
-                                    }}
-                                    type={"button"}
-                                    className="bold btn-secondary  flex-nowrap w-100 d-flex justify-content-center"
-                                    title="PLACE BET"
-                                >
-                                    Share&nbsp;
-                                    {loadingShare ? (
-                                        <div className={`text-center  text-white d-block`}>
-                                            <Spinner animation={"grow"} size={"sm"}/>
-                                        </div>
-                                    ) : (
-                                        <FontAwesomeIcon icon={faShare}/>
-                                    )}
-                                </button>
-                            </td>
-                            <td className={""} style={{whiteSpace: "nowrap"}}>
-                                <button
-                                    className="bold btn-secondary   bg-secondary w-100"
-                                    type="button"
-                                    style={{
-                                        padding: "5px",
-                                        borderRadius: "0.3rem",
-                                        fontSize: "14px",
-                                    }}
-                                    onClick={() => handleRemoveAll()}
-                                >
-                                    Clear All <FontAwesomeIcon icon={faCut}/>
-                                </button>
-                            </td>
+                            <tr>
+                                <td className={"bet-align-left"}>Stake</td>
+                                <td className={"bet-align-right"}>
+                                    <div id="betting">
+                                        {jackpot ?
+                                            jackpotData?.bet_amount :
+                                            (<input type="text"
+                                                    className="bet-select"
+                                                    name="bet_amount"
+                                                    id="bet_amount"
+                                                    value={values.bet_amount}
+                                                    onChange={(e) => onFieldChanged(e)}
+                                            />)}
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colSpan="2"></td>
+                            </tr>
+                            {!jackpot && <tr className="bet-win-tr hide-on-affix">
+                                <td className={"bet-align-left"}>Possible winnings</td>
+                                <td className={"bet-align-right"}>
+                                    KES. <span
+                                    id="pos_win">{formatNumber(hasMultiBetBoost ? possibleWinBoosted : possibleWin)}</span>
+                                </td>
+                            </tr>}
 
-                        </tr>
-                        </tbody>
-                    </table>
-                )}
-                <input
-                    type="hidden"
-                    name={"user_id"}
-                    id={"user_id"}
-                    value={state?.user?.profile_id}
-                />
-                <input
-                    type="hidden"
-                    name={"total_odd"}
-                    id={"total_odd"}
-                    value={totalOdds}
-                />
-                <input
-                    type="hidden"
-                    name={"total_games"}
-                    id={"total_games"}
-                    value={totalGames}
-                />
-            </FormikForm>)
-        }}
+                            <tr className="bet-win-tr hide-on-affix">
+                                <td className={"bet-align-left"}> Excise Tax (7.5%)</td>
+                                <td className={"bet-align-right"}>KES. <span
+                                    id="tax">{formatNumber(hasMultiBetBoost ? exciseTaxBoosted : exciseTax)}</span></td>
+                            </tr>
+                            {jackpot ? (
+                                ''
+                            ) : (
+                                <tr className="bet-win-tr hide-on-affix">
+                                    <td className={"bet-align-left"}> Withholding (20%)</td>
+                                    <td className={"bet-align-right"}>KES. <span
+                                        id="tax">{formatNumber(hasMultiBetBoost ? withholdingTaxBoosted : withholdingTax)}</span>
+                                    </td>
+                                </tr>
+                            )}
+                            <tr className="bet-win-tr hide-on-affix">
+                                <td className={"bet-align-left"}>{jackpot ? 'Jackpot Amount' : 'Net Amount'}</td>
+                                <td className={"bet-align-right"}>KES. <span
+                                    id="net-amount">{formatNumber(jackpot ? jackpotData?.jackpot_amount : (hasMultiBetBoost ? netWinBoosted : netWin))}</span>
+                                </td>
+                            </tr>
+                            {state?.user&&!jackpot&&<tr className="hide-on-affix">
+                                <td >NARE BOOST</td>
+                                <td className={"bet-align-right"}>
+                                    <b>{multiBoostAmount}</b>
+                                </td>
+                            </tr>
+                            }
+                            <tr className="bet-win-tr hide-on-affix">
+                                <td className={"d-flex"} style={{whiteSpace: "nowrap"}}>
+                                    <button
+                                        id=""
+                                        onClick={() => encodeBetSlip()}
+                                        style={{
+                                            padding: "9px",
+                                            backgroundColor: "linear-gradient(45deg, rgb(63, 154, 209), transparent)",
+                                            whiteSpace: "nowrap",
+                                            fontSize: "14px",
+                                            borderRadius: "0.7rem",
+                                        }}
+                                        type={"button"}
+                                        className="bold btn-secondary  flex-nowrap w-100 d-flex justify-content-center share-button-styling"
+                                        title="SHARE BET"
+                                    >
+                                        Share&nbsp;
+                                        {loadingShare ? (
+                                            <div className={`text-center  text-white d-block`}>
+                                                <Spinner animation={"grow"} size={"sm"}/>
+                                            </div>
+                                        ) : (
+                                            <FontAwesomeIcon icon={faShare}/>
+                                        )}
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr id="odd-change-text">
+                                <td className={""} style={{whiteSpace: "nowrap"}}>
+                                    <button
+                                        className="bold btn-secondary   bg-secondary w-100"
+                                        type="button"
+                                        style={{
+                                            padding: "10px",
+                                            borderRadius: "0.7rem",
+                                            fontSize: "14px",
+                                        }}
+                                        onClick={() => handleRemoveAll()}
+                                    >
+                                        Clear All <FontAwesomeIcon icon={faCut}/>
+                                    </button>
+                                </td>
+                                <td className={"d-flex"} style={{whiteSpace: "nowrap"}}>
+                                    <SubmitButton
+                                        id="place_bet_button_submit"
+                                        className="place-bet-btn bold "
+                                        title="PLACE BET"
+                                    ></SubmitButton>
+                                </td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+                    )}
+                    <input
+                        type="hidden"
+                        name={"user_id"}
+                        id={"user_id"}
+                        value={state?.user?.profile_id}
+                    />
+                    <input
+                        type="hidden"
+                        name={"total_odd"}
+                        id={"total_odd"}
+                        value={totalOdds}
+                    />
+                    <input ref={scrollToRef}
+                           type="hidden"
+                           name={"total_games"}
+                           id={"total_games"}
+                           value={totalGames}
+                    />
+                </FormikForm>)
+            }}
         </Formik>)
 
 }

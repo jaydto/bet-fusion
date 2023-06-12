@@ -20,7 +20,7 @@ import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 
 import { Context } from '../../context/store';
 import LoginModal from '../modals/LoginModal';
-
+import VirtualSvg from "../../assets/img/mobile/virtual.png";
 const MobileNav1 = () => {
     const [showLoadingModal, setShowLoadingModal] = useState(false);
 
@@ -156,26 +156,26 @@ const MobileNav1 = () => {
                     </Link>
 
                 </td>
-                <td  className={`menu-t m-auto sport-check nare-league ${pathname.includes('/nare-league')?"active_link":""}`}  >
-                    <Link className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `} onClick={() => gaEventTracker('Visit Nare League Page')}  to={`/nare-league`}   >
-                        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center  `}>
+                {/*<td  className={`menu-t m-auto sport-check nare-league ${pathname.includes('/nare-league')?"active_link":""}`}  >*/}
+                {/*    <Link className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `} onClick={() => gaEventTracker('Visit Nare League Page')}  to={`/nare-league`}   >*/}
+                {/*        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center  `}>*/}
 
-                            <div className="menu-img  ">
-                                <img
-                                    className="side-icon"
-                                    src={kiron}
-                                    alt=""
-                                    style={{height: "23px", marginTop:"-6px"}}
-                                />
-                                <span className=" new-alert-badge" >NEW</span>
-                            </div>
-                            <strong style={{textAlign: "center"}}>
-                                League
-                            </strong>
-                        </div>
-                    </Link>
+                {/*            <div className="menu-img  ">*/}
+                {/*                <img*/}
+                {/*                    className="side-icon"*/}
+                {/*                    src={kiron}*/}
+                {/*                    alt=""*/}
+                {/*                    style={{height: "23px", marginTop:"-6px"}}*/}
+                {/*                />*/}
+                {/*                <span className=" new-alert-badge" >NEW</span>*/}
+                {/*            </div>*/}
+                {/*            <strong style={{textAlign: "center"}}>*/}
+                {/*                League*/}
+                {/*            </strong>*/}
+                {/*        </div>*/}
+                {/*    </Link>*/}
 
-                </td>
+                {/*</td>*/}
 
                 <td  className={`menu-t m-auto sport-check ${pathname===`/casino`? " active_link":""} `}  >
                     <Link className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center `}  to={`#`}  onClick={()=>{LoginCheck('casino');gaEventTracker('Visit Casino Page')}}>
@@ -218,55 +218,6 @@ const MobileNav1 = () => {
                     </Link>
 
                 </td>
-                <td  className={`menu-t m-auto sport-check  ${pathname===`/jackpot`?"active_link":""}`}  >
-                    <Link className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center `} onClick={() => gaEventTracker('Visit Jackpot Page')} to={`/jackpot`}   >
-                        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
-
-                            <div className="menu-img ">
-                                <img
-                                    className="side-icon"
-                                    src={jackpot}
-                                    alt=""
-                                    style={{height: "23px", marginTop:"-6px"}}
-                                />
-                            </div>
-                            <strong style={{textAlign: "center"}}>
-                                Jackpot
-                            </strong>
-                        </div>
-                    </Link>
-
-                </td>
-                {/* <td  className={ window.location.search.includes('gameplay') ? 'active_link' : 'menu-t m-auto'}
-                    style={{paddingLeft: "10px"}}>
-                    <Link className="cg fm ox anl url-link d-flex flex-column align-items-center"
-                          to={{pathname:"/live-casino"}}
-                          title="Live Casino">
-                        <div className="menu-img">
-                            <LazyLoadImage src={casino} style={{height: "23px", marginTop:"-6px" }}/>
-                            <span className=" new-alert-badge" style={{color:"white",background:"red"
-                                ,marginTop:"-5px", borderRadius: "10px 0 15px 0", marginLeft:"1px", padding:"0.3px 3px ", fontSize:"5.5px"}}>NEW</span>
-                       </div>
-                         <strong className={"text-light"}>Live Casino</strong>
-                    </Link>
-
-                </td> */}
-                {/* <td  className={ window.location.search.includes('Crashlite') ? 'active_link' : 'menu-t'}
-                        onClick={() => gaEventTracker('Crashlite')} >
-                        <Link className="cg fm ox anl url-link d-flex flex-column align-items-center pb-3"
-                            to={"#"}
-                            title="Crashlite" style={{width:"60px"}}
-                            onClick={()=>LoginCheck("crashlite")}>
-                        <div className="menu-img d-flex justify-content-center ">
-                        <span className=" new-alert-badge crash" style={{color:"white",background:"red"
-                                ,marginTop:"1px", borderRadius: "10px 0 15px 0", marginLeft:"1px", padding:"0.6px 3px ",height:"7px", fontSize:"5.5px"}}>NEW</span>
-                            </div>
-                                    <LazyLoadImage src={crash} style={{height: "32px", marginTop:"-13px" }}/>
-                        </Link>
-
-                    </td> */}
-
-
                 <td  className={`menu-t m-auto sport-check  ${pathname.includes('1301')?"active_link":""}`}  onClick={() => gaEventTracker('Visit Aviator Page')}>
                     <Link className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `}  to={`#`}  onClick={()=>{LoginCheck('spaceman');gaEventTracker('Visit SpaceMan Page')}} >
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
@@ -306,6 +257,75 @@ const MobileNav1 = () => {
                     </Link>
 
                 </td>
+                <td  className={`menu-t m-auto sport-check  ${pathname===`/jackpot`?"active_link":""}`}  >
+                    <Link className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center `} onClick={() => gaEventTracker('Visit Jackpot Page')} to={`/jackpot`}   >
+                        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
+
+                            <div className="menu-img ">
+                                <img
+                                    className="side-icon"
+                                    src={jackpot}
+                                    alt=""
+                                    style={{height: "23px", marginTop:"-6px"}}
+                                />
+                            </div>
+                            <strong style={{textAlign: "center"}}>
+                                Jackpot
+                            </strong>
+                        </div>
+                    </Link>
+
+                </td>
+                <td  className={`menu-t m-auto sport-check  ${pathname.includes('/virtuals')?"active_link":""}`}  >
+                    <Link className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `} onClick={() => gaEventTracker('Visit Virtuals Page')}  to={`/virtuals`}   >
+                        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center  `}>
+
+                            <div className="menu-img  ">
+                                <img
+                                    className="side-icon virtuals-icon"
+                                    src={VirtualSvg}
+                                    alt=""
+                                    style={{height: "23px", marginTop:"-6px"}}
+                                />
+
+                            </div>
+                            <strong style={{textAlign: "center"}}>
+                                Virtuals
+                            </strong>
+                        </div>
+                    </Link>
+
+                </td>
+
+                {/* <td  className={ window.location.search.includes('gameplay') ? 'active_link' : 'menu-t m-auto'}
+                    style={{paddingLeft: "10px"}}>
+                    <Link className="cg fm ox anl url-link d-flex flex-column align-items-center"
+                          to={{pathname:"/live-casino"}}
+                          title="Live Casino">
+                        <div className="menu-img">
+                            <LazyLoadImage src={casino} style={{height: "23px", marginTop:"-6px" }}/>
+                            <span className=" new-alert-badge" style={{color:"white",background:"red"
+                                ,marginTop:"-5px", borderRadius: "10px 0 15px 0", marginLeft:"1px", padding:"0.3px 3px ", fontSize:"5.5px"}}>NEW</span>
+                       </div>
+                         <strong className={"text-light"}>Live Casino</strong>
+                    </Link>
+
+                </td> */}
+                {/* <td  className={ window.location.search.includes('Crashlite') ? 'active_link' : 'menu-t'}
+                        onClick={() => gaEventTracker('Crashlite')} >
+                        <Link className="cg fm ox anl url-link d-flex flex-column align-items-center pb-3"
+                            to={"#"}
+                            title="Crashlite" style={{width:"60px"}}
+                            onClick={()=>LoginCheck("crashlite")}>
+                        <div className="menu-img d-flex justify-content-center ">
+                        <span className=" new-alert-badge crash" style={{color:"white",background:"red"
+                                ,marginTop:"1px", borderRadius: "10px 0 15px 0", marginLeft:"1px", padding:"0.6px 3px ",height:"7px", fontSize:"5.5px"}}>NEW</span>
+                            </div>
+                                    <LazyLoadImage src={crash} style={{height: "32px", marginTop:"-13px" }}/>
+                        </Link>
+
+                    </td> */}
+
 
                 {state.sport?.all_sports.map((allsports, index) => {
 

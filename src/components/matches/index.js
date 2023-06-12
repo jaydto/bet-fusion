@@ -727,7 +727,7 @@ const MarketRow = (props) => {
 
   return (
       <div className="top-matches match">
-        <Row className="top-matches header">
+        <Row className="top-matches header d-flex justify-content-center">
           {live && (
               <div
                   style={{
@@ -874,9 +874,39 @@ const MatchRow = (props) => {
               }
 
               <span className={'date-size wrapping px-sm-3 px-md-0 date-remove display-ipad-remove-id'}>
-                                                {(live && match?.match_time) ?
-                                                    <>{`${match.match_time}'`}</> : new Date(match?.start_time).getDate()+"/"+(Number(new Date(match?.start_time).getMonth())+1) + " "+ (match?.match_time==undefined?"":match?.match_time)} {jackpot? (new Date(match?.start_time).getHours())+":"+new Date(match?.start_time).getMinutes():""}
-                                            </span>
+                                           {live==1 && match?.match_time ? (
+                                               <div className={'d-flex gap-3 align-items-center'}>
+                                                 <div className={'live-status'}>
+                                                   {`${match.event_status}'`}
+                                                 </div>
+                                                 <>{`${match.match_time}'`}</>
+                                               </div>
+                                           ) : (
+                                               <>
+
+                                                 <>
+                                                   {match?.event_status == undefined ? "" :
+                                                       <div className={'d-flex align-items-center gap-4'}>
+                                   <span className={'match-status'}>
+                                        {match?.match_status}'
+                                  </span>
+                                                         <span className={'live-status'}>
+                                        {match?.event_status}'
+                                  </span>
+                                                       </div>
+                                                   }
+                                                   {new Date(match?.start_time).getDate() +
+                                                       "/" +
+                                                       (Number(new Date(match?.start_time).getMonth()) + 1) +
+                                                       " " +
+                                                       (match?.match_time == undefined ? "": match?.match_time)}
+
+                                                 </>
+
+
+                                               </>
+
+                                           )}</span>
               <>ID: {match?.game_id}</>
             </div>
             <div className={`col align-items-center col-xs-12 match-detail-container px-2 change-match only-mobile ${jackpot?"align-self-center":""}`}>
@@ -944,8 +974,39 @@ const MatchRow = (props) => {
                             </div>
                             <div className="d-flex flex-row px-1 justify-content-end change-date1 mobile-only display-ipad-dates">
                                             <span className={'date-size wrapping px-3'}>
-                                                {(live && match?.match_time) ?
-                                                    <>{`${match.match_time}'`}</> : new Date(match?.start_time).getDate()+"/"+(Number(new Date(match?.start_time).getMonth())+1) + " "+ (match?.match_time==undefined?"":match?.match_time)} {jackpot? (new Date(match?.start_time).getHours())+":"+new Date(match?.start_time).getMinutes():""}
+                                            {live==1 && match?.match_time ? (
+                                                <div className={'d-flex gap-3 align-items-center'}>
+                                                  <div className={'live-status'}>
+                                                    {`${match.event_status}'`}
+                                                  </div>
+                                                  <>{`${match.match_time}'`}</>
+                                                </div>
+                                            ) : (
+                                                <>
+
+                                                  <>
+                                                    {match?.event_status == undefined ? "" :
+                                                        <div className={'d-flex align-items-center gap-4'}>
+                                   <span className={'match-status'}>
+                                        {match?.match_status}'
+                                  </span>
+                                                          <span className={'live-status'}>
+                                        {match?.event_status}'
+                                  </span>
+                                                        </div>
+                                                    }
+                                                    {new Date(match?.start_time).getDate() +
+                                                        "/" +
+                                                        (Number(new Date(match?.start_time).getMonth()) + 1) +
+                                                        " " +
+                                                        (match?.match_time == undefined ? "": match?.match_time)}
+
+                                                  </>
+
+
+                                                </>
+
+                                            )}
                                             </span>
                               <div className={"px-1 wrapping"}>ID: {match?.game_id}</div>
 
@@ -984,9 +1045,39 @@ const MatchRow = (props) => {
 
                       <div className="d-flex flex-row px-1 justify-content-end change-date1 mobile-only">
                                            <span className={'date-size wrapping px-3'}>
-                                                {(live && match?.match_time) ?
-                                                    <>{`${match.match_time}'`}</> : new Date(match?.start_time).getDate()+"/"+(Number(new Date(match?.start_time).getMonth())+1) + " "+ match?.match_time}
-                                            </span>
+                                             {live==1 && match?.match_time ? (
+                                                 <div className={'d-flex gap-3 align-items-center'}>
+                                                   <div className={'live-status'}>
+                                                     {`${match.event_status}'`}
+                                                   </div>
+                                                   <>{`${match.match_time}'`}</>
+                                                 </div>
+                                             ) : (
+                                                 <>
+
+                                                   <>
+                                                     {match?.event_status == undefined ? "" :
+                                                         <div className={'d-flex align-items-center gap-4'}>
+                                   <span className={'match-status'}>
+                                        {match?.match_status}'
+                                  </span>
+                                                           <span className={'live-status'}>
+                                        {match?.event_status}'
+                                  </span>
+                                                         </div>
+                                                     }
+                                                     {new Date(match?.start_time).getDate() +
+                                                         "/" +
+                                                         (Number(new Date(match?.start_time).getMonth()) + 1) +
+                                                         " " +
+                                                         (match?.match_time == undefined ? "": match?.match_time)}
+
+                                                   </>
+
+
+                                                 </>
+
+                                             )}</span>
                         <div className={"px-1 wrapping"}>ID: {match?.game_id}</div>
 
                       </div>

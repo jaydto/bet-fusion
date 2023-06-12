@@ -93,15 +93,9 @@ input, select, textarea {
     }
 
 }
-.slip-max{
-    max-height:42vh;
-}
-.slip-height{
-    max-height:30vh
-}
-.slip-log-max{
-    max-height:36vh
-}
+
+
+
 .size-slip-new{
     max-height:28vh;
     height:auto;
@@ -129,18 +123,30 @@ input, select, textarea {
 
 }
 
+/*.mobile-menu {*/
+/*    !*background: #1f2f38;*!*/
+/*    background-color:#16202C!important;*/
+/*    position: fixed;*/
+/*    bottom: 0;*/
+/*    visibility:visible;*/
+/*    height: 65px;*/
+/*    width: 100%;*/
+/*    display: flex;*/
+/*    !*padding-bottom: max(10px, env(safe-area-insent-bottom));*!*/
+/*    justify-content: space-around;*/
+/*  }*/
 .mobile-menu {
-    /*background: #1f2f38;*/
     background-color:#16202C!important;
     position: fixed;
     bottom: 0;
     visibility:visible;
-    height: 65px;
+    height: 55px;
     width: 100%;
+    font-size: 13px !important;
     display: flex;
     /*padding-bottom: max(10px, env(safe-area-insent-bottom));*/
     justify-content: space-around;
-  }
+}
 
   .bloc-icon {
     display: flex;
@@ -188,7 +194,7 @@ input, select, textarea {
     justify-content: space-around;
     position: -webkit-sticky!important;
     position: sticky!important;
-    width:fit-content;
+    width:100%;
     overflow: auto;
 }
 
@@ -7201,6 +7207,11 @@ ul.sport {
 }
 
 @media (max-width: 767px) {
+    .casino-category-container {
+
+        width:fit-content;
+
+    }
 
     .fm{
         color: #fff;
@@ -7968,6 +7979,11 @@ ul.sport {
 
 
 @media (max-width: 991px) {
+    .casino-category-container {
+
+        width:fit-content;
+
+    }
     .mobile-nav-top {
         width: 100%;
         /* max-width: 767px; */
@@ -12320,6 +12336,11 @@ button.close {
 }
 
 @media (min-width: 992px) and (max-width: 1259px) {
+    .casino-category-container {
+
+        width:fit-content;
+
+    }
     .su {
         display: none !important;
     }
@@ -15827,9 +15848,10 @@ img.zoom-img {
 /*    !*top: 5px !important;*!*/
 /*    background: #253743 !important;*/
 /*}*/
-.slip-max-height{
-    display:grid;
-    align-items: end;
+.slip-max-height {
+    display: grid;
+    align-items: start;
+    height: 90vh!important;
 }
 
 .betslip-container-mobile {

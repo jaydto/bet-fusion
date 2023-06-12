@@ -106,7 +106,7 @@ const  Live= () => {
                         <div className="homepage">
                             <CarouselLoader/>
                             <Testimonials/>
-                            <div className={`${width<=767?"d-block":"d-none"}`}>
+                            <div className={`${width<=991?"d-block":"d-none"}`}>
                                 <LiveSideBar/>
                             </div>
                             {matches && <MatchList live matches={matches} pdown={producerDown}/>}

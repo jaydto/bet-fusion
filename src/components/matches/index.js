@@ -875,7 +875,7 @@ const MatchRow = (props) => {
 
               <span className={'date-size wrapping px-sm-3 px-md-0 date-remove display-ipad-remove-id'}>
                                            {live==1 && match?.match_time ? (
-                                               <div className={'d-flex gap-3'}>
+                                               <div className={'d-flex gap-3 align-items-center'}>
                                                  <div className={'live-status'}>
                                                    {`${match.event_status}'`}
                                                  </div>
@@ -975,7 +975,7 @@ const MatchRow = (props) => {
                             <div className="d-flex flex-row px-1 justify-content-end change-date1 mobile-only display-ipad-dates">
                                             <span className={'date-size wrapping px-3'}>
                                             {live==1 && match?.match_time ? (
-                                                <div className={'d-flex gap-3'}>
+                                                <div className={'d-flex gap-3 align-items-center'}>
                                                   <div className={'live-status'}>
                                                     {`${match.event_status}'`}
                                                   </div>
@@ -1046,7 +1046,7 @@ const MatchRow = (props) => {
                       <div className="d-flex flex-row px-1 justify-content-end change-date1 mobile-only">
                                            <span className={'date-size wrapping px-3'}>
                                              {live==1 && match?.match_time ? (
-                                                 <div className={'d-flex gap-3'}>
+                                                 <div className={'d-flex gap-3 align-items-center'}>
                                                    <div className={'live-status'}>
                                                      {`${match.event_status}'`}
                                                    </div>

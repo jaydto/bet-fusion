@@ -93,15 +93,9 @@ input, select, textarea {
     }
 
 }
-.slip-max{
-    max-height:42vh;
-}
-.slip-height{
-    max-height:30vh
-}
-.slip-log-max{
-    max-height:36vh
-}
+
+
+
 .size-slip-new{
     max-height:28vh;
     height:auto;
@@ -15842,9 +15836,10 @@ img.zoom-img {
 /*    !*top: 5px !important;*!*/
 /*    background: #253743 !important;*/
 /*}*/
-.slip-max-height{
-    display:grid;
-    align-items: end;
+.slip-max-height {
+    display: grid;
+    align-items: start;
+    height: 90vh!important;
 }
 
 .betslip-container-mobile {

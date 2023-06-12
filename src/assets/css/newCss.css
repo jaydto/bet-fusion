@@ -1172,12 +1172,51 @@ img.nare-league {
 }
 @media (min-width: 991px){
 
+
     .desktop-ipad-size{
         width:100vw!important;;
     }
 }
 
 @media (max-width: 991px){
+    .slip-bottom-betlip-active {
+        margin-bottom: 21rem!important;
+        overflow-y: scroll;
+        position: sticky;
+        top: 0px;
+        /* height: 100%; */
+        width: 100%;
+    }
+    .share-button-styling {
+        padding: 5px;
+        background: repeating-linear-gradient(45deg, rgb(63, 154, 209), black 100px);
+        white-space: nowrap;
+        font-size: 14px;
+        border-radius: 2.3rem!important;
+        position: fixed;
+        top: 8rem;
+        z-index: 2000;
+        width: 142px!important;
+        right: 0px;
+        padding: 7px!important;
+        border-radius-bottom-right: 0px!important;
+        border-bottom-right-radius: 0px!important;
+        border-top-right-radius: 0px!important;
+    }
+    .top-spacing-betslip {
+        margin-top: 4rem;
+        margin-bottom: 4rem;
+    }
+    /*.slip-top {*/
+    /*    top: 10rem;*/
+    /*    height: 70vh;*/
+    /*    overflow: auto;*/
+    /*    !* margin-bottom: 27rem; *!*/
+    /*    position: absolute;*/
+    /*    width: 97vw;*/
+    /*    !* bottom: 51rem; *!*/
+    /*    margin-right: 2rem;*/
+    /*}*/
     .pro-sidebar > .pro-sidebar-inner > .pro-sidebar-layout .sidebar-live ul {
         list-style-type: none;
         padding: 0;
@@ -1381,6 +1420,25 @@ img.nare-league {
 
 }
 @media (min-width: 768px) and (max-width: 991px){
+    .slip-tabs {
+        background: repeating-linear-gradient(45deg, var(--betnare-header-bg), transparent 100px);
+    }
+    .share-button-styling {
+        padding: 5px;
+        background: repeating-linear-gradient(45deg, rgb(63, 154, 209), black 100px);
+        white-space: nowrap;
+        font-size: 14px;
+        border-radius: 2.3rem!important;
+        position: fixed;
+        top: 8rem;
+        z-index: 2000;
+        width: 142px!important;
+        right: 0px;
+        padding: 7px!important;
+        border-radius-bottom-right: 0px!important;
+        border-bottom-right-radius: 0px!important;
+        border-top-right-radius: 0px!important;
+    }
     .size-info {
         width: 52%!important;
     }
@@ -1512,6 +1570,22 @@ img.nare-league {
 
 }
 @media (max-width: 575px){
+    .share-button-styling {
+        padding: 5px;
+        background: repeating-linear-gradient(45deg, rgb(63, 154, 209), black 100px);
+        white-space: nowrap;
+        font-size: 14px;
+        border-radius: 2.3rem!important;
+        position: fixed;
+        top: 8rem;
+        z-index: 2000;
+        width: 142px!important;
+        right: 0px;
+        padding: 7px!important;
+        border-radius-bottom-right: 0px!important;
+        border-bottom-right-radius: 0px!important;
+        border-top-right-radius: 0px!important;
+    }
     .mybets-details{
         margin:0px;
     }

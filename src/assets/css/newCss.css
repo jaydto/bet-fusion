@@ -755,6 +755,12 @@ img.nare-league {
     height: 30px!important;
     width: 30px;
 }
+.width-signup-input {
+    width: 96%;
+}
+.input-color-icon {
+    background: var(--betnare-input)!important;
+}
 .deposit-buttons-value {
     padding: 5px 10px;
     border-radius: 20px;

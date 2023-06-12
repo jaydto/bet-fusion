@@ -225,14 +225,15 @@ const DepositFormFields = (props) => {
             </div>
 
             <div className="form-group row d-flex justify-content-center mt-5 deposit-widthdraw-input-desktop">
-                {/*<div className="btn-group w-100 gap-3" role="group" aria-label="Basic example">*/}
-                {/*    <button type="button" onClick={()=>incementDepositValue(100)} className="deposit-buttons-value">+100</button>*/}
-                {/*    <button type="button" onClick={()=>incementDepositValue(200)} className="deposit-buttons-value">+200</button>*/}
-                {/*    <button type="button" onClick={()=>incementDepositValue(500)} className="deposit-buttons-value">+500</button>*/}
-                {/*    <button type="button" onClick={()=>incementDepositValue(1000)} className="deposit-buttons-value">+1000</button>*/}
-                {/*</div>*/}
+                <label className={'text-light'}>Amount to Deposit</label>
+                <div className="btn-group w-100 gap-3" role="group" aria-label="Basic example">
+                    <button type="button" onClick={()=>incementDepositValue(100)} className="deposit-buttons-value">+100</button>
+                    <button type="button" onClick={()=>incementDepositValue(200)} className="deposit-buttons-value">+200</button>
+                    <button type="button" onClick={()=>incementDepositValue(500)} className="deposit-buttons-value">+500</button>
+                    <button type="button" onClick={()=>incementDepositValue(1000)} className="deposit-buttons-value">+1000</button>
+                </div>
                 <div className="col-md-12 w-100">
-                    <label className={'text-light'}>Amount to Deposit</label>
+
                     <input
                         onChange={ev => {
                             onFieldChanged(ev);

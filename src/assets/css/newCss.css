@@ -165,7 +165,62 @@ input.text-white{
     background: var(--betnare-header-bg)!important;
     /*background-position: center;*/
 }
-
+.top-spacing {
+    margin-top: 10.5rem;
+    margin-bottom: 4rem;
+}
+.search-container {
+    background: #fff;
+    color: var(--dark)!important;
+    height: 30px;
+    width: 100vw;
+    border-radius: 16px;
+    padding: 17px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.8s;
+    box-shadow: 4px 4px 6px 0 rgba(255,255,255,.3),
+    -4px -4px 6px 0 rgba(116, 125, 136, .2),
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
+}
+.search-container .search-input {
+    background: transparent!important;
+    border: none!important;
+    outline: none;
+    font-weight: 500;
+    font-size: 16px;
+    transition: 0.8s;
+    color: var(--dark)!important;
+    width: 100%;
+}
+#xgames-header {
+    font-family: Amita, cursive;
+    font-style: italic;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 26px;
+    letter-spacing: 3px;
+    word-spacing: 2px;
+    color: rgb(255, 166, 0);
+    text-shadow: rgb(0, 0, 0) 6px 2px 2px;
+}
+.smart-soft-games-container .smart-soft-game:first-child {
+    width: 100%!important;
+}
+#nare-games-header {
+    font-family: Amita, cursive;
+    font-style: italic;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 26px;
+    letter-spacing: 3px;
+    word-spacing: 2px;
+    color: rgb(255, 166, 0);
+    text-shadow: rgb(0, 0, 0) 6px 2px 2px;
+}
 .pro-sidebar .pro-menu .pro-menu-item.pro-sub-menu .pro-inner-list-item {
     background-color: var(--betnare-primary) !important;
 }

@@ -188,7 +188,7 @@ input, select, textarea {
     justify-content: space-around;
     position: -webkit-sticky!important;
     position: sticky!important;
-    width:fit-content;
+    width:100%;
     overflow: auto;
 }
 
@@ -7201,6 +7201,11 @@ ul.sport {
 }
 
 @media (max-width: 767px) {
+    .casino-category-container {
+
+        width:fit-content;
+
+    }
 
     .fm{
         color: #fff;

@@ -50,7 +50,7 @@ const Casino = () => {
                 <div className="d-flex flex-row">
                     <div className="gz home top-spacing " style={{width: '100%'}}>
                         <div className="homepage">
-                            <div className="col-md-12 d-flex flex-column">
+                            <div className="col-md-12 d-flex flex-column mt-2">
                                 <div className={'d-flex w-100 flex-column justify-content-between nare-header-container'}>
                                     <span className={'col-12 justify-content-center d-flex'}  id={'nare-games-header'}> CASINO</span>
 

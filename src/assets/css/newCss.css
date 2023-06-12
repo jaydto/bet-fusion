@@ -1537,7 +1537,7 @@ img.nare-league {
         min-height: 27px;
         justify-content: unset;
         padding-left: 0.1rem!important;
-        white-space: normal;
+        /*white-space: normal;*/
         padding-right: 0rem!important;
         /* margin-bottom: 0.4rem; */
     }

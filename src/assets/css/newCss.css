@@ -819,6 +819,11 @@ img.nare-league {
 
 /*media queries*/
 @media (min-width: 1260px) {
+    .slip-max-height {
+        display: grid;
+        align-items: start;
+        height: 90vh!important;
+    }
     .share-button-styling {
         padding: 5px;
         background: repeating-linear-gradient(45deg, rgb(63, 154, 209), black 100px);
@@ -1214,6 +1219,14 @@ img.nare-league {
         display: block;
     }
 }
+.slip-message-alert {
+    height: 5rem;
+    /* width: 100vw; */
+    display: inline-table;
+    /* word-wrap: break-word; */
+    white-space: normal!important;
+    line-height: 15px!important;
+}
 @media (min-width: 991px){
 
 
@@ -1312,9 +1325,7 @@ img.nare-league {
         top: 0px;
         position: sticky;
     }
-    .reset-pass{
-        width:100vw!important;
-    }
+
     .app-navbar .e img {
         max-width: 130px !important;
         margin-bottom: 0px!important;
@@ -1352,6 +1363,9 @@ img.nare-league {
         box-shadow: none;
         width: 100%!important;
         margin: auto;
+    }
+    .width-page-centric.reset-pass{
+        width:100vw!important;
     }
     .width-centric-page{
         width:76vw;

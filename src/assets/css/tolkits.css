@@ -15848,11 +15848,7 @@ img.zoom-img {
 /*    !*top: 5px !important;*!*/
 /*    background: #253743 !important;*/
 /*}*/
-.slip-max-height {
-    display: grid;
-    align-items: start;
-    height: 90vh!important;
-}
+
 
 .betslip-container-mobile {
     bottom: 0;

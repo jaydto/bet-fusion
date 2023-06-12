@@ -1342,10 +1342,10 @@ img.nare-league {
     .form-title-centric{
         font-size: 20px;
     }
-    .width-page-centric{
+    .width-page-centric {
         box-shadow: none;
-        width:100%;
-        margin:auto;
+        width: 100%!important;
+        margin: auto;
     }
     .width-centric-page{
         width:76vw;

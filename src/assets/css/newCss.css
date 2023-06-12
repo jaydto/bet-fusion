@@ -791,7 +791,10 @@ img.nare-league {
     position: sticky;
     top: 139px
 }
-
+.live-status{
+    display:flex;
+    align-items:center;
+}
 .header-sports{
     background: var(--betnare-header-bg);
     opacity: 1!important;

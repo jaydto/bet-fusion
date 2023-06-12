@@ -1236,6 +1236,20 @@ img.nare-league {
 }
 
 @media (max-width: 991px){
+    .slip-max {
+        max-height: 90vh;
+    }
+    .slip-bottom-space {
+        margin-bottom: 9rem!important;
+        overflow-y: scroll;
+        position: sticky;
+        top: 0px;
+        /* height: 100%; */
+        width: 100%;
+    }
+    .slip-max-height {
+        max-height: 90vh;
+    }
     .slip-bottom-betlip-active {
         margin-bottom: 21rem!important;
         overflow-y: scroll;

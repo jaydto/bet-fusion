@@ -3,7 +3,7 @@ import React, {
     useEffect,
     useContext,
     useCallback,
-    useMemo, useRef,
+    useRef,
 } from "react";
 import {Context} from "../../context/store";
 import {
@@ -14,7 +14,7 @@ import makeRequest from "../utils/fetch-request";
 import "react-toastify/dist/ReactToastify.css";
 
 import {Formik, Form as FormikForm, useFormikContext} from "formik";
-import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
+import {getFromLocalStorage} from "../utils/local-storage";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
     faCut,

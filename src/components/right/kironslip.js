@@ -1,14 +1,10 @@
 import React, { useState, useEffect, useContext, useCallback } from "react";
-import BetslipSubmitForm from "./betslip-submit-form";
 import { Context } from "../../context/store";
 import {
     getKironSlip, removeFromKironSlip,
 } from "../utils/betslip";
-import { Link } from "react-router-dom";
 import { getFromLocalStorage } from "../utils/local-storage";
-import DecodeCode from "./decode";
 import KironslipSubmitForm from "./kironslip-submit-form";
-import {getTime} from "../pages/Kiron/periods";
 
 const clean_rep = (str) => {
     str = str.replace(/[^A-Za-z0-9\-]/g, "");
@@ -202,105 +198,107 @@ const KironSlip = (props) => {
     return (
         <div className="bet-body text-white">
             {!kiron && <BonusAlert />}
-            <div className="flow" style={{ maxHeight: "42vh", overflowY: "auto" }}>
-                <ul>
-                    {(betslipsData && Object.keys(betslipsData)?.length == 0) ||
-                    betslipsData == null ? (
-                        ""
-                    ) : (
-                        Object.entries(betslipsData || {}).map(([match_id, slip]) => {
-                            let odd = slip.odd_value;
-                            let no_odd_bg = odd === 1 ? "#f29f7a" : "";
+            <div className={`flow  slip-top ${state?.user?kiron?'slip-max':'slip-height slip-log-max':'slip-max'} overflow-auto`}>
+                <div className={"slip-bottom-space"}>
+                    <ul className={"slip-bottom-space-list"}>
+                        {(betslipsData && Object.keys(betslipsData)?.length == 0) ||
+                        betslipsData == null ? (
+                            ""
+                        ) : (
+                            Object.entries(betslipsData || {}).map(([match_id, slip]) => {
+                                let odd = slip.odd_value;
+                                let no_odd_bg = odd === 1 ? "#f29f7a" : "";
 
-                            return (
-                                <li
-                                    className={`bet-option hide-on-affix ${
-                                        slip?.disable ? "warn" : ""
-                                    } ${expired.map((id,index)=> (slip?.parent_match_id === id ?' expired-bg ':'')
-                                    )}`}
-                                    key={match_id}
-                                    style={{ background: no_odd_bg }}
-                                >
-                                    <div className="bet-cancel">
-                                        <input
-                                            id={slip.match_id}
-                                            type="submit"
-                                            value="X"
-                                            onClick={() => handledRemoveSlip(slip)}
-                                        />
-                                    </div>
-                                    <a
-                                        href={`${
-                                            slip?.bet_type === "0"
-                                                ? "/match/" + slip?.match_id
-                                                :kiron==true?"#":"/match/live/" + slip?.parent_match_id
-                                        }`}
-                                        style={{ color: "inherit", fontStyle: "inherit" }}
-                                        className={"g url-link"}
+                                return (
+                                    <li
+                                        className={`bet-option hide-on-affix ${
+                                            slip?.disable ? "warn" : ""
+                                        } ${expired.map((id,index)=> (slip?.parent_match_id === id ?' expired-bg ':'')
+                                        )}`}
+                                        key={match_id}
+                                        style={{ background: no_odd_bg }}
                                     >
-                                        <div className="bet-value" style={{width:'90%'}}>
-                                            <b>
-                                                {
-                                                    <span
-                                                        style={{
-                                                            float: "left",
-                                                            width: "auto",
-                                                            fontWeight: "bold",
-                                                        }}
-                                                    >
+                                        <div className="bet-cancel">
+                                            <input
+                                                id={slip.match_id}
+                                                type="submit"
+                                                value="X"
+                                                onClick={() => handledRemoveSlip(slip)}
+                                            />
+                                        </div>
+                                        <a
+                                            href={`${
+                                                slip?.bet_type === "0"
+                                                    ? "/match/" + slip?.match_id
+                                                    :kiron==true?"#":"/match/live/" + slip?.parent_match_id
+                                            }`}
+                                            style={{ color: "inherit", fontStyle: "inherit" }}
+                                            className={"g url-link"}
+                                        >
+                                            <div className="bet-value" style={{width:'90%'}}>
+                                                <b>
+                                                    {
+                                                        <span
+                                                            style={{
+                                                                float: "left",
+                                                                width: "auto",
+                                                                fontWeight: "bold",
+                                                            }}
+                                                        >
                                                     {slip?.sport_name==undefined?kiron==true?"Soccer":"Soccer":slip?.sport_name},&nbsp;
 
                                                     </span>
-                                                }
-                                                {expired.map((id,index)=>{
-                                                    return slip?.parent_match_id === id && (
-                                                        <span key={index} className='text-warning float-end'>
+                                                    }
+                                                    {expired.map((id,index)=>{
+                                                        return slip?.parent_match_id === id && (
+                                                            <span key={index} className='text-warning float-end'>
                                                              Expired
                                                         </span>
-                                                    );
-                                                })}
-                                            </b>
-                                        </div>
-                                        <div className="row">
-                                            <div className="bet-value">
-                                                {`${slip.home_team} - ${slip.away_team}`}
-                                                <br />
-                                                <span className="sp_sport"></span>
+                                                        );
+                                                    })}
+                                                </b>
                                             </div>
-                                        </div>
-                                        <div className="row">
-                                            <div className="bet-value">Market - {slip.odd_type}</div>
-                                        </div>
-                                        <div className="bet-pick">
-                                            <b>
-                                                Your Pick - {slip.outcome_id}
-                                                <span className="bet-odd">
+                                            <div className="row">
+                                                <div className="bet-value">
+                                                    {`${slip.home_team} - ${slip.away_team}`}
+                                                    <br />
+                                                    <span className="sp_sport"></span>
+                                                </div>
+                                            </div>
+                                            <div className="row">
+                                                <div className="bet-value">Market - {slip.odd_type}</div>
+                                            </div>
+                                            <div className="bet-pick">
+                                                <b>
+                                                    Your Pick - {slip.outcome_id}
+                                                    <span className="bet-odd">
                                                     {slip.odd_value}
-                                                    {slip.odd_value === 1 && (
-                                                        <span
-                                                            style={{
-                                                                color: "#cc0000",
-                                                                fontSize: "11px",
-                                                                display: "block",
-                                                            }}
-                                                        >
+                                                        {slip.odd_value === 1 && (
+                                                            <span
+                                                                style={{
+                                                                    color: "#cc0000",
+                                                                    fontSize: "11px",
+                                                                    display: "block",
+                                                                }}
+                                                            >
                               Market Disabled
                             </span>
-                                                    )}
+                                                        )}
                         </span>
-                                            </b>
-                                        </div>
-                                        <div className="row">
-                                            <div className="warn">{slip?.comment} </div>
-                                        </div>
-                                    </a>
-                                </li>
-                            );
-                        })
-                    )}
-                </ul>
+                                                </b>
+                                            </div>
+                                            <div className="row">
+                                                <div className="warn">{slip?.comment} </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                );
+                            })
+                        )}
+                    </ul>
+                </div>
             </div>
-            <div className="bottom">
+            <div className="bottom" >
                 <KironslipSubmitForm
                     setExpired={setExpired}
                     kiron={kiron}

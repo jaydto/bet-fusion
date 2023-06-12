@@ -10,7 +10,7 @@ import Container from "react-bootstrap/Container";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import logo from "../../../assets/img/Logo.webp";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import { faBackspace } from "@fortawesome/free-solid-svg-icons";
+import {faBackspace, faEye, faEyeSlash} from "@fortawesome/free-solid-svg-icons";
 import SidebarMobile from "../../sidebar/awesome/SidebarMobile";
 import makeRequest from "../../utils/fetch-request";
 import {Form, Formik} from "formik";
@@ -24,15 +24,9 @@ const backgroundStyle = {
 
 
 const ResetPassword2 = props => {
-    // const [message, setMessage] = useState(null);
-    // const {setUser} = props;
+
    const [state,dispatch]=useContext(Context)
     const expand = "md"
-
-    // const [success, setSuccess] = useState(false);
-
-    // const [otp_sent, setOtpSent] = useState(false)
-    //
 
     const FormTitle = () => {
         return (
@@ -217,6 +211,10 @@ const MyOtpForm = (props) => {
 const MyPasswordResetForm = (props) => {
     const [state,dispatch]=useContext(Context)
     const {errors, values, submitForm, setFieldValue} = props;
+    const [showPassword, setShowPassword] = useState(false);
+    const toggleShowPassword = () => {
+        setShowPassword(!showPassword);
+    };
 
     const onFieldChanged = (ev) => {
         let field = ev.target.name;
@@ -254,16 +252,35 @@ const MyPasswordResetForm = (props) => {
                         <div className="form-group w-100 d-flex justify-content-center mt-5">
                             <div className="col-md-12 w-100">
                                 <label>Password</label>
-                                <input
-                                    value={values.password}
-                                    className="text-light deposit-input form-control col-md-12 input-field"
-                                    id="password_reset"
-                                    name="password"
-                                    type="password"
-                                    autoComplete={'on'}
-                                    placeholder='Password'
-                                    onChange={ev => onFieldChanged(ev)}
-                                />
+                                <div className="input-group input-color-icon w-100" style={{ display: 'flex' , background:'white'}}>
+
+                                    <input
+                                        value={values.password}
+                                        className=" w-75 text-light deposit-input form-control col-md-12 input-field"
+                                        id="password_reset"
+                                        name="password"
+                                        type={showPassword ? 'text' : 'password'}
+                                        autoComplete={'on'}
+                                        placeholder='Password'
+                                        onChange={ev => onFieldChanged(ev)}
+                                    />
+                                    <div className=" col-2 input-group-append">
+                                        <div className="input-group-text  border-0 input-color-icon">
+                                            <button
+                                                style={{  height: 'parent'}}
+                                                type="button"
+                                                className="btn btn-link text-decoration-none input-color-icon"
+                                                onClick={toggleShowPassword}
+                                            >
+                                                {showPassword ? (
+                                                    <FontAwesomeIcon icon={faEyeSlash} style={{ color: 'var(--light)', fontSize: '20px' }} />
+                                                ) : (
+                                                    <FontAwesomeIcon icon={faEye} style={{ color: 'var(--light)', fontSize: '20px' }} />
+                                                )}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
                                 {errors.password && <div className='text-danger'>
                                     {errors.password}
                                 </div>}
@@ -272,15 +289,33 @@ const MyPasswordResetForm = (props) => {
                         <div className="form-group w-100 d-flex justify-content-center mt-5">
                             <div className="col-md-12 w-100">
                                 <label>Confirm Password</label>
-                                <input
-                                    value={values.repeat_password}
-                                    className="text-light deposit-input form-control col-md-12 input-field"
-                                    id="confirm_password"
-                                    name="repeat_password"
-                                    type="password"
-                                    placeholder='Password'
-                                    onChange={ev => onFieldChanged(ev)}
-                                />
+                                <div className="input-group input-color-icon w-100" style={{ display: 'flex' }}>
+                                    <input
+                                        value={values.repeat_password}
+                                        className="w-75 text-light deposit-input form-control col-md-12 input-field"
+                                        id="confirm_password"
+                                        name="repeat_password"
+                                        type={showPassword ? 'text' : 'password'}
+                                        placeholder='Password'
+                                        onChange={ev => onFieldChanged(ev)}
+                                    />
+                                    <div className=" col-2 input-group-append">
+                                        <div className="input-group-text  border-0 input-color-icon">
+                                            <button
+                                                style={{  height: 'parent'}}
+                                                type="button"
+                                                className="btn btn-link text-decoration-none input-color-icon"
+                                                onClick={toggleShowPassword}
+                                            >
+                                                {showPassword ? (
+                                                    <FontAwesomeIcon icon={faEyeSlash} style={{ color: 'var(--light)', fontSize: '20px' }} />
+                                                ) : (
+                                                    <FontAwesomeIcon icon={faEye} style={{ color: 'var(--light)', fontSize: '20px' }} />
+                                                )}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
                                 {errors.repeat_password &&
                                     <div className='text-danger'>
                                         {errors.repeat_password}

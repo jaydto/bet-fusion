@@ -123,18 +123,30 @@ input, select, textarea {
 
 }
 
+/*.mobile-menu {*/
+/*    !*background: #1f2f38;*!*/
+/*    background-color:#16202C!important;*/
+/*    position: fixed;*/
+/*    bottom: 0;*/
+/*    visibility:visible;*/
+/*    height: 65px;*/
+/*    width: 100%;*/
+/*    display: flex;*/
+/*    !*padding-bottom: max(10px, env(safe-area-insent-bottom));*!*/
+/*    justify-content: space-around;*/
+/*  }*/
 .mobile-menu {
-    /*background: #1f2f38;*/
     background-color:#16202C!important;
     position: fixed;
     bottom: 0;
     visibility:visible;
-    height: 65px;
+    height: 55px;
     width: 100%;
+    font-size: 13px !important;
     display: flex;
     /*padding-bottom: max(10px, env(safe-area-insent-bottom));*/
     justify-content: space-around;
-  }
+}
 
   .bloc-icon {
     display: flex;

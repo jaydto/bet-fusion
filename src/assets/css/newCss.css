@@ -1050,6 +1050,14 @@ img.nare-league {
 }
 
 @media (max-width: 1259px) and (min-width: 992px) {
+    .slip-top{
+        overflow-y:auto;
+        max-height:40vh;
+    }
+    .slip-height{
+        overflow-y:auto;
+        max-height:40vh;
+    }
     .mybets-styling-mobile {
         overflow: hidden;
         font-size: 14px!important;
@@ -1153,6 +1161,18 @@ img.nare-league {
     }
 }
 @media (min-width: 992px){
+    .slip-top{
+        overflow-y:auto;
+        max-height:50vh;
+    }
+    .slip-height{
+        overflow-y:auto;
+        max-height:50vh;
+    }
+    .slip-log-max{
+        overflow-y:auto;
+        max-height:50vh;
+    }
     .size-all-markets{
         width:145%!important;
     }

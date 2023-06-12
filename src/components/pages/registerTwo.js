@@ -1,14 +1,11 @@
-import React, {useCallback, useEffect, useState} from 'react'
+import React, {useCallback, useContext, useEffect, useState} from 'react'
 import { Row, Col } from "antd";
 import authImg from '../../assets/img/Logo.webp'
 
 
 import {Link, useNavigate} from "react-router-dom";
-import HeaderLogin from "../header/top-login";
-import Right from "../right";
 import useWindowDimensions from "../header/Dimensions";
-import {clearTrackingData, getFromLocalStorage, setLocalStorage, setTrackingData} from "../utils/local-storage";
-import {toast} from "react-toastify";
+import {clearTrackingData, getFromLocalStorage, setTrackingData} from "../utils/local-storage";
 import only18 from '../../assets/img/auth/18only.png'
 import backgroundURL from '../../assets/img/auth/img-17.webp'
 import {Navbar, Offcanvas} from "react-bootstrap";
@@ -16,11 +13,15 @@ import Container from "react-bootstrap/Container";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import logo from "../../assets/img/Logo.webp";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faAngleLeft, faBackspace, faBackward, faHome, faLessThan, faPowerOff} from "@fortawesome/free-solid-svg-icons";
+import {
+	faBackspace,
+	faEye, faEyeSlash,
+} from "@fortawesome/free-solid-svg-icons";
 import SidebarMobile from "../sidebar/awesome/SidebarMobile";
 import makeRequest from "../utils/fetch-request";
 import betNiMoto from '../../assets/img/BetniMoto.webp'
 import {Form, Formik} from "formik";
+import {Context} from "../../context/store";
 const backgroundStyle = {
 	backgroundImage: `url(${backgroundURL})`,
 	backgroundRepeat: 'no-repeat',
@@ -28,60 +29,17 @@ const backgroundStyle = {
 }
 
 const RegisterTwo = props => {
-	const [message, setMessage] = useState(null);
+
+	const [state,dispatch]=useContext(Context)
 	// const {setUser} = props;
 	const expand = "md"
 	const {height, width} = useWindowDimensions();
 	const [user, setUser] = useState(getFromLocalStorage("user"));
 
-	const [success, setSuccess] = useState(false);
+	// const [success, setSuccess] = useState(false);
 	const navigate = useNavigate();
 
 
-	const initialValues = {
-		msisdn: '',
-		password: ''
-	}
-
-	const handleSubmit = values => {
-
-		let endpoint = '/v1/signup'
-
-		setTrackingData(values)
-
-		makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
-			setSuccess(status === 200 || status === 201);
-			setMessage(response?.success?.message || "");
-			if (values.utm_source !== undefined) {
-				if (values.utm_source === 'eskimi') {
-					window.esk('track', 'Conversion');
-				}
-				if (values.utm_source === 'google') {
-					window.gtag_report_conversion(window.location)
-				}
-			}
-			clearTrackingData()
-			let timer = setInterval(() => {
-				// window.location.href = "/"
-				clearInterval(timer)
-			}, 3000)
-		})
-	}
-
-	const validate = values => {
-
-		let errors = {}
-
-		if (!values.msisdn || !values.msisdn.match(/(254|0|)?[71]\d{8}/g)) {
-			errors.msisdn = 'Please enter a valid phone number'
-		}
-
-		if (!values.password || values.password.length < 4) {
-			errors.password = "Please enter four or more characters for password";
-		}
-
-		return errors
-	}
 
 	const FormTitle = () => {
 		return (
@@ -93,87 +51,13 @@ const RegisterTwo = props => {
 		)
 	}
 
-	const MySignupForm = (props) => {
-		const {errors, values, submitForm, setFieldValue} = props;
-
-		const onFieldChanged = (ev) => {
-			let field = ev.target.name;
-			let value = ev.target.value;
-			setFieldValue(field, value);
-		}
-		return (
-			<Form>
-				<div className="pt-0">
-					<div className="row">
-						{/*<div className='row'>*/}
-						{/*    <img src={ karibu} alt="" className={''}/>*/}
-						{/*</div>*/}
-						{/*<hr/>*/}
-						<div className="form-group container-lg row d-flex justify-content-center mt-5">
-							<div className="col-md-12">
-								<label>Mobile Number</label>
-								<input
-									value={values.msisdn}
-									className="text-light deposit-input form-control col-md-12 input-field input-bg-user"
-									id="msisdn"
-									name="msisdn"
-									type="text"
-									placeholder='Phone number'
-									onChange={ev => onFieldChanged(ev)}
-								/>
-								{errors.msisdn && <div className='text-danger'> {errors.msisdn} </div>}
-							</div>
-						</div>
-
-						<div className="form-group container-lg row d-flex justify-content-center mt-5">
-							<div className="col-md-12">
-								<label>Password</label>
-								<input
-									value={values.password}
-									className="text-light deposit-input form-control col-md-12 input-field input-bg-user"
-									id="password"
-									name="password"
-									type="password"
-									placeholder='Password'
-									onChange={ev => onFieldChanged(ev)}
-								/>
-								{errors.password && <div className='text-danger'> {errors.password} </div>}
-							</div>
-						</div>
-						<div className="form-group container-lg row d-flex justify-content-left mb-4">
-							<div className="col">
-								<button type={"submit"}
-										className='btn btn-lg w-100 button-radius input-field btn-font cg login-button2 btn ' style={{marginTop:"47px"}}>
-									<strong>SIGNUP</strong>
-								</button>
-								<Link className={`d-flex justify-content-center w-100 mt-3`} to={"/verify"} title="Verify" >
-									<span className={`text-warning font-input register-label`} style={{fontSize:'18px'}}>Already have a verification code ?  </span>
-								</Link>
-							</div>
-						</div>
-					</div>
-				</div>
-			</Form>
-		);
-	}
-
-	const SignupForm = (props) => {
-		return (
-			<Formik
-				initialValues={initialValues}
-				onSubmit={handleSubmit}
-				validateOnChange={false}
-				validateOnBlur={false}
-				validate={validate}
-				render={(props) => <MySignupForm {...props} />}/>
-		);
-	}
 
 	const Alert = (props) => {
-		let c = success ? 'success' : 'danger';
-		return (<div role="alert" className={`fade alert alert-${c} show`}>{message}</div>);
+		let c = state?.registerSuccess ? 'success' : 'danger';
+		return (<div role="alert" className={`fade alert alert-${c} show`}>{state?.registerMessage}</div>);
 
 	};
+	{state?.registerSuccess&&setTimeout(window.location.href="/verify",1500)}
 	return (
 		<div style={{height:'100vh', background:'#16202C'}}>
 			<div className={''}>
@@ -257,13 +141,13 @@ const RegisterTwo = props => {
 								<div className={'d-flex'}>
 									{/**/}
 									<div >
-										{user?setTimeout(navigate("/"),500):""}
+										{/*{user?setTimeout(navigate("/"),500):""}*/}
 										<div className={"d-flex flex-row justify-content-between"}>
 											<div className=" w-100">
 												<div className="homepage d-flex flex-column align-items-center justify-content-center login-page">
 													<div className="col-md-12 mt-2 text-white p-2">
-													{message && <Alert/>}
-													{success?setTimeout(window.location.href="/verify",1500):""}
+													{state?.registerMessage && <Alert/>}
+
 													<div className="modal-body pb-0" data-backdrop="static">
 														<SignupForm/>
 													</div>
@@ -288,5 +172,151 @@ const RegisterTwo = props => {
 		</div>
 	)
 }
+const SignupForm = (props) => {
+	const [state,dispatch]=useContext(Context)
+	const initialValues = {
+		msisdn: '',
+		password: ''
+	}
+
+	const handleSubmit = values => {
+
+		let endpoint = '/v1/signup'
+
+		setTrackingData(values)
+
+		makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
+			// setSuccess(status === 200 || status === 201);
+			// setMessage(response?.success?.message || "");
+			dispatch({type: "SET", key: "registerSuccess", payload: status === 200 || status === 201})
+			dispatch({type: "SET", key: "registerMessage", payload: response?.success?.message})
+
+			if (values.utm_source !== undefined) {
+				if (values.utm_source === 'eskimi') {
+					window.esk('track', 'Conversion');
+				}
+				if (values.utm_source === 'google') {
+					window.gtag_report_conversion(window.location)
+				}
+			}
+			clearTrackingData()
+			let timer = setInterval(() => {
+				// window.location.href = "/"
+				clearInterval(timer)
+			}, 3000)
+		})
+	}
+
+	const validate = values => {
+
+		let errors = {}
+
+		if (!values.msisdn || !values.msisdn.match(/(254|0|)?[71]\d{8}/g)) {
+			errors.msisdn = 'Please enter a valid phone number'
+		}
+
+		if (!values.password || values.password.length < 4) {
+			errors.password = "Please enter four or more characters for password";
+		}
+
+		return errors
+	}
+	return (
+		<Formik
+			initialValues={initialValues}
+			onSubmit={handleSubmit}
+			validateOnChange={false}
+			validateOnBlur={false}
+			validate={validate}
+			render={(props) => <MySignupForm {...props} />}/>
+	);
+}
+
+const MySignupForm = (props) => {
+	const {errors, values, submitForm, setFieldValue} = props;
+	const [showPassword, setShowPassword] = useState(false);
+	const onFieldChanged = (ev) => {
+		let field = ev.target.name;
+		let value = ev.target.value;
+		setFieldValue(field, value);
+	}
+	const toggleShowPassword = () => {
+		setShowPassword(!showPassword);
+	};
+
+	return (
+		<Form>
+			<div className="pt-0">
+				<div className="row">
+					<div className="form-group container-lg row d-flex justify-content-center mt-5">
+						<div className="col-md-12">
+							<label>Mobile Number</label>
+							<input
+								value={values.msisdn}
+								className="text-light deposit-input form-control col-md-12 input-field input-bg-user"
+								id="msisdn"
+								name="msisdn"
+								type="text"
+								placeholder='Phone number'
+								onChange={ev => onFieldChanged(ev)}
+							/>
+
+							{errors.msisdn && <div className='text-danger'> {errors.msisdn} </div>}
+						</div>
+					</div>
+					<br/>
+					<div className={`width-signup-input `}>
+						<br/>
+						<label>Password</label>
+						<div className="input-group input-color-icon w-100" style={{ display: 'flex' }}>
+							<input type={showPassword ? 'text' : 'password'}
+								   name="password"
+								   className={`w-75 input-field button-radius text-light deposit-input form-control col input-field-login  ${errors.password && 'text-danger'} `}
+								// data-action="grow"
+								   autoComplete={'on'}
+								   placeholder={"Password"}
+								   onChange={ev => onFieldChanged(ev)}
+								   value={values.password}
+							/>
+							<div className=" col-2 input-group-append">
+								<div className="input-group-text  border-0 input-color-icon">
+									<button
+										style={{  height: 'parent'}}
+										type="button"
+										className="btn btn-link text-decoration-none input-color-icon"
+										onClick={toggleShowPassword}
+									>
+										{showPassword ? (
+											<FontAwesomeIcon icon={faEyeSlash} style={{ color: 'var(--light)', fontSize: '20px' }} />
+										) : (
+											<FontAwesomeIcon icon={faEye} style={{ color: 'var(--light)', fontSize: '20px' }} />
+										)}
+									</button>
+								</div>
+							</div>
+						</div>
+						{errors.password && <div className='text-danger'> {errors.password} </div>}
+
+
+					</div>
+
+					<div className="form-group container-lg row d-flex justify-content-left mb-4">
+						<div className="col">
+							<button type={"submit"}
+									className='btn btn-lg w-100 button-radius input-field btn-font cg login-button2 btn ' style={{marginTop:"47px"}}>
+								<strong>SIGNUP</strong>
+							</button>
+							<Link className={`d-flex justify-content-center w-100 mt-3`} to={"/verify"} title="Verify" >
+								<span className={`text-warning font-input register-label`} style={{fontSize:'18px'}}>Already have a verification code ?  </span>
+							</Link>
+						</div>
+					</div>
+				</div>
+			</div>
+		</Form>
+	);
+}
+
+
 
 export default React.memo(RegisterTwo)

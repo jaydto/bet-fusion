@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react'
+import React, {useContext, useEffect, useRef, useState} from 'react'
 import { Row, Col } from "antd";
 import authImg from '../../../assets/img/Logo.webp'
 import fire from '../../../assets/img/fire.webp'
@@ -7,7 +7,6 @@ import {Link, useNavigate} from "react-router-dom";
 
 import useWindowDimensions from "../../header/Dimensions";
 import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
-import {toast} from "react-toastify";
 import only18 from '../../../assets/img/auth/18only.png'
 import backgroundURL from '../../../assets/img/auth/img-17.webp'
 import {Navbar, Offcanvas} from "react-bootstrap";
@@ -15,10 +14,11 @@ import Container from "react-bootstrap/Container";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import logo from "../../../assets/img/Logo.webp";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faAngleLeft, faBackspace, faBackward, faHome, faLessThan, faPowerOff} from "@fortawesome/free-solid-svg-icons";
+import { faBackspace} from "@fortawesome/free-solid-svg-icons";
 import SidebarMobile from "../../sidebar/awesome/SidebarMobile";
 import makeRequest from "../../utils/fetch-request";
 import {Form, Formik} from "formik";
+import {Context} from "../../../context/store";
 const backgroundStyle = {
     backgroundImage: `url(${backgroundURL})`,
     backgroundRepeat: 'no-repeat',
@@ -27,95 +27,10 @@ const backgroundStyle = {
 
 
 const VerifyAccount2 = props => {
-    const [message, setMessage] = useState(null);
+    // const [message, setMessage] = useState(null);
+    const [state,dispatch]=useContext(Context)
     // const {setUser} = props;
-    const [isMobileNumberValid, setIsMobileNumberValid] = useState(false);
-    const navigate = useNavigate();
     const expand = "md"
-    const {height, width} = useWindowDimensions();
-    const [user, setUser] = useState(getFromLocalStorage("user"));
-
-    const [inputDisabled, setInputDisabled] = useState(false)
-    const [code, setCode] = useState(null);
-    const [success, setSuccess] = useState(false);
-    const verifyRef = useRef()
-
-
-    const initialValues = {
-        mobile: '',
-        code: ''
-    }
-
-    const verifyAccount = () => {
-        let code = new URL(window.location).searchParams.get('code')
-        let msisdn = new URL(window.location).searchParams.get('msisdn')
-        if (code !== null && msisdn !== null) {
-            setInputDisabled(true)
-            handleSubmit({
-                mobile: msisdn,
-                code: code
-            })
-        }
-    }
-
-    useEffect(() => {
-        verifyAccount()
-    }, [])
-
-    const handleSubmit = values => {
-        let endpoint = '/v1/verify';
-        makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
-            setMessage(response.success ? response.success.message : response.error.message);
-            response.success ? setSuccess(true) : setSuccess(false)
-
-            if (response?.success) {
-                setLocalStorage('user', response?.success?.user);
-                let timer = setInterval(() => {
-                    clearInterval(timer)
-                    window.location.href = "/"
-                }, 1000)
-            }
-
-        }).catch((err) => {
-
-        })
-    }
-
-    const validate = values => {
-
-        let errors = {}
-
-        if (!values.mobile || !values.mobile.match(/(254|0|)?[71]\d{8}/g)) {
-            errors.mobile = 'Please enter a valid phone number'
-        }
-
-        if (!values.code || values.code.length < 4) {
-            errors.code = "Please enter four or more characters for code";
-        }
-
-        return errors
-    }
-
-    const resendOTP = () => {
-
-        let endpoint = '/v1/code';
-
-        let values = {
-            mobile: verifyRef.current.values.mobile
-        }
-
-        makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
-
-            setMessage(response.success ? response.success.message : response.error.message);
-            let timer = setInterval(() => {
-                setIsMobileNumberValid(false)
-                clearInterval(timer)
-            }, 3000)
-            response?.success&&timer()
-            response.error ? setSuccess(false) : setSuccess(false)
-        })
-    }
-
     const FormTitle = () => {
         return (
             <div className='col-md-12  pt-4 text-center text-light' >
@@ -127,104 +42,10 @@ const VerifyAccount2 = props => {
     }
 
 
-    const MyVerifyAccountForm = (props) => {
-        const {errors, values, submitForm, setFieldValue} = props;
-
-        const onFieldChanged = (ev) => {
-            let field = ev.target.name;
-            let value = ev.target.value;
-            setFieldValue(field, value);
-            setIsMobileNumberValid(value.trim() !== '');
-        }
-        return (
-            <Form>
-                <div className="pt-0">
-                    <div className="w-100">
-
-                        <div className="form-group row d-flex justify-content-center mt-3">
-                            <div className="col-md-12">
-                                <label>Mobile Number</label>
-                                <div className="row">
-                                    <div className="col-md-12 mb-3">
-                                        <input
-                                            value={values.mobile}
-                                            className="h-100 text-light deposit-input form-control col-md-12 input-field"
-                                            id="mobile"
-                                            name="mobile"
-                                            type="text"
-                                            placeholder='Phone number'
-                                            onChange={ev => onFieldChanged(ev)}
-                                        />
-                                        {isMobileNumberValid && errors.mobile && (
-                                            <div className='text-danger'>{errors.mobile}</div>
-                                        )}
-                                    </div>
-                                    <div className="col-md-4 d-flex justify-content-between">
-                                        <span className='' style={{
-                                            marginLeft: 'auto',
-                                            whiteSpace: 'nowrap',
-                                            gap: '10px',
-                                            width: 'auto',
-                                        }}>
-                                            Didn't receive code? Resend Code
-                                        </span>
-                                        &nbsp;
-                                        <button onClick={() => resendOTP()} type={"button"}
-                                                className='btn py-1 px-2 text-light btn-sm bg-success rounded-3 border-0 ' style={{fontSize:"12px",whiteSpace:'nowrap'}} disabled={!isMobileNumberValid}>Resend OTP
-                                        </button>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div className="form-group row d-flex  mt-4">
-                            <div className="col-md-12">
-                                <label>Code (OTP)</label>
-                                <input
-                                    value={code !== null ? code : values.code}
-                                    className="text-light deposit-input form-control col-md-12 input-field"
-                                    id="code"
-                                    name="code"
-                                    type="code"
-                                    placeholder='Code'
-                                    onChange={ev => onFieldChanged(ev)}
-                                />
-                                {errors.code && <div className='text-danger'> {errors.code} </div>}
-                            </div>
-                        </div>
-                        <div className="form-group row d-flex justify-content-left mb-4">
-                            <div className="col">
-                                <button type="submit"
-                                        disabled={inputDisabled}
-                                        onClick={submitForm}
-                                        className=' btn btn-lg w-100 button-radius input-field btn-font cg login-button btn button-page' style={{marginTop:"47px"}}>
-                                    VERIFY ACCOUNT
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </Form>
-        );
-    }
-
-    const VerifyAccountForm = (props) => {
-        return (
-            <Formik
-                innerRef={verifyRef}
-                initialValues={initialValues}
-                onSubmit={handleSubmit}
-                validateOnChange={false}
-                validateOnBlur={false}
-                validate={validate}
-                render={(props) => <MyVerifyAccountForm {...props} />}/>
-        );
-    }
 
     const Alert = (props) => {
-        let c = success ? 'success' : 'danger';
-        return (<div role="alert" className={`fade alert alert-${c} show`}>{message}</div>);
+        let c = state?.verifySuccess ? 'success' : 'danger';
+        return (<div role="alert" className={`fade alert alert-${c} show`}>{state?.verifyMessage}</div>);
 
     };
 
@@ -316,8 +137,8 @@ const VerifyAccount2 = props => {
                                                 <div className="homepage d-flex flex-column align-items-center justify-content-center login-page">
 
                                                     <div className="col-md-12 mt-2 text-white p-2">
-                                                        {message && <Alert/>}
-                                                        {success?setTimeout(window.location.href="/",2000):""}
+                                                        {state?.verifyMessage && <Alert/>}
+                                                        {state?.verifySuccess?setTimeout(window.location.href="/",2000):""}
                                                         <div className="modal-body pb-0" data-backdrop="static">
                                                             <VerifyAccountForm/>
                                                         </div>
@@ -342,6 +163,188 @@ const VerifyAccount2 = props => {
         </div>
     )
 }
+const MyVerifyAccountForm = (props) => {
+    const {errors, values, submitForm, setFieldValue} = props;
+    const [state,dispatch]=useContext(Context)
+    const resendOTP = () => {
+        console.log("here is the value")
 
+        let endpoint = '/v1/code';
+
+        let payload = {
+            mobile: values?.mobile
+        }
+
+        makeRequest({url: endpoint, method: 'POST', data: payload}).then(([status, response]) => {
+
+            // setMessage(response.success ? response.success.message : response.error.message);
+            dispatch({type: "SET", key: "verifyMessage", payload: response.success ? response.success.message : response.error.message})
+            // response.success?dispatch({type: "SET", key: "verifySuccess", payload: true}):dispatch({type: "SET", key: "verifySuccess", payload: false})
+
+            let timer = setInterval(() => {
+                // setIsMobileNumberValid(false)
+                dispatch({type: "SET", key: "isMobileNumberValid", payload: false})
+                clearInterval(timer)
+            }, 3000)
+            response?.success&&timer()
+            // response.error ? setSuccess(false) : setSuccess(false)
+            response.success?dispatch({type: "SET", key: "verifySuccess", payload: true}):dispatch({type: "SET", key: "verifySuccess", payload: false})
+
+        })
+    }
+
+    const onFieldChanged = (ev) => {
+        let field = ev.target.name;
+        let value = ev.target.value;
+        setFieldValue(field, value);
+        // setIsMobileNumberValid(value.trim() !== '');
+        dispatch({type: "SET", key: "isMobileNumberValid", payload: value.trim() !== ''})
+    }
+    return (
+        <Form>
+            <div className="pt-0">
+                <div className="w-100">
+
+                    <div className="form-group row d-flex justify-content-center mt-3">
+                        <div className="col-md-12">
+                            <label>Mobile Number</label>
+                            <div className="row">
+                                <div className="col-md-12 mb-3">
+                                    <input
+                                        value={values.mobile}
+                                        className="h-100 text-light deposit-input form-control col-md-12 input-field"
+                                        id="mobile"
+                                        name="mobile"
+                                        type="text"
+                                        placeholder='Phone number'
+                                        onChange={ev => onFieldChanged(ev)}
+                                    />
+                                    {state?.isMobileNumberValid && errors.mobile && (
+                                        <div className='text-danger'>{errors.mobile}</div>
+                                    )}
+                                </div>
+                                <div className="col-md-4 d-flex justify-content-between">
+                                        <span className='' style={{
+                                            marginLeft: 'auto',
+                                            whiteSpace: 'nowrap',
+                                            gap: '10px',
+                                            width: 'auto',
+                                        }}>
+                                            Didn't receive code? Resend Code
+                                        </span>
+                                    &nbsp;
+                                    <button onClick={() => resendOTP()} type={"button"}
+                                            className='btn py-1 px-2 text-light btn-sm bg-success rounded-3 border-0 ' style={{fontSize:"12px",whiteSpace:'nowrap'}} disabled={!state?.isMobileNumberValid}>Resend OTP
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div className="form-group row d-flex  mt-4">
+                        <div className="col-md-12">
+                            <label>Code (OTP)</label>
+                            <input
+                                value={values?.code||''}
+                                className="text-light deposit-input form-control col-md-12 input-field"
+                                id="code"
+                                name="code"
+                                type="code"
+                                placeholder='Code'
+                                onChange={ev => onFieldChanged(ev)}
+                            />
+                            {errors.code && <div className='text-danger'> {errors.code} </div>}
+                        </div>
+                    </div>
+                    <div className="form-group row d-flex justify-content-left mb-4">
+                        <div className="col">
+                            <button type="submit"
+                                    disabled={state?.inputDisabled}
+                                    onClick={submitForm}
+                                    className=' btn btn-lg w-100 button-radius input-field btn-font cg login-button btn button-page' style={{marginTop:"47px"}}>
+                                VERIFY ACCOUNT
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </Form>
+    );
+}
+
+const VerifyAccountForm = (props) => {
+    const [state,dispatch]=useContext(Context)
+
+    const initialValues = {
+        mobile: '',
+        code: ''
+    }
+    const verifyAccount = () => {
+        let code = new URL(window.location).searchParams.get('code')
+        let msisdn = new URL(window.location).searchParams.get('msisdn')
+        if (code !== null && msisdn !== null) {
+            dispatch({type: "SET", key: "inputDisabled", payload: true})
+
+            handleSubmit({
+                mobile: msisdn,
+                code: code
+            })
+        }
+    }
+
+    useEffect(() => {
+        verifyAccount()
+    }, [])
+    const handleSubmit = values => {
+        let endpoint = '/v1/verify';
+        makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
+            // setMessage(response.success ? response.success.message : response.error.message);
+            // response.success ? setSuccess(true) : setSuccess(false)
+            dispatch({type: "SET", key: "verifyMessage", payload: response.success ? response.success.message : response.error.message})
+            response.success?dispatch({type: "SET", key: "verifySuccess", payload: true}):dispatch({type: "SET", key: "verifySuccess", payload: false})
+
+
+            if (response?.success) {
+                setLocalStorage('user', response?.success?.user);
+                let timer = setInterval(() => {
+                    clearInterval(timer)
+                    window.location.href = "/"
+                }, 1000)
+            }
+
+        }).catch((err) => {
+
+        })
+    }
+
+    const validate = values => {
+
+        let errors = {}
+
+        if (!values.mobile || !values.mobile.match(/(254|0|)?[71]\d{8}/g)) {
+            errors.mobile = 'Please enter a valid phone number'
+        }
+
+        if (!values.code || values.code.length < 4) {
+            errors.code = "Please enter four or more characters for code";
+        }
+
+        return errors
+    }
+
+    const verifyRef = useRef()
+
+    return (
+        <Formik
+            innerRef={verifyRef}
+            initialValues={initialValues}
+            onSubmit={handleSubmit}
+            validateOnChange={false}
+            validateOnBlur={false}
+            validate={validate}
+            render={(props) => <    MyVerifyAccountForm {...props} />}/>
+    );
+}
 export default React.memo(VerifyAccount2);
 

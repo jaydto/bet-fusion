@@ -831,9 +831,10 @@ img.nare-league {
     position: sticky;
     top: 139px
 }
-.live-status{
-    display:flex;
-    align-items:center;
+.live-status {
+    display: flex;
+    align-items: center;
+    padding-right: 4px;
 }
 .header-sports{
     background: var(--betnare-header-bg);

@@ -134,7 +134,7 @@ const ResetPassword2 = props => {
 
                                                     <div className="col-md-12 mt-2 text-white px-2 w-100">
                                                         {state?.resetMessage && <Alert/>}
-                                                        <div className="modal-body pb-0" data-backdrop="static">
+                                                        <div className="modal-body pb-0 px-0" data-backdrop="static">
                                                             <OptForm/>
                                                             <PasswordResetForm/>
                                                         </div>

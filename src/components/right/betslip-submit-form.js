@@ -328,8 +328,6 @@ const BetslipSubmitForm = (props) => {
         });
         setMessage(null);
         setLocalStorage('betslip_share_code', null)
-        // return window.location.href="/"
-        return setTimeout(window.location.href="/",3000)
     }, []);
 
     useEffect(() => {
@@ -478,7 +476,7 @@ const BetslipSubmitForm = (props) => {
 
     const label = { inputProps: { 'aria-label': 'accept_all_odds_change',
             'value':'accept_all_odds_change'} };
-    // todo here
+
 
     return (
         <Formik
@@ -507,7 +505,6 @@ const BetslipSubmitForm = (props) => {
 
 
                 return (<FormikForm name="betslip-submit-form">
-                    {message?.message?setTimeout(window.location.href="/",5000):""}
                     <Alert/>
                     {showShareModal && (
                         <BetslipShareModal

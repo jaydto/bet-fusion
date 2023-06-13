@@ -898,6 +898,9 @@ img.nare-league {
 /*end back button*/
 /*media queries*/
 @media (min-width: 1260px) {
+    .slip-max{
+        max-height:53vh!important;
+    }
     .back-navigation {
         font-size: 28px;
         color: var(--betnare-button-login)!important;
@@ -1273,6 +1276,9 @@ img.nare-league {
     }
 }
 @media (min-width: 992px){
+    .slip-max{
+        max-height:53vh!important;
+    }
     .slip-top{
         overflow-y:auto;
         max-height:50vh;
@@ -1337,6 +1343,28 @@ img.nare-league {
 }
 
 @media (max-width: 991px){
+    .bottom {
+        position: sticky;
+        bottom: 18rem;
+    }
+    .slip-bottom-betlip-active {
+        margin-bottom: 21rem!important;
+        overflow-y: scroll;
+        position: sticky;
+        top: 0px;
+        /* height: 100%; */
+        width: 100%;
+    }
+    .slip-top {
+        top: 5rem;
+        height: 70vh;
+        overflow: auto;
+        /* margin-bottom: 27rem; */
+        position: absolute;
+        width: 97vw;
+        /* bottom: 51rem; */
+        margin-right: 2rem;
+    }
     .sticky-logged-in-testimony {
         /* top: 104.5px!important; */
         top: 0px;
@@ -1354,7 +1382,7 @@ img.nare-league {
         max-height: 90vh;
     }
     .slip-bottom-space {
-        margin-bottom: 9rem!important;
+        margin-bottom: 9.5rem!important;
         overflow-y: scroll;
         position: sticky;
         top: 0px;
@@ -1362,7 +1390,19 @@ img.nare-league {
         width: 100%;
     }
     .slip-max-height {
-        max-height: 90vh;
+        display: grid;
+        align-items: start;
+        height: 90vh!important;
+    }
+    .slip-bottom-betlip {
+        margin-bottom: 18rem!important;
+        overflow-y: scroll;
+        position: sticky;
+        top: 0px;
+        /* height: 100%; */
+        width: 100%;
+        /* display: flex; */
+        /* width: 100%; */
     }
     .slip-bottom-betlip-active {
         margin-bottom: 21rem!important;
@@ -1537,9 +1577,7 @@ img.nare-league {
     .kiron-betslip-size{
         width:0px!important;
     }
-    .slip-max{
-        max-height:53vh!important;
-    }
+
     .top-matches div {
         min-height: 24px;
         justify-content: unset;
@@ -1749,7 +1787,7 @@ img.nare-league {
         min-height:72px;
     }
     .tag {
-        font-size: 10px;
+        font-size: 11px;
     }
     .image-size{
         width:138px;
@@ -1759,6 +1797,12 @@ img.nare-league {
 }
 @media (max-width: 575px){
     .top-matches div.date-size-data {
+        height: 20px;
+        padding-top: 0px;
+        min-height: 20px!important;
+        align-items: center;
+    }
+    .top-matches div.compt-teams {
         min-height:20px!important;
     }
     .share-button-styling {
@@ -1830,6 +1874,10 @@ img.nare-league {
 
 }
 @media (min-width: 375px) and (max-width: 575px){
+    .top-matches div.compt-teams {
+        min-height: 20px!important;
+        height: 41px;
+    }
     .amt {
         margin-top: 0.1rem !important;
     }
@@ -1875,7 +1923,7 @@ img.nare-league {
         margin-bottom: 0.2rem;
     }
     .top-matches div {
-        min-height: 24px;
+        min-height: 22px;
         /* justify-content: flex-end; */
     }
     .c-btn-group > .c-btn {

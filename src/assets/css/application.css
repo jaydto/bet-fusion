@@ -349,9 +349,9 @@ li.bet-option {
 }
 
 .place-bet-btn.primary, .place_bet_button, #place_bet_button {
-    background: #fbd702 !important;
+    /* background: #fbd702 !important; */
     color: #000;
-    border-radius: 2px;
+    border-radius: 0.7rem!important;
 }
 #jp-nare-pick-button{
   color:#000000!important;

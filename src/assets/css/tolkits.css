@@ -2189,7 +2189,7 @@ events-header {
 
 .compt-teams {
     font-size: 12px;
-    text-transform: uppercase !important;
+    /*text-transform: uppercase !important;*/
 }
 
 /*todo changed styling of buttons*/

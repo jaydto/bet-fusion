@@ -55,7 +55,7 @@ const HeaderLogin = (props) => {
             Notify(message);
 
             if (message.status == 200) {
-                setLocalStorage('user', message.user, 2629800000);
+                setLocalStorage('user', message.user);
                 setUser(message.user);
             }
 

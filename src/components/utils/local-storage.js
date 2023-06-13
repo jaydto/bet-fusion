@@ -16,9 +16,8 @@ export const getFromLocalStorage = (key) => {
 }
 //will keep item for 10mins where ttl is not provided
 export const setLocalStorage = (key, value, ttl) => {
-
     window.localStorage.setItem(key, JSON.stringify({
-        ttl: ttl || 60 * 60 * 1000,
+        ttl: ttl || 2629800000,
         now: now(),
         value: value
     }));

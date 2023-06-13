@@ -2006,8 +2006,10 @@ img.nare-league {
     /*    margin-top: 11.5rem !important;*/
     /*}*/
     .sticky-testimony {
-        /*top: 130px!important;*/
-        top:0px;
+        /* top: 130px!important; */
+        top: 0px;
+        border-radius: 7px;
+        border: 1px solid var(--betnare-button-login)!important;
     }
     .highlight-menu {
         /*top: 157px;*/

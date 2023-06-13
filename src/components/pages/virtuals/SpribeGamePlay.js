@@ -85,9 +85,8 @@ const GamePlay = (props) => {
                                         </div>
                                     </>
                                 )}
-                                <iframe className={'mt-3 shadow-lg'} allowFullScreen webkitallowfullscreen
-                                        mozallowfullscreen
-                                        src={gameUrl} title="Gadme" width={'100%'} height={'600px'}></iframe>
+                                <iframe className={'mt-3 shadow-lg'} allowFullScreen
+                                        src={gameUrl} title="Gadme" width={'100%'} height={'700px'}></iframe>
                             </>}
                             {pathname=="aviator"||pathname.includes("aviator")&&
                                 <div className={'card rounded-3 e '} style={{color:"#999",background:"transparent", textDecoration:"none", listStyle:"none",fontSize:'14px'}}>

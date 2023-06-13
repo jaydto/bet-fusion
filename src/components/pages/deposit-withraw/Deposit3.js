@@ -225,15 +225,17 @@ const DepositFormFields = (props) => {
             }});
     },5000)
 
-    const prevDeposit=useRef(Number(values?.amount||0))
-    const  incrementDepositValue=(value)=>{
+    // const prevDeposit=useRef(Number(values?.amount||0))
+    // const  incrementDepositValue=(value)=>{
+    //
+    //     prevDeposit.current=Number(values?.amount)>0?Number(initialValues?.amount)||Number(values.amount):0
+    //     dispatch({type: "SET", key: "depositValue", payload:prevDeposit.current+value });
+    //     prevDeposit.current=prevDeposit.current!=0?prevDeposit.current+value:values?.amount||0
+    //
+    // }
 
-        prevDeposit.current=Number(values?.amount!=''?values?.amount:0)
-        dispatch({type: "SET", key: "depositValue", payload:prevDeposit.current+value });
-        prevDeposit.current=prevDeposit.current!=0?prevDeposit.current+value:values?.amount||0
 
-    }
-    const depositAmount=(values.amount==''?0||values.amount||initialValues?.amount:values?.amount||initialValues?.amount)
+    // const depositAmount=(Number(values?.amount)>0?state?.depositValues:0||initialValues?.amount)
 
     return (
         <>
@@ -259,12 +261,12 @@ const DepositFormFields = (props) => {
             <div className="form-group row d-flex justify-content-center mt-5 deposit-widthdraw-input-desktop">
               <div className={'mb-3'}>
                   <label className={'betnare-text-light'}>Amount to Deposit</label>
-                  <div className="btn-group w-100 gap-3" role="group" aria-label="Basic example">
-                      <button type="button" onClick={()=>incrementDepositValue(100)} className="deposit-buttons-value">+100</button>
-                      <button type="button" onClick={()=>incrementDepositValue(200)} className="deposit-buttons-value">+200</button>
-                      <button type="button" onClick={()=>incrementDepositValue(500)} className="deposit-buttons-value">+500</button>
-                      <button type="button" onClick={()=>incrementDepositValue(1000)} className="deposit-buttons-value">+1000</button>
-                  </div>
+                  {/*<div className="btn-group w-100 gap-3" role="group" aria-label="Basic example">*/}
+                  {/*    <button type="button" onClick={()=>incrementDepositValue(100)} className="deposit-buttons-value">+100</button>*/}
+                  {/*    <button type="button" onClick={()=>incrementDepositValue(200)} className="deposit-buttons-value">+200</button>*/}
+                  {/*    <button type="button" onClick={()=>incrementDepositValue(500)} className="deposit-buttons-value">+500</button>*/}
+                  {/*    <button type="button" onClick={()=>incrementDepositValue(1000)} className="deposit-buttons-value">+1000</button>*/}
+                  {/*</div>*/}
               </div>
                 <div className="col-md-12 w-100">
 
@@ -276,7 +278,7 @@ const DepositFormFields = (props) => {
                         id="amount"
                         name="amount"
                         type="number"
-                        value={depositAmount}
+                        value={values?.amount||""}
                         placeholder='Enter Amount'
                     />
                     {errors.amount && <div className='text-danger'> {errors.amount} </div>}

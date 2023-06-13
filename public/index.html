@@ -223,7 +223,14 @@ To create a production bundle, use `npm run build` or `yarn build`.
     });
   });
 </script>
-<sxx }
+<script defer>
+  function getScrollLength() {
+    if (
+            window.innerHeight + window.scrollY >=
+            document.body.scrollHeight - 500
+    ) {
+      document.dispatchEvent(new Event("scrollEnd"));
+    }
   }
 </script>
 </html>

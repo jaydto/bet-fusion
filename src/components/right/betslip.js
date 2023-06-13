@@ -8,7 +8,6 @@ import {
     getJackpotBetslip,
 } from "../utils/betslip";
 import useWindowDimensions from "../header/Dimensions";
-import { Link } from "react-router-dom";
 import { getFromLocalStorage } from "../utils/local-storage";
 import DecodeCode from "./decode";
 

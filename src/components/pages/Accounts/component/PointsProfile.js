@@ -1,9 +1,6 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React from 'react';
 
-import Deposit from "../../deposit-withraw/Deposit";
-import Points from "../../deposit-withraw/Points";
-
-
+import Points from "../../points/RedeemPoints";
 
 function PointsProfile(props) {
 

@@ -58,7 +58,8 @@ const LoginTwo = props => {
 			Notify(message);
 
 			if (message.status == 200) {
-				setLocalStorage('user', message.user);
+				// 1 month
+				setLocalStorage('user', message.user,2629746000);
 				// setUser(message.user);
 			}
 

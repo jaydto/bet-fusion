@@ -27,7 +27,7 @@ const Right = (props) => {
     const [betSlipMobile, setBetSlipMobile] = useState(false)
 
     return (
-        <div className={`col ${test?'':'gn'} betslip-container sticky-top vh-100 overflow-scroll betslip-container-mozilla container-sticky-top top-login-background-img-bg ${kiron&&'kiron-betslip-size'}`}>
+        <div className={`col ${test?'':'gn'} ipad-dismiss-info betslip-container sticky-top vh-100 overflow-scroll betslip-container-mozilla container-sticky-top top-login-background-img-bg ${kiron&&'kiron-betslip-size'}`}>
             <div className="betslip-container d-none d-md-block">
                 {props?.message && <AlertMessage classname={props.classname} message={props.message}/>}
                 <div className="bet-option-list " id=''>

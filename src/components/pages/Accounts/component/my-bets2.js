@@ -1,6 +1,7 @@
 import React, {useContext, useEffect, useState, useCallback} from "react";
 import {Context} from '../../../../context/store';
 import makeRequest from '../../../utils/fetch-request';
+import './newProfile.css'
 import {
     Accordion,
     AccordionItem,
@@ -8,9 +9,13 @@ import {
     AccordionItemHeading,
     AccordionItemPanel,
 } from 'react-accessible-accordion';
-
 import '../.././../../assets/css/accordion.react.css';
 import useWindowDimensions from "../../../header/Dimensions";
+import accounts from "../../../../assets/img/mobile/user.png";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faArrowLeft, faHome, faPowerOff} from "@fortawesome/free-solid-svg-icons";
+import {Link} from "react-router-dom";
+import Header from "../../../header/header";
 const Styles = {
     container: {
         background:'#22323e !important',
@@ -53,7 +58,7 @@ const MyBets = (props) => {
     const BetItemHeader = (props) => {
         return (
             <div className={`${width<=767?"w-100 header-styling-mobile ":'container'}`} style={Styles.headers}>
-                <div className="row">
+                <div className="row w-100">
                     <div className="col text-center mybets-font overflow-hidden">DATE</div>
                     <div className="col  text-center mybets-font overflow-hidden">BET ID</div>
                     <div className="col text-center mybets-font overflow-hidden">GAMES</div>
@@ -100,7 +105,7 @@ const MyBets = (props) => {
 
         return (
             <div className={`${width<=767?"w-100 mybets-details":"container"}`} style={Styles.bet} key={bet.bet_id}>
-                <div className="row">
+                <div className="row w-100">
                     <div className="col text-center mybets-font overflow-hidden">{ bet.created}</div>
                     <div className="col text-center mybets-font overflow-hidden">{ bet.bet_id}</div>
                     <div className="col text-center mybets-font overflow-hidden">{ bet.total_matches}</div>
@@ -210,7 +215,7 @@ const MyBets = (props) => {
 
     const PageTitle = () => {
        return (
-            <div className='col-md-12 primary-bg p-4 text-center'>
+            <div className='col-md-12 background-profile p-4 text-center'>
                 <h4 className="inline-block">
                     MY BETS
                 </h4>
@@ -220,18 +225,65 @@ const MyBets = (props) => {
     return (
         <>
             <div >
-                <div className="d-flex flex-row justify-content-between">
+                <Header/>
+                {/*<div className={'back-navigation original-button top-spacing'}  onClick={()=>window.history.back()}>*/}
+                {/*    <FontAwesomeIcon icon={faArrowLeft} className={'back-navigation-icon'} /> Back*/}
+                {/*</div>*/}
+                <div className="container top-spacing">
+                    <div className="iphone background-profile">
+                        {/*<div className="header">*/}
+                        {/*    <div className="user-profile d-flex align-items-center">*/}
+                        {/*        <img src={accounts} className="user-photo "/>*/}
 
-                    <div className="gz home" style={{width: '100%'}}>
+                        {/*    </div>*/}
+                        {/*    /!*<div className="header-summary">*!/*/}
+                        {/*    /!*    <div className="summary-text d-flex gap-2 text-align-center">*!/*/}
+                        {/*    /!*    *!/*/}
+                        {/*    /!*        <>*!/*/}
+                        {/*    /!*            <Link to="/" className={'betslip-links'}  style={{textDecoration: "none", color: "black"}}>*!/*/}
+                        {/*    /!*                <div className="navigations-mybets-page align-items-end ">*!/*/}
+                        {/*    /!*                    <div className="b-details">*!/*/}
+                        {/*    /!*                        <div className="b-title">Home </div>*!/*/}
+                        {/*    /!*                    </div>*!/*/}
+                        {/*    /!*                    <div className="b-icon">*!/*/}
+                        {/*    /!*                        /!*<i className="fas fa-power-off" style={{fontSize: "24px"}}></i>*!/*!/*/}
+                        {/*    /!*                        <FontAwesomeIcon  icon={faHome} style={{fontSize: "24px"}}/>*!/*/}
+                        {/*    /!*                    </div>*!/*/}
+                        {/*    /!*                </div>*!/*/}
+                        {/*    /!*            </Link>*!/*/}
+                        {/*    /!*            <Link to="/logout" className={'betslip-links'} style={{textDecoration: "none"}}>*!/*/}
+                        {/*    /!*                <div className="navigations-mybets-page align-items-end ">*!/*/}
+                        {/*    /!*                    <div className="b-details">*!/*/}
+                        {/*    /!*                        <div className="b-title">logout </div>*!/*/}
+                        {/*    /!*                    </div>*!/*/}
+                        {/*    /!*                    <div className="b-icon">*!/*/}
+                        {/*    /!*                        /!*<i className="fas fa-power-off" style={{fontSize: "24px"}}></i>*!/*!/*/}
+                        {/*    /!*                        <FontAwesomeIcon  icon={faPowerOff} style={{fontSize: "24px"}}/>*!/*/}
+                        {/*    /!*                    </div>*!/*/}
+                        {/*    /!*                </div>*!/*/}
+                        {/*    /!*            </Link>*!/*/}
 
-                            <PageTitle />
-                           <div className={'top-login-background-img-bg'}>
-                               <BetItemHeader />
-                               <MyBetsList  />
-                           </div>
+                        {/*    /!*        </>*!/*/}
+                        {/*    /!*    </div>*!/*/}
+                        {/*    /!*</div>*!/*/}
+                        {/*</div>*/}
+                        <div className="d-flex flex-row justify-content-between">
 
+                            <div className="gz home" style={{width: '100%'}}>
+
+                                <PageTitle />
+                                <div className={'top-login-background-img-bg'}>
+                                    <BetItemHeader />
+                                    <MyBetsList  />
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
+
+
                 </div>
+
             </div>
 
 

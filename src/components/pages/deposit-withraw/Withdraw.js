@@ -4,16 +4,30 @@ import makeRequest from "../../utils/fetch-request";
 import { Formik,  Form} from 'formik';
 import { Context } from '../../../context/store';
 import {getBetslip} from '../../utils/betslip'
-
-
-const Header = React.lazy(()=>import('../../header/header'));
-const SideBar = React.lazy(()=>import('../../sidebar/awesome/Sidebar'));
-const Right = React.lazy(()=>import('../../right/index'));
-const Footer = React.lazy(()=>import('../../footer/footer'));
-
+import {Navbar, Offcanvas} from "react-bootstrap";
+import Container from "react-bootstrap/Container";
+import {Link, useNavigate} from "react-router-dom";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faBackspace} from "@fortawesome/free-solid-svg-icons";
+import {LazyLoadImage} from "react-lazy-load-image-component";
+import logo from "../../../assets/img/Logo.webp";
+import SidebarMobile from "../../sidebar/awesome/SidebarMobile";
+import {Col, Row} from "antd";
+import authImg from "../../../assets/img/Logo.webp";
+import betNiMoto from "../../../assets/img/BetniMoto.webp";
+import only18 from "../../../assets/img/auth/18only.png";
+import {getFromLocalStorage} from "../../utils/local-storage";
+import backgroundURL from "../../../assets/img/auth/img-17.webp";
+const backgroundStyle = {
+    backgroundImage: `url(${backgroundURL})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover'
+}
 const Withdrawal = (props) => {
     //todo get the phone number from logged in user ....
     const [state, dispatch] = useContext(Context);
+    const user = getFromLocalStorage("user");
+    const navigate = useNavigate();
 
     const [success, setSuccess] = useState(false);
     const [message, setMessage] = useState(null);
@@ -39,7 +53,7 @@ const Withdrawal = (props) => {
         if (!values.msisdn || !values.msisdn.match(/(254|0|)?[71]\d{8}/g) ) {
             errors.msisdn = 'Please enter a valid phone number'
         }
-    //Removed the  upper limit  values.amount > 70000
+        //Removed the  upper limit  values.amount > 70000
         if (!values.amount || values.amount < 100 ) {
             errors.amount = "Please enter amount above KES 100";
         }
@@ -70,10 +84,10 @@ const Withdrawal = (props) => {
             <>
                 <div className="form-group row d-flex justify-content-center deposit-widthdraw-input-desktop">
                     <div className={`${mobile?"d-none":"col-md-12"}`}>
-                        <label>Phone Number</label>
+                        <label className={'betnare-text-light'}>Phone Number</label>
                         <input
-                            readOnly={true}
-                            className="text-light deposit-input form-control input-field"
+                            // readOnly={true}
+                            className="betnare-text-light deposit-input form-control input-field"
                             id="msisdn"
                             name="msisdn"
                             type="text"
@@ -85,13 +99,13 @@ const Withdrawal = (props) => {
                 </div>
                 <div className="form-group row d-flex justify-content-center mt-5 deposit-widthdraw-input-desktop">
                     <div className="col-md-12">
-                        <label>Amount to Withdraw</label>
+                        <label className={'betnare-text-light'}>Amount to Withdraw</label>
                         <input
                             onChange={ev => onFieldChanged(ev) }
-                            className="text-light deposit-input form-control col-md-12 input-field"
+                            className="betnare-betnare-text-light deposit-input form-control col-md-12 input-field"
                             id="amount"
                             name="amount"
-                            type="text"
+                            type="number"
                             value ={values.amount}
                             placeholder='Enter Amount'
                         />
@@ -114,11 +128,11 @@ const Withdrawal = (props) => {
         return (
             <>
                 <label className='header text-info'>Withdrawal Instructions</label>
-                <div className="container">
-                    <div className="row"><div className="col"> 1. Enter the phone M-Pesa phone number to receive the funds.  </div></div>
-                    <div className="row"><div className="col"> 2. Enter the amount you wish to withdraw.</div></div>
-                    <div className="row"><div className="col"> 3. Click on the withdraw funds button.</div></div>
-                    <div className="row"><div className="col"> 4. Check your phone for an M-Pesa Confirmation.</div></div>
+                <div className="container d-flex flex-column">
+                    <div className="row"><div className="col betnare-text-light"> 1. Enter the phone M-Pesa phone number to receive the funds.  </div></div>
+                    <div className="row"><div className="col betnare-text-light"> 2. Enter the amount you wish to withdraw.</div></div>
+                    <div className="row"><div className="col betnare-text-light"> 3. Click on the withdraw funds button.</div></div>
+                    <div className="row"><div className="col betnare-text-light"> 4. Check your phone for an M-Pesa Confirmation.</div></div>
                 </div>
             </>
         );
@@ -137,9 +151,9 @@ const Withdrawal = (props) => {
                     <div className={`${mobile?"card-title":"d-none"}`}><h4>WITHDRAW</h4></div>
                     <div className="row">
 
-                            <div className={`${mobile?"d-none":'col-md-7 text-center'}`}>
-                                <img src={mpesa} alt=""/>
-                            </div>
+                        <div className={`${mobile?"d-none":'col-md-7 text-center'}`}>
+                            <img src={mpesa} alt=""/>
+                        </div>
 
                         <hr className={`${mobile?"d-none":""}`}/>
                         <WithdrawFormFields  onFieldChanged ={ onFieldChanged} values ={values } errors={errors} />
@@ -173,39 +187,144 @@ const Withdrawal = (props) => {
         return (<>{ message  && <div role="alert" className={`fade alert alert-${c} show`}>{message}</div> } </>) ;
 
     };
+    const expand = "md"
 
     return (
         <React.Fragment>
-            <div className={`${mobile?"d-none":""}`}>
-                <Header/>
-            </div>
-            <div className={`${mobile?"":"amt"}`}>
-                <div className="d-flex flex-row justify-content-between">
-                    <div className={`${mobile?'d-none':'d-flex'}`}>
-                        <SideBar loadCompetitions/>
-                    </div>
-                    <div className="gz home" style={{width: '100%',overflowX:"clip"}}>
-                        <div className="homepage">
-                            <div className={`${mobile?"d-none":""}`}>
-                                <FormTitle/>
+            {/*<div className={`${mobile?"d-none":""}`}>*/}
+            {/*    <Header/>*/}
+            {/*</div>*/}
+            <div style={{height:'100vh', background:'#16202C'}}  >
+                <div className={`${mobile?"d-none":""}`}>
+                    <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav top-nav-centric" fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
+                        <Container fluid className={'d-flex justify-content-between mobile-change top-login-background-img'}>
+                            <Navbar.Brand className="e logo align-self-start menu-control d-flex w-100 " title="Betnare" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
+                                <Link to={'/'} className={'betnare-text-light'}>
+                                    <FontAwesomeIcon icon={faBackspace}/> Home
+                                </Link>
 
+                                <div
+                                    className="col-md-6  d-flex  right justify-content-end align-items-center w-change3 gap-2 top-login-background-img-bg-page"
+                                    style={{marginLeft: 'auto'}}>
+
+                                    <Link to={{pathname: "/"}} className=" resize-mobile">
+                                        <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"
+                                                       className={"image-size "}/>
+                                    </Link>
+                                </div>
+
+                            </Navbar.Brand>
+
+                            <Navbar.Offcanvas
+                                style={{width: "80%", height: "100%",zIndex: "9999", marginTop: "0px"}}
+                                className='off-canvas background-primary p-0 user-profile'
+                                id={`offcanvasNavbar-expand-${expand}`}
+                                aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+                                placement="start">
+                                <Offcanvas.Header closeButton className='text-white' closeVariant={"white"}>
+                                    <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
+                                        <div className="col-3">
+                                            <div>
+                                                <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"/>
+                                            </div>
+                                        </div>
+                                    </Offcanvas.Title>
+                                </Offcanvas.Header>
+                                <Offcanvas.Body className={('')}>
+                                    <SidebarMobile/>
+                                </Offcanvas.Body>
+                            </Navbar.Offcanvas>
+                        </Container>
+                    </Navbar>
+
+                </div>
+                {/*<div className={`${mobile?"":"top-spacing"}`}>*/}
+                {/*    <div className="d-flex flex-row justify-content-between">*/}
+                {/*        <div className="gz home " style={{width: '100%',overflowX:"clip"}}>*/}
+                {/*            <div className="homepage">*/}
+                {/*                <div className={`${mobile?"d-none":""}`}>*/}
+                {/*                    <FormTitle/>*/}
+
+                {/*                </div>*/}
+                {/*                <div className={`col-md-12 mt-2 text-white p-2 ${mobile?"profile-bg card-radius":""}`}>*/}
+                {/*                    <Alert />*/}
+                {/*                    <div className="modal-body pb-0" data-backdrop="static">*/}
+                {/*                        <WithdrawalForm />*/}
+                {/*                    </div>*/}
+                {/*                </div>*/}
+                {/*            </div>*/}
+                {/*        </div>*/}
+
+                {/*    </div>*/}
+                {/*</div>*/}
+                <Row justify="center" className="align-items-stretch h-100">
+
+                    <Col xs={0} sm={0} md={0} lg={8}>
+                        <div className="d-flex flex-column justify-content-between h-100 px-4" style={backgroundStyle}>
+                            <div className="text-right">
+                                {/*<img src="/img/logo-sm.jpg" style={{height:"35px"}}alt="logo"/>*/}
                             </div>
-                            <div className={`col-md-12 mt-2 text-white p-2 ${mobile?"profile-bg card-radius":""}`}>
-                            <Alert />
-                                <div className="modal-body pb-0" data-backdrop="static">
-                                    <WithdrawalForm />
+                            <Row justify="center">
+                                <Col xs={0} sm={0} md={0} lg={20}>
+                                    <Link to={'/'}>
+                                        <img className="img-fluid mb-5" src={authImg} alt=""/>
+                                    </Link>
+
+                                    <h1 className="text-white text-center" style={{fontSize:"30px"}}>Withdraw Cash From Your Account</h1>
+                                    <p className="text-white px-3 d-flex align-items-center justify-content-center mt-3" style={{fontSize:"16px", opacity:'0.5px'}}><img src={betNiMoto}  style={{width:"150px"}} alt={'betnare'}/></p>
+                                </Col>
+                            </Row>
+                            <div className="d-flex justify-content-end pb-4">
+                                <div className={'d-flex justify-content-center align-items-center'}>
+                                    <div className="text-white mx-2 bold d-flex justify-content-center align-items-center"><img src={only18} alt={'18 only'} style={{width:'30px', background:'aliceblue', borderRadius:'16px'}}/></div>
+                                    <span className="mx-2 text-white"> | </span>
+                                    <a className="text-white" href="/terms-and-conditions">Term & Conditions</a>
+                                    <span className="mx-2 text-white"> | </span>
+                                    <a className="text-white" href="/privacy-policy" >Privacy & Policy</a>
                                 </div>
                             </div>
                         </div>
+                    </Col>
+                    <div className={'col-lg-8 col-sm-12 top-login-background-img-bg-down top-login-background-img-bg-page'} >
+
+                        <div className="w-100 d-flex flex-column justify-content-center h-100 top-login-background-img-bg-page">
+                            <div className={'width-page-centric deposit-page'}>
+                                <FormTitle/>
+
+                                <Row justify="center">
+
+                                    <div className={'d-flex'}>
+                                        {/**/}
+                                        <div >
+                                            {!user?setTimeout(navigate("/"),500):""}
+                                            <div className={"d-flex flex-row justify-content-between"}>
+                                                <div className=" w-100">
+                                                    <div className="homepage d-flex flex-column align-items-center justify-content-center login-page">
+
+                                                        <Alert/>
+                                                        <div className="modal-body pb-0" data-backdrop="static">
+
+                                                            <WithdrawalForm/>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {/* <p>Don't have an account yet? <a href="/auth/register-2">Sign Up</a></p> */}
+                                        <div className="mt-4">
+                                            {/*<LoginForm {...props}/>*/}
+                                        </div>
+                                    </div>
+                                </Row>
+                            </div>
+
+                        </div>
                     </div>
-                    {/*<div className={`${mobile?"d-none":"mobile-top"}`}>*/}
-                    {/*    <Right withdraw={true}/>*/}
-                    {/*</div>*/}
-                </div>
+                </Row>
             </div>
-            <div className={`${mobile?"d-none":"footer-mobile-none"}`}>
-                <Footer/>
-            </div>
+
         </React.Fragment>
     )
 }

@@ -916,7 +916,7 @@ const MatchRow = (props) => {
                     <small>{match.category} | {match.competition_name}</small>
                   </div>
                   <div className="compt-teams d-flex flex-xl-column flex-column flex-md-row">
-                    <div className={'bold'}>
+                    <div className={'bold compt-teams-item'}>
                       {live && (match?.match_status !== 'ended') && <ColoredCircle color="red"/>}
                       {match.home_team}
                       <span className="opacity-reduce-txt vs-styling">
@@ -924,7 +924,7 @@ const MatchRow = (props) => {
                         {!live && ''}
                             </span>
                     </div>
-                    <div className={'bold'}>
+                    <div className={'bold compt-teams-item'}>
                       {match.away_team}
                     </div>
 

@@ -11,7 +11,6 @@ import jetX from "../../assets/img/mobile/jetx.webp"
 import casino1 from "../../assets/img/casino/casino.png"
 import aviator from "../../../src/assets/img/aviator.webp"
 import spaceman from "../../../src/assets/img/spaceman.webp"
-import kiron from "../../../src/assets/img/kiron/nare-league.webp"
 import Affiliate from "../../../src/assets/img/mobile/affiliate-marketing.png"
 import fire from '../../assets/img/fire.webp'
 import {getFromLocalStorage,setLocalStorage} from "../utils/local-storage";
@@ -92,6 +91,13 @@ const MobileNav1 = () => {
                 setLocalStorage("ActiveLink",'/smart-play?game=JetX&category=JetX')
                 window.location.href='/login'
             }
+        }else if(game === "aviator"){
+            if(state?.user !== null){
+                window.location.href = "/nare-games/Aviator" }
+            else {
+                setLocalStorage("ActiveLink",'/nare-games/Aviator')
+                window.location.href='/login'
+            }
         }else if(game==='spaceman'){
             if(state?.user !== null){
                 window.location.href = "/gameplay/1301/1"
@@ -137,7 +143,10 @@ const MobileNav1 = () => {
                 </td>
 
                 <td  className={`menu-t m-auto sport-check  ${pathname.includes('Aviator')?"active_link":""}`}  >
-                    <Link className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `} onClick={() => gaEventTracker('Visit Aviator Page')}  to={`/nare-games/Aviator`}   >
+                    <Link className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `} onClick={() => {
+                            LoginCheck('aviator');
+                            gaEventTracker('Visit Aviator Page')
+                    }}  to={`#`}   >
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
 
                             <div className="menu-img ">
@@ -218,7 +227,7 @@ const MobileNav1 = () => {
                     </Link>
 
                 </td>
-                <td  className={`menu-t m-auto sport-check  ${pathname.includes('1301')?"active_link":""}`}  onClick={() => gaEventTracker('Visit Aviator Page')}>
+                <td  className={`menu-t m-auto sport-check  ${pathname.includes('1301')?"active_link":""}`}  onClick={() => gaEventTracker('Visit SpaceMan Page')}>
                     <Link className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `}  to={`#`}  onClick={()=>{LoginCheck('spaceman');gaEventTracker('Visit SpaceMan Page')}} >
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
 

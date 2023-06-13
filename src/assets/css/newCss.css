@@ -14,6 +14,9 @@ body {
 .text-light{
     color:var(--light)!important;
 }
+.header-slips{
+    background: linear-gradient(105deg,transparent,black);
+}
 .top-matches a {
     color: var(--light)!important;
     font-weight: 700;
@@ -1396,7 +1399,7 @@ img.nare-league {
         height: 90vh!important;
     }
     .slip-bottom-betlip {
-        margin-bottom: 18rem!important;
+        margin-bottom: 13rem!important;
         overflow-y: scroll;
         position: sticky;
         top: 0px;
@@ -1928,7 +1931,7 @@ img.nare-league {
         margin-bottom: 0.2rem;
     }
     .top-matches div {
-        min-height: 22px;
+        min-height: 24px;
         white-space: normal;
         /* justify-content: flex-end; */
     }

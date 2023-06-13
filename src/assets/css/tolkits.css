@@ -842,7 +842,8 @@ header, li a, .thedate span {
 /*    font-weight: 20 !important;*/
 /*}*/
 .matches .top-matches .match-detail button {
-    background: #334c5c;
+    /*todo check here*/
+    background: var(--odds-button);
     border: 1px solid #3c5a6c!important;
     border-radius: 0!important;
     border-top: none!important;
@@ -6614,7 +6615,7 @@ select[multiple].eq > .fj > .cg {
     position: relative;
     display: block;
     padding: 5px 15px;
-    background: #1f2f38;
+    background: var(--betnare-primary);
     opacity: 0.8;
 }
 
@@ -16844,7 +16845,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     line-height: 20px;
     /*background-color: black;*/
     /*background: rgb(51, 76, 92);*/
-    background: rgb(51, 76, 92);
+    background: var(--odds-button);
 }
 /*
 

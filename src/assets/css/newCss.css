@@ -1337,6 +1337,13 @@ img.nare-league {
 }
 
 @media (max-width: 991px){
+    .sticky-logged-in-testimony {
+        /* top: 104.5px!important; */
+        top: 0px;
+        border-radius: 7px;
+        border: 1px solid var(--betnare-button-login)!important;
+        line-height: 1.5;
+    }
     .ipad-dismiss-info{
         visibility: hidden;
     }
@@ -1647,6 +1654,7 @@ img.nare-league {
     }
 }
 @media (max-width: 767px){
+
     .matches .top-matches .match-detail .all-markets {
         font-size: 12px;
     }

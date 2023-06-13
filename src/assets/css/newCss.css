@@ -1750,6 +1750,9 @@ img.nare-league {
 
 }
 @media (max-width: 575px){
+    .top-matches div.date-size-data {
+        min-height:20px!important;
+    }
     .share-button-styling {
         padding: 5px;
         background: repeating-linear-gradient(45deg, rgb(63, 154, 209), black 100px);
@@ -1867,13 +1870,14 @@ img.nare-league {
         min-height: 24px;
         /* justify-content: flex-end; */
     }
-    .c-btn-group> .c-btn {
-        height: 28px!important;
-        line-height: 17px!important;
-        font-weight: 400;
-        min-width: 44px;
-        width: 100%;
-        /* margin-left: auto; */
+    .c-btn-group > .c-btn {
+        border-radius: 0;
+        border: none;
+        border-right: 1px solid #16202c;
+        line-height: 20px;
+        /* background-color: black; */
+        background: var(--odds-button)
+        /* min-width: 10rem; */;
     }
     /*.matches .top-matches {*/
     /*    padding-right: 0rem!important;*/
@@ -1995,8 +1999,11 @@ img.nare-league {
         top:0px;
     }
     .sticky-logged-in-testimony {
-        /*top: 104.5px!important;*/
-        top:0px;
+        /* top: 104.5px!important; */
+        top: 0px;
+        border-radius: 7px;
+        border: 1px solid var(--betnare-button-login)!important;
+        line-height: 1.5;
     }
 
 }

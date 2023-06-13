@@ -300,7 +300,7 @@ export const MatchRow = (props) => {
             </div>
           </div>:
           <div  className="top-matches d-flex flex-sm-column flex-lg-row px-0">
-            <div className="to-deskview to-block to-tabview  mx-lg-0 px-sm-4 px-md-0 py-3 pb-4  container-size ">
+            <div className="to-deskview to-block to-tabview  mx-lg-0 px-sm-4  px-md-0 py-3 pb-4  container-size ">
               <div className="size-info  d-flex col-xs-12 pad left-text flex-row live-col">
 
                 <div className={`col text-left playing-teams-wrap  align-items-center col-xs-12 match-detail-container change-match px-1`}>

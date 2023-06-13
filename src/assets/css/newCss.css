@@ -1805,6 +1805,9 @@ img.nare-league {
 
 }
 @media (max-width: 575px){
+    .compt-teams-item{
+        min-height:20px!important;
+    }
     .top-matches div.date-size-data {
         height: 20px;
         padding-top: 0px;

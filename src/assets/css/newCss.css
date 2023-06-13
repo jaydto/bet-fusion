@@ -1236,6 +1236,9 @@ img.nare-league {
 }
 
 @media (max-width: 991px){
+    .width-page-centric.reset-pass{
+        width:100vw!important;
+    }
     .slip-max {
         max-height: 90vh;
     }
@@ -1378,9 +1381,7 @@ img.nare-league {
         width: 100%!important;
         margin: auto;
     }
-    .width-page-centric.reset-pass{
-        width:100vw!important;
-    }
+
     .width-centric-page{
         width:76vw;
     }
@@ -1492,6 +1493,9 @@ img.nare-league {
 
 }
 @media (min-width: 768px) and (max-width: 991px){
+    .width-page-centric.reset-pass{
+        width:100vw!important;
+    }
     .slip-tabs {
         background: repeating-linear-gradient(45deg, var(--betnare-header-bg), transparent 100px);
     }

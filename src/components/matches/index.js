@@ -861,7 +861,7 @@ const MatchRow = (props) => {
   return (
       <div className="top-matches d-flex flex-sm-column flex-lg-row  styling-matches">
         <div
-            className="to-deskview to-block to-tabview  mx-lg-0 px-sm-4 px-md-4 px-lg-0  py-md-4 py-lg-0 container-size ">
+            className="to-deskview to-block to-tabview  mx-lg-0 px-sm-4 px-md-4 px-lg-0 py-sm-4 py-md-4 py-lg-0 mt-2 container-size ">
           <div className="size-info mobile-for-desktop d-flex col-xs-12 pad left-text flex-row live-col">
 
 
@@ -910,7 +910,7 @@ const MatchRow = (props) => {
               <>ID: {match?.game_id}</>
             </div>
             <div className={`col align-items-center col-xs-12 match-detail-container px-2 change-match only-mobile ${jackpot?"align-self-center":""}`}>
-              <Link to={jackpot ? '#' : `/match/${live ? 'live/' + match.parent_match_id : match.match_id}`}>
+              <Link className={'odds-container-size'} to={jackpot ? '#' : `/match/${live ? 'live/' + match.parent_match_id : match.match_id}`}>
                 <div className="d-flex flex-column">
                   <div className="compt-detail overflow-ellipsis">
                     <small>{match.category} | {match.competition_name}</small>
@@ -1040,10 +1040,10 @@ const MatchRow = (props) => {
 
             {width<=767?<div className="c-btn-group align-self-center to-flex-1 to-tabview">
 
-                  <div className="d-flex flex-row ">
-                    <div className="d-flex flex-column text-center text-white fit-ipad w-100">
+                  <div className="d-flex flex-row date-size-data">
+                    <div className="d-flex flex-column text-center text-white fit-ipad w-100 date-size-data ">
 
-                      <div className="d-flex flex-row px-1 justify-content-end change-date1 mobile-only">
+                      <div className="d-flex flex-row px-1 justify-content-end change-date1  mobile-only date-size-data">
                                            <span className={'date-size wrapping px-3'}>
                                              {live==1 && match?.match_time ? (
                                                  <div className={'d-flex gap-3 align-items-center'}>

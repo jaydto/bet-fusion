@@ -381,6 +381,7 @@ const BetslipSubmitForm = (props) => {
         const {isSubmitting} = useFormikContext();
         return (
             <button
+                ref={scrollToRef}
                 type={"submit"}
                 {...rest}
                 id={"place_bet_button"}
@@ -674,7 +675,7 @@ const BetslipSubmitForm = (props) => {
                         id={"total_odd"}
                         value={totalOdds}
                     />
-                    <input ref={scrollToRef}
+                    <input
                            type="hidden"
                            name={"total_games"}
                            id={"total_games"}

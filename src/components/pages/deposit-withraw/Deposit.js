@@ -6,12 +6,7 @@ import mpesa from '../../../assets/img/mpesa.png'
 import {Context} from '../../../context/store';
 import {getBetslip} from '../../utils/betslip'
 import {clearTrackingData, setTrackingData} from "../../utils/local-storage";
-
-const Header = React.lazy(() => import('../../header/header'));
-const Footer = React.lazy(() => import('../../footer/footer'));
 const SideBar = React.lazy(() => import('../../sidebar/awesome/Sidebar'));
-const Right = React.lazy(() => import('../../right/index'));
-
 
 const Deposit = (props) => {
 

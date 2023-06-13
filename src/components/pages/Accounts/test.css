@@ -4,14 +4,13 @@
 .top-nav{
     background: var(--betnare-header-bg);
 }
-.deposit-buttons-value{
-    padding: 0 10px;
+.deposit-buttons-value {
+    padding: 5px 10px;
     border-radius: 20px;
     box-shadow: unset !important;
     border: thin solid #1D535F;
     background: transparent;
     font-weight: 800;
-
 }
 .profile-sidebar {
     top: 0;
@@ -343,8 +342,8 @@
 }
 @media (max-width: 767px){
     .top-nav.top-nav-profile {
-        padding-top: 34px;
-        min-height: 39px!important;
+        padding-top: 39px;
+        min-height: 50px!important;
         margin: auto;
     }
     .deposit-buttons-value{
@@ -358,7 +357,7 @@
     }
     .banner-profile {
         width: 100vw;
-        height: 13vw;
+        height: 18vw;
     }
     .icon-style-profile {
         width: -moz-fit-content;

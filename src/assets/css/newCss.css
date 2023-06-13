@@ -5,15 +5,22 @@ body {
     background: var(--betnare-primary);
     max-width: 100% !important
 }
+.decode-bg{
+    background: var(--betnare-header-bg)!important;
+}
 .c-btn-header{
     cursor: default;
 }
 .text-light{
     color:var(--light)!important;
 }
+.header-slips{
+    background: linear-gradient(105deg,transparent,black);
+}
 .top-matches a {
-    color:var(--light)!important;
+    color: var(--light)!important;
     font-weight: 700;
+    line-height: 1.5;
 }
 .nav__betslip{
     color:var(--dark)!important;
@@ -67,6 +74,31 @@ input.text-white{
 }
 .bg-black {
     background-color: var(--dark)!important;
+}
+.navigations-mybets-page {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    background: var(--betnare-header-bg);
+    padding: 5px 10px;
+    border-radius: 6px;
+}
+.back-navigation-icon{
+    color: var(--betnare-button-login)!important;
+    font-size: 27px;
+
+}
+
+.betslip-links{
+    color:var(--light) !important;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.b-icon{
+    color:var(--betnare-button-login) !important
 }
 .matches .top-matches {
      /*background: var(--betnare-odds-body);*/
@@ -472,7 +504,9 @@ background: var(--betnare-input)!important;
 .user-profile {
     display: flex!important;
 }
-
+.betnare-text-light{
+    color:var(--light)!important;
+}
 .expired-bg{
     background: transparent!important;
 }
@@ -797,9 +831,10 @@ img.nare-league {
     position: sticky;
     top: 139px
 }
-.live-status{
-    display:flex;
-    align-items:center;
+.live-status {
+    display: flex;
+    align-items: center;
+    padding-right: 4px;
 }
 .header-sports{
     background: var(--betnare-header-bg);
@@ -816,9 +851,77 @@ img.nare-league {
     z-index: 150;
     opacity: 1;
 }
+/*back button*/
+.original-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    text-decoration: none;
+    color: #333333;
+    font-size: 18px;
+    border-radius: 5px;
+    width: 200px;
+    height: 40px;
+    border: 1px solid #333333;
+    position: relative;
+    transition: 0.3s;
+    background: var(--betnare-header-bg);
+    /*background-image: linear-gradient(150deg, rgba(247, 166, 12, 1) 10%, rgba(255, 34, 87, 1) 40%, rgba(154, 39, 238, 1) 68%, rgba(35, 102, 247, 1) 90%);*/
+}
 
+/*.original-button::before, .original-button::after {*/
+/*    content: "";*/
+/*    display: block;*/
+/*    position: absolute;*/
+/*    top: 50%;*/
+/*    left: 10px;*/
+/*    transform-origin: 0% 100%;*/
+/*    height: 1px;*/
+/*    width: 11px;*/
+/*    background-color: #333;*/
+/*    border-radius: 2px;*/
+/*    will-change: transform;*/
+/*    transition: .3s;*/
+/*}*/
+
+.original-button::before {
+    transform: translateY(-50%) rotate(30deg);
+}
+
+.original-button::after {
+    transform: translateY(-50%) rotate(-30deg);
+}
+
+.original-button:hover::before {
+    transform: translate(5px, -50%) rotate(30deg);
+}
+
+.original-button:hover::after {
+    transform: translate(5px, -50%) rotate(-30deg);
+}
+/*end back button*/
 /*media queries*/
 @media (min-width: 1260px) {
+    .slip-max{
+        max-height:53vh!important;
+    }
+    .back-navigation {
+        font-size: 28px;
+        color: var(--betnare-button-login)!important;
+        position: absolute;
+        top: 9px;
+        display: flex;
+        gap: 18px;
+        z-index: 1000;
+        align-items: center;
+        justify-content: space-around;
+    }
+    .slip-max-height {
+        display: grid;
+        align-items: start;
+        height: 90vh!important;
+    }
     .share-button-styling {
         padding: 5px;
         background: repeating-linear-gradient(45deg, rgb(63, 154, 209), black 100px);
@@ -970,6 +1073,17 @@ img.nare-league {
 
 }
 @media (max-width: 1259px) {
+    .back-navigation {
+        font-size: 18px;
+        color: var(--betnare-button-login)!important;
+        position: absolute;
+        top: 9px;
+        display: flex;
+        gap: 13px;
+        z-index: 1000;
+        align-items: center;
+        justify-content: space-around;
+    }
     .top-matches .side{
         color:var(--aqua-text)
     }
@@ -1167,6 +1281,9 @@ img.nare-league {
     }
 }
 @media (min-width: 992px){
+    .slip-max{
+        max-height:53vh!important;
+    }
     .slip-top{
         overflow-y:auto;
         max-height:50vh;
@@ -1214,6 +1331,14 @@ img.nare-league {
         display: block;
     }
 }
+.slip-message-alert {
+    height: 5rem;
+    /* width: 100vw; */
+    display: inline-table;
+    /* word-wrap: break-word; */
+    white-space: normal!important;
+    line-height: 15px!important;
+}
 @media (min-width: 991px){
 
 
@@ -1223,6 +1348,67 @@ img.nare-league {
 }
 
 @media (max-width: 991px){
+    .bottom {
+        position: sticky;
+        bottom: 18rem;
+    }
+    .slip-bottom-betlip-active {
+        margin-bottom: 21rem!important;
+        overflow-y: scroll;
+        position: sticky;
+        top: 0px;
+        /* height: 100%; */
+        width: 100%;
+    }
+    .slip-top {
+        top: 5rem;
+        height: 70vh;
+        overflow: auto;
+        /* margin-bottom: 27rem; */
+        position: absolute;
+        width: 97vw;
+        /* bottom: 51rem; */
+        margin-right: 2rem;
+    }
+    .sticky-logged-in-testimony {
+        /* top: 104.5px!important; */
+        top: 0px;
+        border-radius: 7px;
+        border: 1px solid var(--betnare-button-login)!important;
+        line-height: 1.5;
+    }
+    .ipad-dismiss-info{
+        visibility: hidden;
+    }
+    .width-page-centric.reset-pass{
+        width:100vw!important;
+    }
+    .slip-max {
+        max-height: 90vh;
+    }
+    .slip-bottom-space {
+        margin-bottom: 9.5rem!important;
+        overflow-y: scroll;
+        position: sticky;
+        top: 0px;
+        /* height: 100%; */
+        width: 100%;
+    }
+    .slip-max-height {
+        display: grid;
+        align-items: start;
+        height: 82vh!important;
+    }
+    .slip-bottom-betlip {
+        margin-bottom: 13rem!important;
+        overflow-y: scroll;
+        position: sticky;
+        top: 0px;
+        /* height: 100%; */
+        width: 100%;
+        /* display: flex; */
+        /* width: 100%; */
+    }
     .slip-bottom-betlip-active {
         margin-bottom: 21rem!important;
         overflow-y: scroll;
@@ -1312,9 +1498,7 @@ img.nare-league {
         top: 0px;
         position: sticky;
     }
-    .reset-pass{
-        width:100vw!important;
-    }
+
     .app-navbar .e img {
         max-width: 130px !important;
         margin-bottom: 0px!important;
@@ -1353,6 +1537,7 @@ img.nare-league {
         width: 100%!important;
         margin: auto;
     }
+
     .width-centric-page{
         width:76vw;
     }
@@ -1397,9 +1582,7 @@ img.nare-league {
     .kiron-betslip-size{
         width:0px!important;
     }
-    .slip-max{
-        max-height:53vh!important;
-    }
+
     .top-matches div {
         min-height: 24px;
         justify-content: unset;
@@ -1464,6 +1647,9 @@ img.nare-league {
 
 }
 @media (min-width: 768px) and (max-width: 991px){
+    .width-page-centric.reset-pass{
+        width:100vw!important;
+    }
     .slip-tabs {
         background: repeating-linear-gradient(45deg, var(--betnare-header-bg), transparent 100px);
     }
@@ -1511,6 +1697,10 @@ img.nare-league {
     }
 }
 @media (max-width: 767px){
+    .odds-container-size{
+        min-height:23px;
+    }
+
     .matches .top-matches .match-detail .all-markets {
         font-size: 12px;
     }
@@ -1605,7 +1795,8 @@ img.nare-league {
         min-height:72px;
     }
     .tag {
-        font-size: 10px;
+        font-size: 11px;
+        line-height: 1.5;
     }
     .image-size{
         width:138px;
@@ -1614,6 +1805,15 @@ img.nare-league {
 
 }
 @media (max-width: 575px){
+    .top-matches div.date-size-data {
+        height: 20px;
+        padding-top: 0px;
+        min-height: 20px!important;
+        align-items: center;
+    }
+    .top-matches div.compt-teams {
+        min-height:20px!important;
+    }
     .share-button-styling {
         padding: 5px;
         background: repeating-linear-gradient(45deg, rgb(63, 154, 209), black 100px);
@@ -1683,6 +1883,10 @@ img.nare-league {
 
 }
 @media (min-width: 375px) and (max-width: 575px){
+    .top-matches div.compt-teams {
+        min-height: 20px!important;
+        height: 41px;
+    }
     .amt {
         margin-top: 0.1rem !important;
     }
@@ -1729,15 +1933,17 @@ img.nare-league {
     }
     .top-matches div {
         min-height: 24px;
+        white-space: normal;
         /* justify-content: flex-end; */
     }
-    .c-btn-group> .c-btn {
-        height: 28px!important;
-        line-height: 17px!important;
-        font-weight: 400;
-        min-width: 44px;
-        width: 100%;
-        /* margin-left: auto; */
+    .c-btn-group > .c-btn {
+        border-radius: 0;
+        border: none;
+        border-right: 1px solid #16202c;
+        line-height: 20px;
+        /* background-color: black; */
+        background: var(--odds-button)
+        /* min-width: 10rem; */;
     }
     /*.matches .top-matches {*/
     /*    padding-right: 0rem!important;*/
@@ -1760,7 +1966,7 @@ img.nare-league {
     }
     .compt-teams {
         font-size: 10px;
-        text-transform: uppercase !important;
+        /*text-transform: uppercase !important;*/
     }
     .matches .top-matches button {
         height: 32px;
@@ -1859,8 +2065,11 @@ img.nare-league {
         top:0px;
     }
     .sticky-logged-in-testimony {
-        /*top: 104.5px!important;*/
-        top:0px;
+        /* top: 104.5px!important; */
+        top: 0px;
+        border-radius: 7px;
+        border: 1px solid var(--betnare-button-login)!important;
+        line-height: 1.5;
     }
 
 }

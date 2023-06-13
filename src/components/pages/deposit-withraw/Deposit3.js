@@ -29,7 +29,10 @@ const backgroundStyle = {
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover'
 }
-
+let initialValues = {
+    amount: '',
+    msisdn: ''
+}
 
 const Deposit3= props => {
     // const [message, setMessage] = useState(null);
@@ -55,7 +58,7 @@ const Deposit3= props => {
     const FormTitle = () => {
         return (
             <div className='col-md-12  p-4 text-center' style={{background:'transparent'}}>
-                <h4 className="inline-block text-light">
+                <h4 className="inline-block betnare-text-light">
                     DEPOSIT FUNDS (MOBILE MONEY)
                 </h4>
             </div>
@@ -76,7 +79,7 @@ const Deposit3= props => {
                 <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
                     <Container fluid className={'d-flex justify-content-between mobile-change top-login-background-img'}>
                         <Navbar.Brand className="e logo align-self-start menu-control d-flex w-100 " title="Betnare" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
-                            <Link to={'/'} className={'text-light'}>
+                            <Link to={'/'} className={'betnare-text-light'}>
                                 <FontAwesomeIcon icon={faBackspace}/> Home
                             </Link>
 
@@ -185,6 +188,33 @@ const Deposit3= props => {
     )
 }
 
+const PaymentInstructions = (props) => {
+    return (
+        <>
+            <label className='betnare-text-light'>Deposit Instructions</label>
+            <div className="container">
+                <div className="row">
+                    <div className="col betnare-text-light"> 1. Enter the amount you want to deposit.</div>
+                </div>
+                <div className="row">
+                    <div className="col betnare-text-light"> 2. Click on the deposit button.</div>
+                </div>
+                <div className="row">
+                    <div className="col betnare-text-light"> 3. Check your phone for an M-Pesa Request.</div>
+                </div>
+                <div className="row">
+                    <div className="col betnare-text-light"> 4. Enter your M-Pesa Pin to confirm the transaction.</div>
+                </div>
+                <div className="row">
+                    <div className="col betnare-text-light"> 5. On successful payment, you will receive an M-Pesa
+                        Confirmation.
+                    </div>
+                </div>
+            </div>
+        </>
+    );
+}
+
 const DepositFormFields = (props) => {
     const [state,dispatch]=useContext(Context)
     const {values, errors, onFieldChanged} = props;
@@ -194,26 +224,30 @@ const DepositFormFields = (props) => {
                 amount:''
             }});
     },5000)
-    const prevDeposit=useRef(Number(values?.amount))
-    const  incementDepositValue=(value)=>{
 
-        prevDeposit.current=Number(values?.amount!=''?values?.amount:0)
-        dispatch({type: "SET", key: "depositValue", payload:prevDeposit.current+value });
-        prevDeposit.current=prevDeposit.current!=0?prevDeposit.current+value:values?.amount||0
+    // const prevDeposit=useRef(Number(values?.amount||0))
+    // const  incrementDepositValue=(value)=>{
+    //
+    //     prevDeposit.current=Number(values?.amount)>0?Number(initialValues?.amount)||Number(values.amount):0
+    //     dispatch({type: "SET", key: "depositValue", payload:prevDeposit.current+value });
+    //     prevDeposit.current=prevDeposit.current!=0?prevDeposit.current+value:values?.amount||0
+    //
+    // }
 
-    }
+
+    // const depositAmount=(Number(values?.amount)>0?state?.depositValues:0||initialValues?.amount)
 
     return (
         <>
 
             <div className="form-group row d-flex justify-content-center deposit-widthdraw-input-desktop">
                 <div className={`col-md-12 w-100`}>
-                    <label className={'text-light'}>Phone Number</label>
+                    <label className={'betnare-text-light'}>Phone Number</label>
                     <input
                         onChange={ev => {
                             onFieldChanged(ev);
                         }}
-                        className="text-light deposit-input form-control input-field"
+                        className="betnare-text-light deposit-input form-control input-field"
                         id="msisdn"
                         name="msisdn"
                         type="text"
@@ -225,24 +259,26 @@ const DepositFormFields = (props) => {
             </div>
 
             <div className="form-group row d-flex justify-content-center mt-5 deposit-widthdraw-input-desktop">
-                <label className={'text-light'}>Amount to Deposit</label>
-                <div className="btn-group w-100 gap-3" role="group" aria-label="Basic example">
-                    <button type="button" onClick={()=>incementDepositValue(100)} className="deposit-buttons-value">+100</button>
-                    <button type="button" onClick={()=>incementDepositValue(200)} className="deposit-buttons-value">+200</button>
-                    <button type="button" onClick={()=>incementDepositValue(500)} className="deposit-buttons-value">+500</button>
-                    <button type="button" onClick={()=>incementDepositValue(1000)} className="deposit-buttons-value">+1000</button>
-                </div>
+              <div className={'mb-3'}>
+                  <label className={'betnare-text-light'}>Amount to Deposit</label>
+                  {/*<div className="btn-group w-100 gap-3" role="group" aria-label="Basic example">*/}
+                  {/*    <button type="button" onClick={()=>incrementDepositValue(100)} className="deposit-buttons-value">+100</button>*/}
+                  {/*    <button type="button" onClick={()=>incrementDepositValue(200)} className="deposit-buttons-value">+200</button>*/}
+                  {/*    <button type="button" onClick={()=>incrementDepositValue(500)} className="deposit-buttons-value">+500</button>*/}
+                  {/*    <button type="button" onClick={()=>incrementDepositValue(1000)} className="deposit-buttons-value">+1000</button>*/}
+                  {/*</div>*/}
+              </div>
                 <div className="col-md-12 w-100">
 
                     <input
                         onChange={ev => {
                             onFieldChanged(ev);
                         }}
-                        className="text-light deposit-input form-control col-md-12 input-field"
+                        className="betnare-text-light deposit-input form-control col-md-12 input-field"
                         id="amount"
                         name="amount"
                         type="number"
-                        value={(values.amount==''?0||values.amount:values.amount||Number(state?.depositValue))}
+                        value={values?.amount||""}
                         placeholder='Enter Amount'
                     />
                     {errors.amount && <div className='text-danger'> {errors.amount} </div>}
@@ -260,80 +296,9 @@ const DepositFormFields = (props) => {
     )
 }
 
-const PaymentInstructions = (props) => {
-    return (
-        <>
-            <label className='text-light'>Deposit Instructions</label>
-            <div className="container">
-                <div className="row">
-                    <div className="col text-light"> 1. Enter the amount you want to deposit.</div>
-                </div>
-                <div className="row">
-                    <div className="col text-light"> 2. Click on the deposit button.</div>
-                </div>
-                <div className="row">
-                    <div className="col text-light"> 3. Check your phone for an M-Pesa Request.</div>
-                </div>
-                <div className="row">
-                    <div className="col text-light"> 4. Enter your M-Pesa Pin to confirm the transaction.</div>
-                </div>
-                <div className="row">
-                    <div className="col text-light"> 5. On successful payment, you will receive an M-Pesa
-                        Confirmation.
-                    </div>
-                </div>
-            </div>
-        </>
-    );
-}
-
-const DepositForm = (props) => {
-    const [state, dispatch]=useContext(Context);
-    const initialValues = {
-        amount: '',
-        msisdn: state?.user?.msisdn
-    }
-
-    const handleSubmit = values => {
-        console.log("valuesDepositPage",values)
-        let endpoint = '/stk/deposit';
-        setTrackingData(values)
-        makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
-            // setSuccess(status === 200 || status === 201);
-            // setMessage(response);
-            dispatch({type: "SET", key: "depositSuccess", payload: status === 200 || status === 201})
-            dispatch({type: "SET", key: "depositMessage", payload: response})
-            clearTrackingData()
-        })
-    }
-
-    const validate = values => {
-        console.log("valuesValidateDeposit", values)
-
-        let errors = {}
-
-        if (!values.msisdn || !values.msisdn.match(/(254|0|)?[71]\d{8}/g)) {
-            errors.msisdn = 'Please enter a valid phone number'
-        }
-
-        if (!values.amount || values.amount < 1 || values.amount > 100000) {
-            errors.amount = "Please enter amount between KES 1.00 and KES 100,000.00";
-        }
-        return errors
-    }
-
-    return (
-        <Formik
-            initialValues={initialValues}
-            onSubmit={handleSubmit}
-            validateOnChange={false}
-            validateOnBlur={false}
-            validate={validate}
-            render={(props) => <MyDepositForm {...props} />}/>
-    );
-}
 const MyDepositForm = (props) => {
     const {errors, values, setFieldValue} = props;
+    const [state,dispatch]=useContext(Context)
 
     const onFieldChanged = (ev) => {
         let field = ev.target.name;
@@ -364,7 +329,51 @@ const MyDepositForm = (props) => {
         </Form>
     );
 }
+const DepositForm = (props) => {
+    const [state, dispatch]=useContext(Context);
 
+     initialValues = {
+        amount: state?.depositValue?state?.depositValue:'',
+        msisdn: state?.user?.msisdn
+    }
+    console.log("initialValues", initialValues)
+
+    const handleSubmit = values => {
+        let endpoint = '/stk/deposit';
+        setTrackingData(values)
+        makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
+            // setSuccess(status === 200 || status === 201);
+            // setMessage(response);
+            dispatch({type: "SET", key: "depositSuccess", payload: status === 200 || status === 201})
+            dispatch({type: "SET", key: "depositMessage", payload: response})
+            clearTrackingData()
+        })
+    }
+
+    const validate = values => {
+
+        let errors = {}
+
+        if (!values.msisdn || !values.msisdn.match(/(254|0|)?[71]\d{8}/g)) {
+            errors.msisdn = 'Please enter a valid phone number'
+        }
+
+        if (!values.amount || values.amount < 1 || values.amount > 100000) {
+            errors.amount = "Please enter amount between KES 1.00 and KES 100,000.00";
+        }
+        return errors
+    }
+
+    return (
+        <Formik
+            initialValues={initialValues}
+            onSubmit={handleSubmit}
+            validateOnChange={false}
+            validateOnBlur={false}
+            validate={validate}
+            render={(props) => <MyDepositForm {...props} />}/>
+    );
+}
 
 export default React.memo(Deposit3)
 

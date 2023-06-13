@@ -54,18 +54,18 @@ const SlipTabs = (props) => {
             <Row className="top-matches d-flex flex-row ">
                 {pathname=="/betslip-jackpot"&&
                     <div className="col  text-center">
-                        <Link className={`cursor-pointer rounded border-0 w-100 bold home-tabs`} to={'/betslip-jackpot?' + getLink()} style={{background:"#ea5d0b"}}>
+                        <Link className={`cursor-pointer rounded border-0 w-100 bold home-tabs header-slips`} to={'/betslip-jackpot?' + getLink()} >
                             <span className="col-sm-11 main-header">JACKPOT</span>
                         </Link>
                     </div>}
                 {pathname=='/betslip-nare'&&<div className="col text-center">
-                    <Link className={`cursor-pointer rounded border-0  w-100 bold home-tabs`}  to={'/betslip-nare?' + getLink()} style={{background:"#ea5d0b"}}>
+                    <Link className={`cursor-pointer rounded border-0  w-100 bold home-tabs header-slips`}  to={'/betslip-nare?' + getLink()} >
                         <span className="col-sm-11 main-header">NARESLIP</span>
                     </Link>
                 </div>}
                 {pathname=='/betslip-slip'&&
                     <div className="col text-center">
-                        <Link className={`cursor-pointer rounded border-0  w-100 bold home-tabs`}  to={'/betslip-slip?' + getLink()} style={{background:"#ea5d0b"}}>
+                        <Link className={`cursor-pointer rounded border-0  w-100 bold home-tabs header-slips`}  to={'/betslip-slip?' + getLink()} >
                             <span className="col-sm-11 main-header">BETSLIP</span>
                         </Link>
                     </div>

@@ -1,15 +1,10 @@
-import React, {useContext, useEffect, useState} from 'react';
-
+import React from 'react';
 import Deposit from "../../deposit-withraw/Deposit";
 
-
-
-function DepositProfile(props) {
+function DepositProfile() {
 
     return (
-        // <div className="w-100">
             <Deposit mobile={true}/>
-        // </div>
     );
 }
 

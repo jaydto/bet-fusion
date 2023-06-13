@@ -1,7 +1,5 @@
 import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
 import './test.css'
-import {getFromLocalStorage, setLocalStorage} from "./utils/local-storage";
-import useAnalyticsEventTracker from "./analytics/useAnalyticsEventTracker";
 import {useLocation, useParams} from "react-router-dom";
 import useWindowDimensions from "./header/Dimensions";
 import {Context} from "../context/store";
@@ -10,24 +8,24 @@ import useInterval from "../hooks/set-interval.hook";
 import makeRequest from "./utils/fetch-request";
 import Testimonials from "./carousel/Testimonials";
 import LiveSideBar from "./sidebar/live-sidebar";
+import {Spinner} from "react-bootstrap";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
 const CarouselLoader = React.lazy(() => import('./carousel'));
-const MainTabs = React.lazy(() => import('./header/main-tabs'));
 const MatchList = React.lazy(() => import('./matches'));
 const Right = React.lazy(() => import('./right'));
-const SideBar = React.lazy(() => import('./sidebar/awesome/Sidebar'))
+
 const  Live= () => {
     const [matches, setMatches] = useState();
     const [state, dispatch] = useContext(Context);
     const {height, width} = useWindowDimensions();
     const {spid} = useParams();
+    const [sportID, setSportID] = useState(79)
 
     const [producerDown, setProducerDown] = useState(false);
-    const location = useLocation();
     const [userSlipsValidation, setUserSlipsValidation] = useState();
-
+    const [loading, setLoading] = useState(false)
     const findPostableSlip = () => {
         let betslips = getBetslip() || {};
         var values = Object.keys(betslips).map(function (key) {
@@ -46,6 +44,7 @@ const  Live= () => {
         await makeRequest({url: endpoint, method: method, data: betslip}).then(([status, result]) => {
             if (status == 200) {
                 setMatches(result?.data || result)
+                setLoading(false)
                 if (result?.slip_data) {
                     setUserSlipsValidation(result?.slip_data)
                 }
@@ -67,6 +66,7 @@ const  Live= () => {
         let [m_status, m_result] = match_result;
         if (m_status == 200) {
             setMatches(m_result?.data || m_result)
+            setLoading(false)
             if (m_result?.slip_data) {
                 setUserSlipsValidation(m_result?.slip_data);
             }
@@ -91,6 +91,18 @@ const  Live= () => {
         };
     }, []);
 
+    useEffect(()=>{
+        const new_sport_id = spid
+        if (sportID !== new_sport_id) {
+            setSportID(new_sport_id)
+            setLoading(true)
+            setMatches([])
+
+        } else {
+
+        }
+    })
+
 
     return (
         <div className={'flex-item'}>
@@ -109,7 +121,9 @@ const  Live= () => {
                             <div className={`${width<=991?"d-block":"d-none"}`}>
                                 <LiveSideBar/>
                             </div>
-                            {matches && <MatchList live matches={matches} pdown={producerDown}/>}
+                            {loading ? <div className={`text-center mt-2 text-white d-block`}>
+                                <Spinner animation={'grow'} size={'lg'}/>
+                            </div>: matches && <MatchList live={1} matches={matches} pdown={producerDown}/>}
                         </div>
                     </div>
                 </div>

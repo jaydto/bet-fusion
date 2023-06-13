@@ -10,6 +10,8 @@ import {setLocalStorage} from '../utils/local-storage';
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {Link} from "react-router-dom";
 import {Switch} from "@material-ui/core";
+import {faEye, faEyeSlash} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 export const  Notify = (message) => {
     let options = {
@@ -101,6 +103,7 @@ const HeaderLogin = (props) => {
 
     const MyLoginForm = (props) => {
         const { errors, values, setFieldValue} = props;
+        const [showPassword, setShowPassword] = useState(false);
 
         const onFieldChanged = (ev) => {
             let field = ev.target.name;
@@ -110,18 +113,23 @@ const HeaderLogin = (props) => {
         const label = { inputProps: { 'aria-label': 'remember me',
                 'value':'Remember me'} };
 
+        const toggleShowPassword = () => {
+            setShowPassword(!showPassword);
+        };
+
         return (
             <>
-                <Form className={`ow right i web-element top-login-paddings  width-centric-page top-login-background-img`}>
+                <Form className={`ow right i web-element top-login-paddings   width-centric-page top-login-background-img`}>
                     <Row className={`d-flex flex-column`} >
                         <div className={`w-100 `}>
                             <input type="text"
                                    name="msisdn"
                                    className={`w-100 input-field button-radius text-light deposit-input form-control col input-field-login  ${errors.msisdn && 'text-danger'}`}
-                                   placeholder={errors.msisdn || "+254987654389"}
+                                   placeholder={ "+254987654389"}
                                    onChange={ev => onFieldChanged(ev)}
                                    value={values.msisdn}
                             />
+                            {errors.msisdn && <div className='text-danger'> {errors.msisdn} </div>}
                             <br/>
                             <span className={`sticky-hidden text-warning d-flex justify-content-end font-input my-2`}>
                             <div className={`text-warning`}>
@@ -131,19 +139,38 @@ const HeaderLogin = (props) => {
                         </div>
 
                         <div className={`w-100 `}>
-                            <input type="password"
-                                   name="password"
-                                   className={`w-100 input-field button-radius text-light deposit-input form-control col input-field-login  ${errors.password && 'text-danger'} `}
-                                   // data-action="grow"
-                                    autoComplete={'on'}
-                                   placeholder={errors.password || "Password"}
-                                   onChange={ev => onFieldChanged(ev)}
-                                   value={values.password}
-                            />
+                            <div className="input-group input-color-icon w-100" style={{ display: 'flex' }}>
+                                <input type={showPassword ? 'text' : 'password'}
+                                       name="password"
+                                       className={`w-75 input-field button-radius text-light deposit-input form-control col input-field-login  ${errors.password && 'text-danger'} `}
+                                    // data-action="grow"
+                                       autoComplete={'on'}
+                                       placeholder={ "Password"}
+                                       onChange={ev => onFieldChanged(ev)}
+                                       value={values.password}
+                                />
+                                <div className=" col-2 input-group-append">
+                                    <div className="input-group-text  border-0 input-color-icon">
+                                        <button
+                                            style={{  height: 'parent'}}
+                                            type="button"
+                                            className="btn btn-link text-decoration-none input-color-icon"
+                                            onClick={toggleShowPassword}
+                                        >
+                                            {showPassword ? (
+                                                <FontAwesomeIcon icon={faEyeSlash} style={{ color: 'var(--light)', fontSize: '20px' }} />
+                                            ) : (
+                                                <FontAwesomeIcon icon={faEye} style={{ color: 'var(--light)', fontSize: '20px' }} />
+                                            )}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            {errors.password && <div className='text-danger'> {errors.password} </div>}
                             <br/>
                             <input type="hidden" name="ref" value="{props.refURL}"/>
                             <Link to={"/reset-password"} title="Reset password"
-                               onClick={() => gaEventTracker('Reset Password')}>
+                                  onClick={() => gaEventTracker('Reset Password')}>
                                 <span className={`sticky-hidden text-warning px-2 d-flex justify-content-end"`}>Forgot Password?</span>
                             </Link>
                         </div>
@@ -196,7 +223,7 @@ const HeaderLogin = (props) => {
                 </div>
             </div>
             <div style={{float: "right"}} className={` d-flex justify-content-center align-items-center flex-column w-100 container-fluid`}>
-
+                <ToastContainer/>
                 <LoginForm/>
             </div>
 

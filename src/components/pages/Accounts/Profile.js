@@ -1,9 +1,8 @@
 import React, {useContext, useRef, useState} from 'react';
 import './test.css'
-import './card.css'
-import {Navbar, Offcanvas} from "react-bootstrap";
+import {Navbar} from "react-bootstrap";
 import Container from "react-bootstrap/Container";
-import {Link, useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import logo from "../../../assets/img/Logo.webp";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -20,16 +19,14 @@ import {formatNumber} from "../../utils/betslip";
 import DepositProfile from "./component/DepositProfile";
 import WithdrawProfile from "./component/WithdrawProfile";
 import {getFromLocalStorage} from "../../utils/local-storage";
-import SidebarProfile from "../../sidebar/sidebarProfile";
 import PointsProfile from "./component/PointsProfile";
 import {Context} from "../../../context/store";
 import MybetsProfile from "./component/my-bets";
-import App from "./component/app";
 
 const NewProfile = () => {
     const [user, ] = useState(getFromLocalStorage("user"));
     const [state, dispatch]=useContext(Context)
-    const profile_states=(state?.profile_cash==undefined&&state?.profile_gift==undefined&&state?.profile_deposit==undefined&&state?.profile_points==undefined&&state?.profile_withdraw==undefined&&state?.profile_mybets==undefined&&state?.profile_app==undefined )
+    const profile_states=(state?.profile_cash==undefined&&state?.profile_gift==undefined&&state?.profile_deposit==undefined&&state?.profile_points==undefined&&state?.profile_withdraw==undefined&&state?.profile_mybets==undefined )
     const expand = "md"
     setTimeout(()=>
         !user?window.location.href='/':''
@@ -84,8 +81,8 @@ const NewProfile = () => {
                                 {user && <div>
                                     <Link
                                         to={{pathname: "/logout"}}
-                                        className={"deposit-button size-font-user-action profile-nav"}
-                                        style={{marginRight: "12px", fontSize: '18px'}} title={'LOGOUT'}>
+                                        className={"deposit-button top-margin-spacing size-font-user-action profile-nav"}
+                                        style={{ fontSize: '18px'}} title={'LOGOUT'}>
                                       <span className="text-warning">
                                        <span className=" "><FontAwesomeIcon icon={faPowerOff}
                                                                             className={"text-warning"}/>
@@ -154,9 +151,7 @@ const NewProfile = () => {
 
 
             <div className="flex-container profile-style" style={{padding: '0px 2px '}}>
-                <div className="item-profile1 profile-sidebar">
-                    <SidebarProfile profile_side={true}/>
-                </div>
+
                 <div className="item-profile2">
                     <div
                         className="row d-flex flex-column gap-3 px-lg-4 py-sm-0 py-lg-0 justify-content-center align-items-center profile-top "
@@ -165,7 +160,7 @@ const NewProfile = () => {
                             {(profile_states||state?.profile_cash!=null)&&<div className=" col " id={'gift'}>
 
                                 <div className="card-radius profile-bg text-light">
-                                    <div className="card-body d-flex justify-content-between gap-2 ">
+                                    <div className="card-body d-flex justify-content-between gap-2 mx-2">
                                         <div className={" profile-bg col"}>
                                             <div className="card-body d-flex justify-content-start ">
                                                             <span
@@ -182,7 +177,7 @@ const NewProfile = () => {
                                         </div>
 
                                         <div className={"profile-bg col"}>
-                                            <div className="card-body d-flex justify-content-end">
+                                            <div className="card-body d-flex justify-content-end ">
                                                             <span className="font-btn py-2 px-2 d-flex flex-column">
                                                                 <span className={"d-flex align-items-center gap-2 w-100"}>
                                                                     <FontAwesomeIcon
@@ -199,7 +194,7 @@ const NewProfile = () => {
 
                                 <div className="card-radius profile-bg text-light">
 
-                                    <div className="card-body d-flex justify-content-between gap-2 ">
+                                    <div className="card-body d-flex justify-content-between gap-2 mx-2 ">
 
                                         <div className={"profile-bg col"}>
                                             <div className="card-body d-flex justify-content-start"><span
@@ -209,7 +204,7 @@ const NewProfile = () => {
                                                                 icon={faGifts}/> Gift </span>
                                                             <span>
                                                                 <strong>
-                                                            KSH {formatNumber(user?.bonus) || 0}</strong>
+                                                            KSH {formatNumber(user?.gift_balance) || 0}</strong>
                                                             </span>
                                                         </span>
                                             </div>
@@ -253,11 +248,7 @@ const NewProfile = () => {
                                 <div id={'points'} className={'col'}><MybetsProfile mobile={true}/></div>
                             </div>
                         </div>}
-                        {(state?.profile_app=='profile_app')&&<div className={'d-flex gap-1  mobile-profile-columns'}>
-                            <div id={'points'} className={'col d-flex gap-3 '}>
-                                <div id={'points'} className={'col'}><App/></div>
-                            </div>
-                        </div>}
+
 
                     </div>
 

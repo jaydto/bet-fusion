@@ -1,29 +1,24 @@
 import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
 import './test.css'
-import {getFromLocalStorage, setLocalStorage} from "./utils/local-storage";
 import useWindowDimensions from "./header/Dimensions";
 import makeRequest from "./utils/fetch-request";
-import jackpot from '../assets/img/banner/products/jackpot.webp';
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import {JackpotMatchList} from "./matches";
 import Select from "react-select";
 import Container from "react-bootstrap/Container";
 import DailyJackpotTermsAndConditions from "./pages/terms-and-conditions/DailyJackpotTermsAndConditions";
+import {Context} from "../context/store";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
-const CarouselLoader = React.lazy(() => import('./carousel'));
-const MainTabs = React.lazy(() => import('./header/main-tabs'));
-const MatchList = React.lazy(() => import('./matches'));
 const Right = React.lazy(() => import('./right'));
 const SideBar = React.lazy(() => import('./sidebar/awesome/Sidebar'))
 const  Jackpot= () => {
     const [matches, setMatches] = useState(null);
     const [finishedJackpots, setFinishedJackpots] = useState([])
-    const [user, setUser] = useState(getFromLocalStorage("user"));
     const {height, width} = useWindowDimensions();
-
+    const [state]=useContext(Context)
 
     const fetchData = useCallback(async (jackpot_id = '', jackpot_status = '') => {
         let match_endpoint = "/v1/matches/jackpot";
@@ -94,7 +89,7 @@ const  Jackpot= () => {
                                 className="background-primary "
                                 justify>
                                 <Tab eventKey="home" title="Jackpot" className={'background-primary'}>
-                                    <img src={jackpot}/>
+                                    <img src={"https://storage.googleapis.com/nareimages/carousel/jackpot.webp"}/>
                                     {matches?.data?.length > 0 ? (
                                         <>
                                             {/*<JackpotHeader jackpot={matches?.meta}/>*/}
@@ -122,7 +117,7 @@ const  Jackpot= () => {
                                     </div>
 
                                     {/*<JackpotHeader jackpot={matches?.meta}/>*/}
-                                    <img src={Jackpot}/>
+                                    <img src={"https://storage.googleapis.com/nareimages/carousel/jackpot.webp"}/>
 
                                     <div className="matches full-mobile sticky-top container">
                                         <div

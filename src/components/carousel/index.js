@@ -1,11 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import makeRequest from "../utils/fetch-request";
+import {Context} from "../../context/store";
 
 const CarouselLoader = (props) => {
-    const [banners, setBanners] = useState([])
+    const [state,dispatch]=useContext(Context);
     const getCarouselImages = async () => {
         let endpoint = "/v1/carousel-images"
         const [carousel_results] = await Promise.all([
@@ -13,7 +14,7 @@ const CarouselLoader = (props) => {
         ]);
         let [status, carousel_result] = carousel_results;
         if (status === 200) {
-            setBanners(carousel_result?.images)
+            dispatch({type: "SET", key: "carousel_banners", payload: carousel_result?.images});
         }
     }
 
@@ -29,7 +30,7 @@ const CarouselLoader = (props) => {
 
     return (
         <Carousel indicators={false}>
-            {banners?.map((banner, idx) => (
+            {state?.carousel_banners?.map((banner, idx) => (
                 <Carousel.Item key={idx}>
                     <LazyLoadImage
                         title={banner?.title}

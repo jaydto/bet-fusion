@@ -149,16 +149,7 @@ input, select, textarea {
     justify-content: space-around;
 }
 
-.bloc-icon {
-    min-width: 90px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* background-color: #1f2f38; */
-    border-radius: 5px;
-    flex-direction: column;
-    height: 65px;
-}
+
   .bloc-icon p{
     color: white;
   }

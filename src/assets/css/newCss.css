@@ -1299,6 +1299,13 @@ img.nare-league {
     }
 }
 @media (min-width: 992px){
+    .jackpot-text-inactive{
+        fontSize:15px;
+        font-weight:700;
+    }
+    .jackpot-image-caution{
+        width:40px;
+    }
     .slip-max{
         max-height:53vh!important;
     }
@@ -1366,6 +1373,13 @@ img.nare-league {
 }
 
 @media (max-width: 991px){
+    .jackpot-text-inactive{
+        fontSize:13px;
+        font-weight:700;
+    }
+    .jackpot-image-caution{
+        width:30px;
+    }
     .top-matches .side{
         background: transparent!important;
     }

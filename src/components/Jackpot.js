@@ -9,6 +9,7 @@ import Select from "react-select";
 import Container from "react-bootstrap/Container";
 import DailyJackpotTermsAndConditions from "./pages/terms-and-conditions/DailyJackpotTermsAndConditions";
 import {Context} from "../context/store";
+import caution from "../assets/img/mobile/caution.png"
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -81,7 +82,7 @@ const  Jackpot= () => {
                 <div className="item1"> <SideBar loadCompetitions/></div>
                 <div className="item2 size-all-markets" >
                     <div className="gz home" style={{width: "100%", overflowX: "clip"}}>
-                        <div className="homepage">
+                        <div className="homepage vh-100">
                             <Tabs
                                 variant={'tabs'}
                                 defaultActiveKey="home"
@@ -97,8 +98,11 @@ const  Jackpot= () => {
                                         </>
                                     ) : (
                                         <div
-                                            className={'text-white col-md-12 text-center background-primary shadow mt-2 p-3'}>
-                                            There are no active jackpots at the moment.
+                                            className={'text-white col-md-12 text-center background-primary shadow mt-2 p-3 d-flex flex-column  align-items-center justify-content-center' } style={{height:"30vh"}}>
+                                            <img src={caution} className={'jackpot-image-caution'}/>
+                                            <p className={'jackpot-text-inactive'}>
+                                                There are no active jackpots at the moment.
+                                            </p>
                                         </div>
                                     )}
                                 </Tab>

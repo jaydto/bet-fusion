@@ -52,7 +52,7 @@ const MainTabs = (props) => {
                 </div>
                 <div className="col tab-home text-center sports_only-mobile">
                     <Link className={`cursor-pointer w-100 ${c_class}`} to={'/countries?'+getLink() }>
-                        <span className="col-sm-11 main-header">Sports</span>
+                        <span className="col-sm-11 main-header">Countries</span>
                     </Link>
                 </div>
             </Row>

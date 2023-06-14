@@ -142,22 +142,23 @@ input, select, textarea {
     visibility:visible;
     height: 55px;
     width: 100%;
+    z-index:2000!important;
     font-size: 13px !important;
     display: flex;
     /*padding-bottom: max(10px, env(safe-area-insent-bottom));*/
     justify-content: space-around;
 }
 
-  .bloc-icon {
+.bloc-icon {
+    min-width: 79px;
     display: flex;
     justify-content: center;
     align-items: center;
-    /*background-color: #1f2f38;*/
-    width: 80%;
+    /* background-color: #1f2f38; */
     border-radius: 5px;
     flex-direction: column;
     height: 65px;
-  }
+}
   .bloc-icon p{
     color: white;
   }
@@ -16081,6 +16082,7 @@ img.zoom-img {
 
     .menu-table .menu-t {
         min-width: 8rem;
+        opacity:0.7;
     }
     .menu-wrapper::-webkit-scrollbar {
         display: none;

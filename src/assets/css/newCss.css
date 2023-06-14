@@ -1213,12 +1213,14 @@ img.nare-league {
         margin-top: -5px;
     }
     .sticky-logged-in-testimony {
+        margin: 0.5px 0px;
         position: sticky;
-        top: 95px;
-        border-radius: 7px;
+        border-radius: 2px;
+        border-radius: 5px;
         z-index: 1999 !important;
         opacity: 1;
         background: var(--testimonial);
+        border: 1px solid var(--betnare-button-login)!important;
     }
 
     .sticky-user{

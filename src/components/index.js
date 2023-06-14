@@ -38,7 +38,6 @@ const Index = () => {
     const [state, dispatch] = useContext(Context);
     const [fetching, setFetching] = useState(false)
     const homePageRef = useRef()
-    const [utmSource,] = useState('')
     const prevLimit = useRef(limit);
     const [reset, setReset] = useState(0);
 
@@ -168,26 +167,7 @@ const Index = () => {
         setThreeWay(sub_types.includes("1"))
     }
 
-    const configureCampaignCookie = () => {
 
-        let url = new URL(window.location)
-
-        let utm_source = url.searchParams.get('utm_source')
-
-        let utm_campaign = url.searchParams.get('utm_campaign')
-
-        if (utm_source !== null) {
-            setLocalStorage('utm_source', utm_source)
-        }
-
-        if (utm_campaign !== null) {
-            setLocalStorage('utm_campaign', utm_campaign)
-        }
-    }
-
-    useEffect(() => {
-        configureCampaignCookie()
-    }, [utmSource])
 
     useEffect(() => {
         let new_tab = ""

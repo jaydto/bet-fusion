@@ -36,8 +36,28 @@ const Header = (props) => {
     const [competitions, setCompetitions] = useState({});
     const [settings, setSettings] = useState({});
     const [isOpen, setIsOpen] = useState(false);
+    const [utmSource,] = useState('')
 
+    const configureCampaignCookie = () => {
 
+        let url = new URL(window.location)
+
+        let utm_source = url.searchParams.get('utm_source')
+
+        let utm_campaign = url.searchParams.get('utm_campaign')
+
+        if (utm_source !== null) {
+            setLocalStorage('utm_source', utm_source)
+        }
+
+        if (utm_campaign !== null) {
+            setLocalStorage('utm_campaign', utm_campaign)
+        }
+    }
+
+    useEffect(() => {
+        configureCampaignCookie()
+    }, [utmSource])
     const dismissSearch = () => {
         setSearching(false)
         setMatches([])
@@ -269,7 +289,7 @@ const Header = (props) => {
                                             </Link>
                                         </div>}
 
-                                        {pathname!=='/signup'&&<Link to={"/login"} className="cg  login-color login-size btn" type="submit" style={{backgroundColor:'#527994FF'}}>
+                                        {pathname!=='/signup'&&<Link to={"/login"} className="cg  login-color login-size btn" type="submit"     >
                                             <span>Login</span>
                                         </Link>}
                                         {pathname!=='/signup'&&<div className='d-flex align-items-baseline'>

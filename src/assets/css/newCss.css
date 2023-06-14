@@ -1302,7 +1302,10 @@ img.nare-league {
 @media (min-width: 992px){
     .alert-message-line-height{
         line-height:1.5;
-        border-radius: 5px;
+        border-radius: 3px;
+        padding: 2px 5px!important;
+        text-align: justify;
+        font-weight: 500;
     }
     .jackpot-text-inactive{
         fontSize:15px;

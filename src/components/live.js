@@ -115,7 +115,7 @@ const  Live= () => {
                 </div>
                 <div className="item2">
                     <div className="gz home match-overflow" >
-                        <div className="homepage">
+                        <div className="homepage h-100">
                             <CarouselLoader/>
                             <Testimonials/>
                             <div className={`${width<=991?"d-block":"d-none"}`}>

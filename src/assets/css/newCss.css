@@ -1374,6 +1374,16 @@ img.nare-league {
 }
 
 @media (max-width: 991px){
+    .bloc-icon {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* background-color: #1f2f38; */
+        border-radius: 5px;
+        flex-direction: column;
+        height: 65px;
+    }
     .top-matches a.odds-container-size {
         color: var(--light)!important;
          font-weight: 400;
@@ -1864,6 +1874,16 @@ img.nare-league {
 
 }
 @media (max-width: 575px){
+    .bloc-icon {
+        width: 20%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* background-color: #1f2f38; */
+        border-radius: 5px;
+        flex-direction: column;
+        height: 65px;
+    }
     .more-options-font{
         font-size:10px!important
     }
@@ -1980,6 +2000,16 @@ img.nare-league {
     }
 }
 @media (max-width: 375px){
+    .bloc-icon {
+        width:20%!important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* background-color: #1f2f38; */
+        border-radius: 5px;
+        flex-direction: column;
+        height: 65px;
+    }
     /*.mybets-font {*/
     /*    font-size: 9px;*/
     /*    font-weight: 600;*/

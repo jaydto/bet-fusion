@@ -10,6 +10,7 @@ import {Context} from "../../context/store";
 import KironSlip from "./kironslip-submit-form";
 import Kironslip from "./kironslip";
 import MobileMenu from "../mobile-menu";
+import useWindowDimensions from "../header/Dimensions";
 
 const AlertMessage = (props) => {
     return (
@@ -24,10 +25,11 @@ const AlertMessage = (props) => {
 
 const Right = (props) => {
     const {jackpot, betslipValidationData, jackpotData, kiron,test} = props;
+    const {height, width} = useWindowDimensions();
     const [betSlipMobile, setBetSlipMobile] = useState(false)
 
     return (
-        <div className={`col ${test?'':'gn'} ipad-dismiss-info betslip-container sticky-top vh-100 overflow-scroll betslip-container-mozilla container-sticky-top top-login-background-img-bg ${kiron&&'kiron-betslip-size'}`}>
+        <div className={`${width>991&& `col ${test?'':'gn'} ipad-dismiss-info betslip-container sticky-top vh-100 overflow-scroll betslip-container-mozilla container-sticky-top top-login-background-img-bg ${kiron&&'kiron-betslip-size'}`}`}>
             <div className="betslip-container d-none d-md-block">
                 {props?.message && <AlertMessage classname={props.classname} message={props.message}/>}
                 <div className="bet-option-list " id=''>

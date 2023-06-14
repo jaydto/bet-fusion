@@ -150,7 +150,7 @@ input, select, textarea {
 }
 
 .bloc-icon {
-    min-width: 79px;
+    min-width: 90px;
     display: flex;
     justify-content: center;
     align-items: center;

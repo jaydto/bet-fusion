@@ -8,6 +8,7 @@ import {Button} from "react-bootstrap";
 import useWindowDimensions from "../../header/Dimensions";
 import {Context} from "../../../context/store";
 import SearchComponent from "./searchField";
+import SideBar from "../../sidebar/awesome/Sidebar";
 
 const GamePlay = () => {
 
@@ -60,10 +61,11 @@ const GamePlay = () => {
             {/* <OnlineCheck setIsOnline={setIsOnline} isOnline={isOnline}/> */}
             <div>
                 <div className="d-flex flex-row ">
-                    <div className="gz home top-spacing" style={{width: '100%'}}>
+                    <div className="stats-desktop top-spacing"><SideBar loadCompetitions/></div>
+                    <div className="gz home " style={{width: '100%'}}>
                         <div className="col-md-12 d-flex flex-column">
                             <div className="col-md-12">
-                                <div className="homepage">
+                                <div className="homepage top-spacing">
                                     <div className={`  row ${width<767?"row-cols-2":"row-cols-4 "}  text-white p-2 shadow-sm mt-2`}>
                                         {/* <ShaksGames/> */}
                                         <div className={'d-flex w-100 flex-column justify-content-between nare-header-container'}>

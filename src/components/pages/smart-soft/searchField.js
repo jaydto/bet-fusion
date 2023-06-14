@@ -30,7 +30,7 @@ const SearchComponent = (props) => {
     };
 
     return (
-        <div>
+        <div className={'w-100'}>
             <div className="search-container">
             <input type="text" name="search" placeholder="Search..."
                    value={searchTerm}

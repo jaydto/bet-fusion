@@ -8,6 +8,7 @@ import {toast, ToastContainer} from "react-toastify";
 import { useLocation } from 'react-router-dom';
 import SearchComponent from "./searchField";
 import {Context} from "../../../context/store";
+import SideBar from "../../sidebar/awesome/Sidebar";
 
 const Virtuals = (props) => {
 
@@ -61,7 +62,8 @@ const Virtuals = (props) => {
             {/* <OnlineCheck setIsOnline={setIsOnline} isOnline={isOnline}/> */}
             {/*{showLoadingModal && ( <LoginModal setShowLoadingModal={setShowLoadingModal} visible={showLoadingModal} location={location}/>)}*/}
             <ToastContainer/>
-            <div >
+            <div className={'d-flex'}>
+                <div className="stats-desktop top-spacing"><SideBar loadCompetitions/></div>
                 <div className="d-flex flex-row">
                     <div className="gz home top-spacing" style={{width: '100%'}}>
                         <div className="homepage">

@@ -7,6 +7,7 @@ import {LazyLoadImage} from "react-lazy-load-image-component";
 import {Button} from "react-bootstrap";
 import SearchComponent from "./searchField";
 import {Context} from "../../../context/store";
+import SideBar from "../../sidebar/awesome/Sidebar";
 
 const SmartSoft = () => {
 
@@ -41,7 +42,8 @@ const SmartSoft = () => {
                 <div className="d-flex flex-row ">
                     <div className="gz home z" style={{width: '100%'}}>
                         <div className="col-md-12 d-flex flex-column">
-                            <div className="col-md-12">
+                            <div className="col-md-12 d-flex">
+                                <div className="stats-desktop"><SideBar loadCompetitions/></div>
 
                                 <div className="homepage smart-images">
                                     <div className={'d-flex w-100 flex-column justify-content-between xgames-container'}>
@@ -67,6 +69,7 @@ const SmartSoft = () => {
                                                                     {search_game?.gameName}
                                                                 </p>
                                                                 <LazyLoadImage
+                                                                    className={'smart-soft-image-size'}
                                                                     src={ (search_game?.image_url)}
                                                                     alt="smart-soft"
 
@@ -81,7 +84,7 @@ const SmartSoft = () => {
                                                     </div>)):
                                                 games?.map((game) => (
                                                     game.gameName!=="TripleSeven"&&
-                                                    <div className={'col-6 cursor-pointer smart-soft-game'}>
+                                                    <div className={'col-lg-3 col-md-6 col-sm-6 cursor-pointer smart-soft-game'}>
                                                         <div
                                                             className={'mt-1 mb-1 d-flex flex-column shadow-lg virtual-game-container'}>
                                                             <Link to={{pathname:`/smart-play`, search: `game=${game?.gameName}&category=${game?.gameCategory}`}}
@@ -91,6 +94,7 @@ const SmartSoft = () => {
                                                                     {game?.gameName}
                                                                 </p>
                                                                 <LazyLoadImage
+                                                                    className={'smart-soft-image-size'}
                                                                     src={ (game?.image_url)}
                                                                     alt="smart-soft"
 

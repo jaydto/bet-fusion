@@ -206,7 +206,7 @@ input.text-white{
     background: #fff;
     color: var(--dark)!important;
     height: 30px;
-    width: 100vw;
+    /*width: 100vw; */
     border-radius: 16px;
     padding: 17px 24px;
     display: flex;
@@ -246,9 +246,7 @@ input.text-white{
     color: rgb(255, 166, 0);
     text-shadow: rgb(0, 0, 0) 6px 2px 2px;
 }
-.smart-soft-games-container .smart-soft-game:first-child {
-    width: 100%!important;
-}
+
 #nare-games-header {
     font-family: Amita, cursive;
     font-style: italic;
@@ -1301,6 +1299,29 @@ img.nare-league {
     }
 }
 @media (min-width: 992px){
+    .casino-category-button{
+        min-width:150px;
+
+    }
+    .casino-category-container{
+        justify-content: space-between;
+    }
+    .smart-images{
+        width:100%
+    }
+    .smart-soft-image-size{
+        min-height: 200px;
+        height:200px;
+    }
+    .smart-soft-games-container .smart-soft-game:first-child {
+        width: 33%!important;
+    }
+    .smart-soft-games-container .smart-soft-game:nth-child(2) {
+        width: 33%!important;
+    }
+    .smart-soft-games-container .smart-soft-game:nth-child(3) {
+        width: 33%!important;
+    }
     .alert-message-line-height{
         line-height:1.3;
         border-radius: 3px;
@@ -1376,12 +1397,17 @@ img.nare-league {
 @media (min-width: 991px){
 
 
+
     .desktop-ipad-size{
         width:100vw!important;;
     }
 }
 
 @media (max-width: 991px){
+
+    .smart-soft-games-container .smart-soft-game:first-child {
+        width: 100%!important;
+    }
     .styling-mobile-size{
         overflow: hidden;
         height: 0px;

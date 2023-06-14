@@ -1300,6 +1300,10 @@ img.nare-league {
     }
 }
 @media (min-width: 992px){
+    .alert-message-line-height{
+        line-height:1.5;
+        border-radius: 5px;
+    }
     .jackpot-text-inactive{
         fontSize:15px;
         font-weight:700;

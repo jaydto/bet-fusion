@@ -123,7 +123,7 @@ const BetslipSubmitForm = (props) => {
         }
         return (<>{message?.status &&
             <div role="alert"
-                 className={`fade alert alert-${c} show alert-dismissible d-flex justify-content-between align-items-center`}>
+                 className={`fade alert alert-${c} show alert-dismissible d-flex justify-content-between align-items-center alert-message-line-height`}>
                 {message.message}
                 <span aria-hidden="true" style={x_style} onClick={() => setMessage(null)}>&times;</span>
             </div>}

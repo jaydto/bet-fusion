@@ -134,7 +134,7 @@ const CompetitionMatches = (props) => {
             <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions/>
                     <div className="gz home match-overflow" >
-                        <div className="homepage h-100">
+                        <div className="homepage vh-100">
                             <CarouselLoader/>
                             <Testimonials/>
                             {loading?

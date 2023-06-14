@@ -82,7 +82,7 @@ const  Jackpot= () => {
                 <div className="item1"> <SideBar loadCompetitions/></div>
                 <div className="item2 size-all-markets" >
                     <div className="gz home" style={{width: "100%", overflowX: "clip"}}>
-                        <div className="homepage h-100">
+                        <div className="homepage vh-100">
                             <Tabs
                                 variant={'tabs'}
                                 defaultActiveKey="home"

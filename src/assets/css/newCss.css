@@ -1383,6 +1383,7 @@ img.nare-league {
 @media (max-width: 991px){
     .styling-mobile-size{
         overflow: hidden;
+        height: 0px;
     }
     .item3 {
         /* flex: 1 1 auto; */

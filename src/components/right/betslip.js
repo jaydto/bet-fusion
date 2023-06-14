@@ -10,6 +10,7 @@ import {
 import useWindowDimensions from "../header/Dimensions";
 import { getFromLocalStorage } from "../utils/local-storage";
 import DecodeCode from "./decode";
+import {Link} from "react-router-dom";
 
 const clean_rep = (str) => {
     str = str.replace(/[^A-Za-z0-9\-]/g, "");
@@ -299,8 +300,8 @@ const BetSlip = (props) => {
                                                 onClick={() => handledRemoveSlip(slip)}
                                             />
                                         </div>
-                                        <a
-                                            href={`${
+                                        <Link
+                                            to={`${
                                                 slip?.bet_type === "0"
                                                     ? "/match/" + slip?.match_id
                                                     : "/match/live/" + slip?.parent_match_id
@@ -357,7 +358,7 @@ const BetSlip = (props) => {
                                             <div className="row">
                                                 <div className="warn">{slip?.comment} </div>
                                             </div>
-                                        </a>
+                                        </Link>
                                     </li>
                                 );
                             })

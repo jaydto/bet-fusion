@@ -1378,7 +1378,7 @@ img.nare-league {
         font-weight:700;
     }
     .jackpot-image-caution{
-        width:30px;
+        width:30px!important;
     }
     .top-matches .side{
         background: transparent!important;

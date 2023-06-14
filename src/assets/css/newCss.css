@@ -1363,6 +1363,9 @@ img.nare-league {
 }
 
 @media (max-width: 991px){
+    .top-matches .side{
+        background: transparent!important;
+    }
     .wrapping{
         font-size: 10.5px;
     }

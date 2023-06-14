@@ -12,13 +12,9 @@ import LiveSideBar from "./sidebar/live-sidebar";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
-const CarouselLoader = React.lazy(() => import('./carousel'));
-const MainTabs = React.lazy(() => import('./header/main-tabs'));
-const MatchList = React.lazy(() => import('./matches'));
 const Right = React.lazy(() => import('./right'));
 const SideBar = React.lazy(() => import('./sidebar/awesome/Sidebar'))
 const  AllMarkets= (props) => {
-    const [page, setPage] = useState(1);
     const [producerDown, setProducerDown] = useState(false);
     const [allMarkets,setAllMarkets]=useState(true)
     const params=useParams()

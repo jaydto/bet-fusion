@@ -206,7 +206,26 @@ const MobileNav1 = () => {
                     </Link>
 
                 </td>
+                <td  className={`menu-t m-auto sport-check  ${pathname===`/jackpot`?"active_link":""}`}  >
+                    <Link className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center `} onClick={() => gaEventTracker('Visit Jackpot Page')} to={`/jackpot`}   >
+                        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
 
+                            <div className="menu-img ">
+                                <img
+                                    className="side-icon"
+                                    src={jackpot}
+                                    alt=""
+                                    style={{height: "23px", marginTop:"-6px"}}
+                                />
+                                <span className="new-alert-badge hot" >Hot</span>
+                            </div>
+                            <strong style={{textAlign: "center"}}>
+                                Jackpot
+                            </strong>
+                        </div>
+                    </Link>
+
+                </td>
                 <td  className={`menu-t m-auto sport-check ${window.location.search.includes('JetX')?"active_link":""} `}  >
                     <Link className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center  `}  to={`#`}  onClick={()=>{LoginCheck('JetX');gaEventTracker('Visit Jetx Page')}} >
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center`}>
@@ -266,26 +285,7 @@ const MobileNav1 = () => {
                     </Link>
 
                 </td>
-                <td  className={`menu-t m-auto sport-check  ${pathname===`/jackpot`?"active_link":""}`}  >
-                    <Link className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center `} onClick={() => gaEventTracker('Visit Jackpot Page')} to={`/jackpot`}   >
-                        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
-
-                            <div className="menu-img ">
-                                <img
-                                    className="side-icon"
-                                    src={jackpot}
-                                    alt=""
-                                    style={{height: "23px", marginTop:"-6px"}}
-                                />
-                            </div>
-                            <strong style={{textAlign: "center"}}>
-                                Jackpot
-                            </strong>
-                        </div>
-                    </Link>
-
-                </td>
-                <td  className={`menu-t m-auto sport-check  ${pathname.includes('/virtuals')?"active_link":""}`}  >
+               <td  className={`menu-t m-auto sport-check  ${pathname.includes('/virtuals')?"active_link":""}`}  >
                     <Link className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `} onClick={() => gaEventTracker('Visit Virtuals Page')}  to={`/virtuals`}   >
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center  `}>
 

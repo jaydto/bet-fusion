@@ -14,7 +14,11 @@
   padding: 0;
   border-bottom: 1px solid #421826b3;
 }
-
+.new-alert-badge.hot {
+    color: var(--light);
+    filter: hue-rotate(70deg) saturate(0.5);
+    opacity: 1;
+}
 .sidebar-menu > li:last-child {
   border-bottom: 1px solid transparent;
 

@@ -268,7 +268,6 @@ const BetSlip = (props) => {
     return (
         <div className="bet-body text-white">
             {!jackpot && <BonusAlert />}
-            {!jackpot && <BonusAlert />}
             <div className={`flow  slip-top ${state?.user?jackpot?'slip-max':'slip-height slip-log-max':'slip-max'} overflow-auto`}  >
                 <div className={`${pathLocation==='/betslip-slip'?state?.user&&!jackpot?'slip-bottom-betlip-active':'slip-bottom-betlip':'slip-bottom-space'}`}>
                     <ul className={"slip-bottom-space-list"}>

@@ -7,6 +7,7 @@ import {getBetslip} from './utils/betslip' ;
 import {Spinner} from "react-bootstrap";
 import Testimonials from "./carousel/Testimonials";
 import './test.css'
+import useWindowDimensions from "./header/Dimensions";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -27,9 +28,11 @@ const   CompetitionMatches= () => {
     const [fetching, setFetching] = useState(false)
     const [limit, setLimit] = useState(50);
     const [shouldFetch, setShouldFetch] = useState(true);
+    const {height, width} = useWindowDimensions();
 
 
     const findPostableSlip = () => {
+
         let betslips = getBetslip() || {};
         var values = Object.keys(betslips).map(function (key) {
             return betslips[key];
@@ -41,10 +44,15 @@ const   CompetitionMatches= () => {
         if (!shouldFetch) {
             return;
         }
-        setFetching(true)
         let endpoint = "/v1/sports/competition?id=" + competitionid + "&page=" + (page || 1) + "&sport_id=79";
-        let sub_types = new URL(window.location).searchParams.get('sub_type_id')
-        endpoint += sub_types ? '&sub_type_id=' + sub_types : ''
+        let url = new URL(window.location.href)
+        let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29").split(",")
+
+        if (width <= 1259) {
+            sub_types = [sub_types[0]]
+        }
+
+        endpoint += `&sub_type_id=` + (sub_types || "1,18,29")
         let betslip = findPostableSlip();
         let method = betslip ? "POST" : "GET";
         await makeRequest({url: endpoint, method: method, data: betslip}).then(([status, result]) => {
@@ -58,15 +66,21 @@ const   CompetitionMatches= () => {
                 setFetching(false)
             }
         });
-    }, 3000);
+    }, 20000);
 
     const fetchPagedData = useCallback(() => {
         if (!fetching && shouldFetch) {
             setFetching(true);
             let betslip = findPostableSlip();
             let endpoint = "/v1/sports/competition?id=" + competitionid + "&page=" + (page || 1);
-            let sub_types = new URL(window.location).searchParams.get('sub_type_id')
-            endpoint += sub_types ? '&sub_type_id=' + sub_types : ''
+            let url = new URL(window.location.href)
+            let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29").split(",")
+
+            if (width <= 1259) {
+                sub_types = [sub_types[0]]
+            }
+
+            endpoint += `&sub_type_id=` + (sub_types || "1,18,29")
             makeRequest({url: endpoint, method: "post", data: betslip}).then(([status, result]) => {
                 setMatches(result?.data || result);
                 setShouldFetch(result?.data.length > 0)

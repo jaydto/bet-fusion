@@ -259,7 +259,6 @@ const Index = () => {
                 <div className="item2">
                     <div className="gz home match-overflow " >
                         <div className="homepage vh-100" ref={homePageRef}>
-
                             {/*<MobileNav2/>*/}
                             <CarouselLoader/>
                             <Testimonials/>

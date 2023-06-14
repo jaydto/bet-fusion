@@ -2,7 +2,7 @@
 body {
     font-size: var(--betnare-font-size-nav);
     line-height: var(--body-line-weight);
-    background: var(--betnare-header-bg);
+    background: var(--betnare-primary);
     max-width: 100% !important
 }
 .decode-bg{

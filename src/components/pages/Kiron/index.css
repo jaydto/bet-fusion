@@ -10,7 +10,10 @@
 .space-bets {
     flex-direction: column !important;
 }
-
+.team-badge{
+    display:flex;
+    align-items:flex-end;
+}
 .matches .top-matches .kiron-btn {
     height: 30px;
     border-radius: 20px !important;
@@ -375,5 +378,13 @@
     }
     .kiron-betslip-size{
         width:25%!important;
+    }
+}
+@media (max-width:991px){
+    .team-badge img {
+        height: 19px;
+        width: 22px;
+        display: inline-block;
+        margin: 2px 0;
     }
 }

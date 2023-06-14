@@ -1214,8 +1214,7 @@ img.nare-league {
     }
     .sticky-logged-in-testimony {
         position: sticky;
-        /*top: 137px;*/
-        top:0px;
+        top: 95px;
         border-radius: 7px;
         z-index: 1999 !important;
         opacity: 1;

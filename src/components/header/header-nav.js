@@ -132,7 +132,7 @@ const HeaderNav = (props) => {
                             <strong>
                                 <div className={'d-flex menu-item'}>
                                     Aviator
-                                    <span className="new-alert-badge">NEW</span>
+                                    <span className="new-alert-badge">HOT</span>
                                 </div>
                             </strong>
                         </Link>
@@ -142,7 +142,7 @@ const HeaderNav = (props) => {
                         <Link className="url-link fm anl cg ox " to="#" title="Live Casino" onClick={() => {LoginCheck("casino");gaEventTracker('Visit Casino Page')}}>
                             <span>
                                 <strong>Casino</strong>
-                                    <span className="new-alert-badge">NEW</span>
+                                    <span className="new-alert-badge">HOT</span>
                             </span>
                         </Link>
                     </li>
@@ -154,7 +154,7 @@ const HeaderNav = (props) => {
                            title="Space Man">
                             <span>
                                 <strong>Spaceman</strong>
-                                    <span className="new-alert-badge">NEW</span>
+                                    <span className="new-alert-badge">HOT</span>
                             </span>
                         </Link>
                     </li>
@@ -170,7 +170,7 @@ const HeaderNav = (props) => {
                             <strong>
                                 <div className={'d-flex menu-item'}>
                                     JetX
-                                    <span className="new-alert-badge">NEW</span>
+                                    <span className="new-alert-badge">HOT</span>
                                 </div>
                             </strong>
                         </Link>
@@ -201,7 +201,7 @@ const HeaderNav = (props) => {
                                     <div className={'notification-item'}>
                                         {/*<FontAwesomeIcon icon={faLaptop}/> */}
                                         Virtuals
-                                        <span className="new-alert-badge">NEW</span>
+                                        <span className="new-alert-badge">HOT</span>
                                     </div>
                                 </strong>
                             </span>

@@ -16,7 +16,6 @@
 }
 .new-alert-badge.hot {
     color: var(--light);
-    filter: hue-rotate(70deg) saturate(0.5);
     opacity: 1;
 }
 .sidebar-menu > li:last-child {

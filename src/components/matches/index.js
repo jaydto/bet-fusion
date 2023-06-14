@@ -448,7 +448,7 @@ const SideBets = (props) => {
                   title={"View Stats"}
               >
                 {" "}
-               <span className={'stats-mobile'}>Stats</span>
+               <span className={'stats-mobile more-options-font'}>Stats</span>
                 <span className={'stats-desktop'}><FontAwesomeIcon className={"icon-size"} icon={faChartLine}/> </span>
               </a>
               <span className={'stats-mobile'}>|</span>
@@ -460,8 +460,8 @@ const SideBets = (props) => {
                       live ? match.parent_match_id : match?.match_id
                   }`}
               >
-                <strong className="small bold">
-                  <span className={'stats-mobile more-markets-text'}>+{match.side_bets} More Markets</span>
+                <strong className="more-options-font bold">
+                  <span className={'stats-mobile more-markets-text text-warning'}>+{match.side_bets} More Markets</span>
                   <span className={'stats-desktop more-markets-text'}>+{match.side_bets}</span>
                 </strong>
               </Link>
@@ -1008,7 +1008,7 @@ const MatchRow = (props) => {
 
                                             )}
                                             </span>
-                              <div className={"px-1 wrapping"}>ID: {match?.game_id}</div>
+                              <div className={"px-1 wrapping mobile-display-game-id"}>ID: {match?.game_id}</div>
 
                             </div>
 
@@ -1078,7 +1078,7 @@ const MatchRow = (props) => {
                                                  </>
 
                                              )}</span>
-                        <div className={"px-1 wrapping"}>ID: {match?.game_id}</div>
+                        <div className={"px-1 wrapping mobile-display-game-id"}>ID: {match?.game_id}</div>
 
                       </div>
 
@@ -1124,7 +1124,7 @@ const MatchRow = (props) => {
                                       {(live && match?.match_time) ?
                                           <>{`${match.match_time}'`}</> : match?.start_time}
                                   </span>
-                              <div className={"px-1 wrapping"}>ID: {match?.game_id}</div>
+                              <div className={"px-1 wrapping mobile-display-game-id"}>ID: {match?.game_id}</div>
 
                           </div>
 

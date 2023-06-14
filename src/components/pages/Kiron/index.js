@@ -4,8 +4,6 @@ import KironTabs from "./KironTabs/KironTabs";
 import KironCompetitions from "./competitions/KironCompetitions";
 import MatchList from "./matches";
 import makeRequest from "../../utils/fetch-request";
-import fire from "../../../assets/img/fire.webp"
-
 import {Context} from "../../../context/store";
 import {Link, useLocation} from "react-router-dom";
 import KironPeriods from "./periods";

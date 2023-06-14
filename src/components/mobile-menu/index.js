@@ -89,88 +89,104 @@ const MobileMenu = (props) => {
                 </div>
             </div>
 
-            <nav className="mobile-menu">
-                <Link
-                    to={"/"}
-                    className={`bloc-icon ${pathname === "/" ? "active" : ""}`}
-                    onClick={() => gaEventTracker("Visit Homepage")}
-                >
-                    <img src={HomeSvg} alt="" style={{ width: "30px", height:"25px" }}></img>
-                    <p>Home</p>
-                </Link>
-                {/*<Link*/}
-                {/*    to={"/virtuals"}*/}
-                {/*    className={`bloc-icon ${pathname === "/virtuals" ? "active" : ""}`}*/}
-                {/*>*/}
-                {/*    <img src={VirtualSvg} alt=""></img>*/}
-                {/*    <p>Virtuals</p>*/}
-                {/*</Link>*/}
+            <table className="mobile-menu">
+                <tr className={"d-flex w-100"}>
+                    <td className={`bloc-icon ${pathname === "/" ? "active" : ""}`}>
+                        <Link
+                            to={"/"}
 
-                <Link
-                    to={"/nare-league"}
-                    onClick={() => gaEventTracker("Visit Nare League Page")}
-                    className={`bloc-icon ${pathname === "/nare-league" ? "active" : ""}`}
-                >
-                    <img src={kironImg} alt="" className={'nare-league'}></img>
+                            onClick={() => gaEventTracker("Visit Homepage")}
+                        >
+                            <img src={HomeSvg} alt="" style={{ width: "30px", height:"25px" }}></img>
+                            <p>Home</p>
+                        </Link>
+                    </td>
+                    {/*<Link*/}
+                    {/*    to={"/virtuals"}*/}
+                    {/*    className={`bloc-icon ${pathname === "/virtuals" ? "active" : ""}`}*/}
+                    {/*>*/}
+                    {/*    <img src={VirtualSvg} alt=""></img>*/}
+                    {/*    <p>Virtuals</p>*/}
+                    {/*</Link>*/}
+<td className={`bloc-icon ${pathname === "/nare-league" ? "active" : ""}`}>
+    <Link
+        to={"/nare-league"}
+        onClick={() => gaEventTracker("Visit Nare League Page")}
 
-                </Link>
+    >
+        <img src={kironImg} alt="" className={'nare-league'}></img>
 
-                <Link to={ {pathname:`${jackpot?"/betslip-jackpot":kiron?`/betslip-nare`:"/betslip-slip"}`, search:`${jackpot!==undefined?'jackpot='+jackpot:''}${kiron!==undefined?'nare-league='+kiron:''}`}}
-                    /*{pathname:`${jackpot?"/betslip-jackpot":kiron?`/betslip-nare`:"/betslip-slip"}`, search:`${jackpot!==undefined?'jackpot='+jackpot:''}${betslipValidationData!==undefined ?'betslipValidationData='+encodeURIComponent(JSON.stringify(betslipValidationData)):''}${jackpotData!==undefined?'&jackpotData='+encodeURIComponent(JSON.stringify(jackpotData)):''}${kiron!==undefined?'nare-league='+kiron:''}${kironValidation!==undefined ? '&nareData='+encodeURIComponent(JSON.stringify(kironValidation)):''}`}*/
-                      className={` nav__betslip bloc-icon bet-slip-footer-toggle text-white`}>
-                    <Badge
-                        pill
-                        bg="warning nav__betslip d-flex justify-content-center align-items-center text-dark"
-                    >
-                        {/*fixed size 50 for bets clicked*/}
-                        {jackpot === true&&jackpot!=undefined||pathname=="/betslip-jackpot"
-                            ? getJackpotBetslip() != null
-                                ? <strong>{Object.keys(getJackpotBetslip())?.length}</strong>
-                                : <strong className={'badge-font-weight'}>0</strong>
-                            :kiron==true||pathname=="/betslip-nare"?getKironSlip()!=null?
-                              Object.keys(getKironSlip()).length:<strong className={'badge-font-weight'}>0</strong>
-                                : getBetslip()
-                                ? Object.keys(getBetslip()).length <= 50
-                                    ? <strong>{Object.keys(getBetslip()).length}</strong>
-                                        : <strong className={'badge-font-weight'}>50</strong>
-                                : <strong>0</strong>}
-                    </Badge>
-                </Link>
+    </Link>
+</td>
+
+<td className={` nav__betslip bloc-icon bet-slip-footer-toggle text-white`}>
+    <Link to={ {pathname:`${jackpot?"/betslip-jackpot":kiron?`/betslip-nare`:"/betslip-slip"}`, search:`${jackpot!==undefined?'jackpot='+jackpot:''}${kiron!==undefined?'nare-league='+kiron:''}`}}
+        /*{pathname:`${jackpot?"/betslip-jackpot":kiron?`/betslip-nare`:"/betslip-slip"}`, search:`${jackpot!==undefined?'jackpot='+jackpot:''}${betslipValidationData!==undefined ?'betslipValidationData='+encodeURIComponent(JSON.stringify(betslipValidationData)):''}${jackpotData!==undefined?'&jackpotData='+encodeURIComponent(JSON.stringify(jackpotData)):''}${kiron!==undefined?'nare-league='+kiron:''}${kironValidation!==undefined ? '&nareData='+encodeURIComponent(JSON.stringify(kironValidation)):''}`}*/
+          >
+        <Badge
+            pill
+            bg="warning nav__betslip d-flex justify-content-center align-items-center text-dark"
+        >
+            {/*fixed size 50 for bets clicked*/}
+            {jackpot === true&&jackpot!=undefined||pathname=="/betslip-jackpot"
+                ? getJackpotBetslip() != null
+                    ? <strong>{Object.keys(getJackpotBetslip())?.length}</strong>
+                    : <strong className={'badge-font-weight'}>0</strong>
+                :kiron==true||pathname=="/betslip-nare"?getKironSlip()!=null?
+                        Object.keys(getKironSlip()).length:<strong className={'badge-font-weight'}>0</strong>
+                    : getBetslip()
+                        ? Object.keys(getBetslip()).length <= 50
+                            ? <strong>{Object.keys(getBetslip()).length}</strong>
+                            : <strong className={'badge-font-weight'}>50</strong>
+                        : <strong>0</strong>}
+        </Badge>
+    </Link>
+</td>
+
+<td className={`bloc-icon ${pathname === "/live" ? "active" : ""}`}>
+    <Link
+        to={`/live`}
+
+        onClick={() => gaEventTracker("Visit Live  Page")}
+    >
+        <img src={LiveSvg} alt=""></img>
+        {liveSports?.forEach((sport) => {
+            totalCount += sport.count;
+        })}
+        <p>
+            Live <span className={"text-light"}>({totalCount || 0})</span>
+        </p>
+
+    </Link>
+</td>
 
 
-                <Link
-                    to={`/live`}
-                    className={`bloc-icon ${pathname === "/live" ? "active" : ""}`}
-                    onClick={() => gaEventTracker("Visit Live  Page")}
-                >
-                    <img src={LiveSvg} alt=""></img>
-                    {liveSports?.forEach((sport) => {
-                        totalCount += sport.count;
-                    })}
-                    <p>
-                        Live <span className={"text-light"}>({totalCount || 0})</span>
-                    </p>
 
-                </Link>
+                    {state?.user ? (
+                        <td className={`bloc-icon ${pathname === "/profile" ? "active" : ""}`}>
+                            <Link
+                                to={"/profile"}
 
-                {state?.user ? (
-                    <Link
-                        to={"/profile"}
-                        className={`bloc-icon ${pathname === "/profile" ? "active" : ""}`}
-                    >
-                        <img src={ProfileSvg} alt=""></img>
-                        <p>Profile</p>
-                    </Link>
-                ) : (
-                    <Link
-                        to={"/login"}
-                        className={`bloc-icon ${pathname === "/login" ? "active" : ""}`}
-                    >
-                        <img src={ProfileSvg} alt="" style={{ width: "30px", height:"25px" }}></img>
-                        <p>Profile</p>
-                    </Link>
-                )}
-            </nav>
+                            >
+                                <img src={ProfileSvg} alt=""></img>
+                                <p>Profile</p>
+                            </Link>
+                        </td>
+                    ) : (
+                        <td className={`bloc-icon ${pathname === "/login" ? "active" : ""}`}>
+                            <Link
+                                to={"/login"}
+
+                            >
+                                <img src={ProfileSvg} alt="" style={{ width: "30px", height:"25px" }}></img>
+                                <p>Profile</p>
+                            </Link>
+                        </td>
+
+                    )}
+                </tr>
+
+            </table>
         </div>
     );
 };

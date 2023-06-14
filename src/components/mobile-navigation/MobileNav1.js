@@ -156,7 +156,7 @@ const MobileNav1 = () => {
                                     alt=""
                                     style={{height: "23px", marginTop:"-6px"}}
                                 />
-                                <span className=" new-alert-badge" >NEW</span>
+                                <span className=" new-alert-badge hot" >HOT</span>
                             </div>
                             <strong style={{textAlign: "center"}}>
                                 Aviator
@@ -197,7 +197,7 @@ const MobileNav1 = () => {
                                     alt=""
                                     style={{height: "23px", marginTop:"-6px"}}
                                 />
-                                <span className="new-alert-badge" >NEW</span>
+                                <span className="new-alert-badge hot" >HOT</span>
                             </div>
                             <strong style={{textAlign: "center"}}>
                                 Casino
@@ -217,7 +217,7 @@ const MobileNav1 = () => {
                                     alt=""
                                     style={{height: "23px", marginTop:"-6px"}}
                                 />
-                                <span className="new-alert-badge hot" >Hot</span>
+                                <span className="new-alert-badge hot" >HOT</span>
                             </div>
                             <strong style={{textAlign: "center"}}>
                                 Jackpot
@@ -237,7 +237,7 @@ const MobileNav1 = () => {
                                     alt=""
                                     style={{height: "23px", marginTop:"-6px"}}
                                 />
-                                <span className=" new-alert-badge" >NEW</span>
+                                <span className=" new-alert-badge hot" >HOT</span>
                             </div>
                             <strong style={{textAlign: "center"}}>
                                JetX
@@ -257,7 +257,7 @@ const MobileNav1 = () => {
                                     alt=""
                                     style={{height: "23px", marginTop:"-6px", width:'30px'}}
                                 />
-                                <span className=" new-alert-badge" >NEW</span>
+                                <span className=" new-alert-badge hot" >HOT</span>
                             </div>
                             <strong style={{textAlign: "center"}}>
                                 Spaceman

@@ -5,6 +5,7 @@ import {
 } from "../utils/betslip";
 import { getFromLocalStorage } from "../utils/local-storage";
 import KironslipSubmitForm from "./kironslip-submit-form";
+import {Link} from "react-router-dom";
 
 const clean_rep = (str) => {
     str = str.replace(/[^A-Za-z0-9\-]/g, "");
@@ -226,7 +227,7 @@ const KironSlip = (props) => {
                                                 onClick={() => handledRemoveSlip(slip)}
                                             />
                                         </div>
-                                        <a
+                                        <Link
                                             href={`${
                                                 slip?.bet_type === "0"
                                                     ? "/match/" + slip?.match_id
@@ -290,7 +291,7 @@ const KironSlip = (props) => {
                                             <div className="row">
                                                 <div className="warn">{slip?.comment} </div>
                                             </div>
-                                        </a>
+                                        </Link>
                                     </li>
                                 );
                             })

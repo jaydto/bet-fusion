@@ -2,7 +2,7 @@
 body {
     font-size: var(--betnare-font-size-nav);
     line-height: var(--body-line-weight);
-    background: var(--betnare-header-bg);
+    background: var(--betnare-primary);
     max-width: 100% !important
 }
 .decode-bg{
@@ -931,9 +931,9 @@ img.nare-league {
         border-radius: 1.3rem!important;
         /* position: fixed; */
         top: 0.3rem;
-        width: 50%!important;
+        width: 35%!important;
         z-index: 2000;
-        right: 45px;
+        right: 30%;
         padding: 7px!important;
         border-radius-bottom-right: 0px!important;
         /* border-bottom-right-radius: 0px!important; */
@@ -1213,13 +1213,14 @@ img.nare-league {
         margin-top: -5px;
     }
     .sticky-logged-in-testimony {
+        margin: 0.5px 0px;
         position: sticky;
-        /*top: 137px;*/
-        top:0px;
-        border-radius: 7px;
+        border-radius: 2px;
+        border-radius: 5px;
         z-index: 1999 !important;
         opacity: 1;
         background: var(--testimonial);
+        border: 1px solid var(--betnare-button-login)!important;
     }
 
     .sticky-user{
@@ -1300,6 +1301,13 @@ img.nare-league {
     }
 }
 @media (min-width: 992px){
+    .alert-message-line-height{
+        line-height:1.3;
+        border-radius: 3px;
+        padding: 2px 5px!important;
+        text-align: justify;
+        font-weight: 500;
+    }
     .jackpot-text-inactive{
         fontSize:15px;
         font-weight:700;
@@ -1374,6 +1382,20 @@ img.nare-league {
 }
 
 @media (max-width: 991px){
+    .styling-mobile-size{
+        overflow: hidden;
+        height: 0px;
+    }
+    .item3 {
+        /* flex: 1 1 auto; */
+        flex-grow: 1;
+        visibility: hidden;
+        height: 0px;
+        overflow: auto;
+    }
+    .mobile-full-height{
+        height:100vh;
+    }
     .bloc-icon {
         width: 50%;
         display: flex;

@@ -100,7 +100,7 @@ const  AllMarkets= (props) => {
                 <div className="item2 size-all-markets" >
                     <div className="gz home" style={{ width: "100%" ,marginBottom:"5rem"}}>
 
-                        <div className="homepage vh-100">
+                        <div className="homepage mobile-full-height">
 
                             <MarketList
                                 allMarkets={allMarkets}

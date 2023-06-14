@@ -212,7 +212,7 @@ const BetslipPage = () => {
           </div>
         </div>
         {/*<footer>*/}
-        <div >
+        <div className={"styling-mobile-size"}>
           <Right betslipValidationData={betslipValidationData} jackpotData={ jackpotData} jackpot={jackpot?true:false}/>
         </div>
         {/*</footer>*/}

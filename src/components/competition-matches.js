@@ -119,7 +119,7 @@ const   CompetitionMatches= () => {
                 <div className="item1"> <SideBar loadCompetitions/></div>
                 <div className="item2"><div className="gz home match-overflow " >
                     <div className="gz home match-overflow" >
-                        <div className="homepage vh-100">
+                        <div className="homepage mobile-full-height">
                             <CarouselLoader/>
                             <Testimonials/>
                             {matches && <MatchList

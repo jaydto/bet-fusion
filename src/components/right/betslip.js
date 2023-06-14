@@ -242,7 +242,7 @@ const BetSlip = (props) => {
             <>
                 {message?.status && message?.message && (
                     <div
-                        className={`fade col shadow p-0 alert-${c} show position-sticky`}
+                        className={`fade col shadow p-0 alert-${c} show position-sticky alert-message-line-height`}
                     >
                         {message.message}
                     </div>

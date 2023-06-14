@@ -1309,9 +1309,9 @@ img.nare-league {
     .smart-images{
         width:100%
     }
-    .smart-soft-image-size{
-        min-height: 200px;
-        height:200px;
+    .smart-soft-image-size {
+        min-height: 170px;
+        height: 170px;
     }
     .smart-soft-games-container .smart-soft-game:first-child {
         width: 33%!important;
@@ -1811,6 +1811,10 @@ img.nare-league {
     }
 }
 @media (max-width: 767px){
+    .virtual-width {
+        width: 50% !important;
+        margin: auto;
+    }
     .odds-container-size{
         min-height:23px;
     }

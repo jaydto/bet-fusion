@@ -1417,6 +1417,14 @@ img.nare-league {
 }
 
 @media (max-width: 991px){
+    .alert-success {
+        color: #0f5132;
+        background-color: #d1e7dd;
+        border-color: #badbcc;
+        position: absolute!important;
+        width: 100%;
+        top: 10rem;
+    }
     .smart-soft-games-container .smart-soft-game {
         width: 50%!important;
     }

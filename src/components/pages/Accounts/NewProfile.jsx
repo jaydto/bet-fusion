@@ -1,25 +1,52 @@
-import React, {useState} from 'react';
+import React, {useCallback, useContext, useEffect, useState} from 'react';
 import './component/newProfile.css'
 import {Link} from "react-router-dom";
 import accounts from '../../../assets/img/mobile/user.png'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBars, faCoins, faDownload, faFire, faHome, faPowerOff, faUpload} from "@fortawesome/free-solid-svg-icons";
 import {formatNumber} from "../../utils/betslip";
-import {getFromLocalStorage} from "../../utils/local-storage";
+import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
 import Right from "../../right";
-// import SidebarProfile from "../../sidebar/sidebarProfile";
+import SidebarProfile from "../../sidebar/sidebarProfile";
+import makeRequest from "../../utils/fetch-request";
+import {Context} from "../../../context/store";
 const NewProfile = () => {
-	const [user, ] = useState(getFromLocalStorage("user"));
+	const [user, setUser] = useState(getFromLocalStorage("user"));
+	const [state,dispatch]=useContext(Context)
+	const updateUserOnHistory = () => {
+		if (!user) {
+			return false;
+		}
+		let endpoint = "/v1/balance";
+		let udata = {
+			token: user.token
+		}
+		makeRequest({url: endpoint, method: "post", data: udata}).then(([_status, response]) => {
+			if (_status == 200) {
+				let u = {...user, ...response.user};
+				setLocalStorage('user', u);
+				setUser(u)
+				dispatch({type: "SET", key: "user", payload: u});
+			}
+		});
+
+	};
+
+
+
+	useEffect(() => {
+		updateUserOnHistory()
+	}, [updateUserOnHistory])
 	return (
 		<>
 			{/*todo else clause */}
 			<div>
-			<div className="profile-container-desktop">
-				{/*<div className={'col-3 mobile-ipad-remove-profile'}>*/}
-				{/*	<SidebarProfile/>*/}
-				{/*</div>*/}
+			<div className="profile-container-desktop d-flex">
+				<div className={' mobile-ipad-remove-profile stats-desktop'}>
+					<SidebarProfile/>
+				</div>
 
-				<div className="col-12 mobile-full-width">
+				<div className="col mobile-full-width">
 					<div className="iphone">
 						<div className="header-profile">
 							<div className="user-profile d-flex align-items-center">
@@ -30,7 +57,7 @@ const NewProfile = () => {
 								<div className="summary-text d-flex gap-3">
 									{/*	session information*/}
 									<>
-										My Account
+										My Account (<span className={"text-warning"}>{+state?.user?.msisdn}</span>)
 									</>
 									<Link
 										to={{pathname: "/"}}

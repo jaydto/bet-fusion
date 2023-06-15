@@ -84,6 +84,35 @@ const BetslipSubmitForm = (props) => {
 
     const scrollToRef = useRef(null);
 
+    const [user, setUser] = useState(getFromLocalStorage("user"));
+
+    const updateUserOnHistory = () => {
+        if (!user) {
+            return false;
+        }
+        let endpoint = "/v1/balance";
+        let udata = {
+            token: user.token
+        }
+        makeRequest({url: endpoint, method: "post", data: udata}).then(([_status, response]) => {
+            if (_status == 200) {
+                let u = {...user, ...response.user};
+                setLocalStorage('user', u);
+                setUser(u)
+                dispatch({type: "SET", key: "user", payload: u});
+                setMessage(null)
+                dispatch({type: "SET", key: "placebet", payload: true});
+            }
+        });
+
+    };
+
+
+
+    useEffect(() => {
+        updateUserOnHistory()
+    }, [message?.message])
+
     useEffect(() => {
         if (scrollToRef.current) {
             scrollToRef.current.scrollIntoView({ behavior: 'auto' });
@@ -676,10 +705,10 @@ const BetslipSubmitForm = (props) => {
                         value={totalOdds}
                     />
                     <input
-                           type="hidden"
-                           name={"total_games"}
-                           id={"total_games"}
-                           value={totalGames}
+                        type="hidden"
+                        name={"total_games"}
+                        id={"total_games"}
+                        value={totalGames}
                     />
                 </FormikForm>)
             }}

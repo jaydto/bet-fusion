@@ -1309,18 +1309,28 @@ img.nare-league {
     .smart-images{
         width:100%
     }
-    .smart-soft-image-size {
-        min-height: 170px;
-        height: 170px;
-    }
+   /*  .smart-soft-image-size {*/
+   /*     min-height: 120px;*/
+   /*     height: 120px;*/
+   /* }*/
+   /*.smart-soft-game .smart-soft-image-size:first-child {*/
+   /*     min-height: 145px;*/
+   /*     height: 120px;*/
+   /* }*/
     .smart-soft-games-container .smart-soft-game:first-child {
         width: 33%!important;
+        /*min-height: 150px;*/
+        /*height: 150px;*/
     }
     .smart-soft-games-container .smart-soft-game:nth-child(2) {
         width: 33%!important;
+        /*min-height: 150px;*/
+        /*height: 150px;*/
     }
     .smart-soft-games-container .smart-soft-game:nth-child(3) {
         width: 33%!important;
+        /*min-height: 150px;*/
+        /*height: 150px;*/
     }
     .alert-message-line-height{
         line-height:1.3;

@@ -69,10 +69,10 @@ const SmartPlay = (props) => {
             <Header/>
             <div className="amt">
                 <div className="d-flex flex-row justify-content-between">
-                    <div className="col-md-12">
+                    <div className="col-md-12 w-100">
                         <div className="homepage">
                             <div
-                                className={`col-md-12 ${gameUrlLoaded ? 'd-none' : 'd-block'}`}>
+                                className={`col-md-12 w-100 ${gameUrlLoaded ? 'd-none' : 'd-block'}`}>
                                 <SkeletonTheme baseColor="#0e131b" highlightColor="#3f6878">
                                     <Skeleton height={'100px'}/>
                                 </SkeletonTheme>

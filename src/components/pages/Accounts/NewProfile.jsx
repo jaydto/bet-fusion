@@ -1,28 +1,128 @@
-import React, {useState} from 'react';
+import React, {useCallback, useContext, useEffect, useState} from 'react';
 import './component/newProfile.css'
 import {Link} from "react-router-dom";
 import accounts from '../../../assets/img/mobile/user.png'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBars, faCoins, faDownload, faFire, faHome, faPowerOff, faUpload} from "@fortawesome/free-solid-svg-icons";
 import {formatNumber} from "../../utils/betslip";
-import {getFromLocalStorage} from "../../utils/local-storage";
+import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
 import Right from "../../right";
+import SidebarProfile from "../../sidebar/sidebarProfile";
+import makeRequest from "../../utils/fetch-request";
+import {Context} from "../../../context/store";
+
 const NewProfile = () => {
 	const [user, ] = useState(getFromLocalStorage("user"));
+	const [utmSource,] = useState('')
+	const [state,dispatch]=useContext(Context)
+
+	const configureCampaignCookie = () => {
+
+		let url = new URL(window.location)
+
+		let utm_source = url.searchParams.get('utm_source')
+
+		let utm_campaign = url.searchParams.get('utm_campaign')
+
+		if (utm_source !== null) {
+			setLocalStorage('utm_source', utm_source)
+		}
+
+		if (utm_campaign !== null) {
+			setLocalStorage('utm_campaign', utm_campaign)
+		}
+	}
+
+	useEffect(() => {
+		configureCampaignCookie()
+	}, [utmSource])
+
+	const fetchAppConfigurations = useCallback(async () => {
+
+		let cached_settings = getFromLocalStorage('settings');
+
+		let endpoint = "/v1/bet/settings";
+
+		if (!cached_settings) {
+
+			const [result] = await Promise.all([
+				makeRequest({url: endpoint, method: "POST", data: null}),
+			]);
+
+			let [c_status, c_result] = result
+
+
+			if (c_status === 200) {
+
+				setLocalStorage('settings', c_result?.message);
+			}
+
+		} else {
+
+		}
+	})
+
+	useEffect(() => {
+
+		const abortController = new AbortController();
+
+		fetchAppConfigurations();
+
+		return () => {
+			abortController.abort();
+		};
+	}, []);
+
+	const updateUserOnHistory = useCallback(() => {
+		if (!user) {
+			return false;
+		}
+		let endpoint = "/v1/balance";
+		let udata = {
+			token: user.token
+		}
+		makeRequest({url: endpoint, method: "post", data: udata}).then(([_status, response]) => {
+			if (_status == 200) {
+				let u = {...user, ...response.user};
+				setLocalStorage('user', u);
+
+				dispatch({type: "SET", key: "user", payload: u});
+			}
+		});
+
+	}, []);
+
+
+	const updateUserOnLogin = useCallback(() => {
+		dispatch({type: "SET", key: "user", payload: user});
+	}, [user?.msisdn, user?.balance]);
+
+
+	useEffect(() => {
+		updateUserOnHistory()
+	}, [updateUserOnHistory])
+
+
+	useEffect(() => {
+		updateUserOnLogin()
+	}, [updateUserOnLogin])
 	return (
 		<>
 			{/*todo else clause */}
 			<div>
-			<table className="mybets">
+			<div className="profile-container-desktop d-flex">
+				<div className={' mobile-ipad-remove-profile stats-desktop'}>
+					<SidebarProfile/>
+				</div>
 
-				<div className="container">
+				<div className="col mobile-full-width">
 					<div className="iphone">
-						<div className="header">
+						<div className="header-profile">
 							<div className="user-profile d-flex align-items-center">
 								<img src={accounts} className="user-photo "/>
 
 							</div>
-							<div className="header-summary">
+							<div className="header-profile-summary">
 								<div className="summary-text d-flex gap-3">
 									{/*	session information*/}
 									<>
@@ -158,7 +258,7 @@ const NewProfile = () => {
 						</div>
 					</div>
 				</div>
-			</table>
+			</div>
 			</div>
 			<div className={'ipad-show'}>
 				<Right/>

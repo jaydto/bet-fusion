@@ -16,7 +16,7 @@ import {Col, Row} from "antd";
 import authImg from "../../../assets/img/Logo.webp";
 import betNiMoto from "../../../assets/img/BetniMoto.webp";
 import only18 from "../../../assets/img/auth/18only.png";
-import {getFromLocalStorage} from "../../utils/local-storage";
+import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
 import backgroundURL from "../../../assets/img/auth/img-17.webp";
 const backgroundStyle = {
     backgroundImage: `url(${backgroundURL})`,
@@ -26,12 +26,37 @@ const backgroundStyle = {
 const Withdrawal = (props) => {
     //todo get the phone number from logged in user ....
     const [state, dispatch] = useContext(Context);
-    const user = getFromLocalStorage("user");
     const navigate = useNavigate();
 
     const [success, setSuccess] = useState(false);
     const [message, setMessage] = useState(null);
     const {mobile}=props;
+
+    const [user, setUser] = useState(getFromLocalStorage("user"));
+    const updateUserOnHistory = () => {
+        if (!user) {
+            return false;
+        }
+        let endpoint = "/v1/balance";
+        let udata = {
+            token: user.token
+        }
+        makeRequest({url: endpoint, method: "post", data: udata}).then(([_status, response]) => {
+            if (_status == 200) {
+                let u = {...user, ...response.user};
+                setLocalStorage('user', u);
+                setUser(u)
+                dispatch({type: "SET", key: "user", payload: u});
+            }
+        });
+
+    };
+
+
+
+    useEffect(() => {
+        updateUserOnHistory()
+    }, [message])
 
     const initialValues = {
         amount: '',

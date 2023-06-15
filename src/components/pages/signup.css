@@ -1,0 +1,26 @@
+.sign-up-page{
+    display: flex;
+    color:var(--light);
+    font-size: 14px;
+    height:100%;
+    margin:auto;
+}
+.sign-up-page >button{
+    color:var(--light)!important;
+}
+.button-sign-up-text-color{
+    color:var(--light) !important;
+    opacity:0.6;
+}
+.stepper-info{
+    display: flex;
+    flex-direction: column;
+    font-size: 20px!important;
+    color:var(--light)!important;
+}
+.stepper-info >text{
+    font-size: 20px!important;
+}
+.stepper-info >circle{
+    font-size: 20px!important;
+}

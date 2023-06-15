@@ -59,6 +59,9 @@
     flex-direction: column;
     font-family: 'Montserrat', sans-serif;
     color: white;
+    justify-content: space-between;
+    margin-left: auto;
+    padding-right: 8%;
 }
 .summary-text {
     font-size: 1.5rem;

@@ -974,6 +974,7 @@ const MatchRow = (props) => {
                             </div>
                             <div className="d-flex flex-row px-1 justify-content-end change-date1 mobile-only display-ipad-dates">
                                             <span className={'date-size wrapping px-3'}>
+
                                             {live==1 && match?.match_time ? (
                                                 <div className={'d-flex gap-3 align-items-center'}>
                                                   <div className={'live-status'}>
@@ -1066,7 +1067,7 @@ const MatchRow = (props) => {
                                   </span>
                                                          </div>
                                                      }
-                                                     {new Date(match?.start_time).getDate() +
+                                                     {live!==1&&new Date(match?.start_time).getDate() +
                                                          "/" +
                                                          (Number(new Date(match?.start_time).getMonth()) + 1) +
                                                          " " +

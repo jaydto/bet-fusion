@@ -215,28 +215,19 @@ const DailyJackpotTermsAndConditions = () =>
                     <AccordionItemPanel className={'accordion-item-panel'}>
                         <ul>
                             <li>
-                                Daily Jackpot players are eligible as WINNERS when they make 11/11 correct Predictions.
-                                They also WIN various Bonus Prizes when they make ZERO (0/11) Correct predictions and
-                                ELEVEN (11) Correct Predictions.
+                                I.	Daily Jackpot players are eligible as WINNERS when they make 11/11 correct Predictions. They also WIN various Bonus Prizes when they make NINE (9/11) Correct predictions and ELEVEN (11) Correct Predictions.
                             </li>
                             <li>
-                                Where ONE (1) or MORE games are CANCELLED, INTERRUPTED, ABANDONED, SUSPENDED or
-                                POSTPONED, BetNare may at its discretion, AWARD the Jackpot BET ID with the highest
-                                correct predictions within 48 hours of CANCELLATION or REFUND ALL STAKES collected on
-                                the SPECIFIC JACKPOT.
+                                II.	Where ONE (1) or MORE games are CANCELLED, INTERRUPTED, ABANDONED, SUSPENDED or POSTPONED, BetNare may at its discretion, AWARD the Jackpot BET ID with the highest correct predictions within 48 hours of CANCELLATION or REFUND ALL STAKES collected on the SPECIFIC JACKPOT.
                             </li>
                             <li>
-                                ZERO out of ELEVEN outcomes - In an instance THAT a player gets 0/11 CORRECT predictions
-                                on the Running Jackpot, they automatically get a (FREE TICKET) onto the next available
-                                BetNare Daily Jackpot. This Offer is ONLY available to players who get ZERO out of the
-                                ELEVEN available jackpot games to play from.
+                                III.	<b>ZERO out of ELEVEN outcomes</b> - In an instance THAT a player gets 0/11 CORRECT predictions on the Running Jackpot, they automatically get a (FREE TICKET) onto the next available BetNare Daily Jackpot. This Offer is ONLY available to players who get ZERO out of the ELEVEN available jackpot games to play from.
                             </li>
                             <li>
-                                TEN OUT OF ELEVEN outcomes - BetNare Jackpot contains 11 games, the Jackpot bonuses are
-                                from 10 correct games. The Jackpot bonus amount shall vary between the Jackpot Bonuses.
-                                The prize allocated to the Bonus winners is completely at BetNare’s discretion. Any
-                                Jackpot Bonus shall be divided equally among the Jackpot bonus winners if there is more
-                                than ONE winner within the respective class.
+                                IV.	<b>NINE OUT OF ELEVEN outcomes</b> - In an instance THAT a player gets 9/11 CORRECT predictions on the Running Jackpot, they automatically get a (1,000 KES) that is Withdrawable. This Offer is ONLY available to players who get NINE out of the ELEVEN available jackpot games to play from.
+                            </li>
+                            <li>
+                                V.	<b>TEN OUT OF ELEVEN outcomes</b> - BetNare Jackpot contains 11 games, the Jackpot bonuses are from 10 correct games. The Jackpot bonus amount shall vary between the Jackpot Bonuses. The prize allocated to the Bonus winners is completely at BetNare’s discretion. Any Jackpot Bonus shall be divided equally among the Jackpot bonus winners if there is more than ONE winner within the respective class.
                             </li>
                         </ul>
                         <h4>

@@ -1,6 +1,5 @@
 import React, {useEffect, useCallback, useState, useContext, useRef} from 'react';
-import {Link, useNavigate} from "react-router-dom"
-import Container from 'react-bootstrap/Container';
+import {Link} from "react-router-dom"
 import Row from 'react-bootstrap/Row';
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 import {Context} from '../../context/store';
@@ -16,19 +15,20 @@ import SidebarMobile from "../sidebar/awesome/SidebarMobile";
 import MobileNav1 from "../mobile-navigation/MobileNav1";
 
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCloudDownloadAlt, faCoins, faList, faSearch, faTimes} from "@fortawesome/free-solid-svg-icons";
+import { faTimes} from "@fortawesome/free-solid-svg-icons";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import ListGroup from "react-bootstrap/ListGroup";
-import {formatNumber} from "../utils/betslip";
 import LoginSection from "./LoginSection";
+import {UserInfo} from "./UserInfo";
 const ProfileMenu = React.lazy(() => import('./profile-menu'));
 const HeaderNav = React.lazy(() => import('./header-nav'));
 
 const Header = (props) => {
+    const {slip}=props
     const gaEventTracker = useAnalyticsEventTracker('Navigation');
     const [user, setUser] = useState(getFromLocalStorage("user"));
-    const [, dispatch] = useContext(Context);
-    const [searching, setSearching] = useState(false)
+    const [state, dispatch] = useContext(Context);
+    // const [searching, setSearching] = useState(false)
     const containerRef = useRef();
     const searchInputRef = useRef(null)
     const [matches, setMatches] = useState([])
@@ -39,13 +39,14 @@ const Header = (props) => {
 
 
     const dismissSearch = () => {
-        setSearching(false)
+        // setSearching(false)
+        dispatch({type: "SET", key: "searching", payload: false})
         setMatches([])
     }
 
     useEffect(() => {
         fetchMatches()
-    }, [searching])
+    }, [state?.searching])
     const fetchMatches = async (search) => {
 
         if (search && search.length >= 3) {
@@ -143,14 +144,15 @@ const Header = (props) => {
                 let u = {...user, ...response.user};
                 setLocalStorage('user', u);
                 setUser(u)
-                dispatch({type: "SET", key: "user", payload: user});
+                dispatch({type: "SET", key: "user", payload: u});
             }
         });
 
     }, [current]);
 
     const showSearchBar = () => {
-        setSearching(true)
+        // setSearching(true)
+        dispatch({type: "SET", key: "searching", payload: true})
         // searchInputRef.current.focus()
         gaEventTracker('Clicked on Search')
     }
@@ -183,6 +185,9 @@ const Header = (props) => {
         }
 
     },[ pathname ])
+
+
+
     return (
         <>
             <ToastContainer/>
@@ -194,105 +199,8 @@ const Header = (props) => {
                                 <img src={logo} alt="Betnare" title="Betnare" effects="blur"
                                      className={`image-size ${!user&&'logo-top'}`} style={user?{marginBottom:"0px" }:{marginBottom:"11px", width:'auto'}}/>
                             </Link>
-                            {user &&
-                                <div
-                                    className="col-md-6  d-flex  right justify-content-end align-items-center w-change2 gap-2 ipad-show"
-                                    style={{marginLeft: 'auto'}}>
 
-                                    <div>
-                                        <Link
-                                            to={{pathname: "/deposit"}}
-                                            className={"deposit-button size-font-user-action"}>
-                                          <span className="">
-                                           <span className=" "> <FontAwesomeIcon
-                                               icon={faCloudDownloadAlt} /></span>&nbsp;
-                                              DEPOSIT
-                                          </span>
-                                        </Link>
-                                    </div>
-                                    <div>
-
-                                        <div
-                                            className={"deposit-button size-font-user-action d-flex align-items-center"}
-                                            style={{marginRight: "12px"}}>
-                                          <span className="text-warning">
-                                           <span className=" "><FontAwesomeIcon icon={faCoins} className={"text-warning"}/>
-                                               </span>&nbsp;
-                                              KSH {formatNumber(user.balance) || 0}
-                                          </span>
-                                        </div>
-                                    </div>
-                                    <div className={'mybets-remove-on-mobile'}>
-                                        <Link
-                                            to={{pathname: "/mybets"}}
-                                            className={"deposit-button size-font-user-action"}>
-                                          <span className={"text-success"}>
-                                           <span className=" "> <FontAwesomeIcon
-                                               icon={faList}/></span>&nbsp;
-                                              MY BETS
-                                          </span>
-                                        </Link>
-                                    </div>
-                                    <div className='d-flex align-items-baseline'>
-                                        <div className={` align-items-center  ${searching ? 'd-none' : 'd-flex'}`}>
-                                            <Link className="" to={"#"} title="Search"
-                                                  onClick={() => {
-                                                      showSearchBar();gaEventTracker('Visit Search')
-                                                  }}>
-                                                <span
-                                                    className="border-radius-search p-2 align-items-center  justify-content-center d-flex"><FontAwesomeIcon
-                                                    icon={faSearch}/> </span><span
-                                            ></span>
-                                            </Link>
-                                        </div>
-                                    </div>
-                                    <div className="col-1 button-toggle space-button"
-                                         style={{width: "4.1rem", overflowY: "auto", marginLeft: '20px'}}>
-                                        <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"lg"}`}
-                                                       className="px-3 py-3" onClick={toggle}/>
-                                    </div>
-                                </div>}
-                                    <>
-                                    {!user&&<div className="col-sm-2 mobile-profile1 align-items-center gap-3 ipad-show" style={{marginLeft:'auto'}}>
-                                        {pathname!=='/signup'&&<div className="remove-verify">
-                                            <Link className="cg  login-color login-size btn bg-success text-light"
-                                                  to={"/verify"} title="Verify Account"
-                                                  onClick={() => gaEventTracker('Verify')}>
-                                                <span className="register-label text-light">Verify</span>
-                                            </Link>
-                                        </div>}
-                                        {pathname!=='/signup'&&<div className="">
-                                            <Link className="cg  login-color login-size btn bg-warning text-light"
-                                                  to={"/signup"} title="Join now"
-                                                  onClick={() => gaEventTracker('Register')}>
-                                                <span className="button-text-color-on-yellow text-weight-md">Register</span>
-                                            </Link>
-                                        </div>}
-
-                                        {pathname!=='/signup'&&<Link to={"/login"} className="cg  login-color login-size btn" type="submit" style={{backgroundColor:'#527994FF'}}>
-                                            <span>Login</span>
-                                        </Link>}
-                                        {pathname!=='/signup'&&<div className='d-flex align-items-baseline'>
-                                            <div className={` align-items-center  ${searching ? 'd-none' : 'd-flex'}`}>
-                                                <Link className="" to={"#"} title="Search"
-                                                      onClick={() => {
-                                                          showSearchBar();gaEventTracker('Visit Search')
-                                                      }}>
-                                                    <span
-                                                        className="border-radius-search p-2  justify-content-center d-flex"><FontAwesomeIcon
-                                                        icon={faSearch}/> </span><span
-                                                ></span>
-                                                </Link>
-                                            </div>
-                                        </div>}
-                                        <div className="col-1 button-toggle space-button" style={{width: "4.1rem", overflowY:"auto",marginLeft:'20px'}}>
-                                            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"lg"}`} className="px-3 py-3" onClick={toggle} />
-                                        </div>
-
-                                    </div>}
-    </>
-
-
+                        <UserInfo/>
                         </Navbar.Brand>
 
                         {/*todo check information provided for a user*/}
@@ -308,7 +216,7 @@ const Header = (props) => {
                     <Row className={`second-nav ck pc os app-navbar ${user?' app-header-nav-login ':' app-header-nav '} to-navcheck `}>
                         <HeaderNav/>
                     </Row>
-                        {searching?
+                        {state?.searching?
                             <div id="navbar-collapse-main"
                                        className={`fadeIn header-menu d-flex justify-content-center w-100 d-block`}>
                                 <ListGroup as="ul" xs="9" horizontal className="nav navbar-nav og ale ss col-12 text-center w-100 d-flex">
@@ -336,7 +244,7 @@ const Header = (props) => {
 
                                 </ListGroup>
                             </div>
-                        :(pathname!=='/signup')&&pathname!=='/nare-league'&&pathname!=='/results'&& pathname!=='/standing'&&pathname!=='/playouts'&&pathname!=='/standing  '&&pathname!=='/bet-history'&&<MobileNav1/>}
+                        :(pathname!=='/signup')&&pathname!=='/nare-league'&&pathname!=='/results'&& pathname!=='/standing'&&pathname!=='/playouts'&&pathname!=='/standing  '&&pathname!=='/bet-history'&&!slip&&<MobileNav1/>}
 
 
                     <Navbar.Offcanvas

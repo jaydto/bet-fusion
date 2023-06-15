@@ -29,7 +29,7 @@ const SearchComponent = (props) => {
 
     return (
         <div className={'w-100'}>
-            <div className="search-container w-100">
+            <div className="search-container ">
             <input type="text" name="search" placeholder="Search..."
                    value={searchTerm}
                    onChange={handleSearch} className="search-input"/>

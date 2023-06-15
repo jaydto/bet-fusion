@@ -8,6 +8,7 @@ import {toast, ToastContainer} from "react-toastify";
 import { useLocation } from 'react-router-dom';
 import SearchComponent from "./searchField";
 import {Context} from "../../../context/store";
+import SideBar from "../../sidebar/awesome/Sidebar";
 
 const Virtuals = (props) => {
 
@@ -61,9 +62,10 @@ const Virtuals = (props) => {
             {/* <OnlineCheck setIsOnline={setIsOnline} isOnline={isOnline}/> */}
             {/*{showLoadingModal && ( <LoginModal setShowLoadingModal={setShowLoadingModal} visible={showLoadingModal} location={location}/>)}*/}
             <ToastContainer/>
-            <div >
+            <div className={'d-flex'}>
                 <div className="d-flex flex-row">
-                    <div className="gz home top-spacing" style={{width: '100%'}}>
+                    <div className="gz home top-spacing d-flex" style={{width: '100%'}}>
+                        <div className="stats-desktop "><SideBar loadCompetitions/></div>
                         <div className="homepage">
                             <div className="col-md-12 d-flex flex-column">
                                 <div className="col-md-12">
@@ -79,7 +81,7 @@ const Virtuals = (props) => {
                                 <div className="col">
                                     <div className={'row text-white p-2 shadow-sm virtual-size'}>
                                         {state?.casino_search!==undefined&&state?.casino_search.length>0?state?.casino_search?.map((search_game)=>(
-                                                <div className={'col-md-2 virtual-width'}>
+                                                <div className={'col-lg-2 col-md-6 col-sm-6 virtual-width'}>
                                                     <div
                                                         className={'mt-1 mb-1 d-flex flex-column shadow-lg virtual-game-container'}>
                                                         <div onClick={() => launchGame(search_game?.game_id, true)}
@@ -106,7 +108,7 @@ const Virtuals = (props) => {
                                             ))
                                             :
                                             games?.map((game) => (
-                                                    <div className={'col-md-2 virtual-width'}>
+                                                    <div className={'col-lg-2 col-md-4 col-sm-12 virtual-width'}>
                                                         <div
                                                             className={'mt-1 mb-1 d-flex flex-column shadow-lg virtual-game-container'}>
                                                             <div onClick={() => launchGame(game?.game_id, true)}

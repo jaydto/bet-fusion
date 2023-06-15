@@ -206,7 +206,7 @@ input.text-white{
     background: #fff;
     color: var(--dark)!important;
     height: 30px;
-    width: 100vw;
+    /*width: 100vw; */
     border-radius: 16px;
     padding: 17px 24px;
     display: flex;
@@ -246,9 +246,7 @@ input.text-white{
     color: rgb(255, 166, 0);
     text-shadow: rgb(0, 0, 0) 6px 2px 2px;
 }
-.smart-soft-games-container .smart-soft-game:first-child {
-    width: 100%!important;
-}
+
 #nare-games-header {
     font-family: Amita, cursive;
     font-style: italic;
@@ -852,6 +850,9 @@ img.nare-league {
     z-index: 150;
     opacity: 1;
 }
+.smart-soft-image-size{
+    height:150px;
+}
 /*back button*/
 .original-button {
     display: flex;
@@ -1301,6 +1302,39 @@ img.nare-league {
     }
 }
 @media (min-width: 992px){
+    .casino-category-button{
+        min-width:150px;
+
+    }
+    .casino-category-container{
+        justify-content: space-between;
+    }
+    .smart-images{
+        width:100%
+    }
+   /*  .smart-soft-image-size {*/
+   /*     min-height: 120px;*/
+   /*     height: 120px;*/
+   /* }*/
+   /*.smart-soft-game .smart-soft-image-size:first-child {*/
+   /*     min-height: 145px;*/
+   /*     height: 120px;*/
+   /* }*/
+    .smart-soft-games-container .smart-soft-game:first-child {
+        width: 33%!important;
+        /*min-height: 150px;*/
+        /*height: 150px;*/
+    }
+    .smart-soft-games-container .smart-soft-game:nth-child(2) {
+        width: 33%!important;
+        /*min-height: 150px;*/
+        /*height: 150px;*/
+    }
+    .smart-soft-games-container .smart-soft-game:nth-child(3) {
+        width: 33%!important;
+        /*min-height: 150px;*/
+        /*height: 150px;*/
+    }
     .alert-message-line-height{
         line-height:1.3;
         border-radius: 3px;
@@ -1376,12 +1410,20 @@ img.nare-league {
 @media (min-width: 991px){
 
 
+
     .desktop-ipad-size{
         width:100vw!important;;
     }
 }
 
 @media (max-width: 991px){
+    .smart-soft-games-container .smart-soft-game {
+        width: 50%!important;
+    }
+
+    .smart-soft-games-container .smart-soft-game:first-child {
+        width: 50%!important;
+    }
     .styling-mobile-size{
         overflow: hidden;
         height: 0px;
@@ -1785,6 +1827,10 @@ img.nare-league {
     }
 }
 @media (max-width: 767px){
+    .virtual-width {
+        width: 50% !important;
+        margin: auto;
+    }
     .odds-container-size{
         min-height:23px;
     }

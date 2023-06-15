@@ -16,6 +16,7 @@ import fire from '../../assets/img/fire.webp'
 import {getFromLocalStorage,setLocalStorage} from "../utils/local-storage";
 import makeRequest from "../utils/fetch-request";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
+import xgame from "../../assets/img/mobile/xgames.png"
 
 import { Context } from '../../context/store';
 import LoginModal from '../modals/LoginModal';
@@ -98,6 +99,15 @@ const MobileNav1 = () => {
                 setLocalStorage("ActiveLink",'/nare-games/Aviator')
                 window.location.href='/login'
             }
+
+        }else if(game === "smart-soft"){
+            if(state?.user !== null){
+                window.location.href = "/smart-soft" }
+            else {
+                setLocalStorage("ActiveLink",'/smart-soft')
+                window.location.href='/login'
+            }
+
         }else if(game==='spaceman'){
             if(state?.user !== null){
                 window.location.href = "/gameplay/1301/1"
@@ -241,6 +251,26 @@ const MobileNav1 = () => {
                             </div>
                             <strong style={{textAlign: "center"}}>
                                JetX
+                            </strong>
+                        </div>
+                    </Link>
+
+                </td>
+                <td  className={`menu-t m-auto sport-check ${window.location.search.includes('smart-soft')?"active_link":""} `}  >
+                    <Link className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center  `}  to={`#`}  onClick={()=>{LoginCheck('smart-soft');gaEventTracker('Visit Jetx Page')}} >
+                        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center`}>
+
+                            <div className="menu-img ">
+                                <img
+                                    className="side-icon"
+                                    src={xgame}
+                                    alt=""
+                                    style={{height: "23px", marginTop:"-6px"}}
+                                />
+                                <span className=" new-alert-badge hot" >HOT</span>
+                            </div>
+                            <strong style={{textAlign: "center"}}>
+                               Xgames
                             </strong>
                         </div>
                     </Link>

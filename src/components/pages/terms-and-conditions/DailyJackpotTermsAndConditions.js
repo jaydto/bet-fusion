@@ -110,7 +110,7 @@ const DailyJackpotTermsAndConditions = () =>
 
                             </li>
                             <li>
-                                BetNare Half a Milli Daily Jackpot is based on ELEVEN (11) pre-selected Soccer games
+                                BetNare ONE Milli Daily Jackpot is based on ELEVEN (11) pre-selected Soccer games
                                 with HUGE Guaranteed bonuses starting from TEN (10) Correct predictions and ZERO (0)
                                 Correct predictions.
 
@@ -209,7 +209,7 @@ const DailyJackpotTermsAndConditions = () =>
                 <AccordionItem>
                     <AccordionItemHeading>
                         <AccordionItemButton className={"accordion-button"}>
-                            BetNare Half a Milli Daily Jackpot Bonuses
+                            BetNare  One Milli Daily Jackpot Bonuses
                         </AccordionItemButton>
                     </AccordionItemHeading>
                     <AccordionItemPanel className={'accordion-item-panel'}>
@@ -240,11 +240,11 @@ const DailyJackpotTermsAndConditions = () =>
                             </li>
                         </ul>
                         <h4>
-                            BETNARE HALF A MILLI DAILY JACKPOT
+                            BETNARE ONE MILLI DAILY JACKPOT
                         </h4>
                         <ul>
                             <li>
-                                Jackpot Amount; Kenya Shillings 500,000/=
+                                Jackpot Amount; Kenya Shillings 1,000,000/=
                             </li>
                             <li>
                                 Stake 10/=

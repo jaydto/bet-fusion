@@ -169,12 +169,12 @@ const BetSlip = (props) => {
 
         let userBonus = Number(state?.user?.bonus || 0);
 
-        if (totalGames < maxBonusGames) {
+        if ((totalGames < maxBonusGames)&&(maxBonusGames>1)) {
             let remainingGames = Number(maxBonusGames) - Number(totalGames);
             message = `Congratulations, you qualify for bonus. Add ${remainingGames} more game${
                 remainingGames > 1 ? "s" : ""
             } to place your bet using bonus.`;
-        } else if (totalGames === maxBonusGames) {
+        } else if ((totalGames === maxBonusGames)&&(maxBonusGames>1)) {
             message =
                 "Congratulations, you are eligible for a bonus bet. Allowed Bonus Bet Amount is KES " +
                 bonusBetFixedAmount;
@@ -207,8 +207,8 @@ const BetSlip = (props) => {
                 ).length < 1 && userBonus > 0;
         }
 
-        if (!bonusBetEligible) {
-            message = `To qualify for bonus bet, please select ${maxBonusGames} games each with odds ${
+        if (!bonusBetEligible&&(maxBonusGames>1)) {
+            message = `To qualify for bonus bet, please select ${maxBonusGames} game each with odds ${
                 Number(fixedOdd) === 1
                     ? " of " + perSlipBonusOdd
                     : " between " + perSlipBonusOdd + " and " + perSlipMaxOdd
@@ -285,81 +285,89 @@ const BetSlip = (props) => {
                                 let no_odd_bg = odd === 1 ? "#f29f7a" : "";
                                 // console.log(slip)
                                 return (
-                                    <li
-                                        className={`bet-option hide-on-affix ${
-                                            slip?.disable ? "warn" : ""
-                                        }`}
-                                        key={match_id}
-                                        style={{ background: no_odd_bg }}
-                                    >
-                                        <div className="bet-cancel">
-                                            <input
-                                                id={slip.match_id}
-                                                type="submit"
-                                                value="X"
-                                                onClick={() => handledRemoveSlip(slip)}
-                                            />
-                                        </div>
-                                        <Link
-                                            to={`${
-                                                slip?.bet_type === "0"
-                                                    ? "/match/" + slip?.match_id
-                                                    : "/match/live/" + slip?.parent_match_id
+                                    <>
+                                        <li
+                                            className={`bet-option hide-on-affix ${
+                                                slip?.disable ? "warn" : ""
                                             }`}
-                                            style={{ color: "inherit", fontStyle: "inherit" }}
-                                            className={"g url-link"}
+                                            key={match_id}
+                                            style={{ background: no_odd_bg }}
                                         >
-                                            <div className="bet-value">
-                                                <b>
-                                                    {
-                                                        <span
-                                                            style={{
-                                                                float: "left",
-                                                                width: "auto",
-                                                                fontWeight: "bold",
-                                                            }}
-                                                        >
-                           {slip?.sport_name==undefined?"Soccer":slip?.sport_name},&nbsp;
-                          </span>
-                                                    }
-                                                    {slip.bet_type === 0 && " Pre-match"}
-                                                    {slip.bet_type === 1 && " Live"}
-                                                </b>
+                                            <div className="bet-cancel">
+                                                <input
+                                                    id={slip.match_id}
+                                                    type="submit"
+                                                    value="X"
+                                                    onClick={() => handledRemoveSlip(slip)}
+                                                />
                                             </div>
-                                            <div className="row">
+                                            <Link
+                                                to={`${
+                                                    slip?.bet_type === "0"
+                                                        ? "/match/" + slip?.match_id
+                                                        : "/match/live/" + slip?.parent_match_id
+                                                }`}
+                                                style={{ color: "inherit", fontStyle: "inherit" }}
+                                                className={"g url-link"}
+                                            >
                                                 <div className="bet-value">
-                                                    {`${slip.home_team} - ${slip.away_team}`}
-                                                    <br />
-                                                    <span className="sp_sport"></span>
-                                                </div>
-                                            </div>
-                                            <div className="row">
-                                                <div className="bet-value">Market - {slip.odd_type}</div>
-                                            </div>
-                                            <div className="bet-pick">
-                                                <b>
-                                                    Your Pick - {slip.bet_pick}
-                                                    <span className="bet-odd">
-                          {slip.odd_value}
-                                                        {slip.odd_value === 1 && (
+                                                    <b>
+                                                        {
                                                             <span
                                                                 style={{
-                                                                    color: "#cc0000",
-                                                                    fontSize: "11px",
-                                                                    display: "block",
+                                                                    float: "left",
+                                                                    width: "auto",
+                                                                    fontWeight: "bold",
                                                                 }}
                                                             >
+                           {slip?.sport_name==undefined?"Soccer":slip?.sport_name},&nbsp;
+                          </span>
+                                                        }
+                                                        {slip.bet_type === 0 && " Pre-match"}
+                                                        {slip.bet_type === 1 && " Live"}
+                                                    </b>
+                                                </div>
+                                                <div className="row">
+                                                    <div className="bet-value">
+                                                        {`${slip.home_team} - ${slip.away_team}`}
+                                                        <br />
+                                                        <span className="sp_sport"></span>
+                                                    </div>
+                                                </div>
+                                                <div className="row">
+                                                    <div className="bet-value">Market - {slip.odd_type}</div>
+                                                </div>
+                                                <div className="bet-pick">
+                                                    <b>
+                                                        Your Pick - {slip.bet_pick}
+                                                        <span className="bet-odd">
+                          {slip.odd_value}
+                                                            {slip.odd_value === 1 && (
+                                                                <span
+                                                                    style={{
+                                                                        color: "#cc0000",
+                                                                        fontSize: "11px",
+                                                                        display: "block",
+                                                                    }}
+                                                                >
                               Market Disabled
                             </span>
-                                                        )}
+                                                            )}
                         </span>
-                                                </b>
+                                                    </b>
+                                                </div>
+                                                <div className="row">
+                                                    <div className="warn">{slip?.comment} </div>
+                                                </div>
+                                            </Link>
+                                        </li>
+                                        <div className={"line-on-slip-items-container"}>
+                                            <div className={"line-on-slip-items"}>
+
                                             </div>
-                                            <div className="row">
-                                                <div className="warn">{slip?.comment} </div>
-                                            </div>
-                                        </Link>
-                                    </li>
+                                        </div>
+                                    </>
+
                                 );
                             })
                         )}

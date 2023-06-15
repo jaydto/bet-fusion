@@ -24,7 +24,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
     faCut,
     faFireAlt,
-    faGift,
+    faGift, faQuestionCircle,
     faShare,
 } from "@fortawesome/free-solid-svg-icons";
 import {Spinner} from "react-bootstrap";
@@ -100,7 +100,9 @@ const BetslipSubmitForm = (props) => {
                 setLocalStorage('user', u);
                 setUser(u)
                 dispatch({type: "SET", key: "user", payload: u});
-                setMessage(null)
+                setTimeout(()=>{
+                    setMessage(null)
+                },5000)
                 dispatch({type: "SET", key: "placebet", payload: true});
             }
         });
@@ -152,7 +154,7 @@ const BetslipSubmitForm = (props) => {
         }
         return (<>{message?.status &&
             <div role="alert"
-                 className={`fade alert alert-${c} show alert-dismissible d-flex justify-content-between align-items-center alert-message-line-height`}>
+                 className={`fade alert alert-${c} show alert-dismissible d-flex justify-content-between align-items-center alert-message-line-height alert-position-betslip-top`}>
                 {message.message}
                 <span aria-hidden="true" style={x_style} onClick={() => setMessage(null)}>&times;</span>
             </div>}
@@ -453,7 +455,6 @@ const BetslipSubmitForm = (props) => {
             Number(state?.user?.gift_balance || 0) > 0;
 
         setAwardMultiGift(awardGifts);
-
         if (giftQualificationOdds < giftMinGames) {
             let remainingGames = Number(giftMinGames) - Number(giftQualificationOdds);
             setMultiBoostMessage(
@@ -503,7 +504,7 @@ const BetslipSubmitForm = (props) => {
             }
         );
     };
-
+    const [showInfo,setShowInfo]=useState()
     const label = { inputProps: { 'aria-label': 'accept_all_odds_change',
             'value':'accept_all_odds_change'} };
 
@@ -532,75 +533,12 @@ const BetslipSubmitForm = (props) => {
                         setFieldValue(field, value);
                     }
                 };
-
-
-                return (<FormikForm name="betslip-submit-form">
-                    <Alert/>
-                    {showShareModal && (
-                        <BetslipShareModal
-                            visible={showShareModal}
-                            payload={betSharePayload}
-                            setShowShareModal={setShowShareModal}
-                        />
-                    )}
-
-
-                    {totalGames > 0 && (
-                        <table className="bet-table w-100">
-                            <tbody className={"slip-body"}>
-
-                            {!jackpot &&
-                            awardMultiGift &&
-                            Number(totalGames) > settings?.betnareBonus?.bonusBetLegs ? (
-                                <tr className={"alert alert-success "}>
-                                    <td slip-message-alert colspan="2" className={'slip-message-alert col-2'}  style={{ width: '100%' }}>
-                                        <FontAwesomeIcon icon={faGift}/> {multiBoostMessage}
-                                    </td>
-
-                                </tr>
-                            ) : (
-                                <tr></tr>
-                            )}
-
-                            {!jackpot && <tr className="hide-on-affix">
-                                <td className={"bet-align-left"}>TOTAL ODDS</td>
-                                <td className={"bet-align-right"}>
-                                    <b>{Float(totalOdds, 2)}</b>
-                                </td>
-                            </tr>}
-                            <tr id="odd-change-text">
-                                <td colSpan="2">
-                                    {/*<label className="checkbox">*/}
-
-                                    {/*    <input type="checkbox"*/}
-                                    {/*           className="odds-change-box"*/}
-                                    {/*           name={"accept_all_odds_change"}*/}
-                                    {/*           id={"accept-all-odds-change"}*/}
-                                    {/*           checked={values?.accept_all_odds_change}*/}
-                                    {/*           onChange={(e) => onFieldChanged(e)}*/}
-                                    {/*    /> Accept any odds change*/}
-                                    {/*</label>*/}
-                                    <Switch id={"accept-all-odds-change"} {...label} className="odds-change-box" name={"accept_all_odds_change"} checked={values?.accept_all_odds_change}  color="primary" onChange={(e)=>onFieldChanged(e)}/> Accept any odds change
-                                </td>
-                            </tr>
+                const UserInfoContainer=()=>{
+                    return(
+                        <table className={"show-tax-info"}>
+                            <tbody>
                             <tr>
-                                <td className={"bet-align-left"}>Stake</td>
-                                <td className={"bet-align-right"}>
-                                    <div id="betting">
-                                        {jackpot ?
-                                            jackpotData?.bet_amount :
-                                            (<input type="text"
-                                                    className="bet-select"
-                                                    name="bet_amount"
-                                                    id="bet_amount"
-                                                    value={values.bet_amount}
-                                                    onChange={(e) => onFieldChanged(e)}
-                                            />)}
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colSpan="2"></td>
+                                {/*<td><FontAwesomeIcon icon={faCheck}</td>*/}
                             </tr>
                             {!jackpot && <tr className="bet-win-tr hide-on-affix">
                                 <td className={"bet-align-left"}>Possible winnings</td>
@@ -625,6 +563,84 @@ const BetslipSubmitForm = (props) => {
                                     </td>
                                 </tr>
                             )}
+                            </tbody>
+                        </table>
+                    )
+                }
+
+
+                const showUserInfo=()=> {
+                    setShowInfo(!showInfo)
+                }
+
+
+                return (<FormikForm name="betslip-submit-form">
+                    <Alert/>
+                    {showShareModal && (
+                        <BetslipShareModal
+                            visible={showShareModal}
+                            payload={betSharePayload}
+                            setShowShareModal={setShowShareModal}
+                        />
+                    )}
+
+                    {totalGames > 0 && (
+                        <table className="bet-table w-100 ">
+                            <thead>
+                            {showInfo&&<UserInfoContainer/>}
+                            {!jackpot &&
+                            awardMultiGift &&
+                            Number(totalGames) > settings?.betnareBonus?.bonusBetLegs ? (
+                                <tr className={" slip-message-alert "}>
+                                    <td colspan="2" className={' col-2'}  style={{ width: '100%' }}>
+                                        <FontAwesomeIcon icon={faGift}/> {multiBoostMessage}
+                                    </td>
+
+                                </tr>
+                            ) : (
+                                <tr></tr>
+                            )}
+                            </thead>
+                            <tbody className={"slip-body"}>
+
+
+
+                            {!jackpot && <tr className="hide-on-affix mt-2">
+                                <td className={"bet-align-left d-flex align-items-center "}>
+                                    TOTAL ODDS
+                                    <span onClick={()=>showUserInfo()}>
+                                        <FontAwesomeIcon icon={faQuestionCircle} className={"show-values-betslip"}/>
+                                    </span>
+                                </td>
+                                <td className={"bet-align-right"}>
+                                    <b>{Float(totalOdds, 2)}</b>
+                                </td>
+                            </tr>}
+                            <tr id="odd-change-text">
+                                <td colSpan="2" className={"odd-change-position"}>
+                                    <Switch id={"accept-all-odds-change"} {...label} className="odds-change-box" name={"accept_all_odds_change"} checked={values?.accept_all_odds_change}  color="primary" onChange={(e)=>onFieldChanged(e)}/> Accept any odds change
+                                </td>
+                            </tr>
+                            <tr>
+                                <td className={"bet-align-left"}>Stake</td>
+                                <td className={"bet-align-right"}>
+                                    <div id="betting">
+                                        {jackpot ?
+                                            jackpotData?.bet_amount :
+                                            (<input type="text"
+                                                    className="bet-select"
+                                                    name="bet_amount"
+                                                    id="bet_amount"
+                                                    value={values.bet_amount}
+                                                    onChange={(e) => onFieldChanged(e)}
+                                            />)}
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colSpan="2"></td>
+                            </tr>
+
                             <tr className="bet-win-tr hide-on-affix">
                                 <td className={"bet-align-left"}>{jackpot ? 'Jackpot Amount' : 'Net Amount'}</td>
                                 <td className={"bet-align-right"}>KES. <span

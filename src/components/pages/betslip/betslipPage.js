@@ -80,16 +80,19 @@ const BetslipPage = () => {
 
   return (
       <>
-        <Header slip={true}/>
+
         <div
             className=" "
             style={{ overflow:'hidden' }}>
+          <div >
+            <Header slip={true}/>
+          </div>
           <div className={"w-100 top-spacing-betslip "}  >
             <div className="bet-option-list w-100" id="" style={{ bottom: "0", height:"100%" }}>
               <div
                   className="bet alu  block-shadow d-flex flex-column"
               >
-                <div style={{position:"sticky",top:"7rem", width:"100%"}}>
+                <div className={"slip-tabs-top"} style={{position:"sticky", width:"100%"}}>
                   <SlipTabs tab={tab} />
                 </div>
                 <div

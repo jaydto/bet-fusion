@@ -31,8 +31,8 @@ const SidebarProfile = (props) => {
         image={false}>
         <SidebarHeader className={""}>
             <div className={'d-flex gap-4 align-items-center justify-content-start'}>
-                <Link  to="/" className={'bold px-1'}><LazyLoadImage src={'https://storage.googleapis.com/nareimages/logo-white.webp'} style={{width:"100px"}}/> </Link>
-                <h5 className={'text-warning'}>+{state?.user?.msisdn}</h5>
+                <Link  to="/" className={'bold px-1'}><LazyLoadImage src={'https://storage.googleapis.com/nareimages/logo-white.webp'} style={{width:"120px"}}/> </Link>
+
             </div>
             <Menu>
                 <MenuItem>
@@ -66,7 +66,7 @@ const SidebarProfile = (props) => {
                 <MenuItem className={"d-flex justify-content-between"}>
                     <Link  className={"d-flex gap-4 align-items-center px-3"} to={"/my-bets"}>
                         <FontAwesomeIcon icon={faQuestionCircle}/>
-                        <div className={'text-profile'} >Mybets</div>
+                        <div className={'text-profile'} >My Bets</div>
                     </Link>
                 </MenuItem>
             </Menu>
@@ -90,7 +90,7 @@ const SidebarProfile = (props) => {
             </Menu>
             <Menu>
                 <MenuItem>
-                    <Link className={"d-flex gap-4 align-items-center px-3"} to={"/points"}>
+                    <Link className={"d-flex gap-4 align-items-center px-3"} to={"/redeem-points"}>
                         <FontAwesomeIcon icon={faAddressBook}/>
                         <div className={'text-profile'} >Points</div>
                     </Link>

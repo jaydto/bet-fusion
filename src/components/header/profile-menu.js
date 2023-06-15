@@ -1,47 +1,51 @@
-import React, {useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {
-    faLock,
-    faCloudUploadAlt,
     faCloudDownloadAlt,
-    faGifts,
-    faDollarSign,
-    faListOl,
-    faSmile,
     faUserAlt,
-    faList,
-    faMoneyBillWave,
     faCoins,
-    // faAdjust,
-    faSun
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {formatNumber} from "../utils/betslip";
 import {Link} from "react-router-dom";
 import {Navbar} from "react-bootstrap";
+import {Context} from "../../context/store";
 
 const ProfileMenu = (props) => {
     const {user} = props;
+    const [state,dispatch]=useContext(Context)
     const [themeLight, setThemeLight]=useState(false)
     const handleThemeChange=()=>{
         setThemeLight(!themeLight)
         document.body.classList.toggle('light-theme');
 
     }
+    const [balance,setBalance]=useState(state?.user?.balance||user?.balance)
+
+    const urlPath=window.location.pathname
+    const searchParam=window.location.search
+    const showBalance=(!urlPath.includes("nare-games")&&!urlPath.includes("gameplay")&&!urlPath.includes("smart-play"))
+
+
+    useEffect(()=>{
+        setBalance(state?.user?.balance||user?.balance)
+        dispatch({type: "SET", key: "placebet", payload: false})
+    }, [user?.balance, state?.placebet])
+
     return (
         <>
             {user && (
                 <>
                     <div className="row w-100 d-flex align-items-center justify-content-end px-3 ">
 
-                        <div className="w-auto d-flex  text-white align-items-end"  title={'CASH'}>
+                        {showBalance&&<div className="w-auto d-flex  text-white align-items-end" title={'CASH'}>
                             <div className={"profile-wrap"} style={{color: "#FFB200"}}>
                                 <FontAwesomeIcon
                                     icon={faCoins}/>
-                                <strong style={{color: "#FFB200"}}> KSH {formatNumber(user.balance) || 0}</strong>
+                                <strong style={{color: "#FFB200"}}> KSH {formatNumber(balance) || 0.0}</strong>
                             </div>
 
 
-                        </div>
+                        </div>}
 
                         <div className="w-auto d-flex text-white align-items-start">
                             <div className={"profile-wrap"}>

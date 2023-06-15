@@ -36,28 +36,8 @@ const Header = (props) => {
     const [competitions, setCompetitions] = useState({});
     const [settings, setSettings] = useState({});
     const [isOpen, setIsOpen] = useState(false);
-    const [utmSource,] = useState('')
 
-    const configureCampaignCookie = () => {
 
-        let url = new URL(window.location)
-
-        let utm_source = url.searchParams.get('utm_source')
-
-        let utm_campaign = url.searchParams.get('utm_campaign')
-
-        if (utm_source !== null) {
-            setLocalStorage('utm_source', utm_source)
-        }
-
-        if (utm_campaign !== null) {
-            setLocalStorage('utm_campaign', utm_campaign)
-        }
-    }
-
-    useEffect(() => {
-        configureCampaignCookie()
-    }, [utmSource])
     const dismissSearch = () => {
         setSearching(false)
         setMatches([])
@@ -163,7 +143,7 @@ const Header = (props) => {
                 let u = {...user, ...response.user};
                 setLocalStorage('user', u);
                 setUser(u)
-                dispatch({type: "SET", key: "user", payload: u});
+                dispatch({type: "SET", key: "user", payload: user});
             }
         });
 
@@ -210,7 +190,7 @@ const Header = (props) => {
                 <div className={'w-100 d-flex justify-content-between mobile-change desktop-ipad-size'}>
                     <div className={"d-flex w-100 directions-header-nav"}>
                         <Navbar.Brand className={`e logo align-self-start menu-control d-flex justify-content-between w-100`} title="Betnare">
-                            <Link to={{pathname: "/"}} className="col-4 resize-mobile" style={{ marginLeft:"2px"}}>
+                            <Link to={{pathname: "/"}} className="col-4 logo-betnare resize-mobile" style={{ marginLeft:"2px"}}>
                                 <img src={logo} alt="Betnare" title="Betnare" effects="blur"
                                      className={`image-size ${!user&&'logo-top'}`} style={user?{marginBottom:"0px" }:{marginBottom:"11px", width:'auto'}}/>
                             </Link>
@@ -289,7 +269,7 @@ const Header = (props) => {
                                             </Link>
                                         </div>}
 
-                                        {pathname!=='/signup'&&<Link to={"/login"} className="cg  login-color login-size btn" type="submit"     >
+                                        {pathname!=='/signup'&&<Link to={"/login"} className="cg  login-color login-size btn" type="submit" style={{backgroundColor:'#527994FF'}}>
                                             <span>Login</span>
                                         </Link>}
                                         {pathname!=='/signup'&&<div className='d-flex align-items-baseline'>

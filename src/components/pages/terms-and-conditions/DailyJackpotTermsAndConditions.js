@@ -30,7 +30,7 @@ const DailyJackpotTermsAndConditions = () =>
                                     Stake 20/=
                                 </li>
                                 <li>
-                                    20 Pre-Selected Soccer games
+                                    11 Pre-Selected Soccer games
 
                                 </li>
                                 <li>

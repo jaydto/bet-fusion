@@ -3,38 +3,21 @@ import React, {useContext, useEffect, useRef} from "react";
 import {Link} from "react-router-dom";
 import 'react-pro-sidebar/dist/css/styles.css';
 import {
-    faUser,
     faQuestionCircle,
     faPrint,
-    faHome,
-    faStream,
     faMagic,
     faMobile,
-    faCloudDownloadAlt, faPowerOff, faHandsHelping, faAddressBook, faHandPointRight, faHeartbeat
+    faHandsHelping, faAddressBook, faHandPointRight, faHeartbeat
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {Context} from "../../context/store";
+import {LazyLoadImage} from "react-lazy-load-image-component";
 
 const SidebarProfile = (props) => {
     const {profile_side} = props
     const [state, dispatch] = useContext(Context);
 
-    const prevChoice = useRef('')
-    const showCentricPage = (userChoice) => {
-
-        if (prevChoice.current == '') {
-
-            dispatch({type: "SET", key: `profile_${userChoice}`, payload: `profile_${userChoice}`});
-            prevChoice.current = `profile_${userChoice}`
-        } else {
-
-            dispatch({type: "SET", key: prevChoice.current, payload: null});
-            dispatch({type: "SET", key: `profile_${userChoice}`, payload: `profile_${userChoice}`});
-            prevChoice.current = `profile_${userChoice}`
-        }
-
-    }
     useEffect(() => {
         const abort = new AbortController()
         dispatch({type: "SET", key: `profile_all`, payload: `profile_all`});
@@ -48,15 +31,15 @@ const SidebarProfile = (props) => {
         image={false}>
         <SidebarHeader className={""}>
             <div className={'d-flex gap-4 align-items-center justify-content-start'}>
-                <h2 className={'bold px-1'}>Profile </h2>
+                <Link  to="/" className={'bold px-1'}><LazyLoadImage src={'https://storage.googleapis.com/nareimages/logo-white.webp'} style={{width:"100px"}}/> </Link>
                 <h5 className={'text-warning'}>+{state?.user?.msisdn}</h5>
             </div>
             <Menu>
                 <MenuItem>
-                    <div className={"d-flex gap-4 align-items-center px-3"}>
+                    <Link to={"/terms-and-conditions"} className={"d-flex gap-4 align-items-center px-3"}>
                         <FontAwesomeIcon icon={faHandPointRight}/>
-                        <div className={'text-profile'} onClick={() => showCentricPage('all')}>Balance</div>
-                    </div>
+                        <div className={'text-profile'} >Terms and conditions</div>
+                    </Link>
 
                 </MenuItem>
             </Menu>
@@ -81,35 +64,36 @@ const SidebarProfile = (props) => {
             {/*</Menu>*/}
             <Menu>
                 <MenuItem className={"d-flex justify-content-between"}>
-                    <div className={"d-flex gap-4 align-items-center px-3"}>
+                    <Link  className={"d-flex gap-4 align-items-center px-3"} to={"/my-bets"}>
                         <FontAwesomeIcon icon={faQuestionCircle}/>
-                        <div className={'text-profile'} onClick={() => showCentricPage('mybets')}>Mybets</div>
-                    </div>
+                        <div className={'text-profile'} >Mybets</div>
+                    </Link>
                 </MenuItem>
             </Menu>
             <Menu>
                 <MenuItem className={"d-flex justify-content-between"}>
-                    <div className={"d-flex gap-4 align-items-center px-3"}
-                         onClick={() => gaEventTracker('Visit App Page')}>
+                    <Link className={"d-flex gap-4 align-items-center px-3"}
+                          to={"/deposit"}
+                         onClick={() => gaEventTracker('Visit Deposit Page')}>
                         <FontAwesomeIcon icon={faMobile}/>
-                        <div className={'text-profile'} onClick={() => showCentricPage('deposit')}>Deposit</div>
-                    </div>
+                        <div className={'text-profile'} >Deposit</div>
+                    </Link>
                 </MenuItem>
             </Menu>
             <Menu>
                 <MenuItem className={"d-flex justify-content-between"}>
-                    <div className={"d-flex gap-4 align-items-center px-3"}>
+                    <Link className={"d-flex gap-4 align-items-center px-3"} to={"/withdraw"}>
                         <FontAwesomeIcon icon={faPrint}/>
-                        <div className={'text-profile'} onClick={() => showCentricPage('withdraw')}>Withdraw</div>
-                    </div>
+                        <div className={'text-profile'} >Withdraw</div>
+                    </Link>
                 </MenuItem>
             </Menu>
             <Menu>
                 <MenuItem>
-                    <div className={"d-flex gap-4 align-items-center px-3"}>
+                    <Link className={"d-flex gap-4 align-items-center px-3"} to={"/points"}>
                         <FontAwesomeIcon icon={faAddressBook}/>
-                        <div className={'text-profile'} onClick={() => showCentricPage('points')}>Points</div>
-                    </div>
+                        <div className={'text-profile'} >Points</div>
+                    </Link>
 
                 </MenuItem>
             </Menu>
@@ -117,16 +101,13 @@ const SidebarProfile = (props) => {
                 <MenuItem>
                     <div className={"d-flex gap-4 align-items-center px-3"}>
                         <FontAwesomeIcon icon={faMobile}/>
-                        <div className={'text-profile'} onClick={() => {
+                        <Link to={"/app"} className={'text-profile'} onClick={() => {
                             gaEventTracker('Visit App Page');
-                            showCentricPage('app')
                         }}>App
-                        </div>
+                        </Link>
                     </div>
                 </MenuItem>
             </Menu>
-        </SidebarHeader>
-        <SidebarContent className={""}>
             <Menu>
                 <MenuItem className={"d-flex justify-content-between"}>
                     <Link className={"d-flex gap-4 align-items-center px-3"} to={'/affiliate'}>
@@ -152,9 +133,8 @@ const SidebarProfile = (props) => {
                 </MenuItem>
 
             </Menu>
+        </SidebarHeader>
 
-
-        </SidebarContent>
     </ProSidebar>)
 }
 

@@ -14,7 +14,7 @@ import makeRequest from "../utils/fetch-request";
 import "react-toastify/dist/ReactToastify.css";
 
 import {Formik, Form as FormikForm, useFormikContext} from "formik";
-import {getFromLocalStorage} from "../utils/local-storage";
+import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
     faCut,
@@ -70,6 +70,34 @@ const KironslipSubmitForm = (props) => {
     const [awardMultiGift, setAwardMultiGift] = useState(false);
 
     const [betslipKey, setBetslipKey] = useState("kironbetslip");
+    const [user, setUser] = useState(getFromLocalStorage("user"));
+
+    const updateUserOnHistory = () => {
+        if (!user) {
+            return false;
+        }
+        let endpoint = "/v1/balance";
+        let udata = {
+            token: user.token
+        }
+        makeRequest({url: endpoint, method: "post", data: udata}).then(([_status, response]) => {
+            if (_status == 200) {
+                let u = {...user, ...response.user};
+                setLocalStorage('user', u);
+                setUser(u)
+                dispatch({type: "SET", key: "user", payload: u});
+                setMessage(null)
+                dispatch({type: "SET", key: "placebet", payload: true});
+            }
+        });
+
+    };
+
+
+
+    useEffect(() => {
+        updateUserOnHistory()
+    }, [message?.message])
 
     useEffect(() => {
         if (kiron) {

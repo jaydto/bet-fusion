@@ -191,7 +191,7 @@ const Header = (props) => {
     return (
         <>
             <ToastContainer/>
-            <Navbar expand="md"   className={`mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${user?'top-nav-login':'top-nav'}`} fixed="top" variant="dark">
+            <Navbar expand="md"   className={`mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${slip&&"top-betslip-page-fix"} ${user?'top-nav-login':'top-nav'}`} fixed="top" variant="dark">
                 <div className={'w-100 d-flex justify-content-between mobile-change desktop-ipad-size'}>
                     <div className={"d-flex w-100 directions-header-nav"}>
                         <Navbar.Brand className={`e logo align-self-start menu-control d-flex justify-content-between w-100`} title="Betnare">

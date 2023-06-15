@@ -5,6 +5,18 @@ body {
     background: var(--betnare-primary);
     max-width: 100% !important
 }
+.line-on-slip-items-container{
+    background: var(--betlip-list);
+}
+.line-on-slip-items {
+    height: 1px;
+    width: 80%;
+    margin: auto;
+    background: var(--betnare-secondary);
+}
+.line-on-slip-items-container:last-child .line-on-slip-items{
+    background: var(--transparent);
+}
 .decode-bg{
     background: var(--betnare-header-bg)!important;
 }
@@ -772,6 +784,12 @@ input[type="radio"], input[type="checkbox"] {
     top: 124px;
     position: sticky;
 }
+.top-betslip-page-fix{
+
+}
+.Toastify:empty{
+    display:none;
+}
 .sticky-jackpot {
     top: 93px;
     position: sticky;
@@ -1417,13 +1435,24 @@ img.nare-league {
 }
 
 @media (max-width: 991px){
+    .slip-message-alert {
+        height: 5rem;
+        /* width: 100vw; */
+        display: inline-table;
+        /* word-wrap: break-word; */
+        white-space: normal!important;
+        line-height: 15px!important;
+        position: fixed!important;
+        top: 10rem;
+        color:var(--green);
+    }
     .alert-success {
         color: #0f5132;
         background-color: #d1e7dd;
         border-color: #badbcc;
-        position: absolute!important;
+        /*position: absolute!important;*/
         width: 100%;
-        top: 10rem;
+        /*top: 10rem;*/
     }
     .smart-soft-games-container .smart-soft-game {
         width: 50%!important;
@@ -1504,7 +1533,7 @@ img.nare-league {
         overflow: auto;
         /* margin-bottom: 27rem; */
         position: absolute;
-        width: 97vw;
+        width: 99vw;
         /* bottom: 51rem; */
         margin-right: 2rem;
     }
@@ -1532,10 +1561,35 @@ img.nare-league {
         /* height: 100%; */
         width: 100%;
     }
+    .slip-tabs-top{
+        top:var(--slip-tab);
+    }
+    .deposit-button-header {
+        border: thin solid;
+        border-radius: 4px;
+    }
+    .odd-change-position{
+        position:fixed;
+        top:var(--odd-change-position);
+    }
+    .show-values-betslip{
+        font-size: 29px;
+        padding-left:14px;
+    }
+    .show-tax-info {
+        position: fixed;
+        width: 50%;
+        z-index: 200;
+        box-sizing: border-box;
+        box-shadow: 1px 2px 4px 2px var(--betnare-header-bg);
+        right: 6rem;
+        top: 37rem;
+        opacity: 0.9;
+    }
     .slip-max-height {
         display: grid;
         align-items: start;
-        height: 80vh!important;
+        height: var(--slip-height)!important;
     }
     .slip-bottom-betlip {
         margin-bottom: 13rem!important;
@@ -1548,12 +1602,29 @@ img.nare-league {
         /* width: 100%; */
     }
     .slip-bottom-betlip-active {
-        margin-bottom: 21rem!important;
+        margin-bottom: 20rem!important;
         overflow-y: scroll;
         position: sticky;
         top: 0px;
         /* height: 100%; */
         width: 100%;
+    }
+    .line-on-slip-items-container{
+        background: var(--betlip-list);
+    }
+    .alert-position-betslip-top{
+        position: fixed;
+        top: 10rem;
+
+    }
+    .line-on-slip-items {
+        height: 1px;
+        width: 93%;
+        margin: auto;
+        background: var(--betnare-secondary);
+    }
+    .line-on-slip-items:nth-child(2){
+        background: var(--transparent);
     }
     .share-button-styling {
         padding: 5px;
@@ -1835,6 +1906,16 @@ img.nare-league {
     }
 }
 @media (max-width: 767px){
+    .slip-top {
+        top: 5rem;
+        height: 70vh;
+        overflow: auto;
+        /* margin-bottom: 27rem; */
+        position: absolute;
+        width: 99vw;
+        /* bottom: 51rem; */
+        margin-right: 2rem;
+    }
     .virtual-width {
         width: 50% !important;
         margin: auto;
@@ -1935,6 +2016,9 @@ img.nare-league {
         padding-top:0px;
         min-height:72px;
     }
+    .top-nav-login.top-betslip-page-fix{
+        min-height:50px;
+    }
     .top-nav-login{
         padding-top:0px;
         min-height:72px;
@@ -1950,6 +2034,16 @@ img.nare-league {
 
 }
 @media (max-width: 575px){
+    .slip-top {
+        top: 9rem;
+        height: 70vh;
+        overflow: auto;
+        /* margin-bottom: 27rem; */
+        position: absolute;
+        width: 97vw;
+        /* bottom: 51rem; */
+        margin-right: 2rem;
+    }
     .bloc-icon {
         width: 20%;
         display: flex;
@@ -1982,7 +2076,7 @@ img.nare-league {
         font-size: 14px;
         border-radius: 2.3rem!important;
         position: fixed;
-        top: 8rem;
+        top: var(--share-top);
         z-index: 2000;
         width: 142px!important;
         right: 0px;

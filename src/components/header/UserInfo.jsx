@@ -30,7 +30,6 @@ export const UserInfo = () => {
     const searchParam=window.location.search
     const showBalance=(!urlPath.includes("nare-games")&&!urlPath.includes("gameplay")&&!urlPath.includes("smart-play"))
 
-
     const showSearchBar = () => {
         // setSearching(true)
         dispatch({type: "SET", key: "searching", payload: true})
@@ -47,7 +46,7 @@ export const UserInfo = () => {
                     <div>
                         <Link
                             to={{pathname: "/deposit"}}
-                            className={"deposit-button size-font-user-action"}>
+                            className={"deposit-button size-font-user-action deposit-button-header"}>
                                           <span className="">
                                            <span className=" "> <FontAwesomeIcon
                                                icon={faCloudDownloadAlt}/></span>&nbsp;

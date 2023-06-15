@@ -42,11 +42,17 @@
     --testimonial:#253743;
     --white-darken:#16202C;
     --more-markets-text:rgb(255, 193, 7);
+    --slip-height:78vh;
+    --share-top:5rem;
+    --green:#0f5132;
+    --odd-change-position:7rem;
+    --slip-tab:5rem;
     --kiron-competition:#34495e;
     --top-header-nav:#16202C;
     --side-stats:aqua;
     --betlip-list:#58849e;
     --toggle-btn:transparent;
+    --transparent:transparent;
     --picked:#fdd835;
     --secondary:#fdd835;
     --tabs-home:#000;

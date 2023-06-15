@@ -261,7 +261,7 @@ li.bet-option {
     color: var(--light);
     padding: 4px;
     text-shadow: none;
-    border-bottom: 1px solid var(--betnare-primary);
+    /*border-bottom: 1px solid var(--betnare-primary);*/
     overflow: hidden;
     line-height: 1.6;
 }

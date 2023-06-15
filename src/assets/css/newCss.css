@@ -850,6 +850,9 @@ img.nare-league {
     z-index: 150;
     opacity: 1;
 }
+.smart-soft-image-size{
+    height:190px;
+}
 /*back button*/
 .original-button {
     display: flex;
@@ -1417,9 +1420,6 @@ img.nare-league {
     .smart-soft-games-container .smart-soft-game {
         width: 50%!important;
     }
-    /*.smart-soft-image-size{*/
-    /*    height:100px;*/
-    /*}*/
 
     .smart-soft-games-container .smart-soft-game:first-child {
         width: 50%!important;

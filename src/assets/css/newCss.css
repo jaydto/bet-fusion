@@ -1417,9 +1417,9 @@ img.nare-league {
     .smart-soft-games-container .smart-soft-game {
         width: 50%!important;
     }
-    .smart-soft-image-size{
-        height:100px;
-    }
+    /*.smart-soft-image-size{*/
+    /*    height:100px;*/
+    /*}*/
 
     .smart-soft-games-container .smart-soft-game:first-child {
         width: 50%!important;

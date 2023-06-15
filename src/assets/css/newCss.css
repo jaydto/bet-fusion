@@ -1404,9 +1404,15 @@ img.nare-league {
 }
 
 @media (max-width: 991px){
+    .smart-soft-games-container .smart-soft-game {
+        width: 50%!important;
+    }
+    .smart-soft-image-size{
+        height:100px;
+    }
 
     .smart-soft-games-container .smart-soft-game:first-child {
-        width: 100%!important;
+        width: 50%!important;
     }
     .styling-mobile-size{
         overflow: hidden;

@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import QuickLogin from './quick-login';
 import CompanyInfo from './company-info';
 import BetSlip from './betslip';
@@ -11,6 +11,8 @@ import KironSlip from "./kironslip-submit-form";
 import Kironslip from "./kironslip";
 import MobileMenu from "../mobile-menu";
 import useWindowDimensions from "../header/Dimensions";
+import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
+import makeRequest from "../utils/fetch-request";
 
 const AlertMessage = (props) => {
     return (
@@ -27,6 +29,8 @@ const Right = (props) => {
     const {jackpot, betslipValidationData, jackpotData, kiron,test} = props;
     const {height, width} = useWindowDimensions();
     const [betSlipMobile, setBetSlipMobile] = useState(false)
+
+
 
     return (
         <div className={`${width>991&& `col ${test?'':'gn'} ipad-dismiss-info betslip-container sticky-top vh-100 overflow-scroll betslip-container-mozilla container-sticky-top top-login-background-img-bg ${kiron&&'kiron-betslip-size'}`}`}>

@@ -233,7 +233,7 @@ h4.inline-block {
 .betslip {
     /*background: #1c313b;*/
     background:var(--betnare-primary);
-    padding: 5px;
+    /*padding: 5px;*/
     padding-top: 1px;
     font-size: 14px;
     opacity: 1;
@@ -253,18 +253,30 @@ h4.inline-block {
 li.bet-option {
 
 }
-
+.bet-option {
+    width: 94%;
+    margin-left: auto;
+}
+.slip-bg{
+    background:var(--betslip-list)!important;
+    position: relative;
+}
+.bet-option-list li{
+    float:right;
+}
 .bet-option-list li {
     padding-bottom: 3px !important;
     padding-top: 3px !important;
-    background: var(--betlip-list);
+    background: var(--betslip-list);
     color: var(--light);
     padding: 4px;
     text-shadow: none;
     /* border-bottom: 1px solid var(--betnare-primary); */
-    overflow: hidden;
+    /*overflow: hidden;*/
     line-height: 1.6;
     border-radius: 0px;
+    display: flex;
+    align-items: center;
 }
 .bet-option-list li:last-child{
     border-bottom-left-radius: 10px;
@@ -276,25 +288,46 @@ li.bet-option {
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
 }
+
+/*.bet-cancel {*/
+/*    float: left;*/
+/*    width: 10%;*/
+/*    position: absolute;*/
+/*    right: -12px;*/
+/*    !* border-radius: 36px; *!*/
+/*}*/
 .bet-cancel {
-    float: right;
-    width: 10%;
-    position: absolute;
-    right: -12px;
-    /* border-radius: 36px; */
+    margin: auto;
+    width: 15%;
+    padding: 9px;
 }
 .bet-cancel input{
     border-radius: 10px!important;
 }
+.slip-bg{
+    border-bottom:thin solid var(--slip-separator-color)!important;
+    height: 7rem;
+}
+.slip-bg:last-of-type{
+    border-bottom: none!important;
 
+}
+.slip-bg:first-of-type{
+    border-top-right-radius:10px;
+    border-top-left-radius:10px ;
+}.slip-bg:last-of-type{
+    border-bottom-left-radius:10px;
+    border-bottom-right-radius:10px ;
+}
+.width-slip-item-container{
+    width:80%;
+}
 .bet-cancel input {
-    background: transparent;
-    border: none;
-    color: #FFC428;
-    height: 19px;
-    font-weight: normal;
-    font-size: 12px;
-    font-weight: bold;
+    height: 20px;
+    width: 20px;
+    border-radius: 50% !important;
+    font-size: 9px;
+    font-weight: bolder!important;
 }
 .bet-align-left{
     text-align:left;
@@ -358,6 +391,9 @@ li.bet-option {
     color: var(--betnare-button-login);
     font-size: 11px;
     opacity: 0.9;
+    padding-right: 10px;
+    margin: auto;
+    font-weight: bolder;
 }
 
 .bet-type {

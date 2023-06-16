@@ -6,7 +6,7 @@ body {
     max-width: 100% !important
 }
 .line-on-slip-items-container{
-    background: var(--betlip-list);
+    background: var(--betslip-list);
 }
 .slip-dim-color-selections{
 
@@ -1359,13 +1359,13 @@ img.nare-league {
     }
 }
 @media (min-width: 992px){
-    .bet-cancel {
-        float: right;
-        width: 10%;
-        position: absolute;
-        right: -5px;
-        /* border-radius: 36px; */
-    }
+    /*.bet-cancel {*/
+    /*    float: left;*/
+    /*    width: 10%;*/
+    /*    position: absolute;*/
+    /*    left: 0px;*/
+    /*    !* border-radius: 36px; *!*/
+    /*}*/
     .bet-align-right {
         font-size: 14px;
     }
@@ -1769,7 +1769,7 @@ img.nare-league {
         top:0px;
     }
     .line-on-slip-items-container{
-        background: var(--betlip-list);
+        background: var(--betslip-list);
     }
     .alert-position-betslip-top{
         position: fixed;
@@ -2212,7 +2212,7 @@ img.nare-league {
         overflow: auto;
         /* margin-bottom: 27rem; */
         position: absolute;
-        width: 97vw;
+        width: 100vw;
         /* bottom: 51rem; */
         margin-right: 2rem;
     }

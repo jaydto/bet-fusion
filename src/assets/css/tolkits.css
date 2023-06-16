@@ -511,7 +511,7 @@ header, li a, .thedate span {
 }
 
 .bet-option:nth-child(2n) {
-    background: var(--betlip-list);
+    background: var(--betslip-list);
 }
 
 #quick-login label {

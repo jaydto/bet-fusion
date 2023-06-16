@@ -1301,7 +1301,7 @@ img.nare-league {
         z-index: 1999 !important;
     }
 }
-@media(min-width:1161px){
+@media(min-width:1161px) and (max-width: 1259px){
     .background-mybets-mobile{
         width:82vw;
     }

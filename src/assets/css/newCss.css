@@ -8,6 +8,7 @@ body {
 .line-on-slip-items-container{
     background: var(--betlip-list);
 }
+
 .line-on-slip-items {
     height: 1px;
     width: 80%;
@@ -392,6 +393,10 @@ b, strong {
 
 .list-group-horizontal::-webkit-scrollbar {
     display: none;
+}
+.fixed-top-nav{
+    position: fixed!important;
+    top:0px!important;
 }
 label {
     font-weight: 600;
@@ -1320,6 +1325,12 @@ img.nare-league {
     }
 }
 @media (min-width: 992px){
+    .lite-top{
+        display:none!important;
+    }
+    .app-download-link{
+        display: none;
+    }
     .casino-category-button{
         min-width:150px;
 
@@ -1435,6 +1446,9 @@ img.nare-league {
 }
 
 @media (max-width: 991px){
+    .top-spacing-page-no-download{
+        margin-top:9rem;
+    }
     .slip-message-alert {
         height: 5rem;
         /* width: 100vw; */
@@ -1608,6 +1622,60 @@ img.nare-league {
         top: 0px;
         /* height: 100%; */
         width: 100%;
+    }
+    .icon-android{
+        width:30px
+    }
+    .color-app-text{
+        color: var(--green);
+    }
+    .app-color{
+        display: flex;
+        align-items: center;
+    }
+    .lite-top{
+        font-family: "Open Sans", "Arial", sans-serif;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        background: var(--betnare-side-bg);
+        box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.12), 0px 2px 2px 0px rgba(0, 0, 0, 0.24);
+        color:var(--lite-top-color  );
+        font-weight: 700;
+        height:3.5rem;
+        display: flex;
+        align-items: center;
+        border-radius: 1px;
+    }
+    .lite-mode {
+        width:46%;
+        text-align: center;
+        /*border: thin solid black;*/
+        /*padding: 5px;*/
+        /*border-radius: 6px;*/
+    }
+    .app-download-link{
+        display:flex;
+        /*color:var(--betnare-button-login);*/
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+        /*border: thin solid black;*/
+        /*padding: 5px;*/
+        /*border-radius: 6px;*/
+    }
+
+    /*.lite-top a.app-color{*/
+    /*    color:var(--betnare-button-login);*/
+    /*}*/
+    .lite-top a{
+        padding: 1px 10px!important;
+        color:var(--lite-top-color);
+        width: 100%;
+    }
+    .top-header-main{
+        position: sticky;
+        top:0px;
     }
     .line-on-slip-items-container{
         background: var(--betlip-list);
@@ -2022,6 +2090,7 @@ img.nare-league {
     .top-nav-login{
         padding-top:0px;
         min-height:72px;
+        padding-bottom: 0px!important;
     }
     .tag {
         font-size: 11px;

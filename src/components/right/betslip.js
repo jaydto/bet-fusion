@@ -26,8 +26,8 @@ const BetSlip = (props) => {
     const [message, setMessage] = useState(null);
     const [qualifiesBonus, setQualifiesBonus] = useState(false);
     const [qualifiesGift, setQualifiesGift] = useState(false);
-    const [settings, setSettings] = useState(getFromLocalStorage("settings"));
-    const {height, width} = useWindowDimensions();
+    const [settings, ] = useState(getFromLocalStorage("settings"));
+    const {height, } = useWindowDimensions();
     const [popUpHeight, setPopUpHeight] = useState(0);
     const [totalOdds, setTotalOdds] = useState(1);
     //initial betslip loading

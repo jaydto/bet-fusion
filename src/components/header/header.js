@@ -8,7 +8,7 @@ import {ToastContainer} from 'react-toastify';
 import makeRequest from '../utils/fetch-request';
 import {setLocalStorage} from '../utils/local-storage';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-
+import androidIcon from "../../assets/img/mobile/android-icon.png"
 import logo from '../../assets/img/Logo.webp';
 import {Navbar, Offcanvas} from "react-bootstrap";
 import SidebarMobile from "../sidebar/awesome/SidebarMobile";
@@ -20,11 +20,13 @@ import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import ListGroup from "react-bootstrap/ListGroup";
 import LoginSection from "./LoginSection";
 import {UserInfo} from "./UserInfo";
+import useWindowDimensions from "./Dimensions";
 const ProfileMenu = React.lazy(() => import('./profile-menu'));
 const HeaderNav = React.lazy(() => import('./header-nav'));
 
+
 const Header = (props) => {
-    const {slip}=props
+    const {slip,scrollPosition}=props
     const gaEventTracker = useAnalyticsEventTracker('Navigation');
     const [user, setUser] = useState(getFromLocalStorage("user"));
     const [state, dispatch] = useContext(Context);
@@ -106,6 +108,8 @@ const Header = (props) => {
             setSettings(cached_settings);
         }
     })
+    const urlPath=window.location.pathname
+    const showDownload=(!urlPath.includes("nare-games")&&!urlPath.includes("gameplay")&&!urlPath.includes("smart-play")&&!urlPath.includes("betslip-slip")&&!urlPath.includes("nare-league")&&!urlPath.includes("bet-history")&&!urlPath.includes("standings")&&!urlPath.includes("results")&&!urlPath.includes("casino")&&!urlPath.includes("jackpot")&&!urlPath.includes("smart-soft")&&!urlPath.includes("virtuals")&&!urlPath.includes("match")&&!urlPath.includes("competition"))
 
     useEffect(() => {
 
@@ -187,38 +191,48 @@ const Header = (props) => {
     },[ pathname ])
 
 
-
+    const {height, } = useWindowDimensions();
     return (
         <>
             <ToastContainer/>
-            <Navbar expand="md"   className={`mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${slip&&"top-betslip-page-fix"} ${user?'top-nav-login':'top-nav'}`} fixed="top" variant="dark">
-                <div className={'w-100 d-flex justify-content-between mobile-change desktop-ipad-size'}>
-                    <div className={"d-flex w-100 directions-header-nav"}>
-                        <Navbar.Brand className={`e logo align-self-start menu-control d-flex justify-content-between w-100`} title="Betnare">
-                            <Link to={{pathname: "/"}} className="col-4 logo-betnare resize-mobile" style={{ marginLeft:"2px"}}>
-                                <img src={logo} alt="Betnare" title="Betnare" effects="blur"
-                                     className={`image-size ${!user&&'logo-top'}`} style={user?{marginBottom:"0px" }:{marginBottom:"11px", width:'auto'}}/>
-                            </Link>
-
-                        <UserInfo/>
-                        </Navbar.Brand>
-
-                        {/*todo check information provided for a user*/}
-                        <div className={` col-10 change-size desk-top`} id="navbar-collapse-main " >
-                            <div
-                                className="col-md-11 col-sm-12 col-lg-7 right fix-view-2 disable-ipad to-navcheck justify-content-end pt-lg-0 pt-md-3">
-                                {user ? <ProfileMenu user={user}/> : <LoginSection/>}
-                            </div>
-
-                        </div>
+            <div className={'d-flex flex-column'}>
+                {showDownload&&<div className={"lite-top"}>
+                    <div className={"app-download-link "}>
+                        <a href={"https://www.betnare.com/android/download"} className={"app-color"}>
+                            <span className={"color-app-text"}>APP Your Game</span>
+                            <img src={androidIcon} className={"icon-android"}/>
+                        </a>
                     </div>
+                </div>}
 
-                    <Row className={`second-nav ck pc os app-navbar ${user?' app-header-nav-login ':' app-header-nav '} to-navcheck `}>
-                        <HeaderNav/>
-                    </Row>
+                <Navbar expand="md"   className={`${(scrollPosition||!showDownload)&&'fixed-top-nav'} mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${slip&&"top-betslip-page-fix"} ${user?'top-nav-login':'top-nav'}`} fixed="top" variant="dark">
+                    <div className={'w-100 d-flex justify-content-between mobile-change desktop-ipad-size top-header-main'}>
+                        <div className={"d-flex w-100 directions-header-nav"}>
+                            <Navbar.Brand className={`e logo align-self-start menu-control d-flex justify-content-between w-100`} title="Betnare">
+                                <Link to={{pathname: "/"}} className="col-4 logo-betnare resize-mobile" style={{ marginLeft:"2px"}}>
+                                    <img src={logo} alt="Betnare" title="Betnare" effects="blur"
+                                         className={`image-size ${!user&&'logo-top'}`} style={user?{marginBottom:"0px" }:{marginBottom:"11px", width:'auto'}}/>
+                                </Link>
+
+                                <UserInfo/>
+                            </Navbar.Brand>
+
+                            {/*todo check information provided for a user*/}
+                            <div className={` col-10 change-size desk-top`} id="navbar-collapse-main " >
+                                <div
+                                    className="col-md-11 col-sm-12 col-lg-7 right fix-view-2 disable-ipad to-navcheck justify-content-end pt-lg-0 pt-md-3">
+                                    {user ? <ProfileMenu user={user}/> : <LoginSection/>}
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <Row className={`second-nav ck pc os app-navbar ${user?' app-header-nav-login ':' app-header-nav '} to-navcheck `}>
+                            <HeaderNav/>
+                        </Row>
                         {state?.searching?
                             <div id="navbar-collapse-main"
-                                       className={`fadeIn header-menu d-flex justify-content-center w-100 d-block`}>
+                                 className={`fadeIn header-menu d-flex justify-content-center w-100 d-block`}>
                                 <ListGroup as="ul" xs="9" horizontal className="nav navbar-nav og ale ss col-12 text-center w-100 d-flex">
                                     <div className="d-flex w-100">
                                         <div className="col-10  px-2" style={{marginLeft:'2vw'}}>
@@ -244,32 +258,33 @@ const Header = (props) => {
 
                                 </ListGroup>
                             </div>
-                        :(pathname!=='/signup')&&pathname!=='/nare-league'&&pathname!=='/results'&& pathname!=='/standing'&&pathname!=='/playouts'&&pathname!=='/standing  '&&pathname!=='/bet-history'&&!slip&&<MobileNav1/>}
+                            :(pathname!=='/signup')&&pathname!=='/nare-league'&&pathname!=='/results'&& pathname!=='/standing'&&pathname!=='/playouts'&&pathname!=='/standing  '&&pathname!=='/bet-history'&&!slip&&<MobileNav1/>}
 
 
-                    <Navbar.Offcanvas
-                        style={{width: "80%", height: "100%",zIndex: "9999", marginTop: "0px", overflowY:"auto"}}
-                        className='off-canvas background-primary p-0'
-                        id={`offcanvasNavbar-expand-${expand}`}
-                        aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-                        placement="start">
-                        <Offcanvas.Header closeButton className='text-white' closeVariant={"white"} onClick={toggle}>
-                            <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                                <div className="col-5">
-                                    <div>
-                                        <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"/>
+                        <Navbar.Offcanvas
+                            style={{width: "80%", height: "100%",zIndex: "9999", marginTop: "0px", overflowY:"auto"}}
+                            className='off-canvas background-primary p-0'
+                            id={`offcanvasNavbar-expand-${expand}`}
+                            aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+                            placement="start">
+                            <Offcanvas.Header closeButton className='text-white' closeVariant={"white"} onClick={toggle}>
+                                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
+                                    <div className="col-5">
+                                        <div>
+                                            <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"/>
+                                        </div>
                                     </div>
-                                </div>
-                            </Offcanvas.Title>
-                        </Offcanvas.Header>
-                        <Offcanvas.Body >
-                            <SidebarMobile/>
-                        </Offcanvas.Body>
-                    </Navbar.Offcanvas>
+                                </Offcanvas.Title>
+                            </Offcanvas.Header>
+                            <Offcanvas.Body >
+                                <SidebarMobile/>
+                            </Offcanvas.Body>
+                        </Navbar.Offcanvas>
 
-                </div>
-            </Navbar>
-        </>
+                    </div>
+                </Navbar>
+            </div>
+       </>
 
     )
 }

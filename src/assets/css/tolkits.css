@@ -6982,7 +6982,7 @@ ul.sport {
 
 .os,
 .of {
-    position: fixed;
+    position:sticky;
     right: 0;
     left: 0;
     z-index: 1030;

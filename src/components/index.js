@@ -251,14 +251,74 @@ const Index = () => {
 
 
 
+
+    {/*useEffect(() => {*/}
+    {/*    const handleScroll = () => {*/}
+    //         if (homePageRef.current) {
+    //             const scrollPosition = homePageRef.current.scrollTop;
+    //             if (scrollPosition > 10) {
+    {/*                console.log('User has scrolled more than 10 pixels.');*/}
+    //                 // Perform your action for scrolling beyond 10 pixels
+    //             } else {
+    {/*                console.log('User has scrolled back to the top.');*/}
+    //                 // Perform your action for scrolling back to the top
+    //             }
+    //         }
+    //     };
+    //
+    //     if (homePageRef.current) {
+    //         homePageRef.current.addEventListener('scroll', handleScroll);
+    //     }
+    //
+    //     return () => {
+    //         if (homePageRef.current) {
+    //             homePageRef.current.removeEventListener('scroll', handleScroll);
+    //         }
+    //     };
+    // }, [homePageRef]);
+
+    const [scrolledPast, setScrolledPast] = useState(false);
+    const [scrolledToTop, setScrolledToTop] = useState(false);
+    const [scrollPosition, setScrollPosition] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (homePageRef.current) {
+                const scrollPosition = homePageRef.current.scrollTop;
+                if (!scrolledPast && scrollPosition > 10) {
+                    console.log('User has scrolled more than 10px');
+                    setScrollPosition(true)
+                    setScrolledPast(true);
+                    setScrolledToTop(false); // Reset the other variable
+                } else if (!scrolledToTop && scrollPosition <= 10) {
+                    console.log('User has scrolled back to the top.');
+                    setScrollPosition(false)
+                    setScrolledToTop(true);
+                    setScrolledPast(false); // Reset the other variable
+                }
+            }
+        };
+
+        if (homePageRef.current) {
+            homePageRef.current.addEventListener('scroll', handleScroll);
+        }
+
+        return () => {
+            if (homePageRef.current) {
+                homePageRef.current.removeEventListener('scroll', handleScroll);
+            }
+        };
+    }, [homePageRef, scrolledPast, scrolledToTop]);
+
     return (
         <div className={'flex-item'}  >
-            <div className="item4"><Header/></div>
+
+            <div className="item4"><Header scrollPosition={scrollPosition}/></div>
             <div className="flex-container" >
                 <div className="item1"><SideBar loadCompetitions/></div>
                 <div className="item2">
-                    <div className="gz home match-overflow " >
-                        <div className="homepage mobile-full-height" ref={homePageRef}>
+                    <div className="gz home match-overflow "   >
+                        <div className="homepage mobile-full-height" ref={homePageRef} style={{height:`${height}px`,overflowY:'auto'}}>
                             {/*<MobileNav2/>*/}
                             <CarouselLoader/>
                             <Testimonials/>

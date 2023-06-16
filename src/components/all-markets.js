@@ -23,7 +23,6 @@ const  AllMarkets= (props) => {
     const id = params.id
 
     // const [userSlipsValidation, setUserSlipsValidation] = useState();
-    const { height, width } = useWindowDimensions();
     const [state, dispatch] = useContext(Context);
 
     const [isLoading, setIsLoading] = useState(false);
@@ -86,14 +85,14 @@ const  AllMarkets= (props) => {
             abortController.abort();
         };
     }, []);
-
-
+    const urlPath=window.location.pathname
+    const showDownload=(!urlPath.includes("nare-games")&&!urlPath.includes("gameplay")&&!urlPath.includes("smart-play")&&!urlPath.includes("betslip-slip")&&!urlPath.includes("nare-league")&&!urlPath.includes("bet-history")&&!urlPath.includes("standings")&&!urlPath.includes("results")&&!urlPath.includes("casino")&&!urlPath.includes("jackpot")&&!urlPath.includes("smart-soft")&&!urlPath.includes("virtuals")&&!urlPath.includes("match")&&!urlPath.includes("competition"))
 
 
     return (
         <div className={'flex-item'}>
             <div className="item4"><Header/></div>
-            <div className="flex-container">
+            <div className={`flex-container ${!showDownload&&'top-spacing-page-no-download'}`}>
                 <div className="item1">
                     {window.location.pathname.includes('/match/live')?<LiveSideBar/>:<SideBar loadCompetitions/>}
                 </div>

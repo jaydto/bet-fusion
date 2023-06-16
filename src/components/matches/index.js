@@ -68,21 +68,21 @@ const marketChoice = () => {
   const markets = [
     {
       id: "18", name: "Over/Under 2.5", extra_market_cols: 2, extra_markets_display: [
-        "Under", "Over"
+         "Over","Under"
       ]
     },
     {
       id: "10", name: "Double Chance", extra_market_cols: 3, extra_markets_display: [
-        "1X", "X2", "12"
+        "1X", "12","X2"
       ]
     },
     {
       id: "29", name: "Both Teams to Score", extra_market_cols: 2, extra_markets_display: [
-        "NO", "YES"
+         "YES","NO"
       ]
     },
     {
-      id: "219", name: "Winner (incl. overtime)", extra_market_cols: 2, extra_markets_display: [2, 1]
+      id: "219", name: "Winner (incl. overtime)", extra_market_cols: 2, extra_markets_display: [1, 2]
     },
     {
       id: "186", name: "Winner", extra_market_cols: 2, extra_markets_display: [1, 2]
@@ -96,7 +96,7 @@ const marketChoice = () => {
       name: "Winner (incl. overtime and penalties)",
       extra_market_cols: 2,
       extra_markets_display: [
-        2, 1
+        1, 2
       ]
     },
     {

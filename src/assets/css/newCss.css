@@ -510,6 +510,7 @@ background: var(--betnare-input)!important;
 .profile-btn:hover{
     color:#ffda22!important;
 }
+
 .profile-desktop-style{
     margin-top: 66px;
     color: #FFFFFFFF!important;
@@ -914,6 +915,9 @@ img.nare-league {
 /*end back button*/
 /*media queries*/
 @media (min-width: 1260px) {
+    .background-mybets-mobile{
+        width:92vw;
+    }
     .sticky-testimony-logged {
         position: sticky;
         position: -webkit-sticky;
@@ -1190,7 +1194,9 @@ img.nare-league {
 
 }
 @media (min-width: 1200px) and (max-width: 1259px){
-
+    .background-mybets-mobile{
+        width:90vw;
+    }
     /*.app-header-nav {*/
     /*    margin-top: 43px;*/
     /*}*/
@@ -1295,7 +1301,15 @@ img.nare-league {
         z-index: 1999 !important;
     }
 }
+@media(min-width:1161px){
+    .background-mybets-mobile{
+        width:82vw;
+    }
+}
 @media (min-width: 992px) and (max-width: 1160px) {
+    .background-mybets-mobile{
+        width:90vw;
+    }
     .mybets-styling-mobile {
         overflow: hidden;
         font-size: 13px!important;
@@ -1469,8 +1483,6 @@ img.nare-league {
     line-height: 15px!important;
 }
 @media (min-width: 991px){
-
-
     .item2{
         height:max-content;
     }
@@ -1480,7 +1492,11 @@ img.nare-league {
     }
 }
 
+
 @media (max-width: 991px){
+    .background-mybets-mobile{
+        width:100vw;
+    }
 
     .top-spacing-page-no-download{
         margin-top:9rem;

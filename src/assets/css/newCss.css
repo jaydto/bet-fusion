@@ -397,6 +397,8 @@ b, strong {
 .fixed-top-nav{
     position: fixed!important;
     top:0px!important;
+    transition-delay: 250ms;
+    transition-property: position;
 }
 label {
     font-weight: 600;
@@ -836,23 +838,7 @@ img.nare-league {
     z-index: 2000;
     opacity: 1;
 }
-.sticky-testimony-logged {
-    position: sticky;
-    position: -webkit-sticky;
-    top: 111px;
-    /*width:100%;*/
-    /*background-color: black;*/
-    z-index: 2000;
-    opacity: 1;
-}
-.sticky-responsive {
-    position: sticky;
-    top: 123px
-}
-.sticky-responsive-logged {
-    position: sticky;
-    top: 139px
-}
+
 .live-status {
     display: flex;
     align-items: center;
@@ -928,6 +914,32 @@ img.nare-league {
 /*end back button*/
 /*media queries*/
 @media (min-width: 1260px) {
+    .sticky-testimony-logged {
+        position: sticky;
+        position: -webkit-sticky;
+        top: 111px;
+        /*width:100%;*/
+        /*background-color: black;*/
+        z-index: 2000;
+        opacity: 1;
+    }
+    .sticky-responsive {
+        position: sticky;
+        top: 25px
+    }
+
+    .sticky-responsive-logged {
+        position: sticky;
+        top: 136px
+    }
+    .sticky-testimony {
+        top: 92px;
+    }
+    .sticky-responsive {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 120px;
+    }
     .slip-max{
         max-height:53vh!important;
     }
@@ -991,9 +1003,7 @@ img.nare-league {
     #jp-nare-pick-button{
         margin-left:-38px;
     }
-    .sticky-testimony {
-        top: 95px;
-    }
+
     .top-login-paddings{
     padding-top:20px;
     }
@@ -1325,6 +1335,28 @@ img.nare-league {
     }
 }
 @media (min-width: 992px){
+    .bet-align-right {
+        font-size: 14px;
+    }
+    .show-tax-info {
+        position: fixed;
+        width: 10%;
+        z-index: 200;
+        box-sizing: border-box;
+        box-shadow: 1px 2px 4px 2px var(--tax-info-color);
+        right: 0rem;
+        opacity: 0.95;
+        border-radius: 3px;
+        top: 20rem;
+    }
+    .os{
+        position:fixed;
+        top:0px;
+    }
+    .flex-container{
+        margin-top:63px;
+        /*overflow: hidden;*/
+    }
     .lite-top{
         display:none!important;
     }
@@ -1439,6 +1471,9 @@ img.nare-league {
 @media (min-width: 991px){
 
 
+    .item2{
+        height:max-content;
+    }
 
     .desktop-ipad-size{
         width:100vw!important;;
@@ -1446,6 +1481,7 @@ img.nare-league {
 }
 
 @media (max-width: 991px){
+
     .top-spacing-page-no-download{
         margin-top:9rem;
     }
@@ -1568,7 +1604,7 @@ img.nare-league {
         max-height: 90vh;
     }
     .slip-bottom-space {
-        margin-bottom: 9.5rem!important;
+        margin-bottom: 5rem!important;
         overflow-y: scroll;
         position: sticky;
         top: 0px;
@@ -1583,8 +1619,13 @@ img.nare-league {
         border-radius: 4px;
     }
     .odd-change-position{
-        position:fixed;
-        top:var(--odd-change-position);
+        width:100%;
+        text-align: center;
+        /*display:flex;*/
+        /*justify-content: center;*/
+        align-items: center;
+        /*position:fixed;*/
+        /*top:var(--odd-change-position);*/
     }
     .show-values-betslip{
         font-size: 29px;
@@ -1595,10 +1636,11 @@ img.nare-league {
         width: 50%;
         z-index: 200;
         box-sizing: border-box;
-        box-shadow: 1px 2px 4px 2px var(--betnare-header-bg);
+        box-shadow: 1px 2px 4px 2px var(--tax-info-color);
         right: 6rem;
-        top: 37rem;
-        opacity: 0.9;
+        top: 50rem;
+        opacity: 0.95;
+        border-radius: 3px;
     }
     .slip-max-height {
         display: grid;
@@ -1606,7 +1648,7 @@ img.nare-league {
         height: var(--slip-height)!important;
     }
     .slip-bottom-betlip {
-        margin-bottom: 13rem!important;
+        margin-bottom: var(--slip-bottom)!important;
         overflow-y: scroll;
         position: sticky;
         top: 0px;
@@ -1627,7 +1669,7 @@ img.nare-league {
         width:30px
     }
     .color-app-text{
-        color: var(--green);
+        color: var(--lite-top-color);
     }
     .app-color{
         display: flex;
@@ -1637,8 +1679,10 @@ img.nare-league {
         font-family: "Open Sans", "Arial", sans-serif;
         justify-content: center;
         align-items: center;
+        transition-delay: 250ms;
+        transition-duration: 250ms;
         width: 100%;
-        background: var(--betnare-side-bg);
+        background: var(--app-download-link-color);
         box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.12), 0px 2px 2px 0px rgba(0, 0, 0, 0.24);
         color:var(--lite-top-color  );
         font-weight: 700;
@@ -1835,7 +1879,6 @@ img.nare-league {
     }
     .sticky-responsive {
         position: sticky;
-        top: 0px!important;
     }
     .league-row-mobile {
         white-space: nowrap;

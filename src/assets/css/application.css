@@ -281,7 +281,12 @@ li.bet-option {
     font-size: 12px;
     font-weight: bold;
 }
-
+.bet-align-left{
+    text-align:left;
+}
+.bet-align-right{
+    text-align:right;
+}
 .capitalize {
     text-transform: capitalize;
 }

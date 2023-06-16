@@ -118,8 +118,7 @@ export const UserInfo = () => {
                     </div>}
 
                     {pathname !== '/signup' &&
-                        <Link to={"/login"} className="cg  login-color login-size btn" type="submit"
-                              style={{backgroundColor: '#527994FF'}}>
+                        <Link to={"/login"} className="cg  login-color login-size btn" type="submit">
                             <span>Login</span>
                         </Link>}
                     {pathname !== '/signup' && <div className='d-flex align-items-baseline'>

@@ -73,6 +73,22 @@
     flex-grow:1;
 }
 @media (min-width: 1260px){
+    .flex-container{
+        margin-top:63px;
+    }
+    .flex-item{
+        justify-content: space-between;
+        gap:5px;
+    }
+    .flex-item {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        gap: 5px;
+        height: 100vh;
+        justify-content: space-between;
+        padding: 15px 0;
+    }
     .item2{
         width:62%;
     }

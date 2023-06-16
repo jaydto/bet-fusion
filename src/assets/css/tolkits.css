@@ -7242,9 +7242,12 @@ ul.sport {
     .slip-size{
         max-height:20vh;
     }
-
+    .betslip td.tax-info {
+        padding: 10px 4px!important;
+    }
     .betslip td{
         padding: 2px 2px!important;
+        white-space: nowrap;
     }
     .mobile-height{
         max-height:30vh!important;
@@ -7255,12 +7258,7 @@ ul.sport {
     .mobile-menu{
         z-index:9999;
     }
-    .bet-align-left{
-        text-align:left;
-    }
-    .bet-align-right{
-        text-align:right;
-    }
+
     .betslip-container-mobile{
         height:80%!important;
     }
@@ -7953,6 +7951,13 @@ ul.sport {
     }
 }
 @media (min-width: 992px){
+    .betslip td.tax-info {
+        padding: 7px 1px!important;
+    }
+    .betslip td{
+        padding: 2px 2px!important;
+        white-space: nowrap;
+    }
     .tablet-only{
         display: none!important;
     }
@@ -7972,6 +7977,13 @@ ul.sport {
 
 
 @media (max-width: 991px) {
+    .betslip td.tax-info {
+        padding: 10px 4px!important;
+    }
+    .betslip td{
+        padding: 2px 2px!important;
+        white-space: nowrap;
+    }
     .casino-category-container {
 
         width:fit-content;

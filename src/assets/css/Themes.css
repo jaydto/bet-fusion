@@ -42,11 +42,14 @@
     --testimonial:#253743;
     --white-darken:#16202C;
     --more-markets-text:rgb(255, 193, 7);
-    --slip-height:78vh;
-    --share-top:5rem;
+    --slip-height:80vh;
+    --tax-info-color:#313c48;
+    --share-top:7rem;
+    --slip-bottom:20.5rem;
     --green:#0f5132;
+    --app-download-link-color:#1e354e;
     --odd-change-position:7rem;
-    --slip-tab:5rem;
+    --slip-tab:7rem;
     --kiron-competition:#34495e;
     --top-header-nav:#16202C;
     --side-stats:aqua;

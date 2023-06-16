@@ -541,24 +541,24 @@ const BetslipSubmitForm = (props) => {
                                 {/*<td><FontAwesomeIcon icon={faCheck}</td>*/}
                             </tr>
                             {!jackpot && <tr className="bet-win-tr hide-on-affix">
-                                <td className={"bet-align-left"}>Possible winnings</td>
-                                <td className={"bet-align-right"}>
+                                <td className={"bet-align-left tax-info"}>Possible winnings</td>
+                                <td className={"bet-align-right tax-info"}>
                                     KES. <span
                                     id="pos_win">{formatNumber(hasMultiBetBoost ? possibleWinBoosted : possibleWin)}</span>
                                 </td>
                             </tr>}
 
                             <tr className="bet-win-tr hide-on-affix">
-                                <td className={"bet-align-left"}> Excise Tax (7.5%)</td>
-                                <td className={"bet-align-right"}>KES. <span
+                                <td className={"bet-align-left tax-info"}> Excise Tax (7.5%)</td>
+                                <td className={"bet-align-right tax-info"}>KES. <span
                                     id="tax">{formatNumber(hasMultiBetBoost ? exciseTaxBoosted : exciseTax)}</span></td>
                             </tr>
                             {jackpot ? (
                                 ''
                             ) : (
                                 <tr className="bet-win-tr hide-on-affix">
-                                    <td className={"bet-align-left"}> Withholding (20%)</td>
-                                    <td className={"bet-align-right"}>KES. <span
+                                    <td className={"bet-align-left tax-info"}> Withholding (20%)</td>
+                                    <td className={"bet-align-right tax-info"}>KES. <span
                                         id="tax">{formatNumber(hasMultiBetBoost ? withholdingTaxBoosted : withholdingTax)}</span>
                                     </td>
                                 </tr>
@@ -602,27 +602,45 @@ const BetslipSubmitForm = (props) => {
                             )}
                             </thead>
                             <tbody className={"slip-body"}>
-
-
-
-                            {!jackpot && <tr className="hide-on-affix mt-2">
-                                <td className={"bet-align-left d-flex align-items-center "}>
-                                    TOTAL ODDS
-                                    <span onClick={()=>showUserInfo()}>
-                                        <FontAwesomeIcon icon={faQuestionCircle} className={"show-values-betslip"}/>
-                                    </span>
-                                </td>
-                                <td className={"bet-align-right"}>
-                                    <b>{Float(totalOdds, 2)}</b>
-                                </td>
-                            </tr>}
                             <tr id="odd-change-text">
                                 <td colSpan="2" className={"odd-change-position"}>
                                     <Switch id={"accept-all-odds-change"} {...label} className="odds-change-box" name={"accept_all_odds_change"} checked={values?.accept_all_odds_change}  color="primary" onChange={(e)=>onFieldChanged(e)}/> Accept any odds change
                                 </td>
                             </tr>
+                            {!jackpot && <tr className="hide-on-affix mt-2">
+                                <td className={"bet-align-left d-flex align-items-center "}>
+                                    TOTAL ODDS
+                                </td>
+
+                                <td className={"bet-align-right"}>
+                                    <b>{Float(totalOdds, 2)}</b>
+                                </td>
+                            </tr>}
+
                             <tr>
-                                <td className={"bet-align-left"}>Stake</td>
+                                <td colSpan="2"></td>
+                            </tr>
+
+                            <tr className="bet-win-tr hide-on-affix">
+                                <td className={"bet-align-left d-flex align-items-center gap-3"}>
+                                    {jackpot ? 'JACKPOT AMOUNT' : 'FINAL PAYOUT'}
+                                    <span onClick={()=>showUserInfo()}>
+                                        <FontAwesomeIcon icon={faQuestionCircle} className={"show-values-betslip"}/>
+                                    </span>
+                                </td>
+                                <td className={"bet-align-right"}>KES. <span
+                                    id="net-amount">{formatNumber(jackpot ? jackpotData?.jackpot_amount : (hasMultiBetBoost ? netWinBoosted : netWin))}</span>
+                                </td>
+                            </tr>
+                            {state?.user&&!jackpot&&<tr className="hide-on-affix">
+                                <td >NARE BOOST</td>
+                                <td className={"bet-align-right"}>
+                                    <b>{multiBoostAmount}</b>
+                                </td>
+                            </tr>
+                            }
+                            <tr>
+                                <td className={"bet-align-left"}>STAKE</td>
                                 <td className={"bet-align-right"}>
                                     <div id="betting">
                                         {jackpot ?
@@ -637,23 +655,7 @@ const BetslipSubmitForm = (props) => {
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
-                                <td colSpan="2"></td>
-                            </tr>
-
-                            <tr className="bet-win-tr hide-on-affix">
-                                <td className={"bet-align-left"}>{jackpot ? 'Jackpot Amount' : 'Net Amount'}</td>
-                                <td className={"bet-align-right"}>KES. <span
-                                    id="net-amount">{formatNumber(jackpot ? jackpotData?.jackpot_amount : (hasMultiBetBoost ? netWinBoosted : netWin))}</span>
-                                </td>
-                            </tr>
-                            {state?.user&&!jackpot&&<tr className="hide-on-affix">
-                                <td >NARE BOOST</td>
-                                <td className={"bet-align-right"}>
-                                    <b>{multiBoostAmount}</b>
-                                </td>
-                            </tr>
-                            }
+                            <br className={"ipad-show"}/>
                             <tr className="bet-win-tr hide-on-affix">
                                 <td className={"d-flex"} style={{whiteSpace: "nowrap"}}>
                                     <button

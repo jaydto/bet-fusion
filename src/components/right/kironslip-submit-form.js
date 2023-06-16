@@ -30,7 +30,6 @@ const Float = (equation, precision = 4) => {
 };
 
 const KironslipSubmitForm = (props) => {
-
     const {
         totalGames,
         totalOdds,
@@ -535,9 +534,25 @@ const KironslipSubmitForm = (props) => {
                                         </td>
                                     </tr>
                                 )}
+                                <tr>
+                                    <td colSpan="2"></td>
+                                </tr>
+                                { (
+                                    <tr className="bet-win-tr hide-on-affix">
+                                        <td>FINAL PAYOUT</td>
+                                        <td className={"bet-align-right"}>
+                                            KES.{" "}
+                                            <span id="pos_win">
+                        {formatNumber(
+                            hasMultiBetBoost ? possibleWinBoosted : possibleWin
+                        )}
+                      </span>
+                                        </td>
+                                    </tr>
+                                )}
 
                                 <tr>
-                                    <td>Stake</td>
+                                    <td>STAKE</td>
                                     <td className={"bet-align-right"}>
                                         <div id="betting">
                                             {
@@ -553,24 +568,6 @@ const KironslipSubmitForm = (props) => {
                                         </div>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td colSpan="2"></td>
-                                </tr>
-                                { (
-                                    <tr className="bet-win-tr hide-on-affix">
-                                        <td>Possible winnings</td>
-                                        <td className={"bet-align-right"}>
-                                            KES.{" "}
-                                            <span id="pos_win">
-                        {formatNumber(
-                            hasMultiBetBoost ? possibleWinBoosted : possibleWin
-                        )}
-                      </span>
-                                        </td>
-                                    </tr>
-                                )}
-
-
                                 <tr id="odd-change-text">
                                     <td className={""} style={{whiteSpace: "nowrap"}}>
                                         <button

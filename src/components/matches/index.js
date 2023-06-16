@@ -598,6 +598,7 @@ const OddButton = (props) => {
       odd_value: event.currentTarget.getAttribute("odd_value"),
       bet_type: event.currentTarget.getAttribute("bet_type"),
       odd_type: event.currentTarget.getAttribute("odd_type"),
+      start_time: event.currentTarget.getAttribute("start_time"),
       home_team: event.currentTarget.getAttribute("home_team"),
       away_team: event.currentTarget.getAttribute("away_team"),
       sport_name: event.currentTarget.getAttribute("sport_name"),
@@ -620,6 +621,7 @@ const OddButton = (props) => {
       special_bet_value: attributes.special_bet_value,
       sub_type_id: attributes.sub_type_id,
       bet_pick: attributes.odd_key,
+      start_time: attributes.start_time,
       odd_value: attributes.odd_value,
       home_team: attributes.home_team,
       away_team: attributes.away_team,
@@ -673,6 +675,7 @@ const OddButton = (props) => {
           home_team={match.home_team}
           odd_type={match?.name || match?.market_name || "1X2"}
           bet_type={live ? 1 : 0}
+          start_time={match?.start_time}
           away_team={match.away_team}
           market_active={match.market_active}
           odd_value={oddValue}

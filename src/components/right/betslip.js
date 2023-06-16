@@ -337,9 +337,12 @@ const BetSlip = (props) => {
                                                                     <span className="sp_sport"> </span>
                                                                 </div>
                                                             </div>
-                                                            <div className="row">
-                                                                <div className="bet-value"> {slip.odd_type} -  {slip.bet_pick}</div>
+                                                            <div className="row d-flex flex-column">
+                                                                <div className="bet-value picks-user-slip"> {slip.odd_type} -  {slip.bet_pick}</div>
+                                                                <div className="bet-value time-slip-value"> {slip?.start_time}</div>
                                                             </div>
+                                                            <br/>
+
                                                         </div>
                                                         <div className="row">
                                                             <div className="warn">{slip?.comment} </div>

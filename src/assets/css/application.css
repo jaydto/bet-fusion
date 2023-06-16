@@ -1,10 +1,9 @@
-git branch/*
+git branch /*
  * Copyright (c) Murwa 2018.
  *
  * All rights reserved.
  */
-
-/* docs overrides */
+    /* docs overrides */
 .a {
     background-color: #fff;
     border-color: #d3e0e9;
@@ -181,6 +180,7 @@ git branch/*
     margin-bottom: 6px;
 
 }
+
 a
 .odds button {
     border: none;
@@ -201,7 +201,7 @@ h4.inline-block {
 
 .topl {
     padding: 2px 10px;
-    color: var(--light)!important;
+    color: var(--light) !important;
     opacity: 08;
 }
 
@@ -214,7 +214,7 @@ h4.inline-block {
 }
 
 .match-detail .picked {
-    background:var(--secondary)!important;
+    background: var(--secondary) !important;
     color: var(--dark) !important;
     border: none;
     font-weight: normal !important;
@@ -232,7 +232,7 @@ h4.inline-block {
 
 .betslip {
     /*background: #1c313b;*/
-    background:var(--betnare-primary);
+    background: var(--betnare-primary);
     /*padding: 5px;*/
     padding-top: 1px;
     font-size: 14px;
@@ -253,17 +253,21 @@ h4.inline-block {
 li.bet-option {
 
 }
+
 .bet-option {
     width: 94%;
     margin-left: auto;
 }
-.slip-bg{
-    background:var(--betslip-list)!important;
+
+.slip-bg {
+    background: var(--betslip-list) !important;
     position: relative;
 }
-.bet-option-list li{
-    float:right;
+
+.bet-option-list li {
+    float: right;
 }
+
 .bet-option-list li {
     padding-bottom: 3px !important;
     padding-top: 3px !important;
@@ -278,10 +282,12 @@ li.bet-option {
     display: flex;
     align-items: center;
 }
-.bet-option-list li:last-child{
+
+.bet-option-list li:last-child {
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
+
 .bet-option-list li:first-child {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -301,40 +307,62 @@ li.bet-option {
     width: 15%;
     padding: 9px;
 }
-.bet-cancel input{
-    border-radius: 10px!important;
+
+.bet-cancel input {
+    border-radius: 10px !important;
 }
-.slip-bg{
-    border-bottom:thin solid var(--slip-separator-color)!important;
+
+.slip-bg {
+    border-bottom: thin solid var(--slip-separator-color) !important;
     height: 7rem;
 }
-.slip-bg:last-of-type{
-    border-bottom: none!important;
+.picks-user-slip{
+    color:darkgrey;
+    font-size: 11px !important;
 
 }
-.slip-bg:first-of-type{
-    border-top-right-radius:10px;
-    border-top-left-radius:10px ;
-}.slip-bg:last-of-type{
-    border-bottom-left-radius:10px;
-    border-bottom-right-radius:10px ;
+.time-slip-value {
+    font-size: 10px !important;
+    opacity: 0.8;
+    color:lightgrey;
 }
-.width-slip-item-container{
-    width:80%;
+
+.slip-bg:last-of-type {
+    border-bottom: none !important;
+
 }
+
+.slip-bg:first-of-type {
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.slip-bg:last-of-type {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.width-slip-item-container {
+    width: 80%;
+}
+
 .bet-cancel input {
     height: 20px;
     width: 20px;
     border-radius: 50% !important;
     font-size: 9px;
-    font-weight: bolder!important;
+    font-weight: bolder !important;
+    background: var(--slip-separator-color)!important;
 }
-.bet-align-left{
-    text-align:left;
+
+.bet-align-left {
+    text-align: left;
 }
-.bet-align-right{
-    text-align:right;
+
+.bet-align-right {
+    text-align: right;
 }
+
 .capitalize {
     text-transform: capitalize;
 }
@@ -379,13 +407,15 @@ li.bet-option {
     font-weight: bold;
     display: inline-block;
 }
-.team-info-slip-list{
+
+.team-info-slip-list {
     float: left;
     width: auto;
     font-weight: bold;
-    display:flex;
-    align-items:center;
+    display: flex;
+    align-items: center;
 }
+
 .bet-odd {
     float: right;
     color: var(--betnare-button-login);
@@ -418,15 +448,17 @@ li.bet-option {
 .place-bet-btn.primary, .place_bet_button, #place_bet_button {
     /* background: #fbd702 !important; */
     color: #000;
-    border-radius: 0.7rem!important;
+    border-radius: 0.7rem !important;
 }
-#jp-nare-pick-button{
-  color:#000000!important;
-  background-color:#fbd702!important;
-  border-radius:6px!important;
+
+#jp-nare-pick-button {
+    color: #000000 !important;
+    background-color: #fbd702 !important;
+    border-radius: 6px !important;
 }
-#jp-nare-pick-button:hover{
-  color:orangered!important;
+
+#jp-nare-pick-button:hover {
+    color: orangered !important;
 
 }
 
@@ -560,6 +592,7 @@ li.bet-option {
     color: #000000;
     text-decoration: none;
 }
+
 .verify-label {
     background: green !important;
     text-decoration: none;
@@ -580,11 +613,12 @@ li.bet-option {
     border-bottom-color: green;
 }
 
-#jp-nare-pick-button{
-    color:#000000!important;
-    background-color:#fbd702!important;
-    border-radius:6px!important;
+#jp-nare-pick-button {
+    color: #000000 !important;
+    background-color: #fbd702 !important;
+    border-radius: 6px !important;
 }
-#jp-nare-pick-button:hover{
-    color:orangered!important;
+
+#jp-nare-pick-button:hover {
+    color: orangered !important;
 }

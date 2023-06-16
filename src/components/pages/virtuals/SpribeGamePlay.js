@@ -97,8 +97,9 @@ const GamePlay = (props) => {
                                     fontSize: '14px'
                                 }}>
                                     <div className={'card-body p-3'}>
-                                        <h3 className={'text-center text-warning flashy'}>WIN Upto 2,000,000/= na
-                                            AVIATOR daily. </h3>
+                                        <h3 className={'text-center text-warning flashy'}>
+                                            WIN Upto 2,000,000/= na AVIATOR daily.
+                                        </h3>
                                         <br/>
                                         <h3 className={'text-center'}>How to Play Aviator</h3>
                                         <ul>

@@ -38,6 +38,23 @@ const Header = (props) => {
     const [competitions, setCompetitions] = useState({});
     const [settings, setSettings] = useState({});
     const [isOpen, setIsOpen] = useState(false);
+    const [showLoadingModal, setShowLoadingModal] = useState(false);
+
+
+    useEffect(() => {
+        const handleBackButton = () => {
+            if (window.location.pathname === '/') {
+                setShowLoadingModal(true);
+                // let ans = window.confirm("Are you sure you want to exit this application?");
+                // if (ans) {
+                //   App.exitApp();
+                // }
+            } else {
+                window.history.back();
+            }
+        };
+
+    }, [setShowLoadingModal]);
 
 
     const dismissSearch = () => {
@@ -197,6 +214,7 @@ const Header = (props) => {
     }
     return (
         <>
+            {/*{showLoadingModal && ( <ExitModal setShowLoadingModal={setShowLoadingModal} visible={showLoadingModal}/>)}*/}
             <ToastContainer/>
             <div className={'d-flex flex-column'}>
                 {showDownload&&<Link to={'/betnare.apk'}

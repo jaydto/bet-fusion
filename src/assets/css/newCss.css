@@ -8,12 +8,20 @@ body {
 .line-on-slip-items-container{
     background: var(--betlip-list);
 }
+.slip-dim-color-selections{
 
+}
 .line-on-slip-items {
     height: 1px;
-    width: 80%;
+    width: 100%;
     margin: auto;
-    background: var(--betnare-secondary);
+    background: var(--slip-separator-color);
+}
+.slip-team{
+
+}
+.slip-color-list{
+
 }
 .line-on-slip-items-container:last-child .line-on-slip-items{
     background: var(--transparent);
@@ -314,7 +322,9 @@ input.text-white{
 /*    background-position: center;*/
 /*    !*background-size: cover;*!*/
 /*}*/
-
+.show-container{
+    position:relative;
+}
 .betslip-container {
     /*position: sticky !important;*/
     /*top: 12.5rem;*/
@@ -916,7 +926,7 @@ img.nare-league {
 /*media queries*/
 @media (min-width: 1260px) {
     .background-mybets-mobile{
-        width:92vw;
+        width:90vw;
     }
     .sticky-testimony-logged {
         position: sticky;
@@ -1349,19 +1359,26 @@ img.nare-league {
     }
 }
 @media (min-width: 992px){
+    .bet-cancel {
+        float: right;
+        width: 10%;
+        position: absolute;
+        right: -5px;
+        /* border-radius: 36px; */
+    }
     .bet-align-right {
         font-size: 14px;
     }
     .show-tax-info {
-        position: fixed;
+        position: absolute;
         width: 10%;
         z-index: 200;
         box-sizing: border-box;
         box-shadow: 1px 2px 4px 2px var(--tax-info-color);
-        right: 0rem;
-        opacity: 0.95;
+        right: -13.7rem;
+        opacity: 1;
         border-radius: 3px;
-        top: 20rem;
+        top: -8rem;
     }
     .os{
         position:fixed;
@@ -1409,6 +1426,15 @@ img.nare-league {
         width: 33%!important;
         /*min-height: 150px;*/
         /*height: 150px;*/
+    }
+    .closeinfo {
+        position: absolute;
+        right: -13px;
+        top: -10px;
+    }
+    .closeinfo input{
+        border-radius: 20px!important;
+        background:var(--close-color)!important;
     }
     .alert-message-line-height{
         line-height:1.3;
@@ -1496,6 +1522,15 @@ img.nare-league {
 @media (max-width: 991px){
     .background-mybets-mobile{
         width:100vw;
+    }
+    .closeinfo {
+        position: absolute;
+        right: -13px;
+        top: -10px;
+    }
+    .closeinfo input{
+        border-radius: 20px!important;
+        background:var(--close-color)!important;
     }
 
     .top-spacing-page-no-download{
@@ -1636,27 +1671,23 @@ img.nare-league {
     }
     .odd-change-position{
         width:100%;
-        text-align: center;
-        /*display:flex;*/
-        /*justify-content: center;*/
-        align-items: center;
-        /*position:fixed;*/
-        /*top:var(--odd-change-position);*/
     }
     .show-values-betslip{
         font-size: 29px;
         padding-left:14px;
     }
     .show-tax-info {
-        position: fixed;
         width: 50%;
         z-index: 200;
         box-sizing: border-box;
         box-shadow: 1px 2px 4px 2px var(--tax-info-color);
-        right: 6rem;
-        top: 50rem;
+        /* right: 4.5rem; */
+        /* top: 51rem; */
         opacity: 0.95;
         border-radius: 3px;
+        position: absolute;
+        top: -9rem;
+        right: -13rem;
     }
     .slip-max-height {
         display: grid;
@@ -2162,6 +2193,19 @@ img.nare-league {
 
 }
 @media (max-width: 575px){
+    .show-tax-info {
+        width: 50%;
+        z-index: 200;
+        box-sizing: border-box;
+        box-shadow: 1px 2px 4px 2px var(--tax-info-color);
+        /* right: 4.5rem; */
+        /* top: 51rem; */
+        opacity: 0.95;
+        border-radius: 3px;
+        position: absolute;
+        top: -9rem;
+        right: -13rem;
+    }
     .slip-top {
         top: 9rem;
         height: 70vh;
@@ -2297,7 +2341,35 @@ img.nare-league {
         font-size: 14px!important;
     }
 }
+@media (min-width: 376px) and (max-width:415px){
+    .show-tax-info {
+        width: 50%;
+        z-index: 200;
+        box-sizing: border-box;
+        box-shadow: 1px 2px 4px 2px var(--tax-info-color);
+        /* right: 4.5rem; */
+        /* top: 51rem; */
+        opacity: 0.95;
+        border-radius: 3px;
+        position: absolute;
+        top: -9rem;
+        right: -13rem;
+    }
+}
 @media (max-width: 375px){
+    .show-tax-info {
+        width: 50%;
+        z-index: 200;
+        box-sizing: border-box;
+        box-shadow: 1px 2px 4px 2px var(--tax-info-color);
+        /* right: 4.5rem; */
+        /* top: 51rem; */
+        opacity: 0.95;
+        border-radius: 3px;
+        position: absolute;
+        top: -9rem;
+        right: -13rem;
+    }
     .bloc-icon {
         width:20%!important;
         display: flex;

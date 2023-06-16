@@ -29,6 +29,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {Spinner} from "react-bootstrap";
 import {Switch} from "@material-ui/core";
+import {faXbox} from "@fortawesome/free-brands-svg-icons";
 const BetslipShareModal = React.lazy(() =>
     import("../modals/BetslipShareModal")
 );
@@ -535,13 +536,19 @@ const BetslipSubmitForm = (props) => {
                 };
                 const UserInfoContainer=()=>{
                     return(
-                        <table className={"show-tax-info"}>
+                        <table className={"show-tax-info "}>
                             <tbody>
                             <tr>
-                                {/*<td><FontAwesomeIcon icon={faCheck}</td>*/}
+                                <td colSpan={2} className={" bet-align-right closeinfo"}>
+                                    <input
+                                        type="submit"
+                                        value="X"
+                                        onClick={() =>showUserInfo()}
+                                    />
+                                </td>
                             </tr>
                             {!jackpot && <tr className="bet-win-tr hide-on-affix">
-                                <td className={"bet-align-left tax-info"}>Possible winnings</td>
+                                <td className={"bet-align-left tax-info"}>Possible Win</td>
                                 <td className={"bet-align-right tax-info"}>
                                     KES. <span
                                     id="pos_win">{formatNumber(hasMultiBetBoost ? possibleWinBoosted : possibleWin)}</span>
@@ -587,7 +594,6 @@ const BetslipSubmitForm = (props) => {
                     {totalGames > 0 && (
                         <table className="bet-table w-100 ">
                             <thead>
-                            {showInfo&&<UserInfoContainer/>}
                             {!jackpot &&
                             awardMultiGift &&
                             Number(totalGames) > settings?.betnareBonus?.bonusBetLegs ? (
@@ -622,10 +628,11 @@ const BetslipSubmitForm = (props) => {
                             </tr>
 
                             <tr className="bet-win-tr hide-on-affix">
-                                <td className={"bet-align-left d-flex align-items-center gap-3"}>
-                                    {jackpot ? 'JACKPOT AMOUNT' : 'FINAL PAYOUT'}
-                                    <span onClick={()=>showUserInfo()}>
+                                <td className={"bet-align-left d-flex align-items-center gap-3 show-container"}>
+                                    <strong>{jackpot ? 'JACKPOT AMOUNT' : 'FINAL PAYOUT'}</strong>
+                                    <span onClick={()=>showUserInfo()} className={'bold'}>
                                         <FontAwesomeIcon icon={faQuestionCircle} className={"show-values-betslip"}/>
+                                        {showInfo&&<UserInfoContainer/>}
                                     </span>
                                 </td>
                                 <td className={"bet-align-right"}>KES. <span

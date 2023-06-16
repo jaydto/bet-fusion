@@ -261,16 +261,31 @@ li.bet-option {
     color: var(--light);
     padding: 4px;
     text-shadow: none;
-    /*border-bottom: 1px solid var(--betnare-primary);*/
+    /* border-bottom: 1px solid var(--betnare-primary); */
     overflow: hidden;
     line-height: 1.6;
+    border-radius: 0px;
 }
-
+.bet-option-list li:last-child{
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.bet-option-list li:first-child {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
 .bet-cancel {
     float: right;
     width: 10%;
+    position: absolute;
+    right: -12px;
+    /* border-radius: 36px; */
 }
-
+.bet-cancel input{
+    border-radius: 10px!important;
+}
 
 .bet-cancel input {
     background: transparent;
@@ -298,6 +313,8 @@ li.bet-option {
 
 .bet-value {
     float: left;
+    font-size: 12px;
+    font-weight: 500;
 }
 
 .bet-pick {
@@ -329,9 +346,18 @@ li.bet-option {
     font-weight: bold;
     display: inline-block;
 }
-
+.team-info-slip-list{
+    float: left;
+    width: auto;
+    font-weight: bold;
+    display:flex;
+    align-items:center;
+}
 .bet-odd {
     float: right;
+    color: var(--betnare-button-login);
+    font-size: 11px;
+    opacity: 0.9;
 }
 
 .bet-type {

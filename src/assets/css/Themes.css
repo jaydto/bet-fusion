@@ -9,6 +9,8 @@
     --betnare-header-bg:#141d28;
     --odds-button:rgb(31 54 69);
     --betnare-live:red;
+    --slip-separator-color:#719bc1;
+    --color-site: #ff3c00;
     --betnare-side-bg:#121a23;
     --betslip-header:#4c372a;
     --betslip-mybets:#cd28ec;
@@ -43,6 +45,8 @@
     --white-darken:#16202C;
     --more-markets-text:rgb(255, 193, 7);
     --slip-height:80vh;
+    --red:red;
+    --close-color:#bb2f2f;
     --tax-info-color:#313c48;
     --share-top:7rem;
     --slip-bottom:20.5rem;

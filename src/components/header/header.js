@@ -20,7 +20,7 @@ import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import ListGroup from "react-bootstrap/ListGroup";
 import LoginSection from "./LoginSection";
 import {UserInfo} from "./UserInfo";
-import useWindowDimensions from "./Dimensions";
+const downloadAPKFile = React.lazy(() => import('../../assets/betnare.apk'));
 const ProfileMenu = React.lazy(() => import('./profile-menu'));
 const HeaderNav = React.lazy(() => import('./header-nav'));
 
@@ -191,19 +191,28 @@ const Header = (props) => {
     },[ pathname ])
 
 
-    const {height, } = useWindowDimensions();
+
+    const getDownloadFile = () => {
+        return downloadAPKFile;
+    }
     return (
         <>
             <ToastContainer/>
             <div className={'d-flex flex-column'}>
-                {showDownload&&<div className={"lite-top"}>
+                {showDownload&&<Link to={'/betnare.apk'}
+                                     target={"_blank"}
+                                     title={'Download App'}
+                                     download={'betnare.apk'}
+                                     className={"lite-top"}
+                                     onClick={()=>gaEventTracker('Downloaded App')}
+                                     exportFile={() => getDownloadFile()}>
                     <div className={"app-download-link "}>
-                        <a href={"https://www.betnare.com/android/download"} className={"app-color"}>
-                            <span className={"color-app-text"}>APP Your Game</span>
+                        <div  className={"app-color"}>
+                            <span className={"color-app-text"}>APP Your Game with Betnare App</span>
                             <img src={androidIcon} className={"icon-android"}/>
-                        </a>
+                        </div>
                     </div>
-                </div>}
+                </Link>}
 
                 <Navbar expand="md"   className={`${(scrollPosition||!showDownload)&&'fixed-top-nav'} mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${slip&&"top-betslip-page-fix"} ${user?'top-nav-login':'top-nav'}`} fixed="top" variant="dark">
                     <div className={'w-100 d-flex justify-content-between mobile-change desktop-ipad-size top-header-main'}>

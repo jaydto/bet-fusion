@@ -2190,7 +2190,7 @@ events-header {
 }
 
 .home-team {
-    background: #334c5c;
+    background: var(--odds-button);
     color: #fff;
     font-weight: 150 !important;
 }

@@ -277,14 +277,14 @@ const HeaderNav = (props) => {
                         </Link>
                     </li>
 
-                    <li className={pathname.includes("affiliate") ? 'active' : ''}
-                        onClick={() => gaEventTracker('Visited Affiliate Page')}>
-                        <Link className="url-link fm anl cg ox" to="/affiliate" title="Affiliate">
-                            <strong>
-                                Affiliate
-                            </strong>
-                        </Link>
-                    </li>
+                    {/*<li className={pathname.includes("affiliate") ? 'active' : ''}*/}
+                    {/*    onClick={() => gaEventTracker('Visited Affiliate Page')}>*/}
+                    {/*    <Link className="url-link fm anl cg ox" to="/affiliate" title="Affiliate">*/}
+                    {/*        <strong>*/}
+                    {/*            Affiliate*/}
+                    {/*        </strong>*/}
+                    {/*    </Link>*/}
+                    {/*</li>*/}
 
                 </ListGroup>
                 <ListGroup

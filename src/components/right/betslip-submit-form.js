@@ -104,7 +104,7 @@ const BetslipSubmitForm = (props) => {
                 dispatch({type: "SET", key: "user", payload: u});
                 setTimeout(()=>{
                     setMessage(null)
-                },5000)
+                },6000)
                 dispatch({type: "SET", key: "placebet", payload: true});
             }
         });

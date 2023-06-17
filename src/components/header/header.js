@@ -126,7 +126,7 @@ const Header = (props) => {
         }
     })
     const urlPath=window.location.pathname
-    const showDownload=(!urlPath.includes("nare-games")&&!urlPath.includes("gameplay")&&!urlPath.includes("smart-play")&&!urlPath.includes("betslip-slip")&&!urlPath.includes("betslip-nare")&&!urlPath.includes("betslip-jackpot")&&!urlPath.includes("nare-league")&&!urlPath.includes("bet-history")&&!urlPath.includes("standings")&&!urlPath.includes("results")&&!urlPath.includes("casino")&&!urlPath.includes("jackpot")&&!urlPath.includes("smart-soft")&&!urlPath.includes("virtuals")&&!urlPath.includes("match")&&!urlPath.includes("competition")&&!urlPath.includes("my-bets")&&!urlPath.includes("profile"))
+    const showDownload=(!urlPath.includes("nare-games")&&!urlPath.includes("gameplay")&&!urlPath.includes("smart-play")&&!urlPath.includes("betslip-slip")&&!urlPath.includes("betslip-nare")&&!urlPath.includes("betslip-jackpot")&&!urlPath.includes("nare-league")&&!urlPath.includes("bet-history")&&!urlPath.includes("standings")&&!urlPath.includes("results")&&!urlPath.includes("casino")&&!urlPath.includes("jackpot")&&!urlPath.includes("smart-soft")&&!urlPath.includes("virtuals")&&!urlPath.includes("match")&&!urlPath.includes("competition")&&!urlPath.includes("my-bets")&&!urlPath.includes("profile")&&!urlPath.includes("promotions"))
 
     useEffect(() => {
 
@@ -232,7 +232,7 @@ const Header = (props) => {
                     </div>
                 </Link>}
 
-                <Navbar expand="md"   className={`${(scrollPosition||!showDownload)&&'fixed-top-nav'} mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${slip&&"top-betslip-page-fix"} ${user?'top-nav-login':'top-nav'}`} fixed="top" variant="dark">
+                <Navbar expand="md"   className={`${(scrollPosition||!showDownload)&&'fixed-top-nav'} mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${slip&&"top-betslip-page-fix"} ${user?'top-nav-login':'top-nav-login'}`} fixed="top" variant="dark">
                     <div className={'w-100 d-flex justify-content-between mobile-change desktop-ipad-size top-header-main'}>
                         <div className={"d-flex w-100 directions-header-nav"}>
                             <Navbar.Brand className={`e logo align-self-start menu-control d-flex justify-content-between w-100`} title="Betnare">

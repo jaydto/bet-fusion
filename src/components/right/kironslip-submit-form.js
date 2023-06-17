@@ -87,7 +87,9 @@ const KironslipSubmitForm = (props) => {
                 setLocalStorage('user', u);
                 setUser(u)
                 dispatch({type: "SET", key: "user", payload: u});
-                setMessage(null)
+                setTimeout(()=>{
+                    setMessage(null)
+                },6000)
                 dispatch({type: "SET", key: "placebet", payload: true});
             }
         });

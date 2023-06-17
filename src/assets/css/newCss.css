@@ -1467,8 +1467,8 @@ img.nare-league {
         overflow-y: auto;
         max-height: 40vh;
     }
-    .size-all-markets{
-        width:145%!important;
+    .size-all-markets {
+        width: 120%!important;
     }
     .extra-markets-mobile-date{
         display:none;

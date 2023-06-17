@@ -338,7 +338,7 @@ const BetSlip = (props) => {
                                                                 </div>
                                                             </div>
                                                             <div className="row d-flex flex-column">
-                                                                <div className="bet-value picks-user-slip"> {slip.odd_type} -  {slip.bet_pick}</div>
+                                                                <div className="bet-value picks-user-slip"> {slip.odd_type} -  <span className={"pick-user-match"}>{slip.bet_pick}</span></div>
                                                                 <div className="bet-value time-slip-value"> {slip?.start_time}</div>
                                                             </div>
                                                             <br/>

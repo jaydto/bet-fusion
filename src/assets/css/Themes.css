@@ -8,6 +8,7 @@
     --banner-background: url(../../assets/img/auth/img-17.webp)!important;
     --betnare-header-bg:#141d28;
     --odds-button:rgb(31 54 69);
+    --odds-button:rgb(31 54 69);
     --betnare-live:red;
     --slip-separator-color:rgb(51, 76, 92);
     --color-site: #ff3c00;
@@ -48,17 +49,21 @@
     --red:red;
     --close-color:#bb2f2f;
     --tax-info-color:#313c48;
-    --share-top:7rem;
+    --share-top:5.1rem;
+    --height-slip-kiron:19rem;
+    --slip-bottom-space:23rem;
     --slip-bottom:20.5rem;
     --green:#0f5132;
     --app-download-link-color:#1e354e;
     --odd-change-position:7rem;
-    --slip-tab:7rem;
+    --slip-tab:5.1rem;
     --kiron-competition:#34495e;
     --top-header-nav:#16202C;
     --side-stats:aqua;
     --betslip-list:rgb(31 54 69);
     --toggle-btn:transparent;
+    --slip-message-alert:9.5rem;
+    --alert-slip-color:#c9e0ee;
     --transparent:transparent;
     --lite-top-color:#0DCAF0;
     --picked:#fdd835;
@@ -69,9 +74,10 @@
     --font-weight-normal:normal;
     --always-white:#fff;
     --badge-bg:url(../../assets/img/mobile/new_badge.webp);
+    --box-shadow-sports: 0 0.5rem 0.2rem rgba(0,0,0,.175);
 }
 .shadow-sports-header{
-    box-shadow: 0 0.5rem 0.2rem rgba(0,0,0,.175)!important;
+    box-shadow:var(--box-shadow-sports) !important;
 }
 
 .light-theme {

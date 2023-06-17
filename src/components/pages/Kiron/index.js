@@ -196,8 +196,7 @@ const TestKiron = () => {
             <div className={'flex-item-kiron'}>
             <div className="item-kiron4">
                 <div>
-
-                    <Header/>
+                    <Header slip={true}/>
                 </div>
             </div>
             <div className="flex-container-kiron kiron-test full-screen-mobile-kiron">

@@ -54,28 +54,7 @@
 .text-profile-link{
     color:var(--side-stats);
 }
-.header-profile-summary {
-    display: flex;
-    flex-direction: column;
-    font-family: 'Montserrat', sans-serif;
-    color: white;
-    justify-content: space-between;
-    margin-left: auto;
-    padding-right: 8%;
-}
-.summary-text {
-    font-size: 1.5rem;
-    font-weight: 700;
-}
-.summary-balance {
-    font-size: 2rem;
-    letter-spacing: 1.5px;
-    margin-bottom: 0.8rem;
-}
-.summary-text-2 {
-    font-size: 0.8rem;
-    letter-spacing: 1px;
-}
+
 .user-profile {
     height: 60px;
     width: 60px;
@@ -285,10 +264,56 @@ a.text-logout{
     box-shadow: 0 1px 5px -1px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(0, 0, 0, 0.15);
 }
 @media (min-width:992px){
+    .header-profile-summary {
+        display: flex;
+        flex-direction: column;
+        /* font-family: 'Montserrat', sans-serif; */
+        color: white;
+        justify-content: space-between;
+        margin-left: auto;
+        padding-right: 8%;
+    }
+    .summary-text {
+        font-size: 1.5rem;
+        font-weight: 700;
+    }
+    .summary-balance {
+        font-size: 2rem;
+        letter-spacing: 1.5px;
+        margin-bottom: 0.8rem;
+    }
+    .summary-text-2 {
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+    }
     .iphone{
         overflow-y: auto;
     }
     .profile-container-desktop{
         overflow: hidden;
+    }
+}
+@media (max-width:991px){
+    .header-profile-summary {
+        display: flex;
+        flex-direction: column;
+        /* font-family: 'Montserrat', sans-serif; */
+        color: white;
+        justify-content: space-between;
+        margin-left: auto;
+        padding-right: 8%;
+    }
+    .summary-text {
+        font-size: 1.2rem;
+        font-weight: 700;
+    }
+    .summary-balance {
+        font-size: 2rem;
+        letter-spacing: 1.5px;
+        margin-bottom: 0.8rem;
+    }
+    .summary-text-2 {
+        font-size: 0.8rem;
+        letter-spacing: 1px;
     }
 }

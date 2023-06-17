@@ -1515,6 +1515,12 @@ img.nare-league {
 
 
 @media (max-width: 991px){
+    .odd-change-position .odds-change-box {
+        /* padding-left: 0px!important; */
+        width: 16%;
+        padding: 13px;
+        margin-left: -11px;
+    }
     .background-mybets-mobile{
         width:100vw;
     }

@@ -22,6 +22,7 @@ import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 import {
+    faBolt,
 
     faFireAlt,
     faGift, faInfoCircle,
@@ -641,8 +642,8 @@ const BetslipSubmitForm = (props) => {
                                 </div>
                             </div>
                             {state?.user&&!jackpot&&<div className="hide-on-affix d-flex justify-content-between p-lg-2 p-md-2 py-sm-0">
-                                <div className={"bet-align-left"}>Nare Boost</div>
-                                <div className={"bet-align-right"}>
+                                <div className={"bet-align-left nare-boost-color d-flex align-items-center"}>Nare Boost&nbsp;<FontAwesomeIcon icon={faBolt} className={'boost-betslip'}/></div>
+                                <div className={"bet-align-right nare-boost-color"}>
                                     <b>{multiBoostAmount}</b>
                                 </div>
                             </div>

@@ -510,7 +510,7 @@ const KironslipSubmitForm = (props) => {
                             <div className="bet-table w-100 box-shadow-table-submit-form ">
                                 <div id="odd-change-text" className={'d-flex justify-content-end align-items-center mb-3'}>
                                     <div className={"slip-clear-all"}>
-                                       Clear All <FontAwesomeIcon icon={faTrash} title={"Clear All"} style={{color:"var(--light)"}} onClick={() => handleRemoveAll()} />
+                                     <FontAwesomeIcon icon={faTrash} title={"Clear All"} style={{color:"var(--light)"}} onClick={() => handleRemoveAll()} />
                                     </div>
                                 </div>
 

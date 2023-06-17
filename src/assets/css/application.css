@@ -198,12 +198,11 @@ git branch /*
 }
 .odd-change-position .odds-change-box {
     /* padding-left: 0px!important; */
-    width: 16%;
-    padding: 13px;
-    margin-left: -11px;
+    /*width: 16%;*/
+    /*padding: 13px;*/
 }
 #betting input {
-    color: #000;
+    color: var(--light);
     padding: 3px;
     border-radius: 5.2px;
     text-align: end;
@@ -403,9 +402,20 @@ li.bet-option {
     width: 15%;
     padding: 9px;
 }
-
+.bet-align-left.nare-boost-color{
+    color:var(--lite-top-color)!important;
+    /*font-weight: 800;*/
+}
+.boost-betslip{
+    font-size: 23px;
+    padding-left: 9px;
+}
+.bet-align-right.nare-boost-color{
+    color:var(--lite-top-color)!important;
+}
 .bet-cancel input {
     border-radius: 10px !important;
+    border-bottom: var(--transparent);
 }
 
 .slip-bg {

@@ -382,6 +382,7 @@
 }
 
 @media (max-width:991px){
+
     .top-matches.kiron div {
         min-height: 16px;
         justify-content: unset;
@@ -403,5 +404,10 @@
         width: 22px;
         display: inline-block;
         margin: 2px 0;
+    }
+}
+@media (max-width:575px){
+    .more-market-default{
+        display:contents;
     }
 }

@@ -91,6 +91,6 @@ img{
 }
 @media (min-width:200px) and (max-width: 991px){
     .app-countries-icons {
-        margin-top: 28px!important;
+        margin-top: 9px!important;
     }
 }

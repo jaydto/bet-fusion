@@ -2523,17 +2523,19 @@ img.nare-league {
 .text-sign-up-center{
     text-align: center;
 }
-.lite-top-color{
+.lite-top-color {
     border: thin solid var(--betnare-input);
-    color:var(--betnare-button-login);
+    color: var(--betnare-button-login);
     text-align: center;
     display: flex;
     justify-content: center;
     width: 100%;
+    text-align: center;
+    height: 2.5rem;
 }
 .lite-top-color .color-app-text{
     width: 100%;
-    border: thin solid var(--betnare-input);
+    /*border: thin solid var(--betnare-input);*/
     color:var(--betnare-button-login);
     text-align: center;
 }

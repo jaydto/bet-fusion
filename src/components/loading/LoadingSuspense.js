@@ -4,8 +4,7 @@ import {ProgressBar} from "loading-animations-react";
 import React from "react";
 
 
-const Loading=React.memo(
-    (props)=> {
+function Loading(props) {
     return (
             <div className={"d-flex align-items-center flex-column justify-content-center"} style={{height:"70vh"}}>
                 <div className={"d-flex justify-content-start flex-column"}>
@@ -25,6 +24,6 @@ const Loading=React.memo(
             </div>
 
     );
-})
+}
 
-export default React.memo(Loading);
+export default Loading;

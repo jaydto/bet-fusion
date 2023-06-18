@@ -8,7 +8,8 @@ import SearchComponent from "./searchField";
 import {Context} from "../../../context/store";
 import SideBar from "../../sidebar/awesome/Sidebar";
 
-const Casino = () => {
+const Casino = React.memo(
+    () => {
 
     const [categories, setCategories] = useState([])
 
@@ -145,7 +146,7 @@ const Casino = () => {
         </>
     )
 
-}
+})
 
 
-export default Casino;
+export default React.memo(Casino);

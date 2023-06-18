@@ -18,7 +18,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 import { Link } from "react-router-dom";
 
-const Sidebar = (props) => {
+const Sidebar = React.memo(
+    (props) => {
   const gaEventTracker = useAnalyticsEventTracker("Navigation");
   const [collapsed, setCollapsed] = useState(false);
   const [toggled, setToggled] = useState(false);
@@ -314,6 +315,6 @@ const Sidebar = (props) => {
       </ProSidebar>
     </div>
   );
-};
+});
 
 export default React.memo(Sidebar);

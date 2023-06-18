@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import './component/newProfile.css'
-import {Link, Navigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import accounts from '../../../assets/img/mobile/user.png'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBars, faCoins, faDownload, faFire, faHome, faPowerOff, faUpload} from "@fortawesome/free-solid-svg-icons";
@@ -14,9 +14,11 @@ const NewProfile = () => {
 	const [user, setUser] = useState(getFromLocalStorage("user"));
 	const [state,dispatch]=useContext(Context)
 
+	// const navigate=useNavigate()
 	const clearHistory=()=>{
 		setLocalStorage("user",null)
-		return window.location.href="/logout"
+		dispatch({type: "SET", key: "user", payload: null});
+		window.location.href="/logout"
 	}
 	const updateUserOnHistory = () => {
 		if (!user) {
@@ -180,7 +182,7 @@ const NewProfile = () => {
 							{/*		</div>*/}
 							{/*	</div>*/}
 							{/*</Link>*/}
-							<Link to={"#"} style={{textDecoration: "none", color: "black"}} onClick={()=>clearHistory()}>
+							<div  style={{textDecoration: "none", color: "black"}} onClick={()=>clearHistory()}>
 								<div className="transaction">
 									<div className="t-details">
 										<div className="t-title">Log Out </div>
@@ -190,7 +192,7 @@ const NewProfile = () => {
 										<FontAwesomeIcon  icon={faPowerOff} style={{fontSize: "24px"}}/>
 									</div>
 								</div>
-							</Link>
+							</div>
 						</div>
 					</div>
 				</div>

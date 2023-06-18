@@ -25,7 +25,7 @@ const ProfileMenu = React.lazy(() => import('./profile-menu'));
 const HeaderNav = React.lazy(() => import('./header-nav'));
 
 
-const Header = (props) => {
+const Header = React.memo((props) => {
     const {slip,scrollPosition}=props
     const gaEventTracker = useAnalyticsEventTracker('Navigation');
     const [user, setUser] = useState(getFromLocalStorage("user"));
@@ -314,5 +314,5 @@ const Header = (props) => {
        </>
 
     )
-}
+})
 export default React.memo(Header);

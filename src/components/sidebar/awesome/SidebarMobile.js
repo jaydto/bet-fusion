@@ -13,15 +13,14 @@ import {
     faInfo,
     faLaptop,
     faMagic,
-    faCoins,
     faMobile,
-    faCloud,
     faCloudDownloadAlt
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 
-const SidebarMobile = (props) => {
+const SidebarMobile = React.memo(
+    (props) => {
     // const [competitions, setCompetitions] = useState(getFromLocalStorage('categories'));
     const [user, setUser] = useState(getFromLocalStorage("user"));
     const gaEventTracker = useAnalyticsEventTracker('Navigation');
@@ -153,6 +152,6 @@ const SidebarMobile = (props) => {
                 <Footer/>
             </SidebarFooter>
         </ProSidebar>)
-}
+})
 
 export default React.memo(SidebarMobile);

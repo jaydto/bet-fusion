@@ -5,7 +5,8 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import {Link} from "react-router-dom";
 
-const Competitions = (props) => {
+const Competitions = React.memo(
+    (props) => {
     const {competitions } = props;
 
     return (
@@ -35,5 +36,5 @@ const Competitions = (props) => {
             }
             </ul>
     )
-}
+})
 export default React.memo(Competitions);

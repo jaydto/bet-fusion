@@ -34,9 +34,10 @@ const ApplicableLaw = React.lazy(()=>import('./applicable-law'));
 const TermAndTermination = React.lazy(()=>import('./term-and-termination'));
 const Definitions =React.lazy(()=>import('./Definitions'))
 
-const TermsAndConditions = (props) => {
-    const {height, width} = useWindowDimensions();
-    const [state, dispatch] = useContext(Context);
+const TermsAndConditions = React.memo(
+    (props) => {
+    const {width} = useWindowDimensions();
+    const [state, ] = useContext(Context);
     return (
         <>
             <Header/>
@@ -89,6 +90,6 @@ const TermsAndConditions = (props) => {
             </div>
         </>
     )
-}
+})
 
 export default TermsAndConditions

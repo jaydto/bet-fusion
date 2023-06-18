@@ -7,9 +7,10 @@ import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
 import Notify from "../../utils/Notify";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faChair, faCircle, faDotCircle} from "@fortawesome/free-solid-svg-icons";
+import {faChair, faCircle} from "@fortawesome/free-solid-svg-icons";
 
-const LiveCasino = (props) => {
+const LiveCasino = React.memo(
+    (props) => {
 
     const [dgaConnected, setDgaConnected] = useState(false)
     const [tableKeys, setTableKeys] = useState({})
@@ -236,7 +237,7 @@ const LiveCasino = (props) => {
         </>
     )
 
-}
+})
 
 
 export default React.memo(LiveCasino);

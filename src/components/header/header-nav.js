@@ -12,9 +12,10 @@ import {
 import makeRequest from "../utils/fetch-request";
 
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
-import {Link, useNavigate} from "react-router-dom";
+import {Link, Navigate, useNavigate} from "react-router-dom";
 import {setLocalStorage} from "../utils/local-storage";
-const HeaderNav = (props) => {
+const HeaderNav = React.memo(
+    (props) => {
     const gaEventTracker = useAnalyticsEventTracker('Navigation');
     const [test, setTest] = useState(false)
     const [state,] = useContext(Context);
@@ -62,24 +63,26 @@ const HeaderNav = (props) => {
         checkEnvironment()
     })
 
+
     const LoginCheck = (game) => {
         if(game == "JetX"){
             if(state?.user !== null){
-                window.location.href = "/smart-play?game=JetX&category=JetX" }
+               navigate( "/smart-play?game=JetX&category=JetX")
+            }
             else {
                 setLocalStorage("ActiveLink",'/smart-play?game=JetX&category=JetX')
-                window.location.href='/login'
+                navigate('/login')
             }
         }else if(game=='spaceman'){
             if(state?.user !== null){
-                window.location.href = "/gameplay/1301/1"
+                navigate( "/gameplay/1301/1")
             } else{
                 setLocalStorage("ActiveLink",'/gameplay/1301/1')
-                window.location.href='/login'
+                navigate('/login')
             }
         }else {
             if(state?.user !== null){
-                window.location.href = "/casino"
+                 navigate("/casino")
             } else{
                 setLocalStorage("ActiveLink",'/casino')
                 window.location.href='/login'
@@ -139,16 +142,16 @@ const HeaderNav = (props) => {
                     </li>
 
                     <li className={`${pathname === '/casino'  ? 'active' : ''}`}>
-                        <Link className="url-link fm anl cg ox " to="#" title="Live Casino" onClick={() => {LoginCheck("casino");gaEventTracker('Visit Casino Page')}}>
+                        <div className="url-link fm anl cg ox "  title="Live Casino" onClick={() => {LoginCheck("casino");gaEventTracker('Visit Casino Page')}}>
                             <span>
                                 <strong>Casino</strong>
                                     <span className="new-alert-badge">HOT</span>
                             </span>
-                        </Link>
+                        </div>
                     </li>
 
                     <li className={`${pathname == '/gameplay' || pathname.includes("1301") ? 'active' : ''}`}>
-                        <Link className="url-link fm anl cg ox " to="#" onClick={() => {
+                        <div className="url-link fm anl cg ox "  onClick={() => {
                             LoginCheck("spaceman");gaEventTracker('Visit SpaceMan Page')
                         }}
                            title="Space Man">
@@ -156,13 +159,12 @@ const HeaderNav = (props) => {
                                 <strong>Spaceman</strong>
                                     <span className="new-alert-badge">HOT</span>
                             </span>
-                        </Link>
+                        </div>
                     </li>
 
                     <li className={searchTerm.includes('JetX') ? 'active live-bg' : ''}
                         onClick={() => gaEventTracker('Jetx')}>
-                        <Link className="url-link fm anl cg ox"
-                              to="#"
+                        <div className="url-link fm anl cg ox"
                               title="JetX"
                               onClick={() => {
                                   LoginCheck("JetX");gaEventTracker('Visit JetX Page')
@@ -173,7 +175,7 @@ const HeaderNav = (props) => {
                                     <span className="new-alert-badge">HOT</span>
                                 </div>
                             </strong>
-                        </Link>
+                        </div>
                     </li>
 
                     <li className={`${pathname === '/nare-league'  ? 'active' : ''}`}>
@@ -352,5 +354,5 @@ const HeaderNav = (props) => {
         </>
     )
 
-}
+})
 export default React.memo(HeaderNav);

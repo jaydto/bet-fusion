@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import Header from "../../header/header";
 import Footer from "../../footer/footer";
-import {useParams} from "react-router-dom";
 import makeRequest from "../../utils/fetch-request";
 import Skeleton, {SkeletonTheme} from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
@@ -9,7 +8,8 @@ import {getFromLocalStorage} from "../../utils/local-storage";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFire} from "@fortawesome/free-solid-svg-icons";
 
-const SmartPlay = (props) => {
+const SmartPlay = React.memo(
+    (props) => {
 
     const url = new URL(window.location)
     const game= url.searchParams.get('game')
@@ -135,6 +135,6 @@ const SmartPlay = (props) => {
             <Footer/>
         </>
     )
-}
+})
 
 export default React.memo(SmartPlay)

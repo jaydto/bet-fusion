@@ -10,7 +10,8 @@ import {Link} from "react-router-dom";
 import {Navbar} from "react-bootstrap";
 import {Context} from "../../context/store";
 
-const ProfileMenu = (props) => {
+const ProfileMenu = React.memo(
+    (props) => {
     const {user} = props;
     const [state,dispatch]=useContext(Context)
     const [themeLight, setThemeLight]=useState(false)
@@ -89,6 +90,5 @@ const ProfileMenu = (props) => {
             )}
         </>
     );
-};
-
+});
 export default React.memo(ProfileMenu);

@@ -9,7 +9,8 @@ import SearchComponent from "./searchField";
 import {Context} from "../../../context/store";
 import SideBar from "../../sidebar/awesome/Sidebar";
 
-const SmartSoft = () => {
+const SmartSoft = React.memo(
+    () => {
 
     const [games, setGames] = useState([])
     const [state,]=useContext(Context)
@@ -117,6 +118,6 @@ const SmartSoft = () => {
             </div>
         </>
     )
-}
+})
 
 export default React.memo(SmartSoft)

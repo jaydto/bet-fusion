@@ -39,7 +39,8 @@ const Float = (equation, precision = 4) => {
     return Math.round(equation * 10 ** precision) / 10 ** precision;
 };
 
-const BetslipSubmitForm = (props) => {
+const BetslipSubmitForm = React.memo(
+    (props) => {
 
 
     const {
@@ -730,5 +731,5 @@ const BetslipSubmitForm = (props) => {
             }}
         </Formik>)
 
-}
+})
 export default React.memo(BetslipSubmitForm);

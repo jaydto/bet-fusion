@@ -6,7 +6,8 @@ import {Spinner} from "react-bootstrap";
 import {setLocalStorage} from "../utils/local-storage";
 
 
-const DecodeCode = () => {
+const DecodeCode = React.memo(
+    () => {
     // const [betslipData, setBetslipShare] = useState({})
     const inputRef = useRef(null);
     useEffect(() => {
@@ -108,6 +109,6 @@ const DecodeCode = () => {
             </div>
         </React.Fragment>
     );
-};
+});
 
 export default React.memo(DecodeCode);

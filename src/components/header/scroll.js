@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 
-const Scroll = () => {
+const Scroll = React.memo(
+    () => {
     const [show, setShow] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -33,4 +34,4 @@ const Scroll = () => {
             ....
         </nav>
     );
-};
+});

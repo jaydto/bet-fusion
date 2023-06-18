@@ -31,7 +31,8 @@ const Float = (equation, precision = 4) => {
     return Math.round(equation * 10 ** precision) / 10 ** precision;
 };
 
-const KironslipSubmitForm = (props) => {
+const KironslipSubmitForm = React.memo(
+    (props) => {
     const {
         totalGames,
         totalOdds,
@@ -616,5 +617,5 @@ const KironslipSubmitForm = (props) => {
             }}
         </Formik>
     );
-};
+});
 export default React.memo(KironslipSubmitForm);

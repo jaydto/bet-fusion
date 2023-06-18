@@ -7,7 +7,8 @@ import {
 import 'react-accessible-accordion/dist/fancy-example.css';
 import React from "react";
 
-const Ammendments = () => {
+const Ammendments = React.memmo(
+    () => {
     return (
         <AccordionItem>
             <AccordionItemHeading>
@@ -24,6 +25,6 @@ const Ammendments = () => {
             </AccordionItemPanel>
         </AccordionItem>
     )
-}
+})
 
 export default Ammendments

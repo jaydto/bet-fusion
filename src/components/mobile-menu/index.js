@@ -18,7 +18,8 @@ import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {getJackpotBetslip, getBetslip, getKironSlip} from "../utils/betslip";
 import { Context } from "../../context/store";
 
-const MobileMenu = (props) => {
+const MobileMenu = React.memo(
+    (props) => {
 
     const [liveSports, setLiveSports] = useState();
     const { jackpot, kiron} = props;
@@ -189,5 +190,5 @@ const MobileMenu = (props) => {
             </table>
         </div>
     );
-};
+});
 export default React.memo(MobileMenu);

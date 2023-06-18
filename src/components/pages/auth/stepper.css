@@ -157,10 +157,24 @@ ul.form-stepper li a .form-stepper-circle {
     justify-content: center;
     align-items: center;
 }
-
+@media (min-width: 992px){
+    .font-verify-redirect{
+        font-size: 18px;
+    }
+    .font-referal-link{
+        color: var(--lite-top-color);
+    }
+}
 @media (max-width: 991px) {
-    .stepper{
-        width:100vw;
+    .font-referal-link {
+        font-size: 12px;
+        color: var(--lite-top-color);
+    }
+    .full-width-registration-page{
+        width:100%;
+    }
+    .font-verify-redirect{
+        font-size: 15px;
     }
 
 }

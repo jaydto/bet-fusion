@@ -8,7 +8,8 @@ import {getFromLocalStorage} from "../utils/local-storage";
 import {Context} from "../../context/store";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 
-export const UserInfo = () => {
+export const UserInfo = React.memo(
+    () => {
     const user = getFromLocalStorage('user')
     const pathname = window.location.pathname;
     const [state, dispatch] = useContext(Context)
@@ -145,4 +146,4 @@ export const UserInfo = () => {
             </>
         </>
     )
-}
+})

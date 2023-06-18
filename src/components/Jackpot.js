@@ -15,7 +15,8 @@ const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
 const Right = React.lazy(() => import('./right'));
 const SideBar = React.lazy(() => import('./sidebar/awesome/Sidebar'))
-const  Jackpot= () => {
+const  Jackpot= React.memo(
+    () => {
     const [matches, setMatches] = useState(null);
     const [finishedJackpots, setFinishedJackpots] = useState([])
     const {height, width} = useWindowDimensions();
@@ -197,6 +198,6 @@ const  Jackpot= () => {
 
 
     );
-};
+});
 
 export default React.memo(Jackpot);

@@ -621,12 +621,13 @@ background: var(--betnare-input)!important;
     justify-content: center;
     margin-left: 10px;
 }
-.width-page-centric.register-page {
-    box-shadow: 5px 7px 30px 8px #2c3c44;
-    width: 60%;
-    margin: auto;
-    min-height: 450px;
-}
+/*.width-page-centric.register-page {*/
+/*    box-shadow: 5px 7px 30px 8px #2c3c44;*/
+/*    width: 60%;*/
+/*    margin: auto;*/
+/*    min-height: 450px;*/
+/*}*/
+
 .width-page-centric.pass-reset-page {
     box-shadow: 5px 7px 30px 8px #2c3c44;
     width: 60%;
@@ -1368,6 +1369,16 @@ img.nare-league {
     /*    left: 0px;*/
     /*    !* border-radius: 36px; *!*/
     /*}*/
+    .width-page-centric.register-page {
+        /* box-shadow: 5px 7px 30px 8px #2c3c44; */
+        box-shadow:none;
+        width: 70%;
+        margin: auto;
+        /* min-height: 450px; */
+        display: flex;
+        flex-direction: column;
+        height: 90%;
+    }
     .bet-align-right {
         font-size: 14px;
     }
@@ -1515,6 +1526,23 @@ img.nare-league {
 
 
 @media (max-width: 991px){
+    .top-register-page{
+        position:fixed;
+        top:0px;
+        width: 100%;
+    }
+    .stepper {
+        margin-top: 5rem;
+    }
+    .input-color-icon {
+        align-items: center;
+        display: contents;
+        text-align: center;
+    }
+    .width-page-centric.register-page {
+         box-shadow: none;
+
+    }
     .header-profile {
         align-items: end;
         padding-bottom: 12px;

@@ -13,7 +13,8 @@ import makeRequest from "../utils/fetch-request";
 
 import 'react-perfect-scrollbar/dist/css/styles.css';
 
-const SideBar = (props) => {
+const SideBar = React.memo(
+    (props) => {
 
     const [imageLoaded, setImageLoaded] = useState(false);
     const [competitions, setCompetitions] = useState(props?.competitions);
@@ -84,5 +85,5 @@ const SideBar = (props) => {
           </PerfectScrollbar>
         </div>
     )
-}
+})
 export default React.memo(SideBar);

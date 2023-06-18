@@ -1,7 +1,6 @@
 import React, {useCallback, useContext, useEffect, useLayoutEffect, useRef, useState} from 'react';
 import './test.css'
-import {useLocation, useParams} from "react-router-dom";
-import useWindowDimensions from "./header/Dimensions";
+import { useParams} from "react-router-dom";
 import {Context} from "../context/store";
 import {getBetslip} from "./utils/betslip";
 import useInterval from "../hooks/set-interval.hook";

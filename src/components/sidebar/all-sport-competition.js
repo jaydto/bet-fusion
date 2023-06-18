@@ -9,7 +9,8 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
 
-export const SportItem = (props) => {
+export const SportItem = React.memo(
+    (props) => {
 
     const {
         sport, 
@@ -79,9 +80,10 @@ export const SportItem = (props) => {
             </ul>
         </li>
     )
-}
+})
 
-export const CategoryItem = (props) => {
+export const CategoryItem = React.memo(
+    (props) => {
 
     const {category, sport_id, category_id } = props;
     const {sportid, categoryid, competitionid} = useParams();
@@ -140,9 +142,10 @@ export const CategoryItem = (props) => {
             </ul>
         </li>
     )
-}
+})
 
-export const CompetitionItem = (props) => {
+export const CompetitionItem = React.memo(
+    (props) => {
     const { competition, sport_id, category_id, competition_id } = props;
     const [active, setActive] = useState('');
     
@@ -164,9 +167,10 @@ export const CompetitionItem = (props) => {
             </Link>
         </li>
     )
-}
+})
 
-const AllSportCompetitions = (props) => {
+const AllSportCompetitions = React.memo(
+    (props) => {
 
     const { competitions } =  props;
 
@@ -186,5 +190,5 @@ const AllSportCompetitions = (props) => {
 
         </ul>
     )
-}
+})
 export default React.memo(AllSportCompetitions);

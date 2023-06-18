@@ -8,7 +8,8 @@ import {Link} from "react-router-dom";
 import useWindowDimensions from "../header/Dimensions";
 
 
-const LiveSideBar = (props) => {
+const LiveSideBar = React.memo(
+    (props) => {
 
     const [liveSports, setLiveSports] = useState()
     const {height, width} = useWindowDimensions();
@@ -151,5 +152,5 @@ const LiveSideBar = (props) => {
     //       </PerfectScrollbar>
     //     </div>
     // )
-}
+})
 export default React.memo(LiveSideBar);

@@ -2,11 +2,8 @@ import React, {useContext, useEffect, useRef, useState} from 'react'
 import { Row, Col } from "antd";
 import authImg from '../../../assets/img/Logo.webp'
 import fire from '../../../assets/img/fire.webp'
-
 import {Link, useNavigate} from "react-router-dom";
-
-import useWindowDimensions from "../../header/Dimensions";
-import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
+import { setLocalStorage} from "../../utils/local-storage";
 import only18 from '../../../assets/img/auth/18only.png'
 import backgroundURL from '../../../assets/img/auth/img-17.webp'
 import {Navbar, Offcanvas} from "react-bootstrap";

@@ -11,15 +11,15 @@ import useWindowDimensions from "../header/Dimensions";
 import { getFromLocalStorage } from "../utils/local-storage";
 import DecodeCode from "./decode";
 import {Link} from "react-router-dom";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faTrophy} from "@fortawesome/free-solid-svg-icons";
+
 
 const clean_rep = (str) => {
     str = str.replace(/[^A-Za-z0-9\-]/g, "");
     return str.replace(/-+/g, "-");
 };
 
-const BetSlip = (props) => {
+const BetSlip = React.memo(
+    (props) => {
     const { jackpot, betslipValidationData, jackpotData } = props;
     const [betslipKey, setBetslipKey] = useState("betslip");
     const [betslipsData, setBetslipsData] = useState(null);
@@ -395,5 +395,5 @@ const BetSlip = (props) => {
             </div>
         </div>
     );
-};
+});
 export default React.memo(BetSlip);

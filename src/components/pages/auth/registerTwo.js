@@ -1,10 +1,10 @@
-import React, {useCallback, useContext, useEffect, useState} from 'react'
+import React, {useCallback, useContext, useEffect, useRef, useState} from 'react'
 import { Row, Col } from "antd";
 import authImg from '../../../assets/img/Logo.webp'
 import "./stepper.css"
 import {Link, useNavigate} from "react-router-dom";
 import useWindowDimensions from "../../header/Dimensions";
-import {clearTrackingData, getFromLocalStorage, setTrackingData} from "../../utils/local-storage";
+import {clearTrackingData, getFromLocalStorage, setLocalStorage, setTrackingData} from "../../utils/local-storage";
 import only18 from '../../../assets/img/auth/18only.png'
 import backgroundURL from '../../../assets/img/auth/img-17.webp'
 import {Navbar, Offcanvas} from "react-bootstrap";
@@ -14,7 +14,7 @@ import logo from "../../../assets/img/Logo.webp";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
 	faBackspace,
-	faEye, faEyeSlash,
+	faEye, faEyeSlash, faInfoCircle, faQuestionCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import SidebarMobile from "../../sidebar/awesome/SidebarMobile";
 import makeRequest from "../../utils/fetch-request";
@@ -51,7 +51,7 @@ const RegisterTwo = props => {
 	return (
 		<div style={{height:'100vh', background:'#16202C'}}>
 			<div className={''}>
-				<Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
+				<Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav top-register-page" fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
 					<Container fluid className={'d-flex justify-content-between mobile-change top-login-background-img'}>
 						<Navbar.Brand className="e logo align-self-start menu-control d-flex w-100" title="Betnare" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
 							<Link to={'/'} className={'text-light'}>
@@ -59,7 +59,7 @@ const RegisterTwo = props => {
 							</Link>
 							<div
 								className="col-md-6  d-flex  right justify-content-end align-items-center w-change3 gap-2 top-login-background-img-bg-page"
-								style={{marginLeft: 'auto'}}>
+								style={{marginLeft: 'auto', background:"var(--betnare-header-bg"}}>
 								<Link to={{pathname: "/"}} className=" resize-mobile">
 									<LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"
 												   className={"image-size "}/>
@@ -124,7 +124,7 @@ const RegisterTwo = props => {
 
 					<div className="w-100 d-flex flex-column justify-content-center h-100 top-login-background-img-bg-page">
 						<div className={'width-page-centric register-page'}>
-							<Row justify="center">
+							<Row justify="center" className={"full-width-registration-page"}>
 
 								<div className={'d-flex w-100'}>
 									{/**/}
@@ -133,10 +133,10 @@ const RegisterTwo = props => {
 										<div className={"d-flex flex-row justify-content-between"}>
 											<div className=" w-100">
 												<div className="homepage d-flex flex-column align-items-center justify-content-center login-page">
-													<div className="col-md-12 mt-2 text-white p-2">
+													<div className="col-md-12 mt-2 text-white p-2 w-100">
 													{state?.registerMessage && <Alert/>}
 
-													<div className="modal-body pb-0" data-backdrop="static">
+													<div className="pb-0" data-backdrop="static">
 														<Steppers/>
 														{/*<SignupForm/>*/}
 													</div>
@@ -161,6 +161,191 @@ const RegisterTwo = props => {
 		</div>
 	)
 }
+
+const MyVerifyAccountForm = (props) => {
+	const {errors, values, submitForm, setFieldValue} = props;
+	const [state,dispatch]=useContext(Context)
+	const resendOTP = () => {
+		console.log("here is the value")
+
+		let endpoint = '/v1/code';
+
+		let payload = {
+			mobile: values?.mobile
+		}
+
+		makeRequest({url: endpoint, method: 'POST', data: payload}).then(([status, response]) => {
+
+			// setMessage(response.success ? response.success.message : response.error.message);
+			dispatch({type: "SET", key: "verifyMessage", payload: response.success ? response.success.message : response.error.message})
+			// response.success?dispatch({type: "SET", key: "verifySuccess", payload: true}):dispatch({type: "SET", key: "verifySuccess", payload: false})
+
+			let timer = setInterval(() => {
+				// setIsMobileNumberValid(false)
+				dispatch({type: "SET", key: "isMobileNumberValid", payload: false})
+				clearInterval(timer)
+			}, 3000)
+			response?.success&&timer()
+			// response.error ? setSuccess(false) : setSuccess(false)
+			response.success?dispatch({type: "SET", key: "verifySuccess", payload: true}):dispatch({type: "SET", key: "verifySuccess", payload: false})
+
+		})
+	}
+
+	const onFieldChanged = (ev) => {
+		let field = ev.target.name;
+		let value = ev.target.value;
+		setFieldValue(field, value);
+		// setIsMobileNumberValid(value.trim() !== '');
+		dispatch({type: "SET", key: "isMobileNumberValid", payload: value.trim() !== ''})
+	}
+	return (
+		<Form>
+			<div className="pt-0">
+				<div className="w-100">
+
+					<div className="form-group row d-flex justify-content-center mt-3">
+						<div className="col-md-12">
+							<label>Mobile Number</label>
+							<div className="row">
+								<div className="col-md-12 mb-3">
+									<input
+										value={values.mobile}
+										className="h-100 text-light deposit-input form-control col-md-12 input-field"
+										id="mobile"
+										name="mobile"
+										type="text"
+										placeholder='Phone number'
+										onChange={ev => onFieldChanged(ev)}
+									/>
+									{state?.isMobileNumberValid && errors.mobile && (
+										<div className='text-danger'>{errors.mobile}</div>
+									)}
+								</div>
+								<div className="col-md-4 d-flex justify-content-between">
+                                        <span className='' style={{
+											marginLeft: 'auto',
+											whiteSpace: 'nowrap',
+											gap: '10px',
+											width: 'auto',
+										}}>
+                                            Didn't receive code? Resend Code
+                                        </span>
+									&nbsp;
+									<button onClick={() => resendOTP()} type={"button"}
+											className='btn py-1 px-2 text-light btn-sm bg-success rounded-3 border-0 ' style={{fontSize:"12px",whiteSpace:'nowrap'}} disabled={!state?.isMobileNumberValid}>Resend OTP
+									</button>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<div className="form-group row d-flex  mt-4">
+						<div className="col-md-12">
+							<label>Code (OTP)</label>
+							<input
+								value={values?.code||''}
+								className="text-light deposit-input form-control col-md-12 input-field"
+								id="code"
+								name="code"
+								type="code"
+								placeholder='Code'
+								onChange={ev => onFieldChanged(ev)}
+							/>
+							{errors.code && <div className='text-danger'> {errors.code} </div>}
+						</div>
+					</div>
+					<div className="form-group row d-flex justify-content-left mb-4">
+						<div className="col">
+							<button type="submit"
+									disabled={state?.inputDisabled}
+									onClick={submitForm}
+									className=' btn btn-lg w-100 button-radius input-field btn-font cg login-button btn button-page' style={{marginTop:"47px"}}>
+								VERIFY ACCOUNT
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</Form>
+	);
+}
+
+const VerifyAccountForm = (props) => {
+	const [state,dispatch]=useContext(Context)
+
+	const initialValues = {
+		mobile: '',
+		code: ''
+	}
+	const verifyAccount = () => {
+		let code = new URL(window.location).searchParams.get('code')
+		let msisdn = new URL(window.location).searchParams.get('msisdn')
+		if (code !== null && msisdn !== null) {
+			dispatch({type: "SET", key: "inputDisabled", payload: true})
+
+			handleSubmit({
+				mobile: msisdn,
+				code: code
+			})
+		}
+	}
+
+	useEffect(() => {
+		verifyAccount()
+	}, [])
+	const handleSubmit = values => {
+		let endpoint = '/v1/verify';
+		makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
+			// setMessage(response.success ? response.success.message : response.error.message);
+			// response.success ? setSuccess(true) : setSuccess(false)
+			dispatch({type: "SET", key: "verifyMessage", payload: response.success ? response.success.message : response.error.message})
+			response.success?dispatch({type: "SET", key: "verifySuccess", payload: true}):dispatch({type: "SET", key: "verifySuccess", payload: false})
+
+
+			if (response?.success) {
+				setLocalStorage('user', response?.success?.user);
+				let timer = setInterval(() => {
+					clearInterval(timer)
+					window.location.href = "/"
+				}, 1000)
+			}
+
+		}).catch((err) => {
+
+		})
+	}
+
+	const validate = values => {
+
+		let errors = {}
+
+		if (!values.mobile || !values.mobile.match(/(254|0|)?[71]\d{8}/g)) {
+			errors.mobile = 'Please enter a valid phone number'
+		}
+
+		if (!values.code || values.code.length < 4) {
+			errors.code = "Please enter four or more characters for code";
+		}
+
+		return errors
+	}
+
+	const verifyRef = useRef()
+
+	return (
+		<Formik
+			innerRef={verifyRef}
+			initialValues={initialValues}
+			onSubmit={handleSubmit}
+			validateOnChange={false}
+			validateOnBlur={false}
+			validate={validate}
+			render={(props) => <    MyVerifyAccountForm {...props} />}/>
+	);
+}
+
 const SignupForm = (props) => {
 	const [state,dispatch]=useContext(Context)
 	const initialValues = {
@@ -223,7 +408,7 @@ const SignupForm = (props) => {
 
 const FormTitle = () => {
 	return (
-		<div className='col-md-12  pt-4 text-center-stepper text-light' >
+		<div className='col-md-12  pt-1 text-center-stepper text-light' >
 			<h4 className="inline-block">
 				SIGNUP | CREATE A NEW ACCOUNT
 			</h4>
@@ -232,15 +417,11 @@ const FormTitle = () => {
 }
 const MySignupForm = (props) => {
 	const {errors, values, submitForm, setFieldValue} = props;
-	const [showPassword, setShowPassword] = useState(false);
 	const onFieldChanged = (ev) => {
 		let field = ev.target.name;
 		let value = ev.target.value;
 		setFieldValue(field, value);
 	}
-	const toggleShowPassword = () => {
-		setShowPassword(!showPassword);
-	};
 
 	return (
 		<Form>
@@ -263,49 +444,14 @@ const MySignupForm = (props) => {
 						</div>
 					</div>
 					<br/>
-					<div className={`width-signup-input `}>
-						<br/>
-						<label>Password</label>
-						<div className="input-group input-color-icon w-100" style={{ display: 'flex' }}>
-							<input type={showPassword ? 'text' : 'password'}
-								   name="password"
-								   className={`w-75 input-field button-radius text-light deposit-input form-control col input-field-login  ${errors.password && 'text-danger'} `}
-								// data-action="grow"
-								   autoComplete={'on'}
-								   placeholder={"Password"}
-								   onChange={ev => onFieldChanged(ev)}
-								   value={values.password}
-							/>
-							<div className=" col-2 input-group-append">
-								<div className="input-group-text  border-0 input-color-icon">
-									<button
-										style={{  height: 'parent'}}
-										type="button"
-										className="btn btn-link text-decoration-none input-color-icon"
-										onClick={toggleShowPassword}
-									>
-										{showPassword ? (
-											<FontAwesomeIcon icon={faEyeSlash} style={{ color: 'var(--light)', fontSize: '20px' }} />
-										) : (
-											<FontAwesomeIcon icon={faEye} style={{ color: 'var(--light)', fontSize: '20px' }} />
-										)}
-									</button>
-								</div>
-							</div>
-						</div>
-						{errors.password && <div className='text-danger'> {errors.password} </div>}
-
-
-					</div>
-
 					<div className="form-group container-lg row d-flex justify-content-left mb-4">
 						<div className="col">
 							<button type={"submit"}
-									className='btn btn-lg w-100 button-radius input-field btn-font cg login-button2 btn ' style={{marginTop:"47px"}}>
+									className='btn btn-lg w-100 button-radius input-field btn-font cg login-button2 btn ' style={{marginTop:"20px"}}>
 								<strong>SIGNUP</strong>
 							</button>
 							<Link className={`d-flex justify-content-center w-100 mt-3`} to={"/verify"} title="Verify" >
-								<span className={`text-warning font-input register-label`} style={{fontSize:'18px'}}>Already have a verification code ?  </span>
+								<span className={`text-warning font-input register-label font-verify-redirect`} >Already have a verification code ?  </span>
 							</Link>
 						</div>
 					</div>
@@ -320,6 +466,7 @@ const PasswordForm = (props) => {
 	const navigate = useNavigate();
 
 	const initialResetFormValues = {
+		link_codeL:'',
 		password: '',
 		repeat_password: ''
 	}
@@ -331,6 +478,10 @@ const PasswordForm = (props) => {
 	const validatePassword = password_values => {
 
 		let password_errors = {}
+
+		if (password_values.link_code.length < 4) {
+			password_errors.link_code = "Your code should be greater than 4 numbers."
+		}
 
 		if (password_values.password.length < 4) {
 			password_errors.password = "Your password should be greater than 4 numbers."
@@ -368,6 +519,11 @@ const MyPasswordForm = (props) => {
 	const toggleShowPassword = () => {
 		setShowPassword(!showPassword);
 	};
+	const [showInput,setShowInput]=useState(false)
+
+	const show_input=()=>{
+		setShowInput(!showInput);
+	}
 
 	const onFieldChanged = (ev) => {
 		let field = ev.target.name;
@@ -380,13 +536,34 @@ const MyPasswordForm = (props) => {
 				<div className="row">
 					<div className="col-md-12">
 						<div className="col-md-12">
+
+							<div className="form-group row d-flex justify-content-center mt-1">
+								<label className={'text-center font-referal-link'} onClick={()=>show_input()}>Do you have a Referal Code? Click Here &nbsp;<FontAwesomeIcon icon={faInfoCircle} style={{color:"var(--lite-top-color"}} title={"Referal link input"}/></label>
+								{showInput&&
+									<>
+									<input
+									value={values.link_code}
+									className="text-light deposit-input form-control col-md-12 input-field"
+									id="link_code"
+									name="code"
+									type="text"
+									placeholder='Referal Code'
+									onChange={ev => onFieldChanged(ev)}
+								/>
+								{errors.link_code &&
+									<div className='text-danger'>
+											{errors.link_code}
+									</div>
+								}
+							</>}
+							</div>
 							<div>
-								<h2 className={'text-center'}>
+								<h2 className={'text-center mt-3'}>
 									Enter  Passwords
 								</h2>
 							</div>
 						</div>
-						<div className="form-group w-100 d-flex justify-content-center mt-5">
+						<div className="form-group w-100 d-flex justify-content-center mt-2">
 							<div className="col-md-12 w-100">
 								<label>Password</label>
 								<div className="input-group input-color-icon w-100" style={{ display: 'flex' , background:'white'}}>
@@ -580,9 +757,7 @@ const Steppers = () => {
 						<section id="step-1" className="form-step">
 							<h2 className="font-normal">Account Basic Details</h2>
 							{/*// <!-- Step 1 input fields -->*/}
-							<div className="mt-3">
-								Step 1 input fields goes here..
-							</div>
+							<SignupForm/>
 							<div className="mt-3">
 								<button className="button btn-navigate-form-step" type="button" step_number="2">Next
 								</button>
@@ -600,11 +775,8 @@ const Steppers = () => {
 						</section>
 						{/*// <!-- Step 3 Content, default hidden on page load. -->*/}
 						<section id="step-3" className="form-step d-none">
-							<h2 className="font-normal">Personal Details</h2>
-							{/*// <!-- Step 3 input fields -->*/}
-							<div className="mt-3">
-								Step 3 input fields goes here..
-							</div>
+							<h2 className="font-normal">Verify Details</h2>
+							<VerifyAccountForm/>
 							<div className="mt-3 d-flex justify-content-between">
 								<button className="button btn-navigate-form-step" type="button" step_number="2">Prev
 								</button>

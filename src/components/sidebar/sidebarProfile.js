@@ -14,7 +14,8 @@ import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {Context} from "../../context/store";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 
-const SidebarProfile = (props) => {
+const SidebarProfile = React.memo(
+    (props) => {
     const {profile_side} = props
     const [state, dispatch] = useContext(Context);
 
@@ -136,6 +137,6 @@ const SidebarProfile = (props) => {
         </SidebarHeader>
 
     </ProSidebar>)
-}
+})
 
 export default React.memo(SidebarProfile);

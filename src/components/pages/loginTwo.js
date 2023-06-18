@@ -23,7 +23,8 @@ const backgroundStyle = {
 	backgroundSize: 'cover'
 }
 
-const LoginTwo = props => {
+const LoginTwo = React.memo(
+	props => {
 	const [message, setMessage] = useState(null);
 	// const {setUser} = props;
 	const expand = "md"
@@ -208,6 +209,6 @@ const LoginTwo = props => {
 			</Row>
 		</div>
 	)
-}
+})
 
 export default React.memo(LoginTwo)

@@ -19,6 +19,7 @@ import './tailwind.css';
 import './assets/css/Themes.css'
 import Store from './context/store';
 import ReactGA from 'react-ga4';
+import LoadingSuspense from "./components/loading/LoadingSuspense";
 
 
 const TRACKING_ID = "G-5NLSN9BLN4";
@@ -138,7 +139,6 @@ const BetslipPage =React.lazy(()=> import("./components/pages/betslip/betslipPag
 
 const Login=React.lazy(()=>import('./components/pages/loginTwo'));
 
-const Profile =React.lazy(()=>import( "./components/pages/Accounts/Profile"));
 const NewProfile =React.lazy(()=>import( "./components/pages/Accounts/NewProfile"));
 
 const Affiliate =React.lazy(()=>import( "./components/Affiliate/Affiliate"));
@@ -161,7 +161,7 @@ const container = document.getElementById("app");
 render((
     <Store>
         <BrowserRouter>
-            <Suspense fallback={<p> Loading ... </p>}>
+            <Suspense fallback={<LoadingSuspense/>}>
                 <Routes>
                     <Route path="*" element={<Navigate to="/404"/>}/>
                     <Route exact path="/" element={<Index/>}/>

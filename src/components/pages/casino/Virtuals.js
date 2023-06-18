@@ -10,7 +10,8 @@ import SearchComponent from "./searchField";
 import {Context} from "../../../context/store";
 import SideBar from "../../sidebar/awesome/Sidebar";
 
-const Virtuals = (props) => {
+const Virtuals = React.memo(
+    (props) => {
 
     const [user] = useState(getFromLocalStorage("user"));
 
@@ -148,7 +149,7 @@ const Virtuals = (props) => {
         </>
     )
 
-}
+})
 
 
-export default Virtuals;
+export default React.memo(Virtuals);

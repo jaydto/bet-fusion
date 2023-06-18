@@ -1,16 +1,16 @@
 import React, {useEffect, useState} from "react";
 import Header from "../../header/header";
 import Footer from "../../footer/footer";
-import {useParams, useSearchParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import makeRequest from "../../utils/fetch-request";
 import Skeleton, {SkeletonTheme} from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import {getFromLocalStorage} from "../../utils/local-storage";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import {Stack} from "react-bootstrap";
-import useWindowDimensions from "../../header/Dimensions";
 
-const GamePlay = (props) => {
+const GamePlay = React.memo(
+    (props) => {
     // let url = new URL(window.location)
     // const live = url.searchParams.get('live')
     // const game_id= url.searchParams.get('game_id')
@@ -147,6 +147,6 @@ const GamePlay = (props) => {
             </div>
         </>
     )
-}
+})
 
 export default React.memo(GamePlay)

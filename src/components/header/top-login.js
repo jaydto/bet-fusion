@@ -13,7 +13,8 @@ import {Switch} from "@material-ui/core";
 import {faEye, faEyeSlash} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
-export const  Notify = (message) => {
+export const  Notify = React.memo(
+    (message) => {
     let options = {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
@@ -35,9 +36,10 @@ export const  Notify = (message) => {
         </div>, options);
     }
 
-};
+});
 
-const HeaderLogin = (props) => {
+const HeaderLogin = React.memo(
+    (props) => {
     const gaEventTracker = useAnalyticsEventTracker('Navigation');
     const [isLoading, setIsLoading] = useState(null)
     const [message, setMessage] = useState(null);
@@ -229,6 +231,6 @@ const HeaderLogin = (props) => {
 
         </Container>
     )
-}
+})
 export default React.memo(HeaderLogin);
 

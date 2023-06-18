@@ -36,7 +36,8 @@ const clean = (_str) => {
   return _str.replace(/-+/g, '-');
 }
 
-const EmptyTextRow = (props) => {
+const EmptyTextRow = React.memo(
+    (props) => {
   const {odd_key, classname,live,allMarkets} = props;
 
   return (
@@ -60,9 +61,10 @@ const EmptyTextRow = (props) => {
          </span>
       </button>
   );
-};
+});
 
-const marketChoice = () => {
+const marketChoice =
+    () => {
 
 
   const markets = [
@@ -114,7 +116,8 @@ const marketChoice = () => {
 }
 
 
-const MatchHeaderRow = (props) => {
+const MatchHeaderRow = React.memo(
+    (props) => {
   const {live, first_match, jackpot} = props;
   const categories = getFromLocalStorage('categories')
   const sport_id = new URL(window.location).searchParams.get('sport_id') || 79
@@ -253,9 +256,10 @@ const MatchHeaderRow = (props) => {
         </div>
       </Row>
   )
-}
+})
 
-const MoreMarketsHeaderRow = (props) => {
+const MoreMarketsHeaderRow = React.memo(
+    (props) => {
   const {
     home_team,
     away_team,
@@ -415,9 +419,10 @@ const MoreMarketsHeaderRow = (props) => {
         )}
       </Row>
   );
-};
+});
 
-const SideBets = (props) => {
+const SideBets = React.memo(
+    (props) => {
   const { match, live, jackpot } = props;
   const [picked] = useState();
 
@@ -469,9 +474,10 @@ const SideBets = (props) => {
         )}
       </div>
   );
-};
+});
 
-const OddButton = (props) => {
+const OddButton = React.memo(
+    (props) => {
   const { match, mkt, detail, live, jackpot, subType, marketKey, allMarkets } =
       props;
 
@@ -703,12 +709,14 @@ const OddButton = (props) => {
         )}
       </button>
   );
-};
+});
 
-const MarketRow = (props) => {
+const MarketRow = React.memo(
+    (props) => {
   const { markets, match, market_id, width, live, pdown, allMarkets } = props;
 
-  const MktOddsButton = (props) => {
+  const MktOddsButton = React.memo(
+      (props) => {
     const { match, mktodds, live, pdown } = props;
     const fullmatch = { ...match, ...mktodds };
     // console.log("Market odds", fullmatch)
@@ -724,9 +732,9 @@ const MarketRow = (props) => {
             allMarkets={allMarkets}
         />
     ) : (
-        <EmptyTextRow odd_key={fullmatch?.odd_key} allMarkets={allMarkets} />
+        <EmptyTextRow odd_key={fullmatch?.display_name} allMarkets={allMarkets} />
     );
-  };
+  });
 
   return (
       <div className="top-matches match">
@@ -768,18 +776,20 @@ const MarketRow = (props) => {
             })}
       </div>
   );
-};
+});
 
-const ColoredCircle = ({color}) => {
+const ColoredCircle = React.memo(
+    ({color}) => {
   const styles = {backgroundColor: color};
   return color ? (
       <>
         <span className="colored-circle" style={styles}/>
       </>
   ) : null;
-};
+});
 
-const getUpdatedMatchFromOdds = (props) => {
+const getUpdatedMatchFromOdds =
+    (props) => {
   const {match, marketName, odd_key, odd_data} = props;
   let newMatch = {...match, ...odd_data};
   newMatch.name = marketName;
@@ -793,7 +803,8 @@ const getUpdatedMatchFromOdds = (props) => {
 
 }
 
-const MatchRow = (props) => {
+const MatchRow = React.memo(
+    (props) => {
 
   const {first_match, match, jackpot, live, pdown, three_way} = props;
   const [extraMarketDisplays, setExtraMarketDisplays] = useState([])
@@ -1217,10 +1228,10 @@ const MatchRow = (props) => {
       </div>
   )
 
-}
+})
 
-
-export const MarketList = (props) => {
+export const MarketList = React.memo(
+    (props) => {
   const { live, allMarkets, pdown } = props;
   const [state, dispatch] = useContext(Context);
 
@@ -1324,9 +1335,10 @@ export const MarketList = (props) => {
         </div>
       </div>
   );
-};
+});
 
-export const JackpotHeader = (props) => {
+export const JackpotHeader = React.memo(
+    (props) => {
   const {jackpot} = props
 
   return (
@@ -1351,9 +1363,10 @@ export const JackpotHeader = (props) => {
       </Container>
   )
 
-}
+})
 
-export const JackpotMatchList = (props) => {
+export const JackpotMatchList = React.memo(
+    (props) => {
   const {matches, jackpotData} = props;
   const [selections, setSelections] = useState([])
 
@@ -1409,9 +1422,10 @@ export const JackpotMatchList = (props) => {
         </Row>
       </div>
   )
-}
+})
 
-const MatchList = (props) => {
+const MatchList = React.memo(
+    (props) => {
   const {live, matches, pdown,fetching, three_way} = props;
   const listInnerRef = useRef();
 
@@ -1435,5 +1449,5 @@ const MatchList = (props) => {
         </Row>
       </div>
   )
-}
+})
 export default React.memo(MatchList);

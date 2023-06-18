@@ -7,7 +7,8 @@ import {
 import 'react-accessible-accordion/dist/fancy-example.css';
 import React from "react";
 
-const ApplicableLaw = () => {
+const ApplicableLaw = React.memo(
+    () => {
     return (
         <AccordionItem>
             <AccordionItemHeading>
@@ -46,6 +47,6 @@ const ApplicableLaw = () => {
             </AccordionItemPanel>
         </AccordionItem>
     )
-}
+})
 
 export default ApplicableLaw

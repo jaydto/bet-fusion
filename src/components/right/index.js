@@ -6,13 +6,9 @@ import {faTimes} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {Badge} from "react-bootstrap";
 import {getBetslip, getJackpotBetslip, getKironSlip} from "../utils/betslip";
-import {Context} from "../../context/store";
-import KironSlip from "./kironslip-submit-form";
 import Kironslip from "./kironslip";
 import MobileMenu from "../mobile-menu";
 import useWindowDimensions from "../header/Dimensions";
-import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
-import makeRequest from "../utils/fetch-request";
 
 const AlertMessage = (props) => {
     return (
@@ -25,7 +21,8 @@ const AlertMessage = (props) => {
     )
 }
 
-const Right = (props) => {
+const Right = React.memo(
+    (props) => {
     const {jackpot, betslipValidationData, jackpotData, kiron,test} = props;
     const {height, width} = useWindowDimensions();
     const [betSlipMobile, setBetSlipMobile] = useState(false)
@@ -99,5 +96,5 @@ const Right = (props) => {
             </div>
         </div>
     )
-}
+})
 export default React.memo(Right);

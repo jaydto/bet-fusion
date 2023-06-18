@@ -4,7 +4,8 @@ import Form from 'react-bootstrap/Form';
 import {getFromLocalStorage} from "./local-storage";
 import {Context} from "../../context/store";
 
-export function LinkOption(props) {
+const LinkOption=React.memo(
+    (props)=> {
     const {to, pathname, children, ...rest} = props;
 
 
@@ -14,9 +15,11 @@ export function LinkOption(props) {
         </option>
     );
 
-}
+})
 
-function LinkSelect(props) {
+
+const LinkSelect=React.memo(
+    (props)=> {
     const {options, ...rest} = props;
     const navigate = useNavigate();
     const [state, dispatch] = useContext(Context);
@@ -89,7 +92,7 @@ function LinkSelect(props) {
             {showOptions()}
         </Form.Select>
     );
-}
+})
 
 export default LinkSelect;
 

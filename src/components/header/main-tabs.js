@@ -4,7 +4,8 @@ import {Link} from "react-router-dom";
 import {getFromLocalStorage} from "../utils/local-storage";
 
 
-const MainTabs = (props) => {
+const MainTabs = React.memo(
+    (props) => {
     const {tab} = props;
     
 
@@ -59,6 +60,6 @@ const MainTabs = (props) => {
         </Row>
     )
 
-}
+})
 
 export default React.memo(MainTabs);

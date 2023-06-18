@@ -2,7 +2,8 @@ import React from 'react';
 import CustomerCare from '../../assets/img/banner/customer-care/Customer_Care_Banner.webp'
 import Paybill from '../../assets/img/banner/customer-care/Paybill.webp'
 
-const CompanyInfo = (props) => {
+const CompanyInfo = React.memo(
+    (props) => {
 
     return (
         <div className="qv rc alu show-on-affix">
@@ -42,5 +43,5 @@ const CompanyInfo = (props) => {
         </div>
     )
 
-}
+})
 export default React.memo(CompanyInfo);

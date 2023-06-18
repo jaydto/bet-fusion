@@ -16,7 +16,8 @@ const CarouselLoader = React.lazy(() => import('./carousel'));
 const MatchList = React.lazy(() => import('./matches'));
 const Right = React.lazy(() => import('./right'));
 
-const  Live= () => {
+const  Live= React.memo(
+    () => {
     const [matches, setMatches] = useState();
     const [state, dispatch] = useContext(Context);
     const {height, width} = useWindowDimensions();
@@ -170,6 +171,6 @@ const  Live= () => {
         </div>
 
     );
-};
+});
 
 export default React.memo(Live);

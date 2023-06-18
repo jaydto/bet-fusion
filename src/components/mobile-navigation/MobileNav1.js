@@ -1,6 +1,6 @@
 import React, {useEffect, useState, useCallback, useContext, useRef} from 'react';
 import {
-    Link
+    Link, useNavigate
 } from "react-router-dom";
 
 import 'react-lazy-load-image-component/src/effects/blur.css';
@@ -84,43 +84,44 @@ const MobileNav1 = () => {
         return sport_image
     }
 
+    const navigate=useNavigate()
     const LoginCheck = (game) => {
         if(game === "JetX"){
             if(state?.user !== null){
-             window.location.href = "/smart-play?game=JetX&category=JetX" }
+             navigate( "/smart-play?game=JetX&category=JetX") }
             else {
                 setLocalStorage("ActiveLink",'/smart-play?game=JetX&category=JetX')
-                window.location.href='/login'
+                navigate('/login')
             }
         }else if(game === "aviator"){
             if(state?.user !== null){
-                window.location.href = "/nare-games/Aviator" }
+                navigate("/nare-games/Aviator") }
             else {
                 setLocalStorage("ActiveLink",'/nare-games/Aviator')
-                window.location.href='/login'
+                navigate('/login')
             }
 
         }else if(game === "smart-soft"){
             if(state?.user !== null){
-                window.location.href = "/smart-soft" }
-            else {
+                navigate("/smart-soft")
+            } else {
                 setLocalStorage("ActiveLink",'/smart-soft')
-                window.location.href='/login'
+                    navigate('/login')
             }
 
         }else if(game==='spaceman'){
             if(state?.user !== null){
-                window.location.href = "/gameplay/1301/1"
+                navigate("/gameplay/1301/1")
             } else{
                 setLocalStorage("ActiveLink",'/gameplay/1301/1')
                 window.location.href='/login'
             }
         }else {
          if(state?.user !== null){
-             window.location.href = "/casino"
+             navigate( "/casino")
          } else{
              setLocalStorage("ActiveLink",'/casino')
-             window.location.href='/login'
+             navigate('/login')
 
          }
     }
@@ -153,10 +154,10 @@ const MobileNav1 = () => {
                 </td>
 
                 <td  className={`menu-t m-auto sport-check  ${pathname.includes('Aviator')?"active_link":""}`}  >
-                    <Link className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `} onClick={() => {
+                    <div className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `} onClick={() => {
                             LoginCheck('aviator');
                             gaEventTracker('Visit Aviator Page')
-                    }}  to={`#`}   >
+                    }}   >
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
 
                             <div className="menu-img ">
@@ -172,7 +173,7 @@ const MobileNav1 = () => {
                                 Aviator
                             </strong>
                         </div>
-                    </Link>
+                    </div>
 
                 </td>
                 {/*<td  className={`menu-t m-auto sport-check nare-league ${pathname.includes('/nare-league')?"active_link":""}`}  >*/}
@@ -197,7 +198,7 @@ const MobileNav1 = () => {
                 {/*</td>*/}
 
                 <td  className={`menu-t m-auto sport-check ${pathname===`/casino`? " active_link":""} `}  >
-                    <Link className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center `}  to={`#`}  onClick={()=>{LoginCheck('casino');gaEventTracker('Visit Casino Page')}}>
+                    <div className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center `}    onClick={()=>{LoginCheck('casino');gaEventTracker('Visit Casino Page')}}>
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
 
                             <div className="menu-img ">
@@ -213,7 +214,7 @@ const MobileNav1 = () => {
                                 Casino
                             </strong>
                         </div>
-                    </Link>
+                    </div>
 
                 </td>
                 <td  className={`menu-t m-auto sport-check  ${pathname===`/jackpot`?"active_link":""}`}  >
@@ -237,7 +238,7 @@ const MobileNav1 = () => {
 
                 </td>
                 <td  className={`menu-t m-auto sport-check ${window.location.search.includes('JetX')?"active_link":""} `}  >
-                    <Link className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center  `}  to={`#`}  onClick={()=>{LoginCheck('JetX');gaEventTracker('Visit Jetx Page')}} >
+                    <div className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center  `}   onClick={()=>{LoginCheck('JetX');gaEventTracker('Visit Jetx Page')}} >
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center`}>
 
                             <div className="menu-img ">
@@ -253,11 +254,11 @@ const MobileNav1 = () => {
                                JetX
                             </strong>
                         </div>
-                    </Link>
+                    </div>
 
                 </td>
                 <td  className={`menu-t m-auto sport-check ${window.location.search.includes('smart-soft')?"active_link":""} `}  >
-                    <Link className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center  `}  to={`#`}  onClick={()=>{LoginCheck('smart-soft');gaEventTracker('Visit Jetx Page')}} >
+                    <div className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center  `}  onClick={()=>{LoginCheck('smart-soft');gaEventTracker('Visit Jetx Page')}} >
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center`}>
 
                             <div className="menu-img ">
@@ -273,11 +274,11 @@ const MobileNav1 = () => {
                                Xgames
                             </strong>
                         </div>
-                    </Link>
+                    </div>
 
                 </td>
                 <td  className={`menu-t m-auto sport-check  ${pathname.includes('1301')?"active_link":""}`}  onClick={() => gaEventTracker('Visit SpaceMan Page')}>
-                    <Link className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `}  to={`#`}  onClick={()=>{LoginCheck('spaceman');gaEventTracker('Visit SpaceMan Page')}} >
+                    <div className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `}   onClick={()=>{LoginCheck('spaceman');gaEventTracker('Visit SpaceMan Page')}} >
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
 
                             <div className="menu-img ">
@@ -293,7 +294,7 @@ const MobileNav1 = () => {
                                 Spaceman
                             </strong>
                         </div>
-                    </Link>
+                    </div>
                 </td>
                 <td  className={`menu-t m-auto sport-check  ${window.location.pathname.includes('nare-games')?"active_link":""} `}  >
                     <Link className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center `} onClick={() => gaEventTracker('Visit Nare Games Page')} to={`/nare-games`}   >

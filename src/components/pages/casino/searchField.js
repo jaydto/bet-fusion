@@ -3,7 +3,8 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSearch} from "@fortawesome/free-solid-svg-icons";
 import {Context} from "../../../context/store";
 
-const SearchComponent = (props) => {
+const SearchComponent = React.memo(
+    (props) => {
     const {data}=props
     const [searchTerm, setSearchTerm] = useState('');
     const [state,dispatch]=useContext(Context)
@@ -36,19 +37,13 @@ const SearchComponent = (props) => {
             <a href="#" className="search-btn">
                 <FontAwesomeIcon icon={faSearch} />
             </a>
-                {/*{console.log("filteredData", filteredData)}*/}
-                {/*{filteredData ? (*/}
-                {/*    <div>*/}
-                {/*        <h2>{filteredData.game_name}</h2>*/}
-                {/*        <img src={filteredData.game_icon} alt={filteredData.game_name} />*/}
-                {/*    </div>*/}
-                {/*) : null}*/}
+
         </div>
 
         </div>
 
 
     );
-};
+});
 
-export default SearchComponent;
+export default React.memo(SearchComponent);

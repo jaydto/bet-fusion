@@ -12,7 +12,8 @@ const clean_rep = (str) => {
     return str.replace(/-+/g, "-");
 };
 
-const KironSlip = (props) => {
+const KironSlip = React.memo(
+    (props) => {
     const {kiron} = props;
     const [betslipKey, setBetslipKey] = useState("kironbetslip");
     const [betslipsData, setBetslipsData] = useState(null);
@@ -295,6 +296,6 @@ const KironSlip = (props) => {
             </div>
         </div>
     );
-};
+});
 export default React.memo(KironSlip);
 

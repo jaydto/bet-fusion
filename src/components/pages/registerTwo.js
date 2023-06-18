@@ -1,4 +1,4 @@
-import React, {useCallback, useContext, useEffect, useState} from 'react'
+import React, { useContext, useState} from 'react'
 import { Row, Col } from "antd";
 import authImg from '../../assets/img/Logo.webp'
 
@@ -28,7 +28,8 @@ const backgroundStyle = {
 	backgroundSize: 'cover'
 }
 
-const RegisterTwo = props => {
+const RegisterTwo = React.memo(
+	props => {
 
 	const [state,dispatch]=useContext(Context)
 	// const {setUser} = props;
@@ -171,8 +172,9 @@ const RegisterTwo = props => {
 			</Row>
 		</div>
 	)
-}
-const SignupForm = (props) => {
+})
+const SignupForm = React.memo(
+	(props) => {
 	const [state,dispatch]=useContext(Context)
 	const initialValues = {
 		msisdn: '',
@@ -230,9 +232,10 @@ const SignupForm = (props) => {
 			validate={validate}
 			render={(props) => <MySignupForm {...props} />}/>
 	);
-}
+})
 
-const MySignupForm = (props) => {
+const MySignupForm = React.memo(
+	(props) => {
 	const {errors, values, submitForm, setFieldValue} = props;
 	const [showPassword, setShowPassword] = useState(false);
 	const onFieldChanged = (ev) => {
@@ -315,7 +318,7 @@ const MySignupForm = (props) => {
 			</div>
 		</Form>
 	);
-}
+})
 
 
 

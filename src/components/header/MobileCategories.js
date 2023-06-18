@@ -3,7 +3,8 @@ import Container from "react-bootstrap/Container";
 import {getFromLocalStorage} from "../utils/local-storage";
 import {Link} from "react-router-dom";
 
-const MobileCategories = () => {
+const MobileCategories = React.memo(
+    () => {
     let categories = getFromLocalStorage('categories');
     return (
         <Container>
@@ -28,6 +29,6 @@ const MobileCategories = () => {
             </div>
         </Container>
     )
-}
+})
 
 export default React.memo(MobileCategories);

@@ -84,9 +84,6 @@ const RedeemPoints = React.lazy(
 );
 
 const Signup = React.lazy(
-    () => import('./components/pages/registerTwo')
-);
-const Stepper = React.lazy(
     () => import('./components/pages/auth/registerTwo')
 );
 
@@ -169,7 +166,6 @@ render((
                     <Route exact path="/upcoming" element={<Index/>}/>
                     <Route exact path="/tomorrow" element={<Index/>}/>
                     <Route exact path= "/countries" element={<Index/>}/>
-                    <Route exact path= "/stepper" element={<Stepper/>}/>
                     <Route exact path="/live" element={<Live/>}/>
                     <Route exact path="/live/:spid" element={<Live/>}/>
                     <Route exact path="/login" element={<Login/>}/>

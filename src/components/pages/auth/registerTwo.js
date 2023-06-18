@@ -735,7 +735,7 @@ const Steppers = () => {
 
 	const NextButton=()=>{
 		console.log("account_verify",state?.app_config?.message?.accountConfiguration?.verificationEnabled)
-		return (state?.app_config?.message?.accountConfiguration?.verificationEnabled=="0"?<button className="button btn-navigate-form-step finish" type="button" step_number="3">Finish
+		return (state?.app_config?.message?.accountConfiguration?.verificationEnabled=="0"?<button className="button btn-navigate-form-step finish" disabled={state?.registerSuccess?false:true} type="button" step_number="3">Finish
 		</button>:<button className="button btn-navigate-form-step" type="button" step_number="3">Next</button>
 		)
 	}

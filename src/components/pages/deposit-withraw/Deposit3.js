@@ -79,7 +79,7 @@ const Deposit3= props => {
 
     const FormTitle = () => {
         return (
-            <div className='col-md-12  p-4 text-center' style={{background:'transparent'}}>
+            <div className='col-md-12  p-lg-4 p-sm-1 p-md-1 pt-sm-4 pt-md-4' style={{background:'transparent'}}>
                 <h4 className="inline-block betnare-text-light">
                     DEPOSIT FUNDS (MOBILE MONEY)
                 </h4>
@@ -98,7 +98,7 @@ const Deposit3= props => {
     return (
         <div style={{height:'100vh', background:'#16202C'}}>
             <div className={''}>
-                <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
+                <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav top-register-page" fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
                     <Container fluid className={'d-flex justify-content-between mobile-change top-login-background-img'}>
                         <Navbar.Brand className="e logo align-self-start menu-control d-flex w-100 " title="Betnare" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
                             <Link to={'/'} className={'betnare-text-light'}>
@@ -171,7 +171,7 @@ const Deposit3= props => {
                 <div className={'col-lg-8 col-sm-12 top-login-background-img-bg-down top-login-background-img-bg-page'} >
 
                     <div className="w-100 d-flex flex-column justify-content-center h-100 top-login-background-img-bg-page">
-                        <div className={'width-page-centric deposit-page'}>
+                        <div className={'width-page-centric deposit-page main'}>
                             <FormTitle/>
 
                             <Row justify="center">
@@ -185,7 +185,7 @@ const Deposit3= props => {
                                                 <div className="homepage d-flex flex-column align-items-center justify-content-center login-page">
 
                                                     <Alert/>
-                                                    <div className="modal-body pb-0" data-backdrop="static">
+                                                    <div className=" pb-0" data-backdrop="static">
 
                                                         <DepositForm/>
                                                     </div>
@@ -306,8 +306,8 @@ const DepositFormFields = (props) => {
                     {errors.amount && <div className='text-danger'> {errors.amount} </div>}
                 </div>
             </div>
-            <div className="form-group row d-flex justify-content-left mb-4">
-                <div className=" d-flex align-items-start deposit-withdraw-button-desktop">
+            <div className="form-group px-2 row d-flex justify-content-left mb-4">
+                <div className=" d-flex align-items-start deposit-withdraw-button-desktop px-2">
                     <button type={"submit"}
                             className='btn btn-lg w-100 button-radius input-field btn-font cg login-button2 btn bold' style={{marginTop:"47px"}}>
                         Deposit
@@ -332,7 +332,7 @@ const MyDepositForm = (props) => {
         <Form className="shadow-sm rounded border-0">
             <div className="pt-0">
 
-                <div className="row">
+                <div className="w-100">
                     <div className='col-md-7 text-center'>
                         <div className={`col-md-7 text-center`}>
                             <img src={mpesa} alt=""/>

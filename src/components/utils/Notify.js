@@ -1,7 +1,7 @@
 import {toast} from "react-toastify";
 import fire from  "../../assets/img/fire.webp"
 import React from "react";
-const Notify = React.memo(
+const Notify =
     (message) => {
     let options = {
         position: toast.POSITION.TOP_RIGHT,
@@ -24,6 +24,6 @@ const Notify = React.memo(
         </div>, options);
     }
 
-});
+};
 
 export default Notify

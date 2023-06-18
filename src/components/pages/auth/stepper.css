@@ -157,6 +157,13 @@ ul.form-stepper li a .form-stepper-circle {
     justify-content: center;
     align-items: center;
 }
+button.btn-navigate-form-step:disabled{
+    opacity:0.6;
+}
+button.finish{
+    background: var(--lite-top-color);
+    font-weight: 700;
+}
 @media (min-width: 992px){
     .font-verify-redirect{
         font-size: 18px;

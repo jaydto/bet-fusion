@@ -30,7 +30,7 @@ const VerifyAccount2 = props => {
     const expand = "md"
     const FormTitle = () => {
         return (
-            <div className='col-md-12  pt-4 text-center text-light' >
+            <div className='col-md-12  pt-4  text-light d-flex justify-content-center' >
                 <h4 className="inline-block">
                     VERIFY YOUR PHONE NUMBER
                 </h4>
@@ -49,7 +49,7 @@ const VerifyAccount2 = props => {
     return (
         <div style={{height:'100vh', background:'#16202C'}}>
             <div className={''}>
-                <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
+                <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav top-register-page" fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
                     <Container fluid className={'d-flex justify-content-between mobile-change top-login-background-img'}>
                         <Navbar.Brand className="e logo align-self-start menu-control d-flex w-100" title="Betnare" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
                             <Link to={'/'} className={'text-light'}>
@@ -120,7 +120,7 @@ const VerifyAccount2 = props => {
                 <div className={'col-lg-8 col-sm-12 top-login-background-img-bg-down top-login-background-img-bg-page'} >
 
                     <div className="w-100 d-flex flex-column justify-content-center h-100 top-login-background-img-bg-page">
-                        <div className={'width-page-centric register-page'}>
+                        <div className={'width-page-centric register-page verify'}>
                             <FormTitle/>
 
                             <Row justify="center">

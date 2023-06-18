@@ -477,7 +477,7 @@ select::after{
     /*background-image:url("../../assets/img/auth/backtop.webp") !important;*/
     /*background-repeat: no-repeat;*/
     /*transform: rotate(45deg);*/
-    background: var(--betnare-primary);
+    /*background: var(--betnare-primary);*/
     /*background-position: top left;*/
 }
 /*.top-login-background-img-bg-page::before{*/
@@ -1526,6 +1526,21 @@ img.nare-league {
 
 
 @media (max-width: 991px){
+    .width-page-centric.register-page.verify{
+        margin-top: 12rem;
+        width: 100vw;
+        overflow-x: hidden;
+        padding: 0px 4px;
+    }
+    .width-centric-page.login-page {
+        width: 100vw;
+        overflow-x: hidden;
+        padding: 0px 4px;
+    }
+    .width-page-centric.deposit-page.main{
+        margin-top: 12rem;
+        /*width: 100vw;*/
+    }
     .top-register-page{
         position:fixed;
         top:0px;

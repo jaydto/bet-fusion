@@ -14,13 +14,14 @@ import logo from "../../../assets/img/Logo.webp";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
 	faBackspace,
-	faEye, faEyeSlash, faInfoCircle, faQuestionCircle,
+	faEye, faEyeSlash, faInfoCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import SidebarMobile from "../../sidebar/awesome/SidebarMobile";
 import makeRequest from "../../utils/fetch-request";
 import betNiMoto from '../../../assets/img/BetniMoto.webp'
 import {Form, Formik} from "formik";
 import {Context} from "../../../context/store";
+import SliderPromos from "./SliderPromos";
 
 const backgroundStyle = {
 	backgroundImage: `url(${backgroundURL})`,
@@ -33,21 +34,35 @@ const RegisterTwo = props => {
 	const [state,dispatch]=useContext(Context)
 	// const {setUser} = props;
 	const expand = "md"
-	const {height, width} = useWindowDimensions();
-	const [user, setUser] = useState(getFromLocalStorage("user"));
 
-	// const [success, setSuccess] = useState(false);
-	const navigate = useNavigate();
+	const AppConfig = useCallback(async () => {
+		let endpoint ="/v1/bet/settings"
+
+		await makeRequest({ url: endpoint, method: "POST", data: null }).then(
+			([status, result]) => {
+				console.log("status",status)
+				console.log("result",result)
+				if(status===200){
+					dispatch({type: "SET", key: "app_config", payload: result?.data||result});
+				}
+
+			}
+		);
+
+	}, []);
 
 
+	useEffect(()=>{
+		const abortController=new AbortController()
+		AppConfig()
+		return abortController.abort()
+	},[])
 	const Alert = (props) => {
 		let c = state?.registerSuccess ? 'success' : 'danger';
 		return (<div role="alert" className={`fade alert alert-${c} show`}>{state?.registerMessage}</div>);
 
 	};
-	{state?.registerSuccess&&setTimeout(window.location.href="/verify",1500)}
-
-
+	{(state?.registerSuccess&&state?.app_config?.message?.accountConfiguration?.verificationEnabled=="1")&&setTimeout(navigateToFormStep(3),1500)}
 	return (
 		<div style={{height:'100vh', background:'#16202C'}}>
 			<div className={''}>
@@ -83,7 +98,7 @@ const RegisterTwo = props => {
 									</div>
 								</Offcanvas.Title>
 							</Offcanvas.Header>
-							<Offcanvas.Body className={(width<=575?user?"":"":"")}>
+							<Offcanvas.Body >
 								<SidebarMobile/>
 							</Offcanvas.Body>
 						</Navbar.Offcanvas>
@@ -138,18 +153,11 @@ const RegisterTwo = props => {
 
 													<div className="pb-0" data-backdrop="static">
 														<Steppers/>
-														{/*<SignupForm/>*/}
 													</div>
 												</div>
-
-
 												</div>
 											</div>
 										</div>
-									</div>
-									{/* <p>Don't have an account yet? <a href="/auth/register-2">Sign Up</a></p> */}
-									<div className="mt-4">
-										{/*<LoginForm {...props}/>*/}
 									</div>
 								</div>
 							</Row>
@@ -350,35 +358,13 @@ const SignupForm = (props) => {
 	const [state,dispatch]=useContext(Context)
 	const initialValues = {
 		msisdn: '',
-		password: ''
 	}
 
 	const handleSubmit = values => {
+		dispatch({type: "SET", key: "signup_msisdn", payload: values?.msisdn});
+		// Call the function to navigate to the next step (step 2 in this case)
+		navigateToFormStep(2); // Step 6
 
-		let endpoint = '/v1/signup'
-
-		setTrackingData(values)
-
-		makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
-			// setSuccess(status === 200 || status === 201);
-			// setMessage(response?.success?.message || "");
-			dispatch({type: "SET", key: "registerSuccess", payload: status === 200 || status === 201})
-			dispatch({type: "SET", key: "registerMessage", payload: response?.success?.message})
-
-			if (values.utm_source !== undefined) {
-				if (values.utm_source === 'eskimi') {
-					window.esk('track', 'Conversion');
-				}
-				if (values.utm_source === 'google') {
-					window.gtag_report_conversion(window.location)
-				}
-			}
-			clearTrackingData()
-			let timer = setInterval(() => {
-				// window.location.href = "/"
-				clearInterval(timer)
-			}, 3000)
-		})
 	}
 
 	const validate = values => {
@@ -387,10 +373,6 @@ const SignupForm = (props) => {
 
 		if (!values.msisdn || !values.msisdn.match(/(254|0|)?[71]\d{8}/g)) {
 			errors.msisdn = 'Please enter a valid phone number'
-		}
-
-		if (!values.password || values.password.length < 4) {
-			errors.password = "Please enter four or more characters for password";
 		}
 
 		return errors
@@ -416,6 +398,7 @@ const FormTitle = () => {
 	)
 }
 const MySignupForm = (props) => {
+	const [state,dispatch]=useContext(Context)
 	const {errors, values, submitForm, setFieldValue} = props;
 	const onFieldChanged = (ev) => {
 		let field = ev.target.name;
@@ -447,12 +430,12 @@ const MySignupForm = (props) => {
 					<div className="form-group container-lg row d-flex justify-content-left mb-4">
 						<div className="col">
 							<button type={"submit"}
-									className='btn btn-lg w-100 button-radius input-field btn-font cg login-button2 btn ' style={{marginTop:"20px"}}>
+									className=' btn btn-lg w-100 button-radius input-field btn-font cg login-button2 btn ' style={{marginTop:"28px"}}>
 								<strong>SIGNUP</strong>
 							</button>
-							<Link className={`d-flex justify-content-center w-100 mt-3`} to={"/verify"} title="Verify" >
-								<span className={`text-warning font-input register-label font-verify-redirect`} >Already have a verification code ?  </span>
-							</Link>
+							{state?.app_config?.message?.accountConfiguration?.verificationEnabled!=="0"&&<Link className={`d-flex justify-content-center w-100 mt-3`} to={"/verify"} title="Verify">
+								<span className={`text-warning font-input register-label font-verify-redirect`}>Already have a verification code ?  </span>
+							</Link>}
 						</div>
 					</div>
 				</div>
@@ -466,20 +449,53 @@ const PasswordForm = (props) => {
 	const navigate = useNavigate();
 
 	const initialResetFormValues = {
-		link_codeL:'',
+		link_code:'',
 		password: '',
 		repeat_password: ''
 	}
+	const handleSavePassword= async values => {
+		let endpoint = '/v1/signup'
+		const signUpPayload = {
+			msisdn: state?.signup_msisdn,
+			password: values?.password,
+			link_code: values?.link_code
+		}
+		setTrackingData(values)
+		await makeRequest({url: endpoint, method: 'POST', data: signUpPayload}).then(([status, response]) => {
+			// setSuccess(status === 200 || status === 201);
+			// setMessage(response?.success?.message || "");
+			if(status===200||status===201){
+				dispatch({type: "SET", key: "registerSuccess", payload: status === 200 || status === 201})
+				dispatch({type: "SET", key: "registerMessage", payload: response?.success?.message})
 
-	const handleSavePassword= values=>{
-		dispatch({type: "SET", key: "Signup_password", payload: values?.password});
+				if (values.utm_source !== undefined) {
+					if (values.utm_source === 'eskimi') {
+						window.esk('track', 'Conversion');
+					}
+					if (values.utm_source === 'google') {
+						window.gtag_report_conversion(window.location)
+					}
+				}
+				clearTrackingData()
+				{(state?.app_config?.message?.accountConfiguration?.verificationEnabled=="1")
+					?setTimeout(navigateToFormStep(3),1500)
+					:navigate("/")
+				}
+
+				// let timer = setInterval(() => {
+				// 	// window.location.href = "/"
+				// 	clearInterval(timer)
+				// }, 3000)
+			}
+
+		})
 	}
 
 	const validatePassword = password_values => {
 
 		let password_errors = {}
 
-		if (password_values.link_code.length < 4) {
+		if (password_values.link_code.length > 0 && password_values.link_code.length < 4) {
 			password_errors.link_code = "Your code should be greater than 4 numbers."
 		}
 
@@ -535,7 +551,7 @@ const MyPasswordForm = (props) => {
 			<div className="pt-0">
 				<div className="row">
 					<div className="col-md-12">
-						<div className="col-md-12">
+						<div className="col-md-12 px-2">
 
 							<div className="form-group row d-flex justify-content-center mt-1">
 								<label className={'text-center font-referal-link'} onClick={()=>show_input()}>Do you have a Referal Code? Click Here &nbsp;<FontAwesomeIcon icon={faInfoCircle} style={{color:"var(--lite-top-color"}} title={"Referal link input"}/></label>
@@ -652,45 +668,47 @@ const MyPasswordForm = (props) => {
 	);
 }
 
+const navigateToFormStep = (stepNumber) => {
+	// Hide all form steps
+	document.querySelectorAll(".form-step").forEach((formStepElement) => {
+		formStepElement.classList.add("d-none");
+	});
+
+	// Mark all form steps as unfinished
+	document.querySelectorAll(".form-stepper-list").forEach((formStepHeader) => {
+		formStepHeader.classList.add("form-stepper-unfinished");
+		formStepHeader.classList.remove("form-stepper-active", "form-stepper-completed");
+	});
+
+	// Show the current form step (as passed to the function)
+	document.querySelector(`#step-${stepNumber}`).classList.remove("d-none");
+
+	// Select the form step circle (progress bar)
+	const formStepCircle = document.querySelector(`li[step="${stepNumber}"]`);
+
+	// Mark the current form step as active
+	formStepCircle.classList.remove("form-stepper-unfinished", "form-stepper-completed");
+	formStepCircle.classList.add("form-stepper-active");
+
+	// Loop through each form step circles
+	// This loop will continue up to the current step number
+	for (let index = 0; index < stepNumber; index++) {
+		// Select the form step circle (progress bar)
+		const formStepCircle = document.querySelector(`li[step="${index}"]`);
+
+		// Check if the element exists. If yes, then proceed
+		if (formStepCircle) {
+			// Mark the form step as completed
+			formStepCircle.classList.remove("form-stepper-unfinished", "form-stepper-active");
+			formStepCircle.classList.add("form-stepper-completed");
+		}
+	}
+};
 
 const Steppers = () => {
 
-	const navigateToFormStep = (stepNumber) => {
-		// Hide all form steps
-		document.querySelectorAll(".form-step").forEach((formStepElement) => {
-			formStepElement.classList.add("d-none");
-		});
+	const [state,dispatch]=useContext(Context)
 
-		// Mark all form steps as unfinished
-		document.querySelectorAll(".form-stepper-list").forEach((formStepHeader) => {
-			formStepHeader.classList.add("form-stepper-unfinished");
-			formStepHeader.classList.remove("form-stepper-active", "form-stepper-completed");
-		});
-
-		// Show the current form step (as passed to the function)
-		document.querySelector(`#step-${stepNumber}`).classList.remove("d-none");
-
-		// Select the form step circle (progress bar)
-		const formStepCircle = document.querySelector(`li[step="${stepNumber}"]`);
-
-		// Mark the current form step as active
-		formStepCircle.classList.remove("form-stepper-unfinished", "form-stepper-completed");
-		formStepCircle.classList.add("form-stepper-active");
-
-		// Loop through each form step circles
-		// This loop will continue up to the current step number
-		for (let index = 0; index < stepNumber; index++) {
-			// Select the form step circle (progress bar)
-			const formStepCircle = document.querySelector(`li[step="${index}"]`);
-
-			// Check if the element exists. If yes, then proceed
-			if (formStepCircle) {
-				// Mark the form step as completed
-				formStepCircle.classList.remove("form-stepper-unfinished", "form-stepper-active");
-				formStepCircle.classList.add("form-stepper-completed");
-			}
-		}
-	};
 
 	useEffect(() => {
 		// Select all form navigation buttons and add event listeners
@@ -715,6 +733,14 @@ const Steppers = () => {
 		};
 	}, []);
 
+	const NextButton=()=>{
+		console.log("account_verify",state?.app_config?.message?.accountConfiguration?.verificationEnabled)
+		return (state?.app_config?.message?.accountConfiguration?.verificationEnabled=="0"?<button className="button btn-navigate-form-step finish" type="button" step_number="3">Finish
+		</button>:<button className="button btn-navigate-form-step" type="button" step_number="3">Next</button>
+		)
+	}
+
+
 	return (
 		<>
 			<div className={"stepper"}>
@@ -722,7 +748,7 @@ const Steppers = () => {
 				<div id="multi-step-form-container">
 					{/*//Form Steps / Progress Bar*/}
 					<ul className="form-stepper form-stepper-horizontal text-center-stepper mx-auto pl-0">
-						{/*// <!-- Step 1 -->*/}
+						{/*//  Step 1 */}
 						<li className="form-stepper-active text-center-stepper form-stepper-list" step="1">
 							<a className="mx-2">
                     <span className="form-stepper-circle">
@@ -740,7 +766,7 @@ const Steppers = () => {
 								<div className="label text-muted">Passwords</div>
 							</a>
 						</li>
-						{/*// <!-- Step 3 -->*/}
+						{/*// Step 3 */}
 						<li className="form-stepper-unfinished text-center-stepper form-stepper-list" step="3">
 							<a className="mx-2">
                     <span className="form-stepper-circle text-muted">
@@ -750,16 +776,20 @@ const Steppers = () => {
 							</a>
 						</li>
 					</ul>
+
 					{/*// <!-- Step Wise Form Content -->*/}
-					<form id="userAccountSetupForm" name="userAccountSetupForm" encType="multipart/form-data"
-						  method="POST">
+					<div id="userAccountSetupForm" name="userAccountSetupForm">
+						{/*slider for promotions on Registration promos*/}
+						<SliderPromos/>
 						{/*// <!-- Step 1 Content -->*/}
 						<section id="step-1" className="form-step">
 							<h2 className="font-normal">Account Basic Details</h2>
 							{/*// <!-- Step 1 input fields -->*/}
 							<SignupForm/>
 							<div className="mt-3">
-								<button className="button btn-navigate-form-step" type="button" step_number="2">Next
+								<button className="button btn-navigate-form-step"
+										disabled={state?.signup_msisdn ? false : true} type="button"
+										step_number="2">Next
 								</button>
 							</div>
 						</section>
@@ -769,8 +799,7 @@ const Steppers = () => {
 							<div className="mt-3 d-flex justify-content-between">
 								<button className="button btn-navigate-form-step" type="button" step_number="1">Prev
 								</button>
-								<button className="button btn-navigate-form-step" type="button" step_number="3">Next
-								</button>
+								<NextButton/>
 							</div>
 						</section>
 						{/*// <!-- Step 3 Content, default hidden on page load. -->*/}
@@ -780,10 +809,10 @@ const Steppers = () => {
 							<div className="mt-3 d-flex justify-content-between">
 								<button className="button btn-navigate-form-step" type="button" step_number="2">Prev
 								</button>
-								<button className="button submit-btn" type="submit">Save</button>
+								<button className="button submit-btn" type="submit">Finish</button>
 							</div>
 						</section>
-					</form>
+					</div>
 				</div>
 			</div>
 		</>

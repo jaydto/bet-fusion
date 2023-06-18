@@ -46,15 +46,36 @@ const Header = React.memo((props) => {
             if (window.location.pathname === '/') {
                 setShowLoadingModal(true);
                 // let ans = window.confirm("Are you sure you want to exit this application?");
-                // if (ans) {
-                //   App.exitApp();
-                // }
+
             } else {
                 window.history.back();
             }
         };
 
     }, [setShowLoadingModal]);
+
+    const AppConfig = useCallback(async () => {
+            let endpoint ="/v1/bet/settings"
+
+            await makeRequest({ url: endpoint, method: "POST", data: null }).then(
+                ([status, result]) => {
+                    console.log("status",status)
+                    console.log("result",result)
+                    if(status===200){
+                        dispatch({type: "SET", key: "app_config", payload: result?.data||result});
+                    }
+
+                }
+            );
+
+    }, []);
+
+
+    useEffect(()=>{
+        const abortController=new AbortController()
+        AppConfig()
+        return abortController.abort()
+    },[])
 
 
     const dismissSearch = () => {

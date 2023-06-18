@@ -13,7 +13,7 @@ import {Switch} from "@material-ui/core";
 import {faEye, faEyeSlash} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
-export const  Notify = React.memo(
+export const  Notify =
     (message) => {
     let options = {
         position: toast.POSITION.TOP_RIGHT,
@@ -36,7 +36,7 @@ export const  Notify = React.memo(
         </div>, options);
     }
 
-});
+};
 
 const HeaderLogin = React.memo(
     (props) => {
@@ -121,7 +121,7 @@ const HeaderLogin = React.memo(
 
         return (
             <>
-                <Form className={`ow right i web-element top-login-paddings   width-centric-page top-login-background-img`}>
+                <Form className={`ow right i web-element top-login-paddings   width-centric-page login-page top-login-background-img`}>
                     <Row className={`d-flex flex-column`} >
                         <div className={`w-100 `}>
                             <input type="text"

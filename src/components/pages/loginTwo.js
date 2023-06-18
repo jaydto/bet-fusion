@@ -92,12 +92,12 @@ const LoginTwo = React.memo(
 
 
 	return (
-		<div style={{height:'100vh', background:'#16202C'}}>
+		<div style={{height:'100vh', background:'#16202C',overflowX:'hidden'}}>
 			<div className={''}>
 				<Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
 					<Container fluid className={'d-flex justify-content-between mobile-change top-login-background-img'}>
 						<Navbar.Brand className="e logo align-self-start menu-control d-flex w-100" title="Betnare" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
-							<Link to={'/'} className={'text-light'}>
+							<Link to={'/'} className={'text-light d-flex align-items-center'}>
 								<FontAwesomeIcon icon={faBackspace}/> HOME
 							</Link>
 							<div
@@ -165,7 +165,7 @@ const LoginTwo = React.memo(
 				<div className={'col-lg-8 col-sm-12 top-login-background-img-bg-down top-login-background-img-bg-page'} >
 
 					<div className="w-100 d-flex flex-column justify-content-center h-100 top-login-background-img-bg-page">
-						<div className={'width-page-centric'}>
+						<div className={'width-page-centric '}>
 							<FormTitle/>
 
 							<Row justify="center">

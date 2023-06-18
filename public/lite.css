@@ -12,3 +12,13 @@
     word-break: break-word;
     text-decoration: none;
 }
+@media (min-width:992px){
+    .site-mobile-only{
+        display:none!important;
+    }
+}
+@media (max-width:991px){
+    .site-mobile-only{
+        display: flex!important;
+    }
+}

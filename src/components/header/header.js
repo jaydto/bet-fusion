@@ -15,18 +15,19 @@ import SidebarMobile from "../sidebar/awesome/SidebarMobile";
 import MobileNav1 from "../mobile-navigation/MobileNav1";
 
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import { faTimes} from "@fortawesome/free-solid-svg-icons";
+import {faTimes} from "@fortawesome/free-solid-svg-icons";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import ListGroup from "react-bootstrap/ListGroup";
 import LoginSection from "./LoginSection";
 import {UserInfo} from "./UserInfo";
+
 const downloadAPKFile = React.lazy(() => import('../../assets/betnare.apk'));
 const ProfileMenu = React.lazy(() => import('./profile-menu'));
 const HeaderNav = React.lazy(() => import('./header-nav'));
 
 
 const Header = (props) => {
-    const {slip,scrollPosition}=props
+    const {slip, scrollPosition} = props
     const gaEventTracker = useAnalyticsEventTracker('Navigation');
     const [user, setUser] = useState(getFromLocalStorage("user"));
     const [state, dispatch] = useContext(Context);
@@ -125,8 +126,8 @@ const Header = (props) => {
             setSettings(cached_settings);
         }
     })
-    const urlPath=window.location.pathname
-    const showDownload=(!urlPath.includes("nare-games")&&!urlPath.includes("gameplay")&&!urlPath.includes("smart-play")&&!urlPath.includes("betslip-slip")&&!urlPath.includes("betslip-nare")&&!urlPath.includes("betslip-jackpot")&&!urlPath.includes("nare-league")&&!urlPath.includes("bet-history")&&!urlPath.includes("standings")&&!urlPath.includes("results")&&!urlPath.includes("casino")&&!urlPath.includes("jackpot")&&!urlPath.includes("smart-soft")&&!urlPath.includes("virtuals")&&!urlPath.includes("match")&&!urlPath.includes("competition")&&!urlPath.includes("my-bets")&&!urlPath.includes("profile")&&!urlPath.includes("promotions"))
+    const urlPath = window.location.pathname
+    const showDownload = (!urlPath.includes("nare-games") && !urlPath.includes("gameplay") && !urlPath.includes("smart-play") && !urlPath.includes("betslip-slip") && !urlPath.includes("betslip-nare") && !urlPath.includes("betslip-jackpot") && !urlPath.includes("nare-league") && !urlPath.includes("bet-history") && !urlPath.includes("standings") && !urlPath.includes("results") && !urlPath.includes("casino") && !urlPath.includes("jackpot") && !urlPath.includes("smart-soft") && !urlPath.includes("virtuals") && !urlPath.includes("match") && !urlPath.includes("competition") && !urlPath.includes("my-bets") && !urlPath.includes("profile") && !urlPath.includes("promotions"))
 
     useEffect(() => {
 
@@ -198,15 +199,14 @@ const Header = (props) => {
 
     const expand = "md"
     const pathname = window.location.pathname;
-    useEffect(()=>{
-        if(pathname=='nare-league'){
-            dispatch({type: "SET", key: "kiron_page", payload:true});
-        }else{
-            dispatch({type: "SET", key: "kiron_page", payload:false});
+    useEffect(() => {
+        if (pathname == 'nare-league') {
+            dispatch({type: "SET", key: "kiron_page", payload: true});
+        } else {
+            dispatch({type: "SET", key: "kiron_page", payload: false});
         }
 
-    },[ pathname ])
-
+    }, [pathname])
 
 
     const getDownloadFile = () => {
@@ -217,35 +217,49 @@ const Header = (props) => {
             {/*{showLoadingModal && ( <ExitModal setShowLoadingModal={setShowLoadingModal} visible={showLoadingModal}/>)}*/}
             <ToastContainer/>
             <div className={'d-flex flex-column'}>
-                {showDownload&&<Link to={'/betnare.apk'}
-                                     target={"_blank"}
-                                     title={'Download App'}
-                                     download={'betnare.apk'}
-                                     className={"lite-top"}
-                                     onClick={()=>gaEventTracker('Downloaded App')}
-                                     exportFile={() => getDownloadFile()}>
-                    <div className={"app-download-link "}>
-                        <div  className={"app-color"}>
-                            <span className={"color-app-text"}>APP Your Game with Betnare App</span>
-                            <img src={androidIcon} className={"icon-android"}/>
-                        </div>
+                {showDownload &&
+                    <div>
+                        <Link to={'/betnare.apk'}
+                              target={"_blank"}
+                              title={'Download App'}
+                              download={'betnare.apk'}
+                              className={"lite-top d-flex flex-column"}
+                              onClick={() => gaEventTracker('Downloaded App')}
+                              exportFile={() => getDownloadFile()}>
+                            <div className={"app-download-link  d-flex flex-column"}>
+                                <div className={"app-color"}>
+                                    <span className={"color-app-text"}>APP Your Game with Betnare App</span>
+                                    <img src={androidIcon} className={"icon-android"}/>
+                                </div>
+                            </div>
+                        </Link>
+                        <a href={"https://lite.betnare.com"} className={"app-color lite-top-color"}>
+                            <div className={"color-app-text"}>Try Lite with Betnare</div>
+                        </a>
                     </div>
-                </Link>}
+                }
 
-                <Navbar expand="md"   className={`${(scrollPosition||!showDownload)&&'fixed-top-nav'} mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${slip&&"top-betslip-page-fix"} ${user?'top-nav-login':'top-nav-login'}`} fixed="top" variant="dark">
-                    <div className={'w-100 d-flex justify-content-between mobile-change desktop-ipad-size top-header-main'}>
+                <Navbar expand="md"
+                        className={`${(scrollPosition || !showDownload) && 'fixed-top-nav'} mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${slip && "top-betslip-page-fix"} ${user ? 'top-nav-login' : 'top-nav-login'}`}
+                        fixed="top" variant="dark">
+                    <div
+                        className={'w-100 d-flex justify-content-between mobile-change desktop-ipad-size top-header-main'}>
                         <div className={"d-flex w-100 directions-header-nav"}>
-                            <Navbar.Brand className={`e logo align-self-start menu-control d-flex justify-content-between w-100`} title="Betnare">
-                                <Link to={{pathname: "/"}} className="col-4 logo-betnare resize-mobile" style={{ marginLeft:"2px"}}>
+                            <Navbar.Brand
+                                className={`e logo align-self-start menu-control d-flex justify-content-between w-100`}
+                                title="Betnare">
+                                <Link to={{pathname: "/"}} className="col-4 logo-betnare resize-mobile"
+                                      style={{marginLeft: "2px"}}>
                                     <img src={logo} alt="Betnare" title="Betnare" effects="blur"
-                                         className={`image-size ${!user&&'logo-top'}`} style={user?{marginBottom:"0px" }:{marginBottom:"11px", width:'auto'}}/>
+                                         className={`image-size ${!user && 'logo-top'}`}
+                                         style={user ? {marginBottom: "0px"} : {marginBottom: "11px", width: 'auto'}}/>
                                 </Link>
 
                                 <UserInfo/>
                             </Navbar.Brand>
 
                             {/*todo check information provided for a user*/}
-                            <div className={` col-10 change-size desk-top`} id="navbar-collapse-main " >
+                            <div className={` col-10 change-size desk-top`} id="navbar-collapse-main ">
                                 <div
                                     className="col-md-11 col-sm-12 col-lg-7 right fix-view-2 disable-ipad to-navcheck justify-content-end pt-lg-0 pt-md-3">
                                     {user ? <ProfileMenu user={user}/> : <LoginSection/>}
@@ -254,23 +268,28 @@ const Header = (props) => {
                             </div>
                         </div>
 
-                        <Row className={`second-nav ck pc os app-navbar ${user?' app-header-nav-login ':' app-header-nav '} to-navcheck `}>
+                        <Row
+                            className={`second-nav ck pc os app-navbar ${user ? ' app-header-nav-login ' : ' app-header-nav '} to-navcheck `}>
                             <HeaderNav/>
                         </Row>
-                        {state?.searching?
+                        {state?.searching ?
                             <div id="navbar-collapse-main"
                                  className={`fadeIn header-menu d-flex justify-content-center w-100 d-block`}>
-                                <ListGroup as="ul" xs="9" horizontal className="nav navbar-nav og ale ss col-12 text-center w-100 d-flex">
+                                <ListGroup as="ul" xs="9" horizontal
+                                           className="nav navbar-nav og ale ss col-12 text-center w-100 d-flex">
                                     <div className="d-flex w-100">
-                                        <div className="col-10  px-2" style={{marginLeft:'2vw'}}>
-                                            <input type="text" placeholder={'Start typing to search for team ...'}  autoFocus={true} ref={searchInputRef}
+                                        <div className="col-10  px-2" style={{marginLeft: '2vw'}}>
+                                            <input type="text" placeholder={'Start typing to search for team ...'}
+                                                   autoFocus={true} ref={searchInputRef}
                                                    onInput={(event) => fetchMatches(event.target.value)}
-                                                   className={'form-control input-field-search border-0  text-default bg-light no-border-radius input-bg-user'}  style={{background: "#2D4352"}}/>
-                                            <div className="col-10" style={{ overflowY:'auto', borderRadius:'2px'}}
+                                                   className={'form-control input-field-search border-0  text-default bg-light no-border-radius input-bg-user'}
+                                                   style={{background: "#2D4352"}}/>
+                                            <div className="col-10" style={{overflowY: 'auto', borderRadius: '2px'}}
                                                  className={`autocomplete-box  rounded position-fixed  search-results-box border-dark col-md-5 shadow-lg text-start`}
                                                  onClick={() => gaEventTracker('View Search Results')}>
                                                 {matches.map((match, index) => (
-                                                    <Link to={`/?search=${match.home_team}&sub_type_id=1`} key={index} onClick={()=> window.location.href=`/?search=${match.home_team}&sub_type_id=1`}>
+                                                    <Link to={`/?search=${match.home_team}&sub_type_id=1`} key={index}
+                                                          onClick={() => window.location.href = `/?search=${match.home_team}&sub_type_id=1`}>
                                                         <li>
                                                             {match.home_team}
                                                         </li>
@@ -278,23 +297,27 @@ const Header = (props) => {
                                                 ))}
                                             </div>
                                         </div>
-                                        <button className={'col-2 btn text-warning align-right d-flex justify-content-center align-items-center flex-column'} onClick={() => dismissSearch()}>
+                                        <button
+                                            className={'col-2 btn text-warning align-right d-flex justify-content-center align-items-center flex-column'}
+                                            onClick={() => dismissSearch()}>
                                             <FontAwesomeIcon icon={faTimes}/> Close
                                         </button>
                                     </div>
 
                                 </ListGroup>
                             </div>
-                            :(pathname!=='/signup')&&pathname!=='/nare-league'&&pathname!=='/results'&& pathname!=='/standing'&&pathname!=='/playouts'&&pathname!=='/standing  '&&pathname!=='/bet-history'&&!slip&&<MobileNav1/>}
+                            : (pathname !== '/signup') && pathname !== '/nare-league' && pathname !== '/results' && pathname !== '/standing' && pathname !== '/playouts' && pathname !== '/standing  ' && pathname !== '/bet-history' && !slip &&
+                            <MobileNav1/>}
 
 
                         <Navbar.Offcanvas
-                            style={{width: "80%", height: "100%",zIndex: "9999", marginTop: "0px", overflowY:"auto"}}
+                            style={{width: "80%", height: "100%", zIndex: "9999", marginTop: "0px", overflowY: "auto"}}
                             className='off-canvas background-primary p-0'
                             id={`offcanvasNavbar-expand-${expand}`}
                             aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
                             placement="start">
-                            <Offcanvas.Header closeButton className='text-white' closeVariant={"white"} onClick={toggle}>
+                            <Offcanvas.Header closeButton className='text-white' closeVariant={"white"}
+                                              onClick={toggle}>
                                 <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
                                     <div className="col-5">
                                         <div>
@@ -303,7 +326,7 @@ const Header = (props) => {
                                     </div>
                                 </Offcanvas.Title>
                             </Offcanvas.Header>
-                            <Offcanvas.Body >
+                            <Offcanvas.Body>
                                 <SidebarMobile/>
                             </Offcanvas.Body>
                         </Navbar.Offcanvas>
@@ -311,7 +334,7 @@ const Header = (props) => {
                     </div>
                 </Navbar>
             </div>
-       </>
+        </>
 
     )
 }

@@ -155,6 +155,51 @@
     Whoops! It's us not you. Give us another chance by clicking here.💔
   </div>
 </a></noscript>
+
+<script>
+  var redirectTimeout = setTimeout(function() {
+    renderRedirectLink();
+  }, 20000); // Change the timeout value as per your requirement (20 seconds)
+
+  function renderRedirectLink() {
+    var appElement = document.getElementById('app');
+    var redirectContainer = document.createElement('div');
+    redirectContainer.id = 'redirect-container';
+    redirectContainer.innerHTML = `
+      <a href="https://lite.betnare.com" class="app-color lite-top-color">
+        <div class="color-app-text">Having trouble loading the website? Click here for <strong>LITE</strong> VERSION</div>
+      </a>
+    `;
+
+    if (appElement) {
+      appElement.parentNode.insertBefore(redirectContainer, appElement);
+    } else {
+      document.body.appendChild(redirectContainer);
+    }
+  }
+
+  var loadedCount = 0;
+  var totalCount = document.getElementsByTagName('*').length;
+
+  function handleLoad() {
+    loadedCount++;
+    if (loadedCount === totalCount) {
+      clearTimeout(redirectTimeout);
+      var redirectContainer = document.getElementById('redirect-container');
+      if (redirectContainer) {
+        redirectContainer.remove(); // Remove the redirect link if it exists
+      }
+    }
+  }
+
+  // Check if the content has finished loading
+  window.addEventListener('load', handleLoad);
+</script>
+
+
+
+
+
 <div id="app"></div>
 <!--
 This HTML file is a template.

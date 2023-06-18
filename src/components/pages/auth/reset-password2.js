@@ -1,7 +1,6 @@
 import React, { useContext, useState} from 'react'
 import { Row, Col } from "antd";
 import authImg from '../../../assets/img/Logo.webp'
-import fire from '../../../assets/img/fire.webp'
 import {Link, useNavigate} from "react-router-dom";
 import only18 from '../../../assets/img/auth/18only.png'
 import backgroundURL from '../../../assets/img/auth/img-17.webp'

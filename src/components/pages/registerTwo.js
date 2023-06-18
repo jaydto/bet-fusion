@@ -43,7 +43,7 @@ const RegisterTwo = props => {
 
 	const FormTitle = () => {
 		return (
-			<div className='col-md-12  pt-4 text-center text-light' >
+			<div className='col-md-12  pt-4 text-center-stepper text-light' >
 				<h4 className="inline-block">
 					SIGNUP | CREATE A NEW ACCOUNT
 				</h4>
@@ -110,7 +110,7 @@ const RegisterTwo = props => {
 						</div>
 						<Row justify="center">
 							<Col xs={0} sm={0} md={0} lg={20}>
-								<h1 className="text-white text-center" style={{fontSize:"40px", marginBottom:'14px'}}>Welcome to</h1>
+								<h1 className="text-white text-center-stepper" style={{fontSize:"40px", marginBottom:'14px'}}>Welcome to</h1>
 
 								<Link to={'/'}>
 									<img className="img-fluid mb-5" src={authImg} alt=""/>

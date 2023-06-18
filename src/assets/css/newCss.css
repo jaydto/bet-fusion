@@ -1791,10 +1791,10 @@ img.nare-league {
     .line-on-slip-items-container{
         background: var(--betslip-list);
     }
-    .alert-position-betslip-top{
+    .alert-position-betslip-top {
         position: fixed;
         top: 10rem;
-
+        width: 100%;
     }
     .line-on-slip-items {
         height: 1px;
@@ -1924,6 +1924,10 @@ img.nare-league {
         box-shadow: none;
         width: 100%!important;
         margin: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
     }
 
     .width-centric-page{

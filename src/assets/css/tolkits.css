@@ -1,5 +1,7 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&subset=latin,latin-ext");
-
+/*@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&subset=latin,latin-ext");*/
+/*@import url('https://fonts.cdnfonts.com/css/graphik');*/
+/*@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap");*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
 *{
     list-style:none;
     box-sizing: border-box;
@@ -509,7 +511,7 @@ header, li a, .thedate span {
 }
 
 .bet-option:nth-child(2n) {
-    background: var(--betlip-list);
+    background: var(--betslip-list);
 }
 
 #quick-login label {
@@ -609,13 +611,6 @@ header, li a, .thedate span {
     color: #fff;
 }
 
-#betting input {
-    max-width: 100px;
-    color: #000;
-    padding: 3px;
-    border-radius: 5.2px;
-    text-align: center;
-}
 
 .mobi h2 {
     font-size: 20px;
@@ -2195,7 +2190,7 @@ events-header {
 }
 
 .home-team {
-    background: #334c5c;
+    background: var(--odds-button);
     color: #fff;
     font-weight: 150 !important;
 }
@@ -6982,7 +6977,7 @@ ul.sport {
 
 .os,
 .of {
-    position: fixed;
+    position:sticky;
     right: 0;
     left: 0;
     z-index: 1030;
@@ -7242,9 +7237,12 @@ ul.sport {
     .slip-size{
         max-height:20vh;
     }
-
+    .betslip td.tax-info {
+        padding: 10px 4px!important;
+    }
     .betslip td{
         padding: 2px 2px!important;
+        white-space: nowrap;
     }
     .mobile-height{
         max-height:30vh!important;
@@ -7255,12 +7253,7 @@ ul.sport {
     .mobile-menu{
         z-index:9999;
     }
-    .bet-align-left{
-        text-align:left;
-    }
-    .bet-align-right{
-        text-align:right;
-    }
+
     .betslip-container-mobile{
         height:80%!important;
     }
@@ -7953,6 +7946,15 @@ ul.sport {
     }
 }
 @media (min-width: 992px){
+    .betslip td.tax-info {
+        padding: 7px 1px!important;
+        font-size: 10px;
+        font-weight: 600;
+    }
+    .betslip td{
+        padding: 2px 2px!important;
+        white-space: nowrap;
+    }
     .tablet-only{
         display: none!important;
     }
@@ -7972,6 +7974,13 @@ ul.sport {
 
 
 @media (max-width: 991px) {
+    .betslip td.tax-info {
+        padding: 10px 4px!important;
+    }
+    .betslip td{
+        padding: 2px 2px!important;
+        white-space: nowrap;
+    }
     .casino-category-container {
 
         width:fit-content;
@@ -12406,6 +12415,8 @@ button.close {
 
 body {
     letter-spacing: 0;
+    /*font-family:Graphik, sans-serif !important;*/
+    font-family: 'Roboto', sans-serif;
 }
 
 .df {

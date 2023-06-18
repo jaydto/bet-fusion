@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useContext, useCallback } from "react";
-import { Context } from "../../context/store";
+import React, {useState, useEffect, useContext, useCallback} from "react";
+import {Context} from "../../context/store";
 import {
     getKironSlip, removeFromKironSlip,
 } from "../utils/betslip";
-import { getFromLocalStorage } from "../utils/local-storage";
+import {getFromLocalStorage} from "../utils/local-storage";
 import KironslipSubmitForm from "./kironslip-submit-form";
 import {Link} from "react-router-dom";
 
@@ -13,7 +13,7 @@ const clean_rep = (str) => {
 };
 
 const KironSlip = (props) => {
-    const { kiron } = props;
+    const {kiron} = props;
     const [betslipKey, setBetslipKey] = useState("kironbetslip");
     const [betslipsData, setBetslipsData] = useState(null);
     const [state, dispatch] = useContext(Context);
@@ -22,7 +22,7 @@ const KironSlip = (props) => {
     const [qualifiesBonus, setQualifiesBonus] = useState(false);
     const [qualifiesGift, setQualifiesGift] = useState(false);
     const [settings, setSettings] = useState(getFromLocalStorage("settings"));
-    const [expired, setExpired]=useState(false)
+    const [expired, setExpired] = useState(false)
 
     const [totalOdds, setTotalOdds] = useState(1);
     //initial betslip loading
@@ -39,20 +39,19 @@ const KironSlip = (props) => {
 
     useEffect(() => {
         if (state[betslipKey]) {
-           kiron && getKironSlip()!==null&& Object.keys(getKironSlip()).length == 0?
-                    setBetslipsData(null) :
-                    setBetslipsData(state[betslipKey]);
+            kiron && getKironSlip() !== null && Object.keys(getKironSlip()).length == 0 ?
+                setBetslipsData(null) :
+                setBetslipsData(state[betslipKey]);
             // console.log("size of slip",Object.keys(getJackpotBetslip).length )
         }
     }, [state[betslipKey]]);
-
 
 
     //betslip update
     const updateBetslip = useCallback(() => {
         if (betslipsData) {
             let odds = Object.values(betslipsData).reduce(
-                (previous, { odd_value }) => {
+                (previous, {odd_value}) => {
                     return previous * odd_value;
                 },
                 1
@@ -77,7 +76,7 @@ const KironSlip = (props) => {
     }, [setKironSlipkey]);
 
     const handledRemoveSlip = (match) => {
-        let betslip =removeFromKironSlip(match?.parent_match_id)
+        let betslip = removeFromKironSlip(match?.parent_match_id)
 
 
         let match_selector = match.parent_match_id + "_selectedK";
@@ -87,12 +86,13 @@ const KironSlip = (props) => {
 
         setBetslipsData(betslip);
 
-        dispatch({ type: "SET", key: betslipKey, payload: betslip });
-        dispatch({ type: "SET", key: match_selector, payload: "remove." + ucn });
+        dispatch({type: "SET", key: betslipKey, payload: betslip});
+        dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
     };
 
 
-    const updateGiftState = () => {};
+    const updateGiftState = () => {
+    };
 
     const updateBonusState = () => {
         let maxBonusGames = Number(settings?.betnareBonus?.bonusBetLegs);
@@ -198,8 +198,9 @@ const KironSlip = (props) => {
 
     return (
         <div className="bet-body text-white">
-            {!kiron && <BonusAlert />}
-            <div className={`flow  slip-top ${state?.user?kiron?'slip-max':'slip-height slip-log-max':'slip-max'} overflow-auto`}>
+            {!kiron && <BonusAlert/>}
+            <div
+                className={`flow  slip-top ${state?.user ? kiron ? 'slip-max' : 'slip-height slip-log-max' : 'slip-max'} overflow-auto`}>
                 <div className={"slip-bottom-space"}>
                     <ul className={"slip-bottom-space-list"}>
                         {(betslipsData && Object.keys(betslipsData)?.length == 0) ||
@@ -211,14 +212,7 @@ const KironSlip = (props) => {
                                 let no_odd_bg = odd === 1 ? "#f29f7a" : "";
 
                                 return (
-                                    <li
-                                        className={`bet-option hide-on-affix ${
-                                            slip?.disable ? "warn" : ""
-                                        } ${expired.map((id,index)=> (slip?.parent_match_id === id ?' expired-bg ':'')
-                                        )}`}
-                                        key={match_id}
-                                        style={{ background: no_odd_bg }}
-                                    >
+                                    <div className={'d-flex slip-bg'}>
                                         <div className="bet-cancel">
                                             <input
                                                 id={slip.match_id}
@@ -227,79 +221,67 @@ const KironSlip = (props) => {
                                                 onClick={() => handledRemoveSlip(slip)}
                                             />
                                         </div>
-                                        <Link
-                                            href={`${
-                                                slip?.bet_type === "0"
-                                                    ? "/match/" + slip?.match_id
-                                                    :kiron==true?"#":"/match/live/" + slip?.parent_match_id
-                                            }`}
-                                            style={{ color: "inherit", fontStyle: "inherit" }}
-                                            className={"g url-link"}
-                                        >
-                                            <div className="bet-value" style={{width:'90%'}}>
-                                                <b>
-                                                    {
-                                                        <span
-                                                            style={{
-                                                                float: "left",
-                                                                width: "auto",
-                                                                fontWeight: "bold",
-                                                            }}
-                                                        >
-                                                    {slip?.sport_name==undefined?kiron==true?"Soccer":"Soccer":slip?.sport_name},&nbsp;
+                                        <div className="d-flex width-slip-item-container">
+                                            <li
+                                                className={`bet-option hide-on-affix ${
+                                                    slip?.disable ? "warn" : ""
+                                                } ${expired.map((id, index) => (slip?.parent_match_id === id ? ' expired-bg ' : '')
+                                                )}`}
+                                                key={match_id}
+                                                style={{background: no_odd_bg}}
+                                            >
+                                                <Link
+                                                    href={`${
+                                                        slip?.bet_type === "0"
+                                                            ? "/match/" + slip?.match_id
+                                                            : kiron == true ? "#" : "/match/live/" + slip?.parent_match_id
+                                                    }`}
+                                                    style={{color: "inherit", fontStyle: "inherit"}}
+                                                    className={"g url-link"}
+                                                >
+                                                    <div className="row">
+                                                        <div className="bet-value">
+                                                     <span className={"team-info-slip-list"}>
+                                                    <span
+                                                        className={"slip-team"}>{slip.home_team}</span>&nbsp; Vs.&nbsp;
+                                                         <span className={"slip-team"}>{slip.away_team}</span>
+                                                     </span>
+                                                            <span className="sp_sport"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div className="row d-flex flex-column">
+                                                        <div
+                                                            className="bet-value picks-user-slip"> {slip.odd_type}- <span
+                                                            className={"pick-user-match"}> {slip.outcome_id}</span>
+                                                        </div>
+                                                    </div>
 
-                                                    </span>
-                                                    }
-                                                    {expired.map((id,index)=>{
+                                                </Link>
+                                            </li>
+                                            <div className="d-flex align-items-center">
+                                                <b>
+                                                    {expired.map((id, index) => {
                                                         return slip?.parent_match_id === id && (
-                                                            <span key={index} className='text-warning float-end'>
+                                                            <span key={index}
+                                                                  className='text-warning float-end px-2'>
                                                              Expired
                                                         </span>
                                                         );
                                                     })}
                                                 </b>
+                                                {expired.length==0 &&<b>
+                                                    <span className="bet-odd"> {slip.odd_value}</span>
+                                                    </b>}
                                             </div>
-                                            <div className="row">
-                                                <div className="bet-value">
-                                                    {`${slip.home_team} - ${slip.away_team}`}
-                                                    <br />
-                                                    <span className="sp_sport"></span>
-                                                </div>
-                                            </div>
-                                            <div className="row">
-                                                <div className="bet-value">Market - {slip.odd_type}</div>
-                                            </div>
-                                            <div className="bet-pick">
-                                                <b>
-                                                    Your Pick - {slip.outcome_id}
-                                                    <span className="bet-odd">
-                                                    {slip.odd_value}
-                                                        {slip.odd_value === 1 && (
-                                                            <span
-                                                                style={{
-                                                                    color: "#cc0000",
-                                                                    fontSize: "11px",
-                                                                    display: "block",
-                                                                }}
-                                                            >
-                              Market Disabled
-                            </span>
-                                                        )}
-                        </span>
-                                                </b>
-                                            </div>
-                                            <div className="row">
-                                                <div className="warn">{slip?.comment} </div>
-                                            </div>
-                                        </Link>
-                                    </li>
+                                        </div>
+                                    </div>
                                 );
                             })
                         )}
                     </ul>
                 </div>
             </div>
-            <div className="bottom" >
+            <div className="bottom">
                 <KironslipSubmitForm
                     setExpired={setExpired}
                     kiron={kiron}

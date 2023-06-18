@@ -299,7 +299,7 @@ export const MatchRow = (props) => {
 
             </div>
           </div>:
-          <div  className="top-matches d-flex flex-sm-column flex-lg-row px-0">
+          <div  className="top-matches kiron d-flex flex-sm-column flex-lg-row px-0 align-items-center">
             <div className="to-deskview to-block to-tabview  mx-lg-0 px-sm-4  px-md-0 py-0 pb-0 mt-0 container-size ">
               <div className="size-info  d-flex col-xs-12 pad left-text flex-row live-col">
 
@@ -526,7 +526,7 @@ const MatchList = (props) => {
               </div>
           )}
           {state?.nare_league_matches !== null && state?.nare_league_matches?.length === 0 && (
-              <div className="top-matches row  mx-2">No events found.</div>
+              <div className="top-matches row kiron mx-2">No events found.</div>
           )}
         </div>
       </div>

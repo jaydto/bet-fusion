@@ -43,7 +43,7 @@ const RegisterTwo = props => {
 
 	const FormTitle = () => {
 		return (
-			<div className='col-md-12  pt-4 text-center text-light' >
+			<div className='col-md-12  pt-4 text-sign-up-center text-light' >
 				<h4 className="inline-block">
 					SIGNUP | CREATE A NEW ACCOUNT
 				</h4>

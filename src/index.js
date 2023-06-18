@@ -7,7 +7,7 @@ import {
     Routes,
     useNavigate,
 } from 'react-router-dom'
-
+import {setLocalStorage} from "./components/utils/local-storage";
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/css/application.css';
@@ -142,7 +142,7 @@ const Affiliate =React.lazy(()=>import( "./components/Affiliate/Affiliate"));
 
 const Logout = () => {
     let navigate = useNavigate();
-
+    setLocalStorage('user', null)
     const out = useCallback(() => {
         localStorage.clear();
         navigate("/");

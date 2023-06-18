@@ -79,7 +79,6 @@ const DecodeCode = () => {
                                             type="text"
                                             value={code}
                                             style={{borderRadius: "0.3rem"}}
-                                            autoFocus={true}
                                             placeholder='eg. PWXfsxR'
                                         />
                                         <div className="form-group row d-flex justify-content-left col mt-4"

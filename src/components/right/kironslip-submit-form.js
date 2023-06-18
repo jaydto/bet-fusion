@@ -14,7 +14,7 @@ import makeRequest from "../utils/fetch-request";
 import "react-toastify/dist/ReactToastify.css";
 
 import {Formik, Form as FormikForm, useFormikContext} from "formik";
-import {getFromLocalStorage} from "../utils/local-storage";
+import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
     faCut,
@@ -24,13 +24,14 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import {getTime} from "../pages/Kiron/periods";
+import {Switch} from "@material-ui/core";
+import {Navigate, useNavigate} from "react-router-dom";
 
 const Float = (equation, precision = 4) => {
     return Math.round(equation * 10 ** precision) / 10 ** precision;
 };
 
 const KironslipSubmitForm = (props) => {
-
     const {
         totalGames,
         totalOdds,
@@ -70,6 +71,36 @@ const KironslipSubmitForm = (props) => {
     const [awardMultiGift, setAwardMultiGift] = useState(false);
 
     const [betslipKey, setBetslipKey] = useState("kironbetslip");
+    const [user, setUser] = useState(getFromLocalStorage("user"));
+
+    const updateUserOnHistory = () => {
+        if (!user) {
+            return false;
+        }
+        let endpoint = "/v1/balance";
+        let udata = {
+            token: user.token
+        }
+        makeRequest({url: endpoint, method: "post", data: udata}).then(([_status, response]) => {
+            if (_status == 200) {
+                let u = {...user, ...response.user};
+                setLocalStorage('user', u);
+                setUser(u)
+                dispatch({type: "SET", key: "user", payload: u});
+                setTimeout(()=>{
+                    setMessage(null)
+                },6000)
+                dispatch({type: "SET", key: "placebet", payload: true});
+            }
+        });
+
+    };
+
+
+
+    useEffect(() => {
+        updateUserOnHistory()
+    }, [message?.message])
 
     useEffect(() => {
         if (kiron) {
@@ -283,6 +314,7 @@ const KironslipSubmitForm = (props) => {
         }
     }, [betslip, stake, totalOdds, multiBoostAmount]);
 
+    const navigate=useNavigate()
     const handleRemoveAll = useCallback(() => {
         let  betslips= getKironSlip()
         Object.entries(betslips).map(([match_id, match]) => {
@@ -303,6 +335,7 @@ const KironslipSubmitForm = (props) => {
             key: "kironbetslip",
             payload: {},
         });
+        return navigate("/nare-league")
     }, []);
 
 
@@ -369,14 +402,7 @@ const KironslipSubmitForm = (props) => {
 
 
         });
-        // clearKironSlip()
-        // setMessage(null);
-        // setBetslipsData(null)
-        // dispatch({
-        //     type: "SET",
-        //     key: "kironbetslip",
-        //     payload: {},
-        // });
+
     },[]);
 
 
@@ -483,39 +509,50 @@ const KironslipSubmitForm = (props) => {
                                 <></>
                             )}
                         {totalGames > 0 && (
-                            <table className="bet-table">
-                                {showExpired&&<td colSpan={'100%'} className={""} style={{whiteSpace: "nowrap"}}>
-                                    <button
-                                        className="bold  w-100"
-                                        type="button"
-                                        style={{
-                                            padding: "6px",
-                                            borderRadius: "0.7rem",
-                                            fontSize: "14px",
-                                            background: "#CC5500",
-                                        }}
-                                        onClick={() => handleRemoveExpired()}
-                                    >
-                                        Remove Expired &nbsp;<FontAwesomeIcon icon={faTrash}/>
-                                    </button>
-                                </td>}
+                            <div className="bet-table w-100 box-shadow-table-submit-form ">
+                                <div id="odd-change-text" className={'d-flex justify-content-end align-items-center mb-3'}>
+                                    <div className={"slip-clear-all"}>
+                                     <FontAwesomeIcon icon={faTrash} title={"Clear All"} style={{color:"var(--light)"}} onClick={() => handleRemoveAll()} />
+                                    </div>
+                                </div>
+
                                 {(
-                                    <tr className="hide-on-affix">
-                                        <td>TOTAL ODDS</td>
-                                        <td className={"bet-align-right"}>
+                                    <div className="hide-on-affix d-flex align-items-center justify-content-between p-2">
+                                        <div>Total Odds</div>
+                                        <div className={"bet-align-right"}>
                                             <b>{Float(totalOdds, 2)}</b>
-                                        </td>
-                                    </tr>
+                                        </div>
+                                    </div>
+                                )}
+                                <div>
+                                    <div ></div>
+                                </div>
+                                { (
+                                    <div className="bet-win-tr hide-on-affix d-flex align-items-center justify-content-between p-2">
+                                        <div>Final Payout</div>
+                                        <div className={"bet-align-right"}>
+                                            KES.{" "}
+                                            <span id="pos_win">
+                        {formatNumber(
+                            hasMultiBetBoost ? possibleWinBoosted : possibleWin
+                        )}
+                      </span>
+                                        </div>
+                                    </div>
                                 )}
 
-                                <tr>
-                                    <td>Stake</td>
-                                    <td className={"bet-align-right"}>
-                                        <div id="betting">
+                                <div>
+
+                                    <div className={"d-flex align-items-center container-styling-input-placebet mt-2 p-lg-2 p-md-2 py-sm-0 "}>
+                                        <div className={"bg-input-placebet"}>
+                                            Amount (KES)
+                                        </div>
+                                        <div  className={"w-100"}>
+                                            <div id="betting">
                                             {
                                                 <input
                                                     type="text"
-                                                    className="bet-select"
+                                                    className="bet-select bet-stake-input"
                                                     name="bet_amount"
                                                     id="bet_amount"
                                                     value={values.bet_amount}
@@ -523,50 +560,38 @@ const KironslipSubmitForm = (props) => {
                                                 />
                                             }
                                         </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colSpan="2"></td>
-                                </tr>
-                                { (
-                                    <tr className="bet-win-tr hide-on-affix">
-                                        <td>Possible winnings</td>
-                                        <td className={"bet-align-right"}>
-                                            KES.{" "}
-                                            <span id="pos_win">
-                        {formatNumber(
-                            hasMultiBetBoost ? possibleWinBoosted : possibleWin
-                        )}
-                      </span>
-                                        </td>
-                                    </tr>
-                                )}
-
-
-                                <tr id="odd-change-text">
-                                    <td className={""} style={{whiteSpace: "nowrap"}}>
-                                        <button
-                                            className="bold btn-secondary   bg-secondary w-100"
-                                            type="button"
-                                            style={{
-                                                padding: "9px",
-                                                borderRadius: "0.7rem",
-                                                fontSize: "14px",
-                                            }}
-                                            onClick={() => handleRemoveAll()}
-                                        >
-                                            Clear All <FontAwesomeIcon icon={faCut}/>
-                                        </button>
-                                    </td>
-                                    <td className={"d-flex"} style={{whiteSpace: "nowrap"}}>
-                                        <SubmitButton
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="odd-change-text2">
+                                    <div className={"d-flex bet-select-values w-100 mt-2 p-lg-2 p-md-2 py-sm-0"}  style={{whiteSpace: "nowrap"}}>
+                                        {showExpired?
+                                            <div  className={"w-100"} style={{whiteSpace: "nowrap"}}>
+                                            <button
+                                                className="bold w-100"
+                                                type="button"
+                                                style={{
+                                                    padding: "6px",
+                                                    borderRadius: "0.7rem",
+                                                    fontSize: "14px",
+                                                    height:'3.5rem',
+                                                    background: "#CC5500",
+                                                }}
+                                                onClick={() => handleRemoveExpired()}
+                                            >
+                                                Remove Expired &nbsp;<FontAwesomeIcon icon={faTrash}/>
+                                            </button>
+                                        </div>
+                                            : <SubmitButton
                                             id="place_bet_button_nare_submit"
                                             className="place-bet-btn bold "
                                             title="PLACE BET"
                                         ></SubmitButton>
-                                    </td>
-                                </tr>
-                            </table>
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
                         )}
                         <input
                             type="hidden"

@@ -5,8 +5,7 @@ import betNiMoto from '../../../assets/img/BetniMoto.webp'
 
 import {Link, useNavigate} from "react-router-dom";
 
-import useWindowDimensions from "../../header/Dimensions";
-import {clearTrackingData, getFromLocalStorage, setTrackingData} from "../../utils/local-storage";
+import {clearTrackingData, getFromLocalStorage, setLocalStorage, setTrackingData} from "../../utils/local-storage";
 import only18 from '../../../assets/img/auth/18only.png'
 import backgroundURL from '../../../assets/img/auth/img-17.webp'
 import {Navbar, Offcanvas} from "react-bootstrap";
@@ -31,19 +30,42 @@ const backgroundStyle = {
 }
 let initialValues = {
     amount: '',
-    msisdn: ''
+    msisdn:''
 }
 
 const Deposit3= props => {
     // const [message, setMessage] = useState(null);
     const navigate = useNavigate();
     const expand = "md"
-    const {height, width} = useWindowDimensions();
-    const [user, setUser] = useState(getFromLocalStorage("user"));
 
     const [state, dispatch] = useContext(Context);
     // const [success, setSuccess] = useState(false);
-    const {mobile} = props
+
+    const [user, setUser] = useState(getFromLocalStorage("user"));
+    const updateUserOnHistory = () => {
+        if (!user) {
+            return false;
+        }
+        let endpoint = "/v1/balance";
+        let udata = {
+            token: user.token
+        }
+        makeRequest({url: endpoint, method: "post", data: udata}).then(([_status, response]) => {
+            if (_status == 200) {
+                let u = {...user, ...response.user};
+                setLocalStorage('user', u);
+                setUser(u)
+                dispatch({type: "SET", key: "user", payload: u});
+            }
+        });
+
+    };
+
+
+
+    useEffect(() => {
+        updateUserOnHistory()
+    }, [state?.depositMessage])
 
 
 
@@ -331,12 +353,12 @@ const MyDepositForm = (props) => {
 }
 const DepositForm = (props) => {
     const [state, dispatch]=useContext(Context);
+    const user=getFromLocalStorage('user')
 
      initialValues = {
         amount: state?.depositValue?state?.depositValue:'',
-        msisdn: state?.user?.msisdn
+        msisdn: state?.user?.msisdn||user?.msisdn
     }
-    console.log("initialValues", initialValues)
 
     const handleSubmit = values => {
         let endpoint = '/stk/deposit';

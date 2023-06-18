@@ -1,32 +1,68 @@
-import React, {useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import './component/newProfile.css'
-import {Link} from "react-router-dom";
+import {Link, Navigate} from "react-router-dom";
 import accounts from '../../../assets/img/mobile/user.png'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBars, faCoins, faDownload, faFire, faHome, faPowerOff, faUpload} from "@fortawesome/free-solid-svg-icons";
 import {formatNumber} from "../../utils/betslip";
-import {getFromLocalStorage} from "../../utils/local-storage";
+import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
 import Right from "../../right";
+import SidebarProfile from "../../sidebar/sidebarProfile";
+import makeRequest from "../../utils/fetch-request";
+import {Context} from "../../../context/store";
 const NewProfile = () => {
-	const [user, ] = useState(getFromLocalStorage("user"));
+	const [user, setUser] = useState(getFromLocalStorage("user"));
+	const [state,dispatch]=useContext(Context)
+
+	const clearHistory=()=>{
+		setLocalStorage("user",null)
+		return window.location.href="/logout"
+	}
+	const updateUserOnHistory = () => {
+		if (!user) {
+			return false;
+		}
+		let endpoint = "/v1/balance";
+		let udata = {
+			token: user.token
+		}
+		makeRequest({url: endpoint, method: "post", data: udata}).then(([_status, response]) => {
+			if (_status == 200) {
+				let u = {...user, ...response.user};
+				setLocalStorage('user', u);
+				setUser(u)
+				dispatch({type: "SET", key: "user", payload: u});
+			}
+		});
+
+	};
+
+
+
+	useEffect(() => {
+		updateUserOnHistory()
+	}, [updateUserOnHistory])
 	return (
 		<>
 			{/*todo else clause */}
 			<div>
-			<table className="mybets">
+			<div className="profile-container-desktop d-flex">
+				<div className={' mobile-ipad-remove-profile stats-desktop'}>
+					<SidebarProfile/>
+				</div>
 
-				<div className="container">
+				<div className="col mobile-full-width">
 					<div className="iphone">
-						<div className="header">
+						<div className="header-profile">
 							<div className="user-profile d-flex align-items-center">
 								<img src={accounts} className="user-photo "/>
 
 							</div>
-							<div className="header-summary">
+							<div className="header-profile-summary">
 								<div className="summary-text d-flex gap-3">
 									{/*	session information*/}
 									<>
-										My Account
+										My Account (<span className={"text-warning"}>{+state?.user?.msisdn}</span>)
 									</>
 									<Link
 										to={{pathname: "/"}}
@@ -133,18 +169,18 @@ const NewProfile = () => {
 									</div>
 								</div>
 							</Link>
-							<Link to="/affiliate" style={{textDecoration: "none", color: "black"}}>
-								<div className="transaction">
-									<div className="t-details">
-										<div className="t-title">Become An Affiliate </div>
-									</div>
-									<div className="t-amount">
-										{/*<i className="fas fa-fire" style={{fontSize: "24px"}}></i>*/}
-										<FontAwesomeIcon  icon={faFire} style={{fontSize: "24px"}}/>
-									</div>
-								</div>
-							</Link>
-							<Link to="/logout" style={{textDecoration: "none", color: "black"}}>
+							{/*<Link to="/affiliate" style={{textDecoration: "none", color: "black"}}>*/}
+							{/*	<div className="transaction">*/}
+							{/*		<div className="t-details">*/}
+							{/*			<div className="t-title">Become An Affiliate </div>*/}
+							{/*		</div>*/}
+							{/*		<div className="t-amount">*/}
+							{/*			/!*<i className="fas fa-fire" style={{fontSize: "24px"}}></i>*!/*/}
+							{/*			<FontAwesomeIcon  icon={faFire} style={{fontSize: "24px"}}/>*/}
+							{/*		</div>*/}
+							{/*	</div>*/}
+							{/*</Link>*/}
+							<Link to={"#"} style={{textDecoration: "none", color: "black"}} onClick={()=>clearHistory()}>
 								<div className="transaction">
 									<div className="t-details">
 										<div className="t-title">Log Out </div>
@@ -158,7 +194,7 @@ const NewProfile = () => {
 						</div>
 					</div>
 				</div>
-			</table>
+			</div>
 			</div>
 			<div className={'ipad-show'}>
 				<Right/>

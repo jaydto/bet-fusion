@@ -1,0 +1,14 @@
+.lite-version{
+    color:#0DCAF0;
+    height: 70vh;
+    font-size: 8px;
+    display: flex;
+    align-items: center;
+}
+.lite-div{
+    width:60%;
+    font-size: 24px;
+    margin: auto;
+    word-break: break-word;
+    text-decoration: none;
+}

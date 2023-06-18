@@ -8,7 +8,10 @@
     --banner-background: url(../../assets/img/auth/img-17.webp)!important;
     --betnare-header-bg:#141d28;
     --odds-button:rgb(31 54 69);
+    --odds-button:rgb(31 54 69);
     --betnare-live:red;
+    --slip-separator-color:rgb(51, 76, 92);
+    --color-site: #ff3c00;
     --betnare-side-bg:#121a23;
     --betslip-header:#4c372a;
     --betslip-mybets:#cd28ec;
@@ -42,11 +45,27 @@
     --testimonial:#253743;
     --white-darken:#16202C;
     --more-markets-text:rgb(255, 193, 7);
+    --slip-height:80vh;
+    --red:red;
+    --close-color:#bb2f2f;
+    --tax-info-color:#313c48;
+    --share-top:7rem;
+    --height-slip-kiron:19rem;
+    --slip-bottom-space:23rem;
+    --slip-bottom:20.5rem;
+    --green:#0f5132;
+    --app-download-link-color:#1e354e;
+    --odd-change-position:7rem;
+    --slip-tab:7rem;
     --kiron-competition:#34495e;
     --top-header-nav:#16202C;
     --side-stats:aqua;
-    --betlip-list:#58849e;
+    --betslip-list:rgb(31 54 69);
     --toggle-btn:transparent;
+    --slip-message-alert:9.5rem;
+    --alert-slip-color:#c9e0ee;
+    --transparent:transparent;
+    --lite-top-color:#0DCAF0;
     --picked:#fdd835;
     --secondary:#fdd835;
     --tabs-home:#000;
@@ -55,9 +74,10 @@
     --font-weight-normal:normal;
     --always-white:#fff;
     --badge-bg:url(../../assets/img/mobile/new_badge.webp);
+    --box-shadow-sports: 0 0.5rem 0.2rem rgba(0,0,0,.175);
 }
 .shadow-sports-header{
-    box-shadow: 0 0.5rem 0.2rem rgba(0,0,0,.175)!important;
+    box-shadow:var(--box-shadow-sports) !important;
 }
 
 .light-theme {

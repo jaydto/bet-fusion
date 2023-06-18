@@ -102,11 +102,43 @@ const  Live= () => {
 
         }
     })
+    const homePageRef = useRef()
+    const [scrolledPast, setScrolledPast] = useState(false);
+    const [scrolledToTop, setScrolledToTop] = useState(false);
+    const [scrollPosition, setScrollPosition] = useState(false);
 
+    useEffect(() => {
+        const handleScroll = () => {
+            if (homePageRef.current) {
+                const scrollPosition = homePageRef.current.scrollTop;
+                if (!scrolledPast && scrollPosition > 10) {
+                    console.log('User has scrolled more than 10px');
+                    setScrollPosition(true)
+                    setScrolledPast(true);
+                    setScrolledToTop(false); // Reset the other variable
+                } else if (!scrolledToTop && scrollPosition <= 10) {
+                    console.log('User has scrolled back to the top.');
+                    setScrollPosition(false)
+                    setScrolledToTop(true);
+                    setScrolledPast(false); // Reset the other variable
+                }
+            }
+        };
+
+        if (homePageRef.current) {
+            homePageRef.current.addEventListener('scroll', handleScroll);
+        }
+
+        return () => {
+            if (homePageRef.current) {
+                homePageRef.current.removeEventListener('scroll', handleScroll);
+            }
+        };
+    }, [homePageRef, scrolledPast, scrolledToTop]);
 
     return (
         <div className={'flex-item'}>
-            <div className="item4"><Header/></div>
+            <div className="item4"><Header scrollPosition={scrollPosition}/></div>
             <div className="flex-container">
                 <div className="item1">
                     <div className={"mobile-remove"}>
@@ -115,7 +147,7 @@ const  Live= () => {
                 </div>
                 <div className="item2">
                     <div className="gz home match-overflow " >
-                        <div className="homepage mobile-full-height">
+                        <div className="homepage mobile-full-height" ref={homePageRef} style={width<991?{height: `${height}px`,overflowY:'auto'}:{}}>
                             <CarouselLoader/>
                             <Testimonials/>
                             <div className={`${width<=991?"d-block":"d-none"}`}>

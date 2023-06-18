@@ -361,14 +361,14 @@
         line-height: 0;
     }
     .matches .top-matches .kiron-btn {
-        height: 30px;
+        /* height: 30px; */
         border-radius: 10px !important;
         margin-right: 4px;
         outline: none;
         height: 35px;
         box-sizing: border-box;
         width: 55px;
-        height: 29px;
+        height: 36px;
     }
 }
 
@@ -380,11 +380,34 @@
         width:25%!important;
     }
 }
+
 @media (max-width:991px){
+
+    .top-matches.kiron div {
+        min-height: 16px;
+        justify-content: unset;
+        padding-left: 0.1rem!important;
+        /* white-space: normal; */
+        padding-right: 0rem!important;
+        /* margin-bottom: 0.4rem; */
+    }
+    .matches .top-matches .kiron-btn {
+        height: 30px;
+        border-radius: 8px !important;
+        margin-right: 4px;
+        outline: none;
+        height: 35px;
+        box-sizing: border-box;
+    }
     .team-badge img {
         height: 19px;
         width: 22px;
         display: inline-block;
         margin: 2px 0;
+    }
+}
+@media (max-width:575px){
+    .more-market-default{
+        display:contents;
     }
 }

@@ -74,11 +74,13 @@ const  Jackpot= () => {
     const loadJPResults = (jackpot) => {
         fetchData(jackpot?.jackpot_event_id, jackpot?.jackpot_status)
     }
+    const urlPath=window.location.pathname
+    const showDownload=(!urlPath.includes("nare-games")&&!urlPath.includes("gameplay")&&!urlPath.includes("smart-play")&&!urlPath.includes("betslip-slip")&&!urlPath.includes("nare-league")&&!urlPath.includes("bet-history")&&!urlPath.includes("standings")&&!urlPath.includes("results")&&!urlPath.includes("casino")&&!urlPath.includes("jackpot"))
 
     return (
         <div className={'flex-item'}>
             <div className="item4"><Header/></div>
-            <div className="flex-container">
+            <div className={`flex-container ${!showDownload&&'top-spacing-page-no-download'}`}>
                 <div className="item1"> <SideBar loadCompetitions/></div>
                 <div className="item2 size-all-markets" >
                     <div className="gz home" style={{width: "100%", overflowX: "clip"}}>

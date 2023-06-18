@@ -390,24 +390,24 @@ const MobileNav1 = () => {
                     );
                 })}
 
-                <td  className={`menu-t m-auto sport-check  ${pathname===`/affiliate`?"active_link":""}`}  >
-                    <Link className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center `} onClick={() => gaEventTracker('Visit Affiliate Page')}  to={`/affiliate`}   >
-                        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
-                            <div className="menu-img ">
-                                <img
-                                    className="side-icon"
-                                    src={Affiliate}
-                                    alt=""
-                                    style={{height: "23px", marginTop:"-6px"}}
-                                />
-                            </div>
-                            <strong style={{textAlign: "center"}}>
-                                Affiliate
-                            </strong>
-                        </div>
-                    </Link>
+                {/*<td  className={`menu-t m-auto sport-check  ${pathname===`/affiliate`?"active_link":""}`}  >*/}
+                {/*    <Link className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center `} onClick={() => gaEventTracker('Visit Affiliate Page')}  to={`/affiliate`}   >*/}
+                {/*        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>*/}
+                {/*            <div className="menu-img ">*/}
+                {/*                <img*/}
+                {/*                    className="side-icon"*/}
+                {/*                    src={Affiliate}*/}
+                {/*                    alt=""*/}
+                {/*                    style={{height: "23px", marginTop:"-6px"}}*/}
+                {/*                />*/}
+                {/*            </div>*/}
+                {/*            <strong style={{textAlign: "center"}}>*/}
+                {/*                Affiliate*/}
+                {/*            </strong>*/}
+                {/*        </div>*/}
+                {/*    </Link>*/}
 
-                </td>
+                {/*</td>*/}
 
                 <td  className={`menu-t m-auto sport-check ${pathname===`/promotions`?"active_link":""} `}  >
                     <Link className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `} onClick={() => gaEventTracker('Visit Promotion Page')}  to={`/promotions`}   >

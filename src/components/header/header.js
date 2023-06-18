@@ -234,7 +234,9 @@ const Header = (props) => {
                             </div>
                         </Link>
                         <a href={"https://lite.betnare.com"} className={"app-color lite-top-color"}>
-                            <div className={"color-app-text"}>Try Lite with Betnare</div>
+                            <div className={"color-app-text"}>
+                                Having trouble loading website? Click here for <strong>LITE</strong> version.
+                            </div>
                         </a>
                     </div>
                 }

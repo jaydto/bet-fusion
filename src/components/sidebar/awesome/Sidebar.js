@@ -17,6 +17,7 @@ import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 import { Link } from "react-router-dom";
+import {LazyLoadImage} from "react-lazy-load-image-component";
 
 const Sidebar = React.memo(
     (props) => {
@@ -176,7 +177,7 @@ const Sidebar = React.memo(
                 defaultOpen={getActiveSport(competition.sport_id)}
                 onClick={() => gaEventTracker(`${competition?.sport_name}`)}
                 icon={
-                  <img
+                  <LazyLoadImage
                     style={{ borderRadius: "50%", height: "20px" }}
                     src={getSportImageIcon(competition.sport_name)}
                   />
@@ -189,14 +190,14 @@ const Sidebar = React.memo(
                       <MenuItem
                         key={`l_${index}`}
                         icon={
-                          <img
+                          <LazyLoadImage
                             src={getSportImageIcon(
                               top_league?.competition_name,
                               "leagues",
                               true
                             )}
                             style={{ borderRadius: "50%", height: "20px" }}
-                          ></img>
+                          />
                         }
                       >
                         <a
@@ -235,7 +236,7 @@ const Sidebar = React.memo(
                           gaEventTracker(`${country?.category_name}`)
                         }
                         icon={
-                          <img
+                          <LazyLoadImage
                             style={{ borderRadius: "50%", height: "20px" }}
                             src={getSportImageIcon(
                                 country.category_name,

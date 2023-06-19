@@ -58,7 +58,7 @@ body {
 .footer-custom {
     color: whitesmoke;
     border-bottom: 0px solid #fff;
-    font-family: arial;
+    font-family: 'Roboto', sans-serif;
     font-size: 15px;
     background:var(--betnare-footer);
     color:var(--footer-color);
@@ -168,7 +168,7 @@ input.text-white{
     cursor: pointer;
     text-align: center;
     text-shadow: 0px 0px 1px #fbe2a4;
-    font-family: arial;
+    font-family: 'Roboto', sans-serif;
 }
 .betslip-header {
     clear: both;
@@ -177,7 +177,7 @@ input.text-white{
     color: #fff;
     cursor: pointer;
     text-shadow: 0px 0px 1px #fbe2a4;
-    font-family: arial;
+    font-family: 'Roboto', sans-serif;
 }
 .mybets-slip{
     background: #5980be!important;
@@ -257,7 +257,7 @@ input.text-white{
     color: var(--betnare-live);
 }
 #xgames-header {
-    font-family: Amita, cursive;
+   font-family: 'Roboto', sans-serif;
     font-style: italic;
     text-transform: uppercase;
     text-align: center;
@@ -269,7 +269,7 @@ input.text-white{
 }
 
 #nare-games-header {
-    font-family: Amita, cursive;
+   font-family: 'Roboto', sans-serif;
     font-style: italic;
     text-transform: uppercase;
     text-align: center;
@@ -1786,7 +1786,7 @@ img.nare-league {
         align-items: center;
     }
     .lite-top{
-        font-family: "Open Sans", "Arial", sans-serif;
+        font-family: 'Roboto', sans-serif;
         justify-content: center;
         align-items: center;
         transition-delay: 250ms;

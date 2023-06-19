@@ -15,6 +15,7 @@ import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import { Link } from "react-router-dom";
+import {LazyLoadImage} from "react-lazy-load-image-component";
 
 
 const Countries = (props) => {
@@ -144,7 +145,7 @@ const Countries = (props) => {
                   defaultOpen={getActiveSport(competition.sport_id)}
                   onClick={() => gaEventTracker(`${competition?.sport_name}`)}
                   icon={
-                    <img
+                    <LazyLoadImage
                       style={{
                         borderRadius: "50%",
                         height: "25px",
@@ -174,7 +175,7 @@ const Countries = (props) => {
                             gaEventTracker(`${country?.category_name}`)
                           }
                           icon={
-                            <img
+                            <LazyLoadImage
                               style={{ borderRadius: "50%", height: "20px" }}
                               src={getSportImageIcon(
                                 country.category_name,

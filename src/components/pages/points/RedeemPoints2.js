@@ -227,16 +227,16 @@ const RedeemPoints= props => {
                         <Row justify="center">
                             <Col xs={0} sm={0} md={0} lg={20}>
                                 <Link to={'/'}>
-                                    <img className="img-fluid mb-5" src={authImg} alt=""/>
+                                    <LazyLoadImage className="img-fluid mb-5" src={authImg} alt=""/>
                                 </Link>
 
                                 <h1 className="text-white text-center" style={{fontSize:"30px"}}>Redeem Your Nare Points</h1>
-                                <p className="text-white px-3 d-flex align-items-center justify-content-center mt-3" style={{fontSize:"16px", opacity:'0.5px'}}>Bet ni Moto<img src={fire}  style={{width:"20px"}} alt={'betnare'}/></p>
+                                <p className="text-white px-3 d-flex align-items-center justify-content-center mt-3" style={{fontSize:"16px", opacity:'0.5px'}}>Bet ni Moto<LazyLoadImage src={fire}  style={{width:"20px"}} alt={'betnare'}/></p>
                             </Col>
                         </Row>
                         <div className="d-flex justify-content-end pb-4">
                             <div className={'d-flex justify-content-center align-items-center'}>
-                                <div className="text-white mx-2 bold d-flex justify-content-center align-items-center"><img src={only18} alt={'18 only'} style={{width:'30px', background:'aliceblue', borderRadius:'16px'}}/></div>
+                                <div className="text-white mx-2 bold d-flex justify-content-center align-items-center"><LazyLoadImage src={only18} alt={'18 only'} style={{width:'30px', background:'aliceblue', borderRadius:'16px'}}/></div>
                                 <span className="mx-2 text-white"> | </span>
                                 <a className="text-white" href="/terms-and-conditions">Term & Conditions</a>
                                 <span className="mx-2 text-white"> | </span>

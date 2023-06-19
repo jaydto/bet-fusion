@@ -21,6 +21,7 @@ import xgame from "../../assets/img/mobile/xgames.png"
 import { Context } from '../../context/store';
 import LoginModal from '../modals/LoginModal';
 import VirtualSvg from "../../assets/img/mobile/virtual.png";
+import {LazyLoadImage} from "react-lazy-load-image-component";
 const MobileNav1 = () => {
     const [showLoadingModal, setShowLoadingModal] = useState(false);
 
@@ -138,7 +139,7 @@ const MobileNav1 = () => {
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center`}>
                             {/* {console.log('all sports',allsports.sport_name)} */}
                             <div className="menu-img ">
-                                <img
+                                <LazyLoadImage
                                     className="side-icon"
                                     src={soccer}
                                     alt=""
@@ -161,7 +162,7 @@ const MobileNav1 = () => {
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
 
                             <div className="menu-img ">
-                                <img
+                                <LazyLoadImage
                                     className="side-icon"
                                     src={aviator}
                                     alt=""
@@ -181,7 +182,7 @@ const MobileNav1 = () => {
                 {/*        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center  `}>*/}
 
                 {/*            <div className="menu-img  ">*/}
-                {/*                <img*/}
+                {/*                <LazyLoadImage*/}
                 {/*                    className="side-icon"*/}
                 {/*                    src={kiron}*/}
                 {/*                    alt=""*/}
@@ -202,7 +203,7 @@ const MobileNav1 = () => {
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
 
                             <div className="menu-img ">
-                                <img
+                                <LazyLoadImage
                                     className="side-icon"
                                     src={casino1}
                                     alt=""
@@ -222,7 +223,7 @@ const MobileNav1 = () => {
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
 
                             <div className="menu-img ">
-                                <img
+                                <LazyLoadImage
                                     className="side-icon"
                                     src={jackpot}
                                     alt=""
@@ -242,7 +243,7 @@ const MobileNav1 = () => {
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center`}>
 
                             <div className="menu-img ">
-                                <img
+                                <LazyLoadImage
                                     className="side-icon"
                                     src={jetX}
                                     alt=""
@@ -262,7 +263,7 @@ const MobileNav1 = () => {
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center`}>
 
                             <div className="menu-img ">
-                                <img
+                                <LazyLoadImage
                                     className="side-icon"
                                     src={xgame}
                                     alt=""
@@ -282,7 +283,7 @@ const MobileNav1 = () => {
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
 
                             <div className="menu-img ">
-                                <img
+                                <LazyLoadImage
                                     className="side-icon"
                                     src={spaceman}
                                     alt=""
@@ -301,7 +302,7 @@ const MobileNav1 = () => {
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center`}>
 
                             <div className="menu-img ">
-                                <img
+                                <LazyLoadImage
                                     className="side-icon"
                                     src={fire}
                                     alt=""
@@ -321,7 +322,7 @@ const MobileNav1 = () => {
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center  `}>
 
                             <div className="menu-img  ">
-                                <img
+                                <LazyLoadImage
                                     className="side-icon virtuals-icon"
                                     src={VirtualSvg}
                                     alt=""
@@ -375,7 +376,7 @@ const MobileNav1 = () => {
                             <Link className={`inner-div more-sports cg ox anl url-link d-flex flex-column align-items-center `} onClick={() => gaEventTracker(`Visit ${state?.active_sport}/${state?.active_sport_name}  Page`)} to={`/highlights?sport_id=${allsports.sport_id}&sub_type_id=${getDefaultMarketsForSport(allsports)}&sport_name=${allsports.sport_name}`}>
                                 <div className="inner-div cg ox anl url-link d-flex flex-column align-items-center">
                                     <div className="menu-img">
-                                        <img
+                                        <LazyLoadImage
                                             className="side-icon"
                                             src={getSportImageIcon(allsports?.sport_name)}
                                             alt=""
@@ -395,7 +396,7 @@ const MobileNav1 = () => {
                 {/*    <Link className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center `} onClick={() => gaEventTracker('Visit Affiliate Page')}  to={`/affiliate`}   >*/}
                 {/*        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>*/}
                 {/*            <div className="menu-img ">*/}
-                {/*                <img*/}
+                {/*                <LazyLoadImage*/}
                 {/*                    className="side-icon"*/}
                 {/*                    src={Affiliate}*/}
                 {/*                    alt=""*/}
@@ -414,7 +415,7 @@ const MobileNav1 = () => {
                     <Link className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `} onClick={() => gaEventTracker('Visit Promotion Page')}  to={`/promotions`}   >
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
                             <div className="menu-img ">
-                                <img
+                                <LazyLoadImage
                                     className="side-icon"
                                     src={promo}
                                     alt=""

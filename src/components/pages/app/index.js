@@ -3,6 +3,7 @@ import '../../test.css'
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 import {Link, useLocation} from "react-router-dom";
 import mobileBanner from "../../../assets/img/mobile/APPDownload.png";
+import {LazyLoadImage} from "react-lazy-load-image-component";
 
 const Header = React.lazy(() => import('../../header/header'));
 const Footer = React.lazy(() => import('../../footer/footer'));
@@ -56,7 +57,7 @@ const  Index= () => {
                                     Take Control of Your Bets
                                 </div>
                                 <div className={'col-md-12 justify-content-center d-flex'}>
-                                    <img src={mobileBanner} style={{width: "80%"}} className={'rounded-3 shadow-lg'}/>
+                                    <LazyLoadImage src={mobileBanner} style={{width: "80%"}} className={'rounded-3 shadow-lg'}/>
                                 </div>
                                 <div className="col p-2">
                                     <br/>✅ Only 2MB in size

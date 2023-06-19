@@ -17,6 +17,7 @@ import { Link } from "react-router-dom";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {getJackpotBetslip, getBetslip, getKironSlip} from "../utils/betslip";
 import { Context } from "../../context/store";
+import {LazyLoadImage} from "react-lazy-load-image-component";
 
 const MobileMenu = React.memo(
     (props) => {
@@ -98,7 +99,7 @@ const MobileMenu = React.memo(
 
                             onClick={() => gaEventTracker("Visit Homepage")}
                         >
-                            <img src={HomeSvg} alt="" style={{ width: "30px", height:"25px" }}></img>
+                            <LazyLoadImage src={HomeSvg} alt="" style={{ width: "30px", height:"25px" }}/>
                             <p>Home</p>
                         </Link>
                     </td>
@@ -115,7 +116,7 @@ const MobileMenu = React.memo(
         onClick={() => gaEventTracker("Visit Nare League Page")}
 
     >
-        <img src={kironImg} alt="" className={'nare-league'}></img>
+        <LazyLoadImage src={kironImg} alt="" className={'nare-league'}/>
 
     </Link>
 </td>
@@ -150,7 +151,7 @@ const MobileMenu = React.memo(
 
         onClick={() => gaEventTracker("Visit Live  Page")}
     >
-        <img src={LiveSvg} alt=""></img>
+        <LazyLoadImage src={LiveSvg} alt=""/>
         {liveSports?.forEach((sport) => {
             totalCount += sport.count;
         })}
@@ -169,7 +170,7 @@ const MobileMenu = React.memo(
                                 to={"/profile"}
 
                             >
-                                <img src={ProfileSvg} alt=""></img>
+                                <azyLoadImage src={ProfileSvg} alt=""/>
                                 <p>Profile</p>
                             </Link>
                         </td>
@@ -179,7 +180,7 @@ const MobileMenu = React.memo(
                                 to={"/login"}
 
                             >
-                                <img src={ProfileSvg} alt="" style={{ width: "30px", height:"25px" }}></img>
+                                <LazyLoadImage src={ProfileSvg} alt="" style={{ width: "30px", height:"25px" }}/>
                                 <p>Profile</p>
                             </Link>
                         </td>

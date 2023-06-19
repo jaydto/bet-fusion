@@ -177,7 +177,7 @@ const Withdrawal = (props) => {
                     <div className="row">
 
                         <div className={`${mobile?"d-none":'col-md-7 text-center'}`}>
-                            <img src={mpesa} alt=""/>
+                            <LazyLoadImage src={mpesa} alt=""/>
                         </div>
 
                         <hr className={`${mobile?"d-none":""}`}/>
@@ -287,21 +287,21 @@ const Withdrawal = (props) => {
                     <Col xs={0} sm={0} md={0} lg={8}>
                         <div className="d-flex flex-column justify-content-between h-100 px-4" style={backgroundStyle}>
                             <div className="text-right">
-                                {/*<img src="/img/logo-sm.jpg" style={{height:"35px"}}alt="logo"/>*/}
+                                {/*<LazyLoadImage src="/img/logo-sm.jpg" style={{height:"35px"}}alt="logo"/>*/}
                             </div>
                             <Row justify="center">
                                 <Col xs={0} sm={0} md={0} lg={20}>
                                     <Link to={'/'}>
-                                        <img className="img-fluid mb-5" src={authImg} alt=""/>
+                                        <LazyLoadImage className="img-fluid mb-5" src={authImg} alt=""/>
                                     </Link>
 
                                     <h1 className="text-white text-center" style={{fontSize:"30px"}}>Withdraw Cash From Your Account</h1>
-                                    <p className="text-white px-3 d-flex align-items-center justify-content-center mt-3" style={{fontSize:"16px", opacity:'0.5px'}}><img src={betNiMoto}  style={{width:"150px"}} alt={'betnare'}/></p>
+                                    <p className="text-white px-3 d-flex align-items-center justify-content-center mt-3" style={{fontSize:"16px", opacity:'0.5px'}}><LazyLoadImage src={betNiMoto}  style={{width:"150px"}} alt={'betnare'}/></p>
                                 </Col>
                             </Row>
                             <div className="d-flex justify-content-end pb-4">
                                 <div className={'d-flex justify-content-center align-items-center'}>
-                                    <div className="text-white mx-2 bold d-flex justify-content-center align-items-center"><img src={only18} alt={'18 only'} style={{width:'30px', background:'aliceblue', borderRadius:'16px'}}/></div>
+                                    <div className="text-white mx-2 bold d-flex justify-content-center align-items-center"><LazyLoadImage src={only18} alt={'18 only'} style={{width:'30px', background:'aliceblue', borderRadius:'16px'}}/></div>
                                     <span className="mx-2 text-white"> | </span>
                                     <a className="text-white" href="/terms-and-conditions">Term & Conditions</a>
                                     <span className="mx-2 text-white"> | </span>

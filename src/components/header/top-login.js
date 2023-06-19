@@ -12,6 +12,7 @@ import {Link} from "react-router-dom";
 import {Switch} from "@material-ui/core";
 import {faEye, faEyeSlash} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {LazyLoadImage} from "react-lazy-load-image-component";
 
 export const  Notify =
     (message) => {
@@ -29,7 +30,7 @@ export const  Notify =
         toast.success(`🚀 ${message.message}`, options);
     } else {
         toast(<div className={"d-flex"}>
-            <img src={fire} alt="" style={{height:"20px", width:'26px'}} />
+            <LazyLoadImage src={fire} alt="" style={{height:"20px", width:'26px'}} />
             <span>
                 {message.message}
             </span>

@@ -15,6 +15,7 @@ import {
 import "react-lazy-load-image-component/src/effects/blur.css";
 
 import { Spinner } from "react-bootstrap";
+import {LazyLoadImage} from "react-lazy-load-image-component";
 
 const clean = (_str) => {
   _str = _str.replace(/[^A-Za-z0-9\-]/g, "");
@@ -263,13 +264,13 @@ export const MatchRow = (props) => {
             <div className="event" style={{position: "static !important"}}>
               <div className="event-t">
                 <div className="team-badge">
-                  <img src={match?.home_team_image}/>
+                  <LazyLoadImage src={match?.home_team_image}/>
                   <div className={"bold team"}>{match.home_team_name}</div>
 
                 </div>
                 <span className="divider">—</span>
                 <div className="team-badge">
-                  <img src={match?.away_team_image}/>
+                  <LazyLoadImage src={match?.away_team_image}/>
                   <div className={"bold team"}>{match.away_team_name}</div>
                 </div>
               </div>
@@ -308,13 +309,13 @@ export const MatchRow = (props) => {
                   <div style={{width:'90%'}}>
                     <div className="compt-teams d-flex flex-xl-column flex-column ">
                       <div className="team-badge">
-                        <img src={match?.home_team_image}/>
+                        <LazyLoadImage src={match?.home_team_image}/>
                         <div className={"bold team"}>
                           {match.home_team_name}
                         </div>
                       </div>
                       <div className="team-badge">
-                        <img src={match?.away_team_image}/>
+                        <LazyLoadImage src={match?.away_team_image}/>
                         <div className={"bold team"}>{match.away_team_name}</div>
                       </div>
                     </div>

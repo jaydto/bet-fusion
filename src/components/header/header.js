@@ -247,7 +247,7 @@ const Header = React.memo((props) => {
                     <div className={"app-download-link "}>
                         <div  className={"app-color"}>
                             <span className={"color-app-text"}>APP Your Game with Betnare App</span>
-                            <img src={androidIcon} className={"icon-android"}/>
+                            <LazyLoadImage src={androidIcon} className={"icon-android"} style={{width:"30px"}}/>
                         </div>
                     </div>
                 </Link>}
@@ -257,7 +257,7 @@ const Header = React.memo((props) => {
                         <div className={"d-flex w-100 directions-header-nav"}>
                             <Navbar.Brand className={`e logo align-self-start menu-control d-flex justify-content-between w-100`} title="Betnare">
                                 <Link to={{pathname: "/"}} className="col-4 logo-betnare resize-mobile" style={{ marginLeft:"2px"}}>
-                                    <img src={logo} alt="Betnare" title="Betnare" effects="blur"
+                                    <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"
                                          className={`image-size ${!user&&'logo-top'}`} style={user?{marginBottom:"0px" }:{marginBottom:"11px", width:'auto'}}/>
                                 </Link>
 

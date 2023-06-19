@@ -102,7 +102,7 @@ const Affiliate = (props) => {
                                         <div className={'d-flex gap-2 affiliate-card-small'}>
                                             <div className="col-lg-3 col-sm-10 col-md-10 card text-center affiliate-info-work-card ">
                                                 <div className="card-body affiliate-info-work-card-body">
-                                                    <img
+                                                    <LazyLoadImage
                                                         src={'https://storage.googleapis.com/nareimages/affiliate/step1.png'}/>
                                                     <h5 className="card-title text-dark affiliate-info-work-card-body-text-title">Register</h5>
 
@@ -116,7 +116,7 @@ const Affiliate = (props) => {
                                             </div>
                                             <div className="col-lg-3 col-sm-10 col-md-10 card text-center affiliate-info-work-card ">
                                                 <div className="card-body affiliate-info-work-card-body">
-                                                    <img
+                                                    <LazyLoadImage
                                                         src={'https://storage.googleapis.com/nareimages/affiliate/step2.png'}/>
                                                     <h5 className="card-title text-dark affiliate-info-work-card-body-text-title">Promote</h5>
                                                     <p className="card-text text-dark affiliate-info-work-card-body-text">Every
@@ -128,7 +128,7 @@ const Affiliate = (props) => {
                                             </div>
                                             <div className="col-lg-3 col-sm-10 col-md-10 card text-center affiliate-info-work-card ">
                                                 <div className="card-body affiliate-info-work-card-body">
-                                                    <img
+                                                    <LazyLoadImage
                                                         src={'https://storage.googleapis.com/nareimages/affiliate/step3.png'}/>
                                                     <h5 className="card-title text-dark affiliate-info-work-card-body-text-title">Earn</h5>
 
@@ -206,7 +206,7 @@ const Affiliate = (props) => {
                                             className="col-lg-4 col-sm-10 col-md-10 card text-center affiliate-info-work-card  affiliate-featured-cards">
                                             <div className="card-body affiliate-info-work-card-body">
                                                 <div className="card-header affiliate-info-work-card-body-header ">
-                                                    <img
+                                                    <LazyLoadImage
                                                         src={'https://storage.googleapis.com/nareimages/affiliate/feature_1.png'}/>
                                                     <h5 className="card-title text-dark affiliate-info-work-card-body-text-title">Up
                                                         To 20% Revenue Share</h5>
@@ -224,7 +224,7 @@ const Affiliate = (props) => {
                                             className="col-lg-4 col-sm-10 col-md-10 card text-center affiliate-info-work-card  affiliate-featured-cards">
                                             <div className="card-body affiliate-info-work-card-body">
                                                 <div className="card-header affiliate-info-work-card-body-header ">
-                                                    <img
+                                                    <LazyLoadImage
                                                         src={'https://storage.googleapis.com/nareimages/affiliate/feature_2.png'}/>
                                                     <h5 className="card-title text-dark affiliate-info-work-card-body-text-title">Lifetime
                                                         Commission</h5>
@@ -241,7 +241,7 @@ const Affiliate = (props) => {
                                             className="col-lg-4 col-sm-10 col-md-10 card text-center affiliate-info-work-card affiliate-featured-cards">
                                             <div className="card-body affiliate-info-work-card-body ">
                                                 <div className="card-header affiliate-info-work-card-body-header ">
-                                                    <img
+                                                    <LazyLoadImage
                                                         src={'https://storage.googleapis.com/nareimages/affiliate/feature_3.png'}/>
                                                     <h5 className="card-title text-dark affiliate-info-work-card-body-text-title">Optimized
                                                         Marketing Tools</h5>
@@ -263,7 +263,7 @@ const Affiliate = (props) => {
                                             className="col-lg-4 col-sm-10 col-md-10 card text-center affiliate-info-work-card affiliate-featured-cards ">
                                             <div className="card-body affiliate-info-work-card-body">
                                                 <div className="card-header affiliate-info-work-card-body-header ">
-                                                    <img
+                                                    <LazyLoadImage
                                                         src={'https://storage.googleapis.com/nareimages/affiliate/feature_4.png'}/>
                                                     <h5 className="card-title text-dark affiliate-info-work-card-body-text-title">
                                                         Real-Time Statistics</h5>
@@ -281,7 +281,7 @@ const Affiliate = (props) => {
                                             className="col-lg-4 col-sm-10 col-md-10 card text-center affiliate-info-work-card affiliate-featured-cards ">
                                             <div className="card-body affiliate-info-work-card-body">
                                                 <div className="card-header affiliate-info-work-card-body-header ">
-                                                    <img
+                                                    <LazyLoadImage
                                                         src={'https://storage.googleapis.com/nareimages/affiliate/feature_5.png'}/>
                                                     <h5 className="card-title text-dark affiliate-info-work-card-body-text-title">
                                                         Prompt Payments</h5>
@@ -298,7 +298,7 @@ const Affiliate = (props) => {
                                             className="col-lg-4 col-sm-10 col-md-10 card text-center affiliate-info-work-card affiliate-featured-cards ">
                                             <div className="card-body affiliate-info-work-card-body">
                                                 <div className="card-header affiliate-info-work-card-body-header ">
-                                                    <img
+                                                    <LazyLoadImage
                                                         src={'https://storage.googleapis.com/nareimages/affiliate/feature_1.png'}/>
                                                     <h5 className="card-title text-dark affiliate-info-work-card-body-text-title">
                                                         Great Customer Support</h5>
@@ -348,7 +348,7 @@ const Affiliate = (props) => {
                                     </p>
                                 </div>
                                 <div className={'affiliate-payment-img'}>
-                                    <img  src={'https://storage.googleapis.com/nareimages/affiliate/mpesa.svg'} alt={'betnare mpesa'}/>
+                                    <LazyLoadImage  src={'https://storage.googleapis.com/nareimages/affiliate/mpesa.svg'} alt={'betnare mpesa'}/>
                                 </div>
                             </div>
                         </section>

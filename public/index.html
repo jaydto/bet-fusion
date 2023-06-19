@@ -7,14 +7,14 @@
 
   <meta property="og:image" content="/fire.png"/>
 
-
   <!--end SEARCH CONSOLE SCRIPT -->
-
-  <!-- Google Tag Manager -->
-
-  <!-- End Google Tag Manager -->
   <meta charset="utf-8"/>
   <link rel="icon" href="%PUBLIC_URL%/favicon.png"/>
+<!--  added Preconnect features for thsi-->
+  <link rel="preconnect" href="https://connect.facebook.net"/>
+  <link rel="preconnect" href="https://www.googletagmanager.com"/>
+  <link rel="preconnect" href="https://betnare.bitrix24.com"/>
+  <link rel="preconnect" href="https://widgets.sir.sportradar.com"/>
   <meta
           name="viewport"
           content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
@@ -39,13 +39,6 @@
   -->
   <title>Betnare</title>
 
-
-  <noscript>
-    <img height="1" width="1"
-         src="https://www.facebook.com/tr?id=1297171947681785&ev=PageView
-&noscript=1"/>
-  </noscript>
-  <!-- End Facebook Pixel Code -->
 </head>
 <body onscroll="getScrollLength()">
 
@@ -67,6 +60,21 @@ To begin the development, run `npm start` or `yarn start`.
 To create a production bundle, use `npm run build` or `yarn build`.
 -->
 </body>
+
+<!--    live match tracker-->
+<script
+        type="application/javascript"
+        src="https://widgets.sir.sportradar.com/db1070bd52c9f321c66fd763a52e2af8/widgetloader"
+        async
+></script>
+<!--end of live match Tracker-->
+<!--start of pragmatic-->
+<script defer src="https://dga.pragmaticplaylive.net/dgaAPI.js"></script>
+<script defer src="https://client.pragmaticplaylive.net/desktop/assets/api/fullscreenApi.js"></script>
+<!--End of Paragmatic-->
+
+<!-- Google tag (gtag.js) -->
+
 <!-- Google Tag Manager (noscript) -->
 <noscript>
   <iframe
@@ -76,32 +84,19 @@ To create a production bundle, use `npm run build` or `yarn build`.
           style="display: none; visibility: hidden"
   ></iframe>
 </noscript>
-<!--    live match tracker-->
-<script
-        type="application/javascript"
-        src="https://widgets.sir.sportradar.com/db1070bd52c9f321c66fd763a52e2af8/widgetloader"
-        async
-></script>
-<!--end of-->
-<!--    End of Bitrix-->
 
-<script defer src="https://dga.pragmaticplaylive.net/dgaAPI.js"></script>
-<script defer src="https://client.pragmaticplaylive.net/desktop/assets/api/fullscreenApi.js"></script>
-<!-- Google tag (gtag.js) -->
-<script
-        defer
-        src="https://www.googletagmanager.com/gtag/js?id=AW-10991240939"
-></script>
+<!--End of Gtag noscript-->
+<script defer src="https://www.googletagmanager.com/gtag/js?id=AW-10991240939"></script>
 <script defer>
   window.dataLayer = window.dataLayer || [];
-
   function gtag() {
     dataLayer.push(arguments);
   }
-
-  gtag("js", new Date());
-  gtag("config", "AW-10991240939");
+  gtag('js', new Date());
+  gtag('config', 'AW-10991240939');
 </script>
+
+<!--End of Google Tag Manager-->
 <script defer>
   function gtag_report_conversion(url) {
     var callback = function () {
@@ -116,6 +111,8 @@ To create a production bundle, use `npm run build` or `yarn build`.
     return false;
   }
 </script>
+
+<!--facebook tag manager-->
 <script defer>
   !function (f, b, e, v, n, t, s) {
     if (f.fbq) return;
@@ -138,33 +135,14 @@ To create a production bundle, use `npm run build` or `yarn build`.
   fbq('init', '1297171947681785');
   fbq('track', 'PageView');
 </script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-10991240939"></script>
-<script defer>
-  window.dataLayer = window.dataLayer || [];
+<noscript>
+  <img height="1" width="1"
+       src="https://www.facebook.com/tr?id=1297171947681785&ev=PageView
+&noscript=1"/>
+</noscript>
+<!--end of facebook tag manager-->
 
-  function gtag() {
-    dataLayer.push(arguments);
-  }
-
-  gtag('js', new Date());
-
-  gtag('config', 'AW-10991240939');
-</script>
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-259475606-1"></script>
-<script defer>
-  window.dataLayer = window.dataLayer || [];
-
-  function gtag() {
-    dataLayer.push(arguments);
-  }
-
-  gtag('js', new Date());
-  gtag('config', 'UA-259475606-1');
-</script>
-<!--clarity-->
+<!--Start of clarity-->
 <script defer type="text/javascript">
   (function (c, l, a, r, i, t, y) {
     c[a] =
@@ -179,7 +157,9 @@ To create a production bundle, use `npm run build` or `yarn build`.
     y.parentNode.insertBefore(t, y);
   })(window, document, "clarity", "script", "ez9iby6sl0");
 </script>
-<!-- Eskimi DSP Pixel Code -->
+<!--End of Clarity-->
+
+<!-- Start of Eskimi DSP Pixel Code -->
 <script defer>
   !(function (f, e, t, u, n, s, p) {
     if (f.esk) return;
@@ -205,6 +185,20 @@ To create a production bundle, use `npm run build` or `yarn build`.
   );
   esk("init", "26048");
 </script>
+<!--end of Eskimi-->
+
+<!--Start OneSignal-->
+<script defer src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" ></script>
+<script defer>
+  window.OneSignal = window.OneSignal || [];
+  OneSignal.push(function () {
+    OneSignal.init({
+      appId: "b5f78dde-63ae-45fc-b51a-535df13ad5d7",
+    });
+  });
+</script>
+<!--End of OneSignal -->
+
 <!--   Start of  Bitrix-->
 <script defer>
   (function (w, d, u) {
@@ -219,15 +213,9 @@ To create a production bundle, use `npm run build` or `yarn build`.
           "https://cdn.bitrix24.com/b24014665/crm/site_button/loader_4_pj81kv.js"
   );
 </script>
-<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" defer></script>
-<script defer>
-  window.OneSignal = window.OneSignal || [];
-  OneSignal.push(function () {
-    OneSignal.init({
-      appId: "b5f78dde-63ae-45fc-b51a-535df13ad5d7",
-    });
-  });
-</script>
+<!--    End of Bitrix-->
+
+<!--Start Of Scrolling Script-->
 <script defer>
   function getScrollLength() {
     if (
@@ -238,4 +226,5 @@ To create a production bundle, use `npm run build` or `yarn build`.
     }
   }
 </script>
+<!--End of Scroll Script-->
 </html>

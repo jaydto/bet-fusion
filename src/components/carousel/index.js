@@ -5,7 +5,8 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import makeRequest from "../utils/fetch-request";
 import {Context} from "../../context/store";
 
-const CarouselLoader = (props) => {
+const CarouselLoader = React.memo(
+    (props) => {
     const [state,dispatch]=useContext(Context);
     const getCarouselImages = async () => {
         let endpoint = "/v1/carousel-images"
@@ -50,5 +51,5 @@ const CarouselLoader = (props) => {
 
         </Carousel>
     )
-}
+})
 export default CarouselLoader;

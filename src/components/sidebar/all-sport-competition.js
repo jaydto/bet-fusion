@@ -53,14 +53,14 @@ export const SportItem = React.memo(
         <li className={`treeview ${activeClass}`} >
             <Link to={"#"} onClick={handleMenuToggle}>
                 <span style={{"padding":0}}>
-                  <img  
+                  <LazyLoadImage  
                        className="side-icon" 
                        src={sport_image} 
                        alt=""
                         /> 
                 </span>
                 <span className="topl"> { sport.sport_name } </span>
-                <img className="down-arrow pull-right" alt="" src={downArrow} />
+                <LazyLoadImage className="down-arrow pull-right" alt="" src={downArrow} />
             </Link>
             <ul className="treeview-menu">
               {

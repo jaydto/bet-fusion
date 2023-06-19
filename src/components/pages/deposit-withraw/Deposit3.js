@@ -150,16 +150,16 @@ const Deposit3= props => {
                         <Row justify="center">
                             <Col xs={0} sm={0} md={0} lg={20}>
                                 <Link to={'/'}>
-                                    <img className="img-fluid mb-5" src={authImg} alt=""/>
+                                    <LazyLoadImage className="img-fluid mb-5" src={authImg} alt=""/>
                                 </Link>
 
                                 <h1 className="text-white text-center" style={{fontSize:"30px"}}>Deposit Cash Into Your Account</h1>
-                                <p className="text-white px-3 d-flex align-items-center justify-content-center mt-3" style={{fontSize:"16px", opacity:'0.5px'}}><img src={betNiMoto}  style={{width:"150px"}} alt={'betnare'}/></p>
+                                <p className="text-white px-3 d-flex align-items-center justify-content-center mt-3" style={{fontSize:"16px", opacity:'0.5px'}}><LazyLoadImage src={betNiMoto}  style={{width:"150px"}} alt={'betnare'}/></p>
                             </Col>
                         </Row>
                         <div className="d-flex justify-content-end pb-4">
                             <div className={'d-flex justify-content-center align-items-center'}>
-                                <div className="text-white mx-2 bold d-flex justify-content-center align-items-center"><img src={only18} alt={'18 only'} style={{width:'30px', background:'aliceblue', borderRadius:'16px'}}/></div>
+                                <div className="text-white mx-2 bold d-flex justify-content-center align-items-center"><LazyLoadImage src={only18} alt={'18 only'} style={{width:'30px', background:'aliceblue', borderRadius:'16px'}}/></div>
                                 <span className="mx-2 text-white"> | </span>
                                 <a className="text-white" href="/terms-and-conditions">Term & Conditions</a>
                                 <span className="mx-2 text-white"> | </span>
@@ -335,7 +335,7 @@ const MyDepositForm = (props) => {
                 <div className="w-100">
                     <div className='col-md-7 text-center'>
                         <div className={`col-md-7 text-center`}>
-                            <img src={mpesa} alt=""/>
+                            <LazyLoadImage src={mpesa} alt=""/>
                         </div>
                     </div>
                     {/*<hr className={`${mobile?"d-none":""}`}/>*/}

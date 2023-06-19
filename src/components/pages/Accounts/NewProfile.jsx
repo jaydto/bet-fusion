@@ -10,6 +10,7 @@ import Right from "../../right";
 import SidebarProfile from "../../sidebar/sidebarProfile";
 import makeRequest from "../../utils/fetch-request";
 import {Context} from "../../../context/store";
+import {LazyLoadImage} from "react-lazy-load-image-component";
 const NewProfile = () => {
 	const [user, setUser] = useState(getFromLocalStorage("user"));
 	const [state,dispatch]=useContext(Context)
@@ -57,7 +58,7 @@ const NewProfile = () => {
 					<div className="iphone">
 						<div className="header-profile">
 							<div className="user-profile d-flex align-items-center">
-								<img src={accounts} className="user-photo "/>
+								<LazyLoadImage src={accounts} className="user-photo "/>
 
 							</div>
 							<div className="header-profile-summary">
@@ -129,7 +130,7 @@ const NewProfile = () => {
 											<div className="t-title">Deposit</div>
 										</div>
 										<div className="t-amount">
-											<img src="https://storage.googleapis.com/nareimages/affiliate/mpesa.svg" width="50px" alt=""/>
+											<LazyLoadImage src="https://storage.googleapis.com/nareimages/affiliate/mpesa.svg" width="50px" alt=""/>
 										</div>
 									</div>
 								</div>
@@ -145,7 +146,7 @@ const NewProfile = () => {
 										<div className="t-title">Withdraw </div>
 									</div>
 									<div className="t-amount">
-										<img src="https://storage.googleapis.com/nareimages/affiliate/mpesa.svg" width="50px" alt=""/>
+										<LazyLoadImage src="https://storage.googleapis.com/nareimages/affiliate/mpesa.svg" width="50px" alt=""/>
 									</div>
 								</div>
 							</Link>

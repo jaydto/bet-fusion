@@ -485,7 +485,7 @@ li.bet-option {
 }
 
 .bet-pick {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Roboto', sans-serif;
     float: left;
     margin-top: 5px;
     width: 100%;
@@ -495,7 +495,7 @@ li.bet-option {
 .pay-method label {
     margin-bottom: 0;
     /* font-size: 12px; */
-    font-family: arial;
+    font-family: 'Roboto', sans-serif;
     margin-top: -8px;
 }
 

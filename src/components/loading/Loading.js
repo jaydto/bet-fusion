@@ -2,6 +2,7 @@
 import logo from "../../assets/img/Logo.webp";
 import {ProgressBar} from "loading-animations-react";
 import React from "react";
+import {LazyLoadImage} from "react-lazy-load-image-component";
 
 
 const Loading=React.memo(
@@ -9,7 +10,7 @@ const Loading=React.memo(
     return (
             <div className={"d-flex align-items-center flex-column justify-content-center"} style={{height:"70vh"}}>
                 <div className={"d-flex justify-content-start flex-column"}>
-                    <img src={logo} alt="Betnare" title="Betnare" effects="blur" style={{height:"53px"}}/>
+                    <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur" style={{height:"53px"}}/>
                     <span className={"text-light "}>
                     <ProgressBar
                         borderColor=""

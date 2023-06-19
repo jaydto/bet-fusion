@@ -12,6 +12,7 @@ import makeRequest from "../utils/fetch-request";
 
 
 import 'react-perfect-scrollbar/dist/css/styles.css';
+import {LazyLoadImage} from "react-lazy-load-image-component";
 
 const SideBar = React.memo(
     (props) => {
@@ -60,7 +61,7 @@ const SideBar = React.memo(
                     <div className="header-holder">
                         <span className="col-sm-10">FOOTBAL</span>
                         <span className="col-sm-2 header-icon">
-                        <img 
+                        <LazyLoadImage
                           height="14px" 
                           style={{display: imageLoaded ? 'inline' : 'none'}}
                           src={football} 

@@ -1,6 +1,7 @@
 import {toast} from "react-toastify";
 import fire from  "../../assets/img/fire.webp"
 import React from "react";
+import {LazyLoadImage} from "react-lazy-load-image-component";
 const Notify =
     (message) => {
     let options = {
@@ -17,7 +18,7 @@ const Notify =
         toast.success(`🚀 ${message.message}`, options);
     } else {
         toast(<div className={"d-flex"}>
-            <img src={fire} alt="" height="24px"/>
+            <LazyLoadImage src={fire} alt="" height="24px"/>
             <span>
                 {message.message}
             </span>

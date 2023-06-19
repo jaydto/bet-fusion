@@ -22,6 +22,7 @@ import betNiMoto from '../../../assets/img/BetniMoto.webp'
 import {Form, Formik} from "formik";
 import {Context} from "../../../context/store";
 import SliderPromos from "./SliderPromos";
+import {Notify} from "../../header/top-login";
 
 const backgroundStyle = {
 	backgroundImage: `url(${backgroundURL})`,
@@ -115,12 +116,11 @@ const RegisterTwo = props => {
 						</div>
 						<Row justify="center">
 							<Col xs={0} sm={0} md={0} lg={20}>
-								<h1 className="text-white text-center-stepper" style={{fontSize:"40px", marginBottom:'14px'}}>Welcome to</h1>
-
 								<Link to={'/'}>
 									<img className="img-fluid mb-5" src={authImg} alt=""/>
 								</Link>
 
+								<h1 className="text-white text-center" style={{fontSize:"30px"}}>Welcome to betnare</h1>
 								<p className="text-white px-3 d-flex align-items-center justify-content-center mt-3" style={{fontSize:"16px", opacity:'0.5px'}}><img src={betNiMoto}  style={{width:"150px"}} alt={'betnare'}/></p>
 							</Col>
 						</Row>
@@ -310,7 +310,7 @@ const VerifyAccountForm = (props) => {
 			// response.success ? setSuccess(true) : setSuccess(false)
 			dispatch({type: "SET", key: "verifyMessage", payload: response.success ? response.success.message : response.error.message})
 			response.success?dispatch({type: "SET", key: "verifySuccess", payload: true}):dispatch({type: "SET", key: "verifySuccess", payload: false})
-
+			dispatch({type:"SET",key:"signup_msisdn",payload:null})
 
 			if (response?.success) {
 				setLocalStorage('user', response?.success?.user);
@@ -406,6 +406,7 @@ const MySignupForm = (props) => {
 		setFieldValue(field, value);
 	}
 
+
 	return (
 		<Form>
 			<div className="pt-0">
@@ -461,10 +462,10 @@ const PasswordForm = (props) => {
 			link_code: values?.link_code
 		}
 		setTrackingData(values)
-		await makeRequest({url: endpoint, method: 'POST', data: signUpPayload}).then(([status, response]) => {
+		await makeRequest({url: endpoint, method: 'POST', data: signUpPayload}).then(async ([status, response]) => {
 			// setSuccess(status === 200 || status === 201);
 			// setMessage(response?.success?.message || "");
-			if(status===200||status===201){
+			if (status === 200 || status === 201) {
 				dispatch({type: "SET", key: "registerSuccess", payload: status === 200 || status === 201})
 				dispatch({type: "SET", key: "registerMessage", payload: response?.success?.message})
 
@@ -476,10 +477,17 @@ const PasswordForm = (props) => {
 						window.gtag_report_conversion(window.location)
 					}
 				}
+				let message = {
+					status: status,
+					message: response?.success?.message || "Error attempting to Register"
+				};
+				Notify(message);
+
 				clearTrackingData()
-				{(state?.app_config?.message?.accountConfiguration?.verificationEnabled=="1")
-					?setTimeout(navigateToFormStep(3),1500)
-					:navigate("/")
+				{
+					(state?.app_config?.message?.accountConfiguration?.verificationEnabled == "1")
+						? await setTimeout(navigateToFormStep(3), 1500)
+						: await setTimeout(navigate("/"), 3000)
 				}
 
 				// let timer = setInterval(() => {
@@ -490,6 +498,22 @@ const PasswordForm = (props) => {
 
 		})
 	}
+
+	const dispatchUser = useCallback(() => {
+		if (message !== null) {
+			Notify(message);
+
+			if (message.status == 200) {
+				setLocalStorage('user', message.user);
+				setUser(message.user);
+			}
+
+		}
+	}, [message])
+
+	useEffect(() => {
+		dispatchUser();
+	}, [dispatchUser]);
 
 	const validatePassword = password_values => {
 

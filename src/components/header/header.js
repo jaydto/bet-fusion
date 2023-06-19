@@ -236,7 +236,6 @@ const Header = React.memo((props) => {
     return (
         <>
             {/*{showLoadingModal && ( <ExitModal setShowLoadingModal={setShowLoadingModal} visible={showLoadingModal}/>)}*/}
-            <ToastContainer/>
             <div className={'d-flex flex-column'}>
                 {showDownload&&<Link to={'/betnare.apk'}
                                      target={"_blank"}
@@ -252,7 +251,7 @@ const Header = React.memo((props) => {
                         </div>
                     </div>
                 </Link>}
-
+                <ToastContainer/>
                 <Navbar expand="md"   className={`${(scrollPosition||!showDownload)&&'fixed-top-nav'} mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${slip&&"top-betslip-page-fix"} ${user?'top-nav-login':'top-nav-login'}`} fixed="top" variant="dark">
                     <div className={'w-100 d-flex justify-content-between mobile-change desktop-ipad-size top-header-main'}>
                         <div className={"d-flex w-100 directions-header-nav"}>

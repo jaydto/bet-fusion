@@ -3,8 +3,7 @@ import { Row, Col } from "antd";
 import authImg from '../../../assets/img/Logo.webp'
 import "./stepper.css"
 import {Link, useNavigate} from "react-router-dom";
-import useWindowDimensions from "../../header/Dimensions";
-import {clearTrackingData, getFromLocalStorage, setLocalStorage, setTrackingData} from "../../utils/local-storage";
+import {clearTrackingData, setLocalStorage, setTrackingData} from "../../utils/local-storage";
 import only18 from '../../../assets/img/auth/18only.png'
 import backgroundURL from '../../../assets/img/auth/img-17.webp'
 import {Navbar, Offcanvas} from "react-bootstrap";
@@ -23,6 +22,7 @@ import {Form, Formik} from "formik";
 import {Context} from "../../../context/store";
 import SliderPromos from "./SliderPromos";
 import {Notify} from "../../header/top-login";
+import {ToastContainer} from "react-toastify";
 
 const backgroundStyle = {
 	backgroundImage: `url(${backgroundURL})`,
@@ -41,8 +41,6 @@ const RegisterTwo = props => {
 
 		await makeRequest({ url: endpoint, method: "POST", data: null }).then(
 			([status, result]) => {
-				console.log("status",status)
-				console.log("result",result)
 				if(status===200){
 					dispatch({type: "SET", key: "app_config", payload: result?.data||result});
 				}
@@ -58,117 +56,117 @@ const RegisterTwo = props => {
 		AppConfig()
 		return abortController.abort()
 	},[])
-	const Alert = (props) => {
-		let c = state?.registerSuccess ? 'success' : 'danger';
-		return (<div role="alert" className={`fade alert alert-${c} show`}>{state?.registerMessage}</div>);
 
-	};
 	{(state?.registerSuccess&&state?.app_config?.message?.accountConfiguration?.verificationEnabled=="1")&&setTimeout(navigateToFormStep(3),1500)}
-	return (
-		<div style={{height:'100vh', background:'#16202C'}}>
-			<div className={''}>
-				<Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav top-register-page" fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
-					<Container fluid className={'d-flex justify-content-between mobile-change top-login-background-img'}>
-						<Navbar.Brand className="e logo align-self-start menu-control d-flex w-100" title="Betnare" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
-							<Link to={'/'} className={'text-light'}>
-								<FontAwesomeIcon icon={faBackspace}/> HOME
-							</Link>
-							<div
-								className="col-md-6  d-flex  right justify-content-end align-items-center w-change3 gap-2 top-login-background-img-bg-page"
-								style={{marginLeft: 'auto', background:"var(--betnare-header-bg"}}>
-								<Link to={{pathname: "/"}} className=" resize-mobile">
-									<LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"
-												   className={"image-size "}/>
+	return (<>
+
+			<div style={{height:'100vh', background:'#16202C'}}>
+				<div className={''}>
+					<Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav top-register-page" fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
+						<Container fluid className={'d-flex justify-content-between mobile-change top-login-background-img'}>
+							<Navbar.Brand className="e logo align-self-start menu-control d-flex w-100" title="Betnare" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
+								<Link to={'/'} className={'text-light'}>
+									<FontAwesomeIcon icon={faBackspace}/> HOME
 								</Link>
-							</div>
+								<div
+									className="col-md-6  d-flex  right justify-content-end align-items-center w-change3 gap-2 top-login-background-img-bg-page"
+									style={{marginLeft: 'auto', background:"var(--betnare-header-bg"}}>
+									<Link to={{pathname: "/"}} className=" resize-mobile">
+										<LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"
+													   className={"image-size "}/>
+									</Link>
+								</div>
 
-						</Navbar.Brand>
+							</Navbar.Brand>
 
-						<Navbar.Offcanvas
-							style={{width: "80%", height: "100%",zIndex: "9999", marginTop: "0px"}}
-							className='off-canvas background-primary p-0 user-profile'
-							id={`offcanvasNavbar-expand-${expand}`}
-							aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-							placement="start">
-							<Offcanvas.Header closeButton className='text-white' closeVariant={"white"}>
-								<Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-									<div className="col-3">
-										<div>
-											<LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"/>
+							<Navbar.Offcanvas
+								style={{width: "80%", height: "100%",zIndex: "9999", marginTop: "0px"}}
+								className='off-canvas background-primary p-0 user-profile'
+								id={`offcanvasNavbar-expand-${expand}`}
+								aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+								placement="start">
+								<Offcanvas.Header closeButton className='text-white' closeVariant={"white"}>
+									<Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
+										<div className="col-3">
+											<div>
+												<LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"/>
+											</div>
 										</div>
-									</div>
-								</Offcanvas.Title>
-							</Offcanvas.Header>
-							<Offcanvas.Body >
-								<SidebarMobile/>
-							</Offcanvas.Body>
-						</Navbar.Offcanvas>
-					</Container>
-				</Navbar>
+									</Offcanvas.Title>
+								</Offcanvas.Header>
+								<Offcanvas.Body >
+									<SidebarMobile/>
+								</Offcanvas.Body>
+							</Navbar.Offcanvas>
+						</Container>
+					</Navbar>
 
-			</div>
-			<Row justify="center" className="align-items-stretch h-100">
+				</div>
+				<Row justify="center" className="align-items-stretch h-100">
 
-				<Col xs={0} sm={0} md={0} lg={8}>
-					<div className="d-flex flex-column justify-content-between h-100 px-4" style={backgroundStyle}>
-						<div className="text-right">
-							{/*<img src="/img/logo-sm.jpg" style={{height:"35px"}}alt="logo"/>*/}
-						</div>
-						<Row justify="center">
-							<Col xs={0} sm={0} md={0} lg={20}>
-								<Link to={'/'}>
-									<img className="img-fluid mb-5" src={authImg} alt=""/>
-								</Link>
+					<Col xs={0} sm={0} md={0} lg={8}>
+						<div className="d-flex flex-column justify-content-between h-100 px-4" style={backgroundStyle}>
+							<div className="text-right">
+								{/*<img src="/img/logo-sm.jpg" style={{height:"35px"}}alt="logo"/>*/}
+							</div>
+							<Row justify="center">
+								<Col xs={0} sm={0} md={0} lg={20}>
+									<Link to={'/'}>
+										<img className="img-fluid mb-5" src={authImg} alt=""/>
+									</Link>
 
-								<h1 className="text-white text-center" style={{fontSize:"30px"}}>Welcome to betnare</h1>
-								<p className="text-white px-3 d-flex align-items-center justify-content-center mt-3" style={{fontSize:"16px", opacity:'0.5px'}}><img src={betNiMoto}  style={{width:"150px"}} alt={'betnare'}/></p>
-							</Col>
-						</Row>
-						<div className="d-flex justify-content-end pb-4">
-							<div className={'d-flex justify-content-center align-items-center'}>
-								<div className="text-white mx-2 bold d-flex justify-content-center align-items-center"><img src={only18} alt={'18 only'} style={{width:'30px', background:'aliceblue', borderRadius:'16px'}}/></div>
-								<span className="mx-2 text-white"> | </span>
-								<a className="text-white" href="/terms-and-conditions">Term & Conditions</a>
-								<span className="mx-2 text-white"> | </span>
-								<a className="text-white" href="/privacy-policy" >Privacy & Policy</a>
+									<h1 className="text-white text-center" style={{fontSize:"30px"}}>Welcome to betnare</h1>
+									<p className="text-white px-3 d-flex align-items-center justify-content-center mt-3" style={{fontSize:"16px", opacity:'0.5px'}}><img src={betNiMoto}  style={{width:"150px"}} alt={'betnare'}/></p>
+								</Col>
+							</Row>
+							<div className="d-flex justify-content-end pb-4">
+								<div className={'d-flex justify-content-center align-items-center'}>
+									<div className="text-white mx-2 bold d-flex justify-content-center align-items-center"><img src={only18} alt={'18 only'} style={{width:'30px', background:'aliceblue', borderRadius:'16px'}}/></div>
+									<span className="mx-2 text-white"> | </span>
+									<a className="text-white" href="/terms-and-conditions">Term & Conditions</a>
+									<span className="mx-2 text-white"> | </span>
+									<a className="text-white" href="/privacy-policy" >Privacy & Policy</a>
+								</div>
 							</div>
 						</div>
-					</div>
-				</Col>
-				<div className={'col-lg-8 col-sm-12 top-login-background-img-bg-down top-login-background-img-bg-page'} >
+					</Col>
+					<div className={'col-lg-8 col-sm-12 top-login-background-img-bg-down top-login-background-img-bg-page'} >
 
-					<div className="w-100 d-flex flex-column justify-content-center h-100 top-login-background-img-bg-page">
-						<div className={'width-page-centric register-page'}>
-							<Row justify="center" className={"full-width-registration-page"}>
+						<div className="w-100 d-flex flex-column justify-content-center h-100 top-login-background-img-bg-page">
+							<div className={'width-page-centric register-page'}>
+								<Row justify="center" className={"full-width-registration-page"}>
 
-								<div className={'d-flex w-100'}>
-									{/**/}
-									<div className={'w-100'} >
-										{/*{user?setTimeout(navigate("/"),500):""}*/}
-										<div className={"d-flex flex-row justify-content-between"}>
-											<div className=" w-100">
-												<div className="homepage d-flex flex-column align-items-center justify-content-center login-page">
-													<div className="col-md-12 mt-2 text-white p-2 w-100">
-													{state?.registerMessage && <Alert/>}
+									<div className={'d-flex w-100'}>
+										{/**/}
+										<div className={'w-100'} >
+											{/*{user?setTimeout(navigate("/"),500):""}*/}
+											<div className={"d-flex flex-row justify-content-between"}>
+												<div className=" w-100">
+													<div className="homepage d-flex flex-column align-items-center justify-content-center login-page">
+														<div className="col-md-12 mt-2 text-white p-2 w-100">
 
-													<div className="pb-0" data-backdrop="static">
-														<Steppers/>
+															<div className="pb-0" data-backdrop="static">
+																<ToastContainer/>
+																<Steppers/>
+															</div>
+														</div>
 													</div>
-												</div>
 												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-							</Row>
-						</div>
+								</Row>
+							</div>
 
+						</div>
 					</div>
-				</div>
-			</Row>
-		</div>
+				</Row>
+			</div>
+			</>
+
 	)
 }
+
 
 const MyVerifyAccountForm = (props) => {
 	const {errors, values, submitForm, setFieldValue} = props;
@@ -432,7 +430,7 @@ const MySignupForm = (props) => {
 						<div className="col">
 							<button type={"submit"}
 									className=' btn btn-lg w-100 button-radius input-field btn-font cg login-button2 btn ' style={{marginTop:"28px"}}>
-								<strong>SIGNUP</strong>
+								<strong>NEXT</strong>
 							</button>
 							{state?.app_config?.message?.accountConfiguration?.verificationEnabled!=="0"&&<Link className={`d-flex justify-content-center w-100 mt-3`} to={"/verify"} title="Verify">
 								<span className={`text-warning font-input register-label font-verify-redirect`}>Already have a verification code ?  </span>
@@ -448,13 +446,12 @@ const MySignupForm = (props) => {
 const PasswordForm = (props) => {
 	const [state,dispatch]=useContext(Context)
 	const navigate = useNavigate();
-
 	const initialResetFormValues = {
 		link_code:'',
 		password: '',
 		repeat_password: ''
 	}
-	const handleSavePassword= async values => {
+	const handleSavePassword=  async values => {
 		let endpoint = '/v1/signup'
 		const signUpPayload = {
 			msisdn: state?.signup_msisdn,
@@ -477,43 +474,42 @@ const PasswordForm = (props) => {
 						window.gtag_report_conversion(window.location)
 					}
 				}
-				let message = {
-					status: status,
-					message: response?.success?.message || "Error attempting to Register"
-				};
-				Notify(message);
 
 				clearTrackingData()
-				{
-					(state?.app_config?.message?.accountConfiguration?.verificationEnabled == "1")
-						? await setTimeout(navigateToFormStep(3), 1500)
-						: await setTimeout(navigate("/"), 3000)
-				}
 
-				// let timer = setInterval(() => {
-				// 	// window.location.href = "/"
-				// 	clearInterval(timer)
-				// }, 3000)
+
+
+				let timer = setInterval(() => {
+					{
+						(state?.app_config?.message?.accountConfiguration?.verificationEnabled == "0") ? setTimeout(navigate("/"), 1500):setTimeout(navigateToFormStep(3), 1500)
+					}
+					clearInterval(timer)
+				}, 3000)
 			}
 
 		})
 	}
 
-	const dispatchUser = useCallback(() => {
-		if (message !== null) {
-			Notify(message);
 
-			if (message.status == 200) {
-				setLocalStorage('user', message.user);
-				setUser(message.user);
-			}
+
+	const AlertUser = async () => {
+		console.log("user_state",state?.registerMessage)
+		if (state?.registerMessage !== undefined&&state?.registerMessage !== null) {
+			let message = {
+				status: 200,
+				message: state?.registerMessage || "Error attempting to Register"
+			};
+
+			Notify(message);
+			dispatch({type: "SET", key: "registerMessage", payload: null});
 
 		}
-	}, [message])
+	}
 
 	useEffect(() => {
-		dispatchUser();
-	}, [dispatchUser]);
+		AlertUser();
+	}, [state?.RegisterMessage]);
+
 
 	const validatePassword = password_values => {
 
@@ -551,6 +547,7 @@ const PasswordForm = (props) => {
 		>{(props) => <MyPasswordForm {...props} />}</Formik>
 	);
 }
+
 
 const MyPasswordForm = (props) => {
 	const [state,dispatch]=useContext(Context)
@@ -733,7 +730,11 @@ const Steppers = () => {
 
 	const [state,dispatch]=useContext(Context)
 
+	const Alert = (props) => {
+		let c = state?.registerSuccess ? 'success' : 'danger';
+		return (<div role="alert" className={`fade alert alert-${c} show`}>{state?.registerMessage}</div>);
 
+	};
 	useEffect(() => {
 		// Select all form navigation buttons and add event listeners
 		const formNavigationButtons = document.querySelectorAll(".btn-navigate-form-step");
@@ -758,7 +759,6 @@ const Steppers = () => {
 	}, []);
 
 	const NextButton=()=>{
-		console.log("account_verify",state?.app_config?.message?.accountConfiguration?.verificationEnabled)
 		return (state?.app_config?.message?.accountConfiguration?.verificationEnabled=="0"?<button className="button btn-navigate-form-step finish" disabled={state?.registerSuccess?false:true} type="button" step_number="3">Finish
 		</button>:<button className="button btn-navigate-form-step" type="button" step_number="3">Next</button>
 		)
@@ -769,6 +769,8 @@ const Steppers = () => {
 		<>
 			<div className={"stepper"}>
 				<FormTitle/>
+				{state?.registerMessage && <Alert/>}
+
 				<div id="multi-step-form-container">
 					{/*//Form Steps / Progress Bar*/}
 					<ul className="form-stepper form-stepper-horizontal text-center-stepper mx-auto pl-0">
@@ -810,12 +812,7 @@ const Steppers = () => {
 							<h2 className="font-normal">Account Basic Details</h2>
 							{/*// <!-- Step 1 input fields -->*/}
 							<SignupForm/>
-							<div className="mt-3">
-								<button className="button btn-navigate-form-step"
-										disabled={state?.signup_msisdn ? false : true} type="button"
-										step_number="2">Next
-								</button>
-							</div>
+
 						</section>
 						{/*// <!-- Step 2 Content, default hidden on page load. -->*/}
 						<section id="step-2" className="form-step d-none">

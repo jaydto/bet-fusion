@@ -12,13 +12,13 @@ const SmartPlay = React.memo(
     (props) => {
 
     const url = new URL(window.location)
-    const game= url.searchParams.get('game')
-    const category=url.searchParams.get('category')
+    const game = url.searchParams.get('game')
+    const category = url.searchParams.get('category')
     const [gameUrl, setGameUrl] = useState('')
     const [token, setUserToken] = useState('')
     const [user_id, setUserID] = useState('')
     const [demo, setDemo] = useState(false)
-    const pathname=window.location.search
+    const pathname = window.location.search
 
     const [games] = useState(getFromLocalStorage('category_games'))
 
@@ -37,8 +37,8 @@ const SmartPlay = React.memo(
         let payload = {
             "profile_id": user.profile_id,
             "token": user.token,
-            "game":game,
-            "gameCategory":category
+            "game": game,
+            "gameCategory": category
         }
 
         await makeRequest({url: endpoint, method: method, data: payload}).then(([status, result]) => {
@@ -91,36 +91,61 @@ const SmartPlay = React.memo(
                                 <iframe className={'mt-3 shadow-lg'} allowFullScreen
                                         src={gameUrl} title="Gadme" width={'100%'} height={'700px'}></iframe>
                             </>}
-                            {pathname.includes("JetX")&&
-                                <div className={'card rounded-3 e '} style={{color:"#999",background:"transparent", textDecoration:"none", listStyle:"none",fontSize:'14px'}}>
+                            {pathname.includes("JetX") &&
+                                <div className={'card rounded-3 e '} style={{
+                                    color: "#999",
+                                    background: "transparent",
+                                    textDecoration: "none",
+                                    listStyle: "none",
+                                    fontSize: '14px'
+                                }}>
                                     <div className={'card-body p-3'}>
-                                        <h3 className={'text-center text-warning flashy'}>WIN Upto 2,500,000/= with JetX the Money Multiplier daily </h3>
+                                        <h3 className={'text-center text-warning flashy'}>
+                                            WIN Upto 2,500,000/= with JetX the Money Multiplier daily
+                                        </h3>
                                         <ul>
                                             <li>
-                                                Minimum Bet – KSH10, Maximum Stake per Bet is KES12,000. Maximum Win per Bet is KES 2,500,000.
+                                                Minimum Bet – KSH10, Maximum Stake per Bet is KES12,000. Maximum Win per
+                                                Bet is KES 2,500,000.
                                             </li>
                                             <li>
-                                                Game on real-time events, Fast Plays for High and instant Pay-outs on every successful cashout.
+                                                Game on real-time events, Fast Plays for High and instant Pay-outs on
+                                                every successful cashout.
                                             </li>
                                             <li>
-                                                The Auto-Bet feature allows players to automatically place the bets based on their preferred betting strategy as the Auto-Cashout feature automatically Pays Out your Winnings when you reach the predefined multiplier.
+                                                The Auto-Bet feature allows players to automatically place the bets
+                                                based on their preferred betting strategy as the Auto-Cashout feature
+                                                automatically Pays Out your Winnings when you reach the predefined
+                                                multiplier.
                                             </li>
                                             <li>
-                                                JetX offers live statistics on running live bets in the statistics section.
+                                                JetX offers live statistics on running live bets in the statistics
+                                                section.
                                             </li>
                                         </ul>
                                         <br/>
                                         <h3 className={'text-center'}>How to Play JetX on BetNare</h3>
                                         <ul>
-                                            <li >
-                                                When playing JetX, you can put more than one bet on each round to predict which multiplier the plane will crash. The longer the plane flies, the higher the multiplier. Attain high multipliers and win Big by cashing out before the Jet goes up in flames. </li>
-                                            <li >
-                                                Play JetX only on BetNare. Click here to play https://betnare.com/smart-play?game=JetX&category=JetX  </li>
-                                            <li >
-                                                Cashing out on JetX is Easy. You can Cash-Out by clicking the cashout button or by using the auto-withdraw option. With the Auto-CashOut option, you are able to set the Multiplier to Auto-Collect your winnings.  </li>
                                             <li>
-                                                CashOut has never been easier as it is possible to withdraw manually while using the auto-withdraw feature.
-                                                Maximize your Winnings and Minimize loses by using the auto-withdraw feature on JetX.
+                                                When playing JetX, you can put more than one bet on each round to
+                                                predict which multiplier the plane will crash. The longer the plane
+                                                flies, the higher the multiplier. Attain high multipliers and win Big by
+                                                cashing out before the Jet goes up in flames.
+                                            </li>
+                                            <li>
+                                                Play JetX only on BetNare. Click here to play
+                                                https://betnare.com/smart-play?game=JetX&category=JetX
+                                            </li>
+                                            <li>
+                                                Cashing out on JetX is Easy. You can Cash-Out by clicking the cashout
+                                                button or by using the auto-withdraw option. With the Auto-CashOut
+                                                option, you are able to set the Multiplier to Auto-Collect your winnings
+                                            </li>
+                                            <li>
+                                                CashOut has never been easier as it is possible to withdraw manually
+                                                while using the auto-withdraw feature.
+                                                Maximize your Winnings and Minimize loses by using the auto-withdraw
+                                                feature on JetX.
                                             </li>
                                         </ul>
                                         <br/>

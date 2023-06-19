@@ -1236,7 +1236,7 @@ export const MarketList = React.memo(
   const [state, dispatch] = useContext(Context);
 
   const [filters, setFilters] = useState({});
-  const [perPage, setPerPage] = useState(10);
+  const [perPage, setPerPage] = useState(1000);
   const [currentPage, setCurrentPage] = useState(1);
 
   //  fetching More Markets from redux state

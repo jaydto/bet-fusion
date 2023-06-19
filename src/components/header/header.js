@@ -146,8 +146,8 @@ const Header = React.memo((props) => {
             setSettings(cached_settings);
         }
     })
-    const urlPath=window.location.pathname
-    const showDownload=(!urlPath.includes("nare-games")&&!urlPath.includes("gameplay")&&!urlPath.includes("smart-play")&&!urlPath.includes("betslip-slip")&&!urlPath.includes("betslip-nare")&&!urlPath.includes("betslip-jackpot")&&!urlPath.includes("nare-league")&&!urlPath.includes("bet-history")&&!urlPath.includes("standings")&&!urlPath.includes("results")&&!urlPath.includes("casino")&&!urlPath.includes("jackpot")&&!urlPath.includes("smart-soft")&&!urlPath.includes("virtuals")&&!urlPath.includes("match")&&!urlPath.includes("competition")&&!urlPath.includes("my-bets")&&!urlPath.includes("profile")&&!urlPath.includes("promotions"))
+    const urlPath = window.location.pathname
+    const showDownload = (!urlPath.includes("nare-games") && !urlPath.includes("gameplay") && !urlPath.includes("smart-play") && !urlPath.includes("betslip-slip") && !urlPath.includes("betslip-nare") && !urlPath.includes("betslip-jackpot") && !urlPath.includes("nare-league") && !urlPath.includes("bet-history") && !urlPath.includes("standings") && !urlPath.includes("results") && !urlPath.includes("casino") && !urlPath.includes("jackpot") && !urlPath.includes("smart-soft") && !urlPath.includes("virtuals") && !urlPath.includes("match") && !urlPath.includes("competition") && !urlPath.includes("my-bets") && !urlPath.includes("profile") && !urlPath.includes("promotions"))
 
     useEffect(() => {
 
@@ -219,14 +219,14 @@ const Header = React.memo((props) => {
 
     const expand = "md"
     const pathname = window.location.pathname;
-    useEffect(()=>{
-        if(pathname=='nare-league'){
-            dispatch({type: "SET", key: "kiron_page", payload:true});
-        }else{
-            dispatch({type: "SET", key: "kiron_page", payload:false});
+    useEffect(() => {
+        if (pathname == 'nare-league') {
+            dispatch({type: "SET", key: "kiron_page", payload: true});
+        } else {
+            dispatch({type: "SET", key: "kiron_page", payload: false});
         }
 
-    },[ pathname ])
+    }, [pathname])
 
 
 
@@ -236,6 +236,7 @@ const Header = React.memo((props) => {
     return (
         <>
             {/*{showLoadingModal && ( <ExitModal setShowLoadingModal={setShowLoadingModal} visible={showLoadingModal}/>)}*/}
+            <ToastContainer/>
             <div className={'d-flex flex-column'}>
                 {showDownload&&<Link to={'/betnare.apk'}
                                      target={"_blank"}
@@ -265,7 +266,7 @@ const Header = React.memo((props) => {
                             </Navbar.Brand>
 
                             {/*todo check information provided for a user*/}
-                            <div className={` col-10 change-size desk-top`} id="navbar-collapse-main " >
+                            <div className={` col-10 change-size desk-top`} id="navbar-collapse-main ">
                                 <div
                                     className="col-md-11 col-sm-12 col-lg-7 right fix-view-2 disable-ipad to-navcheck justify-content-end pt-lg-0 pt-md-3">
                                     {user ? <ProfileMenu user={user}/> : <LoginSection/>}
@@ -280,17 +281,21 @@ const Header = React.memo((props) => {
                         {state?.searching?
                             <div id="navbar-collapse-main"
                                  className={`fadeIn header-menu d-flex justify-content-center w-100 d-block`}>
-                                <ListGroup as="ul" xs="9" horizontal className="nav navbar-nav og ale ss col-12 text-center w-100 d-flex">
+                                <ListGroup as="ul" xs="9" horizontal
+                                           className="nav navbar-nav og ale ss col-12 text-center w-100 d-flex">
                                     <div className="d-flex w-100">
-                                        <div className="col-10  px-2" style={{marginLeft:'2vw'}}>
-                                            <input type="text" placeholder={'Start typing to search for team ...'}  autoFocus={true} ref={searchInputRef}
+                                        <div className="col-10  px-2" style={{marginLeft: '2vw'}}>
+                                            <input type="text" placeholder={'Start typing to search for team ...'}
+                                                   autoFocus={true} ref={searchInputRef}
                                                    onInput={(event) => fetchMatches(event.target.value)}
-                                                   className={'form-control input-field-search border-0  text-default bg-light no-border-radius input-bg-user'}  style={{background: "#2D4352"}}/>
-                                            <div className="col-10" style={{ overflowY:'auto', borderRadius:'2px'}}
+                                                   className={'form-control input-field-search border-0  text-default bg-light no-border-radius input-bg-user'}
+                                                   style={{background: "#2D4352"}}/>
+                                            <div className="col-10" style={{overflowY: 'auto', borderRadius: '2px'}}
                                                  className={`autocomplete-box  rounded position-fixed  search-results-box border-dark col-md-5 shadow-lg text-start`}
                                                  onClick={() => gaEventTracker('View Search Results')}>
                                                 {matches.map((match, index) => (
-                                                    <Link to={`/?search=${match.home_team}&sub_type_id=1`} key={index} onClick={()=> window.location.href=`/?search=${match.home_team}&sub_type_id=1`}>
+                                                    <Link to={`/?search=${match.home_team}&sub_type_id=1`} key={index}
+                                                          onClick={() => window.location.href = `/?search=${match.home_team}&sub_type_id=1`}>
                                                         <li>
                                                             {match.home_team}
                                                         </li>
@@ -298,23 +303,27 @@ const Header = React.memo((props) => {
                                                 ))}
                                             </div>
                                         </div>
-                                        <button className={'col-2 btn text-warning align-right d-flex justify-content-center align-items-center flex-column'} onClick={() => dismissSearch()}>
+                                        <button
+                                            className={'col-2 btn text-warning align-right d-flex justify-content-center align-items-center flex-column'}
+                                            onClick={() => dismissSearch()}>
                                             <FontAwesomeIcon icon={faTimes}/> Close
                                         </button>
                                     </div>
 
                                 </ListGroup>
                             </div>
-                            :(pathname!=='/signup')&&pathname!=='/nare-league'&&pathname!=='/results'&& pathname!=='/standing'&&pathname!=='/playouts'&&pathname!=='/standing  '&&pathname!=='/bet-history'&&!slip&&<MobileNav1/>}
+                            : (pathname !== '/signup') && pathname !== '/nare-league' && pathname !== '/results' && pathname !== '/standing' && pathname !== '/playouts' && pathname !== '/standing  ' && pathname !== '/bet-history' && !slip &&
+                            <MobileNav1/>}
 
 
                         <Navbar.Offcanvas
-                            style={{width: "80%", height: "100%",zIndex: "9999", marginTop: "0px", overflowY:"auto"}}
+                            style={{width: "80%", height: "100%", zIndex: "9999", marginTop: "0px", overflowY: "auto"}}
                             className='off-canvas background-primary p-0'
                             id={`offcanvasNavbar-expand-${expand}`}
                             aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
                             placement="start">
-                            <Offcanvas.Header closeButton className='text-white' closeVariant={"white"} onClick={toggle}>
+                            <Offcanvas.Header closeButton className='text-white' closeVariant={"white"}
+                                              onClick={toggle}>
                                 <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
                                     <div className="col-5">
                                         <div>
@@ -323,7 +332,7 @@ const Header = React.memo((props) => {
                                     </div>
                                 </Offcanvas.Title>
                             </Offcanvas.Header>
-                            <Offcanvas.Body >
+                            <Offcanvas.Body>
                                 <SidebarMobile/>
                             </Offcanvas.Body>
                         </Navbar.Offcanvas>
@@ -331,7 +340,7 @@ const Header = React.memo((props) => {
                     </div>
                 </Navbar>
             </div>
-       </>
+        </>
 
     )
 })

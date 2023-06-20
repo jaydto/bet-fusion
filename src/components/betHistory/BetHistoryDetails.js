@@ -65,8 +65,8 @@ const BetHistoryDetails= React.memo(
 
     return (
         <div>
-            {bet.map((bets) => (
-                <Card sx={{ maxWidth: 345 }} key={bets.parent_match_id} className={'card-bet-details'}>
+            {bet.map((bets,index) => (
+                <Card sx={{ maxWidth: 345 }} key={index} className={'card-bet-details'}>
                     <CardActionArea className={'card-bet-details'}>
                         <Typography variant="body2" color="text.secondary">Home Team: {bets.home_team} | Away Team: {bets.away_team}</Typography>
                          <Typography variant="body2" color="text.secondary">Bet Pick: {bets.bet_pick} | Win: {bets.win}</Typography>

@@ -47,7 +47,7 @@ const BetHistory = React.memo(
             <div className={`flow slip-height slip-log-max overflow-auto`}  >
                 <ul className={"slip-top"}>
                     { (
-                        Object.entries(state?.mybets || {}).map(([match_id, slip]) => {
+                        Object.entries(state?.mybets || {}).map(([match_id, slip],index) => {
                             let odd = slip.odd_value;
                             let no_odd_bg = odd === 1 ? "#f29f7a" : "";
                             // console.log(slip)
@@ -56,7 +56,7 @@ const BetHistory = React.memo(
                                     className={`bet-option hide-on-affix mybets-slip ${
                                         slip?.disable ? "warn" : ""
                                     }`}
-                                    key={match_id}
+                                    key={index}
                                     style={{ background: no_odd_bg }}
                                 >
                                     {/*<div className="bet-cancel">*/}

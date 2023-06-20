@@ -370,8 +370,8 @@ export const LoadForm = (formSchema, submitLabel, endpoint) => {
         initialValues={formData}
         validationSchema={validationSchema}
         onSubmit={onSubmit} >
-        {Object.keys(formSchema).map( (key, ind) => (
-            <div key={key}>
+        {Object.keys(formSchema).map( (key, index) => (
+            <div key={index}>
                 {getFormElement(key, formSchema[key])}
             </div>
         ))}

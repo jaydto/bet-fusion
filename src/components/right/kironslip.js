@@ -206,12 +206,12 @@ const KironSlip = React.memo(
                         betslipsData == null ? (
                             ""
                         ) : (
-                            Object.entries(betslipsData || {}).map(([match_id, slip]) => {
+                            Object.entries(betslipsData || {}).map(([match_id, slip],index) => {
                                 let odd = slip.odd_value;
                                 let no_odd_bg = odd === 1 ? "#f29f7a" : "";
 
                                 return (
-                                    <div className={'d-flex slip-bg'}>
+                                    <div className={'d-flex slip-bg'} key={index}>
                                         <div className="bet-cancel">
                                             <input
                                                 id={slip.match_id}
@@ -230,6 +230,7 @@ const KironSlip = React.memo(
                                                 style={{background: no_odd_bg}}
                                             >
                                                 <Link
+                                                    key={index}
                                                     href={`${
                                                         slip?.bet_type === "0"
                                                             ? "/match/" + slip?.match_id

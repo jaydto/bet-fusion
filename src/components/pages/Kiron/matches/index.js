@@ -504,10 +504,10 @@ const MatchList = React.memo(
         <div className="web-element px-lg-0 ">
           {
               state?.nare_league_matches&&
-              Object.entries(state?.nare_league_matches).map(([key, match]) => (
+              Object.entries(state?.nare_league_matches).map(([key, match], index) => (
                   <MatchRow
                       match={match}
-                      key={key}
+                      key={index}
                       pdown={pdown}
                       three_way={three_way}
                       competition_id={competition_id}

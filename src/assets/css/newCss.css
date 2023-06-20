@@ -815,8 +815,8 @@ input[type="radio"], input[type="checkbox"] {
     top: 93px;
     position: sticky;
 }
-.user_logged{
-    margin-top:10rem;
+.user_logged {
+    margin-top: 7rem;
 }
 img.nare-league {
     margin-bottom: 30px;
@@ -2167,7 +2167,7 @@ img.nare-league {
         padding: 5px 3px;
     }
     .user_logged {
-        margin-top: 10.7rem;
+        margin-top: 9rem;
     }
     .amt {
         /*padding-top: 110px !important;*/

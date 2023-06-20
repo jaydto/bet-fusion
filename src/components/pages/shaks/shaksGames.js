@@ -67,8 +67,8 @@ const ShaksGames = React.memo(
         <> 
 
             {showLoadingModal && ( <LoginModal setShowLoadingModal={setShowLoadingModal} visible={showLoadingModal} location={location}/>)}
-            {gamesLoaded && games?.map((game) => (
-                <div className={'col cursor-pointer'}>
+            {gamesLoaded && games?.map((game,index) => (
+                <div className={'col cursor-pointer'} key={index}>
                     <div
                         className={'mt-1 mb-1 d-flex flex-column shadow-lg virtual-game-container'}>
                         <Link to='#'

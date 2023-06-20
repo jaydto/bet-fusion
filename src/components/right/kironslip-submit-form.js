@@ -542,7 +542,7 @@ const KironslipSubmitForm = React.memo(
                                                     className="bet-select bet-stake-input"
                                                     name="bet_amount"
                                                     id="bet_amount"
-                                                    value={values.bet_amount}
+                                                    value={values.bet_amount||""}
                                                     onChange={(e) => onFieldChanged(e)}
                                                 />
                                             }
@@ -584,19 +584,19 @@ const KironslipSubmitForm = React.memo(
                             type="hidden"
                             name={"user_kiron_id"}
                             id={"user_kiron_id"}
-                            value={state?.user?.profile_id}
+                            value={state?.user?.profile_id||""}
                         />
                         <input
                             type="hidden"
                             name={"total_kiron_odd"}
                             id={"total_kiron_odd"}
-                            value={totalOdds}
+                            value={totalOdds||""}
                         />
                         <input ref={scrollToRef}
                                type="hidden"
                                name={"total_kiron_games"}
                                id={"total_kiron_games"}
-                               value={totalGames}
+                               value={totalGames||""}
                         />
                     </FormikForm>
                 );

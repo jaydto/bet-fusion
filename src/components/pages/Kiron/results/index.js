@@ -36,9 +36,9 @@ const KironResults = React.memo(
     return (
         <>
             {resulted &&!loading?
-                Object.entries(resulted).map(([key, league]) => (
+                Object.entries(resulted).map(([key, league],index) => (
                     <>
-                        <section className="standing-wrapper text-center pt-2 pb-2">
+                        <section className="standing-wrapper text-center pt-2 pb-2" key={index}>
                             <div className="container">
                                 <div className="row">
                                     <div className="col-12 pb-2">
@@ -49,8 +49,8 @@ const KironResults = React.memo(
                                 </div>
                             </div>
                         </section>
-                        {Object.entries(league?.matches).map(([key, results]) => (
-                            <div className="league-games-wrapper">
+                        {Object.entries(league?.matches).map(([key, results], index) => (
+                            <div className="league-games-wrapper" key={index}>
                                 <div className={'w-100'}>
                                     <div className="playing-games-wrapper float-left w-100 small">
                                         <div className="league-wrapper-r">

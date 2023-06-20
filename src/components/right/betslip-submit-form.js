@@ -651,7 +651,7 @@ const BetslipSubmitForm = React.memo(
                                                     name="bet_amount"
                                                     id="bet_amount"
                                                     placeholder={"AMOUNT"}
-                                                    value={values.bet_amount}
+                                                    value={values.bet_amount||""}
                                                     onChange={(e) => onFieldChanged(e)}
                                             />)}
                                     </div>
@@ -702,19 +702,19 @@ const BetslipSubmitForm = React.memo(
                         type="hidden"
                         name={"user_id"}
                         id={"user_id"}
-                        value={state?.user?.profile_id}
+                        value={state?.user?.profile_id||""}
                     />
                     <input
                         type="hidden"
                         name={"total_odd"}
                         id={"total_odd"}
-                        value={totalOdds}
+                        value={totalOdds||""}
                     />
                     <input
                         type="hidden"
                         name={"total_games"}
                         id={"total_games"}
-                        value={totalGames}
+                        value={totalGames||""}
                     />
                 </FormikForm>)
             }}

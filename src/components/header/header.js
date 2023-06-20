@@ -278,8 +278,8 @@ const Header = React.memo(
                                                    onInput={(event) => fetchMatches(event.target.value)}
                                                    className={'form-control input-field-search border-0  text-default bg-light no-border-radius input-bg-user'}
                                                    style={{background: "#2D4352"}}/>
-                                            <div className="col-10" style={{overflowY: 'auto', borderRadius: '2px'}}
-                                                 className={`autocomplete-box  rounded position-fixed  search-results-box border-dark col-md-5 shadow-lg text-start`}
+                                            <div style={{overflowY: 'auto', borderRadius: '2px'}}
+                                                 className={`col-10 autocomplete-box  rounded position-fixed  search-results-box border-dark col-md-5 shadow-lg text-start`}
                                                  onClick={() => gaEventTracker('View Search Results')}>
                                                 {matches.map((match, index) => (
                                                     <Link to={`/?search=${match.home_team}&sub_type_id=1`} key={index}

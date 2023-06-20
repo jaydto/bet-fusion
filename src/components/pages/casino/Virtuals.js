@@ -81,8 +81,8 @@ const Virtuals = React.memo(
                                 </div>
                                 <div className="col">
                                     <div className={'row text-white p-2 shadow-sm virtual-size'}>
-                                        {state?.casino_search!==undefined&&state?.casino_search.length>0?state?.casino_search?.map((search_game)=>(
-                                                <div className={'col-lg-2 col-md-6 col-sm-6 virtual-width'}>
+                                        {state?.casino_search!==undefined&&state?.casino_search.length>0?state?.casino_search?.map((search_game,index)=>(
+                                                <div className={'col-lg-2 col-md-6 col-sm-6 virtual-width'} key={index}>
                                                     <div
                                                         className={'mt-1 mb-1 d-flex flex-column shadow-lg virtual-game-container'}>
                                                         <div onClick={() => launchGame(search_game?.game_id, true)}
@@ -108,8 +108,8 @@ const Virtuals = React.memo(
                                                 </div>
                                             ))
                                             :
-                                            games?.map((game) => (
-                                                    <div className={'col-lg-2 col-md-4 col-sm-12 virtual-width'}>
+                                            games?.map((game,index) => (
+                                                    <div className={'col-lg-2 col-md-4 col-sm-12 virtual-width'} key={index}>
                                                         <div
                                                             className={'mt-1 mb-1 d-flex flex-column shadow-lg virtual-game-container'}>
                                                             <div onClick={() => launchGame(game?.game_id, true)}

@@ -62,10 +62,10 @@ export const SportItem = React.memo(
             <ul className="treeview-menu">
               {
                   sport?.categories && sport.categories.map(
-                      category => (
+                      (category,index )=> (
                           <CategoryItem 
                               category={category} 
-                              key={category.category_id} 
+                              key={index}
                               active_class={activeClass}
                               category_id={category.category_id} 
                               sport_id = {sport_id}
@@ -125,13 +125,13 @@ export const CategoryItem = (props) => {
                 { 
                     category.competitions && 
                        category.competitions.map(
-                        competition => (
+                        (competition,index) => (
                             <CompetitionItem 
                                 competition={competition} 
                                 competition_id={competition.competition_id} 
                                 category_id={category_id}
                                 sport_id={sport_id}
-                                key={competition.competition_id} />
+                                key={index} />
                         )
                     )
                 }

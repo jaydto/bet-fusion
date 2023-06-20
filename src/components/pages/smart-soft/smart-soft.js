@@ -58,9 +58,9 @@ const SmartSoft = React.memo(
                                     <div className={'row row-cols-4 text-white p-2 shadow-sm mt-2 smart-soft-games-container'}>
 
                                         {gamesLoaded &&
-                                            (state?.smartsoft_search!==undefined&&state?.smartsoft_search.length>0?state?.smartsoft_search?.map((search_game)=>(
+                                            (state?.smartsoft_search!==undefined&&state?.smartsoft_search.length>0?state?.smartsoft_search?.map((search_game,index)=>(
                                                     search_game?.gameName!=="TripleSeven"&&
-                                                    <div className={'col-6 cursor-pointer smart-soft-game'}>
+                                                    <div key={index} className={'col-6 cursor-pointer smart-soft-game'}>
                                                         <div
                                                             className={'mt-1 mb-1 d-flex flex-column shadow-lg virtual-game-container'}>
                                                             <Link to={{pathname:`/smart-play`, search: `game=${search_game?.gameName}&category=${search_game?.gameCategory}`}}
@@ -83,9 +83,9 @@ const SmartSoft = React.memo(
                                                             </Link>
                                                         </div>
                                                     </div>)):
-                                                games?.map((game) => (
+                                                games?.map((game,index) => (
                                                     game.gameName!=="TripleSeven"&&
-                                                    <div className={'col-lg-3 col-md-6 col-sm-6 cursor-pointer smart-soft-game'}>
+                                                    <div key={index} className={'col-lg-3 col-md-6 col-sm-6 cursor-pointer smart-soft-game'}>
                                                         <div
                                                             className={'mt-1 mb-1 d-flex flex-column shadow-lg virtual-game-container'}>
                                                             <Link to={{pathname:`/smart-play`, search: `game=${game?.gameName}&category=${game?.gameCategory}`}}

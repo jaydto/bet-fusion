@@ -171,9 +171,9 @@ const MyBets = React.memo(
     const MyBetsList = (props) => {
 		return (
          <Accordion className={" px-1"} >
-			{state?.mybets && state.mybets.map((bet) => (
+			{state?.mybets && state.mybets.map((bet,index) => (
 				<AccordionItem
-                    key = {bet.bet_id}
+                    key = {index}
                     uuid = { bet.bet_id }>
 					<AccordionItemHeading >
                         <AccordionItemButton >

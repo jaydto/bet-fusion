@@ -276,13 +276,13 @@ const BetSlip = React.memo(
                                 <DecodeCode />
                             )
                         ) : (
-                            Object.entries(betslipsData || {}).map(([match_id, slip]) => {
+                            Object.entries(betslipsData || {}).map(([match_id, slip],index) => {
                                 let odd = slip.odd_value;
                                 let no_odd_bg = odd === 1 ? "#f29f7a" : "";
                                 // console.log(slip)
                                 return (
 
-                                        <div className={'d-flex slip-bg'}>
+                                        <div key={index} className={'d-flex slip-bg'}>
                                             <div className="bet-cancel">
                                                 <input
                                                     id={slip.match_id}

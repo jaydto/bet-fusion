@@ -59,9 +59,10 @@ const Casino = React.memo(
                     <div className="col-md-12 casino-scroll" >
                         <div
                             className="shadow-sm p-2 shadow-sm casino-category-container mt-2">
-                            {categories?.map((category) => (
+                            {categories?.map((category,index) => (
                                 category?.game_type_id !== "rgs-vsb"
                                 && <Button bg="warning"
+                                           key={index}
                                            style={{marginRight: '2px'}}
                                            className={`cursor-pointer text-center casino-category casino-category-button`}
                                            onClick={() => getCategoryGames(category)}>
@@ -75,9 +76,9 @@ const Casino = React.memo(
                     </div>
                     <div className="col">
                         <div className={'row text-white p-2 shadow-sm'}>
-                            {state?.casino_search!==undefined&&state?.casino_search.length>0?state?.casino_search?.map((search_game)=>(
+                            {state?.casino_search!==undefined&&state?.casino_search.length>0?state?.casino_search?.map((search_game,index)=>(
                                     search_game?.game_id=="rgs-vsv"?"":
-                                        <div className={'col-md-4 col-lg-3 col-sm-4 virtual-width'}>
+                                        <div key={index} className={'col-md-4 col-lg-3 col-sm-4 virtual-width'}>
                                             <div
                                                 className={'mt-1 mb-1 d-flex flex-column shadow-lg virtual-game-container'}>
                                                 <div onClick={() => launchGame(search_game?.game_id, true)}
@@ -104,9 +105,9 @@ const Casino = React.memo(
                                             </div>
                                         </div>
                                 ))
-                                : games?.map((game) => (
+                                : games?.map((game,index) => (
                                         game?.game_id=="rgs-vsv"?"":
-                                            <div className={'col-md-3 col-sm-4 col-lg-2 col- virtual-width'}>
+                                            <div key={index} className={'col-md-3 col-sm-4 col-lg-2 col- virtual-width'}>
                                                 <div
                                                     className={'mt-1 mb-1 d-flex flex-column shadow-lg virtual-game-container'}>
                                                     <div onClick={() => launchGame(game?.game_id, true)}

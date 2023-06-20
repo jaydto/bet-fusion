@@ -59,8 +59,8 @@ const Standing = () => {
                             <th className={'standings-menu text-center'}>Form</th>
                         </tr>
                         {standings &&
-                            Object.entries(standings).map(([key, standing]) => (
-                                <tr>
+                            Object.entries(standings).map(([key, standing],index) => (
+                                <tr key={index}>
                                     <td className={'standings-menu'}>{standing?.position}</td>
                                     <td className="playing-teams-r standings-menu">
                                     <span className="team-badge">
@@ -73,8 +73,8 @@ const Standing = () => {
                                     <td className={'standings-menu'}>{standing?.points}</td>
                                     <td className={'standings-menu'}>{standing?.games_played}</td>
                                     <td className={'standings-menu'}><span className="team-form">
-                                       {Array.from(standing?.form)?.map((item) => (
-                                           <span title={`${item == 'L' ? ' Lost' : item == 'W' ? ' Won ' : ' Draw '}`}
+                                       {Array.from(standing?.form)?.map((item, index) => (
+                                           <span key={index} title={`${item == 'L' ? ' Lost' : item == 'W' ? ' Won ' : ' Draw '}`}
                                                  className={`size-form btn btn-sm ${item == 'L' ? ' btn-danger ' : item == 'W' ? ' btn-success ' : ' btn-dark '} mx-1`}
                                                  style={{width: '18%', cursor: 'default'}}><strong
                                                className={'bold'}>{item}</strong></span>

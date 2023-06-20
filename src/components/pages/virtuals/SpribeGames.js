@@ -77,8 +77,8 @@ const GamePlay = () => {
 
                                         </div>
                                         {gamesLoaded &&
-                                            (state?.naregames_search!==undefined&&state?.naregames_search.length>0?state?.naregames_search?.map((search_game)=>(
-                                                    <div className={'col cursor-pointer'}>
+                                            (state?.naregames_search!==undefined&&state?.naregames_search.length>0?state?.naregames_search?.map((search_game,index)=>(
+                                                    <div className={'col cursor-pointer'} key={index}>
                                                         <div
                                                             className={'mt-1 mb-1 d-flex flex-column shadow-lg virtual-game-container'}>
                                                             <Link to={{pathname:`/nare-game`, search: `game=${search_game?.key}`}}
@@ -101,8 +101,8 @@ const GamePlay = () => {
                                                         </div>
                                                     </div>
                                                 )):
-                                                games?.map((game) => (
-                                                    <div className={'col cursor-pointer'}>
+                                                games?.map((game,index) => (
+                                                    <div key={index} className={'col cursor-pointer'}>
                                                         <div
                                                             className={'mt-1 mb-1 d-flex flex-column shadow-lg virtual-game-container'}>
                                                             <Link to={`/nare-games/${game?.key}`}

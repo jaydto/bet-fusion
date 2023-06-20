@@ -2239,6 +2239,9 @@ img.nare-league {
 
 }
 @media (max-width: 575px){
+    .empty-more-markets-button{
+        height:32px!important;
+    }
     .show-tax-info {
         width: 50%;
         z-index: 200;

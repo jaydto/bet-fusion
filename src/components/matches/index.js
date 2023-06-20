@@ -42,7 +42,7 @@ const EmptyTextRow = React.memo(
   const {odd_key, classname,live,allMarkets} = props;
 
   return (
-      <button className={`${classname} ${allMarkets ? ' all-markets ':''} home-team btn btn-disabled match-detail c-btn ${live?"c-resize":"width-button-odd"}`}
+      <button className={`${classname} ${allMarkets ? ' all-markets ':''} empty-more-markets-button home-team btn btn-disabled match-detail c-btn ${live?"c-resize":"width-button-odd"}`}
               style={{
                 width: "100%",
                 height: "40px",

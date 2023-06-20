@@ -95,7 +95,7 @@ const LoginTwo = React.memo(
 	return (
 		<div style={{height:'100vh', background:'#16202C'}}>
 			<div className={''}>
-				<Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
+				<Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav top-section-page " fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
 					<Container fluid className={'d-flex justify-content-between mobile-change top-login-background-img'}>
 						<Navbar.Brand className="e logo align-self-start menu-control d-flex w-100" title="Betnare" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
 							<Link to={'/'} className={'text-light'}>

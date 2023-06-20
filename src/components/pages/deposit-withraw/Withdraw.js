@@ -223,7 +223,7 @@ const Withdrawal = React.memo(
             {/*</div>*/}
             <div style={{height:'100vh', background:'#16202C'}}  >
                 <div className={`${mobile?"d-none":""}`}>
-                    <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav top-nav-centric" fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
+                    <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav top-nav-centric top-section-page" fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
                         <Container fluid className={'d-flex justify-content-between mobile-change top-login-background-img'}>
                             <Navbar.Brand className="e logo align-self-start menu-control d-flex w-100 " title="Betnare" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
                                 <Link to={'/'} className={'betnare-text-light'}>

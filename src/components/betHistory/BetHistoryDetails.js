@@ -2,7 +2,8 @@ import React, {useState} from 'react';
 import makeRequest from "../utils/fetch-request";
 import {Card, CardActionArea, Typography} from "@material-ui/core";
 
-const BetHistoryDetails= props => {
+const BetHistoryDetails= React.memo(
+    props => {
         const {bet}=props
 
         const [betStatus, setBetStatus] = useState(bet.status_desc);
@@ -76,7 +77,7 @@ const BetHistoryDetails= props => {
             ))}
         </div>
         )
-};
+});
 
 
 export default BetHistoryDetails;

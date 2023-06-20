@@ -2,13 +2,14 @@ import React, {useContext, useEffect, useState} from 'react';
 import Header from "../../header/header";
 import makeRequest from "../../utils/fetch-request";
 import {LazyLoadImage} from 'react-lazy-load-image-component';
-import { setLocalStorage} from "../../utils/local-storage";
-import { Button, ButtonGroup} from "react-bootstrap";
+import {setLocalStorage} from "../../utils/local-storage";
+import {Button, ButtonGroup} from "react-bootstrap";
 import SearchComponent from "./searchField";
 import {Context} from "../../../context/store";
 import SideBar from "../../sidebar/awesome/Sidebar";
 
-const Casino = () => {
+const Casino = React.memo(
+    () => {
 
     const [categories, setCategories] = useState([])
 
@@ -145,7 +146,7 @@ const Casino = () => {
         </>
     )
 
-}
+})
 
 
 export default Casino;

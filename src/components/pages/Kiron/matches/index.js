@@ -1,20 +1,12 @@
-import React, {
-  useState,
-  useEffect,
-  useContext,
-  useCallback,
-  useRef,
-} from "react";
+import React, {useCallback, useContext, useEffect, useRef, useState,} from "react";
 import {Context} from "../../../../context/store";
 import "./matches.css";
-import {
- addToKironSlip,
-  getKironSlip, removeFromKironSlip,
-} from "../../../utils/betslip";
+import {addToKironSlip, getKironSlip, removeFromKironSlip,} from "../../../utils/betslip";
 
 import "react-lazy-load-image-component/src/effects/blur.css";
 
-import { Spinner } from "react-bootstrap";
+import {Spinner} from "react-bootstrap";
+import {LazyLoadImage} from "react-lazy-load-image-component";
 
 const clean = (_str) => {
   _str = _str.replace(/[^A-Za-z0-9\-]/g, "");
@@ -217,7 +209,8 @@ const marketChoice = () => {
   return markets;
 };
 
-export const MatchRow = (props) => {
+export const MatchRow = React.memo(
+    (props) => {
   const {  match, three_way, competition_id} = props;
 
   const [state,dispatch]=useContext(Context)
@@ -263,13 +256,13 @@ export const MatchRow = (props) => {
             <div className="event" style={{position: "static !important"}}>
               <div className="event-t">
                 <div className="team-badge">
-                  <img src={match?.home_team_image}/>
+                  <LazyLoadImage src={match?.home_team_image}/>
                   <div className={"bold team"}>{match.home_team_name}</div>
 
                 </div>
                 <span className="divider">—</span>
                 <div className="team-badge">
-                  <img src={match?.away_team_image}/>
+                  <LazyLoadImage src={match?.away_team_image}/>
                   <div className={"bold team"}>{match.away_team_name}</div>
                 </div>
               </div>
@@ -308,13 +301,13 @@ export const MatchRow = (props) => {
                   <div style={{width:'90%'}}>
                     <div className="compt-teams d-flex flex-xl-column flex-column ">
                       <div className="team-badge">
-                        <img src={match?.home_team_image}/>
+                        <LazyLoadImage src={match?.home_team_image}/>
                         <div className={"bold team"}>
                           {match.home_team_name}
                         </div>
                       </div>
                       <div className="team-badge">
-                        <img src={match?.away_team_image}/>
+                        <LazyLoadImage src={match?.away_team_image}/>
                         <div className={"bold team"}>{match.away_team_name}</div>
                       </div>
                     </div>
@@ -352,9 +345,10 @@ export const MatchRow = (props) => {
 
 
   );
-};
+});
 
-const   OddButton = (props) => {
+const   OddButton = React.memo(
+    (props) => {
   const {  mkt, detail, odds,oddkey, marketName, eventTime,homeTeam, awayTeam,parentId,marketId,  allMarkets, competition_id,round_id } = props;
 
   const [ucn, setUcn] = useState("");
@@ -492,9 +486,10 @@ const   OddButton = (props) => {
         {!detail && <span className="theodds odd-fix" style={{lineHeight:"1"}}>{odds}</span>}
       </button>
   );
-};
+});
 
-const MatchList = (props) => {
+const MatchList = React.memo(
+    (props) => {
   const [state,]=useContext(Context)
   const {
     pdown,
@@ -531,5 +526,5 @@ const MatchList = (props) => {
         </div>
       </div>
   );
-};
+});
 export default MatchList;

@@ -150,7 +150,9 @@ input, select, textarea {
     /*padding-bottom: max(10px, env(safe-area-insent-bottom));*/
     justify-content: space-around;
 }
-
+.mobile-menu tbody{
+    width:100%;
+}
 
   .bloc-icon p{
     color: white;

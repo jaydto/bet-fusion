@@ -5,7 +5,8 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faDollarSign, faGifts, faListOl, faSmile} from "@fortawesome/free-solid-svg-icons";
 import useWindowDimensions from "./Dimensions";
 
-const MobileProfile = (props) => {
+const MobileProfile = React.memo(
+    (props) => {
     const {user} = props;
     const {height, width} = useWindowDimensions();
     return (<>
@@ -81,6 +82,6 @@ const MobileProfile = (props) => {
             </div>)}
 
     </>);
-};
+});
 
 export default React.memo(MobileProfile);

@@ -1,6 +1,6 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import makeRequest from "../../utils/fetch-request";
-import {Formik, Form} from 'formik';
+import {Form, Formik} from 'formik';
 import {Context} from '../../../context/store';
 import {getBetslip} from '../../utils/betslip'
 
@@ -10,7 +10,8 @@ const SideBar = React.lazy(() => import('../../sidebar/awesome/Sidebar'));
 const Right = React.lazy(() => import('../../right/index'));
 const Footer = React.lazy(() => import('../../footer/footer'));
 
-const RedeemPoints = (props) => {
+const RedeemPoints = React.memo(
+    (props) => {
     //todo get the phone number from logged in user ....
     const [state, dispatch] = useContext(Context);
 
@@ -180,6 +181,6 @@ const RedeemPoints = (props) => {
 
         </React.Fragment>
     )
-}
+})
 
 export default RedeemPoints;

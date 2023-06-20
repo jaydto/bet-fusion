@@ -1,37 +1,24 @@
-import React, {
-    useState,
-    useEffect,
-    useContext,
-    useCallback,
-    useRef,
-} from "react";
+import React, {useCallback, useContext, useEffect, useRef, useState,} from "react";
 import {Context} from "../../context/store";
-import {
-    formatNumber, clearKironSlip, getKironSlip, removeFromKironSlip,
-} from "../utils/betslip";
+import {clearKironSlip, formatNumber, getKironSlip, removeFromKironSlip,} from "../utils/betslip";
 import publicIp from "public-ip";
 import makeRequest from "../utils/fetch-request";
 import "react-toastify/dist/ReactToastify.css";
 
-import {Formik, Form as FormikForm, useFormikContext} from "formik";
+import {Form as FormikForm, Formik, useFormikContext} from "formik";
 import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {
-    faCut,
-    faFireAlt,
-    faGift,
-    faTrash,
-} from "@fortawesome/free-solid-svg-icons";
+import {faFireAlt, faGift, faTrash,} from "@fortawesome/free-solid-svg-icons";
 
 import {getTime} from "../pages/Kiron/periods";
-import {Switch} from "@material-ui/core";
-import {Navigate, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 const Float = (equation, precision = 4) => {
     return Math.round(equation * 10 ** precision) / 10 ** precision;
 };
 
-const KironslipSubmitForm = (props) => {
+const KironslipSubmitForm = React.memo(
+    (props) => {
     const {
         totalGames,
         totalOdds,
@@ -616,5 +603,5 @@ const KironslipSubmitForm = (props) => {
             }}
         </Formik>
     );
-};
+});
 export default React.memo(KironslipSubmitForm);

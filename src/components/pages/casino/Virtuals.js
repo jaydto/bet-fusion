@@ -1,16 +1,17 @@
-import React, {useEffect, useState,useContext} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import Header from "../../header/header";
 import makeRequest from "../../utils/fetch-request";
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
 import {Button} from "react-bootstrap";
-import {toast, ToastContainer} from "react-toastify";
-import { useLocation } from 'react-router-dom';
+import {ToastContainer} from "react-toastify";
+import {useLocation} from 'react-router-dom';
 import SearchComponent from "./searchField";
 import {Context} from "../../../context/store";
 import SideBar from "../../sidebar/awesome/Sidebar";
 
-const Virtuals = (props) => {
+const Virtuals = React.memo(
+    (props) => {
 
     const [user] = useState(getFromLocalStorage("user"));
 
@@ -148,7 +149,7 @@ const Virtuals = (props) => {
         </>
     )
 
-}
+})
 
 
 export default Virtuals;

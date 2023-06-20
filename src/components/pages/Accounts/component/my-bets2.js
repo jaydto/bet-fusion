@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState, useCallback} from "react";
+import React, {useCallback, useContext, useEffect, useState} from "react";
 import {Context} from '../../../../context/store';
 import makeRequest from '../../../utils/fetch-request';
 import './newProfile.css'
@@ -11,11 +11,8 @@ import {
 } from 'react-accessible-accordion';
 import '../.././../../assets/css/accordion.react.css';
 import useWindowDimensions from "../../../header/Dimensions";
-import accounts from "../../../../assets/img/mobile/user.png";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faArrowLeft, faHome, faPowerOff} from "@fortawesome/free-solid-svg-icons";
-import {Link} from "react-router-dom";
 import Header from "../../../header/header";
+
 const Styles = {
     container: {
         background:'#22323e !important',

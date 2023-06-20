@@ -1,14 +1,15 @@
-import React, {useState, useEffect, useCallback} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import makeRequest from "../utils/fetch-request";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import 'react-perfect-scrollbar/dist/css/styles.css';
-import {Menu, MenuItem, ProSidebar, SidebarContent, SidebarHeader, SubMenu} from "react-pro-sidebar";
+import {Menu, MenuItem, ProSidebar, SidebarContent, SidebarHeader} from "react-pro-sidebar";
 import {Link} from "react-router-dom";
 import useWindowDimensions from "../header/Dimensions";
 
 
-const LiveSideBar = (props) => {
+const LiveSideBar = React.memo(
+    (props) => {
 
     const [liveSports, setLiveSports] = useState()
     const {height, width} = useWindowDimensions();
@@ -151,5 +152,5 @@ const LiveSideBar = (props) => {
     //       </PerfectScrollbar>
     //     </div>
     // )
-}
+})
 export default React.memo(LiveSideBar);

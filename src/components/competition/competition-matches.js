@@ -1,9 +1,9 @@
-import React, {useContext, useEffect, useState, useCallback} from "react";
+import React, {useCallback, useContext, useEffect, useState} from "react";
 import {useParams} from 'react-router-dom';
 import makeRequest from "../utils/fetch-request";
 import {Context} from '../../context/store';
 import useInterval from "../../hooks/set-interval.hook";
-import {getBetslip} from '../utils/betslip' ;
+import {getBetslip} from '../utils/betslip';
 import {Spinner} from "react-bootstrap";
 import useWindowDimensions from "../header/Dimensions";
 import Testimonials from "../carousel/Testimonials";
@@ -18,7 +18,8 @@ const MatchList = React.lazy(() => import('../matches'));
 const Right = React.lazy(() => import('../right'));
 
 
-const CompetitionMatches = (props) => {
+const CompetitionMatches = React.memo(
+    (props) => {
     const [page, setPage] = useState(1);
     const [matches, setMatches] = useState(null);
     const [state, dispatch] = useContext(Context);
@@ -158,6 +159,6 @@ const CompetitionMatches = (props) => {
             </div>
         </>
     )
-}
+})
 
 export default CompetitionMatches;

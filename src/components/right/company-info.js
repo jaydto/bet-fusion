@@ -1,8 +1,10 @@
 import React from 'react';
 import CustomerCare from '../../assets/img/banner/customer-care/Customer_Care_Banner.webp'
 import Paybill from '../../assets/img/banner/customer-care/Paybill.webp'
+import {LazyLoadImage} from "react-lazy-load-image-component";
 
-const CompanyInfo = (props) => {
+const CompanyInfo = React.memo(
+    (props) => {
 
     return (
         <div className="qv rc alu show-on-affix">
@@ -14,10 +16,10 @@ const CompanyInfo = (props) => {
                     </div>
                     <div className="">
                         <span className="col-sm-4">
-                        {/*<img src={contact} alt=" " />*/}
+                        {/*<LazyLoadImage src={contact} alt=" " />*/}
                         </span>
                         <span className="col-sm-8">
-                            <img src={Paybill} alt="" className='w-100'/>
+                            <LazyLoadImage src={Paybill} alt="" className='w-100'/>
                         </span>
                     </div>
                 </div>
@@ -28,10 +30,10 @@ const CompanyInfo = (props) => {
                     </div>
                     <div className="">
                         <span className="col-sm-4">
-                        {/*<img src={contact} alt=" " />*/}
+                        {/*<LazyLoadImage src={contact} alt=" " />*/}
                         </span>
                         <span className="col-sm-8 mt-4">
-                            <img src={CustomerCare} alt="" className='w-100'/>
+                            <LazyLoadImage src={CustomerCare} alt="" className='w-100'/>
                         </span>
                     </div>
                     <div className="mail text-lowercase bold bg-light">
@@ -42,5 +44,5 @@ const CompanyInfo = (props) => {
         </div>
     )
 
-}
+})
 export default React.memo(CompanyInfo);

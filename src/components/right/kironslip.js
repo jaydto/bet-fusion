@@ -1,8 +1,6 @@
-import React, {useState, useEffect, useContext, useCallback} from "react";
+import React, {useCallback, useContext, useEffect, useState} from "react";
 import {Context} from "../../context/store";
-import {
-    getKironSlip, removeFromKironSlip,
-} from "../utils/betslip";
+import {getKironSlip, removeFromKironSlip,} from "../utils/betslip";
 import {getFromLocalStorage} from "../utils/local-storage";
 import KironslipSubmitForm from "./kironslip-submit-form";
 import {Link} from "react-router-dom";
@@ -12,7 +10,8 @@ const clean_rep = (str) => {
     return str.replace(/-+/g, "-");
 };
 
-const KironSlip = (props) => {
+const KironSlip = React.memo(
+    (props) => {
     const {kiron} = props;
     const [betslipKey, setBetslipKey] = useState("kironbetslip");
     const [betslipsData, setBetslipsData] = useState(null);
@@ -295,6 +294,6 @@ const KironSlip = (props) => {
             </div>
         </div>
     );
-};
+});
 export default React.memo(KironSlip);
 

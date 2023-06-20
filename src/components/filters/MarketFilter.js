@@ -1,9 +1,10 @@
 import React, {useState} from "react";
-import {faFilter, faAngleDown} from "@fortawesome/free-solid-svg-icons";
+import {faAngleDown, faFilter} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {Button, Modal} from "react-bootstrap";
 
-const MarketFilter = () => {
+const MarketFilter = React.memo(
+    () => {
     const [showFilters, setShowFilters] = useState(false)
     const handleClose = () => {
         setShowFilters(false)
@@ -58,7 +59,7 @@ const MarketFilter = () => {
             </Modal>
         </>
     )
-}
+})
 
 
 export default MarketFilter

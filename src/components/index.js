@@ -1,14 +1,11 @@
 import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
 import './test.css'
-import {setLocalStorage} from "./utils/local-storage";
-import useAnalyticsEventTracker from "./analytics/useAnalyticsEventTracker";
 import {useLocation} from "react-router-dom";
 import useWindowDimensions from "./header/Dimensions";
 import {Context} from "../context/store";
 import {getBetslip} from "./utils/betslip";
 import useInterval from "../hooks/set-interval.hook";
 import makeRequest from "./utils/fetch-request";
-import MobileNav2 from "./mobile-navigation/MobileNav2";
 import Testimonials from "./carousel/Testimonials";
 import Countries from "./countries/Countries";
 import Skeleton1 from "./skeleton/skeleton";
@@ -21,7 +18,8 @@ const MainTabs = React.lazy(() => import('./header/main-tabs'));
 const MatchList = React.lazy(() => import('./matches'));
 const Right = React.lazy(() => import('./right'));
 const SideBar = React.lazy(() => import('./sidebar/awesome/Sidebar'))
-const Index = () => {
+const Index = React.memo(
+    () => {
     const [scrollEndedActive, setScrollEndedActive] = useState(false)
     const location = useLocation();
     const [tab, setTab] = useState('highlights');
@@ -360,6 +358,6 @@ const Index = () => {
         </div>
 
     );
-};
+});
 
 export default React.memo(Index);

@@ -1,5 +1,5 @@
-import {useEffect,  useContext} from 'react';
-import { Context }  from '../context/store';
+import {useContext, useEffect} from 'react';
+import {Context} from '../context/store';
 
 const usePrevious = (key, value) => {
   const [state, dispatch] = useContext(Context);

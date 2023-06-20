@@ -8,7 +8,8 @@ import {getFromLocalStorage} from "../../utils/local-storage";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFire} from "@fortawesome/free-solid-svg-icons";
 
-const SmartPlay = (props) => {
+const SmartPlay = React.memo(
+    (props) => {
 
     const url = new URL(window.location)
     const game = url.searchParams.get('game')
@@ -159,6 +160,6 @@ const SmartPlay = (props) => {
             <Footer/>
         </>
     )
-}
+})
 
 export default React.memo(SmartPlay)

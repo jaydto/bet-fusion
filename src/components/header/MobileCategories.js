@@ -1,9 +1,11 @@
-import React, {useEffect} from "react";
+import React from "react";
 import Container from "react-bootstrap/Container";
 import {getFromLocalStorage} from "../utils/local-storage";
 import {Link} from "react-router-dom";
+import {LazyLoadImage} from "react-lazy-load-image-component";
 
-const MobileCategories = () => {
+const MobileCategories = React.memo(
+    () => {
     let categories = getFromLocalStorage('categories');
     return (
         <Container>
@@ -15,7 +17,7 @@ const MobileCategories = () => {
                              style={{minWidth: "120px"}}>
                             <Link to={`/upcoming?sport_id=${category.sport_id}/`}
                                className={'card card-block mx-1 d-flex flex-column h-100'}>
-                                <img style={{borderRadius: '50%', height: '35px', width: "35px"}}
+                                <LazyLoadImage style={{borderRadius: '50%', height: '35px', width: "35px"}}
                                      className={'align-self-center'}
                                      src={require(`./../../assets${category.flag}`)}/>
                                 <span className={'align-self-center'}>
@@ -28,6 +30,6 @@ const MobileCategories = () => {
             </div>
         </Container>
     )
-}
+})
 
 export default React.memo(MobileCategories);

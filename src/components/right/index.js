@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import QuickLogin from './quick-login';
 import CompanyInfo from './company-info';
 import BetSlip from './betslip';
@@ -6,15 +6,12 @@ import {faTimes} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {Badge} from "react-bootstrap";
 import {getBetslip, getJackpotBetslip, getKironSlip} from "../utils/betslip";
-import {Context} from "../../context/store";
-import KironSlip from "./kironslip-submit-form";
 import Kironslip from "./kironslip";
 import MobileMenu from "../mobile-menu";
 import useWindowDimensions from "../header/Dimensions";
-import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
-import makeRequest from "../utils/fetch-request";
 
-const AlertMessage = (props) => {
+const AlertMessage = React.memo(
+    (props) => {
     return (
         <div className={`alert alert-dismissible ${props.classname}`} role='alert'>
             <button type='button' className='close' data-dismiss='alert' aria-label='Close'><span
@@ -23,9 +20,10 @@ const AlertMessage = (props) => {
             {props.message}
         </div>
     )
-}
+})
 
-const Right = (props) => {
+const Right = React.memo(
+    (props) => {
     const {jackpot, betslipValidationData, jackpotData, kiron,test} = props;
     const {height, width} = useWindowDimensions();
     const [betSlipMobile, setBetSlipMobile] = useState(false)
@@ -99,5 +97,5 @@ const Right = (props) => {
             </div>
         </div>
     )
-}
+})
 export default React.memo(Right);

@@ -1,7 +1,7 @@
-import React, {useState, useEffect,  useCallback} from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
-import {Formik, Form} from 'formik';
+import {Form, Formik} from 'formik';
 import makeRequest from "../utils/fetch-request";
 import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -12,6 +12,7 @@ import {Link} from "react-router-dom";
 import {Switch} from "@material-ui/core";
 import {faEye, faEyeSlash} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {LazyLoadImage} from "react-lazy-load-image-component";
 
 export const  Notify = (message) => {
     let options = {
@@ -28,7 +29,7 @@ export const  Notify = (message) => {
         toast.success(`🚀 ${message.message}`, options);
     } else {
         toast(<div className={"d-flex"}>
-            <img src={fire} alt="" style={{height:"20px", width:'26px'}} />
+            <LazyLoadImage src={fire} alt="" style={{height:"20px", width:'26px'}} />
             <span>
                 {message.message}
             </span>
@@ -37,7 +38,8 @@ export const  Notify = (message) => {
 
 };
 
-const HeaderLogin = (props) => {
+const HeaderLogin = React.memo(
+    (props) => {
     const gaEventTracker = useAnalyticsEventTracker('Navigation');
     const [isLoading, setIsLoading] = useState(null)
     const [message, setMessage] = useState(null);
@@ -229,6 +231,6 @@ const HeaderLogin = (props) => {
 
         </Container>
     )
-}
+})
 export default React.memo(HeaderLogin);
 

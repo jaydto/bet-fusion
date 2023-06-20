@@ -1,4 +1,4 @@
-import {setLocalStorage, getFromLocalStorage} from './local-storage';
+import {getFromLocalStorage, setLocalStorage} from './local-storage';
 
 const ENC_KEY = '2bdVweTeI42s5mkLdYHyklTMxQS5gLA7MDS6FA9cs1uobDXeruACDic0YSU3si04JGZe4Y';
 export const BASE_URL = 'https://api.betnare.com';

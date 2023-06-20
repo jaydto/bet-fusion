@@ -1,25 +1,19 @@
-import React, { useState, useEffect, useContext, useCallback } from "react";
+import React, {useCallback, useContext, useEffect, useState} from "react";
 import BetslipSubmitForm from "./betslip-submit-form";
-import { Context } from "../../context/store";
-import {
-    removeFromSlip,
-    removeFromJackpotSlip,
-    getBetslip,
-    getJackpotBetslip,
-} from "../utils/betslip";
+import {Context} from "../../context/store";
+import {getBetslip, getJackpotBetslip, removeFromJackpotSlip, removeFromSlip,} from "../utils/betslip";
 import useWindowDimensions from "../header/Dimensions";
-import { getFromLocalStorage } from "../utils/local-storage";
+import {getFromLocalStorage} from "../utils/local-storage";
 import DecodeCode from "./decode";
 import {Link} from "react-router-dom";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faTrophy} from "@fortawesome/free-solid-svg-icons";
 
 const clean_rep = (str) => {
     str = str.replace(/[^A-Za-z0-9\-]/g, "");
     return str.replace(/-+/g, "-");
 };
 
-const BetSlip = (props) => {
+const BetSlip = React.memo(
+    (props) => {
     const { jackpot, betslipValidationData, jackpotData } = props;
     const [betslipKey, setBetslipKey] = useState("betslip");
     const [betslipsData, setBetslipsData] = useState(null);
@@ -395,5 +389,5 @@ const BetSlip = (props) => {
             </div>
         </div>
     );
-};
+});
 export default React.memo(BetSlip);

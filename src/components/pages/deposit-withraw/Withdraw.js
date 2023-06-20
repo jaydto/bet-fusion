@@ -1,8 +1,8 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import mpesa from '../../../assets/img/mpesa-3.png';
 import makeRequest from "../../utils/fetch-request";
-import { Formik,  Form} from 'formik';
-import { Context } from '../../../context/store';
+import {Form, Formik} from 'formik';
+import {Context} from '../../../context/store';
 import {getBetslip} from '../../utils/betslip'
 import {Navbar, Offcanvas} from "react-bootstrap";
 import Container from "react-bootstrap/Container";
@@ -11,19 +11,21 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBackspace} from "@fortawesome/free-solid-svg-icons";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import logo from "../../../assets/img/Logo.webp";
+import authImg from "../../../assets/img/Logo.webp";
 import SidebarMobile from "../../sidebar/awesome/SidebarMobile";
 import {Col, Row} from "antd";
-import authImg from "../../../assets/img/Logo.webp";
 import betNiMoto from "../../../assets/img/BetniMoto.webp";
 import only18 from "../../../assets/img/auth/18only.png";
 import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
 import backgroundURL from "../../../assets/img/auth/img-17.webp";
+
 const backgroundStyle = {
     backgroundImage: `url(${backgroundURL})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover'
 }
-const Withdrawal = (props) => {
+const Withdrawal = React.memo(
+    (props) => {
     //todo get the phone number from logged in user ....
     const [state, dispatch] = useContext(Context);
     const navigate = useNavigate();
@@ -177,7 +179,7 @@ const Withdrawal = (props) => {
                     <div className="row">
 
                         <div className={`${mobile?"d-none":'col-md-7 text-center'}`}>
-                            <img src={mpesa} alt=""/>
+                            <LazyLoadImage src={mpesa} alt=""/>
                         </div>
 
                         <hr className={`${mobile?"d-none":""}`}/>
@@ -287,21 +289,21 @@ const Withdrawal = (props) => {
                     <Col xs={0} sm={0} md={0} lg={8}>
                         <div className="d-flex flex-column justify-content-between h-100 px-4" style={backgroundStyle}>
                             <div className="text-right">
-                                {/*<img src="/img/logo-sm.jpg" style={{height:"35px"}}alt="logo"/>*/}
+                                {/*<LazyLoadImage src="/img/logo-sm.jpg" style={{height:"35px"}}alt="logo"/>*/}
                             </div>
                             <Row justify="center">
                                 <Col xs={0} sm={0} md={0} lg={20}>
                                     <Link to={'/'}>
-                                        <img className="img-fluid mb-5" src={authImg} alt=""/>
+                                        <LazyLoadImage className="img-fluid mb-5" src={authImg} alt=""/>
                                     </Link>
 
                                     <h1 className="text-white text-center" style={{fontSize:"30px"}}>Withdraw Cash From Your Account</h1>
-                                    <p className="text-white px-3 d-flex align-items-center justify-content-center mt-3" style={{fontSize:"16px", opacity:'0.5px'}}><img src={betNiMoto}  style={{width:"150px"}} alt={'betnare'}/></p>
+                                    <p className="text-white px-3 d-flex align-items-center justify-content-center mt-3" style={{fontSize:"16px", opacity:'0.5px'}}><LazyLoadImage src={betNiMoto}  style={{width:"150px"}} alt={'betnare'}/></p>
                                 </Col>
                             </Row>
                             <div className="d-flex justify-content-end pb-4">
                                 <div className={'d-flex justify-content-center align-items-center'}>
-                                    <div className="text-white mx-2 bold d-flex justify-content-center align-items-center"><img src={only18} alt={'18 only'} style={{width:'30px', background:'aliceblue', borderRadius:'16px'}}/></div>
+                                    <div className="text-white mx-2 bold d-flex justify-content-center align-items-center"><LazyLoadImage src={only18} alt={'18 only'} style={{width:'30px', background:'aliceblue', borderRadius:'16px'}}/></div>
                                     <span className="mx-2 text-white"> | </span>
                                     <a className="text-white" href="/terms-and-conditions">Term & Conditions</a>
                                     <span className="mx-2 text-white"> | </span>
@@ -352,6 +354,6 @@ const Withdrawal = (props) => {
 
         </React.Fragment>
     )
-}
+})
 
 export default React.memo(Withdrawal);

@@ -1,6 +1,8 @@
 import React from 'react';
 import './skeletonLoader.css'
-const SkeletonLoader = () => {
+
+const SkeletonLoader = React.memo(
+    () => {
 
     const backgroundLoader={
         backgroundImage: "linear-gradient(90deg, #ececec 0px, #ddd 40px, #ececec 80px)"
@@ -142,6 +144,6 @@ const SkeletonLoader = () => {
             </div>
         </div>
     );
-};
+});
 
 export default SkeletonLoader;

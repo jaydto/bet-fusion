@@ -1,17 +1,16 @@
-import React, {  useEffect,  useContext } from "react";
+import React, {useContext, useEffect} from "react";
 
 import {
     Accordion,
     AccordionItem,
-    AccordionItemHeading,
     AccordionItemButton,
+    AccordionItemHeading,
     AccordionItemPanel,
 } from "react-accessible-accordion";
 import "react-accessible-accordion/dist/fancy-example.css";
 import '../test.css'
-import {getBetslip} from '../utils/betslip' ;
+import {getBetslip} from '../utils/betslip';
 import {Context} from '../../context/store';
-import useWindowDimensions from "../header/Dimensions";
 
 const Header = React.lazy(() => import("../header/header"));
 const Footer = React.lazy(() => import("../footer/footer"));

@@ -1,4 +1,4 @@
-import React, {useCallback, useLayoutEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Badge} from "react-bootstrap";
 import BetSlip from "../../right/betslip";
 import QuickLogin from "../../right/quick-login";
@@ -6,6 +6,7 @@ import CompanyInfo from "../../right/company-info";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTimes} from "@fortawesome/free-solid-svg-icons";
 import MobileMenu from "../../mobile-menu";
+
 const AlertMessage = (props) => {
     return (
         <div className={`alert alert-dismissible ${props.classname}`} role='alert'>

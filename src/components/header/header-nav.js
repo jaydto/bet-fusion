@@ -1,20 +1,17 @@
-import React, {useContext, useEffect, useState, useRef} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Container from 'react-bootstrap/Container';
 import {Context} from '../../context/store';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {
-    faSearch,
-    faPrint,
-    faQuestionCircle,
-    faTimes,
-} from '@fortawesome/free-solid-svg-icons'
+import {faPrint, faQuestionCircle, faSearch, faTimes,} from '@fortawesome/free-solid-svg-icons'
 import makeRequest from "../utils/fetch-request";
 
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {Link, useNavigate} from "react-router-dom";
 import {setLocalStorage} from "../utils/local-storage";
-const HeaderNav = (props) => {
+
+const HeaderNav = React.memo(
+    (props) => {
     const gaEventTracker = useAnalyticsEventTracker('Navigation');
     const [test, setTest] = useState(false)
     const [state,] = useContext(Context);
@@ -352,5 +349,5 @@ const HeaderNav = (props) => {
         </>
     )
 
-}
+})
 export default React.memo(HeaderNav);

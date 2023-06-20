@@ -11,8 +11,10 @@ import karibuGiftWallet from "../../../assets/img/banner/products/Bet_Nare_3000_
 
 import {Table} from "react-bootstrap";
 import Right from "../../right";
+import {LazyLoadImage} from "react-lazy-load-image-component";
 
-const Promotions = () => {
+const Promotions = React.memo(
+    () => {
     return (
         <>
             <Header/>
@@ -38,7 +40,7 @@ const Promotions = () => {
                                         {/*                It is Christmas come early in BetNare, 5 JOGOOS & 2 MBUZI’s UP*/}
                                         {/*                FOR GRABS DAILY*/}
                                         {/*            </h5>*/}
-                                        {/*            <img src={krisi} className={'rounded'}/>*/}
+                                        {/*            <LazyLoadImage src={krisi} className={'rounded'}/>*/}
                                         {/*            <div className="col-md-12">*/}
                                         {/*                ✅*/}
                                         {/*                This applies to both Multibets and Single bets.*/}
@@ -77,7 +79,7 @@ const Promotions = () => {
                                         <div className="col-md-12 shadow-lg promotion">
                                             <div className="d-flex flex-column">
                                                 <h5>KARIBU GIFT WALLET</h5>
-                                                <img src={karibuGiftWallet} className={'rounded'}/>
+                                                <LazyLoadImage src={karibuGiftWallet} className={'rounded'}/>
                                                 <p>Register and Get the BetNare Bet Booster of UPTO 3,000/= FREE</p>
                                                 <p>The client is set to receive Up to 3,000/= to Unlock their Gift
                                                     Wallet once they Register</p>
@@ -167,7 +169,7 @@ const Promotions = () => {
                                         <div className="col-md-12 shadow-lg promotion">
                                             <div className="d-flex flex-column">
                                                 <h5>1500% FIRST DEPOSIT BOOSTER</h5>
-                                                <img src={firstDeposit} className={'rounded'}/>
+                                                <LazyLoadImage src={firstDeposit} className={'rounded'}/>
                                                 <span><u>How to Play</u></span>
                                                 <ul>
                                                     ✅ A client receives 1500% BONUS on the FIRST ever deposit.
@@ -203,7 +205,7 @@ const Promotions = () => {
                                         <div className="col-md-12 shadow-lg promotion">
                                             <div className="d-flex flex-column">
                                                 <h5>20% FIRST DAILY DEPOSIT BONUS </h5>
-                                                <img src={twentyPercentDepositBonus} className={'rounded'}/>
+                                                <LazyLoadImage src={twentyPercentDepositBonus} className={'rounded'}/>
                                                 <span><u>How to Play</u></span>
                                                 <ul>
                                                     ✅ Get 20% daily deposit Boost on your 1st deposit of the day.
@@ -238,7 +240,7 @@ const Promotions = () => {
                                             <div className="col-md-12">
                                                 <div className="d-flex flex-column">
                                                     <h5> 100% MULTIBET LOST BONUS</h5>
-                                                    <img src={multibetCashback} className={'rounded'}/>
+                                                    <LazyLoadImage src={multibetCashback} className={'rounded'}/>
                                                     <span><u>How it works</u></span>
                                                     <ol>
                                                         <br/>
@@ -376,7 +378,7 @@ const Promotions = () => {
                                             <div className="col-md-12">
                                                 <div className="d-flex flex-column">
                                                     <h5>BETNARE NGWARE</h5>
-                                                    {/*<img src={ngware} className={'rounded'}/>*/}
+                                                    {/*<LazyLoadImage src={ngware} className={'rounded'}/>*/}
                                                     <span>
                                                         Monday promotion. BetNare Ngware, anzisha Wiki na Thao.
                                                     </span>
@@ -406,7 +408,7 @@ const Promotions = () => {
                                             <div className="col-md-12">
                                                 <div className="d-flex flex-column">
                                                     <h5>LALA KICHAMPE</h5>
-                                                    {/*<img src={lala} className={'rounded'}/>*/}
+                                                    {/*<LazyLoadImage src={lala} className={'rounded'}/>*/}
                                                     <span>
                                                         This promotion will run on every Wednesday of the Month of
                                                             October, 8pm to 10pm.
@@ -437,7 +439,7 @@ const Promotions = () => {
                                             <div className="col-md-12">
                                                 <div className="d-flex flex-column">
                                                     <h5>Furahia Rush Hour kiBetNare</h5>
-                                                    {/*<img src={rushHour} className={'rounded'}/>*/}
+                                                    {/*<LazyLoadImage src={rushHour} className={'rounded'}/>*/}
                                                     <div className="col-md-12">
                                                         ✅ This promotion will run every Friday for the Month Of October
                                                         2022, 3pm to 7pm<br/>
@@ -473,7 +475,7 @@ const Promotions = () => {
                                                     <h5 className={'text-uppercase'}>
                                                         Angukia Rent
                                                     </h5>
-                                                    {/*<img src={rent} className={'rounded'}/>*/}
+                                                    {/*<LazyLoadImage src={rent} className={'rounded'}/>*/}
                                                     <div className="col-md-12">
                                                         ✅
                                                         The Angukia rent draw will be conducted on Monday 31st October.
@@ -519,6 +521,6 @@ const Promotions = () => {
         </>
 
     )
-}
+})
 
 export default React.memo(Promotions)

@@ -1,8 +1,9 @@
-import React  from 'react';
+import React from 'react';
 import {Link} from "react-router-dom";
 
 
-const QuickLogin = (props) => {
+const QuickLogin = React.memo(
+    (props) => {
     return (
         <div id="quick-login">
             <form name="quick-login" method="post" action="/login" >
@@ -24,5 +25,5 @@ const QuickLogin = (props) => {
             </form>
         </div>
     )
-}
+})
 export default React.memo(QuickLogin);

@@ -3,8 +3,10 @@ import "./results.css"
 import makeRequest from "../../../utils/fetch-request";
 import {Spinner} from "react-bootstrap";
 import {getFromLocalStorage} from "../../../utils/local-storage";
+import {LazyLoadImage} from "react-lazy-load-image-component";
 
-const KironResults = () => {
+const KironResults = React.memo(
+    () => {
     const [loading, setLoading] = useState(false)
     const [resulted, setResulted] = useState([]);
     let endpoint = "/v1/nare-league/results"
@@ -57,7 +59,7 @@ const KironResults = () => {
                                                 <div className="live-match-selection pt-1 pb-1">
                                                     <div className="container">
                                                         <div className="row px-3">
-                                                            <div className="col-6 text-right pt-1"><span className="team-jersey"><img
+                                                            <div className="col-6 text-right pt-1"><span className="team-jersey"><LazyLoadImage
                                                                 src={results?.home_icon}
                                                                 alt="Nare League"/></span> <a href="#"
                                                                                               style={{color: "var(--black)"}}>
@@ -69,7 +71,7 @@ const KironResults = () => {
                                                                     <span className="mr-2 red-txt">{results.away_score}</span>
                                                                     <span className="away-team-r bold px-2">{results.away_team}</span>
                                                                 </a>
-                                                                <span className="team-jersey"><img
+                                                                <span className="team-jersey"><LazyLoadImage
                                                                     src={results?.away_icon}
                                                                     alt="Nare League"/></span>
                                                             </div>
@@ -96,6 +98,6 @@ const KironResults = () => {
 
 
 );
-};
+});
 
 export default KironResults;

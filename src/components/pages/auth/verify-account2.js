@@ -1,24 +1,23 @@
-import React, {useContext, useEffect, useRef, useState} from 'react'
-import { Row, Col } from "antd";
+import React, {useContext, useEffect, useRef} from 'react'
+import {Col, Row} from "antd";
 import authImg from '../../../assets/img/Logo.webp'
+import logo from '../../../assets/img/Logo.webp'
 import fire from '../../../assets/img/fire.webp'
 
-import {Link, useNavigate} from "react-router-dom";
-
-import useWindowDimensions from "../../header/Dimensions";
-import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
+import {Link} from "react-router-dom";
+import {setLocalStorage} from "../../utils/local-storage";
 import only18 from '../../../assets/img/auth/18only.png'
 import backgroundURL from '../../../assets/img/auth/img-17.webp'
 import {Navbar, Offcanvas} from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import {LazyLoadImage} from "react-lazy-load-image-component";
-import logo from "../../../assets/img/Logo.webp";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import { faBackspace} from "@fortawesome/free-solid-svg-icons";
+import {faBackspace} from "@fortawesome/free-solid-svg-icons";
 import SidebarMobile from "../../sidebar/awesome/SidebarMobile";
 import makeRequest from "../../utils/fetch-request";
 import {Form, Formik} from "formik";
 import {Context} from "../../../context/store";
+
 const backgroundStyle = {
     backgroundImage: `url(${backgroundURL})`,
     backgroundRepeat: 'no-repeat',
@@ -26,7 +25,8 @@ const backgroundStyle = {
 }
 
 
-const VerifyAccount2 = props => {
+const VerifyAccount2 = React.memo(
+    props => {
     // const [message, setMessage] = useState(null);
     const [state,dispatch]=useContext(Context)
     // const {setUser} = props;
@@ -97,21 +97,21 @@ const VerifyAccount2 = props => {
                 <Col xs={0} sm={0} md={0} lg={8}>
                     <div className="d-flex flex-column justify-content-between h-100 px-4" style={backgroundStyle}>
                         <div className="text-right">
-                            {/*<img src="/img/logo-sm.jpg" style={{height:"35px"}}alt="logo"/>*/}
+                            {/*<LazyLoadImage src="/img/logo-sm.jpg" style={{height:"35px"}}alt="logo"/>*/}
                         </div>
                         <Row justify="center">
                             <Col xs={0} sm={0} md={0} lg={20}>
                                 <Link to={'/'}>
-                                    <img className="img-fluid mb-5" src={authImg} alt=""/>
+                                    <LazyLoadImage className="img-fluid mb-5" src={authImg} alt=""/>
                                 </Link>
 
                                 <h1 className="text-white text-center" style={{fontSize:"30px"}}>Verify Your Account</h1>
-                                <p className="text-white px-3 d-flex align-items-center justify-content-center mt-3" style={{fontSize:"16px", opacity:'0.5px'}}>Bet ni Moto<img src={fire}  style={{width:"20px"}} alt={'betnare'}/></p>
+                                <p className="text-white px-3 d-flex align-items-center justify-content-center mt-3" style={{fontSize:"16px", opacity:'0.5px'}}>Bet ni Moto<LazyLoadImage src={fire}  style={{width:"20px"}} alt={'betnare'}/></p>
                             </Col>
                         </Row>
                         <div className="d-flex justify-content-end pb-4">
                             <div className={'d-flex justify-content-center align-items-center'}>
-                                <div className="text-white mx-2 bold d-flex justify-content-center align-items-center"><img src={only18} alt={'18 only'} style={{width:'30px', background:'aliceblue', borderRadius:'16px'}}/></div>
+                                <div className="text-white mx-2 bold d-flex justify-content-center align-items-center"><LazyLoadImage src={only18} alt={'18 only'} style={{width:'30px', background:'aliceblue', borderRadius:'16px'}}/></div>
                                 <span className="mx-2 text-white"> | </span>
                                 <a className="text-white" href="/terms-and-conditions">Term & Conditions</a>
                                 <span className="mx-2 text-white"> | </span>
@@ -162,8 +162,9 @@ const VerifyAccount2 = props => {
             </Row>
         </div>
     )
-}
-const MyVerifyAccountForm = (props) => {
+})
+const MyVerifyAccountForm = React.memo(
+    (props) => {
     const {errors, values, submitForm, setFieldValue} = props;
     const [state,dispatch]=useContext(Context)
     const resendOTP = () => {
@@ -271,9 +272,10 @@ const MyVerifyAccountForm = (props) => {
             </div>
         </Form>
     );
-}
+})
 
-const VerifyAccountForm = (props) => {
+const VerifyAccountForm = React.memo(
+    (props) => {
     const [state,dispatch]=useContext(Context)
 
     const initialValues = {
@@ -345,6 +347,6 @@ const VerifyAccountForm = (props) => {
             validate={validate}
             render={(props) => <    MyVerifyAccountForm {...props} />}/>
     );
-}
+})
 export default React.memo(VerifyAccount2);
 

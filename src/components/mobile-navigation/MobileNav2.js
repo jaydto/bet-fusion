@@ -7,7 +7,8 @@ import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
 import makeRequest from "../utils/fetch-request";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 
-const MobileNav2 = (props) => {
+const MobileNav2 = React.memo(
+    (props) => {
 
     let [sport, setSport] = useState(getFromLocalStorage('categories'));
 
@@ -100,7 +101,7 @@ const MobileNav2 = (props) => {
         </table>
 
     </div>)
-};
+});
 
 export default React.memo(MobileNav2);
 

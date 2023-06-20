@@ -1,27 +1,26 @@
-import {Menu, MenuItem, ProSidebar, SidebarContent, SidebarFooter, SidebarHeader, SubMenu} from "react-pro-sidebar";
-import {getFromLocalStorage, } from "../../utils/local-storage";
+import {Menu, MenuItem, ProSidebar, SidebarContent, SidebarFooter, SidebarHeader} from "react-pro-sidebar";
+import {getFromLocalStorage,} from "../../utils/local-storage";
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import Footer from "../../footer/footer";
 import 'react-pro-sidebar/dist/css/styles.css';
 import {
-    faUser,
-    faQuestionCircle,
-    faPrint,
+    faCloudDownloadAlt,
     faHome,
-    faStream,
     faInfo,
     faLaptop,
     faMagic,
-    faCoins,
     faMobile,
-    faCloud,
-    faCloudDownloadAlt
+    faPrint,
+    faQuestionCircle,
+    faStream,
+    faUser
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 
-const SidebarMobile = (props) => {
+const SidebarMobile = React.memo(
+    (props) => {
     // const [competitions, setCompetitions] = useState(getFromLocalStorage('categories'));
     const [user, setUser] = useState(getFromLocalStorage("user"));
     const gaEventTracker = useAnalyticsEventTracker('Navigation');
@@ -153,6 +152,6 @@ const SidebarMobile = (props) => {
                 <Footer/>
             </SidebarFooter>
         </ProSidebar>)
-}
+})
 
 export default React.memo(SidebarMobile);

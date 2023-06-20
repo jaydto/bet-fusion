@@ -1,5 +1,5 @@
-import React, {useState, useContext, useEffect, useRef} from 'react';
-import { Context }  from '../../context/store';
+import React, {useContext, useEffect, useRef, useState} from 'react';
+import {Context} from '../../context/store';
 import makeRequest from "./fetch-request";
 
 export const GenericDeleteModal = (props) => {

@@ -1,36 +1,25 @@
-import React, {
-    useState,
-    useEffect,
-    useContext,
-    useCallback, useRef,
-} from "react";
+import React, {useCallback, useContext, useEffect, useRef, useState,} from "react";
 import {Context} from "../../context/store";
 import {
-    removeFromSlip,
-    getBetslip,
-    clearSlip,
     clearJackpotSlip,
+    clearSlip,
     formatNumber,
+    getBetslip,
     getJackpotBetslip,
     removeFromJackpotSlip,
+    removeFromSlip,
 } from "../utils/betslip";
 import publicIp from "public-ip";
 import makeRequest from "../utils/fetch-request";
 import "react-toastify/dist/ReactToastify.css";
-import {Formik, Form as FormikForm, useFormikContext} from "formik";
+import {Form as FormikForm, Formik, useFormikContext} from "formik";
 import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
-import {
-    faBolt,
-
-    faFireAlt,
-    faGift, faInfoCircle,
-    faShare, faTrash,
-} from "@fortawesome/free-solid-svg-icons";
+import {faBolt, faFireAlt, faGift, faInfoCircle, faShare, faTrash,} from "@fortawesome/free-solid-svg-icons";
 import {Spinner} from "react-bootstrap";
 import {Switch} from "@material-ui/core";
-import {faXbox} from "@fortawesome/free-brands-svg-icons";
+
 const BetslipShareModal = React.lazy(() =>
     import("../modals/BetslipShareModal")
 );
@@ -39,7 +28,8 @@ const Float = (equation, precision = 4) => {
     return Math.round(equation * 10 ** precision) / 10 ** precision;
 };
 
-const BetslipSubmitForm = (props) => {
+const BetslipSubmitForm = React.memo(
+    (props) => {
 
 
     const {
@@ -730,5 +720,5 @@ const BetslipSubmitForm = (props) => {
             }}
         </Formik>)
 
-}
+})
 export default React.memo(BetslipSubmitForm);

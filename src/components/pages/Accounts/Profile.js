@@ -9,7 +9,8 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
     faCoins,
     faDollarSign,
-    faGifts, faHandsHelping,
+    faGifts,
+    faHandsHelping,
     faHome,
     faListOl,
     faPowerOff,

@@ -1,14 +1,15 @@
-import React, {useState, useContext, useEffect, useRef} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 
-import {Formik, Form} from 'formik';
+import {Form, Formik} from 'formik';
 import makeRequest from "../../utils/fetch-request";
-import mpesa from '../../../assets/img/mpesa.png'
 import {Context} from '../../../context/store';
 import {getBetslip} from '../../utils/betslip'
 import {clearTrackingData, setTrackingData} from "../../utils/local-storage";
+
 const SideBar = React.lazy(() => import('../../sidebar/awesome/Sidebar'));
 
-const Deposit = (props) => {
+const Deposit = React.memo(
+    (props) => {
 
     const [state, dispatch] = useContext(Context);
     const [success, setSuccess] = useState(false);
@@ -233,6 +234,6 @@ const Deposit = (props) => {
         </React.Fragment>
     )
 
-}
+})
 
 export default React.memo(Deposit)

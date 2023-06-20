@@ -3,6 +3,8 @@ import "./standing.css"
 import makeRequest from "../../../utils/fetch-request";
 import {getFromLocalStorage} from "../../../utils/local-storage";
 import {Spinner} from "react-bootstrap";
+import {LazyLoadImage} from "react-lazy-load-image-component";
+
 const Standing = () => {
     const [standings, setStandings] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -62,7 +64,7 @@ const Standing = () => {
                                     <td className={'standings-menu'}>{standing?.position}</td>
                                     <td className="playing-teams-r standings-menu">
                                     <span className="team-badge">
-                                         <img
+                                         <LazyLoadImage
                                              src={standing?.icon_url}
                                              alt="Nare League"/>&nbsp;
                                         {standing?.team_name}

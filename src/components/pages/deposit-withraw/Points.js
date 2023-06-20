@@ -1,16 +1,17 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 
-import {Formik, Form} from 'formik';
+import {Form, Formik} from 'formik';
 import makeRequest from "../../utils/fetch-request";
-import mpesa from '../../../assets/img/mpesa.png'
+
 import {Context} from '../../../context/store';
-import {formatNumber, getBetslip} from '../../utils/betslip'
-import {clearTrackingData, getFromLocalStorage, setTrackingData} from "../../utils/local-storage";
+import {getBetslip} from '../../utils/betslip'
+
 
 const Header = React.lazy(() => import('../../header/header'));
 
 
-const Points = (props) => {
+const Points = React.memo(
+    (props) => {
 
     const [state, dispatch] = useContext(Context);
     const [success, setSuccess] = useState(false);
@@ -187,6 +188,6 @@ const Points = (props) => {
         </React.Fragment>
     )
 
-}
+})
 
 export default React.memo(Points)

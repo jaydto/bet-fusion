@@ -1,7 +1,5 @@
-import React, {useEffect, useState, useCallback, useContext, useRef} from 'react';
-import {
-    Link
-} from "react-router-dom";
+import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
+import {Link} from "react-router-dom";
 
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import promo from "../../../src/assets/img/mobile/fire.png";
@@ -11,17 +9,19 @@ import jetX from "../../assets/img/mobile/jetx.webp"
 import casino1 from "../../assets/img/casino/casino.png"
 import aviator from "../../../src/assets/img/aviator.webp"
 import spaceman from "../../../src/assets/img/spaceman.webp"
-import Affiliate from "../../../src/assets/img/mobile/affiliate-marketing.png"
 import fire from '../../assets/img/fire.webp'
-import {getFromLocalStorage,setLocalStorage} from "../utils/local-storage";
+import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
 import makeRequest from "../utils/fetch-request";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import xgame from "../../assets/img/mobile/xgames.png"
 
-import { Context } from '../../context/store';
+import {Context} from '../../context/store';
 import LoginModal from '../modals/LoginModal';
 import VirtualSvg from "../../assets/img/mobile/virtual.png";
-const MobileNav1 = () => {
+import {LazyLoadImage} from "react-lazy-load-image-component";
+
+const MobileNav1 = React.memo(
+    () => {
     const [showLoadingModal, setShowLoadingModal] = useState(false);
 
     const [state, dispatch] =useContext(Context)
@@ -137,7 +137,7 @@ const MobileNav1 = () => {
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center`}>
                             {/* {console.log('all sports',allsports.sport_name)} */}
                             <div className="menu-img ">
-                                <img
+                                <LazyLoadImage
                                     className="side-icon"
                                     src={soccer}
                                     alt=""
@@ -160,7 +160,7 @@ const MobileNav1 = () => {
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
 
                             <div className="menu-img ">
-                                <img
+                                <LazyLoadImage
                                     className="side-icon"
                                     src={aviator}
                                     alt=""
@@ -180,7 +180,7 @@ const MobileNav1 = () => {
                 {/*        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center  `}>*/}
 
                 {/*            <div className="menu-img  ">*/}
-                {/*                <img*/}
+                {/*                <LazyLoadImage*/}
                 {/*                    className="side-icon"*/}
                 {/*                    src={kiron}*/}
                 {/*                    alt=""*/}
@@ -201,7 +201,7 @@ const MobileNav1 = () => {
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
 
                             <div className="menu-img ">
-                                <img
+                                <LazyLoadImage
                                     className="side-icon"
                                     src={casino1}
                                     alt=""
@@ -221,7 +221,7 @@ const MobileNav1 = () => {
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
 
                             <div className="menu-img ">
-                                <img
+                                <LazyLoadImage
                                     className="side-icon"
                                     src={jackpot}
                                     alt=""
@@ -241,7 +241,7 @@ const MobileNav1 = () => {
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center`}>
 
                             <div className="menu-img ">
-                                <img
+                                <LazyLoadImage
                                     className="side-icon"
                                     src={jetX}
                                     alt=""
@@ -261,7 +261,7 @@ const MobileNav1 = () => {
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center`}>
 
                             <div className="menu-img ">
-                                <img
+                                <LazyLoadImage
                                     className="side-icon"
                                     src={xgame}
                                     alt=""
@@ -281,7 +281,7 @@ const MobileNav1 = () => {
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
 
                             <div className="menu-img ">
-                                <img
+                                <LazyLoadImage
                                     className="side-icon"
                                     src={spaceman}
                                     alt=""
@@ -300,7 +300,7 @@ const MobileNav1 = () => {
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center`}>
 
                             <div className="menu-img ">
-                                <img
+                                <LazyLoadImage
                                     className="side-icon"
                                     src={fire}
                                     alt=""
@@ -320,7 +320,7 @@ const MobileNav1 = () => {
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center  `}>
 
                             <div className="menu-img  ">
-                                <img
+                                <LazyLoadImage
                                     className="side-icon virtuals-icon"
                                     src={VirtualSvg}
                                     alt=""
@@ -374,7 +374,7 @@ const MobileNav1 = () => {
                             <Link className={`inner-div more-sports cg ox anl url-link d-flex flex-column align-items-center `} onClick={() => gaEventTracker(`Visit ${state?.active_sport}/${state?.active_sport_name}  Page`)} to={`/highlights?sport_id=${allsports.sport_id}&sub_type_id=${getDefaultMarketsForSport(allsports)}&sport_name=${allsports.sport_name}`}>
                                 <div className="inner-div cg ox anl url-link d-flex flex-column align-items-center">
                                     <div className="menu-img">
-                                        <img
+                                        <LazyLoadImage
                                             className="side-icon"
                                             src={getSportImageIcon(allsports?.sport_name)}
                                             alt=""
@@ -394,7 +394,7 @@ const MobileNav1 = () => {
                 {/*    <Link className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center `} onClick={() => gaEventTracker('Visit Affiliate Page')}  to={`/affiliate`}   >*/}
                 {/*        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>*/}
                 {/*            <div className="menu-img ">*/}
-                {/*                <img*/}
+                {/*                <LazyLoadImage*/}
                 {/*                    className="side-icon"*/}
                 {/*                    src={Affiliate}*/}
                 {/*                    alt=""*/}
@@ -413,7 +413,7 @@ const MobileNav1 = () => {
                     <Link className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `} onClick={() => gaEventTracker('Visit Promotion Page')}  to={`/promotions`}   >
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
                             <div className="menu-img ">
-                                <img
+                                <LazyLoadImage
                                     className="side-icon"
                                     src={promo}
                                     alt=""
@@ -432,7 +432,7 @@ const MobileNav1 = () => {
         </table>
 
 
-    </div>)};
+    </div>)});
 
 export default React.memo(MobileNav1);
 

@@ -1,14 +1,13 @@
-import React, { useContext, useState} from 'react'
-import { Row, Col } from "antd";
+import React, {useContext, useState} from 'react'
+import {Col, Row} from "antd";
 import authImg from '../../../assets/img/Logo.webp'
-import fire from '../../../assets/img/fire.webp'
+import logo from '../../../assets/img/Logo.webp'
 import {Link, useNavigate} from "react-router-dom";
 import only18 from '../../../assets/img/auth/18only.png'
 import backgroundURL from '../../../assets/img/auth/img-17.webp'
 import {Navbar, Offcanvas} from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import {LazyLoadImage} from "react-lazy-load-image-component";
-import logo from "../../../assets/img/Logo.webp";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBackspace, faEye, faEyeSlash} from "@fortawesome/free-solid-svg-icons";
 import SidebarMobile from "../../sidebar/awesome/SidebarMobile";
@@ -16,6 +15,7 @@ import makeRequest from "../../utils/fetch-request";
 import {Form, Formik} from "formik";
 import {Context} from "../../../context/store";
 import betNiMoto from "../../../assets/img/BetniMoto.webp";
+
 const backgroundStyle = {
     backgroundImage: `url(${backgroundURL})`,
     backgroundRepeat: 'no-repeat',
@@ -23,7 +23,8 @@ const backgroundStyle = {
 }
 
 
-const ResetPassword2 = props => {
+const ResetPassword2 = React.memo(
+    props => {
 
    const [state,dispatch]=useContext(Context)
     const expand = "md"
@@ -93,21 +94,21 @@ const ResetPassword2 = props => {
                 <Col xs={0} sm={0} md={0} lg={8}>
                     <div className="d-flex flex-column justify-content-between h-100 px-4" style={backgroundStyle}>
                         <div className="text-right">
-                            {/*<img src="/img/logo-sm.jpg" style={{height:"35px"}}alt="logo"/>*/}
+                            {/*<LazyLoadImage src="/img/logo-sm.jpg" style={{height:"35px"}}alt="logo"/>*/}
                         </div>
                         <Row justify="center">
                             <Col xs={0} sm={0} md={0} lg={20}>
                                 <Link to={'/'}>
-                                    <img className="img-fluid mb-5" src={authImg} alt=""/>
+                                    <LazyLoadImage className="img-fluid mb-5" src={authImg} alt=""/>
                                 </Link>
 
                                 <h1 className="text-white text-center" style={{fontSize:"30px"}}>Welcome to betnare</h1>
-                                <p className="text-white px-3 d-flex align-items-center justify-content-center mt-3" style={{fontSize:"16px", opacity:'0.5px'}}><img src={betNiMoto}  style={{width:"150px"}} alt={'betnare'}/></p>
+                                <p className="text-white px-3 d-flex align-items-center justify-content-center mt-3" style={{fontSize:"16px", opacity:'0.5px'}}><LazyLoadImage src={betNiMoto}  style={{width:"150px"}} alt={'betnare'}/></p>
                             </Col>
                         </Row>
                         <div className="d-flex justify-content-end pb-4">
                             <div className={'d-flex justify-content-center align-items-center'}>
-                                <div className="text-white mx-2 bold d-flex justify-content-center align-items-center"><img src={only18} alt={'18 only'} style={{width:'30px', background:'aliceblue', borderRadius:'16px'}}/></div>
+                                <div className="text-white mx-2 bold d-flex justify-content-center align-items-center"><LazyLoadImage src={only18} alt={'18 only'} style={{width:'30px', background:'aliceblue', borderRadius:'16px'}}/></div>
                                 <span className="mx-2 text-white"> | </span>
                                 <a className="text-white" href="/terms-and-conditions">Term & Conditions</a>
                                 <span className="mx-2 text-white"> | </span>
@@ -158,8 +159,9 @@ const ResetPassword2 = props => {
             </Row>
         </div>
     )
-}
-const MyOtpForm = (props) => {
+})
+const MyOtpForm = React.memo(
+    (props) => {
     const [state,dispatch]=useContext(Context)
     const {errors, values, submitForm, setFieldValue} = props;
 
@@ -206,9 +208,10 @@ const MyOtpForm = (props) => {
             </div>
         </Form>
     );
-}
+})
 
-const MyPasswordResetForm = (props) => {
+const MyPasswordResetForm = React.memo(
+    (props) => {
     const [state,dispatch]=useContext(Context)
     const {errors, values, submitForm, setFieldValue} = props;
     const [showPassword, setShowPassword] = useState(false);
@@ -337,10 +340,11 @@ const MyPasswordResetForm = (props) => {
             </div>
         </Form>
     );
-}
+})
 
 
-const PasswordResetForm = (props) => {
+const PasswordResetForm = React.memo(
+    (props) => {
     const [resetID, setResetID] = useState('')
     const [state,dispatch]=useContext(Context)
     const navigate = useNavigate();
@@ -409,9 +413,10 @@ const PasswordResetForm = (props) => {
             validate={validatePasswordReset}
         >{(props) => <MyPasswordResetForm {...props} />}</Formik>
     );
-}
+})
 
-const OptForm = (props) => {
+const OptForm = React.memo(
+    (props) => {
     const [state,dispatch]=useContext(Context)
     const initialValues = {
         mobile: '',
@@ -451,6 +456,6 @@ const OptForm = (props) => {
             validate={validate}
         >{(props) => <MyOtpForm {...props} />}</Formik>
     );
-}
+})
 export default ResetPassword2
 

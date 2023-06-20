@@ -1,24 +1,16 @@
-import React, { useCallback, useEffect, useState } from "react";
-import {
-  Menu,
-  MenuItem,
-  ProSidebar,
-  SidebarContent,
-  SidebarHeader,
-  SubMenu,
-} from "react-pro-sidebar";
+import React, {useCallback, useEffect, useState} from "react";
+import {Menu, MenuItem, ProSidebar, SidebarContent, SidebarHeader, SubMenu,} from "react-pro-sidebar";
 import "react-pro-sidebar/dist/css/styles.css";
-import {
-  getFromLocalStorage,
-  setLocalStorage,
-} from "../../utils/local-storage";
+import {getFromLocalStorage, setLocalStorage,} from "../../utils/local-storage";
 import makeRequest from "../../utils/fetch-request";
-import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faArrowLeft, faArrowRight} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
+import {LazyLoadImage} from "react-lazy-load-image-component";
 
-const Sidebar = (props) => {
+const Sidebar = React.memo(
+    (props) => {
   const gaEventTracker = useAnalyticsEventTracker("Navigation");
   const [collapsed, setCollapsed] = useState(false);
   const [toggled, setToggled] = useState(false);
@@ -175,7 +167,7 @@ const Sidebar = (props) => {
                 defaultOpen={getActiveSport(competition.sport_id)}
                 onClick={() => gaEventTracker(`${competition?.sport_name}`)}
                 icon={
-                  <img
+                  <LazyLoadImage
                     style={{ borderRadius: "50%", height: "20px" }}
                     src={getSportImageIcon(competition.sport_name)}
                   />
@@ -188,14 +180,14 @@ const Sidebar = (props) => {
                       <MenuItem
                         key={`l_${index}`}
                         icon={
-                          <img
+                          <LazyLoadImage
                             src={getSportImageIcon(
                               top_league?.competition_name,
                               "leagues",
                               true
                             )}
                             style={{ borderRadius: "50%", height: "20px" }}
-                          ></img>
+                          />
                         }
                       >
                         <a
@@ -234,7 +226,7 @@ const Sidebar = (props) => {
                           gaEventTracker(`${country?.category_name}`)
                         }
                         icon={
-                          <img
+                          <LazyLoadImage
                             style={{ borderRadius: "50%", height: "20px" }}
                             src={getSportImageIcon(
                                 country.category_name,
@@ -314,6 +306,6 @@ const Sidebar = (props) => {
       </ProSidebar>
     </div>
   );
-};
+});
 
 export default React.memo(Sidebar);

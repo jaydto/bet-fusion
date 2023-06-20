@@ -1,13 +1,15 @@
-import React, {useEffect, useState, useContext} from "react";
+import React, {useContext, useEffect, useState} from "react";
 
 import {Link, useLocation, useParams} from "react-router-dom";
 import makeRequest from "../../utils/fetch-request";
 import 'react-loading-skeleton/dist/skeleton.css'
 import {LazyLoadImage} from "react-lazy-load-image-component";
-import {Button, ButtonGroup} from "react-bootstrap";
-import { Context } from "../../../context/store";
+import {Button} from "react-bootstrap";
+import {Context} from "../../../context/store";
 import LoginModal from "../../modals/LoginModal";
-const ShaksGames = (props) => {
+
+const ShaksGames = React.memo(
+    (props) => {
     const {game_id, live} = useParams()
     const [showLoadingModal, setShowLoadingModal] = useState(false);
     const [state, dispatch] = useContext(Context);
@@ -93,6 +95,6 @@ const ShaksGames = (props) => {
                             
         </>
     )
-}
+})
 
 export default React.memo(ShaksGames)

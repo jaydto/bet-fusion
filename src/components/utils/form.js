@@ -1,20 +1,11 @@
-import React, { useEffect, useState,useContext } from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import * as Yup from 'yup';
 import makeRequest from "./fetch-request";
-import { Context }  from '../../context/store';
-import Select, { Option, ReactSelectProps } from 'react-select'
+import {Context} from '../../context/store';
+import Select, {ReactSelectProps} from 'react-select'
 import moment from 'moment'
 
-import {
-    Formik,
-    Form as FormikForm,
-    Field,
-    ErrorMessage,
-    useFormikContext,
-    useField,
-    useFormik,
-    FieldProps
-} from 'formik';
+import {ErrorMessage, Field, FieldProps, Form as FormikForm, Formik, useField, useFormikContext} from 'formik';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 

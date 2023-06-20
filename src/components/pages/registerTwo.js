@@ -1,6 +1,7 @@
-import React, {useCallback, useContext, useEffect, useState} from 'react'
-import { Row, Col } from "antd";
+import React, {useContext, useState} from 'react'
+import {Col, Row} from "antd";
 import authImg from '../../assets/img/Logo.webp'
+import logo from '../../assets/img/Logo.webp'
 
 
 import {Link, useNavigate} from "react-router-dom";
@@ -11,24 +12,22 @@ import backgroundURL from '../../assets/img/auth/img-17.webp'
 import {Navbar, Offcanvas} from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import {LazyLoadImage} from "react-lazy-load-image-component";
-import logo from "../../assets/img/Logo.webp";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {
-	faBackspace,
-	faEye, faEyeSlash,
-} from "@fortawesome/free-solid-svg-icons";
+import {faBackspace, faEye, faEyeSlash,} from "@fortawesome/free-solid-svg-icons";
 import SidebarMobile from "../sidebar/awesome/SidebarMobile";
 import makeRequest from "../utils/fetch-request";
 import betNiMoto from '../../assets/img/BetniMoto.webp'
 import {Form, Formik} from "formik";
 import {Context} from "../../context/store";
+
 const backgroundStyle = {
 	backgroundImage: `url(${backgroundURL})`,
 	backgroundRepeat: 'no-repeat',
 	backgroundSize: 'cover'
 }
 
-const RegisterTwo = props => {
+const RegisterTwo = React.memo(
+	props => {
 
 	const [state,dispatch]=useContext(Context)
 	// const {setUser} = props;
@@ -106,22 +105,22 @@ const RegisterTwo = props => {
 				<Col xs={0} sm={0} md={0} lg={8}>
 					<div className="d-flex flex-column justify-content-between h-100 px-4" style={backgroundStyle}>
 						<div className="text-right">
-							{/*<img src="/img/logo-sm.jpg" style={{height:"35px"}}alt="logo"/>*/}
+							{/*<LazyLoadImage src="/img/logo-sm.jpg" style={{height:"35px"}}alt="logo"/>*/}
 						</div>
 						<Row justify="center">
 							<Col xs={0} sm={0} md={0} lg={20}>
 								<h1 className="text-white text-center" style={{fontSize:"40px", marginBottom:'14px'}}>Welcome to</h1>
 
 								<Link to={'/'}>
-									<img className="img-fluid mb-5" src={authImg} alt=""/>
+									<LazyLoadImage className="img-fluid mb-5" src={authImg} alt=""/>
 								</Link>
 
-								<p className="text-white px-3 d-flex align-items-center justify-content-center mt-3" style={{fontSize:"16px", opacity:'0.5px'}}><img src={betNiMoto}  style={{width:"150px"}} alt={'betnare'}/></p>
+								<p className="text-white px-3 d-flex align-items-center justify-content-center mt-3" style={{fontSize:"16px", opacity:'0.5px'}}><LazyLoadImage src={betNiMoto}  style={{width:"150px"}} alt={'betnare'}/></p>
 							</Col>
 						</Row>
 						<div className="d-flex justify-content-end pb-4">
 							<div className={'d-flex justify-content-center align-items-center'}>
-								<div className="text-white mx-2 bold d-flex justify-content-center align-items-center"><img src={only18} alt={'18 only'} style={{width:'30px', background:'aliceblue', borderRadius:'16px'}}/></div>
+								<div className="text-white mx-2 bold d-flex justify-content-center align-items-center"><LazyLoadImage src={only18} alt={'18 only'} style={{width:'30px', background:'aliceblue', borderRadius:'16px'}}/></div>
 								<span className="mx-2 text-white"> | </span>
 								<a className="text-white" href="/terms-and-conditions">Term & Conditions</a>
 								<span className="mx-2 text-white"> | </span>
@@ -171,8 +170,9 @@ const RegisterTwo = props => {
 			</Row>
 		</div>
 	)
-}
-const SignupForm = (props) => {
+})
+const SignupForm = React.memo(
+	(props) => {
 	const [state,dispatch]=useContext(Context)
 	const initialValues = {
 		msisdn: '',
@@ -230,9 +230,10 @@ const SignupForm = (props) => {
 			validate={validate}
 			render={(props) => <MySignupForm {...props} />}/>
 	);
-}
+})
 
-const MySignupForm = (props) => {
+const MySignupForm = React.memo(
+	(props) => {
 	const {errors, values, submitForm, setFieldValue} = props;
 	const [showPassword, setShowPassword] = useState(false);
 	const onFieldChanged = (ev) => {
@@ -315,7 +316,7 @@ const MySignupForm = (props) => {
 			</div>
 		</Form>
 	);
-}
+})
 
 
 

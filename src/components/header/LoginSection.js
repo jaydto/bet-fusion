@@ -1,17 +1,18 @@
-import React, {useState, useEffect, useContext, useCallback} from 'react'
+import React, {useState} from 'react'
 
 import 'react-toastify/dist/ReactToastify.css';
 import './settings.css'
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {Link} from "react-router-dom";
 
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faAdjust, faGear, faMoon, faSun, faWrench} from "@fortawesome/free-solid-svg-icons";
+// import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+// import {faAdjust, faGear, faMoon, faSun, faWrench} from "@fortawesome/free-solid-svg-icons";
+//
 
 
 
-
-const LoginSection= (props) => {
+const LoginSection= React.memo(
+    (props) => {
     const gaEventTracker = useAnalyticsEventTracker('Navigation');
     const [isLoading, setIsLoading] = useState(null);
     const [themeLight, setThemeLight]=useState(false)
@@ -55,6 +56,6 @@ const LoginSection= (props) => {
 
         </div>
     )
-}
+})
 export default React.memo(LoginSection);
 

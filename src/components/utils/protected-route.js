@@ -1,6 +1,6 @@
 import React from "react";
-import { Navigate } from "react-router-dom";
-import { getFromLocalStorage } from './local-storage';
+import {Navigate} from "react-router-dom";
+import {getFromLocalStorage} from './local-storage';
 import 'react-toastify/dist/ReactToastify.css';
 
 const ProtectedRoute = ({children}) => {

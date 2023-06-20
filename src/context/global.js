@@ -1,5 +1,4 @@
-
-import React  from "react";
+import React from "react";
 
 /**
  * We create a global context here

@@ -1,10 +1,12 @@
-import React, {useCallback, useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import "./results.css"
 import {getFromLocalStorage} from "../../../utils/local-storage";
 import makeRequest from "../../../utils/fetch-request";
 import {Context} from "../../../../context/store";
+import {LazyLoadImage} from "react-lazy-load-image-component";
 
-const KironPlayouts = (props) => {
+const KironPlayouts = React.memo(
+    (props) => {
     const {playout, isCountdownTimerActive} = props
     const [success, setSuccess] = useState(false)
     // const [resulted, setResulted] = useState([]);
@@ -140,7 +142,7 @@ const KironPlayouts = (props) => {
 
                                                     <div className="col-6 text-right pt-1">
                                                         <span className="team-jersey">
-                                                            <img src={results?.home_team_image} alt="Nare League"
+                                                            <LazyLoadImage src={results?.home_team_image} alt="Nare League"
                                                                  style={{height: '32px'}}/>
                                                         </span>
                                                         <a href="#" style={{color: "var(--black)"}}
@@ -164,7 +166,7 @@ const KironPlayouts = (props) => {
                                                                 className="away-team-r bold px-2">{results.away_team}</span>
 
                                                         </a>
-                                                        <span className="team-jersey"><img
+                                                        <span className="team-jersey"><LazyLoadImage
                                                             src={results?.away_team_image}
                                                             alt="Nare League" style={{height: '32px'}}/></span>
                                                     </div>
@@ -200,7 +202,7 @@ const KironPlayouts = (props) => {
 
 
     );
-};
+});
 
 export default KironPlayouts;
 

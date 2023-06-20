@@ -1,15 +1,13 @@
-import React, { useEffect, useState, useCallback} from 'react';
-import {
-    Link,
-    useParams,
-} from "react-router-dom";
+import React, {useCallback, useEffect, useState} from 'react';
+import {Link, useParams,} from "react-router-dom";
 
 import downArrow from '../../assets/img/down-arrow.svg';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import {LazyLoadImage} from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
 
-export const SportItem = (props) => {
+export const SportItem = React.memo(
+    (props) => {
 
     const {
         sport, 
@@ -52,14 +50,14 @@ export const SportItem = (props) => {
         <li className={`treeview ${activeClass}`} >
             <Link to={"#"} onClick={handleMenuToggle}>
                 <span style={{"padding":0}}>
-                  <img  
+                  <LazyLoadImage  
                        className="side-icon" 
                        src={sport_image} 
                        alt=""
                         /> 
                 </span>
                 <span className="topl"> { sport.sport_name } </span>
-                <img className="down-arrow pull-right" alt="" src={downArrow} />
+                <LazyLoadImage className="down-arrow pull-right" alt="" src={downArrow} />
             </Link>
             <ul className="treeview-menu">
               {
@@ -79,7 +77,7 @@ export const SportItem = (props) => {
             </ul>
         </li>
     )
-}
+})
 
 export const CategoryItem = (props) => {
 

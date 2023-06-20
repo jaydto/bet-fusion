@@ -1,6 +1,6 @@
 import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
 import './test.css'
-import {useLocation, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import useWindowDimensions from "./header/Dimensions";
 import {Context} from "../context/store";
 import {getBetslip} from "./utils/betslip";
@@ -16,7 +16,8 @@ const CarouselLoader = React.lazy(() => import('./carousel'));
 const MatchList = React.lazy(() => import('./matches'));
 const Right = React.lazy(() => import('./right'));
 
-const  Live= () => {
+const  Live= React.memo(
+    () => {
     const [matches, setMatches] = useState();
     const [state, dispatch] = useContext(Context);
     const {height, width} = useWindowDimensions();
@@ -170,6 +171,6 @@ const  Live= () => {
         </div>
 
     );
-};
+});
 
 export default React.memo(Live);

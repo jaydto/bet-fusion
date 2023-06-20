@@ -1,4 +1,4 @@
-import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
+import React, {useCallback, useContext, useEffect, useState} from 'react';
 import './test.css'
 import useWindowDimensions from "./header/Dimensions";
 import makeRequest from "./utils/fetch-request";
@@ -10,12 +10,14 @@ import Container from "react-bootstrap/Container";
 import DailyJackpotTermsAndConditions from "./pages/terms-and-conditions/DailyJackpotTermsAndConditions";
 import {Context} from "../context/store";
 import caution from "../assets/img/mobile/caution.png"
+import {LazyLoadImage} from "react-lazy-load-image-component";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
 const Right = React.lazy(() => import('./right'));
 const SideBar = React.lazy(() => import('./sidebar/awesome/Sidebar'))
-const  Jackpot= () => {
+const  Jackpot= React.memo(
+    () => {
     const [matches, setMatches] = useState(null);
     const [finishedJackpots, setFinishedJackpots] = useState([])
     const {height, width} = useWindowDimensions();
@@ -92,7 +94,7 @@ const  Jackpot= () => {
                                 className="background-primary "
                                 justify>
                                 <Tab eventKey="home" title="Jackpot" className={'background-primary'}>
-                                    <img src={"https://storage.googleapis.com/nareimages/carousel/jackpot.webp"}/>
+                                    <LazyLoadImage src={"https://storage.googleapis.com/nareimages/carousel/jackpot.webp"}/>
                                     {matches?.data?.length > 0 ? (
                                         <>
                                             {/*<JackpotHeader jackpot={matches?.meta}/>*/}
@@ -101,7 +103,7 @@ const  Jackpot= () => {
                                     ) : (
                                         <div
                                             className={'text-white col-md-12 text-center background-primary shadow mt-2 p-3 d-flex flex-column  align-items-center justify-content-center' } style={{height:"30vh"}}>
-                                            <img src={caution} className={'jackpot-image-caution'}/>
+                                            <LazyLoadImage src={caution} className={'jackpot-image-caution'}/>
                                             <p className={'jackpot-text-inactive'}>
                                                 1 Million Daily Jackpot not available. Please check back later
                                             </p>
@@ -123,7 +125,7 @@ const  Jackpot= () => {
                                     </div>
 
                                     {/*<JackpotHeader jackpot={matches?.meta}/>*/}
-                                    <img src={"https://storage.googleapis.com/nareimages/carousel/jackpot.webp"}/>
+                                    <LazyLoadImage src={"https://storage.googleapis.com/nareimages/carousel/jackpot.webp"}/>
 
                                     <div className="matches full-mobile sticky-top container">
                                         <div
@@ -197,6 +199,6 @@ const  Jackpot= () => {
 
 
     );
-};
+});
 
 export default React.memo(Jackpot);

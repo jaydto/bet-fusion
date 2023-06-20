@@ -1,12 +1,11 @@
-import React, {useEffect, useCallback, useState, useContext, useRef} from 'react';
+import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
 import {Link} from "react-router-dom"
 import Row from 'react-bootstrap/Row';
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 import {Context} from '../../context/store';
-import {getFromLocalStorage} from '../utils/local-storage';
+import {getFromLocalStorage, setLocalStorage} from '../utils/local-storage';
 import {ToastContainer} from 'react-toastify';
 import makeRequest from '../utils/fetch-request';
-import {setLocalStorage} from '../utils/local-storage';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import androidIcon from "../../assets/img/mobile/android-icon.png"
 import logo from '../../assets/img/Logo.webp';
@@ -26,7 +25,8 @@ const ProfileMenu = React.lazy(() => import('./profile-menu'));
 const HeaderNav = React.lazy(() => import('./header-nav'));
 
 
-const Header = (props) => {
+const Header = React.memo(
+    (props) => {
     const {slip, scrollPosition} = props
     const gaEventTracker = useAnalyticsEventTracker('Navigation');
     const [user, setUser] = useState(getFromLocalStorage("user"));
@@ -172,13 +172,6 @@ const Header = (props) => {
 
     }, [current]);
 
-    const showSearchBar = () => {
-        // setSearching(true)
-        dispatch({type: "SET", key: "searching", payload: true})
-        // searchInputRef.current.focus()
-        gaEventTracker('Clicked on Search')
-    }
-
     const updateUserOnLogin = useCallback(() => {
         dispatch({type: "SET", key: "user", payload: user});
     }, [user?.msisdn, user?.balance]);
@@ -214,8 +207,7 @@ const Header = (props) => {
     }
     return (
         <>
-            {/*{showLoadingModal && ( <ExitModal setShowLoadingModal={setShowLoadingModal} visible={showLoadingModal}/>)}*/}
-            <ToastContainer/>
+          <ToastContainer/>
             <div className={'d-flex flex-column'}>
                 {showDownload &&
                     <div>
@@ -224,12 +216,14 @@ const Header = (props) => {
                               title={'Download App'}
                               download={'betnare.apk'}
                               className={"lite-top d-flex flex-column"}
-                              onClick={() => gaEventTracker('Downloaded App')}
-                              exportFile={() => getDownloadFile()}>
+                              onClick={() => {
+                                  gaEventTracker('Downloaded App');
+                                  getDownloadFile()
+                              }}>
                             <div className={"app-download-link  d-flex flex-column"}>
                                 <div className={"app-color"}>
                                     <span className={"color-app-text"}>APP Your Game with Betnare App</span>
-                                    <img src={androidIcon} className={"icon-android"}/>
+                                    <LazyLoadImage src={androidIcon} className={"icon-android"}/>
                                 </div>
                             </div>
                         </Link>
@@ -250,7 +244,7 @@ const Header = (props) => {
                                 title="Betnare">
                                 <Link to={{pathname: "/"}} className="col-4 logo-betnare resize-mobile"
                                       style={{marginLeft: "2px"}}>
-                                    <img src={logo} alt="Betnare" title="Betnare" effects="blur"
+                                    <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"
                                          className={`image-size ${!user && 'logo-top'}`}
                                          style={user ? {marginBottom: "0px"} : {marginBottom: "11px", width: 'auto'}}/>
                                 </Link>
@@ -337,5 +331,5 @@ const Header = (props) => {
         </>
 
     )
-}
+})
 export default React.memo(Header);

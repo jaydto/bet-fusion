@@ -1,23 +1,15 @@
-import React, { useCallback, useEffect, useState } from "react";
-import {
-  Menu,
-  MenuItem,
-  ProSidebar,
-  SidebarContent,
-  SidebarHeader,
-  SubMenu,
-} from "react-pro-sidebar";
+import React, {useCallback, useEffect, useState} from "react";
+import {Menu, MenuItem, ProSidebar, SidebarContent, SubMenu,} from "react-pro-sidebar";
 import "react-pro-sidebar/dist/css/styles.css";
 import "./countries.css";
-import { getFromLocalStorage, setLocalStorage } from "../utils/local-storage";
+import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
 import makeRequest from "../utils/fetch-request";
-import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
-import { Link } from "react-router-dom";
+import {LazyLoadImage} from "react-lazy-load-image-component";
 
 
-const Countries = (props) => {
+const Countries = React.memo(
+    (props) => {
   const gaEventTracker = useAnalyticsEventTracker("Navigation");
   const [collapsed, setCollapsed] = useState(false);
 
@@ -144,7 +136,7 @@ const Countries = (props) => {
                   defaultOpen={getActiveSport(competition.sport_id)}
                   onClick={() => gaEventTracker(`${competition?.sport_name}`)}
                   icon={
-                    <img
+                    <LazyLoadImage
                       style={{
                         borderRadius: "50%",
                         height: "25px",
@@ -174,7 +166,7 @@ const Countries = (props) => {
                             gaEventTracker(`${country?.category_name}`)
                           }
                           icon={
-                            <img
+                            <LazyLoadImage
                               style={{ borderRadius: "50%", height: "20px" }}
                               src={getSportImageIcon(
                                 country.category_name,
@@ -222,6 +214,6 @@ const Countries = (props) => {
       </div>
     </div>
   );
-};
+});
 
 export default Countries;

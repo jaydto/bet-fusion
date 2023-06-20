@@ -1,13 +1,7 @@
 import React from "react";
 import TableFooter from "./TableFooter";
 
-import {
-    Page,
-    Text,
-    View,
-    Document,
-    StyleSheet,
-} from "@react-pdf/renderer";
+import {Document, Page, StyleSheet, Text, View,} from "@react-pdf/renderer";
 import TableHeader from "./TableHeader";
 
 const styles = StyleSheet.create({

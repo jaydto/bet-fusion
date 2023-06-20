@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useContext} from 'react';
-import { Context }  from '../../context/store';
+import React, {useContext, useEffect, useState} from 'react';
+import {Context} from '../../context/store';
 import {Link} from "react-router-dom";
 
 const Th = (props) => {

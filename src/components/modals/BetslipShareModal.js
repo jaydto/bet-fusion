@@ -1,11 +1,11 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useRef, useState} from "react";
 import Modal from "react-bootstrap/Modal";
 import {Button} from "react-bootstrap";
 import whatsap from "../../assets/svg/whatsapp.svg"
 import {LazyLoadImage} from 'react-lazy-load-image-component';
-import Notify from "../utils/Notify";
 
-const BetslipShareModal = (props) => {
+const BetslipShareModal = React.memo(
+    (props) => {
     const {visible, payload, setShowShareModal} = props
     const [isOpen, setIsOpen] = useState(visible)
     const [copy,setCopy]=useState(false)
@@ -75,5 +75,5 @@ const BetslipShareModal = (props) => {
         </Modal>
 
     );
-};
+});
 export default React.memo(BetslipShareModal);

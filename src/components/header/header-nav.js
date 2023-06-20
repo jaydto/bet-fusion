@@ -10,9 +10,8 @@ import {
     faTimes,
 } from '@fortawesome/free-solid-svg-icons'
 import makeRequest from "../utils/fetch-request";
-
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
-import {Link, Navigate, useNavigate} from "react-router-dom";
+import {Link,  useNavigate} from "react-router-dom";
 import {setLocalStorage} from "../utils/local-storage";
 const HeaderNav = React.memo(
     (props) => {
@@ -170,7 +169,7 @@ const HeaderNav = React.memo(
                                   LoginCheck("JetX");gaEventTracker('Visit JetX Page')
                               }}>
                             <strong>
-                                <div className={'d-flex menu-item'}>
+                                <div className={'d-flex menu-item link-item'}>
                                     JetX
                                     <span className="new-alert-badge">HOT</span>
                                 </div>

@@ -743,6 +743,25 @@ input[type="radio"], input[type="checkbox"] {
     top: -11px;
     width: 28px;
 }
+.link-item .new-alert-badge {
+    background: transparent var(--badge-bg) no-repeat;
+    background-size: 35px 16px;
+    color: var(--always-white);
+    display: flex;
+    flex-direction: column-reverse;
+    font-size: var(--font-tiny);
+    font-weight: var(--font-weight-normal);
+    font-weight: bolder;
+    height: 14px;
+    margin-top: 5px !important;
+    padding: 1px;
+    position: absolute;
+    right: -5px;
+    text-align: center;
+    text-transform: none;
+    top: -6px;
+    width: 25px;
+}
 .profile-width-side {
     min-width: 316px!important;
     background: var(--betnare-header-bg)!important;

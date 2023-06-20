@@ -2564,6 +2564,7 @@ img.nare-league {
 @media (min-width:200px) and (max-width: 420px){
     .app-navbar .e img {
         max-width: 100px !important;
+        background: var(--betnare-header-bg);
     }
     .button-toggle {
        margin-left: 6px!important;

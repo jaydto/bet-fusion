@@ -80,7 +80,7 @@ const HeaderNav = React.memo(
                     navigate("/casino")
                 } else{
                     setLocalStorage("ActiveLink",'/casino')
-                    window.location.href='/login'
+                    navigate('/login')
 
                 }
             }

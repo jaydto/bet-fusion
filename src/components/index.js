@@ -284,12 +284,12 @@ const Index = React.memo(
             if (homePageRef.current) {
                 const scrollPosition = homePageRef.current.scrollTop;
                 if (!scrolledPast && scrollPosition > 10) {
-                    console.log('User has scrolled more than 10px');
+
                     setScrollPosition(true)
                     setScrolledPast(true);
                     setScrolledToTop(false); // Reset the other variable
                 } else if (!scrolledToTop && scrollPosition <= 10) {
-                    console.log('User has scrolled back to the top.');
+
                     setScrollPosition(false)
                     setScrolledToTop(true);
                     setScrolledPast(false); // Reset the other variable

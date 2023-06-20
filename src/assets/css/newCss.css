@@ -1518,6 +1518,9 @@ img.nare-league {
 
 
 @media (max-width: 991px){
+    .top-smartsoft{
+        margin-top: 8rem!important;
+    }
     .header-profile {
         align-items: end;
         padding-bottom: 12px;
@@ -2352,12 +2355,15 @@ img.nare-league {
 
 }
 @media (min-width: 375px) and (max-width: 575px){
+    .top-smartsoft{
+        margin-top: 8rem!important;
+    }
     .top-matches div.compt-teams {
         min-height: 20px!important;
         height: 41px;
     }
     .amt {
-        margin-top: 0.1rem !important;
+        margin-top: 0rem;
     }
     .app-navbar .e img {
         max-width: 123px !important;

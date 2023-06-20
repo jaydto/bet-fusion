@@ -39,7 +39,7 @@ const SmartSoft = React.memo(
     return (
         <>
             <Header/>
-            <div className="amt">
+            <div className="amt top-smartsoft">
                 <div className="d-flex flex-row ">
                     <div className="gz home z" style={{width: '100%'}}>
                         <div className="col-md-12 d-flex flex-column">

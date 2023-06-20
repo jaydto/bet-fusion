@@ -731,7 +731,7 @@ const MarketRow = React.memo(
             allMarkets={allMarkets}
         />
     ) : (
-        <EmptyTextRow odd_key={fullmatch?.odd_key} allMarkets={allMarkets} />
+        <EmptyTextRow odd_key={fullmatch?.display_name} allMarkets={allMarkets} />
     );
   };
 

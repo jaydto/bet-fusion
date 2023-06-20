@@ -101,6 +101,14 @@ const MobileNav1 = React.memo(
                     navigate('/login')
                 }
 
+            }else if(game=='smart-soft'){
+                if(state?.user !== null){
+                    navigate( "/smart-soft")
+                } else{
+                    setLocalStorage("ActiveLink",'/smart-soft')
+                    navigate('/login')
+                }
+
             }else {
                 if(state?.user !== null){
                     navigate("/casino")

@@ -1542,7 +1542,7 @@ img.nare-league {
     }
 
     .top-spacing-page-no-download{
-        margin-top:9rem;
+        margin-top:7rem;
     }
     .slip-message-alert {
         height: 5rem;
@@ -2170,7 +2170,7 @@ img.nare-league {
         margin-top: 10.7rem;
     }
     .amt {
-        padding-top: 110px !important;
+        /*padding-top: 110px !important;*/
     }
     .sticky-testimony {
         position: sticky;

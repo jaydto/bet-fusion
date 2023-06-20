@@ -59,33 +59,33 @@ const HeaderNav = React.memo(
         checkEnvironment()
     })
 
-    const LoginCheck = (game) => {
-        if(game == "JetX"){
-            if(state?.user !== null){
-                window.location.href = "/smart-play?game=JetX&category=JetX" }
-            else {
-                setLocalStorage("ActiveLink",'/smart-play?game=JetX&category=JetX')
-                window.location.href='/login'
-            }
-        }else if(game=='spaceman'){
-            if(state?.user !== null){
-                window.location.href = "/gameplay/1301/1"
-            } else{
-                setLocalStorage("ActiveLink",'/gameplay/1301/1')
-                window.location.href='/login'
-            }
-        }else {
-            if(state?.user !== null){
-                window.location.href = "/casino"
-            } else{
-                setLocalStorage("ActiveLink",'/casino')
-                window.location.href='/login'
+        const LoginCheck = (game) => {
+            if(game == "JetX"){
+                if(state?.user !== null){
+                    navigate( "/smart-play?game=JetX&category=JetX")
+                }
+                else {
+                    setLocalStorage("ActiveLink",'/smart-play?game=JetX&category=JetX')
+                    navigate('/login')
+                }
+            }else if(game=='spaceman'){
+                if(state?.user !== null){
+                    navigate( "/gameplay/1301/1")
+                } else{
+                    setLocalStorage("ActiveLink",'/gameplay/1301/1')
+                    navigate('/login')
+                }
+            }else {
+                if(state?.user !== null){
+                    navigate("/casino")
+                } else{
+                    setLocalStorage("ActiveLink",'/casino')
+                    window.location.href='/login'
 
+                }
             }
-        }
 
-    };
-
+        };
     return (
         <>
             <Container  fluid id="navbar-collapse-main"
@@ -136,30 +136,29 @@ const HeaderNav = React.memo(
                     </li>
 
                     <li className={`${pathname === '/casino'  ? 'active' : ''}`}>
-                        <Link className="url-link fm anl cg ox " to="#" title="Live Casino" onClick={() => {LoginCheck("casino");gaEventTracker('Visit Casino Page')}}>
+                        <div className="url-link fm anl cg ox "  title="Live Casino" onClick={() => {LoginCheck("casino");gaEventTracker('Visit Casino Page')}}>
                             <span>
                                 <strong>Casino</strong>
-                                    <span className="new-alert-badge">HOT</span>
+                                    <span className="new-alert-badge-item">HOT</span>
                             </span>
-                        </Link>
+                        </div>
                     </li>
 
                     <li className={`${pathname == '/gameplay' || pathname.includes("1301") ? 'active' : ''}`}>
-                        <Link className="url-link fm anl cg ox " to="#" onClick={() => {
+                        <div className="url-link fm anl cg ox " onClick={() => {
                             LoginCheck("spaceman");gaEventTracker('Visit SpaceMan Page')
                         }}
                            title="Space Man">
                             <span>
                                 <strong>Spaceman</strong>
-                                    <span className="new-alert-badge">HOT</span>
+                                    <span className="new-alert-badge-item">HOT</span>
                             </span>
-                        </Link>
+                        </div>
                     </li>
 
                     <li className={searchTerm.includes('JetX') ? 'active live-bg' : ''}
                         onClick={() => gaEventTracker('Jetx')}>
-                        <Link className="url-link fm anl cg ox"
-                              to="#"
+                        <div className="url-link fm anl cg ox"
                               title="JetX"
                               onClick={() => {
                                   LoginCheck("JetX");gaEventTracker('Visit JetX Page')
@@ -167,10 +166,10 @@ const HeaderNav = React.memo(
                             <strong>
                                 <div className={'d-flex menu-item'}>
                                     JetX
-                                    <span className="new-alert-badge">HOT</span>
+                                    <span className="new-alert-badge-item">HOT</span>
                                 </div>
                             </strong>
-                        </Link>
+                        </div>
                     </li>
 
                     <li className={`${pathname === '/nare-league'  ? 'active' : ''}`}>

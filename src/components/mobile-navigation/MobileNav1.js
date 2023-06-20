@@ -1,5 +1,5 @@
 import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import promo from "../../../src/assets/img/mobile/fire.png";
@@ -83,49 +83,35 @@ const MobileNav1 = React.memo(
         }
         return sport_image
     }
+        const navigate=useNavigate()
+        const LoginCheck = (game) => {
+            if(game == "JetX"){
+                if(state?.user !== null){
+                    navigate( "/smart-play?game=JetX&category=JetX")
+                }
+                else {
+                    setLocalStorage("ActiveLink",'/smart-play?game=JetX&category=JetX')
+                    navigate('/login')
+                }
+            }else if(game=='spaceman'){
+                if(state?.user !== null){
+                    navigate( "/gameplay/1301/1")
+                } else{
+                    setLocalStorage("ActiveLink",'/gameplay/1301/1')
+                    navigate('/login')
+                }
 
-    const LoginCheck = (game) => {
-        if(game === "JetX"){
-            if(state?.user !== null){
-             window.location.href = "/smart-play?game=JetX&category=JetX" }
-            else {
-                setLocalStorage("ActiveLink",'/smart-play?game=JetX&category=JetX')
-                window.location.href='/login'
+            }else {
+                if(state?.user !== null){
+                    navigate("/casino")
+                } else{
+                    setLocalStorage("ActiveLink",'/casino')
+                    window.location.href='/login'
+
+                }
             }
-        }else if(game === "aviator"){
-            if(state?.user !== null){
-                window.location.href = "/nare-games/Aviator" }
-            else {
-                setLocalStorage("ActiveLink",'/nare-games/Aviator')
-                window.location.href='/login'
-            }
 
-        }else if(game === "smart-soft"){
-            if(state?.user !== null){
-                window.location.href = "/smart-soft" }
-            else {
-                setLocalStorage("ActiveLink",'/smart-soft')
-                window.location.href='/login'
-            }
-
-        }else if(game==='spaceman'){
-            if(state?.user !== null){
-                window.location.href = "/gameplay/1301/1"
-            } else{
-                setLocalStorage("ActiveLink",'/gameplay/1301/1')
-                window.location.href='/login'
-            }
-        }else {
-         if(state?.user !== null){
-             window.location.href = "/casino"
-         } else{
-             setLocalStorage("ActiveLink",'/casino')
-             window.location.href='/login'
-
-         }
-    }
-
-    };
+        };
 
     return (<div className="menu-wrapper mobile-nav-remove ">
         {showLoadingModal && ( <LoginModal setShowLoadingModal={setShowLoadingModal} visible={showLoadingModal}/>)}
@@ -153,10 +139,9 @@ const MobileNav1 = React.memo(
                 </td>
 
                 <td  className={`menu-t m-auto sport-check  ${pathname.includes('Aviator')?"active_link":""}`}  >
-                    <Link className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `} onClick={() => {
-                            LoginCheck('aviator');
+                    <Link  to={"/nare-games/aviator"} className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `} onClick={() => {
                             gaEventTracker('Visit Aviator Page')
-                    }}  to={`#`}   >
+                    }}     >
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
 
                             <div className="menu-img ">
@@ -197,7 +182,7 @@ const MobileNav1 = React.memo(
                 {/*</td>*/}
 
                 <td  className={`menu-t m-auto sport-check ${pathname===`/casino`? " active_link":""} `}  >
-                    <Link className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center `}  to={`#`}  onClick={()=>{LoginCheck('casino');gaEventTracker('Visit Casino Page')}}>
+                    <div className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center `}    onClick={()=>{LoginCheck('casino');gaEventTracker('Visit Casino Page')}}>
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
 
                             <div className="menu-img ">
@@ -207,13 +192,13 @@ const MobileNav1 = React.memo(
                                     alt=""
                                     style={{height: "23px", marginTop:"-6px"}}
                                 />
-                                <span className="new-alert-badge hot" >HOT</span>
+                                <span className="new-alert-badge-item hot" >HOT</span>
                             </div>
                             <strong style={{textAlign: "center"}}>
                                 Casino
                             </strong>
                         </div>
-                    </Link>
+                    </div>
 
                 </td>
                 <td  className={`menu-t m-auto sport-check  ${pathname===`/jackpot`?"active_link":""}`}  >
@@ -237,7 +222,7 @@ const MobileNav1 = React.memo(
 
                 </td>
                 <td  className={`menu-t m-auto sport-check ${window.location.search.includes('JetX')?"active_link":""} `}  >
-                    <Link className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center  `}  to={`#`}  onClick={()=>{LoginCheck('JetX');gaEventTracker('Visit Jetx Page')}} >
+                    <div className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center  `}    onClick={()=>{LoginCheck('JetX');gaEventTracker('Visit Jetx Page')}} >
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center`}>
 
                             <div className="menu-img ">
@@ -247,17 +232,17 @@ const MobileNav1 = React.memo(
                                     alt=""
                                     style={{height: "23px", marginTop:"-6px"}}
                                 />
-                                <span className=" new-alert-badge hot" >HOT</span>
+                                <span className=" new-alert-badge-item hot" >HOT</span>
                             </div>
                             <strong style={{textAlign: "center"}}>
                                JetX
                             </strong>
                         </div>
-                    </Link>
+                    </div>
 
                 </td>
                 <td  className={`menu-t m-auto sport-check ${window.location.search.includes('smart-soft')?"active_link":""} `}  >
-                    <Link className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center  `}  to={`#`}  onClick={()=>{LoginCheck('smart-soft');gaEventTracker('Visit Jetx Page')}} >
+                    <div className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center  `}  to={`#`}  onClick={()=>{LoginCheck('smart-soft');gaEventTracker('Visit Jetx Page')}} >
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center`}>
 
                             <div className="menu-img ">
@@ -267,17 +252,17 @@ const MobileNav1 = React.memo(
                                     alt=""
                                     style={{height: "23px", marginTop:"-6px"}}
                                 />
-                                <span className=" new-alert-badge hot" >HOT</span>
+                                <span className=" new-alert-badge-item hot" >HOT</span>
                             </div>
                             <strong style={{textAlign: "center"}}>
                                Xgames
                             </strong>
                         </div>
-                    </Link>
+                    </div>
 
                 </td>
                 <td  className={`menu-t m-auto sport-check  ${pathname.includes('1301')?"active_link":""}`}  onClick={() => gaEventTracker('Visit SpaceMan Page')}>
-                    <Link className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `}  to={`#`}  onClick={()=>{LoginCheck('spaceman');gaEventTracker('Visit SpaceMan Page')}} >
+                    <div className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `}    onClick={()=>{LoginCheck('spaceman');gaEventTracker('Visit SpaceMan Page')}} >
                         <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
 
                             <div className="menu-img ">
@@ -287,13 +272,13 @@ const MobileNav1 = React.memo(
                                     alt=""
                                     style={{height: "23px", marginTop:"-6px", width:'30px'}}
                                 />
-                                <span className=" new-alert-badge hot" >HOT</span>
+                                <span className=" new-alert-badge-item hot" >HOT</span>
                             </div>
                             <strong style={{textAlign: "center"}}>
                                 Spaceman
                             </strong>
                         </div>
-                    </Link>
+                    </div>
                 </td>
                 <td  className={`menu-t m-auto sport-check  ${window.location.pathname.includes('nare-games')?"active_link":""} `}  >
                     <Link className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center `} onClick={() => gaEventTracker('Visit Nare Games Page')} to={`/nare-games`}   >

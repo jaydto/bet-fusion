@@ -878,6 +878,25 @@ img.nare-league {
 .smart-soft-image-size{
     height:150px;
 }
+.new-alert-badge-item {
+    background: transparent var(--badge-bg) no-repeat;
+    background-size: 35px 16px;
+    color: var(--always-white);
+    display: flex;
+    flex-direction: column-reverse;
+    font-size: var(--font-tiny);
+    font-weight: var(--font-weight-normal);
+    font-weight: bolder;
+    height: 14px;
+    margin-top: 5px !important;
+    padding: 1px;
+    position: absolute;
+    right: -5px;
+    text-align: center;
+    text-transform: none;
+    top: -6px;
+    width: 25px;
+}
 /*back button*/
 .original-button {
     display: flex;
@@ -1884,25 +1903,7 @@ img.nare-league {
         flex-direction: column-reverse;
         display: flex;
     }
-   .new-alert-badge-item {
-        background: transparent var(--badge-bg) no-repeat;
-        background-size: 35px 16px;
-        color: var(--always-white);
-        display: flex;
-        flex-direction: column-reverse;
-        font-size: var(--font-tiny);
-        font-weight: var(--font-weight-normal);
-        font-weight: bolder;
-        height: 14px;
-        margin-top: 5px !important;
-        padding: 1px;
-        position: absolute;
-        right: -5px;
-        text-align: center;
-        text-transform: none;
-        top: -6px;
-        width: 25px;
-    }
+
     .size-all-markets{
         width:100%;
     }

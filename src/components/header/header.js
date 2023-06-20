@@ -243,8 +243,10 @@ const Header = React.memo((props) => {
                                      title={'Download App'}
                                      download={'betnare.apk'}
                                      className={"lite-top"}
-                                     onClick={()=>gaEventTracker('Downloaded App')}
-                                     exportFile={() => getDownloadFile()}>
+                                     onClick={()=> {
+                                         gaEventTracker('Downloaded App');getDownloadFile()
+                                     }}>
+
                     <div className={"app-download-link "}>
                         <div  className={"app-color"}>
                             <span className={"color-app-text"}>APP Your Game with Betnare App</span>

@@ -244,10 +244,10 @@ input, select, textarea {
  * All rights reserved.
  */
 /*! normalize.bu v3.0.3 | MIT License | github.com/necolas/normalize.bu */
-/*@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);*/
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
 
 @font-face {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'GothamBold';
     src: url('../fonts/GothamBold.eot');
     src: url('../fonts/GothamBold.eot?#iefix&v=4.6.1') format('embedded-opentype'), url('../fonts/GothamBold.eot?v=4.6.1') format('woff2'), url('../fonts/GothamBold.woff?v=4.6.1') format('woff'), url('../fonts/GothamBold.ttf?v=4.6.1') format('truetype'), url('../fonts/GothamBold.svg?v=4.6.1#') format('svg');
     font-weight: normal;
@@ -256,11 +256,10 @@ input, select, textarea {
 
 
 html {
-    font-family: 'Roboto', sans-serif;
+    font-family: sans-serif;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
 }
-
 body {
     margin: 0;
     /*padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);*/
@@ -596,7 +595,7 @@ header, li a, .thedate span {
 
 .compt {
     color: #adb2c5;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'gothambook';
 }
 
 .odds-up {
@@ -914,7 +913,7 @@ header, li a, .thedate span {
     justify-content: start;
     color: #fff !important;
     font-size: 11px;
-    font-family: 'Roboto', sans-serif;
+    font-family: inherit;
     text-transform: uppercase;
     font-weight: bolder;
 }
@@ -1198,7 +1197,7 @@ button {
 }
 
 .f-league {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
 }
 
@@ -1274,7 +1273,7 @@ button {
     float: left;
     padding-right: 6px;
     font-size: 17px !important;
-    font-family: 'Roboto', sans-serif;
+    font-family: arial;
 }
 
 .shrink-header {
@@ -1938,7 +1937,7 @@ events-header {
     /* padding: 30px 0; */
     margin: 5px 0;
     font-size: 15px;
-    font-family: 'Roboto', sans-serif;
+    font-family: arial;
     line-height: 35px;
 }
 
@@ -1961,7 +1960,7 @@ events-header {
     font-weight: bold;
     padding: 0;
     margin: 5px 0 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'GothamBook';
     text-transform: lowercase;
     font-weight: bold;
     box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.2);
@@ -1978,7 +1977,7 @@ events-header {
     text-align: center;
     text-transform: uppercase;
     font-weight: bold;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'GothamBook';
     text-transform: lowercase;
     font-weight: bold;
     background: #c91d56;
@@ -2308,7 +2307,7 @@ code,
 kbd,
 pre,
 samp {
-    font-family: 'Roboto', sans-serif;
+    font-family: monospace, monospace;
     font-size: 1em;
 }
 
@@ -2617,7 +2616,7 @@ footer a {
 .teams p {
     margin: 0;
     text-transform: capitalize;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'GothamBook', sans-serif;
     font-weight: 100;
     font-size: 12px;
 }
@@ -2656,7 +2655,7 @@ footer a {
 
 .social {
     padding-left: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'GothamBook', sans-serif;
     display: inline-block;
     float: right;
     text-transform: uppercase;
@@ -2745,13 +2744,13 @@ footer a {
     color: #1e1c1c;
     border-bottom: 0px solid #fff;
     padding: 30px 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: arial;
     font-size: 15px;
     background: #A9A9A9;
 }
 
 .footer-info {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'GothamBook', sans-serif;
     font-weight: normal;
     font-size: 13px;
     line-height: 18px;
@@ -3202,7 +3201,7 @@ p {
 
 .bigger-list li {
     margin-bottom: 8px;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'GothamBook';
 }
 
 .quick-login .fm {
@@ -3505,9 +3504,8 @@ code,
 kbd,
 pre,
 samp {
-    font-family: 'Roboto', sans-serif;
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
 }
-
 code {
     padding: 2px 4px;
     font-size: 90%;
@@ -3926,7 +3924,7 @@ input[type="checkbox"]:focus {
     padding-top: 10px;
     text-shadow: 3px 1px 1px #000;
     /* font-weight: bolder !important; */
-    font-family: 'Roboto', sans-serif;
+    font-family: arial;
 }
 
 .top-matches {
@@ -4023,21 +4021,21 @@ output {
     color: #999;
     opacity: 0.6;
     font-weight: 100 !important;
-    font-family: 'Roboto', sans-serif;
+    font-family: arial;
 }
 
 .form-control:-ms-input-placeholder {
     color: #999;
     opacity: 0.6;
     font-weight: 100 !important;
-    font-family: 'Roboto', sans-serif;
+    font-family: arial;
 }
 
 .form-control::-webkit-input-placeholder {
     color: #999;
     opacity: 0.6;
     font-weight: 100 !important;
-    font-family: 'Roboto', sans-serif;
+    font-family: arial;
 }
 
 .form-control::-ms-expand {
@@ -6640,7 +6638,7 @@ select[multiple].eq > .fj > .cg {
 .sport > li {
     list-style-type: none;
     background: transparent !important;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'gothambook';
     border-bottom: 1px solid #cdcdd1 !important;
 }
 
@@ -6656,7 +6654,7 @@ ul.sport {
     /* color: #dcdcdc; */
     /* font-size: 12px; */
     padding: 7px 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'gothambook';
 }
 
 .basic-list li {
@@ -6667,7 +6665,7 @@ ul.sport {
     border: none !important;
     font-weight: normal !important;
     color: #444 !important;
-    font-family: 'Roboto', sans-serif;
+    font-family: arial;
     font-size: 20px !important;
 }
 

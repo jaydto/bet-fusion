@@ -432,7 +432,7 @@ const MySignupForm = (props) => {
 									className=' btn btn-lg w-100 button-radius input-field btn-font cg login-button2 btn ' style={{marginTop:"28px"}}>
 								<strong>NEXT</strong>
 							</button>
-							{state?.app_config?.message?.accountConfiguration?.verificationEnabled!=="0"&&<Link className={`d-flex justify-content-center w-100 mt-3`} to={"/verify"} title="Verify">
+							{state?.app_config?.message?.accountConfiguration?.verificationEnabled!=="0"&&<Link className={`d-flex justify-content-center w-100 mt-3`} to={"#"} title="Verify" onClick={()=>navigateToFormStep(3)}>
 								<span className={`text-warning font-input register-label font-verify-redirect`}>Already have a verification code ?  </span>
 							</Link>}
 						</div>

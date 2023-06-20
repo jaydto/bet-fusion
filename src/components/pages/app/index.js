@@ -36,7 +36,6 @@ const  Index= () => {
                                     BETNARE APP
                                 </h4>
 
-
                                 <Link to={'/betnare.apk'}
                                       target={"_blank"}
                                       title={'Download App'}

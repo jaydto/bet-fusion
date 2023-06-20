@@ -2355,6 +2355,10 @@ img.nare-league {
 
 }
 @media (min-width: 375px) and (max-width: 575px){
+    .top-spacing {
+        margin-top: 7.5rem!important;
+
+    }
     .top-smartsoft{
         margin-top: 8rem!important;
     }
@@ -2595,7 +2599,7 @@ img.nare-league {
     }
 
     .user_logged {
-        margin-top: 10.7rem!important;
+        margin-top: 7.7rem!important;
     }
     .highlight-logged-in-menu {
         /*top: 132.5px!important;*/

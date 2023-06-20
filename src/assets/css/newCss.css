@@ -802,7 +802,7 @@ input[type="radio"], input[type="checkbox"] {
     border: none;
 }
 .sticky-user {
-    top: 124px;
+    top: 114px;
     position: sticky;
 }
 .top-betslip-page-fix{
@@ -1098,7 +1098,7 @@ img.nare-league {
     }
     .sticky-logged-in-testimony {
         position: sticky;
-        top: 97px;
+        top: 88px;
         /* z-index: 1999 !important; */
         opacity: 1;
         background: var(--testimonial);

@@ -146,7 +146,7 @@ const MobileNav1 = React.memo(
 
                 </td>
 
-                <td  className={`menu-t m-auto sport-check  ${pathname.includes('Aviator')?"active_link":""}`}  >
+                <td  className={`menu-t m-auto sport-check  ${pathname.includes('aviator')?"active_link":""}`}  >
                     <Link  to={"/nare-games/aviator"} className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `} onClick={() => {
                             gaEventTracker('Visit Aviator Page')
                     }}     >

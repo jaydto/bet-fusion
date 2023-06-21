@@ -407,7 +407,7 @@ li.bet-option {
     /*font-weight: 800;*/
 }
 .boost-betslip{
-    font-size: 23px;
+    font-size: 12px;
     padding-left: 9px;
 }
 .bet-align-right.nare-boost-color{
@@ -450,6 +450,9 @@ li.bet-option {
 
 .width-slip-item-container {
     width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis " [..]";
 }
 
 .bet-cancel input {

@@ -20,7 +20,7 @@ const MobileMenu = React.memo(
     (props) => {
 
     const [liveSports, setLiveSports] = useState();
-    const { jackpot, kiron} = props;
+    const { jackpot, kiron,jackpotData} = props;
     const [betSlipMobile, setBetSlipMobile] = useState(false);
     const gaEventTracker = useAnalyticsEventTracker("Navigation");
     const pathname = window.location.pathname;
@@ -113,29 +113,29 @@ const MobileMenu = React.memo(
                         </Link>
                     </td>
 
-                    <td className={` nav__betslip bloc-icon bet-slip-footer-toggle text-white`}>
-                        <Link to={ {pathname:`${jackpot?"/betslip-jackpot":kiron?`/betslip-nare`:"/betslip-slip"}`, search:`${jackpot!==undefined?'jackpot='+jackpot:''}${kiron!==undefined?'nare-league='+kiron:''}`}}
-                            /*{pathname:`${jackpot?"/betslip-jackpot":kiron?`/betslip-nare`:"/betslip-slip"}`, search:`${jackpot!==undefined?'jackpot='+jackpot:''}${betslipValidationData!==undefined ?'betslipValidationData='+encodeURIComponent(JSON.stringify(betslipValidationData)):''}${jackpotData!==undefined?'&jackpotData='+encodeURIComponent(JSON.stringify(jackpotData)):''}${kiron!==undefined?'nare-league='+kiron:''}${kironValidation!==undefined ? '&nareData='+encodeURIComponent(JSON.stringify(kironValidation)):''}`}*/
-                        >
-                            <Badge
-                                pill
-                                bg="warning nav__betslip d-flex justify-content-center align-items-center text-dark"
-                            >
-                                {/*fixed size 50 for bets clicked*/}
-                                {jackpot === true&&jackpot!=undefined||pathname=="/betslip-jackpot"
-                                    ? getJackpotBetslip() != null
-                                        ? <strong>{Object.keys(getJackpotBetslip())?.length}</strong>
-                                        : <strong className={'badge-font-weight'}>0</strong>
-                                    :kiron==true||pathname=="/betslip-nare"?getKironSlip()!=null?
-                                            Object.keys(getKironSlip()).length:<strong className={'badge-font-weight'}>0</strong>
-                                        : getBetslip()
-                                            ? Object.keys(getBetslip()).length <= 50
-                                                ? <strong>{Object.keys(getBetslip()).length}</strong>
-                                                : <strong className={'badge-font-weight'}>50</strong>
-                                            : <strong>0</strong>}
-                            </Badge>
-                        </Link>
-                    </td>
+<td className={` nav__betslip bloc-icon bet-slip-footer-toggle text-white`}>
+    <Link to={ {pathname:`${jackpot?"/betslip-jackpot":kiron?`/betslip-nare`:"/betslip-slip"}`, search:`${jackpot!==undefined?'jackpot='+jackpot:''}${jackpotData!==undefined?'&jackpotData='+encodeURIComponent(JSON.stringify(jackpotData)):''}${kiron!==undefined?'nare-league='+kiron:''}`}}
+        /*{pathname:`${jackpot?"/betslip-jackpot":kiron?`/betslip-nare`:"/betslip-slip"}`, search:`${jackpot!==undefined?'jackpot='+jackpot:''}${betslipValidationData!==undefined ?'betslipValidationData='+encodeURIComponent(JSON.stringify(betslipValidationData)):''}${jackpotData!==undefined?'&jackpotData='+encodeURIComponent(JSON.stringify(jackpotData)):''}${kiron!==undefined?'nare-league='+kiron:''}${kironValidation!==undefined ? '&nareData='+encodeURIComponent(JSON.stringify(kironValidation)):''}`}*/
+          >
+        <Badge
+            pill
+            bg="warning nav__betslip d-flex justify-content-center align-items-center text-dark"
+        >
+            {/*fixed size 50 for bets clicked*/}
+            {jackpot === true&&jackpot!=undefined||pathname=="/betslip-jackpot"
+                ? getJackpotBetslip() != null
+                    ? <strong>{Object.keys(getJackpotBetslip())?.length}</strong>
+                    : <strong className={'badge-font-weight'}>0</strong>
+                :kiron==true||pathname=="/betslip-nare"?getKironSlip()!=null?
+                        Object.keys(getKironSlip()).length:<strong className={'badge-font-weight'}>0</strong>
+                    : getBetslip()
+                        ? Object.keys(getBetslip()).length <= 50
+                            ? <strong>{Object.keys(getBetslip()).length}</strong>
+                            : <strong className={'badge-font-weight'}>50</strong>
+                        : <strong>0</strong>}
+        </Badge>
+    </Link>
+</td>
 
                     <td className={`bloc-icon ${pathname === "/live" ? "active" : ""}`}>
                         <Link

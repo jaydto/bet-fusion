@@ -1542,7 +1542,7 @@ img.nare-league {
 @media (max-width: 991px){
     .slip-count-value{
         position: absolute;
-        background: var(--betnare-button-login);
+        background: var(--betnare-button-login)!important;
         top: -10px;
         left: 4px;
 

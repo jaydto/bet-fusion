@@ -21,7 +21,6 @@ const BetSlip = React.memo(
     const totalGames = betslipsData ? Object.keys(betslipsData).length : 0;
     const [message, setMessage] = useState(null);
     const [qualifiesBonus, setQualifiesBonus] = useState(false);
-    const [qualifiesGift, setQualifiesGift] = useState(false);
     const [settings, ] = useState(getFromLocalStorage("settings"));
     const {height, } = useWindowDimensions();
     const [popUpHeight, setPopUpHeight] = useState(0);
@@ -253,9 +252,6 @@ const BetSlip = React.memo(
     }, [totalOdds, totalGames]);
 
     useEffect(() => {
-        // Calculate the remaining screen height
-        // const screenHeight = window.innerHeight;
-        // console.log("screenHeight",height)
 
         const remainingScreenHeight = height - (jackpot?state?.user?430:400:state?.user?560:500);
         // Set the pop up component height to be 20% of the remaining screen height

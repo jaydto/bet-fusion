@@ -12,7 +12,7 @@ import {faFileInvoice, faTimes,} from "@fortawesome/free-solid-svg-icons";
 
 import {Link} from "react-router-dom";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
-import {getBetslip, getJackpotBetslip, getKironSlip} from "../utils/betslip";
+import {formatNumber, getBetslip, getJackpotBetslip, getKironSlip} from "../utils/betslip";
 import {Context} from "../../context/store";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 
@@ -125,37 +125,42 @@ const MobileMenu = React.memo(
                 </div>
 
                 <table className="mobile-menu"
-                       style={!pathSlipSummary.includes(pathname) ?countInfo? {height: "100px"}:{height: "65px"} : {height: "53px"}}>
+                       style={!pathSlipSummary.includes(pathname) ?sumOfOdds==0? {height: "70px"}:countInfo?{height: "120px"}:{height: "70px"} : {height: "53px"}}>
                     <tbody>
                     {(!pathSlipSummary.includes(pathname) && state?.multiboostmessage && sumOfOdds > 0&&countInfo) ?
                         <table>
-                            <tbody>
+                            <tbody className={"slip-menu-prematch"}>
                             <tr>
                                 <td className={"bet-align-right"}>
                                     <div className={"d-flex gap-4 justify-content-end"}>
-                                        <div className={"slip-count-option"} title={"betslip"}>
-                                            <Link to={"/betslip-slip"}>
-                                                <Badge
-                                                    pill
-                                                    className="slip-count-value"
-                                                >
-                                                    {getBetslip()
-                                                        ? Object.keys(betItems || {}).length <= 50
-                                                            ? <strong>{Object.keys(betItems || {}).length}</strong>
-                                                            : <strong className={'badge-font-weight'}>50</strong>
-                                                        : <strong>0</strong>}
-                                                </Badge>
-                                                <FontAwesomeIcon icon={faFileInvoice} style={{fontSize:"18px"}}/>
-                                            </Link>
-                                        </div>
+                                        <div>
+                                            <div className={"slip-count-option"} title={"betslip"}>
+                                                <Link to={"/betslip-slip"}>
+                                                    <Badge
+                                                        pill
+                                                        className="slip-count-value"
+                                                    >
+                                                        {getBetslip()
+                                                            ? Object.keys(betItems || {}).length <= 50
+                                                                ? <strong>{Object.keys(betItems || {}).length}</strong>
+                                                                : <strong className={'badge-font-weight'}>50</strong>
+                                                            : <strong>0</strong>}
+                                                    </Badge>
+                                                    <FontAwesomeIcon icon={faFileInvoice} style={{fontSize:"24px", color:"var(--light)"}}/>
+                                                </Link>
+                                            </div>
 
-                                        <div className={"close-prompt"} title={"close suggestions"}>
-                                            <input
-                                                id={"slip-count-id"}
-                                                type="submit"
-                                                value="X"
-                                                onClick={() => removeCountInformation()}
-                                            />
+                                            <div className={"close-prompt"} title={"close suggestions"}>
+                                                <div>
+                                                    <input
+                                                        id={"slip-count-id"}
+                                                        type="submit"
+                                                        value="X"
+                                                        onClick={() => removeCountInformation()}
+                                                    />
+                                                </div>
+
+                                            </div>
                                         </div>
                                     </div>
 
@@ -165,20 +170,20 @@ const MobileMenu = React.memo(
                             {!pathSlipSummary.includes(pathname) &&
                                 <tr className={"info-slip-bets d-flex w-100 justify-content-between px-3"}>
                                     <td className={"bet-align-left"}>
-                                        Odds {sumOfOdds}
+                                        Odds {Number(sumOfOdds).toFixed(2)}
                                     </td>
                                     <td className={"bet-align-right-slip"}>
                                         Winnings {winnings}
                                     </td>
                                 </tr>}
                             <tr className={" d-flex w-100 justify-content-between px-3 mt-2"}>
-                                <td className={"bet-align-left w-100"}>
+                                <td className={"bet-align-left w-100 slip-alert-style"}>
                                     {state?.multiboostmessage}
                                 </td>
                             </tr>
                             <tr className={"mt-3"}>
                                 <td className={"bet-align-left w-100"}>
-                                    <div className="progress mx-3 my-4">
+                                    <div className="progress mx-3 my-3">
                                         <div className="progress-bar" role="progressbar"
                                              style={{width: `${percentageProgress()}%`}}
                                              aria-valuenow={percentageProgress()}

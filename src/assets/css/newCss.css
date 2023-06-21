@@ -1540,6 +1540,11 @@ img.nare-league {
 
 
 @media (max-width: 991px){
+   .slip-alert-style {
+        border-radius: 7px;
+        padding: 5px;
+        border: thin solid;
+    }
     .slip-count-value{
         position: absolute;
         background: var(--betnare-button-login)!important;
@@ -1547,12 +1552,21 @@ img.nare-league {
         left: 4px;
 
     }
-    /*.slip-count-value strong{*/
-    /*    background: var(--betnare-button-login);*/
-    /*}*/
 
-    .slip-count-option{
-        position: relative;
+    .mobile-menu tbody.slip-menu-prematch{
+
+    }
+    .slip-count-option {
+        position: fixed;
+        bottom: 14rem;
+    }
+    .close-prompt {
+        margin-bottom: -2px;
+        background: var(--betnare-button-login);
+        border-radius: 10px;
+    }
+    .close-prompt input{
+        margin-bottom:-10px
     }
     .close-prompt input{
         background: var(--betnare-button-login)!important;

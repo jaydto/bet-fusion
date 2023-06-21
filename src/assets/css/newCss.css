@@ -122,6 +122,9 @@ input.text-white{
 .b-icon{
     color:var(--betnare-button-login) !important
 }
+.Toastify__toast-container--top-right{
+    z-index: 10000;
+}
 .matches .top-matches {
     /* background: var(--betnare-odds-body); */
     background: var(--betnare-primary);
@@ -133,7 +136,7 @@ input.text-white{
     font-weight: normal;
     color: var(--light);
     font-size: 12px;
-    opacity: 0.8;
+    opacity: 1;
     /* border-bottom: 1px solid var(--betnare-input); */
 }
 .clip-get-size{
@@ -1537,6 +1540,47 @@ img.nare-league {
 
 
 @media (max-width: 991px){
+    .slip-count-value{
+        position: absolute;
+        background: var(--betnare-button-login);
+        top: -10px;
+        left: 4px;
+
+    }
+    /*.slip-count-value strong{*/
+    /*    background: var(--betnare-button-login);*/
+    /*}*/
+
+    .slip-count-option{
+        position: relative;
+    }
+    .close-prompt input{
+        background: var(--betnare-button-login)!important;
+        margin-bottom: 0px;
+        border-bottom: 0px!important;
+        margin-right: 0px;
+        padding-right: 5px;
+        border-top-right-radius: 12px!important;
+        border-top-left-radius: 12px!important;
+        border-bottom-left-radius: 0px!important;
+        border-bottom-right-radius: 0px!important;
+
+    }
+    .b24-widget-button-position-bottom-left {
+        left:0px;
+        bottom: 87px!important;
+    }
+    .info-slip-bets {
+        background: var(--betnare-button-login);
+        width: 100%;
+        height: 2rem;
+        align-items: center;
+
+    }
+    .info-slip-bets td{
+        font-weight: 700;
+        color:var(--dark);
+    }
     .top-smartsoft{
         margin-top: 8rem!important;
     }
@@ -1582,6 +1626,10 @@ img.nare-league {
         justify-content: center;
         padding: 0 21px;
     }
+    .bet-align-right-slip{
+        font-size:10px;
+        text-align: right;
+    }
     .bet-align-left{
         font-size:10px!important;
     }
@@ -1606,6 +1654,16 @@ img.nare-league {
 
     .smart-soft-games-container .smart-soft-game:first-child {
         width: 50%!important;
+    }
+    .slip-count-color{
+        color:var(--light);
+    }
+    .mobile-menu.jackpot-menu{
+        display: flex;
+        justify-content: space-between;
+        gap: 3px;
+        margin: auto;
+
     }
     .styling-mobile-size{
         overflow: hidden;

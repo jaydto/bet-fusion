@@ -9,6 +9,7 @@ import {getBetslip, getJackpotBetslip, getKironSlip} from "../utils/betslip";
 import Kironslip from "./kironslip";
 import MobileMenu from "../mobile-menu";
 import useWindowDimensions from "../header/Dimensions";
+import JackpotMenu from "../mobile-menu/jackpotMenu";
 
 const AlertMessage = React.memo(
     (props) => {
@@ -22,13 +23,13 @@ const AlertMessage = React.memo(
     )
 })
 
+
 const Right = React.memo(
     (props) => {
     const {jackpot, betslipValidationData, jackpotData, kiron,test} = props;
     const {height, width} = useWindowDimensions();
     const [betSlipMobile, setBetSlipMobile] = useState(false)
-
-
+    const pathname=window.location.pathname
 
     return (
         <div className={`${width>991&& `col ${test?'':'gn'} ipad-dismiss-info betslip-container sticky-top vh-100 overflow-scroll betslip-container-mozilla container-sticky-top top-login-background-img-bg ${kiron&&'kiron-betslip-size'}`}`}>
@@ -93,7 +94,9 @@ const Right = React.memo(
 
                 className={`${betSlipMobile ? 'd-none' : 'd-block'} tablet-only fixed-bottom text-center text-white bg-info bet-slip-footer-toggle`}>
 
-                <MobileMenu jackpot={jackpot} betslipValidationData={betslipValidationData} jackpotData={jackpotData}  kiron={kiron}/>
+                {pathname=="/jackpot"?<JackpotMenu jackpotData={jackpotData}/>:
+                    <MobileMenu jackpot={jackpot} betslipValidationData={betslipValidationData} jackpotData={jackpotData}
+                             kiron={kiron}/>}
             </div>
         </div>
     )

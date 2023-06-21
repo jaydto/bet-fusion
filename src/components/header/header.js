@@ -205,9 +205,11 @@ const Header = React.memo(
     const getDownloadFile = () => {
         return downloadAPKFile;
     }
+    const pathnameSlip=["/betslip-slip","betslip-nare", "betslip-jackpot"]
     return (
         <>
-          <ToastContainer/>
+            {!pathnameSlip.includes(pathname)&&
+                <ToastContainer/>}
             <div className={'d-flex flex-column'}>
                 {showDownload &&
                     <div>

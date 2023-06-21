@@ -4,7 +4,6 @@ import makeRequest from "./fetch-request";
 import {Context} from '../../context/store';
 import Select, {ReactSelectProps} from 'react-select'
 import moment from 'moment'
-
 import {ErrorMessage, Field, FieldProps, Form as FormikForm, Formik, useField, useFormikContext} from 'formik';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -236,11 +235,13 @@ export const CheckBoxField = (props) => {
 export const SubmitButton = (props) => {
     const { title, ...rest } = props;
     const { isSubmitting } = useFormikContext();
+
     return (
-         <button type="submit" {...rest} disabled={isSubmitting}>{isSubmitting ? "Please wait..." : title}</button>
+        <button type="submit" {...rest} disabled={isSubmitting}>
+            {isSubmitting ? 'Please wait...' : title}
+        </button>
     );
 };
-
 export const initForm = (formSchema) => {
     let formData = {};
     let validationSchema = {};
@@ -334,48 +335,48 @@ export const getFormElement = (elementName, elementSchema) => {
     }
 };
 
-export const LoadForm = (formSchema, submitLabel, endpoint) => {
-   
-   const {formData, validationSchema} = initForm(formSchema);
-   const { response, makeRequest } =  useAxios();
-   const [ state, dispatch ] =  useContext(Context);
-
-   const onSubmit = (values, { setSubmitting,  resetForm, setStatus, setErrors}) => {
-       makeRequest({url:endpoint, method:"post", data:values}).then((response) => {
-           let {status, result, errors} = response;
-           if(errors){
-               if(status < 500) { 
-                   const field_errors = {};
-                   Object.entries(result?.data).forEach( ([key, value]) =>  {
-                       field_errors[key] = value[0];
-                   });
-                   setErrors(field_errors);
-                   dispatch({type:"SET", key:state?.context, payload:{"status":false, "message":result.message}});
-               } else {
-                   dispatch({type:"SET", key:"server_error", payload:{"status":false, "message":"Internal server error"}});
-               }
-           } else {
-               dispatch({type:"SET", key:state?.context, payload:{"status":true}});
-               dispatch({type:"SET", key:"formsubmitsuccess", payload:result});
-               dispatch({type:"DEL", key:"server_error"});
-               dispatch({type:"SET", key:"page", payload:state?.page === 0 ? 1: 0 });
-           } 
-           setSubmitting(false);
-       });
-   }
-
-   return ( 
-       <Form
-        enableReinitialize={true}
-        initialValues={formData}
-        validationSchema={validationSchema}
-        onSubmit={onSubmit} >
-        {Object.keys(formSchema).map( (key, index) => (
-            <div key={index}>
-                {getFormElement(key, formSchema[key])}
-            </div>
-        ))}
-        <SubmitButton className="btn btn-primary" title={submitLabel} />
-     </Form> 
-   );
-};
+// export const LoadForm = (formSchema, submitLabel, endpoint) => {
+//
+//    const {formData, validationSchema} = initForm(formSchema);
+//    const { response, makeRequest } =  useAxios();
+//    const [ state, dispatch ] =  useContext(Context);
+//
+//    const onSubmit = (values, { setSubmitting,  resetForm, setStatus, setErrors}) => {
+//        makeRequest({url:endpoint, method:"post", data:values}).then((response) => {
+//            let {status, result, errors} = response;
+//            if(errors){
+//                if(status < 500) {
+//                    const field_errors = {};
+//                    Object.entries(result?.data).forEach( ([key, value]) =>  {
+//                        field_errors[key] = value[0];
+//                    });
+//                    setErrors(field_errors);
+//                    dispatch({type:"SET", key:state?.context, payload:{"status":false, "message":result.message}});
+//                } else {
+//                    dispatch({type:"SET", key:"server_error", payload:{"status":false, "message":"Internal server error"}});
+//                }
+//            } else {
+//                dispatch({type:"SET", key:state?.context, payload:{"status":true}});
+//                dispatch({type:"SET", key:"formsubmitsuccess", payload:result});
+//                dispatch({type:"DEL", key:"server_error"});
+//                dispatch({type:"SET", key:"page", payload:state?.page === 0 ? 1: 0 });
+//            }
+//            setSubmitting(false);
+//        });
+//    }
+//
+//    return (
+//        <Form
+//         enableReinitialize={true}
+//         initialValues={formData}
+//         validationSchema={validationSchema}
+//         onSubmit={onSubmit} >
+//         {Object.keys(formSchema).map( (key, index) => (
+//             <div key={index}>
+//                 {getFormElement(key, formSchema[key])}
+//             </div>
+//         ))}
+//         <SubmitButton className="btn btn-primary" title={submitLabel} />
+//      </Form>
+//    );
+// };

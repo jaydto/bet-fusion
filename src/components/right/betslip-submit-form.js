@@ -28,6 +28,27 @@ const Float = (equation, precision = 4) => {
     return Math.round(equation * 10 ** precision) / 10 ** precision;
 };
 
+export const SubmitButton = (props) => {
+    const {title,button_size, disabled, ...rest} = props;
+    const {isSubmitting} = useFormikContext();
+    return (
+        <button
+            type={"submit"}
+            {...rest}
+            id={"place_bet_button"}
+            style={button_size?{padding: "10px", width: "64vw",borderRadius: "0.7rem", fontSize:"14px"}:{padding: "10px", width: "100%",borderRadius: "0.7rem"}}
+            className={`${
+                disabled ? "disabled" : ""
+            }'bg-warning bold rounded-2 text-dark cursor-pointer'`}
+            disabled={isSubmitting || disabled}
+            title="Place Bet"
+        >
+            {isSubmitting ? "Please Wait " : title}{" "}
+            <FontAwesomeIcon icon={faFireAlt}/>
+        </button>
+    );
+};
+
 const BetslipSubmitForm = React.memo(
     (props) => {
 
@@ -229,6 +250,7 @@ const BetslipSubmitForm = React.memo(
 
                     if (status === 200 || status == 201 || status == 204) {
                         setMessage(response);
+                        // setLocalStorage("winnings",null)
                         //all is good am be quiet
                         if (jackpot) {
                             clearJackpotSlip();
@@ -308,7 +330,9 @@ const BetslipSubmitForm = React.memo(
             setStakeAfterTaxBoosted(stake_after_tax_boosted);
 
             setNetWin(Float(nw, 2));
+            dispatch({type: "SET", key: "netWin", payload:Float(nw, 2)});
             setNetWinBoosted(Float(nw_boosted, 2));
+            dispatch({type: "SET", key: "netWinBoosted", payload:Float(nw_boosted, 2)});
 
             setPossibleWin(Float(raw_possible_win, 2));
             setPossibleWinBoosted(Float(boosted_raw_possible_win, 2));
@@ -317,6 +341,7 @@ const BetslipSubmitForm = React.memo(
             setWithholdingTaxBoosted(Float(wint_boosted, 2));
         } else {
             setNetWin(0);
+            dispatch({type: "SET", key: "netWin", payload:0})
             setWithholdingTax(0);
             setExciseTax(0);
             setPossibleWin(0);
@@ -350,6 +375,7 @@ const BetslipSubmitForm = React.memo(
             payload: {},
         });
         setMessage(null);
+        // setLocalStorage("winnings",null)
         setLocalStorage('betslip_share_code', null)
     }, []);
 
@@ -399,27 +425,6 @@ const BetslipSubmitForm = React.memo(
         return str.replace(/-+/g, "-");
     };
 
-    const SubmitButton = (props) => {
-        const {title, disabled, ...rest} = props;
-        const {isSubmitting} = useFormikContext();
-        return (
-            <button
-                ref={scrollToRef}
-                type={"submit"}
-                {...rest}
-                id={"place_bet_button"}
-                style={{padding: "10px", width: "100%",borderRadius: "0.7rem"}}
-                className={`${
-                    disabled ? "disabled" : ""
-                }'bg-warning bold rounded-2 text-dark cursor-pointer'`}
-                disabled={isSubmitting || disabled}
-                title="Place Bet"
-            >
-                {isSubmitting ? "Please Wait " : title}{" "}
-                <FontAwesomeIcon icon={faFireAlt}/>
-            </button>
-        );
-    };
 
     const calculateMultiBetBoostAmount = () => {
         let settings = getFromLocalStorage("settings");
@@ -428,6 +433,7 @@ const BetslipSubmitForm = React.memo(
 
         if (totalGames < giftMinGames) {
             setHasMultiBetBoost(false);
+            dispatch({type: "SET", key: "hasBoost", payload: false});
         }
 
         let boost = 0;
@@ -456,6 +462,12 @@ const BetslipSubmitForm = React.memo(
                     settings?.betnareGifts?.giftBoostMinOdds
                 } or above to redeem your gift.`
             );
+            dispatch({type: "SET", key: "multiboostmessage", payload: `Congratulations, you qualify for Nare Gift. Add ${remainingGames} more game${
+                    remainingGames > 1 ? "s" : ""
+                } with odds of  ${
+                    settings?.betnareGifts?.giftBoostMinOdds
+                } or above to redeem your gift.`});
+
         } else if (giftQualificationOdds >= giftMinGames) {
             boost = Math.round((20 / 100) * stake);
             if (boost > Number(settings?.betnareGifts?.maxGiftBoostAmount)) {
@@ -464,6 +476,7 @@ const BetslipSubmitForm = React.memo(
             if (boost > 1) {
                 setMultiBoostAmount(boost);
                 setHasMultiBetBoost(true);
+                dispatch({type: "SET", key: "hasBoost", payload: true});
                 let boostedStake = Number(stake) + Number(boost);
                 boostedStake = formatNumber(boostedStake);
                 setMultiBoostMessage(
@@ -472,6 +485,11 @@ const BetslipSubmitForm = React.memo(
                     " on your stake. Your new stake is " +
                     boostedStake
                 );
+                dispatch({type: "SET", key: "multiboostmessage", payload:"Congratulations! we have gifted you KES " +
+                        boost +
+                        " on your stake. Your new stake is " +
+                        boostedStake})
+
             }
         }
     };
@@ -499,7 +517,6 @@ const BetslipSubmitForm = React.memo(
     const [showInfo,setShowInfo]=useState()
     const label = { inputProps: { 'aria-label': 'accept_all_odds_change',
             'value':'accept_all_odds_change'} };
-
 
     return (
         <Formik
@@ -566,14 +583,15 @@ const BetslipSubmitForm = React.memo(
                     )
                 }
 
-
                 const showUserInfo=()=> {
                     setShowInfo(!showInfo)
                 }
 
 
+
                 return (<FormikForm name="betslip-submit-form">
                     <Alert/>
+
                     {showShareModal && (
                         <BetslipShareModal
                             visible={showShareModal}
@@ -686,7 +704,7 @@ const BetslipSubmitForm = React.memo(
                                 </div>
                             </div>
                             <div id="odd-change-text">
-                                <div className={"d-flex bet-select-values w-100 mt-2 p-lg-2 p-md-2 py-sm-0"}  style={{whiteSpace: "nowrap"}}>
+                                <div className={"d-flex bet-select-values w-100 mt-2 p-lg-2 p-md-2 py-sm-0"}  style={{whiteSpace: "nowrap"}} ref={scrollToRef}>
                                     <SubmitButton
                                         id="place_bet_button_submit"
                                         className="place-bet-btn bold "

@@ -91,7 +91,7 @@ const  Jackpot= React.memo(
                                 variant={'tabs'}
                                 defaultActiveKey="home"
                                 id=""
-                                className="background-primary "
+                                className="background-primary d-flex align-items-center mb-2"
                                 justify>
                                 <Tab eventKey="home" title="Jackpot" className={'background-primary'}>
                                     <LazyLoadImage src={"https://storage.googleapis.com/nareimages/carousel/jackpot.webp"}/>
@@ -177,7 +177,7 @@ const  Jackpot= React.memo(
                                         </div>
                                     ))}
                                 </Tab>
-                                <Tab eventKey="terms" title="Terms & Conditions">
+                                <Tab eventKey="terms" title="T&C">
                                     <DailyJackpotTermsAndConditions/>
                                 </Tab>
                             </Tabs>

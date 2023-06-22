@@ -521,7 +521,14 @@ li.bet-option {
     float: left;
     width: auto;
     font-weight: bold;
-    display: flex;
+     display: flex;
+    align-items: center;
+}
+.team-info-slip-list-kiron {
+    float: left;
+    width: auto;
+    font-weight: bold;
+    /*display: flex;*/
     align-items: center;
 }
 

@@ -233,7 +233,7 @@ const KironSlip = React.memo(
                                                     >
                                                         <div className="row">
                                                             <div className="bet-value">
-                                                     <span className={"team-info-slip-list"}>
+                                                     <span className={"team-info-slip-list-kiron"}>
                                                     <span
                                                         className={"slip-team"}>{slip.home_team}</span>&nbsp; Vs.&nbsp;
                                                          <span className={"slip-team"}>{slip.away_team}</span>

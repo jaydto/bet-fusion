@@ -49,7 +49,7 @@ const KironSlip = React.memo(
         //betslip update
         const updateBetslip = useCallback(() => {
             if (betslipsData) {
-                let odds = Object.values(betslipsData).reduce(
+                let odds = Object.values(betslipsData||{}).reduce(
                     (previous, {odd_value}) => {
                         return previous * odd_value;
                     },
@@ -194,11 +194,11 @@ const KironSlip = React.memo(
                     className={`flow  slip-top ${state?.user ? kiron ? 'slip-max' : 'slip-height slip-log-max' : 'slip-max'} overflow-auto`}>
                     <div className={"slip-bottom-space"}>
                         <ul className={"slip-bottom-space-list"}>
-                            {(betslipsData && Object.keys(betslipsData)?.length == 0) ||
+                            {(betslipsData && Object.keys(betslipsData||{})?.length == 0) ||
                             betslipsData == null ? (
                                 ""
                             ) : (
-                                Object.entries(betslipsData || {}).map(([match_id, slip], index) => {
+                                Object.entries(betslipsData || {})?.map(([match_id, slip], index) => {
                                     let odd = slip.odd_value;
                                     let no_odd_bg = odd === 1 ? "#f29f7a" : "";
 

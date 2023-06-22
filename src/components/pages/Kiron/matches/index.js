@@ -358,7 +358,6 @@ const   OddButton = React.memo(
   const [state, dispatch] = useContext(Context);
   const ref = useRef();
   let reference = parentId+"_selectedK";
-  let slip_data=getKironSlip()
 
   const [betslip_key, setBetslipKey] = useState("kironbetslip");
   const updateBeslipKey = useCallback(() => {

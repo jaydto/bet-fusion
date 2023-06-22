@@ -47,10 +47,10 @@ const Right = React.memo(
                                                bg="warning nav__betslip d-flex justify-content-center align-items-center">
 
                                             {(jackpot === true ?
-                                                getJackpotBetslip() ? Object.keys(getJackpotBetslip()).length : 0
+                                                getJackpotBetslip() ? Object.keys(getJackpotBetslip()||{}).length : 0
                                                 :kiron==true?
-                                                    getKironSlip()?Object.keys(getKironSlip()).length:0:
-                                                    getBetslip() ? Object.keys(getBetslip()).length : 0)}
+                                                    getKironSlip()?Object.keys(getKironSlip()||{}).length:0:
+                                                    getBetslip() ? Object.keys(getBetslip()||{}).length : 0)}
                                         </Badge>
                                     </span>
                             </div>

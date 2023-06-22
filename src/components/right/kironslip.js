@@ -38,7 +38,7 @@ const KironSlip = React.memo(
 
         useEffect(() => {
             if (state[betslipKey]) {
-                kiron && getKironSlip() !== null && Object.keys(getKironSlip()).length == 0 ?
+                kiron && getKironSlip() !== null && Object.keys(getKironSlip()||{}).length == 0 ?
                     setBetslipsData(null) :
                     setBetslipsData(state[betslipKey]);
                 // console.log("size of slip",Object.keys(getJackpotBetslip).length )

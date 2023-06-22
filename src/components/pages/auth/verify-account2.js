@@ -52,12 +52,12 @@ const VerifyAccount2 = React.memo(
     return (
         <div style={{height:'100vh', background:'#16202C'}}>
             <div className={''}>
-                <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
+                <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px',position:"fixed"}}>
                     <Container fluid className={'d-flex justify-content-between mobile-change top-login-background-img'}>
                         <Navbar.Brand className="e logo align-self-start menu-control d-flex w-100" title="Betnare" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
-                            <Link to={'/'} className={'text-light'}>
-                                <FontAwesomeIcon icon={faBackspace}/>&nbsp; HOME
-                            </Link>
+                            <div onClick={()=>window.history.back()} className={'text-light'} style={{cursor:"pointer"}}>
+                                <FontAwesomeIcon icon={faBackspace}/>&nbsp; Back
+                            </div>
                             <div
                                 className="col-md-6  d-flex  right justify-content-end align-items-center w-change3 gap-2 top-login-background-img-bg-page"
                                 style={{marginLeft: 'auto'}}>
@@ -136,7 +136,7 @@ const VerifyAccount2 = React.memo(
                                             <div className=" w-100">
                                                 <div className="homepage d-flex flex-column align-items-center justify-content-center login-page">
 
-                                                    <div className="col-md-12 mt-2 text-white p-2">
+                                                    <div className="col-md-12 mt-0 text-white px-2">
                                                         {state?.verifyMessage && <Alert/>}
                                                         {state?.verifySuccess?setTimeout(window.location.href="/",2000):""}
                                                         <div className="modal-body pb-0" data-backdrop="static">
@@ -212,7 +212,7 @@ const MyVerifyAccountForm = React.memo(
                             <div className="row">
                                 <div className="col-md-12 mb-3">
                                     <input
-                                        value={values.mobile}
+                                        value={state?.signup_msisdn||values.mobile||""}
                                         className="h-100 text-light deposit-input form-control col-md-12 input-field"
                                         id="mobile"
                                         name="mobile"

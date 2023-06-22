@@ -44,7 +44,7 @@
 }
 ul.form-stepper {
     counter-reset: section;
-    margin-bottom: 3rem;
+    margin-bottom: 3.7rem;
 }
 ul.form-stepper .form-stepper-circle {
     position: relative;
@@ -164,6 +164,15 @@ button.finish{
     background: var(--lite-top-color);
     font-weight: 700;
 }
+.promo-value-color{
+    background:var(--lite-top-color)!important
+}
+.promo-progress-full{
+    display:flex;
+    width:100%;
+    justify-content: center;
+
+}
 @media (min-width: 992px){
     .font-verify-redirect{
         font-size: 18px;
@@ -171,6 +180,9 @@ button.finish{
     .font-referal-link{
         color: var(--lite-top-color);
     }
+}
+.deposit-withdraw-button.button-page{
+    font-weight:800;
 }
 @media (max-width: 991px) {
     .font-referal-link {

@@ -1576,13 +1576,9 @@ img.nare-league {
 }
 
 @media (min-width: 992px) {
-    /*.bet-cancel {*/
-    /*    float: left;*/
-    /*    width: 10%;*/
-    /*    position: absolute;*/
-    /*    left: 0px;*/
-    /*    !* border-radius: 36px; *!*/
-    /*}*/
+    .btn.login-button2:hover {
+        background: var(--betnare-button-login)!important;
+    }
     .bet-align-right {
         font-size: 14px;
     }
@@ -2239,7 +2235,7 @@ img.nare-league {
 
     .width-page-centric {
         box-shadow: none;
-        width: 100% !important;
+        width: 100vw !important;
         margin: auto;
     }
 

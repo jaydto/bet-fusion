@@ -316,9 +316,9 @@ export const MatchRow = React.memo(
                 </div>
               </div>
 
-              <div className={`col d-flex  flex-row  space-bets  justify-content-lg-between `}>
+              <div className={`col d-flex  flex-row  space-bets  justify-content-lg-between align-items-center `}>
                 {/*mobile*/}
-                <div className="d-flex ">
+                <div className="d-flex w-100">
 
 
                   {match.odds.map((odd, index) => (

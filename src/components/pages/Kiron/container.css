@@ -107,7 +107,7 @@
         flex-wrap: nowrap;
         /* background-color: #bbdefb; */
         height: 100vh;
-        padding: 26px 0px;
+        padding: 0px 0px 26px 0px;
         gap: 5px;
     }
     .kiron-test{

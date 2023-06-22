@@ -99,6 +99,11 @@
     }
 }
 @media (max-width: 991px){
+    .matches .top-matches.kiron{
+        padding-left:0px!important;
+        padding-right:0px!important;
+        margin-right:0px!important;
+    }
     .flex-item-kiron {
         display: flex;
         justify-content: space-between;

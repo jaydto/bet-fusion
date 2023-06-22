@@ -113,8 +113,8 @@ const KironPlayouts = React.memo(
         <>
             <section className="standing-wrapper text-center pt-2 pb-2">
                 <div className="container">
-                    <div className="row">
-                        <div className="col-12 pb-2">
+                    <div className="w-100">
+                        <div className="col-12 pb-2 standings-container-heading">
                             <span className="standing-heading d-flex  flex-column
                             ">{kironSearchCompetition == 1 ? "KENYAN" : kironSearchCompetition == 2 ? "ENGLISH " : kironSearchCompetition == 3 ? "SPANISH" : "ITALIAN"} LEAGUE</span>
                             <span><strong className={'font-bold-md'}>
@@ -128,7 +128,7 @@ const KironPlayouts = React.memo(
                     </div>
                 </div>
             </section>
-            <div className="league-games-wrapper">
+            <div className="league-games-wrapper playout">
 
                 <div className={'w-100'}>
                     <div className="playing-games-wrapper float-left w-100 small">

@@ -21,8 +21,7 @@ import SkeletonLoader from "./skeletonLoader/SkeletonLoader";
 import KironPlayouts from "./playout";
 
 
-const TestKiron = React.memo(
-    () => {
+const TestKiron = React.memo(() => {
     const [state, dispatch] = useContext(Context)
     const [tab, setTab] = useState('kiron')
     const [fetching, setFetching] = useState(false)
@@ -50,10 +49,7 @@ const TestKiron = React.memo(
 
 
     const [newData, setNewData] = useState({
-        period: '',
-        competition_id: '2',
-        market_id: '3',
-        round_id: ''
+        period: '', competition_id: '2', market_id: '3', round_id: ''
     });
 
 
@@ -63,11 +59,8 @@ const TestKiron = React.memo(
     useEffect(() => {
 
 
-        if (
-            !state?.inPlay && prevNewData.current.competition_id !== newData.competition_id ||
-            // prevNewData.current.period !== newData.period ||
-            prevNewData.current.round_id !== newData.round_id ||
-            prevNewData.current.market_id !== newData.market_id) {
+        if (!state?.inPlay && prevNewData.current.competition_id !== newData.competition_id || // prevNewData.current.period !== newData.period ||
+            prevNewData.current.round_id !== newData.round_id || prevNewData.current.market_id !== newData.market_id) {
 
             prevNewData.current = newData;
 
@@ -75,20 +68,17 @@ const TestKiron = React.memo(
 
         }
 
-
     }, [newData]);
-
 
     useEffect(() => {
         dispatch({type: "SET", key: 'playout_data', payload: null})
         dispatch({type: "SET", key: 'close_spinner', payload: false})
         dispatch({type: "SET", key: 'nareLoading', payload: true})
         if (window.location.pathname == "/nare-league") {
-            if(state?.inPlay){
+            if (state?.inPlay) {
                 dispatch({type: "SET", key: 'nareLoading', payload: false})
                 dispatch({type: 'SET', key: 'nare_league_matches', payload: null})
-            }
-            else if(!state?.inPlay&&state?.start_fetching_match&&!state?.periods_ready) {
+            } else if (!state?.inPlay && state?.start_fetching_match && !state?.periods_ready) {
                 dispatch({type: 'SET', key: 'nare_league_matches', payload: null})
                 dispatch({type: "SET", key: 'nareLoading', payload: true})
                 fetchData();
@@ -96,9 +86,7 @@ const TestKiron = React.memo(
 
         }
 
-    }, [ state?.start_fetching_match]);
-
-
+    }, [state?.start_fetching_match]);
 
 
     const fetchData = useCallback(async () => {
@@ -114,14 +102,14 @@ const TestKiron = React.memo(
         }
 
         let data = getFromLocalStorage('kiron_search_data')
-        console.log("selection",state?.current_selection_period?.round)
-        const marketsChoice={
-            competition_id: data?.competition_id ||newData?.competition_id,
+        console.log("selection", state?.current_selection_period?.round)
+        const marketsChoice = {
+            competition_id: data?.competition_id || newData?.competition_id,
             market_id: new URL(window.location).searchParams.get('sub_type_id'),
-            round_id:state?.current_selection_period?.round
+            round_id: state?.current_selection_period?.round
         }
 
-        const kiron_data = new URL(window.location).searchParams.get('sub_type_id')?marketsChoice: data || newData
+        const kiron_data = new URL(window.location).searchParams.get('sub_type_id') ? marketsChoice : data || newData
 
 
         await makeRequest({url: endpoint, method: "POST", data: kiron_data}).then(([status, result]) => {
@@ -131,7 +119,7 @@ const TestKiron = React.memo(
                 setFetching(false)
                 dispatch({type: "SET", key: 'nareLoading', payload: false})
 
-            }else{
+            } else {
                 dispatch({type: "SET", key: 'nareLoading', payload: false})
             }
         });
@@ -149,13 +137,9 @@ const TestKiron = React.memo(
         const newRoundId = state?.current_selection_period?.round || state?.period_first_round
         const newMarket = new URL(window.location).searchParams.get('sub_type_id') || kiron_market | '3'
 
-        if ((!state?.inPlay && newData.competition_id !== newCompetitionId) ||
-            newData.round_id !== newRoundId ||
-            newData.market_id !== newMarket) {
+        if ((!state?.inPlay && newData.competition_id !== newCompetitionId) || newData.round_id !== newRoundId || newData.market_id !== newMarket) {
             setNewData({
-                competition_id: newCompetitionId,
-                market_id: newMarket,
-                round_id: newRoundId
+                competition_id: newCompetitionId, market_id: newMarket, round_id: newRoundId
             });
 
 
@@ -176,11 +160,9 @@ const TestKiron = React.memo(
         if (window.location.href.includes("results")) {
             new_tab = ("results")
 
-        }
-        else if (window.location.href.includes("standing")) {
+        } else if (window.location.href.includes("standing")) {
             new_tab = ('standing')
-        }
-        else if (window.location.href.includes("bet-history")) {
+        } else if (window.location.href.includes("bet-history")) {
             new_tab = ('bet-history')
         }
 
@@ -189,12 +171,12 @@ const TestKiron = React.memo(
             dispatch({type: "SET", key: 'nareLoading', payload: false})
         }
 
-    },[window.location.pathname])
+    }, [window.location.pathname])
 
 
     return (
 
-            <div className={'flex-item-kiron'}>
+        <div className={'flex-item-kiron'}>
             <div className="item-kiron4">
                 <div>
                     <Header slip={true}/>
@@ -207,16 +189,22 @@ const TestKiron = React.memo(
                         <div className="d-flex flex-row kiron-size" style={{marginTop: "2px", width: '100%'}}>
                             <div className="d-flex flex-column kiron-size"
                                  style={{marginTop: "2px", overflowY: 'auto'}}>
-                                <KironCompetitions/>
-                                <KironTabs tab={location.pathname.replace("/", "")} user={userLogged}/>
-                                {tab == "results" ? <KironResults/> : tab == "standing" ?
-                                    <Standing/> : tab == "bet-history" ? <KironBetHistory/> : <>
-                                        <KironPeriods setPlayout={setPlayout}
-                                                      isCountdownTimerActive={isCountdownTimerActive}
-                                                      setIsCountdownTimerActive={setIsCountdownTimerActive}/>
-                                        {!state?.inPlay && <KironMoreMarkets/>}
-                                        {state?.nareLoading ?
-                                            <SkeletonLoader/> : state?.close_spinner ?
+                                <div className="d-flex flex-column kiron-sticky-nav">
+                                    <KironCompetitions/>
+                                    <KironTabs tab={location.pathname.replace("/", "")} user={userLogged}/>
+                                </div>
+                                <div className={"kiron-body"}>
+                                    {tab == "results" ? <KironResults/> : tab == "standing" ?
+                                        <Standing/> : tab == "bet-history" ? <KironBetHistory/> :
+                                            <>
+                                            <div className="d-flex flex-column kiron-matches-header">
+                                                <KironPeriods setPlayout={setPlayout}
+                                                              isCountdownTimerActive={isCountdownTimerActive}
+                                                              setIsCountdownTimerActive={setIsCountdownTimerActive}/>
+                                                {!state?.inPlay && <KironMoreMarkets/>}
+                                            </div>
+
+                                            {state?.nareLoading ? <SkeletonLoader/> : state?.close_spinner ?
                                                 <div className="kiron-loader" id="kiron-loader">
                                                     <span id='game_week'></span>
                                                     <div
@@ -227,14 +215,17 @@ const TestKiron = React.memo(
                                                     <div className="loading loading--full-height"></div>
                                                 </div> : state?.inPlay ? <KironPlayouts playout={playout}
                                                                                         isCountdownTimerActive={isCountdownTimerActive}/> :
-                                                    <MatchList
-                                                        fetching={fetching}
-                                                        competition_id={newData?.competition_id}
+                                                    <div className="kiron_matches_now">
+                                                        <MatchList
+                                                            fetching={fetching}
+                                                            competition_id={newData?.competition_id}
 
-                                                    />
-                                        }
-                                    </>
-                                }
+                                                        />
+                                                    </div>
+                                                    }
+                                        </>}
+                                </div>
+
                             </div>
                             <Right kiron={true} nareleague={true}/>
 

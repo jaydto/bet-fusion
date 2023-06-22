@@ -39,7 +39,7 @@ const Standing = () => {
             <section className="standing-wrapper text-center pt-1 pb-1">
                 <div className="container">
                     <div className="row">
-                        <div className="col-12 pb-2">
+                        <div className="col-12 pb-2 ">
                        <span
                            className="standing-heading">{newCompetition == 1 ? "KENYAN " : newCompetition == 2 ? "ENGLISH " : newCompetition == 3 ? "SPANISH " : newCompetition == 4 && "ITALIAN "} LEAGUE</span>
                         </div>

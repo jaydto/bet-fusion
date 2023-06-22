@@ -550,7 +550,7 @@ select::after {
     /*background-image:url("../../assets/img/auth/backtop.webp") !important;*/
     /*background-repeat: no-repeat;*/
     /*transform: rotate(45deg);*/
-    background: var(--betnare-primary);
+    /*background: var(--betnare-primary);*/
     /*background-position: top left;*/
 }
 

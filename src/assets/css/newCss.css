@@ -21,9 +21,7 @@ body {
     background: var(--slip-separator-color);
 }
 
-.slip-team {
-    white-space: nowrap;
-}
+
 
 .slip-color-list {
 
@@ -1576,6 +1574,12 @@ img.nare-league {
 }
 
 @media (min-width: 992px) {
+    .slip-team {
+        width: 200px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
     .btn.login-button2:hover {
         background: var(--betnare-button-login)!important;
     }
@@ -1757,6 +1761,12 @@ img.nare-league {
 
 
 @media (max-width: 991px) {
+    .slip-team {
+        width: 270px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
     .top-smartsoft {
         margin-top: 8rem !important;
     }

@@ -16,7 +16,7 @@ const KironSlip = React.memo(
         const [betslipKey, setBetslipKey] = useState("kironbetslip");
         const [betslipsData, setBetslipsData] = useState(null);
         const [state, dispatch] = useContext(Context);
-        const totalGames = betslipsData ? Object.keys(betslipsData).length : 0;
+        const totalGames = betslipsData ? Object.keys(betslipsData||{}).length : 0;
         const [message, setMessage] = useState(null);
         const [qualifiesBonus, setQualifiesBonus] = useState(false);
         const [qualifiesGift, setQualifiesGift] = useState(false);
@@ -49,7 +49,7 @@ const KironSlip = React.memo(
         //betslip update
         const updateBetslip = useCallback(() => {
             if (betslipsData) {
-                let odds = Object.values(betslipsData||{}).reduce(
+                let odds = Object.values(betslipsData).reduce(
                     (previous, {odd_value}) => {
                         return previous * odd_value;
                     },
@@ -279,7 +279,7 @@ const KironSlip = React.memo(
                         totalOdds={totalOdds}
                         betslip={betslipsData}
                         setBetslipsData={setBetslipsData}
-                        totalGames={betslipsData ? Object.keys(betslipsData).length : 0}
+                        totalGames={betslipsData ? Object.keys(betslipsData||{}).length : 0}
                         bonusBet={qualifiesBonus}
 
                     />

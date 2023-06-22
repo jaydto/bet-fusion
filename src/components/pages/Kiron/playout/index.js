@@ -112,7 +112,7 @@ const KironPlayouts = React.memo(
     return (
         <>
             <section className="standing-wrapper text-center pt-2 pb-2">
-                <div className="container">
+                <div className="w-100">
                     <div className="w-100">
                         <div className="col-12 pb-2 standings-container-heading">
                             <span className="standing-heading d-flex  flex-column

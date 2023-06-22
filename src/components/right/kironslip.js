@@ -251,20 +251,17 @@ const KironSlip = React.memo(
                                                 </li>
                                             </div>
                                             <div className="d-flex align-items-center">
-                                                <b>
-                                                    {expired.map((id, index) => {
-                                                        return slip?.parent_match_id === id && (
-                                                            <span key={index}
-                                                                  className='text-warning float-end px-2'>
-                                                             Expired
-                                                        </span>
-                                                        );
-                                                    })}
-                                                </b>
-                                                {expired.length == 0 && <b>
-                                                    <span className="bet-odd"> {slip.odd_value}</span>
-                                                </b>}
+                                                {expired?.includes(slip?.parent_match_id) ? (
+                                                    <b>
+                                                        <span className='text-warning float-end px-2'>Expired</span>
+                                                    </b>
+                                                ) : (
+                                                    <b>
+                                                        <span className="bet-odd">{slip.odd_value}</span>
+                                                    </b>
+                                                )}
                                             </div>
+
                                         </div>
                                     );
                                 })

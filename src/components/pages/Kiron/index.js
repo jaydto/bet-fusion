@@ -31,6 +31,7 @@ const TestKiron = React.memo(() => {
     let url = new URL(window.location.href)
 
     const location = useLocation();
+    console.log("location", location )
 
 
     const [isCountdownTimerActive, setIsCountdownTimerActive] = useState(false);
@@ -191,7 +192,7 @@ const TestKiron = React.memo(() => {
                                  style={{marginTop: "2px", overflowY: 'auto'}}>
                                 <div className="d-flex flex-column kiron-sticky-nav">
                                     <KironCompetitions/>
-                                    <KironTabs tab={location.pathname.replace("/", "")} user={userLogged}/>
+                                    <KironTabs tab={location?.pathname?.replace("/", "")} user={userLogged}/>
                                 </div>
                                 <div className={"kiron-body"}>
                                     {tab == "results" ? <KironResults/> : tab == "standing" ?

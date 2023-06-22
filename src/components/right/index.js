@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import QuickLogin from './quick-login';
 import CompanyInfo from './company-info';
 import BetSlip from './betslip';
@@ -10,7 +10,8 @@ import Kironslip from "./kironslip";
 import MobileMenu from "../mobile-menu";
 import useWindowDimensions from "../header/Dimensions";
 
-const AlertMessage = (props) => {
+const AlertMessage = React.memo(
+    (props) => {
     return (
         <div className={`alert alert-dismissible ${props.classname}`} role='alert'>
             <button type='button' className='close' data-dismiss='alert' aria-label='Close'><span
@@ -19,7 +20,7 @@ const AlertMessage = (props) => {
             {props.message}
         </div>
     )
-}
+})
 
 const Right = React.memo(
     (props) => {

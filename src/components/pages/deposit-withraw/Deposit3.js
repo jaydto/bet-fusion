@@ -1,6 +1,7 @@
-import React, {useCallback, useContext, useEffect, useRef, useState} from 'react'
-import { Row, Col } from "antd";
+import React, {useContext, useEffect, useState} from 'react'
+import {Col, Row} from "antd";
 import authImg from '../../../assets/img/Logo.webp'
+import logo from '../../../assets/img/Logo.webp'
 import betNiMoto from '../../../assets/img/BetniMoto.webp'
 
 import {Link, useNavigate} from "react-router-dom";
@@ -11,18 +12,15 @@ import backgroundURL from '../../../assets/img/auth/img-17.webp'
 import {Navbar, Offcanvas} from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import {LazyLoadImage} from "react-lazy-load-image-component";
-import logo from "../../../assets/img/Logo.webp";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {
-    faBackspace,
-
-} from "@fortawesome/free-solid-svg-icons";
+import {faBackspace,} from "@fortawesome/free-solid-svg-icons";
 import SidebarMobile from "../../sidebar/awesome/SidebarMobile";
 import makeRequest from "../../utils/fetch-request";
 import {Form, Formik} from "formik";
 import {Context} from "../../../context/store";
 import {getBetslip} from "../../utils/betslip";
 import mpesa from "../../../assets/img/mpesa.png";
+
 const backgroundStyle = {
     backgroundImage: `url(${backgroundURL})`,
     backgroundRepeat: 'no-repeat',
@@ -33,7 +31,8 @@ let initialValues = {
     msisdn:''
 }
 
-const Deposit3= props => {
+const Deposit3= React.memo(
+    props => {
     // const [message, setMessage] = useState(null);
     const navigate = useNavigate();
     const expand = "md"
@@ -79,7 +78,7 @@ const Deposit3= props => {
 
     const FormTitle = () => {
         return (
-            <div className='col-md-12  p-lg-4 p-sm-1 p-md-1 pt-sm-4 pt-md-4' style={{background:'transparent'}}>
+            <div className='col-md-12  p-4 text-center' style={{background:'transparent'}}>
                 <h4 className="inline-block betnare-text-light">
                     DEPOSIT FUNDS (MOBILE MONEY)
                 </h4>
@@ -98,7 +97,7 @@ const Deposit3= props => {
     return (
         <div style={{height:'100vh', background:'#16202C'}}>
             <div className={''}>
-                <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav top-register-page" fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
+                <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav top-section-page" fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
                     <Container fluid className={'d-flex justify-content-between mobile-change top-login-background-img'}>
                         <Navbar.Brand className="e logo align-self-start menu-control d-flex w-100 " title="Betnare" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
                             <Link to={'/'} className={'betnare-text-light'}>
@@ -145,7 +144,7 @@ const Deposit3= props => {
                 <Col xs={0} sm={0} md={0} lg={8}>
                     <div className="d-flex flex-column justify-content-between h-100 px-4" style={backgroundStyle}>
                         <div className="text-right">
-                            {/*<img src="/img/logo-sm.jpg" style={{height:"35px"}}alt="logo"/>*/}
+                            {/*<LazyLoadImage src="/img/logo-sm.jpg" style={{height:"35px"}}alt="logo"/>*/}
                         </div>
                         <Row justify="center">
                             <Col xs={0} sm={0} md={0} lg={20}>
@@ -171,7 +170,7 @@ const Deposit3= props => {
                 <div className={'col-lg-8 col-sm-12 top-login-background-img-bg-down top-login-background-img-bg-page'} >
 
                     <div className="w-100 d-flex flex-column justify-content-center h-100 top-login-background-img-bg-page">
-                        <div className={'width-page-centric deposit-page main'}>
+                        <div className={'width-page-centric deposit-page'}>
                             <FormTitle/>
 
                             <Row justify="center">
@@ -185,7 +184,7 @@ const Deposit3= props => {
                                                 <div className="homepage d-flex flex-column align-items-center justify-content-center login-page">
 
                                                     <Alert/>
-                                                    <div className=" pb-0" data-backdrop="static">
+                                                    <div className="modal-body pb-0" data-backdrop="static">
 
                                                         <DepositForm/>
                                                     </div>
@@ -208,13 +207,13 @@ const Deposit3= props => {
             </Row>
         </div>
     )
-}
+})
 
 const PaymentInstructions = (props) => {
     return (
         <>
             <label className='betnare-text-light'>Deposit Instructions</label>
-            <div className="container">
+            <div className="container d-flex flex-column">
                 <div className="row">
                     <div className="col betnare-text-light"> 1. Enter the amount you want to deposit.</div>
                 </div>
@@ -306,8 +305,8 @@ const DepositFormFields = (props) => {
                     {errors.amount && <div className='text-danger'> {errors.amount} </div>}
                 </div>
             </div>
-            <div className="form-group px-2 row d-flex justify-content-left mb-4">
-                <div className=" d-flex align-items-start deposit-withdraw-button-desktop px-2">
+            <div className="form-group row d-flex justify-content-left mb-4">
+                <div className=" d-flex align-items-start deposit-withdraw-button-desktop">
                     <button type={"submit"}
                             className='btn btn-lg w-100 button-radius input-field btn-font cg login-button2 btn bold' style={{marginTop:"47px"}}>
                         Deposit
@@ -332,7 +331,7 @@ const MyDepositForm = (props) => {
         <Form className="shadow-sm rounded border-0">
             <div className="pt-0">
 
-                <div className="w-100">
+                <div className="row">
                     <div className='col-md-7 text-center'>
                         <div className={`col-md-7 text-center`}>
                             <LazyLoadImage src={mpesa} alt=""/>

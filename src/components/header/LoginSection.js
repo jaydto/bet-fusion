@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext, useCallback} from 'react'
+import React, {useState} from 'react'
 
 import 'react-toastify/dist/ReactToastify.css';
 import './settings.css'

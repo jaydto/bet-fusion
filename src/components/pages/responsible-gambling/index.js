@@ -2,19 +2,21 @@ import React, {useContext} from "react";
 import {
     Accordion,
     AccordionItem,
-    AccordionItemHeading,
     AccordionItemButton,
+    AccordionItemHeading,
     AccordionItemPanel,
 } from 'react-accessible-accordion';
 import 'react-accessible-accordion/dist/fancy-example.css';
 import useWindowDimensions from "../../header/Dimensions";
 import {Context} from "../../../context/store";
+
 const Header = React.lazy(()=>import('../../header/header'));
 const SideBar = React.lazy(()=>import('../../sidebar/awesome/Sidebar'));
 const Footer = React.lazy(()=>import('../../footer/footer'));
 const Right = React.lazy(()=>import('../../right/index'));
 
-const ResponsibleGambling = () => {
+const ResponsibleGambling = React.memo(
+    () => {
     const {height, width} = useWindowDimensions();
     const [state, dispatch] = useContext(Context);
     return (
@@ -177,6 +179,6 @@ const ResponsibleGambling = () => {
             </div>
         </>
     )
-}
+})
 
 export default React.memo(ResponsibleGambling)

@@ -33,6 +33,7 @@
     work correctly both with client-side routing and a non-root public URL.
     Learn how to configure a non-root public URL by running `npm run build`.
   -->
+
   <title>Betnare</title>
 
 </head>
@@ -44,6 +45,9 @@
     Whoops! It's us not you. Give us another chance by clicking here.💔
   </div>
 </a></noscript>
+<a href="https://lite.betnare.com" class="app-color lite-top-color site-mobile-only">
+  <div class="color-app-text">Having trouble loading the website? Click here for <strong>LITE</strong> VERSION</div>
+</a>
 <div id="app"></div>
 <!--
 This HTML file is a template.
@@ -57,21 +61,6 @@ To create a production bundle, use `npm run build` or `yarn build`.
 -->
 </body>
 
-<!--    live match tracker-->
-<!--<script-->
-<!--        type="application/javascript"-->
-<!--        src="https://widgets.sir.sportradar.com/db1070bd52c9f321c66fd763a52e2af8/widgetloader"-->
-<!--        async-->
-<!--&gt;</script>-->
-<!--end of live match Tracker-->
-<!--start of pragmatic-->
-<!--<script defer src="https://dga.pragmaticplaylive.net/dgaAPI.js"></script>-->
-<!--<script defer src="https://client.pragmaticplaylive.net/desktop/assets/api/fullscreenApi.js"></script>-->
-<!--End of Paragmatic-->
-
-<!-- Google tag (gtag.js) -->
-
-<!-- Google Tag Manager (noscript) -->
 <noscript>
   <iframe
           src="https://www.googletagmanager.com/ns.html?id=AW-10991240939"
@@ -81,119 +70,11 @@ To create a production bundle, use `npm run build` or `yarn build`.
   ></iframe>
 </noscript>
 
-<!--End of Gtag noscript-->
-
-<!--<script defer src="https://www.googletagmanager.com/gtag/js?id=AW-10991240939"></script>-->
-<!--<script defer>-->
-<!--  window.dataLayer = window.dataLayer || [];-->
-<!--  function gtag() {-->
-<!--    dataLayer.push(arguments);-->
-<!--  }-->
-<!--  gtag('js', new Date());-->
-<!--  gtag('config', 'AW-10991240939');-->
-<!--</script>-->
-
-<!--End of Google Tag Manager-->
-<!--<script defer>-->
-<!--  function gtag_report_conversion(url) {-->
-<!--    var callback = function () {-->
-<!--      if (typeof url != "undefined") {-->
-<!--        window.location = url;-->
-<!--      }-->
-<!--    };-->
-<!--    gtag("event", "conversion", {-->
-<!--      send_to: "AW-10991240939/GdurCO6x5IAYEOuNhPko",-->
-<!--      event_callback: callback,-->
-<!--    });-->
-<!--    return false;-->
-<!--  }-->
-<!--</script>-->
-
-<!--facebook tag manager-->
-<!--<script defer>-->
-<!--  !function (f, b, e, v, n, t, s) {-->
-<!--    if (f.fbq) return;-->
-<!--    n = f.fbq = function () {-->
-<!--      n.callMethod ?-->
-<!--              n.callMethod.apply(n, arguments) : n.queue.push(arguments)-->
-<!--    };-->
-<!--    if (!f._fbq) f._fbq = n;-->
-<!--    n.push = n;-->
-<!--    n.loaded = !0;-->
-<!--    n.version = '2.0';-->
-<!--    n.queue = [];-->
-<!--    t = b.createElement(e);-->
-<!--    t.async = !0;-->
-<!--    t.src = v;-->
-<!--    s = b.getElementsByTagName(e)[0];-->
-<!--    s.parentNode.insertBefore(t, s)-->
-<!--  }(window, document, 'script',-->
-<!--          'https://connect.facebook.net/en_US/fbevents.js');-->
-<!--  fbq('init', '1297171947681785');-->
-<!--  fbq('track', 'PageView');-->
-<!--</script>-->
 <noscript>
   <img height="1" width="1"
        src="https://www.facebook.com/tr?id=1297171947681785&ev=PageView
 &noscript=1"/>
 </noscript>
-<!--end of facebook tag manager-->
-
-<!--Start of clarity-->
-<!--<script defer type="text/javascript">-->
-<!--  (function (c, l, a, r, i, t, y) {-->
-<!--    c[a] =-->
-<!--            c[a] ||-->
-<!--            function () {-->
-<!--              (c[a].q = c[a].q || []).push(arguments);-->
-<!--            };-->
-<!--    t = l.createElement(r);-->
-<!--    t.async = 1;-->
-<!--    t.src = "https://www.clarity.ms/tag/" + i + "?ref=gtm2";-->
-<!--    y = l.getElementsByTagName(r)[0];-->
-<!--    y.parentNode.insertBefore(t, y);-->
-<!--  })(window, document, "clarity", "script", "ez9iby6sl0");-->
-<!--</script>-->
-<!--End of Clarity-->
-
-<!-- Start of Eskimi DSP Pixel Code -->
-<!--<script defer>-->
-<!--  !(function (f, e, t, u, n, s, p) {-->
-<!--    if (f.esk) return;-->
-<!--    n = f.esk = function () {-->
-<!--      n.callMethod-->
-<!--              ? n.callMethod.apply(n, arguments)-->
-<!--              : n.queue.push(arguments);-->
-<!--    };-->
-<!--    if (!f.___esk) f.___esk = n;-->
-<!--    n.push = n;-->
-<!--    n.loaded = !0;-->
-<!--    n.queue = [];-->
-<!--    s = e.createElement(t);-->
-<!--    s.async = !0;-->
-<!--    s.src = u;-->
-<!--    p = e.getElementsByTagName(t)[0];-->
-<!--    p.parentNode.insertBefore(s, p);-->
-<!--  })(-->
-<!--          window,-->
-<!--          document,-->
-<!--          "script",-->
-<!--          "https://dsp-media.eskimi.com/assets/js/e/gtr.min.js?_=0.0.0.3"-->
-<!--  );-->
-<!--  esk("init", "26048");-->
-<!--</script>-->
-<!--end of Eskimi-->
-
-<!--Start OneSignal-->
-<!--<script defer src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" ></script>-->
-<!--<script defer>-->
-<!--  window.OneSignal = window.OneSignal || [];-->
-<!--  OneSignal.push(function () {-->
-<!--    OneSignal.init({-->
-<!--      appId: "b5f78dde-63ae-45fc-b51a-535df13ad5d7",-->
-<!--    });-->
-<!--  });-->
-<!--</script>-->
 
 <script defer>
   function getScrollLength() {
@@ -205,8 +86,6 @@ To create a production bundle, use `npm run build` or `yarn build`.
     }
   }
 </script>
-<!--End of Scroll Script-->
-
 <script>
   <!--start of bitrix-->
   window.onload = function() {
@@ -239,7 +118,7 @@ To create a production bundle, use `npm run build` or `yarn build`.
   `;
     firstScript.parentNode.insertBefore(script2, firstScript);
 
-  //   eskimi
+    //   eskimi
     var script3 = document.createElement("script");
     script3.defer = true;
     script3.text = `
@@ -354,10 +233,10 @@ To create a production bundle, use `npm run build` or `yarn build`.
     firstScript.parentNode.insertBefore(script8, firstScript);
 
     // live match tracker
-    var script9 = document.createElement("script");
-    script9.defer = true;
-    script9.src = "https://widgets.sir.sportradar.com/db1070bd52c9f321c66fd763a52e2af8/widgetloader";
-    firstScript.parentNode.insertBefore(script9, firstScript);
+    // var script9 = document.createElement("script");
+    // script9.defer = true;
+    // script9.src = "https://widgets.sir.sportradar.com/db1070bd52c9f321c66fd763a52e2af8/widgetloader";
+    // firstScript.parentNode.insertBefore(script9, firstScript);
 
     //pragmatic
     var script10 = document.createElement("script");
@@ -372,6 +251,11 @@ To create a production bundle, use `npm run build` or `yarn build`.
     firstScript.parentNode.insertBefore(script11, firstScript);
 
   };
+
+</script>
+<!--End of Scroll Script-->
+
+<script defer src="https://widgets.sir.sportradar.com/db1070bd52c9f321c66fd763a52e2af8/widgetloader">
 
 </script>
 

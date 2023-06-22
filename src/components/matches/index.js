@@ -1,15 +1,16 @@
-import React, {useState, useEffect, useContext, useCallback, useRef, useLayoutEffect} from 'react';
+import React, {useCallback, useContext, useEffect, useLayoutEffect, useRef, useState} from 'react';
 import {Context} from '../../context/store';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import bgJackpot from '../../assets/img/banner/products/jackpot.webp'
 import {
-  addToSlip,
-  removeFromSlip,
-  removeFromJackpotSlip,
   addToJackpotSlip,
-  getBetslip, getJackpotBetslip
+  addToSlip,
+  getBetslip,
+  getJackpotBetslip,
+  removeFromJackpotSlip,
+  removeFromSlip
 } from '../utils/betslip';
 import './matches.css'
 import CurrencyFormat from 'react-currency-format';
@@ -41,7 +42,7 @@ const EmptyTextRow = React.memo(
   const {odd_key, classname,live,allMarkets} = props;
 
   return (
-      <button className={`${classname} ${allMarkets ? ' all-markets ':''} home-team btn btn-disabled match-detail c-btn ${live?"c-resize":"width-button-odd"}`}
+      <button className={`${classname} ${allMarkets ? ' all-markets ':''} empty-more-markets-button home-team btn btn-disabled match-detail c-btn ${live?"c-resize":"width-button-odd"}`}
               style={{
                 width: "100%",
                 height: "40px",
@@ -63,8 +64,7 @@ const EmptyTextRow = React.memo(
   );
 });
 
-const marketChoice =
-    () => {
+const marketChoice = () => {
 
 
   const markets = [
@@ -314,10 +314,10 @@ const MoreMarketsHeaderRow = React.memo(
                 <h4 className="inline-block">
                   {home_team} <small> - </small> {away_team}
                   {tags?.length
-                      ? tags?.map((tag) => (
+                      ? tags?.map((tag,index) => (
                           <span
                               className="tag"
-                              key={tag.name}
+                              key={index}
                               style={{
                                 backgroundColor: `${tag.background_color}`,
                                 color: `${tag.color}`,
@@ -367,10 +367,10 @@ const MoreMarketsHeaderRow = React.memo(
               <h4 className="inline-block">
                 {home_team} <small> - </small> {away_team}
                 {tags?.length
-                    ? tags?.map((tag) => (
+                    ? tags?.map((tag,index) => (
                         <span
                             className="tag"
-                            key={tag.name}
+                            key={index}
                             style={{
                               backgroundColor: `${tag.background_color}`,
                               color: `${tag.color}`,
@@ -715,11 +715,11 @@ const MarketRow = React.memo(
     (props) => {
   const { markets, match, market_id, width, live, pdown, allMarkets } = props;
 
-  const MktOddsButton = React.memo(
-      (props) => {
+
+  const MktOddsButton = (props) => {
     const { match, mktodds, live, pdown } = props;
     const fullmatch = { ...match, ...mktodds };
-    // console.log("Market odds", fullmatch)
+
     return !pdown &&
     fullmatch?.odd_value !== "NaN" &&
     fullmatch.market_active == 1 &&
@@ -734,7 +734,7 @@ const MarketRow = React.memo(
     ) : (
         <EmptyTextRow odd_key={fullmatch?.display_name} allMarkets={allMarkets} />
     );
-  });
+  };
 
   return (
       <div className="top-matches match">
@@ -755,12 +755,12 @@ const MarketRow = React.memo(
         </Row>
 
         {markets &&
-            markets.map((mkt_odds) => {
-              //  console.log(mkt_odds)
+            markets.map((mkt_odds,index) => {
+
               return (
                   <>
                     <Col
-                        key={mkt_odds.id}
+                        key={index}
                         className="match-detail"
                         style={{ width: width, float: "left" }}
                     >
@@ -788,8 +788,7 @@ const ColoredCircle = React.memo(
   ) : null;
 });
 
-const getUpdatedMatchFromOdds =
-    (props) => {
+const getUpdatedMatchFromOdds = (props) => {
   const {match, marketName, odd_key, odd_data} = props;
   let newMatch = {...match, ...odd_data};
   newMatch.name = marketName;
@@ -947,8 +946,8 @@ const MatchRow = React.memo(
               </Link>
               {
                 match.tags?.length ?
-                    match.tags.map(tag => (
-                        <span className="tag" key={tag.name}
+                    match.tags.map((tag, index) => (
+                        <span className="tag" key={index}
                               style={{
                                 backgroundColor: `${tag.background_color}`,
                                 color: `${tag.color}`,
@@ -1194,12 +1193,12 @@ const MatchRow = React.memo(
             {!jackpot && <>
               {Object.entries(match?.extra_odds || {}).map(([marketName, odds], index) => (
                   marketName !== '' && (
-                      <div className={`c-btn-group  align-self-center to-deskview`}>
+                      <div className={`c-btn-group  align-self-center to-deskview`} key={index}>
                         {
-                          Object.entries(odds || {}).map(([odd_key, odd_data]) => {
+                          Object.entries(odds || {}).map(([odd_key, odd_data],index) => {
                             return odd_data?.odd_active == 1 && odd_data.market_active == 1 ? (<OddButton
                                 match={getUpdatedMatchFromOdds({match, marketName, odd_key, odd_data})}
-                                key={odd_key} live={live}/>) : (<EmptyTextRow odd_key={match?.odd_key} live={live}/>)
+                                key={index} live={live}/>) : (<EmptyTextRow odd_key={match?.odd_key} live={live}/>)
                           })
                         }
                       </div>
@@ -1207,8 +1206,8 @@ const MatchRow = React.memo(
               ))
               }
 
-              {!live && loops?.map(() => (
-                  <div className={`c-btn-group align-self-center to-deskview`}>
+              {!live && loops?.map((value,index) => (
+                  <div className={`c-btn-group align-self-center to-deskview`} key={index}>
                     <EmptyTextRow odd_key={match?.odd_key} live={live}/>
                     <EmptyTextRow odd_key={match?.odd_key} live={live}/>
                   </div>
@@ -1230,6 +1229,7 @@ const MatchRow = React.memo(
 
 })
 
+
 export const MarketList = React.memo(
     (props) => {
   const { live, allMarkets, pdown } = props;
@@ -1243,8 +1243,6 @@ export const MarketList = React.memo(
   const matchwithmarkets = allMarkets
       ? state?.all_markets
       : dispatch({ type: "SET", key: "all_markets", payload: null });
-
-
 
   const filterMarkets = (value) => {
     let filtered = [];
@@ -1316,14 +1314,14 @@ export const MarketList = React.memo(
           </div>
 
 
-          {marketsToShow.map(([mkt_id, markets]) => {
+          {marketsToShow.map(([mkt_id, markets],index) => {
             return  <MarketRow
                 allMarkets={allMarkets}
                 market_id={mkt_id}
                 markets={markets}
                 width={markets.length === 3 ? "33.333%" : "50%"}
                 match={filters?.data?.match}
-                key={mkt_id}
+                key={index}
                 live={live}
                 pdown={pdown}
             />
@@ -1410,8 +1408,8 @@ export const JackpotMatchList = React.memo(
           </div>
         </div>
         <Row className="web-element top-login-background-img-bg">
-          {matches && Object.entries(matches?.data).map(([key, match]) => (
-              <MatchRow match={match} jackpot key={key}/>
+          {matches && Object.entries(matches?.data).map(([key, match],index) => (
+              <MatchRow match={match} jackpot key={index}/>
           ))
           }
           {(matches !== null && matches.length === 0) &&
@@ -1437,8 +1435,8 @@ const MatchList = React.memo(
 
         <Row className="web-element px-lg-3 top-login-background-img-bg ">
           {matches &&
-              Object.entries(matches).map(([key, match]) => (
-                  <MatchRow match={match} key={key} live={live} pdown={pdown} three_way={three_way}/>
+              Object.entries(matches).map(([key, match],index) => (
+                  <MatchRow match={match} key={index} live={live} pdown={pdown} three_way={three_way}/>
               ))
           }
           {(matches !== null && matches.length === 0) &&

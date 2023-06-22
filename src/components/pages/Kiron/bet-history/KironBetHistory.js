@@ -1,13 +1,13 @@
-import React, {useContext, useEffect, useState, useCallback} from "react";
+import React, {useCallback, useContext, useEffect, useState} from "react";
 import {Context} from '../../../../context/store';
-import  {BASE_URL} from '../../../utils/fetch-request';
+import {BASE_URL} from '../../../utils/fetch-request';
 
 import '../../../../assets/css/accordion.react.css';
 import axios from "axios";
 import {getFromLocalStorage} from "../../../utils/local-storage";
 import {Spinner} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faBan, faCheck, faQuestionCircle, faReceipt, faTimes} from "@fortawesome/free-solid-svg-icons";
+import {faBan, faCheck, faQuestionCircle, faTimes} from "@fortawesome/free-solid-svg-icons";
 
 
 const Styles = {
@@ -28,7 +28,8 @@ const Styles = {
     }
 };
 
-const KironBetHistory = (props) => {
+const KironBetHistory = React.memo(
+    (props) => {
     const [state, dispatch] = useContext(Context);
     const [isLoading, setIsLoading] = useState(false);
     let user = getFromLocalStorage('user');
@@ -269,6 +270,6 @@ const KironBetHistory = (props) => {
 
         </>
     )
-}
+})
 
 export default KironBetHistory

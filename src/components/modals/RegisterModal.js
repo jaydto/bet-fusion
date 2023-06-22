@@ -1,15 +1,13 @@
-import React, {useCallback, useEffect, useRef, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import Modal from "react-bootstrap/Modal";
 import {Button, Form} from "react-bootstrap";
-import whatsap from "../../assets/svg/whatsapp.svg"
-import {LazyLoadImage} from 'react-lazy-load-image-component';
 import Notify from "../utils/Notify";
 import makeRequest from "../utils/fetch-request";
-import { ToastContainer } from "react-toastify";
+import {ToastContainer} from "react-toastify";
 import {clearTrackingData, setLocalStorage, setTrackingData} from '../utils/local-storage';
-import { Navigate } from "react-router-dom";
 
-const RegisterModal = (props) => {
+const RegisterModal = React.memo(
+    (props) => {
     const {visible,  setShowRegisterModal, location} = props
     const [isOpen, setIsOpen] = useState(visible)
     const [message, setMessage] = useState(null);
@@ -162,5 +160,5 @@ const RegisterModal = (props) => {
         </>
 
     );
-};
+});
 export default React.memo(RegisterModal);

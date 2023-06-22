@@ -150,7 +150,9 @@ input, select, textarea {
     /*padding-bottom: max(10px, env(safe-area-insent-bottom));*/
     justify-content: space-around;
 }
-
+.mobile-menu tbody{
+    width:100%;
+}
 
   .bloc-icon p{
     color: white;
@@ -16156,7 +16158,7 @@ img.zoom-img {
         border-radius: 4px;
         padding: 0px 5px;
         border: none;
-        margin-bottom: -5px;
+        margin-bottom: -3px;
     }
 
     .more-sports {

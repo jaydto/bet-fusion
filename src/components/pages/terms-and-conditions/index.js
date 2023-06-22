@@ -1,8 +1,6 @@
 import React, {useContext} from "react";
 
-import {
-    Accordion,
-} from 'react-accessible-accordion';
+import {Accordion,} from 'react-accessible-accordion';
 import 'react-accessible-accordion/dist/fancy-example.css';
 import useWindowDimensions from "../../header/Dimensions";
 import {Context} from "../../../context/store";
@@ -36,8 +34,8 @@ const Definitions =React.lazy(()=>import('./Definitions'))
 
 const TermsAndConditions = React.memo(
     (props) => {
-    const {width} = useWindowDimensions();
-    const [state, ] = useContext(Context);
+    const {height, width} = useWindowDimensions();
+    const [state, dispatch] = useContext(Context);
     return (
         <>
             <Header/>

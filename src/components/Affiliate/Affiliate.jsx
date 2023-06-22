@@ -1,19 +1,19 @@
-import {Navbar, Offcanvas} from "react-bootstrap";
+import {Navbar} from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import {Link} from "react-router-dom";
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import logo from "../../assets/img/Logo.webp";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import './test.css'
 import './card.css'
 import './affiliate.css'
-// import SidebarMobile from "../sidebar/awesome/SidebarMobile";
 import {Context} from "../../context/store";
-import {faArrowUp, faHandPointUp, faHome, faPowerOff} from "@fortawesome/free-solid-svg-icons";
+import {faArrowUp, faHome, faPowerOff} from "@fortawesome/free-solid-svg-icons";
 
 const Footer = React.lazy(() => import('../footer/footer'));
-const Affiliate = (props) => {
+const Affiliate = React.memo(
+    (props) => {
     const {profile}=props
     const [state, dispatch] = useContext(Context)
     const expand = "md"
@@ -366,5 +366,5 @@ const Affiliate = (props) => {
             </div>
         </>
     )
-}
+})
 export default React.memo(Affiliate)

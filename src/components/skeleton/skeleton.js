@@ -1,5 +1,6 @@
 import React from 'react';
 import './skeleton.css'
+
 const Skeleton1 = () => {
     return (
         <div className="center-body">

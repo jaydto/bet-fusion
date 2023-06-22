@@ -1,6 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react'
-import { Row, Col } from "antd";
+import {Col, Row} from "antd";
 import authImg from '../../assets/img/Logo.webp'
+import logo from '../../assets/img/Logo.webp'
 
 import {Link, useNavigate} from "react-router-dom";
 import HeaderLogin from "../header/top-login";
@@ -12,11 +13,11 @@ import backgroundURL from '../../assets/img/auth/img-17.webp'
 import {Navbar, Offcanvas} from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import {LazyLoadImage} from "react-lazy-load-image-component";
-import logo from "../../assets/img/Logo.webp";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import { faBackspace} from "@fortawesome/free-solid-svg-icons";
+import {faBackspace} from "@fortawesome/free-solid-svg-icons";
 import SidebarMobile from "../sidebar/awesome/SidebarMobile";
 import betNiMoto from '../../assets/img/BetniMoto.webp'
+
 const backgroundStyle = {
 	backgroundImage: `url(${backgroundURL})`,
 	backgroundRepeat: 'no-repeat',
@@ -94,7 +95,7 @@ const LoginTwo = React.memo(
 	return (
 		<div style={{height:'100vh', background:'#16202C',overflowX:'hidden'}}>
 			<div className={''}>
-				<Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
+				<Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav top-section-page " fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
 					<Container fluid className={'d-flex justify-content-between mobile-change top-login-background-img'}>
 						<Navbar.Brand className="e logo align-self-start menu-control d-flex w-100" title="Betnare" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
 							<Link to={'/'} className={'text-light d-flex align-items-center'}>

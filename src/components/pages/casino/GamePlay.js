@@ -9,6 +9,7 @@ import {getFromLocalStorage} from "../../utils/local-storage";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import {Stack} from "react-bootstrap";
 
+
 const GamePlay = React.memo(
     (props) => {
     // let url = new URL(window.location)

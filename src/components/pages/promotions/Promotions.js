@@ -13,7 +13,8 @@ import {Table} from "react-bootstrap";
 import Right from "../../right";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 
-const Promotions = () => {
+const Promotions = React.memo(
+    () => {
     return (
         <>
             <Header/>
@@ -520,6 +521,6 @@ const Promotions = () => {
         </>
 
     )
-}
+})
 
 export default React.memo(Promotions)

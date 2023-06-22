@@ -2,7 +2,8 @@ import React, {useState} from 'react';
 import makeRequest from "../utils/fetch-request";
 import {Card, CardActionArea, Typography} from "@material-ui/core";
 
-const BetHistoryDetails= props => {
+const BetHistoryDetails= React.memo(
+    props => {
         const {bet}=props
 
         const [betStatus, setBetStatus] = useState(bet.status_desc);
@@ -64,8 +65,8 @@ const BetHistoryDetails= props => {
 
     return (
         <div>
-            {bet.map((bets) => (
-                <Card sx={{ maxWidth: 345 }} key={bets.parent_match_id} className={'card-bet-details'}>
+            {bet.map((bets,index) => (
+                <Card sx={{ maxWidth: 345 }} key={index} className={'card-bet-details'}>
                     <CardActionArea className={'card-bet-details'}>
                         <Typography variant="body2" color="text.secondary">Home Team: {bets.home_team} | Away Team: {bets.away_team}</Typography>
                          <Typography variant="body2" color="text.secondary">Bet Pick: {bets.bet_pick} | Win: {bets.win}</Typography>
@@ -76,7 +77,7 @@ const BetHistoryDetails= props => {
             ))}
         </div>
         )
-};
+});
 
 
 export default BetHistoryDetails;

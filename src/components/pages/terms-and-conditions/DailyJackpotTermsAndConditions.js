@@ -1,12 +1,12 @@
 import {
+    Accordion,
     AccordionItem,
-    AccordionItemHeading,
     AccordionItemButton,
+    AccordionItemHeading,
     AccordionItemPanel,
 } from 'react-accessible-accordion';
 import 'react-accessible-accordion/dist/fancy-example.css';
 import React from "react";
-import {Accordion} from "react-accessible-accordion";
 
 const DailyJackpotTermsAndConditions = () =>
     (

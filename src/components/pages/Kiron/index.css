@@ -384,6 +384,8 @@
 @media (max-width:991px){
 
     .top-matches.kiron div {
+        color: var(--light);
+        background: var(--betnare-primary);
         min-height: 16px;
         justify-content: unset;
         padding-left: 0.1rem!important;

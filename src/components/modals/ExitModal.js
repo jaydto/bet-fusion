@@ -1,13 +1,12 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useState} from "react";
 import Modal from "react-bootstrap/Modal";
 import {Button} from "react-bootstrap";
-import { Clipboard } from '@capacitor/clipboard';
-import {Capacitor} from "@capacitor/core";
-import { removeItem } from "../utils/local-storage";
-import { App } from "@capacitor/app";
+import {removeItem} from "../utils/local-storage";
+import {App} from "@capacitor/app";
 
 
-const ExitModal = (props) => {
+const ExitModal = React.memo(
+    (props) => {
     const {visible, setShowLoadingModal} = props
     const [isOpen, setIsOpen] = useState(visible)
     const [message, setMessage] = useState(null);
@@ -60,5 +59,5 @@ const ExitModal = (props) => {
         </Modal>
 
     );
-};
+});
 export default React.memo(ExitModal)

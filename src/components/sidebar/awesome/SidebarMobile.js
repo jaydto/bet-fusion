@@ -1,20 +1,20 @@
-import {Menu, MenuItem, ProSidebar, SidebarContent, SidebarFooter, SidebarHeader, SubMenu} from "react-pro-sidebar";
-import {getFromLocalStorage, } from "../../utils/local-storage";
+import {Menu, MenuItem, ProSidebar, SidebarContent, SidebarFooter, SidebarHeader} from "react-pro-sidebar";
+import {getFromLocalStorage,} from "../../utils/local-storage";
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import Footer from "../../footer/footer";
 import 'react-pro-sidebar/dist/css/styles.css';
 import {
-    faUser,
-    faQuestionCircle,
-    faPrint,
+    faCloudDownloadAlt,
     faHome,
-    faStream,
     faInfo,
     faLaptop,
     faMagic,
     faMobile,
-    faCloudDownloadAlt
+    faPrint,
+    faQuestionCircle,
+    faStream,
+    faUser
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";

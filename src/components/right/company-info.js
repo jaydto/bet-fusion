@@ -16,7 +16,7 @@ const CompanyInfo = React.memo(
                     </div>
                     <div className="">
                         <span className="col-sm-4">
-                        {/*<img src={contact} alt=" " />*/}
+                        {/*<LazyLoadImage src={contact} alt=" " />*/}
                         </span>
                         <span className="col-sm-8">
                             <LazyLoadImage src={Paybill} alt="" className='w-100'/>
@@ -30,7 +30,7 @@ const CompanyInfo = React.memo(
                     </div>
                     <div className="">
                         <span className="col-sm-4">
-                        {/*<img src={contact} alt=" " />*/}
+                        {/*<LazyLoadImage src={contact} alt=" " />*/}
                         </span>
                         <span className="col-sm-8 mt-4">
                             <LazyLoadImage src={CustomerCare} alt="" className='w-100'/>

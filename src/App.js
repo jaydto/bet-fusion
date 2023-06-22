@@ -1,14 +1,10 @@
-
 import './App.css';
-import React, {useCallback, useEffect} from "react";
+import React from "react";
 
-
-
-
-const App=()=> {
-return (
-    <></>
-)
+const App = () => {
+    return (
+        <></>
+    )
 }
 
 export default App;

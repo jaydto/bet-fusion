@@ -1,4 +1,7 @@
-const NotFound = () => {
+import React from "react"
+
+const NotFound = React.memo(
+    () => {
     return (
         <>
             <div className="page-404">
@@ -49,6 +52,6 @@ const NotFound = () => {
             </div>
         </>
     )
-}
+})
 
 export default NotFound

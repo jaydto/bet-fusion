@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState, useCallback} from "react";
+import React, {useCallback, useContext, useEffect, useState} from "react";
 import {Context} from '../../../../context/store';
 import makeRequest from '../../../utils/fetch-request';
 import {
@@ -11,6 +11,7 @@ import {
 
 import '../.././../../assets/css/accordion.react.css';
 import useWindowDimensions from "../../../header/Dimensions";
+
 const Styles = {
     container: {
         background:'#22323e !important',
@@ -30,7 +31,8 @@ const Styles = {
     }
 };
 
-const MyBets = (props) => {
+const MyBets = React.memo(
+    (props) => {
     const [state, dispatch] = useContext(Context);
     const [isLoading, setIsLoading] = useState(false);
     const {height, width} = useWindowDimensions();
@@ -237,6 +239,6 @@ const MyBets = (props) => {
 
         </>
     )
-}
+})
 
 export default React.memo(MyBets)

@@ -4,7 +4,8 @@ import React, {useContext} from "react";
 import useWindowDimensions from "../../header/Dimensions";
 import {Context} from "../../../context/store";
 
-const LiveScore = () => {
+const LiveScore = React.memo(
+    () => {
     const {height, width} = useWindowDimensions();
     const [state, dispatch] = useContext(Context);
     return (
@@ -43,6 +44,6 @@ const LiveScore = () => {
             <Footer/>
             </div>
         </>)
-}
+})
 
 export default React.memo(LiveScore)

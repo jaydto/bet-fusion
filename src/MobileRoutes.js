@@ -1,8 +1,6 @@
-
-import { useRoutes } from "react-router-dom";
+import {Navigate, useNavigate, useRoutes} from "react-router-dom";
 import './App.css';
 import React, {useCallback, useEffect} from "react";
-import {Navigate, Route, Routes, useNavigate} from "react-router-dom";
 import Profile from "./components/pages/Accounts/Profile";
 
 const Index = React.lazy(() => import('./components'));

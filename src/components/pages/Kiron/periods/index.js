@@ -12,7 +12,8 @@ export const getTime = (time) => {
 
 let timerInterval;
 let timerVar;
-const KironPeriods = (props) => {
+const KironPeriods = React.memo(
+    (props) => {
     const {setPlayout, setIsCountdownTimerActive, isCountdownTimerActive} = props
     const [state, dispatch] = useContext(Context);
     const [timeLeft, setTimeLeft] = useState(0);
@@ -442,7 +443,7 @@ const KironPeriods = (props) => {
                 </table>)}
 
         </div>)
-};
+});
 
 export default React.memo(KironPeriods);
 

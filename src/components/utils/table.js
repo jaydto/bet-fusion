@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useContext} from 'react';
-import { Context }  from '../../context/store';
+import React, {useContext, useEffect, useState} from 'react';
+import {Context} from '../../context/store';
 import {Link} from "react-router-dom";
 
 const Th = (props) => {
@@ -88,9 +88,9 @@ const Tr = (props) => {
    return (
       <tr>
         { 
-            Object.entries(props?.row_data||[]).map(([key, value]) => {
+            Object.entries(props?.row_data||[]).map(([key, value],index) => {
                 if(!endsWith(key, "_id")){
-                    return <Td value={value} key={`id-${key}`} colspan={props?.colspan||""} heading={props?.heading||false}/>
+                    return <Td value={value} key={`id-${index}`} colspan={props?.colspan||""} heading={props?.heading||false}/>
                 }
             })
         }

@@ -1,9 +1,9 @@
 import React, {useContext, useEffect, useState} from 'react';
 import './component/newProfile.css'
-import {Link, useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 import accounts from '../../../assets/img/mobile/user.png'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faBars, faCoins, faDownload, faFire, faHome, faPowerOff, faUpload} from "@fortawesome/free-solid-svg-icons";
+import {faBars, faCoins, faDownload, faHome, faPowerOff, faUpload} from "@fortawesome/free-solid-svg-icons";
 import {formatNumber} from "../../utils/betslip";
 import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
 import Right from "../../right";
@@ -11,15 +11,15 @@ import SidebarProfile from "../../sidebar/sidebarProfile";
 import makeRequest from "../../utils/fetch-request";
 import {Context} from "../../../context/store";
 import {LazyLoadImage} from "react-lazy-load-image-component";
-const NewProfile = () => {
+
+const NewProfile = React.memo(
+	() => {
 	const [user, setUser] = useState(getFromLocalStorage("user"));
 	const [state,dispatch]=useContext(Context)
 
-	// const navigate=useNavigate()
 	const clearHistory=()=>{
 		setLocalStorage("user",null)
-		dispatch({type: "SET", key: "user", payload: null});
-		window.location.href="/logout"
+		return window.location.href="/logout"
 	}
 	const updateUserOnHistory = () => {
 		if (!user) {
@@ -183,7 +183,7 @@ const NewProfile = () => {
 							{/*		</div>*/}
 							{/*	</div>*/}
 							{/*</Link>*/}
-							<div  style={{textDecoration: "none", color: "black"}} onClick={()=>clearHistory()}>
+							<Link to={"#"} style={{textDecoration: "none", color: "black"}} onClick={()=>clearHistory()}>
 								<div className="transaction">
 									<div className="t-details">
 										<div className="t-title">Log Out </div>
@@ -193,7 +193,7 @@ const NewProfile = () => {
 										<FontAwesomeIcon  icon={faPowerOff} style={{fontSize: "24px"}}/>
 									</div>
 								</div>
-							</div>
+							</Link>
 						</div>
 					</div>
 				</div>
@@ -206,5 +206,5 @@ const NewProfile = () => {
 
 		</>
 	)
-}
+})
 export default React.memo(NewProfile)

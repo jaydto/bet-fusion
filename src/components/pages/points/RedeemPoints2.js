@@ -1,24 +1,23 @@
-import React, { useContext, useEffect, useState} from 'react'
-import { Row, Col } from "antd";
+import React, {useContext, useEffect, useState} from 'react'
+import {Col, Row} from "antd";
 import authImg from '../../../assets/img/Logo.webp'
+import logo from '../../../assets/img/Logo.webp'
 import fire from '../../../assets/img/fire.webp'
 import {Link, useNavigate} from "react-router-dom";
-import { getFromLocalStorage} from "../../utils/local-storage";
+import {getFromLocalStorage} from "../../utils/local-storage";
 import only18 from '../../../assets/img/auth/18only.png'
 import backgroundURL from '../../../assets/img/auth/img-17.webp'
 import {Navbar, Offcanvas} from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import {LazyLoadImage} from "react-lazy-load-image-component";
-import logo from "../../../assets/img/Logo.webp";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {
-    faBackspace,
-} from "@fortawesome/free-solid-svg-icons";
+import {faBackspace,} from "@fortawesome/free-solid-svg-icons";
 import SidebarMobile from "../../sidebar/awesome/SidebarMobile";
 import makeRequest from "../../utils/fetch-request";
 import {Form, Formik} from "formik";
 import {Context} from "../../../context/store";
 import {getBetslip} from "../../utils/betslip";
+
 const backgroundStyle = {
     backgroundImage: `url(${backgroundURL})`,
     backgroundRepeat: 'no-repeat',
@@ -26,7 +25,8 @@ const backgroundStyle = {
 }
 
 
-const RedeemPoints= props => {
+const RedeemPoints= React.memo(
+    props => {
     const [message, setMessage] = useState(null);
     const navigate = useNavigate();
     const expand = "md"
@@ -222,7 +222,7 @@ const RedeemPoints= props => {
                 <Col xs={0} sm={0} md={0} lg={8}>
                     <div className="d-flex flex-column justify-content-between h-100 px-4" style={backgroundStyle}>
                         <div className="text-right">
-                            {/*<img src="/img/logo-sm.jpg" style={{height:"35px"}}alt="logo"/>*/}
+                            {/*<LazyLoadImage src="/img/logo-sm.jpg" style={{height:"35px"}}alt="logo"/>*/}
                         </div>
                         <Row justify="center">
                             <Col xs={0} sm={0} md={0} lg={20}>
@@ -285,7 +285,7 @@ const RedeemPoints= props => {
             </Row>
         </div>
     )
-}
+})
 
 export default React.memo(RedeemPoints)
 

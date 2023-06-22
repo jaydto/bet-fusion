@@ -9,7 +9,8 @@ import {getFromLocalStorage} from "../../utils/local-storage";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFire} from "@fortawesome/free-solid-svg-icons";
 
-const ShaksGamePlay = (props) => {
+const ShaksGamePlay = React.memo(
+    (props) => {
 
     const {game} = useParams()
     const [gameUrl, setGameUrl] = useState('')
@@ -87,6 +88,6 @@ const ShaksGamePlay = (props) => {
             <Footer/>
         </>
     )
-}
+})
 
 export default React.memo(ShaksGamePlay)

@@ -1,13 +1,16 @@
-import {Menu, MenuItem, ProSidebar, SidebarContent, SidebarHeader} from "react-pro-sidebar";
-import React, {useContext, useEffect, useRef} from "react";
+import {Menu, MenuItem, ProSidebar, SidebarHeader} from "react-pro-sidebar";
+import React, {useContext, useEffect} from "react";
 import {Link} from "react-router-dom";
 import 'react-pro-sidebar/dist/css/styles.css';
 import {
-    faQuestionCircle,
-    faPrint,
+    faAddressBook,
+    faHandPointRight,
+    faHandsHelping,
+    faHeartbeat,
     faMagic,
     faMobile,
-    faHandsHelping, faAddressBook, faHandPointRight, faHeartbeat
+    faPrint,
+    faQuestionCircle
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";

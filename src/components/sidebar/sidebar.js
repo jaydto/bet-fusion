@@ -1,12 +1,9 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import football from '../../assets/svg/football.svg'
 import Competitions from './competitions';
 import AllSportCompetitions from './all-sport-competition';
 
-import { 
-    getFromLocalStorage, 
-    setLocalStorage 
-} from '../utils/local-storage';
+import {getFromLocalStorage, setLocalStorage} from '../utils/local-storage';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import makeRequest from "../utils/fetch-request";
 
@@ -61,7 +58,7 @@ const SideBar = React.memo(
                     <div className="header-holder">
                         <span className="col-sm-10">FOOTBAL</span>
                         <span className="col-sm-2 header-icon">
-                        <LazyLoadImage
+                        <LazyLoadImage 
                           height="14px" 
                           style={{display: imageLoaded ? 'inline' : 'none'}}
                           src={football} 

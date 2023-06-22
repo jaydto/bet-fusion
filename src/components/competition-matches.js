@@ -1,9 +1,9 @@
-import React, {useContext, useEffect, useState, useCallback} from "react";
+import React, {useCallback, useContext, useEffect, useState} from "react";
 import {useParams} from 'react-router-dom';
 import makeRequest from "./utils/fetch-request";
 import {Context} from '../context/store';
 import useInterval from "../hooks/set-interval.hook";
-import {getBetslip} from './utils/betslip' ;
+import {getBetslip} from './utils/betslip';
 import {Spinner} from "react-bootstrap";
 import Testimonials from "./carousel/Testimonials";
 import './test.css'
@@ -16,7 +16,8 @@ const CarouselLoader = React.lazy(() => import('./carousel/index'));
 const MatchList = React.lazy(() => import('./matches/index'));
 const Right = React.lazy(() => import('./right/index'));
 
-const   CompetitionMatches= () => {
+const   CompetitionMatches= React.memo(
+    () => {
     const [page, setPage] = useState(1);
     const [matches, setMatches] = useState(null);
     const [state, dispatch] = useContext(Context);
@@ -148,6 +149,6 @@ const   CompetitionMatches= () => {
         </div>
 
     );
-};
+});
 
 export default React.memo(CompetitionMatches);

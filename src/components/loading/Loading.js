@@ -1,4 +1,3 @@
-
 import logo from "../../assets/img/Logo.webp";
 import {ProgressBar} from "loading-animations-react";
 import React from "react";

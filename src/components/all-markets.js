@@ -1,6 +1,6 @@
-import React, {useCallback, useContext, useEffect, useLayoutEffect, useRef, useState} from 'react';
+import React, {useCallback, useContext, useLayoutEffect, useState} from 'react';
 import './test.css'
-import { useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import {Context} from "../context/store";
 import {getBetslip} from "./utils/betslip";
 import useInterval from "../hooks/set-interval.hook";
@@ -13,7 +13,8 @@ const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
 const Right = React.lazy(() => import('./right'));
 const SideBar = React.lazy(() => import('./sidebar/awesome/Sidebar'))
-const  AllMarkets= (props) => {
+const  AllMarkets= React.memo(
+    (props) => {
     const [producerDown, setProducerDown] = useState(false);
     const [allMarkets,setAllMarkets]=useState(true)
     const params=useParams()
@@ -122,6 +123,6 @@ const  AllMarkets= (props) => {
         </div>
 
     );
-};
+});
 
 export default React.memo(AllMarkets);

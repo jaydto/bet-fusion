@@ -1,15 +1,5 @@
-import React, { useState, useEffect, useContext, useCallback } from "react";
-
-import { Context } from "../../context/store";
-import {
-    removeFromSlip,
-    removeFromJackpotSlip,
-    getBetslip,
-    getJackpotBetslip,
-} from "../utils/betslip";
-import useWindowDimensions from "../header/Dimensions";
-import { Link } from "react-router-dom";
-import { getFromLocalStorage } from "../utils/local-storage";
+import React, {useCallback, useContext, useEffect, useState} from "react";
+import {Context} from "../../context/store";
 import BetHistoryDetails from "./BetHistoryDetails";
 import makeRequest from "../utils/fetch-request";
 
@@ -18,11 +8,11 @@ const clean_rep = (str) => {
     return str.replace(/-+/g, "-");
 };
 
-const BetHistory = (props) => {
+const BetHistory = React.memo(
+    (props) => {
 
     const [state, dispatch] = useContext(Context);
     const [isLoading, setIsLoading] = useState(false);
-    const {height, width} = useWindowDimensions();
     const [showDetails, setshowDetails]=useState(null)
 
     const fetchData = useCallback(async() => {
@@ -57,7 +47,7 @@ const BetHistory = (props) => {
             <div className={`flow slip-height slip-log-max overflow-auto`}  >
                 <ul className={"slip-top"}>
                     { (
-                        Object.entries(state?.mybets || {}).map(([match_id, slip]) => {
+                        Object.entries(state?.mybets || {}).map(([match_id, slip],index) => {
                             let odd = slip.odd_value;
                             let no_odd_bg = odd === 1 ? "#f29f7a" : "";
                             // console.log(slip)
@@ -66,7 +56,7 @@ const BetHistory = (props) => {
                                     className={`bet-option hide-on-affix mybets-slip ${
                                         slip?.disable ? "warn" : ""
                                     }`}
-                                    key={match_id}
+                                    key={index}
                                     style={{ background: no_odd_bg }}
                                 >
                                     {/*<div className="bet-cancel">*/}
@@ -149,5 +139,5 @@ const BetHistory = (props) => {
             }
         </div>
     );
-};
+});
 export default React.memo(BetHistory);

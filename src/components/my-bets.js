@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState, useCallback} from "react";
+import React, {useCallback, useContext, useEffect, useState} from "react";
 import {Context} from '../context/store';
 import makeRequest from './utils/fetch-request';
 import {
@@ -171,9 +171,9 @@ const MyBets = React.memo(
     const MyBetsList = (props) => {
 		return (
          <Accordion className={" px-1"} >
-			{state?.mybets && state.mybets.map((bet) => (
+			{state?.mybets && state.mybets.map((bet,index) => (
 				<AccordionItem
-                    key = {bet.bet_id}
+                    key = {index}
                     uuid = { bet.bet_id }>
 					<AccordionItemHeading >
                         <AccordionItemButton >

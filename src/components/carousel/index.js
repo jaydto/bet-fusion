@@ -34,6 +34,7 @@ const CarouselLoader = React.memo(
             {state?.carousel_banners?.map((banner, idx) => (
                 <Carousel.Item key={idx}>
                     <LazyLoadImage
+                        loading={"lazy"}
                         title={banner?.title}
                         className="d-block w-100 cursor-pointer"
                         style={{display: imageLoaded ? 'block' : 'none'}}

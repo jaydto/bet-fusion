@@ -151,8 +151,8 @@ const LiveCasino = React.memo(
                                 <div className="col">
                                     <div className={'row text-white p-2 shadow-lg'}>
                                         <div className="row">
-                                            {tableData?.map((tableDataItem) => (
-                                                <div className={'col-md-3 p-2'}
+                                            {tableData?.map((tableDataItem, index) => (
+                                                <div className={'col-md-3 p-2'} key={index}
                                                      onClick={() => launchGame(tableDataItem?.tableId)}>
                                                     <div
                                                         className="col shadow-lg p-2 cursor-pointer virtual-game-container"

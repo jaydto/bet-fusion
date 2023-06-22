@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, StyleSheet, Image} from '@react-pdf/renderer';
+import {Image, StyleSheet, Text, View} from '@react-pdf/renderer';
 import PrintFooter from "../../../assets/img/banner/print-matches/FOOTER.jpg"
 
 const borderColor = '#90e5fc'

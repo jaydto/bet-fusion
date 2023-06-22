@@ -1,18 +1,15 @@
-import React, {useContext, useEffect, useState, useRef} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Container from 'react-bootstrap/Container';
 import {Context} from '../../context/store';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {
-    faSearch,
-    faPrint,
-    faQuestionCircle,
-    faTimes,
-} from '@fortawesome/free-solid-svg-icons'
+import {faPrint, faQuestionCircle, faSearch, faTimes,} from '@fortawesome/free-solid-svg-icons'
 import makeRequest from "../utils/fetch-request";
+
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
-import {Link,  useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {setLocalStorage} from "../utils/local-storage";
+
 const HeaderNav = React.memo(
     (props) => {
     const gaEventTracker = useAnalyticsEventTracker('Navigation');
@@ -62,35 +59,33 @@ const HeaderNav = React.memo(
         checkEnvironment()
     })
 
+        const LoginCheck = (game) => {
+            if(game == "JetX"){
+                if(state?.user !== null){
+                    navigate( "/smart-play?game=JetX&category=JetX")
+                }
+                else {
+                    setLocalStorage("ActiveLink",'/smart-play?game=JetX&category=JetX')
+                    navigate('/login')
+                }
+            }else if(game=='spaceman'){
+                if(state?.user !== null){
+                    navigate( "/gameplay/1301/1")
+                } else{
+                    setLocalStorage("ActiveLink",'/gameplay/1301/1')
+                    navigate('/login')
+                }
+            }else {
+                if(state?.user !== null){
+                    navigate("/casino")
+                } else{
+                    setLocalStorage("ActiveLink",'/casino')
+                    navigate('/login')
 
-    const LoginCheck = (game) => {
-        if(game == "JetX"){
-            if(state?.user !== null){
-               navigate( "/smart-play?game=JetX&category=JetX")
+                }
             }
-            else {
-                setLocalStorage("ActiveLink",'/smart-play?game=JetX&category=JetX')
-                navigate('/login')
-            }
-        }else if(game=='spaceman'){
-            if(state?.user !== null){
-                navigate( "/gameplay/1301/1")
-            } else{
-                setLocalStorage("ActiveLink",'/gameplay/1301/1')
-                navigate('/login')
-            }
-        }else {
-            if(state?.user !== null){
-                 navigate("/casino")
-            } else{
-                setLocalStorage("ActiveLink",'/casino')
-                window.location.href='/login'
 
-            }
-        }
-
-    };
-
+        };
     return (
         <>
             <Container  fluid id="navbar-collapse-main"
@@ -144,19 +139,19 @@ const HeaderNav = React.memo(
                         <div className="url-link fm anl cg ox "  title="Live Casino" onClick={() => {LoginCheck("casino");gaEventTracker('Visit Casino Page')}}>
                             <span>
                                 <strong>Casino</strong>
-                                    <span className="new-alert-badge">HOT</span>
+                                    <span className="new-alert-badge-item">HOT</span>
                             </span>
                         </div>
                     </li>
 
                     <li className={`${pathname == '/gameplay' || pathname.includes("1301") ? 'active' : ''}`}>
-                        <div className="url-link fm anl cg ox "  onClick={() => {
+                        <div className="url-link fm anl cg ox " onClick={() => {
                             LoginCheck("spaceman");gaEventTracker('Visit SpaceMan Page')
                         }}
                            title="Space Man">
                             <span>
                                 <strong>Spaceman</strong>
-                                    <span className="new-alert-badge">HOT</span>
+                                    <span className="new-alert-badge-item">HOT</span>
                             </span>
                         </div>
                     </li>
@@ -169,9 +164,9 @@ const HeaderNav = React.memo(
                                   LoginCheck("JetX");gaEventTracker('Visit JetX Page')
                               }}>
                             <strong>
-                                <div className={'d-flex menu-item link-item'}>
+                                <div className={'d-flex menu-item'}>
                                     JetX
-                                    <span className="new-alert-badge">HOT</span>
+                                    <span className="new-alert-badge-item">HOT</span>
                                 </div>
                             </strong>
                         </div>

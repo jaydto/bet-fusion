@@ -1,8 +1,8 @@
 import {
     Accordion,
     AccordionItem,
-    AccordionItemHeading,
     AccordionItemButton,
+    AccordionItemHeading,
     AccordionItemPanel,
 } from 'react-accessible-accordion';
 import 'react-accessible-accordion/dist/fancy-example.css';
@@ -15,7 +15,8 @@ import useWindowDimensions from "../../header/Dimensions";
 import {Context} from "../../../context/store";
 import '../../test.css'
 
-const PrivacyPolicy = () => {
+const PrivacyPolicy = React.memo(
+    () => {
     const {height, width} = useWindowDimensions();
     const [state, dispatch] = useContext(Context);
 
@@ -262,6 +263,6 @@ const PrivacyPolicy = () => {
         </div>
 
     );
-};
+});
 
 export default React.memo(PrivacyPolicy);

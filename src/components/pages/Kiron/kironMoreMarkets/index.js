@@ -1,5 +1,5 @@
 import React, {useCallback, useContext, useEffect, useState} from 'react';
-import { useLocation} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import {getFromLocalStorage, setLocalStorage} from "../../../utils/local-storage";
 import makeRequest from "../../../utils/fetch-request";
@@ -9,7 +9,8 @@ import LinkSelect from "../../../utils/options";
 import {Context} from "../../../../context/store";
 
 
-const KironMoreMarkets= () => {
+const KironMoreMarkets= React.memo(
+    () => {
     const [options, setOptions] = useState(getFromLocalStorage('kiron-more'));
     const [state,dispatch]=useContext(Context)
 
@@ -105,7 +106,7 @@ const KironMoreMarkets= () => {
             </div>
         </div>
     )
-};
+});
 
 export default React.memo(KironMoreMarkets);
 

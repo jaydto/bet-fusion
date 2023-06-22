@@ -1,13 +1,13 @@
-import React, { useContext, useState} from 'react'
-import { Row, Col } from "antd";
+import React, {useContext, useState} from 'react'
+import {Col, Row} from "antd";
 import authImg from '../../../assets/img/Logo.webp'
+import logo from '../../../assets/img/Logo.webp'
 import {Link, useNavigate} from "react-router-dom";
 import only18 from '../../../assets/img/auth/18only.png'
 import backgroundURL from '../../../assets/img/auth/img-17.webp'
 import {Navbar, Offcanvas} from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import {LazyLoadImage} from "react-lazy-load-image-component";
-import logo from "../../../assets/img/Logo.webp";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBackspace, faEye, faEyeSlash} from "@fortawesome/free-solid-svg-icons";
 import SidebarMobile from "../../sidebar/awesome/SidebarMobile";
@@ -15,6 +15,7 @@ import makeRequest from "../../utils/fetch-request";
 import {Form, Formik} from "formik";
 import {Context} from "../../../context/store";
 import betNiMoto from "../../../assets/img/BetniMoto.webp";
+
 const backgroundStyle = {
     backgroundImage: `url(${backgroundURL})`,
     backgroundRepeat: 'no-repeat',
@@ -22,7 +23,8 @@ const backgroundStyle = {
 }
 
 
-const ResetPassword2 = props => {
+const ResetPassword2 = React.memo(
+    props => {
 
    const [state,dispatch]=useContext(Context)
     const expand = "md"
@@ -157,8 +159,9 @@ const ResetPassword2 = props => {
             </Row>
         </div>
     )
-}
-const MyOtpForm = (props) => {
+})
+const MyOtpForm = React.memo(
+    (props) => {
     const [state,dispatch]=useContext(Context)
     const {errors, values, submitForm, setFieldValue} = props;
 
@@ -205,9 +208,10 @@ const MyOtpForm = (props) => {
             </div>
         </Form>
     );
-}
+})
 
-const MyPasswordResetForm = (props) => {
+const MyPasswordResetForm = React.memo(
+    (props) => {
     const [state,dispatch]=useContext(Context)
     const {errors, values, submitForm, setFieldValue} = props;
     const [showPassword, setShowPassword] = useState(false);
@@ -336,10 +340,11 @@ const MyPasswordResetForm = (props) => {
             </div>
         </Form>
     );
-}
+})
 
 
-const PasswordResetForm = (props) => {
+const PasswordResetForm = React.memo(
+    (props) => {
     const [resetID, setResetID] = useState('')
     const [state,dispatch]=useContext(Context)
     const navigate = useNavigate();
@@ -408,9 +413,10 @@ const PasswordResetForm = (props) => {
             validate={validatePasswordReset}
         >{(props) => <MyPasswordResetForm {...props} />}</Formik>
     );
-}
+})
 
-const OptForm = (props) => {
+const OptForm = React.memo(
+    (props) => {
     const [state,dispatch]=useContext(Context)
     const initialValues = {
         mobile: '',
@@ -450,6 +456,6 @@ const OptForm = (props) => {
             validate={validate}
         >{(props) => <MyOtpForm {...props} />}</Formik>
     );
-}
+})
 export default ResetPassword2
 

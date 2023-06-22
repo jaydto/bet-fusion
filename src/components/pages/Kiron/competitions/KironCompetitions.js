@@ -7,7 +7,8 @@ import makeRequest from "../../../utils/fetch-request";
 import "./competition.css"
 import {Context} from "../../../../context/store";
 
-const KironCompetitions = (props) => {
+const KironCompetitions = React.memo(
+    (props) => {
     let [kiron, setKiron] = useState(getFromLocalStorage('kiron-competitions'));
     const [state,]=useContext(Context)
     const pathLocation=window.location.pathname
@@ -106,7 +107,7 @@ const KironCompetitions = (props) => {
         </div>
 
     )
-};
+});
 
 export default React.memo(KironCompetitions);
 

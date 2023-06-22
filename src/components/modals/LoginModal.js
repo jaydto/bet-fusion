@@ -1,15 +1,13 @@
-import React, {useCallback, useEffect, useRef, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import Modal from "react-bootstrap/Modal";
 import {Button, Form} from "react-bootstrap";
-import whatsap from "../../assets/svg/whatsapp.svg"
-import {LazyLoadImage} from 'react-lazy-load-image-component';
 import Notify from "../utils/Notify";
 import makeRequest from "../utils/fetch-request";
-import { ToastContainer } from "react-toastify";
+import {ToastContainer} from "react-toastify";
 import {setLocalStorage} from '../utils/local-storage';
-import { Navigate } from "react-router-dom";
 
-const LoginModal = (props) => {
+const LoginModal = React.memo(
+    (props) => {
     const {visible,  setShowLoadingModal, location} = props
     const [isOpen, setIsOpen] = useState(visible)
     const [message, setMessage] = useState(null);
@@ -136,5 +134,5 @@ const LoginModal = (props) => {
         </>
 
     );
-};
+});
 export default React.memo(LoginModal)

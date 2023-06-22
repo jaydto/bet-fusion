@@ -1,9 +1,9 @@
-import React, {useState, useEffect, useCallback} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import makeRequest from "../utils/fetch-request";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import 'react-perfect-scrollbar/dist/css/styles.css';
-import {Menu, MenuItem, ProSidebar, SidebarContent, SidebarHeader, SubMenu} from "react-pro-sidebar";
+import {Menu, MenuItem, ProSidebar, SidebarContent, SidebarHeader} from "react-pro-sidebar";
 import {Link} from "react-router-dom";
 import useWindowDimensions from "../header/Dimensions";
 
@@ -80,8 +80,8 @@ const LiveSideBar = React.memo(
                     </SidebarHeader>
                     <SidebarContent className={"sidebar-live "}>
                         <Menu iconShape="circle live-inner"  >
-                            {liveSports && Object.entries(liveSports).map(([index, livesport]) => (
-                                    <Menu iconShape="circle inner-live live-items" key={index} >
+                            {liveSports && Object.entries(liveSports).map(([index, livesport],live_index) => (
+                                    <Menu iconShape="circle inner-live live-items" key={live_index} >
                                         <MenuItem className={"live-items"}>
                                             <Link className="col-12"
                                                   to={`/live/${livesport.sport_id}`}>

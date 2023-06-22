@@ -1,9 +1,5 @@
 import React, {useContext, useEffect, useState} from "react";
-import {
-    faCloudDownloadAlt,
-    faUserAlt,
-    faCoins,
-} from "@fortawesome/free-solid-svg-icons";
+import {faCloudDownloadAlt, faCoins, faUserAlt,} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {formatNumber} from "../utils/betslip";
 import {Link} from "react-router-dom";
@@ -91,4 +87,5 @@ const ProfileMenu = React.memo(
         </>
     );
 });
+
 export default React.memo(ProfileMenu);

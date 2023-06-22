@@ -1,16 +1,11 @@
-import React, {
-    useLayoutEffect,
-    useState,
-    useCallback, useContext,
-} from "react";
-import { useParams } from 'react-router-dom';
+import React, {useCallback, useContext, useLayoutEffect, useState,} from "react";
 
 
 import makeRequest from "../utils/fetch-request";
 import useInterval from "../../hooks/set-interval.hook";
-import { getBetslip } from '../utils/betslip' ;
+import {getBetslip} from '../utils/betslip';
 
-import { MarketList } from '../matches';
+import {MarketList} from '../matches';
 import {Context} from "../../context/store";
 import useWindowDimensions from "../header/Dimensions";
 
@@ -19,7 +14,8 @@ const Footer = React.lazy(()=>import('../footer/footer'));
 const SideBar = React.lazy(()=>import('../sidebar/awesome/Sidebar'));
 const Right = React.lazy(()=>import('../right'));
 
-const MatchAllMarkets = (props) => {
+const MatchAllMarkets = React.memo(
+    (props) => {
     const [page, setPage] = useState(1);
     const [producerDown, setProducerDown] = useState(false);
     const [allMarkets,setAllMarkets]=useState(true)
@@ -118,7 +114,7 @@ const MatchAllMarkets = (props) => {
             </div>
         </>
     )
-}
+})
 
 export default MatchAllMarkets;
 

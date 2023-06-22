@@ -1,10 +1,11 @@
-import React, {useCallback, useEffect, useLayoutEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import makeRequest from "../utils/fetch-request";
 import useWindowDimensions from "../header/Dimensions";
 import {getFromLocalStorage} from "../utils/local-storage";
 
 
-const Testimonials = () => {
+const Testimonials = React.memo(
+    () => {
     const [testimonials, setTestimonials]=useState([]);
     const {height, width} = useWindowDimensions();
     const [user, setUser] = useState(getFromLocalStorage("user"));
@@ -43,6 +44,6 @@ const Testimonials = () => {
          </div>
 
     );
-};
+});
 
 export default React.memo(Testimonials);

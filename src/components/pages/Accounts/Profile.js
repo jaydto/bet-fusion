@@ -9,7 +9,8 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
     faCoins,
     faDollarSign,
-    faGifts, faHandsHelping,
+    faGifts,
+    faHandsHelping,
     faHome,
     faListOl,
     faPowerOff,
@@ -54,7 +55,7 @@ const NewProfile = () => {
         <div className={'flex-item-profile py-0'}>
 
             <div className="item-profile4 profile-img-banner">
-                <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav profile-top-nav top-nav-profile" fixed="top"
+                <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav profile-top-nav top-nav-profile top-section-page" fixed="top"
                         variant="dark" style={{background: 'transparent'}}>
                     <Container fluid className={'d-flex justify-content-between mobile-change mobile-profile'}>
                         <Navbar.Brand className="e logo align-self-start menu-control d-flex w-100" title="Betnare"

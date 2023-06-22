@@ -1,12 +1,7 @@
-import React, {useEffect, useCallback, Suspense} from "react";
+import React, {Suspense, useCallback, useEffect} from "react";
 import {render} from "react-dom";
 
-import {
-    BrowserRouter, Navigate,
-    Route,
-    Routes,
-    useNavigate,
-} from 'react-router-dom'
+import {BrowserRouter, Navigate, Route, Routes, useNavigate,} from 'react-router-dom'
 import {setLocalStorage} from "./components/utils/local-storage";
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -19,7 +14,7 @@ import './tailwind.css';
 import './assets/css/Themes.css'
 import Store from './context/store';
 import ReactGA from 'react-ga4';
-import LoadingSuspense from "./components/loading/LoadingSuspense";
+import Loading from "./components/loading/LoadingSuspense";
 
 
 const TRACKING_ID = "G-5NLSN9BLN4";
@@ -84,7 +79,7 @@ const RedeemPoints = React.lazy(
 );
 
 const Signup = React.lazy(
-    () => import('./components/pages/auth/registerTwo')
+    () => import('./components/pages/registerTwo')
 );
 
 const ResetPassword = React.lazy(
@@ -136,6 +131,7 @@ const BetslipPage =React.lazy(()=> import("./components/pages/betslip/betslipPag
 
 const Login=React.lazy(()=>import('./components/pages/loginTwo'));
 
+const Profile =React.lazy(()=>import( "./components/pages/Accounts/Profile"));
 const NewProfile =React.lazy(()=>import( "./components/pages/Accounts/NewProfile"));
 
 const Affiliate =React.lazy(()=>import( "./components/Affiliate/Affiliate"));
@@ -158,7 +154,7 @@ const container = document.getElementById("app");
 render((
     <Store>
         <BrowserRouter>
-            <Suspense fallback={<LoadingSuspense/>}>
+            <Suspense fallback={<Loading/>}>
                 <Routes>
                     <Route path="*" element={<Navigate to="/404"/>}/>
                     <Route exact path="/" element={<Index/>}/>

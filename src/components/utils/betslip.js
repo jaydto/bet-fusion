@@ -1,8 +1,4 @@
-import {
-    getFromLocalStorage,
-    setLocalStorage,
-    removeItem
-} from './local-storage';
+import {getFromLocalStorage, removeItem, setLocalStorage} from './local-storage';
 
 export const addToSlip = (slip) => {
     let current_slip = getFromLocalStorage('betslip');

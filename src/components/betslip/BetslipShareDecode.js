@@ -1,10 +1,9 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import makeRequest from "../utils/fetch-request";
-import {useParams} from "react-router-dom";
-import {setLocalStorage} from "../utils/local-storage";
 import {addToSlip} from "../utils/betslip";
 
-const BetslipShareDecode = () => {
+const BetslipShareDecode = React.memo(
+    () => {
 
     const [betslipData, setBetslipShare] = useState({})
 
@@ -40,6 +39,6 @@ const BetslipShareDecode = () => {
             Decoding ...
         </>
     )
-}
+})
 
 export default BetslipShareDecode

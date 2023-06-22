@@ -1,6 +1,7 @@
-import React, { useContext, useState} from 'react'
-import { Row, Col } from "antd";
+import React, {useContext, useState} from 'react'
+import {Col, Row} from "antd";
 import authImg from '../../assets/img/Logo.webp'
+import logo from '../../assets/img/Logo.webp'
 
 
 import {Link, useNavigate} from "react-router-dom";
@@ -11,17 +12,14 @@ import backgroundURL from '../../assets/img/auth/img-17.webp'
 import {Navbar, Offcanvas} from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import {LazyLoadImage} from "react-lazy-load-image-component";
-import logo from "../../assets/img/Logo.webp";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {
-	faBackspace,
-	faEye, faEyeSlash,
-} from "@fortawesome/free-solid-svg-icons";
+import {faBackspace, faEye, faEyeSlash,} from "@fortawesome/free-solid-svg-icons";
 import SidebarMobile from "../sidebar/awesome/SidebarMobile";
 import makeRequest from "../utils/fetch-request";
 import betNiMoto from '../../assets/img/BetniMoto.webp'
 import {Form, Formik} from "formik";
 import {Context} from "../../context/store";
+
 const backgroundStyle = {
 	backgroundImage: `url(${backgroundURL})`,
 	backgroundRepeat: 'no-repeat',
@@ -44,7 +42,7 @@ const RegisterTwo = React.memo(
 
 	const FormTitle = () => {
 		return (
-			<div className='col-md-12  pt-4 text-center-stepper text-light' >
+			<div className='col-md-12  pt-4 text-sign-up-center text-light' >
 				<h4 className="inline-block">
 					SIGNUP | CREATE A NEW ACCOUNT
 				</h4>
@@ -62,7 +60,7 @@ const RegisterTwo = React.memo(
 	return (
 		<div style={{height:'100vh', background:'#16202C'}}>
 			<div className={''}>
-				<Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
+				<Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav top-section-page" fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
 					<Container fluid className={'d-flex justify-content-between mobile-change top-login-background-img'}>
 						<Navbar.Brand className="e logo align-self-start menu-control d-flex w-100" title="Betnare" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
 							<Link to={'/'} className={'text-light'}>
@@ -107,11 +105,11 @@ const RegisterTwo = React.memo(
 				<Col xs={0} sm={0} md={0} lg={8}>
 					<div className="d-flex flex-column justify-content-between h-100 px-4" style={backgroundStyle}>
 						<div className="text-right">
-							{/*<img src="/img/logo-sm.jpg" style={{height:"35px"}}alt="logo"/>*/}
+							{/*<LazyLoadImage src="/img/logo-sm.jpg" style={{height:"35px"}}alt="logo"/>*/}
 						</div>
 						<Row justify="center">
 							<Col xs={0} sm={0} md={0} lg={20}>
-								<h1 className="text-white text-center-stepper" style={{fontSize:"40px", marginBottom:'14px'}}>Welcome to</h1>
+								<h1 className="text-white text-center" style={{fontSize:"40px", marginBottom:'14px'}}>Welcome to</h1>
 
 								<Link to={'/'}>
 									<LazyLoadImage className="img-fluid mb-5" src={authImg} alt=""/>

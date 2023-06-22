@@ -1,27 +1,15 @@
-import React, { useRef,useContext, useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 
 import Betslip from "../../right/betslip";
 import Right from "../../right";
 
-import { getFromLocalStorage } from "../../utils/local-storage";
-
-import logo from "../../../assets/img/Logo.webp";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import { Navbar, Offcanvas } from "react-bootstrap";
-import Container from "react-bootstrap/Container";
-import { Link, useNavigate } from "react-router-dom";
-import useWindowDimensions from "../../header/Dimensions";
-import SidebarMobile from "../../sidebar/awesome/SidebarMobile";
 import SlipTabs from "./tabs/slip-tabs";
-import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCloudDownloadAlt} from "@fortawesome/free-solid-svg-icons/faCloudDownloadAlt";
-import {faCoins} from "@fortawesome/free-solid-svg-icons/faCoins";
+
 import KironSlip from "../../right/kironslip";
-import {formatNumber} from "../../utils/betslip";
 import Header from "../../header/header";
 
-const BetslipPage = () => {
+const BetslipPage = React.memo(
+    () => {
   const [tab, setTab] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -123,6 +111,6 @@ const BetslipPage = () => {
         {/*</footer>*/}
       </>
   );
-};
+});
 
 export default React.memo(BetslipPage);

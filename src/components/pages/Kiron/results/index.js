@@ -5,7 +5,8 @@ import {Spinner} from "react-bootstrap";
 import {getFromLocalStorage} from "../../../utils/local-storage";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 
-const KironResults = () => {
+const KironResults = React.memo(
+    () => {
     const [loading, setLoading] = useState(false)
     const [resulted, setResulted] = useState([]);
     let endpoint = "/v1/nare-league/results"
@@ -35,9 +36,9 @@ const KironResults = () => {
     return (
         <>
             {resulted &&!loading?
-                Object.entries(resulted).map(([key, league]) => (
+                Object.entries(resulted).map(([key, league],index) => (
                     <>
-                        <section className="standing-wrapper text-center pt-2 pb-2">
+                        <section className="standing-wrapper text-center pt-2 pb-2" key={index}>
                             <div className="container">
                                 <div className="row">
                                     <div className="col-12 pb-2">
@@ -48,8 +49,8 @@ const KironResults = () => {
                                 </div>
                             </div>
                         </section>
-                        {Object.entries(league?.matches).map(([key, results]) => (
-                            <div className="league-games-wrapper">
+                        {Object.entries(league?.matches).map(([key, results], index) => (
+                            <div className="league-games-wrapper" key={index}>
                                 <div className={'w-100'}>
                                     <div className="playing-games-wrapper float-left w-100 small">
                                         <div className="league-wrapper-r">
@@ -70,8 +71,7 @@ const KironResults = () => {
                                                                     <span className="mr-2 red-txt">{results.away_score}</span>
                                                                     <span className="away-team-r bold px-2">{results.away_team}</span>
                                                                 </a>
-                                                                <span className="team-jersey">
-                                                                    <LazyLoadImage
+                                                                <span className="team-jersey"><LazyLoadImage
                                                                     src={results?.away_icon}
                                                                     alt="Nare League"/></span>
                                                             </div>
@@ -98,6 +98,6 @@ const KironResults = () => {
 
 
 );
-};
+});
 
 export default KironResults;

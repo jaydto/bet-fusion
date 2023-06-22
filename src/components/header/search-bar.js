@@ -1,8 +1,8 @@
 import React from 'react';
 
 
-const SearchBar = React.memo(
-    (props) => {
+const SearchBar = React.memo((
+    props) => {
     return (
         <div className="col-sm-12 top-matches">                                   
           <div id="search-event" className="top-matches match-header events-header web-element">

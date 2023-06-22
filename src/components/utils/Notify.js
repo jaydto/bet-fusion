@@ -1,9 +1,9 @@
 import {toast} from "react-toastify";
-import fire from  "../../assets/img/fire.webp"
+import fire from "../../assets/img/fire.webp"
 import React from "react";
 import {LazyLoadImage} from "react-lazy-load-image-component";
-const Notify =
-    (message) => {
+
+const Notify = (message) => {
     let options = {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,

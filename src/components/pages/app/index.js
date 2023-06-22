@@ -1,7 +1,7 @@
-import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
+import React, {useEffect} from 'react';
 import '../../test.css'
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
-import {Link, useLocation} from "react-router-dom";
+import {Link} from "react-router-dom";
 import mobileBanner from "../../../assets/img/mobile/APPDownload.png";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 

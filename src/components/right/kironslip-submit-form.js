@@ -1,31 +1,17 @@
-import React, {
-    useState,
-    useEffect,
-    useContext,
-    useCallback,
-    useRef,
-} from "react";
+import React, {useCallback, useContext, useEffect, useRef, useState,} from "react";
 import {Context} from "../../context/store";
-import {
-    formatNumber, clearKironSlip, getKironSlip, removeFromKironSlip,
-} from "../utils/betslip";
+import {clearKironSlip, formatNumber, getKironSlip, removeFromKironSlip,} from "../utils/betslip";
 import publicIp from "public-ip";
 import makeRequest from "../utils/fetch-request";
 import "react-toastify/dist/ReactToastify.css";
 
-import {Formik, Form as FormikForm, useFormikContext} from "formik";
+import {Form as FormikForm, Formik, useFormikContext} from "formik";
 import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {
-    faCut,
-    faFireAlt,
-    faGift,
-    faTrash,
-} from "@fortawesome/free-solid-svg-icons";
+import {faFireAlt, faGift, faTrash,} from "@fortawesome/free-solid-svg-icons";
 
 import {getTime} from "../pages/Kiron/periods";
-import {Switch} from "@material-ui/core";
-import {Navigate, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 const Float = (equation, precision = 4) => {
     return Math.round(equation * 10 ** precision) / 10 ** precision;
@@ -556,7 +542,7 @@ const KironslipSubmitForm = React.memo(
                                                     className="bet-select bet-stake-input"
                                                     name="bet_amount"
                                                     id="bet_amount"
-                                                    value={values.bet_amount}
+                                                    value={values.bet_amount||""}
                                                     onChange={(e) => onFieldChanged(e)}
                                                 />
                                             }
@@ -598,19 +584,19 @@ const KironslipSubmitForm = React.memo(
                             type="hidden"
                             name={"user_kiron_id"}
                             id={"user_kiron_id"}
-                            value={state?.user?.profile_id}
+                            value={state?.user?.profile_id||""}
                         />
                         <input
                             type="hidden"
                             name={"total_kiron_odd"}
                             id={"total_kiron_odd"}
-                            value={totalOdds}
+                            value={totalOdds||""}
                         />
                         <input ref={scrollToRef}
                                type="hidden"
                                name={"total_kiron_games"}
                                id={"total_kiron_games"}
-                               value={totalGames}
+                               value={totalGames||""}
                         />
                     </FormikForm>
                 );

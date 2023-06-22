@@ -1,21 +1,23 @@
-import React, {useContext, useEffect, useRef, useState} from 'react'
-import { Row, Col } from "antd";
+import React, {useContext, useEffect, useRef} from 'react'
+import {Col, Row} from "antd";
 import authImg from '../../../assets/img/Logo.webp'
+import logo from '../../../assets/img/Logo.webp'
 import fire from '../../../assets/img/fire.webp'
-import {Link, useNavigate} from "react-router-dom";
-import { setLocalStorage} from "../../utils/local-storage";
+
+import {Link} from "react-router-dom";
+import {setLocalStorage} from "../../utils/local-storage";
 import only18 from '../../../assets/img/auth/18only.png'
 import backgroundURL from '../../../assets/img/auth/img-17.webp'
 import {Navbar, Offcanvas} from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import {LazyLoadImage} from "react-lazy-load-image-component";
-import logo from "../../../assets/img/Logo.webp";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import { faBackspace} from "@fortawesome/free-solid-svg-icons";
+import {faBackspace} from "@fortawesome/free-solid-svg-icons";
 import SidebarMobile from "../../sidebar/awesome/SidebarMobile";
 import makeRequest from "../../utils/fetch-request";
 import {Form, Formik} from "formik";
 import {Context} from "../../../context/store";
+
 const backgroundStyle = {
     backgroundImage: `url(${backgroundURL})`,
     backgroundRepeat: 'no-repeat',
@@ -23,14 +25,15 @@ const backgroundStyle = {
 }
 
 
-const VerifyAccount2 = props => {
+const VerifyAccount2 = React.memo(
+    props => {
     // const [message, setMessage] = useState(null);
     const [state,dispatch]=useContext(Context)
     // const {setUser} = props;
     const expand = "md"
     const FormTitle = () => {
         return (
-            <div className='col-md-12  pt-4  text-light d-flex justify-content-center' >
+            <div className='col-md-12  pt-4 text-center text-light' >
                 <h4 className="inline-block">
                     VERIFY YOUR PHONE NUMBER
                 </h4>
@@ -49,7 +52,7 @@ const VerifyAccount2 = props => {
     return (
         <div style={{height:'100vh', background:'#16202C'}}>
             <div className={''}>
-                <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav top-register-page" fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
+                <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
                     <Container fluid className={'d-flex justify-content-between mobile-change top-login-background-img'}>
                         <Navbar.Brand className="e logo align-self-start menu-control d-flex w-100" title="Betnare" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
                             <Link to={'/'} className={'text-light'}>
@@ -120,7 +123,7 @@ const VerifyAccount2 = props => {
                 <div className={'col-lg-8 col-sm-12 top-login-background-img-bg-down top-login-background-img-bg-page'} >
 
                     <div className="w-100 d-flex flex-column justify-content-center h-100 top-login-background-img-bg-page">
-                        <div className={'width-page-centric  verify'}>
+                        <div className={'width-page-centric register-page'}>
                             <FormTitle/>
 
                             <Row justify="center">
@@ -159,8 +162,9 @@ const VerifyAccount2 = props => {
             </Row>
         </div>
     )
-}
-const MyVerifyAccountForm = (props) => {
+})
+const MyVerifyAccountForm = React.memo(
+    (props) => {
     const {errors, values, submitForm, setFieldValue} = props;
     const [state,dispatch]=useContext(Context)
     const resendOTP = () => {
@@ -268,9 +272,10 @@ const MyVerifyAccountForm = (props) => {
             </div>
         </Form>
     );
-}
+})
 
-const VerifyAccountForm = (props) => {
+const VerifyAccountForm = React.memo(
+    (props) => {
     const [state,dispatch]=useContext(Context)
 
     const initialValues = {
@@ -342,6 +347,6 @@ const VerifyAccountForm = (props) => {
             validate={validate}
             render={(props) => <    MyVerifyAccountForm {...props} />}/>
     );
-}
+})
 export default React.memo(VerifyAccount2);
 

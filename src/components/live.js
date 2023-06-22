@@ -1,6 +1,6 @@
 import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
 import './test.css'
-import {useLocation, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import useWindowDimensions from "./header/Dimensions";
 import {Context} from "../context/store";
 import {getBetslip} from "./utils/betslip";
@@ -113,12 +113,12 @@ const  Live= React.memo(
             if (homePageRef.current) {
                 const scrollPosition = homePageRef.current.scrollTop;
                 if (!scrolledPast && scrollPosition > 10) {
-                    console.log('User has scrolled more than 10px');
+
                     setScrollPosition(true)
                     setScrolledPast(true);
                     setScrolledToTop(false); // Reset the other variable
                 } else if (!scrolledToTop && scrollPosition <= 10) {
-                    console.log('User has scrolled back to the top.');
+
                     setScrollPosition(false)
                     setScrolledToTop(true);
                     setScrolledPast(false); // Reset the other variable

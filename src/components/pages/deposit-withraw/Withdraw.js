@@ -1,8 +1,8 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import mpesa from '../../../assets/img/mpesa-3.png';
 import makeRequest from "../../utils/fetch-request";
-import { Formik,  Form} from 'formik';
-import { Context } from '../../../context/store';
+import {Form, Formik} from 'formik';
+import {Context} from '../../../context/store';
 import {getBetslip} from '../../utils/betslip'
 import {Navbar, Offcanvas} from "react-bootstrap";
 import Container from "react-bootstrap/Container";
@@ -11,19 +11,21 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBackspace} from "@fortawesome/free-solid-svg-icons";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import logo from "../../../assets/img/Logo.webp";
+import authImg from "../../../assets/img/Logo.webp";
 import SidebarMobile from "../../sidebar/awesome/SidebarMobile";
 import {Col, Row} from "antd";
-import authImg from "../../../assets/img/Logo.webp";
 import betNiMoto from "../../../assets/img/BetniMoto.webp";
 import only18 from "../../../assets/img/auth/18only.png";
 import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
 import backgroundURL from "../../../assets/img/auth/img-17.webp";
+
 const backgroundStyle = {
     backgroundImage: `url(${backgroundURL})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover'
 }
-const Withdrawal = (props) => {
+const Withdrawal = React.memo(
+    (props) => {
     //todo get the phone number from logged in user ....
     const [state, dispatch] = useContext(Context);
     const navigate = useNavigate();
@@ -221,7 +223,7 @@ const Withdrawal = (props) => {
             {/*</div>*/}
             <div style={{height:'100vh', background:'#16202C'}}  >
                 <div className={`${mobile?"d-none":""}`}>
-                    <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav top-nav-centric" fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
+                    <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav top-nav-centric top-section-page" fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
                         <Container fluid className={'d-flex justify-content-between mobile-change top-login-background-img'}>
                             <Navbar.Brand className="e logo align-self-start menu-control d-flex w-100 " title="Betnare" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
                                 <Link to={'/'} className={'betnare-text-light'}>
@@ -352,6 +354,6 @@ const Withdrawal = (props) => {
 
         </React.Fragment>
     )
-}
+})
 
 export default React.memo(Withdrawal);

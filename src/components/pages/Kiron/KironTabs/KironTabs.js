@@ -1,11 +1,11 @@
 import Row from 'react-bootstrap/Row';
-import React, {useEffect, useState} from "react";
-import {Link, useNavigate} from "react-router-dom";
-import {getFromLocalStorage} from "../../../utils/local-storage";
+import React from "react";
+import {Link} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faReceipt } from "@fortawesome/free-solid-svg-icons";
+import {faReceipt} from "@fortawesome/free-solid-svg-icons";
 
-const KironTabs = (props) => {
+const KironTabs = React.memo(
+    (props) => {
     const {tab, user} = props;
     // console.log("tabs_main_tab", tab)
 
@@ -62,6 +62,6 @@ const KironTabs = (props) => {
         </div>
     )
 
-}
+})
 
 export default KironTabs;

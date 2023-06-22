@@ -1,11 +1,12 @@
-import React, {useCallback, useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import "./results.css"
 import {getFromLocalStorage} from "../../../utils/local-storage";
 import makeRequest from "../../../utils/fetch-request";
 import {Context} from "../../../../context/store";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 
-const KironPlayouts = (props) => {
+const KironPlayouts = React.memo(
+    (props) => {
     const {playout, isCountdownTimerActive} = props
     const [success, setSuccess] = useState(false)
     // const [resulted, setResulted] = useState([]);
@@ -201,7 +202,7 @@ const KironPlayouts = (props) => {
 
 
     );
-};
+});
 
 export default KironPlayouts;
 

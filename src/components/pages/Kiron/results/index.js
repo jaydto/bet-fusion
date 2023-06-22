@@ -10,6 +10,7 @@ const KironResults = React.memo(
     const [loading, setLoading] = useState(false)
     const [resulted, setResulted] = useState([]);
     let endpoint = "/v1/nare-league/results"
+        const newCompetition = new URL(window.location).searchParams.get('competition_id') || getFromLocalStorage("kiron_search_data")?.competition_id
 
     const fetchData = useCallback(async () => {
         setLoading(true)
@@ -31,7 +32,7 @@ const KironResults = React.memo(
 
     useEffect(() => {
         fetchData();
-    }, [new URL(window.location).searchParams.get('competition_id')]);
+    }, [newCompetition]);
 
     return (
         <>

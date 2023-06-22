@@ -223,7 +223,7 @@ const KironSlip = React.memo(
                                                 >
                                                     <Link
                                                         key={index}
-                                                        href={`${
+                                                        to={`${
                                                             slip?.bet_type === "0"
                                                                 ? "/match/" + slip?.match_id
                                                                 : kiron == true ? "#" : "/match/live/" + slip?.parent_match_id

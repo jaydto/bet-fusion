@@ -106,7 +106,7 @@ const TestKiron = React.memo(() => {
         const marketsChoice = {
             competition_id: data?.competition_id || newData?.competition_id,
             market_id: new URL(window.location).searchParams.get('sub_type_id'),
-            round_id: state?.current_selection_period?.round
+            round_id: state?.current_selection_period?.round||getFromLocalStorage("kiron_search_data")?.round_id
         }
 
         const kiron_data = new URL(window.location).searchParams.get('sub_type_id') ? marketsChoice : data || newData

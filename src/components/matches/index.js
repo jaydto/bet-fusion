@@ -809,8 +809,8 @@ const MatchRow = React.memo(
   const [extraMarketDisplays, setExtraMarketDisplays] = useState([])
   const categories = getFromLocalStorage('categories')
   const sport_id = new URL(window.location).searchParams.get('sport_id') || 79
-  let sport = categories?.all_sports?.filter((category) => category.sport_id == sport_id)
-  const [sportName, setSportName] = useState(sport?.[0].sport_name || 'Soccer');
+  let sport = categories?.all_sports?.filter((category) => category?.sport_id == sport_id)
+  const [sportName, setSportName] = useState(sport?.[0]?.sport_name || 'Soccer');
   const [showX, setShowX] = useState(true);
   const [market, setMarket] = useState('1x2');
   const {height, width} = useWindowDimensions();

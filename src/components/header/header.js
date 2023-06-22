@@ -127,7 +127,7 @@ const Header = React.memo(
             }
         })
         const urlPath = window.location.pathname
-        const showDownload = (!urlPath.includes("nare-games") && !urlPath.includes("gameplay") && !urlPath.includes("smart-play") && !urlPath.includes("betslip-slip") && !urlPath.includes("betslip-nare") && !urlPath.includes("betslip-jackpot") && !urlPath.includes("nare-league") && !urlPath.includes("bet-history") && !urlPath.includes("standings") && !urlPath.includes("results") && !urlPath.includes("casino") && !urlPath.includes("jackpot") && !urlPath.includes("smart-soft") && !urlPath.includes("virtuals") && !urlPath.includes("match") && !urlPath.includes("competition") && !urlPath.includes("my-bets") && !urlPath.includes("profile") && !urlPath.includes("promotions") && !urlPath.includes("standing"))
+        const showDownload = (!urlPath.includes("nare-games") && !urlPath.includes("bethistory") && !urlPath.includes("gameplay") && !urlPath.includes("smart-play") && !urlPath.includes("betslip-slip") && !urlPath.includes("betslip-nare") && !urlPath.includes("betslip-jackpot") && !urlPath.includes("nare-league") && !urlPath.includes("bet-history") && !urlPath.includes("standings") && !urlPath.includes("results") && !urlPath.includes("casino") && !urlPath.includes("jackpot") && !urlPath.includes("smart-soft") && !urlPath.includes("virtuals") && !urlPath.includes("match") && !urlPath.includes("competition") && !urlPath.includes("my-bets") && !urlPath.includes("profile") && !urlPath.includes("promotions") && !urlPath.includes("standing"))
 
         useEffect(() => {
 

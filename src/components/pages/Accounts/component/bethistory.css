@@ -1,0 +1,51 @@
+.my-bets-bet-history {
+    padding: 10px;
+    margin: 5px 10px;
+    border: 1px solid var(--betnare-side-bg);
+    background-color: var(--bet-history);
+    border-radius: 8px;
+}
+.bet-history-items{
+    color:var(--light);
+}
+.bet-history-items.id{
+    font-weight: 800;
+}
+.bet-history-items.amount{
+    opacity:0.8;
+}
+.bet-history-items.date{
+    opacity:0.6;
+}
+.bet-history-items.status{
+
+}
+.bet-details.details{
+    color:var(--light);
+}
+@media (min-width:992px){
+    .back-navigation {
+        font-size: 28px;
+        color: var(--betnare-button-login) !important;
+        position: absolute;
+        top: 18px;
+        display: flex;
+        gap: 18px;
+        z-index: 1000;
+        align-items: center;
+        justify-content: space-around;
+    }
+}
+@media (max-width:991px){
+    .back-navigation {
+        font-size: 18px;
+        color: var(--betnare-button-login) !important;
+        position: absolute;
+        top: 43px;
+        display: flex;
+        gap: 13px;
+        z-index: 1000;
+        align-items: center;
+        justify-content: space-around;
+    }
+}

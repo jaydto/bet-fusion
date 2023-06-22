@@ -1115,17 +1115,6 @@ img.nare-league {
         max-height: 53vh !important;
     }
 
-    .back-navigation {
-        font-size: 28px;
-        color: var(--betnare-button-login) !important;
-        position: absolute;
-        top: 9px;
-        display: flex;
-        gap: 18px;
-        z-index: 1000;
-        align-items: center;
-        justify-content: space-around;
-    }
 
     .slip-max-height {
         display: grid;

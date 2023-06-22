@@ -780,7 +780,7 @@ const Steppers = () => {
                     <span className="form-stepper-circle">
                         <span>1</span>
                     </span>
-								<div className="label">Phone Number</div>
+								<div className="label stepper-text-label">Phone Number</div>
 							</a>
 						</li>
 						{/* Step 2 */}
@@ -789,7 +789,7 @@ const Steppers = () => {
                     <span className="form-stepper-circle text-muted">
                         <span>2</span>
                     </span>
-								<div className="label text-muted">Passwords</div>
+								<div className="label text-muted stepper-text-label">Passwords</div>
 							</a>
 						</li>
 						{/*// Step 3 */}
@@ -798,7 +798,7 @@ const Steppers = () => {
                     <span className="form-stepper-circle text-muted">
                         <span>3</span>
                     </span>
-								<div className="label text-muted">Finish</div>
+								<div className="label text-muted stepper-text-label">Finish</div>
 							</a>
 						</li>
 					</ul>

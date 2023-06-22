@@ -7,6 +7,10 @@
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
 }
+.top-register-page{
+    position:fixed;
+    top:0px;
+}
 .hcg-slide-container {
     max-width: 100%;
     display: inline-block;
@@ -68,6 +72,13 @@
 }
 
 @media (min-width:992px){
+    .width-page-centric.register-page{
+        box-shadow: none!important;
+    }
+   .text-muted.stepper-text-label{
+        color:var(--light)!important;
+        opacity:0.7;
+    }
     .hcg-slide-text {
         color: #0e9594;
         font-size: 15px;
@@ -98,6 +109,13 @@
     }
 }
 @media (max-width:991px){
+    .text-muted.stepper-text-label{
+        color:var(--light)!important;
+        opacity:0.7;
+    }
+    .width-page-centric.register-page{
+        box-shadow: none!important;
+    }
     .hcg-slide-text {
         color: #0e9594;
         font-size: 21px;

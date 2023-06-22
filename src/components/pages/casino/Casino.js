@@ -150,4 +150,4 @@ const Casino = React.memo(
 })
 
 
-export default Casino;
+export default React.memo(Casino);

@@ -262,7 +262,6 @@ html {
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
 }
-
 body {
     margin: 0;
     /*padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);*/
@@ -313,7 +312,7 @@ header, li a, .thedate span {
 }
 
 .gothb {
-    font-family: "GothamBold";
+    font-family: 'Roboto', sans-serif;
 }
 
 .header-menu li.active {
@@ -2978,7 +2977,7 @@ nav .mobi {
     font-weight: 500;
     text-transform: uppercase;
     font-weight: normal !important;
-    /*font-family: arial;*/
+    /*font-family: 'Roboto', sans-serif;*/
 }
 
 .bet-option.warn {
@@ -3056,7 +3055,7 @@ h6,
 .db,
 .dc,
 .dd {
-    font-family: inherit;
+    font-family: 'Roboto', sans-serif;
     font-weight: 600;
     line-height: 1.2;
     color: inherit;
@@ -3509,7 +3508,6 @@ pre,
 samp {
     font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
 }
-
 code {
     padding: 2px 4px;
     font-size: 90%;
@@ -4686,7 +4684,7 @@ fieldset[disabled] .fm.fl {
 
 .sign-up.btn {
     padding: 7px 25px;
-    /* font-family: arial; */
+    /* font-family: 'Roboto', sans-serif; */
     margin-right: 35px;
     font-size: 15px;
     /* background-image: linear-gradient(#ed4381 30%, #c51759 80%); */
@@ -6642,7 +6640,7 @@ select[multiple].eq > .fj > .cg {
 .sport > li {
     list-style-type: none;
     background: transparent !important;
-    font-family: 'GothamBook';
+    font-family: 'gothambook';
     border-bottom: 1px solid #cdcdd1 !important;
 }
 
@@ -9334,7 +9332,7 @@ ul.sport {
 
     .sign-up.btn {
         padding: 7px 7px;
-        /* font-family: arial; */
+        /* font-family: 'Roboto', sans-serif; */
         margin-right: 10px;
         font-size: 16px;
 
@@ -11327,7 +11325,7 @@ button.close {
     position: absolute;
     z-index: 1070;
     display: block;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: normal;
     letter-spacing: normal;
@@ -11461,7 +11459,7 @@ button.close {
     display: none;
     max-width: 276px;
     padding: 1px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: normal;
     letter-spacing: normal;
@@ -11758,7 +11756,7 @@ button.close {
     width: 20px;
     height: 20px;
     line-height: 1;
-    font-family: serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 .rr .rs:before {
@@ -12447,7 +12445,7 @@ body {
 }
 
 .td {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 .te {
@@ -16315,7 +16313,7 @@ img.zoom-img {
         padding-left: 0.5rem!important;
     }
     .container-size {
-        width: 96%!important;
+        width: 100%!important;
         padding-right: 0.5rem!important;
         padding-left: 0.5rem!important;
         margin-right: 0.5rem!important;
@@ -16693,7 +16691,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     position: relative;
     transform: translate(-50%, -50%);
     left: 50%;
-    font-family: 'Times New Roman', serif;
+    font-family: 'Roboto', sans-serif;
     letter-spacing: 5px;
     -webkit-background-clip: text;
     display: inline-block;
@@ -16987,7 +16985,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     border-collapse: collapse;
     margin: 25px 0;
     font-size: 0.9em;
-    font-family: sans-serif;
+    font-family: 'Roboto', sans-serif;
     width: 98%;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     text-align: center;
@@ -16998,7 +16996,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     border-collapse: collapse;
     margin: 25px 0;
     font-size: 0.9em;
-    font-family: sans-serif;
+    font-family: 'Roboto', sans-serif;
     width: 98%;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     text-align: center;
@@ -17299,7 +17297,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 
 /* start lmt */
 .sr-bb {
-    font-family: "Roboto", "Noto", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    font-family: 'Roboto', sans-serif;
     text-align: left;
     background: #FFFFFF;
 }

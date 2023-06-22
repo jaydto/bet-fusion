@@ -17,7 +17,8 @@ const Footer = React.lazy(() => import("../footer/footer"));
 const SideBar = React.lazy(() => import("../sidebar/awesome/Sidebar"));
 const Right = React.lazy(() => import("../right/index"));
 
-const  HowToPlay= (props) => {
+const  HowToPlay= React.memo(
+    (props) => {
 
     const [state, dispatch] = useContext(Context);
 
@@ -898,6 +899,6 @@ const  HowToPlay= (props) => {
         </div>
 
     );
-};
+});
 
 export default React.memo(HowToPlay)

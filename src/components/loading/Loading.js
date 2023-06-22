@@ -4,7 +4,8 @@ import React from "react";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 
 
-function Loading(props) {
+const Loading=React.memo(
+    (props)=> {
     return (
             <div className={"d-flex align-items-center flex-column justify-content-center"} style={{height:"70vh"}}>
                 <div className={"d-flex justify-content-start flex-column"}>
@@ -24,6 +25,6 @@ function Loading(props) {
             </div>
 
     );
-}
+})
 
 export default React.memo(Loading);

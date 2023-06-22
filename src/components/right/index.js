@@ -82,7 +82,7 @@ const Right = React.memo(
                                 </span>
                             </div>
                         </header>
-                        <div id="betslip" className="betslip">]
+                        <div id="betslip" className="betslip mobile-betslip-none">]
                             <BetSlip jackpot={jackpot} betslipValidationData={betslipValidationData}/>
                         </div>
                         <QuickLogin/>

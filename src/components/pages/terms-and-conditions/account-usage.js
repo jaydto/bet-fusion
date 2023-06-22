@@ -7,7 +7,8 @@ import {
 import 'react-accessible-accordion/dist/fancy-example.css';
 import React from "react";
 
-const AccountUsage = () => {
+const AccountUsage = React.memo(
+    () => {
     return (
         <AccordionItem>
             <AccordionItemHeading>
@@ -274,6 +275,6 @@ const AccountUsage = () => {
             </AccordionItemPanel>
         </AccordionItem>
     )
-}
+})
 
 export default AccountUsage

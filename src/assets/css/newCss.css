@@ -1576,13 +1576,9 @@ img.nare-league {
 }
 
 @media (min-width: 992px) {
-    /*.bet-cancel {*/
-    /*    float: left;*/
-    /*    width: 10%;*/
-    /*    position: absolute;*/
-    /*    left: 0px;*/
-    /*    !* border-radius: 36px; *!*/
-    /*}*/
+    .btn.login-button2:hover {
+        background: var(--betnare-button-login)!important;
+    }
     .bet-align-right {
         font-size: 14px;
     }
@@ -1869,7 +1865,12 @@ img.nare-league {
         flex-direction: column;
         height: 65px;
     }
-
+    .btn.login-button:hover{
+        background: var(--betnare-button-login)!important;
+    }
+    .btn.login-button2:hover{
+        background: var(--betnare-button-login)!important;
+    }
     .top-matches a.odds-container-size {
         color: var(--light) !important;
         font-weight: 400;
@@ -2234,7 +2235,7 @@ img.nare-league {
 
     .width-page-centric {
         box-shadow: none;
-        width: 100% !important;
+        width: 100vw !important;
         margin: auto;
     }
 

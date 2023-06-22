@@ -855,7 +855,7 @@ const Steppers = () => {
 						<section id="step-2" className="form-step d-none">
 							<PasswordForm/>
 							<div className="mt-3 d-flex justify-content-between">
-								<button className="button btn-navigate-form-step" type="button" step_number="1">Prev
+								<button className="button btn-navigate-form-step" type="button" step_number="1">Previous
 								</button>
 
 							</div>
@@ -866,7 +866,7 @@ const Steppers = () => {
 							{/*<VerifyAccountForm/>*/}
 							<ReferalForm/>
 							<div className="mt-3 d-flex justify-content-between">
-								<button className="button btn-navigate-form-step" type="button" step_number="2">Prev
+								<button className="button btn-navigate-form-step" type="button" step_number="2">Previous
 								</button>
 								{/*<button className="button submit-btn" type="submit">Finish</button>*/}
 							</div>

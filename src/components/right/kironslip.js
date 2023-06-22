@@ -49,7 +49,7 @@ const KironSlip = React.memo(
         //betslip update
         const updateBetslip = useCallback(() => {
             if (betslipsData) {
-                let odds = Object.values(betslipsData).reduce(
+                let odds = Object.values(betslipsData||{}).reduce(
                     (previous, {odd_value}) => {
                         return previous * odd_value;
                     },

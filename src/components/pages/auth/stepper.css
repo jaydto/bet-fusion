@@ -167,6 +167,9 @@ button.finish{
 .promo-value-color{
     background:var(--lite-top-color)!important
 }
+.align-header-referal{
+    text-align:center;
+}
 .promo-progress-full{
     display:flex;
     width:100%;

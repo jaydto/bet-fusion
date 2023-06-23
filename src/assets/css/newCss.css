@@ -1759,7 +1759,9 @@ img.nare-league {
     }
 }
 
-
+.cursor-pointer{
+    cursor: pointer!important;
+}
 @media (max-width: 991px) {
     .slip-team {
         width: 270px;

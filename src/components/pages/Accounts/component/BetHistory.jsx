@@ -5,9 +5,11 @@ import useWindowDimensions from "../../../header/Dimensions";
 import makeRequest from "../../../utils/fetch-request";
 import Header from "../../../header/header";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
+import {faArrowLeft, faCaretDown} from "@fortawesome/free-solid-svg-icons";
 import BetDetails from "./BetDetails";
 import {getFromLocalStorage, setLocalStorage} from "../../../utils/local-storage";
+import {Switch} from "@material-ui/core";
+import GameHistoryList from "../../../modals/FilterBetHistory";
 
 const BetHistory = () => {
 	const {width}=useWindowDimensions()
@@ -40,6 +42,36 @@ const BetHistory = () => {
 		)
 	}
 
+	const [canCancel, setCanCancel] = useState(false);
+	const [betStatus, setBetStatus] = useState();
+	const cancelBet = (bet_id) => {
+		let endpoint = '/bet-cancel';
+		let data = {
+			bet_id:bet_id,
+			cancel_code:101,
+		}
+		makeRequest({url: endpoint, method: "POST", data: data, use_jwt:true}).then(([status, result]) => {
+			if(status === 201){
+				setBetStatus('CANCEL RQ');
+				setCanCancel(false);
+			}
+		});
+	};
+
+	const cancelBetMarkup = () => {
+		return (
+			<div className="col">
+				<button
+					title="Cancel Bet"
+					className="col btn btn-sm place-bet-btn "
+					onClick={()=> cancelBet()}
+				>
+					Cancel
+				</button>
+			</div>
+		)
+	}
+
 	const PageBody=()=>{
 		const [state,dispatch]=useContext(Context)
 		const swap=(bet_id)=>{
@@ -66,7 +98,17 @@ const BetHistory = () => {
 							{bet?.created}
 						</div>
 						<div className={"bet-history-items status"}>
-							{bet?.status_desc}
+							<span
+								className={` badge  ${bet?.status_desc == "LOST" ? "bg-dark text-warning" : bet?.status_desc == "WON" ? "bg-success" : bet?.status_desc== "PENDING" ? "bg-dark " : ""}`}
+								style={{
+									color: "white",
+									marginTop: "10px",
+									borderRadius: "7px",
+									marginLeft: "1px",
+									padding: "2.9px 9px "
+								}}>{bet?.status_desc == "LOST" ? "NOT WON" : bet?.status_desc}
+                              </span>
+
 						</div>
 
 					</div>
@@ -86,6 +128,23 @@ const BetHistory = () => {
 
 	}
 
+	const label = {
+		inputProps: {
+			'aria-label': 'hide_all_lost_bets',
+			'value': 'hide_all_lost_bets'
+		}
+	};
+
+	const [hideLost, setHideLost]=useState(false)
+	const [showGameFilter, setShowGameFilter]=useState(false)
+
+	const onSwitchChange=(e)=>{
+		console.log("checked", e?.target?.checked)
+		setHideLost(e?.target?.checked)
+	}
+	const showGameHistoryList=()=>{
+		setShowGameFilter(!showGameFilter)
+	}
 
 	return (
 		<>
@@ -101,8 +160,23 @@ const BetHistory = () => {
 							<div className="d-flex flex-row justify-content-between">
 
 								<div className="gz home" style={{width: '100%'}}>
-
+									{showGameFilter&&<GameHistoryList/>}
 									<PageTitle />
+									<div className="d-flex w-100 justify-content-between filter-buttons-bethistory px-4">
+										<div className={"filters button-filter"} onClick={showGameHistoryList}>
+											All&nbsp;<FontAwesomeIcon icon={faCaretDown}/>
+										</div>
+										<div className={"filters"}>
+
+											<div className={"odd-change-position"}>
+												<Switch id={"hide_all_lost_bets"} {...label} className="slip-change-box"
+														name={"hide_all_lost_bets"}
+														defaultChecked={false}
+														color="primary" onChange={(e) => onSwitchChange(e)}/>  Hide lost bets
+
+											</div>
+										</div>
+									</div>
 									{state?.bet_history_details?<BetDetails bet_id={state?.bet_history_details}/>:
 										<PageBody/>
 									}

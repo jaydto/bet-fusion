@@ -201,6 +201,8 @@ const MyVerifyAccountForm = React.memo(
         // setIsMobileNumberValid(value.trim() !== '');
         dispatch({type: "SET", key: "isMobileNumberValid", payload: value.trim() !== ''})
     }
+    let number=String(state?.signup_msisdn).split("0")[1]
+    let msisdn=number?"254"+number:""
     return (
         <Form>
             <div className="pt-0">
@@ -212,7 +214,7 @@ const MyVerifyAccountForm = React.memo(
                             <div className="row">
                                 <div className="col-md-12 mb-3">
                                     <input
-                                        value={state?.signup_msisdn||values.mobile||""}
+                                        value={values.mobile||msisdn}
                                         className="h-100 text-light deposit-input form-control col-md-12 input-field"
                                         id="mobile"
                                         name="mobile"
@@ -235,7 +237,7 @@ const MyVerifyAccountForm = React.memo(
                                         </span>
                                     &nbsp;
                                     <button onClick={() => resendOTP()} type={"button"}
-                                            className='btn py-1 px-2 text-light btn-sm bg-success rounded-3 border-0 ' style={{fontSize:"12px",whiteSpace:'nowrap'}} disabled={!state?.isMobileNumberValid}>Resend OTP
+                                            className='btn py-1 px-2 text-light btn-sm bg-success rounded-3 border-0 ' style={{fontSize:"12px",whiteSpace:'nowrap'}} disabled={!state?.isMobileNumberValid&&!msisdn}>Resend OTP
                                     </button>
                                 </div>
                             </div>
@@ -277,9 +279,11 @@ const MyVerifyAccountForm = React.memo(
 const VerifyAccountForm = React.memo(
     (props) => {
     const [state,dispatch]=useContext(Context)
+        let number=String(state?.signup_msisdn).split("0")[1]
+        let msisdn=number?"254"+number:""
 
     const initialValues = {
-        mobile: '',
+        mobile: msisdn,
         code: ''
     }
     const verifyAccount = () => {

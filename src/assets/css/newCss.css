@@ -1433,6 +1433,9 @@ img.nare-league {
         margin-right: 21px;
     }
 }
+.width-page-centric.deposit-page.withdraw{
+    box-shadow:none!important;
+}
 
 @media (max-width: 1259px) and (min-width: 992px) {
     .slip-top {

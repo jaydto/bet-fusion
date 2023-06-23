@@ -29,9 +29,9 @@ const Withdrawal = React.memo(
     //todo get the phone number from logged in user ....
     const [state, dispatch] = useContext(Context);
     const navigate = useNavigate();
-
     const [success, setSuccess] = useState(false);
     const [message, setMessage] = useState(null);
+    const {mobile}=props;
     const [user, setUser] = useState(getFromLocalStorage("user"));
     const updateUserOnHistory = () => {
         if (!user) {
@@ -53,15 +53,8 @@ const Withdrawal = React.memo(
     };
 
     useEffect(() => {
-        if(message){
-            updateUserOnHistory()
-        }
+        updateUserOnHistory()
     }, [message])
-
-    const initialValues = {
-        amount: '',
-        msisdn: state?.user?.msisdn
-    }
 
     const handleSubmit = values => {
         let endpoint = '/withdraw';
@@ -94,12 +87,6 @@ const Withdrawal = React.memo(
             </div>
         )
     }
-    useEffect(() => {
-        let betslip = getBetslip();
-        if (betslip) {
-            dispatch({type: "SET", key: "betslip", payload: betslip});
-        }
-    }, [])
 
     const WithdrawFormFields = (props) => {
         const { values, errors, onFieldChanged } = props;
@@ -110,7 +97,10 @@ const Withdrawal = React.memo(
                     <div className={`col-md-12`}>
                         <label className={'betnare-text-light'}>Phone Number</label>
                         <input
-                            // readOnly={true}
+                            onChange={ev =>
+                                onFieldChanged(ev)
+                            }
+                            readOnly={true}
                             className="betnare-text-light deposit-input form-control input-field"
                             id="msisdn"
                             name="msisdn"
@@ -177,7 +167,8 @@ const Withdrawal = React.memo(
                             <LazyLoadImage src={mpesa} alt=""/>
                         </div>
 
-                        <WithdrawFormFields  onFieldChanged ={ onFieldChanged} values ={values } errors={errors} />
+                        <hr className={``}/>
+                        <WithdrawFormFields  onFieldChanged ={ onFieldChanged} values={values } errors={errors} />
                         <hr className={`mt-4`}/>
                         <div >
                             <PaymentInstructions />
@@ -189,6 +180,11 @@ const Withdrawal = React.memo(
     }
 
     const WithdrawalForm = (props) => {
+        const user=getFromLocalStorage('user')
+        const initialValues = {
+            amount: '',
+            msisdn: state?.user?.msisdn||user?.msisdn
+        }
         return (
             <Formik
                 initialValues={initialValues}
@@ -212,6 +208,9 @@ const Withdrawal = React.memo(
 
     return (
         <React.Fragment>
+            {/*<div className={`""}`}>*/}
+            {/*    <Header/>*/}
+            {/*</div>*/}
             <div style={{height:'100vh', background:'#16202C'}}  >
                 <div className={``}>
                     <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav top-nav-centric top-section-page" fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
@@ -256,6 +255,7 @@ const Withdrawal = React.memo(
                     </Navbar>
 
                 </div>
+
                 <Row justify="center" className="align-items-stretch h-100">
 
                     <Col xs={0} sm={0} md={0} lg={8}>
@@ -295,14 +295,12 @@ const Withdrawal = React.memo(
                                     <div className={'d-flex'}>
                                         {/**/}
                                         <div >
-                                            {!user?setTimeout(navigate("/"),500):""}
                                             <div className={"d-flex flex-row justify-content-between"}>
                                                 <div className=" w-100">
                                                     <div className="homepage d-flex flex-column align-items-center justify-content-center login-page">
 
                                                         <Alert/>
                                                         <div className="modal-body pb-0" data-backdrop="static">
-
                                                             <WithdrawalForm/>
                                                         </div>
 

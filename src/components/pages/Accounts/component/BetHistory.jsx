@@ -77,7 +77,17 @@ const BetHistory = () => {
 		const swap=(bet_id)=>{
 			dispatch({type: "SET", key: "bet_history_details", payload:bet_id });
 		}
-		const mybets=getFromLocalStorage("mybets")
+		const [mybets, setMybets]=useState(state?.filteredHistoryGames||getFromLocalStorage("mybets"))
+
+		useEffect(()=>{
+			if(state?.filteredHistoryGames){
+				setMybets(state?.filteredHistoryGames)
+			}else{
+				setMybets(getFromLocalStorage("mybets"))
+			}
+
+		},[state?.filteredHistoryGames])
+
 		return (
 			<>
 				{mybets && mybets.map((bet,index) => (
@@ -135,13 +145,31 @@ const BetHistory = () => {
 		}
 	};
 
-	const [hideLost, setHideLost]=useState(false)
+	const [hideLost, setHideLost]=useState(false||getFromLocalStorage("remove_lost_bets"))
 	const [showGameFilter, setShowGameFilter]=useState(false)
 
 	const onSwitchChange=(e)=>{
 		console.log("checked", e?.target?.checked)
+		setLocalStorage("remove_lost_bets",e?.target?.checked)
 		setHideLost(e?.target?.checked)
 	}
+
+
+	const filterGames = () => {
+		let filteredGames = state?.bet_history_details?state?.bet_history_details:getFromLocalStorage("mybets");
+		const lost_history=getFromLocalStorage("remove_lost_bets")||hideLost
+		if (lost_history) {
+			filteredGames = filteredGames?.filter((game) => game?.status_desc !== 'LOST');
+			dispatch({type: "SET", key: "filteredHistoryGames", payload: filteredGames})
+		}else{
+			dispatch({type: "SET", key: "filteredHistoryGames", payload: null})
+		}
+	};
+
+	useEffect(()=>{
+		filterGames()
+	},[hideLost])
+
 	const showGameHistoryList=()=>{
 		setShowGameFilter(!showGameFilter)
 	}
@@ -154,13 +182,15 @@ const BetHistory = () => {
 					<div className={'back-navigation original-button top-spacing'}  onClick={()=>navigateBack()}>
 					    <FontAwesomeIcon icon={faArrowLeft} className={'back-navigation-icon'} /> Back
 					</div>
-					<div className="container top-spacing">
+					<div className="container-history top-spacing">
 						<div className="iphone background-profile">
 
 							<div className="d-flex flex-row justify-content-between">
 
 								<div className="gz home" style={{width: '100%'}}>
-									{showGameFilter&&<GameHistoryList/>}
+									{showGameFilter&&<GameHistoryList visible={showGameFilter}
+																	  games={state?.bet_history_details}
+																	  setShowGameFilter={setShowGameFilter}/>}
 									<PageTitle />
 									<div className="d-flex w-100 justify-content-between filter-buttons-bethistory px-4">
 										<div className={"filters button-filter"} onClick={showGameHistoryList}>
@@ -171,7 +201,7 @@ const BetHistory = () => {
 											<div className={"odd-change-position"}>
 												<Switch id={"hide_all_lost_bets"} {...label} className="slip-change-box"
 														name={"hide_all_lost_bets"}
-														defaultChecked={false}
+														defaultChecked={hideLost||false}
 														color="primary" onChange={(e) => onSwitchChange(e)}/>  Hide lost bets
 
 											</div>

@@ -1,10 +1,12 @@
 .my-bets-bet-history {
     padding: 10px;
     margin: 5px 10px;
-    border: 1px solid var(--betnare-side-bg);
+    border: 1px solid var(--bet-history);
     background-color: var(--bet-history);
     border-radius: 8px;
+    line-height: 2;
 }
+
 .bet-history-items{
     color:var(--light);
 }
@@ -20,8 +22,60 @@
 .bet-history-items.status{
 
 }
-.bet-details.details{
+.bet-details.details {
+    color: var(--light);
+    line-height: 2;
+    padding: 5px;
+}
+.details-info{
+
+}
+.details-items{
+
+}
+.details-items .team{
+    font-weight:700;
+}
+.details-items .outcome {
+    background: var(--orange);
+    padding: 0px 14px;
+    border-radius: 18px;
+    letter-spacing: 3px;
+}
+.history-details{
+
+}
+.history-details .id{
+font-weight: 900;
+}
+.history-details .date{
+    opacity:0.6;
+
+}
+.details-history{
+    padding: 18px;
+    border: thin solid;
+    border-radius: 10px;
+
+}
+.filter-buttons-bethistory{
+
+}
+.filter-buttons-bethistory .filters{
     color:var(--light);
+    font-weight: 700;
+}
+.filter-buttons-bethistory .filters.button-filter {
+    padding: 9px 18px;
+    border-radius: 18px;
+    border: thin solid;
+    background: var(--betnare-header-bg);
+    display: flex;
+    gap: 5px;
+    /* line-height: 1; */
+}
+.history-details .status{
+
 }
 @media (min-width:992px){
     .back-navigation {

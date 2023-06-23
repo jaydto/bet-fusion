@@ -78,10 +78,15 @@ font-weight: 900;
 
 }
 @media (min-width:992px){
+    .container-history {
+        width: 60%;
+        margin: auto;
+        margin-top: 9rem;
+    }
     .back-navigation {
         font-size: 28px;
         color: var(--betnare-button-login) !important;
-        position: absolute;
+        position: fixed;
         top: 18px;
         display: flex;
         gap: 18px;
@@ -91,6 +96,9 @@ font-weight: 900;
     }
 }
 @media (max-width:991px){
+    .container-history{
+        width:100%
+    }
     .back-navigation {
         font-size: 18px;
         color: var(--betnare-button-login) !important;

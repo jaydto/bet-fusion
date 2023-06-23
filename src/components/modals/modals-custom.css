@@ -1,10 +1,20 @@
 .btn-history-filter {
-    background: var(--betnare-header-bg)!important;
+    /* background: var(--betnare-header-bg)!important; */
     color: var(--light);
     font-weight: 600;
-    text-align: center;
-    padding: 10px;
+    /* text-align: center; */
+    padding: 10px 0px;
     letter-spacing: 2px;
     font-size: 15px;
     font-style: oblique;
+}
+.modal-backdrop.fade {
+    opacity: 0.3!important;
+    filter: alpha(opacity=0);
+}
+
+.close-history-filter {
+    /*margin: auto;*/
+    /* width: 15%; */
+    padding: 9px;
 }

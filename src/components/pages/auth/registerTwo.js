@@ -432,12 +432,12 @@ const MySignupForm = (props) => {
 									className=' btn btn-lg w-100 button-radius input-field btn-font cg login-button2 btn ' style={{marginTop:"28px"}}>
 								<strong style={{fontWeight:"800"}}>NEXT</strong>
 							</button>
-							{state?.app_config?.message?.accountConfiguration?.verificationEnabled!=="0"&&<Link className={`d-flex justify-content-center w-100 mt-3`} to={"#"} title="Verify" onClick={()=> {
+							{state?.app_config?.message?.accountConfiguration?.verificationEnabled!=="0"&&<div className={`d-flex justify-content-center w-100 mt-3 cursor-pointer`}  title="Verify" onClick={()=> {
 								navigate("/verify");
 								dispatch({type: "SET", key: "steps", payload: 3});
 							}}>
 								<span className={`text-warning font-input register-label font-verify-redirect`}>Already have a verification code ?  </span>
-							</Link>}
+							</div>}
 						</div>
 					</div>
 				</div>
@@ -650,11 +650,11 @@ const ReferalForm = React.memo(
 					}
 				}
 				clearTrackingData()
-				let timer = setInterval(() => {
+				let timer = setTimeout(() => {
 					if(status===200){
 						return state?.app_config?.message?.accountConfiguration?.verificationEnabled!=="0"?navigate("/verify"):navigate("/login")
 					}
-					clearInterval(timer)
+					clearTimeout(timer)
 				}, 3000)
 
 			})
@@ -862,7 +862,7 @@ const Steppers = () => {
 						</section>
 						{/*// <!-- Step 3 Content, default hidden on page load. -->*/}
 						<section id="step-3" className="form-step d-none">
-							<h2 className="font-normal">Do you have a referral code?</h2>
+							<h2 className="font-normal align-header-referal">Do you have a referral code? Enter Here or Click Complete</h2>
 							{/*<VerifyAccountForm/>*/}
 							<ReferalForm/>
 							<div className="mt-3 d-flex justify-content-between">

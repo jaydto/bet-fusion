@@ -1,7 +1,5 @@
-/*@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&subset=latin,latin-ext");*/
-/*@import url('https://fonts.cdnfonts.com/css/graphik');*/
-/*@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap");*/
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap');
+
 *{
     list-style:none;
     box-sizing: border-box;

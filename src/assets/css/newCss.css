@@ -1988,8 +1988,8 @@ img.nare-league {
     }
 
     .show-values-betslip {
-        font-size: 12px;
-        padding-left: 9px;
+        font-size: 14px;
+        padding-left: 10px;
     }
 
     .show-tax-info {
@@ -2249,6 +2249,7 @@ img.nare-league {
         box-shadow: none;
         width: 100vw !important;
         margin: auto;
+        margin-top: 36px;
     }
 
     .width-centric-page {

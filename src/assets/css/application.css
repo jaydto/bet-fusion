@@ -406,9 +406,13 @@ li.bet-option {
     color:var(--lite-top-color)!important;
     /*font-weight: 800;*/
 }
-.boost-betslip{
-    font-size: 12px;
-    padding-left: 9px;
+.show-values-betslip {
+    font-size: 14px;
+    padding-left: 10px;
+}
+.boost-betslip {
+    font-size: 12.5px;
+    padding-left: 11px;
 }
 .bet-align-right.nare-boost-color{
     color:var(--lite-top-color)!important;

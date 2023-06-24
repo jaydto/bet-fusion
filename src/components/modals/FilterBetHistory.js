@@ -2,15 +2,14 @@ import React, {useContext, useEffect, useState} from 'react';
 import { ToastContainer, Modal, Button, Form } from 'react-bootstrap';
 import "./modals-custom.css"
 import {Context} from "../../context/store";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faCheckCircle} from "@fortawesome/free-solid-svg-icons";
+import {getFromLocalStorage,setLocalStorage} from "../utils/local-storage";
 const GameHistoryList = (props) => {
     const {visible, games,setShowGameFilter} = props
     const [isOpen, setIsOpen] = useState(visible)
     const [state, dispatch]=useContext(Context)
-    const [message, setMessage] = useState(null);
-    const [formData, setFormData] = useState({});
-    const [selectedFilter, setSelectedFilter] = useState('today');
-
-    console.log("dates", games)
+    const [selectedFilter, setSelectedFilter] = useState();
 
     const handleOpenModal = () => {
         setIsOpen(true);
@@ -23,12 +22,14 @@ const GameHistoryList = (props) => {
     const hideModal = () => {
         setIsOpen(false)
         setShowGameFilter(false)
-        // setLocalStorage("share-modal",0)
-        // console.log("share_from_modal",getFromLocalStorage("share-modal"))
     }
 
     const handleFilterChange = (category) => {
         setSelectedFilter(category);
+        dispatch({type: "SET", key: "selected_filter_category", payload: category });
+        return setTimeout(()=>{
+            hideModal()
+        },[1000])
     };
 
     const currentDate = new Date();
@@ -41,8 +42,8 @@ const GameHistoryList = (props) => {
     };
 
     const filterGames = () => {
-        console.log("selectedFilter",selectedFilter )
-        const filteredGames = games?.filter((game) => {
+        const bet_history_games=state?.filteredHistoryGames||games;
+        const filteredGames = bet_history_games?.filter((game) => {
             const createdDate = new Date(game.created);
             if (selectedFilter === 'today') {
                 return isSameDate(createdDate, currentDate);
@@ -59,6 +60,15 @@ const GameHistoryList = (props) => {
                 oneMonthAgo.setMonth(currentDate.getMonth() - 1);
                 return createdDate >= oneMonthAgo && createdDate <= currentDate;
             }
+            else if (selectedFilter === '3month') {
+                const threeMonthsAgo = new Date(currentDate);
+                threeMonthsAgo.setMonth(currentDate.getMonth() - 3);
+                return createdDate >= threeMonthsAgo && createdDate <= currentDate;
+            }
+            else if (selectedFilter === 'all') {
+                // No filtering, return all games
+                return true
+            }
             return false;
         });
         console.log("filteredByDatesGames",filteredGames )
@@ -68,11 +78,13 @@ const GameHistoryList = (props) => {
 
     // handleFilterChange
     useEffect(()=>{
-        filterGames()
+        if(selectedFilter){
+            filterGames()
+        }
     },[selectedFilter])
 
     const handleSubmit = () => {
-        // Handle login form submission
+        // Handle  form submission
         // ...
     };
 
@@ -108,19 +120,34 @@ const GameHistoryList = (props) => {
                 </Modal.Header>
                 <Modal.Body style={{borderBottom:"0px", paddingTop:"4px", paddingBottom:"0px"}}>
                     <div className="d-flex justify-content-between flex-column px-3">
-                        <div className={"btn-history-filter"} onClick={() => handleFilterChange('today')}>Today</div>
-                        <div className={"btn-history-filter"} onClick={() => handleFilterChange('yesterday')}>Yesterday</div>
-                        <div className={"btn-history-filter"} onClick={() => handleFilterChange('week')}>Week</div>
-                        <div className={"btn-history-filter"} onClick={() => handleFilterChange('month')}>Month</div>
+                        <div className={"d-flex justify-content-between align-items-center"}>
+                            <div className={"btn-history-filter cursor-pointer"} onClick={() => handleFilterChange('all')}>All</div>
+                            {(selectedFilter||state?.selected_filter_category)==="all"&&<FontAwesomeIcon icon={faCheckCircle} className={"text-success"}/>}
+                        </div>
+                        <div className={"d-flex justify-content-between align-items-center"}>
+                            <div className={"btn-history-filter cursor-pointer"} onClick={() => handleFilterChange('today')}>Today</div>
+                            {(selectedFilter||state?.selected_filter_category)==="today"&&<FontAwesomeIcon icon={faCheckCircle} className={"text-success"}/>}
+                        </div>
+                        <div className="d-flex justify-content-between align-items-center">
+                            <div className={"btn-history-filter cursor-pointer"} onClick={() => handleFilterChange('yesterday')}>Yesterday</div>
+                            {(selectedFilter||state?.selected_filter_category)==="yesterday"&&<FontAwesomeIcon icon={faCheckCircle} className={"text-success"}/>}
+                        </div>
+                        <div className="d-flex justify-content-between align-items-center">
+                            <div className={"btn-history-filter cursor-pointer"} onClick={() => handleFilterChange('week')}>Week</div>
+                            {(selectedFilter||state?.selected_filter_category)==="week"&&<FontAwesomeIcon icon={faCheckCircle} className={"text-success"}/>}
+                        </div>
+                        <div className="d-flex justify-content-between align-items-center">
+                            <div className={"btn-history-filter cursor-pointer"} onClick={() => handleFilterChange('month')}>Month</div>
+                            {(selectedFilter||state?.selected_filter_category)==="month"&&<FontAwesomeIcon icon={faCheckCircle} className={"text-success"}/>}
+                        </div>
+                        <div className="d-flex justify-content-between align-items-center">
+                            <div className={"btn-history-filter cursor-pointer"} onClick={() => handleFilterChange('3month')}>3 Months</div>
+                            {(selectedFilter||state?.selected_filter_category)==="3months"&&<FontAwesomeIcon icon={faCheckCircle} className={"text-success"}/>}
+                        </div>
                     </div>
                 </Modal.Body>
             </Modal>
 
-
-
-
-            {/* Game list */}
-            {/*<div>{filterGames()}</div>*/}
         </>
     );
 };

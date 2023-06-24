@@ -2,7 +2,8 @@ import React, {useCallback, useContext, useEffect, useState} from "react"
 import makeRequest from "../../../utils/fetch-request";
 import {Context} from "../../../../context/store";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faArrowDown, faCaretDown, faCaretRight, faCheck, faCheckCircle} from "@fortawesome/free-solid-svg-icons";
+import { faCaretDown, faCaretRight,  faCheckCircle} from "@fortawesome/free-solid-svg-icons";
+import Skeleton1 from "../../../skeleton/skeleton";
 const BetDetails = (props) => {
 	const {bet_id}=props
 	const payload={
@@ -82,105 +83,161 @@ const BetDetails = (props) => {
 		return "Placed bet on "+formattedDateTime;
 	};
 
-	const [collapsed, setCollapsed] = useState(true);
+	const [collapsed, setCollapsed] = useState([]);
 	const [collapsedAll, setCollapsedAll] = useState(true);
 
-	const toggleCollapse = () => {
-		setCollapsed(!collapsed);
+	const toggleCollapse = (index) => {
+		const updatedCollapsed = [...collapsed];
+		if (updatedCollapsed.includes(index)) {
+			updatedCollapsed.splice(updatedCollapsed.indexOf(index), 1);
+		} else {
+			updatedCollapsed.push(index);
+		}
+		setCollapsed(updatedCollapsed);
 	};
-	const toggleCollapseAll = () => {
+
+	function toggleCollapseAll(items) {
+		if (!collapsedAll) {
+			setCollapsed(Array.from({ length: items.length }, (_, index) => index));
+		} else {
+			setCollapsed([]);
+		}
 		setCollapsedAll(!collapsedAll);
-	};
+	}
+
+
+	const WinLostTotal=()=>{
+		const data=state?.mybets?.data
+		const filteredData = data?.filter(bet => bet.win === 1 || bet.win === 0);
+		const won = filteredData?.filter(bet => bet.win === 1).length;
+		const lost = filteredData?.filter(bet => bet.win === 0).length;
+		const total = filteredData.length;
+
+		const result = `${won}/${lost}/${total}`;
+		return result
+	}
 
 	return (
 		<>
-			<div className="d-flex details flex-column bet-details">
-				{state?.mybets?.data?.map((item,index) => (
-					<div key={index}>
-                        {index===0&&<div className="d-flex history-details flex-column bet-summary-info">
-                            <div className="id">
-                                #{item?.bet_id}
-                            </div>
-                            <div className="date">
-                                <FormatDate date={item?.created}/>
-                            </div>
-                            <div className="status">
+			{!isLoading?
+				<div className="d-flex details flex-column bet-details">
+					{state?.mybets?.data?.map((item,index) => (
+						<div key={index}>
+							{index===0&&<div className="d-flex history-details flex-column bet-summary-info">
+								<div className="id">
+									#{item?.bet_id}
+								</div>
+								<div className="date">
+									<FormatDate date={item?.created}/>
+								</div>
+								<div className="status">
 								<span
-                                    className={` badge  ${item?.status == 3 ? "bg-dark text-warning" : item?.status == 5 ? "bg-success" : item?.status == 1 ? "bg-dark " : ""}`}
-                                    style={{
-                                        color: "white",
-                                        marginTop: "10px",
-                                        borderRadius: "7px",
-                                        marginLeft: "1px",
-                                        padding: "2.9px 9px "
-                                    }}>{item.status == 3 ? "NOT WON" : item?.status == 5 ? "WON" : "PENDING"}
+									className={` badge  ${item?.status == 3 ? "bg-dark text-warning" : item?.status == 5 ? "bg-success" : item?.status == 1 ? "bg-dark " : ""}`}
+									style={{
+										color: "white",
+										marginTop: "10px",
+										borderRadius: "7px",
+										marginLeft: "1px",
+										padding: "2.9px 9px "
+									}}>{item.status == 3 ? "NOT WON" : item?.status == 5 ? "WON" : "PENDING"}
 								</span>
-                            </div>
-                            <div className="d-flex options-details-history w-100 justify-content-between">
-                                <div className="d-flex">
-                                    {item?.odd_value}
-                                </div>
-                                {index === 0 && (
-                                    <div className="d-flex text-warning bold d-flex gap-2 align-items-center"
-                                         onClick={toggleCollapseAll}>
-                                        Toggle collapse all {!collapsedAll ? <FontAwesomeIcon icon={faCaretRight}/> :
-                                        <FontAwesomeIcon icon={faCaretDown}/>}
-                                    </div>
-                                )}
+								</div>
+								{index === 0 && (<div className="d-flex history-details-padding gap-3 ">
+									<div className="col-8 d-flex details-history-main-container">
+										<div className="d-flex col-2 flex-column details-history-main" >
+											<div className={"main-details-info-title"}>
+												Amount
+											</div>
+											<div className="amount-value">{item?.bet_amount}</div>
+										</div>
+										<div className="d-flex col-8 flex-column details-history-main">
+											<div className={"main-details-info-title"}>
+												possible payout
+											</div>
+											<div className="amount-value">{item?.possible_win}</div>
+										</div>
 
-                            </div>
-                        </div>
-                        }
-						<div className="d-flex details-history flex-column w-100 mt-3">
-							<div className="d-flex w-100 justify-content-between px-2 details-items">
-								<div className="team">
-									<FontAwesomeIcon icon={faCheckCircle} className={"text-success"}/>&nbsp;{item?.home_team}</div>
-								<div className="outcome">{item?.results}</div>
-								<div className="team" onClick={toggleCollapse}>{item?.away_team}&nbsp;{!collapsed?<FontAwesomeIcon icon={faCaretRight}/>:<FontAwesomeIcon icon={faCaretDown}/>}</div>
-							</div>
-							<div className={`${!collapsed?"d-none":"d-flex justify-content-between gap-4"} w-100 px-3 bethistory-items`}>
-								<div className="d-flex  flex-column col">
-									<div className="d-flex justify-content-between px-2 details-info">
-										<div className="type">
-											Type
-										</div>
-										<div className="market-h">
-											{item?.bet_type}
-										</div>
 									</div>
-									<div className="d-flex justify-content-between px-2">
-										<div className="pick-ft">
-											Pick
+									<div className="col-4 details-history-main-container d-flex justify-content-center flex-column">
+										<div className="won-total main-details-info-title">
+											won/lost/total
 										</div>
-										<div className="pick-h">
-											 {item?.bet_pick}
+										<div className="won-total-value">
+											<WinLostTotal />
 										</div>
+
 									</div>
+								</div>)}
+								<div className="d-flex options-details-history w-100 justify-content-between">
+									<div className="d-flex">
+										Events (Odds {item?.odd_value})
+									</div>
+									{index === 0 && (
+										<div className="d-flex text-warning bold d-flex gap-2 align-items-center"
+											 onClick={()=>toggleCollapseAll(state?.mybets?.data)}>
+											Toggle collapse all {!collapsedAll ? <FontAwesomeIcon icon={faCaretRight}/> :
+											<FontAwesomeIcon icon={faCaretDown}/>}
+										</div>
+									)}
 
 								</div>
-								<div className="d-flex flex-column col">
-									<div className="d-flex justify-content-between px-2">
-										<div className="result-ft">
-											Result
+							</div>
+							}
+							<div className="d-flex details-history flex-column w-100 mt-3">
+								<div className="d-flex w-100 justify-content-between px-2 details-items">
+									<div className="team">
+										<FontAwesomeIcon icon={faCheckCircle} className={"text-success"}/>&nbsp;{item?.home_team}</div>
+									{item?.results&&<div className="outcome">{item?.results}</div>}
+									<div className="team" onClick={()=>toggleCollapse(index)}>{item?.away_team}&nbsp;{!collapsed.includes(index)?<FontAwesomeIcon icon={faCaretRight}/>:<FontAwesomeIcon icon={faCaretDown}/>}</div>
+								</div>
+								<div className={`${!collapsed.includes(index)?"d-none":"d-flex justify-content-between gap-4"} w-100 px-3 bethistory-items`}>
+									<div className="d-flex  flex-column col">
+										<div className="d-flex justify-content-between px-2 details-info">
+											<div className="type">
+												Type
+											</div>
+											<div className="market-h">
+												{item?.bet_type}
+											</div>
 										</div>
-										<div className="result-h">
-											{item?.results}
+										<div className="d-flex justify-content-between px-2">
+											<div className="pick-ft">
+												Pick
+											</div>
+											<div className="pick-h">
+												{item?.bet_pick}
+											</div>
 										</div>
+
 									</div>
-									<div className="d-flex justify-content-between px-2">
-										<div className="outcome-t">
-											Outcome
+									<div className="d-flex flex-column col">
+										<div className="d-flex justify-content-between px-2">
+											<div className="result-ft">
+												Result
+											</div>
+											<div className="result-h">
+												{item?.results}
+											</div>
 										</div>
-										<div className="outcome-h">
-											{item?.winning_outcome}
+										<div className="d-flex justify-content-between px-2">
+											<div className="outcome-t">
+												Outcome
+											</div>
+											<div className="outcome-h">
+												{item?.winning_outcome}
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
 					))}
-			</div>
+				</div>	:
+				<div className={`text-center mt-2 text-white d-block`}>
+					<Skeleton1/>
+				</div>
+			}
+
 		</>
 	)
 }

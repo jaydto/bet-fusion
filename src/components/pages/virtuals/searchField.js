@@ -3,7 +3,8 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSearch} from "@fortawesome/free-solid-svg-icons";
 import {Context} from "../../../context/store";
 
-const SearchComponent = (props) => {
+const SearchComponent = React.memo(
+    (props) => {
     const {data}=props
     const [searchTerm, setSearchTerm] = useState('');
     const [state,dispatch]=useContext(Context)
@@ -53,6 +54,6 @@ const SearchComponent = (props) => {
 
 
     );
-};
+});
 
 export default SearchComponent;

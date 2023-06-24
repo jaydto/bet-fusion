@@ -293,12 +293,12 @@ export const MatchRow = React.memo(
             </div>
           </div>:
           <div  className="top-matches kiron d-flex flex-sm-column flex-lg-row px-0 align-items-center">
-            <div className="to-deskview to-block to-tabview  mx-lg-0 px-sm-4  px-md-0 py-0 pb-0 mt-0 container-size ">
+            <div className="to-deskview to-block to-tabview  mx-lg-0 px-sm-0 mx-sm-0  px-md-0 py-0 pb-0 mt-0 container-size ">
               <div className="size-info  d-flex col-xs-12 pad left-text flex-row live-col">
 
                 <div className={`col text-left playing-teams-wrap  align-items-center col-xs-12 match-detail-container change-match px-1`}>
 
-                  <div style={{width:'90%'}}>
+                  <div style={{width:'100%'}}>
                     <div className="compt-teams d-flex flex-xl-column flex-column ">
                       <div className="team-badge">
                         <LazyLoadImage src={match?.home_team_image}/>
@@ -316,9 +316,9 @@ export const MatchRow = React.memo(
                 </div>
               </div>
 
-              <div className={`col d-flex  flex-row  space-bets  justify-content-lg-between `}>
+              <div className={`col d-flex  flex-row  space-bets  justify-content-lg-between align-items-center `}>
                 {/*mobile*/}
-                <div className="d-flex ">
+                <div className="d-flex w-100 justify-content-end">
 
 
                   {match.odds.map((odd, index) => (
@@ -358,7 +358,6 @@ const   OddButton = React.memo(
   const [state, dispatch] = useContext(Context);
   const ref = useRef();
   let reference = parentId+"_selectedK";
-  let slip_data=getKironSlip()
 
   const [betslip_key, setBetslipKey] = useState("kironbetslip");
   const updateBeslipKey = useCallback(() => {

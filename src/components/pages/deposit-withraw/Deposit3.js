@@ -337,10 +337,9 @@ const MyDepositForm = (props) => {
                             <LazyLoadImage src={mpesa} alt=""/>
                         </div>
                     </div>
-                    {/*<hr className={`${mobile?"d-none":""}`}/>*/}
 
                     <DepositFormFields onFieldChanged={onFieldChanged} values={values} errors={errors}/>
-                    {/*<hr className={`${mobile?"d-none":"mt-4"}`}/>*/}
+
                     <div className={``}>
                         <PaymentInstructions />
                     </div>
@@ -353,7 +352,6 @@ const MyDepositForm = (props) => {
 const DepositForm = (props) => {
     const [state, dispatch]=useContext(Context);
     const user=getFromLocalStorage('user')
-
      initialValues = {
         amount: state?.depositValue?state?.depositValue:'',
         msisdn: state?.user?.msisdn||user?.msisdn

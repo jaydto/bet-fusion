@@ -406,9 +406,13 @@ li.bet-option {
     color:var(--lite-top-color)!important;
     /*font-weight: 800;*/
 }
-.boost-betslip{
-    font-size: 12px;
-    padding-left: 9px;
+.show-values-betslip {
+    font-size: 14px;
+    padding-left: 10px;
+}
+.boost-betslip {
+    font-size: 12.5px;
+    /*padding-left: 11px;*/
 }
 .bet-align-right.nare-boost-color{
     color:var(--lite-top-color)!important;
@@ -488,7 +492,7 @@ li.bet-option {
 }
 
 .bet-pick {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Roboto', sans-serif;
     float: left;
     margin-top: 5px;
     width: 100%;
@@ -498,7 +502,7 @@ li.bet-option {
 .pay-method label {
     margin-bottom: 0;
     /* font-size: 12px; */
-    font-family: arial;
+    font-family: 'Roboto', sans-serif;
     margin-top: -8px;
 }
 
@@ -521,7 +525,14 @@ li.bet-option {
     float: left;
     width: auto;
     font-weight: bold;
-    display: flex;
+     display: flex;
+    align-items: center;
+}
+.team-info-slip-list-kiron {
+    float: left;
+    width: auto;
+    font-weight: bold;
+    /*display: flex;*/
     align-items: center;
 }
 
@@ -596,7 +607,7 @@ li.bet-option {
 .main-heading-1 {
     font-size: 16px !important;
     display: inline-block;
-    font-weight: 500;
+    font-weight: 600;
     white-space: nowrap;
 }
 

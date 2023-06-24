@@ -29,11 +29,9 @@ const Withdrawal = React.memo(
     //todo get the phone number from logged in user ....
     const [state, dispatch] = useContext(Context);
     const navigate = useNavigate();
-
     const [success, setSuccess] = useState(false);
     const [message, setMessage] = useState(null);
     const {mobile}=props;
-
     const [user, setUser] = useState(getFromLocalStorage("user"));
     const updateUserOnHistory = () => {
         if (!user) {
@@ -54,16 +52,9 @@ const Withdrawal = React.memo(
 
     };
 
-
-
     useEffect(() => {
         updateUserOnHistory()
     }, [message])
-
-    const initialValues = {
-        amount: '',
-        msisdn: state?.user?.msisdn
-    }
 
     const handleSubmit = values => {
         let endpoint = '/withdraw';
@@ -96,13 +87,6 @@ const Withdrawal = React.memo(
             </div>
         )
     }
-    useEffect(() => {
-        let betslip = getBetslip();
-        if (betslip) {
-            dispatch({type: "SET", key: "betslip", payload: betslip});
-        }
-    }, [])
-
 
     const WithdrawFormFields = (props) => {
         const { values, errors, onFieldChanged } = props;
@@ -110,10 +94,13 @@ const Withdrawal = React.memo(
         return (
             <>
                 <div className="form-group row d-flex justify-content-center deposit-widthdraw-input-desktop">
-                    <div className={`${mobile?"d-none":"col-md-12"}`}>
+                    <div className={`col-md-12`}>
                         <label className={'betnare-text-light'}>Phone Number</label>
                         <input
-                            // readOnly={true}
+                            onChange={ev =>
+                                onFieldChanged(ev)
+                            }
+                            readOnly={true}
                             className="betnare-text-light deposit-input form-control input-field"
                             id="msisdn"
                             name="msisdn"
@@ -150,7 +137,6 @@ const Withdrawal = React.memo(
         )
     }
 
-
     const PaymentInstructions = (props) => {
         return (
             <>
@@ -175,17 +161,16 @@ const Withdrawal = React.memo(
         return (
             <Form className="shadow-sm rounded border-0" >
                 <div className="pt-0">
-                    <div className={`${mobile?"card-title":"d-none"}`}><h4>WITHDRAW</h4></div>
                     <div className="row">
 
-                        <div className={`${mobile?"d-none":'col-md-7 text-center'}`}>
+                        <div className={`col-md-7 text-center`}>
                             <LazyLoadImage src={mpesa} alt=""/>
                         </div>
 
-                        <hr className={`${mobile?"d-none":""}`}/>
-                        <WithdrawFormFields  onFieldChanged ={ onFieldChanged} values ={values } errors={errors} />
-                        <hr className={`${mobile?"d-none":"mt-4"}`}/>
-                        <div className={`${mobile?"d-none":""}`}>
+                        <hr className={``}/>
+                        <WithdrawFormFields  onFieldChanged ={ onFieldChanged} values={values } errors={errors} />
+                        <hr className={`mt-4`}/>
+                        <div >
                             <PaymentInstructions />
                         </div>
                     </div>
@@ -195,6 +180,11 @@ const Withdrawal = React.memo(
     }
 
     const WithdrawalForm = (props) => {
+        const user=getFromLocalStorage('user')
+        const initialValues = {
+            amount: '',
+            msisdn: state?.user?.msisdn||user?.msisdn
+        }
         return (
             <Formik
                 initialValues={initialValues}
@@ -218,11 +208,11 @@ const Withdrawal = React.memo(
 
     return (
         <React.Fragment>
-            {/*<div className={`${mobile?"d-none":""}`}>*/}
+            {/*<div className={`""}`}>*/}
             {/*    <Header/>*/}
             {/*</div>*/}
             <div style={{height:'100vh', background:'#16202C'}}  >
-                <div className={`${mobile?"d-none":""}`}>
+                <div className={``}>
                     <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav top-nav-centric top-section-page" fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
                         <Container fluid className={'d-flex justify-content-between mobile-change top-login-background-img'}>
                             <Navbar.Brand className="e logo align-self-start menu-control d-flex w-100 " title="Betnare" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
@@ -265,25 +255,7 @@ const Withdrawal = React.memo(
                     </Navbar>
 
                 </div>
-                {/*<div className={`${mobile?"":"top-spacing"}`}>*/}
-                {/*    <div className="d-flex flex-row justify-content-between">*/}
-                {/*        <div className="gz home " style={{width: '100%',overflowX:"clip"}}>*/}
-                {/*            <div className="homepage">*/}
-                {/*                <div className={`${mobile?"d-none":""}`}>*/}
-                {/*                    <FormTitle/>*/}
 
-                {/*                </div>*/}
-                {/*                <div className={`col-md-12 mt-2 text-white p-2 ${mobile?"profile-bg card-radius":""}`}>*/}
-                {/*                    <Alert />*/}
-                {/*                    <div className="modal-body pb-0" data-backdrop="static">*/}
-                {/*                        <WithdrawalForm />*/}
-                {/*                    </div>*/}
-                {/*                </div>*/}
-                {/*            </div>*/}
-                {/*        </div>*/}
-
-                {/*    </div>*/}
-                {/*</div>*/}
                 <Row justify="center" className="align-items-stretch h-100">
 
                     <Col xs={0} sm={0} md={0} lg={8}>
@@ -323,14 +295,12 @@ const Withdrawal = React.memo(
                                     <div className={'d-flex'}>
                                         {/**/}
                                         <div >
-                                            {!user?setTimeout(navigate("/"),500):""}
                                             <div className={"d-flex flex-row justify-content-between"}>
                                                 <div className=" w-100">
                                                     <div className="homepage d-flex flex-column align-items-center justify-content-center login-page">
 
                                                         <Alert/>
                                                         <div className="modal-body pb-0" data-backdrop="static">
-
                                                             <WithdrawalForm/>
                                                         </div>
 

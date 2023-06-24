@@ -60,6 +60,7 @@
 .history-details{
 
 }
+
 .history-details .id{
 font-weight: 900;
 }
@@ -124,5 +125,11 @@ font-weight: 900;
         z-index: 1000;
         align-items: center;
         justify-content: space-around;
+    }
+}
+
+@media (max-width:575px){
+    .text-align-on-mobile-bet-history{
+        text-align:end!important;
     }
 }

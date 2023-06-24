@@ -35,7 +35,7 @@ const BetHistory = () => {
 
     const PageTitle = () => {
         return (
-            <div className='col-md-12 background-profile p-4 text-center'>
+            <div className='col-md-12 background-profile p-4 text-center text-align-on-mobile-bet-history'>
                 <h4 className="inline-block text-light">
                     MY BETS
                 </h4>
@@ -347,7 +347,7 @@ const BetHistory = () => {
                                                 <Switch id={"hide_all_lost_bets"} {...label} className="slip-change-box"
                                                         name={"hide_all_lost_bets"}
                                                         checked={hideLost || false}
-                                                        color="primary" onChange={(e) => onSwitchChange(e)}/> Hide lost
+                                                        color="primary" onChange={(e) => onSwitchChange(e)}/> {hideLost?"Show ":"Hide "} lost
                                                 bets
 
                                             </div>

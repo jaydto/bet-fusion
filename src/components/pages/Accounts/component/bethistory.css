@@ -22,6 +22,20 @@
 .bet-history-items.status{
 
 }
+.bet-history-items.games{
+    color:var(--orange);
+}
+.details-history-main-container {
+    padding: 8px 12px;
+    border: thin solid;
+    border-radius: 10px;
+}
+.history-details-padding{
+    padding-right:1rem;
+}
+.main-details-info-title{
+    font-weight:700;
+}
 .bet-details.details {
     color: var(--light);
     line-height: 2;
@@ -38,9 +52,10 @@
 }
 .details-items .outcome {
     background: var(--orange);
-    padding: 0px 14px;
+    padding: 0px 23px;
     border-radius: 18px;
-    letter-spacing: 3px;
+    letter-spacing: 5px;
+    margin-left: -20px;
 }
 .history-details{
 

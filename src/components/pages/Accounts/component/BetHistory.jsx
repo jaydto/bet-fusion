@@ -46,25 +46,40 @@ const BetHistory = () => {
 
     const PageBody = () => {
         const [state, dispatch] = useContext(Context)
-        const [canCancel, setCanCancel] = useState(false);
+        const [canCancel, setCanCancel] = useState(true);
         const [betStatus, setBetStatus] = useState(null);
         const [cancelEndTime, setCancelEndTime] = useState(null);
+        const [countdown, setCountdown] = useState(null);
 
         useEffect(() => {
-            let timer;
-
             if (canCancel) {
-                const cancelEnd = moment().add(10, 'seconds');
+                const cancelEnd = moment().add(5, 'minutes'); // Change from 10 seconds to 5 minutes
                 setCancelEndTime(cancelEnd);
-
-                timer = setTimeout(() => {
-                    setCanCancel(false);
-                    setCancelEndTime(null);
-                }, 10000); // Remove countdown after 10 seconds
+                startCountdown(cancelEnd);
+            } else {
+                setCancelEndTime(null);
+                setCountdown(null);
             }
-
-            return () => clearTimeout(timer);
         }, [canCancel]);
+
+
+        const startCountdown = (endTime) => {
+            const duration = moment.duration(endTime.diff(moment()));
+            const remainingSeconds = Math.floor(Math.max(0, duration.asSeconds()));
+            const remainingMinutes = Math.floor(remainingSeconds / 60); // Calculate remaining minutes
+            const remainingSecondsFormatted = remainingSeconds % 60; // Calculate remaining seconds
+
+            const remainingTime = `${remainingMinutes}:${remainingSecondsFormatted
+                .toString()
+                .padStart(2, "0")}`; // Format remaining time as "minutes:seconds"
+            setCountdown(remainingTime);
+
+            if (remainingSeconds > 0) {
+                setTimeout(() => {
+                    startCountdown(endTime);
+                }, 1000);
+            }
+        };
 
         const cancelBet = (bet_id) => {
             let endpoint = '/bet-cancel';
@@ -82,17 +97,21 @@ const BetHistory = () => {
         };
 
         const CancelBetMarkup = (props) => {
-            const {bet_id}=props
-            if (canCancel) {
+            const { bet_id, can_cancel } = props;
+            console.log("can_cancel", can_cancel)
+            if (can_cancel!==0) {
                 return (
-                    <div className="col">
-                        <p>Cancel will end in: {moment(cancelEndTime).fromNow()}</p>
+                    <div className="col d-flex">
+                        Cancel will End in: {countdown}
                         <button
                             title="Cancel Bet"
-                            className="col btn btn-sm place-bet-btn"
+                            className="col btn btn-sm place-bet-btn d-flex flex-column w-100"
                             onClick={() => cancelBet(bet_id)}
                         >
                             Cancel
+
+                            {/*{can_cancel && countdown !== null && <span></span>} */}
+                            {/* Wrap countdown within span */}
                         </button>
                     </div>
                 );
@@ -110,6 +129,7 @@ const BetHistory = () => {
                 );
             }
         };
+
 
         const swap = (bet_id) => {
             dispatch({type: "SET", key: "bet_history_details", payload: bet_id});
@@ -135,7 +155,6 @@ const BetHistory = () => {
         },[state?.filteredHistoryGames,state?.bets_by_date])
 
 
-
         return (
             <>
                 {mybets && mybets.map((bet, index) => (
@@ -159,7 +178,7 @@ const BetHistory = () => {
                                 {bet?.created}
                             </div>
                             <div className={"bet-history-items status"}>
-                            { canCancel !== false?<span
+                            { bet?.can_cancel == 0?<span
                                 className={` badge  ${bet?.status_desc == "LOST" ? "bg-dark text-warning" : bet?.status_desc == "WON" ? "bg-success" : bet?.status_desc == "PENDING" ? "bg-dark " : ""}`}
                                 style={{
                                     color: "white",
@@ -168,7 +187,7 @@ const BetHistory = () => {
                                     marginLeft: "1px",
                                     padding: "2.9px 9px "
                                 }}>{bet?.status_desc == "LOST" ? "NOT WON" : bet?.status_desc}
-                              </span>:<CancelBetMarkup bet_id={bet?.bet_id}/>}
+                              </span>:<CancelBetMarkup bet_id={bet?.bet_id} can_cancel={bet?.can_cancel} />}
                             </div>
 
                         </div>

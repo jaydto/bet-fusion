@@ -4,6 +4,7 @@ import {Context} from "../../../../context/store";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { faCaretDown, faCaretRight,  faCheckCircle} from "@fortawesome/free-solid-svg-icons";
 import Skeleton1 from "../../../skeleton/skeleton";
+import moment from "moment/moment";
 const BetDetails = (props) => {
 	const {bet_id}=props
 	const payload={
@@ -60,6 +61,7 @@ const BetDetails = (props) => {
 	// console.log("Bet Info - Bet Amount:", state?.mybets?.meta.bet_info.bet_amount);
 	// console.log("Bet Info - Can Cancel:", state?.mybets?.meta.bet_info.can_cancel);
 
+
 	const FormatDate = (props) => {
 		const { date } = props;
 
@@ -105,7 +107,6 @@ const BetDetails = (props) => {
 		setCollapsedAll(!collapsedAll);
 	}
 
-
 	const WinLostTotal=()=>{
 		const data=state?.mybets?.data
 		const filteredData = data?.filter(bet => bet.win === 1 || bet.win === 0);
@@ -116,6 +117,77 @@ const BetDetails = (props) => {
 		const result = `${won}/${lost}/${total}`;
 		return result
 	}
+
+	const [canCancel, setCanCancel] = useState(true);
+	const [betStatus, setBetStatus] = useState(null);
+	const [cancelEndTime, setCancelEndTime] = useState(null);
+	const [countdown, setCountdown] = useState(null);
+
+	useEffect(() => {
+		if (canCancel) {
+			const cancelEnd = moment().add(5, 'minutes'); // Change from 10 seconds to 5 minutes
+			setCancelEndTime(cancelEnd);
+			startCountdown(cancelEnd);
+		} else {
+			setCancelEndTime(null);
+			setCountdown(null);
+		}
+	}, [canCancel]);
+
+
+	const startCountdown = (endTime) => {
+		const duration = moment.duration(endTime.diff(moment()));
+		const remainingSeconds = Math.floor(Math.max(0, duration.asSeconds()));
+		const remainingMinutes = Math.floor(remainingSeconds / 60); // Calculate remaining minutes
+		const remainingSecondsFormatted = remainingSeconds % 60; // Calculate remaining seconds
+
+		const remainingTime = `${remainingMinutes}:${remainingSecondsFormatted
+			.toString()
+			.padStart(2, "0")}`; // Format remaining time as "minutes:seconds"
+		setCountdown(remainingTime);
+
+		if (remainingSeconds > 0) {
+			setTimeout(() => {
+				startCountdown(endTime);
+			}, 1000);
+		}
+	};
+
+	const cancelBet = (bet_id) => {
+		let endpoint = '/bet-cancel';
+		let data = {
+			bet_id: bet_id,
+			cancel_code: 101,
+		}
+		makeRequest({url: endpoint, method: "POST", data: data, use_jwt: true}).then(([status, result]) => {
+			if (status === 201) {
+				setBetStatus('CANCEL RQ');
+				setCanCancel(false);
+				setCancelEndTime(null);
+			}
+		});
+	};
+
+	const CancelBetMarkup = (props) => {
+		const { bet_id, can_cancel } = props;
+		console.log("can_cancel_info", can_cancel)
+		if (can_cancel!==false) {
+			return (
+				<div className="">
+					<button
+						title="Cancel Bet"
+						className="col btn btn-sm place-bet-btn d-flex flex-column "
+						onClick={() => cancelBet(bet_id)}
+					>
+						{countdown}&nbsp;Cancel
+					</button>
+				</div>
+			);
+		}else{
+			return <spna></spna>
+		}
+	};
+
 
 	return (
 		<>
@@ -130,7 +202,7 @@ const BetDetails = (props) => {
 								<div className="date">
 									<FormatDate date={item?.created}/>
 								</div>
-								<div className="status">
+								<div className="status d-flex justify-content-between px-2">
 								<span
 									className={` badge  ${item?.status == 3 ? "bg-dark text-warning" : item?.status == 5 ? "bg-success" : item?.status == 1 ? "bg-dark " : ""}`}
 									style={{
@@ -141,6 +213,9 @@ const BetDetails = (props) => {
 										padding: "2.9px 9px "
 									}}>{item.status == 3 ? "NOT WON" : item?.status == 5 ? "WON" : "PENDING"}
 								</span>
+									{console.log("slip_cancel_info",state?.mybets?.meta.bet_info.can_cancel)}
+									{state?.mybets?.meta.bet_info.can_cancel!==false&&
+									<CancelBetMarkup bet_id={item?.bet_id} can_cancel={state?.mybets?.meta.bet_info.can_cancel}/>}
 								</div>
 								{index === 0 && (<div className="d-flex history-details-padding gap-3 ">
 									<div className="col-8 d-flex details-history-main-container">

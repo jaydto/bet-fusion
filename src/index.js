@@ -131,7 +131,6 @@ const BetslipPage =React.lazy(()=> import("./components/pages/betslip/betslipPag
 
 const Login=React.lazy(()=>import('./components/pages/loginTwo'));
 
-const Profile =React.lazy(()=>import( "./components/pages/Accounts/Profile"));
 const NewProfile =React.lazy(()=>import( "./components/pages/Accounts/NewProfile"));
 
 const Affiliate =React.lazy(()=>import( "./components/Affiliate/Affiliate"));

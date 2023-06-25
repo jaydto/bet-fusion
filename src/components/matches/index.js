@@ -1290,6 +1290,7 @@ export const MarketList = React.memo(
         const [filters, setFilters] = useState({});
         const [perPage, setPerPage] = useState(1000);
         const [currentPage, setCurrentPage] = useState(1);
+        const [groupMarketsAvailable, setGroupMarketsAvailable] = useState(null)
 
         //  fetching More Markets from redux state
         const matchwithmarkets = allMarkets
@@ -1332,11 +1333,12 @@ export const MarketList = React.memo(
 
                 let marketGroups = mkt_id[1]
 
-                if (marketGroups[0]?.group_id === group_id) {
+                if (marketGroups[0]?.group_id === group_id || group_id === 'all') {
                     filtered[mkt_id[0]] = mkt_id[1];
                 }
                 return [];
             });
+
             let match = filters?.data?.match;
 
             let ob = {
@@ -1345,7 +1347,7 @@ export const MarketList = React.memo(
                     odds: Object.assign({}, filtered),
                 },
             };
-
+            setGroupMarketsAvailable(Object.keys(ob?.data?.odds).length !== 0)
             setFilters(ob);
         };
 
@@ -1393,12 +1395,16 @@ export const MarketList = React.memo(
                         />
                     </div>
                     <div className="text-white market-groups-container">
+                        {state?.market_groups?.length > 0 && <button onClick={() => filterMarketGroups('all')}
+                                                                     className={'market-group-pill text-white badge badge-pill badge-primary bg-transparent outline-1 p-2 border-white'}>
+                            All Markets
+                        </button>}
                         {state?.market_groups?.map((group) => (
-                            <span
+                            <button
                                 className={'market-group-pill text-white badge badge-pill badge-primary bg-transparent outline-1 p-2 border-white'}
                                 onClick={() => filterMarketGroups(group?.id)}>
                                 {group?.name}
-                            </span>
+                            </button>
                         ))}
                     </div>
                     {marketsToShow.map(([mkt_id, markets], index) => {
@@ -1413,10 +1419,12 @@ export const MarketList = React.memo(
                             pdown={pdown}
                         />
 
-                    })
-                    }
-
-
+                    })}
+                    {groupMarketsAvailable === false && (
+                        <div className={'text-warning col-md-12 text-center p-2'}>
+                            There are no markets in this group.
+                        </div>
+                    )}
                 </div>
             </div>
         );

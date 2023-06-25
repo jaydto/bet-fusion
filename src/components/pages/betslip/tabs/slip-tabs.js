@@ -52,18 +52,18 @@ const SlipTabs = (props) => {
     return (
         <div className={"full-mobile mb-1 "}>
             <Row className="top-matches d-flex flex-row ">
-                {pathname=="/betslip-jackpot"&&
+                {pathname==="/betslip-jackpot"&&
                     <div className="col  text-center">
                         <Link className={`cursor-pointer rounded border-0 w-100 bold home-tabs header-slips`} to={'/betslip-jackpot?' + getLink()} >
                             <span className="col-sm-11 main-header">JACKPOT</span>
                         </Link>
                     </div>}
-                {pathname=='/betslip-nare'&&<div className="col text-center">
+                {pathname==='/betslip-nare'&&<div className="col text-center">
                     <Link className={`cursor-pointer rounded border-0  w-100 bold home-tabs header-slips`}  to={'/betslip-nare?' + getLink()} >
                         <span className="col-sm-11 main-header">NARESLIP</span>
                     </Link>
                 </div>}
-                {pathname=='/betslip-slip'&&
+                {pathname==='/betslip-slip'&&
                     <div className="col text-center">
                         <Link className={`cursor-pointer rounded border-0  w-100 bold home-tabs header-slips`}  to={'/betslip-slip?' + getLink()} >
                             <span className="col-sm-11 main-header">BETSLIP</span>

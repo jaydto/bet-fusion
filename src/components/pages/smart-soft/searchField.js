@@ -54,4 +54,4 @@ const SearchComponent = React.memo(
     );
 });
 
-export default SearchComponent;
+export default React.memo(SearchComponent);

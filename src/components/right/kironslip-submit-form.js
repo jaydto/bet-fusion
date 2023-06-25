@@ -202,7 +202,7 @@ const KironslipSubmitForm = React.memo(
                 if (status === 200 || status == 201 || status == 204) {
                     setMessage(response);
                     let  betslips= getKironSlip()
-                    Object.entries(betslips).map(([match_id, match]) => {
+                    Object.entries(betslips||{})?.map(([match_id, match]) => {
                         removeFromKironSlip(match_id)
                         let match_selector = match?.parent_match_id+"_selectedK"
                         let ucn =clean_rep(
@@ -304,7 +304,7 @@ const KironslipSubmitForm = React.memo(
     const navigate=useNavigate()
     const handleRemoveAll = useCallback(() => {
         let  betslips= getKironSlip()
-        Object.entries(betslips).map(([match_id, match]) => {
+        Object.entries(betslips||{})?.map(([match_id, match]) => {
             removeFromKironSlip(match_id)
             let match_selector = match?.parent_match_id+"_selectedK"
             let ucn =clean_rep(
@@ -329,7 +329,7 @@ const KironslipSubmitForm = React.memo(
     const showRemoveExpired = useCallback(() => {
         let betslips = getKironSlip() || {};
 
-        const data = Object.entries(betslips).map(([match_id, match]) => {
+        const data = Object.entries(betslips||{})?.map(([match_id, match]) => {
             let start_time = match?.start_time;
             let gettime = getTime(start_time);
             let timePeriod = new Date(Date.parse(`${new Date().toDateString()} ${gettime}`));
@@ -367,7 +367,7 @@ const KironslipSubmitForm = React.memo(
     const handleRemoveExpired= useCallback(() =>{
         let  betslips= getKironSlip()
 
-        Object.entries(betslips).map(([match_id, match]) => {
+        Object.entries(betslips||{})?.map(([match_id, match]) => {
             let start_time=match?.start_time
             let gettime = getTime(start_time)
 

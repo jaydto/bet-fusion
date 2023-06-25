@@ -79,7 +79,7 @@ const RedeemPoints = React.lazy(
 );
 
 const Signup = React.lazy(
-    () => import('./components/pages/registerTwo')
+    () => import('./components/pages/auth/registerTwo')
 );
 
 const ResetPassword = React.lazy(

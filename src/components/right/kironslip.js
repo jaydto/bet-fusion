@@ -16,7 +16,7 @@ const KironSlip = React.memo(
         const [betslipKey, setBetslipKey] = useState("kironbetslip");
         const [betslipsData, setBetslipsData] = useState(null);
         const [state, dispatch] = useContext(Context);
-        const totalGames = betslipsData ? Object.keys(betslipsData).length : 0;
+        const totalGames = betslipsData ? Object.keys(betslipsData||{}).length : 0;
         const [message, setMessage] = useState(null);
         const [qualifiesBonus, setQualifiesBonus] = useState(false);
         const [qualifiesGift, setQualifiesGift] = useState(false);
@@ -38,7 +38,7 @@ const KironSlip = React.memo(
 
         useEffect(() => {
             if (state[betslipKey]) {
-                kiron && getKironSlip() !== null && Object.keys(getKironSlip()).length == 0 ?
+                kiron && getKironSlip() !== null && Object.keys(getKironSlip()||{}).length == 0 ?
                     setBetslipsData(null) :
                     setBetslipsData(state[betslipKey]);
                 // console.log("size of slip",Object.keys(getJackpotBetslip).length )
@@ -49,7 +49,7 @@ const KironSlip = React.memo(
         //betslip update
         const updateBetslip = useCallback(() => {
             if (betslipsData) {
-                let odds = Object.values(betslipsData).reduce(
+                let odds = Object.values(betslipsData||{}).reduce(
                     (previous, {odd_value}) => {
                         return previous * odd_value;
                     },
@@ -194,11 +194,11 @@ const KironSlip = React.memo(
                     className={`flow  slip-top ${state?.user ? kiron ? 'slip-max' : 'slip-height slip-log-max' : 'slip-max'} overflow-auto`}>
                     <div className={"slip-bottom-space"}>
                         <ul className={"slip-bottom-space-list"}>
-                            {(betslipsData && Object.keys(betslipsData)?.length == 0) ||
+                            {(betslipsData && Object.keys(betslipsData||{})?.length == 0) ||
                             betslipsData == null ? (
                                 ""
                             ) : (
-                                Object.entries(betslipsData || {}).map(([match_id, slip], index) => {
+                                Object.entries(betslipsData || {})?.map(([match_id, slip], index) => {
                                     let odd = slip.odd_value;
                                     let no_odd_bg = odd === 1 ? "#f29f7a" : "";
 
@@ -223,7 +223,7 @@ const KironSlip = React.memo(
                                                 >
                                                     <Link
                                                         key={index}
-                                                        href={`${
+                                                        to={`${
                                                             slip?.bet_type === "0"
                                                                 ? "/match/" + slip?.match_id
                                                                 : kiron == true ? "#" : "/match/live/" + slip?.parent_match_id
@@ -233,7 +233,7 @@ const KironSlip = React.memo(
                                                     >
                                                         <div className="row">
                                                             <div className="bet-value">
-                                                     <span className={"team-info-slip-list"}>
+                                                     <span className={"team-info-slip-list-kiron"}>
                                                     <span
                                                         className={"slip-team"}>{slip.home_team}</span>&nbsp; Vs.&nbsp;
                                                          <span className={"slip-team"}>{slip.away_team}</span>
@@ -251,20 +251,17 @@ const KironSlip = React.memo(
                                                 </li>
                                             </div>
                                             <div className="d-flex align-items-center">
-                                                <b>
-                                                    {expired.map((id, index) => {
-                                                        return slip?.parent_match_id === id && (
-                                                            <span key={index}
-                                                                  className='text-warning float-end px-2'>
-                                                             Expired
-                                                        </span>
-                                                        );
-                                                    })}
-                                                </b>
-                                                {expired.length == 0 && <b>
-                                                    <span className="bet-odd"> {slip.odd_value}</span>
-                                                </b>}
+                                                {expired?.includes(slip?.parent_match_id) ? (
+                                                    <b>
+                                                        <span className='text-warning float-end px-2'>Expired</span>
+                                                    </b>
+                                                ) : (
+                                                    <b>
+                                                        <span className="bet-odd">{slip.odd_value}</span>
+                                                    </b>
+                                                )}
                                             </div>
+
                                         </div>
                                     );
                                 })
@@ -279,7 +276,7 @@ const KironSlip = React.memo(
                         totalOdds={totalOdds}
                         betslip={betslipsData}
                         setBetslipsData={setBetslipsData}
-                        totalGames={betslipsData ? Object.keys(betslipsData).length : 0}
+                        totalGames={betslipsData ? Object.keys(betslipsData||{}).length : 0}
                         bonusBet={qualifiesBonus}
 
                     />

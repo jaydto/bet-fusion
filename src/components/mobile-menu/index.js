@@ -122,7 +122,7 @@ const MobileMenu = React.memo(
             bg="warning nav__betslip d-flex justify-content-center align-items-center text-dark"
         >
             {/*fixed size 50 for bets clicked*/}
-            {jackpot === true&&jackpot!=undefined||pathname=="/betslip-jackpot"
+            {jackpot === true&&jackpot!=undefined||pathname==="/betslip-jackpot"
                 ? getJackpotBetslip() != null
                     ? <strong>{Object.keys(getJackpotBetslip())?.length}</strong>
                     : <strong className={'badge-font-weight'}>0</strong>

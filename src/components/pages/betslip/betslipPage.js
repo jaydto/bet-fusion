@@ -93,7 +93,7 @@ const BetslipPage = React.memo(
                       style={{ height: "100%" }}
                   >
 
-                    {nare_league ? <KironSlip kironValidation={nareData} kiron={nare_league||pathname=='/betslip-nare'}/> : <Betslip
+                    {nare_league ? <KironSlip kironValidation={nareData} kiron={nare_league||(pathname==='/betslip-nare')}/> : <Betslip
                         jackpot={jackpot ? true : false}
                         betslipValidationData={betslipValidationData}
                         jackpotData={jackpotData}

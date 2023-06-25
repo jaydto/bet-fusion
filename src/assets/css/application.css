@@ -144,40 +144,36 @@ git branch /*
     /* border-top-left-radius: 0px!important; */
     /* border-bottom-left-radius: 0px!important; */
 }
-
 .box-shadow-table-submit-form {
     /* box-shadow: 10px 10px 10px 10px var(--betnare-input); */
     padding: 5px;
     border-radius: 10px;
-    border: thin solid var(--betnare-input);
+     border: thin solid var(--betnare-input);
 }
-
-.pick-user-match {
+.pick-user-match{
     transform: scale(1.5);
-    color: var(--lite-top-color);
+    color:var(--lite-top-color);
 }
-
 .slip-message-alert {
     height: 5rem;
     /* width: 100vw; */
     display: inline-table;
     /* word-wrap: break-word; */
-    white-space: normal !important;
-    line-height: 15px !important;
+    white-space: normal!important;
+    line-height: 15px!important;
     color: green;
     border: thin solid var(--betnare-input);
     border-radius: 6px;
     align-items: center;
     display: flex;
 }
-
 .slip-message-alert {
     height: 5rem;
     /* width: 100vw; */
     display: inline-table;
     /* word-wrap: break-word; */
-    white-space: normal !important;
-    line-height: 15px !important;
+    white-space: normal!important;
+    line-height: 15px!important;
     color: green;
     border: thin solid var(--betnare-input);
     border-radius: 6px;
@@ -185,33 +181,26 @@ git branch /*
     display: flex;
     margin-bottom: 5px;
 }
-
-.slip-message-alert:empty {
-    display: none;
+.slip-message-alert:empty{
+    display:none;
 }
-
 #odd-change-text {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-#odd-change-text2 {
+}#odd-change-text2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-
 .slip-clear-all {
     padding-right: 8px;
 }
-
 .odd-change-position .odds-change-box {
     /* padding-left: 0px!important; */
     /*width: 16%;*/
     /*padding: 13px;*/
 }
-
 #betting input {
     color: var(--light);
     padding: 3px;
@@ -228,16 +217,13 @@ git branch /*
     box-sizing: border-box;
     line-height: 0.8;
 }
-
-.container-styling-input-placebet {
-    border-radius: 10px;
+.container-styling-input-placebet{
+    border-radius:10px;
 
 }
-
-.bg-input-placebet {
+.bg-input-placebet{
     background: var(--betnare-input);
 }
-
 .bg-input-placebet {
     height: 3.5rem;
     font-weight: 700;
@@ -252,7 +238,6 @@ git branch /*
     background: var(--betnare-primary);
     padding-right: 10px;
 }
-
 #quick-login a {
     color: #fff;
     background: #c91d56;
@@ -417,21 +402,21 @@ li.bet-option {
     width: 15%;
     padding: 9px;
 }
-
-.bet-align-left.nare-boost-color {
-    color: var(--lite-top-color) !important;
+.bet-align-left.nare-boost-color{
+    color:var(--lite-top-color)!important;
     /*font-weight: 800;*/
 }
-
+.show-values-betslip {
+    font-size: 14px;
+    padding-left: 10px;
+}
 .boost-betslip {
-    font-size: 12px;
-    padding-left: 9px;
+    font-size: 12.5px;
+    /*padding-left: 11px;*/
 }
-
-.bet-align-right.nare-boost-color {
-    color: var(--lite-top-color) !important;
+.bet-align-right.nare-boost-color{
+    color:var(--lite-top-color)!important;
 }
-
 .bet-cancel input {
     border-radius: 10px !important;
     border-bottom: var(--transparent);
@@ -441,17 +426,15 @@ li.bet-option {
     border-bottom: thin solid var(--slip-separator-color) !important;
     height: 7rem;
 }
-
-.picks-user-slip {
-    color: darkgrey;
+.picks-user-slip{
+    color:darkgrey;
     font-size: 11px !important;
 
 }
-
 .time-slip-value {
     font-size: 10px !important;
     opacity: 0.8;
-    color: lightgrey;
+    color:lightgrey;
 }
 
 .slip-bg:last-of-type {
@@ -482,7 +465,7 @@ li.bet-option {
     border-radius: 50% !important;
     font-size: 9px;
     font-weight: bolder !important;
-    background: var(--slip-separator-color) !important;
+    background: var(--slip-separator-color)!important;
 }
 
 .bet-align-left {
@@ -509,7 +492,7 @@ li.bet-option {
 }
 
 .bet-pick {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Roboto', sans-serif;
     float: left;
     margin-top: 5px;
     width: 100%;
@@ -519,7 +502,7 @@ li.bet-option {
 .pay-method label {
     margin-bottom: 0;
     /* font-size: 12px; */
-    font-family: arial;
+    font-family: 'Roboto', sans-serif;
     margin-top: -8px;
 }
 
@@ -542,7 +525,14 @@ li.bet-option {
     float: left;
     width: auto;
     font-weight: bold;
-    display: flex;
+     display: flex;
+    align-items: center;
+}
+.team-info-slip-list-kiron {
+    float: left;
+    width: auto;
+    font-weight: bold;
+    /*display: flex;*/
     align-items: center;
 }
 
@@ -617,7 +607,7 @@ li.bet-option {
 .main-heading-1 {
     font-size: 16px !important;
     display: inline-block;
-    font-weight: 500;
+    font-weight: 600;
     white-space: nowrap;
 }
 

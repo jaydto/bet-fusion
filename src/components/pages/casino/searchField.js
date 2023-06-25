@@ -37,13 +37,7 @@ const SearchComponent = React.memo(
             <a href="#" className="search-btn">
                 <FontAwesomeIcon icon={faSearch} />
             </a>
-                {/*{console.log("filteredData", filteredData)}*/}
-                {/*{filteredData ? (*/}
-                {/*    <div>*/}
-                {/*        <h2>{filteredData.game_name}</h2>*/}
-                {/*        <img src={filteredData.game_icon} alt={filteredData.game_name} />*/}
-                {/*    </div>*/}
-                {/*) : null}*/}
+
         </div>
 
         </div>
@@ -52,4 +46,4 @@ const SearchComponent = React.memo(
     );
 });
 
-export default SearchComponent;
+export default React.memo(SearchComponent);

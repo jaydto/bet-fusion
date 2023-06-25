@@ -2,7 +2,7 @@
 body {
     font-size: var(--betnare-font-size-nav);
     line-height: var(--body-line-weight);
-    background: var(--betnare-primary);
+    background: var(--betnare-body-bg);
     max-width: 100% !important
 }
 
@@ -21,9 +21,7 @@ body {
     background: var(--slip-separator-color);
 }
 
-.slip-team {
-    white-space: nowrap;
-}
+
 
 .slip-color-list {
 
@@ -149,7 +147,6 @@ input.text-white {
 
 .matches .top-matches {
     /* background: var(--betnare-odds-body); */
-    background: var(--betnare-primary);
     padding-top: 10px;
     padding-bottom: 3px;
     margin-bottom: 15px;
@@ -158,7 +155,6 @@ input.text-white {
     font-weight: normal;
     color: var(--light);
     font-size: 12px;
-    opacity: 0.8;
     /* border-bottom: 1px solid var(--betnare-input); */
 }
 
@@ -550,7 +546,7 @@ select::after {
     /*background-image:url("../../assets/img/auth/backtop.webp") !important;*/
     /*background-repeat: no-repeat;*/
     /*transform: rotate(45deg);*/
-    background: var(--betnare-primary);
+    /*background: var(--betnare-primary);*/
     /*background-position: top left;*/
 }
 
@@ -1435,6 +1431,9 @@ img.nare-league {
         margin-right: 21px;
     }
 }
+.width-page-centric.deposit-page.withdraw{
+    box-shadow:none!important;
+}
 
 @media (max-width: 1259px) and (min-width: 992px) {
     .slip-top {
@@ -1576,13 +1575,15 @@ img.nare-league {
 }
 
 @media (min-width: 992px) {
-    /*.bet-cancel {*/
-    /*    float: left;*/
-    /*    width: 10%;*/
-    /*    position: absolute;*/
-    /*    left: 0px;*/
-    /*    !* border-radius: 36px; *!*/
-    /*}*/
+    .slip-team {
+        width: 200px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .btn.login-button2:hover {
+        background: var(--betnare-button-login)!important;
+    }
     .bet-align-right {
         font-size: 14px;
     }
@@ -1759,8 +1760,16 @@ img.nare-league {
     }
 }
 
-
+.cursor-pointer{
+    cursor: pointer!important;
+}
 @media (max-width: 991px) {
+    .slip-team {
+        width: 270px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
     .top-smartsoft {
         margin-top: 8rem !important;
     }
@@ -1869,7 +1878,12 @@ img.nare-league {
         flex-direction: column;
         height: 65px;
     }
-
+    .btn.login-button:hover{
+        background: var(--betnare-button-login)!important;
+    }
+    .btn.login-button2:hover{
+        background: var(--betnare-button-login)!important;
+    }
     .top-matches a.odds-container-size {
         color: var(--light) !important;
         font-weight: 400;
@@ -1975,8 +1989,8 @@ img.nare-league {
     }
 
     .show-values-betslip {
-        font-size: 12px;
-        padding-left: 9px;
+        font-size: 14px;
+        padding-left: 10px;
     }
 
     .show-tax-info {
@@ -2234,8 +2248,9 @@ img.nare-league {
 
     .width-page-centric {
         box-shadow: none;
-        width: 100% !important;
+        width: 100vw !important;
         margin: auto;
+        margin-top: 36px;
     }
 
     .width-centric-page {

@@ -11,7 +11,8 @@ import {faFire} from "@fortawesome/free-solid-svg-icons";
 import useWindowDimensions from "../../header/Dimensions";
 import Right from "../../right";
 
-const GamePlay = (props) => {
+const GamePlay = React.memo(
+    (props) => {
 
     const {game} = useParams()
     const pathname = window.location.pathname;
@@ -165,6 +166,6 @@ const GamePlay = (props) => {
 
         </>
     )
-}
+})
 
-export default GamePlay
+export default React.memo(GamePlay)

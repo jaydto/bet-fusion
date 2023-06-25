@@ -765,10 +765,19 @@ li.bet-option {
     margin-bottom: 10px;
 }
 
+.market-groups-container::-webkit-scrollbar {
+    display: none !important;
+}
+
 .market-group-pill {
     border-radius: 15px !important;
     background: var(--button-color) !important;
     margin-right: 2px;
     padding: 10px 5px;
     cursor: pointer;
+}
+
+.market-group-pill:focus {
+    background: var(--picked) !important;
+    color: var(--black) !important;
 }

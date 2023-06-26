@@ -16,6 +16,8 @@ import {Button, ButtonGroup} from "react-bootstrap";
 import Notify from "../../../utils/Notify";
 import BetslipShareModal from "../../../modals/BetslipShareModal";
 import {getFromLocalStorage, setLocalStorage} from "../../../utils/local-storage";
+import {addToSlip} from "../../../utils/betslip";
+import {useNavigate} from "react-router-dom";
 const BetDetails = (props) => {
 	const {bet_id}=props
 	const [state, dispatch] = useContext(Context);
@@ -252,6 +254,7 @@ const BetDetails = (props) => {
 		});
 	});
 
+	const navigate=useNavigate()
 	const rebetRequest= async (bet_id)=>{
 		let endpoint="/v1/rebet"
 		let method="POST"
@@ -266,6 +269,13 @@ const BetDetails = (props) => {
 
 			if(status==200){
 				Notify(message)
+				Object.entries(result?.success).map(([match_id, match]) => {
+					match.live = Number(match?.live) !== 0
+					match.bet_type = String(match?.bet_type)
+					addToSlip(match)
+				})
+
+				return navigate("/betslip-slip")
 			}
 		})
 	}

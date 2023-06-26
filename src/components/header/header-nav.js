@@ -139,7 +139,7 @@ const HeaderNav = React.memo(
                         <div className="url-link fm anl cg ox "  title="Live Casino" onClick={() => {LoginCheck("casino");gaEventTracker('Visit Casino Page')}}>
                             <span>
                                 <strong>Casino</strong>
-                                    <span className="new-alert-badge-item">HOT</span>
+                                    <span className="new-alert-badge-items">HOT</span>
                             </span>
                         </div>
                     </li>
@@ -151,7 +151,7 @@ const HeaderNav = React.memo(
                            title="Space Man">
                             <span>
                                 <strong>Spaceman</strong>
-                                    <span className="new-alert-badge-item">HOT</span>
+                                    <span className="new-alert-badge-items">HOT</span>
                             </span>
                         </div>
                     </li>
@@ -163,12 +163,11 @@ const HeaderNav = React.memo(
                               onClick={() => {
                                   LoginCheck("JetX");gaEventTracker('Visit JetX Page')
                               }}>
-                            <strong>
-                                <div className={'d-flex menu-item'}>
-                                    JetX
-                                    <span className="new-alert-badge-item">HOT</span>
-                                </div>
-                            </strong>
+                            <span>
+                                <strong>JetX</strong>
+                                    <span className="new-alert-badge-items">HOT</span>
+
+                            </span>
                         </div>
                     </li>
 

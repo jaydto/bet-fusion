@@ -841,6 +841,25 @@ input[type="radio"], input[type="checkbox"] {
     top: -11px;
     width: 28px;
 }
+.new-alert-badge-items {
+    background: transparent var(--badge-bg) no-repeat;
+    background-size: 35px 16px;
+    color: var(--always-white);
+    display: flex;
+    flex-direction: column-reverse;
+    font-size: var(--font-tiny);
+    font-weight: var(--font-weight-normal);
+    font-weight: 800;
+    height: 13px;
+    margin-top: 4px !important;
+    padding: 1px;
+    position: absolute;
+    right: -13px;
+    text-align: center;
+    text-transform: none;
+    top: -2px;
+    width: 28px;
+}
 
 .profile-width-side {
     min-width: 316px !important;

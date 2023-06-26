@@ -9,6 +9,7 @@ import jetX from "../../assets/img/mobile/jetx.webp"
 import casino1 from "../../assets/img/casino/casino.png"
 import aviator from "../../../src/assets/img/aviator.webp"
 import spaceman from "../../../src/assets/img/spaceman.webp"
+import league from "../../../src/assets/img/kiron/nare-league.webp"
 import fire from '../../assets/img/fire.webp'
 import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
 import makeRequest from "../utils/fetch-request";
@@ -145,6 +146,25 @@ const MobileNav1 = React.memo(
                         </Link>
 
                     </td>
+                    <td  className={`menu-t m-auto sport-check nare-league ${pathname.includes('/nare-league')?"active_link":""}`}  >
+                        <Link className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `} onClick={() => gaEventTracker('Visit Nare League Page')}  to={`/nare-league`}   >
+                            <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center  `}>
+
+                                <div className="menu-img  ">
+                                    <LazyLoadImage
+                                        className="side-icon"
+                                        src={league}
+                                        alt=""
+                                        style={{height: "23px", marginTop:"-6px"}}
+                                    />
+                                    <span className=" new-alert-badge" >HOT</span>
+                                </div>
+                                <strong style={{textAlign: "center"}}>
+                                    League
+                                </strong>
+                            </div>
+                        </Link>
+                        </td>
 
                     <td className={`menu-t m-auto sport-check  ${pathname.includes('aviator') ? "active_link" : ""}`}>
                         <Link to={"/nare-games/aviator"}
@@ -170,26 +190,7 @@ const MobileNav1 = React.memo(
                         </Link>
 
                     </td>
-                    {/*<td  className={`menu-t m-auto sport-check nare-league ${pathname.includes('/nare-league')?"active_link":""}`}  >*/}
-                    {/*    <Link className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `} onClick={() => gaEventTracker('Visit Nare League Page')}  to={`/nare-league`}   >*/}
-                    {/*        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center  `}>*/}
 
-                    {/*            <div className="menu-img  ">*/}
-                    {/*                <LazyLoadImage*/}
-                    {/*                    className="side-icon"*/}
-                    {/*                    src={kiron}*/}
-                    {/*                    alt=""*/}
-                    {/*                    style={{height: "23px", marginTop:"-6px"}}*/}
-                    {/*                />*/}
-                    {/*                <span className=" new-alert-badge" >NEW</span>*/}
-                    {/*            </div>*/}
-                    {/*            <strong style={{textAlign: "center"}}>*/}
-                    {/*                League*/}
-                    {/*            </strong>*/}
-                    {/*        </div>*/}
-                    {/*    </Link>*/}
-
-                    {/*</td>*/}
 
                     <td className={`menu-t m-auto sport-check ${pathname === `/casino` ? " active_link" : ""} `}>
                         <div

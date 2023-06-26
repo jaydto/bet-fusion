@@ -22,6 +22,26 @@
 .bet-history-items.status{
 
 }
+.bet-history-options {
+    border: thin solid;
+    border-radius: 7px;
+    cursor: pointer;
+    box-shadow: 2px 2px 2px 0px;
+    margin: 5px 0px;
+    padding: 4px 0px;
+    width: inherit;
+    text-align: center;
+    margin: 14px 9px 12px 0px;
+    min-height:40px;
+}
+.bet-history-options.progress{
+    background: var(--betnare-primary);
+
+}
+.bet-history-options.progress .progress-bar{
+    background: var(--bet-history);
+    font-size:14px;
+}
 .bet-history-items.games{
     color:var(--orange);
 }
@@ -82,13 +102,16 @@ font-weight: 900;
     font-weight: 700;
 }
 .filter-buttons-bethistory .filters.button-filter {
-    padding: 9px 18px;
+    padding: 2px 18px;
     border-radius: 18px;
     border: thin solid;
     background: var(--betnare-header-bg);
     display: flex;
     gap: 5px;
     /* line-height: 1; */
+    text-align: center;
+    display: flex;
+    align-items: center;
 }
 .history-details .status{
 

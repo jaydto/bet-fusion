@@ -296,7 +296,6 @@ const MoreMarketsHeaderRow = React.memo(
   });
 
   let lmtIncludes = [79, 85, 82, 80, 107];
-  //click functionality
   const handleLinkClick=(event)=> {
     // remove highlight class from all links
     const links = document.querySelectorAll('.link');
@@ -333,7 +332,6 @@ const MoreMarketsHeaderRow = React.memo(
                       ))
                       : ""}
                 </h4>
-
                 <Row className="header-text">
                   <Col>
                     {category} {competition}

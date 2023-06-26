@@ -2,9 +2,10 @@ import React, {useCallback, useContext, useEffect, useState} from "react"
 import makeRequest from "../../../utils/fetch-request";
 import {Context} from "../../../../context/store";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import { faCaretDown, faCaretRight,  faCheckCircle} from "@fortawesome/free-solid-svg-icons";
+import {faCaretDown, faCaretRight, faChartLine, faCheckCircle} from "@fortawesome/free-solid-svg-icons";
 import Skeleton1 from "../../../skeleton/skeleton";
 import moment from "moment/moment";
+import {Button, ButtonGroup} from "react-bootstrap";
 const BetDetails = (props) => {
 	const {bet_id}=props
 	const payload={
@@ -121,37 +122,8 @@ const BetDetails = (props) => {
 	const [canCancel, setCanCancel] = useState(true);
 	const [betStatus, setBetStatus] = useState(null);
 	const [cancelEndTime, setCancelEndTime] = useState(null);
-	const [countdown, setCountdown] = useState(null);
-
-	useEffect(() => {
-		if (canCancel) {
-			const cancelEnd = moment().add(5, 'minutes'); // Change from 10 seconds to 5 minutes
-			setCancelEndTime(cancelEnd);
-			startCountdown(cancelEnd);
-		} else {
-			setCancelEndTime(null);
-			setCountdown(null);
-		}
-	}, [canCancel]);
 
 
-	const startCountdown = (endTime) => {
-		const duration = moment.duration(endTime.diff(moment()));
-		const remainingSeconds = Math.floor(Math.max(0, duration.asSeconds()));
-		const remainingMinutes = Math.floor(remainingSeconds / 60); // Calculate remaining minutes
-		const remainingSecondsFormatted = remainingSeconds % 60; // Calculate remaining seconds
-
-		const remainingTime = `${remainingMinutes}:${remainingSecondsFormatted
-			.toString()
-			.padStart(2, "0")}`; // Format remaining time as "minutes:seconds"
-		setCountdown(remainingTime);
-
-		if (remainingSeconds > 0) {
-			setTimeout(() => {
-				startCountdown(endTime);
-			}, 1000);
-		}
-	};
 
 	const cancelBet = (bet_id) => {
 		let endpoint = '/bet-cancel';
@@ -169,26 +141,120 @@ const BetDetails = (props) => {
 	};
 
 	const CancelBetMarkup = (props) => {
-		const { bet_id, can_cancel } = props;
-		console.log("can_cancel_info", can_cancel)
-		if (can_cancel!==false) {
+		const { bet_id, can_cancel, created } = props;
+		const [countdown, setCountdown] = useState(null);
+		const [progress, setProgress] = useState(100);
+		let cancelEndTime;
+		let interval;
+
+		useEffect(() => {
+			let storedEndTime = localStorage.getItem('cancelEndTime');
+			if (can_cancel && created) {
+				cancelEndTime = moment(created).add(5, 'minutes');
+				localStorage.setItem('cancelEndTime', cancelEndTime);
+				startCountdown(cancelEndTime);
+			} else {
+				resetCountdown();
+			}
+		}, [can_cancel, created]);
+
+		const startCountdown = (endTime) => {
+			document.addEventListener('visibilitychange', handleVisibilityChange);
+			updateCountdown(endTime);
+		};
+
+		const updateCountdown = () => {
+			interval = setInterval(() => {
+				const now = moment();
+				const diff = moment.duration(cancelEndTime.diff(now));
+
+				if (diff.asSeconds() <= 0) {
+					resetCountdown();
+					clearInterval(interval);
+				} else {
+					setCountdown(getCountdownText(diff));
+					setProgress((diff.asSeconds() / 300) * 100); // Calculate the progress based on remaining seconds (5 minutes)
+				}
+			}, 1000);
+		};
+
+		const handleVisibilityChange = () => {
+			if (document.visibilityState === 'visible') {
+				updateCountdown();
+			} else {
+				clearInterval(interval);
+			}
+		};
+
+		const resetCountdown = () => {
+			setCountdown(null);
+			setProgress(100); // Reset the progress to 100%
+			localStorage.removeItem('cancelEndTime');
+			document.removeEventListener('visibilitychange', handleVisibilityChange);
+		};
+
+		const getCountdownText = (diff) => {
+			const minutes = Math.floor(diff.asMinutes());
+			const seconds = Math.floor(diff.asSeconds() % 60);
+			return `${minutes}m ${seconds}s`;
+		};
+
+		if (can_cancel && countdown) {
+			return (
+
+					<div className="progress  bet-history-options" style={{ height: '25px' }} onClick={cancelBet(bet_id)}>
+						<div
+							className="progress-bar"
+							role="progressbar"
+							style={{ width: `${progress}%` }}
+							aria-valuenow={progress}
+							aria-valuemin={0}
+							aria-valuemax={100}
+						>
+							{countdown}
+						</div>
+					</div>
+			);
+		} else {
 			return (
 				<div className="">
-					<button
-						title="Cancel Bet"
-						className="col btn btn-sm place-bet-btn d-flex flex-column "
-						onClick={() => cancelBet(bet_id)}
-					>
-						{countdown}&nbsp;Cancel
-					</button>
 				</div>
 			);
-		}else{
-			return <spna></spna>
 		}
 	};
 
+	const [switches, setSwitches]=useState("scoreboard")
 
+	const switchLmt=(value)=>{
+		setSwitches(value)
+	}
+	const handleLinkClick=(event)=> {
+		// remove highlight class from all links
+		const links = document.querySelectorAll('.link');
+		links.forEach((link) => link.classList.remove('highlight'));
+
+		// add highlight class to clicked link
+		event.currentTarget.classList.add('highlight');
+	}
+
+	let sport_id="";
+
+	let lmtIncludes = [79, 85, 82, 80, 107];
+
+	useEffect(() => {
+		window.SIR("addWidget", "#sr-widget", "match.lmtPlus", {
+			branding: { tabs: { option: "icon", variant: "fullWidth" } },
+			goalBannerImage:
+				"https://storage.googleapis.com/nareimages/logo-white.webp",
+			logo: ["https://storage.googleapis.com/nareimages/logo-dark.webp"],
+			momentum: "disable",
+			matchId: "",
+			collapseTo: switches,
+			layout: "single",
+			scoreboard: "extended",
+			detailedScoreboard: "disable",
+		});
+	});
 	return (
 		<>
 			{!isLoading?
@@ -202,7 +268,7 @@ const BetDetails = (props) => {
 								<div className="date">
 									<FormatDate date={item?.created}/>
 								</div>
-								<div className="status d-flex justify-content-between px-2">
+								<div className="status d-flex justify-content-between px-2 mb-3">
 								<span
 									className={` badge  ${item?.status == 3 ? "bg-dark text-warning" : item?.status == 5 ? "bg-success" : item?.status == 1 ? "bg-dark " : ""}`}
 									style={{
@@ -211,15 +277,12 @@ const BetDetails = (props) => {
 										borderRadius: "7px",
 										marginLeft: "1px",
 										padding: "2.9px 9px "
-									}}>{item.status == 3 ? "NOT WON" : item?.status == 5 ? "WON" : "PENDING"}
+									}}>{item.status === 3 ? "NOT WON" : item?.status === 5 ? "WON" : "PENDING"}
 								</span>
-									{console.log("slip_cancel_info",state?.mybets?.meta.bet_info.can_cancel)}
-									{state?.mybets?.meta.bet_info.can_cancel!==false&&
-									<CancelBetMarkup bet_id={item?.bet_id} can_cancel={state?.mybets?.meta.bet_info.can_cancel}/>}
 								</div>
-								{index === 0 && (<div className="d-flex history-details-padding gap-3 ">
+								{index === 0 && item?.status === 1 && (<div className="d-flex history-details-padding gap-3 ">
 									<div className="col-8 d-flex details-history-main-container">
-										<div className="d-flex col-2 flex-column details-history-main" >
+										<div className="d-flex col-4 flex-column details-history-main" >
 											<div className={"main-details-info-title"}>
 												Amount
 											</div>
@@ -243,6 +306,17 @@ const BetDetails = (props) => {
 
 									</div>
 								</div>)}
+								<div className="d-flex w-100 justify-content-around">
+									{state?.mybets?.meta.bet_info.can_cancel!==true&&
+											<CancelBetMarkup bet_id={item?.bet_id} can_cancel={!state?.mybets?.meta.bet_info.can_cancel} created={state?.mybets?.meta.bet_info?.created}/>
+									}
+									<div className={"bet-history-options"}>
+										Rebet
+									</div>
+									<div className={"bet-history-options"}>
+										Share
+									</div>
+								</div>
 								<div className="d-flex options-details-history w-100 justify-content-between">
 									<div className="d-flex">
 										Events (Odds {item?.odd_value})
@@ -265,44 +339,71 @@ const BetDetails = (props) => {
 									{item?.results&&<div className="outcome">{item?.results}</div>}
 									<div className="team" onClick={()=>toggleCollapse(index)}>{item?.away_team}&nbsp;{!collapsed.includes(index)?<FontAwesomeIcon icon={faCaretRight}/>:<FontAwesomeIcon icon={faCaretDown}/>}</div>
 								</div>
-								<div className={`${!collapsed.includes(index)?"d-none":"d-flex justify-content-between gap-4"} w-100 px-3 bethistory-items`}>
-									<div className="d-flex  flex-column col">
-										<div className="d-flex justify-content-between px-2 details-info">
-											<div className="type">
-												Type
+								<div className={`${!collapsed.includes(index)?"d-none ":"d-flex justify-content-between gap-4 "} w-100 px-3 bethistory-items flex-column`}>
+									<div className="d-flex">
+										<div className="d-flex  flex-column col">
+											<div className="d-flex justify-content-between px-2 details-info">
+												<div className="type">
+													Type
+												</div>
+												<div className="market-h">
+													{item?.bet_type}
+												</div>
 											</div>
-											<div className="market-h">
-												{item?.bet_type}
+											<div className="d-flex justify-content-between px-2">
+												<div className="pick-ft">
+													Pick
+												</div>
+												<div className="pick-h">
+													{item?.bet_pick}
+												</div>
 											</div>
 										</div>
-										<div className="d-flex justify-content-between px-2">
-											<div className="pick-ft">
-												Pick
+										<div className="d-flex flex-column col">
+											<div className="d-flex justify-content-between px-2">
+												<div className="result-ft">
+													Result
+												</div>
+												<div className="result-h">
+													{item?.results}
+												</div>
 											</div>
-											<div className="pick-h">
-												{item?.bet_pick}
+											<div className="d-flex justify-content-between px-2">
+												<div className="outcome-t">
+													Outcome
+												</div>
+												<div className="outcome-h">
+													{item?.winning_outcome}
+												</div>
 											</div>
 										</div>
+									</div>
+									{lmtIncludes.includes(sport_id) &&< div className="d-flex flex-column col">
+										<div id="sr-widget" className=""></div>
+										<ButtonGroup aria-label="stats button actions" className='w-100 d-flex justify-content-start'>
+										<Button  className="place-bet-btn w-25 btn link" title="scoreboard" type="button" style={{background:"transparent",fontSize:"14px"}}
+									onClick={() => {
+										switchLmt("scoreboard");
+										handleLinkClick()
+									}}>{item?.result && item?.result}&nbsp;scoreboard
+								</Button>
+								<Button
+									id=""
+									onClick={() => {
+										switchLmt("disable");
+										handleLinkClick()
+									}}
+									style={{padding: "5px", backgroundColor: "transparent", fontSize: "14px"}}
+									type={"button"}
 
-									</div>
-									<div className="d-flex flex-column col">
-										<div className="d-flex justify-content-between px-2">
-											<div className="result-ft">
-												Result
-											</div>
-											<div className="result-h">
-												{item?.results}
-											</div>
-										</div>
-										<div className="d-flex justify-content-between px-2">
-											<div className="outcome-t">
-												Outcome
-											</div>
-											<div className="outcome-h">
-												{item?.winning_outcome}
-											</div>
-										</div>
-									</div>
+									className="btn border-0 d-flex justify-content-center w-25 d-flex align-items-center link"
+									title="statistics">
+									statistics&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<FontAwesomeIcon icon={faChartLine}/>
+
+								</Button>
+							</ButtonGroup>
+						</div>}
 								</div>
 							</div>
 						</div>

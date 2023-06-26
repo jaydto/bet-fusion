@@ -11,6 +11,7 @@ import {getFromLocalStorage, setLocalStorage} from "../../../utils/local-storage
 import {Switch} from "@material-ui/core";
 import GameHistoryList from "../../../modals/FilterBetHistory";
 import moment from "moment";
+import Skeleton1 from "../../../skeleton/skeleton";
 
 const BetHistory = () => {
     const {width} = useWindowDimensions()
@@ -18,6 +19,7 @@ const BetHistory = () => {
     const [isLoading, setIsLoading] = useState(false);
 
     const fetchData = useCallback(async () => {
+        setLocalStorage("mybets", null)
         if (isLoading) return;
         setIsLoading(true);
         let endpoint = "/v1/full/betdetails";
@@ -46,93 +48,81 @@ const BetHistory = () => {
 
     const PageBody = () => {
         const [state, dispatch] = useContext(Context)
-        const [canCancel, setCanCancel] = useState(true);
-        const [betStatus, setBetStatus] = useState(null);
-        const [cancelEndTime, setCancelEndTime] = useState(null);
-        const [countdown, setCountdown] = useState(null);
-
-        useEffect(() => {
-            if (canCancel) {
-                const cancelEnd = moment().add(5, 'minutes'); // Change from 10 seconds to 5 minutes
-                setCancelEndTime(cancelEnd);
-                startCountdown(cancelEnd);
-            } else {
-                setCancelEndTime(null);
-                setCountdown(null);
-            }
-        }, [canCancel]);
-
-
-        const startCountdown = (endTime) => {
-            const duration = moment.duration(endTime.diff(moment()));
-            const remainingSeconds = Math.floor(Math.max(0, duration.asSeconds()));
-            const remainingMinutes = Math.floor(remainingSeconds / 60); // Calculate remaining minutes
-            const remainingSecondsFormatted = remainingSeconds % 60; // Calculate remaining seconds
-
-            const remainingTime = `${remainingMinutes}:${remainingSecondsFormatted
-                .toString()
-                .padStart(2, "0")}`; // Format remaining time as "minutes:seconds"
-            setCountdown(remainingTime);
-
-            if (remainingSeconds > 0) {
-                setTimeout(() => {
-                    startCountdown(endTime);
-                }, 1000);
-            }
-        };
-
-        const cancelBet = (bet_id) => {
-            let endpoint = '/bet-cancel';
-            let data = {
-                bet_id: bet_id,
-                cancel_code: 101,
-            }
-            makeRequest({url: endpoint, method: "POST", data: data, use_jwt: true}).then(([status, result]) => {
-                if (status === 201) {
-                    setBetStatus('CANCEL RQ');
-                    setCanCancel(false);
-                    setCancelEndTime(null);
-                }
-            });
-        };
 
         const CancelBetMarkup = (props) => {
-            const { bet_id, can_cancel } = props;
-            console.log("can_cancel", can_cancel)
-            if (can_cancel!==0) {
+            const { bet_id, can_cancel, created } = props;
+            const [countdown, setCountdown] = useState(null);
+            let cancelEndTime;
+            let interval;
+
+            useEffect(() => {
+                let storedEndTime = localStorage.getItem('cancelEndTime');
+                if (can_cancel && created) {
+                    cancelEndTime = moment(created).add(5, 'minutes');
+                    localStorage.setItem('cancelEndTime', cancelEndTime);
+                    startCountdown(cancelEndTime);
+                } else {
+                    resetCountdown();
+                }
+            }, [can_cancel, created]);
+
+            const startCountdown = (endTime) => {
+                document.addEventListener('visibilitychange', handleVisibilityChange);
+                updateCountdown(endTime);
+            };
+
+            const updateCountdown = () => {
+                interval = setInterval(() => {
+                    const now = moment();
+                    const diff = moment.duration(cancelEndTime.diff(now));
+
+                    if (diff.asSeconds() <= 0) {
+                        resetCountdown();
+                        clearInterval(interval);
+                    } else {
+                        setCountdown(getCountdownText(diff));
+                    }
+                }, 1000);
+            };
+
+            const handleVisibilityChange = () => {
+                if (document.visibilityState === 'visible') {
+                    updateCountdown();
+                } else {
+                    clearInterval(interval);
+                }
+            };
+
+            const resetCountdown = () => {
+                setCountdown(null);
+                localStorage.removeItem('cancelEndTime');
+                document.removeEventListener('visibilitychange', handleVisibilityChange);
+            };
+
+            const getCountdownText = (diff) => {
+                const minutes = Math.floor(diff.asMinutes());
+                const seconds = Math.floor(diff.asSeconds() % 60);
+                return `${minutes}m ${seconds}s`;
+            };
+
+            if (can_cancel && countdown) {
                 return (
                     <div className="col d-flex">
                         Cancel will End in: {countdown}
-                        <button
-                            title="Cancel Bet"
-                            className="col btn btn-sm place-bet-btn d-flex flex-column w-100"
-                            onClick={() => cancelBet(bet_id)}
-                        >
-                            Cancel
-
-                            {/*{can_cancel && countdown !== null && <span></span>} */}
-                            {/* Wrap countdown within span */}
-                        </button>
                     </div>
                 );
             } else {
                 return (
-                    <div className="col">
-                        <button
-                            title="Cancel Bet"
-                            className="col btn btn-sm place-bet-btn"
-                            onClick={() => setCanCancel(true)}
-                        >
-                            Cancel
-                        </button>
+                    <div className="col badge bg-dark rounded-4">
+                        pending
                     </div>
                 );
             }
         };
 
-
         const swap = (bet_id) => {
             dispatch({type: "SET", key: "bet_history_details", payload: bet_id});
+            setLocalStorage("bet_history_details",bet_id)
         }
         const [mybets, setMybets] = useState(state?.filteredHistoryGames || getFromLocalStorage("mybets"))
 
@@ -152,7 +142,7 @@ const BetHistory = () => {
                 }
             }
 
-        },[state?.filteredHistoryGames,state?.bets_by_date])
+        },[state?.filteredHistoryGames,state?.bets_by_date,getFromLocalStorage("bet_history_filter_category"),state?.selected_filter_category])
 
 
         return (
@@ -166,7 +156,7 @@ const BetHistory = () => {
                                 #{bet?.bet_id}
                             </div>
                             <div className={"bet-history-items games"}>
-                                Games {bet?.total?.games}
+                                 {bet?.total?.games}
                             </div>
                             <div className={"bet-history-items amount"}>
                                 KES {bet?.bet_amount}
@@ -187,7 +177,7 @@ const BetHistory = () => {
                                     marginLeft: "1px",
                                     padding: "2.9px 9px "
                                 }}>{bet?.status_desc == "LOST" ? "NOT WON" : bet?.status_desc}
-                              </span>:<CancelBetMarkup bet_id={bet?.bet_id} can_cancel={bet?.can_cancel} />}
+                              </span>:<CancelBetMarkup bet_id={bet?.bet_id} can_cancel={bet?.can_cancel} created={bet?.created}/>}
                             </div>
 
                         </div>
@@ -199,9 +189,10 @@ const BetHistory = () => {
     }
 
     const navigateBack = () => {
-        if (state?.bet_history_details) {
+        if (state?.bet_history_details||getFromLocalStorage("bet_history_details")) {
             dispatch({type: "SET", key: "bet_history_details", payload: false});
-        } else if (state?.bet_history_details === false || state?.bet_history_details === null || state?.bet_history_details === undefined) {
+            setLocalStorage("bet_history_details",null)
+        } else if (state?.bet_history_details === false || state?.bet_history_details === null || state?.bet_history_details === undefined||getFromLocalStorage("bet_history_details")===null||getFromLocalStorage("bet_history_details")===undefined) {
             window.history.back()
         }
 
@@ -231,11 +222,11 @@ const BetHistory = () => {
             date1.getDate() === date2.getDate()
         );
     };
-    const currentDate = new Date();
+    // const currentDate = new Date();
     const filterGames = () => {
-        if (state?.selected_filter_category) {
+        if (state?.selected_filter_category||getFromLocalStorage("bet_history_filter_category")) {
             // const filteredBets=state?.filteredHistoryGames?state?.filteredHistoryGames:mybets
-            let filteredGames = state?.bet_history_details ? state?.bet_history_details : getFromLocalStorage("mybets");
+            let filteredGames =  getFromLocalStorage("mybets");
             const lost_history = getFromLocalStorage("remove_lost_bets") || hideLost;
 
             if (lost_history) {
@@ -246,7 +237,7 @@ const BetHistory = () => {
             }
 
             if (state?.selected_filter_category) {
-                const filteredGames = state?.bet_history_details ? state?.bet_history_details : getFromLocalStorage("mybets");
+                const filteredGames =  getFromLocalStorage("mybets");
                 const lostHistory = getFromLocalStorage("remove_lost_bets") || hideLost;
 
                 let filteredGamesByDate;
@@ -294,7 +285,7 @@ const BetHistory = () => {
             }
         } else {
             // handleFilterChange
-            let filteredGames = state?.bet_history_details ? state?.bet_history_details : getFromLocalStorage("mybets");
+            let filteredGames = state?.bet_history_details||getFromLocalStorage("bet_history_details") ? state?.bet_history_details||getFromLocalStorage("bet_history_details") : getFromLocalStorage("mybets");
             const lost_history = getFromLocalStorage("remove_lost_bets") || hideLost
             if (lost_history) {
                 filteredGames = filteredGames?.filter((game) => game?.status_desc !== 'LOST');
@@ -334,29 +325,38 @@ const BetHistory = () => {
                                                                         games={mybets}
                                                                         setShowGameFilter={setShowGameFilter}/>}
                                     <PageTitle/>
-                                    {!state?.bet_history_details && <div
-                                        className="d-flex w-100 justify-content-between filter-buttons-bethistory px-4">
-                                        <div className={"filters button-filter text-capitalize"}
-                                             onClick={showGameHistoryList}>
-                                            {(state?.selected_filter_category) || "All"}&nbsp;<FontAwesomeIcon
-                                            icon={faCaretDown}/>
-                                        </div>
-                                        <div className={"filters"}>
+                                    {isLoading?<div className={`text-center mt-2 text-white d-block`}>
+                                        <Skeleton1/>
+                                    </div>:<>
+                                        {!state?.bet_history_details == false || getFromLocalStorage("bet_history_details") == null &&
+                                            <div
+                                                className="d-flex w-100 justify-content-between filter-buttons-bethistory px-4">
+                                                <div className={"filters button-filter text-capitalize"}
+                                                     onClick={showGameHistoryList}>
+                                                    {(state?.selected_filter_category) || "All"}&nbsp;<FontAwesomeIcon
+                                                    icon={faCaretDown}/>
+                                                </div>
+                                                <div className={"filters"}>
 
-                                            <div className={"odd-change-position"}>
-                                                <Switch id={"hide_all_lost_bets"} {...label} className="slip-change-box"
-                                                        name={"hide_all_lost_bets"}
-                                                        checked={hideLost || false}
-                                                        color="primary" onChange={(e) => onSwitchChange(e)}/> {hideLost?"Show ":"Hide "} lost
-                                                bets
+                                                    <div className={"odd-change-position"}>
+                                                        <Switch id={"hide_all_lost_bets"} {...label}
+                                                                className="slip-change-box"
+                                                                name={"hide_all_lost_bets"}
+                                                                checked={hideLost || false}
+                                                                color="primary"
+                                                                onChange={(e) => onSwitchChange(e)}/> {hideLost ? "Show " : "Hide "} lost
+                                                        bets
 
-                                            </div>
-                                        </div>
-                                    </div>}
-                                    {state?.bet_history_details ?
-                                        <BetDetails bet_id={state?.bet_history_details}/> :
-                                        <PageBody/>
-                                    }
+                                                    </div>
+                                                </div>
+                                            </div>}
+                                        {state?.bet_history_details || getFromLocalStorage("bet_history_details") ?
+                                            <BetDetails
+                                                bet_id={state?.bet_history_details || getFromLocalStorage("bet_history_details")}/> :
+                                            <PageBody/>
+                                        }
+                                    </>}
+
                                 </div>
                             </div>
                         </div>

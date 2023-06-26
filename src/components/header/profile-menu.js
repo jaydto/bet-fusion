@@ -1,5 +1,11 @@
 import React, {useContext, useEffect, useState} from "react";
-import {faCloudDownloadAlt, faCoins, faUserAlt,} from "@fortawesome/free-solid-svg-icons";
+import {
+    faCloudDownloadAlt,
+    faCoins,
+    faFileInvoiceDollar,
+    faReceipt,
+    faUserAlt,
+} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {formatNumber} from "../utils/betslip";
 import {Link} from "react-router-dom";
@@ -59,6 +65,20 @@ const ProfileMenu = React.memo(
                             </div>
 
 
+                        </div>
+                        <div className="w-auto d-flex text-white align-items-start">
+                            <div className={"profile-wrap"} style={{color: "#FFB200"}}>
+                                <Link
+                                    to={{pathname: "/my-bets"}}
+                                    style={{color: "#FFB200"}}
+                                    title={'MY BETS'}>
+                                      <span className="">
+                                       <span className=" "> <FontAwesomeIcon
+                                           icon={faReceipt}/></span>
+                                          <strong> MY BETS</strong>
+                                      </span>
+                                </Link>
+                            </div>
                         </div>
                         <div className="w-auto d-flex  text-white align-items-end " title={'PROFILE'} >
                             <Link className={"profile-wrap"} to={'/profile'}>

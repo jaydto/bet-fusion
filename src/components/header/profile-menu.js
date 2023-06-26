@@ -59,7 +59,7 @@ const ProfileMenu = React.memo(
                                       <span className="">
                                        <span className=" "> <FontAwesomeIcon
                                            icon={faCloudDownloadAlt}/></span>
-                                          <strong> DEPOSIT FUNDS</strong>
+                                          <strong style={{fontSize:"14px"}}> Deposit Funds</strong>
                                       </span>
                                 </Link>
                             </div>
@@ -70,12 +70,12 @@ const ProfileMenu = React.memo(
                             <div className={"profile-wrap"} style={{color: "#FFB200"}}>
                                 <Link
                                     to={{pathname: "/my-bets"}}
-                                    style={{color: "#FFB200"}}
+                                    style={{color: "#FFB200", fontSize:"14px"}}
                                     title={'MY BETS'}>
                                       <span className="">
                                        <span className=" "> <FontAwesomeIcon
                                            icon={faReceipt}/></span>
-                                          <strong> MY BETS</strong>
+                                          <strong> My Bets</strong>
                                       </span>
                                 </Link>
                             </div>
@@ -86,7 +86,7 @@ const ProfileMenu = React.memo(
                               <div className="space-icons text-light" >
                                   <FontAwesomeIcon icon={faUserAlt}/> </div>
 
-                                  <strong>PROFILE</strong>
+                                  <strong>Profile</strong>
                               </div>
                             </Link>
 

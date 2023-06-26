@@ -2,7 +2,14 @@ import React, {useCallback, useContext, useEffect, useState} from "react"
 import makeRequest from "../../../utils/fetch-request";
 import {Context} from "../../../../context/store";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCaretDown, faCaretRight, faChartLine, faCheckCircle} from "@fortawesome/free-solid-svg-icons";
+import {
+	faCaretDown,
+	faCaretRight,
+	faChartLine,
+	faCheckCircle,
+	faQuestionCircle,
+	faXmark, faXmarkCircle
+} from "@fortawesome/free-solid-svg-icons";
 import Skeleton1 from "../../../skeleton/skeleton";
 import moment from "moment/moment";
 import {Button, ButtonGroup} from "react-bootstrap";
@@ -32,37 +39,6 @@ const BetDetails = (props) => {
 			fetchBetDetails();
 		return abort.abort()
 	}, []);
-
-
-	state?.mybets?.data?.map(item => {
-		console.log("Created:", item.created);
-		console.log("Bet ID:", item.bet_id);
-		console.log("Sub Type ID:", item.sub_type_id);
-		console.log("Odd Value:", item.odd_value);
-		console.log("Bet Amount:", item.bet_amount);
-		console.log("Possible Win:", item.possible_win);
-		console.log("Status:", item.status);
-		console.log("Win:", item.win);
-		console.log("Game ID:", item.game_id);
-		console.log("Start Time:", item.start_time);
-		console.log("Away Team:", item.away_team);
-		console.log("Home Team:", item.home_team);
-		console.log("Bet Type:", item.bet_type);
-		console.log("Bet Pick:", item.bet_pick);
-		console.log("Winning Outcome:", item.winning_outcome);
-		console.log("Results:", item.results);
-	});
-
-	// console.log("Bet Info - Created:", state?.mybets?.meta.bet_info.created);
-	// console.log("Bet Info - Bet ID:", state?.mybets?.meta.bet_info.bet_id);
-	// console.log("Bet Info - Total Matches:", state?.mybets?.meta.bet_info.total_matches);
-	// console.log("Bet Info - Jackpot Bet ID:", state?.mybets?.meta.bet_info.jackpot_bet_id);
-	// console.log("Bet Info - Total Odd:", state?.mybets?.meta.bet_info.total_odd);
-	// console.log("Bet Info - Bet Message:", state?.mybets?.meta.bet_info.bet_message);
-	// console.log("Bet Info - Possible Win:", state?.mybets?.meta.bet_info.possible_win);
-	// console.log("Bet Info - Status:",state?.mybets?.bet_info.status);
-	// console.log("Bet Info - Bet Amount:", state?.mybets?.meta.bet_info.bet_amount);
-	// console.log("Bet Info - Can Cancel:", state?.mybets?.meta.bet_info.can_cancel);
 
 
 	const FormatDate = (props) => {
@@ -114,7 +90,9 @@ const BetDetails = (props) => {
 		const data=state?.mybets?.data
 		const filteredData = data?.filter(bet => bet.win === 1 || bet.win === 0);
 		const won = filteredData?.filter(bet => bet.win === 1).length;
-		const lost = filteredData?.filter(bet => bet.win === 0).length;
+		const lost = filteredData?.filter(bet =>
+			bet?.win === 0 && bet?.status===3
+		 ).length;
 		const total = filteredData.length;
 
 		const result = `${won}/${lost}/${total}`;
@@ -270,7 +248,7 @@ const BetDetails = (props) => {
 			status: 200,
 			message: "Rebet successful"
 		}
-		await makeRequest({url: endpoint, method: method, payload: data}).then(([status,message])=>{
+		await makeRequest({url: endpoint, method: method, data: data}).then(([status,message])=>{
 
 			if(status==200){
 				Notify(message)
@@ -279,11 +257,14 @@ const BetDetails = (props) => {
 	}
 	const [showShareModal, setShowShareModal] = useState(false);
 	const [betSharePayload, setBetSharePayload] = useState({});
-	const encodeBetSlip = () => {
+	const shareRequest = (bet_id) => {
 
 
 		let endpoint = "/v1/bs-encode";
-		makeRequest({url: endpoint, method: "POST", data: null}).then(
+		let data={
+			"bet_id":bet_id
+		}
+		makeRequest({url: endpoint, method: "POST", data: data}).then(
 			([status, response]) => {
 				if (status === 200) {
 					setShowShareModal(true);
@@ -295,9 +276,7 @@ const BetDetails = (props) => {
 			}
 		);
 	};
-	const shareRequest=(bet_id)=>{
 
-	}
 	return (
 		<> {showShareModal && (
 			<BetslipShareModal
@@ -362,7 +341,7 @@ const BetDetails = (props) => {
 									<div className={"bet-history-options"} onClick={()=>rebetRequest(item?.bet_id)}>
 										Rebet
 									</div>
-									<div className={"bet-history-options"} onClick={shareRequest(item?.bet_id)}>
+									<div className={"bet-history-options"} onClick={()=>shareRequest(item?.bet_id)}>
 										Share
 									</div>
 								</div>
@@ -384,7 +363,10 @@ const BetDetails = (props) => {
 							<div className="d-flex details-history flex-column w-100 mt-3">
 								<div className="d-flex w-100 justify-content-between px-2 details-items">
 									<div className="team">
-										<FontAwesomeIcon icon={faCheckCircle} className={"text-success"}/>&nbsp;{item?.home_team}</div>
+										{item?.win==1?<FontAwesomeIcon icon={faCheckCircle}
+														  className={"text-success"}/>:item?.status==1?<FontAwesomeIcon icon={faQuestionCircle}
+																														className={"text-warning"}/>:<FontAwesomeIcon icon={faXmarkCircle}
+																										className={"text-danger"}/> }&nbsp;{item?.home_team}</div>
 									{item?.results&&<div className="outcome">{item?.results}</div>}
 									<div className="team" onClick={()=>toggleCollapse(index)}>{item?.away_team}&nbsp;{!collapsed.includes(index)?<FontAwesomeIcon icon={faCaretRight}/>:<FontAwesomeIcon icon={faCaretDown}/>}</div>
 								</div>

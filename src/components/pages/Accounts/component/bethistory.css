@@ -43,6 +43,8 @@
     background: var(--bet-history);
     font-size:14px;
     text-align:center;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius:10px;
 }
 .bet-history-items.games{
     color:var(--orange);

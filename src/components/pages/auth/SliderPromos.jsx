@@ -55,11 +55,13 @@ const Slider = React.memo(
                       </div>
                     </div>
                     <div className="progress" style={{height: "20px"}}>
-                      <div  className={`progress-bar progress-indicator ${progressNow==0?"promo-value-color":"bg-warning"}`}  style={progressNow<2?{width:`${progress}%`}:{}} role="progressbar"  aria-valuenow={progress} aria-valuemin="0"
+                      <div  className={`progress-bar progress-indicator ${progressNow==0?"promo-value-color":"bg-warning"}`}  style={{width:`${progress}%`}} role="progressbar"  aria-valuenow={progress} aria-valuemin="0"
                            aria-valuemax="100">
                           <span className={"progress-color"} style={{width:"100%"}}>
-                              <span className={`w-100 d-flex promo-progress ${progressNow==0&&" promo-progress-full px-2"}`}>
-                               {<UserResponse/>}
+                              <span className={`w-100 d-flex promo-progress ${progressNow==0&&" promo-progress-full px-2"}`} >
+                                   <span className="progress-text"
+                                         style={{position: "absolute", left: "50%", top: "50%", transform: "translate(-50%, -50%)"}}>
+                                  {<UserResponse/>}</span>
                               </span>
                               {/*{!progressNow==0&&<span className={"coin-indicator"}>*/}
                               {/*    <FontAwesomeIcon icon={faCoins}/>*/}

@@ -1,0 +1,162 @@
+.my-bets-bet-history {
+    padding: 10px;
+    margin: 5px 10px;
+    border: 1px solid var(--bet-history);
+    background-color: var(--bet-history);
+    border-radius: 8px;
+    line-height: 2;
+}
+
+.bet-history-items{
+    color:var(--light);
+}
+.bet-history-items.id{
+    font-weight: 800;
+}
+.bet-history-items.amount{
+    opacity:0.8;
+}
+.bet-history-items.date{
+    opacity:0.6;
+}
+.bet-history-items.status{
+
+}
+.bet-history-options {
+    border: thin solid;
+    border-radius: 7px;
+    cursor: pointer;
+    box-shadow: 2px 2px 2px 0px;
+    margin: 5px 0px;
+    padding: 4px 0px;
+    width: inherit;
+    text-align: center;
+    margin: 14px 9px 12px 0px;
+    min-height:40px;
+}
+.bet-history-options.progress{
+    background: var(--betnare-primary);
+    font-size:14px;
+
+}
+.bet-history-options.progress .progress-bar{
+    background: var(--bet-history);
+    font-size:14px;
+    text-align:center;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius:10px;
+}
+.bet-history-items.games{
+    color:var(--orange);
+}
+.details-history-main-container {
+    padding: 8px 12px;
+    border: thin solid;
+    border-radius: 10px;
+}
+.history-details-padding{
+    padding-right:1rem;
+}
+.main-details-info-title{
+    font-weight:700;
+}
+.bet-details.details {
+    color: var(--light);
+    line-height: 2;
+    padding: 5px;
+}
+.details-info{
+
+}
+.details-items{
+
+}
+.details-items .team{
+    font-weight:700;
+}
+.details-items .outcome {
+    background: var(--orange);
+    padding: 0px 23px;
+    border-radius: 18px;
+    letter-spacing: 5px;
+    margin-left: -20px;
+}
+.history-details{
+
+}
+
+.history-details .id{
+font-weight: 900;
+}
+.history-details .date{
+    opacity:0.6;
+
+}
+.details-history{
+    padding: 18px;
+    border: thin solid;
+    border-radius: 10px;
+
+}
+.filter-buttons-bethistory{
+
+}
+.filter-buttons-bethistory .filters{
+    color:var(--light);
+    font-weight: 700;
+}
+.filter-buttons-bethistory .filters.button-filter {
+    padding: 2px 18px;
+    border-radius: 18px;
+    border: thin solid;
+    background: var(--betnare-header-bg);
+    display: flex;
+    gap: 5px;
+    /* line-height: 1; */
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+.history-details .status{
+
+}
+@media (min-width:992px){
+    .container-history {
+        width: 60%;
+        margin: auto;
+        margin-top: 9rem;
+    }
+    .back-navigation {
+        font-size: 28px;
+        color: var(--betnare-button-login) !important;
+        position: fixed;
+        top: 18px;
+        display: flex;
+        gap: 18px;
+        z-index: 1000;
+        align-items: center;
+        justify-content: space-around;
+    }
+}
+@media (max-width:991px){
+    .container-history{
+        width:100%
+    }
+    .back-navigation {
+        font-size: 18px;
+        color: var(--betnare-button-login) !important;
+        position: absolute;
+        top: 43px;
+        display: flex;
+        gap: 13px;
+        z-index: 1000;
+        align-items: center;
+        justify-content: space-around;
+    }
+}
+
+@media (max-width:575px){
+    .text-align-on-mobile-bet-history{
+        text-align:end!important;
+    }
+}

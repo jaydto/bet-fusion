@@ -131,10 +131,11 @@ const BetslipPage =React.lazy(()=> import("./components/pages/betslip/betslipPag
 
 const Login=React.lazy(()=>import('./components/pages/loginTwo'));
 
-const Profile =React.lazy(()=>import( "./components/pages/Accounts/Profile"));
 const NewProfile =React.lazy(()=>import( "./components/pages/Accounts/NewProfile"));
 
 const Affiliate =React.lazy(()=>import( "./components/Affiliate/Affiliate"));
+
+const BetHistory =React.lazy(()=>import( "./components/pages/Accounts/component/BetHistory"));
 
 const Logout = () => {
     let navigate = useNavigate();
@@ -182,6 +183,7 @@ render((
                     <Route exact path={"/standing"} element={<Kiron/>}/>
                     <Route exact path={"/bet-history"} element={<ProtectedRoute><Kiron/></ProtectedRoute>}/>
                     <Route exact path={"/profile"} element={<NewProfile/>}/>
+                    <Route exact path={"/my-bets"} element={<ProtectedRoute><BetHistory/></ProtectedRoute>}/>
                      <Route exact path={"/betslip"} element={<BetslipPage/>}/>
                     <Route exact path="/betslip-slip" element={<BetslipPage/>}/>
                     <Route exact path="/betslip-nare" element={<BetslipPage/>}/>
@@ -216,7 +218,7 @@ render((
                            element={<ProtectedRoute><Withdraw/></ProtectedRoute>}/>
                     <Route exact path="/redeem-points"
                            element={<ProtectedRoute><RedeemPoints/></ProtectedRoute>}/>
-                    <Route exact path="/my-bets"
+                    <Route exact path="/bethistory"
                            element={<ProtectedRoute><MyBets/> </ProtectedRoute>}/>
                 </Routes>
             </Suspense>

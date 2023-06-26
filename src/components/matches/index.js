@@ -122,7 +122,7 @@ const MatchHeaderRow = React.memo(
   const categories = getFromLocalStorage('categories')
   const sport_id = new URL(window.location).searchParams.get('sport_id') || 79
   let sport = categories?.all_sports?.filter((category) => category.sport_id == sport_id)
-  const [sportName, setSportName] = useState(sport!=null?sport?.[0].sport_name || 'Soccer':"");    const [showX, setShowX] = useState(true);
+  const [sportName, setSportName] = useState(sport!=null?sport?.[0]?.sport_name || 'Soccer':"");    const [showX, setShowX] = useState(true);
   const [market, setMarket] = useState('1x2');
   const [state,]=useContext(Context)
   const [user, ] = useState(getFromLocalStorage("user"));
@@ -156,12 +156,12 @@ const MatchHeaderRow = React.memo(
   useEffect(() => {
     getSelectedMarkets()
     if (first_match) {
-      setSportName(first_match.sport_name);
-      setMarket(first_match.market_name);
+      setSportName(first_match?.sport_name);
+      setMarket(first_match?.market_name);
       /**
        * I blew the shiet here someone help recoil this to API call results
        */
-      setShowX(!["186", "340"].includes(first_match.sub_type_id));
+      setShowX(!["186", "340"].includes(first_match?.sub_type_id));
 
     }
   }, [first_match?.parent_match_id])
@@ -281,7 +281,7 @@ const MoreMarketsHeaderRow = React.memo(
     setSwitches(value)
   }
   useEffect(() => {
-    window.SIR("addWidget", "#sr-widget", "match.lmtPlus", {
+    window?.SIR("addWidget", "#sr-widget", "match.lmtPlus", {
       branding: { tabs: { option: "icon", variant: "fullWidth" } },
       goalBannerImage:
           "https://storage.googleapis.com/nareimages/logo-white.webp",
@@ -296,7 +296,6 @@ const MoreMarketsHeaderRow = React.memo(
   });
 
   let lmtIncludes = [79, 85, 82, 80, 107];
-  //click functionality
   const handleLinkClick=(event)=> {
     // remove highlight class from all links
     const links = document.querySelectorAll('.link');
@@ -333,7 +332,6 @@ const MoreMarketsHeaderRow = React.memo(
                       ))
                       : ""}
                 </h4>
-
                 <Row className="header-text">
                   <Col>
                     {category} {competition}
@@ -676,23 +674,23 @@ const OddButton = React.memo(
       <button
           ref={ref}
           className={`home-team ${allMarkets ? "all-markets" : ""} ${
-              match.match_id
+              match?.match_id
           } ${ucn} ${picked} c-btn`}
-          home_team={match.home_team}
+          home_team={match?.home_team}
           odd_type={match?.name || match?.market_name || "1X2"}
           bet_type={live ? 1 : 0}
           start_time={match?.start_time}
-          away_team={match.away_team}
-          market_active={match.market_active}
+          away_team={match?.away_team}
+          market_active={match?.market_active}
           odd_value={oddValue}
           odd_key={match?.[mkt] || match?.odd_key || "draw"}
-          parent_match_id={match.parent_match_id}
-          match_id={match.match_id}
+          parent_match_id={match?.parent_match_id}
+          match_id={match?.match_id}
           custom={ucn}
           id={ucn}
           sport_name={match?.sport_name}
-          sport_id={match.sport_id}
-          sub_type_id={match.sub_type_id}
+          sport_id={match?.sport_id}
+          sub_type_id={match?.sub_type_id}
           special_bet_value={match?.special_bet_value || ""}
           onClick={handleButtonOnClick}
       >
@@ -809,8 +807,8 @@ const MatchRow = React.memo(
   const [extraMarketDisplays, setExtraMarketDisplays] = useState([])
   const categories = getFromLocalStorage('categories')
   const sport_id = new URL(window.location).searchParams.get('sport_id') || 79
-  let sport = categories?.all_sports?.filter((category) => category.sport_id == sport_id)
-  const [sportName, setSportName] = useState(sport?.[0].sport_name || 'Soccer');
+  let sport = categories?.all_sports?.filter((category) => category?.sport_id == sport_id)
+  const [sportName, setSportName] = useState(sport?.[0]?.sport_name || 'Soccer');
   const [showX, setShowX] = useState(true);
   const [market, setMarket] = useState('1x2');
   const {height, width} = useWindowDimensions();
@@ -850,7 +848,7 @@ const MatchRow = React.memo(
   useEffect(() => {
     getSelectedMarkets()
     if (first_match) {
-      setSportName(first_match.sport_name);
+      setSportName(first_match?.sport_name);
       setMarket(first_match.market_name);
       /**
        * I blew the shiet here someone help recoil this to API call results

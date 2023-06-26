@@ -248,33 +248,6 @@ const Index = React.memo(
     })
 
 
-
-
-    {/*useEffect(() => {*/}
-    {/*    const handleScroll = () => {*/}
-    //         if (homePageRef.current) {
-    //             const scrollPosition = homePageRef.current.scrollTop;
-    //             if (scrollPosition > 10) {
-    {/*                console.log('User has scrolled more than 10 pixels.');*/}
-    //                 // Perform your action for scrolling beyond 10 pixels
-    //             } else {
-    {/*                console.log('User has scrolled back to the top.');*/}
-    //                 // Perform your action for scrolling back to the top
-    //             }
-    //         }
-    //     };
-    //
-    //     if (homePageRef.current) {
-    //         homePageRef.current.addEventListener('scroll', handleScroll);
-    //     }
-    //
-    //     return () => {
-    //         if (homePageRef.current) {
-    //             homePageRef.current.removeEventListener('scroll', handleScroll);
-    //         }
-    //     };
-    // }, [homePageRef]);
-
     const [scrolledPast, setScrolledPast] = useState(false);
     const [scrolledToTop, setScrolledToTop] = useState(false);
     const [scrollPosition, setScrollPosition] = useState(false);

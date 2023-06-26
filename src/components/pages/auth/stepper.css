@@ -36,11 +36,12 @@
 .form-step {
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 20px;
-    padding: 3rem;
+    padding: 1rem 0.2rem;
 }
 .font-normal {
     font-weight: normal;
-    color:var(--light);
+    color: var(--light);
+    padding: 0 10px;
 }
 ul.form-stepper {
     counter-reset: section;

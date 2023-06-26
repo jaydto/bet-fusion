@@ -281,7 +281,7 @@ const MoreMarketsHeaderRow = React.memo(
     setSwitches(value)
   }
   useEffect(() => {
-    window.SIR("addWidget", "#sr-widget", "match.lmtPlus", {
+    window?.SIR("addWidget", "#sr-widget", "match.lmtPlus", {
       branding: { tabs: { option: "icon", variant: "fullWidth" } },
       goalBannerImage:
           "https://storage.googleapis.com/nareimages/logo-white.webp",

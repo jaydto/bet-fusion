@@ -409,7 +409,7 @@ const MySignupForm = (props) => {
 		<Form>
 			<div className="pt-0">
 				<div className="w-100">
-					<div className="form-group container-lg w-100 d-flex justify-content-center mt-5">
+					<div className="form-group  w-100 d-flex justify-content-center mt-5">
 						<div className="col-md-12 w-100">
 							<label>Mobile Number</label>
 							<input
@@ -426,7 +426,7 @@ const MySignupForm = (props) => {
 						</div>
 					</div>
 					<br/>
-					<div className="form-group container-lg w-100 d-flex justify-content-left mb-4">
+					<div className="form-group w-100 d-flex justify-content-left mb-4">
 						<div className="col">
 							<button type={"submit"}
 									className=' btn btn-lg w-100 button-radius input-field btn-font cg login-button2 btn ' style={{marginTop:"28px"}}>

@@ -12,6 +12,7 @@ import {Switch} from "@material-ui/core";
 import GameHistoryList from "../../../modals/FilterBetHistory";
 import moment from "moment";
 import Skeleton1 from "../../../skeleton/skeleton";
+import {ToastContainer} from "react-toastify";
 
 const BetHistory = () => {
     const {width} = useWindowDimensions()
@@ -311,6 +312,7 @@ const BetHistory = () => {
         <>
             <>
                 <div>
+                    <ToastContainer/>
                     <Header/>
                     <div className={'back-navigation original-button top-spacing'} onClick={() => navigateBack()}>
                         <FontAwesomeIcon icon={faArrowLeft} className={'back-navigation-icon'}/> Back

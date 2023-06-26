@@ -6,6 +6,8 @@ import {faCaretDown, faCaretRight, faChartLine, faCheckCircle} from "@fortawesom
 import Skeleton1 from "../../../skeleton/skeleton";
 import moment from "moment/moment";
 import {Button, ButtonGroup} from "react-bootstrap";
+import Notify from "../../../utils/Notify";
+import BetslipShareModal from "../../../modals/BetslipShareModal";
 const BetDetails = (props) => {
 	const {bet_id}=props
 	const payload={
@@ -202,7 +204,7 @@ const BetDetails = (props) => {
 		if (can_cancel && countdown) {
 			return (
 
-					<div className="progress  bet-history-options" style={{ height: '25px' }} onClick={cancelBet(bet_id)}>
+					<div className="progress  bet-history-options" style={{ height: '25px' }} onClick={()=>cancelBet(bet_id)}>
 						<div
 							className="progress-bar"
 							role="progressbar"
@@ -257,8 +259,53 @@ const BetDetails = (props) => {
 			detailedScoreboard: "disable",
 		});
 	});
+
+	const rebetRequest= async (bet_id)=>{
+		let endpoint="/v1/rebet"
+		let method="POST"
+		let data={
+			"bet_id":bet_id
+		}
+		let message = {
+			status: 200,
+			message: "Rebet successful"
+		}
+		await makeRequest({url: endpoint, method: method, payload: data}).then(([status,message])=>{
+
+			if(status==200){
+				Notify(message)
+			}
+		})
+	}
+	const [showShareModal, setShowShareModal] = useState(false);
+	const [betSharePayload, setBetSharePayload] = useState({});
+	const encodeBetSlip = () => {
+
+
+		let endpoint = "/v1/bs-encode";
+		makeRequest({url: endpoint, method: "POST", data: null}).then(
+			([status, response]) => {
+				if (status === 200) {
+					setShowShareModal(true);
+					setBetSharePayload(response);
+
+				} else {
+
+				}
+			}
+		);
+	};
+	const shareRequest=(bet_id)=>{
+
+	}
 	return (
-		<>
+		<> {showShareModal && (
+			<BetslipShareModal
+				visible={showShareModal}
+				payload={betSharePayload}
+				setShowShareModal={setShowShareModal}
+			/>
+		)}
 			{!isLoading?
 				<div className="d-flex details flex-column bet-details">
 					{state?.mybets?.data?.map((item,index) => (
@@ -312,10 +359,10 @@ const BetDetails = (props) => {
 									{state?.mybets?.meta.bet_info.can_cancel!==true&&
 											<CancelBetMarkup bet_id={item?.bet_id} can_cancel={!state?.mybets?.meta.bet_info.can_cancel} created={state?.mybets?.meta.bet_info?.created}/>
 									}
-									<div className={"bet-history-options"}>
+									<div className={"bet-history-options"} onClick={()=>rebetRequest(item?.bet_id)}>
 										Rebet
 									</div>
-									<div className={"bet-history-options"}>
+									<div className={"bet-history-options"} onClick={shareRequest(item?.bet_id)}>
 										Share
 									</div>
 								</div>

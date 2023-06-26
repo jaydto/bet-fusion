@@ -194,10 +194,12 @@ const BetDetails = (props) => {
 							aria-valuemin={0}
 							aria-valuemax={100}
 						>
-							{countdown}
+							<span className="progress-text"
+								  style={{position: "absolute", left: "50%", top: "50%", transform: "translate(-50%, -50%)"}}>
+								{countdown} &nbsp;Cancel</span>
+
 						</div>
-						&nbsp;
-						Cancel
+
 					</div>
 			);
 		} else if(betStatus===bet_id+"cancel_rq" && countdown){

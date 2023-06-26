@@ -275,7 +275,7 @@ const BetDetails = (props) => {
 					addToSlip(match)
 				})
 
-				return navigate("/betslip-slip")
+				return window.location.href="/betslip-slip"
 			}
 		})
 	}

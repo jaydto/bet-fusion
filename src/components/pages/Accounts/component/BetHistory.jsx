@@ -106,13 +106,19 @@ const BetHistory = () => {
                 return `${minutes}m ${seconds}s`;
             };
 
-            if (can_cancel && countdown) {
+            if (can_cancel && countdown && bet_id+"cancel_rq"!==getFromLocalStorage("bet_history_status")) {
                 return (
                     <div className="col d-flex">
                         Cancel will End in: {countdown}
                     </div>
                 );
-            } else {
+            }else if(bet_id+"cancel_rq"===getFromLocalStorage("bet_history_status") && countdown){
+               return(
+                   <div className="col badge bg-dark rounded-4">
+                       CANCELLED
+                   </div>
+               )
+            }else {
                 return (
                     <div className="col badge bg-dark rounded-4">
                         pending

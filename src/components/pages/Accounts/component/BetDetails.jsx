@@ -15,6 +15,7 @@ import moment from "moment/moment";
 import {Button, ButtonGroup} from "react-bootstrap";
 import Notify from "../../../utils/Notify";
 import BetslipShareModal from "../../../modals/BetslipShareModal";
+import {getFromLocalStorage, setLocalStorage} from "../../../utils/local-storage";
 const BetDetails = (props) => {
 	const {bet_id}=props
 	const [state, dispatch] = useContext(Context);
@@ -100,7 +101,7 @@ const BetDetails = (props) => {
 	}
 
 	const [canCancel, setCanCancel] = useState(true);
-	const [betStatus, setBetStatus] = useState(null);
+	const [betStatus, setBetStatus] = useState(getFromLocalStorage("bet_history_status")||null);
 	const [cancelEndTime, setCancelEndTime] = useState(null);
 
 
@@ -113,7 +114,8 @@ const BetDetails = (props) => {
 		}
 		makeRequest({url: endpoint, method: "POST", data: data, use_jwt: true}).then(([status, result]) => {
 			if (status === 201) {
-				setBetStatus('CANCEL RQ');
+				setBetStatus(bet_id+"cancel_rq");
+				setLocalStorage("bet_history_status",bet_id+"cancel_rq")
 				setCanCancel(false);
 				setCancelEndTime(null);
 			}
@@ -131,7 +133,7 @@ const BetDetails = (props) => {
 			let storedEndTime = localStorage.getItem('cancelEndTime');
 			if (can_cancel && created) {
 				cancelEndTime = moment(created).add(5, 'minutes');
-				localStorage.setItem('cancelEndTime', cancelEndTime);
+				setLocalStorage('cancelEndTime', cancelEndTime);
 				startCountdown(cancelEndTime);
 			} else {
 				resetCountdown();
@@ -179,9 +181,8 @@ const BetDetails = (props) => {
 			return `${minutes}m ${seconds}s`;
 		};
 
-		if (can_cancel && countdown) {
+		if (can_cancel && countdown && betStatus!==bet_id+"cancel_rq" ) {
 			return (
-
 					<div className="progress  bet-history-options" style={{ height: '25px' }} onClick={()=>cancelBet(bet_id)}>
 						<div
 							className="progress-bar"
@@ -197,7 +198,14 @@ const BetDetails = (props) => {
 						Cancel
 					</div>
 			);
-		} else {
+		} else if(betStatus===bet_id+"cancel_rq" && countdown){
+			return (
+				<div className="progress  bet-history-options" style={{textAlign:"center"}}>
+					CANCEL RQ
+				</div>
+			)
+		}
+		else {
 			return (
 				<div className="">
 				</div>
@@ -254,7 +262,7 @@ const BetDetails = (props) => {
 			status: 200,
 			message: "Rebet successful"
 		}
-		await makeRequest({url: endpoint, method: method, data: data}).then(([status,message])=>{
+		await makeRequest({url: endpoint, method: method, data: data}).then(([status,result])=>{
 
 			if(status==200){
 				Notify(message)

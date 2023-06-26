@@ -213,6 +213,8 @@ const BetDetails = (props) => {
 						>
 							{countdown}
 						</div>
+						&nbsp;
+						Cancel
 					</div>
 			);
 		} else {

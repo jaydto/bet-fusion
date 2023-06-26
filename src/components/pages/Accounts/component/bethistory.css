@@ -36,11 +36,13 @@
 }
 .bet-history-options.progress{
     background: var(--betnare-primary);
+    font-size:14px;
 
 }
 .bet-history-options.progress .progress-bar{
     background: var(--bet-history);
     font-size:14px;
+    text-align:center;
 }
 .bet-history-items.games{
     color:var(--orange);

@@ -17,11 +17,11 @@ import Notify from "../../../utils/Notify";
 import BetslipShareModal from "../../../modals/BetslipShareModal";
 const BetDetails = (props) => {
 	const {bet_id}=props
+	const [state, dispatch] = useContext(Context);
+	const [isLoading, setIsLoading] = useState(false);
 	const payload={
 		"bet_id":bet_id
 	}
-	const [state, dispatch] = useContext(Context);
-	const [isLoading, setIsLoading] = useState(false);
 
 	const fetchBetDetails = useCallback(async() => {
 		if(isLoading) return;
@@ -219,7 +219,13 @@ const BetDetails = (props) => {
 		event.currentTarget.classList.add('highlight');
 	}
 
-	let sport_id="";
+	let sport_id=state?.mybets?.data;
+	let sport;
+	let parent_match_id;
+	sport_id?.map((bet)=>{
+		sport=bet?.sport_id
+		parent_match_id=bet?.parent_match_id
+	})
 
 	let lmtIncludes = [79, 85, 82, 80, 107];
 
@@ -230,7 +236,7 @@ const BetDetails = (props) => {
 				"https://storage.googleapis.com/nareimages/logo-white.webp",
 			logo: ["https://storage.googleapis.com/nareimages/logo-dark.webp"],
 			momentum: "disable",
-			matchId: "",
+			matchId: parent_match_id,
 			collapseTo: switches,
 			layout: "single",
 			scoreboard: "extended",
@@ -409,7 +415,7 @@ const BetDetails = (props) => {
 											</div>
 										</div>
 									</div>
-									{lmtIncludes.includes(sport_id) &&< div className="d-flex flex-column col">
+									{lmtIncludes.includes(sport) &&< div className="d-flex flex-column col">
 										<div id="sr-widget" className=""></div>
 										<ButtonGroup aria-label="stats button actions" className='w-100 d-flex justify-content-start'>
 										<Button  className="place-bet-btn w-25 btn link" title="scoreboard" type="button" style={{background:"transparent",fontSize:"14px"}}

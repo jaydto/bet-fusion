@@ -347,7 +347,7 @@ const MoreMarketsHeaderRow = React.memo(
               <ButtonGroup aria-label="stats button actions" className='w-100 d-flex justify-content-start'>
                 <Button  className="place-bet-btn w-25 btn link" title="scoreboard" type="button" style={{background:"transparent",fontSize:"14px"}} onClick={() => {switchLmt("scoreboard");handleLinkClick()}}>{score?score:"0:0"}&nbsp;scoreboard</Button>
                 <Button
-                    id=""
+                    id="lmt_matches_more_markets"
                     onClick={() => {switchLmt("disable"); handleLinkClick()}}
                     style={{padding: "5px", backgroundColor: "transparent",fontSize:"14px"}}
                     type={"button"}

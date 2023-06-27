@@ -373,17 +373,19 @@ const BetDetails = (props) => {
 
 									</div>
 								</div>)}
-								<div className="d-flex w-100 justify-content-around">
-									{state?.mybets?.meta.bet_info.can_cancel!==true&&
-											<CancelBetMarkup bet_id={item?.bet_id} can_cancel={!state?.mybets?.meta.bet_info.can_cancel} created={state?.mybets?.meta.bet_info?.created}/>
+								{!item?.winning_outcome&&<div className="d-flex w-100 justify-content-around">
+									{state?.mybets?.meta.bet_info.can_cancel !== true &&
+										<CancelBetMarkup bet_id={item?.bet_id}
+														 can_cancel={!state?.mybets?.meta.bet_info.can_cancel}
+														 created={state?.mybets?.meta.bet_info?.created}/>
 									}
-									<div className={"bet-history-options"} onClick={()=>rebetRequest(item?.bet_id)}>
+									<div className={"bet-history-options"} onClick={() => rebetRequest(item?.bet_id)}>
 										Rebet
 									</div>
-									<div className={"bet-history-options"} onClick={()=>shareRequest(item?.bet_id)}>
+									<div className={"bet-history-options"} onClick={() => shareRequest(item?.bet_id)}>
 										Share
 									</div>
-								</div>
+								</div>}
 								<div className="d-flex options-details-history w-100 justify-content-between">
 									<div className="d-flex">
 										Events (Odds {item?.odd_value})

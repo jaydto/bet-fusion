@@ -124,31 +124,31 @@ const GameHistoryList = (props) => {
                 </Modal.Header>
                 <Modal.Body style={{borderBottom:"0px", paddingTop:"4px", paddingBottom:"0px"}}>
                     <div className="d-flex justify-content-around flex-column px-3">
-                        <div className={"d-flex justify-content-between align-items-center"} onClick={() => handleFilterChange('all')}>
+                        <div className={"d-flex justify-content-center gap-2 align-items-center"} onClick={() => handleFilterChange('all')}>
                             <div className={"btn-history-filter cursor-pointer"} >All</div>
                             {(selectedFilter||state?.selected_filter_category)==="all"&&<FontAwesomeIcon icon={faCheckCircle} className={"text-success"}/>}
                         </div>
-                        <div className={"d-flex justify-content-between align-items-center"} onClick={() => handleFilterChange('open')}>
+                        <div className={"d-flex justify-content-center gap-2 align-items-center"} onClick={() => handleFilterChange('open')}>
                             <div className={"btn-history-filter cursor-pointer"} >Open</div>
                             {(selectedFilter||state?.selected_filter_category)==="open"&&<FontAwesomeIcon icon={faCheckCircle} className={"text-success"}/>}
                         </div>
-                        <div className={"d-flex justify-content-between align-items-center"} onClick={() => handleFilterChange('today')}>
+                        <div className={"d-flex justify-content-center gap-2 align-items-center"} onClick={() => handleFilterChange('today')}>
                             <div className={"btn-history-filter cursor-pointer"} >Today</div>
                             {(selectedFilter||state?.selected_filter_category)==="today"&&<FontAwesomeIcon icon={faCheckCircle} className={"text-success"}/>}
                         </div>
-                        <div className="d-flex justify-content-between align-items-center" onClick={() => handleFilterChange('yesterday')}>
+                        <div className="d-flex justify-content-center gap-2 align-items-center" onClick={() => handleFilterChange('yesterday')}>
                             <div className={"btn-history-filter cursor-pointer"} >Yesterday</div>
                             {(selectedFilter||state?.selected_filter_category)==="yesterday"&&<FontAwesomeIcon icon={faCheckCircle} className={"text-success"}/>}
                         </div>
-                        <div className="d-flex justify-content-between align-items-center" onClick={() => handleFilterChange('week')}>
+                        <div className="d-flex justify-content-center gap-2 align-items-center" onClick={() => handleFilterChange('week')}>
                             <div className={"btn-history-filter cursor-pointer"} >Week</div>
                             {(selectedFilter||state?.selected_filter_category)==="week"&&<FontAwesomeIcon icon={faCheckCircle} className={"text-success"}/>}
                         </div>
-                        <div className="d-flex justify-content-between align-items-center" onClick={() => handleFilterChange('month')}>
+                        <div className="d-flex justify-content-center gap-2 align-items-center" onClick={() => handleFilterChange('month')}>
                             <div className={"btn-history-filter cursor-pointer"} >Month</div>
                             {(selectedFilter||state?.selected_filter_category)==="month"&&<FontAwesomeIcon icon={faCheckCircle} className={"text-success"}/>}
                         </div>
-                        <div className="d-flex justify-content-between align-items-center" onClick={() => handleFilterChange('3month')}>
+                        <div className="d-flex justify-content-center gap-2 align-items-center" onClick={() => handleFilterChange('3month')}>
                             <div className={"btn-history-filter cursor-pointer"} >3 Months</div>
                             {(selectedFilter||state?.selected_filter_category)==="3months"&&<FontAwesomeIcon icon={faCheckCircle} className={"text-success"}/>}
                         </div>

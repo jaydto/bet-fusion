@@ -6,7 +6,9 @@
     border-radius: 8px;
     line-height: 2;
 }
-
+.my-bets-bet-history{
+    position:relative;
+}
 .bet-history-items{
     color:var(--light);
 }
@@ -39,6 +41,19 @@
     font-size:14px;
 
 }
+.progress.bet-history-options{
+    position:relative;
+}
+.bet-history-items.games{
+
+}
+.pick-h{
+    width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
 .bet-history-options.progress .progress-bar{
     background: var(--bet-history);
     font-size:14px;
@@ -46,8 +61,15 @@
     border-top-right-radius: 10px;
     border-bottom-right-radius:10px;
 }
-.bet-history-items.games{
-    color:var(--orange);
+.bet-history-items.games {
+    /* color: var(--orange); */
+    opacity: 0.6;
+    font-weight: 800;
+    font-size:14px;
+}
+.sr-bb .sr-lmt-plus__footer-wrapper {
+    min-height: 0px;
+    position: relative;
 }
 .details-history-main-container {
     padding: 8px 12px;
@@ -139,6 +161,9 @@ font-weight: 900;
     }
 }
 @media (max-width:991px){
+    .bet-history-items.games {
+
+    }
     .container-history{
         width:100%
     }

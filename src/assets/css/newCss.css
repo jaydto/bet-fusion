@@ -1774,6 +1774,17 @@ img.nare-league {
     cursor: pointer!important;
 }
 @media (max-width: 991px) {
+    .filters-modal .modal-content {
+        background-color: var(--betnare-primary);
+        color: #fff;
+        position: fixed;
+        bottom: 0;
+    }
+    .close-history-filter {
+        padding: 9px;
+        position: absolute;
+        right: 0px;
+    }
     .slip-team {
         width: 270px;
         white-space: nowrap;

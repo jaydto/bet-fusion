@@ -18,3 +18,13 @@
     /* width: 15%; */
     padding: 9px;
 }
+.drag-icon {
+    cursor: grab;
+    margin-top: -15px;
+    padding: 2px 18px;
+    -webkit-user-select: none;
+    user-select: none;
+    background: var(--always-white);
+    margin: auto;
+    cursor:pointer;
+}

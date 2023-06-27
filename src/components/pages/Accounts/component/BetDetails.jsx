@@ -373,7 +373,7 @@ const BetDetails = (props) => {
 
 									</div>
 								</div>)}
-								{!item?.winning_outcome&&<div className="d-flex w-100 justify-content-around">
+								{!item?.status==1&&<div className="d-flex w-100 justify-content-around">
 									{state?.mybets?.meta.bet_info.can_cancel !== true &&
 										<CancelBetMarkup bet_id={item?.bet_id}
 														 can_cancel={!state?.mybets?.meta.bet_info.can_cancel}

@@ -51,7 +51,10 @@ const GameHistoryList = (props) => {
                 const yesterday = new Date(currentDate);
                 yesterday.setDate(currentDate.getDate() - 1);
                 return isSameDate(createdDate, yesterday);
-            } else if (selectedFilter === 'week') {
+            } else if (selectedFilter === 'open') {
+                return game?.status_desc === 'PENDING';
+            }
+            else if (selectedFilter === 'week') {
                 const oneWeekAgo = new Date(currentDate);
                 oneWeekAgo.setDate(currentDate.getDate() - 7);
                 return createdDate >= oneWeekAgo && createdDate <= currentDate;
@@ -105,6 +108,7 @@ const GameHistoryList = (props) => {
                 <Modal.Header closeButton={false} className={"w-100"} style={{borderBottom:"0px"}}>
                     <Modal.Title className={"w-100"}>
                         <div className={"d-flex justify-content-between align-items-start flex-column px-4"}>
+                            <div className="drag-icon"><span></span></div>
                             <div className="close-history-filter">
                                 <input
                                     id={"history-filter"}
@@ -119,10 +123,14 @@ const GameHistoryList = (props) => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body style={{borderBottom:"0px", paddingTop:"4px", paddingBottom:"0px"}}>
-                    <div className="d-flex justify-content-between flex-column px-3">
+                    <div className="d-flex justify-content-around flex-column px-3">
                         <div className={"d-flex justify-content-between align-items-center"} onClick={() => handleFilterChange('all')}>
                             <div className={"btn-history-filter cursor-pointer"} >All</div>
                             {(selectedFilter||state?.selected_filter_category)==="all"&&<FontAwesomeIcon icon={faCheckCircle} className={"text-success"}/>}
+                        </div>
+                        <div className={"d-flex justify-content-between align-items-center"} onClick={() => handleFilterChange('open')}>
+                            <div className={"btn-history-filter cursor-pointer"} >Open</div>
+                            {(selectedFilter||state?.selected_filter_category)==="open"&&<FontAwesomeIcon icon={faCheckCircle} className={"text-success"}/>}
                         </div>
                         <div className={"d-flex justify-content-between align-items-center"} onClick={() => handleFilterChange('today')}>
                             <div className={"btn-history-filter cursor-pointer"} >Today</div>

@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import { ToastContainer, Modal, Button, Form } from 'react-bootstrap';
 import "./modals-custom.css"
 import {Context} from "../../context/store";
@@ -25,11 +25,14 @@ const GameHistoryList = (props) => {
 
     const handleFilterChange = (category) => {
         setSelectedFilter(category);
-        // setLocalStorage("bet_history_filter_category",category)
         dispatch({type: "SET", key: "selected_filter_category", payload: category });
-        hideModal()
+        // return setTimeout(()=>{
+        //      hideModal()
+        // },[0.5])
 
     };
+
+
 
     const currentDate = new Date();
     const isSameDate = (date1, date2) => {
@@ -85,10 +88,18 @@ const GameHistoryList = (props) => {
         }
     },[selectedFilter])
 
-    const handleSubmit = () => {
-        // Handle  form submission
-        // ...
-    };
+    const selected=useRef(selectedFilter)
+
+    useEffect(()=>{
+        if(selected.current!==selectedFilter){
+            selected.current=selectedFilter
+            return hideModal()
+        }
+
+    },[selectedFilter])
+
+    console.log("selected current",selected )
+
 
     return (
         <>

@@ -13,6 +13,7 @@ import GameHistoryList from "../../../modals/FilterBetHistory";
 import moment from "moment";
 import Skeleton1 from "../../../skeleton/skeleton";
 import {ToastContainer} from "react-toastify";
+import {faXbox} from "@fortawesome/free-brands-svg-icons";
 
 const BetHistory = () => {
     const {width} = useWindowDimensions()
@@ -115,7 +116,7 @@ const BetHistory = () => {
             }else if(bet_id+"cancel_rq"===getFromLocalStorage("bet_history_status") && countdown){
                return(
                    <div className="col badge bg-dark rounded-4">
-                       CANCELLED
+                       CANCEL RQ
                    </div>
                )
             }else {
@@ -162,8 +163,8 @@ const BetHistory = () => {
                             <div className={"bet-history-items id"}>
                                 #{bet?.bet_id}
                             </div>
-                            <div className={"bet-history-items games"}>
-                                 {bet?.total?.games}
+                            <div className={"bet-history-items games badge "}>
+                                 <FontAwesomeIcon icon={faXbox}/>&nbsp;{bet?.total_matches}
                             </div>
                             <div className={"bet-history-items amount"}>
                                 KES {bet?.bet_amount}
@@ -191,7 +192,6 @@ const BetHistory = () => {
                     </div>
                 ))}
             </>
-
         )
     }
 
@@ -267,7 +267,10 @@ const BetHistory = () => {
                             const yesterday = new Date(currentDate);
                             yesterday.setDate(currentDate.getDate() - 1);
                             return isSameDate(createdDate, yesterday);
-                        } else if (state?.selected_filter_category === 'week') {
+                        }else if (state?.selected_filter_category === 'open') {
+                            return game?.status_desc === 'PENDING';
+                        }
+                        else if (state?.selected_filter_category === 'week') {
                             const oneWeekAgo = new Date(currentDate);
                             oneWeekAgo.setDate(currentDate.getDate() - 7);
                             return createdDate >= oneWeekAgo && createdDate <= currentDate;
@@ -292,7 +295,7 @@ const BetHistory = () => {
             }
         } else {
             // handleFilterChange
-            let filteredGames = state?.bet_history_details||getFromLocalStorage("bet_history_details") ? state?.bet_history_details||getFromLocalStorage("bet_history_details") : getFromLocalStorage("mybets");
+            let filteredGames =  getFromLocalStorage("mybets");
             const lost_history = getFromLocalStorage("remove_lost_bets") || hideLost
             if (lost_history) {
                 filteredGames = filteredGames?.filter((game) => game?.status_desc !== 'LOST');

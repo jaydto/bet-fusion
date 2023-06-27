@@ -69,8 +69,58 @@ const BetDetails = (props) => {
 
 	const [collapsed, setCollapsed] = useState([]);
 	const [collapsedAll, setCollapsedAll] = useState(true);
+	const [activeParentMatchId, setActiveParentMatchId] = useState(null);
+	let match=state?.mybets?.data;
+	let sport;
+	let parent_match_id;
+	match?.map((bet)=>{
+		sport=bet?.sport_id
+		parent_match_id=bet?.parent_match_id
+	})
 
-	const toggleCollapse = (index) => {
+	let lmtIncludes = [79, 85, 82, 80, 107];
+
+	const [switches, setSwitches]=useState("scoreboard")
+
+
+	const switchLmt=(value)=>{
+		console.log("value_switch",value)
+		setSwitches(value)
+	}
+	const handleLinkClick = (event) => {
+		console.log("event",event)
+		if (event) {
+
+			// remove highlight class from all links
+			const links = document.querySelectorAll('.link');
+			links.forEach((link) => link.classList.remove('highlight'));
+
+			// add highlight class to clicked link
+			event.currentTarget.classList.add('highlight');
+		}
+	}
+
+
+	useEffect(() => {
+		if(activeParentMatchId){
+			window?.SIR("addWidget", "#sr-widget-"+ activeParentMatchId, "match.lmtPlus", {
+				branding: { tabs: { option: "icon", variant: "fullWidth" } },
+				goalBannerImage:
+					"https://storage.googleapis.com/nareimages/logo-white.webp",
+				logo: ["https://storage.googleapis.com/nareimages/logo-dark.webp"],
+				momentum: "disable",
+				matchId: activeParentMatchId,
+				collapseTo: switches,
+				layout: "single",
+				scoreboard: "extended",
+				detailedScoreboard: "disable",
+			});
+		}
+
+	},[activeParentMatchId,switches]);
+
+	const toggleCollapse = (index,parent_match_id) => {
+		setActiveParentMatchId(parent_match_id)
 		const updatedCollapsed = [...collapsed];
 		if (updatedCollapsed.includes(index)) {
 			updatedCollapsed.splice(updatedCollapsed.indexOf(index), 1);
@@ -92,11 +142,11 @@ const BetDetails = (props) => {
 	const WinLostTotal=()=>{
 		const data=state?.mybets?.data
 		const filteredData = data?.filter(bet => bet.win === 1 || bet.win === 0);
-		const won = filteredData?.filter(bet => bet.win === 1).length;
+		const won = filteredData?.filter(bet => bet.win === 1)?.length;
 		const lost = filteredData?.filter(bet =>
 			bet?.win === 0 && bet?.status===3
-		 ).length;
-		const total = filteredData.length;
+		 )?.length;
+		const total = filteredData?.length;
 
 		const result = `${won}/${lost}/${total}`;
 		return result
@@ -217,44 +267,7 @@ const BetDetails = (props) => {
 		}
 	};
 
-	const [switches, setSwitches]=useState("scoreboard")
 
-	const switchLmt=(value)=>{
-		setSwitches(value)
-	}
-	const handleLinkClick=(event)=> {
-		// remove highlight class from all links
-		const links = document.querySelectorAll('.link');
-		links.forEach((link) => link.classList.remove('highlight'));
-
-		// add highlight class to clicked link
-		event.currentTarget.classList.add('highlight');
-	}
-
-	let sport_id=state?.mybets?.data;
-	let sport;
-	let parent_match_id;
-	sport_id?.map((bet)=>{
-		sport=bet?.sport_id
-		parent_match_id=bet?.parent_match_id
-	})
-
-	let lmtIncludes = [79, 85, 82, 80, 107];
-
-	useEffect(() => {
-		window.SIR("addWidget", "#sr-widget", "match.lmtPlus", {
-			branding: { tabs: { option: "icon", variant: "fullWidth" } },
-			goalBannerImage:
-				"https://storage.googleapis.com/nareimages/logo-white.webp",
-			logo: ["https://storage.googleapis.com/nareimages/logo-dark.webp"],
-			momentum: "disable",
-			matchId: parent_match_id,
-			collapseTo: switches,
-			layout: "single",
-			scoreboard: "extended",
-			detailedScoreboard: "disable",
-		});
-	});
 
 	const navigate=useNavigate()
 	const rebetRequest= async (bet_id)=>{
@@ -324,17 +337,17 @@ const BetDetails = (props) => {
 								</div>
 								<div className="status d-flex justify-content-between px-2 mb-3">
 								<span
-									className={` badge  ${item?.status == 3 ? "bg-dark text-warning" : item?.status == 5 ? "bg-success" : item?.status == 1 ? "bg-dark " : ""}`}
+									className={` badge  ${state?.mybets?.meta.bet_info?.status == 3 ? "bg-dark text-warning" : state?.mybets?.meta.bet_info?.status == 5 ? "bg-success" : state?.mybets?.meta.bet_info?.status == 1 ? "bg-dark " : ""}`}
 									style={{
 										color: "white",
 										marginTop: "10px",
 										borderRadius: "7px",
 										marginLeft: "1px",
 										padding: "2.9px 9px "
-									}}>{item.status === 3 ? "NOT WON" : item?.status === 5 ? "WON" : "PENDING"}
+									}}>{state?.mybets?.meta.bet_info?.status === 3 ? "NOT WON" : state?.mybets?.meta.bet_info?.status === 5 ? "WON" : "PENDING"}
 								</span>
 								</div>
-								{index === 0 && item?.status === 1 && (<div className="d-flex history-details-padding gap-3 ">
+								{index === 0 &&  (<div className="d-flex history-details-padding gap-3 ">
 									<div className="col-8 d-flex details-history-main-container">
 										<div className="d-flex col-4 flex-column details-history-main" >
 											<div className={"main-details-info-title"}>
@@ -344,7 +357,7 @@ const BetDetails = (props) => {
 										</div>
 										<div className="d-flex col-8 flex-column details-history-main">
 											<div className={"main-details-info-title"}>
-												possible payout
+												Possible Winnings
 											</div>
 											<div className="amount-value">{item?.possible_win}</div>
 										</div>
@@ -389,12 +402,12 @@ const BetDetails = (props) => {
 							<div className="d-flex details-history flex-column w-100 mt-3">
 								<div className="d-flex w-100 justify-content-between px-2 details-items">
 									<div className="team">
-										{item?.win==1?<FontAwesomeIcon icon={faCheckCircle}
-														  className={"text-success"}/>:item?.status==1?<FontAwesomeIcon icon={faQuestionCircle}
+										{item?.win===1?<FontAwesomeIcon icon={faCheckCircle}
+														  className={"text-success"}/>:item?.status===1?<FontAwesomeIcon icon={faQuestionCircle}
 																														className={"text-warning"}/>:<FontAwesomeIcon icon={faXmarkCircle}
 																										className={"text-danger"}/> }&nbsp;{item?.home_team}</div>
 									{item?.results&&<div className="outcome">{item?.results}</div>}
-									<div className="team" onClick={()=>toggleCollapse(index)}>{item?.away_team}&nbsp;{!collapsed.includes(index)?<FontAwesomeIcon icon={faCaretRight}/>:<FontAwesomeIcon icon={faCaretDown}/>}</div>
+									<div className="team" onClick={()=>toggleCollapse(index, item?.parent_match_id)}>{item?.away_team}&nbsp;{!collapsed.includes(index)?<FontAwesomeIcon icon={faCaretRight}/>:<FontAwesomeIcon icon={faCaretDown}/>}</div>
 								</div>
 								<div className={`${!collapsed.includes(index)?"d-none ":"d-flex justify-content-between gap-4 "} w-100 px-3 bethistory-items flex-column`}>
 									<div className="d-flex">
@@ -404,7 +417,7 @@ const BetDetails = (props) => {
 													Type
 												</div>
 												<div className="market-h">
-													{item?.bet_type}
+													{item?.market}
 												</div>
 											</div>
 											<div className="d-flex justify-content-between px-2">
@@ -436,29 +449,28 @@ const BetDetails = (props) => {
 										</div>
 									</div>
 									{lmtIncludes.includes(sport) &&< div className="d-flex flex-column col">
-										<div id="sr-widget" className=""></div>
+										<div id={`sr-widget-${item?.parent_match_id}`}></div>
 										<ButtonGroup aria-label="stats button actions" className='w-100 d-flex justify-content-start'>
+											{item?.live&&item?.winning_outcome&&<Button className="place-bet-btn w-25 btn link" title="scoreboard"
+													 type="button"
+													 style={{background: "transparent", fontSize: "14px",color:"var(--red)"}}>
+												{item?.live === 1 && "'LIVE"}
+											</Button>}
 										<Button  className="place-bet-btn w-25 btn link" title="scoreboard" type="button" style={{background:"transparent",fontSize:"14px"}}
-									onClick={() => {
-										switchLmt("scoreboard");
-										handleLinkClick()
-									}}>{item?.result && item?.result}&nbsp;scoreboard
+												 onClick={(event) => {switchLmt("scoreboard");handleLinkClick(event)}}>{item?.result && item?.result}&nbsp;scoreboard
 								</Button>
-								<Button
-									id=""
-									onClick={() => {
-										switchLmt("disable");
-										handleLinkClick()
-									}}
-									style={{padding: "5px", backgroundColor: "transparent", fontSize: "14px"}}
-									type={"button"}
+											<Button
+												id="lmt_matches_bet_history"
+												onClick={(event) => {switchLmt("disable"); handleLinkClick(event)}}
+												style={{padding: "5px", backgroundColor: "transparent",fontSize:"14px"}}
+												type={"button"}
 
-									className="btn border-0 d-flex justify-content-center w-25 d-flex align-items-center link"
-									title="statistics">
-									statistics&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									<FontAwesomeIcon icon={faChartLine}/>
+												className="btn border-0 d-flex justify-content-center w-25 d-flex align-items-center link"
+												title="statistics">
+												statistics&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												<FontAwesomeIcon icon={faChartLine}/>
 
-								</Button>
+											</Button>
 							</ButtonGroup>
 						</div>}
 								</div>

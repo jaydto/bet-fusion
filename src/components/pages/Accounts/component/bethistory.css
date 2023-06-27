@@ -143,6 +143,21 @@ font-weight: 900;
 
 }
 @media (min-width:992px){
+    .modal-body {
+        position: relative;
+        padding: 15px;
+        max-height: 34rem;
+    }
+    .drag-icon{
+        display:none!important;
+    }
+    .close-history-filter {
+        /* margin: auto; */
+        /* width: 15%; */
+        padding: 9px;
+        right: 0px;
+        position: absolute!important;
+    }
     .container-history {
         width: 60%;
         margin: auto;
@@ -161,6 +176,10 @@ font-weight: 900;
     }
 }
 @media (max-width:991px){
+    .modal.show .modal-dialog {
+        transform: none;
+        margin: inherit;
+    }
     .bet-history-items.games {
 
     }

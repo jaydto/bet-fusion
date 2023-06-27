@@ -28,10 +28,3 @@
     margin: auto;
     cursor:pointer;
 }
-
-@media (max-width:991px){
-    .modal.show .modal-dialog {
-        transform: none;
-        margin: inherit;
-    }
-}

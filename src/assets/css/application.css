@@ -742,3 +742,32 @@ li.bet-option {
 #jp-nare-pick-button:hover {
     color: orangered !important;
 }
+
+.market-groups-container {
+    overflow-y: scroll !important;
+    position: sticky !important;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 100px !important;
+    /*width: 100vw !important;*/
+    overflow-x: scroll !important;
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.market-groups-container::-webkit-scrollbar {
+    display: none !important;
+}
+
+.market-group-pill {
+    border-radius: 15px !important;
+    background: var(--button-color) !important;
+    margin-right: 2px;
+    padding: 10px 5px;
+    cursor: pointer;
+}
+
+.market-group-pill:focus {
+    background: var(--picked) !important;
+    color: var(--black) !important;
+}

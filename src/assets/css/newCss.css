@@ -147,7 +147,6 @@ input.text-white {
 
 .matches .top-matches {
     /* background: var(--betnare-odds-body); */
-    background: var(--betnare-primary);
     padding-top: 10px;
     padding-bottom: 3px;
     margin-bottom: 15px;
@@ -156,7 +155,6 @@ input.text-white {
     font-weight: normal;
     color: var(--light);
     font-size: 12px;
-    opacity: 0.8;
     /* border-bottom: 1px solid var(--betnare-input); */
 }
 

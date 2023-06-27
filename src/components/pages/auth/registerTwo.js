@@ -418,7 +418,7 @@ const MySignupForm = (props) => {
 								id="msisdn"
 								name="msisdn"
 								type="text"
-								placeholder='Phone number'
+								placeholder='+254712345678'
 								onChange={ev => onFieldChanged(ev)}
 							/>
 

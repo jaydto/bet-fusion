@@ -4,7 +4,7 @@ import "./modals-custom.css"
 import {Context} from "../../context/store";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCheckCircle} from "@fortawesome/free-solid-svg-icons";
-import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
+
 const GameHistoryList = (props) => {
     const {visible, games,setShowGameFilter} = props
     const [isOpen, setIsOpen] = useState(visible)
@@ -27,9 +27,8 @@ const GameHistoryList = (props) => {
         setSelectedFilter(category);
         // setLocalStorage("bet_history_filter_category",category)
         dispatch({type: "SET", key: "selected_filter_category", payload: category });
-        return setTimeout(()=>{
-            hideModal()
-        },[1000])
+        hideModal()
+
     };
 
     const currentDate = new Date();

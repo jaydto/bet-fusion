@@ -1544,8 +1544,6 @@ export const JackpotMatchList = React.memo(
 
 
 
-
-
             return (
                 <div>
                     <p className={"text-expiry-style"}>Expires on&nbsp;

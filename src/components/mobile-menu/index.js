@@ -19,27 +19,26 @@ import {LazyLoadImage} from "react-lazy-load-image-component";
 const MobileMenu = React.memo(
     (props) => {
 
-        const betItems = getBetslip();
-        const [liveSports, setLiveSports] = useState();
-        const {jackpot, kiron} = props;
-        const [betSlipMobile, setBetSlipMobile] = useState(false);
-        const gaEventTracker = useAnalyticsEventTracker("Navigation");
-        const pathname = window.location.pathname;
-        const [state, dispatch] = useContext(Context);
+    const [liveSports, setLiveSports] = useState();
+    const { jackpot, kiron,jackpotData} = props;
+    const [betSlipMobile, setBetSlipMobile] = useState(false);
+    const gaEventTracker = useAnalyticsEventTracker("Navigation");
+    const pathname = window.location.pathname;
+    const [state,dispatch ] = useContext(Context);
 
-        const fetchData = useCallback(() => {
-            let endpoint = "/v1/sports?live=1";
-            makeRequest({url: endpoint, method: "get", data: null}).then(
-                ([c_status, c_result]) => {
-                    if (c_status === 200) {
-                        setLiveSports(c_result?.data);
+    const fetchData = useCallback(() => {
+        let endpoint = "/v1/sports?live=1";
+        makeRequest({ url: endpoint, method: "get", data: null }).then(
+            ([c_status, c_result]) => {
+                if (c_status === 200) {
+                    setLiveSports(c_result?.data);
 
-                    }
                 }
-            );
-        }, []);
+            }
+        );
+    }, []);
 
-        let totalCount = 0;
+    let totalCount = 0;
 
         const percentageProgress = () => {
             const totalbets = Object.keys(betItems || {}).length
@@ -49,14 +48,14 @@ const MobileMenu = React.memo(
         }
 
 
-        useEffect(() => {
-            const abortController = new AbortController();
-            fetchData();
+    useEffect(() => {
+        const abortController = new AbortController();
+        fetchData();
 
-            return () => {
-                abortController.abort();
-            };
-        }, [fetchData]);
+        return () => {
+            abortController.abort();
+        };
+    }, [fetchData]);
 
         let sumOfOdds = 0;
 
@@ -231,7 +230,7 @@ const MobileMenu = React.memo(
                                 <td className={` nav__betslip bloc-icon bet-slip-footer-toggle text-white`}>
                                     <Link to={{
                                         pathname: `${jackpot ? "/betslip-jackpot" : kiron ? `/betslip-nare` : "/betslip-slip"}`,
-                                        search: `${jackpot !== undefined ? 'jackpot=' + jackpot : ''}${kiron !== undefined ? 'nare-league=' + kiron : ''}`
+                                        search: `${jackpot !== undefined ? 'jackpot=' + jackpot : ''}${jackpotData!==undefined?'&jackpotData='+encodeURIComponent(JSON.stringify(jackpotData)):''}${kiron !== undefined ? 'nare-league=' + kiron : ''}`
                                     }}>
                                         <Badge
                                             pill

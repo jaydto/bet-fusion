@@ -10,7 +10,8 @@ import {Context} from "../../../context/store";
 import SearchComponent from "./searchField";
 import SideBar from "../../sidebar/awesome/Sidebar";
 
-const GamePlay = () => {
+const SpribeGame = React.memo(
+    () => {
 
     const [games, setGames] = useState([])
     const [isOnline, setIsOnline]=useState(true)
@@ -135,6 +136,6 @@ const GamePlay = () => {
 
         </>
     )
-}
+})
 
-export default GamePlay
+export default React.memo(SpribeGame)

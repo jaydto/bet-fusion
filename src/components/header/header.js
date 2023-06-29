@@ -7,7 +7,7 @@ import {getFromLocalStorage, setLocalStorage} from '../utils/local-storage';
 import {ToastContainer} from 'react-toastify';
 import makeRequest from '../utils/fetch-request';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import androidIcon from "../../assets/img/mobile/android-icon.png"
+import androidIcon from "../../assets/img/mobile/android-icon.webp"
 import logo from '../../assets/img/Logo.webp';
 import {Navbar, Offcanvas} from "react-bootstrap";
 import SidebarMobile from "../sidebar/awesome/SidebarMobile";
@@ -27,311 +27,319 @@ const HeaderNav = React.lazy(() => import('./header-nav'));
 
 const Header = React.memo(
     (props) => {
-    const {slip, scrollPosition} = props
-    const gaEventTracker = useAnalyticsEventTracker('Navigation');
-    const [user, setUser] = useState(getFromLocalStorage("user"));
-    const [state, dispatch] = useContext(Context);
-    // const [searching, setSearching] = useState(false)
-    const containerRef = useRef();
-    const searchInputRef = useRef(null)
-    const [matches, setMatches] = useState([])
-    const {current} = containerRef;
-    const [competitions, setCompetitions] = useState({});
-    const [settings, setSettings] = useState({});
-    const [isOpen, setIsOpen] = useState(false);
-    const [showLoadingModal, setShowLoadingModal] = useState(false);
+        const {slip, scrollPosition} = props
+        const gaEventTracker = useAnalyticsEventTracker('Navigation');
+        const [user, setUser] = useState(getFromLocalStorage("user"));
+        const [state, dispatch] = useContext(Context);
+        // const [searching, setSearching] = useState(false)
+        const containerRef = useRef();
+        const searchInputRef = useRef(null)
+        const [matches, setMatches] = useState([])
+        const {current} = containerRef;
+        const [competitions, setCompetitions] = useState({});
+        const [settings, setSettings] = useState({});
+        const [isOpen, setIsOpen] = useState(false);
+        const [showLoadingModal, setShowLoadingModal] = useState(false);
 
 
-    useEffect(() => {
-        const handleBackButton = () => {
-            if (window.location.pathname === '/') {
-                setShowLoadingModal(true);
-                // let ans = window.confirm("Are you sure you want to exit this application?");
-                // if (ans) {
-                //   App.exitApp();
-                // }
-            } else {
-                window.history.back();
+        useEffect(() => {
+            const handleBackButton = () => {
+                if (window.location.pathname === '/') {
+                    setShowLoadingModal(true);
+                    // let ans = window.confirm("Are you sure you want to exit this application?");
+                    // if (ans) {
+                    //   App.exitApp();
+                    // }
+                } else {
+                    window.history.back();
+                }
+            };
+
+        }, [setShowLoadingModal]);
+
+
+        const dismissSearch = () => {
+            // setSearching(false)
+            dispatch({type: "SET", key: "searching", payload: false})
+            setMatches([])
+        }
+
+        useEffect(() => {
+            fetchMatches()
+        }, [state?.searching])
+        const fetchMatches = async (search) => {
+
+            if (search && search.length >= 3) {
+                gaEventTracker('Searching')
+                let method = "POST"
+                let endpoint = "/v1/matches?page=" + (1) + `&limit=${10}&search=${search}`;
+                await makeRequest({url: endpoint, method: method, data: []}).then(([status, result]) => {
+                    if (status === 200) {
+                        setMatches(result?.data || result)
+                    }
+                });
             }
+
         };
 
-    }, [setShowLoadingModal]);
+        const fetchData = useCallback(async () => {
+            let cached_categories = getFromLocalStorage('categories');
+            let endpoint = "/v1/categories";
+
+            if (!cached_categories) {
+                const [competition_result] = await Promise.all([
+                    makeRequest({url: endpoint, method: "get", data: null}),
+                ]);
+                let [c_status, c_result] = competition_result
+
+                if (c_status === 200) {
+                    setCompetitions(c_result);
+                    setLocalStorage('categories', c_result);
+                }
+            } else {
+                setCompetitions(cached_categories);
+            }
+
+        }, []);
+
+        const fetchAppConfigurations = useCallback(async () => {
+
+            let cached_settings = getFromLocalStorage('settings');
+
+            let endpoint = "/v1/bet/settings";
+
+            if (!cached_settings) {
+
+                const [result] = await Promise.all([
+                    makeRequest({url: endpoint, method: "POST", data: null}),
+                ]);
+
+                let [c_status, c_result] = result
 
 
-    const dismissSearch = () => {
-        // setSearching(false)
-        dispatch({type: "SET", key: "searching", payload: false})
-        setMatches([])
-    }
+                if (c_status === 200) {
+                    setSettings(c_result?.message);
+                    setLocalStorage('settings', c_result?.message);
+                }
 
-    useEffect(() => {
-        fetchMatches()
-    }, [state?.searching])
-    const fetchMatches = async (search) => {
+            } else {
+                setSettings(cached_settings);
+            }
+        })
+        const urlPath = window.location.pathname
+        const showDownload = (!urlPath.includes("nare-games") && !urlPath.includes("gameplay") && !urlPath.includes("smart-play") && !urlPath.includes("betslip-slip") && !urlPath.includes("betslip-nare") && !urlPath.includes("betslip-jackpot") && !urlPath.includes("nare-league") && !urlPath.includes("bet-history") && !urlPath.includes("standings") && !urlPath.includes("results") && !urlPath.includes("casino") && !urlPath.includes("jackpot") && !urlPath.includes("smart-soft") && !urlPath.includes("virtuals") && !urlPath.includes("match") && !urlPath.includes("competition") && !urlPath.includes("my-bets") && !urlPath.includes("profile") && !urlPath.includes("promotions") && !urlPath.includes("standing"))
 
-        if (search && search.length >= 3) {
-            gaEventTracker('Searching')
-            let method = "POST"
-            let endpoint = "/v1/matches?page=" + (1) + `&limit=${10}&search=${search}`;
-            await makeRequest({url: endpoint, method: method, data: []}).then(([status, result]) => {
-                if (status === 200) {
-                    setMatches(result?.data || result)
+        useEffect(() => {
+
+            const abortController = new AbortController();
+            fetchData();
+            fetchAppConfigurations();
+
+            return () => {
+                abortController.abort();
+            };
+        }, [fetchData]);
+
+        const NotifyToastContaner = () => {
+            return <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
+        };
+        const updateUserOnHistory = useCallback(() => {
+            if (!user) {
+                return false;
+            }
+            let endpoint = "/v1/balance";
+            let udata = {
+                token: user.token
+            }
+            makeRequest({url: endpoint, method: "post", data: udata}).then(([_status, response]) => {
+                if (_status == 200) {
+                    let u = {...user, ...response.user};
+                    setLocalStorage('user', u);
+                    setUser(u)
+                    dispatch({type: "SET", key: "user", payload: u});
                 }
             });
-        }
 
-    };
+        }, [current]);
 
-    const fetchData = useCallback(async () => {
-        let cached_categories = getFromLocalStorage('categories');
-        let endpoint = "/v1/categories";
-
-        if (!cached_categories) {
-            const [competition_result] = await Promise.all([
-                makeRequest({url: endpoint, method: "get", data: null}),
-            ]);
-            let [c_status, c_result] = competition_result
-
-            if (c_status === 200) {
-                setCompetitions(c_result);
-                setLocalStorage('categories', c_result);
-            }
-        } else {
-            setCompetitions(cached_categories);
-        }
-
-    }, []);
-
-    const fetchAppConfigurations = useCallback(async () => {
-
-        let cached_settings = getFromLocalStorage('settings');
-
-        let endpoint = "/v1/bet/settings";
-
-        if (!cached_settings) {
-
-            const [result] = await Promise.all([
-                makeRequest({url: endpoint, method: "POST", data: null}),
-            ]);
-
-            let [c_status, c_result] = result
+        const updateUserOnLogin = useCallback(() => {
+            dispatch({type: "SET", key: "user", payload: user});
+        }, [user?.msisdn, user?.balance]);
 
 
-            if (c_status === 200) {
-                setSettings(c_result?.message);
-                setLocalStorage('settings', c_result?.message);
-            }
+        useEffect(() => {
+            updateUserOnHistory()
+        }, [updateUserOnHistory])
 
-        } else {
-            setSettings(cached_settings);
-        }
-    })
-    const urlPath = window.location.pathname
-    const showDownload = (!urlPath.includes("nare-games") && !urlPath.includes("gameplay") && !urlPath.includes("smart-play") && !urlPath.includes("betslip-slip") && !urlPath.includes("betslip-nare") && !urlPath.includes("betslip-jackpot") && !urlPath.includes("nare-league") && !urlPath.includes("bet-history") && !urlPath.includes("standings") && !urlPath.includes("results") && !urlPath.includes("casino") && !urlPath.includes("jackpot") && !urlPath.includes("smart-soft") && !urlPath.includes("virtuals") && !urlPath.includes("match") && !urlPath.includes("competition") && !urlPath.includes("my-bets") && !urlPath.includes("profile") && !urlPath.includes("promotions"))
 
-    useEffect(() => {
+        useEffect(() => {
+            updateUserOnLogin()
+        }, [updateUserOnLogin])
 
-        const abortController = new AbortController();
-        fetchData();
-        fetchAppConfigurations();
-
-        return () => {
-            abortController.abort();
+        const toggle = () => {
+            setIsOpen(!isOpen);
         };
-    }, [fetchData]);
 
-    const NotifyToastContaner = () => {
-        return <ToastContainer
-            position="top-right"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-        />
-    };
-    const updateUserOnHistory = useCallback(() => {
-        if (!user) {
-            return false;
-        }
-        let endpoint = "/v1/balance";
-        let udata = {
-            token: user.token
-        }
-        makeRequest({url: endpoint, method: "post", data: udata}).then(([_status, response]) => {
-            if (_status == 200) {
-                let u = {...user, ...response.user};
-                setLocalStorage('user', u);
-                setUser(u)
-                dispatch({type: "SET", key: "user", payload: u});
+        const expand = "md"
+        const pathname = window.location.pathname;
+        useEffect(() => {
+            if (pathname == 'nare-league') {
+                dispatch({type: "SET", key: "kiron_page", payload: true});
+            } else {
+                dispatch({type: "SET", key: "kiron_page", payload: false});
             }
-        });
 
-    }, [current]);
-
-    const updateUserOnLogin = useCallback(() => {
-        dispatch({type: "SET", key: "user", payload: user});
-    }, [user?.msisdn, user?.balance]);
+        }, [pathname])
 
 
-    useEffect(() => {
-        updateUserOnHistory()
-    }, [updateUserOnHistory])
-
-
-    useEffect(() => {
-        updateUserOnLogin()
-    }, [updateUserOnLogin])
-
-    const toggle = () => {
-        setIsOpen(!isOpen);
-    };
-
-    const expand = "md"
-    const pathname = window.location.pathname;
-    useEffect(() => {
-        if (pathname == 'nare-league') {
-            dispatch({type: "SET", key: "kiron_page", payload: true});
-        } else {
-            dispatch({type: "SET", key: "kiron_page", payload: false});
+        const getDownloadFile = () => {
+            return downloadAPKFile;
         }
-
-    }, [pathname])
-
-
-    const getDownloadFile = () => {
-        return downloadAPKFile;
-    }
-    const pathnameSlip=["/betslip-slip","betslip-nare", "betslip-jackpot"]
-    return (
-        <>
-            {!pathnameSlip.includes(pathname)&&
-                <ToastContainer/>}
-            <div className={'d-flex flex-column'}>
-                {showDownload &&
-                    <div>
-                        <Link to={'/betnare.apk'}
-                              target={"_blank"}
-                              title={'Download App'}
-                              download={'betnare.apk'}
-                              className={"lite-top d-flex flex-column"}
-                              onClick={() => {
-                                  gaEventTracker('Downloaded App');
-                                  getDownloadFile()
-                              }}>
-                            <div className={"app-download-link  d-flex flex-column"}>
-                                <div className={"app-color"}>
-                                    <span className={"color-app-text"}>APP Your Game with Betnare App</span>
-                                    <LazyLoadImage src={androidIcon} className={"icon-android"}/>
+        return (
+            <>
+                <ToastContainer/>
+                <div className={'d-flex flex-column'}>
+                    {showDownload &&
+                        <div>
+                            <Link to={'/betnare.apk'}
+                                  target={"_blank"}
+                                  title={'Download App'}
+                                  download={'betnare.apk'}
+                                  className={"lite-top d-flex flex-column"}
+                                  onClick={() => {
+                                      gaEventTracker('Downloaded App');
+                                      getDownloadFile()
+                                  }}>
+                                <div className={"app-download-link  d-flex flex-column"}>
+                                    <div className={"app-color"}>
+                                        <span className={"color-app-text"}>APP Your Game with Betnare App</span>
+                                        <LazyLoadImage src={androidIcon} className={"icon-android"}/>
+                                    </div>
                                 </div>
-                            </div>
-                        </Link>
-                        {/*<a href={"https://lite.betnare.com"} className={"app-color lite-top-color"}>*/}
-                        {/*    <div className={"color-app-text"}>Having Trouble loading website? Click here for <strong>LITE</strong> VERSION</div>*/}
-                        {/*</a>*/}
-                    </div>
-                }
-
-                <Navbar expand="md"
-                        className={`${(scrollPosition || !showDownload) && 'fixed-top-nav'} mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${slip && "top-betslip-page-fix"} ${user ? 'top-nav-login' : 'top-nav-login'}`}
-                        fixed="top" variant="dark">
-                    <div
-                        className={'w-100 d-flex justify-content-between mobile-change desktop-ipad-size top-header-main'}>
-                        <div className={"d-flex w-100 directions-header-nav"}>
-                            <Navbar.Brand
-                                className={`e logo align-self-start menu-control d-flex justify-content-between w-100`}
-                                title="Betnare">
-                                <Link to={{pathname: "/"}} className="col-4 logo-betnare resize-mobile"
-                                      style={{marginLeft: "2px"}}>
-                                    <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"
-                                         className={`image-size ${!user && 'logo-top'}`}
-                                         style={user ? {marginBottom: "0px"} : {marginBottom: "11px", width: 'auto'}}/>
-                                </Link>
-
-                                <UserInfo/>
-                            </Navbar.Brand>
-
-                            {/*todo check information provided for a user*/}
-                            <div className={` col-10 change-size desk-top`} id="navbar-collapse-main ">
-                                <div
-                                    className="col-md-11 col-sm-12 col-lg-7 right fix-view-2 disable-ipad to-navcheck justify-content-end pt-lg-0 pt-md-3">
-                                    {user ? <ProfileMenu user={user}/> : <LoginSection/>}
-                                </div>
-
-                            </div>
+                            </Link>
+                            {/*<a href={"https://lite.betnare.com"} className={"app-color lite-top-color"}>*/}
+                            {/*    <div className={"color-app-text"}>Having Trouble loading website? Click here for <strong>LITE</strong> VERSION</div>*/}
+                            {/*</a>*/}
                         </div>
+                    }
 
-                        <Row
-                            className={`second-nav ck pc os app-navbar ${user ? ' app-header-nav-login ' : ' app-header-nav '} to-navcheck `}>
-                            <HeaderNav/>
-                        </Row>
-                        {state?.searching ?
-                            <div id="navbar-collapse-main"
-                                 className={`fadeIn header-menu d-flex justify-content-center w-100 d-block`}>
-                                <ListGroup as="ul" xs="9" horizontal
-                                           className="nav navbar-nav og ale ss col-12 text-center w-100 d-flex">
-                                    <div className="d-flex w-100">
-                                        <div className="col-10  px-2" style={{marginLeft: '2vw'}}>
-                                            <input type="text" placeholder={'Start typing to search for team ...'}
-                                                   autoFocus={true} ref={searchInputRef}
-                                                   onInput={(event) => fetchMatches(event.target.value)}
-                                                   className={'form-control input-field-search border-0  text-default bg-light no-border-radius input-bg-user'}
-                                                   style={{background: "#2D4352"}}/>
-                                            <div style={{overflowY: 'auto', borderRadius: '2px'}}
-                                                 className={`col-10 autocomplete-box  rounded position-fixed  search-results-box border-dark col-md-5 shadow-lg text-start`}
-                                                 onClick={() => gaEventTracker('View Search Results')}>
-                                                {matches.map((match, index) => (
-                                                    <Link to={`/?search=${match.home_team}&sub_type_id=1`} key={index}
-                                                          onClick={() => window.location.href = `/?search=${match.home_team}&sub_type_id=1`}>
-                                                        <li>
-                                                            {match.home_team}
-                                                        </li>
-                                                    </Link>
-                                                ))}
+                    <Navbar expand="md"
+                            className={`${(scrollPosition || !showDownload) && 'fixed-top-nav'} mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${slip && "top-betslip-page-fix"} ${user ? 'top-nav-login' : 'top-nav-login'}`}
+                            fixed="top" variant="dark">
+                        <div
+                            className={'w-100 d-flex justify-content-between mobile-change desktop-ipad-size top-header-main'}>
+                            <div className={"d-flex w-100 directions-header-nav"}>
+                                <Navbar.Brand
+                                    className={`e logo align-self-start menu-control d-flex justify-content-between w-100`}
+                                    title="Betnare">
+                                    <Link to={{pathname: "/"}} className="col-4 logo-betnare resize-mobile"
+                                          style={{marginLeft: "2px"}}>
+                                        <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"
+                                                       className={`image-size ${!user && 'logo-top'}`}
+                                                       style={user ? {marginBottom: "0px"} : {
+                                                           marginBottom: "11px",
+                                                           width: 'auto'
+                                                       }}/>
+                                    </Link>
+
+                                    <UserInfo/>
+                                </Navbar.Brand>
+
+                                {/*todo check information provided for a user*/}
+                                <div className={` col-10 change-size desk-top`} id="navbar-collapse-main ">
+                                    <div
+                                        className="col-md-11 col-sm-12 col-lg-7 right fix-view-2 disable-ipad to-navcheck justify-content-end pt-lg-0 pt-md-3">
+                                        {user ? <ProfileMenu user={user}/> : <LoginSection/>}
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <Row
+                                className={`second-nav ck pc os app-navbar ${user ? ' app-header-nav-login ' : ' app-header-nav '} to-navcheck `}>
+                                <HeaderNav/>
+                            </Row>
+                            {state?.searching ?
+                                <div id="navbar-collapse-main"
+                                     className={`fadeIn header-menu d-flex justify-content-center w-100 d-block`}>
+                                    <ListGroup as="ul" xs="9" horizontal
+                                               className="nav navbar-nav og ale ss col-12 text-center w-100 d-flex">
+                                        <div className="d-flex w-100">
+                                            <div className="col-10  px-2" style={{marginLeft: '2vw'}}>
+                                                <input type="text" placeholder={'Start typing to search for team ...'}
+                                                       autoFocus={true} ref={searchInputRef}
+                                                       onInput={(event) => fetchMatches(event.target.value)}
+                                                       className={'form-control input-field-search border-0  text-default bg-light no-border-radius input-bg-user'}
+                                                       style={{background: "#2D4352"}}/>
+                                                <div style={{overflowY: 'auto', borderRadius: '2px'}}
+                                                     className={`col-10 autocomplete-box  rounded position-fixed  search-results-box border-dark col-md-5 shadow-lg text-start`}
+                                                     onClick={() => gaEventTracker('View Search Results')}>
+                                                    {matches.map((match, index) => (
+                                                        <Link to={`/?search=${match.home_team}&sub_type_id=1`}
+                                                              key={index}
+                                                              onClick={() => window.location.href = `/?search=${match.home_team}&sub_type_id=1`}>
+                                                            <li>
+                                                                {match.home_team}
+                                                            </li>
+                                                        </Link>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                            <button
+                                                className={'col-2 btn text-warning align-right d-flex justify-content-center align-items-center flex-column'}
+                                                onClick={() => dismissSearch()}>
+                                                <FontAwesomeIcon icon={faTimes}/> Close
+                                            </button>
+                                        </div>
+
+                                    </ListGroup>
+                                </div>
+                                : (pathname !== '/signup') && pathname !== '/nare-league' && pathname !== '/results' && pathname !== '/standing' && pathname !== '/playouts' && pathname !== '/standing  ' && pathname !== '/bet-history' && !slip &&
+                                <MobileNav1/>}
+
+
+                            <Navbar.Offcanvas
+                                style={{
+                                    width: "80%",
+                                    height: "100%",
+                                    zIndex: "9999",
+                                    marginTop: "0px",
+                                    overflowY: "auto"
+                                }}
+                                className='off-canvas background-primary p-0'
+                                id={`offcanvasNavbar-expand-${expand}`}
+                                aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+                                placement="start">
+                                <Offcanvas.Header closeButton className='text-white' closeVariant={"white"}
+                                                  onClick={toggle}>
+                                    <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
+                                        <div className="col-5">
+                                            <div>
+                                                <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"/>
                                             </div>
                                         </div>
-                                        <button
-                                            className={'col-2 btn text-warning align-right d-flex justify-content-center align-items-center flex-column'}
-                                            onClick={() => dismissSearch()}>
-                                            <FontAwesomeIcon icon={faTimes}/> Close
-                                        </button>
-                                    </div>
+                                    </Offcanvas.Title>
+                                </Offcanvas.Header>
+                                <Offcanvas.Body>
+                                    <SidebarMobile/>
+                                </Offcanvas.Body>
+                            </Navbar.Offcanvas>
 
-                                </ListGroup>
-                            </div>
-                            : (pathname !== '/signup') && pathname !== '/nare-league' && pathname !== '/results' && pathname !== '/standing' && pathname !== '/playouts' && pathname !== '/standing  ' && pathname !== '/bet-history' && !slip &&
-                            <MobileNav1/>}
+                        </div>
+                    </Navbar>
+                </div>
+            </>
 
-
-                        <Navbar.Offcanvas
-                            style={{width: "80%", height: "100%", zIndex: "9999", marginTop: "0px", overflowY: "auto"}}
-                            className='off-canvas background-primary p-0'
-                            id={`offcanvasNavbar-expand-${expand}`}
-                            aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-                            placement="start">
-                            <Offcanvas.Header closeButton className='text-white' closeVariant={"white"}
-                                              onClick={toggle}>
-                                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                                    <div className="col-5">
-                                        <div>
-                                            <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"/>
-                                        </div>
-                                    </div>
-                                </Offcanvas.Title>
-                            </Offcanvas.Header>
-                            <Offcanvas.Body>
-                                <SidebarMobile/>
-                            </Offcanvas.Body>
-                        </Navbar.Offcanvas>
-
-                    </div>
-                </Navbar>
-            </div>
-        </>
-
-    )
-})
+        )
+    })
 export default React.memo(Header);

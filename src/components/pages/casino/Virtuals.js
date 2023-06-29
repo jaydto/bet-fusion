@@ -152,4 +152,4 @@ const Virtuals = React.memo(
 })
 
 
-export default Virtuals;
+export default React.memo(Virtuals);

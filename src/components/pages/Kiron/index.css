@@ -2,6 +2,8 @@
     display: flex!important;
 }
 .container-size {
+    color:var(--light)!important;
+    background: var(--betnare-primary)!important;
     width: 100%!important;
 }
 .size-info {
@@ -28,7 +30,7 @@
 }
 
 .opt-color{
-    background: var(--betnare-button-login)!important;
+    background: var(--orange)!important;
     color:var(--dark) !important;
     font-weight: bold;
 }
@@ -332,13 +334,14 @@
     margin-right: 2px;
     margin: 2px;
 }
-.kiron-loader{
+.kiron-loader {
     width: 100%;
     height: 400px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    margin-top: 7rem;
 }
 .red-txt {
     color: #d32027;
@@ -353,7 +356,7 @@
 
 @media (max-width: 376px){
     .double-chance-market{
-        margin-left:15px!important;
+        margin-left:9px!important;
         height:30px;
     }
     .size-market-kiron{
@@ -373,17 +376,87 @@
 }
 
 @media (min-width:992px){
+    .kiron-sticky-nav{
+        z-index:2000;
+        position:fixed;
+        top:7.7rem;
+        width:75%;
+    }
+    .event{
+        background:var(--betnare-primary)!important
+    }
+    .kiron-body{
+        margin-top:11rem;
+        position: relative;
+    }
+    .kiron-matches-header {
+        position: fixed;
+        top:19rem;
+        z-index: 1999;
+        width:75%;
+        background: var(--betnare-header-bg);
+    }
+    .kiron_matches_now{
+        margin-top:10rem;
+    }
+
     .kiron-size{
         width:75%;
     }
     .kiron-betslip-size{
         width:25%!important;
     }
+    .standings-container-heading{
+        position: fixed;
+        top: 23.8rem;
+        width: 75%;
+        background: var(--orange);
+        z-index: 1999;
+
+    }
+    .league-games-wrapper.playout{
+        margin-top:10rem;
+    }
+
 }
 
 @media (max-width:991px){
+    .standings-container-heading {
+        position: fixed;
+        top: 18.2rem;
+        width: 100vw;
+        background: var(--orange);
+        z-index: 100;
+    }
 
+    .league-games-wrapper.playout{
+        margin-top:7rem;
+    }
+    .kiron-sticky-nav{
+        z-index:2000;
+        position:fixed;
+        top:3.8rem;
+        width:100%;
+    }
+    .kiron-matches-header {
+        position: fixed;
+        z-index: 1999;
+        width:100%;
+        background: var(--betnare-header-bg);
+    }
+    .kiron_matches_now{
+        margin-top:10rem;
+    }
+    .kiron-body{
+        margin-top:9.9rem;
+        position: relative;
+    }
+    .event{
+        background:var(--betnare-primary)!important
+    }
     .top-matches.kiron div {
+        color: var(--light);
+        background: var(--betnare-primary);
         min-height: 16px;
         justify-content: unset;
         padding-left: 0.1rem!important;
@@ -393,7 +466,7 @@
     }
     .matches .top-matches .kiron-btn {
         height: 30px;
-        border-radius: 8px !important;
+        border-radius: 4px !important;
         margin-right: 4px;
         outline: none;
         height: 35px;

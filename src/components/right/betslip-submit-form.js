@@ -19,6 +19,8 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBolt, faFireAlt, faGift, faInfoCircle, faShare, faTrash,} from "@fortawesome/free-solid-svg-icons";
 import {Spinner} from "react-bootstrap";
 import {Switch} from "@material-ui/core";
+import {useNavigate} from "react-router-dom";
+import useWindowDimensions from "../header/Dimensions";
 
 const BetslipShareModal = React.lazy(() =>
     import("../modals/BetslipShareModal")
@@ -120,132 +122,131 @@ const BetslipSubmitForm = React.memo(
             }
         });
 
-    };
+        };
 
 
+        useEffect(() => {
+            updateUserOnHistory()
+        }, [message?.message])
 
-    useEffect(() => {
-        updateUserOnHistory()
-    }, [message?.message])
+        useEffect(() => {
+            if (scrollToRef.current) {
+                scrollToRef.current.scrollIntoView({behavior: 'auto'});
+            }
+        }, []);
 
-    useEffect(() => {
-        if (scrollToRef.current) {
-            scrollToRef.current.scrollIntoView({ behavior: 'auto' });
-        }
-    }, []);
+        useEffect(() => {
+            if (jackpot) {
+                setBetslipKey("jackpotbetslip");
+            }
+        }, [jackpot]);
 
-    useEffect(() => {
-        if (jackpot) {
-            setBetslipKey("jackpotbetslip");
-        }
-    }, [jackpot]);
-
-    const ipAddress = useCallback(async () => {
-        let ip = await publicIp
-            .v4({
-                fallbackUrls: ["https://ifconfig.co/ip"],
-            })
-            .then((result) => {
-                return result;
-            });
+        const ipAddress = useCallback(async () => {
+            let ip = await publicIp
+                .v4({
+                    fallbackUrls: ["https://ifconfig.co/ip"],
+                })
+                .then((result) => {
+                    return result;
+                });
 
         setIpv4(ip);
     }, [ipv4]);
 
-    const Alert = (props) => {
-        let c = message?.status == 201 ? 'success' :message?.status ==421?'warning': 'danger';
-        let x_style = {
-            float: "right",
-            display: "block",
-            fontSize: "22px",
-            color: "orangered",
-            cursor: "pointer",
-            padding: "3px",
-            position: 'absolute',
-            top:'0',
-            right:'0'
-        }
-        return (<>{message?.status &&
-            <div role="alert"
-                 className={`fade alert alert-${c} show alert-dismissible d-flex justify-content-between align-items-center alert-message-line-height alert-position-betslip-top`}>
-                {message.message}
-                <span aria-hidden="true" style={x_style} onClick={() => setMessage(null)}>&times;</span>
-            </div>}
-        </>);
-
-    };
-    useEffect(() => {
-        ipAddress();
-    }, [ipAddress])
-
-
-    const handlePlaceBet = useCallback((values,
-                                        {setSubmitting, resetForm, setStatus, setErrors}) => {
-            let bs = Object.values(betslip || []);
-
-            let slipHasOddsChange = false;
-
-            let jackpotMessage = 'jp'
-
-
-            if (jackpot) {
-
-                bs = bs.sort(function (a, b) {
-                    return Number(a.position) - Number(b.position);
-                });
-
+        const Alert = (props) => {
+            let c = message?.status == 201 ? 'success' : message?.status == 421 ? 'warning' : 'danger';
+            let x_style = {
+                float: "right",
+                display: "block",
+                fontSize: "22px",
+                color: "orangered",
+                cursor: "pointer",
+                padding: "3px",
+                position: 'absolute',
+                top: '0',
+                right: '0'
             }
+            return (<>{message?.status &&
+                <div role="alert"
+                     className={`fade alert alert-${c} show alert-dismissible d-flex justify-content-between align-items-center alert-message-line-height alert-position-betslip-top`}>
+                    {message.message}
+                    <span aria-hidden="true" style={x_style} onClick={() => setMessage(null)}>&times;</span>
+                </div>}
+            </>);
 
-            for (let slip of bs) {
+        };
+        useEffect(() => {
+            ipAddress();
+        }, [ipAddress])
+
+
+        const handlePlaceBet = useCallback((values,
+                                            {setSubmitting, resetForm, setStatus, setErrors}) => {
+                let bs = Object.values(betslip || []);
+
+                let slipHasOddsChange = false;
+
+                let jackpotMessage = 'jp'
+
+
                 if (jackpot) {
-                    jackpotMessage += "#" + slip.bet_pick
+
+                    bs = bs.sort(function (a, b) {
+                        return Number(a.position) - Number(b.position);
+                    });
+
                 }
-                if (slip.prev_odds
-                    && slip.prev_odds != slip.odd_value
-                    && values.accept_all_odds_change === false) {
-                    slipHasOddsChange = true;
-                    break;
+
+                for (let slip of bs) {
+                    if (jackpot) {
+                        jackpotMessage += "#" + slip.bet_pick
+                    }
+                    if (slip.prev_odds
+                        && slip.prev_odds != slip.odd_value
+                        && values.accept_all_odds_change === false) {
+                        slipHasOddsChange = true;
+                        break;
+                    }
                 }
-            }
 
-            if (slipHasOddsChange === true) {
-                setMessage({
-                    status: 400,
-                    message: "Slip has events with changed odds, tick "
-                        + " accept odds all odds change box to accept and place bet"
-                });
-                setSubmitting(false);
-                return false;
-            }
+                if (slipHasOddsChange === true) {
+                    setMessage({
+                        status: 400,
+                        message: "Slip has events with changed odds, tick "
+                            + " accept odds all odds change box to accept and place bet"
+                    });
+                    setSubmitting(false);
+                    return false;
+                }
 
-            let payload = {
-                bet_string: 'web',
-                app_name: 'desktop',
-                possible_win: possibleWin,
-                profile_id: values.user_id,
-                stake_amount: values.bet_amount,
-                amount: values.bet_amount,
-                bet_total_odds: totalOdds,
-                endCustomerIP: ipv4,
-                channelID: 'web',
-                slip: bs,
-                account: 1,
-                msisdn: state?.user?.msisdn,
-                accept_all_odds_change: values.accept_all_odds_change
-            };
-            let endpoint = '/bet';
-            let method = "GET"
-            let use_jwt = !jackpot
-            if (jackpot) {
-                payload.message = jackpotMessage
-                payload.jackpot_id = jackpotData?.jackpot_event_id
-                payload.slip = ''
-                endpoint = "/jp/bet"
-                method = "POST"
-            }
+                let payload = {
+                    bet_string: 'web',
+                    app_name: 'desktop',
+                    possible_win: possibleWin,
+                    profile_id: values.user_id,
+                    stake_amount: values.bet_amount,
+                    amount: values.bet_amount,
+                    bet_total_odds: totalOdds,
+                    endCustomerIP: ipv4,
+                    channelID: 'web',
+                    slip: bs,
+                    account: 1,
+                    msisdn: state?.user?.msisdn,
+                    accept_all_odds_change: values.accept_all_odds_change
+                };
+                let endpoint = '/bet';
+                let method = "GET"
+                let use_jwt = !jackpot
+                if (jackpot) {
+                    payload.message = jackpotMessage
+                    payload.jackpot_id = jackpotData?.jackpot_event_id
+                    payload.slip = ''
+                    endpoint = "/jp/bet"
+                    method = "POST"
+                }
 
-            makeRequest({url: endpoint, method: method, data: payload, use_jwt: use_jwt})
-                .then(([status, response]) => {
+                makeRequest({url: endpoint, method: method, data: payload, use_jwt: use_jwt})
+                    .then(([status, response]) => {
 
 
                     if (status === 200 || status == 201 || status == 204) {
@@ -288,46 +289,46 @@ const BetslipSubmitForm = React.memo(
         }
     );
 
-    const updateWinnings = useCallback(() => {
-        if (betslip) {
-            let stake_after_tax = (Float(stake) / Float(107.5)) * 100;
-            let stake_after_tax_boosted =
-                ((Float(stake) + Float(multiBoostAmount)) / Float(107.5)) * 100;
+        const updateWinnings = useCallback(() => {
+            if (betslip) {
+                let stake_after_tax = (Float(stake) / Float(107.5)) * 100;
+                let stake_after_tax_boosted =
+                    ((Float(stake) + Float(multiBoostAmount)) / Float(107.5)) * 100;
 
-            let ext = Float(stake) - Float(stake_after_tax);
-            let ext_boosted =
-                Float(stake) + Float(multiBoostAmount) - Float(stake_after_tax_boosted);
+                let ext = Float(stake) - Float(stake_after_tax);
+                let ext_boosted =
+                    Float(stake) + Float(multiBoostAmount) - Float(stake_after_tax_boosted);
 
-            let raw_possible_win = Float(stake_after_tax) * Float(totalOdds);
-            let boosted_raw_possible_win =
-                Float(stake_after_tax_boosted) * Float(totalOdds);
+                let raw_possible_win = Float(stake_after_tax) * Float(totalOdds);
+                let boosted_raw_possible_win =
+                    Float(stake_after_tax_boosted) * Float(totalOdds);
 
-            if (jackpot) {
-                raw_possible_win = jackpotData?.jackpot_amount;
-            }
+                if (jackpot) {
+                    raw_possible_win = jackpotData?.jackpot_amount;
+                }
 
-            if (raw_possible_win > 500000 && !jackpot) {
-                raw_possible_win = 500000;
-            }
-            if (boosted_raw_possible_win > 500000 && !jackpot) {
-                boosted_raw_possible_win = 500000;
-            }
+                if (raw_possible_win > 500000 && !jackpot) {
+                    raw_possible_win = 500000;
+                }
+                if (boosted_raw_possible_win > 500000 && !jackpot) {
+                    boosted_raw_possible_win = 500000;
+                }
 
-            let taxable_amount = Float(raw_possible_win) - Float(stake_after_tax);
-            let taxable_amount_boosted =
-                Float(boosted_raw_possible_win) - Float(stake_after_tax_boosted);
+                let taxable_amount = Float(raw_possible_win) - Float(stake_after_tax);
+                let taxable_amount_boosted =
+                    Float(boosted_raw_possible_win) - Float(stake_after_tax_boosted);
 
-            let wint = taxable_amount * 0.2;
-            let wint_boosted = taxable_amount_boosted * 0.2;
+                let wint = taxable_amount * 0.2;
+                let wint_boosted = taxable_amount_boosted * 0.2;
 
-            let nw = raw_possible_win - wint;
-            let nw_boosted = boosted_raw_possible_win - wint_boosted;
+                let nw = raw_possible_win - wint;
+                let nw_boosted = boosted_raw_possible_win - wint_boosted;
 
-            setExciseTax(Float(ext, 2));
-            setExciseTaxBoosted(Float(ext_boosted, 2));
+                setExciseTax(Float(ext, 2));
+                setExciseTaxBoosted(Float(ext_boosted, 2));
 
-            setStakeAfterTax(stake_after_tax);
-            setStakeAfterTaxBoosted(stake_after_tax_boosted);
+                setStakeAfterTax(stake_after_tax);
+                setStakeAfterTaxBoosted(stake_after_tax_boosted);
 
             setNetWin(Float(nw, 2));
             dispatch({type: "SET", key: "netWin", payload:Float(nw, 2)});
@@ -352,20 +353,21 @@ const BetslipSubmitForm = React.memo(
         }
     }, [betslip, stake, totalOdds, multiBoostAmount]);
 
-    const handleRemoveAll = useCallback(() => {
-        let betslips =jackpot?getJackpotBetslip():getBetslip();
-        Object.entries(betslips).map(([match_id, match]) =>
-        {
-            // let slip=
-            jackpot ? removeFromJackpotSlip(match_id):
-                removeFromSlip(match_id);
+        const navigate = useNavigate()
 
-            let match_selector = match.match_id + "_selected";
-            let ucn = clean_rep(
-                match.match_id
-                + "" + match.sub_type_id
-                + (match.bet_pick)
-            );
+        const handleRemoveAll = useCallback(() => {
+            let betslips = jackpot ? getJackpotBetslip() : getBetslip();
+            Object.entries(betslips).map(([match_id, match]) => {
+                // let slip=
+                jackpot ? removeFromJackpotSlip(match_id) :
+                    removeFromSlip(match_id);
+
+                let match_selector = match.match_id + "_selected";
+                let ucn = clean_rep(
+                    match.match_id
+                    + "" + match.sub_type_id
+                    + (match.bet_pick)
+                );
 
             dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
         });
@@ -379,78 +381,78 @@ const BetslipSubmitForm = React.memo(
         setLocalStorage('betslip_share_code', null)
     }, []);
 
-    useEffect(() => {
-        updateWinnings();
-    }, [updateWinnings]);
+        useEffect(() => {
+            updateWinnings();
+        }, [updateWinnings]);
 
-    const initialValues = {
-        bet_amount: jackpot ? jackpotData?.bet_amount : bonusBet ? 100 : 100,
-        accept_all_odds_change: true,
-        user_id: state?.user?.profile_id,
-        total_games: totalGames,
-        total_odd: totalOdds,
-    };
+        const initialValues = {
+            bet_amount: jackpot ? jackpotData?.bet_amount : bonusBet ? 100 : 100,
+            accept_all_odds_change: true,
+            user_id: state?.user?.profile_id,
+            total_games: totalGames,
+            total_odd: totalOdds,
+        };
 
-    const validate = (values) => {
-        let errors = {};
+        const validate = (values) => {
+            let errors = {};
 
-        if (!values.user_id) {
-            errors.user_id = "Kindly login to proceed";
-            setMessage({status: 400, message: errors.user_id});
+            if (!values.user_id) {
+                errors.user_id = "Kindly login to proceed";
+                setMessage({status: 400, message: errors.user_id});
+                return errors;
+            }
+
+            if (!values.bet_amount || values.bet_amount < 1) {
+                errors.bet_amount = "Enter valid bet amount";
+                setMessage({status: 400, message: errors.bet_amount});
+                return errors;
+            }
+            if (!betslip || Object.keys(betslip).length === 0) {
+                errors.user_id = "No betlip selected";
+                setMessage({status: 400, message: errors.user_id});
+                return errors;
+            }
+            if (jackpot && Object.keys(getJackpotBetslip()).length < jackpotData?.total_games) {
+                let remaining = Number(jackpotData?.total_games) - Number(Object.keys(getJackpotBetslip()).length);
+                errors.jackpot_select = `Please select the ${remaining} remaining jackpot matches`
+                setMessage({status: 421, message: errors.jackpot_select})
+                return errors
+            }
+
             return errors;
-        }
+        };
 
-        if (!values.bet_amount || values.bet_amount < 1) {
-            errors.bet_amount = "Enter valid bet amount";
-            setMessage({status: 400, message: errors.bet_amount});
-            return errors;
-        }
-        if (!betslip || Object.keys(betslip).length === 0) {
-            errors.user_id = "No betlip selected";
-            setMessage({status: 400, message: errors.user_id});
-            return errors;
-        }
-        if(jackpot && Object.keys(getJackpotBetslip()).length<jackpotData?.total_games){
-            let remaining=Number(jackpotData?.total_games)-Number(Object.keys(getJackpotBetslip()).length);
-            errors.jackpot_select=`Please select the ${remaining} remaining jackpot matches`
-            setMessage({status:421,message: errors.jackpot_select})
-            return errors
-        }
-
-        return errors;
-    };
-
-    const clean_rep = (str) => {
-        str = str.replace(/[^A-Za-z0-9\-]/g, "");
-        return str.replace(/-+/g, "-");
-    };
+        const clean_rep = (str) => {
+            str = str.replace(/[^A-Za-z0-9\-]/g, "");
+            return str.replace(/-+/g, "-");
+        };
 
 
-    const calculateMultiBetBoostAmount = () => {
-        let settings = getFromLocalStorage("settings");
+        const calculateMultiBetBoostAmount = () => {
+            let settings = getFromLocalStorage("settings");
 
-        let giftMinGames = Number(settings?.betnareGifts?.giftBoostMinLegs);
+            let giftMinGames = Number(settings?.betnareGifts?.giftBoostMinLegs);
 
-        if (totalGames < giftMinGames) {
-            setHasMultiBetBoost(false);
-            dispatch({type: "SET", key: "hasBoost", payload: false});
-        }
+            if (totalGames < giftMinGames) {
+                setHasMultiBetBoost(false);
+                dispatch({type: "SET", key: "hasBoost", payload: false});
+            }
 
-        let boost = 0;
+            let boost = 0;
 
-        let betslips = getBetslip() || {};
+            let betslips = getBetslip() || {};
 
-        let odds = Object.values(betslips || [])?.filter(
-            (slip) =>
-                slip.bet_type !== "1" &&
-                Number(slip.odd_value) >= settings?.betnareGifts?.giftBoostMinOdds
-        );
+            let odds = Object.values(betslips || [])?.filter(
+                (slip) =>
+                    slip.bet_type !== "1" &&
+                    Number(slip.odd_value) >= settings?.betnareGifts?.giftBoostMinOdds
+            );
 
-        let giftQualificationOdds = odds.length;
+            let giftQualificationOdds = odds.length;
 
-        let awardGifts =
-            Number(settings?.betnareGifts?.awardGiftBoost) === 1 &&
-            Number(state?.user?.gift_balance || 0) > 0;
+            let awardGifts =
+                Number(settings?.betnareGifts?.awardGiftBoost) === 1 &&
+                Number(state?.user?.gift_balance || 0) > 0;
 
         setAwardMultiGift(awardGifts);
         if (giftQualificationOdds < giftMinGames) {
@@ -494,29 +496,33 @@ const BetslipSubmitForm = React.memo(
         }
     };
 
-    useEffect(() => {
-        calculateMultiBetBoostAmount();
-    }, [betslip, stake]);
+        useEffect(() => {
+            calculateMultiBetBoostAmount();
+        }, [betslip, stake]);
 
-    const encodeBetSlip = () => {
-        setLoadingShare(true);
+        const encodeBetSlip = () => {
+            setLoadingShare(true);
 
-        let endpoint = "/v1/bs-encode";
-        makeRequest({url: endpoint, method: "POST", data: betslip}).then(
-            ([status, response]) => {
-                if (status === 200) {
-                    setShowShareModal(true);
-                    setBetSharePayload(response);
-                    setLoadingShare(false);
-                } else {
-                    setLoadingShare(false);
+            let endpoint = "/v1/bs-encode";
+            makeRequest({url: endpoint, method: "POST", data: betslip}).then(
+                ([status, response]) => {
+                    if (status === 200) {
+                        setShowShareModal(true);
+                        setBetSharePayload(response);
+                        setLoadingShare(false);
+                    } else {
+                        setLoadingShare(false);
+                    }
                 }
+            );
+        };
+        const [showInfo, setShowInfo] = useState()
+        const label = {
+            inputProps: {
+                'aria-label': 'accept_all_odds_change',
+                'value': 'accept_all_odds_change'
             }
-        );
-    };
-    const [showInfo,setShowInfo]=useState()
-    const label = { inputProps: { 'aria-label': 'accept_all_odds_change',
-            'value':'accept_all_odds_change'} };
+        };
 
     return (
         <Formik
@@ -530,58 +536,59 @@ const BetslipSubmitForm = React.memo(
             {(props) => {
                 const {isValid, errors, values, submitForm, setFieldValue} = props;
 
-                const onFieldChanged = (ev) => {
+                    const onFieldChanged = (ev) => {
 
-                    let field = ev.target.name;
-                    let value = ev.target.type === "checkbox" ? ev.target.checked : ev.target.value;
-                    if (field == "bet_amount") {
-                        value = value.replace(/[^\d]/g, "");
-                        setFieldValue(field, value);
-                        setStake(value);
-                    } else {
-                        setFieldValue(field, value);
-                    }
-                };
-                const UserInfoContainer=()=>{
-                    return(
-                        <table className={"show-tax-info "}>
-                            <tbody>
-                            <tr>
-                                <td colSpan={2} className={" bet-align-right closeinfo"}>
-                                    <input
-                                        type="submit"
-                                        value="X"
-                                        onClick={() =>showUserInfo()}
-                                    />
-                                </td>
-                            </tr>
-                            {!jackpot && <tr className="bet-win-tr hide-on-affix">
-                                <td className={"bet-align-left tax-info"}>Possible Win</td>
-                                <td className={"bet-align-right tax-info"}>
-                                    KES. <span
-                                    id="pos_win">{formatNumber(hasMultiBetBoost ? possibleWinBoosted : possibleWin)}</span>
-                                </td>
-                            </tr>}
-
-                            <tr className="bet-win-tr hide-on-affix">
-                                <td className={"bet-align-left tax-info"}> Excise Tax (7.5%)</td>
-                                <td className={"bet-align-right tax-info"}>KES. <span
-                                    id="tax">{formatNumber(hasMultiBetBoost ? exciseTaxBoosted : exciseTax)}</span></td>
-                            </tr>
-                            {jackpot ? (
-                                ''
-                            ) : (
-                                <tr className="bet-win-tr hide-on-affix">
-                                    <td className={"bet-align-left tax-info"}> Withholding (20%)</td>
-                                    <td className={"bet-align-right tax-info"}>KES. <span
-                                        id="tax">{formatNumber(hasMultiBetBoost ? withholdingTaxBoosted : withholdingTax)}</span>
+                        let field = ev.target.name;
+                        let value = ev.target.type === "checkbox" ? ev.target.checked : ev.target.value;
+                        if (field == "bet_amount") {
+                            value = value.replace(/[^\d]/g, "");
+                            setFieldValue(field, value);
+                            setStake(value);
+                        } else {
+                            setFieldValue(field, value);
+                        }
+                    };
+                    const UserInfoContainer = () => {
+                        return (
+                            <table className={"show-tax-info "}>
+                                <tbody>
+                                <tr>
+                                    <td colSpan={2} className={" bet-align-right closeinfo"}>
+                                        <input
+                                            type="submit"
+                                            value="X"
+                                            onClick={() => showUserInfo()}
+                                        />
                                     </td>
                                 </tr>
-                            )}
-                            </tbody>
-                        </table>
-                    )
-                }
+                                {!jackpot && <tr className="bet-win-tr hide-on-affix">
+                                    <td className={"bet-align-left tax-info"}>Possible Win</td>
+                                    <td className={"bet-align-right tax-info"}>
+                                        KES. <span
+                                        id="pos_win">{formatNumber(hasMultiBetBoost ? possibleWinBoosted : possibleWin)}</span>
+                                    </td>
+                                </tr>}
+
+                                <tr className="bet-win-tr hide-on-affix">
+                                    <td className={"bet-align-left tax-info"}> Excise Tax (7.5%)</td>
+                                    <td className={"bet-align-right tax-info"}>KES. <span
+                                        id="tax">{formatNumber(hasMultiBetBoost ? exciseTaxBoosted : exciseTax)}</span>
+                                    </td>
+                                </tr>
+                                {jackpot ? (
+                                    ''
+                                ) : (
+                                    <tr className="bet-win-tr hide-on-affix">
+                                        <td className={"bet-align-left tax-info"}> Withholding (20%)</td>
+                                        <td className={"bet-align-right tax-info"}>KES. <span
+                                            id="tax">{formatNumber(hasMultiBetBoost ? withholdingTaxBoosted : withholdingTax)}</span>
+                                        </td>
+                                    </tr>
+                                )}
+                                </tbody>
+                            </table>
+                        )
+                    }
 
                 const showUserInfo=()=> {
                     setShowInfo(!showInfo)
@@ -738,5 +745,5 @@ const BetslipSubmitForm = React.memo(
             }}
         </Formik>)
 
-})
+    })
 export default React.memo(BetslipSubmitForm);

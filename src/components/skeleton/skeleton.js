@@ -11,4 +11,4 @@ const Skeleton1 = () => {
     );
 };
 
-export default Skeleton1;
+export default React.memo(Skeleton1);

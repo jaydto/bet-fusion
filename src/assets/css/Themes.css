@@ -7,6 +7,7 @@
     --betnare-button-register: #ffffff;
     --banner-background: url(../../assets/img/auth/img-17.webp)!important;
     --betnare-header-bg:#141d28;
+    --betnare-body-bg:#141d28;
     --odds-button:rgb(31 54 69);
     --odds-button:rgb(31 54 69);
     --betnare-live:red;
@@ -33,6 +34,8 @@
     --font-size-bet-body:1.4rem;
     --font-size-bet-body-sm:1.3rem;
     --light: #fff;
+    --gold:gold;
+    --orange:orange;
     --dark:#000;
     --grey:#adadad;
     --aqua:#adadad;
@@ -130,6 +133,5 @@
     --kiron-competition:#fafafa;
     --toggle-btn:#000;
     --picked:#fdd835;
-
-
+    --betnare-body-bg:#fafafa;
 }

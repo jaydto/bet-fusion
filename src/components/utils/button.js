@@ -1,7 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-const Button=(props)=> {
+const Button=React.memo(
+    (props)=> {
     const { to, children, choice, ...rest } = props;
 
     return (
@@ -9,6 +10,6 @@ const Button=(props)=> {
             <button className={`more-market-button btn border-0 ${choice}`} style={{background:"transparent", fontSize:'13px'}}>{children}</button>
         </Link>
     );
-}
+})
 
 export default Button;

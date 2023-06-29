@@ -8,6 +8,7 @@ import makeRequest from "./utils/fetch-request";
 
 import {MarketList} from "./matches";
 import LiveSideBar from "./sidebar/live-sidebar";
+import {ToastContainer} from "react-toastify";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -89,7 +90,9 @@ const AllMarkets = React.memo(
         const showDownload = (!urlPath.includes("nare-games") && !urlPath.includes("gameplay") && !urlPath.includes("smart-play") && !urlPath.includes("betslip-slip") && !urlPath.includes("nare-league") && !urlPath.includes("bet-history") && !urlPath.includes("standings") && !urlPath.includes("results") && !urlPath.includes("casino") && !urlPath.includes("jackpot") && !urlPath.includes("smart-soft") && !urlPath.includes("virtuals") && !urlPath.includes("match") && !urlPath.includes("competition"))
         return (
             <div className={'flex-item'}>
-                <div className="item4"><Header/></div>
+                <div className="item4"><Header/>
+                <ToastContainer/>
+                </div>
                 <div className={`flex-container ${!showDownload && 'top-spacing-page-no-download'}`}>
                     <div className="item1">
                         {window.location.pathname.includes('/match/live') ? <LiveSideBar/> :

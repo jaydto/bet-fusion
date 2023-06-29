@@ -207,7 +207,6 @@ const Header = React.memo(
         }
         return (
             <>
-                <ToastContainer/>
                 <div className={'d-flex flex-column'}>
                     {showDownload &&
                         <div>

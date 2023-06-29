@@ -8,6 +8,7 @@ import {Spinner} from "react-bootstrap";
 import Testimonials from "./carousel/Testimonials";
 import './test.css'
 import useWindowDimensions from "./header/Dimensions";
+import {ToastContainer} from "react-toastify";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -118,7 +119,8 @@ const   CompetitionMatches= React.memo(
 
     return (
         <div className={'flex-item'}>
-            <div className="item4"><Header/></div>
+            <div className="item4"><Header/>
+            <ToastContainer/></div>
             <div className={`flex-container ${!showDownload&&'top-spacing-page-no-download'}`}>
                 <div className="item1"> <SideBar loadCompetitions/></div>
                 <div className="item2"><div className="gz home match-overflow " >

@@ -19,26 +19,27 @@ import {LazyLoadImage} from "react-lazy-load-image-component";
 const MobileMenu = React.memo(
     (props) => {
 
-    const [liveSports, setLiveSports] = useState();
-    const { jackpot, kiron,jackpotData} = props;
-    const [betSlipMobile, setBetSlipMobile] = useState(false);
-    const gaEventTracker = useAnalyticsEventTracker("Navigation");
-    const pathname = window.location.pathname;
-    const [state,dispatch ] = useContext(Context);
+        const betItems = getBetslip();
+        const [liveSports, setLiveSports] = useState();
+        const {jackpot, kiron, jackpotData} = props;
+        const [betSlipMobile, setBetSlipMobile] = useState(false);
+        const gaEventTracker = useAnalyticsEventTracker("Navigation");
+        const pathname = window.location.pathname;
+        const [state, dispatch] = useContext(Context);
 
-    const fetchData = useCallback(() => {
-        let endpoint = "/v1/sports?live=1";
-        makeRequest({ url: endpoint, method: "get", data: null }).then(
-            ([c_status, c_result]) => {
-                if (c_status === 200) {
-                    setLiveSports(c_result?.data);
+        const fetchData = useCallback(() => {
+            let endpoint = "/v1/sports?live=1";
+            makeRequest({url: endpoint, method: "get", data: null}).then(
+                ([c_status, c_result]) => {
+                    if (c_status === 200) {
+                        setLiveSports(c_result?.data);
 
+                    }
                 }
-            }
-        );
-    }, []);
+            );
+        }, []);
 
-    let totalCount = 0;
+        let totalCount = 0;
 
         const percentageProgress = () => {
             const totalbets = Object.keys(betItems || {}).length
@@ -48,14 +49,14 @@ const MobileMenu = React.memo(
         }
 
 
-    useEffect(() => {
-        const abortController = new AbortController();
-        fetchData();
+        useEffect(() => {
+            const abortController = new AbortController();
+            fetchData();
 
-        return () => {
-            abortController.abort();
-        };
-    }, [fetchData]);
+            return () => {
+                abortController.abort();
+            };
+        }, [fetchData]);
 
         let sumOfOdds = 0;
 
@@ -79,9 +80,9 @@ const MobileMenu = React.memo(
             }
         }, [winnings])
         const pathSlipSummary = ["/betslip-slip", "/betslip-nare", "/betslip-nare"]
-        const [countInfo, setCountInfo]=useState(true)
+        const [countInfo, setCountInfo] = useState(true)
 
-        const removeCountInformation=()=>{
+        const removeCountInformation = () => {
             setCountInfo(!countInfo)
         }
 
@@ -124,9 +125,9 @@ const MobileMenu = React.memo(
                 </div>
 
                 <table className="mobile-menu"
-                       style={!pathSlipSummary.includes(pathname) ?sumOfOdds==0? {height: "70px"}:countInfo?{height: "120px"}:{height: "70px"} : {height: "53px"}}>
+                       style={!pathSlipSummary.includes(pathname) ? sumOfOdds == 0 ? {height: "70px"} : countInfo ? {height: "120px"} : {height: "70px"} : {height: "53px"}}>
                     <tbody>
-                    {(!pathSlipSummary.includes(pathname) && state?.multiboostmessage && sumOfOdds > 0&&countInfo) ?
+                    {(!pathSlipSummary.includes(pathname) && state?.multiboostmessage && sumOfOdds > 0 && countInfo) ?
                         <table>
                             <tbody className={"slip-menu-prematch"}>
                             <tr>
@@ -145,7 +146,8 @@ const MobileMenu = React.memo(
                                                                 : <strong className={'badge-font-weight'}>50</strong>
                                                             : <strong>0</strong>}
                                                     </Badge>
-                                                    <FontAwesomeIcon icon={faFileInvoice} style={{fontSize:"24px", color:"var(--light)"}}/>
+                                                    <FontAwesomeIcon icon={faFileInvoice}
+                                                                     style={{fontSize: "24px", color: "var(--light)"}}/>
                                                 </Link>
                                             </div>
 
@@ -192,7 +194,7 @@ const MobileMenu = React.memo(
                             </tr>
 
                             </tbody>
-                        </table>:
+                        </table> :
                         <table>
                             <tbody>
                             {!pathSlipSummary.includes(pathname) &&
@@ -230,7 +232,7 @@ const MobileMenu = React.memo(
                                 <td className={` nav__betslip bloc-icon bet-slip-footer-toggle text-white`}>
                                     <Link to={{
                                         pathname: `${jackpot ? "/betslip-jackpot" : kiron ? `/betslip-nare` : "/betslip-slip"}`,
-                                        search: `${jackpot !== undefined ? 'jackpot=' + jackpot : ''}${jackpotData!==undefined?'&jackpotData='+encodeURIComponent(JSON.stringify(jackpotData)):''}${kiron !== undefined ? 'nare-league=' + kiron : ''}`
+                                        search: `${jackpot !== undefined ? 'jackpot=' + jackpot : ''}${jackpotData !== undefined ? '&jackpotData=' + encodeURIComponent(JSON.stringify(jackpotData)) : ''}${kiron !== undefined ? 'nare-league=' + kiron : ''}`
                                     }}>
                                         <Badge
                                             pill
@@ -286,7 +288,8 @@ const MobileMenu = React.memo(
                                             to={"/login"}
 
                                         >
-                                            <LazyLoadImage src={ProfileSvg} alt="" style={{width: "30px", height: "25px"}}/>
+                                            <LazyLoadImage src={ProfileSvg} alt=""
+                                                           style={{width: "30px", height: "25px"}}/>
                                             <p>Profile</p>
                                         </Link>
                                     </td>
@@ -295,7 +298,7 @@ const MobileMenu = React.memo(
                             </tr>
                             </tbody>
                         </table>
-                       }
+                    }
                     </tbody>
 
 

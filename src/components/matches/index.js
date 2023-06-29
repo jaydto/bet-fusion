@@ -172,7 +172,7 @@ const MatchHeaderRow = React.memo(
         return (
 
             <Row
-                className={`full-mobile sticky-top ${jackpot ? 'sticky-jackpot ' : user ? "sticky-user " : 'sticky-responsive no-sticky '}px-lg-3`}>
+                className={`full-mobile sticky-top ${jackpot ? 'd-none ' : user ? "sticky-user " : 'sticky-responsive no-sticky '}px-lg-3`}>
                 <div className="top-matches d-flex position-sticky sticky-top shadow-sports-header header-sports">
                     <div className={"size-info  d-flex col-xs-12 pad left-text"}>
                         <div className="col pad left-text d-flex">
@@ -286,7 +286,7 @@ const MoreMarketsHeaderRow = React.memo(
             setSwitches(value)
         }
         useEffect(() => {
-            window.SIR("addWidget", "#sr-widget", "match.lmtPlus", {
+            window?.SIR("addWidget", "#sr-widget", "match.lmtPlus", {
                 branding: {tabs: {option: "icon", variant: "fullWidth"}},
                 goalBannerImage:
                     "https://storage.googleapis.com/nareimages/logo-white.webp",
@@ -321,9 +321,9 @@ const MoreMarketsHeaderRow = React.memo(
             const links = document.querySelectorAll('.link');
             links.forEach((link) => link.classList.remove('highlight'));
 
-            // add highlight class to clicked link
-            event.currentTarget.classList.add('highlight');
-        }
+    // add highlight class to clicked link
+    event.currentTarget.classList.add('highlight');
+  }
 
         return (
             <Row>
@@ -897,13 +897,41 @@ const MatchRow = React.memo(
         for (let i = 0; i < append; i++) {
             loops.push(i)
         }
+        const FormatDate = (props) => {
+            const {start_time, match_time, live, jackpot} = props;
+
+            // Extract the date and time components
+            const [dateString, timeString] = start_time.split(' ');
+            const [year, month, day] = dateString.split('-');
+            const [hour, minute] = timeString.split(':');
+
+            // Create a new Date object
+            const dateTime = new Date(year, month - 1, day, hour, minute);
+
+            // Format the date and time
+            const formattedDateTime = dateTime.toLocaleString('en-US', {
+                month: 'long',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+                hour12: true,
+            });
+            if (match_time) {
+                return formattedDateTime + " " + match_time;
+            } else if (jackpot) {
+                return formattedDateTime
+            } else if (live === 1) {
+                return match_time
+            } else {
+                return formattedDateTime;
+            }
+        };
+
         return (
             <div className="top-matches d-flex flex-sm-column flex-lg-row  styling-matches">
                 <div
                     className="to-deskview to-block to-tabview  mx-lg-0 px-sm-4 px-md-4 px-lg-0 py-sm-4 py-md-4 py-lg-0 mt-2 container-size ">
                     <div className="size-info mobile-for-desktop d-flex col-xs-12 pad left-text flex-row live-col">
-
-
                         <div
                             className={`d-flex flex-column px-1 justify-content-sm-center justify-content-md-start change-date1 mobile-remove display-ipad-remove-id ${jackpot ? "jackpot-width" : ""}`}>
                             {live &&
@@ -1124,11 +1152,13 @@ const MatchRow = React.memo(
                                   </span>
                                                              </div>
                                                          }
-                                                         {live !== 1 && new Date(match?.start_time).getDate() +
-                                                             "/" +
-                                                             (Number(new Date(match?.start_time).getMonth()) + 1) +
-                                                             " " +
-                                                             (match?.match_time == undefined ? "" : match?.match_time)}
+                                                         <FormatDate live={live} start_time={match?.start_time}
+                                                                     match_time={match?.match_time} jackpot={jackpot}/>
+                                                         {/*{live!==1&&new Date(match?.start_time).getDate() +*/}
+                                                         {/*    "/" +*/}
+                                                         {/*    (Number(new Date(match?.start_time).getMonth()) + 1) +*/}
+                                                         {/*    " " +*/}
+                                                         {/*    (match?.match_time == undefined ? "": match?.match_time)}*/}
 
                                                      </>
 
@@ -1489,10 +1519,10 @@ export const JackpotMatchList = React.memo(
                 <MatchHeaderRow jackpot={true} first_match={matches ? matches[0] : []}/>
                 <div className={'row d-flex flex-row justify-content-between shadow-lg '}>
                     <div className="col-md-12 text-center shadow-lg">
-                        <div className={'text-white col'}>
-                            Wekelea Jackpot Bet bila worries na Nare Auto pick.
+                        <div className={'text-white col text-header-jackpot'}>
+                            <p>Wekelea Jackpot Bet bila worries na Nare Auto pick.</p>
                         </div>
-                        <div className={'col-md-12 text-center'}>
+                        <div className={'col-md-12 text-center autopick-remove-on-mobile'}>
                             <button className={'btn btn-square btn-lg  place-bet-btn bold mb-1 bg-warning'}
                                     id={"jp-nare-pick-button"}
                                     style={{fontWeight: "bold", fontSize: "20px"}}
@@ -1502,7 +1532,7 @@ export const JackpotMatchList = React.memo(
                         </div>
                     </div>
                 </div>
-                <Row className="web-element top-login-background-img-bg">
+                <Row className="web-element jackpot-page top-login-background-img-bg">
                     {matches && Object.entries(matches?.data).map(([key, match], index) => (
                         <MatchRow match={match} jackpot key={index}/>
                     ))

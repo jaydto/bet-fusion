@@ -145,6 +145,9 @@ input.text-white {
     color: var(--betnare-button-login) !important
 }
 
+.Toastify__toast-container--top-right{
+    z-index: 10000;
+}
 .matches .top-matches {
     /* background: var(--betnare-odds-body); */
     padding-top: 10px;
@@ -155,6 +158,7 @@ input.text-white {
     font-weight: normal;
     color: var(--light);
     font-size: 12px;
+    opacity: 1;
     /* border-bottom: 1px solid var(--betnare-input); */
 }
 
@@ -1583,6 +1587,13 @@ img.nare-league {
 }
 
 @media (min-width: 992px) {
+    .text-header-jackpot {
+        width: 100%;
+        overflow: hidden;
+        /* margin-left: 400px; */
+        /* max-width: 500px; */
+        height: 21px;
+    }
     .slip-team {
         width: 200px;
         white-space: nowrap;
@@ -1783,6 +1794,77 @@ img.nare-league {
         position: absolute;
         right: 0px;
     }
+    .text-header-jackpot {
+        width: 100%;
+        overflow: hidden;
+        /*margin-left: 400px;*/
+        /*max-width: 500px*/
+        height:16px;
+    }
+    .web-element.jackpot-page {
+        margin-bottom: 9rem!important;
+    }
+    .autopick-remove-on-mobile{
+        display:none!important;
+    }
+    .slip-alert-style {
+        border-radius: 7px;
+        padding: 5px;
+        border: thin solid;
+    }
+    .slip-count-value{
+        position: absolute;
+        background: var(--betnare-button-login)!important;
+        top: -10px;
+        left: 4px;
+
+    }
+
+    .mobile-menu tbody.slip-menu-prematch{
+
+    }
+    .slip-count-option {
+        position: fixed;
+        bottom: 14rem;
+    }
+    .close-prompt {
+        margin-bottom: -2px;
+        background: var(--betnare-button-login);
+        border-radius: 10px;
+    }
+    .close-prompt input{
+        margin-bottom:-10px
+    }
+    .close-prompt input{
+        background: var(--betnare-button-login)!important;
+        margin-bottom: 0px;
+        border-bottom: 0px!important;
+        margin-right: 0px;
+        padding-right: 5px;
+        border-top-right-radius: 12px!important;
+        border-top-left-radius: 12px!important;
+        border-bottom-left-radius: 0px!important;
+        border-bottom-right-radius: 0px!important;
+
+    }
+    .b24-widget-button-position-bottom-left {
+        left:0px;
+        bottom: 87px!important;
+    }
+    .info-slip-bets {
+        background: var(--betnare-button-login);
+        width: 100%;
+        height: 2rem;
+        align-items: center;
+
+    }
+    .info-slip-bets td{
+        font-weight: 700;
+        color:var(--dark);
+    }
+    .top-smartsoft{
+        margin-top: 8rem!important;
+    }
     .slip-team {
         width: 270px;
         white-space: nowrap;
@@ -1792,12 +1874,10 @@ img.nare-league {
     .top-smartsoft {
         margin-top: 8rem !important;
     }
-
     .header-profile {
         align-items: end;
         padding-bottom: 12px;
     }
-
     .odd-change-position .odds-change-box {
         /* padding-left: 0px!important; */
         width: 16%;
@@ -1840,7 +1920,10 @@ img.nare-league {
         justify-content: center;
         padding: 0 21px;
     }
-
+    .bet-align-right-slip{
+        font-size:10px;
+        text-align: right;
+    }
     .bet-align-left {
         font-size: 10px !important;
     }
@@ -1867,10 +1950,19 @@ img.nare-league {
     }
 
     .smart-soft-games-container .smart-soft-game:first-child {
-        width: 50% !important;
+        width: 50%!important;
+    }
+    .slip-count-color{
+        color:var(--light);
+    }
+    .mobile-menu.jackpot-menu{
+        display: flex;
+        justify-content: space-between;
+        gap: 3px;
+        margin: auto;
     }
 
-    .styling-mobile-size {
+    .styling-mobile-size{
         overflow: hidden;
         height: 0px;
     }
@@ -3093,6 +3185,49 @@ img.nare-league {
         height: 23px;
     }
 }
+/*.text-header-jackpot {*/
+/*    font-family: 'arial black';*/
+/*    font-size: 13px;*/
+/*    text-align: center;*/
+/*    padding: 0;*/
+/*    margin: 0;*/
+/*    margin-left: 50%;*/
+/*    transform: translateX(-200%);*/
+/*    opacity: 0;*/
+/*    animation: slide-in-anim 3s ease-in-out infinite;*/
+/*    width: 100%;*/
+/*}*/
+/*div.text-header-jackpot {*/
+/*    width:100%;*/
+/*    overflow:hidden;*/
+/*}*/
+/*div.text-header-jackpot p {*/
+/*    font-size: 13px;*/
+/*    animation: 10s slide-right infinite;*/
+/*}*/
+
+
+
+.text-header-jackpot p {
+    overflow: hidden;
+    font-size: 15px;
+    font-weight:600;
+    animation: 10s slide-right  infinite;
+    animation-delay: 5s;
+}
+
+@keyframes slide-right {
+    0% {
+        margin-left: -200px;
+    }
+    50%{
+        margin-left: 0%;
+    }
+    100%{
+        margin-left:750px;
+    }
+}
+
 
 /*animations*/
 .flashy {
@@ -3113,4 +3248,19 @@ img.nare-league {
 }
 
 
+/*@keyframes slide-in-anim {*/
+/*    20% {*/
+/*        opacity: 0;*/
+/*    }*/
+/*    60% {*/
+/*        transform: translateX(-45%);*/
+/*    }*/
+/*    75% {*/
+/*        transform: translateX(-52%);*/
+/*    }*/
+/*    100% {*/
+/*        opacity: 1;*/
+/*        transform: translateX(-50%);*/
+/*    }*/
+/*}*/
 

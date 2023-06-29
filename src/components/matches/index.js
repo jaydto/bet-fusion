@@ -32,6 +32,8 @@ import Notify from "../utils/Notify";
 
 import {Button, ButtonGroup} from "react-bootstrap";
 import makeRequest from "../utils/fetch-request";
+import moment from "moment";
+
 
 const clean = (_str) => {
     _str = _str.replace(/[^A-Za-z0-9\-]/g, '');
@@ -917,7 +919,7 @@ const MatchRow = React.memo(
                 hour12: true,
             });
             if (match_time) {
-                return formattedDateTime + " " + match_time;
+                return formattedDateTime
             } else if (jackpot) {
                 return formattedDateTime
             } else if (live === 1) {
@@ -1513,12 +1515,54 @@ export const JackpotMatchList = React.memo(
         }
 
 
+        const CountDownJackpot = () => {
+            // Get the first match from the array
+            const first_match=matches?.meta?.start_time
+            const [countdown, setCountdown] = useState('');
+
+            useEffect(() => {
+                const interval = setInterval(() => {
+                    const now = moment();
+                    const start = moment(first_match, 'YYYY-MM-DD HH:mm');
+                    const diff = start.diff(now);
+                    const countdown = moment.duration(diff);
+
+                    const days = countdown.days();
+                    const hours = countdown.hours();
+                    const minutes = countdown.minutes();
+                    const seconds = countdown.seconds();
+
+                    setCountdown(`${days} Days ${hours} Hours ${minutes} Minutes ${seconds} Seconds`);
+
+                    if (diff <= 0) {
+                        clearInterval(interval);
+                    }
+                }, 1000);
+
+                return () => clearInterval(interval);
+            }, [first_match?.meta?.start_time]);
+
+
+
+
+
+            return (
+                <div>
+                    <p className={"text-expiry-style"}>Expires on&nbsp;
+                        {matches?.meta?.end_time}
+                    </p>
+                    <p className={"text-light count-down-jackpot"}>{countdown}</p>
+                </div>
+            );
+        };
+
         return (
             <div className="matches full-width mt-1 ">
 
                 <MatchHeaderRow jackpot={true} first_match={matches ? matches[0] : []}/>
                 <div className={'row d-flex flex-row justify-content-between shadow-lg '}>
                     <div className="col-md-12 text-center shadow-lg">
+                        <CountDownJackpot />
                         <div className={'text-white col text-header-jackpot'}>
                             <p>Wekelea Jackpot Bet bila worries na Nare Auto pick.</p>
                         </div>

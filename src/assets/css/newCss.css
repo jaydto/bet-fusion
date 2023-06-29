@@ -355,6 +355,12 @@ input.text-white {
     /*width: 40px;*/
 }
 
+.text-expiry-style{
+    font-weight:600;
+    opacity:0.6;
+    font-size:14px;
+    color:var(--light);
+}
 .accordion__button::before {
     display: none !important;
 }
@@ -1592,7 +1598,10 @@ img.nare-league {
         overflow: hidden;
         /* margin-left: 400px; */
         /* max-width: 500px; */
-        height: 21px;
+        height: 29px;
+    }
+    .text-header-jackpot p{
+        font-size:20px;
     }
     .slip-team {
         width: 200px;
@@ -1783,6 +1792,9 @@ img.nare-league {
     cursor: pointer!important;
 }
 @media (max-width: 991px) {
+    .text-header-jackpot p {
+        font-size: 15px;
+    }
     .filters-modal .modal-content {
         background-color: var(--betnare-primary);
         color: #fff;
@@ -3210,7 +3222,6 @@ img.nare-league {
 
 .text-header-jackpot p {
     overflow: hidden;
-    font-size: 15px;
     font-weight:600;
     animation: 10s slide-right  infinite;
     animation-delay: 5s;

@@ -8,7 +8,7 @@ import makeRequest from "../utils/fetch-request";
 import {Badge} from "react-bootstrap";
 
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faFileInvoice, faTimes,} from "@fortawesome/free-solid-svg-icons";
+import {faFileInvoice, faReceipt, faTimes,} from "@fortawesome/free-solid-svg-icons";
 
 import {Link} from "react-router-dom";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
@@ -79,7 +79,7 @@ const MobileMenu = React.memo(
                 winnings = sumOfOdds !== 0 ? (state?.hasBoost ? state?.netWinBoost == 0 ? state?.netWin : state?.netWinBoost : state?.netWin) : 0
             }
         }, [winnings])
-        const pathSlipSummary = ["/betslip-slip", "/betslip-nare", "/betslip-nare"]
+        const pathSlipSummary = ["/betslip-slip", "/betslip-nare", "/betslip-nare","/nare-league","standing","bet-history","/results","/jackpot","/casino","/smart-soft","/nare-games","/promotions"]
         const [countInfo, setCountInfo] = useState(true)
 
         const removeCountInformation = () => {
@@ -187,7 +187,7 @@ const MobileMenu = React.memo(
                                     <div className="progress mx-3 my-3">
                                         <div className="progress-bar" role="progressbar"
                                              style={{width: `${percentageProgress()}%`}}
-                                             aria-valuenow={percentageProgress()}
+                                             aria-valuenow={percentageProgress}
                                              aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </td>
@@ -218,17 +218,22 @@ const MobileMenu = React.memo(
                                     </Link>
                                 </td>
 
-                                <td className={`bloc-icon ${pathname === "/nare-league" ? "active" : ""}`}>
+                                <td className={`bloc-icon ${pathname === "/live" ? "active" : ""}`}>
                                     <Link
-                                        to={"/nare-league"}
-                                        onClick={() => gaEventTracker("Visit Nare League Page")}
+                                        to={`/live`}
 
+                                        onClick={() => gaEventTracker("Visit Live  Page")}
                                     >
-                                        <LazyLoadImage src={kironImg} alt="" className={'nare-league'}/>
+                                        <LazyLoadImage src={LiveSvg} alt=""/>
+                                        {liveSports?.forEach((sport) => {
+                                            totalCount += sport.count;
+                                        })}
+                                        <p>
+                                            Live <span className={"text-light"}>({totalCount || 0})</span>
+                                        </p>
 
                                     </Link>
                                 </td>
-
                                 <td className={` nav__betslip bloc-icon bet-slip-footer-toggle text-white`}>
                                     <Link to={{
                                         pathname: `${jackpot ? "/betslip-jackpot" : kiron ? `/betslip-nare` : "/betslip-slip"}`,
@@ -255,18 +260,13 @@ const MobileMenu = React.memo(
                                     </Link>
                                 </td>
 
-                                <td className={`bloc-icon ${pathname === "/live" ? "active" : ""}`}>
+                                <td className={`bloc-icon ${pathname === "/my-bets" ? "active" : ""}`}>
                                     <Link
-                                        to={`/live`}
-
-                                        onClick={() => gaEventTracker("Visit Live  Page")}
-                                    >
-                                        <LazyLoadImage src={LiveSvg} alt=""/>
-                                        {liveSports?.forEach((sport) => {
-                                            totalCount += sport.count;
-                                        })}
+                                        to={`/my-bets`}
+                                        onClick={() => gaEventTracker("Visit My Bets Page")}>
+                                        <FontAwesomeIcon icon={faReceipt} style={{fontSize:"22px",color: "#FFB200"}}/>
                                         <p>
-                                            Live <span className={"text-light"}>({totalCount || 0})</span>
+                                            My Bets
                                         </p>
 
                                     </Link>

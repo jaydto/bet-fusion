@@ -12,6 +12,7 @@ import {faFireAlt, faGift, faTrash,} from "@fortawesome/free-solid-svg-icons";
 
 import {getTime} from "../pages/Kiron/periods";
 import {useNavigate} from "react-router-dom";
+import useWindowDimensions from "../header/Dimensions";
 
 const Float = (equation, precision = 4) => {
     return Math.round(equation * 10 ** precision) / 10 ** precision;
@@ -19,589 +20,594 @@ const Float = (equation, precision = 4) => {
 
 const KironslipSubmitForm = React.memo(
     (props) => {
-    const {
-        totalGames,
-        totalOdds,
-        betslip,
-        setBetslipsData,
-        setExpired,
-        kiron
-    } = props;
-    const [showExpired, setShowExpired]=useState(false)
-    const [hasMultiBetBoost, setHasMultiBetBoost] = useState(true);
-    const [multiBoostAmount, setMultiBoostAmount] = useState(0);
-    const [showShareModal, setShowShareModal] = useState(false);
-    const [betSharePayload, setBetSharePayload] = useState({});
-    const [ipv4, setIpv4] = useState(null);
-    const [message, setMessage] = useState(null);
-    const [state, dispatch] = useContext(Context);
-    const [loadingShare, setLoadingShare] = useState(false);
+        const {
+            totalGames,
+            totalOdds,
+            betslip,
+            setBetslipsData,
+            setExpired,
+            kiron
+        } = props;
+        const [showExpired, setShowExpired] = useState(false)
+        const [hasMultiBetBoost, setHasMultiBetBoost] = useState(true);
+        const [multiBoostAmount, setMultiBoostAmount] = useState(0);
+        const [showShareModal, setShowShareModal] = useState(false);
+        const [betSharePayload, setBetSharePayload] = useState({});
+        const [ipv4, setIpv4] = useState(null);
+        const [message, setMessage] = useState(null);
+        const [state, dispatch] = useContext(Context);
+        const [loadingShare, setLoadingShare] = useState(false);
 
-    const [stake, setStake] = useState(100);
-    const [stakeAfterTax, setStakeAfterTax] = useState(0);
-    const [stakeAfterTaxBoosted, setStakeAfterTaxBoosted] = useState(0);
+        const [stake, setStake] = useState(100);
+        const [stakeAfterTax, setStakeAfterTax] = useState(0);
+        const [stakeAfterTaxBoosted, setStakeAfterTaxBoosted] = useState(0);
+        const {height, width} = useWindowDimensions();
 
-    const [exciseTax, setExciseTax] = useState(0);
-    const [exciseTaxBoosted, setExciseTaxBoosted] = useState(0);
+        const [exciseTax, setExciseTax] = useState(0);
+        const [exciseTaxBoosted, setExciseTaxBoosted] = useState(0);
 
-    const [withholdingTax, setWithholdingTax] = useState(0);
-    const [withholdingTaxBoosted, setWithholdingTaxBoosted] = useState(0);
+        const [withholdingTax, setWithholdingTax] = useState(0);
+        const [withholdingTaxBoosted, setWithholdingTaxBoosted] = useState(0);
 
-    const [possibleWin, setPossibleWin] = useState(0);
-    const [possibleWinBoosted, setPossibleWinBoosted] = useState(0);
+        const [possibleWin, setPossibleWin] = useState(0);
+        const [possibleWinBoosted, setPossibleWinBoosted] = useState(0);
 
-    const [netWin, setNetWin] = useState(0);
-    const [netWinBoosted, setNetWinBoosted] = useState(0);
+        const [netWin, setNetWin] = useState(0);
+        const [netWinBoosted, setNetWinBoosted] = useState(0);
 
-    const [settings, setSettings] = useState(getFromLocalStorage("settings"));
-    const [multiBoostMessage, setMultiBoostMessage] = useState("");
-    const [awardMultiGift, setAwardMultiGift] = useState(false);
+        const [settings, setSettings] = useState(getFromLocalStorage("settings"));
+        const [multiBoostMessage, setMultiBoostMessage] = useState("");
+        const [awardMultiGift, setAwardMultiGift] = useState(false);
 
-    const [betslipKey, setBetslipKey] = useState("kironbetslip");
-    const [user, setUser] = useState(getFromLocalStorage("user"));
+        const [betslipKey, setBetslipKey] = useState("kironbetslip");
+        const [user, setUser] = useState(getFromLocalStorage("user"));
 
-    const updateUserOnHistory = () => {
-        if (!user) {
-            return false;
-        }
-        let endpoint = "/v1/balance";
-        let udata = {
-            token: user.token
-        }
-        makeRequest({url: endpoint, method: "post", data: udata}).then(([_status, response]) => {
-            if (_status == 200) {
-                let u = {...user, ...response.user};
-                setLocalStorage('user', u);
-                setUser(u)
-                dispatch({type: "SET", key: "user", payload: u});
-                setTimeout(()=>{
-                    setMessage(null)
-                },6000)
-                dispatch({type: "SET", key: "placebet", payload: true});
-            }
-        });
-
-    };
-
-
-
-    useEffect(() => {
-        updateUserOnHistory()
-    }, [message?.message])
-
-    useEffect(() => {
-        if (kiron) {
-            setBetslipKey("kironbetslip");
-        }
-    }, [kiron]);
-
-    const scrollToRef = useRef(null);
-
-    useEffect(() => {
-        if (scrollToRef.current) {
-            scrollToRef.current.scrollIntoView({ behavior: 'auto' });
-        }
-    }, []);
-
-    const ipAddress = useCallback(async () => {
-        let ip = await publicIp
-            .v4({
-                fallbackUrls: ["https://ifconfig.co/ip"],
-            })
-            .then((result) => {
-                return result;
-            });
-
-        setIpv4(ip);
-    }, [ipv4]);
-
-    const Alert = (props) => {
-        let c =
-            message?.status == 201
-                ? "success"
-                : message?.status == 421
-                    ? "warning"
-                    : "danger";
-        let x_style = {
-            float: "right",
-            display: "block",
-            fontSize: "22px",
-            color: "orangered",
-            cursor: "pointer",
-            padding: "3px",
-        };
-        return (
-            <>
-                {message?.status && (
-                    <div
-                        role="alert"
-                        className={`fade alert alert-${c} show alert-dismissible d-flex justify-content-between align-items-center`}
-                    >
-                        {message.message}
-                        <span
-                            aria-hidden="true"
-                            style={x_style}
-                            onClick={() => setMessage(null)}
-                        >
-              &times;
-            </span>
-                    </div>
-                )}
-            </>
-        );
-    };
-    useEffect(() => {
-        ipAddress();
-    }, [ipAddress]);
-
-    const handlePlaceBet = useCallback(
-        (values, {setSubmitting, resetForm, setStatus, setErrors}) => {
-            // let bs = Object.values(betslip || []);
-
-            let slipHasOddsChange = false;
-
-            if (slipHasOddsChange === true) {
-                setMessage({
-                    status: 400,
-                    message:
-                        "Slip has events with changed odds, tick " +
-                        " accept odds all odds change box to accept and place bet",
-                });
-                setSubmitting(false);
+        const updateUserOnHistory = () => {
+            if (!user) {
                 return false;
             }
-
-
-            const betDataArray = kiron&& Object.values(betslip).map(bet => ({
-                parent_match_id: parseInt(bet.parent_match_id),
-                market_id: parseInt(bet.market_id),
-                competition_id: bet.competition_id,
-                round_id: bet.round_id,
-                outcome_id: bet.outcome_id,
-                odd_type: bet.odd_type,
-                odd_value: parseFloat(bet.odd_value)
-            }));
-
-            let payload ={
-                amount: values.bet_amount,
-                app_name: "desktop",
-                bet_data:betDataArray
+            let endpoint = "/v1/balance";
+            let udata = {
+                token: user.token
             }
-
-            let endpoint ="/v1/nare-league/bet"
-            let method = "POST";
-            let use_jwt = false ;
-
-
-            makeRequest({
-                url: endpoint,
-                method: method,
-                data: payload,
-                use_jwt: use_jwt,
-            }).then(([status, response]) => {
-                if (status === 200 || status == 201 || status == 204) {
-                    setMessage(response);
-                    let  betslips= getKironSlip()
-                    Object.entries(betslips||{})?.map(([match_id, match]) => {
-                        removeFromKironSlip(match_id)
-                        let match_selector = match?.parent_match_id+"_selectedK"
-                        let ucn =clean_rep(
-                            match?.parent_match_id + "" +match?.market_id +""+match?.odd_key)
-
-
-                        dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
-
-                    });
-                    clearKironSlip()
-                    setMessage({
-                        status: 201,
-                        message: response?.message,
-                    });
-                    setBetslipsData(null);
-                    dispatch({
-                        type: "SET",
-                        key: "kironbetslip",
-                        payload: {},
-                    });
-                } else {
-                    let response_message = response?.message;
-                    if (response_message === "" || response_message === undefined) {
-                        response_message = response?.error;
-                        if (response_message === "" || response_message === undefined) {
-                            response_message =
-                                "Something went wrong. Please try again later or contact support. 0701 087 777";
-                        }
-                    }
-                    let qmessage = {
-                        status: status,
-                        message: response_message,
-                    };
-                    setMessage(qmessage);
+            makeRequest({url: endpoint, method: "post", data: udata}).then(([_status, response]) => {
+                if (_status == 200) {
+                    let u = {...user, ...response.user};
+                    setLocalStorage('user', u);
+                    setUser(u)
+                    dispatch({type: "SET", key: "user", payload: u});
+                    setTimeout(() => {
+                        setMessage(null)
+                    }, 6000)
+                    dispatch({type: "SET", key: "placebet", payload: true});
                 }
-                setSubmitting(false);
             });
-        }
-    );
 
-    const updateWinnings = useCallback(() => {
-        if (betslip) {
-            let stake_after_tax = (Float(stake) / Float(107.5)) * 100;
-            let stake_after_tax_boosted =
-                ((Float(stake) + Float(multiBoostAmount)) / Float(107.5)) * 100;
-
-            let ext = Float(stake) - Float(stake_after_tax);
-            let ext_boosted =
-                Float(stake) + Float(multiBoostAmount) - Float(stake_after_tax_boosted);
-
-            let raw_possible_win = Float(stake_after_tax) * Float(totalOdds);
-            let boosted_raw_possible_win =
-                Float(stake_after_tax_boosted) * Float(totalOdds);
+        };
 
 
-            if (raw_possible_win > 500000 ) {
-                raw_possible_win = 500000;
+        useEffect(() => {
+            updateUserOnHistory()
+        }, [message?.message])
+
+        useEffect(() => {
+            if (kiron) {
+                setBetslipKey("kironbetslip");
             }
-            if (boosted_raw_possible_win > 500000 ) {
-                boosted_raw_possible_win = 500000;
+        }, [kiron]);
+
+        const scrollToRef = useRef(null);
+
+        useEffect(() => {
+            if (scrollToRef.current) {
+                scrollToRef.current.scrollIntoView({behavior: 'auto'});
             }
+        }, []);
 
-            let taxable_amount = Float(raw_possible_win) - Float(stake_after_tax);
-            let taxable_amount_boosted =
-                Float(boosted_raw_possible_win) - Float(stake_after_tax_boosted);
+        const ipAddress = useCallback(async () => {
+            let ip = await publicIp
+                .v4({
+                    fallbackUrls: ["https://ifconfig.co/ip"],
+                })
+                .then((result) => {
+                    return result;
+                });
 
-            let wint = taxable_amount * 0.2;
-            let wint_boosted = taxable_amount_boosted * 0.2;
+            setIpv4(ip);
+        }, [ipv4]);
 
-            let nw = raw_possible_win - wint;
-            let nw_boosted = boosted_raw_possible_win - wint_boosted;
+        const Alert = (props) => {
+            let c =
+                message?.status == 201
+                    ? "success"
+                    : message?.status == 421
+                        ? "warning"
+                        : "danger";
+            let x_style = {
+                float: "right",
+                display: "block",
+                fontSize: "22px",
+                color: "orangered",
+                cursor: "pointer",
+                padding: "3px",
+            };
+            return (
+                <>
+                    {message?.status && (
+                        <div
+                            role="alert"
+                            className={`fade alert alert-${c} show alert-dismissible d-flex justify-content-between align-items-center`}
+                        >
+                            {message.message}
+                            <span
+                                aria-hidden="true"
+                                style={x_style}
+                                onClick={() => setMessage(null)}
+                            >
+              &times;
+            </span>
+                        </div>
+                    )}
+                </>
+            );
+        };
+        useEffect(() => {
+            ipAddress();
+        }, [ipAddress]);
 
-            setExciseTax(Float(ext, 2));
-            setExciseTaxBoosted(Float(ext_boosted, 2));
+        const handlePlaceBet = useCallback(
+            (values, {setSubmitting, resetForm, setStatus, setErrors}) => {
+                // let bs = Object.values(betslip || []);
 
-            setStakeAfterTax(stake_after_tax);
-            setStakeAfterTaxBoosted(stake_after_tax_boosted);
+                let slipHasOddsChange = false;
 
-            setNetWin(Float(nw, 2));
-            setNetWinBoosted(Float(nw_boosted, 2));
-
-            setPossibleWin(Float(raw_possible_win, 2));
-            setPossibleWinBoosted(Float(boosted_raw_possible_win, 2));
-
-            setWithholdingTax(Float(wint, 2));
-            setWithholdingTaxBoosted(Float(wint_boosted, 2));
-        } else {
-            setNetWin(0);
-            setWithholdingTax(0);
-            setExciseTax(0);
-            setPossibleWin(0);
-            setStakeAfterTax(0);
-        }
-        if (message && message.status > 299) {
-            setMessage(null);
-        }
-    }, [betslip, stake, totalOdds, multiBoostAmount]);
-
-    const navigate=useNavigate()
-    const handleRemoveAll = useCallback(() => {
-        let  betslips= getKironSlip()
-        Object.entries(betslips||{})?.map(([match_id, match]) => {
-            removeFromKironSlip(match_id)
-            let match_selector = match?.parent_match_id+"_selectedK"
-            let ucn =clean_rep(
-                match?.parent_match_id + "" +match?.market_id +""+match?.odd_key)
-
-
-            dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
-            // dispatch({type: "SET", key: "betslip", payload: slip});
-        });
-        clearKironSlip()
-        setMessage(null);
-        setBetslipsData(null)
-        dispatch({
-            type: "SET",
-            key: "kironbetslip",
-            payload: {},
-        });
-        return navigate("/nare-league")
-    }, []);
-
-
-    const showRemoveExpired = useCallback(() => {
-        let betslips = getKironSlip() || {};
-
-        const data = Object.entries(betslips||{})?.map(([match_id, match]) => {
-            let start_time = match?.start_time;
-            let gettime = getTime(start_time);
-            let timePeriod = new Date(Date.parse(`${new Date().toDateString()} ${gettime}`));
-            let firstRound = timePeriod.getTime();
-            let now = new Date().getTime();
-            let diff = (firstRound - now);
-            let initialTime = Math.floor(diff / 1000);
-            let parent_match_id;
-            if(initialTime<10){
-                parent_match_id= match?.parent_match_id;
-            }
-
-            return { parent_match_id, initialTime };
-        });
-
-        let parentMatchId = data.map((item) => item.parent_match_id).filter(item => item !== undefined);
-
-        let initialTime = data.map((item) => item.initialTime);
-
-        setExpired(parentMatchId)
-
-        const status = initialTime.some((exp) => exp < 10);
-        setShowExpired(status);
-
-        return { parentMatchId, initialTime };
-    }, []);
-
-    useEffect(()=>{
-
-        showRemoveExpired()
-    },[Date.now()])
+                if (slipHasOddsChange === true) {
+                    setMessage({
+                        status: 400,
+                        message:
+                            "Slip has events with changed odds, tick " +
+                            " accept odds all odds change box to accept and place bet",
+                    });
+                    setSubmitting(false);
+                    return false;
+                }
 
 
+                const betDataArray = kiron && Object.values(betslip).map(bet => ({
+                    parent_match_id: parseInt(bet.parent_match_id),
+                    market_id: parseInt(bet.market_id),
+                    competition_id: bet.competition_id,
+                    round_id: bet.round_id,
+                    outcome_id: bet.outcome_id,
+                    odd_type: bet.odd_type,
+                    odd_value: parseFloat(bet.odd_value)
+                }));
 
-    const handleRemoveExpired= useCallback(() =>{
-        let  betslips= getKironSlip()
+                let payload = {
+                    amount: values.bet_amount,
+                    app_name: "desktop",
+                    bet_data: betDataArray
+                }
 
-        Object.entries(betslips||{})?.map(([match_id, match]) => {
-            let start_time=match?.start_time
-            let gettime = getTime(start_time)
-
-            let timePeriod = new Date(Date.parse(`${new Date().toDateString()} ${gettime}`));
-            let firstRound = timePeriod.getTime();
-            let now = new Date().getTime();
-            let diff = (firstRound - now);
-            let initialTime = Math.floor(diff / 1000);
-            // let seconds = initialTime % 60;
-
-            if(initialTime<10){
-                let match_selector = match?.parent_match_id+"_selectedK"
-                let ucn =clean_rep(
-                    match?.parent_match_id + "" +match?.market_id +""+match?.odd_key)
-                dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
-                let betslip=removeFromKironSlip(match?.parent_match_id)
-                dispatch({ type: "SET", key: 'kironbetslip', payload: betslip });
-            }
+                let endpoint = "/v1/nare-league/bet"
+                let method = "POST";
+                let use_jwt = false;
 
 
-        });
-
-    },[]);
-
-
-
-    useEffect(() => {
-        updateWinnings();
-    }, [updateWinnings]);
-
-    const initialValues = {
-        bet_amount: 100,
-        accept_all_odds_change: true,
-        user_id: state?.user?.profile_id,
-        total_games: totalGames,
-        total_odd: totalOdds,
-    };
-
-    const validate = (values) => {
-        let errors = {};
-
-        if (!values.user_id) {
-            errors.user_id = "Kindly login to proceed";
-            setMessage({status: 400, message: errors.user_id});
-            return errors;
-        }
-
-        if (!values.bet_amount || values.bet_amount < 1) {
-            errors.bet_amount = "Enter valid bet amount";
-            setMessage({status: 400, message: errors.bet_amount});
-            return errors;
-        }
-        if (!betslip || Object.keys(betslip).length === 0) {
-            errors.user_id = "No betlip selected";
-            setMessage({status: 400, message: errors.user_id});
-            return errors;
-        }
-
-        return errors;
-    };
+                makeRequest({
+                    url: endpoint,
+                    method: method,
+                    data: payload,
+                    use_jwt: use_jwt,
+                }).then(([status, response]) => {
+                    if (status === 200 || status == 201 || status == 204) {
+                        setMessage(response);
+                        let betslips = getKironSlip()
+                        Object.entries(betslips || {})?.map(([match_id, match]) => {
+                            removeFromKironSlip(match_id)
+                            let match_selector = match?.parent_match_id + "_selectedK"
+                            let ucn = clean_rep(
+                                match?.parent_match_id + "" + match?.market_id + "" + match?.odd_key)
 
 
+                            dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
 
-    const clean_rep = (str) => {
-        str = str.replace(/[^A-Za-z0-9\-]/g, "");
-        return str.replace(/-+/g, "-");
-    };
-
-    const SubmitButton = (props) => {
-        const {title, disabled, ...rest} = props;
-        const {isSubmitting} = useFormikContext();
-        return (
-            <button
-                type={"submit"}
-                {...rest}
-                id={"place_bet_button_nare"}
-                style={{padding: "10px", width: "100%",borderRadius: "0.7rem"}}
-                className={`${
-                    disabled ? "disabled" : ""
-                }'bg-warning bold text-dark cursor-pointer'`}
-                disabled={isSubmitting || disabled}
-                title="Place Bet"
-            >
-                {isSubmitting ? "Please Wait " : title}{" "}
-                <FontAwesomeIcon icon={faFireAlt}/>
-            </button>
-        );
-    };
-
-
-    return (
-        <Formik
-            initialValues={initialValues}
-            onSubmit={handlePlaceBet}
-            validate={validate}
-            validateOnChange={false}
-            validateOnBlur={false}
-            enableReinitialize={true}
-        >
-            {(props) => {
-                const {isValid, errors, values, submitForm, setFieldValue} = props;
-
-                const onFieldChanged = (ev) => {
-                    let field = ev.target.name;
-                    let value =
-                        ev.target.type === "checkbox" ? ev.target.checked : ev.target.value;
-                    if (field == "bet_amount") {
-                        value = value.replace(/[^\d]/g, "");
-                        setFieldValue(field, value);
-                        setStake(value);
+                        });
+                        clearKironSlip()
+                        setMessage({
+                            status: 201,
+                            message: response?.message,
+                        });
+                        setBetslipsData(null);
+                        dispatch({
+                            type: "SET",
+                            key: "kironbetslip",
+                            payload: {},
+                        });
+                        return width < 991 ? navigate(-1) : ""
                     } else {
-                        setFieldValue(field, value);
+                        let response_message = response?.message;
+                        if (response_message === "" || response_message === undefined) {
+                            response_message = response?.error;
+                            if (response_message === "" || response_message === undefined) {
+                                response_message =
+                                    "Something went wrong. Please try again later or contact support. 0701 087 777";
+                            }
+                        }
+                        let qmessage = {
+                            status: status,
+                            message: response_message,
+                        };
+                        setMessage(qmessage);
                     }
-                };
+                    setSubmitting(false);
+                });
+            }
+        );
 
-                return (
-                    <FormikForm name="betslip-submit-form">
-                        <Alert/>
-                        {
-                            awardMultiGift &&
-                            Number(totalGames) > settings?.betnareBonus?.bonusBetLegs ? (
-                                <div className={"alert alert-success"}>
-                                    <FontAwesomeIcon icon={faGift}/> {multiBoostMessage}
-                                </div>
-                            ) : (
-                                <></>
-                            )}
-                        {totalGames > 0 && (
-                            <div className="bet-table w-100 box-shadow-table-submit-form ">
-                                <div id="odd-change-text" className={'d-flex justify-content-end align-items-center mb-3'}>
-                                    <div className={"slip-clear-all"}>
-                                     <FontAwesomeIcon icon={faTrash} title={"Clear All"} style={{color:"var(--light)"}} onClick={() => handleRemoveAll()} />
+        const updateWinnings = useCallback(() => {
+            if (betslip) {
+                let stake_after_tax = (Float(stake) / Float(107.5)) * 100;
+                let stake_after_tax_boosted =
+                    ((Float(stake) + Float(multiBoostAmount)) / Float(107.5)) * 100;
+
+                let ext = Float(stake) - Float(stake_after_tax);
+                let ext_boosted =
+                    Float(stake) + Float(multiBoostAmount) - Float(stake_after_tax_boosted);
+
+                let raw_possible_win = Float(stake_after_tax) * Float(totalOdds);
+                let boosted_raw_possible_win =
+                    Float(stake_after_tax_boosted) * Float(totalOdds);
+
+
+                if (raw_possible_win > 500000) {
+                    raw_possible_win = 500000;
+                }
+                if (boosted_raw_possible_win > 500000) {
+                    boosted_raw_possible_win = 500000;
+                }
+
+                let taxable_amount = Float(raw_possible_win) - Float(stake_after_tax);
+                let taxable_amount_boosted =
+                    Float(boosted_raw_possible_win) - Float(stake_after_tax_boosted);
+
+                let wint = taxable_amount * 0.2;
+                let wint_boosted = taxable_amount_boosted * 0.2;
+
+                let nw = raw_possible_win - wint;
+                let nw_boosted = boosted_raw_possible_win - wint_boosted;
+
+                setExciseTax(Float(ext, 2));
+                setExciseTaxBoosted(Float(ext_boosted, 2));
+
+                setStakeAfterTax(stake_after_tax);
+                setStakeAfterTaxBoosted(stake_after_tax_boosted);
+
+                setNetWin(Float(nw, 2));
+                setNetWinBoosted(Float(nw_boosted, 2));
+
+                setPossibleWin(Float(raw_possible_win, 2));
+                setPossibleWinBoosted(Float(boosted_raw_possible_win, 2));
+
+                setWithholdingTax(Float(wint, 2));
+                setWithholdingTaxBoosted(Float(wint_boosted, 2));
+            } else {
+                setNetWin(0);
+                setWithholdingTax(0);
+                setExciseTax(0);
+                setPossibleWin(0);
+                setStakeAfterTax(0);
+            }
+            if (message && message.status > 299) {
+                setMessage(null);
+            }
+        }, [betslip, stake, totalOdds, multiBoostAmount]);
+
+        const navigate = useNavigate()
+        const handleRemoveAll = useCallback(() => {
+            let betslips = getKironSlip()
+            Object.entries(betslips || {})?.map(([match_id, match]) => {
+                removeFromKironSlip(match_id)
+                let match_selector = match?.parent_match_id + "_selectedK"
+                let ucn = clean_rep(
+                    match?.parent_match_id + "" + match?.market_id + "" + match?.odd_key)
+
+
+                dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
+                // dispatch({type: "SET", key: "betslip", payload: slip});
+            });
+            clearKironSlip()
+            setMessage(null);
+            setBetslipsData(null)
+            dispatch({
+                type: "SET",
+                key: "kironbetslip",
+                payload: {},
+            });
+            return navigate("/nare-league")
+        }, []);
+
+
+        const showRemoveExpired = useCallback(() => {
+            let betslips = getKironSlip() || {};
+
+            const data = Object.entries(betslips || {})?.map(([match_id, match]) => {
+                let start_time = match?.start_time;
+                let gettime = getTime(start_time);
+                let timePeriod = new Date(Date.parse(`${new Date().toDateString()} ${gettime}`));
+                let firstRound = timePeriod.getTime();
+                let now = new Date().getTime();
+                let diff = (firstRound - now);
+                let initialTime = Math.floor(diff / 1000);
+                let parent_match_id;
+                if (initialTime < 10) {
+                    parent_match_id = match?.parent_match_id;
+                }
+
+                return {parent_match_id, initialTime};
+            });
+
+            let parentMatchId = data.map((item) => item.parent_match_id).filter(item => item !== undefined);
+
+            let initialTime = data.map((item) => item.initialTime);
+
+            setExpired(parentMatchId)
+
+            const status = initialTime.some((exp) => exp < 10);
+            setShowExpired(status);
+
+            return {parentMatchId, initialTime};
+        }, []);
+
+        useEffect(() => {
+
+            showRemoveExpired()
+        }, [Date.now()])
+
+
+        const handleRemoveExpired = useCallback(() => {
+            let betslips = getKironSlip()
+
+            Object.entries(betslips || {})?.map(([match_id, match]) => {
+                let start_time = match?.start_time
+                let gettime = getTime(start_time)
+
+                let timePeriod = new Date(Date.parse(`${new Date().toDateString()} ${gettime}`));
+                let firstRound = timePeriod.getTime();
+                let now = new Date().getTime();
+                let diff = (firstRound - now);
+                let initialTime = Math.floor(diff / 1000);
+                // let seconds = initialTime % 60;
+
+                if (initialTime < 10) {
+                    let match_selector = match?.parent_match_id + "_selectedK"
+                    let ucn = clean_rep(
+                        match?.parent_match_id + "" + match?.market_id + "" + match?.odd_key)
+                    dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
+                    let betslip = removeFromKironSlip(match?.parent_match_id)
+                    dispatch({type: "SET", key: 'kironbetslip', payload: betslip});
+                }
+
+
+            });
+
+        }, []);
+
+
+        useEffect(() => {
+            updateWinnings();
+        }, [updateWinnings]);
+
+        const initialValues = {
+            bet_amount: 100,
+            accept_all_odds_change: true,
+            user_id: state?.user?.profile_id,
+            total_games: totalGames,
+            total_odd: totalOdds,
+        };
+
+        const validate = (values) => {
+            let errors = {};
+
+            if (!values.user_id) {
+                errors.user_id = "Kindly login to proceed";
+                setMessage({status: 400, message: errors.user_id});
+                return errors;
+            }
+
+            if (!values.bet_amount || values.bet_amount < 1) {
+                errors.bet_amount = "Enter valid bet amount";
+                setMessage({status: 400, message: errors.bet_amount});
+                return errors;
+            }
+            if (!betslip || Object.keys(betslip).length === 0) {
+                errors.user_id = "No betlip selected";
+                setMessage({status: 400, message: errors.user_id});
+                return errors;
+            }
+
+            return errors;
+        };
+
+
+        const clean_rep = (str) => {
+            str = str.replace(/[^A-Za-z0-9\-]/g, "");
+            return str.replace(/-+/g, "-");
+        };
+
+        const SubmitButton = (props) => {
+            const {title, disabled, ...rest} = props;
+            const {isSubmitting} = useFormikContext();
+            return (
+                <button
+                    type={"submit"}
+                    {...rest}
+                    id={"place_bet_button_nare"}
+                    style={{padding: "10px", width: "100%", borderRadius: "0.7rem"}}
+                    className={`${
+                        disabled ? "disabled" : ""
+                    }'bg-warning bold text-dark cursor-pointer'`}
+                    disabled={isSubmitting || disabled}
+                    title="Place Bet"
+                >
+                    {isSubmitting ? "Please Wait " : title}{" "}
+                    <FontAwesomeIcon icon={faFireAlt}/>
+                </button>
+            );
+        };
+
+
+        return (
+            <Formik
+                initialValues={initialValues}
+                onSubmit={handlePlaceBet}
+                validate={validate}
+                validateOnChange={false}
+                validateOnBlur={false}
+                enableReinitialize={true}
+            >
+                {(props) => {
+                    const {isValid, errors, values, submitForm, setFieldValue} = props;
+
+                    const onFieldChanged = (ev) => {
+                        let field = ev.target.name;
+                        let value =
+                            ev.target.type === "checkbox" ? ev.target.checked : ev.target.value;
+                        if (field == "bet_amount") {
+                            value = value.replace(/[^\d]/g, "");
+                            setFieldValue(field, value);
+                            setStake(value);
+                        } else {
+                            setFieldValue(field, value);
+                        }
+                    };
+
+                    return (
+                        <FormikForm name="betslip-submit-form">
+                            <Alert/>
+                            {
+                                awardMultiGift &&
+                                Number(totalGames) > settings?.betnareBonus?.bonusBetLegs ? (
+                                    <div className={"alert alert-success"}>
+                                        <FontAwesomeIcon icon={faGift}/> {multiBoostMessage}
                                     </div>
-                                </div>
-
-                                {(
-                                    <div className="hide-on-affix d-flex align-items-center justify-content-between p-2">
-                                        <div>Total Odds</div>
-                                        <div className={"bet-align-right"}>
-                                            <b>{Float(totalOdds, 2)}</b>
+                                ) : (
+                                    <></>
+                                )}
+                            {totalGames > 0 && (
+                                <div className="bet-table w-100 box-shadow-table-submit-form ">
+                                    <div id="odd-change-text"
+                                         className={'d-flex justify-content-end align-items-center mb-3'}>
+                                        <div className={"slip-clear-all"}>
+                                            <FontAwesomeIcon icon={faTrash} title={"Clear All"}
+                                                             style={{color: "var(--light)"}}
+                                                             onClick={() => handleRemoveAll()}/>
                                         </div>
                                     </div>
-                                )}
-                                <div>
-                                    <div ></div>
-                                </div>
-                                { (
-                                    <div className="bet-win-tr hide-on-affix d-flex align-items-center justify-content-between p-2">
-                                        <div>Final Payout</div>
-                                        <div className={"bet-align-right"}>
-                                            KES.{" "}
-                                            <span id="pos_win">
+
+                                    {(
+                                        <div
+                                            className="hide-on-affix d-flex align-items-center justify-content-between p-2">
+                                            <div>Total Odds</div>
+                                            <div className={"bet-align-right"}>
+                                                <b>{Float(totalOdds, 2)}</b>
+                                            </div>
+                                        </div>
+                                    )}
+                                    <div>
+                                        <div></div>
+                                    </div>
+                                    {(
+                                        <div
+                                            className="bet-win-tr hide-on-affix d-flex align-items-center justify-content-between p-2">
+                                            <div>Final Payout</div>
+                                            <div className={"bet-align-right"}>
+                                                KES.{" "}
+                                                <span id="pos_win">
                         {formatNumber(
                             hasMultiBetBoost ? possibleWinBoosted : possibleWin
                         )}
                       </span>
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    <div>
+
+                                        <div
+                                            className={"d-flex align-items-center container-styling-input-placebet mt-2 p-lg-2 p-md-2 py-sm-0 "}>
+                                            <div className={"bg-input-placebet"}>
+                                                Amount (KES)
+                                            </div>
+                                            <div className={"w-100"}>
+                                                <div id="betting">
+                                                    {
+                                                        <input
+                                                            type="text"
+                                                            className="bet-select bet-stake-input"
+                                                            name="bet_amount"
+                                                            id="bet_amount"
+                                                            value={values.bet_amount || ""}
+                                                            onChange={(e) => onFieldChanged(e)}
+                                                        />
+                                                    }
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                )}
-
-                                <div>
-
-                                    <div className={"d-flex align-items-center container-styling-input-placebet mt-2 p-lg-2 p-md-2 py-sm-0 "}>
-                                        <div className={"bg-input-placebet"}>
-                                            Amount (KES)
-                                        </div>
-                                        <div  className={"w-100"}>
-                                            <div id="betting">
-                                            {
-                                                <input
-                                                    type="text"
-                                                    className="bet-select bet-stake-input"
-                                                    name="bet_amount"
-                                                    id="bet_amount"
-                                                    value={values.bet_amount||""}
-                                                    onChange={(e) => onFieldChanged(e)}
-                                                />
+                                    <div id="odd-change-text2">
+                                        <div className={"d-flex bet-select-values w-100 mt-2 p-lg-2 p-md-2 py-sm-0"}
+                                             style={{whiteSpace: "nowrap"}}>
+                                            {showExpired ?
+                                                <div className={"w-100"} style={{whiteSpace: "nowrap"}}>
+                                                    <button
+                                                        className="bold w-100"
+                                                        type="button"
+                                                        style={{
+                                                            padding: "6px",
+                                                            borderRadius: "0.7rem",
+                                                            fontSize: "14px",
+                                                            height: '3.5rem',
+                                                            background: "#CC5500",
+                                                        }}
+                                                        onClick={() => handleRemoveExpired()}
+                                                    >
+                                                        Remove Expired &nbsp;<FontAwesomeIcon icon={faTrash}/>
+                                                    </button>
+                                                </div>
+                                                : <SubmitButton
+                                                    id="place_bet_button_nare_submit"
+                                                    className="place-bet-btn bold "
+                                                    title="PLACE BET"
+                                                ></SubmitButton>
                                             }
-                                        </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="odd-change-text2">
-                                    <div className={"d-flex bet-select-values w-100 mt-2 p-lg-2 p-md-2 py-sm-0"}  style={{whiteSpace: "nowrap"}}>
-                                        {showExpired?
-                                            <div  className={"w-100"} style={{whiteSpace: "nowrap"}}>
-                                            <button
-                                                className="bold w-100"
-                                                type="button"
-                                                style={{
-                                                    padding: "6px",
-                                                    borderRadius: "0.7rem",
-                                                    fontSize: "14px",
-                                                    height:'3.5rem',
-                                                    background: "#CC5500",
-                                                }}
-                                                onClick={() => handleRemoveExpired()}
-                                            >
-                                                Remove Expired &nbsp;<FontAwesomeIcon icon={faTrash}/>
-                                            </button>
-                                        </div>
-                                            : <SubmitButton
-                                            id="place_bet_button_nare_submit"
-                                            className="place-bet-btn bold "
-                                            title="PLACE BET"
-                                        ></SubmitButton>
-                                        }
 
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        )}
-                        <input
-                            type="hidden"
-                            name={"user_kiron_id"}
-                            id={"user_kiron_id"}
-                            value={state?.user?.profile_id||""}
-                        />
-                        <input
-                            type="hidden"
-                            name={"total_kiron_odd"}
-                            id={"total_kiron_odd"}
-                            value={totalOdds||""}
-                        />
-                        <input ref={scrollToRef}
-                               type="hidden"
-                               name={"total_kiron_games"}
-                               id={"total_kiron_games"}
-                               value={totalGames||""}
-                        />
-                    </FormikForm>
-                );
-            }}
-        </Formik>
-    );
-});
+                            )}
+                            <input
+                                type="hidden"
+                                name={"user_kiron_id"}
+                                id={"user_kiron_id"}
+                                value={state?.user?.profile_id || ""}
+                            />
+                            <input
+                                type="hidden"
+                                name={"total_kiron_odd"}
+                                id={"total_kiron_odd"}
+                                value={totalOdds || ""}
+                            />
+                            <input ref={scrollToRef}
+                                   type="hidden"
+                                   name={"total_kiron_games"}
+                                   id={"total_kiron_games"}
+                                   value={totalGames || ""}
+                            />
+                        </FormikForm>
+                    );
+                }}
+            </Formik>
+        );
+    });
 export default React.memo(KironslipSubmitForm);

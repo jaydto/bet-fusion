@@ -269,6 +269,7 @@ const BetslipSubmitForm = React.memo(
                             payload: {},
                         });
                         setLocalStorage('betslip_share_code', null)
+                        return width<991?navigate(-1):"";
                     } else {
                         let response_message = response?.message;
                         if (response_message === "" || response_message === undefined) {

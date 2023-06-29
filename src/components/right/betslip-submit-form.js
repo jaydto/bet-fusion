@@ -35,7 +35,7 @@ export const SubmitButton = (props) => {
     const {isSubmitting} = useFormikContext();
     return (
         <button
-            type={"submit"}
+            type={button_size?"button":"submit"}
             {...rest}
             id={"place_bet_button"}
             style={button_size?{padding: "10px", width: "64vw",borderRadius: "0.7rem", fontSize:"14px"}:{padding: "10px", width: "100%",borderRadius: "0.7rem"}}
@@ -286,8 +286,7 @@ const BetslipSubmitForm = React.memo(
                     }
                     setSubmitting(false);
                 });
-        }
-    );
+        });
 
         const updateWinnings = useCallback(() => {
             if (betslip) {

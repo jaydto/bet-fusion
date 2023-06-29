@@ -294,6 +294,7 @@ a.text-logout{
     }
 }
 @media (max-width:991px){
+
     .header-profile-summary {
         display: flex;
         flex-direction: column;

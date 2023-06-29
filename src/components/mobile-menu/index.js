@@ -171,7 +171,7 @@ const MobileMenu = React.memo(
                             {!pathSlipSummary.includes(pathname) &&
                                 <tr className={"info-slip-bets d-flex w-100 justify-content-between px-3"}>
                                     <td className={"bet-align-left"}>
-                                        Odds {Number(sumOfOdds).toFixed(2)}
+                                        Odds {parseFloat(sumOfOdds).toFixed(2)}
                                     </td>
                                     <td className={"bet-align-right-slip"}>
                                         Winnings {winnings}

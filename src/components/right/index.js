@@ -26,7 +26,7 @@ const AlertMessage = React.memo(
 
 const Right = React.memo(
     (props) => {
-    const {jackpot, betslipValidationData, jackpotData, kiron,test} = props;
+    const {jackpot, betslipValidationData, jackpotData, kiron,test,matches} = props;
     const {height, width} = useWindowDimensions();
     const [betSlipMobile, setBetSlipMobile] = useState(false)
     const pathname=window.location.pathname
@@ -94,7 +94,7 @@ const Right = React.memo(
 
                 className={`${betSlipMobile ? 'd-none' : 'd-block'} tablet-only fixed-bottom text-center text-white bg-info bet-slip-footer-toggle`}>
 
-                {pathname=="/jackpot"?<JackpotMenu jackpotData={jackpotData}/>:
+                {pathname=="/jackpot"?<JackpotMenu jackpotData={jackpotData} matches={matches}/>:
                     <MobileMenu jackpot={jackpot} betslipValidationData={betslipValidationData} jackpotData={jackpotData}
                              kiron={kiron}/>}
             </div>

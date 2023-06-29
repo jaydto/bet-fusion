@@ -1857,7 +1857,9 @@ img.nare-league {
     .mobile-menu.prematch-menu {
         border: thin solid var(--app-download-link-color);
         border-radius: 10px;
-        margin: 0px -1px;
+        margin: 0px 0px;
+        box-shadow: 10px 10px 10px 10px var(--app-download-link-color);
+        overflow: hidden;
     }
     .prematch-slip.progress{
         height:13px;

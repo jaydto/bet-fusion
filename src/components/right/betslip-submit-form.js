@@ -384,6 +384,7 @@ const BetslipSubmitForm = React.memo(
             setMessage(null);
             // setLocalStorage("winnings",null)
             setLocalStorage('betslip_share_code', null)
+            return width<991?navigate(-1):""
         }, []);
 
         useEffect(() => {
@@ -462,6 +463,7 @@ const BetslipSubmitForm = React.memo(
             setAwardMultiGift(awardGifts);
             if (giftQualificationOdds < giftMinGames) {
                 let remainingGames = Number(giftMinGames) - Number(giftQualificationOdds);
+                dispatch({type: "SET", key: "remaining_games", payload: remainingGames});
                 setMultiBoostMessage(
                     `Congratulations, you qualify for Nare Gift. Add ${remainingGames} more game${
                         remainingGames > 1 ? "s" : ""
@@ -469,6 +471,7 @@ const BetslipSubmitForm = React.memo(
                         settings?.betnareGifts?.giftBoostMinOdds
                     } or above to redeem your gift.`
                 );
+
                 dispatch({
                     type: "SET",
                     key: "multiboostmessage",
@@ -479,7 +482,8 @@ const BetslipSubmitForm = React.memo(
                     } or above to redeem your gift.`
                 });
 
-            } else if (giftQualificationOdds >= giftMinGames) {
+            }
+            else if (giftQualificationOdds >= giftMinGames) {
                 boost = Math.round((20 / 100) * stake);
                 if (boost > Number(settings?.betnareGifts?.maxGiftBoostAmount)) {
                     boost = Number(settings?.betnareGifts?.maxGiftBoostAmount);
@@ -496,6 +500,9 @@ const BetslipSubmitForm = React.memo(
                         " on your stake. Your new stake is " +
                         boostedStake
                     );
+                    dispatch({type: "SET", key: "remaining_games", payload: 0});
+
+
                     dispatch({
                         type: "SET", key: "multiboostmessage", payload: "Congratulations! we have gifted you KES " +
                             boost +

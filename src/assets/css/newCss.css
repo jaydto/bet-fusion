@@ -257,7 +257,9 @@ input.text-white {
     background: var(--betnare-header-bg) !important;
     /*background-position: center;*/
 }
-
+.slip-menu-body-width{
+    width:100vw;
+}
 .top-spacing {
     margin-top: 10.5rem;
     margin-bottom: 4rem;

@@ -8,6 +8,7 @@
     --banner-background: url(../../assets/img/auth/img-17.webp)!important;
     --betnare-header-bg:#141d28;
     --betnare-body-bg:#141d28;
+    --black:#000;
     --odds-button:rgb(31 54 69);
     --odds-button:rgb(31 54 69);
     --bet-history:#1e2b36;
@@ -58,6 +59,7 @@
     --slip-bottom-space:23rem;
     --slip-bottom:20.5rem;
     --green:#0f5132;
+    --transparent:transparent;
     --app-download-link-color:#1e354e;
     --odd-change-position:7rem;
     --slip-tab:7rem;

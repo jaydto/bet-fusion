@@ -1823,6 +1823,8 @@ img.nare-league {
         border-radius: 7px;
         padding: 5px;
         border: thin solid;
+        font-style: oblique;
+        font-size: 12px!important;
     }
     .slip-count-value{
         position: absolute;
@@ -1832,36 +1834,54 @@ img.nare-league {
 
     }
 
-    .mobile-menu tbody.slip-menu-prematch{
-
+    .mobile-menu tbody.slip-menu-prematch {
+        margin: 0px 10px;
+        box-shadow: 10px 10px 10px 10px var(--betnare-side-bg);
+        border-radius: 10px;
+        background: var(--betnare-body-bg);
+        /* padding: 0px 10px; */
     }
     .slip-count-option {
         position: fixed;
         bottom: 14rem;
     }
+    .prematch.progress-bar{
+        background:var(--betnare-input)!important;
+    }
     .close-prompt {
         margin-bottom: -2px;
-        background: var(--betnare-button-login);
+        /* background: var(--betnare-button-login); */
         border-radius: 10px;
+        margin-right: -17px;
+    }
+    .mobile-menu.prematch-menu {
+        border: thin solid var(--app-download-link-color);
+        border-radius: 10px;
+        margin: 0px -1px;
+    }
+    .prematch-slip.progress{
+        height:13px;
     }
     .close-prompt input{
         margin-bottom:-10px
     }
-    .close-prompt input{
-        background: var(--betnare-button-login)!important;
+    .close-prompt input {
+        background: var(--transparent)!important;
         margin-bottom: 0px;
         border-bottom: 0px!important;
         margin-right: 0px;
         padding-right: 5px;
-        border-top-right-radius: 12px!important;
-        border-top-left-radius: 12px!important;
+        border-top-right-radius: 0px!important;
+        border-top-left-radius: 38px!important;
         border-bottom-left-radius: 0px!important;
         border-bottom-right-radius: 0px!important;
-
+        width: 56px;
+        box-shadow: 1px 1px 3px 1px var(--betnare-body-bg));
+        margin-top: -2px;
     }
     .b24-widget-button-position-bottom-left {
         left:0px;
-        bottom: 87px!important;
+        bottom: 100px!important;
     }
     .info-slip-bets {
         background: var(--betnare-button-login);
@@ -1869,6 +1889,16 @@ img.nare-league {
         height: 2rem;
         align-items: center;
 
+    }
+    .info_bet_alert{
+        /*background: var(--betnare-button-login);*/
+        width: 100%;
+        height: 2rem;
+        align-items: center;
+    }
+    .info_bet_alert td{
+        font-weight: 700;
+        color:var(--light);
     }
     .info-slip-bets td{
         font-weight: 700;

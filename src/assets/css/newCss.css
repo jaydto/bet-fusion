@@ -1113,6 +1113,9 @@ img.nare-league {
 /*end back button*/
 /*media queries*/
 @media (min-width: 1260px) {
+    .more-markets-header-text{
+        width:60vw!important;
+    }
     .background-mybets-mobile {
         width: 90vw;
     }
@@ -1465,6 +1468,9 @@ img.nare-league {
 }
 
 @media (max-width: 1259px) and (min-width: 992px) {
+    .more-markets-header-text{
+        width:57vw!important;
+    }
     .slip-top {
         overflow-y: auto;
         max-height: 40vh;
@@ -1604,9 +1610,7 @@ img.nare-league {
 }
 
 @media (min-width: 992px) {
-    .more-markets-header-text{
-        width:57vw!important;
-    }
+
     .text-header-jackpot {
         width: 100%;
         overflow: hidden;

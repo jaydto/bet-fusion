@@ -746,13 +746,13 @@ li.bet-option {
 .market-groups-container {
     overflow-y: scroll !important;
     position: sticky !important;
-    position: -webkit-sticky; /* Safari */
     position: sticky;
     top: 100px !important;
-    /*width: 100vw !important;*/
+    /* width: 100vw !important; */
     overflow-x: scroll !important;
     display: flex;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+    min-height: 3rem;
 }
 
 .market-groups-container::-webkit-scrollbar {
@@ -761,10 +761,11 @@ li.bet-option {
 
 .market-group-pill {
     border-radius: 15px !important;
-    background: var(--button-color) !important;
-    margin-right: 2px;
+    background: var(--betnare-header-bg);
+    margin: 0px 12px;
     padding: 10px 5px;
     cursor: pointer;
+    min-width: 10rem;
 }
 
 .market-group-pill:focus {

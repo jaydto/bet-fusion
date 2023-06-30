@@ -689,9 +689,18 @@ select::after {
     display: flex;
     justify-content: space-around;
 }
-
+.matches .top-matches.more-markets {
+     background: var(--betnare-side-bg)!important;
+    margin-bottom:1px;
+}
 .mobile-profile-columns:empty {
     display: none !important;
+}
+.accordion-button.more-markets-button{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
 .home-tabs-active {
@@ -1595,6 +1604,9 @@ img.nare-league {
 }
 
 @media (min-width: 992px) {
+    .more-markets-header-text{
+        width:57vw!important;
+    }
     .text-header-jackpot {
         width: 100%;
         overflow: hidden;
@@ -1794,6 +1806,9 @@ img.nare-league {
     cursor: pointer!important;
 }
 @media (max-width: 991px) {
+    .more-markets-header-text{
+        width:98vw!important;
+    }
     .text-header-jackpot p {
         font-size: 15px;
     }
@@ -1880,7 +1895,7 @@ img.nare-league {
         border-bottom-left-radius: 0px!important;
         border-bottom-right-radius: 0px!important;
         width: 56px;
-        box-shadow: 1px 1px 3px 1px var(--betnare-body-bg));
+        box-shadow: 1px 1px 3px 1px var(--betnare-body-bg);
         margin-top: -2px;
     }
     .b24-widget-button-position-bottom-left {

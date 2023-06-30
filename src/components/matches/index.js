@@ -19,7 +19,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import padlock from '../../assets/img/padlock.png';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faChartLine, faFire} from "@fortawesome/free-solid-svg-icons";
+import {faCaretDown, faCaretRight, faChartLine, faFire, faStar} from "@fortawesome/free-solid-svg-icons";
 import {getFromLocalStorage} from "../utils/local-storage";
 
 import myGif from '../../assets/img/fire.webp'
@@ -33,7 +33,14 @@ import Notify from "../utils/Notify";
 import {Button, ButtonGroup} from "react-bootstrap";
 import makeRequest from "../utils/fetch-request";
 import moment from "moment";
-
+import {
+    Accordion,
+    AccordionItem,
+    AccordionItemButton,
+    AccordionItemHeading,
+    AccordionItemPanel,
+} from "react-accessible-accordion";
+import "react-accessible-accordion/dist/fancy-example.css";
 
 const clean = (_str) => {
     _str = _str.replace(/[^A-Za-z0-9\-]/g, '');
@@ -323,9 +330,9 @@ const MoreMarketsHeaderRow = React.memo(
             const links = document.querySelectorAll('.link');
             links.forEach((link) => link.classList.remove('highlight'));
 
-    // add highlight class to clicked link
-    event.currentTarget.classList.add('highlight');
-  }
+            // add highlight class to clicked link
+            event.currentTarget.classList.add('highlight');
+        }
 
         return (
             <Row>
@@ -740,69 +747,162 @@ const OddButton = React.memo(
         );
     });
 
+// const MarketRow = React.memo(
+//     (props) => {
+//         const {markets, match, market_id, width, live, pdown, allMarkets} = props;
+//
+//
+//         const MktOddsButton = (props) => {
+//             const {match, mktodds, live, pdown} = props;
+//             const fullmatch = {...match, ...mktodds};
+//
+//             return !pdown &&
+//             fullmatch?.odd_value !== "NaN" &&
+//             fullmatch.market_active == 1 &&
+//             fullmatch.odd_active == 1 ? (
+//                 <OddButton
+//                     match={fullmatch}
+//                     detail
+//                     mkt={"detail"}
+//                     live={live}
+//                     allMarkets={allMarkets}
+//                 />
+//             ) : (
+//                 <EmptyTextRow odd_key={fullmatch?.display_name} allMarkets={allMarkets}/>
+//             );
+//         };
+//
+//         return (
+//             <div className="top-matches match">
+//                 <Row className="top-matches header d-flex justify-content-center">
+//                     {live && (
+//                         <div
+//                             style={{
+//                                 width: "2px",
+//                                 marginTop: "-5px",
+//                                 marginRight: "5px",
+//                                 opacity: 0.6,
+//                             }}
+//                         >
+//                             <ColoredCircle color="#cc5500"/>
+//                         </div>
+//                     )}
+//                     {market_id}
+//                 </Row>
+//
+//                 {markets &&
+//                     markets.map((mkt_odds, index) => {
+//
+//                         return (
+//                             <>
+//                                 <Col
+//                                     key={index}
+//                                     className="match-detail"
+//                                     style={{width: width, float: "left"}}
+//                                 >
+//                                     <MktOddsButton
+//                                         match={match}
+//                                         mktodds={mkt_odds}
+//                                         live={live}
+//                                         pdown={pdown}
+//                                     />
+//                                 </Col>
+//                             </>
+//                         );
+//                     })}
+//             </div>
+//         );
+//     });
+
+
 const MarketRow = React.memo(
     (props) => {
         const {markets, match, market_id, width, live, pdown, allMarkets} = props;
+        const [isExpanded, setIsExpanded] = useState(false);
 
-
+        const toggleAccordion = () => {
+            setIsExpanded((prevState) => !prevState);
+        };
         const MktOddsButton = (props) => {
             const {match, mktodds, live, pdown} = props;
             const fullmatch = {...match, ...mktodds};
 
-            return !pdown &&
-            fullmatch?.odd_value !== "NaN" &&
-            fullmatch.market_active == 1 &&
-            fullmatch.odd_active == 1 ? (
-                <OddButton
-                    match={fullmatch}
-                    detail
-                    mkt={"detail"}
-                    live={live}
-                    allMarkets={allMarkets}
-                />
+            return !pdown && fullmatch?.odd_value !== 'NaN' && fullmatch.market_active === 1 && fullmatch.odd_active === 1 ? (
+                <OddButton match={fullmatch} detail mkt={'detail'} live={live} allMarkets={allMarkets}/>
             ) : (
                 <EmptyTextRow odd_key={fullmatch?.display_name} allMarkets={allMarkets}/>
             );
         };
 
+        const [favoriteMarkets, setFavoriteMarkets] = useState([]);
+
+        // Handle the click event for a specific market to be marked as favorite
+        const favoriteMarket = (event, marketId) => {
+            // Prevent the click event from propagating to the Accordion
+            event.stopPropagation();
+
+            // Check if the market is already marked as favorite
+            const isFavorite = favoriteMarkets.includes(marketId);
+
+            if (isFavorite) {
+                // Remove the market from the favorite list
+                setFavoriteMarkets(favoriteMarkets.filter((id) => id !== marketId));
+            } else {
+                // Add the market to the favorite list
+                setFavoriteMarkets([...favoriteMarkets, marketId]);
+            }
+        };
         return (
-            <div className="top-matches match">
-                <Row className="top-matches header d-flex justify-content-center">
-                    {live && (
-                        <div
-                            style={{
-                                width: "2px",
-                                marginTop: "-5px",
-                                marginRight: "5px",
-                                opacity: 0.6,
-                            }}
-                        >
-                            <ColoredCircle color="#cc5500"/>
-                        </div>
-                    )}
-                    {market_id}
-                </Row>
+            <div className="top-matches match more-markets">
+                <Accordion preExpanded={['1']} allowZeroExpanded className="size-accordion">
+                    <AccordionItem className="pb-2">
+                        <AccordionItemHeading>
+                            <AccordionItemButton
+                                className={`accordion-button more-markets-button `}
+                            >
+                                <div className={"d-flex justify-content-between w-100 more-markets-header-text"}>
+                                        <span>
 
-                {markets &&
-                    markets.map((mkt_odds, index) => {
-
-                        return (
-                            <>
-                                <Col
-                                    key={index}
-                                    className="match-detail"
-                                    style={{width: width, float: "left"}}
-                                >
-                                    <MktOddsButton
-                                        match={match}
-                                        mktodds={mkt_odds}
-                                        live={live}
-                                        pdown={pdown}
+                                          {live && (
+                                              <div
+                                                  style={{
+                                                      width: '2px',
+                                                      marginTop: '-5px',
+                                                      marginRight: '5px',
+                                                      opacity: 0.6,
+                                                  }}
+                                              >
+                                                  <ColoredCircle color="#cc5500"/>
+                                              </div>
+                                          )}
+                                            <FontAwesomeIcon
+                                                icon={faStar}
+                                                style={{
+                                                    fontSize: "20px",
+                                                    color: favoriteMarkets.includes(market_id) ? 'gold' : 'white',
+                                                }}
+                                                onClick={(event) => favoriteMarket(event, market_id)}
+                                                className={favoriteMarkets.includes(market_id) ? 'favorite' : ''}
+                                            />&nbsp; {market_id}
+                                        </span>
+                                    <FontAwesomeIcon
+                                        icon={isExpanded ? faCaretRight : faCaretDown}
+                                        style={{fontSize: "20px", color: "var(--light)"}}
                                     />
-                                </Col>
-                            </>
-                        );
-                    })}
+                                </div>
+                            </AccordionItemButton>
+                        </AccordionItemHeading>
+                        <AccordionItemPanel className="accordion-item-panel px-1 pt-1">
+                            {markets &&
+                                markets.map((mkt_odds, index) => (
+                                    <Col uuid={index.toString()} key={index} className="match-detail"
+                                         style={{width: width, float: 'left'}}>
+                                        <MktOddsButton match={match} mktodds={mkt_odds} live={live} pdown={pdown}/>
+                                    </Col>
+                                ))}
+                        </AccordionItemPanel>
+                    </AccordionItem>
+                </Accordion>
             </div>
         );
     });
@@ -834,15 +934,15 @@ const getUpdatedMatchFromOdds = (props) => {
 const MatchRow = React.memo(
     (props) => {
 
-  const {first_match, match, jackpot, live, pdown, three_way} = props;
-  const [extraMarketDisplays, setExtraMarketDisplays] = useState([])
-  const categories = getFromLocalStorage('categories')
-  const sport_id = new URL(window.location).searchParams.get('sport_id') || 79
-  let sport = categories?.all_sports?.filter((category) => category?.sport_id == sport_id)
-  const [sportName, setSportName] = useState(sport?.[0]?.sport_name || 'Soccer');
-  const [showX, setShowX] = useState(true);
-  const [market, setMarket] = useState('1x2');
-  const {height, width} = useWindowDimensions();
+        const {first_match, match, jackpot, live, pdown, three_way} = props;
+        const [extraMarketDisplays, setExtraMarketDisplays] = useState([])
+        const categories = getFromLocalStorage('categories')
+        const sport_id = new URL(window.location).searchParams.get('sport_id') || 79
+        let sport = categories?.all_sports?.filter((category) => category?.sport_id == sport_id)
+        const [sportName, setSportName] = useState(sport?.[0]?.sport_name || 'Soccer');
+        const [showX, setShowX] = useState(true);
+        const [market, setMarket] = useState('1x2');
+        const {height, width} = useWindowDimensions();
 
         const [threeWay, setThreeWay] = useState(false)
         const getSelectedMarkets = () => {
@@ -874,16 +974,16 @@ const MatchRow = React.memo(
 
             setExtraMarketDisplays(extraMarkets)
 
-  }
-  useEffect(() => {
-    getSelectedMarkets()
-    if (first_match) {
-      setSportName(first_match?.sport_name);
-      setMarket(first_match.market_name);
-      /**
-       * I blew the shiet here someone help recoil this to API call results
-       */
-      setShowX(!["186", "340"].includes(first_match.sub_type_id));
+        }
+        useEffect(() => {
+            getSelectedMarkets()
+            if (first_match) {
+                setSportName(first_match?.sport_name);
+                setMarket(first_match.market_name);
+                /**
+                 * I blew the shiet here someone help recoil this to API call results
+                 */
+                setShowX(!["186", "340"].includes(first_match.sub_type_id));
 
             }
         }, [first_match?.parent_match_id])
@@ -1517,7 +1617,7 @@ export const JackpotMatchList = React.memo(
 
         const CountDownJackpot = () => {
             // Get the first match from the array
-            const first_match=matches?.meta?.start_time
+            const first_match = matches?.meta?.start_time
             const [countdown, setCountdown] = useState('');
 
             useEffect(() => {
@@ -1543,7 +1643,6 @@ export const JackpotMatchList = React.memo(
             }, [first_match?.meta?.start_time]);
 
 
-
             return (
                 <div>
                     <p className={"text-expiry-style"}>Expires on&nbsp;
@@ -1560,7 +1659,7 @@ export const JackpotMatchList = React.memo(
                 <MatchHeaderRow jackpot={true} first_match={matches ? matches[0] : []}/>
                 <div className={'row d-flex flex-row justify-content-between shadow-lg '}>
                     <div className="col-md-12 text-center shadow-lg">
-                        <CountDownJackpot />
+                        <CountDownJackpot/>
                         <div className={'text-white col text-header-jackpot'}>
                             <p>Wekelea Jackpot Bet bila worries na Nare Auto pick.</p>
                         </div>

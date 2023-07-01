@@ -1665,6 +1665,13 @@ img.nare-league {
 }
 
 @media (min-width: 992px) {
+    .details-items .team .team-info {
+        text-overflow: ellipsis;
+        width: 260px;
+        white-space: nowrap;
+        overflow: hidden;
+        display: inline-block;
+    }
     .home-tabs-filters {
         text-align: center;
         line-height: 3;

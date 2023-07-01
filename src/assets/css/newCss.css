@@ -504,9 +504,8 @@ b, strong {
 }
 .filters-navigation {
     opacity: 1;
-    position: -webkit-sticky;
     position: sticky;
-    top: 9.7rem;
+    top: 4.7rem;
     z-index: 2000;
 }
 
@@ -1872,6 +1871,35 @@ img.nare-league {
     cursor: pointer!important;
 }
 @media (max-width: 991px) {
+    .c-btn-group {
+        text-align: end!important;
+        display: flex;
+        justify-content: space-around!important;
+        width: 100%;
+    }
+    .c-btn-header{
+        text-align:end!important;
+    }
+    .myButton.markets-button {
+        border: 1px solid #4e6096;
+        border-radius: 21px;
+        padding: 0px 13px;
+        /* line-height: 2.1; */
+        font-size: 12px;
+        white-space: nowrap;
+    }
+    .myButton.markets-button:after {
+        content: '';
+        /* margin-top: -5px; */
+        margin-left: 10px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        display: inline-block;
+        padding: 2px;
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+        /* color: #fff; */
+    }
     .nav-tabs {
         border: none !important;
         margin-top: 1.5rem;
@@ -3067,6 +3095,13 @@ img.nare-league {
 }
 
 @media (max-width: 375px) {
+    .myButton.markets-button {
+        border: 1px solid #4e6096;
+        border-radius: 21px;
+        padding: 0px 13px;
+        line-height: 1.7;
+        font-size: 12px;
+    }
     .show-tax-info {
         width: 50%;
         z-index: 200;

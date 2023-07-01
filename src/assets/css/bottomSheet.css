@@ -40,9 +40,24 @@
     box-shadow: 0 10px 20px rgba(0,0,0,0.03);
     transition: 0.3s ease;
 }
-.bottom-sheet.show .content{
+.bottom-sheet.show .content {
     transform: translateY(0%);
+    opacity: 1;
+    visibility: visible;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index:20001
 }
+.markets-default {
+    color: var(--light);
+    text-align: center;
+}
+.active-market-display {
+    color: var(--betnare-button-login)!important;
+}
+
 .bottom-sheet.dragging .content {
     transition: none;
 }

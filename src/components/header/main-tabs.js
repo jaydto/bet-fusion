@@ -1,14 +1,16 @@
 import Row from 'react-bootstrap/Row';
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
+import useWindowDimensions from "./Dimensions";
 
 const MainTabs = (props) => {
     const {tab} = props;
+    const {width}=useWindowDimensions()
 
-    const u_class = tab === 'upcoming' ? "home-tabs-filters-active" : "home-tabs-filters myButton";
-    const c_class = tab === "countries" ? "home-tabs-filters-active" : "home-tabs-filters myButton";
+    const u_class = tab === 'upcoming' ? "home-tabs-filters-active myButton" : "home-tabs-filters myButton";
+    const c_class = tab === "countries" ? "home-tabs-filters-active myButton" : "home-tabs-filters myButton";
     const h_class = (!tab || tab === 'highlights') ? "home-tabs-filters-active myButton" : "home-tabs-filters myButton";
-    const t_class = tab === 'tomorrow' ? "home-tabs-filters-active" : "home-tabs-filters myButton";
+    const t_class = tab === 'tomorrow' ? "home-tabs-filters-active myButton" : "home-tabs-filters myButton";
 
     const getLink = (tab) => {
 
@@ -45,11 +47,11 @@ const MainTabs = (props) => {
                         <span className="col ">Tomorrow</span>
                     </Link>
                 </div>
-                <div className="col  px-1  ">
-                    <Link className={`cursor-pointer w-100 ${c_class}`} to={'/countries?'+getLink() }>
+                {width<991&&<div className="col  px-1  ">
+                    <Link className={`cursor-pointer w-100 ${c_class}`} to={'/countries?' + getLink()}>
                         <span className="col ">Countries</span>
                     </Link>
-                </div>
+                </div>}
             </div>
         </Row>
     )

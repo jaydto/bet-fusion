@@ -476,12 +476,13 @@ b, strong {
     font-size: 13px;
     font-weight: 500;
     opacity: .8;
+
 }
 .main-navigations {
     line-height: 2.2!important;
     background: var(--betnare-side-bg);
     position: sticky;
-    top: 3rem;
+    top: 5rem;
     z-index: 1999;
 }
 .myButton.markets-button {
@@ -1521,6 +1522,7 @@ img.nare-league {
 }
 
 @media (max-width: 1259px) and (min-width: 992px) {
+
     .more-markets-header-text{
         width:57vw!important;
     }
@@ -1663,7 +1665,14 @@ img.nare-league {
 }
 
 @media (min-width: 992px) {
-
+    .home-tabs-filters {
+        text-align: center;
+        line-height: 3;
+    }
+    .home-tabs-filters-active {
+        text-align: center;
+        line-height: 3;
+    }
     .text-header-jackpot {
         width: 100%;
         overflow: hidden;

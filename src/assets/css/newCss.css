@@ -1832,7 +1832,8 @@ img.nare-league {
         overflow: hidden;
         /*margin-left: 400px;*/
         /*max-width: 500px*/
-        height:16px;
+
+        height:18px;
     }
     .web-element.jackpot-page {
         margin-bottom: 9rem!important;
@@ -1866,11 +1867,12 @@ img.nare-league {
     }
     .close-prompt.close-alert-slip {
         position: fixed;
-        right: 2rem;
+        right: 1.8rem;
         bottom: 12rem;
         z-index: 2000;
-        background:var(--betnare-header-bg)
+        background: var(--betnare-header-bg);
     }
+
     .slip-count-option {
         position: fixed;
         bottom: 14rem;
@@ -3302,6 +3304,7 @@ img.nare-league {
     font-weight:600;
     animation: 10s slide-right  infinite;
     animation-delay: 5s;
+    color:var(--gold);
 }
 
 @keyframes slide-right {

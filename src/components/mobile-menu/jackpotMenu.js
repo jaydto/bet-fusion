@@ -251,7 +251,7 @@ const MobileMenu = React.memo(
                                             <Formik>
                                                 <Form>
                                                     {/* Your form fields */}
-                                                    <SubmitButton title="Place Bet" className="place-bet-btn bold "
+                                                    <SubmitButton title="Place Bet" className="place-bet-btn jp-button bold "
                                                                   button_size={true} />
                                                 </Form>
                                             </Formik>

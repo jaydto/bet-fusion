@@ -347,7 +347,7 @@ const BetHistory = () => {
                                                     {(state?.selected_filter_category) || "All"}&nbsp;<FontAwesomeIcon
                                                     icon={faCaretDown}/>
                                                 </div>
-                                                <div className={"filters"}>
+                                                {state?.selected_filter_category !== 'open'&&<div className={"filters"}>
 
                                                     <div className={"odd-change-position"}>
                                                         <Switch id={"hide_all_lost_bets"} {...label}
@@ -359,7 +359,7 @@ const BetHistory = () => {
                                                         bets
 
                                                     </div>
-                                                </div>
+                                                </div>}
                                             </div>}
                                         {state?.bet_history_details || getFromLocalStorage("bet_history_details") ?
                                             <BetDetails

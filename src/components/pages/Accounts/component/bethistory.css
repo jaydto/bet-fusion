@@ -156,6 +156,7 @@ font-weight: 900;
     text-align: center;
     display: flex;
     align-items: center;
+    min-height: 35px;
 }
 .history-details .status{
 

@@ -42,7 +42,8 @@ export const SubmitButton = (props) => {
                 padding: "10px",
                 width: "64vw",
                 borderRadius: "0.7rem",
-                fontSize: "14px"
+                fontSize: "14px",
+                background:"var(--betnare-button-login"
             } : {padding: "10px", width: "100%", borderRadius: "0.7rem"}}
             className={`${
                 disabled ? "disabled" : ""

@@ -863,14 +863,49 @@ const MarketRow = React.memo(
 
         }, [favoriteMarkets]);
 
+
+
+        // const preExpandedMarkets = Object.values(markets?? {}).flatMap((marketObject) => {
+        //     if (Array.isArray(marketObject)) {
+        //         return marketObject.flatMap((marketArray) => {
+        //             if (Array.isArray(marketArray)) {
+        //                 return marketArray.slice(0, 5)?.map((item) => item?.market_name);
+        //             }
+        //             return "no data";
+        //         });
+        //     } else {
+        //         return Object.values(marketObject)?.slice(0, 5)?.map((item) => item?.market_name);
+        //     }
+        // });
+        //
+        // const preExpandedMarkets = markets?.slice(0, 5)?.map(item => item.market_name.trim());
+        // const marketNames = markets?.slice(0, 5)?.map(item => item.market_name.trim());
+        // const uniqueMarketNames = Array.from(new Set(marketNames));
+        //
+        // const preExpandedMarkets = uniqueMarketNames.slice(0, 5);
+        //
+const valuesforPreexpanding=()=>{
+    const allMarketNames = [...new Set(markets?.flatMap(item => item.market_name.replace(/\s/g, "")))];
+    const preExpandedMarkets = allMarketNames.slice(0, 5);
+
+    return preExpandedMarkets
+}
+
+
+
+
+console.log("preexpanded", valuesforPreexpanding())
+
+
+
         return (
             <div className="top-matches match more-markets">
-                <Accordion preExpanded={['1']} allowZeroExpanded className="size-accordion">
-                    <AccordionItem className="pb-2">
+                <Accordion preExpanded={valuesforPreexpanding()} allowZeroExpanded className="size-accordion">
+                    <AccordionItem className="pb-2" uuid={market_id.replace(/\s+/g, '')}>
                         <AccordionItemHeading>
                             <AccordionItemButton className={`accordion-button more-markets-button `}>
                                 <div className={"d-flex justify-content-between w-100 more-markets-header-text"}>
-                                        <span>
+                                        <span className={"d-flex align-items-center"}>
                                           {live && (
                                               <div
                                                   style={{

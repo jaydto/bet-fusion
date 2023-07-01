@@ -59,7 +59,7 @@ const ProfileMenu = React.memo(
                                       <span className="">
                                        <span className=" "> <FontAwesomeIcon
                                            icon={faCloudDownloadAlt}/></span>
-                                          <strong style={{fontSize:"14px"}}> Deposit Funds</strong>
+                                          <strong style={{fontSize:"15px", fontWeight:"700"}}> Deposit</strong>
                                       </span>
                                 </Link>
                             </div>

@@ -333,7 +333,7 @@ const Index = React.memo(
                                 <Testimonials/>
                                 <div className={'filters-navigation gap-3 d-flex justify-content-between align-items-center'}>
                                     <MainTabs tab={location.pathname.replace("/", "")}/>
-                                    {width<991&&<div className={'d-flex justify-content-between my-3'}>
+                                    {width<991&&<div className={'d-flex justify-content-between my-3 my-filter-button'}>
                                         {filteredMarkets?.default_markets.length > 0 &&
                                             <div className="myButton markets-button"
                                                  onClick={()=>showBottomSheet()}> {marketName || '1x2'}</div>

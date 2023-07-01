@@ -101,7 +101,7 @@ const AllMarkets = React.memo(
                     <div className="item2 size-all-markets">
                         <div className="gz home" style={{width: "100%", marginBottom: "5rem"}}>
 
-                            <div className="homepage mobile-full-height">
+                            <div className="homepage mobile-full-height all-markets">
 
                                 <MarketList
                                     allMarkets={allMarkets}

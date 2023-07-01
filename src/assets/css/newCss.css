@@ -1871,6 +1871,12 @@ img.nare-league {
     cursor: pointer!important;
 }
 @media (max-width: 991px) {
+    .my-filter-button:empty{
+        display:none!important;
+    }
+    .c-btn-header{
+       border-right:none!important;
+    }
     .filters-navigation {
         background: var(--betnare-header-bg);
     }
@@ -2165,6 +2171,9 @@ img.nare-league {
 
     .mobile-full-height {
         height: 100vh;
+    }
+    .mobile-full-height.all-markets {
+        margin-top: 16px;
     }
 
     .bloc-icon {

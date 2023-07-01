@@ -762,10 +762,10 @@ li.bet-option {
 .market-group-pill {
     border-radius: 15px !important;
     background: var(--betnare-header-bg);
-    margin: 0px 12px;
+    margin: 0px 4px;
     padding: 10px 5px;
     cursor: pointer;
-    min-width: 10rem;
+    min-width: 12rem;
 }
 
 .market-group-pill:focus {

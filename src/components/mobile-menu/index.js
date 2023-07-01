@@ -51,7 +51,7 @@ const MobileMenu = React.memo((props) => {
     let sumOfOdds = 0;
 
     Object.values(betItems || {}).forEach(match => {
-        const oddValue = parseFloat(match.odd_value);
+        const oddValue = parseFloat(match.odd_value).toFixed(2);
         if (!isNaN(oddValue)) {
             sumOfOdds += oddValue;
         }
@@ -101,7 +101,8 @@ const MobileMenu = React.memo((props) => {
     }
 
     const slip_condition = (!pathSlipSummary.includes(pathname) && state?.multiboostmessage && sumOfOdds > 0 && countInfo)
-    return (<div>
+    return (
+        <div>
             <div
                 className={`fixed-bottom text-white d-block  shadow-lg betslip-container-mobile ${betSlipMobile ? "d-flex" : "d-none"}`}
                 style={{margin: "auto", marginBottom: "6.5rem"}}
@@ -128,8 +129,6 @@ const MobileMenu = React.memo((props) => {
                                   </span>
                                 </div>
                             </header>
-
-
                         </div>
                     </div>
                 </div>
@@ -156,11 +155,11 @@ const MobileMenu = React.memo((props) => {
                                                             <strong>0</strong>}
                                                     </Badge>
                                                     <FontAwesomeIcon icon={faFileInvoice}
-                                                                     style={{fontSize: "27px", color: "var(--black)"}}/>
+                                                                     style={{fontSize: "27px", color: "var(--aqua-text)"}}/>
                                                 </Link>
                                             </div>
 
-                                            <div className={"close-prompt"} title={"close suggestions"}>
+                                            <div className={"close-prompt close-alert-slip"} title={"close suggestions"}>
                                                 <div>
                                                     <input
                                                         id={"slip-count-id"}
@@ -179,7 +178,7 @@ const MobileMenu = React.memo((props) => {
                             </tr>
                             {!pathSlipSummary.includes(pathname) &&
                                 <tr className={`${slip_condition?"info_bet_alert":"info-slip-bets"} d-flex w-100 justify-content-between px-3`}>
-                                    <td className={"bet-align-left"}>
+                                    <td className={"bet-align-left-slip"}>
                                         Odds {parseFloat(sumOfOdds).toFixed(2)}
                                     </td>
                                     <td className={"bet-align-right-slip"}>
@@ -187,7 +186,7 @@ const MobileMenu = React.memo((props) => {
                                     </td>
                                 </tr>}
                             <tr className={" d-flex w-100 justify-content-between px-3 mt-2"}>
-                                <td className={"bet-align-left w-100 slip-alert-style"}>
+                                <td className={" w-100 slip-alert-style"}>
                                     {state?.multiboostmessage}
                                 </td>
                             </tr>
@@ -208,10 +207,10 @@ const MobileMenu = React.memo((props) => {
                             <tbody>
                             {!pathSlipSummary.includes(pathname) &&
                                 <tr className={"info-slip-bets d-flex w-100 justify-content-between px-3"}>
-                                    <td className={"bet-align-left"}>
+                                    <td className={"bet-align-left-slip"}>
                                         Odds {sumOfOdds}
                                     </td>
-                                    <td className={"bet-align-right"}>
+                                    <td className={"bet-align-right-slip"}>
                                         Winnings {winnings}
                                     </td>
                                 </tr>}

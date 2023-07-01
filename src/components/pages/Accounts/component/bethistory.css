@@ -47,12 +47,21 @@
 .bet-history-items.games{
 
 }
-.pick-h{
+.pick-h {
     width: 100px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-
+    text-align: end;
+}
+.text-align-on-mobile-bet-history{
+    text-align: center!important;
+}
+.MuiSwitch-track {
+    background: var(--light) !important;
+}
+.MuiSwitch-colorPrimary.Mui-checked + .MuiSwitch-track {
+    background-color: #3f51b5!important;
 }
 .bet-history-options.progress .progress-bar{
     background: var(--bet-history);
@@ -73,8 +82,9 @@
 }
 .details-history-main-container {
     padding: 8px 12px;
-    border: thin solid;
+    /*border: thin solid;*/
     border-radius: 10px;
+    background: var(--bet-history);
 }
 .history-details-padding{
     padding-right:1rem;
@@ -93,8 +103,10 @@
 .details-items{
 
 }
-.details-items .team{
-    font-weight:700;
+.details-items .team {
+    font-weight: 700;
+    display: flex;
+    align-items: center;
 }
 .details-items .outcome {
     background: var(--orange);
@@ -106,6 +118,12 @@
 .history-details{
 
 }
+.won-total{
+    text-align: center;
+}
+.won-total-value{
+    text-align: center;
+}
 
 .history-details .id{
 font-weight: 900;
@@ -114,11 +132,11 @@ font-weight: 900;
     opacity:0.6;
 
 }
-.details-history{
+.details-history {
     padding: 18px;
-    border: thin solid;
+    /* border: thin solid; */
     border-radius: 10px;
-
+    background: var(--bet-history);
 }
 .filter-buttons-bethistory{
 
@@ -176,6 +194,14 @@ font-weight: 900;
     }
 }
 @media (max-width:991px){
+    .details-items .team .team-info{
+        text-overflow: ellipsis;
+        width: 100px;
+        white-space: nowrap;
+        overflow: hidden;
+        display: inline-block;
+
+    }
     .modal.show .modal-dialog {
         transform: none;
         margin: inherit;
@@ -190,17 +216,19 @@ font-weight: 900;
         font-size: 18px;
         color: var(--betnare-button-login) !important;
         position: absolute;
-        top: 43px;
+        top: 25px;
         display: flex;
-        gap: 13px;
+        gap: 9px;
         z-index: 1000;
         align-items: center;
-        justify-content: space-around;
+        justify-content: flex-start;
+        width: auto;
+        padding: 0 10px;
     }
 }
 
 @media (max-width:575px){
     .text-align-on-mobile-bet-history{
-        text-align:end!important;
+        /*text-align:end!important;*/
     }
 }

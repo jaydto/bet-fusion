@@ -40,7 +40,7 @@ const BetHistory = () => {
     const PageTitle = () => {
         return (
             <div className='col-md-12 background-profile p-4 text-center text-align-on-mobile-bet-history'>
-                <h4 className="inline-block text-light">
+                <h4 className=" text-light text-align-on-mobile-bet-history  ">
                     MY BETS
                 </h4>
             </div>

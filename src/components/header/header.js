@@ -41,6 +41,17 @@ const Header = React.memo(
         const [isOpen, setIsOpen] = useState(false);
         const [showLoadingModal, setShowLoadingModal] = useState(false);
 
+        useEffect(() => {
+            const removeElement = () => {
+                const element = document.querySelector('.app-color.lite-top-color');
+                if (element) {
+                    element.remove();
+                }
+            };
+
+            setTimeout(removeElement, 1000);
+        }, []);
+
 
         useEffect(() => {
             const handleBackButton = () => {

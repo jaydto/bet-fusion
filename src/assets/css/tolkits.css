@@ -150,6 +150,9 @@ input, select, textarea {
 }
 .mobile-menu tbody{
     width:100%;
+    /*display:flex;*/
+    /*flex-direction: column;*/
+    /*align-items:center;*/
 }
 
   .bloc-icon p{

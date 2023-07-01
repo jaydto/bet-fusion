@@ -628,7 +628,7 @@ const BetslipSubmitForm = React.memo(
                             awardMultiGift &&
                             Number(totalGames) > settings?.betnareBonus?.bonusBetLegs ? (
                                 <div className={" slip-message-alert "}>
-                                    <div colspan="2" className={'d-flex col-2'} style={{width: '100%'}}>
+                                    <div colSpan="2" className={'d-flex col-2'} style={{width: '100%'}}>
                                         <FontAwesomeIcon icon={faGift}/> {multiBoostMessage}
                                     </div>
 

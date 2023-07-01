@@ -365,7 +365,7 @@ const BetDetails = (props) => {
 									</div>
 									<div className="col-4 details-history-main-container d-flex justify-content-center flex-column">
 										<div className="won-total main-details-info-title">
-											won/lost/total
+											W/L/T
 										</div>
 										<div className="won-total-value">
 											<WinLostTotal />
@@ -407,9 +407,9 @@ const BetDetails = (props) => {
 										{item?.win===1?<FontAwesomeIcon icon={faCheckCircle}
 														  className={"text-success"}/>:item?.status===1?<FontAwesomeIcon icon={faQuestionCircle}
 																														className={"text-warning"}/>:<FontAwesomeIcon icon={faXmarkCircle}
-																										className={"text-danger"}/> }&nbsp;{item?.home_team}</div>
+																										className={"text-danger"}/> }&nbsp;<span className={"team-info"}>{item?.home_team}</span></div>
 									{item?.results&&<div className="outcome">{item?.results}</div>}
-									<div className="team" onClick={()=>toggleCollapse(index, item?.parent_match_id)}>{item?.away_team}&nbsp;{!collapsed.includes(index)?<FontAwesomeIcon icon={faCaretRight}/>:<FontAwesomeIcon icon={faCaretDown}/>}</div>
+									<div className="team" onClick={()=>toggleCollapse(index, item?.parent_match_id)}><span className={"team-info"}>{item?.away_team}</span>&nbsp;{!collapsed.includes(index)?<FontAwesomeIcon icon={faCaretRight}/>:<FontAwesomeIcon icon={faCaretDown}/>}</div>
 								</div>
 								<div className={`${!collapsed.includes(index)?"d-none ":"d-flex justify-content-between gap-4 "} w-100 px-3 bethistory-items flex-column`}>
 									<div className="d-flex">

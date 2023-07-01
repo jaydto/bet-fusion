@@ -1843,9 +1843,10 @@ img.nare-league {
     .slip-alert-style {
         border-radius: 7px;
         padding: 5px;
-        border: thin solid;
-        font-style: oblique;
+        box-shadow: 2px 2px 3px 1px var(--lite-top-color);
         font-size: 12px!important;
+        font-weight:700;
+        /*color:var(--lite-top-color) !important*/
     }
     .slip-count-value{
         position: absolute;
@@ -1859,15 +1860,24 @@ img.nare-league {
         margin: 0px 10px;
         box-shadow: 10px 10px 10px 10px var(--betnare-side-bg);
         border-radius: 10px;
+        position:relative;
         background: var(--betnare-body-bg);
         /* padding: 0px 10px; */
+    }
+    .close-prompt.close-alert-slip {
+        position: fixed;
+        right: 2rem;
+        bottom: 12rem;
+        z-index: 2000;
+        background:var(--betnare-header-bg)
     }
     .slip-count-option {
         position: fixed;
         bottom: 14rem;
+        right: 0rem;
     }
     .prematch.progress-bar{
-        background:var(--betnare-input)!important;
+        background:var(--lite-top-color)!important;
     }
     .close-prompt {
         margin-bottom: -2px;
@@ -1881,6 +1891,8 @@ img.nare-league {
         margin: 0px 0px;
         box-shadow: 10px 10px 10px 10px var(--app-download-link-color);
         overflow: hidden;
+        display: flex;
+        align-items: center;
     }
     .prematch-slip.progress{
         height:13px;
@@ -1923,9 +1935,10 @@ img.nare-league {
         font-weight: 700;
         color:var(--light);
     }
-    .info-slip-bets td{
+    .info-slip-bets td {
         font-weight: 700;
-        color:var(--dark);
+        color: var(--dark);
+        font-size: 12px;
     }
     .top-smartsoft{
         margin-top: 8rem!important;
@@ -1986,8 +1999,19 @@ img.nare-league {
         padding: 0 21px;
     }
     .bet-align-right-slip{
-        font-size:10px;
+        font-size:12px;
+        /*color:var(--lite-top-color) !important;*/
         text-align: right;
+        margin-right:7px;
+        font-weight:700;
+
+    }
+    .bet-align-left-slip{
+        font-size:12px;
+        margin-left: 7px;
+        text-align: left;
+        font-weight:700;
+        /*color:var(--lite-top-color) !important;*/
     }
     .bet-align-left {
         font-size: 10px !important;

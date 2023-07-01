@@ -20,7 +20,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import padlock from '../../assets/img/padlock.png';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCaretDown, faCaretRight, faChartLine, faFire, faStar} from "@fortawesome/free-solid-svg-icons";
-import {getFromLocalStorage} from "../utils/local-storage";
+import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
 
 import myGif from '../../assets/img/fire.webp'
 
@@ -747,72 +747,6 @@ const OddButton = React.memo(
         );
     });
 
-// const MarketRow = React.memo(
-//     (props) => {
-//         const {markets, match, market_id, width, live, pdown, allMarkets} = props;
-//
-//
-//         const MktOddsButton = (props) => {
-//             const {match, mktodds, live, pdown} = props;
-//             const fullmatch = {...match, ...mktodds};
-//
-//             return !pdown &&
-//             fullmatch?.odd_value !== "NaN" &&
-//             fullmatch.market_active == 1 &&
-//             fullmatch.odd_active == 1 ? (
-//                 <OddButton
-//                     match={fullmatch}
-//                     detail
-//                     mkt={"detail"}
-//                     live={live}
-//                     allMarkets={allMarkets}
-//                 />
-//             ) : (
-//                 <EmptyTextRow odd_key={fullmatch?.display_name} allMarkets={allMarkets}/>
-//             );
-//         };
-//
-//         return (
-//             <div className="top-matches match">
-//                 <Row className="top-matches header d-flex justify-content-center">
-//                     {live && (
-//                         <div
-//                             style={{
-//                                 width: "2px",
-//                                 marginTop: "-5px",
-//                                 marginRight: "5px",
-//                                 opacity: 0.6,
-//                             }}
-//                         >
-//                             <ColoredCircle color="#cc5500"/>
-//                         </div>
-//                     )}
-//                     {market_id}
-//                 </Row>
-//
-//                 {markets &&
-//                     markets.map((mkt_odds, index) => {
-//
-//                         return (
-//                             <>
-//                                 <Col
-//                                     key={index}
-//                                     className="match-detail"
-//                                     style={{width: width, float: "left"}}
-//                                 >
-//                                     <MktOddsButton
-//                                         match={match}
-//                                         mktodds={mkt_odds}
-//                                         live={live}
-//                                         pdown={pdown}
-//                                     />
-//                                 </Col>
-//                             </>
-//                         );
-//                     })}
-//             </div>
-//         );
-//     });
 
 
 const MarketRow = React.memo(
@@ -839,6 +773,7 @@ const MarketRow = React.memo(
         // Handle the click event for a specific market to be marked as favorite
         const favoriteMarket = (event, marketId) => {
             // Prevent the click event from propagating to the Accordion
+            console.log("favoriteMarket_event", event)
             event.stopPropagation();
 
             // Check if the market is already marked as favorite
@@ -850,19 +785,92 @@ const MarketRow = React.memo(
             } else {
                 // Add the market to the favorite list
                 setFavoriteMarkets([...favoriteMarkets, marketId]);
+
             }
         };
+
+        // const favoriteMarket = (event, marketId) => {
+        //     event.stopPropagation();
+        //
+        //     const isFavorite = favoriteMarkets.includes(marketId);
+        //
+        //     if (isFavorite) {
+        //         setFavoriteMarkets(favoriteMarkets.filter((id) => id !== marketId));
+        //     } else {
+        //         setFavoriteMarkets([...favoriteMarkets, marketId]);
+        //     }
+        // };
+        // Save favorite markets to localStorage
+        useEffect(() => {
+            setLocalStorage('favoriteMarkets', favoriteMarkets);
+        }, [favoriteMarkets]);
+
+        // Make API call when a market is favorited
+        useEffect(async() => {
+            let endpoint='/v1/favorite-market'
+            let method='POST'
+            let payload;
+            if (favoriteMarkets.length > 0) {
+
+                console.log("favorireMarket",favoriteMarkets[0])
+
+                // Make your API call here with the favorited market_id(s)
+
+                    // Make API call with marketId
+                    payload={
+                        sub_type_id:favoriteMarkets[0]
+                    }
+                    await makeRequest({url: endpoint,method: method,data: payload}).then(([status,response])=>{
+                        if(status===200||status===201){
+                            console.log("request was successful", response?.success)
+                        }
+                    }).catch(error=>{
+                        console.error('API call error:', error);
+                    })
+
+            }
+        }, [favoriteMarkets]);
+
+        // Get favorite items from the api
+        const getFavoriteMarkets=()=>{
+            let endpoint='/v1/favorite-market'
+            let method='POST'
+
+            makeRequest({url:endpoint, method:method, data:null}).then(([status, response])=>{
+                if(status===200||status===201){
+                    console.log("favorite_markets", response?.data)
+                    // setFavoriteMarkets()
+                    return response?.data
+                }
+            }).catch(error=>{
+                console.error("error", error)
+            })
+        }
+
+
+        // Retrieve favorite markets from localStorage on component mount
+        useEffect(() => {
+            if (favoriteMarkets.length > 0) {
+                // const favItems=getFavoriteMarkets()
+                // console.log("fav_items",favItems )
+
+                const storedFavoriteMarkets = getFromLocalStorage('favoriteMarkets');
+                console.log("storedItems",storedFavoriteMarkets)
+                // if (storedFavoriteMarkets) {
+                //     setFavoriteMarkets(storedFavoriteMarkets);
+                // }
+            }
+
+        }, [favoriteMarkets]);
+
         return (
             <div className="top-matches match more-markets">
                 <Accordion preExpanded={['1']} allowZeroExpanded className="size-accordion">
                     <AccordionItem className="pb-2">
                         <AccordionItemHeading>
-                            <AccordionItemButton
-                                className={`accordion-button more-markets-button `}
-                            >
+                            <AccordionItemButton className={`accordion-button more-markets-button `}>
                                 <div className={"d-flex justify-content-between w-100 more-markets-header-text"}>
                                         <span>
-
                                           {live && (
                                               <div
                                                   style={{
@@ -884,6 +892,7 @@ const MarketRow = React.memo(
                                                 onClick={(event) => favoriteMarket(event, market_id)}
                                                 className={favoriteMarkets.includes(market_id) ? 'favorite' : ''}
                                             />&nbsp; {market_id}
+
                                         </span>
                                     <FontAwesomeIcon
                                         icon={isExpanded ? faCaretRight : faCaretDown}
@@ -1522,7 +1531,7 @@ export const MarketList = React.memo(
                                 color: "grey",
                                 height: "40px!important",
                             }}
-                            onInput={(event) => filterMarkets(event.target.value)}
+                            onInput={(event) => filterMarkets(String(event.target.value).toLowerCase())}
                             placeholder={"Type to search for market ..."}
                         />
                     </div>

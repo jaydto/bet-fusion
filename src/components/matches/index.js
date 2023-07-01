@@ -75,10 +75,44 @@ const EmptyTextRow = React.memo(
         );
     });
 
-const marketChoice = () => {
+export const marketChoiceOptions = () => {
+    const markets = [
+        {
+            sport_id: '79',
+            sport_name: 'Soccer',
+            default_markets: [
+                {
+                    id: '1',
+                    name: '1x2',
+                    market_name: '1x2',
+                },
+                {
+                    id: '18',
+                    name: 'OV/UN',
+                    market_name: 'Over/Under 2.5',
+                },
+                {
+                    id: '29',
+                    name: 'BTS',
+                    market_name: 'Both Teams To Score',
+                },
+            ],
+        },
+    ];
+
+    return markets;
+};
+
+export const marketChoice = () => {
 
 
     const markets = [
+        {
+            id: "1",
+            name: "1X2",
+            extra_market_cols: 3,
+            extra_markets_display: ["1", "X","2"],
+        },
         {
             id: "18", name: "Over/Under 2.5", extra_market_cols: 2, extra_markets_display: [
                 "Over", "Under"
@@ -197,76 +231,97 @@ const MatchHeaderRow = React.memo(
                     </div>
                     {/*match heading*/}
                     <div
-                        className={`col  to-deskview flex-row justify-content-between ${state?.kiron_page == true && ' space-bets '}`}>
-                        {threeWay &&
+                        className={
+                            "col   flex-row justify-content-between space-bets"
+                        }
+                        style={{ minWidth: "45%" }}
+                    >
+                        {extraMarketDisplays && !jackpot && (
                             <div className="d-flex flex-row ">
-                                <div className="d-flex flex-column text-center text-white fit-ipad ">
+                                <div className="d-flex flex-column text-center text-white mt-3 fit-ipad w-100">
 
-                                    <div className={'c-btn-group align-self-end'}>
-                                        <a className="c-btn-header text-white">1</a>
-                                        <a className="c-btn-header text-white">X</a>
-                                        <a className="c-btn-header text-white">2</a>
+                                    <div className={"c-btn-group align-self-end"}>
+                                        {extraMarketDisplays?.[0]?.extra_markets_display?.map((display, index)=>(
+                                            <span className={'c-btn-header text-white'} key={index}>
+                          {display}
+                        </span>
+                                        ))}
                                     </div>
                                 </div>
-                            </div>}
-                        {/*conditional render of different views for mobile and desktop*/}
-                        {/*mobile*/}
-                        <div className={" separations to-tabview"}>
-                            {!live && !jackpot && extraMarketDisplays.length > 0 &&
-                                extraMarketDisplays?.map((extra_market, index) => (
-
-                                    <div className={'d-flex flex-row'} key={index}>
-                                        <div className={'d-flex flex-column text-center text-white fit-ipad'}>
-                                    <span className={'small'}>
-                                        {extra_market.name}
-                                    </span>
-                                            <div className={'c-btn-group m-lg-1 mt-sm-1 justify-content-center'}>
-                                                <a className="c-btn-header mx-2 ">
-                                                    {(extra_market.extra_markets_display[0])}
-
-                                                </a>
-                                                <a className="c-btn-header mx-2 ">
-                                                    {(extra_market.extra_markets_display[1])}
-
-                                                </a>
-                                                {extra_market?.extra_market_cols > 2 &&
-                                                    <a className={`c-btn-header`}>
-                                                        {(extra_market.extra_markets_display[2])}
-                                                    </a>}
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
-                        </div>
-                        {/*desktop*/}
-                        {!live && !jackpot && extraMarketDisplays.length > 0 && (
-                            <>
-                                {extraMarketDisplays?.map((extra_market, index) => (
-                                    <div key={index} className={'to-deskview flex-column text-white'}>
-                                    <span className={'small text-center text-uppercase bold'}>
-                                        {extra_market.name}
-                                    </span>
-                                        <div className={'c-btn-group'}>
-                                            <a className="c-btn-header">
-                                                {(extra_market.extra_markets_display[0])}
-                                            </a>
-                                            <a className="c-btn-header">
-                                                {(extra_market.extra_markets_display[1])}
-                                            </a>
-                                            {extra_market?.extra_market_cols > 2 &&
-                                                <a className={`c-btn-header`}>
-                                                    {(extra_market.extra_markets_display[2])}
-                                                </a>}
-                                        </div>
-                                    </div>
-                                ))}
-                            </>
+                            </div>
                         )}
-                        <div
-                            className="bet-fix events-odd pad undefined align-items-md-start align-items-lg-center more-markets-container m-lg-2 col-3 d-flex h-100 d-flex align-self-center justify-content-md-start justify-content-lg-center">
-                            <LazyLoadImage src={myGif} className={'fire '}/>
-                        </div>
                     </div>
+                    {/*<div*/}
+                    {/*    className={`col  to-deskview flex-row justify-content-between ${state?.kiron_page == true && ' space-bets '}`}>*/}
+                    {/*    {threeWay &&*/}
+                    {/*        <div className="d-flex flex-row ">*/}
+                    {/*            <div className="d-flex flex-column text-center text-white fit-ipad ">*/}
+
+                    {/*                <div className={'c-btn-group align-self-end'}>*/}
+                    {/*                    <a className="c-btn-header text-white">1</a>*/}
+                    {/*                    <a className="c-btn-header text-white">X</a>*/}
+                    {/*                    <a className="c-btn-header text-white">2</a>*/}
+                    {/*                </div>*/}
+                    {/*            </div>*/}
+                    {/*        </div>}*/}
+                    {/*    /!*conditional render of different views for mobile and desktop*!/*/}
+                    {/*    /!*mobile*!/*/}
+                    {/*    <div className={" separations to-tabview"}>*/}
+                    {/*        {!live && !jackpot && extraMarketDisplays.length > 0 &&*/}
+                    {/*            extraMarketDisplays?.map((extra_market, index) => (*/}
+
+                    {/*                <div className={'d-flex flex-row'} key={index}>*/}
+                    {/*                    <div className={'d-flex flex-column text-center text-white fit-ipad'}>*/}
+                    {/*                <span className={'small'}>*/}
+                    {/*                    {extra_market.name}*/}
+                    {/*                </span>*/}
+                    {/*                        <div className={'c-btn-group m-lg-1 mt-sm-1 justify-content-center'}>*/}
+                    {/*                            <a className="c-btn-header mx-2 ">*/}
+                    {/*                                {(extra_market.extra_markets_display[0])}*/}
+
+                    {/*                            </a>*/}
+                    {/*                            <a className="c-btn-header mx-2 ">*/}
+                    {/*                                {(extra_market.extra_markets_display[1])}*/}
+
+                    {/*                            </a>*/}
+                    {/*                            {extra_market?.extra_market_cols > 2 &&*/}
+                    {/*                                <a className={`c-btn-header`}>*/}
+                    {/*                                    {(extra_market.extra_markets_display[2])}*/}
+                    {/*                                </a>}*/}
+                    {/*                        </div>*/}
+                    {/*                    </div>*/}
+                    {/*                </div>*/}
+                    {/*            ))}*/}
+                    {/*    </div>*/}
+                    {/*    /!*desktop*!/*/}
+                    {/*    {!live && !jackpot && extraMarketDisplays.length > 0 && (*/}
+                    {/*        <>*/}
+                    {/*            {extraMarketDisplays?.map((extra_market, index) => (*/}
+                    {/*                <div key={index} className={'to-deskview flex-column text-white'}>*/}
+                    {/*                <span className={'small text-center text-uppercase bold'}>*/}
+                    {/*                    {extra_market.name}*/}
+                    {/*                </span>*/}
+                    {/*                    <div className={'c-btn-group'}>*/}
+                    {/*                        <a className="c-btn-header">*/}
+                    {/*                            {(extra_market.extra_markets_display[0])}*/}
+                    {/*                        </a>*/}
+                    {/*                        <a className="c-btn-header">*/}
+                    {/*                            {(extra_market.extra_markets_display[1])}*/}
+                    {/*                        </a>*/}
+                    {/*                        {extra_market?.extra_market_cols > 2 &&*/}
+                    {/*                            <a className={`c-btn-header`}>*/}
+                    {/*                                {(extra_market.extra_markets_display[2])}*/}
+                    {/*                            </a>}*/}
+                    {/*                    </div>*/}
+                    {/*                </div>*/}
+                    {/*            ))}*/}
+                    {/*        </>*/}
+                    {/*    )}*/}
+                    {/*    <div*/}
+                    {/*        className="bet-fix events-odd pad undefined align-items-md-start align-items-lg-center more-markets-container m-lg-2 col-3 d-flex h-100 d-flex align-self-center justify-content-md-start justify-content-lg-center">*/}
+                    {/*        <LazyLoadImage src={myGif} className={'fire '}/>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
                 </div>
             </Row>
         )

@@ -453,11 +453,11 @@ const BetDetails = (props) => {
 									{lmtIncludes.includes(sport) &&< div className="d-flex flex-column col">
 										<div id={`sr-widget-${item?.parent_match_id}`}></div>
 										<ButtonGroup aria-label="stats button actions" className='w-100 d-flex justify-content-start'>
-											{item?.live&&item?.winning_outcome&&<Button className="place-bet-btn w-25 btn link" title="Scoreboard"
+											{item?.winning_outcome?<Button className="place-bet-btn w-25 btn link" title="Scoreboard"
 													 type="button"
 													 style={{background: "transparent", fontSize: "14px",color:item?.live === 1?"var(--red)":"var(--light)"}}>
 												{item?.live === 1? "'LIVE":"'Not Live"}
-											</Button>}
+											</Button>:""}
 										<Button  className="place-bet-btn w-25 btn link" title="Scoreboard" type="button" style={{background:"transparent",fontSize:"14px"}}
 												 onClick={(event) => {switchLmt("scoreboard");handleLinkClick(event)}}>{item?.result && item?.result}&nbsp;scoreboard
 								</Button>

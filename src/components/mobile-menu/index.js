@@ -51,7 +51,7 @@ const MobileMenu = React.memo((props) => {
     let sumOfOdds = 0;
 
     Object.values(betItems || {}).forEach(match => {
-        const oddValue = parseFloat(match.odd_value).toFixed(2);
+        const oddValue = parseFloat(match.odd_value);
         if (!isNaN(oddValue)) {
             sumOfOdds += oddValue;
         }
@@ -179,7 +179,7 @@ const MobileMenu = React.memo((props) => {
                             {!pathSlipSummary.includes(pathname) &&
                                 <tr className={`${slip_condition?"info_bet_alert":"info-slip-bets"} d-flex w-100 justify-content-between px-3`}>
                                     <td className={"bet-align-left-slip"}>
-                                        Odds {parseFloat(sumOfOdds).toFixed(2)}
+                                        Odds {parseFloat(sumOfOdds).toFixed(2)||1}
                                     </td>
                                     <td className={"bet-align-right-slip"}>
                                         Winnings {winnings}

@@ -748,7 +748,6 @@ const OddButton = React.memo(
     });
 
 
-
 const MarketRow = React.memo(
     (props) => {
         const {markets, match, market_id, width, live, pdown, allMarkets} = props;
@@ -806,43 +805,43 @@ const MarketRow = React.memo(
         }, [favoriteMarkets]);
 
         // Make API call when a market is favorited
-        useEffect(async() => {
-            let endpoint='/v1/favorite-market'
-            let method='POST'
+        useEffect(async () => {
+            let endpoint = '/v1/favorite-market'
+            let method = 'POST'
             let payload;
             if (favoriteMarkets.length > 0) {
 
-                console.log("favorireMarket",favoriteMarkets[0])
+                console.log("favorireMarket", favoriteMarkets[0])
 
                 // Make your API call here with the favorited market_id(s)
 
-                    // Make API call with marketId
-                    payload={
-                        sub_type_id:favoriteMarkets[0]
+                // Make API call with marketId
+                payload = {
+                    sub_type_id: favoriteMarkets[0]
+                }
+                await makeRequest({url: endpoint, method: method, data: payload}).then(([status, response]) => {
+                    if (status === 200 || status === 201) {
+                        console.log("request was successful", response?.success)
                     }
-                    await makeRequest({url: endpoint,method: method,data: payload}).then(([status,response])=>{
-                        if(status===200||status===201){
-                            console.log("request was successful", response?.success)
-                        }
-                    }).catch(error=>{
-                        console.error('API call error:', error);
-                    })
+                }).catch(error => {
+                    console.error('API call error:', error);
+                })
 
             }
         }, [favoriteMarkets]);
 
         // Get favorite items from the api
-        const getFavoriteMarkets=()=>{
-            let endpoint='/v1/favorite-market'
-            let method='POST'
+        const getFavoriteMarkets = () => {
+            let endpoint = '/v1/favorite-market'
+            let method = 'POST'
 
-            makeRequest({url:endpoint, method:method, data:null}).then(([status, response])=>{
-                if(status===200||status===201){
+            makeRequest({url: endpoint, method: method, data: null}).then(([status, response]) => {
+                if (status === 200 || status === 201) {
                     console.log("favorite_markets", response?.data)
                     // setFavoriteMarkets()
                     return response?.data
                 }
-            }).catch(error=>{
+            }).catch(error => {
                 console.error("error", error)
             })
         }
@@ -855,14 +854,13 @@ const MarketRow = React.memo(
                 // console.log("fav_items",favItems )
 
                 const storedFavoriteMarkets = getFromLocalStorage('favoriteMarkets');
-                console.log("storedItems",storedFavoriteMarkets)
+                console.log("storedItems", storedFavoriteMarkets)
                 // if (storedFavoriteMarkets) {
                 //     setFavoriteMarkets(storedFavoriteMarkets);
                 // }
             }
 
         }, [favoriteMarkets]);
-
 
 
         // const preExpandedMarkets = Object.values(markets?? {}).flatMap((marketObject) => {
@@ -884,17 +882,21 @@ const MarketRow = React.memo(
         //
         // const preExpandedMarkets = uniqueMarketNames.slice(0, 5);
         //
-const valuesforPreexpanding=()=>{
-    const allMarketNames = [...new Set(markets?.flatMap(item => item.market_name.replace(/\s/g, "")))];
-    const preExpandedMarkets = allMarketNames.slice(0, 5);
+        const valuesforPreexpanding = () => {
+            const allMarketNames = [...new Set(markets?.flatMap(item => item.market_name.replace(/\s/g, "")))];
+            const preExpandedMarkets = allMarketNames.slice(0, 5);
 
-    return preExpandedMarkets
-}
+            return preExpandedMarkets
+        }
 
+        const valuesforIds = () => {
+            const allids = [...new Set(markets?.flatMap(item => item.sub_type_id))];
+            const marketIds = allids.slice(0, 5);
+            const subtypes = [...marketIds].slice(0, 5)
 
+            return subtypes
+        }
 
-
-console.log("preexpanded", valuesforPreexpanding())
 
 
 

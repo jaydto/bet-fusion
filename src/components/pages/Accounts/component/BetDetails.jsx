@@ -468,7 +468,7 @@ const BetDetails = (props) => {
 												type={"button"}
 
 												className="btn border-0 d-flex justify-content-center w-25 d-flex align-items-center link"
-												title="statistics">
+												title="Statistics">
 												statistics&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 												<FontAwesomeIcon icon={faChartLine}/>
 

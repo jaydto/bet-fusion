@@ -1810,6 +1810,10 @@ img.nare-league {
     cursor: pointer!important;
 }
 @media (max-width: 991px) {
+    .nav-tabs {
+        border: none !important;
+        margin-top: 1.5rem;
+    }
     .more-markets-header-text{
         width:98vw!important;
     }

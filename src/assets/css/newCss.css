@@ -456,7 +456,60 @@ b, strong {
 .login-text {
     color: var(--aqua-text)
 }
+/*top navigation betnare-web*/
+.myButton {
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 13px;
+    padding: 0 2px;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #283966;
+}
+.home-tabs-filters-active {
+    color: var(--light)!important;
+    font-size: 15px;
+    font-weight: 700;
+}
+.home-tabs-filters {
+    font-size: 13px;
+    font-weight: 500;
+    opacity: .8;
+}
+.main-navigations {
+    line-height: 2.2!important;
+    background: var(--betnare-side-bg);
+    position: sticky;
+    top: 3rem;
+    z-index: 1999;
+}
+.myButton.markets-button {
+    border: 1px solid #4e6096;
+    border-radius: 21px;
+    font-size: 12px;
+    padding: 0 13px;
+    white-space: nowrap;
+}
+.myButton.markets-button:after {
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    content: "";
+    display: inline-block;
+    margin-left: 10px;
+    padding: 2px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+.filters-navigation {
+    opacity: 1;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 9.7rem;
+    z-index: 2000;
+}
 
+/*end top navigation web */
 .login-text:hover {
     color: var(--betnare-button-login)
 }

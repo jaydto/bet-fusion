@@ -1871,6 +1871,9 @@ img.nare-league {
     cursor: pointer!important;
 }
 @media (max-width: 991px) {
+    .filters-navigation {
+        background: var(--betnare-header-bg);
+    }
     .c-btn-group {
         text-align: end!important;
         display: flex;
@@ -1884,8 +1887,8 @@ img.nare-league {
         border: 1px solid #4e6096;
         border-radius: 21px;
         padding: 0px 13px;
-        /* line-height: 2.1; */
-        font-size: 12px;
+        line-height: 2.4!important;
+        font-size: 9px!important;
         white-space: nowrap;
     }
     .myButton.markets-button:after {
@@ -3098,7 +3101,7 @@ img.nare-league {
     .myButton.markets-button {
         border: 1px solid #4e6096;
         border-radius: 21px;
-        padding: 0px 13px;
+        padding: 0px 10px;
         line-height: 1.7;
         font-size: 12px;
     }

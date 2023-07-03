@@ -40,8 +40,8 @@ const AllMarkets = React.memo(
         useInterval(
             () => {
                 let endpoint = live
-                    ? "/v1/matches/live?id=" + id
-                    : "/v1/matches?id=" + id;
+                    ? "/v2/matches/live?id=" + id
+                    : "/v2/matches?id=" + id;
 
                 let betslip = findPostableSlip();
                 let method = betslip ? "POST" : "GET";

@@ -16824,9 +16824,9 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 }
 
 .change-date1 {
-    width: 27% ;
-    padding-top: 5px;
-    /*width:min-content;*/
+    width: 27%;
+    padding-top: 0px;
+    /* width: min-content; */
 }
 
 .size-info{

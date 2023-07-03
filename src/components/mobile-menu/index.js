@@ -181,11 +181,6 @@ const MobileMenu = React.memo((props) => {
                                         Winnings {winnings}
                                     </td>
                                 </tr>}
-                            {/*<tr className={" d-flex w-100 justify-content-between px-3 mt-2"}>*/}
-                            {/*    <td className={" w-100 slip-alert-style"}>*/}
-                            {/*        {state?.multiboostmessage}*/}
-                            {/*    </td>*/}
-                            {/*</tr>*/}
                             <tr className={"mt-3"} onClick={()=>navigate("/betslip")}>
                                 <td className={"bet-align-left w-100"}>
                                     <div className="progress mx-3 my-3 prematch-slip">
@@ -208,7 +203,7 @@ const MobileMenu = React.memo((props) => {
                             {!pathSlipSummary.includes(pathname) &&
                                 <tr className={"info-slip-bets d-flex w-100 justify-content-between px-3"}>
                                     <td className={"bet-align-left-slip"}>
-                                        Odds {sumOfOdds}
+                                        Odds {parseFloat(sumOfOdds).toFixed(2)||1}
                                     </td>
                                     <td className={"bet-align-right-slip"}>
                                         Winnings {winnings}

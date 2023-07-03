@@ -750,7 +750,7 @@ li.bet-option {
 }
 
 .market-groups-container {
-    overflow-y: scroll !important;
+    overflow-x: scroll !important;
     position: sticky !important;
     position: sticky;
     top: 100px !important;
@@ -759,6 +759,7 @@ li.bet-option {
     display: flex;
     margin-bottom: 5px;
     min-height: 3rem;
+    max-width: 61vw;
 }
 
 .market-groups-container::-webkit-scrollbar {

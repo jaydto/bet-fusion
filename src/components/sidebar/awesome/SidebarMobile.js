@@ -10,7 +10,7 @@ import {
     faInfo,
     faLaptop,
     faMagic,
-    faMobile,
+    faMobile, faPause, faPlay,
     faPrint,
     faQuestionCircle,
     faStream,
@@ -61,18 +61,6 @@ const SidebarMobile = React.memo(
                 </Menu>
                 <Menu>
                     <MenuItem className={"d-flex justify-content-between"}>
-                        <div className={"d-flex gap-4 align-items-center"} onClick={() => gaEventTracker('Visit App Page')}>
-                            <FontAwesomeIcon icon={faMobile}/>
-                            <Link className="" to="/app" title="App">
-                                App
-                        </Link>
-                        </div>
-                    </MenuItem>
-                </Menu>
-            
-
-                <Menu>
-                    <MenuItem className={"d-flex justify-content-between"}>
                         <div className={"d-flex gap-4 align-items-center"}>
                             <FontAwesomeIcon icon={faPrint}/>
                             <Link to={"/print-matches"}>Print</Link>
@@ -83,7 +71,7 @@ const SidebarMobile = React.memo(
             <SidebarContent className={"background-primary"}>
 
                 <Menu>
-                    <MenuItem>
+                    <MenuItem className={"d-flex justify-content-between"}>
                         <div className={"d-flex gap-4 align-items-center"}>
                             <FontAwesomeIcon icon={faHome}/>
                             <Link to={"/"}>Home</Link>
@@ -92,13 +80,12 @@ const SidebarMobile = React.memo(
 
                 </Menu>
                 <Menu>
-
-                    <MenuItem>
+                    <MenuItem className={"d-flex justify-content-between"}>
                         <div className={"d-flex gap-4 align-items-center"}>
                             <FontAwesomeIcon icon={faMobile}/>
                             <Link className="" to={"/app"} title="App"
                                   onClick={() => gaEventTracker('Visit App Page')}>
-                                App
+                                Download App
                             </Link>
 
                         </div>
@@ -107,26 +94,26 @@ const SidebarMobile = React.memo(
 
                 <Menu>
 
-                    <MenuItem>
+                    <MenuItem className={"d-flex justify-content-between"}>
                         <div className={"d-flex gap-4 align-items-center"}>
                             <FontAwesomeIcon icon={faStream}/>
                             <Link to={"/live"}>Live</Link>
                         </div>
                     </MenuItem>
                 </Menu>
-
                 <Menu>
 
-                    <MenuItem>
+                    <MenuItem className={"d-flex justify-content-between"}>
                         <div className={"d-flex gap-4 align-items-center"}>
-                            <FontAwesomeIcon icon={faLaptop}/>
+                            <FontAwesomeIcon icon={faPlay}/>
                             <Link to={"/virtuals"}>Virtuals</Link>
                         </div>
                     </MenuItem>
                 </Menu>
+
                 <Menu>
 
-                    <MenuItem>
+                    <MenuItem className={"d-flex justify-content-between"}>
                         <div className={"d-flex gap-4 align-items-center"}>
                             <FontAwesomeIcon icon={faMagic}/>
                             <Link to={"/promotions"}>Promotions</Link>
@@ -135,7 +122,7 @@ const SidebarMobile = React.memo(
                 </Menu>
                 <Menu>
 
-                    <MenuItem>
+                    <MenuItem className={"d-flex justify-content-between"}>
                         <div className={"d-flex gap-4 align-items-center"}>
                             <FontAwesomeIcon icon={faInfo}/>
                             <Link to={"/livescore"}>Livescore</Link>
@@ -147,7 +134,7 @@ const SidebarMobile = React.memo(
             </SidebarContent>
             <SidebarFooter className={"background-primary"}>
                 {user ? <Menu className={"w-100 "}>
-                    <MenuItem className={"w-100 sidebar-mobile"}> <Link className={"logout-btn"} to={"/logout"}>Logout</Link> </MenuItem>
+                    <MenuItem className={"w-100 sidebar-mobile"}> <Link className={"logout-btn mt-2"} to={"/logout"}>Logout</Link> </MenuItem>
                 </Menu> : ""}
                 <Footer/>
             </SidebarFooter>

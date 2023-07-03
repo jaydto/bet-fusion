@@ -140,7 +140,7 @@ input, select, textarea {
     position: fixed;
     bottom: 0;
     visibility:visible;
-    height: 55px;
+    height: 100px;
     width: 100%;
     z-index:2000!important;
     font-size: 13px !important;
@@ -150,6 +150,9 @@ input, select, textarea {
 }
 .mobile-menu tbody{
     width:100%;
+    /*display:flex;*/
+    /*flex-direction: column;*/
+    /*align-items:center;*/
 }
 
   .bloc-icon p{
@@ -446,8 +449,8 @@ header, li a, .thedate span {
 .fadeIn {
     -webkit-animation-name: fadeIn;
     animation-name: fadeIn;
-    -webkit-animation-duration: 1s;
-    animation-duration: 1s;
+    -webkit-animation-duration: 0.1s;
+    animation-duration: 0.1s;
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
 }
@@ -5996,7 +5999,7 @@ input[type="button"].btn-block {
 }
 
 .fade {
-    transition: opacity 0.15s linear;
+    /*transition: opacity 0.1s linear;*/
 }
 
 .fade.in {
@@ -11189,8 +11192,8 @@ button.close {
 .cd.fade .modal-dialog {
     -webkit-transform: translate(0, -25%);
     transform: translate(0, -25%);
-    transition: -webkit-transform 0.3s ease-out;
-    transition: transform 0.3s ease-out;
+    /*transition: -webkit-transform 0.1s ease-out;*/
+    /*transition: transform 0.1s ease-out;*/
 }
 
 .cd.in .modal-dialog {
@@ -16821,9 +16824,9 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 }
 
 .change-date1 {
-    width: 27% ;
-    padding-top: 5px;
-    /*width:min-content;*/
+    width: 27%;
+    padding-top: 0px;
+    /* width: min-content; */
 }
 
 .size-info{

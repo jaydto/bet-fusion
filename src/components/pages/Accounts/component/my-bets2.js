@@ -159,8 +159,7 @@ const MyBets = (props) => {
                                     <div className={'col text-end'}><span
                                         className={` badge  ${betslip.status == "LOST" ? "bg-dark text-warning" : betslip.status == "WON" ? "bg-success" : betslip.status == "PENDING" ? "bg-dark " : ""}`}
                                         style={{
-                                            color: "white"
-                                            ,
+                                            color: "white",
                                             marginTop: "10px",
                                             borderRadius: "7px",
                                             marginLeft: "1px",

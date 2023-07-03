@@ -90,7 +90,7 @@ const Tr = (props) => {
         { 
             Object.entries(props?.row_data||[]).map(([key, value],index) => {
                 if(!endsWith(key, "_id")){
-                    return <Td value={value} key={`id-${index}`} colspan={props?.colspan||""} heading={props?.heading||false}/>
+                    return <Td value={value} key={`id-${index}`} colSpan={props?.colspan||""} heading={props?.heading||false}/>
                 }
             })
         }

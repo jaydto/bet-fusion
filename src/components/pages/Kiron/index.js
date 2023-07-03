@@ -31,7 +31,7 @@ const TestKiron = React.memo(() => {
     let url = new URL(window.location.href)
 
     const location = useLocation();
-    console.log("location", location )
+
 
 
     const [isCountdownTimerActive, setIsCountdownTimerActive] = useState(false);

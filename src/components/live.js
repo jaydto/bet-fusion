@@ -9,6 +9,7 @@ import makeRequest from "./utils/fetch-request";
 import Testimonials from "./carousel/Testimonials";
 import LiveSideBar from "./sidebar/live-sidebar";
 import {Spinner} from "react-bootstrap";
+import {ToastContainer} from "react-toastify";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -139,7 +140,8 @@ const  Live= React.memo(
 
     return (
         <div className={'flex-item'}>
-            <div className="item4"><Header scrollPosition={scrollPosition}/></div>
+            <div className="item4"><Header scrollPosition={scrollPosition}/>
+            <ToastContainer/></div>
             <div className="flex-container">
                 <div className="item1">
                     <div className={"mobile-remove"}>

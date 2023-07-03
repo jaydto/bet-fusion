@@ -566,10 +566,16 @@ li.bet-option {
 }
 
 .place-bet-btn.primary, .place_bet_button, #place_bet_button {
-    /* background: #fbd702 !important; */
+    background: var(--light);
     color: #000;
     border-radius: 0.7rem !important;
 }
+/*.place-bet-btn.jp-button{*/
+/*    background: var(--betnare-button-login)!important;*/
+/*}*/
+/*.place-jackpot-bet{*/
+/*    background: var(--betnare-button-login)!important;*/
+/*}*/
 
 #jp-nare-pick-button {
     color: #000000 !important;
@@ -741,4 +747,34 @@ li.bet-option {
 
 #jp-nare-pick-button:hover {
     color: orangered !important;
+}
+
+.market-groups-container {
+    overflow-y: scroll !important;
+    position: sticky !important;
+    position: sticky;
+    top: 100px !important;
+    /* width: 100vw !important; */
+    overflow-x: scroll !important;
+    display: flex;
+    margin-bottom: 5px;
+    min-height: 3rem;
+}
+
+.market-groups-container::-webkit-scrollbar {
+    display: none !important;
+}
+
+.market-group-pill {
+    border-radius: 15px !important;
+    background: var(--betnare-header-bg);
+    margin: 0px 4px;
+    padding: 10px 5px;
+    cursor: pointer;
+    min-width: 12rem;
+}
+
+.market-group-pill:focus {
+    background: var(--picked) !important;
+    color: var(--black) !important;
 }

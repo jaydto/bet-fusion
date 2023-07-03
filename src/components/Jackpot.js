@@ -13,6 +13,7 @@ import caution from "../assets/img/mobile/caution.png"
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import {Spinner} from "react-bootstrap";
 import Skeleton1 from "./skeleton/skeleton";
+import {ToastContainer} from "react-toastify";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -86,7 +87,10 @@ const Jackpot = React.memo(
 
         return (
             <div className={'flex-item'}>
-                <div className="item4"><Header/></div>
+                <div className="item4">
+                    <Header/>
+                    <ToastContainer/>
+                </div>
                 <div className={`flex-container ${!showDownload && 'top-spacing-page-no-download'}`}>
                     <div className="item1"><SideBar loadCompetitions/></div>
                     <div className="item2 size-all-markets">
@@ -193,7 +197,7 @@ const Jackpot = React.memo(
                                             </div>
                                         ))}
                                     </Tab>
-                                    <Tab eventKey="terms" title="Terms & Conditions">
+                                    <Tab eventKey="terms" title="T & C">
                                         <DailyJackpotTermsAndConditions/>
                                     </Tab>
                                 </Tabs>
@@ -204,7 +208,7 @@ const Jackpot = React.memo(
                         </div>
                     </div>
                     <div className="item3">
-                        <Right jackpot={true} jackpotData={matches?.meta} test={true}/>
+                        <Right jackpot={true} jackpotData={matches?.meta} test={true} matches={matches}/>
                     </div>
 
                 </div>

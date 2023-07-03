@@ -111,7 +111,7 @@ export const marketChoice = () => {
             id: "1",
             name: "1X2",
             extra_market_cols: 3,
-            extra_markets_display: ["1", "X","2"],
+            extra_markets_display: ["1", "X", "2"],
         },
         {
             id: "18", name: "Over/Under 2.5", extra_market_cols: 2, extra_markets_display: [
@@ -211,7 +211,7 @@ const MatchHeaderRow = React.memo(
 
             }
         }, [first_match?.parent_match_id])
-        const {width}=useWindowDimensions()
+        const {width} = useWindowDimensions()
 
         return (
 
@@ -231,82 +231,82 @@ const MatchHeaderRow = React.memo(
                         <div className={'col match-detail-container'}></div>
                     </div>
                     {/*match heading*/}
-                    {width<991?
+                    {width < 991 ?
                         <div className={"col flex-row justify-content-between space-bets"} style={{minWidth: "45%"}}>
-                        {extraMarketDisplays && !jackpot && (
-                            <div className="d-flex flex-row ">
-                                <div className="d-flex flex-column text-center text-white mt-3 fit-ipad w-100">
+                            {extraMarketDisplays && !jackpot && (
+                                <div className="d-flex flex-row ">
+                                    <div className="d-flex flex-column text-center text-white mt-3 fit-ipad w-100">
 
-                                    <div className={"c-btn-group align-self-end"}>
-                                        {extraMarketDisplays?.[0]?.extra_markets_display?.map((display, index) => (
-                                            <span className={'c-btn-header text-white'} key={index}>
+                                        <div className={"c-btn-group align-self-end"}>
+                                            {extraMarketDisplays?.[0]?.extra_markets_display?.map((display, index) => (
+                                                <span className={'c-btn-header text-white'} key={index}>
                           {display}
                         </span>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-                    </div>:
-                        <div
-                        className={`col  to-deskview flex-row justify-content-between ${state?.kiron_page == true && ' space-bets '}`}>
-                    <div className={" separations to-tabview"}>
-                        {!live && !jackpot && extraMarketDisplays.length > 0 &&
-                            extraMarketDisplays?.map((extra_market, index) => (
-
-                                <div className={'d-flex flex-row'} key={index}>
-                                    <div className={'d-flex flex-column text-center text-white fit-ipad'}>
-                                    <span className={'small'}>
-                                        {extra_market.name}
-                                    </span>
-                                        <div className={'c-btn-group m-lg-1 mt-sm-1 justify-content-center'}>
-                                            <a className="c-btn-header mx-2 ">
-                                                {(extra_market.extra_markets_display[0])}
-
-                                            </a>
-                                            <a className="c-btn-header mx-2 ">
-                                                {(extra_market.extra_markets_display[1])}
-
-                                            </a>
-                                            {extra_market?.extra_market_cols > 2 &&
-                                                <a className={`c-btn-header`}>
-                                                    {(extra_market.extra_markets_display[2])}
-                                                </a>}
+                                            ))}
                                         </div>
                                     </div>
                                 </div>
-                            ))}
-                    </div>
-                    {/*desktop*/}
-                    {!live && !jackpot && extraMarketDisplays.length > 0 && (
-                        <>
-                            {extraMarketDisplays?.map((extra_market, index) => (
-                                <div key={index} className={'to-deskview flex-column text-white'}>
+                            )}
+                        </div> :
+                        <div
+                            className={`col  to-deskview flex-row justify-content-between ${state?.kiron_page == true && ' space-bets '}`}>
+                            <div className={" separations to-tabview"}>
+                                {!live && !jackpot && extraMarketDisplays.length > 0 &&
+                                    extraMarketDisplays?.map((extra_market, index) => (
+
+                                        <div className={'d-flex flex-row'} key={index}>
+                                            <div className={'d-flex flex-column text-center text-white fit-ipad'}>
+                                    <span className={'small'}>
+                                        {extra_market.name}
+                                    </span>
+                                                <div className={'c-btn-group m-lg-1 mt-sm-1 justify-content-center'}>
+                                                    <a className="c-btn-header mx-2 ">
+                                                        {(extra_market.extra_markets_display[0])}
+
+                                                    </a>
+                                                    <a className="c-btn-header mx-2 ">
+                                                        {(extra_market.extra_markets_display[1])}
+
+                                                    </a>
+                                                    {extra_market?.extra_market_cols > 2 &&
+                                                        <a className={`c-btn-header`}>
+                                                            {(extra_market.extra_markets_display[2])}
+                                                        </a>}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
+                            </div>
+                            {/*desktop*/}
+                            {!live && !jackpot && extraMarketDisplays.length > 0 && (
+                                <>
+                                    {extraMarketDisplays?.map((extra_market, index) => (
+                                        <div key={index} className={'to-deskview flex-column text-white'}>
                                     <span className={'small text-center text-uppercase bold'}>
                                         {extra_market.name}
                                     </span>
-                                    <div className={'c-btn-group'}>
-                                        <a className="c-btn-header">
-                                            {(extra_market.extra_markets_display[0])}
-                                        </a>
-                                        <a className="c-btn-header">
-                                            {(extra_market.extra_markets_display[1])}
-                                        </a>
-                                        {extra_market?.extra_market_cols > 2 &&
-                                            <a className={`c-btn-header`}>
-                                                {(extra_market.extra_markets_display[2])}
-                                            </a>}
-                                    </div>
-                                </div>
-                            ))}
-                        </>
-                    )}
-                    <div
-                        className="bet-fix events-odd pad undefined align-items-md-start align-items-lg-center more-markets-container m-lg-2 col-3 d-flex h-100 d-flex align-self-center justify-content-md-start justify-content-lg-center">
-                        <LazyLoadImage src={myGif} className={'fire '}/>
-                    </div>
-                </div>
-                }
+                                            <div className={'c-btn-group'}>
+                                                <a className="c-btn-header">
+                                                    {(extra_market.extra_markets_display[0])}
+                                                </a>
+                                                <a className="c-btn-header">
+                                                    {(extra_market.extra_markets_display[1])}
+                                                </a>
+                                                {extra_market?.extra_market_cols > 2 &&
+                                                    <a className={`c-btn-header`}>
+                                                        {(extra_market.extra_markets_display[2])}
+                                                    </a>}
+                                            </div>
+                                        </div>
+                                    ))}
+                                </>
+                            )}
+                            <div
+                                className="bet-fix events-odd pad undefined align-items-md-start align-items-lg-center more-markets-container m-lg-2 col-3 d-flex h-100 d-flex align-self-center justify-content-md-start justify-content-lg-center">
+                                <LazyLoadImage src={myGif} className={'fire '}/>
+                            </div>
+                        </div>
+                    }
                 </div>
             </Row>
         )
@@ -722,7 +722,7 @@ const OddButton = React.memo(
 
 
             if (cstm === ucn) {
-                // console.log("cstn pre start: ",cstm+" ucn: "+ucn )
+
                 let betslip;
                 if (picked === "picked") {
 
@@ -733,7 +733,6 @@ const OddButton = React.memo(
 
                     setPicked("");
                 } else {
-                    // console.log("cstn pre slip: ",cstm+" ucn: "+ucn )
                     betslip =
                         jackpot !== true
                             ? (getBetslip() && Object.keys(getBetslip())?.length <= 29) ||
@@ -788,14 +787,13 @@ const OddButton = React.memo(
     });
 
 
-const MarketRow = React.memo(
+const MarketRow = React.memo
+(
     (props) => {
-        const {markets, match, market_id, width, live, pdown, allMarkets} = props;
+        const {markets, match, width, live, pdown, allMarkets} = props;
         const [isExpanded, setIsExpanded] = useState(false);
+        const [state,] = useContext(Context)
 
-        const toggleAccordion = () => {
-            setIsExpanded((prevState) => !prevState);
-        };
         const MktOddsButton = (props) => {
             const {match, mktodds, live, pdown} = props;
             const fullmatch = {...match, ...mktodds};
@@ -807,143 +805,66 @@ const MarketRow = React.memo(
             );
         };
 
-        const [favoriteMarkets, setFavoriteMarkets] = useState([]);
+        const [favoriteMarkets] = useState([]);
+
+        const [userFavoriteMarkets, setUserFavoriteMarkets] = useState(getFromLocalStorage('favorite_markets'));
+
+        // set favorite items from the api
+        const setMarketsFavorite = (sub_type_id) => {
+
+            let endpoint = '/v1/favorite-market'
+            let method = 'POST'
+            const data = {
+                "sub_type_id": sub_type_id
+            }
+            makeRequest({url: endpoint, method: method, data: data})
+                .then(([status, response]) => {
+                    if (status === 200 || status === 201) {
+                        getFavoriteMarkets()
+                        return response?.data
+                    }
+                }).catch(error => {
+
+            })
+        }
 
         // Handle the click event for a specific market to be marked as favorite
         const favoriteMarket = (event, marketId) => {
             // Prevent the click event from propagating to the Accordion
-            console.log("favoriteMarket_event", event)
             event.stopPropagation();
 
-            // Check if the market is already marked as favorite
-            const isFavorite = favoriteMarkets.includes(marketId);
+            setMarketsFavorite(marketId)
 
-            if (isFavorite) {
-                // Remove the market from the favorite list
-                setFavoriteMarkets(favoriteMarkets.filter((id) => id !== marketId));
-            } else {
-                // Add the market to the favorite list
-                setFavoriteMarkets([...favoriteMarkets, marketId]);
 
-            }
         };
 
-        // const favoriteMarket = (event, marketId) => {
-        //     event.stopPropagation();
-        //
-        //     const isFavorite = favoriteMarkets.includes(marketId);
-        //
-        //     if (isFavorite) {
-        //         setFavoriteMarkets(favoriteMarkets.filter((id) => id !== marketId));
-        //     } else {
-        //         setFavoriteMarkets([...favoriteMarkets, marketId]);
-        //     }
-        // };
-        // Save favorite markets to localStorage
-        useEffect(() => {
-            setLocalStorage('favoriteMarkets', favoriteMarkets);
-        }, [favoriteMarkets]);
-
-        // Make API call when a market is favorited
-        useEffect(async () => {
-            let endpoint = '/v1/favorite-market'
-            let method = 'POST'
-            let payload;
-            if (favoriteMarkets.length > 0) {
-
-                console.log("favorireMarket", favoriteMarkets[0])
-
-                // Make your API call here with the favorited market_id(s)
-
-                // Make API call with marketId
-                payload = {
-                    sub_type_id: favoriteMarkets[0]
-                }
-                await makeRequest({url: endpoint, method: method, data: payload}).then(([status, response]) => {
-                    if (status === 200 || status === 201) {
-                        console.log("request was successful", response?.success)
-                    }
-                }).catch(error => {
-                    console.error('API call error:', error);
-                })
-
-            }
-        }, [favoriteMarkets]);
 
         // Get favorite items from the api
-        const getFavoriteMarkets = () => {
-            let endpoint = '/v1/favorite-market'
+        const getFavoriteMarkets = useCallback(async () => {
+            let endpoint = '/v1/user-favorite-markets'
             let method = 'POST'
-
-            makeRequest({url: endpoint, method: method, data: null}).then(([status, response]) => {
+            await makeRequest({url: endpoint, method: method, data: {}}).then(([status, response]) => {
                 if (status === 200 || status === 201) {
-                    console.log("favorite_markets", response?.data)
-                    // setFavoriteMarkets()
-                    return response?.data
+                    const responsedata = response?.data
+                    setLocalStorage('favorite_markets', responsedata)
+                    setUserFavoriteMarkets(responsedata)
+
                 }
-            }).catch(error => {
-                console.error("error", error)
             })
-        }
+        }, [])
 
 
-        // Retrieve favorite markets from localStorage on component mount
-        useEffect(() => {
-            if (favoriteMarkets.length > 0) {
-                // const favItems=getFavoriteMarkets()
-                // console.log("fav_items",favItems )
-
-                const storedFavoriteMarkets = getFromLocalStorage('favoriteMarkets');
-                console.log("storedItems", storedFavoriteMarkets)
-                // if (storedFavoriteMarkets) {
-                //     setFavoriteMarkets(storedFavoriteMarkets);
-                // }
-            }
-
-        }, [favoriteMarkets]);
-
-
-        // const preExpandedMarkets = Object.values(markets?? {}).flatMap((marketObject) => {
-        //     if (Array.isArray(marketObject)) {
-        //         return marketObject.flatMap((marketArray) => {
-        //             if (Array.isArray(marketArray)) {
-        //                 return marketArray.slice(0, 5)?.map((item) => item?.market_name);
-        //             }
-        //             return "no data";
-        //         });
-        //     } else {
-        //         return Object.values(marketObject)?.slice(0, 5)?.map((item) => item?.market_name);
-        //     }
-        // });
-        //
-        // const preExpandedMarkets = markets?.slice(0, 5)?.map(item => item.market_name.trim());
-        // const marketNames = markets?.slice(0, 5)?.map(item => item.market_name.trim());
-        // const uniqueMarketNames = Array.from(new Set(marketNames));
-        //
-        // const preExpandedMarkets = uniqueMarketNames.slice(0, 5);
-        //
         const valuesforPreexpanding = () => {
-            const allMarketNames = [...new Set(markets?.flatMap(item => item.market_name.replace(/\s/g, "")))];
+            const allMarketNames = [...new Set(state?.all_markets?.data?.odds.flatMap(item => item?.sub_type_id))];
             const preExpandedMarkets = allMarketNames.slice(0, 5);
-
-            return preExpandedMarkets
-        }
-
-        const valuesforIds = () => {
-            const allids = [...new Set(markets?.flatMap(item => item.sub_type_id))];
-            const marketIds = allids.slice(0, 5);
-            const subtypes = [...marketIds].slice(0, 5)
-
-            return subtypes
-        }
-
-
+            return preExpandedMarkets;
+        };
 
 
         return (
             <div className="top-matches match more-markets">
                 <Accordion preExpanded={valuesforPreexpanding()} allowZeroExpanded className="size-accordion">
-                    <AccordionItem className="pb-2" uuid={market_id.replace(/\s+/g, '')}>
+                    <AccordionItem className="pb-2" uuid={markets?.sub_type_id}>
                         <AccordionItemHeading>
                             <AccordionItemButton className={`accordion-button more-markets-button `}>
                                 <div className={"d-flex justify-content-between w-100 more-markets-header-text"}>
@@ -964,11 +885,11 @@ const MarketRow = React.memo(
                                                 icon={faStar}
                                                 style={{
                                                     fontSize: "20px",
-                                                    color: favoriteMarkets.includes(market_id) ? 'gold' : 'white',
+                                                    color: userFavoriteMarkets?.filter((market) => Number(market?.sub_type_id) === Number(markets?.sub_type_id))?.length === 1 ? 'gold' : 'white',
                                                 }}
-                                                onClick={(event) => favoriteMarket(event, market_id)}
-                                                className={favoriteMarkets.includes(market_id) ? 'favorite' : ''}
-                                            />&nbsp; {market_id}
+                                                onClick={(event) => favoriteMarket(event, markets?.sub_type_id)}
+                                                className={`${state?.user ? 'favorite' : 'd-none'}`}
+                                            />&nbsp; {markets?.market_name}
 
                                         </span>
                                     <FontAwesomeIcon
@@ -980,7 +901,7 @@ const MarketRow = React.memo(
                         </AccordionItemHeading>
                         <AccordionItemPanel className="accordion-item-panel px-1 pt-1">
                             {markets &&
-                                markets.map((mkt_odds, index) => (
+                                markets[markets?.market_name]?.map((mkt_odds, index) => (
                                     <Col uuid={index.toString()} key={index} className="match-detail"
                                          style={{width: width, float: 'left'}}>
                                         <MktOddsButton match={match} mktodds={mkt_odds} live={live} pdown={pdown}/>
@@ -991,7 +912,8 @@ const MarketRow = React.memo(
                 </Accordion>
             </div>
         );
-    });
+    }
+);
 
 const ColoredCircle = React.memo(
     ({color}) => {
@@ -1516,59 +1438,40 @@ export const MarketList = React.memo(
             : dispatch({type: "SET", key: "all_markets", payload: null});
 
         const filterMarkets = (value, group) => {
-            let filtered = [];
-            let elements = Array.from(
-                Object.entries(matchwithmarkets?.data?.odds || {})
-            );
-            elements.filter((mkt_id, markets) => {
-                if (mkt_id[0].toLowerCase().includes(value)) {
-                    filtered[mkt_id[0]] = mkt_id[1];
-                }
-                return [];
+            const elements = matchwithmarkets?.data?.odds;
+            const filtered = elements.filter((market) => {
+                return market?.market_name?.toLowerCase().includes(value);
             });
 
-            let match = filters?.data?.match;
+            const match = filters?.data?.match;
 
-            let ob = {
+            const ob = {
                 data: {
                     match: match,
-                    odds: Object.assign({}, filtered),
+                    odds: filtered,
                 },
             };
-
             setFilters(ob);
         };
-
         const filterMarketGroups = (group_id) => {
+            const elements = matchwithmarkets?.data?.odds;
+            let filteredMarkets;
+            if (group_id === "favorite") {
+                filteredMarkets = elements.filter((market) => Number(market?.is_favorite) === 1)
+            } else {
+                filteredMarkets = elements.filter((market) => Number(market?.group_id) === Number(group_id) || group_id === 'all')
+            }
+            const match = filters?.data?.match;
 
-            let filtered = [];
-
-            let elements = Array.from(
-                Object.entries(matchwithmarkets?.data?.odds || {})
-            );
-
-            elements.filter((mkt_id, markets) => {
-
-                let marketGroups = mkt_id[1]
-
-                if (marketGroups[0]?.group_id === group_id || group_id === 'all') {
-                    filtered[mkt_id[0]] = mkt_id[1];
-                }
-                return [];
-            });
-
-            let match = filters?.data?.match;
-
-            let ob = {
+            const ob = {
                 data: {
                     match: match,
-                    odds: Object.assign({}, filtered),
+                    odds: filteredMarkets,
                 },
             };
-            setGroupMarketsAvailable(Object.keys(ob?.data?.odds).length !== 0)
+            setGroupMarketsAvailable(Object.keys(ob?.data?.odds).length !== 0);
             setFilters(ob);
         };
-
 
         useEffect(() => {
             setFilters(matchwithmarkets);
@@ -1579,6 +1482,7 @@ export const MarketList = React.memo(
         const startIndex = (currentPage - 1) * perPage;
         const endIndex = startIndex + perPage;
         const marketsToShow = Object.entries(filters?.data?.odds || {}).slice(startIndex, endIndex);
+
 
         return (
             <div className="matches full-width" style={{marginBottom: "0px"}}>
@@ -1613,6 +1517,10 @@ export const MarketList = React.memo(
                         />
                     </div>
                     <div className="text-white market-groups-container">
+                        {state?.market_groups?.length > 0 && <button onClick={() => filterMarketGroups('favorite')}
+                                                                     className={'market-group-pill text-white badge badge-pill badge-primary bg-transparent outline-1 p-2 border-white'}>
+                            Favorite Markets
+                        </button>}
                         {state?.market_groups?.length > 0 && <button onClick={() => filterMarketGroups('all')}
                                                                      className={'market-group-pill text-white badge badge-pill badge-primary bg-transparent outline-1 p-2 border-white'}>
                             All Markets
@@ -1630,7 +1538,7 @@ export const MarketList = React.memo(
                             allMarkets={allMarkets}
                             market_id={mkt_id}
                             markets={markets}
-                            width={markets.length === 3 ? "33.333%" : "50%"}
+                            width={markets[markets?.market_name].length === 3 ? "33.333%" : "50%"}
                             match={filters?.data?.match}
                             key={index}
                             live={live}

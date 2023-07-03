@@ -9,6 +9,7 @@ import makeRequest from "./utils/fetch-request";
 import {MarketList} from "./matches";
 import LiveSideBar from "./sidebar/live-sidebar";
 import {ToastContainer} from "react-toastify";
+import {setLocalStorage} from "./utils/local-storage";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -65,8 +66,8 @@ const AllMarkets = React.memo(
                 setIsLoading(true);
                 let betslip = findPostableSlip();
                 let endpoint = live
-                    ? "/v1/matches/live?id=" + id
-                    : "/v1/matches?id=" + id;
+                    ? "/v2/matches/live?id=" + id
+                    : "/v2/matches?id=" + id;
 
                 await makeRequest({url: endpoint, method: "POST", data: betslip}).then(
                     ([status, result]) => {
@@ -79,9 +80,29 @@ const AllMarkets = React.memo(
             }
         }, []);
 
+        const getFavoriteMarkets = useCallback(async()=> {
+            let endpoint = '/v1/user-favorite-markets'
+            let method = 'POST'
+            await makeRequest({url: endpoint, method: method, data: {}}).then(([status, response]) => {
+                if (status === 200 || status === 201) {
+                    console.log("response", response?.data)
+                    const responsedata = response?.data
+                    console.log("response", responsedata)
+                    responsedata?.map((item) => {
+                        console.log("item", item?.sub_type_id)
+                        // dispatch({type: "SET", key: "all_markets", payload: item?.sub_type_id});
+
+                        // setLocalStorage("favoriteMarkets",item?.sub_type_id)
+                    })
+                }
+                // setFavoriteMarkets()}
+            })
+        },[])
+
         useLayoutEffect(() => {
             const abortController = new AbortController();
             fetchPagedData();
+            getFavoriteMarkets()
             return () => {
                 abortController.abort();
             };

@@ -139,27 +139,11 @@ const MobileMenu = React.memo((props) => {
                    style={!pathSlipSummary.includes(pathname) ? sumOfOdds == 0 ? {height: "70px"} : countInfo ? {height: "92px"} : {height: "70px"} : {height: "53px"}}>
                 <tbody>
                     {slip_condition ? <table>
-                            <tbody className={"slip-menu-prematch"} >
+                            <tbody className={"slip-menu-prematch"}  onClick={()=>navigate("/betslip")}>
                             <tr>
                                 <td className={"bet-align-right"}>
                                     <div className={"d-flex gap-4 justify-content-end mx-4"}>
                                         <div>
-                                            {/*<div className={"slip-count-option"} title={"betslip"}>*/}
-                                            {/*    <Link to={"/betslip-slip"}>*/}
-                                            {/*        <Badge*/}
-                                            {/*            pill*/}
-                                            {/*            className="slip-count-value"*/}
-                                            {/*        >*/}
-                                            {/*            {getBetslip() ? Object.keys(betItems || {}).length <= 50 ?*/}
-                                            {/*                    <strong>{Object.keys(betItems || {}).length}</strong> :*/}
-                                            {/*                    <strong className={'badge-font-weight'}>50</strong> :*/}
-                                            {/*                <strong>0</strong>}*/}
-                                            {/*        </Badge>*/}
-                                            {/*        <FontAwesomeIcon icon={faFileInvoice}*/}
-                                            {/*                         style={{fontSize: "27px", color: "var(--aqua-text)"}}/>*/}
-                                            {/*    </Link>*/}
-                                            {/*</div>*/}
-
                                             <div className={"close-prompt close-alert-slip"} title={"close suggestions"}>
                                                 <div>
                                                     <img src={closeIcon} className={"close-icon-alert"} onClick={() => removeCountInformation()}/>
@@ -181,7 +165,7 @@ const MobileMenu = React.memo((props) => {
                                         Winnings {winnings}
                                     </td>
                                 </tr>}
-                            <tr className={"mt-3"} onClick={()=>navigate("/betslip")}>
+                            <tr className={"mt-3"} >
                                 <td className={"bet-align-left w-100"}>
                                     <div className="progress mx-3 my-3 prematch-slip">
                                         <div className="progress-bar prematch" role="progressbar"
@@ -213,7 +197,6 @@ const MobileMenu = React.memo((props) => {
                                 <td className={`bloc-icon ${pathname === "/" ? "active" : ""}`}>
                                     <Link
                                         to={"/"}
-
                                         onClick={() => gaEventTracker("Visit Homepage")}
                                     >
                                         <LazyLoadImage src={HomeSvg} alt="" style={{width: "30px", height: "25px"}}/>

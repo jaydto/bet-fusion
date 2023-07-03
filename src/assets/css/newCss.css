@@ -1666,6 +1666,9 @@ img.nare-league {
 }
 
 @media (min-width: 992px) {
+    .market-groups-container{
+        max-width: 61.2vw;
+    }
     .details-items .team .team-info {
         text-overflow: ellipsis;
         width: 260px;
@@ -1880,6 +1883,9 @@ img.nare-league {
     cursor: pointer!important;
 }
 @media (max-width: 991px) {
+    .market-groups-container{
+        max-width: 100vw;
+    }
     .outcome-h {
         text-overflow: ellipsis;
         width: 77px;

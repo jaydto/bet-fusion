@@ -1879,6 +1879,13 @@ img.nare-league {
     cursor: pointer!important;
 }
 @media (max-width: 991px) {
+    .progress.prematch-slip{
+        position:relative;
+        height:20px;
+    }
+    .close-icon-alert{
+        height:20px
+    }
     .my-filter-button:empty{
         display:none!important;
     }
@@ -1978,15 +1985,14 @@ img.nare-league {
     }
     .close-prompt.close-alert-slip {
         position: fixed;
-        right: 1.8rem;
-        bottom: 12rem;
+        right: 3.8rem;
+        bottom: 8.4rem;
         z-index: 2000;
-        background: var(--betnare-header-bg);
+        /* background: var(--betnare-header-bg); */
     }
-
     .slip-count-option {
         position: fixed;
-        bottom: 14rem;
+        bottom: 10rem;
         right: 0rem;
     }
     .prematch.progress-bar{
@@ -2007,8 +2013,8 @@ img.nare-league {
         display: flex;
         align-items: center;
     }
-    .prematch-slip.progress{
-        height:13px;
+    .prematch-slip.progress {
+        height: 14px;
     }
     .close-prompt input{
         margin-bottom:-10px

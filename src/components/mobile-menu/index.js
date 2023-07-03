@@ -2,7 +2,7 @@ import React, {useCallback, useContext, useEffect, useState} from "react";
 import HomeSvg from "../../assets/img/mobile/home.png";
 import LiveSvg from "../../assets/img/mobile/live.png";
 import ProfileSvg from "../../assets/img/mobile/user.png";
-import kironImg from "../../../src/assets/img/kiron/nare-league.webp"
+import closeIcon from "../../../src/assets/img/mobile/close_icon.png"
 
 import makeRequest from "../utils/fetch-request";
 import {Badge} from "react-bootstrap";
@@ -135,7 +135,7 @@ const MobileMenu = React.memo((props) => {
             </div>
 
             <table className={`${slip_condition?"prematch-menu mobile-menu":"mobile-menu"}`}
-                   style={!pathSlipSummary.includes(pathname) ? sumOfOdds == 0 ? {height: "70px"} : countInfo ? {height: "120px"} : {height: "70px"} : {height: "53px"}}>
+                   style={!pathSlipSummary.includes(pathname) ? sumOfOdds == 0 ? {height: "70px"} : countInfo ? {height: "86px"} : {height: "70px"} : {height: "53px"}}>
                 <tbody>
                     {slip_condition ? <table>
                             <tbody className={"slip-menu-prematch"}>
@@ -161,12 +161,13 @@ const MobileMenu = React.memo((props) => {
 
                                             <div className={"close-prompt close-alert-slip"} title={"close suggestions"}>
                                                 <div>
-                                                    <input
-                                                        id={"slip-count-id"}
-                                                        type="submit"
-                                                        value="X"
-                                                        onClick={() => removeCountInformation()}
-                                                    />
+                                                    <img src={closeIcon} className={"close-icon-alert"}/>
+                                                    {/*<input*/}
+                                                    {/*    id={"slip-count-id"}*/}
+                                                    {/*    type="submit"*/}
+                                                    {/*    value="X"*/}
+                                                    {/*    onClick={() => removeCountInformation()}*/}
+                                                    {/*/>*/}
                                                 </div>
 
                                             </div>
@@ -185,18 +186,22 @@ const MobileMenu = React.memo((props) => {
                                         Winnings {winnings}
                                     </td>
                                 </tr>}
-                            <tr className={" d-flex w-100 justify-content-between px-3 mt-2"}>
-                                <td className={" w-100 slip-alert-style"}>
-                                    {state?.multiboostmessage}
-                                </td>
-                            </tr>
+                            {/*<tr className={" d-flex w-100 justify-content-between px-3 mt-2"}>*/}
+                            {/*    <td className={" w-100 slip-alert-style"}>*/}
+                            {/*        {state?.multiboostmessage}*/}
+                            {/*    </td>*/}
+                            {/*</tr>*/}
                             <tr className={"mt-3"}>
                                 <td className={"bet-align-left w-100"}>
-                                    <div className="progress mx-3 my-3 prematxh-slip">
+                                    <div className="progress mx-3 my-3 prematch-slip">
                                         <div className="progress-bar prematch" role="progressbar"
                                              style={{width: `${progress}%`}}
                                              aria-valuenow={progress}
-                                             aria-valuemin="0" aria-valuemax="100"></div>
+                                             aria-valuemin="0" aria-valuemax="100">
+                                            <span className="progress-text"
+                                                  style={{position: "absolute", left: "50%", top: "50%", transform: "translate(-50%, -50%)", color:"var(--dark)"}}>
+								{state?.multiboostmessage}</span>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>

@@ -476,11 +476,11 @@ const BetslipSubmitForm = React.memo(
                 dispatch({
                     type: "SET",
                     key: "multiboostmessage",
-                    payload: `Congratulations, you qualify for Nare Gift. Add ${remainingGames} more game${
+                    payload: `Congratulations, Add ${remainingGames} more game${
                         remainingGames > 1 ? "s" : ""
                     } with odds of  ${
                         settings?.betnareGifts?.giftBoostMinOdds
-                    } or above to redeem your gift.`
+                    } or above to redeem gift.`
                 });
 
             }

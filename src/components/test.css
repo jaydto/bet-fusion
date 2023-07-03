@@ -112,6 +112,9 @@
     }
 }
 @media (max-width: 991px){
+    .carousel.slide {
+        height: 67px;
+    }
 
     .flex-item {
         display: flex;

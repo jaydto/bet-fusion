@@ -122,7 +122,7 @@ const BetHistory = () => {
             }else {
                 return (
                     <div className="col badge bg-dark rounded-4">
-                        pending
+                        PENDING
                     </div>
                 );
             }

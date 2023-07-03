@@ -199,7 +199,7 @@ const MobileMenu = React.memo((props) => {
                                              aria-valuenow={progress}
                                              aria-valuemin="0" aria-valuemax="100">
                                             <span className="progress-text"
-                                                  style={{position: "absolute", left: "50%", top: "50%", transform: "translate(-50%, -50%)", color:"var(--dark)"}}>
+                                                  style={{position: "absolute", left: "50%", top: "50%",fontWeight:"600", transform: "translate(-50%, -50%)", color:"var(--dark)"}}>
 								{state?.multiboostmessage}</span>
                                         </div>
                                     </div>

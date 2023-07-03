@@ -388,7 +388,7 @@ const BetDetails = (props) => {
 								</div>}
 								<div className="d-flex options-details-history w-100 justify-content-between">
 									<div className="d-flex">
-										Events (Odds {item?.odd_value})
+										Events (Odds {state?.mybets?.meta?.bet_info?.total_odd})
 									</div>
 									{index === 0 && (
 										<div className="d-flex text-warning bold d-flex gap-2 align-items-center"

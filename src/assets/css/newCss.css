@@ -1879,6 +1879,20 @@ img.nare-league {
     cursor: pointer!important;
 }
 @media (max-width: 991px) {
+    .outcome-h {
+        text-overflow: ellipsis;
+        width: 77px;
+        white-space: nowrap;
+        overflow: hidden;
+        display: inline-block;
+    }
+    .pick-h {
+        text-overflow: ellipsis;
+        width: 100px;
+        white-space: nowrap;
+        overflow: hidden;
+        display: inline-block;
+    }
     .progress.prematch-slip{
         position:relative;
         height:20px;

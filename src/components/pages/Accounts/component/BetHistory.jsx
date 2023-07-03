@@ -132,7 +132,7 @@ const BetHistory = () => {
             dispatch({type: "SET", key: "bet_history_details", payload: bet_id});
             setLocalStorage("bet_history_details",bet_id)
         }
-        const [mybets, setMybets] = useState(state?.filteredHistoryGames || getFromLocalStorage("mybets"))
+        const [mybets, setMybets] = useState(state?.filteredHistoryGames || state?.bets_by_date|| getFromLocalStorage("mybets"))
 
         useEffect(()=>{
 
@@ -212,7 +212,7 @@ const BetHistory = () => {
         }
     };
 
-    const [hideLost, setHideLost] = useState(false || getFromLocalStorage("remove_lost_bets"))
+    const [hideLost, setHideLost] = useState( getFromLocalStorage("remove_lost_bets")||false)
     const [showGameFilter, setShowGameFilter] = useState(false)
 
     const onSwitchChange = (e) => {

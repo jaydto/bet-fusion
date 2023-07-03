@@ -476,11 +476,11 @@ const BetslipSubmitForm = React.memo(
                 dispatch({
                     type: "SET",
                     key: "multiboostmessage",
-                    payload: `Congratulations, Add ${remainingGames} more game${
+                    payload: ` Add ${remainingGames} more game${
                         remainingGames > 1 ? "s" : ""
                     } with odds of  ${
                         settings?.betnareGifts?.giftBoostMinOdds
-                    } or above to redeem gift.`
+                    } or above to boost your winnings.`
                 });
 
             }

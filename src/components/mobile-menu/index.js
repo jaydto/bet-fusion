@@ -10,7 +10,7 @@ import {Badge} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFileInvoice, faReceipt, faTimes,} from "@fortawesome/free-solid-svg-icons";
 
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {formatNumber, getBetslip, getJackpotBetslip, getKironSlip} from "../utils/betslip";
 import {Context} from "../../context/store";
@@ -25,6 +25,7 @@ const MobileMenu = React.memo((props) => {
     const gaEventTracker = useAnalyticsEventTracker("Navigation");
     const pathname = window.location.pathname;
     const [state, dispatch] = useContext(Context);
+    const navigate=useNavigate();
 
     const fetchData = useCallback(() => {
         let endpoint = "/v1/sports?live=1";
@@ -135,39 +136,33 @@ const MobileMenu = React.memo((props) => {
             </div>
 
             <table className={`${slip_condition?"prematch-menu mobile-menu":"mobile-menu"}`}
-                   style={!pathSlipSummary.includes(pathname) ? sumOfOdds == 0 ? {height: "70px"} : countInfo ? {height: "86px"} : {height: "70px"} : {height: "53px"}}>
+                   style={!pathSlipSummary.includes(pathname) ? sumOfOdds == 0 ? {height: "70px"} : countInfo ? {height: "92px"} : {height: "70px"} : {height: "53px"}}>
                 <tbody>
                     {slip_condition ? <table>
-                            <tbody className={"slip-menu-prematch"}>
+                            <tbody className={"slip-menu-prematch"} >
                             <tr>
                                 <td className={"bet-align-right"}>
                                     <div className={"d-flex gap-4 justify-content-end mx-4"}>
                                         <div>
-                                            <div className={"slip-count-option"} title={"betslip"}>
-                                                <Link to={"/betslip-slip"}>
-                                                    <Badge
-                                                        pill
-                                                        className="slip-count-value"
-                                                    >
-                                                        {getBetslip() ? Object.keys(betItems || {}).length <= 50 ?
-                                                                <strong>{Object.keys(betItems || {}).length}</strong> :
-                                                                <strong className={'badge-font-weight'}>50</strong> :
-                                                            <strong>0</strong>}
-                                                    </Badge>
-                                                    <FontAwesomeIcon icon={faFileInvoice}
-                                                                     style={{fontSize: "27px", color: "var(--aqua-text)"}}/>
-                                                </Link>
-                                            </div>
+                                            {/*<div className={"slip-count-option"} title={"betslip"}>*/}
+                                            {/*    <Link to={"/betslip-slip"}>*/}
+                                            {/*        <Badge*/}
+                                            {/*            pill*/}
+                                            {/*            className="slip-count-value"*/}
+                                            {/*        >*/}
+                                            {/*            {getBetslip() ? Object.keys(betItems || {}).length <= 50 ?*/}
+                                            {/*                    <strong>{Object.keys(betItems || {}).length}</strong> :*/}
+                                            {/*                    <strong className={'badge-font-weight'}>50</strong> :*/}
+                                            {/*                <strong>0</strong>}*/}
+                                            {/*        </Badge>*/}
+                                            {/*        <FontAwesomeIcon icon={faFileInvoice}*/}
+                                            {/*                         style={{fontSize: "27px", color: "var(--aqua-text)"}}/>*/}
+                                            {/*    </Link>*/}
+                                            {/*</div>*/}
 
                                             <div className={"close-prompt close-alert-slip"} title={"close suggestions"}>
                                                 <div>
-                                                    <img src={closeIcon} className={"close-icon-alert"}/>
-                                                    {/*<input*/}
-                                                    {/*    id={"slip-count-id"}*/}
-                                                    {/*    type="submit"*/}
-                                                    {/*    value="X"*/}
-                                                    {/*    onClick={() => removeCountInformation()}*/}
-                                                    {/*/>*/}
+                                                    <img src={closeIcon} className={"close-icon-alert"} onClick={() => removeCountInformation()}/>
                                                 </div>
 
                                             </div>
@@ -191,7 +186,7 @@ const MobileMenu = React.memo((props) => {
                             {/*        {state?.multiboostmessage}*/}
                             {/*    </td>*/}
                             {/*</tr>*/}
-                            <tr className={"mt-3"}>
+                            <tr className={"mt-3"} onClick={()=>navigate("/betslip")}>
                                 <td className={"bet-align-left w-100"}>
                                     <div className="progress mx-3 my-3 prematch-slip">
                                         <div className="progress-bar prematch" role="progressbar"

@@ -1883,8 +1883,8 @@ img.nare-league {
         position:relative;
         height:20px;
     }
-    .close-icon-alert{
-        height:20px
+    .close-icon-alert {
+        height: 23px;
     }
     .my-filter-button:empty{
         display:none!important;
@@ -1986,13 +1986,13 @@ img.nare-league {
     .close-prompt.close-alert-slip {
         position: fixed;
         right: 3.8rem;
-        bottom: 8.4rem;
+        bottom: 9rem;
         z-index: 2000;
         /* background: var(--betnare-header-bg); */
     }
     .slip-count-option {
         position: fixed;
-        bottom: 10rem;
+        bottom: 11rem;
         right: 0rem;
     }
     .prematch.progress-bar{

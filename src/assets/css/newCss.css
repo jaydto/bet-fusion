@@ -1168,6 +1168,9 @@ img.nare-league {
 /*end back button*/
 /*media queries*/
 @media (min-width: 1260px) {
+    .market-groups-container {
+        top: 93px!important;
+    }
     .more-markets-header-text{
         width:60vw!important;
     }
@@ -1482,6 +1485,10 @@ img.nare-league {
 }
 
 @media (min-width: 1200px) and (max-width: 1259px) {
+    .market-groups-container {
+        top: 107px!important;
+    }
+
     .background-mybets-mobile {
         width: 90vw;
     }
@@ -1668,6 +1675,8 @@ img.nare-league {
 @media (min-width: 992px) {
     .market-groups-container{
         max-width: 61.2vw;
+        z-index:2001;
+        background:var(--betnare-header-bg);
     }
     .details-items .team .team-info {
         text-overflow: ellipsis;
@@ -1883,8 +1892,13 @@ img.nare-league {
     cursor: pointer!important;
 }
 @media (max-width: 991px) {
+    .market-groups-container {
+        top: 107px!important;
+    }
     .market-groups-container{
         max-width: 100vw;
+        z-idex:2001;
+        background: var(--betnare-header-bg);
     }
     .outcome-h {
         text-overflow: ellipsis;

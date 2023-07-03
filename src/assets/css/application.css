@@ -748,18 +748,15 @@ li.bet-option {
 #jp-nare-pick-button:hover {
     color: orangered !important;
 }
-
 .market-groups-container {
-    overflow-x: scroll !important;
-    position: sticky !important;
-    position: sticky;
-    top: 100px !important;
-    /* width: 100vw !important; */
-    overflow-x: scroll !important;
     display: flex;
     margin-bottom: 5px;
     min-height: 3rem;
-
+    overflow-x: scroll!important;
+    position: -webkit-sticky!important;
+    position: sticky!important;
+    position: sticky;
+    z-index:2001;
 }
 
 .market-groups-container::-webkit-scrollbar {

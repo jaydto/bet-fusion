@@ -938,6 +938,52 @@ const getUpdatedMatchFromOdds = (props) => {
     return newMatch;
 
 }
+export const FormatDate2 = (props) => {
+    const {start_time, match_time, live} = props;
+    // Extract the date and time components
+    const [dateString, timeString] = start_time.split(' ');
+    const [year, month, day] = dateString.split('-');
+    const [hour, minute] = timeString.split(':');
+
+    // Format the date and time
+    const formattedDateTime = `${month}/${day} ${hour}:${minute}`;
+    if(live){
+        return match_time
+    }else{
+        return formattedDateTime;
+    }
+
+};
+
+export const FormatDate = (props) => {
+    const {start_time, match_time, live, jackpot} = props;
+
+    // Extract the date and time components
+    const [dateString, timeString] = start_time.split(' ');
+    const [year, month, day] = dateString.split('-');
+    const [hour, minute] = timeString.split(':');
+
+    // Create a new Date object
+    const dateTime = new Date(year, month - 1, day, hour, minute);
+
+    // Format the date and time
+    const formattedDateTime = dateTime.toLocaleString('en-US', {
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: true,
+    });
+    if (match_time) {
+        return formattedDateTime
+    } else if (jackpot) {
+        return formattedDateTime
+    } else if (live === 1) {
+        return match_time
+    } else {
+        return formattedDateTime;
+    }
+};
 
 const MatchRow = React.memo(
     (props) => {
@@ -1007,52 +1053,6 @@ const MatchRow = React.memo(
         for (let i = 0; i < append; i++) {
             loops.push(i)
         }
-        const FormatDate = (props) => {
-            const {start_time, match_time, live, jackpot} = props;
-
-            // Extract the date and time components
-            const [dateString, timeString] = start_time.split(' ');
-            const [year, month, day] = dateString.split('-');
-            const [hour, minute] = timeString.split(':');
-
-            // Create a new Date object
-            const dateTime = new Date(year, month - 1, day, hour, minute);
-
-            // Format the date and time
-            const formattedDateTime = dateTime.toLocaleString('en-US', {
-                month: 'long',
-                day: 'numeric',
-                hour: 'numeric',
-                minute: 'numeric',
-                hour12: true,
-            });
-            if (match_time) {
-                return formattedDateTime
-            } else if (jackpot) {
-                return formattedDateTime
-            } else if (live === 1) {
-                return match_time
-            } else {
-                return formattedDateTime;
-            }
-        };
-
-        const FormatDate2 = (props) => {
-            const {start_time, match_time, live} = props;
-            // Extract the date and time components
-            const [dateString, timeString] = start_time.split(' ');
-            const [year, month, day] = dateString.split('-');
-            const [hour, minute] = timeString.split(':');
-
-            // Format the date and time
-            const formattedDateTime = `${month}/${day} ${hour}:${minute}`;
-            if(live){
-                return match_time
-            }else{
-                return formattedDateTime;
-            }
-
-        };
 
         return (
             <div className="top-matches d-flex flex-sm-column flex-lg-row  styling-matches">
@@ -1646,7 +1646,9 @@ export const JackpotMatchList = React.memo(
             return (
                 <div>
                     <p className={"text-expiry-style"}>Expires on&nbsp;
-                        {matches?.meta?.end_time}
+                        <FormatDate live={0} start_time={matches?.meta?.end_time}
+                                     match_time={matches?.meta?.end_time} />
+
                     </p>
                     <p className={"text-light count-down-jackpot"}>{countdown}</p>
                 </div>

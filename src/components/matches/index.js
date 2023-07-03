@@ -1037,6 +1037,23 @@ const MatchRow = React.memo(
             }
         };
 
+        const FormatDate2 = (props) => {
+            const {start_time, match_time, live} = props;
+            // Extract the date and time components
+            const [dateString, timeString] = start_time.split(' ');
+            const [year, month, day] = dateString.split('-');
+            const [hour, minute] = timeString.split(':');
+
+            // Format the date and time
+            const formattedDateTime = `${month}/${day} ${hour}:${minute}`;
+            if(live){
+                return match_time
+            }else{
+                return formattedDateTime;
+            }
+
+        };
+
         return (
             <div className="top-matches d-flex flex-sm-column flex-lg-row  styling-matches">
                 <div
@@ -1073,11 +1090,8 @@ const MatchRow = React.memo(
                                   </span>
                                                            </div>
                                                        }
-                                                       {new Date(match?.start_time).getDate() +
-                                                           "/" +
-                                                           (Number(new Date(match?.start_time).getMonth()) + 1) +
-                                                           " " +
-                                                           (match?.match_time == undefined ? "" : match?.match_time)}
+                                                       <FormatDate2 live={live} start_time={match?.start_time}
+                                                                   match_time={match?.match_time} />
 
                                                    </>
 
@@ -1186,11 +1200,8 @@ const MatchRow = React.memo(
                                   </span>
                                                             </div>
                                                         }
-                                                        {new Date(match?.start_time).getDate() +
-                                                            "/" +
-                                                            (Number(new Date(match?.start_time).getMonth()) + 1) +
-                                                            " " +
-                                                            (match?.match_time == undefined ? "" : match?.match_time)}
+                                                        <FormatDate2 live={live} start_time={match?.start_time}
+                                                                     match_time={match?.match_time} />
 
                                                     </>
 
@@ -1264,11 +1275,6 @@ const MatchRow = React.memo(
                                                          }
                                                          <FormatDate live={live} start_time={match?.start_time}
                                                                      match_time={match?.match_time} jackpot={jackpot}/>
-                                                         {/*{live!==1&&new Date(match?.start_time).getDate() +*/}
-                                                         {/*    "/" +*/}
-                                                         {/*    (Number(new Date(match?.start_time).getMonth()) + 1) +*/}
-                                                         {/*    " " +*/}
-                                                         {/*    (match?.match_time == undefined ? "": match?.match_time)}*/}
 
                                                      </>
 

@@ -37,7 +37,7 @@ const CompanyInfo = React.memo(
                         </span>
                     </div>
                     <div className="mail text-lowercase bold bg-light">
-                        <i className="fa fa-envelope-o" aria-hidden="true"></i> &nbsp; customercare@betnare.com
+                        <i className="fa fa-envelope-o" aria-hidden="true"></i> &nbsp; customercare@betnare.co.ke
                     </div>
                 </div>
             </div>

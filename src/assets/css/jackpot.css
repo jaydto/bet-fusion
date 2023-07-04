@@ -164,6 +164,9 @@
     .jackpot-mobile-top-results-space{
         padding-top:7px;
     }
+    .jackpot-mobile-top-results-space:nth-child(2){
+        min-width:123px;
+    }
     .jackpot-mobile-top-results-space:nth-child(3){
         text-align: center;
     }

@@ -276,13 +276,13 @@ const Jackpot = React.memo(
                                                     TIME
                                                 </div>
                                                 <div className="col-md-3 col-sm-4 bold">
-                                                    MATCH COMPETITION
+                                                    GAME
                                                 </div>
-                                                <div className="col-md-3 col-sm-3 bold">
-                                                    MATCH OUTCOME
+                                                <div className="col-md-3 col-sm-3 bold ">
+                                                  PICK
                                                 </div>
-                                                <div className="col-md-2 col-sm-4 bold">
-                                                    WINNING OUTCOME
+                                                <div className="col-md-2 col-sm-4 bold ">
+                                                    RESULT
                                                 </div>
                                             </div>
                                         </div>
@@ -292,14 +292,11 @@ const Jackpot = React.memo(
                                                 <div className={`${width <= 767 ? "w-100 px-2" : "web-element px-2"}`}>
                                                     <div
                                                         className="col-md-12 shadow d-flex flex-row p-4 text-white top-matches jackpot-results-bg">
-                                                        <div className="col-md-3  col-sm-3 jackpot-mobile-top-results-space">
+                                                        <div className="col-md-3  col-sm-3 jackpot-mobile-top-results-space  d-flex align-items-center">
                                                             <FormatDate2 live={0} start_time={match?.start_time}
                                                                          match_time={match?.start_time} />
                                                         </div>
                                                         <div className="col-md-4  col-sm-4 d-flex flex-column jackpot-mobile-top-results-space">
-                                                            <div className={'small'}>
-                                                                {match?.category} | {match?.competition_name}
-                                                            </div>
                                                             <div>
                                                                 <div className={'bold'}>
                                                                     {match?.home_team}
@@ -309,10 +306,10 @@ const Jackpot = React.memo(
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div className="col-md-3 col-sm-3 jackpot-mobile-top-results-space">
+                                                        <div className="col-md-3 col-sm-3 jackpot-mobile-top-results-space d-flex align-items-center">
                                                             {match?.outcome || '-'}
                                                         </div>
-                                                        <div className="col-md-2 col-sm-3 jackpot-mobile-top-results-space">
+                                                        <div className="col-md-2 col-sm-3 jackpot-mobile-top-results-space d-flex align-items-center">
                                                             {match?.winning_outcome || '-'}
                                                         </div>
                                                     </div>

@@ -118,12 +118,12 @@ const Jackpot = React.memo(
 
             return (
                 <div>
-                    {matches?.meta?.start_time&&
+                    {matches?.meta?.start_time &&
                         <p className={"text-expiry-style"}>Expires on&nbsp;
-                        <FormatDate live={0} start_time={matches?.meta?.start_time}
-                                    match_time={matches?.meta?.start_time}/>
-                    </p>}
-                    {activeTab==="home"&&<p className={"text-light count-down-jackpot d-flex gap-4"}>
+                            <FormatDate live={0} start_time={matches?.meta?.start_time}
+                                        match_time={matches?.meta?.start_time}/>
+                        </p>}
+                    {activeTab === "home" && <p className={"text-light count-down-jackpot d-flex gap-4"}>
                         <span className="days d-flex flex-column">
                             <span className={"counter-jackpot time-box__time"}>
                                 {countdownDay}
@@ -181,17 +181,18 @@ const Jackpot = React.memo(
                 <div className={`flex-container flex-column ${!showDownload && 'top-spacing-page-no-download'}`}>
                     <div className="item2 size-all-markets jp-header-banner">
                         <div className={"jp-banner-image"}>
-                            <div className="d-flex h-100 w-100 justify-content-around gap-4 px-5 align-items-center jackpot-mobile-appearance">
+                            <div
+                                className="d-flex h-100 w-100 justify-content-around  px-5 align-items-center jackpot-mobile-appearance">
                                 <div className="jackpot-counter-time">
 
                                     <div className="jackpot-count-text">
                                         <div className="jackpot-text">
                                             Time left
                                         </div>
-                                        <CountDownJackpot/>
+                                        {matches?.meta&&<CountDownJackpot/>}
                                     </div>
                                 </div>
-                                {console.log("matches_meta",matches?.meta )}
+                                {console.log("matches_meta", matches?.meta)}
                                 <div className="jackpot-pages-information">
                                     <div className={"predict"}>
                                         <span>
@@ -202,12 +203,12 @@ const Jackpot = React.memo(
                                                 To Win
                                             </span>
                                         </span>
-                                        <span className={"predict-amount"}>
+                                        {matches?.meta?.jackpot_amount&&<span className={"predict-amount"}>
                                            KES&nbsp;
-                                            <span className={"predict-amount-kes"}>
+                                           <span className={"predict-amount-kes"}>
                                             {Number(matches?.meta?.jackpot_amount).toLocaleString()}
                                         </span>
-                                        </span>
+                                        </span>}
                                         <span className={"predict-prices"}>
                                             Prizes to be Won
                                         </span>
@@ -279,7 +280,7 @@ const Jackpot = React.memo(
                                                     GAME
                                                 </div>
                                                 <div className="col-md-3 col-sm-3 bold ">
-                                                  PICK
+                                                    PICK
                                                 </div>
                                                 <div className="col-md-2 col-sm-4 bold ">
                                                     RESULT
@@ -292,11 +293,13 @@ const Jackpot = React.memo(
                                                 <div className={`${width <= 767 ? "w-100 px-2" : "web-element px-2"}`}>
                                                     <div
                                                         className="col-md-12 shadow d-flex flex-row p-4 text-white top-matches jackpot-results-bg">
-                                                        <div className="col-md-3  col-sm-3 jackpot-mobile-top-results-space  d-flex align-items-center">
+                                                        <div
+                                                            className="col-md-3  col-sm-3 jackpot-mobile-top-results-space  d-flex align-items-center">
                                                             <FormatDate2 live={0} start_time={match?.start_time}
-                                                                         match_time={match?.start_time} />
+                                                                         match_time={match?.start_time}/>
                                                         </div>
-                                                        <div className="col-md-4  col-sm-4 d-flex flex-column jackpot-mobile-top-results-space">
+                                                        <div
+                                                            className="col-md-4  col-sm-4 d-flex flex-column jackpot-mobile-top-results-space">
                                                             <div>
                                                                 <div className={'bold'}>
                                                                     {match?.home_team}
@@ -306,10 +309,12 @@ const Jackpot = React.memo(
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div className="col-md-3 col-sm-3 jackpot-mobile-top-results-space d-flex align-items-center">
+                                                        <div
+                                                            className="col-md-3 col-sm-3 jackpot-mobile-top-results-space d-flex align-items-center">
                                                             {match?.outcome || '-'}
                                                         </div>
-                                                        <div className="col-md-2 col-sm-3 jackpot-mobile-top-results-space d-flex align-items-center">
+                                                        <div
+                                                            className="col-md-2 col-sm-3 jackpot-mobile-top-results-space d-flex align-items-center">
                                                             {match?.winning_outcome || '-'}
                                                         </div>
                                                     </div>
@@ -327,7 +332,7 @@ const Jackpot = React.memo(
 
                         </div>
                     </div>
-                    {activeTab==="home"&&<div className="item3">
+                    {activeTab === "home" && <div className="item3">
                         <Right jackpot={true} jackpotData={matches?.meta} test={true} matches={matches}/>
                     </div>}
 

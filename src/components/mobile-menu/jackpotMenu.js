@@ -232,8 +232,8 @@ const MobileMenu = React.memo(
                         <td className={"bet-align-left"}>
                             Bet Amount
                         </td>
-                        <td className={"bet-align-right"}>
-                            {jackpot_stake}
+                        <td className={"bet-align-right "} style={{color:"var(--gold)"}}>
+                            {jackpot_stake}/=
                         </td>
                     </tr>
                     <tr className={"d-flex w-100 justify-content-between px-4"}>
@@ -280,10 +280,9 @@ const MobileMenu = React.memo(
                                 </span>
 
                                 </div>
-                                <div>
+                                <div style={{color: "var(--gold"}}>
                                     Ksh
-                                    {
-                                        winnings
+                                    {winnings&&Number(winnings).toLocaleString()
                                     }
                                 </div>
                             </div>

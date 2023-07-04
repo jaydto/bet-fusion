@@ -40,14 +40,11 @@ export const SubmitButton = (props) => {
             id={"place_bet_button"}
             style={button_size ? {
                 padding: "10px",
-                width: "64vw",
                 borderRadius: "0.7rem",
                 fontSize: "14px",
                 background:"var(--betnare-button-login"
             } : {padding: "10px", width: "100%", borderRadius: "0.7rem"}}
-            className={`${
-                disabled ? "disabled" : ""
-            }'bg-warning bold rounded-2 text-dark cursor-pointer'`}
+            className={`${disabled ? "disabled" : ""} ${button_size?" jackpot-button-placebet ":" "} 'bg-warning bold rounded-2 text-dark cursor-pointer'`}
             disabled={isSubmitting || disabled}
             title="Place Bet"
         >

@@ -354,11 +354,16 @@ header, li a, .thedate span {
     border: none;
     color: whitesmoke;
     /*background: #22323e !important;*/
-    background: var(--betnare-side-bg)!important;
     padding: 20px;
     font-size: 16px;
     color: whitesmoke;
     border-bottom: thin solid white;
+}
+.accordion-button.jackpot {
+background: var(--betnare-body-bg)!important;
+}
+.accordion-button {
+background: var(--betnare-side-bg)!important;
 }
 
 .no-border-radius {
@@ -16905,9 +16910,15 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     background-color: #1c313b;
     color: white;
     border: none !important;
-    line-height: 1.5;
+    line-height: 2;
     border-radius: 5px;
     margin-top: 4px;
+}
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link{
+    line-height:3;
+}
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link:hover{
+    border-color:transparent!important;
 }
 
 .nav-tabs {

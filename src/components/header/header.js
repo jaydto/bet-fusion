@@ -27,7 +27,7 @@ const HeaderNav = React.lazy(() => import('./header-nav'));
 
 const Header = React.memo(
     (props) => {
-        const {slip, scrollPosition} = props
+        const {slip, scrollPosition,jackpot} = props
         const gaEventTracker = useAnalyticsEventTracker('Navigation');
         const [user, setUser] = useState(getFromLocalStorage("user"));
         const [state, dispatch] = useContext(Context);
@@ -314,7 +314,7 @@ const Header = React.memo(
 
                                     </ListGroup>
                                 </div>
-                                : (pathname !== '/signup') && pathname !== '/nare-league' && pathname !== '/results' && pathname !== '/standing' && pathname !== '/playouts' && pathname !== '/standing  ' && pathname !== '/bet-history' && !slip &&
+                                : (pathname !== '/signup') && pathname !== '/nare-league' && pathname !== '/results' && pathname !== '/standing' && pathname !== '/playouts' && pathname !== '/standing  ' && pathname !== '/bet-history' && !slip && !jackpot &&
                                 <MobileNav1/>}
 
 

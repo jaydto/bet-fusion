@@ -15,7 +15,7 @@ const DailyJackpotTermsAndConditions = () =>
             <Accordion allowMultipleExpanded={true} allowZeroExpanded preExpanded={['1']}>
                 <AccordionItem uuid={'1'}>
                     <AccordionItemHeading>
-                        <AccordionItemButton className='accordion-button'>
+                        <AccordionItemButton className='accordion-button jackpot'>
                             BETNARE MILLI DAILY JACKPOT
                         </AccordionItemButton>
                     </AccordionItemHeading>

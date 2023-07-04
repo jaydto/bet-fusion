@@ -1,0 +1,216 @@
+.jackpot-page-structure{
+    max-width:991px;
+    margin: auto;
+}
+.jp-header-banner {
+    margin: auto;
+    width: 100%!important;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 32px;
+}
+.jp-banner-image {
+    max-height: 208px;
+    height: 208px;
+    /*background:  linear-gradient(0deg, rgba(21, 17, 17, 0.54), rgba(28, 20, 25, 0.69)),url(http://localhost:3000/static/media/jackpot-bg.32ade9e2e4e1081ebf7e.jpg);*/
+}
+
+
+.predict-amount-kes{
+    color:var(--gold);
+}
+.jackpot-text {
+    color: var(--light);
+    font-weight: 800;
+    word-spacing: 5px;
+    font-size: 18px;
+}
+.counter-jackpot{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size:20px;
+    background: var(--dark);
+    text-align: center;
+    padding: 5px;
+    min-width:50px;
+    min-height:50px;
+}
+.counter-jackpot:empty{
+    display: none;
+}
+
+.count-down-jackpot .days{
+
+}.count-down-jackpot .hours{
+
+}.count-down-jackpot minutes{
+
+}.count-down-jackpot .seconds{
+
+}
+.predict {
+    display: flex;
+    flex-direction: column;
+    color: var(--light);
+    font-weight: 700;
+    line-height: 1.5;
+}
+.predict-amount{
+    color: var(--light);
+    font-weight: 600;
+
+}
+.predict-prizes{
+    color: var(--gold);
+    font-weight: 600;
+    font-size: 2rem;
+}
+.predict-text-2{
+    color: var(--light);
+    font-weight: 600;
+    font-size: 2rem;
+ }
+.predict-text {
+    color: var(--gold);
+    font-weight: 600;
+}
+.jackpot-counter-time{
+
+}
+.jackpot-pages-information{
+
+}
+.jackpot-page{
+    margin-bottom:10rem;
+}
+.c-btn-group > .c-btn.jackpot-buttons-size {
+    width: 100%!important;
+    border-radius: 40px!important;
+}
+.jackpot-height{
+    height:0px!important;
+}
+.jp-placebet-container{
+    max-width:991px;
+    margin:auto;
+}
+.time-box__time {
+    display: inline-block;
+    height: 3.41666667rem;
+    width: 3.41666667rem;
+    background: #353A45;
+    border-radius: 0.33333333rem;
+    font-size: 3.166667rem;
+    line-height: 3.41666667rem;
+    text-align: center;
+    margin-right: 0.66666667rem;
+    position: relative;
+    z-index: 10;
+}
+
+.jackpot-page-structure{
+
+}
+.time-box__time::after {
+    content: '';
+    display: block;
+    font-size: 0;
+    line-height: 0;
+    height: 1px;
+    width: 89%;
+    background: #1B1E25;
+    position: absolute;
+    top: 2.5rem;
+    z-index: 11;
+}
+.predict-prices{
+    color:var(--lite-top-color);
+}
+.jackpot-text-info{
+    text-align: center;
+}
+@media (min-width: 992px){
+    .jackpot-results-bg{
+        background: var(--bet-history);
+        border-radius:14px;
+    }
+    .matches .top-matches.jackpot-results-bg{
+        margin-bottom:5px!important;
+    }
+    .predict-text {
+    font-size: 2rem;
+    }
+    .predict-text2 {
+    font-size: 2rem;
+    }
+    .predict-amount{
+        font-size:5rem;
+    }
+    .mobile-menu.jp-placebet-container{
+        height:140px!important;
+    }
+    .jackpot-button-placebet{
+        width:30vw
+    }
+    .jp-banner-image {
+       background: radial-gradient(circle, transparent, #151e2a, #141d28),url('../../assets/img/banner/products/jackpot-bg.jpg');
+        width: 100%;
+    }
+}
+@media (max-width: 991px){
+    .jackpot-mobile-top-results-space{
+        padding-top:7px;
+    }
+    .jackpot-mobile-top-results-space:nth-child(3){
+        text-align: center;
+    }
+    .jackpot-mobile-top-results-space:nth-child(4){
+        text-align: end;
+    }
+    .jackpot-results-bg{
+        background: var(--bet-history);
+        border-radius:6px;
+    }
+    .matches .top-matches.jackpot-results-bg{
+        margin-bottom:9px!important;
+    }
+    .jackpot-mobile-appearance{
+        flex-direction:column-reverse;
+        padding:0px!important;
+    }
+    .predict{
+        line-height:1.1!important;
+    }
+    .predict-text {
+        font-size: 2rem;
+    }
+    .predict-text2 {
+        font-size: 1rem;
+    }
+    .predict-amount {
+        font-size: 3rem;
+    }
+    .jackpot-button-placebet{
+        width:64vw;
+    }
+    .jackpot-pages-information {
+        width: 100%;
+        padding: 1rem;
+    }
+    .jp-banner-image {
+        width: 100%;
+        margin: 0 auto;
+        height: 22.16666667rem;
+        color: white;
+        background-position: top left;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        width: 100%;
+        background-size: cover!important;
+        background: url('../../assets/img/banner/products/mobile-jp.jpg');;
+        /* background: linear-gradient(0deg, rgba(20, 29, 40, 0.94), rgba(20, 29, 40, 0.84)),url(http://localhost:3000/static/media/jackpot-bg.32ade9e2e4e1081ebf7e.jpg); */
+    }
+}

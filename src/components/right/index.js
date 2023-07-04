@@ -32,8 +32,8 @@ const Right = React.memo(
     const pathname=window.location.pathname
 
     return (
-        <div className={`${width>991&& `col ${test?'':'gn'} ipad-dismiss-info betslip-container sticky-top vh-100 overflow-scroll betslip-container-mozilla container-sticky-top top-login-background-img-bg ${kiron&&'kiron-betslip-size'}`}`}>
-            <div className="betslip-container d-none d-md-block">
+        <div className={`${width>991&& `col ${test?'':'gn'} ${jackpot&&'jackpot-height'} ipad-dismiss-info betslip-container sticky-top vh-100 overflow-scroll betslip-container-mozilla container-sticky-top top-login-background-img-bg ${kiron&&'kiron-betslip-size'}`}`}>
+            <div className={`betslip-container  ${jackpot?'d-none':'d-none d-md-block'}`}>
                 {props?.message && <AlertMessage classname={props.classname} message={props.message}/>}
                 <div className="bet-option-list " id=''>
                     <div className="bet alu block-shadow">
@@ -70,9 +70,8 @@ const Right = React.memo(
                 </div>
                 <CompanyInfo/>
             </div>
-            <div
-                className={`fixed-bottom text-white d-block d-md-none shadow-lg betslip-container-mobile ${betSlipMobile ? 'd-block' : 'd-none'}`}>
-                <div className="bet-option-list sticky-top" id=''>
+            <div className={`fixed-bottom text-white d-block d-md-none shadow-lg betslip-container-mobile ${betSlipMobile ? 'd-block' :jackpot?"d-block": 'd-none'}`}>
+                <div className={`bet-option-list sticky-top ${jackpot}`} id=''>
                     <div className="bet alu  block-shadow">
                         <header style={{marginTop: "60px"}}>
                             <div className="betslip-header d-flex justify-content-between">
@@ -90,10 +89,7 @@ const Right = React.memo(
                     </div>
                 </div>
             </div>
-            <div
-
-                className={`${betSlipMobile ? 'd-none' : 'd-block'} tablet-only fixed-bottom text-center text-white bg-info bet-slip-footer-toggle`}>
-
+            <div className={`${betSlipMobile ?jackpot?'d-block': 'd-none' :jackpot?' d-block ': ' d-block tablet-only '}  fixed-bottom text-center text-white bet-slip-footer-toggle`}>
                 {pathname=="/jackpot"?<JackpotMenu jackpotData={jackpotData} matches={matches}/>:
                     <MobileMenu jackpot={jackpot} betslipValidationData={betslipValidationData} jackpotData={jackpotData}
                              kiron={kiron}/>}

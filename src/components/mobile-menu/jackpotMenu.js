@@ -190,9 +190,8 @@ const MobileMenu = React.memo(
 
 
         return (
-            <div>
-                <div
-                    className={`fixed-bottom text-white d-block  shadow-lg betslip-container-mobile ${
+            <div className={'jp-placebet-container'}>
+                <div className={`fixed-bottom text-white d-block  shadow-lg betslip-container-mobile jackpot-page-structure ${
                         betSlipMobile ? "d-flex" : "d-none"
                     }`}
                     style={{margin: "auto", marginBottom: "6.5rem"}}
@@ -226,7 +225,7 @@ const MobileMenu = React.memo(
                     </div>
                 </div>
 
-                <table className="mobile-menu jackpot-menu">
+                <table className="mobile-menu jackpot-menu jp-placebet-container">
                     <tbody>
                     <tr className={"info-slip-bets d-flex w-100 justify-content-between px-3"}>
 

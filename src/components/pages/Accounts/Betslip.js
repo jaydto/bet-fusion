@@ -72,7 +72,7 @@ const Betslip = (props) => {
                 </div>
             </div>
             <div
-                className={`${betSlipMobile ? 'd-none' : 'd-block'} tablet-only fixed-bottom text-center text-white bg-info bet-slip-footer-toggle`}>
+                className={`${betSlipMobile ? 'd-none' : 'd-block'} tablet-only fixed-bottom text-center text-white  bet-slip-footer-toggle`}>
                 <MobileMenu betslip={betslipValidationData} />
             </div>
         </div>

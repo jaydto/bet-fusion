@@ -192,7 +192,6 @@ const Jackpot = React.memo(
                                         {matches?.meta&&<CountDownJackpot/>}
                                     </div>
                                 </div>
-                                {console.log("matches_meta", matches?.meta)}
                                 <div className="jackpot-pages-information">
                                     <div className={"predict"}>
                                         <span>

@@ -275,7 +275,7 @@ const Jackpot = React.memo(
                                                 <div className="col-md-3 col-sm-3 bold">
                                                     TIME
                                                 </div>
-                                                <div className="col-md-3 col-sm-4 bold">
+                                                <div className="col-md-3 col-sm-4 bold jackpot-game-header-info-games">
                                                     GAME
                                                 </div>
                                                 <div className="col-md-3 col-sm-3 bold ">

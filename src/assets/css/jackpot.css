@@ -167,6 +167,9 @@
     .jackpot-mobile-top-results-space:nth-child(2){
         min-width:123px;
     }
+    .jackpot-game-header-info-games{
+        min-width:120px;
+    }
     .jackpot-mobile-top-results-space:nth-child(3){
         text-align: center;
     }

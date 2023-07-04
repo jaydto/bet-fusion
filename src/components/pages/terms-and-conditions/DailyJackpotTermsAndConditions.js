@@ -123,7 +123,7 @@ const DailyJackpotTermsAndConditions = () =>
                             <li>
                                 To make your selections- On the BetNare Daily Jackpot competition entry page
                                 (www.betnare.com/jackpot) make your predictions on the 11 pre-selected football matches
-                                (HOME WIN, DRAW, AWAY WIN). The stake amount of each combination is KES 10/=.
+                                (HOME WIN, DRAW, AWAY WIN). The stake amount of each combination is KES 20/=.
                             </li>
                             <li>
                                 <strong>NOTE;</strong>&nbsp;BETNARE DOESNOT ACCEPT DOUBLE CHANCE COMBINATION ON THE
@@ -144,7 +144,7 @@ const DailyJackpotTermsAndConditions = () =>
                                 </li>
                                 <li>
                                     b) By choosing “Auto Bet” option, a random selection of one prediction per match
-                                    will be automatically selected with a fixed stake of KES 10/=.
+                                    will be automatically selected with a fixed stake of KES 20/=.
                                 </li>
                             </ul>
                         </ul>
@@ -238,7 +238,7 @@ const DailyJackpotTermsAndConditions = () =>
                                 Jackpot Amount; Kenya Shillings 1,000,000/=
                             </li>
                             <li>
-                                Stake 10/=
+                                Stake 20/=
                             </li>
                             <li>
                                 11 Soccer Pre-Match.

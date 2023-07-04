@@ -167,11 +167,18 @@
     .jackpot-mobile-top-results-space:nth-child(2){
         min-width:123px;
     }
-    .jackpot-game-header-info-games{
-        min-width:120px;
+    .jackpot-game-header-info-games {
+        min-width: 86px;
+    }
+    .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+        line-height: 1.5!important;
+    }
+    .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link {
+        line-height: 1.5!important;
     }
     .jackpot-mobile-top-results-space:nth-child(3){
-        text-align: center;
+        min-width: 100px;
+        /*text-align: center;*/
     }
     .jackpot-mobile-top-results-space:nth-child(4){
         text-align: end;

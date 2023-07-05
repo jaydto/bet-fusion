@@ -164,18 +164,31 @@ const Jackpot = React.memo(
         };
 
 
-        const PrizeComponent = ({prizes}) => {
+        const PrizeComponent = () => {
             const [currentIndex, setCurrentIndex] = useState(0);
             const prizesJSON = JSON.stringify(matches?.meta?.prizes);
             const cleanedJSON = prizesJSON?.replace(/[\[\]"]/g, '');
 
             return (
-                <span className={"predict-prices d-flex justify-content-between flex-column "}>
-          Prizes to be Won&nbsp;
-                    <div className={"d-flex gap-2"}>
-                        <span className={'carousel-jackpot__item'}>{cleanedJSON}</span>
-                    </div>
-                    </span>
+
+                <div className="scroller">
+                        <span>
+                            {matches?.meta?.prizes?.map((prize) => {
+                                    return (
+                                        <>
+                                            {prize}<br/>
+                                        </>
+                                    )
+                                }
+                            )}
+                        </span>
+                </div>
+                //       <span className={"predict-prices d-flex justify-content-between flex-column "}>
+                // Prizes to be Won&nbsp;
+                //           <div className={"d-flex gap-2"}>
+                //               <span className={'carousel-jackpot__item'}>{cleanedJSON}</span>
+                //           </div>
+                //           </span>
             );
         };
 
@@ -206,13 +219,13 @@ const Jackpot = React.memo(
 
                                     <div className="jackpot-count-text">
                                         <div className="jackpot-text">
-                                            Time left
+                                            {matches && 'Time left'}
                                         </div>
                                         {matches?.meta && <CountDownJackpot/>}
                                     </div>
                                 </div>
                                 <div className="jackpot-pages-information">
-                                    <div className={"predict"}>
+                                    <div className={`predict ${matches ? '' : 'd-none'}`}>
                                         <span>
                                             <span className="predict-text">
                                                 Predict {matches?.meta?.total_games} Games

@@ -1897,6 +1897,13 @@ img.nare-league {
     cursor: pointer!important;
 }
 @media (max-width: 991px) {
+    .jackpot-autopick{
+        font-size: 10px !important;
+    }
+    .bet-align-left-jackpot {
+        font-size: 12px !important;
+        color:var(--dark)!important
+    }
     .market-groups-container {
         top: 107px!important;
     }

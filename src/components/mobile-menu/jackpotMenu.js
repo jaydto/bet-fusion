@@ -229,17 +229,17 @@ const MobileMenu = React.memo(
                     <tbody>
                     <tr className={"info-slip-bets d-flex w-100 justify-content-between px-3"}>
 
-                        <td className={"bet-align-left bold"} style={{fontSize:"15px"}}>
+                        <td className={"bet-align-left-jackpot bold"} style={{fontSize:"15px"}}>
                             Bet Amount
                         </td>
-                        <td className={"bet-align-right bold"} style={{color:"var(--gold)",fontSize:"15px"}}>
+                        <td className={"bet-align-left-jackpot bold"} style={{color:"var(--gold)",fontSize:"15px"}}>
                             {jackpot_stake}/=
                         </td>
                     </tr>
                     <tr className={"d-flex w-100 justify-content-between px-4"}>
                         <td className={`d-flex align-items-center bet-align-left w-100`}>
                             <div className="d-flex align-items-center w-100 justify-content-between ">
-                                <div className={"d-flex align-items-center flex-column bold"} onClick={randomize} style={{fontSize:"15px"}}>
+                                <div className={"d-flex align-items-center flex-column bold jackpot-autopick"} onClick={randomize} style={{fontSize:"15px"}}>
                                     <FontAwesomeIcon icon={faShuffle} style={{fontSize: "18px", color: "var(--light)"}}
                                                      title={"Auto Pick"}/> Auto Pick
                                 </div>

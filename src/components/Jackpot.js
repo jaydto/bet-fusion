@@ -183,12 +183,7 @@ const Jackpot = React.memo(
                             )}
                         </span>
                 </div>
-                //       <span className={"predict-prices d-flex justify-content-between flex-column "}>
-                // Prizes to be Won&nbsp;
-                //           <div className={"d-flex gap-2"}>
-                //               <span className={'carousel-jackpot__item'}>{cleanedJSON}</span>
-                //           </div>
-                //           </span>
+
             );
         };
 
@@ -240,18 +235,6 @@ const Jackpot = React.memo(
                                             {Number(matches?.meta?.jackpot_amount).toLocaleString()}
                                         </span>
                                         </span>}
-                                        {/*                                        <span className={"predict-prices d-flex justify-content-between "}>*/}
-                                        {/*                                                Prizes to be Won&nbsp;*/}
-                                        {/*                                            <div>*/}
-                                        {/*                                            {matches?.meta?.prizes?.map((items, index) => (*/}
-                                        {/*                                                <div*/}
-                                        {/*                                                    key={index}*/}
-                                        {/*                                                    className={"animate__animated animate__fadeInUp animate_infinite animate__delay-" + (index + 1)}>*/}
-                                        {/*                                                    {items}*/}
-                                        {/*                                                </div>*/}
-                                        {/*                                            ))}*/}
-                                        {/*  </div>*/}
-                                        {/*</span>*/}
                                         <PrizeComponent/>
 
                                     </div>

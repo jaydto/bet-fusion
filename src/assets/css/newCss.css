@@ -3465,26 +3465,48 @@ img.nare-league {
 /*}*/
 
 
-
 .text-header-jackpot p {
     overflow: hidden;
-    font-weight:600;
-    animation: 10s slide-right  infinite;
+    font-weight: 600;
+    animation: slide-left 10s infinite;
     animation-delay: 5s;
-    color:var(--gold);
+    color: var(--gold);
 }
 
-@keyframes slide-right {
+@keyframes slide-left {
     0% {
-        margin-left: -200px;
+        margin-left: -100%;
     }
-    50%{
+    50% {
         margin-left: 0%;
     }
-    100%{
-        margin-left:650px;
+    100% {
+        margin-left: 100%;
     }
 }
+
+/*.text-header-jackpot p {*/
+/*    overflow: hidden;*/
+/*    font-weight: 600;*/
+/*    color: var(--gold);*/
+/*    position: relative;*/
+/*    animation: slide-left 10s infinite;*/
+/*    animation-delay: 1s;*/
+/*}*/
+
+/*@keyframes slide-left {*/
+/*    0% {*/
+/*        transform: translateX(-100%);*/
+/*    }*/
+/*    40%, 60% {*/
+/*        transform: translateX(0%);*/
+/*    }*/
+/*    100%{*/
+/*        transform: translateX(100%);*/
+/*    }*/
+/*}*/
+
+
 
 
 /*animations*/

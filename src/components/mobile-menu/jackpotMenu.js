@@ -229,17 +229,17 @@ const MobileMenu = React.memo(
                     <tbody>
                     <tr className={"info-slip-bets d-flex w-100 justify-content-between px-3"}>
 
-                        <td className={"bet-align-left"}>
+                        <td className={"bet-align-left bold"} style={{fontSize:"15px"}}>
                             Bet Amount
                         </td>
-                        <td className={"bet-align-right "} style={{color:"var(--gold)"}}>
+                        <td className={"bet-align-right bold"} style={{color:"var(--gold)",fontSize:"15px"}}>
                             {jackpot_stake}/=
                         </td>
                     </tr>
                     <tr className={"d-flex w-100 justify-content-between px-4"}>
                         <td className={`d-flex align-items-center bet-align-left w-100`}>
                             <div className="d-flex align-items-center w-100 justify-content-between ">
-                                <div className={"d-flex align-items-center flex-column"} onClick={randomize}>
+                                <div className={"d-flex align-items-center flex-column bold"} onClick={randomize} style={{fontSize:"15px"}}>
                                     <FontAwesomeIcon icon={faShuffle} style={{fontSize: "18px", color: "var(--light)"}}
                                                      title={"Auto Pick"}/> Auto Pick
                                 </div>
@@ -250,7 +250,7 @@ const MobileMenu = React.memo(
                                             <Formik>
                                                 <Form>
                                                     {/* Your form fields */}
-                                                    <SubmitButton title="Place Bet" className="place-bet-btn jp-button bold "
+                                                    <SubmitButton title="PLACE BET" className="place-bet-btn jp-button bold "
                                                                   button_size={true} />
                                                 </Form>
                                             </Formik>
@@ -280,8 +280,8 @@ const MobileMenu = React.memo(
                                 </span>
 
                                 </div>
-                                <div style={{color: "var(--gold"}}>
-                                    Ksh
+                                <div className={"bold"} style={{color: "var(--gold", fontSize:"15px"}}>
+                                    KES&nbsp;
                                     {winnings&&Number(winnings).toLocaleString()
                                     }
                                 </div>

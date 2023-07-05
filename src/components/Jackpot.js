@@ -7,6 +7,8 @@ import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import {FormatDate, FormatDate2, JackpotMatchList} from "./matches";
 import Select from "react-select";
+import "animate.css"
+import "../assets/css/animationJackpot.css"
 import Container from "react-bootstrap/Container";
 import DailyJackpotTermsAndConditions from "./pages/terms-and-conditions/DailyJackpotTermsAndConditions";
 import {Context} from "../context/store";
@@ -161,6 +163,23 @@ const Jackpot = React.memo(
             );
         };
 
+
+        const PrizeComponent = ({prizes}) => {
+            const [currentIndex, setCurrentIndex] = useState(0);
+            const prizesJSON = JSON.stringify(matches?.meta?.prizes);
+            const cleanedJSON = prizesJSON?.replace(/[\[\]"]/g, '');
+
+            return (
+                <span className={"predict-prices d-flex justify-content-between flex-column "}>
+          Prizes to be Won&nbsp;
+                    <div className={"d-flex gap-2"}>
+                        <span className={'carousel-jackpot__item'}>{cleanedJSON}</span>
+                    </div>
+                    </span>
+            );
+        };
+
+
         const loadJPResults = (jackpot) => {
             fetchData(jackpot?.jackpot_event_id, jackpot?.jackpot_status)
         }
@@ -189,7 +208,7 @@ const Jackpot = React.memo(
                                         <div className="jackpot-text">
                                             Time left
                                         </div>
-                                        {matches?.meta&&<CountDownJackpot/>}
+                                        {matches?.meta && <CountDownJackpot/>}
                                     </div>
                                 </div>
                                 <div className="jackpot-pages-information">
@@ -202,15 +221,25 @@ const Jackpot = React.memo(
                                                 To Win
                                             </span>
                                         </span>
-                                        {matches?.meta?.jackpot_amount&&<span className={"predict-amount"}>
+                                        {matches?.meta?.jackpot_amount && <span className={"predict-amount"}>
                                            KES&nbsp;
-                                           <span className={"predict-amount-kes"}>
+                                            <span className={"predict-amount-kes"}>
                                             {Number(matches?.meta?.jackpot_amount).toLocaleString()}
                                         </span>
                                         </span>}
-                                        <span className={"predict-prices"}>
-                                            Prizes to be Won
-                                        </span>
+                                        {/*                                        <span className={"predict-prices d-flex justify-content-between "}>*/}
+                                        {/*                                                Prizes to be Won&nbsp;*/}
+                                        {/*                                            <div>*/}
+                                        {/*                                            {matches?.meta?.prizes?.map((items, index) => (*/}
+                                        {/*                                                <div*/}
+                                        {/*                                                    key={index}*/}
+                                        {/*                                                    className={"animate__animated animate__fadeInUp animate_infinite animate__delay-" + (index + 1)}>*/}
+                                        {/*                                                    {items}*/}
+                                        {/*                                                </div>*/}
+                                        {/*                                            ))}*/}
+                                        {/*  </div>*/}
+                                        {/*</span>*/}
+                                        <PrizeComponent/>
 
                                     </div>
 

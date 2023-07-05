@@ -126,8 +126,10 @@
     top: 2.5rem;
     z-index: 11;
 }
-.predict-prices{
-    color:var(--lite-top-color);
+.predict-prices {
+    position:relative;
+    color: var(--lite-top-color);
+    max-height: 54px;
 }
 .jackpot-text-info{
     text-align: center;
@@ -225,5 +227,62 @@
         background-size: cover!important;
         background: url('../../assets/img/banner/products/mobile-jp.jpg');;
         /* background: linear-gradient(0deg, rgba(20, 29, 40, 0.94), rgba(20, 29, 40, 0.84)),url(http://localhost:3000/static/media/jackpot-bg.32ade9e2e4e1081ebf7e.jpg); */
+    }
+}
+
+/*.predict-prices{*/
+/*    animation: slide-left 10s infinite;*/
+/*    animation-delay: 1s;*/
+/*}*/
+.text-header-jackpot p {
+    overflow: hidden;
+    font-weight: 600;
+    /*animation: slide-left 10s infinite;*/
+    animation-delay: 1s;
+    color: var(--gold);
+}
+.carousel-jackpot__item{
+    display:flex;
+    max-width:200px;
+    gap:4px;
+    white-space:nowrap;
+    animation: slide-left 15s infinite;
+}
+
+.prize-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.prize-item {
+    animation :moveUp 2s infinite; /* Adjust the duration to control the speed */
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    opacity: 0;
+}
+
+.show {
+    animation-delay: 0s !important;
+    opacity: 1;
+}
+
+@keyframes moveUp {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
+@keyframes slide-left {
+    0% {
+        margin-left: -100%;
+    }
+    50% {
+        margin-left: 0%;
+    }
+    100% {
+        margin-left: 100%;
     }
 }

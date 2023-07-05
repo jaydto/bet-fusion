@@ -3465,25 +3465,6 @@ img.nare-league {
 /*}*/
 
 
-.text-header-jackpot p {
-    overflow: hidden;
-    font-weight: 600;
-    animation: slide-left 10s infinite;
-    animation-delay: 5s;
-    color: var(--gold);
-}
-
-@keyframes slide-left {
-    0% {
-        margin-left: -100%;
-    }
-    50% {
-        margin-left: 0%;
-    }
-    100% {
-        margin-left: 100%;
-    }
-}
 
 /*.text-header-jackpot p {*/
 /*    overflow: hidden;*/

@@ -7,30 +7,24 @@ import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import {FormatDate, FormatDate2, JackpotMatchList} from "./matches";
 import Select from "react-select";
-import "animate.css"
 import "../assets/css/animationJackpot.css"
-import Container from "react-bootstrap/Container";
 import DailyJackpotTermsAndConditions from "./pages/terms-and-conditions/DailyJackpotTermsAndConditions";
 import {Context} from "../context/store";
 import caution from "../assets/img/mobile/caution.png"
 import {LazyLoadImage} from "react-lazy-load-image-component";
-import jackpotbg from "../assets/img/banner/products/jackpot-bg.jpg"
 import Skeleton1 from "./skeleton/skeleton";
 import {ToastContainer} from "react-toastify";
 import moment from "moment/moment";
 
 const Header = React.lazy(() => import('./header/header'));
-const Footer = React.lazy(() => import('./footer/footer'));
 const Right = React.lazy(() => import('./right'));
-const SideBar = React.lazy(() => import('./sidebar/awesome/Sidebar'))
-
 const Jackpot = React.memo(
     () => {
         const [matches, setMatches] = useState(null);
         const [loading, setLoading] = useState(false)
         const [finishedJackpots, setFinishedJackpots] = useState([])
-        const {height, width} = useWindowDimensions();
-        const [state] = useContext(Context)
+        const {width} = useWindowDimensions();
+
 
         const fetchData = useCallback(async (jackpot_id = '', jackpot_status = '') => {
             setLoading(true)

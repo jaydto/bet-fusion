@@ -1252,13 +1252,18 @@ img.nare-league {
         justify-content: space-around;
     }
 
+    /*.width-page-centric.deposit-page {*/
+    /*    box-shadow: 5px 7px 30px 8px #2c3c44;*/
+    /*    width: 60%;*/
+    /*    margin: auto;*/
+    /*    min-height: 600px;*/
+    /*}*/
     .width-page-centric.deposit-page {
-        box-shadow: 5px 7px 30px 8px #2c3c44;
+        box-shadow: none;
         width: 60%;
         margin: auto;
         min-height: 600px;
     }
-
     .login-top {
         margin-top: 10px;
     }
@@ -1892,6 +1897,13 @@ img.nare-league {
     cursor: pointer!important;
 }
 @media (max-width: 991px) {
+    .jackpot-autopick{
+        font-size: 10px !important;
+    }
+    .bet-align-left-jackpot {
+        font-size: 12px !important;
+        color:var(--dark)!important
+    }
     .market-groups-container {
         top: 107px!important;
     }
@@ -3461,25 +3473,28 @@ img.nare-league {
 
 
 
-.text-header-jackpot p {
-    overflow: hidden;
-    font-weight:600;
-    animation: 10s slide-right  infinite;
-    animation-delay: 5s;
-    color:var(--gold);
-}
+/*.text-header-jackpot p {*/
+/*    overflow: hidden;*/
+/*    font-weight: 600;*/
+/*    color: var(--gold);*/
+/*    position: relative;*/
+/*    animation: slide-left 10s infinite;*/
+/*    animation-delay: 1s;*/
+/*}*/
 
-@keyframes slide-right {
-    0% {
-        margin-left: -200px;
-    }
-    50%{
-        margin-left: 0%;
-    }
-    100%{
-        margin-left:650px;
-    }
-}
+/*@keyframes slide-left {*/
+/*    0% {*/
+/*        transform: translateX(-100%);*/
+/*    }*/
+/*    40%, 60% {*/
+/*        transform: translateX(0%);*/
+/*    }*/
+/*    100%{*/
+/*        transform: translateX(100%);*/
+/*    }*/
+/*}*/
+
+
 
 
 /*animations*/

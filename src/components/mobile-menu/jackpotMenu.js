@@ -190,9 +190,8 @@ const MobileMenu = React.memo(
 
 
         return (
-            <div>
-                <div
-                    className={`fixed-bottom text-white d-block  shadow-lg betslip-container-mobile ${
+            <div className={'jp-placebet-container'}>
+                <div className={`fixed-bottom text-white d-block  shadow-lg betslip-container-mobile jackpot-page-structure ${
                         betSlipMobile ? "d-flex" : "d-none"
                     }`}
                     style={{margin: "auto", marginBottom: "6.5rem"}}
@@ -226,21 +225,21 @@ const MobileMenu = React.memo(
                     </div>
                 </div>
 
-                <table className="mobile-menu jackpot-menu">
+                <table className="mobile-menu jackpot-menu jp-placebet-container">
                     <tbody>
                     <tr className={"info-slip-bets d-flex w-100 justify-content-between px-3"}>
 
-                        <td className={"bet-align-left"}>
+                        <td className={"bet-align-left-jackpot bold"} style={{fontSize:"15px"}}>
                             Bet Amount
                         </td>
-                        <td className={"bet-align-right"}>
-                            {jackpot_stake}
+                        <td className={"bet-align-left-jackpot bold"} style={{color:"var(--gold)",fontSize:"15px"}}>
+                            {jackpot_stake}/=
                         </td>
                     </tr>
                     <tr className={"d-flex w-100 justify-content-between px-4"}>
                         <td className={`d-flex align-items-center bet-align-left w-100`}>
                             <div className="d-flex align-items-center w-100 justify-content-between ">
-                                <div className={"d-flex align-items-center flex-column"} onClick={randomize}>
+                                <div className={"d-flex align-items-center flex-column bold jackpot-autopick"} onClick={randomize} style={{fontSize:"15px"}}>
                                     <FontAwesomeIcon icon={faShuffle} style={{fontSize: "18px", color: "var(--light)"}}
                                                      title={"Auto Pick"}/> Auto Pick
                                 </div>
@@ -251,7 +250,7 @@ const MobileMenu = React.memo(
                                             <Formik>
                                                 <Form>
                                                     {/* Your form fields */}
-                                                    <SubmitButton title="Place Bet" className="place-bet-btn jp-button bold "
+                                                    <SubmitButton title="PLACE BET" className="place-bet-btn jp-button bold "
                                                                   button_size={true} />
                                                 </Form>
                                             </Formik>
@@ -281,10 +280,9 @@ const MobileMenu = React.memo(
                                 </span>
 
                                 </div>
-                                <div>
-                                    Ksh
-                                    {
-                                        winnings
+                                <div className={"bold"} style={{color: "var(--gold", fontSize:"15px"}}>
+                                    KES&nbsp;
+                                    {winnings&&Number(winnings).toLocaleString()
                                     }
                                 </div>
                             </div>

@@ -603,6 +603,7 @@ const OddButton = React.memo(
             updatePickedChoices();
         }, [updatePickedChoices]);
 
+        // todo check why i repeated this two parts and how they interfere with update betpicks
         useEffect(() => {
             updatePickedChoices();
         }, [updatePickedChoices]);
@@ -750,7 +751,7 @@ const OddButton = React.memo(
         return (
             <button
                 ref={ref}
-                className={`home-team ${allMarkets ? "all-markets" : ""} ${
+                className={`home-team ${allMarkets ? "all-markets" :jackpot?" jackpot-buttons-size": ""} ${
                     match.match_id
                 } ${ucn} ${picked} c-btn`}
                 home_team={match.home_team}
@@ -805,7 +806,6 @@ const MarketRow = React.memo
             );
         };
 
-        const [favoriteMarkets] = useState([]);
 
         const [userFavoriteMarkets, setUserFavoriteMarkets] = useState(getFromLocalStorage('favorite_markets'));
 
@@ -834,7 +834,6 @@ const MarketRow = React.memo
             event.stopPropagation();
 
             setMarketsFavorite(marketId)
-
 
         };
 
@@ -959,9 +958,9 @@ export const FormatDate = (props) => {
     const {start_time, match_time, live, jackpot} = props;
 
     // Extract the date and time components
-    const [dateString, timeString] = start_time.split(' ');
-    const [year, month, day] = dateString.split('-');
-    const [hour, minute] = timeString.split(':');
+    const [dateString, timeString] = start_time?.split(' ');
+    const [year, month, day] = dateString?.split('-');
+    const [hour, minute] = timeString?.split(':');
 
     // Create a new Date object
     const dateTime = new Date(year, month - 1, day, hour, minute);
@@ -989,6 +988,7 @@ const MatchRow = React.memo(
     (props) => {
 
         const {first_match, match, jackpot, live, pdown, three_way} = props;
+        console.log("jackpot: ", jackpot)
         const [extraMarketDisplays, setExtraMarketDisplays] = useState([])
         const categories = getFromLocalStorage('categories')
         const sport_id = new URL(window.location).searchParams.get('sport_id') || 79
@@ -997,10 +997,8 @@ const MatchRow = React.memo(
         const [showX, setShowX] = useState(true);
         const [market, setMarket] = useState('1x2');
         const {height, width} = useWindowDimensions();
-
         const [threeWay, setThreeWay] = useState(false)
         const getSelectedMarkets = () => {
-
 
             const markets = marketChoice();
 
@@ -1029,6 +1027,7 @@ const MatchRow = React.memo(
             setExtraMarketDisplays(extraMarkets)
 
         }
+
         useEffect(() => {
             getSelectedMarkets()
             if (first_match) {
@@ -1041,7 +1040,6 @@ const MatchRow = React.memo(
 
             }
         }, [first_match?.parent_match_id])
-
 
         let url = new URL(window.location)
         match.market_active = 1
@@ -1150,13 +1148,12 @@ const MatchRow = React.memo(
                     <div
                         className={`col d-flex  flex-row   ${width > 1259 ? '' : 'space-bets'} justify-content-lg-between  justify-spacing-ipad card-small`}>
 
-                        {width > 767 ?
-                            <div className={"d-flex to-flex-1"}>
-                                <div className="c-btn-group align-self-center to-flex-1 to-tabview">
-                                    {threeWay &&
-                                        <div className="d-flex flex-row ">
-                                            <div className="d-flex flex-column text-center text-white fit-ipad w-100">
-                                                <div className={"d-sm-none d-md-none"}>
+                        <div className={`${width > 767 ?  `d-flex to-flex-1 ${jackpot?' w-100':""}` : 'd-none'}`}>
+                            <div className="c-btn-group align-self-center to-flex-1 to-tabview">
+                                {threeWay &&
+                                    <div className="d-flex flex-row ">
+                                        <div className="d-flex flex-column text-center text-white fit-ipad w-100">
+                                            <div className={"d-sm-none d-md-none"}>
                                             <span className='d-flex justify-content-start'>
                                                 {match?.tags?.map((tag, index) => (
                                                     <span key={index} className='px-2 w-100 ' style={{
@@ -1174,9 +1171,9 @@ const MatchRow = React.memo(
                                                         </span>
                                                 ))}
                                             </span>
-                                                </div>
-                                                <div
-                                                    className="d-flex flex-row px-1 justify-content-end change-date1 mobile-only display-ipad-dates">
+                                            </div>
+                                            <div
+                                                className="d-flex flex-row px-1 justify-content-end change-date1 mobile-only display-ipad-dates">
                                             <span className={'date-size wrapping px-3'}>
 
                                             {live == 1 && match?.match_time ? (
@@ -1201,7 +1198,7 @@ const MatchRow = React.memo(
                                                             </div>
                                                         }
                                                         <FormatDate2 live={live} start_time={match?.start_time}
-                                                                     match_time={match?.match_time} />
+                                                                     match_time={match?.match_time}/>
 
                                                     </>
 
@@ -1210,47 +1207,47 @@ const MatchRow = React.memo(
 
                                             )}
                                             </span>
-                                                    <div
-                                                        className={"px-1 wrapping mobile-display-game-id"}>ID: {match?.game_id}</div>
-
-                                                </div>
+                                                <div
+                                                    className={"px-1 wrapping mobile-display-game-id"}>ID: {match?.game_id}</div>
 
                                             </div>
-                                        </div>}
-                                </div>
-                                <div className="c-btn-group align-self-center checking">{
-                                    match?.odds?.home_odd ? (match?.odds?.home_odd && (!pdown && match?.odds?.home_odd && match.odds.home_odd !== 'NaN' &&
-                                            match.market_active == 1 && match.odds.home_odd_active == 1)
-                                            ? <OddButton match={match} mkt="home_team" live={live} jackpot={jackpot}/>
-                                            : <EmptyTextRow odd_key={match?.odd_key} live={live}/>) :
-                                        match?.odds?.home_odd ?
-                                            <EmptyTextRow odd_key={match?.odd_key} live={live}/> : ''
+
+                                        </div>
+                                    </div>}
+                            </div>
+                            <div className={`c-btn-group align-self-center checking ${jackpot?'w-100':''}`}>{
+                                match?.odds?.home_odd ? (match?.odds?.home_odd && (!pdown && match?.odds?.home_odd && match.odds.home_odd !== 'NaN' &&
+                                        match.market_active == 1 && match.odds.home_odd_active == 1)
+                                        ? <OddButton match={match} mkt="home_team" live={live} jackpot={jackpot}/>
+                                        : <EmptyTextRow odd_key={match?.odd_key} live={live}/>) :
+                                    match?.odds?.home_odd ?
+                                        <EmptyTextRow odd_key={match?.odd_key} live={live}/> : ''
+                            }
+
+                                {match?.odds?.neutral_odd ? ((!pdown && match?.odds?.neutral_odd && match.odds.neutral_odd !== 'NaN' &&
+                                    match.market_active == 1 && match.odds.neutral_odd_active == 1 || jackpot)
+                                    ? <OddButton match={match} mkt="draw" live={live} jackpot={jackpot}/>
+                                    : <EmptyTextRow odd_key={match?.odd_key} live={live}/>) : ''
+                                }
+                                {match?.odds?.away_odd ? (match?.odds?.away_odd && (!pdown && match?.odds?.away_odd && match.odds.away_odd !== 'NaN' &&
+                                        match.market_active == 1 && match.odds.away_odd_active == 1 || jackpot)
+                                        ? <OddButton match={match} mkt="away_team" live={live} jackpot={jackpot}/>
+                                        : <EmptyTextRow odd_key={match?.odd_key} live={live}/>) :
+                                    match?.odds?.away_odd ?
+                                        <EmptyTextRow odd_key={match?.odd_key} live={live}/> : ''
                                 }
 
-                                    {match?.odds?.neutral_odd ? ((!pdown && match?.odds?.neutral_odd && match.odds.neutral_odd !== 'NaN' &&
-                                        match.market_active == 1 && match.odds.neutral_odd_active == 1 || jackpot)
-                                        ? <OddButton match={match} mkt="draw" live={live} jackpot={jackpot}/>
-                                        : <EmptyTextRow odd_key={match?.odd_key} live={live}/>) : ''
-                                    }
-                                    {match?.odds?.away_odd ? (match?.odds?.away_odd && (!pdown && match?.odds?.away_odd && match.odds.away_odd !== 'NaN' &&
-                                            match.market_active == 1 && match.odds.away_odd_active == 1 || jackpot)
-                                            ? <OddButton match={match} mkt="away_team" live={live} jackpot={jackpot}/>
-                                            : <EmptyTextRow odd_key={match?.odd_key} live={live}/>) :
-                                        match?.odds?.away_odd ?
-                                            <EmptyTextRow odd_key={match?.odd_key} live={live}/> : ''
-                                    }
+                            </div>
+                        </div>
+                        <div
+                            className={`${width <= 767 ? 'c-btn-group align-self-center to-flex-1 to-tabview' : 'd-none'}`}>
 
-                                </div>
-                            </div> : ""}
+                            <div className="d-flex flex-row date-size-data">
+                                <div
+                                    className="d-flex flex-column text-center text-white fit-ipad w-100 date-size-data ">
 
-                        {width <= 767 ? <div className="c-btn-group align-self-center to-flex-1 to-tabview">
-
-                                <div className="d-flex flex-row date-size-data">
                                     <div
-                                        className="d-flex flex-column text-center text-white fit-ipad w-100 date-size-data ">
-
-                                        <div
-                                            className="d-flex flex-row px-1 justify-content-end change-date1  mobile-only date-size-data">
+                                        className="d-flex flex-row px-1 justify-content-end change-date1  mobile-only date-size-data">
                                            <span className={'date-size wrapping px-3'}>
                                              {live == 1 && match?.match_time ? (
                                                  <div className={'d-flex gap-3 align-items-center'}>
@@ -1282,18 +1279,18 @@ const MatchRow = React.memo(
                                                  </>
 
                                              )}</span>
-                                            <div
-                                                className={"px-1 wrapping mobile-display-game-id"}>ID: {match?.game_id}</div>
-
-                                        </div>
-
+                                        <div
+                                            className={"px-1 wrapping mobile-display-game-id"}>ID: {match?.game_id}</div>
 
                                     </div>
-                                </div>
 
+
+                                </div>
                             </div>
-                            : ""}
-                        {width <= 767 ? <div className="c-btn-group align-self-center markets-container-data-check  ">{
+
+                        </div>
+                        <div
+                            className={`${width <= 767 ? 'c-btn-group align-self-center markets-container-data-check' : 'd-none'}`}>{
                             match?.odds?.home_odd ? (match?.odds?.home_odd && (!pdown && match?.odds?.home_odd && match.odds.home_odd !== 'NaN' &&
                                     match.market_active == 1 && match.odds.home_odd_active == 1)
                                     ? <OddButton match={match} mkt="home_team" live={live} jackpot={jackpot}/>
@@ -1313,7 +1310,7 @@ const MatchRow = React.memo(
                                 match?.odds?.away_odd ? <EmptyTextRow odd_key={match?.odd_key} live={live}/> : ''
                             }
 
-                        </div> : ""}
+                        </div>
 
                         {/*mobile  display and odds*/}
                         <div className={"to-profile-check separations to-flex-2"}>
@@ -1592,9 +1589,8 @@ export const JackpotHeader = React.memo(
 
 export const JackpotMatchList = React.memo(
     (props) => {
-        const {matches, jackpotData} = props;
+        const {matches, jackpotData, jackpot} = props;
         const [selections, setSelections] = useState([])
-
         const randomize = async () => {
             matches?.data?.forEach((match, index) => {
                 let teams = [match?.home_team, 'draw', match?.away_team]
@@ -1614,65 +1610,22 @@ export const JackpotMatchList = React.memo(
             setSelections(selections)
         }
 
-
-        const CountDownJackpot = () => {
-            // Get the first match from the array
-            const first_match = matches?.meta?.start_time
-            const [countdown, setCountdown] = useState('');
-
-            useEffect(() => {
-                const interval = setInterval(() => {
-                    const now = moment();
-                    const start = moment(first_match, 'YYYY-MM-DD HH:mm');
-                    const diff = start.diff(now);
-                    const countdown = moment.duration(diff);
-
-                    const days = countdown.days();
-                    const hours = countdown.hours();
-                    const minutes = countdown.minutes();
-                    const seconds = countdown.seconds();
-
-                    setCountdown(`${days} Days ${hours} Hours ${minutes} Minutes ${seconds} Seconds`);
-
-                    if (diff <= 0) {
-                        clearInterval(interval);
-                    }
-                }, 1000);
-
-                return () => clearInterval(interval);
-            }, [first_match?.meta?.start_time]);
-
-
-            return (
-                <div>
-                    <p className={"text-expiry-style"}>Expires on&nbsp;
-                        <FormatDate live={0} start_time={matches?.meta?.end_time}
-                                     match_time={matches?.meta?.end_time} />
-
-                    </p>
-                    <p className={"text-light count-down-jackpot"}>{countdown}</p>
-                </div>
-            );
-        };
-
         return (
             <div className="matches full-width mt-1 ">
-
                 <MatchHeaderRow jackpot={true} first_match={matches ? matches[0] : []}/>
                 <div className={'row d-flex flex-row justify-content-between shadow-lg '}>
                     <div className="col-md-12 text-center shadow-lg">
-                        <CountDownJackpot/>
                         <div className={'text-white col text-header-jackpot'}>
                             <p>Wekelea Jackpot Bet bila worries na Nare Auto pick.</p>
                         </div>
-                        <div className={'col-md-12 text-center autopick-remove-on-mobile'}>
-                            <button className={'btn btn-square btn-lg  place-bet-btn bold mb-1 bg-warning'}
-                                    id={"jp-nare-pick-button"}
-                                    style={{fontWeight: "bold", fontSize: "20px"}}
-                                    onClick={() => randomize()}>
-                                <FontAwesomeIcon icon={faFire}/> Nare Auto Pick
-                            </button>
-                        </div>
+                        {/*<div className={'col-md-12 text-center autopick-remove-on-mobile'}>*/}
+                        {/*    <button className={'btn btn-square btn-lg  place-bet-btn bold mb-1 bg-warning'}*/}
+                        {/*            id={"jp-nare-pick-button"}*/}
+                        {/*            style={{fontWeight: "bold", fontSize: "20px"}}*/}
+                        {/*            onClick={() => randomize()}>*/}
+                        {/*        <FontAwesomeIcon icon={faFire}/> Nare Auto Pick*/}
+                        {/*    </button>*/}
+                        {/*</div>*/}
                     </div>
                 </div>
                 <Row className="web-element jackpot-page top-login-background-img-bg">

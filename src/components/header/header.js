@@ -253,7 +253,7 @@ const Header = React.memo(
                     }
 
                     <Navbar expand="md"
-                            className={`${(scrollPosition || !showDownload) && 'fixed-top-nav'} mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${slip && "top-betslip-page-fix"} ${user ? 'top-nav-login' : 'top-nav-login'}`}
+                            className={`${(scrollPosition || !showDownload) && 'fixed-top-nav'} mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${slip||jackpot && "top-betslip-page-fix"} ${user ? 'top-nav-login' : 'top-nav-login'}`}
                             fixed="top" variant="dark">
                         <div
                             className={'w-100 d-flex justify-content-between mobile-change desktop-ipad-size top-header-main'}>

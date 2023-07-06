@@ -25,7 +25,6 @@ const Jackpot = React.memo(
         const [finishedJackpots, setFinishedJackpots] = useState([])
         const {width} = useWindowDimensions();
 
-
         const fetchData = useCallback(async (jackpot_id = '', jackpot_status = '') => {
             setLoading(true)
             let match_endpoint = "/v1/matches/jackpot";
@@ -199,7 +198,7 @@ const Jackpot = React.memo(
                     <Header jackpot={true}/>
                     <ToastContainer/>
                 </div>
-                <div className={`flex-container flex-column ${!showDownload && 'top-spacing-page-no-download'}`}>
+                <div className={`flex-container flex-column  top-spacing-page-no-download-jackpot`}>
                     <div className="item2 size-all-markets jp-header-banner">
                         <div className={"jp-banner-image"}>
                             <div
@@ -350,7 +349,7 @@ const Jackpot = React.memo(
 
                         </div>
                     </div>
-                    {activeTab === "home" &&matches && <div className="item3">
+                    {activeTab === "home" && matches && <div className="item3">
                         <Right jackpot={true} jackpotData={matches?.meta} test={true} matches={matches}/>
                     </div>}
 

@@ -68,6 +68,14 @@ const HeaderNav = React.memo(
                     setLocalStorage("ActiveLink",'/smart-play?game=JetX&category=JetX')
                     navigate('/login')
                 }
+            }else if(game == "FootballX"){
+                if(state?.user !== null){
+                    navigate( "/smart-play?game=FootballX&category=FootballX")
+                }
+                else {
+                    setLocalStorage("ActiveLink",'/smart-play?game=FootballX&category=FootballX')
+                    navigate('/login')
+                }
             }else if(game=='spaceman'){
                 if(state?.user !== null){
                     navigate( "/gameplay/1301/1")
@@ -165,6 +173,21 @@ const HeaderNav = React.memo(
                               }}>
                             <span>
                                 <strong>JetX</strong>
+                                    <span className="new-alert-badge-items">HOT</span>
+
+                            </span>
+                        </div>
+                    </li>
+
+                    <li className={searchTerm.includes('FootballX') ? 'active live-bg' : ''}
+                        onClick={() => gaEventTracker('FootballX')}>
+                        <div className="url-link fm anl cg ox"
+                             title="FootballX"
+                             onClick={() => {
+                                 LoginCheck("FootballX");gaEventTracker('Visit FootballX Page')
+                             }}>
+                            <span>
+                                <strong>FootballX</strong>
                                     <span className="new-alert-badge-items">HOT</span>
 
                             </span>

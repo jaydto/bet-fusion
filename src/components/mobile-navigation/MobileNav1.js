@@ -6,6 +6,7 @@ import promo from "../../../src/assets/img/mobile/fire.png";
 import jackpot from "../../../src/assets/img/mobile/jackpot.png";
 import soccer from "../../../src/assets/svg/sports/Soccer.png"
 import jetX from "../../assets/img/mobile/jetx.webp"
+import FootballX from "../../assets/img/mobile/footballX.webp"
 import casino1 from "../../assets/img/casino/casino.png"
 import aviator from "../../../src/assets/img/aviator.webp"
 import spaceman from "../../../src/assets/img/spaceman.webp"
@@ -93,14 +94,20 @@ const MobileNav1 = React.memo(
                     setLocalStorage("ActiveLink", '/smart-play?game=JetX&category=JetX')
                     navigate('/login')
                 }
-            } else if (game == 'spaceman') {
+            } else if (game == "FootballX") {
+                if (state?.user !== null) {
+                    navigate("/smart-play?game=FootballX&category=FootballX")
+                } else {
+                    setLocalStorage("ActiveLink", '/smart-play?game=FootballX&category=FootballX')
+                    navigate('/login')
+                }
+            }else if (game == 'spaceman') {
                 if (state?.user !== null) {
                     navigate("/gameplay/1301/1")
                 } else {
                     setLocalStorage("ActiveLink", '/gameplay/1301/1')
                     navigate('/login')
                 }
-
             } else if (game == 'smart-soft') {
                 if (state?.user !== null) {
                     navigate("/smart-soft")
@@ -259,6 +266,31 @@ const MobileNav1 = React.memo(
                                 </div>
                                 <strong style={{textAlign: "center"}}>
                                     JetX
+                                </strong>
+                            </div>
+                        </div>
+
+                    </td>
+                    <td className={`menu-t m-auto sport-check ${window.location.search.includes('FootballX') ? "active_link" : ""} `}>
+                        <div
+                            className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center  `}
+                            onClick={() => {
+                                LoginCheck('FootballX');
+                                gaEventTracker('Visit FootballX Page')
+                            }}>
+                            <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center`}>
+
+                                <div className="menu-img ">
+                                    <LazyLoadImage
+                                        className="side-icon football-x"
+                                        src={FootballX}
+                                        alt=""
+                                        style={{height: "23px", marginTop: "-6px"}}
+                                    />
+                                    <span className=" new-alert-badge-item hot">HOT</span>
+                                </div>
+                                <strong style={{textAlign: "center"}}>
+                                    FootballX
                                 </strong>
                             </div>
                         </div>

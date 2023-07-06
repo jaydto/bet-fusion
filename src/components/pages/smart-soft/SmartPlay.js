@@ -67,7 +67,7 @@ const SmartPlay = React.memo(
     return (
         <>
             <Header/>
-            <div className="amt">
+            <div className="amt top-smartsoft">
                 <div className="d-flex flex-row justify-content-between">
                     <div className="col-md-12 w-100">
                         <div className="homepage">

@@ -49,7 +49,7 @@ const Casino = React.memo(
 <div>
     <div className={"d-flex"}>
         <div className="stats-desktop"><SideBar loadCompetitions/></div>
-        <div className="gz home top-spacing " style={{width: '100%'}}>
+        <div className="gz home top-spacing-casino " style={{width: '100%'}}>
             <div className="homepage ">
                 <div className="col-md-12 d-flex flex-column mt-2">
                     <div className={'d-flex w-100 flex-column justify-content-between nare-header-container'}>

@@ -126,7 +126,7 @@ const DailyJackpotTermsAndConditions = () =>
                                 (HOME WIN, DRAW, AWAY WIN). The stake amount of each combination is KES 20/=.
                             </li>
                             <li>
-                                <strong>NOTE;</strong>&nbsp;BETNARE DOESNOT ACCEPT DOUBLE CHANCE COMBINATION ON THE
+                                <strong>NOTE;</strong>&nbsp;BETNARE DOES NOT ACCEPT DOUBLE CHANCE COMBINATION ON THE
                                 JACKPOT.
                             </li>
                             <li>

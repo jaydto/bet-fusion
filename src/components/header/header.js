@@ -52,6 +52,15 @@ const Header = React.memo(
             setTimeout(removeElement, 1000);
         }, []);
 
+        const pathname = window.location.pathname;
+
+        useEffect(()=>{
+            if(pathname!=="/login"){
+                dispatch({type: "SET", key: "page_view", payload: pathname})
+            }
+
+        },[pathname])
+
 
         useEffect(() => {
             const handleBackButton = () => {
@@ -202,7 +211,7 @@ const Header = React.memo(
         };
 
         const expand = "md"
-        const pathname = window.location.pathname;
+
         useEffect(() => {
             if (pathname == 'nare-league') {
                 dispatch({type: "SET", key: "kiron_page", payload: true});

@@ -62,18 +62,18 @@ const HeaderNav = React.memo(
         const LoginCheck = (game) => {
             if(game == "JetX"){
                 if(state?.user !== null){
-                    navigate( "/smart-play?game=FootballX&category=Games")
+                    navigate( "/smart-play?game=JetX&category=JetX")
                 }
                 else {
-                    setLocalStorage("ActiveLink",'/smart-play?game=FootballX&category=Games')
+                    setLocalStorage("ActiveLink",'/smart-play?game=JetX&category=JetX')
                     navigate('/login')
                 }
             }else if(game == "FootballX"){
                 if(state?.user !== null){
-                    navigate( "/smart-play?game=FootballX&category=FootballX")
+                    navigate( "/smart-play?game=FootballX&category=Games")
                 }
                 else {
-                    setLocalStorage("ActiveLink",'/smart-play?game=FootballX&category=FootballX')
+                    setLocalStorage("ActiveLink",'/smart-play?game=FootballX&category=Games')
                     navigate('/login')
                 }
             }else if(game=='spaceman'){

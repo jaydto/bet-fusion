@@ -168,7 +168,6 @@ const MyVerifyAccountForm = React.memo(
     const {errors, values, submitForm, setFieldValue} = props;
     const [state,dispatch]=useContext(Context)
     const resendOTP = () => {
-        console.log("here is the value")
 
         let endpoint = '/v1/code';
 

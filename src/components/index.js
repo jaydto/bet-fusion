@@ -271,7 +271,6 @@ const Index = React.memo(
         }, [bottomSheetRef]);
 
         const showBottomSheet=()=>{
-            console.log("sheeet")
             dispatch({type: "SET", key: "bottomSheet", payload: true});
         }
         const collapseBottomSheet=()=>{

@@ -988,7 +988,6 @@ const MatchRow = React.memo(
     (props) => {
 
         const {first_match, match, jackpot, live, pdown, three_way} = props;
-        console.log("jackpot: ", jackpot)
         const [extraMarketDisplays, setExtraMarketDisplays] = useState([])
         const categories = getFromLocalStorage('categories')
         const sport_id = new URL(window.location).searchParams.get('sport_id') || 79

@@ -96,9 +96,9 @@ const MobileNav1 = React.memo(
                 }
             } else if (game == "FootballX") {
                 if (state?.user !== null) {
-                    navigate("/smart-play?game=FootballX&category=FootballX")
+                    navigate("/smart-play?game=FootballX&category=Games")
                 } else {
-                    setLocalStorage("ActiveLink", '/smart-play?game=FootballX&category=FootballX')
+                    setLocalStorage("ActiveLink", '/smart-play?game=FootballX&category=Games')
                     navigate('/login')
                 }
             }else if (game == 'spaceman') {

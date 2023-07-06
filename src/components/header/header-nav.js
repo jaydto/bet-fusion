@@ -62,10 +62,10 @@ const HeaderNav = React.memo(
         const LoginCheck = (game) => {
             if(game == "JetX"){
                 if(state?.user !== null){
-                    navigate( "/smart-play?game=JetX&category=JetX")
+                    navigate( "/smart-play?game=FootballX&category=Games")
                 }
                 else {
-                    setLocalStorage("ActiveLink",'/smart-play?game=JetX&category=JetX')
+                    setLocalStorage("ActiveLink",'/smart-play?game=FootballX&category=Games')
                     navigate('/login')
                 }
             }else if(game == "FootballX"){

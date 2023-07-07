@@ -49,12 +49,12 @@ const MobileMenu = React.memo((props) => {
         };
     }, [fetchData]);
 
-    let sumOfOdds = 0;
+    let sumOfOdds = 1;
 
     Object.values(betItems || {}).forEach(match => {
         const oddValue = parseFloat(match.odd_value);
         if (!isNaN(oddValue)) {
-            sumOfOdds += oddValue;
+            sumOfOdds *= oddValue;
         }
     });
     let winnings = sumOfOdds !== 0 ? (state?.hasBoost ? state?.netWinBoosted == 0 ? state?.netWin : state?.netWinBoosted : state?.netWin) : 0

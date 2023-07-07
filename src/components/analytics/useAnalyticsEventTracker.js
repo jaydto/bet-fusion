@@ -8,7 +8,6 @@ export function trackEventToGTM(category, action, label) {
         event: category,
         eventAction: action,
         eventData: label,
-        consentState:true
     });
 
     // Push the GTM event
@@ -30,7 +29,6 @@ const useAnalyticsEventTracker = (category = 'Home', action = 'Page Visit') => {
             event:gaCategory,
             eventAction:category,
             eventData:gaLabel,
-            consentState:true
         }) ;
 
         ReactPixel.track(gaCategory, {

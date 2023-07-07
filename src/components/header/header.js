@@ -257,9 +257,6 @@ const Header = React.memo(
 
                         </div>
                     }
-                    {console.log("position1",showDownload.includes(pathname))}
-                    {console.log("position2",scrollPosition)}
-                    {console.log("position3",scrollPosition || showDownload.includes(pathname))}
 
                     <Navbar expand="md"
                             className={`${(scrollPosition || showDownload.includes(pathname)) && 'fixed-top-nav'} mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${(slip || jackpot) && "top-betslip-page-fix"} ${user ? 'top-nav-login' : 'top-nav-login'}`}
@@ -332,7 +329,7 @@ const Header = React.memo(
 
                                     </ListGroup>
                                 </div>
-                                : notShowMobileNav.includes(pathname) && !slip && !jackpot &&
+                                : !notShowMobileNav.includes(pathname) && !slip && !jackpot &&
                                 <MobileNav1/>}
 
 

@@ -31,13 +31,18 @@
 </head>
 <body onscroll="getScrollLength()">
 
-
 <!-- End Google Tag Manager (noscript) -->
 <noscript><a href="https://lite.betnare.com" class="lite-version">
     <div class="lite-div">
         Whoops! It's us not you. Give us another chance by clicking here.💔
     </div>
 </a></noscript>
+
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PZ5V4GR"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <a href="https://lite.betnare.com" class="app-color lite-top-color site-mobile-only">
     <div class="color-app-text">Having trouble loading the website? Click here for <strong>LITE</strong> VERSION</div>
 </a>
@@ -214,6 +219,18 @@
   gtag('config', 'AW-10991240939');
   `;
         firstScript.parentNode.insertBefore(script8, firstScript);
+
+        // new gtag trackers
+        var gtagScript = document.createElement("script");
+        gtagScript.defer = true;
+        gtagScript.text = `
+     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PZ5V4GR')
+  `;
+        firstScript.parentNode.insertBefore(gtagScript, firstScript);
 
         // live match tracker
         // var script9 = document.createElement("script");

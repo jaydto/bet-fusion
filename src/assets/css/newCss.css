@@ -1933,8 +1933,18 @@ img.nare-league {
 }
 
 @media (max-width: 991px) {
+    .logo-betnare{
+        display:flex;
+        align-items: center;
+    }
+    .top-nav-login.top-betslip-page-fix.top-betslip-page-fix {
+        min-height: 50px!important;
+    }
     .top-smartsoft {
         margin-top: 10rem !important;
+    }
+    .top-nare-games {
+        margin-top: 13rem !important;
     }
     .top-spacing-casino{
         margin-top: 10rem !important;
@@ -3038,11 +3048,12 @@ img.nare-league {
         padding-top: 0px;
         min-height: 72px;
     }
-
     .top-nav-login.top-betslip-page-fix {
         min-height: 50px;
     }
-
+    .top-nav-login.top-betslip-page-fix.top-betslip-page-fix{
+        min-height: 50px!important;
+    }
     .top-nav-login {
         padding-top: 0px;
         min-height: 72px;

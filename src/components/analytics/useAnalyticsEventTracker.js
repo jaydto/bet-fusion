@@ -32,8 +32,8 @@ const useAnalyticsEventTracker = (category = 'Home', action = 'Page Visit') => {
         }) ;
 
         ReactPixel.track(gaCategory, {
-            category: gaCategory,
-            action: gaLabel
+            event: gaCategory,
+            eventData: gaLabel
         });
     };
     return eventTracker;

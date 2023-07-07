@@ -352,7 +352,37 @@
 .black-txt{
     color:#000000;
 }
-
+@media (max-width: 767px){
+    .standings-container-heading {
+        position: fixed;
+        top: 17.6rem!important;
+        width: 100vw;
+        background: var(--orange);
+        z-index: 100;
+    }
+    .skeleton-loader{
+        margin-top:0rem!important;
+    }
+    .kiron-body-pages {
+        margin-top: 12.9rem!important;
+        position: relative;
+    }
+    .kiron-body {
+        margin-top: 9.9rem!important;
+        position: relative;
+    }
+    .kiron-matches-header {
+        position: fixed;
+        z-index: 1999;
+        width: 100%;
+        background: var(--betnare-header-bg);
+        top: 14rem!important;
+    }
+    .kiron_matches_now {
+        margin-top: 10.6rem!important;
+        background: var(--betnare-primary);
+    }
+}
 
 @media (max-width: 376px){
     .double-chance-market{
@@ -376,6 +406,10 @@
 }
 
 @media (min-width:992px){
+    .kiron-body-pages {
+        margin-top: 11.6rem;
+        position: relative;
+    }
     .kiron-sticky-nav{
         z-index:2000;
         position:fixed;
@@ -396,8 +430,9 @@
         width:75%;
         background: var(--betnare-header-bg);
     }
-    .kiron_matches_now{
-        margin-top:10rem;
+    .kiron_matches_now {
+        margin-top: 10.6rem;
+        background: var(--betnare-primary);
     }
 
     .kiron-size{
@@ -421,9 +456,12 @@
 }
 
 @media (max-width:991px){
+    .skeleton-loader{
+        margin-top:14rem;
+    }
     .standings-container-heading {
         position: fixed;
-        top: 18.2rem;
+        top: 21.2rem;
         width: 100vw;
         background: var(--orange);
         z-index: 100;
@@ -443,15 +481,21 @@
         z-index: 1999;
         width: 100%;
         background: var(--betnare-header-bg);
-        top: 14rem;
+        top: 16rem;
     }
     .kiron_matches_now {
-        margin-top: 10.6rem;
+        margin-top: 15.6rem;
+        background: var(--betnare-primary);
     }
-    .kiron-body{
-        margin-top:9.9rem;
+    .kiron-body {
+        margin-top: 10.9rem;
         position: relative;
     }
+    .kiron-body-pages {
+        margin-top: 15.3rem;
+        position: relative;
+    }
+
     .event{
         background:var(--betnare-primary)!important
     }
@@ -464,6 +508,7 @@
         /* white-space: normal; */
         padding-right: 0rem!important;
         /* margin-bottom: 0.4rem; */
+        align-items: center;
     }
     .matches .top-matches .kiron-btn {
         height: 30px;

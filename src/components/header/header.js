@@ -151,7 +151,7 @@ const Header = React.memo(
             "/gameplay", "/smart-play", "/betslip-slip", "/betslip-nare",
             "/betslip-jackpot", "/nare-league", "/bet-history",
             "/standing", "/results", "/casino", "/jackpot",
-            "/smart-soft", "/virtuals", "/match", "/competition",
+            "/smart-soft", "/virtuals", "/competition",
             "/my-bets", "/profile", "/promotions"]
 
         useEffect(() => {
@@ -236,7 +236,7 @@ const Header = React.memo(
         return (
             <>
                 <div className={'d-flex flex-column'}>
-                    {!showDownload.includes(pathname) &&
+                    {(!showDownload.includes(pathname) && !pathname.includes('match'))&&
                         <div>
                             <Link to={'/betnare.apk'}
                                   target={"_blank"}
@@ -259,7 +259,7 @@ const Header = React.memo(
                     }
 
                     <Navbar expand="md"
-                            className={`${(scrollPosition || showDownload.includes(pathname)) && 'fixed-top-nav'} mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${(slip || jackpot) && "top-betslip-page-fix"} ${user ? 'top-nav-login' : 'top-nav-login'}`}
+                            className={`${(scrollPosition || (showDownload.includes(pathname)||pathname.includes('match'))) && 'fixed-top-nav'} mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${(slip || jackpot) && "top-betslip-page-fix"} ${user ? 'top-nav-login' : 'top-nav-login'}`}
                             fixed="top" variant="dark">
                         <div
                             className={'w-100 d-flex justify-content-between mobile-change desktop-ipad-size top-header-main'}>
@@ -329,7 +329,7 @@ const Header = React.memo(
 
                                     </ListGroup>
                                 </div>
-                                : !notShowMobileNav.includes(pathname) && !slip && !jackpot &&
+                                : (!notShowMobileNav.includes(pathname) && !slip && !jackpot && !pathname.includes('match'))&&
                                 <MobileNav1/>}
 
 

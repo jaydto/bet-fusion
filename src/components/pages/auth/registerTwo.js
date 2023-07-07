@@ -23,6 +23,7 @@ import {Context} from "../../../context/store";
 import SliderPromos from "./SliderPromos";
 import {Notify} from "../../header/top-login";
 import {ToastContainer} from "react-toastify";
+import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 
 const backgroundStyle = {
     backgroundImage: `url(${backgroundURL})`,
@@ -660,6 +661,7 @@ const MyPasswordForm = (props) => {
 
 const ReferalForm = React.memo(
     (props) => {
+        const gaEventTracker = useAnalyticsEventTracker('SignUp')
         const [state, dispatch] = useContext(Context)
         const initialValues = {
             promo_code: '',
@@ -695,6 +697,7 @@ const ReferalForm = React.memo(
                 clearTrackingData()
                 let timer = setTimeout(() => {
                     if (status === 200) {
+                        gaEventTracker("msisdn",values?.msisdn)
                         return state?.app_config?.message?.accountConfiguration?.verificationEnabled !== "0" ? navigate("/verify") : navigate("/login")
                     }
                     clearTimeout(timer)

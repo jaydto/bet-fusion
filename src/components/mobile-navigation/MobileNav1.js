@@ -146,9 +146,9 @@ const MobileNav1 = React.memo(
                                         style={{height: "23px", marginTop: "-6px"}}
                                     />
                                 </div>
-                                <strong style={{textAlign: "center"}}>
+                                <p style={{textAlign: "center"}}>
                                     Soccer
-                                </strong>
+                                </p>
                             </div>
                         </Link>
 
@@ -166,9 +166,9 @@ const MobileNav1 = React.memo(
                                     />
                                     <span className=" new-alert-badge" >HOT</span>
                                 </div>
-                                <strong style={{textAlign: "center"}}>
+                                <p style={{textAlign: "center"}}>
                                     League
-                                </strong>
+                                </p>
                             </div>
                         </Link>
                         </td>
@@ -190,9 +190,9 @@ const MobileNav1 = React.memo(
                                     />
                                     <span className=" new-alert-badge hot">HOT</span>
                                 </div>
-                                <strong style={{textAlign: "center"}}>
+                                <p style={{textAlign: "center"}}>
                                     Aviator
-                                </strong>
+                                </p>
                             </div>
                         </Link>
 
@@ -217,9 +217,9 @@ const MobileNav1 = React.memo(
                                     />
                                     <span className="new-alert-badge-item hot">HOT</span>
                                 </div>
-                                <strong style={{textAlign: "center"}}>
+                                <p style={{textAlign: "center"}}>
                                     Casino
-                                </strong>
+                                </p>
                             </div>
                         </div>
 
@@ -239,9 +239,9 @@ const MobileNav1 = React.memo(
                                     />
                                     <span className="new-alert-badge hot">HOT</span>
                                 </div>
-                                <strong style={{textAlign: "center"}}>
+                                <p style={{textAlign: "center"}}>
                                     Jackpot
-                                </strong>
+                                </p>
                             </div>
                         </Link>
 
@@ -264,9 +264,9 @@ const MobileNav1 = React.memo(
                                     />
                                     <span className=" new-alert-badge-item hot">HOT</span>
                                 </div>
-                                <strong style={{textAlign: "center"}}>
+                                <p style={{textAlign: "center"}}>
                                     JetX
-                                </strong>
+                                </p>
                             </div>
                         </div>
 
@@ -289,9 +289,9 @@ const MobileNav1 = React.memo(
                                     />
                                     <span className=" new-alert-badge-item hot">HOT</span>
                                 </div>
-                                <strong style={{textAlign: "center"}}>
+                                <p style={{textAlign: "center"}}>
                                     FootballX
-                                </strong>
+                                </p>
                             </div>
                         </div>
 
@@ -314,9 +314,9 @@ const MobileNav1 = React.memo(
                                     />
                                     <span className=" new-alert-badge-item hot">HOT</span>
                                 </div>
-                                <strong style={{textAlign: "center"}}>
+                                <p style={{textAlign: "center"}}>
                                     Xgames
-                                </strong>
+                                </p>
                             </div>
                         </div>
 
@@ -340,9 +340,9 @@ const MobileNav1 = React.memo(
                                     />
                                     <span className=" new-alert-badge-item hot">HOT</span>
                                 </div>
-                                <strong style={{textAlign: "center"}}>
+                                <p style={{textAlign: "center"}}>
                                     Spaceman
-                                </strong>
+                                </p>
                             </div>
                         </div>
                     </td>
@@ -361,9 +361,9 @@ const MobileNav1 = React.memo(
                                     />
                                     <span className=" new-alert-badge">NEW</span>
                                 </div>
-                                <strong style={{textAlign: "center"}}>
+                                <p style={{textAlign: "center"}}>
                                     Nare Games
-                                </strong>
+                                </p>
                             </div>
                         </Link>
 
@@ -383,9 +383,9 @@ const MobileNav1 = React.memo(
                                     />
 
                                 </div>
-                                <strong style={{textAlign: "center"}}>
+                                <p style={{textAlign: "center"}}>
                                     Virtuals
-                                </strong>
+                                </p>
                             </div>
                         </Link>
 
@@ -401,7 +401,7 @@ const MobileNav1 = React.memo(
                             <span className=" new-alert-badge" style={{color:"white",background:"red"
                                 ,marginTop:"-5px", borderRadius: "10px 0 15px 0", marginLeft:"1px", padding:"0.3px 3px ", fontSize:"5.5px"}}>NEW</span>
                        </div>
-                         <strong className={"text-light"}>Live Casino</strong>
+                         <p className={"text-light"}>Live Casino</p>
                     </Link>
 
                 </td> */}
@@ -438,9 +438,9 @@ const MobileNav1 = React.memo(
                                                 style={{height: "23px", marginTop: "-6px"}}
                                             />
                                         </div>
-                                        <strong style={{textAlign: "center"}}>
+                                        <p style={{textAlign: "center"}}>
                                             {allsports?.sport_name}
-                                        </strong>
+                                        </p>
                                     </div>
                                 </Link>
                             </td>
@@ -458,9 +458,9 @@ const MobileNav1 = React.memo(
                     {/*                    style={{height: "23px", marginTop:"-6px"}}*/}
                     {/*                />*/}
                     {/*            </div>*/}
-                    {/*            <strong style={{textAlign: "center"}}>*/}
+                    {/*            <p style={{textAlign: "center"}}>*/}
                     {/*                Affiliate*/}
-                    {/*            </strong>*/}
+                    {/*            </p>*/}
                     {/*        </div>*/}
                     {/*    </Link>*/}
 
@@ -479,9 +479,9 @@ const MobileNav1 = React.memo(
                                         style={{height: "23px", marginTop: "-6px"}}
                                     />
                                 </div>
-                                <strong style={{textAlign: "center"}}>
+                                <p style={{textAlign: "center"}}>
                                     Promo
-                                </strong>
+                                </p>
                             </div>
                         </Link>
 

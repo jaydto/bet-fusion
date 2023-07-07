@@ -15,10 +15,14 @@ import './assets/css/Themes.css'
 import Store from './context/store';
 import ReactGA from 'react-ga4';
 import Loading from "./components/loading/LoadingSuspense";
+import ReactPixel from 'react-facebook-pixel';
 
 
-const TRACKING_ID = "G-5NLSN9BLN4";
+const TRACKING_ID = "GTM-PZ5V4GR";
 ReactGA.initialize(TRACKING_ID);
+
+const TRACKING_PIXEL_ID = "1297171947681785";
+ReactPixel.init(TRACKING_PIXEL_ID);
 
 const Deposit3=React.lazy(()=>import("./components/pages/deposit-withraw/Deposit3"));
 

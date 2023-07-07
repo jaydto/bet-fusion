@@ -82,6 +82,8 @@ body {
 .active_link {
     /*border-bottom: 1px solid yellow !important;*/
     border-radius: 4px;
+    font-weight: 700;
+    font-size:13px;
     color: yellow !important;
     opacity: 1 !important;
 }
@@ -1178,7 +1180,27 @@ img.nare-league {
 .original-button:hover::after {
     transform: translate(5px, -50%) rotate(-30deg);
 }
-
+.teams-more-markets{
+    font-size:16px!important;
+    font-weight:600!important;
+    opacity:0.8;
+    text-transform: none!important;
+}
+.team_vs{
+    font-size:11px!important;
+    opacity:0.7!important;
+    font-weight:500!important;
+}
+.spacing-mobile-web{
+    width:30px;
+}
+.team-information_more_markets{
+    text-overflow: ellipsis;
+    width: 170px;
+    white-space: normal;
+    overflow: hidden;
+    display: inline-block;
+}
 /*end back button*/
 /*media queries*/
 @media (min-width: 1260px) {
@@ -1933,6 +1955,27 @@ img.nare-league {
 }
 
 @media (max-width: 991px) {
+    .tag {
+        font-size: 10px;
+        line-height: 1.4;
+        display: flex;
+        align-items: center;
+    }
+    .tag_container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .team_category_game{
+        display:flex;
+        align-items: center;
+    }
+    .team_category_game small{
+        overflow-x: hidden;
+        width:190px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
     .width-page-centric.register-page {
         box-shadow: none!important;
         height: 84vh!important;
@@ -2064,6 +2107,10 @@ img.nare-league {
         color: #fff;
         position: fixed;
         bottom: 0;
+    }
+
+    .more_markets_category_sport{
+        text-transform: none!important;
     }
 
     .close-history-filter {
@@ -2344,9 +2391,10 @@ img.nare-league {
         height: 100vh;
     }
 
-    .mobile-full-height.all-markets {
-        margin-top: 16px;
-    }
+
+    /*.mobile-full-height.all-markets {*/
+    /*    margin-top: 16px;*/
+    /*}*/
 
     .bloc-icon {
         width: 50%;
@@ -2901,7 +2949,7 @@ img.nare-league {
     }
 
     .compt-teams {
-        font-size: 13px;
+        font-size: 14px;
         text-transform: uppercase !important;
         word-spacing: 4px;
     }
@@ -3065,10 +3113,6 @@ img.nare-league {
         padding-bottom: 0px !important;
     }
 
-    .tag {
-        font-size: 11px;
-        line-height: 1.5;
-    }
 
     .image-size {
         width: 138px;
@@ -3377,8 +3421,8 @@ img.nare-league {
     }
 
     .compt-teams {
-        font-size: 10px;
-        /*text-transform: uppercase !important;*/
+        font-size: 13px;
+        /* text-transform: uppercase !important; */
     }
 
     .matches .top-matches button {

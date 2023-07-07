@@ -2183,7 +2183,7 @@ events-header {
 }
 
 .compt-teams {
-    font-size: 12px;
+    font-size: 14px;
     /*text-transform: uppercase !important;*/
 }
 
@@ -7430,7 +7430,7 @@ ul.sport {
     }
 
     .panel-header {
-        padding: 5px !important;
+        padding: 0px !important;
     }
 
     .shrink-header .e {

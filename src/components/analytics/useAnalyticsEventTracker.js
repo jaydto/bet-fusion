@@ -25,6 +25,7 @@ const useAnalyticsEventTracker = (category = 'Home', action = 'Page Visit') => {
         const gaLabel = label || category;
 
         trackEventToGTM(gaCategory, category, gaLabel);
+
         ReactGA.event(gaCategory,{
             event:gaCategory,
             eventAction:category,
@@ -33,6 +34,7 @@ const useAnalyticsEventTracker = (category = 'Home', action = 'Page Visit') => {
 
         ReactPixel.track(gaCategory, {
             event: gaCategory,
+            eventAction:category,
             eventData: gaLabel
         });
     };

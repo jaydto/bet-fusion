@@ -7,7 +7,7 @@ import {
 import 'react-accessible-accordion/dist/fancy-example.css';
 import React from "react";
 
-const Ammendments = React.memmo(
+const Ammendments = React.memo(
     () => {
     return (
         <AccordionItem>

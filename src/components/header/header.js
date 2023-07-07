@@ -27,7 +27,7 @@ const HeaderNav = React.lazy(() => import('./header-nav'));
 
 const Header = React.memo(
     (props) => {
-        const {slip, scrollPosition,jackpot} = props
+        const {slip, scrollPosition, jackpot} = props
         const gaEventTracker = useAnalyticsEventTracker('Navigation');
         const [user, setUser] = useState(getFromLocalStorage("user"));
         const [state, dispatch] = useContext(Context);
@@ -54,12 +54,12 @@ const Header = React.memo(
 
         const pathname = window.location.pathname;
 
-        useEffect(()=>{
-            if(pathname!=="/login"){
+        useEffect(() => {
+            if (pathname !== "/login") {
                 dispatch({type: "SET", key: "page_view", payload: pathname})
             }
 
-        },[pathname])
+        }, [pathname])
 
 
         useEffect(() => {
@@ -147,7 +147,12 @@ const Header = React.memo(
             }
         })
         const urlPath = window.location.pathname
-        const showDownload = (!urlPath.includes("nare-games") && !urlPath.includes("bethistory") && !urlPath.includes("gameplay") && !urlPath.includes("smart-play") && !urlPath.includes("betslip-slip") && !urlPath.includes("betslip-nare") && !urlPath.includes("betslip-jackpot") && !urlPath.includes("nare-league") && !urlPath.includes("bet-history") && !urlPath.includes("standings") && !urlPath.includes("results") && !urlPath.includes("casino") && !urlPath.includes("jackpot") && !urlPath.includes("smart-soft") && !urlPath.includes("virtuals") && !urlPath.includes("match") && !urlPath.includes("competition") && !urlPath.includes("my-bets") && !urlPath.includes("profile") && !urlPath.includes("promotions") && !urlPath.includes("standing"))
+        const showDownload = ["/nare-games", "/bethistory", "/terms-and-conditions",
+            "/gameplay", "/smart-play", "/betslip-slip", "/betslip-nare",
+            "/betslip-jackpot", "/nare-league", "/bet-history",
+            "/standing", "/results", "/casino", "/jackpot",
+            "/smart-soft", "/virtuals", "/match", "/competition",
+            "/my-bets", "/profile", "/promotions"]
 
         useEffect(() => {
 
@@ -192,6 +197,9 @@ const Header = React.memo(
 
         }, [current]);
 
+        const notShowMobileNav = ['/signup', '/nare-league', '/results',
+            '/standing', '/playouts', '/standing', '/bet-history']
+
         const updateUserOnLogin = useCallback(() => {
             dispatch({type: "SET", key: "user", payload: user});
         }, [user?.msisdn, user?.balance]);
@@ -228,7 +236,7 @@ const Header = React.memo(
         return (
             <>
                 <div className={'d-flex flex-column'}>
-                    {showDownload &&
+                    {!showDownload.includes(pathname) &&
                         <div>
                             <Link to={'/betnare.apk'}
                                   target={"_blank"}
@@ -246,14 +254,15 @@ const Header = React.memo(
                                     </div>
                                 </div>
                             </Link>
-                            {/*<a href={"https://lite.betnare.com"} className={"app-color lite-top-color"}>*/}
-                            {/*    <div className={"color-app-text"}>Having Trouble loading website? Click here for <strong>LITE</strong> VERSION</div>*/}
-                            {/*</a>*/}
+
                         </div>
                     }
+                    {console.log("position1",showDownload.includes(pathname))}
+                    {console.log("position2",scrollPosition)}
+                    {console.log("position3",scrollPosition || showDownload.includes(pathname))}
 
                     <Navbar expand="md"
-                            className={`${(scrollPosition || !showDownload) && 'fixed-top-nav'} mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${slip||jackpot && "top-betslip-page-fix"} ${user ? 'top-nav-login' : 'top-nav-login'}`}
+                            className={`${(scrollPosition || showDownload.includes(pathname)) && 'fixed-top-nav'} mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${(slip || jackpot) && "top-betslip-page-fix"} ${user ? 'top-nav-login' : 'top-nav-login'}`}
                             fixed="top" variant="dark">
                         <div
                             className={'w-100 d-flex justify-content-between mobile-change desktop-ipad-size top-header-main'}>
@@ -323,7 +332,7 @@ const Header = React.memo(
 
                                     </ListGroup>
                                 </div>
-                                : (pathname !== '/signup') && pathname !== '/nare-league' && pathname !== '/results' && pathname !== '/standing' && pathname !== '/playouts' && pathname !== '/standing  ' && pathname !== '/bet-history' && !slip && !jackpot &&
+                                : notShowMobileNav.includes(pathname) && !slip && !jackpot &&
                                 <MobileNav1/>}
 
 

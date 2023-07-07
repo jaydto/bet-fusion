@@ -32,7 +32,12 @@ const Deposit = React.memo(
                     setMessage(response);
                     clearTrackingData()
                 if(status===200||status===201){
-                    gaEventTracker('Deposit', values)
+                    const data={
+                        msisdn:state?.user?.msisdn,
+                        amount:values?.amount
+                    }
+                    gaEventTracker('Deposit',data )
+
                 }
                 }
             )

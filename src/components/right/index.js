@@ -26,7 +26,7 @@ const AlertMessage = React.memo(
 
 const Right = React.memo(
     (props) => {
-    const {jackpot, betslipValidationData, jackpotData, kiron,test,matches} = props;
+    const {jackpot, betslipValidationData, jackpotData, kiron,test,matches,live} = props;
     const {height, width} = useWindowDimensions();
     const [betSlipMobile, setBetSlipMobile] = useState(false)
     const pathname=window.location.pathname
@@ -61,7 +61,7 @@ const Right = React.memo(
                         </button>
                         <div id="betslip" className="betslip">
                             {kiron==true?<Kironslip  kiron={kiron} />
-                                :<BetSlip jackpot={jackpot} betslipValidationData={betslipValidationData}
+                                :<BetSlip jackpot={jackpot} betslipValidationData={betslipValidationData} live={live}
                                           jackpotData={jackpotData} />}
 
                         </div>

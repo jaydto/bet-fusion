@@ -697,8 +697,19 @@ const ReferalForm = React.memo(
                 clearTrackingData()
                 let timer = setTimeout(() => {
                     if (status === 200) {
-                        gaEventTracker("msisdn",values?.msisdn)
+                        const data={
+                            msisdn:state?.signup_msisdn,
+                            promo_code:values?.promo_code.length===0?"no promo code":values?.promo_code
+                        }
+                        gaEventTracker("Sign Up",data)
                         return state?.app_config?.message?.accountConfiguration?.verificationEnabled !== "0" ? navigate("/verify") : navigate("/login")
+                    }else{
+                        const data={
+                            msisdn:state?.signup_msisdn,
+                            event:'sign_up_failed',
+                            message:'sign up failed'
+                        }
+                        gaEventTracker("Sign Up Failed",data)
                     }
                     clearTimeout(timer)
                 }, 3000)

@@ -5,29 +5,35 @@ import ReactPixel from 'react-facebook-pixel';
 export function trackEventToGTM(category, action, label) {
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
-        event: 'customEvent',
-        eventCategory: category,
+        event: category,
         eventAction: action,
-        eventLabel: label
+        eventData: label,
+        consentState:true
     });
 
     // Push the GTM event
-    window.dataLayer.push({
-        'event': 'gtmEvent',
-        'gtmEventType': 'gaEvent',
-        'gaEventCategory': category,
-        'gaEventAction': action,
-        'gaEventLabel': label
-    });
+    // window.dataLayer.push({
+    //     'event': 'gtmEvent',
+    //     'gtmEventType': 'gaEvent',
+    //     'gaEventCategory': JSON.stringify(category),
+    //     'gaEventAction': action,
+    //     'gaEventLabel': label
+    // });
 }
 const useAnalyticsEventTracker = (category = 'Home', action = 'Page Visit') => {
     const eventTracker = (action_data, label) => {
         const gaCategory = action_data || action;
         const gaLabel = label || category;
 
-        trackEventToGTM(category, gaCategory, gaLabel);
-        ReactGA.event({ category, action: gaCategory, label: gaLabel });
-        ReactPixel.track('CustomEvent', {
+        trackEventToGTM(gaCategory, category, gaLabel);
+        ReactGA.event(gaCategory,{
+            event:gaCategory,
+            eventAction:category,
+            eventData:gaLabel,
+            consentState:true
+        }) ;
+
+        ReactPixel.track(gaCategory, {
             category: gaCategory,
             action: gaLabel
         });

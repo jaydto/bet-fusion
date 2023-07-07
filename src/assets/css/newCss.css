@@ -1933,6 +1933,11 @@ img.nare-league {
 }
 
 @media (max-width: 991px) {
+    .width-page-centric.register-page {
+        box-shadow: none!important;
+        height: 84vh!important;
+
+    }
     .logo-betnare{
         display:flex;
         align-items: center;

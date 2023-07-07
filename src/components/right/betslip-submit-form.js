@@ -21,6 +21,7 @@ import {Spinner} from "react-bootstrap";
 import {Switch} from "@material-ui/core";
 import {useNavigate} from "react-router-dom";
 import useWindowDimensions from "../header/Dimensions";
+import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 
 const BetslipShareModal = React.lazy(() =>
     import("../modals/BetslipShareModal")
@@ -59,6 +60,7 @@ const BetslipSubmitForm = React.memo(
 
 
         const {
+            live,
             jackpot,
             totalGames,
             totalOdds,
@@ -182,6 +184,7 @@ const BetslipSubmitForm = React.memo(
             ipAddress();
         }, [ipAddress])
 
+        const gaEventTracker=useAnalyticsEventTracker(jackpot?'PlaceJackpotBet':live?'PlaceLiveBet':'PlacePrematchBet')
 
         const handlePlaceBet = useCallback((values,
                                             {setSubmitting, resetForm, setStatus, setErrors}) => {
@@ -251,9 +254,14 @@ const BetslipSubmitForm = React.memo(
             makeRequest({url: endpoint, method: method, data: payload, use_jwt: use_jwt})
                 .then(([status, response]) => {
 
-
-                    if (status === 200 || status == 201 || status == 204) {
+                    if (status === 200 || status == 201 || status == 204)
+                    {
                         setMessage(response);
+                        const data={
+                            event:jackpot?'place_jackpot_bet':live?'place_live_bet':'place_prematch_bet',
+                            data:payload
+                        }
+                        gaEventTracker("Bet Placed",data)
                         // setLocalStorage("winnings",null)
                         //all is good am be quiet
                         if (jackpot) {
@@ -273,7 +281,13 @@ const BetslipSubmitForm = React.memo(
                         });
                         setLocalStorage('betslip_share_code', null)
                         return width < 991 ? navigate(-1) : "";
-                    } else {
+                    }
+                    else {
+                        const data={
+                            event:jackpot?'place_jackpot_bet':live?'place_live_bet':'place_prematch_bet',
+                            message:response?.message
+                        }
+                        gaEventTracker("Bet Placement Failed",data)
                         let response_message = response?.message;
                         if (response_message === "" || response_message === undefined) {
                             response_message = response?.error;

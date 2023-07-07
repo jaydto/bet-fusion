@@ -41,7 +41,6 @@ export const  Notify =
 
 const HeaderLogin = React.memo(
     (props) => {
-    const gaEventTracker = useAnalyticsEventTracker('Navigation');
     const [isLoading, setIsLoading] = useState(null)
     const [message, setMessage] = useState(null);
     const {setUser,login} = props;
@@ -69,6 +68,8 @@ const HeaderLogin = React.memo(
         dispatchUser();
     }, [dispatchUser]);
 
+    const gaEventTracker=useAnalyticsEventTracker("Login")
+
     const handleSubmit = values => {
         let endpoint = '/v1/login';
         setIsLoading(true)
@@ -76,12 +77,24 @@ const HeaderLogin = React.memo(
 
             setIsLoading(false)
             if (status === 200 || status == 201 || status == 204) {
+                const data={
+                    user_id:response?.user?.profile_id,
+                    msisdn:values?.msisdn,
+                    event:'login'
+                }
+                gaEventTracker("Login",data)
                 setMessage(response);
             } else {
                 let message = {
                     status: status,
                     message: response?.message || "Error attempting to login"
                 };
+                const data={
+                    msisdn:values?.msisdn,
+                    event:'login_failed',
+                    message:response?.message
+                }
+                gaEventTracker("login",data)
                 Notify(message);
             }
         })
@@ -192,7 +205,7 @@ const HeaderLogin = React.memo(
                                     <span className={`text-warning font-input } register-label my-3`}>Dont have an account! Register now </span>
                                 </Link>
                                 <Link className="m-lg-2 badge bg-success d-none" to={"/verify-account"} title="Verify Account"
-                                      onClick={() => gaEventTracker('Verify')}>
+                                      onClick={() => gaEventTracker('Visit Verify Page')}>
                                     <span className="register-label">VERIFY ACCOUNT</span>
                                 </Link>
                             </div>

@@ -18,7 +18,7 @@ import Loading from "./components/loading/LoadingSuspense";
 import ReactPixel from 'react-facebook-pixel';
 
 
-const TRACKING_ID = "GTM-PZ5V4GR";
+const TRACKING_ID = "G-5NLSN9BLN4";
 ReactGA.initialize(TRACKING_ID);
 
 const TRACKING_PIXEL_ID = "1297171947681785";

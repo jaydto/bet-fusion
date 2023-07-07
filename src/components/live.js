@@ -163,7 +163,7 @@ const  Live= React.memo(
                     </div>
                 </div>
                 <div className="item3">
-                    <Right betslipValidationData={userSlipsValidation} jackpotData={matches?.meta} test={true}/>
+                    <Right betslipValidationData={userSlipsValidation} jackpotData={matches?.meta} test={true} live={true}/>
                 </div>
 
             </div>

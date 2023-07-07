@@ -387,7 +387,11 @@ const DepositForm = (props) => {
             dispatch({type: "SET", key: "depositMessage", payload: response})
             clearTrackingData()
             if (status === 200 || status === 201) {
-                gaEventTracker('Deposit', values)
+                const data={
+                    msisdn:state?.user?.msisdn,
+                    amount:values?.amount
+                }
+                gaEventTracker('Deposit',data )
             }
         })
     }

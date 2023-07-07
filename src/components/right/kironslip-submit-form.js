@@ -13,6 +13,7 @@ import {faFireAlt, faGift, faTrash,} from "@fortawesome/free-solid-svg-icons";
 import {getTime} from "../pages/Kiron/periods";
 import {useNavigate} from "react-router-dom";
 import useWindowDimensions from "../header/Dimensions";
+import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 
 const Float = (equation, precision = 4) => {
     return Math.round(equation * 10 ** precision) / 10 ** precision;
@@ -154,6 +155,7 @@ const KironslipSubmitForm = React.memo(
         useEffect(() => {
             ipAddress();
         }, [ipAddress]);
+        const gaEventTracker=useAnalyticsEventTracker('Place Kiron Bet')
 
         const handlePlaceBet = useCallback(
             (values, {setSubmitting, resetForm, setStatus, setErrors}) => {
@@ -201,6 +203,11 @@ const KironslipSubmitForm = React.memo(
                     use_jwt: use_jwt,
                 }).then(([status, response]) => {
                     if (status === 200 || status == 201 || status == 204) {
+                        const data={
+                            event:'place_kiron_bet',
+                            data:payload
+                        }
+                        gaEventTracker("Kiron Bet Placed",data)
                         setMessage(response);
                         let betslips = getKironSlip()
                         Object.entries(betslips || {})?.map(([match_id, match]) => {
@@ -226,6 +233,11 @@ const KironslipSubmitForm = React.memo(
                         });
                         return width < 991 ? navigate(-1) : ""
                     } else {
+                        const data={
+                            event:'place_kiron_bet',
+                            message:response?.message
+                        }
+                        gaEventTracker("Kiron Bet Failed",data)
                         let response_message = response?.message;
                         if (response_message === "" || response_message === undefined) {
                             response_message = response?.error;

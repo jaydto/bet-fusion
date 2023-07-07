@@ -67,7 +67,11 @@ const Withdrawal = React.memo(
                 setSuccess(status === 200 || status === 201);
                 setMessage(response);
                 if (status === 200 || status === 201) {
-                    gaEventTracker('Withdraw', values)
+                    const data={
+                        msisdn:state?.user?.msisdn,
+                        amount:values?.amount
+                    }
+                    gaEventTracker('Withdraw', data)
                 }
             })
         }

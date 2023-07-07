@@ -2,9 +2,7 @@ import React, {useCallback, useContext, useEffect, useState} from "react";
 
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
-    faExclamation,
     faExclamationCircle,
-    faRedo,
     faShuffle,
     faTimes,
     faTrash,
@@ -12,11 +10,8 @@ import {
 
 import {
     clearJackpotSlip,
-    clearSlip,
-    getBetslip,
     getJackpotBetslip,
     removeFromJackpotSlip,
-    removeFromSlip
 } from "../utils/betslip";
 import {Context} from "../../context/store";
 import {SubmitButton} from "../right/betslip-submit-form";
@@ -25,7 +20,7 @@ import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
 import makeRequest from "../utils/fetch-request";
 import publicIp from "public-ip";
 import Notify from "../utils/Notify";
-import {ToastContainer} from "react-toastify";
+import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 
 const MobileMenu = React.memo(
     (props) => {
@@ -102,6 +97,8 @@ const MobileMenu = React.memo(
             setLocalStorage('betslip_share_code', null)
         }, []);
 
+        const gaEventTracker=useAnalyticsEventTracker('Place Jackpot Bet')
+
         const handlePlaceBet = useCallback(() => {
             let betslips = getJackpotBetslip()
             let bs = Object.values(betslips || []);
@@ -144,9 +141,14 @@ const MobileMenu = React.memo(
                 .then(([status, response]) => {
 
 
-                    if (status === 200 || status == 201 || status == 204) {
+                    if (status === 200 || status == 201 || status == 204)
+                    {
                         // setMessage(response);
-
+                        const data={
+                            event:'place_jackpot_bet',
+                            data:payload
+                        }
+                        gaEventTracker("Jackpot Bet Placed",data)
 
                             clearJackpotSlip();
                         let message = {
@@ -164,6 +166,11 @@ const MobileMenu = React.memo(
                         });
 
                     } else {
+                        const data={
+                            event:'place_jackpot_bet',
+                            message:response?.message
+                        }
+                        gaEventTracker("Bet Failed",data)
                         let response_message = response?.message;
                         if (response_message === "" || response_message === undefined) {
                             response_message = response?.error;
@@ -177,7 +184,7 @@ const MobileMenu = React.memo(
                             message: response_message,
                         };
                         Notify(qmessage)
-                        // setMessage(qmessage);
+
                     }
                     // setSubmitting(false);
                 });

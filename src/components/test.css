@@ -1,7 +1,6 @@
 
 
 .flex-item {
-
     display: flex;
     justify-content: space-between;
     /* flex-flow: nowrap; */
@@ -10,7 +9,7 @@
     /*background-color: #bbdefb;*/
     height: 100vh;
     padding: 15px 0px;
-    gap: 5px;
+    gap: 0px;
 
 }
 
@@ -112,8 +111,8 @@
     }
 }
 @media (max-width: 991px){
-    .carousel.slide {
-        height: 67px;
+    .flex-item >div {
+        padding: 0px 0px!important;
     }
 
     .flex-item {

@@ -79,6 +79,10 @@ const KironBetHistory = React.memo(
 
     useEffect(() => {
         fetchData();
+        const payload = {
+            start: '', round: '', end: ''
+        }
+        dispatch({type: "SET", key: 'current_selection_period', payload: payload})
     }, [fetchData]);
 
     const KironItemHeader = (props) => {

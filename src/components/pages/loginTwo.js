@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react'
+import React, {useCallback, useContext, useEffect, useState} from 'react'
 import {Col, Row} from "antd";
 import authImg from '../../assets/img/Logo.webp'
 import logo from '../../assets/img/Logo.webp'
@@ -17,6 +17,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBackspace} from "@fortawesome/free-solid-svg-icons";
 import SidebarMobile from "../sidebar/awesome/SidebarMobile";
 import betNiMoto from '../../assets/img/BetniMoto.webp'
+import {Context} from "../../context/store";
 
 const backgroundStyle = {
 	backgroundImage: `url(${backgroundURL})`,
@@ -83,7 +84,8 @@ const LoginTwo = React.memo(
 
 
 
-	const LoginInstructions = () => {
+
+		const LoginInstructions = () => {
 		return (<p className={"text-white py-2 px-4 font-input text-center mb-4"}>
 				Enter your phone number and password below to Login to your existing account.
 			</p>
@@ -91,6 +93,7 @@ const LoginTwo = React.memo(
 		);
 	}
 
+	const [state, ]=useContext(Context)
 
 	return (
 		<div style={{height:'100vh', background:'#16202C',overflowX:'hidden'}}>
@@ -178,7 +181,7 @@ const LoginTwo = React.memo(
 										{user?
 											setTimeout(()=>{
 													if(getFromLocalStorage('ActiveLink')==undefined||getFromLocalStorage('ActiveLink')==null){
-														return navigate("/")
+														return navigate(state?.page_view?`${state?.page_view}`:'/')
 													}
 													else
 													{

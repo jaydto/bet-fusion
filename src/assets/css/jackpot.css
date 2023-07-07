@@ -163,6 +163,9 @@
     }
 }
 @media (max-width: 991px){
+    .top-spacing-page-no-download-jackpot{
+        margin-top:5rem!important;
+    }
     .jackpot-mobile-top-results-space{
         padding-top:7px;
     }

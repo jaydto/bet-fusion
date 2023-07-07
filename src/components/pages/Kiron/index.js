@@ -103,7 +103,6 @@ const TestKiron = React.memo(() => {
         }
 
         let data = getFromLocalStorage('kiron_search_data')
-        console.log("selection", state?.current_selection_period?.round)
         const marketsChoice = {
             competition_id: data?.competition_id || newData?.competition_id,
             market_id: new URL(window.location).searchParams.get('sub_type_id'),
@@ -194,7 +193,7 @@ const TestKiron = React.memo(() => {
                                     <KironCompetitions/>
                                     <KironTabs tab={location?.pathname?.replace("/", "")} user={userLogged}/>
                                 </div>
-                                <div className={"kiron-body"}>
+                                <div className={`${(tab!=='nare-league'&&tab!=='kiron'&&tab!=='bet-history')?'kiron-body-pages':'kiron-body'}`}>
                                     {tab == "results" ? <KironResults/> : tab == "standing" ?
                                         <Standing/> : tab == "bet-history" ? <KironBetHistory/> :
                                             <>

@@ -85,11 +85,8 @@ const AllMarkets = React.memo(
             let method = 'POST'
             await makeRequest({url: endpoint, method: method, data: {}}).then(([status, response]) => {
                 if (status === 200 || status === 201) {
-                    console.log("response", response?.data)
                     const responsedata = response?.data
-                    console.log("response", responsedata)
                     responsedata?.map((item) => {
-                        console.log("item", item?.sub_type_id)
                         // dispatch({type: "SET", key: "all_markets", payload: item?.sub_type_id});
 
                         // setLocalStorage("favoriteMarkets",item?.sub_type_id)

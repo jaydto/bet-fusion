@@ -62,11 +62,13 @@ const SpribeGame = React.memo(
             {/* <OnlineCheck setIsOnline={setIsOnline} isOnline={isOnline}/> */}
             <div>
                 <div className="d-flex flex-row ">
-                    <div className="stats-desktop top-spacing"><SideBar loadCompetitions/></div>
+                    <div className="stats-desktop top-nare-games">
+                        <SideBar loadCompetitions/>
+                    </div>
                     <div className="gz home " style={{width: '100%'}}>
                         <div className="col-md-12 d-flex flex-column">
                             <div className="col-md-12">
-                                <div className="homepage top-spacing">
+                                <div className="homepage top-nare-games">
                                     <div className={`  row ${width<767?"row-cols-2":"row-cols-4 "}  text-white p-2 shadow-sm mt-2`}>
                                         {/* <ShaksGames/> */}
                                         <div className={'d-flex w-100 flex-column justify-content-between nare-header-container'}>

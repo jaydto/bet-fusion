@@ -65,7 +65,7 @@ const Virtuals = React.memo(
             <ToastContainer/>
             <div className={'d-flex'}>
                 <div className="d-flex flex-row">
-                    <div className="gz home top-spacing d-flex" style={{width: '100%'}}>
+                    <div className="gz home top-spacing-virtuals d-flex" style={{width: '100%'}}>
                         <div className="stats-desktop "><SideBar loadCompetitions/></div>
                         <div className="homepage">
                             <div className="col-md-12 d-flex flex-column">

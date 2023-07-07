@@ -9,11 +9,9 @@ const SearchComponent = React.memo(
     const [searchTerm, setSearchTerm] = useState('');
     const [state,dispatch]=useContext(Context)
 
-    console.log("filteredData_data",data)
     const handleSearch = e => {
         const searchTerm = e.target.value;
         setSearchTerm(searchTerm);
-        console.log("filteredData_term",searchTerm)
         filterData(searchTerm);
     };
 
@@ -25,7 +23,7 @@ const SearchComponent = React.memo(
             const filteredData = data.filter(item =>item.name&&
                 item.name.toLowerCase().includes(searchTerm.toLowerCase())
             );
-            console.log("filteredData",filteredData)
+
             dispatch({type:"SET", key:'naregames_search', payload:filteredData});
 
         }

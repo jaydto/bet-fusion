@@ -14,7 +14,7 @@ const clean_rep = (str) => {
 
 const BetSlip = React.memo(
     (props) => {
-        const {jackpot, betslipValidationData, jackpotData} = props;
+        const {jackpot, betslipValidationData, jackpotData,live} = props;
         const [betslipKey, setBetslipKey] = useState(jackpot ? "jackpotbetslip" : "betslip");
         const [betslipsData, setBetslipsData] = useState(null);
         const [state, dispatch] = useContext(Context);
@@ -365,6 +365,7 @@ const BetSlip = React.memo(
                 <div className="bottom">
                     <BetslipSubmitForm
                         jackpotData={jackpotData}
+                        live={live}
                         totalOdds={totalOdds}
                         betslip={betslipsData}
                         setBetslipsData={setBetslipsData}

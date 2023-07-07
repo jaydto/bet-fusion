@@ -20,6 +20,7 @@ import {Form, Formik} from "formik";
 import {Context} from "../../../context/store";
 import {getBetslip} from "../../utils/betslip";
 import mpesa from "../../../assets/img/mpesa.png";
+import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 
 const backgroundStyle = {
     backgroundImage: `url(${backgroundURL})`,
@@ -28,186 +29,201 @@ const backgroundStyle = {
 }
 let initialValues = {
     amount: '',
-    msisdn:''
+    msisdn: ''
 }
 
-const Deposit3= React.memo(
+const Deposit3 = React.memo(
     props => {
-    // const [message, setMessage] = useState(null);
-    const navigate = useNavigate();
-    const expand = "md"
+        // const [message, setMessage] = useState(null);
+        const navigate = useNavigate();
+        const expand = "md"
 
-    const [state, dispatch] = useContext(Context);
-    // const [success, setSuccess] = useState(false);
 
-    const [user, setUser] = useState(getFromLocalStorage("user"));
-    const updateUserOnHistory = () => {
-        if (!user) {
-            return false;
-        }
-        let endpoint = "/v1/balance";
-        let udata = {
-            token: user.token
-        }
-        makeRequest({url: endpoint, method: "post", data: udata}).then(([_status, response]) => {
-            if (_status == 200) {
-                let u = {...user, ...response.user};
-                setLocalStorage('user', u);
-                setUser(u)
-                dispatch({type: "SET", key: "user", payload: u});
+        const [state, dispatch] = useContext(Context);
+        // const [success, setSuccess] = useState(false);
+
+        const [user, setUser] = useState(getFromLocalStorage("user"));
+        const updateUserOnHistory = () => {
+            if (!user) {
+                return false;
             }
-        });
+            let endpoint = "/v1/balance";
+            let udata = {
+                token: user.token
+            }
+            makeRequest({url: endpoint, method: "post", data: udata}).then(([_status, response]) => {
+                if (_status == 200) {
+                    let u = {...user, ...response.user};
+                    setLocalStorage('user', u);
+                    setUser(u)
+                    dispatch({type: "SET", key: "user", payload: u});
+                }
+            });
 
-    };
+        };
 
 
-
-    useEffect(() => {
-        updateUserOnHistory()
-    }, [state?.depositMessage])
-
+        useEffect(() => {
+            updateUserOnHistory()
+        }, [state?.depositMessage])
 
 
+        useEffect(() => {
+            let betslip = getBetslip();
+            if (betslip) {
+                dispatch({type: "SET", key: "betslip", payload: betslip});
+            }
+        }, [])
 
-    useEffect(() => {
-        let betslip = getBetslip();
-        if (betslip) {
-            dispatch({type: "SET", key: "betslip", payload: betslip});
+        const FormTitle = () => {
+            return (
+                <div className='col-md-12  p-4 text-center' style={{background: 'transparent'}}>
+                    <h4 className="inline-block betnare-text-light">
+                        DEPOSIT FUNDS (MOBILE MONEY)
+                    </h4>
+                </div>
+            )
         }
-    }, [])
 
-    const FormTitle = () => {
+
+        const Alert = (props) => {
+            let c = state?.depositSuccess ? 'success' : 'danger';
+            return (<>{state?.depositMessage &&
+                <div role="alert" className={`fade alert alert-${c} show`}>{state?.depositMessage}</div>} </>);
+
+        };
+
+
         return (
-            <div className='col-md-12  p-4 text-center' style={{background:'transparent'}}>
-                <h4 className="inline-block betnare-text-light">
-                    DEPOSIT FUNDS (MOBILE MONEY)
-                </h4>
-            </div>
-        )
-    }
-
-
-    const Alert = (props) => {
-        let c = state?.depositSuccess ? 'success' : 'danger';
-        return (<>{state?.depositMessage && <div role="alert" className={`fade alert alert-${c} show`}>{state?.depositMessage}</div>} </>);
-
-    };
-
-
-    return (
-        <div style={{height:'100vh', background:'#16202C'}}>
-            <div className={''}>
-                <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav top-section-page" fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
-                    <Container fluid className={'d-flex justify-content-between mobile-change top-login-background-img'}>
-                        <Navbar.Brand className="e logo align-self-start menu-control d-flex w-100 " title="Betnare" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
-                            <Link to={'/'} className={'betnare-text-light'}>
-                                <FontAwesomeIcon icon={faBackspace}/> Home
-                            </Link>
-
-                            <div
-                                className="col-md-6  d-flex  right justify-content-end align-items-center w-change3 gap-2 top-login-background-img-bg-page"
-                                style={{marginLeft: 'auto'}}>
-
-                                <Link to={{pathname: "/"}} className=" resize-mobile">
-                                    <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"
-                                                   className={"image-size "}/>
+            <div style={{height: '100vh', background: '#16202C'}}>
+                <div className={''}>
+                    <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav top-section-page" fixed="top"
+                            variant="dark" style={{paddingLeft: '0px', paddingBottom: '0px'}}>
+                        <Container fluid
+                                   className={'d-flex justify-content-between mobile-change top-login-background-img'}>
+                            <Navbar.Brand className="e logo align-self-start menu-control d-flex w-100 " title="Betnare"
+                                          style={{paddingLeft: '0px', paddingBottom: '0px'}}>
+                                <Link to={'/'} className={'betnare-text-light'}>
+                                    <FontAwesomeIcon icon={faBackspace}/> Home
                                 </Link>
-                            </div>
 
-                        </Navbar.Brand>
+                                <div
+                                    className="col-md-6  d-flex  right justify-content-end align-items-center w-change3 gap-2 top-login-background-img-bg-page"
+                                    style={{marginLeft: 'auto'}}>
 
-                        <Navbar.Offcanvas
-                            style={{width: "80%", height: "100%",zIndex: "9999", marginTop: "0px"}}
-                            className='off-canvas background-primary p-0 user-profile'
-                            id={`offcanvasNavbar-expand-${expand}`}
-                            aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-                            placement="start">
-                            <Offcanvas.Header closeButton className='text-white' closeVariant={"white"}>
-                                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                                    <div className="col-3">
-                                        <div>
-                                            <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"/>
+                                    <Link to={{pathname: "/"}} className=" resize-mobile">
+                                        <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"
+                                                       className={"image-size "}/>
+                                    </Link>
+                                </div>
+
+                            </Navbar.Brand>
+
+                            <Navbar.Offcanvas
+                                style={{width: "80%", height: "100%", zIndex: "9999", marginTop: "0px"}}
+                                className='off-canvas background-primary p-0 user-profile'
+                                id={`offcanvasNavbar-expand-${expand}`}
+                                aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+                                placement="start">
+                                <Offcanvas.Header closeButton className='text-white' closeVariant={"white"}>
+                                    <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
+                                        <div className="col-3">
+                                            <div>
+                                                <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"/>
+                                            </div>
                                         </div>
-                                    </div>
-                                </Offcanvas.Title>
-                            </Offcanvas.Header>
-                            <Offcanvas.Body className={('')}>
-                                <SidebarMobile/>
-                            </Offcanvas.Body>
-                        </Navbar.Offcanvas>
-                    </Container>
-                </Navbar>
+                                    </Offcanvas.Title>
+                                </Offcanvas.Header>
+                                <Offcanvas.Body className={('')}>
+                                    <SidebarMobile/>
+                                </Offcanvas.Body>
+                            </Navbar.Offcanvas>
+                        </Container>
+                    </Navbar>
 
-            </div>
-            <Row justify="center" className="align-items-stretch h-100">
+                </div>
+                <Row justify="center" className="align-items-stretch h-100">
 
-                <Col xs={0} sm={0} md={0} lg={8}>
-                    <div className="d-flex flex-column justify-content-between h-100 px-4" style={backgroundStyle}>
-                        <div className="text-right">
-                            {/*<LazyLoadImage src="/img/logo-sm.jpg" style={{height:"35px"}}alt="logo"/>*/}
-                        </div>
-                        <Row justify="center">
-                            <Col xs={0} sm={0} md={0} lg={20}>
-                                <Link to={'/'}>
-                                    <LazyLoadImage className="img-fluid mb-5" src={authImg} alt=""/>
-                                </Link>
+                    <Col xs={0} sm={0} md={0} lg={8}>
+                        <div className="d-flex flex-column justify-content-between h-100 px-4" style={backgroundStyle}>
+                            <div className="text-right">
+                                {/*<LazyLoadImage src="/img/logo-sm.jpg" style={{height:"35px"}}alt="logo"/>*/}
+                            </div>
+                            <Row justify="center">
+                                <Col xs={0} sm={0} md={0} lg={20}>
+                                    <Link to={'/'}>
+                                        <LazyLoadImage className="img-fluid mb-5" src={authImg} alt=""/>
+                                    </Link>
 
-                                <h1 className="text-white text-center" style={{fontSize:"30px"}}>Deposit Cash Into Your Account</h1>
-                                <p className="text-white px-3 d-flex align-items-center justify-content-center mt-3" style={{fontSize:"16px", opacity:'0.5px'}}><LazyLoadImage src={betNiMoto}  style={{width:"150px"}} alt={'betnare'}/></p>
-                            </Col>
-                        </Row>
-                        <div className="d-flex justify-content-end pb-4">
-                            <div className={'d-flex justify-content-center align-items-center'}>
-                                <div className="text-white mx-2 bold d-flex justify-content-center align-items-center"><LazyLoadImage src={only18} alt={'18 only'} style={{width:'30px', background:'aliceblue', borderRadius:'16px'}}/></div>
-                                <span className="mx-2 text-white"> | </span>
-                                <a className="text-white" href="/terms-and-conditions">Term & Conditions</a>
-                                <span className="mx-2 text-white"> | </span>
-                                <a className="text-white" href="/privacy-policy" >Privacy & Policy</a>
+                                    <h1 className="text-white text-center" style={{fontSize: "30px"}}>Deposit Cash Into
+                                        Your Account</h1>
+                                    <p className="text-white px-3 d-flex align-items-center justify-content-center mt-3"
+                                       style={{fontSize: "16px", opacity: '0.5px'}}><LazyLoadImage src={betNiMoto}
+                                                                                                   style={{width: "150px"}}
+                                                                                                   alt={'betnare'}/></p>
+                                </Col>
+                            </Row>
+                            <div className="d-flex justify-content-end pb-4">
+                                <div className={'d-flex justify-content-center align-items-center'}>
+                                    <div
+                                        className="text-white mx-2 bold d-flex justify-content-center align-items-center">
+                                        <LazyLoadImage src={only18} alt={'18 only'} style={{
+                                            width: '30px',
+                                            background: 'aliceblue',
+                                            borderRadius: '16px'
+                                        }}/></div>
+                                    <span className="mx-2 text-white"> | </span>
+                                    <a className="text-white" href="/terms-and-conditions">Term & Conditions</a>
+                                    <span className="mx-2 text-white"> | </span>
+                                    <a className="text-white" href="/privacy-policy">Privacy & Policy</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </Col>
-                <div className={'col-lg-8 col-sm-12 top-login-background-img-bg-down top-login-background-img-bg-page'} >
+                    </Col>
+                    <div
+                        className={'col-lg-8 col-sm-12 top-login-background-img-bg-down top-login-background-img-bg-page'}>
 
-                    <div className="w-100 d-flex flex-column justify-content-center h-100 top-login-background-img-bg-page">
-                        <div className={'width-page-centric deposit-page'}>
-                            <FormTitle/>
+                        <div
+                            className="w-100 d-flex flex-column justify-content-center h-100 top-login-background-img-bg-page">
+                            <div className={'width-page-centric deposit-page'}>
+                                <FormTitle/>
 
-                            <Row justify="center">
+                                <Row justify="center">
 
-                                <div className={'d-flex'}>
-                                    {/**/}
-                                    <div >
-                                        {!user?setTimeout(navigate("/"),500):""}
-                                        <div className={"d-flex flex-row justify-content-between"}>
-                                            <div className=" w-100">
-                                                <div className="homepage d-flex flex-column align-items-center justify-content-center login-page">
+                                    <div className={'d-flex'}>
+                                        {/**/}
+                                        <div>
+                                            {!user ? setTimeout(navigate("/"), 500) : ""}
+                                            <div className={"d-flex flex-row justify-content-between"}>
+                                                <div className=" w-100">
+                                                    <div
+                                                        className="homepage d-flex flex-column align-items-center justify-content-center login-page">
 
-                                                    <Alert/>
-                                                    <div className="modal-body pb-0" data-backdrop="static">
+                                                        <Alert/>
+                                                        <div className="modal-body pb-0" data-backdrop="static">
 
-                                                        <DepositForm/>
+                                                            <DepositForm/>
+                                                        </div>
+
+
                                                     </div>
-
-
                                                 </div>
                                             </div>
                                         </div>
+                                        {/* <p>Don't have an account yet? <a href="/auth/register-2">Sign Up</a></p> */}
+                                        <div className="mt-4">
+                                            {/*<LoginForm {...props}/>*/}
+                                        </div>
                                     </div>
-                                    {/* <p>Don't have an account yet? <a href="/auth/register-2">Sign Up</a></p> */}
-                                    <div className="mt-4">
-                                        {/*<LoginForm {...props}/>*/}
-                                    </div>
-                                </div>
-                            </Row>
-                        </div>
+                                </Row>
+                            </div>
 
+                        </div>
                     </div>
-                </div>
-            </Row>
-        </div>
-    )
-})
+                </Row>
+            </div>
+        )
+    })
 
 const PaymentInstructions = (props) => {
     return (
@@ -237,14 +253,16 @@ const PaymentInstructions = (props) => {
 }
 
 const DepositFormFields = (props) => {
-    const [state,dispatch]=useContext(Context)
+    const [state, dispatch] = useContext(Context)
     const {values, errors, onFieldChanged} = props;
-    state?.depositValidateError?.amount&&setTimeout(()=>{
-        dispatch({type: "SET", key: "depositValidateError", payload: {
-                msisdn:'',
-                amount:''
-            }});
-    },5000)
+    state?.depositValidateError?.amount && setTimeout(() => {
+        dispatch({
+            type: "SET", key: "depositValidateError", payload: {
+                msisdn: '',
+                amount: ''
+            }
+        });
+    }, 5000)
 
     // const prevDeposit=useRef(Number(values?.amount||0))
     // const  incrementDepositValue=(value)=>{
@@ -280,15 +298,15 @@ const DepositFormFields = (props) => {
             </div>
 
             <div className="form-group row d-flex justify-content-center mt-5 deposit-widthdraw-input-desktop">
-              <div className={'mb-3'}>
-                  <label className={'betnare-text-light'}>Amount to Deposit</label>
-                  {/*<div className="btn-group w-100 gap-3" role="group" aria-label="Basic example">*/}
-                  {/*    <button type="button" onClick={()=>incrementDepositValue(100)} className="deposit-buttons-value">+100</button>*/}
-                  {/*    <button type="button" onClick={()=>incrementDepositValue(200)} className="deposit-buttons-value">+200</button>*/}
-                  {/*    <button type="button" onClick={()=>incrementDepositValue(500)} className="deposit-buttons-value">+500</button>*/}
-                  {/*    <button type="button" onClick={()=>incrementDepositValue(1000)} className="deposit-buttons-value">+1000</button>*/}
-                  {/*</div>*/}
-              </div>
+                <div className={'mb-3'}>
+                    <label className={'betnare-text-light'}>Amount to Deposit</label>
+                    {/*<div className="btn-group w-100 gap-3" role="group" aria-label="Basic example">*/}
+                    {/*    <button type="button" onClick={()=>incrementDepositValue(100)} className="deposit-buttons-value">+100</button>*/}
+                    {/*    <button type="button" onClick={()=>incrementDepositValue(200)} className="deposit-buttons-value">+200</button>*/}
+                    {/*    <button type="button" onClick={()=>incrementDepositValue(500)} className="deposit-buttons-value">+500</button>*/}
+                    {/*    <button type="button" onClick={()=>incrementDepositValue(1000)} className="deposit-buttons-value">+1000</button>*/}
+                    {/*</div>*/}
+                </div>
                 <div className="col-md-12 w-100">
 
                     <input
@@ -299,7 +317,7 @@ const DepositFormFields = (props) => {
                         id="amount"
                         name="amount"
                         type="number"
-                        value={values?.amount||""}
+                        value={values?.amount || ""}
                         placeholder='Enter Amount'
                     />
                     {errors.amount && <div className='text-danger'> {errors.amount} </div>}
@@ -308,7 +326,8 @@ const DepositFormFields = (props) => {
             <div className="form-group row d-flex justify-content-left mb-4">
                 <div className=" d-flex align-items-start deposit-withdraw-button-desktop">
                     <button type={"submit"}
-                            className='btn btn-lg w-100 button-radius input-field btn-font cg login-button2 btn bold' style={{marginTop:"47px"}}>
+                            className='btn btn-lg w-100 button-radius input-field btn-font cg login-button2 btn bold'
+                            style={{marginTop: "47px"}}>
                         Deposit
                     </button>
                 </div>
@@ -319,7 +338,7 @@ const DepositFormFields = (props) => {
 
 const MyDepositForm = (props) => {
     const {errors, values, setFieldValue} = props;
-    const [state,dispatch]=useContext(Context)
+    const [state, dispatch] = useContext(Context)
 
     const onFieldChanged = (ev) => {
         let field = ev.target.name;
@@ -341,7 +360,7 @@ const MyDepositForm = (props) => {
                     <DepositFormFields onFieldChanged={onFieldChanged} values={values} errors={errors}/>
 
                     <div className={``}>
-                        <PaymentInstructions />
+                        <PaymentInstructions/>
                     </div>
 
                 </div>
@@ -350,12 +369,13 @@ const MyDepositForm = (props) => {
     );
 }
 const DepositForm = (props) => {
-    const [state, dispatch]=useContext(Context);
-    const user=getFromLocalStorage('user')
-     initialValues = {
-        amount: state?.depositValue?state?.depositValue:'',
-        msisdn: state?.user?.msisdn||user?.msisdn
+    const [state, dispatch] = useContext(Context);
+    const user = getFromLocalStorage('user')
+    initialValues = {
+        amount: state?.depositValue ? state?.depositValue : '',
+        msisdn: state?.user?.msisdn || user?.msisdn
     }
+    const gaEventTracker = useAnalyticsEventTracker('Deposit')
 
     const handleSubmit = values => {
         let endpoint = '/stk/deposit';
@@ -366,6 +386,13 @@ const DepositForm = (props) => {
             dispatch({type: "SET", key: "depositSuccess", payload: status === 200 || status === 201})
             dispatch({type: "SET", key: "depositMessage", payload: response})
             clearTrackingData()
+            if (status === 200 || status === 201) {
+                const data={
+                    msisdn:state?.user?.msisdn,
+                    amount:values?.amount
+                }
+                gaEventTracker('Deposit',data )
+            }
         })
     }
 

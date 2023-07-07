@@ -19,14 +19,23 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import padlock from '../../assets/img/padlock.png';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCaretDown, faCaretRight, faChartLine, faFire, faStar} from "@fortawesome/free-solid-svg-icons";
+import {
+    faAngleLeft,
+    faCaretDown,
+    faCaretLeft,
+    faCaretRight,
+    faChartLine,
+    faFire, faLessThan,
+    faShield,
+    faStar
+} from "@fortawesome/free-solid-svg-icons";
 import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
 
 import myGif from '../../assets/img/fire.webp'
 
 import {Input} from "@material-ui/core";
 import useWindowDimensions from "../header/Dimensions";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 import Notify from "../utils/Notify";
 
@@ -335,7 +344,7 @@ const MoreMarketsHeaderRow = React.memo(
             setSwitches(value)
         }
         useEffect(() => {
-            window?.SIR("addWidget", "#sr-widget", "match.lmtPlus", {
+            window?.SIR && window?.SIR("addWidget", "#sr-widget", "match.lmtPlus", {
                 branding: {tabs: {option: "icon", variant: "fullWidth"}},
                 goalBannerImage:
                     "https://storage.googleapis.com/nareimages/logo-white.webp",
@@ -362,6 +371,7 @@ const MoreMarketsHeaderRow = React.memo(
                 });
             }
         }, [sport_id])
+        const navigate=useNavigate()
 
         let lmtIncludes = [79, 85, 82, 80, 107];
         //click functionality
@@ -380,38 +390,71 @@ const MoreMarketsHeaderRow = React.memo(
                     <>
                         <Row className="panel-header primary-bg">
                             <h4 className="inline-block">
-                                {home_team} <small> - </small> {away_team}
-                                {tags?.length
-                                    ? tags?.map((tag, index) => (
-                                        <span
-                                            className="tag"
-                                            key={index}
-                                            style={{
-                                                backgroundColor: `${tag.background_color}`,
-                                                color: `${tag.color}`,
-                                                borderRadius: "12px",
-                                                padding: "2px 6px",
-                                                marginLeft: "5px",
-                                                fontSize: "10px",
-                                                fontWeight: "bold",
-                                            }}
-                                        >
+                                <div className={"d-flex justify-content-between w-100 align-items-center px-2"}>
+                                    <div className={"d-flex flex-column w-100"}>
+                                        <Row className="header-text mb-5 d-flex justify-content-center mt-3">
+                                            <div className={'d-flex justify-content-start mx-4 spacing-mobile-web align-items-center'} onClick={()=>navigate(-1)}>
+                                                <FontAwesomeIcon icon={faAngleLeft} style={{fontSize:'20px', color:'var(--light)', fontWeight:'700', opacity:'0.7'}}/>
+                                            </div>
+                                            <Col className={' more_markets_category_sport '}>
+                                                {category} {competition}
+                                            </Col>
+                                        </Row>
+                                        <div className={"d-flex w-100  justify-content-between mb-4 align-items-center"}>
+                                            <div className={"d-flex flex-column team-information_more_markets justify-content-start"}>
+                                                <FontAwesomeIcon icon={faShield} style={{fontSize:"24px",opacity:'0.7'}}/>
+                                                <span className={'teams-more-markets'}>
+                                            {home_team}
+                                        </span>
+                                            </div>
+                                            <div className={"team_vs d-flex flex-column team-information_more_markets"}>
+                                            <span>
+                                                Vs
+                                            </span>
+                                                <span>
+                                             {!live&&<FormatDate2 live={0} start_time={start_time}
+                                                           match_time={start_time}/>}
+                                        </span>
+                                                <span>
+                                             {match_status !== "Ended" && (
+                                                 `#${game_id}`
+                                             )}
+                                        </span>
+                                            </div>
+                                            <div className={'d-flex flex-column team-information_more_markets justify-content-end'}>
+                                                <FontAwesomeIcon icon={faShield} style={{fontSize:"24px",opacity:'0.7'}}/>
+                                                <span  className={'teams-more-markets'}>
+                                            {away_team}
+                                        </span>
+                                            </div>
+                                        </div>
+                                        <div className={"tag_container"}>
+                                            {tags?.length
+                                                ? tags?.map((tag, index) => (
+                                                    <span
+                                                        className="tag"
+                                                        key={index}
+                                                        style={{
+                                                            backgroundColor: `${tag.background_color}`,
+                                                            color: `${tag.color}`,
+                                                            borderRadius: "12px",
+                                                            padding: "2px 6px",
+                                                            marginLeft: "5px",
+                                                            fontSize: "10px",
+                                                            fontWeight: "bold",
+                                                        }}
+                                                    >
                       {tag.name}
                     </span>
-                                    ))
-                                    : ""}
+                                                ))
+                                                : ""}
+                                        </div>
+                                    </div>
+
+                                </div>
                             </h4>
 
-                            <Row className="header-text">
-                                <Col>
-                                    {category} {competition}
-                                </Col>
-                            </Row>
-                            {match_status !== "Ended" && (
-                                <Row className="start-time">
-                                    <Col>Game ID: {game_id} </Col>
-                                </Row>
-                            )}
+
                         </Row>
                         <div id="sr-widget" className=""></div>
                         <ButtonGroup aria-label="stats button actions" className='w-100 d-flex justify-content-start'>
@@ -988,7 +1031,6 @@ const MatchRow = React.memo(
     (props) => {
 
         const {first_match, match, jackpot, live, pdown, three_way} = props;
-        console.log("jackpot: ", jackpot)
         const [extraMarketDisplays, setExtraMarketDisplays] = useState([])
         const categories = getFromLocalStorage('categories')
         const sport_id = new URL(window.location).searchParams.get('sport_id') || 79
@@ -1104,7 +1146,7 @@ const MatchRow = React.memo(
                             <Link className={'odds-container-size'}
                                   to={jackpot ? '#' : `/match/${live ? 'live/' + match.parent_match_id : match.match_id}`}>
                                 <div className="d-flex flex-column">
-                                    <div className="compt-detail overflow-ellipsis">
+                                    <div className="compt-detail overflow-ellipsis team_category_game">
                                         <small>{match.category} | {match.competition_name}</small>
                                     </div>
                                     <div className="compt-teams d-flex flex-xl-column flex-column flex-md-row">
@@ -1123,20 +1165,20 @@ const MatchRow = React.memo(
                                     </div>
                                 </div>
                             </Link>
-                            {
-                                match.tags?.length ?
+                            <div className={"tag_container"}>
+                                {match.tags?.length ?
                                     match.tags.map((tag, index) => (
                                         <span className="tag" key={index}
                                               style={{
                                                   backgroundColor: `${tag.background_color}`,
                                                   color: `${tag.color}`,
-                                              }}
-                                        >
-                                {tag.name}
-                            </span>
+                                              }}>
+                                                {tag.name}
+                                        </span>
                                     ))
-                                    : ""
-                            }</div>
+                                    : ""}
+                            </div>
+                            </div>
                         <div className={'to-tabview'}>
                             {!pdown && !jackpot &&
                                 <SideBets match={match} live={live} style={{d: "inline"}}/>}

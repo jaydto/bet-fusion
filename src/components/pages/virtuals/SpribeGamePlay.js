@@ -84,7 +84,7 @@ const GamePlay = React.memo(
                 <div className={(width <= 575 ? user ? "user_logged" : "amt" : "amt")}>
                     <div className="d-flex flex-row justify-content-between">
                         <div className="col-md-12 w-100">
-                            <div className="homepage">
+                            <div className="homepage mt-2">
                                 <div
                                     className={`col-md-12 ${gameUrlLoaded ? 'd-none' : 'd-block'}`}>
                                     <SkeletonTheme baseColor="#0e131b" highlightColor="#3f6878">

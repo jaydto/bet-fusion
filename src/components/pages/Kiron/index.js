@@ -32,10 +32,7 @@ const TestKiron = React.memo(() => {
 
     const location = useLocation();
 
-
-
     const [isCountdownTimerActive, setIsCountdownTimerActive] = useState(false);
-
 
     const getUser = state?.userLogged || getFromLocalStorage('user')?.token
 

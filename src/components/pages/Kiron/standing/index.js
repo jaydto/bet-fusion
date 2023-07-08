@@ -41,7 +41,7 @@ const Standing = () => {
                     <div className="row">
                         <div className="col-12 pb-2 ">
                        <span
-                           className="standing-heading">{newCompetition == 1 ? "KENYAN " : newCompetition == 2 ? "ENGLISH " : newCompetition == 3 ? "SPANISH " : newCompetition == 4 && "ITALIAN "} LEAGUE</span>
+                           className="standing-heading mt-2">{newCompetition == 1 ? "KENYAN " : newCompetition == 2 ? "ENGLISH " : newCompetition == 3 ? "SPANISH " : newCompetition == 4 && "ITALIAN "} LEAGUE</span>
                         </div>
                         <div className="col-12"><span className="standing-time">STANDING</span></div>
                     </div>

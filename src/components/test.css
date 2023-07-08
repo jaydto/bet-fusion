@@ -120,6 +120,9 @@
     }
 }
 @media (max-width: 991px){
+    .carousel-item img {
+        min-height: 100px!important;
+    }
     .flex-item >div {
         padding: 0px 0px!important;
     }
@@ -169,7 +172,7 @@
 }
 @media (max-width: 767px){
     .carousel.slide {
-        height: 102px;
+        height: 125px;
     }
     .item2 {
         /* flex:2 1 auto; */

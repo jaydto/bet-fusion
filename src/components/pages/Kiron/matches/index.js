@@ -1,7 +1,7 @@
 import React, {useCallback, useContext, useEffect, useRef, useState,} from "react";
 import {Context} from "../../../../context/store";
 import "./matches.css";
-import {addToKironSlip, getKironSlip, removeFromKironSlip,} from "../../../utils/betslip";
+import {addToKironSlip, removeFromKironSlip,} from "../../../utils/betslip";
 
 import "react-lazy-load-image-component/src/effects/blur.css";
 

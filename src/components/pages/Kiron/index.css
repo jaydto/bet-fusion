@@ -456,6 +456,14 @@
 }
 
 @media (max-width:991px){
+    .compt-teams .team {
+        font-size: 12px;
+        opacity: 0.9;
+        /* text-transform: uppercase !important; */
+        display: flex;
+        align-items: center!important;
+        white-space: nowrap;
+    }
     .skeleton-loader{
         margin-top:14rem;
     }

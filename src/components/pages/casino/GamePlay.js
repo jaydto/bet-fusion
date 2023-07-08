@@ -102,7 +102,7 @@ const GamePlay = React.memo(
                 <div className={(user ? "user_logged" : "amt")}>
                     <div className="d-flex flex-row justify-content-between">
                         <div className="col-md-12 virtual-width-mobile">
-                            <div className="homepage">
+                            <div className="homepage mt-2">
                                 {/*<CategoryGames/>*/}
                                 <div
                                     className={`col-md-12 ${gameUrlLoaded ? 'd-none' : 'd-block'}`}>

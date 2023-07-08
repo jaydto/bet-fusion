@@ -73,7 +73,7 @@
     flex-grow:1;
 }
 @media (max-width:400px){
-    .homepage img {
+    .carousel-item img {
         min-height: 100px!important;
     }
     .carousel.slide{

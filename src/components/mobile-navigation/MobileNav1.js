@@ -183,10 +183,10 @@ const MobileNav1 = React.memo(
 
                                 <div className="menu-img ">
                                     <LazyLoadImage
-                                        className="side-icon"
+                                        className="side-icon aviator"
                                         src={aviator}
                                         alt=""
-                                        style={{height: "23px", marginTop: "-6px"}}
+                                        style={{height: "23px", marginTop: "-6px", width:'30px'}}
                                     />
                                     <span className=" new-alert-badge hot">HOT</span>
                                 </div>

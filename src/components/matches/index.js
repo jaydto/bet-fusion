@@ -19,16 +19,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import padlock from '../../assets/img/padlock.png';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {
-    faAngleLeft,
-    faCaretDown,
-    faCaretLeft,
-    faCaretRight,
-    faChartLine,
-    faFire, faLessThan,
-    faShield,
-    faStar
-} from "@fortawesome/free-solid-svg-icons";
+import {faAngleLeft, faCaretDown, faCaretRight, faChartLine, faShield, faStar} from "@fortawesome/free-solid-svg-icons";
 import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
 
 import myGif from '../../assets/img/fire.webp'
@@ -41,7 +32,6 @@ import Notify from "../utils/Notify";
 
 import {Button, ButtonGroup} from "react-bootstrap";
 import makeRequest from "../utils/fetch-request";
-import moment from "moment";
 import {
     Accordion,
     AccordionItem,
@@ -249,29 +239,27 @@ const MatchHeaderRow = React.memo(
                                         <div className={"c-btn-group align-self-end"}>
                                             {extraMarketDisplays?.[0]?.extra_markets_display?.map((display, index) => (
                                                 <span className={'c-btn-header text-white'} key={index}>
-                          {display}
-                        </span>
+                                              {display}
+                                            </span>
                                             ))}
                                         </div>
                                     </div>
                                 </div>
                             )}
-                        </div> :
-                        <div
+                        </div>
+                        : <div
                             className={`col  to-deskview flex-row justify-content-between ${state?.kiron_page == true && ' space-bets '}`}>
                             <div className={" separations to-tabview"}>
                                 {!live && !jackpot && extraMarketDisplays.length > 0 &&
                                     extraMarketDisplays?.map((extra_market, index) => (
-
                                         <div className={'d-flex flex-row'} key={index}>
                                             <div className={'d-flex flex-column text-center text-white fit-ipad'}>
-                                    <span className={'small'}>
-                                        {extra_market.name}
-                                    </span>
+                                            <span className={'small'}>
+                                                {extra_market.name}
+                                            </span>
                                                 <div className={'c-btn-group m-lg-1 mt-sm-1 justify-content-center'}>
                                                     <a className="c-btn-header mx-2 ">
                                                         {(extra_market.extra_markets_display[0])}
-
                                                     </a>
                                                     <a className="c-btn-header mx-2 ">
                                                         {(extra_market.extra_markets_display[1])}
@@ -287,7 +275,8 @@ const MatchHeaderRow = React.memo(
                                     ))}
                             </div>
                             {/*desktop*/}
-                            {!live && !jackpot && extraMarketDisplays.length > 0 && (
+                            {(!live && !jackpot && extraMarketDisplays.length > 0)
+                                ? (
                                 <>
                                     {extraMarketDisplays?.map((extra_market, index) => (
                                         <div key={index} className={'to-deskview flex-column text-white'}>
@@ -308,8 +297,27 @@ const MatchHeaderRow = React.memo(
                                             </div>
                                         </div>
                                     ))}
-                                </>
-                            )}
+                                </>):live&&(
+                                <div className={"col flex-row justify-content-between space-bets"} style={{minWidth: "45%"}}>
+                                    {extraMarketDisplays && !jackpot && (
+                                        <div className="d-flex flex-row ">
+                                            <div className="d-flex flex-column text-center text-white mt-3 fit-ipad w-100">
+
+                                                <div className={"c-btn-group"}>
+                                                    {extraMarketDisplays?.[0]?.extra_markets_display?.map((display, index) => (
+                                                        <span className={'c-btn-header text-white'} key={index}>
+                                              {display}
+                                            </span>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+
+                            )
+
+                            }
                             <div
                                 className="bet-fix events-odd pad undefined align-items-md-start align-items-lg-center more-markets-container m-lg-2 col-3 d-flex h-100 d-flex align-self-center justify-content-md-start justify-content-lg-center">
                                 <LazyLoadImage src={myGif} className={'fire '}/>
@@ -371,7 +379,7 @@ const MoreMarketsHeaderRow = React.memo(
                 });
             }
         }, [sport_id])
-        const navigate=useNavigate()
+        const navigate = useNavigate()
 
         let lmtIncludes = [79, 85, 82, 80, 107];
         //click functionality
@@ -393,16 +401,26 @@ const MoreMarketsHeaderRow = React.memo(
                                 <div className={"d-flex justify-content-between w-100 align-items-center px-2"}>
                                     <div className={"d-flex flex-column w-100"}>
                                         <Row className="header-text mb-5 d-flex justify-content-center mt-3">
-                                            <div className={'d-flex justify-content-start mx-4 spacing-mobile-web align-items-center'} onClick={()=>navigate(-1)}>
-                                                <FontAwesomeIcon icon={faAngleLeft} style={{fontSize:'20px', color:'var(--light)', fontWeight:'700', opacity:'0.7'}}/>
+                                            <div
+                                                className={'d-flex justify-content-start mx-4 spacing-mobile-web align-items-center'}
+                                                onClick={() => navigate(-1)}>
+                                                <FontAwesomeIcon icon={faAngleLeft} style={{
+                                                    fontSize: '20px',
+                                                    color: 'var(--light)',
+                                                    fontWeight: '700',
+                                                    opacity: '0.7'
+                                                }}/>
                                             </div>
                                             <Col className={' more_markets_category_sport '}>
                                                 {category} {competition}
                                             </Col>
                                         </Row>
-                                        <div className={"d-flex w-100  justify-content-between mb-4 align-items-center"}>
-                                            <div className={"d-flex flex-column team-information_more_markets justify-content-start"}>
-                                                <FontAwesomeIcon icon={faShield} style={{fontSize:"24px",opacity:'0.7'}}/>
+                                        <div
+                                            className={"d-flex w-100  justify-content-between mb-4 align-items-center"}>
+                                            <div
+                                                className={"d-flex flex-column team-information_more_markets justify-content-start"}>
+                                                <FontAwesomeIcon icon={faShield}
+                                                                 style={{fontSize: "24px", opacity: '0.7'}}/>
                                                 <span className={'teams-more-markets'}>
                                             {home_team}
                                         </span>
@@ -412,8 +430,8 @@ const MoreMarketsHeaderRow = React.memo(
                                                 Vs
                                             </span>
                                                 <span>
-                                             {!live&&<FormatDate2 live={0} start_time={start_time}
-                                                           match_time={start_time}/>}
+                                             {!live && <FormatDate2 live={0} start_time={start_time}
+                                                                    match_time={start_time}/>}
                                         </span>
                                                 <span>
                                              {match_status !== "Ended" && (
@@ -421,9 +439,11 @@ const MoreMarketsHeaderRow = React.memo(
                                              )}
                                         </span>
                                             </div>
-                                            <div className={'d-flex flex-column team-information_more_markets justify-content-end'}>
-                                                <FontAwesomeIcon icon={faShield} style={{fontSize:"24px",opacity:'0.7'}}/>
-                                                <span  className={'teams-more-markets'}>
+                                            <div
+                                                className={'d-flex flex-column team-information_more_markets justify-content-end'}>
+                                                <FontAwesomeIcon icon={faShield}
+                                                                 style={{fontSize: "24px", opacity: '0.7'}}/>
+                                                <span className={'teams-more-markets'}>
                                             {away_team}
                                         </span>
                                             </div>
@@ -794,7 +814,7 @@ const OddButton = React.memo(
         return (
             <button
                 ref={ref}
-                className={`home-team ${allMarkets ? "all-markets" :jackpot?" jackpot-buttons-size": ""} ${
+                className={`home-team ${allMarkets ? "all-markets" : jackpot ? " jackpot-buttons-size" : ""} ${
                     match.match_id
                 } ${ucn} ${picked} c-btn`}
                 home_team={match.home_team}
@@ -989,9 +1009,9 @@ export const FormatDate2 = (props) => {
 
     // Format the date and time
     const formattedDateTime = `${month}/${day} ${hour}:${minute}`;
-    if(live){
+    if (live) {
         return match_time
-    }else{
+    } else {
         return formattedDateTime;
     }
 
@@ -1065,7 +1085,6 @@ const MatchRow = React.memo(
                 }
             })
 
-
             setExtraMarketDisplays(extraMarkets)
 
         }
@@ -1131,7 +1150,7 @@ const MatchRow = React.memo(
                                                            </div>
                                                        }
                                                        <FormatDate2 live={live} start_time={match?.start_time}
-                                                                   match_time={match?.match_time} />
+                                                                    match_time={match?.match_time}/>
 
                                                    </>
 
@@ -1178,7 +1197,7 @@ const MatchRow = React.memo(
                                     ))
                                     : ""}
                             </div>
-                            </div>
+                        </div>
                         <div className={'to-tabview'}>
                             {!pdown && !jackpot &&
                                 <SideBets match={match} live={live} style={{d: "inline"}}/>}
@@ -1190,7 +1209,7 @@ const MatchRow = React.memo(
                     <div
                         className={`col d-flex  flex-row   ${width > 1259 ? '' : 'space-bets'} justify-content-lg-between  justify-spacing-ipad card-small`}>
 
-                        <div className={`${width > 767 ?  `d-flex to-flex-1 ${jackpot?' w-100':""}` : 'd-none'}`}>
+                        <div className={`${width > 767 ? `d-flex to-flex-1 ${jackpot ? ' w-100' : ""}` : 'd-none'}`}>
                             <div className="c-btn-group align-self-center to-flex-1 to-tabview">
                                 {threeWay &&
                                     <div className="d-flex flex-row ">
@@ -1257,7 +1276,7 @@ const MatchRow = React.memo(
                                         </div>
                                     </div>}
                             </div>
-                            <div className={`c-btn-group align-self-center checking ${jackpot?'w-100':''}`}>{
+                            <div className={`c-btn-group align-self-center checking ${jackpot ? 'w-100' : ''}`}>{
                                 match?.odds?.home_odd ? (match?.odds?.home_odd && (!pdown && match?.odds?.home_odd && match.odds.home_odd !== 'NaN' &&
                                         match.market_active == 1 && match.odds.home_odd_active == 1)
                                         ? <OddButton match={match} mkt="home_team" live={live} jackpot={jackpot}/>

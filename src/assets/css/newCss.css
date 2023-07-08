@@ -2041,7 +2041,7 @@ img.nare-league {
     }
 
     .close-icon-alert {
-        height: 23px;
+        height: 27px;
     }
 
     .my-filter-button:empty {
@@ -2255,7 +2255,7 @@ img.nare-league {
         margin-top: 10rem !important;
     }
     .top-spacing-casino{
-        margin-top: 10rem !important;
+        margin-top: 7rem !important;
     }
 
     .slip-team {
@@ -3268,11 +3268,11 @@ img.nare-league {
 
     }
     .top-nare-games {
-        margin-top: 11rem !important;
+        margin-top: 7rem !important;
     }
 
     .top-smartsoft {
-        margin-top: 10rem !important;
+        margin-top: 7rem !important;
     }
 
     .top-matches div.compt-teams {
@@ -3569,7 +3569,7 @@ img.nare-league {
     .sticky-logged-in-testimony {
         /* top: 104.5px!important; */
         top: 0px;
-        border-radius: 7px;
+        border-radius: 4px;
         border: 1px solid var(--betnare-button-login) !important;
         line-height: 1.5;
     }

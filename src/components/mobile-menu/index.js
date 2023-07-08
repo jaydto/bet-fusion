@@ -102,7 +102,7 @@ const MobileMenu = React.memo((props) => {
         setCountInfo(!countInfo)
     }
 
-    const slip_condition = (!pathSlipSummary.includes(pathname) && state?.multiboostmessage && sumOfOdds > 0 && countInfo)
+    const slip_condition = (!pathSlipSummary.includes(pathname) && state?.multiboostmessage && sumOfOdds > 1 && countInfo)
     return (
         <div>
             <div
@@ -135,7 +135,7 @@ const MobileMenu = React.memo((props) => {
             </div>
 
             <table className={`${slip_condition ? "prematch-menu mobile-menu" : "mobile-menu"}`}
-                   style={!pathSlipSummary.includes(pathname) ? sumOfOdds == 0 ? {height: "70px"} : countInfo ? {height: "92px"} : {height: "70px"} : {height: "53px"}}>
+                   style={!pathSlipSummary.includes(pathname) ? sumOfOdds === 1 ? {height: "70px"} : countInfo ? {height: "92px"} : {height: "70px"} : {height: "53px"}}>
                 <tbody>
                 {slip_condition ? <table>
                         <tbody className={"slip-menu-prematch"}>

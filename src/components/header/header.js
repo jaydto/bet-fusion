@@ -197,8 +197,8 @@ const Header = React.memo(
 
         }, [current]);
 
-        const notShowMobileNav = ['/signup', '/nare-league', '/results',
-            '/standing', '/playouts', '/standing', '/bet-history']
+        const notShowMobileNav = ['/signup', '/nare-league', '/results','/my-bets','/casino','/smart-soft','/virtuals',
+            '/standing', '/playouts', '/standing', '/bet-history', '/nare-games']
 
         const updateUserOnLogin = useCallback(() => {
             dispatch({type: "SET", key: "user", payload: user});
@@ -236,7 +236,7 @@ const Header = React.memo(
         return (
             <>
                 <div className={'d-flex flex-column'}>
-                    {(!showDownload.includes(pathname) && !pathname.includes('match'))&&
+                    {(!showDownload.includes(pathname) && !pathname.includes('match') &&!pathname.includes('nare-games')&&!pathname.includes('gameplay')) &&
                         <div>
                             <Link to={'/betnare.apk'}
                                   target={"_blank"}
@@ -259,7 +259,7 @@ const Header = React.memo(
                     }
 
                     <Navbar expand="md"
-                            className={`${(scrollPosition || (showDownload.includes(pathname)||pathname.includes('match'))) && 'fixed-top-nav'} mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${(slip || jackpot) && "top-betslip-page-fix"} ${user ? 'top-nav-login' : 'top-nav-login'}`}
+                            className={`${(scrollPosition || (showDownload.includes(pathname)||pathname.includes('match')||pathname.includes('nare-games')||pathname.includes('gameplay'))) && 'fixed-top-nav'} mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${(slip || jackpot) && "top-betslip-page-fix"} ${user ? 'top-nav-login' : 'top-nav-login'}`}
                             fixed="top" variant="dark">
                         <div
                             className={'w-100 d-flex justify-content-between mobile-change desktop-ipad-size top-header-main'}>

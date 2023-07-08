@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from "react";
 import Header from "../../header/header";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import makeRequest from "../../utils/fetch-request";
 import 'react-loading-skeleton/dist/skeleton.css'
 import {LazyLoadImage} from "react-lazy-load-image-component";
@@ -8,6 +8,8 @@ import {Button} from "react-bootstrap";
 import SearchComponent from "./searchField";
 import {Context} from "../../../context/store";
 import SideBar from "../../sidebar/awesome/Sidebar";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
 
 const SmartSoft = React.memo(
     () => {
@@ -34,7 +36,7 @@ const SmartSoft = React.memo(
         getSmartGames()
     }, [])
 
-
+const navigate=useNavigate()
 
     return (
         <>
@@ -48,7 +50,15 @@ const SmartSoft = React.memo(
 
                                 <div className="homepage smart-images">
                                     <div className={'d-flex w-100 flex-column justify-content-between xgames-container'}>
-                                        <span className={'col-12 justify-content-center d-flex'}  id={'xgames-header'}> X-GAMES</span>
+                                        <div className={'d-flex'}>
+                                            <span className={'px-3'} onClick={()=>navigate('/')}>
+                                             <FontAwesomeIcon icon={faAngleLeft} style={{fontSize:"24px",color:'var(--light)', fontWeight:'700', opacity:'0.7'}}/>
+                                            </span>
+                                            <span className={'col-12 justify-content-center d-flex mb-4'}  id={'xgames-header'}>
+                                            X-GAMES
+                                        </span>
+                                        </div>
+
                                         <div className={'d-flex align-items-end w-100'}>
                                             <SearchComponent data={games}/>
                                         </div>

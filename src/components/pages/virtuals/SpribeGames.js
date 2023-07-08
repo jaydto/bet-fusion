@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from "react";
 import Header from "../../header/header";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import makeRequest from "../../utils/fetch-request";
 import 'react-loading-skeleton/dist/skeleton.css'
 import {LazyLoadImage} from "react-lazy-load-image-component";
@@ -9,6 +9,8 @@ import useWindowDimensions from "../../header/Dimensions";
 import {Context} from "../../../context/store";
 import SearchComponent from "./searchField";
 import SideBar from "../../sidebar/awesome/Sidebar";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
 
 const SpribeGame = React.memo(
     () => {
@@ -56,6 +58,7 @@ const SpribeGame = React.memo(
         return nare_image
     }
     let playgame=true;
+    const navigate=useNavigate()
     return (
         <>
             <Header playgame={playgame}/>
@@ -72,7 +75,14 @@ const SpribeGame = React.memo(
                                     <div className={`  row ${width<767?"row-cols-2":"row-cols-4 "}  text-white p-2 shadow-sm mt-2`}>
                                         {/* <ShaksGames/> */}
                                         <div className={'d-flex w-100 flex-column justify-content-between nare-header-container'}>
-                                            <span className={'col-12 justify-content-center d-flex'}  id={'nare-games-header'}> NARE-GAMES</span>
+                                            <div className={'d-flex align-items-center mb-5 mt-3'}>
+                                            <span className={'px-3'} onClick={()=>navigate('/')}>
+                                             <FontAwesomeIcon icon={faAngleLeft} style={{fontSize:"24px",color:'var(--light)', fontWeight:'700', opacity:'0.7'}}/>
+                                            </span>
+                                            <span className={'col-12 justify-content-center d-flex'}  id={'nare-games-header'}>
+                                                NARE-GAMES
+                                            </span>
+                                            </div>
                                             <div className={'d-flex align-items-end w-100'}>
                                                 <SearchComponent data={games}/>
                                             </div>

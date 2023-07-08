@@ -197,8 +197,8 @@ const Header = React.memo(
 
         }, [current]);
 
-        const notShowMobileNav = ['/signup', '/nare-league', '/results',
-            '/standing', '/playouts', '/standing', '/bet-history']
+        const notShowMobileNav = ['/signup', '/nare-league', '/results','/my-bets','/casino','/smart-soft','/virtuals',
+            '/standing', '/playouts', '/standing', '/bet-history', '/nare-games']
 
         const updateUserOnLogin = useCallback(() => {
             dispatch({type: "SET", key: "user", payload: user});

@@ -268,8 +268,8 @@ const Sidebar = React.memo(
                     onClick={() =>
                       gaEventTracker(`Today Games ${competition?.sport_name}`)
                     }
-                    to={`/upcoming?sport_id =${
-                      competition.sport_id
+                    to={`/upcoming?sport_id=${
+                        competition.sport_id
                     }&sub_type_id=${getDefaultMarketsForSport(competition)}`}
                   >
                     Today Games

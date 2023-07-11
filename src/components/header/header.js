@@ -40,6 +40,7 @@ const Header = React.memo(
         const [settings, setSettings] = useState({});
         const [isOpen, setIsOpen] = useState(false);
         const [showLoadingModal, setShowLoadingModal] = useState(false);
+        const pathname = window.location.pathname;
 
         useEffect(() => {
             const removeElement = () => {
@@ -52,7 +53,6 @@ const Header = React.memo(
             setTimeout(removeElement, 1000);
         }, []);
 
-        const pathname = window.location.pathname;
 
         useEffect(() => {
             if (pathname !== "/login") {

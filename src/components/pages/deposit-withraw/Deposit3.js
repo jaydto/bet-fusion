@@ -392,6 +392,13 @@ const DepositForm = (props) => {
                     amount:values?.amount
                 }
                 gaEventTracker('Deposit',data )
+            }else{
+                const data={
+                    msisdn:state?.user?.msisdn,
+                    amount:values?.amount,
+                    message:response?.message
+                }
+                gaEventTracker('Deposit Failed',data )
             }
         })
     }

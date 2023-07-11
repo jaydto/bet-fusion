@@ -18,11 +18,11 @@ const GamePlay = React.memo(
         const {game} = useParams()
         const pathname = window.location.pathname;
         const [gameUrl, setGameUrl] = useState('')
-        const [token, setUserToken] = useState('')
-        const [user_id, setUserID] = useState('')
+        const [, setUserToken] = useState('')
+        const [, setUserID] = useState('')
         const [demo, setDemo] = useState(false)
-        const [user, setUser] = useState(getFromLocalStorage("user"));
-        const {height, width} = useWindowDimensions();
+        const [user, ] = useState(getFromLocalStorage("user"));
+        const { width} = useWindowDimensions();
 
         const [isLoggedIn] = useState(getFromLocalStorage('user'))
 
@@ -47,7 +47,8 @@ const GamePlay = React.memo(
                 if (status === 200) {
                     const data = {
                         user_id: user?.profile_id,
-                        event: game,
+                        event:'Spribe Game',
+                        game_id: game,
                     }
                     gaEventTracker("Playing Spribe Game", data)
                     setUserToken(result.token)
@@ -57,7 +58,8 @@ const GamePlay = React.memo(
                 }else{
                     const data={
                         user_id:user?.profile_id,
-                        event:game,
+                        event:'Spribe Game Launch Failed',
+                        game_id:game,
                         message:"Game Launch Failed"
                     }
                     gaEventTracker("Playing Spribe Game Failed",data)

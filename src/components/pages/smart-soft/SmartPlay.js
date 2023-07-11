@@ -48,7 +48,8 @@ const SmartPlay = React.memo(
                 if (status === 200) {
                     const data={
                         user_id:user?.profile_id,
-                        event:game,
+                        event:'Smart-Soft Game',
+                        game_id:game,
                     }
                     gaEventTracker("Playing Smart Soft Game",data)
                     setUserToken(result.token)
@@ -58,7 +59,8 @@ const SmartPlay = React.memo(
                 }else{
                     const data={
                         user_id:user?.profile_id,
-                        event:game,
+                        event:'Smart-Soft Game Launch Fail',
+                        game_id:game,
                         message:"Game Launch Failed"
                     }
                     gaEventTracker("Playing Smart Soft Game Failed",data)

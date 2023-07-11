@@ -47,6 +47,8 @@ const Withdrawal = React.memo(
                     setLocalStorage('user', u);
                     setUser(u)
                     dispatch({type: "SET", key: "user", payload: u});
+                }else{
+
                 }
             });
 
@@ -72,6 +74,13 @@ const Withdrawal = React.memo(
                         amount:values?.amount
                     }
                     gaEventTracker('Withdraw', data)
+                }else{
+                    const data={
+                        msisdn:state?.user?.msisdn,
+                        amount:values?.amount,
+                        message:response?.message
+                    }
+                    gaEventTracker('Withdraw Failed',data )
                 }
             })
         }

@@ -56,7 +56,7 @@ const navigate=useNavigate()
                                             </span>
                                             <span className={'col-12 justify-content-center d-flex mb-4'}  id={'xgames-header'}>
                                             X-GAMES
-                                        </span>
+                                            </span>
                                         </div>
 
                                         <div className={'d-flex align-items-end w-100'}>

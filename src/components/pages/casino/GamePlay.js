@@ -52,7 +52,8 @@ const GamePlay = React.memo(
                 if (status === 200) {
                     const data = {
                         user_id: user?.profile_id,
-                        event: game_id,
+                        event:'Casino Game',
+                        game_id: game_id,
                     }
                     gaEventTracker("Playing Casino Game", data)
                     setGameUrl(result?.result.gameURL)
@@ -61,7 +62,8 @@ const GamePlay = React.memo(
                 }else{
                     const data={
                         user_id:user?.profile_id,
-                        event:game_id,
+                        event:'Casino Game Launch Failed',
+                        game_id:game_id,
                         message:"Game Launch Failed"
                     }
                     gaEventTracker("Playing Casino Game Failed",data)

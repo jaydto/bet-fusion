@@ -40,7 +40,6 @@ const NewProfile = React.memo(
 
         };
 
-
         useEffect(() => {
             updateUserOnHistory()
         }, [updateUserOnHistory])

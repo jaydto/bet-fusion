@@ -184,7 +184,7 @@ const BetslipSubmitForm = React.memo(
             ipAddress();
         }, [ipAddress])
 
-        const gaEventTracker=useAnalyticsEventTracker(jackpot?'PlaceJackpotBet':live?'PlaceLiveBet':'PlacePrematchBet')
+        const gaEventTracker=useAnalyticsEventTracker(live?'PlaceLiveBet':'PlacePrematchBet')
 
         const handlePlaceBet = useCallback((values,
                                             {setSubmitting, resetForm, setStatus, setErrors}) => {

@@ -61,6 +61,24 @@
   `;
             firstScript.parentNode.insertBefore(script2, firstScript);
 
+            // track Conversion
+            var trackConversion = document.createElement("script");
+            trackConversion.defer = true;
+            trackConversion.text = `
+    function getQueryParam(param) {
+      let queryString = window.location.search;
+      let searchParams = new URLSearchParams(queryString);
+      return searchParams.get(param);
+    }
+    let referralSource = getQueryParam('utm_source');
+
+    if (referralSource === 'facebook') {
+      // Fire the conversion tracking code for Facebook
+      fbq('track', 'PageView');
+    }
+  `;
+            firstScript.parentNode.insertBefore(trackConversion, firstScript);
+
             //   eskimi
             var script3 = document.createElement("script");
             script3.defer = true;
@@ -91,24 +109,6 @@
   `;
             firstScript.parentNode.insertBefore(script3, firstScript);
 
-            // clarity
-            var script4 = document.createElement("script");
-            script4.defer = true;
-            script4.text = `
-     (function (c, l, a, r, i, t, y) {
-    c[a] =
-            c[a] ||
-            function () {
-              (c[a].q = c[a].q || []).push(arguments);
-            };
-    t = l.createElement(r);
-    t.async = 1;
-    t.src = "https://www.clarity.ms/tag/" + i + "?ref=gtm2";
-    y = l.getElementsByTagName(r)[0];
-    y.parentNode.insertBefore(t, y);
-  })(window, document, "clarity", "script", "ez9iby6sl0");
-  `;
-            firstScript.parentNode.insertBefore(script4, firstScript);
 
             // facebook tag manager
             var script5 = document.createElement("script");
@@ -224,6 +224,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 </head>
 <body onscroll="getScrollLength()">
+<script defer >
+    (function (c, l, a, r, i, t, y) {
+        c[a] =
+            c[a] ||
+            function () {
+                (c[a].q = c[a].q || []).push(arguments);
+            };
+        t = l.createElement(r);
+        t.async = 1;
+        t.src = "https://www.clarity.ms/tag/" + i + "?ref=gtm2";
+        y = l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", "ez9iby6sl0");
+</script>
 
 <!-- End Google Tag Manager (noscript) -->
 <noscript><a href="https://lite.betnare.com" class="lite-version">

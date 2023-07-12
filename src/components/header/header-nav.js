@@ -131,23 +131,22 @@ const HeaderNav = React.memo(
                     </li>
                     <li className={pathname.includes('aviator') ? 'active live-bg' : ''}
                         onClick={() => gaEventTracker('Aviator')}>
-                        <Link className="url-link fm anl cg ox"
-                              to="/nare-games/aviator"
+                        <div className="url-link fm anl cg ox"
+                              onClick={()=>navigate("/nare-games/aviator")}
                               title="Aviator">
                             <strong>
                                 <div className={'d-flex menu-item'}>
                                     Aviator
-                                    <span className="new-alert-badge">HOT</span>
+                                    <span className="hot-alert-badge-item">HOT</span>
                                 </div>
                             </strong>
-                        </Link>
+                        </div>
                     </li>
 
                     <li className={`${pathname === '/casino'  ? 'active' : ''}`}>
                         <div className="url-link fm anl cg ox "  title="Live Casino" onClick={() => {LoginCheck("casino");gaEventTracker('Visit Casino Page')}}>
                             <span>
                                 <strong>Casino</strong>
-                                    <span className="new-alert-badge-items">HOT</span>
                             </span>
                         </div>
                     </li>
@@ -159,7 +158,7 @@ const HeaderNav = React.memo(
                            title="Space Man">
                             <span>
                                 <strong>Spaceman</strong>
-                                    <span className="new-alert-badge-items">HOT</span>
+                                    <span className="hot-alert-badge-item">HOT</span>
                             </span>
                         </div>
                     </li>
@@ -173,7 +172,7 @@ const HeaderNav = React.memo(
                               }}>
                             <span>
                                 <strong>JetX</strong>
-                                    <span className="new-alert-badge-items">HOT</span>
+                                    <span className="hot-alert-badge-item">HOT</span>
 
                             </span>
                         </div>
@@ -188,26 +187,26 @@ const HeaderNav = React.memo(
                              }}>
                             <span>
                                 <strong>FootballX</strong>
-                                    <span className="new-alert-badge-items">HOT</span>
+                                    <span className="new-alert-badge-item">NEW</span>
 
                             </span>
                         </div>
                     </li>
 
                     <li className={`${pathname === '/nare-league'  ? 'active' : ''}`}>
-                        <Link className="url-link fm anl cg ox " to="/nare-league" title="Nare League" onClick={()=>gaEventTracker('Visit Nare League Page')}>
+                        <div className="url-link fm anl cg ox " onClick={()=>navigate("/nare-league")} title="Nare League" onClick={()=>gaEventTracker('Visit Nare League Page')}>
                             <span>
                                 <strong>Nare League</strong>
-                                    <span className="new-alert-badge">NEW</span>
+                                    <span className="hot-alert-badge-item">HOT</span>
                             </span>
-                        </Link>
+                        </div>
                     </li>
 
                     <li className={`${pathname === '/smart-soft'  ? 'active' : ''}`}>
                         <Link className="url-link fm anl cg ox " to="/smart-soft" title="SmartSoft" onClick={()=>gaEventTracker('Visit SmartSoft Page')}>
                             <span>
                                 <strong>X-games</strong>
-                                    <span className="new-alert-badge">NEW</span>
+
                             </span>
                         </Link>
                     </li>
@@ -219,24 +218,23 @@ const HeaderNav = React.memo(
                                     <div className={'notification-item'}>
                                         {/*<FontAwesomeIcon icon={faLaptop}/> */}
                                         Virtuals
-                                        <span className="new-alert-badge">HOT</span>
-                                    </div>
+                                       </div>
                                 </strong>
                             </span>
                         </Link>
                     </li>
                     <li className={pathname.includes('nare-games') && pathname.includes('aviator') === false ? 'active' : ''}
                         onClick={() => gaEventTracker('Nare Games')} title={"Nare Games"}>
-                        <Link className="url-link fm anl cg ox"
-                              to="/nare-games"
+                        <div className="url-link fm anl cg ox"
+                              onClick={()=>navigate("/nare-games")}
                               title="Nare Games" onClick={()=>gaEventTracker('Visit Nare Games Page')}>
 
                             <strong className={"px-1"}>
                                 {/*<FontAwesomeIcon icon={faFireAlt} style={{color: "orange"}}/> */}
                                 Nare Games
-                                <span className="new-alert-badge">NEW</span>
+                                <span className="hot-alert-badge-item">HOT</span>
                             </strong>
-                        </Link>
+                        </div>
                     </li>
 
                     <li className={`${pathname.includes('Premier') || (window.location.href.includes("Premier")) ? 'active px-2' : 'px-2'}`}

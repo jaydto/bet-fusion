@@ -2731,10 +2731,10 @@ img.nare-league {
 
 
     .new-alert-badge {
-        right: -16px;
+        right: -11px;
         margin-top: 5px !important;
         padding: 1px 5px;
-        border-radius:5px;
+        border-radius: 5px;
         position: absolute;
         font-size: var(--font-tiny);
         font-weight: bolder;
@@ -2743,7 +2743,7 @@ img.nare-league {
         color: var(--always-white);
         background: red;
         background-size: 35px 16px;
-        width: 28px;
+        width: 30px;
         height: 13px;
         text-align: center;
         top: -7px;

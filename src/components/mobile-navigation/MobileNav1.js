@@ -164,7 +164,7 @@ const MobileNav1 = React.memo(
                                         alt=""
                                         style={{height: "23px", marginTop:"-6px"}}
                                     />
-                                    <span className=" new-alert-badge" >HOT</span>
+                                    <span className=" hot-alert-badge" >HOT</span>
                                 </div>
                                 <p style={{textAlign: "center"}}>
                                     League
@@ -188,7 +188,7 @@ const MobileNav1 = React.memo(
                                         alt=""
                                         style={{height: "23px", marginTop: "-6px", width:'30px'}}
                                     />
-                                    <span className=" new-alert-badge hot">HOT</span>
+                                    <span className=" hot-alert-badge">HOT</span>
                                 </div>
                                 <p style={{textAlign: "center"}}>
                                     Aviator
@@ -215,7 +215,6 @@ const MobileNav1 = React.memo(
                                         alt=""
                                         style={{height: "23px", marginTop: "-6px"}}
                                     />
-                                    <span className="new-alert-badge-item hot">HOT</span>
                                 </div>
                                 <p style={{textAlign: "center"}}>
                                     Casino
@@ -224,29 +223,7 @@ const MobileNav1 = React.memo(
                         </div>
 
                     </td>
-                    <td className={`menu-t m-auto sport-check  ${pathname === `/jackpot` ? "active_link" : ""}`}>
-                        <Link
-                            className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center `}
-                            onClick={() => gaEventTracker('Visit Jackpot Page')} to={`/jackpot`}>
-                            <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
-
-                                <div className="menu-img ">
-                                    <LazyLoadImage
-                                        className="side-icon"
-                                        src={jackpot}
-                                        alt=""
-                                        style={{height: "23px", marginTop: "-6px"}}
-                                    />
-                                    <span className="new-alert-badge hot">HOT</span>
-                                </div>
-                                <p style={{textAlign: "center"}}>
-                                    Jackpot
-                                </p>
-                            </div>
-                        </Link>
-
-                    </td>
-                    <td className={`menu-t m-auto sport-check ${window.location.search.includes('JetX') ? "active_link" : ""} `}>
+                  <td className={`menu-t m-auto sport-check ${window.location.search.includes('JetX') ? "active_link" : ""} `}>
                         <div
                             className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center  `}
                             onClick={() => {
@@ -262,7 +239,7 @@ const MobileNav1 = React.memo(
                                         alt=""
                                         style={{height: "23px", marginTop: "-6px"}}
                                     />
-                                    <span className=" new-alert-badge-item hot">HOT</span>
+                                    <span className=" hot-alert-badge ">HOT</span>
                                 </div>
                                 <p style={{textAlign: "center"}}>
                                     JetX
@@ -287,7 +264,7 @@ const MobileNav1 = React.memo(
                                         alt=""
                                         style={{height: "23px", marginTop: "-6px"}}
                                     />
-                                    <span className=" new-alert-badge-item hot">HOT</span>
+                                    <span className=" new-alert-badge">NEW</span>
                                 </div>
                                 <p style={{textAlign: "center"}}>
                                     FootballX
@@ -312,7 +289,7 @@ const MobileNav1 = React.memo(
                                         alt=""
                                         style={{height: "23px", marginTop: "-6px"}}
                                     />
-                                    <span className=" new-alert-badge-item hot">HOT</span>
+
                                 </div>
                                 <p style={{textAlign: "center"}}>
                                     Xgames
@@ -338,7 +315,7 @@ const MobileNav1 = React.memo(
                                         alt=""
                                         style={{height: "23px", marginTop: "-6px", width: '30px'}}
                                     />
-                                    <span className=" new-alert-badge-item hot">HOT</span>
+                                    <span className=" hot-alert-badge">HOT</span>
                                 </div>
                                 <p style={{textAlign: "center"}}>
                                     Spaceman
@@ -359,7 +336,6 @@ const MobileNav1 = React.memo(
                                         alt=""
                                         style={{height: "23px", marginTop: "-6px"}}
                                     />
-                                    <span className=" new-alert-badge">NEW</span>
                                 </div>
                                 <p style={{textAlign: "center"}}>
                                     Nare Games

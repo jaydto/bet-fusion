@@ -154,6 +154,16 @@ input, select, textarea {
     /*flex-direction: column;*/
     /*align-items:center;*/
 }
+.prematch-slip.progress {
+    height: 14px;
+    position:relative;
+}
+.progress{
+    position:relative;
+}
+.prematch.progress-bar {
+    background: var(--lite-top-color) !important;
+}
 
   .bloc-icon p{
     color: white;

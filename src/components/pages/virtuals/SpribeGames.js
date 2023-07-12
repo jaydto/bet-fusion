@@ -68,7 +68,7 @@ const SpribeGame = React.memo(
                     <div className="stats-desktop top-nare-games">
                         <SideBar loadCompetitions/>
                     </div>
-                    <div className="gz home " style={{width: '100%'}}>
+                    <div className="gz home  " style={{width: '100%'}}>
                         <div className="col-md-12 d-flex flex-column">
                             <div className="col-md-12">
                                 <div className="homepage top-nare-games">
@@ -86,7 +86,6 @@ const SpribeGame = React.memo(
                                             <div className={'d-flex align-items-end w-100'}>
                                                 <SearchComponent data={games}/>
                                             </div>
-
 
                                         </div>
                                         {gamesLoaded &&
@@ -137,7 +136,8 @@ const SpribeGame = React.memo(
                                                             </Link>
                                                         </div>
                                                     </div>
-                                                )))}
+                                                ))
+                                            )}
                                     </div>
                                 </div>
                             </div>

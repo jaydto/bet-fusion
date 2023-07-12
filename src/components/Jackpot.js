@@ -209,7 +209,7 @@ const Jackpot = React.memo(
                                         <div className="jackpot-text">
                                             {matches && 'Time left'}
                                         </div>
-                                        {matches?.meta && <CountDownJackpot/>}
+                                        {matches?.meta?.start_time && <CountDownJackpot/>}
                                     </div>
                                 </div>
                                 <div className="jackpot-pages-information">

@@ -9,7 +9,26 @@ git branch /*
     border-color: #d3e0e9;
 }
 
-
+.hot-alert-badge {
+    right: -16px;
+    margin-top: 5px !important;
+    padding: 0px 5px;
+    border-radius: 5px;
+    position: absolute;
+    font-size: var(--font-tiny);
+    font-weight: bolder;
+    text-transform: none;
+    padding-top: 1px;
+    color: var(--always-white);
+    background: var(--hot);
+    background-size: 35px 16px;
+    width: 28px;
+    height: 13px;
+    text-align: center;
+    top: -7px;
+    flex-direction: column-reverse;
+    display: flex;
+}
 /* general overrides */
 .b .c {
     line-height: 1.4;

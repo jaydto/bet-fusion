@@ -931,8 +931,29 @@ input[type="radio"], input[type="checkbox"] {
     width: 28px;
 }
 
+.hot-alert-badge-item {
+    right: -8px;
+    margin-top: 7px !important;
+    border-radius:5px;
+    padding: 1px 5px;
+    position: absolute;
+    font-size: var(--font-tiny);
+    font-weight: bolder;
+    text-transform: none;
+    padding-top: 1px;
+    color: var(--always-white);
+    background: var(--hot);
+    background-size: 35px 16px;
+    width: 28px;
+    height: 13px;
+    text-align: center;
+    top: -7px;
+    flex-direction: column-reverse;
+    display: flex;
+}
+
 .new-alert-badge-items {
-    background: transparent var(--badge-bg) no-repeat;
+    background: var(--hot);
     background-size: 35px 16px;
     color: var(--always-white);
     display: flex;
@@ -1112,9 +1133,10 @@ img.nare-league {
 }
 
 .new-alert-badge-item {
-    background: transparent var(--badge-bg) no-repeat;
+    background: red;
     background-size: 35px 16px;
     color: var(--always-white);
+    border-radius:5px;
     display: flex;
     flex-direction: column-reverse;
     font-size: var(--font-tiny);
@@ -1127,7 +1149,7 @@ img.nare-league {
     right: -5px;
     text-align: center;
     text-transform: none;
-    top: -10px;
+    top: -5px;
     width: 25px;
 }
 
@@ -1997,8 +2019,8 @@ img.nare-league {
     .top-spacing-casino{
         margin-top: 10rem !important;
     }
-    .top-spacing-virtuals{
-        margin-top:10rem!important;
+    .top-spacing-virtuals {
+        margin-top: 8rem!important;
     }
     .jackpot-autopick {
         font-size: 10px !important;
@@ -2707,19 +2729,21 @@ img.nare-league {
         margin-left: 10px;
     }
 
+
     .new-alert-badge {
-        right: -16px;
+        right: -11px;
         margin-top: 5px !important;
         padding: 1px 5px;
+        border-radius: 5px;
         position: absolute;
         font-size: var(--font-tiny);
         font-weight: bolder;
         text-transform: none;
         padding-top: 1px;
         color: var(--always-white);
-        background: transparent var(--badge-bg) no-repeat;
+        background: red;
         background-size: 35px 16px;
-        width: 28px;
+        width: 30px;
         height: 13px;
         text-align: center;
         top: -7px;

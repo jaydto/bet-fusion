@@ -8,7 +8,7 @@ import {
 	faChartLine,
 	faCheckCircle,
 	faQuestionCircle,
-	faXmark, faXmarkCircle
+	 faXmarkCircle
 } from "@fortawesome/free-solid-svg-icons";
 import Skeleton1 from "../../../skeleton/skeleton";
 import moment from "moment/moment";
@@ -408,7 +408,7 @@ const BetDetails = (props) => {
 														  className={"text-success"}/>:item?.status===1?<FontAwesomeIcon icon={faQuestionCircle}
 																														className={"text-warning"}/>:<FontAwesomeIcon icon={faXmarkCircle}
 																										className={"text-danger"}/> }&nbsp;<span className={"team-info"}>{item?.home_team}</span></div>
-									{item?.results&&<div className="outcome">{item?.results}</div>}
+									<div className="outcome">vs</div>
 									<div className="team" onClick={()=>toggleCollapse(index, item?.parent_match_id)}><span className={"team-info text-end"}>{item?.away_team}</span>&nbsp;{!collapsed.includes(index)?<FontAwesomeIcon icon={faCaretRight}/>:<FontAwesomeIcon icon={faCaretDown}/>}</div>
 								</div>
 								<div className={`${!collapsed.includes(index)?"d-none ":"d-flex justify-content-between gap-4 "} w-100 px-3 bethistory-items flex-column`}>

@@ -194,7 +194,10 @@ const HeaderNav = React.memo(
                     </li>
 
                     <li className={`${pathname === '/nare-league'  ? 'active' : ''}`}>
-                        <div className="url-link fm anl cg ox " onClick={()=>navigate("/nare-league")} title="Nare League" onClick={()=>gaEventTracker('Visit Nare League Page')}>
+                        <div className="url-link fm anl cg ox " onClick={()=> {
+                            navigate("/nare-league");
+                            gaEventTracker('Visit Nare League Page')
+                        }} title="Nare League" >
                             <span>
                                 <strong>Nare League</strong>
                                     <span className="hot-alert-badge-item">HOT</span>
@@ -224,10 +227,13 @@ const HeaderNav = React.memo(
                         </Link>
                     </li>
                     <li className={pathname.includes('nare-games') && pathname.includes('aviator') === false ? 'active' : ''}
-                        onClick={() => gaEventTracker('Nare Games')} title={"Nare Games"}>
+                         title={"Nare Games"}>
                         <div className="url-link fm anl cg ox"
-                              onClick={()=>navigate("/nare-games")}
-                              title="Nare Games" onClick={()=>gaEventTracker('Visit Nare Games Page')}>
+                              onClick={()=> {
+                                  navigate("/nare-games");
+                                  gaEventTracker('Visit Nare Games Page')
+                              }}
+                              title="Nare Games" >
 
                             <strong className={"px-1"}>
                                 {/*<FontAwesomeIcon icon={faFireAlt} style={{color: "orange"}}/> */}

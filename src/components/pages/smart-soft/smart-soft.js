@@ -51,7 +51,7 @@ const navigate=useNavigate()
                                 <div className="homepage smart-images">
                                     <div className={'d-flex w-100 flex-column justify-content-between xgames-container'}>
                                         <div className={'d-flex'}>
-                                            <span className={'px-3'} onClick={()=>navigate('/')}>
+                                            <span className={'px-3 remove-backbutton-on-desktop'} onClick={()=>navigate('/')}>
                                              <FontAwesomeIcon icon={faAngleLeft} style={{fontSize:"24px",color:'var(--light)', fontWeight:'700', opacity:'0.7'}}/>
                                             </span>
                                             <span className={'col-12 justify-content-center d-flex mb-4'}  id={'xgames-header'}>

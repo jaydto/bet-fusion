@@ -76,7 +76,7 @@ const Virtuals = React.memo(
                                         <div
                                             className={'cursor-pointer shadow-sm d-flex flex-column w-100 justify-content-between nare-header-container'}>
                                             <div className={'d-flex align-items-center mb-4'}>
-                                            <span className={'px-3'} onClick={() => navigate('/')}>
+                                            <span className={'px-3 remove-backbutton-on-desktop'} onClick={() => navigate('/')}>
                                              <FontAwesomeIcon icon={faAngleLeft} style={{
                                                  fontSize: "24px",
                                                  color: 'var(--light)',

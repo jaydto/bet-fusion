@@ -60,7 +60,7 @@ const Casino = React.memo(
                                     <div
                                         className={'d-flex w-100 flex-column justify-content-between nare-header-container'}>
                                         <div className={'d-flex align-items-center'}>
-                                            <span className={'px-3'} onClick={() => navigate('/')}>
+                                            <span className={'px-3 remove-backbutton-on-desktop'} onClick={() => navigate('/')}>
                                              <FontAwesomeIcon icon={faAngleLeft} style={{
                                                  fontSize: "24px",
                                                  color: 'var(--light)',

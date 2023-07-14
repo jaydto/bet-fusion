@@ -1745,6 +1745,12 @@ img.nare-league {
         margin-top:9rem;
 
     }
+    .remove-backbutton-on-desktop{
+        display:none
+    }
+    .top-spacing-virtuals {
+        margin-top: 8rem!important;
+    }
     .market-groups-container {
         max-width: 61.2vw;
         z-index: 2001;
@@ -2279,6 +2285,7 @@ img.nare-league {
     .top-spacing-casino{
         margin-top: 7rem !important;
     }
+
 
     .slip-team {
         width: 270px;

@@ -76,7 +76,7 @@ const SpribeGame = React.memo(
                                         {/* <ShaksGames/> */}
                                         <div className={'d-flex w-100 flex-column justify-content-between nare-header-container'}>
                                             <div className={'d-flex align-items-center mb-5 mt-3'}>
-                                            <span className={'px-3'} onClick={()=>navigate('/')}>
+                                            <span className={'px-3 remove-backbutton-on-desktop'} onClick={()=>navigate('/')}>
                                              <FontAwesomeIcon icon={faAngleLeft} style={{fontSize:"24px",color:'var(--light)', fontWeight:'700', opacity:'0.7'}}/>
                                             </span>
                                             <span className={'col-12 justify-content-center d-flex'}  id={'nare-games-header'}>

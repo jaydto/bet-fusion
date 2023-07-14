@@ -1342,7 +1342,7 @@ img.nare-league {
         color: #adadad;
         height: 100%;
         width: var(--width-side) !important;
-        min-width: 215px !important;
+        min-width: 257px !important;
         text-align: left;
         transition: width, left, right, 0.3s;
         position: relative;
@@ -1742,8 +1742,16 @@ img.nare-league {
 
 @media (min-width: 992px) {
     .top-spacing-casino{
-        margin-top:9rem;
-
+        margin-top:9rem!important;
+    }
+    .top-nare-games{
+        margin-top:9rem!important;
+    }
+    .remove-backbutton-on-desktop{
+        display:none
+    }
+    .top-spacing-virtuals {
+        margin-top: 9rem!important;
     }
     .market-groups-container {
         max-width: 61.2vw;
@@ -2279,6 +2287,7 @@ img.nare-league {
     .top-spacing-casino{
         margin-top: 7rem !important;
     }
+
 
     .slip-team {
         width: 270px;

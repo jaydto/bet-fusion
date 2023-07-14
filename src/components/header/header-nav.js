@@ -271,7 +271,7 @@ const HeaderNav = React.memo(
                         <li className={`${pathname.includes("casino") ? 'active' : ''} d-none`}>
                             <Link className="g url-link" to="/casino" title="Casino" onClick={()=>gaEventTracker('Visit Casino Page')} >
                                 {/*<FontAwesomeIcon icon={faDice}/>*/}
-                                Casino
+                                Virtuals
                             </Link>
                         </li>
 

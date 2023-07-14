@@ -272,6 +272,29 @@ const MobileNav1 = React.memo(
                             </div>
                         </div>
 
+                    </td>   <td className={`menu-t m-auto sport-check ${window.location.search.includes('FootballX') ? "active_link" : ""} `}>
+                        <div
+                            className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center  `}
+                            onClick={() => {
+                                LoginCheck('FootballX');
+                                gaEventTracker('Visit FootballX Page')
+                            }}>
+                            <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center`}>
+
+                                <div className="menu-img ">
+                                    <LazyLoadImage
+                                        className="side-icon football-x"
+                                        src={jackpot}
+                                        alt=""
+                                        style={{height: "23px", marginTop: "-6px"}}
+                                    />
+                                </div>
+                                <p style={{textAlign: "center"}}>
+                                    Jackpot
+                                </p>
+                            </div>
+                        </div>
+
                     </td>
                     <td className={`menu-t m-auto sport-check ${window.location.search.includes('smart-soft') ? "active_link" : ""} `}>
                         <div

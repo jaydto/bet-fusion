@@ -53,8 +53,9 @@
 
 .item1 {
     /* flex:1 1 auto; */
-    flex-grow:1;
+    flex-grow:0;
     align-self:auto;
+    max-width:20%;
 }
 
 .item2 {
@@ -70,7 +71,7 @@
 }
 .item3 {
     /* flex:1 1 auto; */
-    flex-grow:1;
+    flex-grow:0;
 }
 @media (max-width:400px){
     .carousel-item img {
@@ -98,7 +99,8 @@
         padding: 35px 0;
     }
     .item2{
-        width:59%;
+        min-width:60%;
+
     }
 }
 @media (max-width: 1259px){
@@ -120,6 +122,9 @@
     }
 }
 @media (max-width: 991px){
+    .item3{
+        width:20%;
+    }
     .carousel-item img {
         min-height: 100px!important;
     }

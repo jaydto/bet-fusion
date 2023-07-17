@@ -20,7 +20,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import LoginSection from "./LoginSection";
 import {UserInfo} from "./UserInfo";
 
-const downloadAPKFile = React.lazy(() => import('../../assets/betnare.apk'));
+const downloadAPKFile = React.lazy(() => import('https://storage.googleapis.com/nare-app/betnare-app.apk'));
 const ProfileMenu = React.lazy(() => import('./profile-menu'));
 const HeaderNav = React.lazy(() => import('./header-nav'));
 
@@ -238,10 +238,10 @@ const Header = React.memo(
                 <div className={'d-flex flex-column'}>
                     {(!showDownload.includes(pathname) && !pathname.includes('match') &&!pathname.includes('nare-games')&&!pathname.includes('gameplay')) &&
                         <div>
-                            <Link to={'/betnare.apk'}
-                                  target={"_blank"}
+                            <a href={'https://storage.googleapis.com/nare-app/betnare-app.apk'}
+                                  target={"_self"}
                                   title={'Download App'}
-                                  download={'betnare.apk'}
+                                  download={'betnare-app.apk'}
                                   className={"lite-top d-flex flex-column"}
                                   onClick={() => {
                                       gaEventTracker('Downloaded App');
@@ -253,7 +253,7 @@ const Header = React.memo(
                                         <LazyLoadImage src={androidIcon} className={"icon-android"}/>
                                     </div>
                                 </div>
-                            </Link>
+                            </a>
 
                         </div>
                     }

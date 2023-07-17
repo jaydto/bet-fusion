@@ -99,13 +99,13 @@
         padding: 35px 0;
     }
     .item2{
-        min-width:60%;
+        min-width:59%;
 
     }
 }
 @media (max-width: 1259px){
     .item2 {
-        width:70%;
+        width:59%;
     }
 }
 @media (min-width: 1200px) and (max-width: 1240px){
@@ -121,10 +121,14 @@
         padding: 5px;
     }
 }
-@media (max-width: 991px){
-    .item3{
-        width:20%;
+@media (min-width:992px){
+    .item3 {
+        min-width: 20%;
+        max-width: 25%;
+        width: 25%;
     }
+}
+@media (max-width: 991px){
     .carousel-item img {
         min-height: 100px!important;
     }

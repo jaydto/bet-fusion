@@ -2,6 +2,13 @@
     max-width:991px;
     margin: auto;
 }
+.no-jackpot-text{
+    font-size:28px;
+    color:var(--gold);
+    font-weight:800;
+    opacity:0.8;
+    text-align:center;
+}
 .jp-header-banner {
     margin: auto;
     width: 100%!important;
@@ -110,9 +117,22 @@
     position: relative;
     z-index: 10;
 }
-
+.flex-item >div {
+    background: var(--betnare-primary);
+    /* border: 3px solid #ffcc80; */
+    border-radius: 5px;
+    padding: 0px 0px;
+    height: max-content;
+    /* overflow-y: scroll; */
+}
 .jackpot-page-structure{
-
+    background:var(--betnare-body-bg)
+}
+.flex-container.jackpot{
+    flex-grow:20!important;
+}
+.jp-header-banner{
+    background:var(--betnare-body-bg)
 }
 .time-box__time::after {
     content: '';

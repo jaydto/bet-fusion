@@ -6,7 +6,7 @@
     /* flex-flow: nowrap; */
     flex-direction: column;
     flex-wrap: nowrap;
-    /*background-color: #bbdefb;*/
+    background-color: var(--betnare-body-bg);
     height: 100vh;
     padding: 15px 0px;
     gap: 0px;

@@ -1,4 +1,4 @@
-import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import './test.css'
 import "../assets/css/jackpot.css"
 import useWindowDimensions from "./header/Dimensions";
@@ -9,7 +9,6 @@ import {FormatDate, FormatDate2, JackpotMatchList} from "./matches";
 import Select from "react-select";
 import "../assets/css/animationJackpot.css"
 import DailyJackpotTermsAndConditions from "./pages/terms-and-conditions/DailyJackpotTermsAndConditions";
-import {Context} from "../context/store";
 import caution from "../assets/img/mobile/caution.png"
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import Skeleton1 from "./skeleton/skeleton";
@@ -198,12 +197,11 @@ const Jackpot = React.memo(
                     <Header jackpot={true}/>
                     <ToastContainer/>
                 </div>
-                <div className={`flex-container flex-column  top-spacing-page-no-download-jackpot`}>
+                <div className={`flex-container jackpot flex-column  top-spacing-page-no-download-jackpot`}>
                     <div className="item2 size-all-markets jp-header-banner">
-                        <div className={"jp-banner-image"}>
-                            <div
-                                className="d-flex h-100 w-100 justify-content-around  px-5 align-items-center jackpot-mobile-appearance">
-                                <div className="jackpot-counter-time">
+                         <div className={"jp-banner-image"}>
+                            <div className="d-flex h-100 w-100 justify-content-around  px-5 align-items-center jackpot-mobile-appearance">
+                                {matches?.meta?.start_time &&<div className="jackpot-counter-time">
 
                                     <div className="jackpot-count-text">
                                         <div className="jackpot-text">
@@ -211,8 +209,8 @@ const Jackpot = React.memo(
                                         </div>
                                         {matches?.meta?.start_time && <CountDownJackpot/>}
                                     </div>
-                                </div>
-                                <div className="jackpot-pages-information">
+                                </div>}
+                                {matches?.meta?.start_time &&<div className="jackpot-pages-information">
                                     <div className={`predict ${matches ? '' : 'd-none'}`}>
                                         <span>
                                             <span className="predict-text">
@@ -232,7 +230,8 @@ const Jackpot = React.memo(
 
                                     </div>
 
-                                </div>
+                                </div>}
+                                {!matches?.meta?.start_time &&<div className={'no-jackpot-text'}>There are no Jackpot Events at the moment</div>}
                             </div>
 
 
@@ -349,7 +348,7 @@ const Jackpot = React.memo(
 
                         </div>
                     </div>
-                    {activeTab === "home" && matches && <div className="item3">
+                    {activeTab === "home" && matches?.meta?.start_time && <div className="item3">
                         <Right jackpot={true} jackpotData={matches?.meta} test={true} matches={matches}/>
                     </div>}
 

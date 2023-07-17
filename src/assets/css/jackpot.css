@@ -117,7 +117,7 @@
     position: relative;
     z-index: 10;
 }
-.flex-item >div {
+.flex-item.jackpot >div {
     background: var(--betnare-primary);
     /* border: 3px solid #ffcc80; */
     border-radius: 5px;

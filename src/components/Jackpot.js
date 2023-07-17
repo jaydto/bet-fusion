@@ -192,7 +192,7 @@ const Jackpot = React.memo(
             setActiveTab(eventKey);
         };
         return (
-            <div className={'flex-item'}>
+            <div className={'flex-item jackpot'}>
                 <div className="item4">
                     <Header jackpot={true}/>
                     <ToastContainer/>

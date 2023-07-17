@@ -10,6 +10,7 @@ import {MarketList} from "./matches";
 import LiveSideBar from "./sidebar/live-sidebar";
 import {ToastContainer} from "react-toastify";
 import {setLocalStorage} from "./utils/local-storage";
+import Skeleton1 from "./skeleton/skeleton";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -121,13 +122,17 @@ const AllMarkets = React.memo(
 
                             <div className="homepage mobile-full-height all-markets">
 
-                                <MarketList
+                                {state?.all_markets? <MarketList
                                     allMarkets={allMarkets}
                                     live={live}
                                     matchwithmarkets={state?.all_markets}
                                     pdown={producerDown}
                                     groups={state?.market_groups}
-                                />
+                                />:
+                                    <div>
+                                        <Skeleton1/>
+                                    </div>
+                                }
 
                             </div>
                         </div>

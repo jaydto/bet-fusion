@@ -402,7 +402,7 @@ const MoreMarketsHeaderRow = React.memo(
                                     <div className={"d-flex flex-column w-100"}>
                                         <Row className="header-text mb-5 d-flex justify-content-center mt-3">
                                             <div
-                                                className={'d-flex justify-content-start mx-4 spacing-mobile-web align-items-center'}
+                                                className={'d-flex remove-backbutton-on-desktop justify-content-start mx-4 spacing-mobile-web align-items-center'}
                                                 onClick={() => navigate(-1)}>
                                                 <FontAwesomeIcon icon={faAngleLeft} style={{
                                                     fontSize: '20px',

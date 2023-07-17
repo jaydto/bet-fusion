@@ -1259,7 +1259,7 @@ img.nare-league {
     }
 
     .sticky-testimony {
-        top: 92px;
+        top: 98px;
     }
 
     .sticky-responsive {
@@ -1508,8 +1508,8 @@ img.nare-league {
     .pro-sidebar {
         color: #adadad;
         height: 100%;
-        /*width: var(--width-side-sm)!important;*/
-        min-width: 215px !important;
+        width: var(--width-side-sm)!important;
+        min-width:100% !important;
         text-align: left;
         transition: width, left, right, 0.3s;
         position: relative;
@@ -1748,7 +1748,7 @@ img.nare-league {
         margin-top:9rem!important;
     }
     .remove-backbutton-on-desktop{
-        display:none
+        display:none!important;
     }
     .top-spacing-virtuals {
         margin-top: 9rem!important;

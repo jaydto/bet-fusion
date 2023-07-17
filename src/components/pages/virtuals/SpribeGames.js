@@ -16,11 +16,11 @@ const SpribeGame = React.memo(
     () => {
 
     const [games, setGames] = useState([])
-    const [isOnline, setIsOnline]=useState(true)
+    const [, setIsOnline]=useState(true)
     const [state,]=useContext(Context)
 
     const [gamesLoaded, setGamesLoaded] = useState(false)
-    const {height, width} = useWindowDimensions();
+    const { width} = useWindowDimensions();
 
     const getFastGames = async () => {
 

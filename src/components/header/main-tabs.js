@@ -30,7 +30,7 @@ const MainTabs = (props) => {
 
     return (
         // + `${user ? "highlight-logged-in-menu" : "highlight-menu"}`
-        <Row className={"full-mobile main-navigations "}>
+        <div className={"full-mobile main-navigations w-100"}>
             <div className=" d-flex flex-row ">
                 <div className="col  px-1  ">
                     <Link className={`cursor-pointer w-100 ${h_class}`} to={'/highlights?' + getLink()}>
@@ -53,7 +53,7 @@ const MainTabs = (props) => {
                     </Link>
                 </div>}
             </div>
-        </Row>
+        </div>
     )
 
 }

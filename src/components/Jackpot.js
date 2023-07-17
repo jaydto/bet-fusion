@@ -9,7 +9,6 @@ import {FormatDate, FormatDate2, JackpotMatchList} from "./matches";
 import Select from "react-select";
 import "../assets/css/animationJackpot.css"
 import DailyJackpotTermsAndConditions from "./pages/terms-and-conditions/DailyJackpotTermsAndConditions";
-import caution from "../assets/img/mobile/caution.png"
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import Skeleton1 from "./skeleton/skeleton";
 import {ToastContainer} from "react-toastify";
@@ -260,7 +259,7 @@ const Jackpot = React.memo(
                                                 <div
                                                     className={'text-white col-md-12 text-center background-primary shadow mt-2 p-3 d-flex flex-column  align-items-center justify-content-center'}
                                                     style={{height: "30vh"}}>
-                                                    <LazyLoadImage src={caution}
+                                                    <LazyLoadImage src={'../assets/img/mobile/caution.png'}
                                                                    className={'jackpot-image-caution'}/>
                                                     <p className={'jackpot-text-inactive'}>
                                                         1 Million Daily Jackpot not available. Please check back

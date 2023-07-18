@@ -338,9 +338,8 @@ input.text-white {
     background-color: var(--betnare-primary) !important;
 }
 
-.pro-sidebar.collapsed .pro-menu > ul > .pro-menu-item.pro-sub-menu > .pro-inner-list-item > .popper-inner {
-    /*background-color: #16202c !important;*/
-    background-color: #253743 !important;
+.pro-sidebar.collapsed .pro-menu>ul>.pro-menu-item.pro-sub-menu>.pro-inner-list-item>.popper-inner {
+    background-color: var(--betnare-body-bg)!important;
 }
 
 .pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item {

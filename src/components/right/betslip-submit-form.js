@@ -78,7 +78,7 @@ const BetslipSubmitForm = React.memo(
         const [state, dispatch] = useContext(Context);
         const [loadingShare, setLoadingShare] = useState(false);
 
-        const [stake, setStake] = useState(jackpot ? parseInt(jackpotData?.bet_amount) : state?.userStake||100||getFromLocalStorage("userStake"));
+        const [stake, setStake] = useState(jackpot ? parseInt(jackpotData?.bet_amount) : state?.userStake||getFromLocalStorage("userStake"))||100;
         const [stakeBoosted, setStakeBoosted] = useState(100);
 
         const [stakeAfterTax, setStakeAfterTax] = useState(0);
@@ -408,7 +408,7 @@ const BetslipSubmitForm = React.memo(
         }, [updateWinnings]);
 
         const initialValues = {
-            bet_amount: jackpot ? jackpotData?.bet_amount : bonusBet ? 100 : 100,
+            bet_amount: jackpot ? jackpotData?.bet_amount : bonusBet ? 100 : state?.userStake||getFromLocalStorage('userStake')||100,
             accept_all_odds_change: true,
             user_id: state?.user?.profile_id,
             total_games: totalGames,
@@ -578,8 +578,8 @@ const BetslipSubmitForm = React.memo(
                             value = value.replace(/[^\d]/g, "");
                             dispatch({type: "SET", key: "userStake", payload: value});
                             setFieldValue(field, value);
-                            setStake(value);
                             setLocalStorage('userStake',value)
+                            setStake(value);
                         } else {
                             setFieldValue(field, value);
                         }

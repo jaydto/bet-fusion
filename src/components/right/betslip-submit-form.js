@@ -78,7 +78,7 @@ const BetslipSubmitForm = React.memo(
         const [state, dispatch] = useContext(Context);
         const [loadingShare, setLoadingShare] = useState(false);
 
-        const [stake, setStake] = useState(jackpot ? parseInt(jackpotData?.bet_amount) : 100);
+        const [stake, setStake] = useState(jackpot ? parseInt(jackpotData?.bet_amount) : state?.userStake||100||getFromLocalStorage("userStake"));
         const [stakeBoosted, setStakeBoosted] = useState(100);
 
         const [stakeAfterTax, setStakeAfterTax] = useState(0);
@@ -280,6 +280,8 @@ const BetslipSubmitForm = React.memo(
                             payload: {},
                         });
                         setLocalStorage('betslip_share_code', null)
+                        setLocalStorage('userStake',null)
+                        dispatch({type:'SET', key:'userStake', data:null})
                         return width < 991 ? navigate(-1) : "";
                     }
                     else {
@@ -395,6 +397,8 @@ const BetslipSubmitForm = React.memo(
             });
             setMessage(null);
             // setLocalStorage("winnings",null)
+            setLocalStorage('userStake',null)
+            dispatch({type:'SET', key:'userStake', data:null})
             setLocalStorage('betslip_share_code', null)
             return width<991?navigate(-1):""
         }, []);
@@ -572,8 +576,10 @@ const BetslipSubmitForm = React.memo(
                         let value = ev.target.type === "checkbox" ? ev.target.checked : ev.target.value;
                         if (field == "bet_amount") {
                             value = value.replace(/[^\d]/g, "");
+                            dispatch({type: "SET", key: "userStake", payload: value});
                             setFieldValue(field, value);
                             setStake(value);
+                            setLocalStorage('userStake',value)
                         } else {
                             setFieldValue(field, value);
                         }

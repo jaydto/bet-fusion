@@ -2667,7 +2667,7 @@ img.nare-league {
     .alert-position-betslip-top {
         position: fixed;
         top: 10rem;
-
+        width:100%;
     }
 
     .line-on-slip-items {

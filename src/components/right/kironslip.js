@@ -3,7 +3,7 @@ import {Context} from "../../context/store";
 import {getKironSlip, removeFromKironSlip,} from "../utils/betslip";
 import {getFromLocalStorage} from "../utils/local-storage";
 import KironslipSubmitForm from "./kironslip-submit-form";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 const clean_rep = (str) => {
     str = str.replace(/[^A-Za-z0-9\-]/g, "");

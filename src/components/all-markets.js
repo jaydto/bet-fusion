@@ -1,4 +1,4 @@
-import React, {useCallback, useContext, useEffect, useLayoutEffect, useState} from 'react';
+import React, {useCallback, useContext, useLayoutEffect, useState} from 'react';
 import './test.css'
 import {useParams} from "react-router-dom";
 import {Context} from "../context/store";
@@ -9,7 +9,6 @@ import makeRequest from "./utils/fetch-request";
 import {MarketList} from "./matches";
 import LiveSideBar from "./sidebar/live-sidebar";
 import {ToastContainer} from "react-toastify";
-import {setLocalStorage} from "./utils/local-storage";
 import Skeleton1 from "./skeleton/skeleton";
 
 const Header = React.lazy(() => import('./header/header'));
@@ -19,9 +18,8 @@ const SideBar = React.lazy(() => import('./sidebar/awesome/Sidebar'))
 const AllMarkets = React.memo(
     (props) => {
         const [producerDown, setProducerDown] = useState(false);
-        const [allMarkets, setAllMarkets] = useState(true)
+        const [allMarkets, ] = useState(true)
         const params = useParams()
-        let url = new URL(window.location);
         const {live} = props
         const id = params.id
 

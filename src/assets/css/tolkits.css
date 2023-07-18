@@ -680,7 +680,7 @@ background: var(--betnare-side-bg)!important;
 
 .jackpot {
     margin-bottom: 0 !important;
-    background-color: #f9f9f9 !important;
+    /*background-color: #f9f9f9 !important;*/
     border-radius: 0 !important;
 }
 

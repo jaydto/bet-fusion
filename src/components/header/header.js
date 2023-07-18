@@ -19,11 +19,8 @@ import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import ListGroup from "react-bootstrap/ListGroup";
 import LoginSection from "./LoginSection";
 import {UserInfo} from "./UserInfo";
-
-const downloadAPKFile = React.lazy(() => import('https://storage.googleapis.com/nare-app/betnare-app.apk'));
 const ProfileMenu = React.lazy(() => import('./profile-menu'));
 const HeaderNav = React.lazy(() => import('./header-nav'));
-
 
 const Header = React.memo(
     (props) => {
@@ -230,9 +227,6 @@ const Header = React.memo(
         }, [pathname])
 
 
-        const getDownloadFile = () => {
-            return downloadAPKFile;
-        }
         return (
             <>
                 <div className={'d-flex flex-column'}>
@@ -245,7 +239,6 @@ const Header = React.memo(
                                   className={"lite-top d-flex flex-column"}
                                   onClick={() => {
                                       gaEventTracker('Downloaded App');
-                                      getDownloadFile()
                                   }}>
                                 <div className={"app-download-link  d-flex flex-column"}>
                                     <div className={"app-color"}>

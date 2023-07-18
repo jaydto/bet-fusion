@@ -9,7 +9,7 @@ const Header = React.lazy(() => import('../../header/header'));
 const Footer = React.lazy(() => import('../../footer/footer'));
 const Right = React.lazy(() => import('../../right'));
 const SideBar = React.lazy(() => import('../../sidebar/awesome/Sidebar'))
-const downloadAPKFile = React.lazy(() => import('https://storage.googleapis.com/nare-app/betnare-app.apk'));
+// const downloadAPKFile = React.lazy(() => import('https://storage.googleapis.com/nare-app/betnare-app.apk'));
 const  Index= () => {
     const gaEventTracker = useAnalyticsEventTracker('App');
 
@@ -17,9 +17,6 @@ const  Index= () => {
         gaEventTracker('App Page')
     })
 
-    const getDownloadFile = () => {
-        return downloadAPKFile;
-    }
 
 
     return (
@@ -44,7 +41,7 @@ const  Index= () => {
                                       label="Download App"
                                       filename="betnare-app.apk"
                                       onClick={()=>gaEventTracker('Downloaded App')}
-                                      exportFile={() => getDownloadFile()}>Download Betnare App</a>
+                                      >Download Betnare App</a>
 
 
                             </div>
@@ -73,15 +70,15 @@ const  Index= () => {
                                     <hr/>
                                 </div>
                                 <div className="text-center mt-2 col">
-                                    <Link to={'/betnare.apk'}
-                                          target={"_blank"}
+                                    <a href={'https://storage.googleapis.com/nare-app/betnare-app.apk'}
+                                          target={"_self"}
                                           title={'Download App'}
-                                          download={'betnare.apk'}
+                                          download={'betnare-app.apk'}
                                           className="btn btn-primary btn-lg mb-5 text-white text-decoration-none"
                                           label="Download App"
-                                          filename="betnare.apk"
+                                          filename="betnare-app.apk"
                                           onClick={()=>gaEventTracker('Downloaded App')}
-                                          exportFile={() => getDownloadFile()}>Download App Now</Link>
+                                          >Download App Now</a>
 
                                 </div>
                             </div>

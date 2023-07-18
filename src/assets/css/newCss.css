@@ -1740,6 +1740,9 @@ img.nare-league {
 }
 
 @media (min-width: 992px) {
+    .date-remove{
+        display:none!important;
+    }
     .top-spacing-casino{
         margin-top:9rem!important;
     }

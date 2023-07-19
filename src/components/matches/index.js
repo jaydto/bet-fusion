@@ -1009,6 +1009,7 @@ export const FormatDate2 = (props) => {
 
     // Format the date and time
     const formattedDateTime = `${month}/${day} ${hour}:${minute}`;
+
     if (live) {
         return match_time
     } else {

@@ -406,10 +406,11 @@ const BetslipSubmitForm = React.memo(
         useEffect(() => {
             updateWinnings();
         }, [updateWinnings]);
+        console.log("accept_odds_cahnge",getFromLocalStorage("accept_odds_change"))
 
         const initialValues = {
             bet_amount: jackpot ? jackpotData?.bet_amount : bonusBet ? 100 : state?.userStake||getFromLocalStorage('userStake')||100,
-            accept_all_odds_change: true,
+            accept_all_odds_change: getFromLocalStorage("accept_odds_change")||true,
             user_id: state?.user?.profile_id,
             total_games: totalGames,
             total_odd: totalOdds,
@@ -554,7 +555,7 @@ const BetslipSubmitForm = React.memo(
         const label = {
             inputProps: {
                 'aria-label': 'accept_all_odds_change',
-                'value': 'accept_all_odds_change'
+                value: 'accept_all_odds_change' // Make sure this is the correct value for your use case.
             }
         };
 
@@ -574,6 +575,7 @@ const BetslipSubmitForm = React.memo(
 
                         let field = ev.target.name;
                         let value = ev.target.type === "checkbox" ? ev.target.checked : ev.target.value;
+                        console.log("checked here")
                         if (field == "bet_amount") {
                             value = value.replace(/[^\d]/g, "");
                             dispatch({type: "SET", key: "userStake", payload: value});
@@ -660,10 +662,15 @@ const BetslipSubmitForm = React.memo(
                                 <div className={"slip-body"}>
                                     <div id="odd-change-text">
                                         <div className={"odd-change-position"}>
-                                            <Switch id={"accept-all-odds-change"} {...label} className="odds-change-box"
-                                                    name={"accept_all_odds_change"}
-                                                    checked={values?.accept_all_odds_change} color="primary"
-                                                    onChange={(e) => onFieldChanged(e)}/> Accept any odds change
+                                            <form>
+                                                <Switch id={"accept_all_odds_change"} {...label} className="odds-change-box"
+                                                        name={"accept_all_odds_change"}
+                                                        checked={values?.accept_all_odds_change} color="primary"
+
+                                                        onChange={(e) => onFieldChanged(e)}
+                                                        /> Accept any odds change
+                                            </form>
+
                                         </div>
                                         <div className={"slip-clear-all"}>
                                             <FontAwesomeIcon icon={faTrash} title={"Clear All"}

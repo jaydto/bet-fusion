@@ -26,6 +26,9 @@
     height: 2.5rem;
 }
 @media (min-width:992px){
+    .color-app-text{
+        display:none!important;
+    }
     .site-mobile-only{
         display:none!important;
     }

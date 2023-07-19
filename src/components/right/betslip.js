@@ -5,7 +5,7 @@ import {getBetslip, getJackpotBetslip, removeFromJackpotSlip, removeFromSlip,} f
 import useWindowDimensions from "../header/Dimensions";
 import {getFromLocalStorage} from "../utils/local-storage";
 import DecodeCode from "./decode";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 const clean_rep = (str) => {
     str = str.replace(/[^A-Za-z0-9\-]/g, "");
@@ -130,6 +130,8 @@ const BetSlip = React.memo(
             setJackpotSlipkey();
         }, [setJackpotSlipkey]);
 
+        const navigate=useNavigate();
+
         const handledRemoveSlip = (match) => {
             let betslip =
                 jackpot !== true
@@ -145,6 +147,10 @@ const BetSlip = React.memo(
 
             dispatch({type: "SET", key: betslipKey, payload: betslip});
             dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
+
+            if(Object.keys(betslip).length === 0){
+                navigate("/")
+            }
         };
 
         const updateGiftState = () => {

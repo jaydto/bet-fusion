@@ -3,7 +3,7 @@ import {Context} from "../../context/store";
 import {getKironSlip, removeFromKironSlip,} from "../utils/betslip";
 import {getFromLocalStorage} from "../utils/local-storage";
 import KironslipSubmitForm from "./kironslip-submit-form";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 const clean_rep = (str) => {
     str = str.replace(/[^A-Za-z0-9\-]/g, "");
@@ -74,6 +74,7 @@ const KironSlip = React.memo(
             setKironSlipkey();
         }, [setKironSlipkey]);
 
+        const navigate= useNavigate()
         const handledRemoveSlip = (match) => {
             let betslip = removeFromKironSlip(match?.parent_match_id)
 
@@ -87,6 +88,9 @@ const KironSlip = React.memo(
 
             dispatch({type: "SET", key: betslipKey, payload: betslip});
             dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
+            if(Object.keys(betslip).length === 0){
+                navigate(-1)
+            }
         };
 
 

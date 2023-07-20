@@ -12,7 +12,7 @@ import logo from '../../assets/img/Logo.webp';
 import {Navbar, Offcanvas} from "react-bootstrap";
 import SidebarMobile from "../sidebar/awesome/SidebarMobile";
 import MobileNav1 from "../mobile-navigation/MobileNav1";
-
+import { app,analytics } from '../../firebaseConfig';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTimes} from "@fortawesome/free-solid-svg-icons";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
@@ -22,6 +22,7 @@ import {UserInfo} from "./UserInfo";
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
 const ProfileMenu = React.lazy(() => import('./profile-menu'));
 const HeaderNav = React.lazy(() => import('./header-nav'));
+
 
 const Header = React.memo(
     (props) => {
@@ -47,7 +48,8 @@ const Header = React.memo(
                 try {
                     const permission = await Notification.requestPermission();
                     if (permission === "granted") {
-                        const currentToken = await getToken();
+                        const messaging = getMessaging(app);
+                        const currentToken = await getToken(messaging, {});
                         if (currentToken) {
                             console.log("FCM Token:", currentToken);
                         } else {
@@ -66,9 +68,8 @@ const Header = React.memo(
             return () => abort.abort();
         }, []);
 
-
         useEffect(() => {
-            const messaging = getMessaging();
+            const messaging = getMessaging(app);
 
             const handleFCMMessage = (payload) => {
                 console.log("Received FCM message:", payload);

@@ -15,12 +15,13 @@ import './assets/css/Themes.css'
 import Store from './context/store';
 import ReactGA from 'react-ga4';
 import Loading from "./components/loading/LoadingSuspense";
-import ReactPixel from 'react-facebook-pixel';
-import { initializeApp } from "firebase/app";
-import "firebase/messaging"; // Import the FCM module
-import firebaseConfig from "./firebaseConfig";
+import { createRoot } from 'react-dom/client';
+import { app,analytics } from './firebaseConfig'
 
-initializeApp(firebaseConfig);
+import ReactPixel from 'react-facebook-pixel';
+import "firebase/messaging"; // Import the FCM module
+
+
 
 const TRACKING_ID = "G-5NLSN9BLN4";
 ReactGA.initialize(TRACKING_ID);
@@ -160,7 +161,7 @@ const Logout = () => {
 }
 
 const container = document.getElementById("app");
-render((
+createRoot(container).render(
     <Store>
         <BrowserRouter>
             <Suspense fallback={<Loading/>}>
@@ -232,7 +233,7 @@ render((
             </Suspense>
         </BrowserRouter>
     </Store>
-), container);
+);
 
 
 // If you want to start measuring performance in your app, pass a function

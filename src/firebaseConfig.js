@@ -1,10 +1,18 @@
+import { initializeApp } from 'firebase/app';
+import { getAnalytics } from 'firebase/analytics';
+
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_STORAGE_BUCKET",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID",
+    apiKey: "AIzaSyBMscvFCSUG7AvfvmmYilyrJBoxk8VoezU",
+    authDomain: "betnare.firebaseapp.com",
+    projectId: "betnare",
+    storageBucket: "betnare.appspot.com",
+    messagingSenderId: "43489980882",
+    appId: "1:43489980882:web:eb216065b8ece00fe3580b",
+    measurementId: "G-SKE7NYZYYB"
 };
 
-export default firebaseConfig;
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
+export { app, analytics };
+

@@ -13,6 +13,8 @@ import Skeleton1 from "./skeleton/skeleton";
 import {Spinner} from "react-bootstrap";
 import {ToastContainer} from "react-toastify";
 import {marketChoiceOptions} from "./matches";
+import SkeletonLoader from "./pages/skeletonLoadersWeb/SkeletonLoader";
+import SkeletonLoaderMobile from "./pages/skeletonLoadersWeb/SkeletonLoaderMobile";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -341,7 +343,8 @@ const Index = React.memo(
                                 </div>
                                 {loading ?
                                     <div className={`text-center mt-2 text-white d-block`}>
-                                        <Skeleton1/>
+                                        {width < 991 ? <SkeletonLoaderMobile/> :
+                                            <SkeletonLoader/>}
                                     </div> : tab == 'countries' ? <Countries/> :
                                         <div>
                                             <MatchList

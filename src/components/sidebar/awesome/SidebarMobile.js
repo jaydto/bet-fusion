@@ -21,10 +21,10 @@ import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 
 const SidebarMobile = React.memo(
     (props) => {
-    // const [competitions, setCompetitions] = useState(getFromLocalStorage('categories'));
-    const [user, setUser] = useState(getFromLocalStorage("user"));
-    const gaEventTracker = useAnalyticsEventTracker('Navigation');
-    return (<ProSidebar
+        // const [competitions, setCompetitions] = useState(getFromLocalStorage('categories'));
+        const [user, setUser] = useState(getFromLocalStorage("user"));
+        const gaEventTracker = useAnalyticsEventTracker('Navigation');
+        return (<ProSidebar
             className={'background-primary'}
             style={{width: "100%"}}
             image={false}>
@@ -139,6 +139,6 @@ const SidebarMobile = React.memo(
                 <Footer/>
             </SidebarFooter>
         </ProSidebar>)
-})
+    })
 
 export default React.memo(SidebarMobile);

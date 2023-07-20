@@ -322,7 +322,7 @@ const Index = React.memo(
                     <ToastContainer/>
                 </div>
                 <div className="flex-container">
-                    <div className="item1"><SideBar loadCompetitions/></div>
+                    <div className="item1" style={state?.sidebarToggled?{width:'12%'}:{}}><SideBar loadCompetitions/></div>
                     <div className="item2">
                         <div className="gz home match-overflow ">
                             <div className="homepage mobile-full-height" ref={homePageRef}

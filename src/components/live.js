@@ -143,8 +143,8 @@ const  Live= React.memo(
             <div className="item4"><Header scrollPosition={scrollPosition}/>
             <ToastContainer/></div>
             <div className="flex-container">
-                <div className="item1">
-                    <div className={"mobile-remove"}>
+                <div className="item1 live">
+                    <div className={"mobile-live-remove"}>
                         <LiveSideBar/>
                     </div>
                 </div>

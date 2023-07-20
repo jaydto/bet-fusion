@@ -8,7 +8,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowLeft, faCaretDown} from "@fortawesome/free-solid-svg-icons";
 import BetDetails from "./BetDetails";
 import {getFromLocalStorage, setLocalStorage} from "../../../utils/local-storage";
-import {Switch} from "@material-ui/core";
+import {Switch} from "@mui/material";
 import GameHistoryList from "../../../modals/FilterBetHistory";
 import moment from "moment";
 import Skeleton1 from "../../../skeleton/skeleton";

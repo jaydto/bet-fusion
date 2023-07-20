@@ -13,7 +13,7 @@ import {
     removeFromSlip
 } from '../utils/betslip';
 import './matches.css'
-import CurrencyFormat from 'react-currency-format';
+import {NumericFormat as CurrencyFormat}from 'react-number-format';
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
@@ -24,7 +24,7 @@ import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
 
 import myGif from '../../assets/img/fire.webp'
 
-import {Input} from "@material-ui/core";
+import {Input} from "@mui/material";
 import useWindowDimensions from "../header/Dimensions";
 import {Link, useNavigate} from "react-router-dom";
 

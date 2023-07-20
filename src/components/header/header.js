@@ -19,6 +19,7 @@ import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import ListGroup from "react-bootstrap/ListGroup";
 import LoginSection from "./LoginSection";
 import {UserInfo} from "./UserInfo";
+import { getMessaging, getToken, onMessage } from "firebase/messaging";
 const ProfileMenu = React.lazy(() => import('./profile-menu'));
 const HeaderNav = React.lazy(() => import('./header-nav'));
 
@@ -38,6 +39,46 @@ const Header = React.memo(
         const [isOpen, setIsOpen] = useState(false);
         const [showLoadingModal, setShowLoadingModal] = useState(false);
         const pathname = window.location.pathname;
+
+        useEffect(() => {
+            const abort = new AbortController();
+
+            const requestNotificationPermission = async () => {
+                try {
+                    const permission = await Notification.requestPermission();
+                    if (permission === "granted") {
+                        const currentToken = await getToken();
+                        if (currentToken) {
+                            console.log("FCM Token:", currentToken);
+                        } else {
+                            console.log("No FCM token available.");
+                        }
+                    } else {
+                        console.log("Notification permission denied.");
+                    }
+                } catch (error) {
+                    console.error("Error requesting notification permission:", error);
+                }
+            };
+
+            requestNotificationPermission();
+
+            return () => abort.abort();
+        }, []);
+
+
+        useEffect(() => {
+            const messaging = getMessaging();
+
+            const handleFCMMessage = (payload) => {
+                console.log("Received FCM message:", payload);
+            };
+
+            const unsubscribe = onMessage(messaging, handleFCMMessage);
+
+            return () => unsubscribe();
+        }, []);
+
 
         useEffect(() => {
             const removeElement = () => {

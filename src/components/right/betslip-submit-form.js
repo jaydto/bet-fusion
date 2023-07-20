@@ -9,7 +9,7 @@ import {
     removeFromJackpotSlip,
     removeFromSlip,
 } from "../utils/betslip";
-import publicIp from "public-ip";
+import { publicIpv4 as publicIp } from "public-ip";
 import makeRequest from "../utils/fetch-request";
 import "react-toastify/dist/ReactToastify.css";
 import {Form as FormikForm, Formik, useFormikContext} from "formik";
@@ -18,7 +18,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 import {faBolt, faFireAlt, faGift, faInfoCircle, faShare, faTrash,} from "@fortawesome/free-solid-svg-icons";
 import {Spinner} from "react-bootstrap";
-import {Switch} from "@material-ui/core";
+import {Switch} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import useWindowDimensions from "../header/Dimensions";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
@@ -147,15 +147,17 @@ const BetslipSubmitForm = React.memo(
         }, [jackpot]);
 
         const ipAddress = useCallback(async () => {
-            let ip = await publicIp
-                .v4({
+            try {
+                let ip = await publicIp({
                     fallbackUrls: ["https://ifconfig.co/ip"],
-                })
-                .then((result) => {
-                    return result;
                 });
 
-            setIpv4(ip);
+                setIpv4(ip);
+            } catch (error) {
+                console.error("Error getting IPv4 address:", error);
+            }
+
+
         }, [ipv4]);
 
         const Alert = (props) => {
@@ -406,8 +408,6 @@ const BetslipSubmitForm = React.memo(
         useEffect(() => {
             updateWinnings();
         }, [updateWinnings]);
-        console.log("accept_odds_cahnge",getFromLocalStorage("accept_odds_change"))
-
         const initialValues = {
             bet_amount: jackpot ? jackpotData?.bet_amount : bonusBet ? 100 : state?.userStake||getFromLocalStorage('userStake')||100,
             accept_all_odds_change: getFromLocalStorage("accept_odds_change")||true,

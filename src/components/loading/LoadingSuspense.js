@@ -1,27 +1,17 @@
 import logo from "../../assets/img/Logo.webp";
-import {ProgressBar} from "loading-animations-react";
 import React from "react";
-
+import "./Loading.css"; // Create a CSS file for Loading styles
 
 function Loading(props) {
     return (
-            <div className={"d-flex align-items-center flex-column justify-content-center"} style={{height:"70vh"}}>
-                <div className={"d-flex justify-content-start flex-column"}>
-                    <img src={logo} alt="Betnare" title="Betnare" effects="blur" style={{height:"53px"}}/>
-                    <span className={"text-light "}>
-                    <ProgressBar
-                        borderColor=""
-                        sliderColor="#242e3a"
-                        sliderBackground="rgb(0,0,0)"
-                    />
-                </span>
-
-
-                </div>
-
-
+        <div className="loading-container">
+            <div className="logo-container">
+                <img src={logo} alt="Betnare" title="Betnare" />
             </div>
-
+            <div className="progress-bar-container">
+                <div className="progress-bar"></div>
+            </div>
+        </div>
     );
 }
 

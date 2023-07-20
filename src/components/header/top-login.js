@@ -9,10 +9,10 @@ import fire from "../../assets/img/fire.webp"
 import {setLocalStorage} from '../utils/local-storage';
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {Link} from "react-router-dom";
-import {Switch} from "@material-ui/core";
 import {faEye, faEyeSlash} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {LazyLoadImage} from "react-lazy-load-image-component";
+import {Switch} from "@mui/material";
 
 export const  Notify =
     (message) => {

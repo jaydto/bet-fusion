@@ -18,7 +18,7 @@ import {SubmitButton} from "../right/betslip-submit-form";
 import {Form, Formik} from "formik";
 import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
 import makeRequest from "../utils/fetch-request";
-import publicIp from "public-ip";
+import {publicIpv4 as publicIp} from "public-ip";
 import Notify from "../utils/Notify";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 
@@ -52,16 +52,19 @@ const MobileMenu = React.memo(
             return str.replace(/-+/g, "-");
         };
         const ipAddress = useCallback(async () => {
-            let ip = await publicIp
-                .v4({
+            try {
+                let ip = await publicIp({
                     fallbackUrls: ["https://ifconfig.co/ip"],
-                })
-                .then((result) => {
-                    return result;
                 });
 
-            setIpv4(ip);
+                setIpv4(ip);
+            } catch (error) {
+                console.error("Error getting IPv4 address:", error);
+            }
+
+
         }, [ipv4]);
+
 
         useEffect(() => {
             ipAddress();

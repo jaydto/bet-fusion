@@ -9,7 +9,7 @@ function Loading(props) {
                 <img src={logo} alt="Betnare" title="Betnare" />
             </div>
             <div className="progress-bar-container">
-                <div className="progress-bar"></div>
+                <div className="progress-bar suspense"></div>
             </div>
         </div>
     );

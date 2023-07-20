@@ -20,10 +20,10 @@
     margin-top: 20px;
     overflow: hidden;
 }
-.progress-bar {
+.progress-bar.suspense {
     height: 100%;
     width: 100%;
-    background-color: #ffffff;
+    background-color: var(--dark);
     animation: loadingAnimation 2s linear infinite;
 }
 

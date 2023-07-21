@@ -10,6 +10,7 @@ import Testimonials from "./carousel/Testimonials";
 import LiveSideBar from "./sidebar/live-sidebar";
 import {Spinner} from "react-bootstrap";
 import {ToastContainer} from "react-toastify";
+import SkeletonLoaderMobile from "./pages/skeletonLoadersWeb/SkeletonLoaderMobile";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -156,9 +157,7 @@ const  Live= React.memo(
                             <div className={`${width<=991?"d-block":"d-none"}`}>
                                 <LiveSideBar/>
                             </div>
-                            {loading ? <div className={`text-center mt-2 text-white d-block`}>
-                                <Spinner animation={'grow'} size={'lg'}/>
-                            </div>: matches && <MatchList live={1} matches={matches} pdown={producerDown}/>}
+                            {loading ? <SkeletonLoaderMobile/> : matches && <MatchList live={1} matches={matches} pdown={producerDown}/>}
                         </div>
                     </div>
                 </div>

@@ -9,8 +9,6 @@ import useInterval from "../hooks/set-interval.hook";
 import makeRequest from "./utils/fetch-request";
 import Testimonials from "./carousel/Testimonials";
 import Countries from "./countries/Countries";
-import Skeleton1 from "./skeleton/skeleton";
-import {Spinner} from "react-bootstrap";
 import {ToastContainer} from "react-toastify";
 import {marketChoiceOptions} from "./matches";
 import SkeletonLoader from "./pages/skeletonLoadersWeb/SkeletonLoader";
@@ -25,7 +23,7 @@ const Right = React.lazy(() => import('./right'));
 const SideBar = React.lazy(() => import('./sidebar/awesome/Sidebar'))
 const Index = React.memo(
     () => {
-        const [scrollEndedActive, setScrollEndedActive] = useState(false)
+        const [, setScrollEndedActive] = useState(false)
         const location = useLocation();
         const [tab, setTab] = useState('highlights');
         const [sportID, setSportID] = useState(79);
@@ -357,7 +355,8 @@ const Index = React.memo(
                                             />
                                             <div
                                                 className={`text-center mt-2 text-white ${fetching ? 'd-block' : 'd-none'}`}>
-                                                <Spinner animation={'grow'} size={'lg'}/>
+                                                {width < 1260 ? <SkeletonLoaderMobile/> :
+                                                    <SkeletonLoader/>}
                                             </div>
                                         </div>
 

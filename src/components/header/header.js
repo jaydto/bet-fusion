@@ -12,7 +12,7 @@ import logo from '../../assets/img/Logo.webp';
 import {Navbar, Offcanvas} from "react-bootstrap";
 import SidebarMobile from "../sidebar/awesome/SidebarMobile";
 import MobileNav1 from "../mobile-navigation/MobileNav1";
-import { app,analytics } from '../../firebaseConfig';
+import { app,analytics,messaging } from '../../firebaseConfig';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTimes} from "@fortawesome/free-solid-svg-icons";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
@@ -47,19 +47,16 @@ const Header = React.memo(
             const requestNotificationPermission = async () => {
                 try {
                     const permission = await Notification.requestPermission();
-                    if (permission === "granted") {
-                        const messaging = getMessaging(app);
-                        const currentToken = await getToken(messaging, {});
-                        if (currentToken) {
-                            console.log("FCM Token:", currentToken);
-                        } else {
-                            console.log("No FCM token available.");
-                        }
+                    if (permission === 'granted') {
+                        onMessage(messaging, (payload) => {
+                            console.log('Notification received:', payload);
+                            // Handle the notification payload here.
+                        });
                     } else {
-                        console.log("Notification permission denied.");
+                        console.log('Notification permission denied.');
                     }
                 } catch (error) {
-                    console.error("Error requesting notification permission:", error);
+                    console.error('Error requesting notification permission:', error);
                 }
             };
 
@@ -69,8 +66,6 @@ const Header = React.memo(
         }, []);
 
         useEffect(() => {
-            const messaging = getMessaging(app);
-
             const handleFCMMessage = (payload) => {
                 console.log("Received FCM message:", payload);
             };

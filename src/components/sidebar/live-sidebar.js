@@ -34,7 +34,7 @@ const LiveSideBar = React.memo(
         }, [fetchData]);
 
         return (
-            <div className={`${width<=991?"":"d-md-block w-25 h-100"}`} >
+            <div className={`${width<=991?"":"d-md-block  h-100"}`} >
                 <div style={{
                     display: 'flex',
                     overflow: 'scroll initial',

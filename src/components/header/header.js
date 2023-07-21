@@ -12,14 +12,14 @@ import logo from '../../assets/img/Logo.webp';
 import {Navbar, Offcanvas} from "react-bootstrap";
 import SidebarMobile from "../sidebar/awesome/SidebarMobile";
 import MobileNav1 from "../mobile-navigation/MobileNav1";
-import { app,analytics,messaging } from '../../firebaseConfig';
+import { messaging } from '../../firebaseConfig';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTimes} from "@fortawesome/free-solid-svg-icons";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import ListGroup from "react-bootstrap/ListGroup";
 import LoginSection from "./LoginSection";
 import {UserInfo} from "./UserInfo";
-import { getMessaging, getToken, onMessage } from "firebase/messaging";
+import {onMessage } from "firebase/messaging";
 const ProfileMenu = React.lazy(() => import('./profile-menu'));
 const HeaderNav = React.lazy(() => import('./header-nav'));
 
@@ -35,10 +35,10 @@ const Header = React.memo(
         const searchInputRef = useRef(null)
         const [matches, setMatches] = useState([])
         const {current} = containerRef;
-        const [competitions, setCompetitions] = useState({});
-        const [settings, setSettings] = useState({});
+        const [, setCompetitions] = useState({});
+        const [, setSettings] = useState({});
         const [isOpen, setIsOpen] = useState(false);
-        const [showLoadingModal, setShowLoadingModal] = useState(false);
+        const [, setShowLoadingModal] = useState(false);
         const pathname = window.location.pathname;
 
         useEffect(() => {

@@ -341,7 +341,7 @@ const Index = React.memo(
                                 </div>
                                 {loading ?
                                     <div className={`text-center mt-2 text-white d-block`}>
-                                        {width < 991 ? <SkeletonLoaderMobile/> :
+                                        {width < 1259 ? <SkeletonLoaderMobile/> :
                                             <SkeletonLoader/>}
                                     </div> : tab == 'countries' ? <Countries/> :
                                         <div>
@@ -355,7 +355,7 @@ const Index = React.memo(
                                             />
                                             <div
                                                 className={`text-center mt-2 text-white ${fetching ? 'd-block' : 'd-none'}`}>
-                                                {width < 1260 ? <SkeletonLoaderMobile/> :
+                                                {width < 1259 ? <SkeletonLoaderMobile/> :
                                                     <SkeletonLoader/>}
                                             </div>
                                         </div>

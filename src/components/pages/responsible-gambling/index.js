@@ -12,6 +12,9 @@ import {StoreContext} from "../../../context/store"
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import SelfExclusion from "../Accounts/component/SelfExclusion";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
+import {useNavigate} from "react-router-dom";
 
 const Header = React.lazy(() => import('../../header/header'));
 const SideBar = React.lazy(() => import('../../sidebar/awesome/Sidebar'));
@@ -22,6 +25,7 @@ const ResponsibleGambling = React.memo(
     () => {
         const {height, width} = useWindowDimensions();
         const {state, dispatch} = useContext(StoreContext);
+        const navigate=useNavigate()
         const [activeTab, setActiveTab] = useState('responsible_gambling');
         const handleTabSelect = (eventKey) => {
             setActiveTab(eventKey);
@@ -35,11 +39,16 @@ const ResponsibleGambling = React.memo(
                         <div className="gz home">
                             <div className="homepage">
                                 <div className='col-md-12 primary-bg p-4 text-center'>
+                                    <div className={'d-flex align-items-center'}>
+                                            <span className={'spacing-backbutton remove-backbutton-on-desktop'} onClick={()=>navigate('/')}>
+                                             <FontAwesomeIcon icon={faAngleLeft} style={{fontSize:"24px",color:'var(--light)', fontWeight:'700', opacity:'0.7'}}/>
+                                            </span>
                                     <h4 className="inline-block">
                                         RESPONSIBLE GAMBLING POLICY
                                     </h4>
+                                    </div>
                                 </div>
-                                <div className="col-md-12 mt-2 text-white p-2 ">
+                                <div className="col-md-12 mt-2 text-white p-2 line-mobile-spacing" >
                                     Responsible Gambling is a key corporate strategy endorsed by BetNare and championed
                                     by
                                     all staff. BetNare recognizes the importance of putting in place practices and

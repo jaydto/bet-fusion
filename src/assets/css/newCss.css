@@ -2042,6 +2042,16 @@ img.nare-league {
 }
 
 @media (max-width: 991px) {
+    .spacing-backbutton{
+        padding-right:23px;
+    }
+    .line-mobile-spacing{
+        line-height:1.5;
+    }
+    .update_button {
+        /* height: 41px; */
+        padding: 10px 124px!important;
+    }
     .desktop-only-show{
         display:none!important;
     }
@@ -2201,10 +2211,15 @@ img.nare-league {
     }
 
     .filters-modal .modal-content {
-        background-color: var(--betnare-primary);
+        background-color: var(--betnare-body-bg);
         color: #fff;
         position: fixed;
         bottom: 0;
+    }
+    .filters-modal.exclude .modal-content {
+        background-color: var(--betnare-body-bg);
+        color: #fff;
+        position: fixed;
     }
 
     .more_markets_category_sport{

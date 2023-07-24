@@ -11249,7 +11249,7 @@ button.close {
 }
 
 .modal-backdrop.fade {
-    opacity: 0;
+    opacity: 0.8;
     filter: alpha(opacity=0);
 }
 
@@ -15945,7 +15945,7 @@ img.zoom-img {
 
 .top-matches:nth-child(2n) {
     /*background: #253743;*/
-    background: #16202C;
+    /*background: #16202C;*/
 }
 
 .top-matches:nth-child(2n + 1) {

@@ -10,7 +10,8 @@ import nareLeagueReducer from "./nareLeague"
 const rootReducer = combineReducers({
     // Add your individual reducers here
     data: dataReducer,
-    auth: authReducer
+    auth: authReducer,
+    nareLeague: nareLeagueReducer
 });
 
 export default (state = initialState, action) => rootReducer(state, action);

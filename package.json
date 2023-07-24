@@ -62,13 +62,11 @@
     "use-isomorphic-layout-effect": "^1.1.2",
     "util": "^0.12.5",
     "web-vitals": "^3.4.0",
-    "webpack": "^5.88.2",
-    "webpack-dev-server": "^4.15.1",
     "yup": "^1.2.0"
   },
   "scripts": {
-    "start": "node scripts/start.js",
-    "build": "node scripts/build.js && sudo cp -rf build/* ../betnare-live/ && sudo chown -R nginx ../betnare-live",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build && sudo cp -rf build/* ../betnare-live/ && sudo chown -R nginx ../betnare-live",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
     "preinstall": "npx npm-force-resolutions"
@@ -94,7 +92,10 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "copy-webpack-plugin": "^11.0.0",
-    "react-app-rewired": "^2.2.1"
+    "css-minimizer-webpack-plugin": "^5.0.1",
+    "customize-cra": "^1.0.0",
+    "react-app-rewired": "^2.2.1",
+    "terser-webpack-plugin": "^5.3.9"
   },
   "action": {}
 }

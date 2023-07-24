@@ -19,7 +19,7 @@ const Virtuals = React.memo(
 
         const [categories, setCategories] = useState([])
 
-        const [state] = useContext(StoreContext )
+        const {state} = useContext(StoreContext )
 
         const [games, setGames] = useState([])
         const [isOnline, setIsOnline] = useState(true)

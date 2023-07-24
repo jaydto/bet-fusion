@@ -1,9 +1,9 @@
 import React, {useContext, useEffect, useRef, useState} from 'react';
-import {Context} from '../../context/store';
+import {StoreContext } from "../../context/store";
 import makeRequest from "./fetch-request";
 
 export const GenericDeleteModal = (props) => {
-  const [ state, dispatch ] =  useContext(Context);
+  const [ state, dispatch ] =  useContext(StoreContext );
   const [ model, setModel ] =  useState();
   const [ id, setId ] =  useState();
   const [ errorMessage, setErrorMessage ] =  useState(null);

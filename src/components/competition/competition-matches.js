@@ -1,7 +1,7 @@
 import React, {useCallback, useContext, useEffect, useState} from "react";
 import {useParams} from 'react-router-dom';
 import makeRequest from "../utils/fetch-request";
-import {Context} from '../../context/store';
+import {StoreContext } from "../../context/store";
 import useInterval from "../../hooks/set-interval.hook";
 import {getBetslip} from '../utils/betslip';
 import {Spinner} from "react-bootstrap";
@@ -22,7 +22,7 @@ const CompetitionMatches = React.memo(
     (props) => {
     const [page, setPage] = useState(1);
     const [matches, setMatches] = useState(null);
-    const [state, dispatch] = useContext(Context);
+    const { state, dispatch } = useContext(StoreContext);
     const {height, width} = useWindowDimensions();
     const [loading,setLoading]=useState(false);
     let {sportid, categoryid, competitionid} = useParams();

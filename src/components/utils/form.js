@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import * as Yup from 'yup';
 import makeRequest from "./fetch-request";
-import {Context} from '../../context/store';
+import {StoreContext } from "../../context/store";
 import Select, {ReactSelectProps} from 'react-select'
 import moment from 'moment'
 import {ErrorMessage, Field, FieldProps, Form as FormikForm, Formik, useField, useFormikContext} from 'formik';
@@ -339,7 +339,7 @@ export const getFormElement = (elementName, elementSchema) => {
 //
 //    const {formData, validationSchema} = initForm(formSchema);
 //    const { response, makeRequest } =  useAxios();
-//    const [ state, dispatch ] =  useContext(Context);
+//    const [ state, dispatch ] =  useContext(StoreContext );
 //
 //    const onSubmit = (values, { setSubmitting,  resetForm, setStatus, setErrors}) => {
 //        makeRequest({url:endpoint, method:"post", data:values}).then((response) => {

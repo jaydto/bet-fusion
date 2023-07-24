@@ -1,5 +1,5 @@
 import React, {useCallback, useContext, useEffect, useRef, useState,} from "react";
-import {Context} from "../../context/store";
+import {StoreContext } from "../../context/store";
 import {clearKironSlip, formatNumber, getKironSlip, removeFromKironSlip,} from "../utils/betslip";
 import { publicIpv4 as publicIp } from "public-ip";
 import makeRequest from "../utils/fetch-request";
@@ -36,7 +36,7 @@ const KironslipSubmitForm = React.memo(
         const [betSharePayload, setBetSharePayload] = useState({});
         const [ipv4, setIpv4] = useState(null);
         const [message, setMessage] = useState(null);
-        const [state, dispatch] = useContext(Context);
+        const { state, dispatch } = useContext(StoreContext);
         const [loadingShare, setLoadingShare] = useState(false);
 
         const [stake, setStake] = useState(100);

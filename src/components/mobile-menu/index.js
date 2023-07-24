@@ -13,7 +13,7 @@ import {faReceipt, faTimes,} from "@fortawesome/free-solid-svg-icons";
 import {Link, useNavigate} from "react-router-dom";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {getBetslip, getJackpotBetslip, getKironSlip} from "../utils/betslip";
-import {Context} from "../../context/store";
+import {StoreContext } from "../../context/store";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 
 const MobileMenu = React.memo((props) => {
@@ -24,7 +24,7 @@ const MobileMenu = React.memo((props) => {
     const [betSlipMobile, setBetSlipMobile] = useState(false);
     const gaEventTracker = useAnalyticsEventTracker("Navigation");
     const pathname = window.location.pathname;
-    const [state, dispatch] = useContext(Context);
+    const { state, dispatch } = useContext(StoreContext);
     const navigate = useNavigate();
 
     const fetchData = useCallback(() => {

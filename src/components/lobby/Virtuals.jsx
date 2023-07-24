@@ -4,14 +4,14 @@ import React, {useContext, useEffect, useState} from "react";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import {Button} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
-import {Context} from "../../context/store";
+import {StoreContext } from "../../context/store";
 import LobbyLoader from "./LobbyLoader";
 
 const Virtuals = React.memo(
     () => {
         const [categories, setCategories] = useState([])
         const [isOnline, setIsOnline] = useState(true)
-        const [state, dispatch] = useContext(Context);
+        const { state, dispatch } = useContext(StoreContext);
         const [games, setGames] = useState([])
         const [user] = useState(getFromLocalStorage("user"));
         const fetchGames = async (category = 'rgs-vsb') => {

@@ -9,13 +9,13 @@ import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
 import Right from "../../right";
 import SidebarProfile from "../../sidebar/sidebarProfile";
 import makeRequest from "../../utils/fetch-request";
-import {Context} from "../../../context/store";
+import {StoreContext } from "../../../context/store"
 import {LazyLoadImage} from "react-lazy-load-image-component";
 
 const NewProfile = React.memo(
     () => {
         const [user, setUser] = useState(getFromLocalStorage("user"));
-        const [state, dispatch] = useContext(Context)
+        const { state, dispatch } = useContext(StoreContext);
 
         const clearHistory = () => {
             setLocalStorage("user", null)

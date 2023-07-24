@@ -1,6 +1,6 @@
 import React, {useCallback, useContext, useEffect, useState} from "react"
 import makeRequest from "../../../utils/fetch-request";
-import {Context} from "../../../../context/store";
+import {StoreContext } from "../../../../context/store"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
 	faCaretDown,
@@ -20,7 +20,7 @@ import {addToSlip} from "../../../utils/betslip";
 import {useNavigate} from "react-router-dom";
 const BetDetails = (props) => {
 	const {bet_id}=props
-	const [state, dispatch] = useContext(Context);
+	const { state, dispatch } = useContext(StoreContext);
 	const [isLoading, setIsLoading] = useState(false);
 	const payload={
 		"bet_id":bet_id

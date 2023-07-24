@@ -8,14 +8,14 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import './test.css'
 import './card.css'
 import './affiliate.css'
-import {Context} from "../../context/store";
+import {StoreContext } from "../../context/store";
 import {faArrowUp, faHome, faPowerOff} from "@fortawesome/free-solid-svg-icons";
 
 const Footer = React.lazy(() => import('../footer/footer'));
 const Affiliate = React.memo(
     (props) => {
     const {profile}=props
-    const [state, dispatch] = useContext(Context)
+    const { state, dispatch } = useContext(StoreContext);
     const expand = "md"
     return (
         <>

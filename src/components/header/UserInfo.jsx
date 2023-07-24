@@ -5,14 +5,14 @@ import {formatNumber} from "../utils/betslip";
 import {Navbar} from "react-bootstrap";
 import React, {useContext, useEffect, useState} from "react";
 import {getFromLocalStorage} from "../utils/local-storage";
-import {Context} from "../../context/store";
+import {StoreContext } from "../../context/store";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 
 export const UserInfo = React.memo(
     () => {
     const user = getFromLocalStorage('user')
     const pathname = window.location.pathname;
-    const [state, dispatch] = useContext(Context)
+    const { state, dispatch } = useContext(StoreContext);
     const gaEventTracker = useAnalyticsEventTracker('Navigation');
     const [isOpen, setIsOpen] = useState(false);
 

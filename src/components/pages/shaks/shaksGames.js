@@ -5,14 +5,14 @@ import makeRequest from "../../utils/fetch-request";
 import 'react-loading-skeleton/dist/skeleton.css'
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import {Button} from "react-bootstrap";
-import {Context} from "../../../context/store";
+import {StoreContext } from "../../../context/store"
 import LoginModal from "../../modals/LoginModal";
 
 const ShaksGames = React.memo(
     (props) => {
     const {game_id, live} = useParams()
     const [showLoadingModal, setShowLoadingModal] = useState(false);
-    const [state, dispatch] = useContext(Context);
+    const { state, dispatch } = useContext(StoreContext);
     const [games, setGames] = useState([])
     const [location, setLocation]=useState(null)
     const locationH = useLocation();

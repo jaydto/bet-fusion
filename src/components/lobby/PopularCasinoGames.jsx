@@ -4,14 +4,14 @@ import {setLocalStorage} from "../utils/local-storage";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import {Button, ButtonGroup} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
-import {Context} from "../../context/store";
+import {StoreContext } from "../../context/store";
 import LobbyLoader from "./LobbyLoader";
 
 const PopularCasinoGames = React.memo(
 	() => {
 	// casino games fetchgames
 	const [casinoCategories, setCasinoCategories] = useState([])
-		const [state,dispatch]=useContext(Context)
+		const { state, dispatch } = useContext(StoreContext);
 
 	const [casinoGames, setCasinoGames] = useState([])
 

@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from "react";
-import {Context} from "../../context/store";
+import {StoreContext } from "../../context/store";
 import makeRequest from "../utils/fetch-request";
 import {Link} from "react-router-dom";
 import {LazyLoadImage} from "react-lazy-load-image-component";
@@ -11,7 +11,7 @@ const SmartSoftGames = React.memo(
 
 	// smartsoft gmes endpoint
 	const [smartGames, setSmartGames] = useState([])
-	const [state,dispatch]=useContext(Context)
+	const { state, dispatch } = useContext(StoreContext);
 	const [smartGamesLoaded, setSmartGamesLoaded] = useState(false)
 
 	const getSmartGames = async () => {

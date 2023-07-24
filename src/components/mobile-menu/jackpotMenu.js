@@ -13,7 +13,7 @@ import {
     getJackpotBetslip,
     removeFromJackpotSlip,
 } from "../utils/betslip";
-import {Context} from "../../context/store";
+import {StoreContext } from "../../context/store";
 import {SubmitButton} from "../right/betslip-submit-form";
 import {Form, Formik} from "formik";
 import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
@@ -25,7 +25,7 @@ import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 const MobileMenu = React.memo(
     (props) => {
         const {jackpotData, matches} = props
-        const [state,dispatch]=useContext(Context)
+        const { state, dispatch } = useContext(StoreContext);
         const [ipv4, setIpv4] = useState(null);
         const [selections, setSelections] = useState([])
         const randomize = async () => {

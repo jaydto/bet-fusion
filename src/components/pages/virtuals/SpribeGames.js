@@ -6,7 +6,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import {Button} from "react-bootstrap";
 import useWindowDimensions from "../../header/Dimensions";
-import {Context} from "../../../context/store";
+import {StoreContext } from "../../../context/store"
 import SearchComponent from "./searchField";
 import SideBar from "../../sidebar/awesome/Sidebar";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -17,7 +17,7 @@ const SpribeGame = React.memo(
 
     const [games, setGames] = useState([])
     const [, setIsOnline]=useState(true)
-    const [state,]=useContext(Context)
+    const [state,]=useContext(StoreContext )
 
     const [gamesLoaded, setGamesLoaded] = useState(false)
     const { width} = useWindowDimensions();

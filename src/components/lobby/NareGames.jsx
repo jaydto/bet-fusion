@@ -1,13 +1,13 @@
 import makeRequest from "../utils/fetch-request";
 import React, {useContext, useEffect, useState} from "react";
-import {Context} from "../../context/store";
+import {StoreContext } from "../../context/store";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import {Button} from "react-bootstrap";
 import {getFromLocalStorage} from "../utils/local-storage";
 import {Link, useNavigate} from "react-router-dom";
 import LobbyLoader from "./LobbyLoader";
 export const NareGames = () => {
-	const [state,dispatch]=useContext(Context)
+	const { state, dispatch } = useContext(StoreContext);
 	const [games, setGames] = useState([])
 	const [isOnline, setIsOnline]=useState(true)
 	const [user] = useState(getFromLocalStorage("user"));

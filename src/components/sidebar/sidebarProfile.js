@@ -14,13 +14,13 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
-import {Context} from "../../context/store";
+import {StoreContext } from "../../context/store";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 
 const SidebarProfile = React.memo(
     (props) => {
         const {profile_side} = props
-        const [state, dispatch] = useContext(Context);
+        const { state, dispatch } = useContext(StoreContext);
 
         useEffect(() => {
             const abort = new AbortController()

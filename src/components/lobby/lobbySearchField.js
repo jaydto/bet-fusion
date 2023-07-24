@@ -1,13 +1,13 @@
 import React, {useContext, useState} from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSearch} from "@fortawesome/free-solid-svg-icons";
-import {Context} from "../../context/store";
+import {StoreContext } from "../../context/store";
 
 const LobbySearchField = React.memo(
     (props) => {
     const {data}=props
     const [searchTerm, setSearchTerm] = useState('');
-    const [state,dispatch]=useContext(Context)
+    const { state, dispatch } = useContext(StoreContext);
 
     const handleSearch = e => {
         const searchTerm = e.target.value;

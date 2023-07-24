@@ -3,7 +3,7 @@ import './test.css'
 import "../assets/css/bottomSheet.css"
 import {Link, useLocation} from "react-router-dom";
 import useWindowDimensions from "./header/Dimensions";
-import {Context} from "../context/store";
+import {StoreContext } from "../context/store"
 import {getBetslip} from "./utils/betslip";
 import useInterval from "../hooks/set-interval.hook";
 import makeRequest from "./utils/fetch-request";
@@ -36,7 +36,7 @@ const Index = React.memo(
         const [threeWay, setThreeWay] = useState(false);
         const [page,] = useState(1);
         const [userSlipsValidation, setUserSlipsValidation] = useState();
-        const [state, dispatch] = useContext(Context);
+        const { state, dispatch } = useContext(StoreContext);
         const [fetching, setFetching] = useState(false)
         const homePageRef = useRef()
         const bottomSheetRef = useRef()

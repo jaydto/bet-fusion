@@ -13,8 +13,7 @@ import {LazyLoadImage} from "react-lazy-load-image-component";
 import Skeleton1 from "./skeleton/skeleton";
 import {ToastContainer} from "react-toastify";
 import moment from "moment/moment";
-import SkeletonLoaderMobile from "./pages/skeletonLoadersWeb/SkeletonLoaderMobile";
-import SkeletonLoader from "./pages/skeletonLoadersWeb/SkeletonLoader";
+import SkeletonJackpot from "./pages/skeletonLoadersWeb/SkeletonJackpot";
 
 const Header = React.lazy(() => import('./header/header'));
 const Right = React.lazy(() => import('./right'));
@@ -256,7 +255,7 @@ const Jackpot = React.memo(
                                         ) : (
                                             loading ? (
                                                 <>
-                                                    <SkeletonLoaderMobile/>
+                                                    <SkeletonJackpot/>
                                                 </>
                                             ) : (
                                                 <div

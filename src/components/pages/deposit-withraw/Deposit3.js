@@ -17,7 +17,7 @@ import {faBackspace,} from "@fortawesome/free-solid-svg-icons";
 import SidebarMobile from "../../sidebar/awesome/SidebarMobile";
 import makeRequest from "../../utils/fetch-request";
 import {Form, Formik} from "formik";
-import {Context} from "../../../context/store";
+import {StoreContext } from "../../../context/store"
 import {getBetslip} from "../../utils/betslip";
 import mpesa from "../../../assets/img/mpesa.png";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
@@ -39,7 +39,7 @@ const Deposit3 = React.memo(
         const expand = "md"
 
 
-        const [state, dispatch] = useContext(Context);
+        const { state, dispatch } = useContext(StoreContext);
         // const [success, setSuccess] = useState(false);
 
         const [user, setUser] = useState(getFromLocalStorage("user"));
@@ -253,7 +253,7 @@ const PaymentInstructions = (props) => {
 }
 
 const DepositFormFields = (props) => {
-    const [state, dispatch] = useContext(Context)
+    const { state, dispatch } = useContext(StoreContext);
     const {values, errors, onFieldChanged} = props;
     state?.depositValidateError?.amount && setTimeout(() => {
         dispatch({
@@ -338,7 +338,7 @@ const DepositFormFields = (props) => {
 
 const MyDepositForm = (props) => {
     const {errors, values, setFieldValue} = props;
-    const [state, dispatch] = useContext(Context)
+    const { state, dispatch } = useContext(StoreContext);
 
     const onFieldChanged = (ev) => {
         let field = ev.target.name;
@@ -369,7 +369,7 @@ const MyDepositForm = (props) => {
     );
 }
 const DepositForm = (props) => {
-    const [state, dispatch] = useContext(Context);
+    const { state, dispatch } = useContext(StoreContext);
     const user = getFromLocalStorage('user')
     initialValues = {
         amount: state?.depositValue ? state?.depositValue : '',

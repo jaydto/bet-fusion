@@ -4,7 +4,7 @@ import KironTabs from "./KironTabs/KironTabs";
 import KironCompetitions from "./competitions/KironCompetitions";
 import MatchList from "./matches";
 import makeRequest from "../../utils/fetch-request";
-import {Context} from "../../../context/store";
+import {StoreContext } from "../../../context/store"
 import {useLocation} from "react-router-dom";
 import KironPeriods from "./periods";
 import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
@@ -22,7 +22,7 @@ import KironPlayouts from "./playout";
 
 
 const TestKiron = React.memo(() => {
-    const [state, dispatch] = useContext(Context)
+    const { state, dispatch } = useContext(StoreContext);
     const [tab, setTab] = useState('kiron')
     const [fetching, setFetching] = useState(false)
     const [playout, setPlayout] = useState(null)

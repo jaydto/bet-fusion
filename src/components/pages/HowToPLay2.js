@@ -10,7 +10,7 @@ import {
 import "react-accessible-accordion/dist/fancy-example.css";
 import '../test.css'
 import {getBetslip} from '../utils/betslip';
-import {Context} from '../../context/store';
+import {StoreContext } from "../../context/store";
 
 const Header = React.lazy(() => import("../header/header"));
 const Footer = React.lazy(() => import("../footer/footer"));
@@ -20,7 +20,7 @@ const Right = React.lazy(() => import("../right/index"));
 const  HowToPlay= React.memo(
     (props) => {
 
-    const [state, dispatch] = useContext(Context);
+    const { state, dispatch } = useContext(StoreContext);
 
     useEffect(() => {
         let betslip = getBetslip();

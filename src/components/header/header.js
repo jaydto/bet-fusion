@@ -2,7 +2,7 @@ import React, {useCallback, useContext, useEffect, useRef, useState} from 'react
 import {Link} from "react-router-dom"
 import Row from 'react-bootstrap/Row';
 import {LazyLoadImage} from 'react-lazy-load-image-component';
-import {Context} from '../../context/store';
+import {StoreContext } from "../../context/store";
 import {getFromLocalStorage, setLocalStorage} from '../utils/local-storage';
 import {ToastContainer} from 'react-toastify';
 import makeRequest from '../utils/fetch-request';
@@ -29,7 +29,7 @@ const Header = React.memo(
         const {slip, scrollPosition, jackpot} = props
         const gaEventTracker = useAnalyticsEventTracker('Navigation');
         const [user, setUser] = useState(getFromLocalStorage("user"));
-        const [state, dispatch] = useContext(Context);
+        const { state, dispatch } = useContext(StoreContext);
         // const [searching, setSearching] = useState(false)
         const containerRef = useRef();
         const searchInputRef = useRef(null)

@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {Context} from '../../context/store';
+import {StoreContext } from "../../context/store";
 import {Link} from "react-router-dom";
 
 const Th = (props) => {
@@ -26,7 +26,7 @@ const TableHeader = (props) => {
 
 const TdActions = (props) => {
     const {model, actions, recordId} = props;
-    const [ state, dispatch ] =  useContext(Context);
+    const [ state, dispatch ] =  useContext(StoreContext );
 
     const onEditFunction = (model, id) => {
        dispatch({type:"SET", key:"selectedrecord", payload:id});

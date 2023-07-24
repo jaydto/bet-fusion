@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useRef, useState} from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Container from 'react-bootstrap/Container';
-import {Context} from '../../context/store';
+import {StoreContext } from "../../context/store";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faPrint, faQuestionCircle, faSearch, faTimes,} from '@fortawesome/free-solid-svg-icons'
 import makeRequest from "../utils/fetch-request";
@@ -14,7 +14,7 @@ const HeaderNav = React.memo(
     (props) => {
     const gaEventTracker = useAnalyticsEventTracker('Navigation');
     const [test, setTest] = useState(false)
-    const [state,] = useContext(Context);
+    const { state, dispatch } = useContext(StoreContext);;
     const pathname = window.location.pathname;
     const searchTerm=window.location.search
     const [searching, setSearching] = useState(false)

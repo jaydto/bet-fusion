@@ -6,7 +6,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import {Button} from "react-bootstrap";
 import SearchComponent from "./searchField";
-import {Context} from "../../../context/store";
+import {StoreContext } from "../../../context/store"
 import SideBar from "../../sidebar/awesome/Sidebar";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
@@ -15,7 +15,7 @@ const SmartSoft = React.memo(
     () => {
 
     const [games, setGames] = useState([])
-    const [state,]=useContext(Context)
+    const [state,]=useContext(StoreContext )
     const [gamesLoaded, setGamesLoaded] = useState(false)
 
     const getSmartGames = async () => {

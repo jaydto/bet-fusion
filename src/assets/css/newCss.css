@@ -1274,7 +1274,7 @@ img.nare-league {
 
     .slip-max-height {
         display: grid;
-        align-items: start;
+        align-items: flex-start;
         height: 90vh !important;
     }
 
@@ -2570,7 +2570,7 @@ img.nare-league {
 
     .slip-max-height {
         display: grid;
-        align-items: start;
+        align-items: flex-start;
         height: var(--slip-height) !important;
     }
 

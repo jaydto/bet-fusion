@@ -5,12 +5,12 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import {getFromLocalStorage, setLocalStorage} from "../../../utils/local-storage";
 import makeRequest from "../../../utils/fetch-request";
 import "./competition.css"
-import {Context} from "../../../../context/store";
+import {StoreContext } from "../../../../context/store"
 
 const KironCompetitions = React.memo(
     (props) => {
     let [kiron, setKiron] = useState(getFromLocalStorage('kiron-competitions'));
-    const [state,]=useContext(Context)
+    const [state,]=useContext(StoreContext )
     const pathLocation=window.location.pathname
     const [pathname, setPathname] = useState(() => {
         const searchParams = new URLSearchParams(window.location.search);

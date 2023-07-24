@@ -3,7 +3,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import {Form, Formik} from 'formik';
 import makeRequest from "../../utils/fetch-request";
 
-import {Context} from '../../../context/store';
+import {StoreContext } from "../../../context/store"
 import {getBetslip} from '../../utils/betslip'
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 
@@ -14,7 +14,7 @@ const Header = React.lazy(() => import('../../header/header'));
 const Points = React.memo(
     (props) => {
 
-        const [state, dispatch] = useContext(Context);
+        const { state, dispatch } = useContext(StoreContext);
         const [success, setSuccess] = useState(false);
         const [message, setMessage] = useState(null);
         const {mobile} = props

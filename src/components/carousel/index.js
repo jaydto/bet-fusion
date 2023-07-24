@@ -3,11 +3,11 @@ import Carousel from 'react-bootstrap/Carousel';
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import makeRequest from "../utils/fetch-request";
-import {Context} from "../../context/store";
+import {StoreContext } from "../../context/store";
 
 const CarouselLoader = React.memo(
     (props) => {
-    const [state,dispatch]=useContext(Context);
+    const { state, dispatch } = useContext(StoreContext);
     const getCarouselImages = async () => {
         let endpoint = "/v1/carousel-images"
         const [carousel_results] = await Promise.all([

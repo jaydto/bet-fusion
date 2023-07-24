@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import mpesa from '../../../assets/img/mpesa-3.png';
 import makeRequest from "../../utils/fetch-request";
 import {Form, Formik} from 'formik';
-import {Context} from '../../../context/store';
+import {StoreContext } from "../../../context/store"
 import {Navbar, Offcanvas} from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import {Link, useNavigate} from "react-router-dom";
@@ -27,7 +27,7 @@ const backgroundStyle = {
 const Withdrawal = React.memo(
     (props) => {
         //todo get the phone number from logged in user ....
-        const [state, dispatch] = useContext(Context);
+        const { state, dispatch } = useContext(StoreContext);
         const navigate = useNavigate();
         const [success, setSuccess] = useState(false);
         const [message, setMessage] = useState(null);

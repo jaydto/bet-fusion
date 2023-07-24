@@ -928,7 +928,7 @@ background: var(--betnare-side-bg)!important;
     background: #101B25;
     opacity: 1;
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     color: #fff !important;
     font-size: 11px;
     font-family: inherit;

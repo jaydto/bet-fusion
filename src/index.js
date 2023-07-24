@@ -1,9 +1,11 @@
 import React, {Suspense, useCallback, useEffect} from "react";
-import {render} from "react-dom";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 import {BrowserRouter, Navigate, Route, Routes, useNavigate,} from 'react-router-dom'
 import {setLocalStorage} from "./components/utils/local-storage";
 import reportWebVitals from './reportWebVitals';
+// Correct import inside src/
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/css/application.css';
 import './assets/css/tolkits.css';
@@ -12,16 +14,13 @@ import './index.css';
 import './assets/css/newCss.css'
 import './tailwind.css';
 import './assets/css/Themes.css'
-import Store from './context/store';
+import { StoreProvider } from "./context/store";
 import ReactGA from 'react-ga4';
 import Loading from "./components/loading/LoadingSuspense";
 import { createRoot } from 'react-dom/client';
-import { app,analytics } from './firebaseConfig'
 
 import ReactPixel from 'react-facebook-pixel';
 import "firebase/messaging"; // Import the FCM module
-
-
 
 const TRACKING_ID = "G-5NLSN9BLN4";
 ReactGA.initialize(TRACKING_ID);
@@ -163,7 +162,8 @@ const Logout = () => {
 
 const container = document.getElementById("app");
 createRoot(container).render(
-    <Store>
+    <StoreProvider>
+        <Provider store={store}>
         <BrowserRouter>
             <Suspense fallback={<Loading/>}>
                 <Routes>
@@ -234,7 +234,8 @@ createRoot(container).render(
                 </Routes>
             </Suspense>
         </BrowserRouter>
-    </Store>
+        </Provider>
+    </StoreProvider>
 );
 
 

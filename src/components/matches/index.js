@@ -1,5 +1,5 @@
 import React, {useCallback, useContext, useEffect, useLayoutEffect, useRef, useState} from 'react';
-import {Context} from '../../context/store';
+import {StoreContext } from "../../context/store";
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
@@ -169,7 +169,7 @@ const MatchHeaderRow = React.memo(
         const [sportName, setSportName] = useState(sport != null ? sport?.[0]?.sport_name || 'Soccer' : "");
         const [showX, setShowX] = useState(true);
         const [market, setMarket] = useState('1x2');
-        const [state,] = useContext(Context)
+        const { state, dispatch } = useContext(StoreContext);
         const [user,] = useState(getFromLocalStorage("user"));
         const [extraMarketDisplays, setExtraMarketDisplays] = useState([])
         const [threeWay, setThreeWay] = useState(false)
@@ -347,7 +347,7 @@ const MoreMarketsHeaderRow = React.memo(
             tags,
         } = props;
         const [switches, setSwitches] = useState("scoreboard")
-        const [state, dispatch] = useContext(Context);
+        const { state, dispatch } = useContext(StoreContext);
         const switchLmt = (value) => {
             setSwitches(value)
         }
@@ -626,7 +626,7 @@ const OddButton = React.memo(
 
         const [oddValue, setOddValue] = useState(null);
 
-        const [state, dispatch] = useContext(Context);
+        const { state, dispatch } = useContext(StoreContext);
         const ref = useRef();
         let reference = match.match_id + "_selected";
         const [betslip_key, setBetslipKey] = useState("betslip");
@@ -856,7 +856,7 @@ const MarketRow = React.memo
     (props) => {
         const {markets, match, width, live, pdown, allMarkets} = props;
         const [isExpanded, setIsExpanded] = useState(false);
-        const [state,] = useContext(Context)
+        const { state, dispatch } = useContext(StoreContext);
 
         const MktOddsButton = (props) => {
             const {match, mktodds, live, pdown} = props;
@@ -1491,7 +1491,7 @@ const MatchRow = React.memo(
 export const MarketList = React.memo(
     (props) => {
         const {live, allMarkets, pdown, groups} = props;
-        const [state, dispatch] = useContext(Context);
+        const { state, dispatch } = useContext(StoreContext);
         const [filters, setFilters] = useState({});
         const [perPage, setPerPage] = useState(1000);
         const [currentPage, setCurrentPage] = useState(1);

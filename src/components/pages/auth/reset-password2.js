@@ -13,7 +13,7 @@ import {faBackspace, faEye, faEyeSlash} from "@fortawesome/free-solid-svg-icons"
 import SidebarMobile from "../../sidebar/awesome/SidebarMobile";
 import makeRequest from "../../utils/fetch-request";
 import {Form, Formik} from "formik";
-import {Context} from "../../../context/store";
+import {StoreContext } from "../../../context/store"
 import betNiMoto from "../../../assets/img/BetniMoto.webp";
 
 const backgroundStyle = {
@@ -26,7 +26,7 @@ const backgroundStyle = {
 const ResetPassword2 = React.memo(
     props => {
 
-   const [state,dispatch]=useContext(Context)
+   const { state, dispatch } = useContext(StoreContext);
     const expand = "md"
 
     const FormTitle = () => {
@@ -162,7 +162,7 @@ const ResetPassword2 = React.memo(
 })
 const MyOtpForm = React.memo(
     (props) => {
-    const [state,dispatch]=useContext(Context)
+    const { state, dispatch } = useContext(StoreContext);
     const {errors, values, submitForm, setFieldValue} = props;
 
     const onFieldChanged = (ev) => {
@@ -212,7 +212,7 @@ const MyOtpForm = React.memo(
 
 const MyPasswordResetForm = React.memo(
     (props) => {
-    const [state,dispatch]=useContext(Context)
+    const { state, dispatch } = useContext(StoreContext);
     const {errors, values, submitForm, setFieldValue} = props;
     const [showPassword, setShowPassword] = useState(false);
     const toggleShowPassword = () => {
@@ -346,7 +346,7 @@ const MyPasswordResetForm = React.memo(
 const PasswordResetForm = React.memo(
     (props) => {
     const [resetID, setResetID] = useState('')
-    const [state,dispatch]=useContext(Context)
+    const { state, dispatch } = useContext(StoreContext);
     const navigate = useNavigate();
 
     const initialResetFormValues = {
@@ -417,7 +417,7 @@ const PasswordResetForm = React.memo(
 
 const OptForm = React.memo(
     (props) => {
-    const [state,dispatch]=useContext(Context)
+    const { state, dispatch } = useContext(StoreContext);
     const initialValues = {
         mobile: '',
     }

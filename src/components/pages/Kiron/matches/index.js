@@ -1,5 +1,5 @@
 import React, {useCallback, useContext, useEffect, useRef, useState,} from "react";
-import {Context} from "../../../../context/store";
+import {StoreContext } from "../../../../context/store"
 import "./matches.css";
 import {addToKironSlip, removeFromKironSlip,} from "../../../utils/betslip";
 
@@ -213,7 +213,7 @@ export const MatchRow = React.memo(
     (props) => {
   const {  match, three_way, competition_id} = props;
 
-  const [state,dispatch]=useContext(Context)
+  const { state, dispatch } = useContext(StoreContext);
   const [market, setMarket] = useState("1x2");
 
   const [threeWay, setThreeWay] = useState(false);
@@ -355,7 +355,7 @@ const   OddButton = React.memo(
   const [parentMatchId, setParentMatchId]=useState('')
   const [picked, setPicked] = useState("");
 
-  const [state, dispatch] = useContext(Context);
+  const { state, dispatch } = useContext(StoreContext);
   const ref = useRef();
   let reference = parentId+"_selectedK";
 
@@ -489,7 +489,7 @@ const   OddButton = React.memo(
 
 const MatchList = React.memo(
     (props) => {
-  const [state,]=useContext(Context)
+  const [state,]=useContext(StoreContext )
   const {
     pdown,
     three_way,

@@ -1,5 +1,5 @@
 import React, {useCallback, useContext, useEffect, useState} from "react";
-import {Context} from "../../context/store";
+import {StoreContext } from "../../context/store";
 import {getKironSlip, removeFromKironSlip,} from "../utils/betslip";
 import {getFromLocalStorage} from "../utils/local-storage";
 import KironslipSubmitForm from "./kironslip-submit-form";
@@ -15,7 +15,7 @@ const KironSlip = React.memo(
         const {kiron} = props;
         const [betslipKey, setBetslipKey] = useState("kironbetslip");
         const [betslipsData, setBetslipsData] = useState(null);
-        const [state, dispatch] = useContext(Context);
+        const { state, dispatch } = useContext(StoreContext);
         const totalGames = betslipsData ? Object.keys(betslipsData||{}).length : 0;
         const [message, setMessage] = useState(null);
         const [qualifiesBonus, setQualifiesBonus] = useState(false);

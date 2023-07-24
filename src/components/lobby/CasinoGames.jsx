@@ -4,33 +4,34 @@ import {setLocalStorage} from "../utils/local-storage";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import {Button, ButtonGroup} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
-import {Context} from "../../context/store";
+import {StoreContext } from "../../context/store";
 import LobbyLoader from "./LobbyLoader";
 
 const CasinoGames = React.memo(
-    () => {
+    (props) => {
+        const {game_display_data}=props
         // casino games fetchgames
-        const [casinoCategories, setCasinoCategories] = useState([])
-        const [state, dispatch] = useContext(Context);
+        // const [casinoCategories, setCasinoCategories] = useState([])
+        const { state, dispatch } = useContext(StoreContext);
 
-        const [casinoGames, setCasinoGames] = useState([])
-
-        const fetchCasinoGames = async (category = 'vs') => {
-            dispatch({type: "SET", key: 'casino_lobby_success', payload: true});
-            let endpoint = "/v1/casino-games?game-type-id=" + category
-            let method = "GET"
-            await makeRequest({url: endpoint, method: method}).then(([status, result]) => {
-                if (status === 200) {
-                    dispatch({type: "SET", key: 'casino_lobby_success', payload: false});
-                    setCasinoGames(result.data)
-                }
-            });
-        }
-        useEffect(() => {
-            const abort=new AbortController()
-            fetchCasinoGames()
-            return abort.abort();
-        }, [])
+        // const [casinoGames, setCasinoGames] = useState([])
+        //
+        // const fetchCasinoGames = async (category = 'vs') => {
+        //     dispatch({type: "SET", key: 'casino_lobby_success', payload: true});
+        //     let endpoint = "/v1/casino-games?game-type-id=" + category
+        //     let method = "GET"
+        //     await makeRequest({url: endpoint, method: method}).then(([status, result]) => {
+        //         if (status === 200) {
+        //             dispatch({type: "SET", key: 'casino_lobby_success', payload: false});
+        //             setCasinoGames(result.data)
+        //         }
+        //     });
+        // }
+        // useEffect(() => {
+        //     const abort=new AbortController()
+        //     fetchCasinoGames()
+        //     return abort.abort();
+        // }, [])
 
         const navigate = useNavigate()
         const launchGame = (game_id, live = true) => {
@@ -38,9 +39,7 @@ const CasinoGames = React.memo(
         }
 
         return (
-            state?.casino_lobby_success===true?<LobbyLoader/>
-                :casinoGames?.map((game, index) => (
-                    game?.game_id == "rgs-vsv" ? "" :
+            game_display_data&&game_display_data?.map((game, index) => (
                         <div key={index} className={'col-md-3 col-sm-4 col-lg-2 col- virtual-width'}>
                             <div
                                 className={'mt-1 mb-1 d-flex flex-column shadow-lg virtual-game-container'}>
@@ -50,7 +49,7 @@ const CasinoGames = React.memo(
                                     <p className={'text-center bold text-elipsis text-uppercase'}>
                                         {game?.game_name}
                                     </p>
-                                    <LazyLoadImage src={`${game.game_icon}`} className={'virtual-game-image'}/>
+                                    <LazyLoadImage src={`${game?.image_url}`} className={'virtual-game-image'}/>
                                 </div>
                                 <div className="overlay shadow-sm ">
                                     <ButtonGroup aria-label="Basic example">

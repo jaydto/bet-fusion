@@ -17,7 +17,7 @@ import makeRequest from "../utils/fetch-request";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import xgame from "../../assets/img/mobile/xgames.png"
 
-import {Context} from '../../context/store';
+import {StoreContext } from "../../context/store";
 import LoginModal from '../modals/LoginModal';
 import VirtualSvg from "../../assets/img/mobile/virtual.png";
 import {LazyLoadImage} from "react-lazy-load-image-component";
@@ -26,7 +26,7 @@ const MobileNav1 = React.memo(
     () => {
         const [showLoadingModal, setShowLoadingModal] = useState(false);
 
-        const [state, dispatch] = useContext(Context)
+        const { state, dispatch } = useContext(StoreContext);
 
         const scrollContainerRef = useRef(null);
 

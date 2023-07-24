@@ -1,5 +1,5 @@
 import React, {useCallback, useContext, useEffect, useState} from "react";
-import {Context} from '../../../../context/store';
+import {StoreContext } from "../../../../context/store"
 import {BASE_URL} from '../../../utils/fetch-request';
 
 import '../../../../assets/css/accordion.react.css';
@@ -30,7 +30,7 @@ const Styles = {
 
 const KironBetHistory = React.memo(
     (props) => {
-    const [state, dispatch] = useContext(Context);
+    const { state, dispatch } = useContext(StoreContext);
     const [isLoading, setIsLoading] = useState(false);
     let user = getFromLocalStorage('user');
     const [betLoading, setBetLoading]=useState(false)

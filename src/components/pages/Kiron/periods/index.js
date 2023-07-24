@@ -2,7 +2,7 @@ import React, {useCallback, useContext, useEffect, useRef, useState} from 'react
 import {getFromLocalStorage, setLocalStorage} from "../../../utils/local-storage";
 import makeRequest from "../../../utils/fetch-request";
 import './period.css'
-import {Context} from "../../../../context/store";
+import {StoreContext } from "../../../../context/store"
 import moment from "moment"
 export const getTime = (time) => {
     const start = new Date(time);
@@ -15,7 +15,7 @@ let timerVar;
 const KironPeriods = React.memo(
     (props) => {
     const {setPlayout, setIsCountdownTimerActive, isCountdownTimerActive} = props
-    const [state, dispatch] = useContext(Context);
+    const { state, dispatch } = useContext(StoreContext);
     const [timeLeft, setTimeLeft] = useState(0);
     const [timeAfter, setTimeAfter] = useState(null);
     const firstMatchEndTime = getFromLocalStorage('kiron_end_time')

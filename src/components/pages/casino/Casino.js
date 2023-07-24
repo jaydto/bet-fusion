@@ -5,7 +5,7 @@ import {LazyLoadImage} from 'react-lazy-load-image-component';
 import {setLocalStorage} from "../../utils/local-storage";
 import {Button, ButtonGroup} from "react-bootstrap";
 import SearchComponent from "./searchField";
-import {Context} from "../../../context/store";
+import {StoreContext } from "../../../context/store"
 import SideBar from "../../sidebar/awesome/Sidebar";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
@@ -18,7 +18,7 @@ const Casino = React.memo(
 
         const [games, setGames] = useState([])
 
-        const [state, dispatch] = useContext(Context)
+        const { state, dispatch } = useContext(StoreContext);
 
         const fetchGames = async (category = 'vs') => {
             let endpoint = "/v1/casino-games?game-type-id=" + category

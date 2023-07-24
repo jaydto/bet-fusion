@@ -208,7 +208,7 @@ const NewProfile = React.memo(
                         </div>
                     </div>
                 </div>
-                <div className={'ipad-show'}>
+                <div className={'ipad-show'} style={{visibility:'hidden'}}>
                     <Right/>
                 </div>
 

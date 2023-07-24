@@ -242,7 +242,51 @@ input.text-white {
 .accordion-item.bet-history-kiron {
     background: var(--betnare-primary) !important;
 }
+.ReactModal__Overlay{
+    z-index: 5000!important;
+    top: 8rem!important;
+    background-color: rgb(10 14 25 / 85%) !important;
+    /*opacity:0.5;*/
+}
+/* Customize DateRangePicker text color and background color */
+.react-daterange-picker {
+    color: #fff;
+    background-color: #141d28;
+}
 
+/* Customize DateRangePicker calendar header text color */
+.DayPicker-Caption {
+    color: #fff;
+}
+
+/* Customize DateRangePicker calendar selected date range background color */
+.DayPicker-Week .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
+    background-color: #2b3c4e;
+}
+
+/* Customize DateRangePicker calendar selected start date background color */
+.DayPicker-Week .DayPicker-Day--selected.DayPicker-Day--start {
+    background-color: #1b2a3a;
+}
+
+/* Customize DateRangePicker calendar selected end date background color */
+.DayPicker-Week .DayPicker-Day--selected.DayPicker-Day--end {
+    background-color: #1b2a3a;
+}
+.update_self_exclusion {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.update_button {
+    /* height: 41px; */
+    padding: 4px 124px;
+    margin: 5px;
+    border-radius: 6px;
+    font-size: 19px;
+    font-weight: 600;
+    background-color: var(--betnare-button-login);
+}
 .accordion-button.bet-history-button {
     padding: 10px;
     padding-left: 7px;
@@ -1347,6 +1391,17 @@ img.nare-league {
         position: relative;
         z-index: 1009;
     }
+    .pro-sidebar.live-pro-sidebar {
+        color: #adadad;
+        height: 100%;
+        min-width: 100%!important;
+        position: relative;
+        text-align: left;
+        transition: width,left,right,.3s;
+        width: var(--width-side)!important;
+        z-index: 1009;
+    }
+
 
     .pro-sidebar .pro-menu .pro-menu-item {
         font-size: var(--font-size-side) !important;
@@ -1740,6 +1795,9 @@ img.nare-league {
 }
 
 @media (min-width: 992px) {
+    .desktop-only-show{
+        display:flex;
+    }
     .top-spacing-casino{
         margin-top:9rem!important;
     }
@@ -1984,6 +2042,17 @@ img.nare-league {
 }
 
 @media (max-width: 991px) {
+    .desktop-only-show{
+        display:none!important;
+    }
+    .rdrDateRangePickerWrapper.date-range-picker-exclusion{
+        display:flex !important;
+        flex-direction:column !important;
+        width:100% !important;
+    }
+    .rdrDateRangePickerWrapper.date-range-picker-exclusion .rdrDefinedRangesWrapper{
+        width:100% !important;
+    }
     .tag {
         font-size: 10px;
         line-height: 1.4;

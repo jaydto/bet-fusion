@@ -37,7 +37,9 @@ export const NareGames = () => {
 	useEffect(() => {
 		const abort=new AbortController()
 		getFastGames()
-		return abort.abort();
+		return () => {
+                abort.abort(); // Cleanup function to abort the controller when the component unmounts.
+            };;
 	}, [])
 
 	const getFastGamesImages = (nare_games, folder = 'fast-games') => {

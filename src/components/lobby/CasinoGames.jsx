@@ -30,7 +30,8 @@ const CasinoGames = React.memo(
         // useEffect(() => {
         //     const abort=new AbortController()
         //     fetchCasinoGames()
-        //     return abort.abort();
+        //     return () => {
+
         // }, [])
 
         const navigate = useNavigate()

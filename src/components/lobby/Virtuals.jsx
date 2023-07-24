@@ -41,7 +41,9 @@ const Virtuals = React.memo(
         useEffect(() => {
             const abort=new AbortController()
             fetchGames()
-            return abort.abort();
+            return () => {
+                abort.abort(); // Cleanup function to abort the controller when the component unmounts.
+            };;
         }, [])
 
         return (

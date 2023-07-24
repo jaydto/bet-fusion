@@ -40,7 +40,9 @@ const BetDetails = (props) => {
 	useEffect(() => {
 		const abort =new AbortController()
 			fetchBetDetails();
-		return abort.abort()
+		return () => {
+                abort.abort(); // Cleanup function to abort the controller when the component unmounts.
+            };
 	}, []);
 
 

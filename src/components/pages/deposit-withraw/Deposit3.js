@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react'
+import React, {useContext, useEffect, useRef, useState} from 'react'
 import {Col, Row} from "antd";
 import authImg from '../../../assets/img/Logo.webp'
 import logo from '../../../assets/img/Logo.webp'
@@ -17,32 +17,60 @@ import {faBackspace,} from "@fortawesome/free-solid-svg-icons";
 import SidebarMobile from "../../sidebar/awesome/SidebarMobile";
 import makeRequest from "../../utils/fetch-request";
 import {Form, Formik} from "formik";
+import Tab from "react-bootstrap/Tab";
+import Tabs from "react-bootstrap/Tabs";
+
+
 import {StoreContext } from "../../../context/store"
 import {getBetslip} from "../../utils/betslip";
 import mpesa from "../../../assets/img/mpesa.png";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
-
+import './deposit.css'
 const backgroundStyle = {
     backgroundImage: `url(${backgroundURL})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover'
 }
-let initialValues = {
-    amount: '',
-    msisdn: ''
-}
+// let initialValues = {
+//     amount: '',
+//     msisdn: ''
+// }
 
 const Deposit3 = React.memo(
     props => {
         // const [message, setMessage] = useState(null);
         const navigate = useNavigate();
         const expand = "md"
-
-
+        const [activeTab, setActiveTab] = useState('online'); // Set the initially active tab here
+        const [depositPromos, setDepositPromos] = useState(); // Set the initially active tab here
         const { state, dispatch } = useContext(StoreContext);
-        // const [success, setSuccess] = useState(false);
-
         const [user, setUser] = useState(getFromLocalStorage("user"));
+        const handleTabSelect = (eventKey) => {
+            setActiveTab(eventKey);
+        }
+
+        const fetchDepositOffers=async()=>{
+            let endpoint = "/v1/bet/settings"
+            let method='POST'
+            await makeRequest({url:endpoint,method:method,data:null}).then(([status,response])=>{
+                if(status===200){
+                    setDepositPromos(response?.message?.betnareDeposit)
+                    dispatch({type: "SET", key: "depositPromos", payload: response?.message?.betnareDeposit});
+
+                }
+
+            })
+        }
+
+        useEffect(()=>{
+            const abort=new AbortController();
+            fetchDepositOffers()
+            return () => {
+                abort.abort(); // Cleanup function to abort the controller when the component unmounts.
+            };
+        },[])
+
+
         const updateUserOnHistory = () => {
             if (!user) {
                 return false;
@@ -88,6 +116,9 @@ const Deposit3 = React.memo(
 
         const Alert = (props) => {
             let c = state?.depositSuccess ? 'success' : 'danger';
+            state?.depositMessage&&setTimeout(()=>{
+                dispatch({type: "SET", key: "depositMessage", payload: null})
+            },5500)
             return (<>{state?.depositMessage &&
                 <div role="alert" className={`fade alert alert-${c} show`}>{state?.depositMessage}</div>} </>);
 
@@ -187,35 +218,110 @@ const Deposit3 = React.memo(
                             className="w-100 d-flex flex-column justify-content-center h-100 top-login-background-img-bg-page">
                             <div className={'width-page-centric deposit-page'}>
                                 <FormTitle/>
+                                <Tabs
+                                    variant={'tabs'}
+                                    defaultActiveKey={activeTab}
+                                    id=""
+                                    className="background-primary mb-3 px-3"
+                                    justify
+                                    onSelect={handleTabSelect}>
+                                    <Tab eventKey="online" title="ONLINE DEPOSIT" className={'background-primary'}>
+                                        <div  className={'w-100'}>
+                                            <div className={'d-flex'}>
+                                                {/**/}
+                                                <div className={'size-deposit'}>
+                                                    {!user?setTimeout(navigate("/"),500):""}
+                                                    <div className={"d-flex flex-row justify-content-between"}>
+                                                        <div className=" w-100">
+                                                            <div className="homepage d-flex vh-100 flex-column align-items-center  login-page">
 
-                                <Row justify="center">
+                                                                <Alert/>
+                                                                <div className="modal-body pb-0" data-backdrop="static">
 
-                                    <div className={'d-flex'}>
-                                        {/**/}
-                                        <div>
-                                            {!user ? setTimeout(navigate("/"), 500) : ""}
-                                            <div className={"d-flex flex-row justify-content-between"}>
-                                                <div className=" w-100">
-                                                    <div
-                                                        className="homepage d-flex flex-column align-items-center justify-content-center login-page">
+                                                                    <DepositForm/>
+                                                                </div>
 
-                                                        <Alert/>
-                                                        <div className="modal-body pb-0" data-backdrop="static">
 
-                                                            <DepositForm/>
+                                                            </div>
                                                         </div>
-
-
                                                     </div>
+                                                </div>
+                                                {/* <p>Don't have an account yet? <a href="/auth/register-2">Sign Up</a></p> */}
+                                                <div className="mt-4">
+                                                    {/*<LoginForm {...props}/>*/}
                                                 </div>
                                             </div>
                                         </div>
-                                        {/* <p>Don't have an account yet? <a href="/auth/register-2">Sign Up</a></p> */}
-                                        <div className="mt-4">
-                                            {/*<LoginForm {...props}/>*/}
+                                    </Tab>
+                                    <Tab eventKey="paybill" title="PAYBILL" className={'background-primary'}>
+                                        <div justify="center" className={'w-100'}>
+                                            <div className={'d-flex'}>
+                                                <div className={'size-deposit'}>
+                                                    {!user?setTimeout(navigate("/"),500):""}
+                                                    <div className={"d-flex flex-row justify-content-between"}>
+                                                        <div className=" w-100">
+                                                            <div className="homepage d-flex flex-column align-items-center justify-content-center login-page">
+                                                                <div className="modal-body pb-0" data-backdrop="static">
+                                                                    <div className={'paybill-component justify-content-center d-flex flex-column align-items-center'}>
+                                                                        <h3 className={'header-paybill'}>
+                                                                            paybill Number
+                                                                        </h3>
+                                                                        <LazyLoadImage src={'https://storage.googleapis.com/nareimages/icons/mpesa.png'} className={'paybill-image'} width="50px" alt="mpesa"/>
+                                                                        <strong className={'bold paybill-number'}>
+                                                                            4087777
+                                                                        </strong>
+                                                                    </div>
+                                                                    <div className={'paybill-offers'}>
+                                                                    <span className={'header-offer'}>
+                                                                        💰 Exclusive Offers 💰
+                                                                    </span>
+                                                                        <div className={'paybill-offers-list'}>
+                                                                            <ul className={'paybill-offers-list-items'}>
+                                                                                {depositPromos&&depositPromos?.map((deposit,index)=> {
+                                                                                    return (
+                                                                                        <li>{index+1}. Only pay
+                                                                                            KES {deposit?.deposit_amount} to {deposit?.display_text}</li>
+                                                                                    )
+                                                                                })}
+                                                                            </ul>
+                                                                            <br/>
+                                                                            (Betnare will credit your Account with  The offers above.)
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div className={'paybill-instructions'}>
+                                                                     <span className={'header-paybill-instructions'}>
+                                                                       Step Guide
+                                                                    </span>
+                                                                        <ul className={'paybill-list-instructions'}>
+                                                                            <li>1. Go to Mpesa menu</li>
+                                                                            <li>2. Select Payment services</li>
+                                                                            <li>3. Click on Paybill</li>
+                                                                            <li>4. Enter business number as 4087777</li>
+                                                                            <li>5. Enter the account number as phone number</li>
+                                                                            <li>6. Enter the amount you want to transfer to Betnare account</li>
+                                                                            <li>7. Enter your Mpesa pin and Confirm the request</li>
+                                                                            <li>8. You will shortly receive an SMS from Mpesa to confirm the transaction</li>
+                                                                        </ul>
+                                                                    </div>
+
+
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {/* <p>Don't have an account yet? <a href="/auth/register-2">Sign Up</a></p> */}
+                                                <div className="mt-4">
+                                                    {/*<LoginForm {...props}/>*/}
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </Row>
+                                    </Tab>
+
+                                </Tabs>
+
                             </div>
 
                         </div>
@@ -253,71 +359,73 @@ const PaymentInstructions = (props) => {
 }
 
 const DepositFormFields = (props) => {
-    const { state, dispatch } = useContext(StoreContext);
-    const {values, errors, onFieldChanged} = props;
-    state?.depositValidateError?.amount && setTimeout(() => {
-        dispatch({
-            type: "SET", key: "depositValidateError", payload: {
-                msisdn: '',
-                amount: ''
-            }
-        });
-    }, 5000)
-
-    // const prevDeposit=useRef(Number(values?.amount||0))
-    // const  incrementDepositValue=(value)=>{
-    //
-    //     prevDeposit.current=Number(values?.amount)>0?Number(initialValues?.amount)||Number(values.amount):0
-    //     dispatch({type: "SET", key: "depositValue", payload:prevDeposit.current+value });
-    //     prevDeposit.current=prevDeposit.current!=0?prevDeposit.current+value:values?.amount||0
-    //
-    // }
+    const {values, errors, onFieldChanged,setCurrentDepositValue, currentDepositValue} = props;
+    const {state,dispatch}=useContext(StoreContext)
+    state?.depositValidateError?.amount&&setTimeout(()=>{
+        dispatch({type: "SET", key: "depositValidateError", payload: {
+                msisdn:'',
+                amount:''
+            }});
+    },5000)
 
 
-    // const depositAmount=(Number(values?.amount)>0?state?.depositValues:0||initialValues?.amount)
+    const incrementDepositValue = (value) => {
+        dispatch({type: "SET", key: "depositValue", payload:value });
+        setCurrentDepositValue(value); // Update the currentDepositValue state instead of values?.amount
+        onFieldChanged({ target: { name: "amount", value: value } });
+    };
+
 
     return (
         <>
-
             <div className="form-group row d-flex justify-content-center deposit-widthdraw-input-desktop">
                 <div className={`col-md-12 w-100`}>
-                    <label className={'betnare-text-light'}>Phone Number</label>
-                    <input
-                        onChange={ev => {
-                            onFieldChanged(ev);
-                        }}
-                        className="betnare-text-light deposit-input form-control input-field"
+                    <div className={'d-flex '}>
+                        <label className={'text-light deposit col-5 deposit-label'}>Phone Number</label>
+                        <div className={'text-light col-7 text-end text-msisdn'}>
+                            +{values.msisdn}
+                        </div>
+                    </div>
+                    {!state?.user&&<input
+                        className="text-light deposit-input form-control input-field"
                         id="msisdn"
                         name="msisdn"
                         type="text"
-                        value={values?.msisdn || ""}
+                        value={values.msisdn}
                         placeholder='Enter Phone Number'
-                    />
+                    />}
                     {errors.msisdn && <div className='text-danger'> {errors.msisdn} </div>}
                 </div>
             </div>
+            {state?.user&&<hr/>}
+            <div className="form-group row d-flex justify-content-center mt-3 deposit-widthdraw-input-desktop">
+                <div className="btn-group w-100 gap-3 justify-content-around" role="group" aria-label="Basic example">
+                    <div className={'d-flex flex-wrap col-12 justify-content-between'}>
+                        {state?.depositPromos&&state?.depositPromos?.map((deposit)=>{
+                            return (<div className={'col-3'}>
+                                    <button type="button" onClick={() => incrementDepositValue(deposit?.deposit_amount)}
+                                            className="deposit-buttons-value  m-2 gap-3 ">
+                                        <div className={'deposit-values'}>+&nbsp;{deposit?.deposit_amount}</div>
+                                        <div className={'deposit_text'}>{deposit?.display_text}</div>
+                                    </button>
+                                </div>
 
-            <div className="form-group row d-flex justify-content-center mt-5 deposit-widthdraw-input-desktop">
-                <div className={'mb-3'}>
-                    <label className={'betnare-text-light'}>Amount to Deposit</label>
-                    {/*<div className="btn-group w-100 gap-3" role="group" aria-label="Basic example">*/}
-                    {/*    <button type="button" onClick={()=>incrementDepositValue(100)} className="deposit-buttons-value">+100</button>*/}
-                    {/*    <button type="button" onClick={()=>incrementDepositValue(200)} className="deposit-buttons-value">+200</button>*/}
-                    {/*    <button type="button" onClick={()=>incrementDepositValue(500)} className="deposit-buttons-value">+500</button>*/}
-                    {/*    <button type="button" onClick={()=>incrementDepositValue(1000)} className="deposit-buttons-value">+1000</button>*/}
-                    {/*</div>*/}
+                            )
+                        })}
+                    </div>
+
                 </div>
-                <div className="col-md-12 w-100">
-
+                <div className="col-md-12">
+                    <label className={'text-light deposit'}>Amount to Deposit</label>
                     <input
                         onChange={ev => {
                             onFieldChanged(ev);
                         }}
-                        className="betnare-text-light deposit-input form-control col-md-12 input-field"
+                        className="text-light deposit-input form-control col-md-12 input-field"
                         id="amount"
                         name="amount"
                         type="number"
-                        value={values?.amount || ""}
+                        value={(values.amount == '' ? state?.depositValues||currentDepositValue :currentDepositValue || values.amount)}
                         placeholder='Enter Amount'
                     />
                     {errors.amount && <div className='text-danger'> {errors.amount} </div>}
@@ -326,9 +434,8 @@ const DepositFormFields = (props) => {
             <div className="form-group row d-flex justify-content-left mb-4">
                 <div className=" d-flex align-items-start deposit-withdraw-button-desktop">
                     <button type={"submit"}
-                            className='btn btn-lg w-100 button-radius input-field btn-font cg login-button2 btn bold'
-                            style={{marginTop: "47px"}}>
-                        Deposit
+                            className='btn btn-lg w-100 deposit-button button-radius input-field btn-font cg login-button2 btn bold d-flex justify-content-center align-items-center' style={{marginTop:"30px"}} disabled={values?.amount==''}>
+                        {state?.depositLoading && <div className="custom-loader"></div>} PAY&nbsp;{values?.amount}
                     </button>
                 </div>
             </div>
@@ -337,13 +444,15 @@ const DepositFormFields = (props) => {
 }
 
 const MyDepositForm = (props) => {
-    const {errors, values, setFieldValue} = props;
+    const {errors, values, setFieldValue,setCurrentDepositValue, currentDepositValue} = props;
     const { state, dispatch } = useContext(StoreContext);
 
     const onFieldChanged = (ev) => {
         let field = ev.target.name;
         let value = ev.target.value;
+        setCurrentDepositValue(ev.target.value)
         setFieldValue(field, value);
+
     }
 
     return (
@@ -357,7 +466,12 @@ const MyDepositForm = (props) => {
                         </div>
                     </div>
 
-                    <DepositFormFields onFieldChanged={onFieldChanged} values={values} errors={errors}/>
+                    <DepositFormFields onFieldChanged={onFieldChanged}
+                                       values={values} errors={errors}
+                                       setCurrentDepositValue={setCurrentDepositValue} // Pass setCurrentDepositValue here
+                                       currentDepositValue={currentDepositValue} // Pass currentDepositValue here
+
+                    />
 
                     <div className={``}>
                         <PaymentInstructions/>
@@ -370,14 +484,19 @@ const MyDepositForm = (props) => {
 }
 const DepositForm = (props) => {
     const { state, dispatch } = useContext(StoreContext);
+    const [currentDepositValue, setCurrentDepositValue] = useState(0); // New state for current deposit value
     const user = getFromLocalStorage('user')
-    initialValues = {
-        amount: state?.depositValue ? state?.depositValue : '',
-        msisdn: state?.user?.msisdn || user?.msisdn
+    const depositValues =  state?.depositValue||''; // Initialize depositValues as an empty array if it's not available in the state
+
+    const initialValues = {
+        amount: depositValues||0,
+        msisdn: state?.user?.msisdn||user?.msisdn
     }
     const gaEventTracker = useAnalyticsEventTracker('Deposit')
 
     const handleSubmit = values => {
+
+        dispatch({type: "SET", key: "depositLoading", payload: true});
         let endpoint = '/stk/deposit';
         setTrackingData(values)
         makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
@@ -387,6 +506,7 @@ const DepositForm = (props) => {
             dispatch({type: "SET", key: "depositMessage", payload: response})
             clearTrackingData()
             if (status === 200 || status === 201) {
+                dispatch({type: "SET", key: "depositLoading", payload: false});
                 const data={
                     msisdn:state?.user?.msisdn,
                     amount:values?.amount
@@ -424,7 +544,7 @@ const DepositForm = (props) => {
             validateOnChange={false}
             validateOnBlur={false}
             validate={validate}
-            render={(props) => <MyDepositForm {...props} />}/>
+            render={(props) => <MyDepositForm {...props} setCurrentDepositValue={setCurrentDepositValue} currentDepositValue={currentDepositValue}/>}/>
     );
 }
 

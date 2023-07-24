@@ -31,7 +31,9 @@ const PopularCasinoGames = React.memo(
 	useEffect(() => {
 		const abort=new AbortController()
 		fetchCasinoGames()
-		return abort.abort();
+		return () => {
+                abort.abort(); // Cleanup function to abort the controller when the component unmounts.
+            };;
 	}, [])
 
 	const navigate=useNavigate()

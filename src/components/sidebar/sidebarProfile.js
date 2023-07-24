@@ -23,10 +23,14 @@ const SidebarProfile = React.memo(
         const { state, dispatch } = useContext(StoreContext);
 
         useEffect(() => {
-            const abort = new AbortController()
-            dispatch({type: "SET", key: `profile_all`, payload: `profile_all`});
-            return abort.abort
-        }, [])
+            const abort = new AbortController();
+            dispatch({ type: "SET", key: `profile_all`, payload: `profile_all` });
+
+            return () => {
+                abort.abort(); // Cleanup function to abort the controller when the component unmounts.
+            };
+        }, []);
+
 
         const gaEventTracker = useAnalyticsEventTracker('Navigation');
         return (<ProSidebar
@@ -35,13 +39,19 @@ const SidebarProfile = React.memo(
             image={false}>
             <SidebarHeader className={""}>
                 <div className={'d-flex gap-4 align-items-center justify-content-start'}>
-                    <Link  to="/" className={'bold px-1'}><LazyLoadImage src={'https://storage.googleapis.com/nareimages/logo-white.webp'} style={{width:"120px"}}/> </Link>
+                    <Link  to="/" className={'bold px-1'}><LazyLoadImage src={'https://storage.googleapis.com/nareimages/logo-white.webp'} style={{
+                        width:"200px",
+                        marginTop: "2rem",
+                        marginLeft: "2rem",
+                        marginBottom: "2rem"
+                    }}
+                    /> </Link>
 
                 </div>
                 <Menu>
                     <MenuItem>
                         <Link to={"/terms-and-conditions"} className={"d-flex gap-4 align-items-center px-3"}>
-                            <FontAwesomeIcon icon={faHandPointRight}/>
+                            <FontAwesomeIcon icon={faHandPointRight} style={{fontSize:'24px'}}/>
                             <div className={'text-profile'} >Terms and conditions</div>
                         </Link>
 
@@ -69,7 +79,7 @@ const SidebarProfile = React.memo(
                 <Menu>
                     <MenuItem className={"d-flex justify-content-between"}>
                         <Link  className={"d-flex gap-4 align-items-center px-3"} to={"/my-bets"}>
-                            <FontAwesomeIcon icon={faQuestionCircle}/>
+                            <FontAwesomeIcon icon={faQuestionCircle} style={{fontSize:'24px'}}/>
                             <div className={'text-profile'} >My Bets</div>
                         </Link>
                     </MenuItem>
@@ -79,7 +89,7 @@ const SidebarProfile = React.memo(
                         <Link className={"d-flex gap-4 align-items-center px-3"}
                               to={"/deposit"}
                               onClick={() => gaEventTracker('Visit Deposit Page')}>
-                            <FontAwesomeIcon icon={faMobile}/>
+                            <FontAwesomeIcon icon={faMobile} style={{fontSize:'24px'}}/>
                             <div className={'text-profile'} >Deposit</div>
                         </Link>
                     </MenuItem>
@@ -95,7 +105,7 @@ const SidebarProfile = React.memo(
                 <Menu>
                     <MenuItem>
                         <Link className={"d-flex gap-4 align-items-center px-3"} to={"/redeem-points"}>
-                            <FontAwesomeIcon icon={faAddressBook}/>
+                            <FontAwesomeIcon icon={faAddressBook} style={{fontSize:'24px'}}/>
                             <div className={'text-profile'} >Points</div>
                         </Link>
 
@@ -104,7 +114,7 @@ const SidebarProfile = React.memo(
                 <Menu>
                     <MenuItem>
                         <div className={"d-flex gap-4 align-items-center px-3"}>
-                            <FontAwesomeIcon icon={faMobile}/>
+                            <FontAwesomeIcon icon={faMobile} style={{fontSize:'24px'}}/>
                             <Link to={"/app"} className={'text-profile'} onClick={() => {
                                 gaEventTracker('Visit App Page');
                             }}>App
@@ -114,16 +124,24 @@ const SidebarProfile = React.memo(
                 </Menu>
                 <Menu>
                     <MenuItem className={"d-flex justify-content-between"}>
-                        <Link className={"d-flex gap-4 align-items-center px-3"} to={'/affiliate'}>
-                            <FontAwesomeIcon icon={faHeartbeat}/>
-                            <div className={'text-profile'}>Affiliate</div>
+                        <Link className={"d-flex gap-4 align-items-center px-3"} to={'/responsible-gambling'}>
+                            <FontAwesomeIcon icon={faHeartbeat} style={{fontSize:'24px'}}/>
+                            <div className={'text-profile'}>Self Exclusion</div>
                         </Link>
                     </MenuItem>
                 </Menu>
+                {/*<Menu>*/}
+                {/*    <MenuItem className={"d-flex justify-content-between"}>*/}
+                {/*        <Link className={"d-flex gap-4 align-items-center px-3"} to={'/affiliate'}>*/}
+                {/*            <FontAwesomeIcon icon={faHeartbeat}/>*/}
+                {/*            <div className={'text-profile'}>Affiliate</div>*/}
+                {/*        </Link>*/}
+                {/*    </MenuItem>*/}
+                {/*</Menu>*/}
                 <Menu>
                     <MenuItem>
                         <div className={"d-flex gap-4 align-items-center text-profile px-3"}>
-                            <FontAwesomeIcon icon={faMagic}/>
+                            <FontAwesomeIcon icon={faMagic} style={{fontSize:'24px'}}/>
                             <Link to={"/promotions"} className={'text-profile'}>Promotions</Link>
                         </div>
                     </MenuItem>
@@ -131,7 +149,7 @@ const SidebarProfile = React.memo(
                 <Menu>
                     <MenuItem>
                         <div className={"d-flex gap-4 align-items-center px-3"}>
-                            <FontAwesomeIcon icon={faHandsHelping}/>
+                            <FontAwesomeIcon icon={faHandsHelping} style={{fontSize:'24px'}}/>
                             <Link to={"/how-to-play"} className={'text-profile'}>How to Play</Link>
                         </div>
                     </MenuItem>

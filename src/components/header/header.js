@@ -41,39 +41,6 @@ const Header = React.memo(
         const [, setShowLoadingModal] = useState(false);
         const pathname = window.location.pathname;
 
-        useEffect(() => {
-            const abort = new AbortController();
-
-            const requestNotificationPermission = async () => {
-                try {
-                    const permission = await Notification.requestPermission();
-                    if (permission === 'granted') {
-                        onMessage(messaging, (payload) => {
-                            console.log('Notification received:', payload);
-                            // Handle the notification payload here.
-                        });
-                    } else {
-                        console.log('Notification permission denied.');
-                    }
-                } catch (error) {
-                    console.error('Error requesting notification permission:', error);
-                }
-            };
-
-            requestNotificationPermission();
-
-            return () => abort.abort();
-        }, []);
-
-        useEffect(() => {
-            const handleFCMMessage = (payload) => {
-                console.log("Received FCM message:", payload);
-            };
-
-            const unsubscribe = onMessage(messaging, handleFCMMessage);
-
-            return () => unsubscribe();
-        }, []);
 
 
         useEffect(() => {
@@ -86,6 +53,7 @@ const Header = React.memo(
 
             setTimeout(removeElement, 1000);
         }, []);
+
 
 
         useEffect(() => {
@@ -186,7 +154,7 @@ const Header = React.memo(
             "/betslip-jackpot", "/nare-league", "/bet-history",
             "/standing", "/results", "/casino", "/jackpot",
             "/smart-soft", "/virtuals", "/competition",
-            "/my-bets", "/profile", "/promotions"]
+            "/my-bets", "/profile", "/promotions","/responsible-gambling"]
 
         useEffect(() => {
 

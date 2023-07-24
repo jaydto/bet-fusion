@@ -1,15 +1,13 @@
 import React, {useState} from "react";
 import Modal from "react-bootstrap/Modal";
 import {Button} from "react-bootstrap";
-import {removeItem} from "../utils/local-storage";
 
 
-const ExitModal = React.memo(
+
+const ExclusionModal = React.memo(
     (props) => {
-    const {visible, setShowLoadingModal} = props
+    const {visible, setShowLoadingModal,message} = props
     const [isOpen, setIsOpen] = useState(visible)
-    const [message, setMessage] = useState(null);
-    const [formData, setFormData] = useState({});
     
     const hideModal = () => {
         setIsOpen(false)
@@ -18,8 +16,7 @@ const ExitModal = React.memo(
         // console.log("share_from_modal",getFromLocalStorage("share-modal"))
     }
     const handleExit=()=>{
-        removeItem('firstLaunch');
-        App.exitApp()
+
     }
    
     return (
@@ -33,7 +30,7 @@ const ExitModal = React.memo(
             <Modal.Header closeButton={false} className={"w-100"}>
                 <Modal.Title className={"w-100"}>
                     <div className={"d-flex justify-content-between align-items-center"}>
-                        <strong style={{width:"90%"}}>Exit App</strong>
+                        <strong style={{width:"90%"}}></strong>
                        
                     </div>
 
@@ -43,7 +40,8 @@ const ExitModal = React.memo(
                 
                 <div className={"d-flex"}>
                     <div className="col-12 text-center mt-4 ">
-                        <p>Are yous sure you want to exit this application?</p>
+                        <p>You are Currently Self Excluded from Betnare </p>
+                        <p>{message}</p>
                     </div>
 
                 </div>
@@ -53,10 +51,10 @@ const ExitModal = React.memo(
                 <Button variant="secondary" onClick={hideModal} className={"col "} style={{padding:"7px", fontSize:"12px"}}>
                     Close
                 </Button>
-                <Button type="submit" onClick={handleExit} className={" col btn btn-warning "} style={{padding:"7px",  fontSize:"12px"}}>Exit</Button>
+                <Button type="submit" onClick={handleExit} className={" col btn btn-warning "} style={{padding:"7px",  fontSize:"12px"}}>Done</Button>
             </Modal.Footer>
         </Modal>
 
     );
 });
-export default React.memo(ExitModal)
+export default React.memo(ExclusionModal)

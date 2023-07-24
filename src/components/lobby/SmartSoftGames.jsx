@@ -33,7 +33,9 @@ const SmartSoftGames = React.memo(
 	useEffect(() => {
 		const abort=new AbortController()
 		getSmartGames()
-		return abort.abort();
+		return () => {
+                abort.abort(); // Cleanup function to abort the controller when the component unmounts.
+            };;
 	}, [])
 
 	return (

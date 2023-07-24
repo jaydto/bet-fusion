@@ -1,0 +1,82 @@
+import React, {useState} from 'react';
+import {DateRangePicker} from 'react-date-range';
+import 'react-date-range/dist/styles.css';
+import 'react-date-range/dist/theme/default.css';
+import makeRequest from "../../../utils/fetch-request";
+import {getFromLocalStorage} from "../../../utils/local-storage";
+import {useNavigate} from "react-router-dom";
+import ExclusionModal from "../../../modals/ExclusionModal";
+
+
+const SelfExclusion = () => {
+    const [user,] = useState(getFromLocalStorage("user"));
+    const navigate=useNavigate();
+    const [showModal, setShowModal] = useState(false);
+    const [apiResponseMessage, setApiResponseMessage] = useState(null);
+
+    const [dateRange, setDateRange] = useState({
+        startDate: new Date(),
+        endDate: new Date(),
+        key: 'selection',
+    });
+
+    const handleDateRangeChange = (ranges) => {
+        setDateRange(ranges.selection);
+    };
+
+    const handleUpdate = async () => {
+        // Perform API call with dateRange.startDate and dateRange.endDate as the data
+        const data = {
+            start_date: dateRange.startDate.toLocaleDateString("en-CA", {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+            }),
+            end_date: dateRange.endDate.toLocaleDateString("en-CA", {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+            })
+        }
+
+        if(user){
+            let endpoint = "/v1/self-exclude"
+            const [self_exclusion_results] = await Promise.all([
+                makeRequest({url: endpoint, method: "POST", payload: data})
+            ]);
+            let [status, exclusion] = self_exclusion_results;
+            if (status === 200) {
+                setApiResponseMessage(exclusion?.message);
+                setShowModal(true);
+            }
+        }else{
+            navigate('/login')
+        }
+
+
+    }
+
+
+    return (
+        <div>
+            <h2 className={'text-light w-100 py-1 px-2'}>Select a Date Range:</h2>
+            <DateRangePicker
+                ranges={[dateRange]}
+                onChange={handleDateRangeChange}
+                months={2}
+                direction="horizontal"
+                className="date-range-picker-exclusion"
+            />
+            <div className={'update_self_exclusion'}>
+                <button className={'update_button'} onClick={handleUpdate}>Update</button>
+            </div>
+
+            {/* Render the ExclusionModal based on the showModal state */}
+            {showModal && (
+                <ExclusionModal visible={true} setShowLoadingModal={setShowModal} message={apiResponseMessage}/>
+            )}
+        </div>
+    );
+};
+
+export default SelfExclusion;

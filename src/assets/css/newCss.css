@@ -2561,6 +2561,11 @@ img.nare-league {
         font-weight: 400;
         line-height: 1.5;
     }
+    .top-matches a.odds-container-size-match {
+        color: var(--light) !important;
+        font-weight: 400;
+        line-height: 1.5;
+    }
 
     .wrapping.mobile-display-game-id {
         display: none;
@@ -3137,6 +3142,9 @@ img.nare-league {
     }
 
     .odds-container-size {
+        min-height: 23px;
+    }
+    .odds-container-size-match {
         min-height: 23px;
     }
 

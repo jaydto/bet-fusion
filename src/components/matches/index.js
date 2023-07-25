@@ -1117,7 +1117,7 @@ const MatchRow = React.memo(
         return (
             <div className="top-matches d-flex flex-sm-column flex-lg-row  styling-matches">
                 <div
-                    className="to-deskview to-block to-tabview  mx-lg-0 px-sm-4 px-md-4 px-lg-0 py-sm-4 py-md-4 py-lg-0 mt-2 container-size ">
+                    className="to-deskview to-block to-tabview  mx-lg-0 px-sm-4 px-md-4 px-lg-0 py-sm-4 py-md-4 py-lg-0 mt-2 container-size-match ">
                     <div className="size-info mobile-for-desktop d-flex col-xs-12 pad left-text flex-row live-col">
                         <div
                             className={`d-flex flex-column px-1 justify-content-sm-center justify-content-md-start change-date1 mobile-remove display-ipad-remove-id ${jackpot ? "jackpot-width" : ""}`}>

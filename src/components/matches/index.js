@@ -670,7 +670,6 @@ const OddButton =
             // }, [updatePickedChoices]);
 
 
-
             const updateOddValue = useCallback(() => {
                 if (match) {
                     const {match_id, sub_type_id, odds, odd_key} = match;
@@ -695,11 +694,6 @@ const OddButton =
                 }
             }, [match]);
 
-            // useLayoutEffect(() => {
-            //     updateOddValue();
-            // }, [updateOddValue]);
-
-
 
             const updateMatchPicked = useCallback(() => {
                 if (state?.[reference]) {
@@ -721,21 +715,18 @@ const OddButton =
                     }
                 }
             }, [state?.[reference]]);
-
+// Fine-tuned dependencies for useEffect
             useEffect(() => {
                 updatePickedChoices();
                 updateMatchPicked();
             }, [picked, state[betslip_key]]);
 
-            // Combined effect hook to update odd value
+            // Combined effect hook to update odd value and picked choices
             useLayoutEffect(() => {
                 updateOddValue();
                 updatePickedChoices();
-            }, [match,mkt]);
+            }, [match, mkt]);
 
-            // useEffect(() => {
-            //     updateMatchPicked();
-            // }, [updateMatchPicked]);
 
             let message = {
                 status: 401,
@@ -746,85 +737,85 @@ const OddButton =
                 setPicked("");
                 Notify(message);
             };
-
+            // Wrapped handleButtonOnClick in useCallback
             const handleButtonOnClick =
                 useCallback(
                     (event) => {
-                    const attributes = {
-                        parent_match_id: event.currentTarget.getAttribute("parent_match_id"),
-                        match_id: event.currentTarget.getAttribute("match_id"),
-                        sub_type_id: event.currentTarget.getAttribute("sub_type_id"),
-                        special_bet_value: event.currentTarget.getAttribute("special_bet_value"),
-                        odd_key: event.currentTarget.getAttribute("odd_key"),
-                        odd_value: event.currentTarget.getAttribute("odd_value"),
-                        bet_type: event.currentTarget.getAttribute("bet_type"),
-                        odd_type: event.currentTarget.getAttribute("odd_type"),
-                        start_time: event.currentTarget.getAttribute("start_time"),
-                        home_team: event.currentTarget.getAttribute("home_team"),
-                        away_team: event.currentTarget.getAttribute("away_team"),
-                        sport_name: event.currentTarget.getAttribute("sport_name"),
-                        market_active: event.currentTarget.getAttribute("market_active"),
-                    };
-                    let cstm = clean(
-                        attributes.match_id +
-                        "" +
-                        attributes.sub_type_id +
-                        attributes.odd_key +
-                        (marketKey !== undefined ? marketKey : "")
-                    );
+                        const attributes = {
+                            parent_match_id: event.currentTarget.getAttribute("parent_match_id"),
+                            match_id: event.currentTarget.getAttribute("match_id"),
+                            sub_type_id: event.currentTarget.getAttribute("sub_type_id"),
+                            special_bet_value: event.currentTarget.getAttribute("special_bet_value"),
+                            odd_key: event.currentTarget.getAttribute("odd_key"),
+                            odd_value: event.currentTarget.getAttribute("odd_value"),
+                            bet_type: event.currentTarget.getAttribute("bet_type"),
+                            odd_type: event.currentTarget.getAttribute("odd_type"),
+                            start_time: event.currentTarget.getAttribute("start_time"),
+                            home_team: event.currentTarget.getAttribute("home_team"),
+                            away_team: event.currentTarget.getAttribute("away_team"),
+                            sport_name: event.currentTarget.getAttribute("sport_name"),
+                            market_active: event.currentTarget.getAttribute("market_active"),
+                        };
+                        let cstm = clean(
+                            attributes.match_id +
+                            "" +
+                            attributes.sub_type_id +
+                            attributes.odd_key +
+                            (marketKey !== undefined ? marketKey : "")
+                        );
 
-                    {
+                        {
 
-                    }
-                    const slip = {
-                        match_id: attributes.match_id,
-                        parent_match_id: attributes.parent_match_id,
-                        special_bet_value: attributes.special_bet_value,
-                        sub_type_id: attributes.sub_type_id,
-                        bet_pick: attributes.odd_key,
-                        start_time: attributes.start_time,
-                        odd_value: attributes.odd_value,
-                        home_team: attributes.home_team,
-                        away_team: attributes.away_team,
-                        bet_type: attributes.bet_type,
-                        odd_type: attributes.odd_type,
-                        sport_name: attributes.sport_name,
-                        live: live,
-                        ucn: clean(
-                            `${attributes.match_id}${attributes.sub_type_id}${attributes.odd_key}${
-                                marketKey !== undefined ? marketKey : ""
-                            }`
-                        ),
-                        market_active: attributes.market_active,
-                        position: match?.pos || 0,
-                    };
-
-
-                    if (cstm === ucn) {
-
-                        let betslip;
-                        if (picked === "picked") {
-
-                            betslip =
-                                jackpot !== true
-                                    ? removeFromSlip(attributes.match_id)
-                                    : removeFromJackpotSlip(attributes.match_id);
-
-                            setPicked("");
-                        } else {
-                            betslip =
-                                jackpot !== true
-                                    ? (getBetslip() && Object.keys(getBetslip())?.length <= 29) ||
-                                    getBetslip() == null
-                                        ? addToSlip(slip)
-                                        : maxPickReached()
-                                    : addToJackpotSlip(slip);
-
-                            dispatch({type: "SET", key: reference, payload: cstm});
                         }
-                        dispatch({type: "SET", key: betslip_key, payload: betslip});
-                    }
-                },[ucn, picked,match,mkt]);
+                        const slip = {
+                            match_id: attributes.match_id,
+                            parent_match_id: attributes.parent_match_id,
+                            special_bet_value: attributes.special_bet_value,
+                            sub_type_id: attributes.sub_type_id,
+                            bet_pick: attributes.odd_key,
+                            start_time: attributes.start_time,
+                            odd_value: attributes.odd_value,
+                            home_team: attributes.home_team,
+                            away_team: attributes.away_team,
+                            bet_type: attributes.bet_type,
+                            odd_type: attributes.odd_type,
+                            sport_name: attributes.sport_name,
+                            live: live,
+                            ucn: clean(
+                                `${attributes.match_id}${attributes.sub_type_id}${attributes.odd_key}${
+                                    marketKey !== undefined ? marketKey : ""
+                                }`
+                            ),
+                            market_active: attributes.market_active,
+                            position: match?.pos || 0,
+                        };
+
+
+                        if (cstm === ucn) {
+
+                            let betslip;
+                            if (picked === "picked") {
+
+                                betslip =
+                                    jackpot !== true
+                                        ? removeFromSlip(attributes.match_id)
+                                        : removeFromJackpotSlip(attributes.match_id);
+
+                                setPicked("");
+                            } else {
+                                betslip =
+                                    jackpot !== true
+                                        ? (getBetslip() && Object.keys(getBetslip())?.length <= 29) ||
+                                        getBetslip() == null
+                                            ? addToSlip(slip)
+                                            : maxPickReached()
+                                        : addToJackpotSlip(slip);
+
+                                dispatch({type: "SET", key: reference, payload: cstm});
+                            }
+                            dispatch({type: "SET", key: betslip_key, payload: betslip});
+                        }
+                    }, [ucn, picked, match, mkt]);
 
             return (
                 <button

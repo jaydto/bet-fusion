@@ -4,7 +4,10 @@ import Row from 'react-bootstrap/Row';
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 import {StoreContext } from "../../context/store";
 import {getFromLocalStorage, setLocalStorage} from '../utils/local-storage';
-import {ToastContainer} from 'react-toastify';
+import {toast, ToastContainer} from 'react-toastify';
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
+import 'react-toastify/dist/ReactToastify.css';
 import makeRequest from '../utils/fetch-request';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import androidIcon from "../../assets/img/mobile/android-icon.webp"
@@ -12,14 +15,12 @@ import logo from '../../assets/img/Logo.webp';
 import {Navbar, Offcanvas} from "react-bootstrap";
 import SidebarMobile from "../sidebar/awesome/SidebarMobile";
 import MobileNav1 from "../mobile-navigation/MobileNav1";
-import { messaging } from '../../firebaseConfig';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTimes} from "@fortawesome/free-solid-svg-icons";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import ListGroup from "react-bootstrap/ListGroup";
 import LoginSection from "./LoginSection";
 import {UserInfo} from "./UserInfo";
-import {onMessage } from "firebase/messaging";
 const ProfileMenu = React.lazy(() => import('./profile-menu'));
 const HeaderNav = React.lazy(() => import('./header-nav'));
 
@@ -41,6 +42,87 @@ const Header = React.memo(
         const [, setShowLoadingModal] = useState(false);
         const pathname = window.location.pathname;
 
+
+        // useEffect(() => {
+        //     const abort = new AbortController();
+        //
+        //     const requestNotificationPermission = async () => {
+        //         try {
+        //             const permission = await Notification.requestPermission();
+        //             if (permission === 'granted') {
+        //                 onMessage(messaging, (payload) => {
+        //                     console.log('Notification received:', payload);
+        //                     // Handle the notification payload here.
+        //                 });
+        //             } else {
+        //                 console.log('Notification permission denied.');
+        //             }
+        //         } catch (error) {
+        //             console.error('Error requesting notification permission:', error);
+        //         }
+        //     };
+        //
+        //     requestNotificationPermission();
+        //
+        //     return () => abort.abort();
+        // }, []);
+
+  //       const CustomNotification = () =>
+  //       {
+  //           useEffect(() => {
+  //               const abort = new AbortController();
+  //
+  //               const requestNotificationPermission = async () => {
+  //                   try {
+  //                       // Customized notification permission request
+  //                       const permission = await customRequestPermission();
+  //                       if (permission === 'granted') {
+  //                           onMessage(messaging, (payload) => {
+  //                               console.log('Notification received:', payload);
+  //                               // Handle the notification payload here.
+  //                           });
+  //                       } else {
+  //                           console.log('Notification permission denied.');
+  //                       }
+  //                   } catch (error) {
+  //                       console.error('Error requesting notification permission:', error);
+  //                   }
+  //               };
+  //
+  //               requestNotificationPermission();
+  //
+  //               return () => abort.abort();
+  //           }, []);
+  //           // Customized notification permission function with UI elements
+  //           const customRequestPermission = async () => {
+  //               return new Promise((resolve, reject) => {
+  //                   // Your custom UI elements and logic to ask for notification permission
+  //                   const customNotificationUI = document.createElement('div');
+  //                   customNotificationUI.innerHTML = `
+  //   <p>This website would like to send you notifications.</p>
+  //   <button class="permission-button" value="granted">Allow</button>
+  //   <button class="permission-button" value="denied">Deny</button>
+  // `;
+  //                   document.body.appendChild(customNotificationUI);
+  //
+  //                   const permissionButtons = customNotificationUI.getElementsByClassName('permission-button');
+  //                   Array.from(permissionButtons).forEach((button) => {
+  //                       button.addEventListener('click', (event) => {
+  //                           const value = event.target.value;
+  //                           customNotificationUI.remove();
+  //
+  //                           if (value === 'granted') {
+  //                               resolve('granted');
+  //                           } else {
+  //                               resolve('denied');
+  //                           }
+  //                       });
+  //                   });
+  //               });
+  //           };
+  //
+  //           return <div>Custom Notification Component</div>;
+  //       };
 
 
         useEffect(() => {
@@ -167,18 +249,25 @@ const Header = React.memo(
             };
         }, [fetchData]);
 
-        const NotifyToastContaner = () => {
-            return <ToastContainer
-                position="top-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-            />
+        const NotifyToastContainer = () => {
+            return (
+                <>
+                    {/* Render the ToastContainer */}
+                    <ToastContainer
+                        position="top-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                    />
+
+                    {/* Render the CustomNotification component */}
+                </>
+            );
         };
         const updateUserOnHistory = useCallback(() => {
             if (!user) {
@@ -234,6 +323,7 @@ const Header = React.memo(
 
         return (
             <>
+
                 <div className={'d-flex flex-column'}>
                     {(!showDownload.includes(pathname) && !pathname.includes('match') &&!pathname.includes('nare-games')&&!pathname.includes('gameplay')) &&
                         <div>

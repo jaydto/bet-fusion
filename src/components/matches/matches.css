@@ -3705,8 +3705,8 @@ $base: #0E0E29;
     display:none!important;
 }
 .sr-bb .sr-lmt-plus-scb__result-period{
-    font-size: 15px;
-    color: black;
+    font-size: 16px;
+    color: var(--light);
     font-weight: bolder;
     margin-top: 7px;
 }

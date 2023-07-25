@@ -425,7 +425,7 @@ const BetslipSubmitForm = React.memo(
         useEffect(() => {
             updateWinnings();
         }, [updateWinnings]);
-
+        console.log("value for accepting odds change",)
         const value_for_odds_change=getFromLocalStorage("accept_all_odds_change")===undefined?true:getFromLocalStorage("accept_all_odds_change")
         const initialValues = {
             bet_amount: jackpot ? jackpotData?.bet_amount : bonusBet ? 100 : state?.userStake||getFromLocalStorage('userStake')||100,
@@ -593,12 +593,10 @@ const BetslipSubmitForm = React.memo(
                     const onFieldChanged = (ev) => {
                         let field = ev.target.name;
                         let value = ev.target.type === "checkbox" ? ev.target.checked : ev.target.value;
-                        console.log("checked here");
-                        // For the accept_all_odds_change field
+
                         if (field === "accept_all_odds_change") {
                             // Handle the value of the accept_all_odds_change checkbox here
-                            // For example, you can dispatch it, set it in state, or perform any other actions based on the value.
-                            console.log("accept_all_odds_change value:", value);
+
                             setLocalStorage("accept_all_odds_change", value)
                         }
 
@@ -607,27 +605,30 @@ const BetslipSubmitForm = React.memo(
                             let newValue = value;
 
                             let message = { status: 401, message: 'You have reached the maximum allowable stake for this betting', token: '' };
-                            let minStakeMessage = { status: 402, message: 'You have reached the minimum allowable stake for this betting', token: '' };
+                            let minStakeMessage = {  message: `Minimum amount is ${sportBookLimits?.singleBetMinStake} KSH` };
 
                             if (betslipLength === 1 && !jackpot) {
-                                const maxStake = sportBookLimits?.singleBetMaxStake || Number.MAX_VALUE;
-                                if (value > maxStake) {
+                                const maxStake = sportBookLimits?.singleBetMaxStake ;
+                                if (Number(value) > Number(maxStake)) {
                                     Notify(message);
                                     newValue = maxStake;
-                                }else if(value<sportBookLimits?.singleBetMinStake) {
-                                    Notify(minStakeMessage);
-                                    newValue = sportBookLimits?.singleBetMinStake;
+                                }else {
+                                    newValue=value
                                 }
                             } else if (betslipLength > 1 && !jackpot) {
-                                const maxStake = sportBookLimits?.multiBetMaxStake || Number.MAX_VALUE;
-                                if (value > maxStake) {
+                                const maxStake = sportBookLimits?.multiBetMaxStake ;
+                                if (Number(value) > Number(maxStake)) {
                                     Notify(message);
                                     newValue = maxStake;
+                                } else{
+                                    newValue=value
                                 }
-                                else if (value < sportBookLimits?.singleBetMinStake) {
-                                    Notify(minStakeMessage);
-                                    newValue = sportBookLimits?.singleBetMinStake;
-                                }
+                            }
+                            const minStake = sportBookLimits?.singleBetMinStake || 1;
+                            if (Number(value) < Number(minStake)) {
+                                dispatch({type: "SET", key: "minStake", payload: minStakeMessage});
+                            }else {
+                                dispatch({type: "SET", key: "minStake", payload: null});
                             }
 
                             dispatch({ type: "SET", key: "userStake", payload: newValue });
@@ -638,7 +639,6 @@ const BetslipSubmitForm = React.memo(
                             setFieldValue(field, value);
                         }
                     };
-
 
 
                     const UserInfoContainer = () => {
@@ -780,7 +780,7 @@ const BetslipSubmitForm = React.memo(
                                             <div id="betting">
                                                 {jackpot
                                                     ? jackpotData?.bet_amount :
-                                                    (<input type="text"
+                                                    (<input type="number"
                                                             className="bet-select bet-stake-input"
                                                             name="bet_amount"
                                                             id="bet_amount"
@@ -788,8 +788,14 @@ const BetslipSubmitForm = React.memo(
                                                             value={values.bet_amount || ""}
                                                             onChange={(e) => onFieldChanged(e)}
                                                     />)}
+
                                             </div>
                                         </div>
+                                    </div>
+                                    <div className={'w-100 justify-content-end p-1 d-flex min-skake-container'}>
+                                        {state?.minStake?.message&&<span className={'min_stake_alert'}>
+                                                    {state?.minStake?.message}
+                                                </span>}
                                     </div>
                                     <br className={"ipad-show"}/>
                                     <div className="bet-win-tr hide-on-affix">

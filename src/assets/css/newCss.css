@@ -803,6 +803,23 @@ select::after {
     background: var(--betnare-side-bg) !important;
     margin-bottom: 1px;
 }
+input.bet-select bet-stake-input{
+    color:var(--light) !important;
+}
+input::placeholder{
+    color:var(--light) !important
+}
+.min_stake_alert{
+    background: rgba(108, 26, 26, 0.6);
+    padding:6px;
+
+}
+.min-skake-container:empty{
+    display:none;
+}
+input:placeholder-shown{
+    color:var(--light) !important
+}
 
 .mobile-profile-columns:empty {
     display: none !important;

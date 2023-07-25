@@ -437,6 +437,9 @@ input.text-white {
     /*background: #253743 !important;*/
     background: var(--betnare-header-bg) !important;
 }
+.container-size-match{
+    width:100% !important;
+}
 
 .more-sports {
 
@@ -1857,11 +1860,12 @@ img.nare-league {
         overflow: hidden;
         /* margin-left: 400px; */
         /* max-width: 500px; */
-        height: 34px;
+        /*height: 34px;*/
     }
 
     .text-header-jackpot p {
-        font-size: 20px;
+        font-size: 26px;
+        padding: 5px;
     }
 
     .slip-team {
@@ -2532,7 +2536,7 @@ img.nare-league {
         height: 100vh;
     }
     .container-size-match{
-        width:100%;
+        width:100% !important;
     }
 
     /*.mobile-full-height.all-markets {*/

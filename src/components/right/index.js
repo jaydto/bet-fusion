@@ -39,6 +39,8 @@ const Right = React.memo(
          `}
          ${remove_mobile&&' desktop-only-show '}
          ${pathname.includes('bet-history')&&' desktop-only-show '}
+         ${pathname.includes('/results')&&' desktop-only-show '}
+         ${pathname.includes('/standing')&&' desktop-only-show '}
          `}>
             <div className={`betslip-container  ${jackpot?'d-none':'d-none d-md-block'}`}>
                 {props?.message && <AlertMessage classname={props.classname} message={props.message}/>}

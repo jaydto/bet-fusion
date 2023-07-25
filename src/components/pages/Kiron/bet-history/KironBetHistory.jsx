@@ -232,7 +232,7 @@ const KironBetHistory = React.memo(
 										<div className=" mt-0 kiron-right">
 											<p><span className="bold">Bet Amount</span> : {bets?.bet_amount}
 												<span style={{ position: "relative" }}>
-                                                    <FontAwesomeIcon className="ico  position-absolute top-50 left -50"  icon={faChevronCircleDown} />
+
                                                     </span>
 											</p>
 											<p className="ban  ban-value-data mt-1"

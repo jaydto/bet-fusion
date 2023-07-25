@@ -810,8 +810,9 @@ input::placeholder{
     color:var(--light) !important
 }
 .min_stake_alert{
-    background: rgba(108, 26, 26, 0.6);
+    background: rgb(146 5 5);
     padding:6px;
+    font-weight:600;
 
 }
 .min-skake-container:empty{

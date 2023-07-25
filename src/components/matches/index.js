@@ -1,5 +1,5 @@
 import React, {useCallback, useContext, useEffect, useLayoutEffect, useRef, useState} from 'react';
-import {StoreContext } from "../../context/store";
+import {StoreContext} from "../../context/store";
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
@@ -13,7 +13,7 @@ import {
     removeFromSlip
 } from '../utils/betslip';
 import './matches.css'
-import {NumericFormat as CurrencyFormat}from 'react-number-format';
+import {NumericFormat as CurrencyFormat} from 'react-number-format';
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
@@ -169,7 +169,7 @@ const MatchHeaderRow = React.memo(
         const [sportName, setSportName] = useState(sport != null ? sport?.[0]?.sport_name || 'Soccer' : "");
         const [showX, setShowX] = useState(true);
         const [market, setMarket] = useState('1x2');
-        const { state, dispatch } = useContext(StoreContext);
+        const {state, dispatch} = useContext(StoreContext);
         const [user,] = useState(getFromLocalStorage("user"));
         const [extraMarketDisplays, setExtraMarketDisplays] = useState([])
         const [threeWay, setThreeWay] = useState(false)
@@ -277,31 +277,33 @@ const MatchHeaderRow = React.memo(
                             {/*desktop*/}
                             {(!live && !jackpot && extraMarketDisplays.length > 0)
                                 ? (
-                                <>
-                                    {extraMarketDisplays?.map((extra_market, index) => (
-                                        <div key={index} className={'to-deskview flex-column text-white'}>
+                                    <>
+                                        {extraMarketDisplays?.map((extra_market, index) => (
+                                            <div key={index} className={'to-deskview flex-column text-white'}>
                                     <span className={'small text-center text-uppercase bold'}>
                                         {extra_market.name}
                                     </span>
-                                            <div className={'c-btn-group'}>
-                                                <a className="c-btn-header">
-                                                    {(extra_market.extra_markets_display[0])}
-                                                </a>
-                                                <a className="c-btn-header">
-                                                    {(extra_market.extra_markets_display[1])}
-                                                </a>
-                                                {extra_market?.extra_market_cols > 2 &&
-                                                    <a className={`c-btn-header`}>
-                                                        {(extra_market.extra_markets_display[2])}
-                                                    </a>}
+                                                <div className={'c-btn-group'}>
+                                                    <a className="c-btn-header">
+                                                        {(extra_market.extra_markets_display[0])}
+                                                    </a>
+                                                    <a className="c-btn-header">
+                                                        {(extra_market.extra_markets_display[1])}
+                                                    </a>
+                                                    {extra_market?.extra_market_cols > 2 &&
+                                                        <a className={`c-btn-header`}>
+                                                            {(extra_market.extra_markets_display[2])}
+                                                        </a>}
+                                                </div>
                                             </div>
-                                        </div>
-                                    ))}
-                                </>):live&&(
-                                <div className={"col flex-row justify-content-between space-bets"} style={{minWidth: "45%"}}>
+                                        ))}
+                                    </>) : live && (
+                                <div className={"col flex-row justify-content-between space-bets"}
+                                     style={{minWidth: "45%"}}>
                                     {extraMarketDisplays && !jackpot && (
                                         <div className="d-flex flex-row ">
-                                            <div className="d-flex flex-column text-center text-white mt-3 fit-ipad w-100">
+                                            <div
+                                                className="d-flex flex-column text-center text-white mt-3 fit-ipad w-100">
 
                                                 <div className={"c-btn-group"}>
                                                     {extraMarketDisplays?.[0]?.extra_markets_display?.map((display, index) => (
@@ -347,7 +349,7 @@ const MoreMarketsHeaderRow = React.memo(
             tags,
         } = props;
         const [switches, setSwitches] = useState("scoreboard")
-        const { state, dispatch } = useContext(StoreContext);
+        const {state, dispatch} = useContext(StoreContext);
         const switchLmt = (value) => {
             setSwitches(value)
         }
@@ -615,248 +617,263 @@ const SideBets = React.memo(
         );
     });
 
-const OddButton = React.memo(
-    (props) => {
-        const {match, mkt, detail, live, jackpot, subType, marketKey, allMarkets} =
-            props;
+const OddButton =
+    React.memo(
+        (props) => {
+            const {match, mkt, detail, live, jackpot, subType, marketKey, allMarkets} =
+                props;
 
-        const [ucn, setUcn] = useState("");
+            const [ucn, setUcn] = useState("");
 
-        const [picked, setPicked] = useState("");
+            const [picked, setPicked] = useState("");
 
-        const [oddValue, setOddValue] = useState(null);
+            const [oddValue, setOddValue] = useState(null);
 
-        const { state, dispatch } = useContext(StoreContext);
-        const ref = useRef();
-        let reference = match.match_id + "_selected";
-        const [betslip_key, setBetslipKey] = useState("betslip");
-        const updateBeslipKey = useCallback(() => {
-            if (jackpot) {
-                setBetslipKey("jackpotbetslip");
-            }
-        }, [jackpot]);
+            const {state, dispatch} = useContext(StoreContext);
+            const ref = useRef();
+            let reference = match.match_id + "_selected";
+            const [betslip_key, setBetslipKey] = useState("betslip");
+            const updateBeslipKey = useCallback(() => {
+                if (jackpot) {
+                    setBetslipKey("jackpotbetslip");
+                }
+            }, [jackpot]);
 
-        useEffect(() => {
-            updateBeslipKey();
-        }, [updateBeslipKey]);
+            useEffect(() => {
+                updateBeslipKey();
+            }, [updateBeslipKey]);
 
-        const updatePickedChoices = useCallback(() => {
-            const betslip = jackpot ? getJackpotBetslip() : getBetslip() || {};
-
-            let uc = clean(
-                match.match_id +
-                "" +
-                match.sub_type_id +
-                (match?.[mkt] || match?.odd_key || "draw")
-            );
-
-            if (
-                betslip?.[match.match_id]?.match_id == match.match_id &&
-                uc == betslip?.[match.match_id]?.ucn
-            ) {
-
-                setPicked("picked");
-            } else {
-
-                setPicked("");
-            }
-        }, [picked, state[betslip_key]]);
-
-        useEffect(() => {
-            updatePickedChoices();
-        }, [updatePickedChoices]);
-
-        // todo check why i repeated this two parts and how they interfere with update betpicks
-        useEffect(() => {
-            updatePickedChoices();
-        }, [updatePickedChoices]);
-
-        const updateOddValue = useCallback(() => {
-            if (match) {
-                const {match_id, sub_type_id, odds, odd_key} = match;
+            const updatePickedChoices = useCallback(() => {
+                const betslip = jackpot ? getJackpotBetslip() : getBetslip() || {};
 
                 let uc = clean(
-                    match_id + "" + sub_type_id + (match?.[mkt] || odd_key || "draw")
+                    match.match_id +
+                    "" +
+                    match.sub_type_id +
+                    (match?.[mkt] || match?.odd_key || "draw")
                 );
-                setUcn(uc);
-                switch (mkt) {
-                    case "home_team":
-                        setOddValue(odds.home_odd);
-                        break;
-                    case "away_team":
-                        setOddValue(odds.away_odd);
-                        break;
-                    case "draw":
-                        setOddValue(odds.neutral_odd || odd_key);
-                        break;
-                    default:
-                        setOddValue(match.odd_value);
-                }
-            }
-        }, [match]);
 
-        useLayoutEffect(() => {
-            updateOddValue();
-        }, [updateOddValue]);
+                if (
+                    betslip?.[match.match_id]?.match_id == match.match_id &&
+                    uc == betslip?.[match.match_id]?.ucn
+                ) {
 
-        const updateMatchPicked = useCallback(() => {
-            if (state?.[reference]) {
-                if (state?.[reference].startsWith("remove.")) {
-                    setPicked("");
+                    setPicked("picked");
                 } else {
-                    let uc = clean(
-                        match.match_id +
-                        "" +
-                        match.sub_type_id +
-                        (match?.[mkt] || match?.odd_key || "draw")
-                    );
 
-                    if (state?.[reference] === uc) {
-                        setPicked("picked");
-                    } else {
-                        setPicked("");
+                    setPicked("");
+                }
+            }, [picked, state[betslip_key]]);
+
+            // useEffect(() => {
+            //     updatePickedChoices();
+            // }, [updatePickedChoices]);
+
+
+
+            const updateOddValue = useCallback(() => {
+                if (match) {
+                    const {match_id, sub_type_id, odds, odd_key} = match;
+
+                    let uc = clean(
+                        match_id + "" + sub_type_id + (match?.[mkt] || odd_key || "draw")
+                    );
+                    setUcn(uc);
+                    switch (mkt) {
+                        case "home_team":
+                            setOddValue(odds.home_odd);
+                            break;
+                        case "away_team":
+                            setOddValue(odds.away_odd);
+                            break;
+                        case "draw":
+                            setOddValue(odds.neutral_odd || odd_key);
+                            break;
+                        default:
+                            setOddValue(match.odd_value);
                     }
                 }
-            }
-        }, [state?.[reference]]);
+            }, [match]);
 
-        useEffect(() => {
-            updateMatchPicked();
-        }, [updateMatchPicked]);
-
-        let message = {
-            status: 401,
-            message: "Maximum selections reached",
-            token: "",
-        };
-        const maxPickReached = () => {
-            setPicked("");
-            Notify(message);
-        };
-
-        const handleButtonOnClick = (event) => {
-            const attributes = {
-                parent_match_id: event.currentTarget.getAttribute("parent_match_id"),
-                match_id: event.currentTarget.getAttribute("match_id"),
-                sub_type_id: event.currentTarget.getAttribute("sub_type_id"),
-                special_bet_value: event.currentTarget.getAttribute("special_bet_value"),
-                odd_key: event.currentTarget.getAttribute("odd_key"),
-                odd_value: event.currentTarget.getAttribute("odd_value"),
-                bet_type: event.currentTarget.getAttribute("bet_type"),
-                odd_type: event.currentTarget.getAttribute("odd_type"),
-                start_time: event.currentTarget.getAttribute("start_time"),
-                home_team: event.currentTarget.getAttribute("home_team"),
-                away_team: event.currentTarget.getAttribute("away_team"),
-                sport_name: event.currentTarget.getAttribute("sport_name"),
-                market_active: event.currentTarget.getAttribute("market_active"),
-            };
-            let cstm = clean(
-                attributes.match_id +
-                "" +
-                attributes.sub_type_id +
-                attributes.odd_key +
-                (marketKey !== undefined ? marketKey : "")
-            );
-
-            {
-
-            }
-            const slip = {
-                match_id: attributes.match_id,
-                parent_match_id: attributes.parent_match_id,
-                special_bet_value: attributes.special_bet_value,
-                sub_type_id: attributes.sub_type_id,
-                bet_pick: attributes.odd_key,
-                start_time: attributes.start_time,
-                odd_value: attributes.odd_value,
-                home_team: attributes.home_team,
-                away_team: attributes.away_team,
-                bet_type: attributes.bet_type,
-                odd_type: attributes.odd_type,
-                sport_name: attributes.sport_name,
-                live: live,
-                ucn: clean(
-                    `${attributes.match_id}${attributes.sub_type_id}${attributes.odd_key}${
-                        marketKey !== undefined ? marketKey : ""
-                    }`
-                ),
-                market_active: attributes.market_active,
-                position: match?.pos || 0,
-            };
+            // useLayoutEffect(() => {
+            //     updateOddValue();
+            // }, [updateOddValue]);
 
 
-            if (cstm === ucn) {
 
-                let betslip;
-                if (picked === "picked") {
+            const updateMatchPicked = useCallback(() => {
+                if (state?.[reference]) {
+                    if (state?.[reference].startsWith("remove.")) {
+                        setPicked("");
+                    } else {
+                        let uc = clean(
+                            match.match_id +
+                            "" +
+                            match.sub_type_id +
+                            (match?.[mkt] || match?.odd_key || "draw")
+                        );
 
-                    betslip =
-                        jackpot !== true
-                            ? removeFromSlip(attributes.match_id)
-                            : removeFromJackpotSlip(attributes.match_id);
-
-                    setPicked("");
-                } else {
-                    betslip =
-                        jackpot !== true
-                            ? (getBetslip() && Object.keys(getBetslip())?.length <= 29) ||
-                            getBetslip() == null
-                                ? addToSlip(slip)
-                                : maxPickReached()
-                            : addToJackpotSlip(slip);
-
-                    dispatch({type: "SET", key: reference, payload: cstm});
+                        if (state?.[reference] === uc) {
+                            setPicked("picked");
+                        } else {
+                            setPicked("");
+                        }
+                    }
                 }
-                dispatch({type: "SET", key: betslip_key, payload: betslip});
-            }
-        };
+            }, [state?.[reference]]);
 
-        return (
-            <button
-                ref={ref}
-                className={`home-team ${allMarkets ? "all-markets" : jackpot ? " jackpot-buttons-size" : ""} ${
-                    match.match_id
-                } ${ucn} ${picked} c-btn`}
-                home_team={match.home_team}
-                odd_type={match?.name || match?.market_name || "1X2"}
-                bet_type={live ? 1 : 0}
-                start_time={match?.start_time}
-                away_team={match.away_team}
-                market_active={match.market_active}
-                odd_value={oddValue}
-                odd_key={match?.[mkt] || match?.odd_key || "draw"}
-                parent_match_id={match.parent_match_id}
-                match_id={match.match_id}
-                custom={ucn}
-                id={ucn}
-                sport_name={match?.sport_name}
-                sport_id={match.sport_id}
-                sub_type_id={match.sub_type_id}
-                special_bet_value={match?.special_bet_value || ""}
-                onClick={handleButtonOnClick}
-            >
-                {!detail && <span className="theodds odd-fix">{oddValue}</span>}
-                {detail && (
-                    <>
+            useEffect(() => {
+                updatePickedChoices();
+                updateMatchPicked();
+            }, [picked, state[betslip_key]]);
+
+            // Combined effect hook to update odd value
+            useLayoutEffect(() => {
+                updateOddValue();
+                updatePickedChoices();
+            }, [match,mkt]);
+
+            // useEffect(() => {
+            //     updateMatchPicked();
+            // }, [updateMatchPicked]);
+
+            let message = {
+                status: 401,
+                message: "Maximum selections reached",
+                token: "",
+            };
+            const maxPickReached = () => {
+                setPicked("");
+                Notify(message);
+            };
+
+            const handleButtonOnClick =
+                useCallback(
+                    (event) => {
+                    const attributes = {
+                        parent_match_id: event.currentTarget.getAttribute("parent_match_id"),
+                        match_id: event.currentTarget.getAttribute("match_id"),
+                        sub_type_id: event.currentTarget.getAttribute("sub_type_id"),
+                        special_bet_value: event.currentTarget.getAttribute("special_bet_value"),
+                        odd_key: event.currentTarget.getAttribute("odd_key"),
+                        odd_value: event.currentTarget.getAttribute("odd_value"),
+                        bet_type: event.currentTarget.getAttribute("bet_type"),
+                        odd_type: event.currentTarget.getAttribute("odd_type"),
+                        start_time: event.currentTarget.getAttribute("start_time"),
+                        home_team: event.currentTarget.getAttribute("home_team"),
+                        away_team: event.currentTarget.getAttribute("away_team"),
+                        sport_name: event.currentTarget.getAttribute("sport_name"),
+                        market_active: event.currentTarget.getAttribute("market_active"),
+                    };
+                    let cstm = clean(
+                        attributes.match_id +
+                        "" +
+                        attributes.sub_type_id +
+                        attributes.odd_key +
+                        (marketKey !== undefined ? marketKey : "")
+                    );
+
+                    {
+
+                    }
+                    const slip = {
+                        match_id: attributes.match_id,
+                        parent_match_id: attributes.parent_match_id,
+                        special_bet_value: attributes.special_bet_value,
+                        sub_type_id: attributes.sub_type_id,
+                        bet_pick: attributes.odd_key,
+                        start_time: attributes.start_time,
+                        odd_value: attributes.odd_value,
+                        home_team: attributes.home_team,
+                        away_team: attributes.away_team,
+                        bet_type: attributes.bet_type,
+                        odd_type: attributes.odd_type,
+                        sport_name: attributes.sport_name,
+                        live: live,
+                        ucn: clean(
+                            `${attributes.match_id}${attributes.sub_type_id}${attributes.odd_key}${
+                                marketKey !== undefined ? marketKey : ""
+                            }`
+                        ),
+                        market_active: attributes.market_active,
+                        position: match?.pos || 0,
+                    };
+
+
+                    if (cstm === ucn) {
+
+                        let betslip;
+                        if (picked === "picked") {
+
+                            betslip =
+                                jackpot !== true
+                                    ? removeFromSlip(attributes.match_id)
+                                    : removeFromJackpotSlip(attributes.match_id);
+
+                            setPicked("");
+                        } else {
+                            betslip =
+                                jackpot !== true
+                                    ? (getBetslip() && Object.keys(getBetslip())?.length <= 29) ||
+                                    getBetslip() == null
+                                        ? addToSlip(slip)
+                                        : maxPickReached()
+                                    : addToJackpotSlip(slip);
+
+                            dispatch({type: "SET", key: reference, payload: cstm});
+                        }
+                        dispatch({type: "SET", key: betslip_key, payload: betslip});
+                    }
+                },[ucn, picked,match,mkt]);
+
+            return (
+                <button
+                    ref={ref}
+                    className={
+                        `home-team ${allMarkets ? "all-markets" :
+                            jackpot ? " jackpot-buttons-size" : ""} ${
+                            match.match_id
+                        } ${ucn} ${picked} c-btn`}
+                    home_team={match.home_team}
+                    odd_type={match?.name || match?.market_name || "1X2"}
+                    bet_type={live ? 1 : 0}
+                    start_time={match?.start_time}
+                    away_team={match.away_team}
+                    market_active={match.market_active}
+                    odd_value={oddValue}
+                    odd_key={match?.[mkt] || match?.odd_key || "draw"}
+                    parent_match_id={match.parent_match_id}
+                    match_id={match.match_id}
+                    custom={ucn}
+                    id={ucn}
+                    sport_name={match?.sport_name}
+                    sport_id={match.sport_id}
+                    sub_type_id={match.sub_type_id}
+                    special_bet_value={match?.special_bet_value || ""}
+                    onClick={handleButtonOnClick}
+                >
+                    {!detail && <span className="theodds odd-fix">{oddValue}</span>}
+                    {detail && (
+                        <>
           <span className="label label-inverse blueish">
             {match.display_name}
           </span>
-                        <span className="label label-inverse blueish odd-value">
+                            <span className="label label-inverse blueish odd-value">
             {oddValue}
           </span>
-                    </>
-                )}
-            </button>
-        );
-    });
+                        </>
+                    )}
+                </button>
+            );
+        });
 
 
 const MarketRow = React.memo
 (
     (props) => {
         const {markets, match, width, live, pdown, allMarkets} = props;
-        const [isExpanded, setIsExpanded] = useState(false);
-        const { state, dispatch } = useContext(StoreContext);
+        const [isExpanded,] = useState(false);
+        const {state, dispatch} = useContext(StoreContext);
 
         const MktOddsButton = (props) => {
             const {match, mktodds, live, pdown} = props;
@@ -917,7 +934,7 @@ const MarketRow = React.memo
 
 
         const valuesforPreexpanding = () => {
-            const allMarketNames = [...new Set(state?.all_markets?.data?.odds.flatMap(item => item?.sub_type_id))];
+            const allMarketNames = [...new Set(state?.all_markets?.data?.odds?.flatMap(item => item?.sub_type_id))];
             const preExpandedMarkets = allMarketNames.slice(0, 5);
             return preExpandedMarkets;
         };
@@ -1491,10 +1508,10 @@ const MatchRow = React.memo(
 export const MarketList = React.memo(
     (props) => {
         const {live, allMarkets, pdown, groups} = props;
-        const { state, dispatch } = useContext(StoreContext);
+        const {state, dispatch} = useContext(StoreContext);
         const [filters, setFilters] = useState({});
-        const [perPage, setPerPage] = useState(1000);
-        const [currentPage, setCurrentPage] = useState(1);
+        const [perPage,] = useState(1000);
+        const [currentPage,] = useState(1);
         const [groupMarketsAvailable, setGroupMarketsAvailable] = useState(null)
 
         //  fetching More Markets from redux state

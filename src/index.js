@@ -213,7 +213,7 @@ createRoot(container).render(
                     <Route exact path="/cookie-policy" element={<CookiePolicy/>}/>
                     <Route exact path="/terms-and-conditions" element={<TermsAndConditions/>}/>
                     <Route exact path="/how-to-play" element={<HowToPlay/>}/>
-                    <Route exact path="/lobby" element={<Lobby/>}/>
+                    {/*<Route exact path="/lobby" element={<Lobby/>}/>*/}
                     <Route exact path="/signup" element={<Signup/>}/>
                     <Route exact path="/reset-password" element={<ResetPassword/>}/>
                     <Route exact path="/verify" element={<VerifyAccount/>}/>

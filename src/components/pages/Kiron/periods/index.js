@@ -212,8 +212,14 @@ const KironPeriods = React.memo(
                     } else {
                         dispatch({ type: "SET", key: 'close_spinner', payload: true });
                     }
-                    document.getElementById('game_week').innerHTML = "Game Week " + getFromLocalStorage('kiron_first_week');
-                    document.getElementById('countdown').innerHTML = 'Match Starts In ' + timer;
+                    const gameWeekElement = document.getElementById('game_week');
+                    const countdownElement = document.getElementById('countdown');
+                    if (gameWeekElement) {
+                        gameWeekElement.innerHTML = "Game Week " + getFromLocalStorage('kiron_first_week');
+                    }
+                    if (countdownElement) {
+                        countdownElement.innerHTML = 'Match Starts In ' + timer;
+                    }
                 } else if (initialTime <= 0) {
                     if (state?.current_selection_period?.start.length > 0) {
                         dispatch({ type: "SET", key: "inPlay", payload: false });

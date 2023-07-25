@@ -22,6 +22,7 @@ import {Switch} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import useWindowDimensions from "../header/Dimensions";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
+import Notify from "../utils/Notify";
 
 const BetslipShareModal = React.lazy(() =>
     import("../modals/BetslipShareModal")
@@ -96,7 +97,7 @@ const BetslipSubmitForm = React.memo(
         const [netWin, setNetWin] = useState(0);
         const [netWinBoosted, setNetWinBoosted] = useState(0);
 
-        const [settings, setSettings] = useState(getFromLocalStorage("settings"));
+        const settings = getFromLocalStorage("settings");
         const [multiBoostMessage, setMultiBoostMessage] = useState("");
         const [awardMultiGift, setAwardMultiGift] = useState(false);
 
@@ -185,6 +186,10 @@ const BetslipSubmitForm = React.memo(
         useEffect(() => {
             ipAddress();
         }, [ipAddress])
+
+        const betItem=getBetslip()
+        const sportBookLimits=settings?.sportsBookLimits
+        const betslipLength = Object.keys(betItem || {}).length;
 
         const gaEventTracker=useAnalyticsEventTracker(live?'PlaceLiveBet':'PlacePrematchBet')
 
@@ -328,11 +333,23 @@ const BetslipSubmitForm = React.memo(
                     raw_possible_win = jackpotData?.jackpot_amount;
                 }
 
-                if (raw_possible_win > 500000 && !jackpot) {
-                    raw_possible_win = 500000;
-                }
-                if (boosted_raw_possible_win > 500000 && !jackpot) {
-                    boosted_raw_possible_win = 500000;
+
+                if (betslipLength === 1 && !jackpot) {
+                    if (raw_possible_win > (sportBookLimits?.singleBetMaxWin||500000)) {
+                        raw_possible_win = (sportBookLimits?.singleBetMaxWin||500000);
+                    }
+
+                    if (boosted_raw_possible_win > (sportBookLimits?.singleBetMaxWin||500000)) {
+                        boosted_raw_possible_win = (sportBookLimits?.singleBetMaxWin||500000);
+                    }
+                } else if (betslipLength > 1 && !jackpot) {
+                    if (raw_possible_win > (sportBookLimits?.multiBetMaxWin||500000)) {
+                        raw_possible_win = (sportBookLimits?.multiBetMaxWin||500000);
+                    }
+
+                    if (boosted_raw_possible_win > (sportBookLimits?.multiBetMaxWin||500000)) {
+                        boosted_raw_possible_win = (sportBookLimits?.multiBetMaxWin||500000);
+                    }
                 }
 
                 let taxable_amount = Float(raw_possible_win) - Float(stake_after_tax);
@@ -572,20 +589,49 @@ const BetslipSubmitForm = React.memo(
                     const {isValid, errors, values, submitForm, setFieldValue} = props;
 
                     const onFieldChanged = (ev) => {
-
                         let field = ev.target.name;
                         let value = ev.target.type === "checkbox" ? ev.target.checked : ev.target.value;
-                        console.log("checked here")
-                        if (field == "bet_amount") {
+                        console.log("checked here");
+
+                        if (field === "bet_amount") {
                             value = value.replace(/[^\d]/g, "");
-                            dispatch({type: "SET", key: "userStake", payload: value});
-                            setFieldValue(field, value);
-                            setLocalStorage('userStake',value)
-                            setStake(value);
+                            let newValue = value;
+
+                            let message = { status: 401, message: 'You have reached the maximum allowable stake for this betting', token: '' };
+                            let minStakeMessage = { status: 402, message: 'You have reached the minimum allowable stake for this betting', token: '' };
+
+                            if (betslipLength === 1 && !jackpot) {
+                                const maxStake = sportBookLimits?.singleBetMaxStake || Number.MAX_VALUE;
+                                if (value > maxStake) {
+                                    Notify(message);
+                                    newValue = maxStake;
+                                }else if(value<sportBookLimits?.singleBetMinStake) {
+                                    Notify(minStakeMessage);
+                                    newValue = sportBookLimits?.singleBetMinStake;
+                                }
+                            } else if (betslipLength > 1 && !jackpot) {
+                                const maxStake = sportBookLimits?.multiBetMaxStake || Number.MAX_VALUE;
+                                if (value > maxStake) {
+                                    Notify(message);
+                                    newValue = maxStake;
+                                }
+                                else if (value < sportBookLimits?.singleBetMinStake) {
+                                    Notify(minStakeMessage);
+                                    newValue = sportBookLimits?.singleBetMinStake;
+                                }
+                            }
+
+                            dispatch({ type: "SET", key: "userStake", payload: newValue });
+                            setFieldValue(field, newValue);
+                            setLocalStorage('userStake', newValue);
+                            setStake(newValue);
                         } else {
                             setFieldValue(field, value);
                         }
                     };
+
+
+
                     const UserInfoContainer = () => {
                         return (
                             <table className={"show-tax-info "}>
@@ -723,8 +769,8 @@ const BetslipSubmitForm = React.memo(
                                         </div>
                                         <div className={"w-100"}>
                                             <div id="betting">
-                                                {jackpot ?
-                                                    jackpotData?.bet_amount :
+                                                {jackpot
+                                                    ? jackpotData?.bet_amount :
                                                     (<input type="text"
                                                             className="bet-select bet-stake-input"
                                                             name="bet_amount"

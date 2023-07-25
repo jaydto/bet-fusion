@@ -624,6 +624,7 @@ const OddButton =
                 props;
 
             const [ucn, setUcn] = useState("");
+            const settings = getFromLocalStorage("settings");
 
             const [picked, setPicked] = useState("");
 
@@ -805,7 +806,8 @@ const OddButton =
                             } else {
                                 betslip =
                                     jackpot !== true
-                                        ? (getBetslip() && Object.keys(getBetslip())?.length <= 29) ||
+                                        ? (getBetslip() && Object.keys(getBetslip())?.length <= settings?.sportsBookLimits?.multiBetMaxSelections
+                                        ) ||
                                         getBetslip() == null
                                             ? addToSlip(slip)
                                             : maxPickReached()

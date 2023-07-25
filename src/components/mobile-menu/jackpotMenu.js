@@ -38,7 +38,7 @@ const MobileMenu = React.memo(
                 selections[index] = team
                 let selection = match?.match_id.toString() + match?.sub_type_id.toString() +
                     team.toString()
-                document.querySelectorAll('button[custom="' + selection + '"]').forEach((el) => {
+                document.querySelectorAll('button[custom="' + selection + '"]')?.forEach((el) => {
                     if (!el.classList.contains('picked')) {
                         el.click()
                     }

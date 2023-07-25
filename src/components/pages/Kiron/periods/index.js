@@ -98,7 +98,7 @@ const KironPeriods = React.memo(
 
     const handleLinkClick = (event) => {
         const links = document.querySelectorAll('.link');
-        links.forEach((link) => link.classList.remove('highlight'));
+        links?.forEach((link) => link.classList.remove('highlight'));
         event.currentTarget.classList.add('highlight');
     }
 
@@ -115,7 +115,7 @@ const KironPeriods = React.memo(
 
     useEffect(() => {
         const links = document.querySelectorAll('.link');
-        links.forEach((link) => link.classList.remove('highlight'));
+        links?.forEach((link) => link.classList.remove('highlight'));
 
         const kironSearch = getFromLocalStorage('kiron_search_data') || {}; // Use empty object as default value if kiron_search_data is null or undefined
         const competition1 = new URL(window.location).searchParams.get('competition_id') || kironSearch?.competition_id || '2'

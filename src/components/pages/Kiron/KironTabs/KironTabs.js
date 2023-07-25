@@ -24,7 +24,7 @@ const KironTabs = React.memo(
         const params = Object.fromEntries(urlSearchParams.entries());
         url.pathname = `/${tab}`
 
-        Object.keys(params).forEach((param, val) => {
+        Object.keys(params)?.forEach((param, val) => {
             url.searchParams.set(param, params[param])
         })
 

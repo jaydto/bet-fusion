@@ -3,7 +3,7 @@
 }
 .container-size {
     color:var(--light)!important;
-    background: var(--betnare-primary)!important;
+    /*background: var(--betnare-primary)!important;*/
     width: 100%!important;
 }
 .size-info {

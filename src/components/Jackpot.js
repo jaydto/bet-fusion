@@ -10,10 +10,11 @@ import Select from "react-select";
 import "../assets/css/animationJackpot.css"
 import DailyJackpotTermsAndConditions from "./pages/terms-and-conditions/DailyJackpotTermsAndConditions";
 import {LazyLoadImage} from "react-lazy-load-image-component";
-import Skeleton1 from "./skeleton/skeleton";
 import {ToastContainer} from "react-toastify";
 import moment from "moment/moment";
 import SkeletonJackpot from "./pages/skeletonLoadersWeb/SkeletonJackpot";
+import SkeletonMobileJackpot from "./pages/skeletonLoadersWeb/SkeletonLoaderJackpotMobile";
+
 
 const Header = React.lazy(() => import('./header/header'));
 const Right = React.lazy(() => import('./right'));
@@ -255,7 +256,8 @@ const Jackpot = React.memo(
                                         ) : (
                                             loading ? (
                                                 <>
-                                                    <SkeletonJackpot/>
+                                                    {width < 1259 ? <SkeletonMobileJackpot/> :
+                                                        <SkeletonJackpot/>}
                                                 </>
                                             ) : (
                                                 <div

@@ -11,6 +11,9 @@ import LiveSideBar from "./sidebar/live-sidebar";
 import {Spinner} from "react-bootstrap";
 import {ToastContainer} from "react-toastify";
 import SkeletonLive from "./pages/skeletonLoadersWeb/SkeletonLive";
+import SkeletonMobileLive from "./pages/skeletonLoadersWeb/SkeletonLoaderMobile";
+import SkeletonLoaderMobile from "./pages/skeletonLoadersWeb/SkeletonLoaderMobile";
+import SkeletonLoader from "./pages/skeletonLoadersWeb/SkeletonLoader";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -157,7 +160,8 @@ const  Live= React.memo(
                             <div className={`${width<=991?"d-block":"d-none"}`}>
                                 <LiveSideBar/>
                             </div>
-                            {loading ? <SkeletonLive/> : matches && <MatchList live={1} matches={matches} pdown={producerDown}/>}
+                            {loading ?  width < 1259 ? <SkeletonMobileLive/> :
+                                <SkeletonLive/>: matches && <MatchList live={1} matches={matches} pdown={producerDown}/>}
                         </div>
                     </div>
                 </div>

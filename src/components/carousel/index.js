@@ -32,7 +32,7 @@ const CarouselLoader = React.memo(
         const navigate=useNavigate()
 
         return (
-            <Carousel indicators={false}>
+            <Carousel indicators={false} controls={false}>
                 {state?.carousel_banners?.map((banner, idx) => (
                     <Carousel.Item key={idx}>
                         <LazyLoadImage

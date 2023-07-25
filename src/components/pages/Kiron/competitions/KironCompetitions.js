@@ -10,7 +10,7 @@ import {StoreContext } from "../../../../context/store"
 const KironCompetitions = React.memo(
     (props) => {
     let [kiron, setKiron] = useState(getFromLocalStorage('kiron-competitions'));
-    const [state,]=useContext(StoreContext )
+    const {state,dispatch}=useContext(StoreContext )
     const pathLocation=window.location.pathname
     const [pathname, setPathname] = useState(() => {
         const searchParams = new URLSearchParams(window.location.search);
@@ -59,11 +59,11 @@ const KironCompetitions = React.memo(
     }, []);
 
     useEffect(() => {
-        const abortController = new AbortController();
+        const abort = new AbortController();
         fetchData();
 
         return () => {
-            abortController.abort();
+            abort.abort()
         };
     }, []);
 

@@ -68,11 +68,11 @@ const KironMoreMarkets= React.memo(
     }, []);
 
     useEffect(() => {
-        const abortController = new AbortController();
+        const abort = new AbortController();
         fetchData();
 
         return () => {
-            abortController.abort();
+            abort.abort()
         };
     }, [])
     const handleMarketChoice=(market)=>{

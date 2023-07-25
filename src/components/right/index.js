@@ -38,6 +38,7 @@ const Right = React.memo(
          ${kiron&&'kiron-betslip-size'}
          `}
          ${remove_mobile&&' desktop-only-show '}
+         ${pathname.includes('bet-history')&&' desktop-only-show '}
          `}>
             <div className={`betslip-container  ${jackpot?'d-none':'d-none d-md-block'}`}>
                 {props?.message && <AlertMessage classname={props.classname} message={props.message}/>}

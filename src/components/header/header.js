@@ -236,7 +236,7 @@ const Header = React.memo(
             "/betslip-jackpot", "/nare-league", "/bet-history",
             "/standing", "/results", "/casino", "/jackpot",
             "/smart-soft", "/virtuals", "/competition",
-            "/my-bets", "/profile", "/promotions","/responsible-gambling"]
+            "/my-bets", "/profile", "/promotions","/leader-board","/responsible-gambling"]
 
         useEffect(() => {
 
@@ -288,7 +288,7 @@ const Header = React.memo(
 
         }, [current]);
 
-        const notShowMobileNav = ['/signup', '/nare-league', '/results','/my-bets','/casino','/smart-soft','/virtuals',
+        const notShowMobileNav = ['/signup','/leader-board', '/nare-league', '/results','/my-bets','/casino','/smart-soft','/virtuals',
             '/standing', '/playouts', '/standing', '/bet-history', '/nare-games','/responsible-gambling']
 
         const updateUserOnLogin = useCallback(() => {
@@ -325,7 +325,7 @@ const Header = React.memo(
             <>
 
                 <div className={'d-flex flex-column'}>
-                    {(!showDownload.includes(pathname) && !pathname.includes('match') &&!pathname.includes('nare-games')&&!pathname.includes('gameplay')) &&
+                    {(!showDownload.includes(pathname) && !pathname.includes('match') &&!pathname.includes('nare-games')&&!pathname.includes('bet-history')&&!pathname.includes('gameplay')) &&
                         <div>
                             <a href={'https://storage.googleapis.com/nare-app/betnare-app.apk'}
                                   target={"_self"}
@@ -347,7 +347,7 @@ const Header = React.memo(
                     }
 
                     <Navbar expand="md"
-                            className={`${(scrollPosition || (showDownload.includes(pathname)||pathname.includes('match')||pathname.includes('nare-games')||pathname.includes('gameplay'))) && 'fixed-top-nav'} mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${(slip || jackpot) && "top-betslip-page-fix"} ${user ? 'top-nav-login' : 'top-nav-login'}`}
+                            className={`${(scrollPosition || (showDownload.includes(pathname)||pathname.includes('match')||pathname.includes('nare-games')||pathname.includes('bet-history')||pathname.includes('leader-board')||pathname.includes('gameplay'))) && 'fixed-top-nav'} mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${(slip || jackpot) && "top-betslip-page-fix"} ${user ? 'top-nav-login' : 'top-nav-login'}`}
                             fixed="top" variant="dark">
                         <div
                             className={'w-100 d-flex justify-content-between mobile-change desktop-ipad-size top-header-main'}>

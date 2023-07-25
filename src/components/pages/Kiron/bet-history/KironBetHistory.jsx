@@ -221,7 +221,7 @@ const KironBetHistory = React.memo(
 			const Bet = () => {
 				return (
 					<>  {
-						state?.oldbets?.map((bets) => (
+						state?.oldbets&&state?.oldbets?.map((bets) => (
 							<Link to={`/bet-history/${bets?.bet_id}`} onClick={swap}>
 								<div key={bets?.bet_id} className="bet_item">
 									<>
@@ -303,7 +303,7 @@ const KironBetHistory = React.memo(
 			const ActiveBet = () => {
 				return (
 					<>  {
-						state?.kironbethistory?.map((bets) => (
+						state?.kironbethistory&&state?.kironbethistory?.map((bets) => (
 							<Link to={`/bet-history/${bets?.bet_id}`} onClick={swap}>
 								<div key={bets?.bet_id} className="bet_item">
 									<>

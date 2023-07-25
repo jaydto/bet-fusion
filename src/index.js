@@ -191,6 +191,8 @@ createRoot(container).render(
                     <Route exact path={"/nare-league"} element={<Kiron/>}/>
                     <Route exact path={"/results"} element={<Kiron/>}/>
                     <Route exact path={"/standing"} element={<Kiron/>}/>
+                    <Route path={"/bet-history/:betID"} element={<ProtectedRoute><Kiron/></ProtectedRoute>}/>
+                    <Route path={"/bet-history"} element={<ProtectedRoute><Kiron/></ProtectedRoute>}/>
                     <Route exact path={"/bet-history"} element={<ProtectedRoute><Kiron/></ProtectedRoute>}/>
                     <Route exact path={"/profile"} element={<NewProfile/>}/>
                     <Route exact path={"/my-bets"} element={<ProtectedRoute><BetHistory/></ProtectedRoute>}/>

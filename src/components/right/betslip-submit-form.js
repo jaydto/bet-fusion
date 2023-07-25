@@ -425,7 +425,7 @@ const BetslipSubmitForm = React.memo(
         useEffect(() => {
             updateWinnings();
         }, [updateWinnings]);
-        console.log("value for accepting odds change",)
+
         const value_for_odds_change=getFromLocalStorage("accept_all_odds_change")===undefined?true:getFromLocalStorage("accept_all_odds_change")
         const initialValues = {
             bet_amount: jackpot ? jackpotData?.bet_amount : bonusBet ? 100 : state?.userStake||getFromLocalStorage('userStake')||100,

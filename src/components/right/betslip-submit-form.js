@@ -425,9 +425,11 @@ const BetslipSubmitForm = React.memo(
         useEffect(() => {
             updateWinnings();
         }, [updateWinnings]);
+
+        const value_for_odds_change=getFromLocalStorage("accept_all_odds_change")===undefined?true:getFromLocalStorage("accept_all_odds_change")
         const initialValues = {
             bet_amount: jackpot ? jackpotData?.bet_amount : bonusBet ? 100 : state?.userStake||getFromLocalStorage('userStake')||100,
-            accept_all_odds_change: getFromLocalStorage("accept_odds_change")||true,
+            accept_all_odds_change: value_for_odds_change,
             user_id: state?.user?.profile_id,
             total_games: totalGames,
             total_odd: totalOdds,
@@ -592,6 +594,13 @@ const BetslipSubmitForm = React.memo(
                         let field = ev.target.name;
                         let value = ev.target.type === "checkbox" ? ev.target.checked : ev.target.value;
                         console.log("checked here");
+                        // For the accept_all_odds_change field
+                        if (field === "accept_all_odds_change") {
+                            // Handle the value of the accept_all_odds_change checkbox here
+                            // For example, you can dispatch it, set it in state, or perform any other actions based on the value.
+                            console.log("accept_all_odds_change value:", value);
+                            setLocalStorage("accept_all_odds_change", value)
+                        }
 
                         if (field === "bet_amount") {
                             value = value.replace(/[^\d]/g, "");

@@ -111,6 +111,7 @@ const PrintMatches = React.lazy(() => import('./components/pages/downloads'))
 const Casino = React.lazy(() => import('./components/pages/casino/Casino'))
 
 const LiveCasino = React.lazy(() => import('./components/pages/casino/LiveCasino'))
+const LeaderBoard = React.lazy(() => import('././components/pages/LeaderBoards/LeaderBoards'))
 
 const Virtuals = React.lazy(() => import('./components/pages/casino/Virtuals'))
 
@@ -215,6 +216,9 @@ createRoot(container).render(
                     <Route exact path="/how-to-play" element={<HowToPlay/>}/>
                     {/*<Route exact path="/lobby" element={<Lobby/>}/>*/}
                     <Route exact path="/signup" element={<Signup/>}/>
+                    <Route exact path="/leader-board" element={<LeaderBoard/>}/>
+                    <Route path={"/bet-history/:betID"} element={<ProtectedRoute><Kiron/></ProtectedRoute>}/>
+                    <Route path={"/bet-history"} element={<ProtectedRoute><Kiron/></ProtectedRoute>}/>
                     <Route exact path="/reset-password" element={<ResetPassword/>}/>
                     <Route exact path="/verify" element={<VerifyAccount/>}/>
                     <Route exact path="/app" element={<MobileApp/>}/>

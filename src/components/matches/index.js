@@ -186,7 +186,7 @@ const MatchHeaderRow = React.memo(
 
             let extraMarkets = []
 
-            sub_types.forEach((sub_type) => {
+            sub_types?.forEach((sub_type) => {
                 let selectedMarket = markets.filter((market) => Number(market.id) === Number(sub_type))
 
                 if (selectedMarket.length > 0) {
@@ -388,7 +388,7 @@ const MoreMarketsHeaderRow = React.memo(
         const handleLinkClick = (event) => {
             // remove highlight class from all links
             const links = document.querySelectorAll('.link');
-            links.forEach((link) => link.classList.remove('highlight'));
+            links?.forEach((link) => link.classList.remove('highlight'));
 
             // add highlight class to clicked link
             event.currentTarget.classList.add('highlight');
@@ -1078,7 +1078,7 @@ const MatchRow = React.memo(
 
             let extraMarkets = []
 
-            sub_types.forEach((sub_type) => {
+            sub_types?.forEach((sub_type) => {
                 let selectedMarket = markets.filter((market) => Number(market.id) === Number(sub_type))
 
                 if (selectedMarket.length > 0) {

@@ -50,7 +50,7 @@ const BetSlip = React.memo(
         const validateBetslipwithDbData = useCallback(() => {
             if (betslipValidationData && betslipsData) {
                 let clone_slip = betslipsData;
-                Object.entries(betslipValidationData).forEach(([key, slipdata]) => {
+                Object.entries(betslipValidationData)?.forEach(([key, slipdata]) => {
                     let match_id = slipdata.match_id;
                     let slip = clone_slip[match_id];
                     if (slip) {

@@ -143,7 +143,7 @@ const Index = React.memo(
                     document.body.appendChild(customNotificationUI);
 
                     const permissionButtons = customNotificationUI.getElementsByClassName('permission-button');
-                    Array.from(permissionButtons).forEach((button) => {
+                    Array.from(permissionButtons)?.forEach((button) => {
                         button.addEventListener('click', (event) => {
                             const value = event.target.value;
                             customNotificationUI.remove();

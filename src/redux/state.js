@@ -36,6 +36,8 @@ const initialState = {
             competition_id:null,
             start_time:null,
             end_time:null,
+            markets_data:null,
+            market_options:null,
 
         }, // Initial state for the nareLeague reducer
 };

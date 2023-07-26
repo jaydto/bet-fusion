@@ -1,7 +1,8 @@
 // nareLeagueSlice.js
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import initialState from "./state"; // Import the initial state from state.js
-import makeRequest from "../components/utils/fetch-request"; // Import the makeRequest function
+import makeRequest from "../components/utils/fetch-request";
+import {setLocalStorage} from "../components/utils/local-storage"; // Import the makeRequest function
 // Async thunk for nareLeague
 export const nareLeaguePeriods = createAsyncThunk("nareLeague/periods",
     async (periodsData) => {
@@ -17,11 +18,10 @@ export const nareLeaguePeriods = createAsyncThunk("nareLeague/periods",
         }
     });
 export const nareLeagueCompetitions = createAsyncThunk("nareLeague/competitions",
-    async (competitionsData) => {
+    async () => {
         const [status, response] = await makeRequest({
             url: "/v1/nare-league/competitions",
             method: "POST",
-            data: competitionsData,
         });
         if (status === 200) {
             return response;
@@ -60,11 +60,10 @@ export const nareLeagueBetDetails =
     });
 
 export const nareLeagueMarkets = createAsyncThunk("nareLeague/markets",
-    async (marketsData) => {
+    async () => {
         const [status, response] = await makeRequest({
             url: "/v1/nare-league/markets",
             method: "POST",
-            data: marketsData,
         });
         if (status === 200) {
             return response;
@@ -197,9 +196,18 @@ const nareLeagueSlice = createSlice({
             .addCase(nareLeagueMarkets.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(nareLeagueMarkets.fulfilled, (state) => {
+            .addCase(nareLeagueMarkets.fulfilled, (state,action) => {
                 state.loading = false;
                 state.error = null;
+                state.markets_data=action.payload
+                const marketsData=action.payload
+                setLocalStorage('kiron-more',action.payload)
+                const labeledOptions = marketsData.map(option => ({
+                                to: "sub_type_id="+option.market_id,
+                                label: option?.description
+                            }));
+                state.market_options=labeledOptions
+                setLocalStorage('kiron-more', labeledOptions);
             })
             .addCase(nareLeagueMarkets.rejected, (state, action) => {
                 state.loading = false;
@@ -243,13 +251,15 @@ const nareLeagueSlice = createSlice({
             .addCase(nareLeagueCompetitions.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(nareLeagueCompetitions.fulfilled, (state) => {
+            .addCase(nareLeagueCompetitions.fulfilled, (state,action) => {
                 state.loading = false;
                 state.error = null;
+                state.competitions_data=action.payload;
+                setLocalStorage('kiron-competitions', action.payload);
             })
             .addCase(nareLeagueCompetitions.rejected, (state, action) => {
                 state.loading = false;
-                state.error = action.error.message;
+                state.error = "OOP's, Something went wrong please Retry ";
             })
             .addCase(nareLeagueBetHistory.pending, (state) => {
                 state.loading = true;

@@ -2,15 +2,16 @@ import React, {useCallback, useContext, useEffect, useState} from 'react';
 import {Link, useLocation,} from "react-router-dom";
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import {getFromLocalStorage, setLocalStorage} from "../../../utils/local-storage";
-import makeRequest from "../../../utils/fetch-request";
+import {getFromLocalStorage} from "../../../utils/local-storage";
 import "./competition.css"
 import {StoreContext } from "../../../../context/store"
+import { useDispatch,useSelector } from 'react-redux'; // Import useDispatch hook
+import {nareLeagueCompetitions} from '../../../../redux/nareLeague';
+
 
 const KironCompetitions = React.memo(
     (props) => {
-    let [kiron, setKiron] = useState(getFromLocalStorage('kiron-competitions'));
-    const {state,dispatch}=useContext(StoreContext )
+    const dispatchRedux=useDispatch()
     const pathLocation=window.location.pathname
     const [pathname, setPathname] = useState(() => {
         const searchParams = new URLSearchParams(window.location.search);
@@ -37,26 +38,15 @@ const KironCompetitions = React.memo(
 
     const fetchData = useCallback(async () => {
         let cached_competitions = getFromLocalStorage('kiron-competitions');
-        let endpoint = "/v1/nare-league/competitions";
-        let method="POST"
 
         if (!cached_competitions) {
-            const [competition_result] = await Promise.all([
-                makeRequest({url: endpoint, method: method, data: null}),
-            ]);
-            let [c_status, c_result] = competition_result
-            // console.log('kirons',c_result)
-            if (c_status === 200) {
-                setKiron(c_result);
-                setLocalStorage('kiron-competitions', c_result);
-            } else {
-                // fetchData()
-            }
-        } else {
-            setKiron(cached_competitions);
+            dispatchRedux(nareLeagueCompetitions())
         }
 
     }, []);
+
+    const competitionData=useSelector((state)=>state.nareLeague.competitions_data)||getFromLocalStorage('kiron-competitions')
+    const error=useSelector((state)=>state.nareLeague.error)
 
     useEffect(() => {
         const abort = new AbortController();
@@ -74,16 +64,16 @@ const KironCompetitions = React.memo(
 
 
     return (
-        kiron&&
+        competitionData&&
         <div className="app-countries-icons mt-4">
             <div className="container-fluid">
                 <div className="d-flex">
-                    {state?.error_periods?
+                    {error?
                     <div   className={'error-periods'} onClick={refreshPage}>
                         {/*{window.location.reload()}*/}
-                        <div className={'error-message-periods'}>{state?.error_periods}</div>
+                        <div className={'error-message-periods'}>{error}</div>
                     </div >:
-                    kiron?.map((kiron_options, index) => (
+                        competitionData?.map((kiron_options, index) => (
                     <div key={index} className="league-countries">
                         <div className={`country-flag-icon ${(pathname.includes(`competition_id=${kiron_options?.competition_id}`))?' active-league ':" "} justify-content-center`}>
                             <Link to={`${pathLocation=='/bet-history'?'/nare-league':pathLocation}?competition_id=${kiron_options.competition_id}`}>

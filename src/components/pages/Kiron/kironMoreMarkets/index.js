@@ -3,6 +3,8 @@ import {useLocation} from "react-router-dom";
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import {getFromLocalStorage, setLocalStorage} from "../../../utils/local-storage";
 import makeRequest from "../../../utils/fetch-request";
+import { useDispatch,useSelector } from 'react-redux'; // Import useDispatch hook
+import {nareLeagueMarkets} from '../../../../redux/nareLeague';
 
 import Button from "../../../utils/button";
 import LinkSelect from "../../../utils/options";
@@ -13,6 +15,7 @@ const KironMoreMarkets= React.memo(
     () => {
     const [options, setOptions] = useState(getFromLocalStorage('kiron-more'));
     const { state, dispatch } = useContext(StoreContext);
+    const dispatchRedux=useDispatch()
 
     const [pathname, setPathname] = useState(() => {
         const searchParams = new URLSearchParams(window.location.search);
@@ -38,32 +41,33 @@ const KironMoreMarkets= React.memo(
     }, [location.search]);
     const fetchData = useCallback(async () => {
         let cached_competitions = getFromLocalStorage('kiron-more');
-        let endpoint = "/v1/nare-league/markets";
-        let method="POST"
+
 
         if (!cached_competitions) {
-            const [competition_result] = await Promise.all([
-                makeRequest({url: endpoint, method: method, data: null}),
-            ]);
-            let [c_status, c_result] = competition_result
-            // console.log('kirons',c_result)
-            if (c_status === 200) {
-                // setKiron(c_result);
-                const labeledOptions = c_result.map(option => ({
-                    to: "sub_type_id="+option.market_id,
-                    label: option?.description
-                }));
-
-
-                setOptions(labeledOptions);
-
-                setLocalStorage('kiron-more', labeledOptions);
-            } else {
-                // fetchData()
-            }
-        } else {
-            setOptions(cached_competitions);
+            dispatchRedux(nareLeagueMarkets())
         }
+        //     const [competition_result] = await Promise.all([
+        //         makeRequest({url: endpoint, method: method, data: null}),
+        //     ]);
+        //     let [c_status, c_result] = competition_result
+        //     // console.log('kirons',c_result)
+        //     if (c_status === 200) {
+        //         // setKiron(c_result);
+        //         const labeledOptions = c_result.map(option => ({
+        //             to: "sub_type_id="+option.market_id,
+        //             label: option?.description
+        //         }));
+        //
+        //
+        //         setOptions(labeledOptions);
+        //
+        //         setLocalStorage('kiron-more', labeledOptions);
+        //     } else {
+        //         // fetchData()
+        //     }
+        // } else {
+        //     setOptions(cached_competitions);
+        // }
 
     }, []);
 

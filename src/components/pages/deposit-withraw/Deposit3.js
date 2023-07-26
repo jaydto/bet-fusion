@@ -435,7 +435,7 @@ const DepositFormFields = (props) => {
                 <div className=" d-flex align-items-start deposit-withdraw-button-desktop">
                     <button type={"submit"}
                             className='btn btn-lg w-100 deposit-button button-radius input-field btn-font cg login-button2 btn bold d-flex justify-content-center align-items-center' style={{marginTop:"30px"}} disabled={values?.amount==''}>
-                        {state?.depositLoading && <div className="custom-loader"></div>} PAY&nbsp;{values?.amount}
+                        {state?.depositLoading && <div className="custom-loader"></div>} PAY &nbsp;{values?.amount}
                     </button>
                 </div>
             </div>

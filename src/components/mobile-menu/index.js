@@ -51,7 +51,7 @@ const MobileMenu = React.memo((props) => {
 
     let sumOfOdds = 1;
 
-    Object.values(betItems || {}).forEach(match => {
+    Object.values(betItems || {})?.forEach(match => {
         const oddValue = parseFloat(match.odd_value);
         if (!isNaN(oddValue)) {
             sumOfOdds *= oddValue;

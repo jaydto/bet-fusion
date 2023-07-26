@@ -444,6 +444,9 @@ input.text-white {
 
 }
 /*css loader button */
+.footer-custom{
+    line-height:2;
+}
 .custom-loader {
     --d:22px;
     width: 4px;
@@ -2086,6 +2089,9 @@ img.nare-league {
 }
 
 @media (max-width: 991px) {
+    .bottom-more-markets-mobile{
+        margin-bottom:7rem!important;
+    }
     .spacing-backbutton{
         padding-right:23px;
     }
@@ -2412,13 +2418,13 @@ img.nare-league {
     }
 
     .top-smartsoft {
-        margin-top: 10rem !important;
+        margin-top: 2rem !important;
     }
     .top-leader-board {
         margin-top: 10rem !important;
     }
-    .top-spacing-casino{
-        margin-top: 7rem !important;
+    .top-spacing-casino {
+        margin-top: 2rem !important;
     }
 
 
@@ -2464,7 +2470,7 @@ img.nare-league {
     }
 
     .top-spacing-page-no-download {
-        margin-top: 7rem;
+        margin-top: 2rem;
     }
 
     .slip-message-alert {
@@ -3283,8 +3289,9 @@ img.nare-league {
     .top-nav-login.top-betslip-page-fix {
         min-height: 50px;
     }
-    .top-nav-login.top-betslip-page-fix.top-betslip-page-fix{
+    .top-nav-login.top-betslip-page-fix.top-betslip-page-fix {
         min-height: 50px!important;
+        position: fixed;
     }
     .top-nav-login {
         padding-top: 0px;

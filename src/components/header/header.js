@@ -249,7 +249,7 @@ const Header = React.memo(
         const showDownload = ["/nare-games", "/bethistory", "/terms-and-conditions",
             "/gameplay", "/smart-play", "/betslip-slip", "/betslip-nare",
             "/betslip-jackpot", "/nare-league", "/bet-history",
-            "/standing", "/results", "/casino", "/jackpot",
+            "/standing", "/results", "/jackpot",
             "/smart-soft", "/virtuals", "/competition",
             "/my-bets", "/profile", "/promotions","/leader-board","/responsible-gambling"]
 
@@ -340,7 +340,7 @@ const Header = React.memo(
             <>
 
                 <div className={'d-flex flex-column'}>
-                    {(!showDownload.includes(pathname) && !pathname.includes('match') &&!pathname.includes('nare-games')&&!pathname.includes('bet-history')&&!pathname.includes('gameplay')) &&
+                    {(!showDownload.includes(pathname) && !pathname.includes('match')&&!pathname.includes('competition') &&!pathname.includes('nare-games')&&!pathname.includes('bet-history')&&!pathname.includes('gameplay')) &&
                         <div>
                             <a href={'https://storage.googleapis.com/nare-app/betnare-app.apk'}
                                   target={"_self"}
@@ -362,7 +362,7 @@ const Header = React.memo(
                     }
 
                     <Navbar expand="md"
-                            className={`${(scrollPosition || (showDownload.includes(pathname)||pathname.includes('match')||pathname.includes('nare-games')||pathname.includes('bet-history')||pathname.includes('leader-board')||pathname.includes('gameplay'))) && 'fixed-top-nav'} mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${(slip || jackpot) && "top-betslip-page-fix"} ${user ? 'top-nav-login' : 'top-nav-login'}`}
+                            className={`${(scrollPosition || (showDownload.includes(pathname)||pathname.includes('nare-games')||pathname.includes('bet-history')||pathname.includes('leader-board')||pathname.includes('gameplay'))) && 'fixed-top-nav'} mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${(slip || jackpot||pathname.includes('match')||pathname.includes('smart-soft') ||pathname.includes('casino'))&& "top-betslip-page-fix"} ${user ? 'top-nav-login' : 'top-nav-login'}`}
                             fixed="top" variant="dark">
                         <div
                             className={'w-100 d-flex justify-content-between mobile-change desktop-ipad-size top-header-main'}>

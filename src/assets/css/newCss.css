@@ -444,6 +444,9 @@ input.text-white {
 
 }
 /*css loader button */
+.footer-custom{
+    line-height:2;
+}
 .custom-loader {
     --d:22px;
     width: 4px;

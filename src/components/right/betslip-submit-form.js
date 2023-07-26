@@ -625,7 +625,7 @@ const BetslipSubmitForm = React.memo(
                             value = value.replace(/[^\d]/g, "");
                             let newValue = value;
 
-                            let message = { status: 401, message: 'You have reached the maximum allowable stake for this betting', token: '' };
+                            let message = { status: 401, message: 'You have reached the maximum allowable stake for this bet', token: '' };
                             let minStakeMessage = {  message: `Minimum amount is ${sportBookLimits?.singleBetMinStake} KSH` };
 
                             if (betslipLength === 1 && !jackpot) {

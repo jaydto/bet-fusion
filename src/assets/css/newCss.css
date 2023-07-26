@@ -1835,6 +1835,9 @@ img.nare-league {
 }
 
 @media (min-width: 992px) {
+    .top-leader-board {
+        margin-top: 7rem !important;
+    }
     .desktop-only-show{
         display:flex;
     }

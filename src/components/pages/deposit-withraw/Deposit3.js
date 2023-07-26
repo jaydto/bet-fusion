@@ -490,7 +490,7 @@ const DepositForm = (props) => {
     const depositValues =  state?.depositValue||''; // Initialize depositValues as an empty array if it's not available in the state
 
     const initialValues = {
-        amount: depositValues||0,
+        amount: depositValues||100,
         msisdn: state?.user?.msisdn||user?.msisdn
     }
     const gaEventTracker = useAnalyticsEventTracker('Deposit')

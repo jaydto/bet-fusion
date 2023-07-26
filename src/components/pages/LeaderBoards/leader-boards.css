@@ -1,10 +1,23 @@
 .leaderboard .top {
     display: block;
     padding: 1em 0;
-    background:var(--betnare-button-login);
+    background: url(../../../assets/img/aniversary.jpeg);
+    background-position: unset;
+    background-size: cover;
+    /* width: 70%; */
+    margin: auto;
+    /* background-attachment: fixed; */
+    background-repeat: no-repeat;
+    /* background-blend-mode: multiply; */
+    /* background-position-x: center; */
+    background-repeat: round;
 }
 .leaderboard .awards .t.p-2 {
     padding-top: .75em;
+}
+.aniversary-header {
+    width: 40rem!important;
+    height: 5rem;
 }
 .how_to_play{
     max-width: 991px;
@@ -53,9 +66,24 @@
     display: block;
     text-align: center;
 }
+.lead-users{
+    font-size:20px;
+    font-weight:800;
+}
+.congrats {
+    color: #FF5722;
+    font-size: 35px;
+    font-weight: 800;
+}
+.points{
+    color:var(--betnare-button-login);
+    font-size:17px;
+    font-weight:600;
+}
 .leaderboard .title {
     text-align: center;
     margin-top: .35em;
+    color:var(--light)
 }
 .text-medium {
     font-weight: 500;
@@ -67,6 +95,8 @@
     display: table;
     width: 100%;
     position: relative;
+    color: var(--light);
+    margin-top: 2rem;
 }
 .leaderboard .tabs {
     display: table;
@@ -143,6 +173,9 @@
 .leaderboard .awards .t.p-3 img, .leaderboard .awards .t.p-3 svg {
     width: 50%;
 }
+.logo .aniversary{
+    width:20rem
+}
 @media (min-width:992px){
     .header-leader h2{
         font-size:26px;
@@ -150,8 +183,6 @@
     .header-leader h3{
         font-size:24px;
     }
-    .logo .aniversary{
-        width:20rem
-    }
+
 
 }

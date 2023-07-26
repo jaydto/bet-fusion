@@ -93,8 +93,8 @@ const Withdrawal = React.memo(
                 errors.msisdn = 'Please enter a valid phone number'
             }
             //Removed the  upper limit  values.amount > 70000
-            if (!values.amount || values.amount < 100) {
-                errors.amount = "Please enter amount above KES 100";
+            if (!values.amount || values.amount < 10) {
+                errors.amount = "Please enter amount above KES 10";
             }
             return errors
         }

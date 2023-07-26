@@ -5,6 +5,7 @@ import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import makeRequest from "../../utils/fetch-request";
+import aniversary_header from '../../../assets/img/aniversary_header.png'
 const LeaderBoards = () => {
 	const endpoint='/v1/leaderboard'
 	const [leaders, setLeaders]=useState([])
@@ -49,8 +50,8 @@ const LeaderBoards = () => {
 					<div className="logo">
 						<LazyLoadImage src={'https://storage.googleapis.com/nareimages/logo-white.webp'} className={'aniversary'}/>
 					</div>
-					<div className="title"><h2 className="text-medium"><strong>Leaderboard</strong></h2>
-						<div className="opacity-75">Ends {leaders?.end_date}</div>
+					<div className="logo">
+						<LazyLoadImage src={aniversary_header} className={'aniversary aniversary-header'}/>
 					</div>
 					<div className="awards">
 							<div className="t p-2">
@@ -336,8 +337,8 @@ const LeaderBoards = () => {
 								<path fill="url(#ZGoriPuLqYW2uH8J_m8eEq)"
 									  d="M24.263,36.971l1.037-1.198c0.795-0.794,1.381-1.44,1.741-1.918	c0.37-0.491,0.647-0.968,0.824-1.418c0.181-0.461,0.272-0.942,0.272-1.43c0-1.158-0.373-2.064-1.109-2.694	c-0.724-0.618-1.753-0.931-3.06-0.931c-0.818,0-1.571,0.182-2.238,0.54c-0.672,0.362-1.204,0.87-1.582,1.511	c-0.378,0.641-0.569,1.349-0.569,2.103v0.3h3.264v-0.3c0-0.454,0.104-0.817,0.32-1.111c0.196-0.269,0.433-0.394,0.743-0.394	c0.318,0,0.55,0.091,0.707,0.279c0.168,0.201,0.254,0.516,0.254,0.935c0,0.365-0.224,1.054-1.281,2.26l-3.77,3.963v2.154h8.604	v-2.648h-4.157V36.971z"></path>
 							</svg>
-							<div><strong>{profiles&&profiles[0]?.name}</strong></div>
-							<div>{profiles&&profiles[0]?.entries}</div>
+							<div><strong className={'lead-users'}>{profiles&&profiles[1]?.name}</strong></div>
+							<div className={'points'}>{profiles&&profiles[1]?.entries}</div>
 						</div>
 							<div className="t p-1">
 							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
@@ -646,8 +647,8 @@ const LeaderBoards = () => {
 							</radialGradient>
 							<circle cx="24" cy="34" r="9.087" fill="url(#YX6Xbdxclnk~5unJ3IwLDE)"></circle>
 							</svg>
-                                <div><strong>{profiles&&profiles[1]?.name}</strong></div>
-                                <div>{profiles&&profiles[1]?.entries}</div>
+                                <div><strong className={'lead-users'}>{profiles&&profiles[0]?.name}</strong></div>
+                                <div className={'points'}>{profiles&&profiles[0]?.entries}</div>
 							</div>
 							<div className="t p-3">
 							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
@@ -915,9 +916,16 @@ const LeaderBoards = () => {
 							<path fill="url(#O1Nq4IGAfqqeCh~yHU4enq)"
 							d="M27.95,34.272c-0.303-0.393-0.699-0.708-1.183-0.943c0.449-0.268,0.809-0.594,1.07-0.975	c0.336-0.488,0.507-1.015,0.507-1.567c0-1.118-0.408-2.011-1.214-2.654c-0.792-0.632-1.887-0.953-3.254-0.953	c-0.766,0-1.48,0.145-2.124,0.431c-0.651,0.29-1.168,0.7-1.535,1.217c-0.372,0.524-0.562,1.128-0.562,1.795v0.2h3.16v-0.2	c0-0.254,0.107-0.463,0.329-0.637c0.236-0.186,0.508-0.276,0.83-0.276c0.391,0,0.692,0.105,0.897,0.313	c0.209,0.211,0.311,0.479,0.311,0.822c0,0.897-0.428,1.314-1.347,1.314h-1.503v2.456h1.543c0.479,0,0.855,0.111,1.117,0.33	c0.251,0.209,0.378,0.588,0.378,1.124c0,0.366-0.121,0.657-0.37,0.89c-0.253,0.236-0.589,0.351-1.026,0.351	c-0.383,0-0.695-0.114-0.954-0.349c-0.254-0.23-0.377-0.493-0.377-0.802v-0.2h-3.177v0.2c0,0.708,0.185,1.35,0.549,1.907	s0.904,0.998,1.605,1.31c0.69,0.308,1.449,0.464,2.255,0.464c1.372,0,2.499-0.337,3.351-1c0.865-0.676,1.305-1.588,1.305-2.713	C28.532,35.396,28.336,34.772,27.95,34.272z"></path>
 							</svg>
-                                <div><strong>{profiles&&profiles[2]?.name}</strong></div>
-                                <div>{profiles&&profiles[2]?.entries}</div>
+                                <div><strong className={'lead-users'}>{profiles&&profiles[2]?.name}</strong></div>
+                                <div className={'points'}>{profiles&&profiles[2]?.entries}</div>
 							</div>
+					</div>
+					<div className="title"><h2 className="text-medium">
+						<div className={'congrats'}>
+							Celebrate and Win KES 1,000,000!
+						</div>
+						<strong>Leaderboard&nbsp;</strong></h2>
+						<div className="opacity-75">Ends {leaders?.end_date}</div>
 					</div>
 				</div>
 

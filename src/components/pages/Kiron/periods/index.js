@@ -4,6 +4,9 @@ import makeRequest from "../../../utils/fetch-request";
 import './period.css'
 import {StoreContext } from "../../../../context/store"
 import moment from "moment"
+import { useDispatch,useSelector } from 'react-redux'; // Import useDispatch hook
+import {nareLeagueMatches, nareLeaguePeriods, nareLeaguePlayouts} from '../../../../redux/nareLeague';
+
 export const getTime = (time) => {
     const start = new Date(time);
     const startTimeString = start.toLocaleTimeString('en-Us', {hour12: false, hour: '2-digit', minute: '2-digit'});
@@ -14,7 +17,8 @@ let timerInterval;
 let timerVar;
 const KironPeriods = React.memo(
     (props) => {
-    const {setPlayout, setIsCountdownTimerActive, isCountdownTimerActive} = props
+        const dispatchRedux = useDispatch();
+        const {setPlayout, setIsCountdownTimerActive, isCountdownTimerActive} = props
     const { state, dispatch } = useContext(StoreContext);
     const [timeLeft, setTimeLeft] = useState(0);
     const [timeAfter, setTimeAfter] = useState(null);
@@ -52,36 +56,59 @@ const KironPeriods = React.memo(
 
         const newCompetition2 = {competition_id: new URL(window.location).searchParams.get('competition_id') || getFromLocalStorage('kiron_search_data')?.competition_id || '2'}
 
-        makeRequest({url: endpoint, method: method, data: newCompetition2}).then(([c_status, c_result]) => {
+        // makeRequest({url: endpoint, method: method, data: newCompetition2}).then(([c_status, c_result]) => {
+        //
+        //     if (c_status === 200) {
+        //         dispatch({type:'SET',key:'error_periods', payload:null})
+        //         setTimeAfter(null)
+        //         dispatch({type:'SET',key:'timeAfter', payload:null})
+        //         setIsCountdownTimerActive(false)
+        //         dispatch({type: "SET", key: 'periods_data', payload: c_result})
+        //
+        //         const keys = Object.keys(c_result);
+        //         const firstKey = keys[0];
+        //         const firstItem = c_result[firstKey];
+        //         dispatch({type: "SET", key: 'periods_first', payload: firstItem?.start_time})
+        //         dispatch({type: "SET", key: 'periods_first_round', payload: firstItem?.round_id})
+        //         setLocalStorage('kiron-periods', c_result);
+        //         setLocalStorage('kiron_first_period', firstItem?.start_time);
+        //         setLocalStorage('kiron_first_week', firstItem?.round_number);
+        //         setLocalStorage('kiron_first_round', firstItem?.round_id);
+        //         setLocalStorage('kiron_end_time', firstItem?.end_time)
+        //         dispatch({type: "SET", key: 'nare_league_matches', payload: null})
+        //         dispatch({type: "SET", key: 'periods_ready', payload: true})
+        //     } else {
+        //         prevCount.current=prevCount.current+1
+        //         counter(prevCount.current)
+        //     }
+        //
+        // })
 
-            if (c_status === 200) {
-                dispatch({type:'SET',key:'error_periods', payload:null})
-                setTimeAfter(null)
-                dispatch({type:'SET',key:'timeAfter', payload:null})
-                setIsCountdownTimerActive(false)
-                dispatch({type: "SET", key: 'periods_data', payload: c_result})
+        await dispatchRedux(nareLeaguePeriods(newCompetition2));
 
-                const keys = Object.keys(c_result);
-                const firstKey = keys[0];
-                const firstItem = c_result[firstKey];
-                dispatch({type: "SET", key: 'periods_first', payload: firstItem?.start_time})
-                dispatch({type: "SET", key: 'periods_first_round', payload: firstItem?.round_id})
-                setLocalStorage('kiron-periods', c_result);
-                setLocalStorage('kiron_first_period', firstItem?.start_time);
-                setLocalStorage('kiron_first_week', firstItem?.round_number);
-                setLocalStorage('kiron_first_round', firstItem?.round_id);
-                setLocalStorage('kiron_end_time', firstItem?.end_time)
-                dispatch({type: "SET", key: 'nare_league_matches', payload: null})
-                dispatch({type: "SET", key: 'periods_ready', payload: true})
-            } else {
-                prevCount.current=prevCount.current+1
-                counter(prevCount.current)
-            }
-
-        })
 
     }, []);
-    useEffect(()=>{
+        // Access the periods_data and periods_ready from the state
+        const periodsData = useSelector((state) => state.nareLeague.periods_data);
+        const periodsReady = useSelector((state) => state.nareLeague.periods_ready);
+
+        console.log("periodsData", periodsData)
+        console.log("periodsReady", periodsReady)
+        const inPlay = useSelector((state) => state.nareLeague.inPlay);
+        console.log("inPlay", inPlay)
+
+        useEffect(() => {
+            console.log("here fetching ")
+            // Check if periods are ready and inPlay is false
+            const newCompetition2 = {competition_id: new URL(window.location).searchParams.get('competition_id') || getFromLocalStorage('kiron_search_data')?.competition_id || '2'}
+            if (periodsReady && !inPlay) {
+                dispatchRedux(nareLeagueMatches(newCompetition2)); // Dispatch nareLeagueMatches async thunk
+            } else if (periodsReady && inPlay) {
+                dispatchRedux(nareLeaguePlayouts()); // Dispatch nareLeaguePlayouts async thunk
+            }
+        }, [periodsReady, inPlay]);
+
+        useEffect(()=>{
         if(state?.periods_ready){
             if(!state?.inPlay){
                 dispatch({type: "SET", key: 'start_fetching_match', payload: true})
@@ -380,12 +407,12 @@ const KironPeriods = React.memo(
     }, [])
 
     return (<div className={`  container-period `} style={{background: " #162024"}}>
-            {state?.periods_data && (
+            {periodsData && (
                 <table className={'kiron-table'} style={{width: "100%", textAlign: "center", display: 'flex'}}>
                     <tbody className={"d-flex periods"} style={{overflowX: "auto"}}>
                     <tr className={"d-flex league-row gap-2 justify-content-center align-items-center  kiron-period"}
                         ref={kironPeriodsRef} style={{flex: '0 0 auto', overflowX: "hidden", height: '50px'}}>
-                        {state?.periods_data?.map((kiron_options, index) => {
+                        {periodsData?.map((kiron_options, index) => {
                             const time = getTime(kiron_options.start_time);
                             const isFirst = index === 0;
                             const startTime = isFirst ? '' : kiron_options?.start_time;

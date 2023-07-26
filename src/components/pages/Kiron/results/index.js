@@ -5,33 +5,27 @@ import {Spinner} from "react-bootstrap";
 import {getFromLocalStorage} from "../../../utils/local-storage";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import {StoreContext} from "../../../../context/store";
+import { useDispatch,useSelector } from 'react-redux'; // Import useDispatch hook
+import {nareLeagueResults} from '../../../../redux/nareLeague';
 
 const KironResults =
     () => {
-        const [loading, setLoading] = useState(false)
-        const [resulted, setResulted] = useState([]);
         const {state,dispatch}=useContext(StoreContext)
         const newCompetition = new URL(window.location).searchParams.get('competition_id') || getFromLocalStorage("kiron_search_data")?.competition_id
 
-        let endpoint = "/v1/nare-league/results"
+        const dispatchRedux=useDispatch()
 
         const fetchData = useCallback(async () => {
-            setLoading(true)
-            endpoint = endpoint.replaceAll(" ", '')
 
             const kiron_data = {
                 competition_id: new URL(window.location).searchParams.get('competition_id') || getFromLocalStorage("kiron_search_data")?.competition_id
             }
-            await makeRequest({url: endpoint, method: "POST", data: kiron_data}).then(([status, result]) => {
-                if (status == 200) {
-                    setResulted(result?.data || result)
-                    setLoading(false)
+            dispatchRedux(nareLeagueResults(kiron_data))
 
-                }
-            });
 
         }, []);
-
+        const loadingData = useSelector((state) => state.nareLeague.loading);
+        const resultsData = useSelector((state) => state.nareLeague.results_data);
 
         useEffect(() => {
             fetchData();
@@ -43,8 +37,8 @@ const KironResults =
 
         return (
             <>
-                {resulted && !loading ?
-                    Object.entries(resulted).map(([key, league], index) => (
+                {resultsData && !loadingData ?
+                    Object.entries(resultsData).map(([key, league], index) => (
                         <>
                             <section className="standing-wrapper text-center pt-2 pb-2" key={index}>
                                 <div className="container">

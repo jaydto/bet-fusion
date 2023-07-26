@@ -316,7 +316,7 @@ export const MatchRow = React.memo(
                 </div>
               </div>
 
-              <div className={`col d-flex  flex-row  space-bets  justify-content-lg-between align-items-center `}>
+              <div className={`col d-flex  flex-row  space-bets align-self-center justify-content-lg-between align-items-center `}>
                 {/*mobile*/}
                 <div className="d-flex w-100 justify-content-end">
 

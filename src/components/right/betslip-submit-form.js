@@ -278,7 +278,19 @@ const BetslipSubmitForm = React.memo(
                                 message: response?.message,
                             });
                         } else {
+                            let betslips =  getBetslip();
+                            Object.entries(betslips).map(([match_id, match]) => {
+                                let match_selector = match.match_id + "_selected";
+                                let ucn = clean_rep(
+                                    match.match_id
+                                    + "" + match.sub_type_id
+                                    + (match.bet_pick)
+                                );
+
+                                dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
+                            });
                             clearSlip();
+
                         }
                         setBetslipsData(null);
                         dispatch({
@@ -333,31 +345,32 @@ const BetslipSubmitForm = React.memo(
                     raw_possible_win = jackpotData?.jackpot_amount;
                 }
 
-
+                console.log("betslip_length", betslipLength)
                 if (betslipLength === 1 && !jackpot) {
-                    if (raw_possible_win > (sportBookLimits?.singleBetMaxWin||500000)) {
-                        raw_possible_win = (sportBookLimits?.singleBetMaxWin||500000);
+                    if (Number(raw_possible_win) > (Number(sportBookLimits?.singleBetMaxWin)||500000)) {
+                        raw_possible_win = (Number(sportBookLimits?.singleBetMaxWin)||500000);
                     }
 
-                    if (boosted_raw_possible_win > (sportBookLimits?.singleBetMaxWin||500000)) {
-                        boosted_raw_possible_win = (sportBookLimits?.singleBetMaxWin||500000);
+                    if (Number(boosted_raw_possible_win) > (Number(sportBookLimits?.singleBetMaxWin)||500000)) {
+                        boosted_raw_possible_win = (Number(sportBookLimits?.singleBetMaxWin)||500000);
                     }
                 } else if (betslipLength > 1 && !jackpot) {
-                    if (raw_possible_win > (sportBookLimits?.multiBetMaxWin||500000)) {
-                        raw_possible_win = (sportBookLimits?.multiBetMaxWin||500000);
+                    if (Number(raw_possible_win) > (Number(sportBookLimits?.multiBetMaxWin)||500000)) {
+                        raw_possible_win = (Number(sportBookLimits?.multiBetMaxWin)||500000);
                     }
 
-                    if (boosted_raw_possible_win > (sportBookLimits?.multiBetMaxWin||500000)) {
-                        boosted_raw_possible_win = (sportBookLimits?.multiBetMaxWin||500000);
+                    if (Number(boosted_raw_possible_win) > (Number(sportBookLimits?.multiBetMaxWin)||500000)) {
+                        boosted_raw_possible_win = (Number(sportBookLimits?.multiBetMaxWin)||500000);
                     }
                 }else{
-                    if (raw_possible_win > 500000 && !jackpot) {
+                    if (Number(raw_possible_win) > 500000 && !jackpot) {
                         raw_possible_win = 500000;
                     }
-                    if (boosted_raw_possible_win > 500000 && !jackpot) {
+                    if (Number(boosted_raw_possible_win) > 500000 && !jackpot) {
                         boosted_raw_possible_win = 500000;
                     }
                 }
+
 
                 let taxable_amount = Float(raw_possible_win) - Float(stake_after_tax);
                 let taxable_amount_boosted =

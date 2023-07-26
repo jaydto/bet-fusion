@@ -54,6 +54,7 @@ const Deposit3 = React.memo(
             let method='POST'
             await makeRequest({url:endpoint,method:method,data:null}).then(([status,response])=>{
                 if(status===200){
+                    setLocalStorage('settings',response?.message,1800000)
                     setDepositPromos(response?.message?.betnareDeposit)
                     dispatch({type: "SET", key: "depositPromos", payload: response?.message?.betnareDeposit});
 

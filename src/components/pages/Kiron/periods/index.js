@@ -98,7 +98,7 @@ const KironPeriods = React.memo(
 
     const handleLinkClick = (event) => {
         const links = document.querySelectorAll('.link');
-        links.forEach((link) => link.classList.remove('highlight'));
+        links?.forEach((link) => link.classList.remove('highlight'));
         event.currentTarget.classList.add('highlight');
     }
 
@@ -115,7 +115,7 @@ const KironPeriods = React.memo(
 
     useEffect(() => {
         const links = document.querySelectorAll('.link');
-        links.forEach((link) => link.classList.remove('highlight'));
+        links?.forEach((link) => link.classList.remove('highlight'));
 
         const kironSearch = getFromLocalStorage('kiron_search_data') || {}; // Use empty object as default value if kiron_search_data is null or undefined
         const competition1 = new URL(window.location).searchParams.get('competition_id') || kironSearch?.competition_id || '2'
@@ -212,8 +212,14 @@ const KironPeriods = React.memo(
                     } else {
                         dispatch({ type: "SET", key: 'close_spinner', payload: true });
                     }
-                    document.getElementById('game_week').innerHTML = "Game Week " + getFromLocalStorage('kiron_first_week');
-                    document.getElementById('countdown').innerHTML = 'Match Starts In ' + timer;
+                    const gameWeekElement = document.getElementById('game_week');
+                    const countdownElement = document.getElementById('countdown');
+                    if (gameWeekElement) {
+                        gameWeekElement.innerHTML = "Game Week " + getFromLocalStorage('kiron_first_week');
+                    }
+                    if (countdownElement) {
+                        countdownElement.innerHTML = 'Match Starts In ' + timer;
+                    }
                 } else if (initialTime <= 0) {
                     if (state?.current_selection_period?.start.length > 0) {
                         dispatch({ type: "SET", key: "inPlay", payload: false });

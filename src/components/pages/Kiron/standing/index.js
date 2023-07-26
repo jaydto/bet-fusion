@@ -1,15 +1,16 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useContext, useEffect, useState} from 'react';
 import "./standing.css"
 import makeRequest from "../../../utils/fetch-request";
 import {getFromLocalStorage} from "../../../utils/local-storage";
 import {Spinner} from "react-bootstrap";
 import {LazyLoadImage} from "react-lazy-load-image-component";
+import {StoreContext} from "../../../../context/store";
 
 const Standing = () => {
     const [standings, setStandings] = useState([]);
     const [loading, setLoading] = useState(false);
     const newCompetition = new URL(window.location).searchParams.get('competition_id') || getFromLocalStorage("kiron_search_data")?.competition_id
-
+    const {state,dispatch}=useContext(StoreContext)
     let endpoint = "/v1/nare-league/standings"
     const fetchData = useCallback(async () => {
         setLoading(true)
@@ -31,6 +32,10 @@ const Standing = () => {
 
     useEffect(() => {
         fetchData();
+        const payload = {
+            start: '', round: '', end: ''
+        }
+        dispatch({type: "SET", key: 'current_selection_period', payload: payload})
     }, [newCompetition]);
 
 

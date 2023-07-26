@@ -184,8 +184,11 @@
     }
 }
 @media (max-width: 767px) {
-    .ban-value-data{
-        line-height:0px;
+    .ban-value-data {
+        width: 100%;
+        line-height: 0px;
+        margin: 0px;
+        float: right;
     }
     .kiron-bet-history-tabs{
         margin-top:3rem;

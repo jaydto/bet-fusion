@@ -179,8 +179,16 @@ const KironBetHistory = React.memo(
 			}else{
 				if(activeTab=="active"){
 					fetchData();
+					const payload = {
+						start: '', round: '', end: ''
+					}
+					dispatch({type: "SET", key: 'current_selection_period', payload: payload})
 				}else{
 					fetchOldBets();
+					const payload = {
+						start: '', round: '', end: ''
+					}
+					dispatch({type: "SET", key: 'current_selection_period', payload: payload})
 				}
 			}
 
@@ -213,7 +221,7 @@ const KironBetHistory = React.memo(
 			const Bet = () => {
 				return (
 					<>  {
-						state?.oldbets?.map((bets) => (
+						state?.oldbets&&state?.oldbets?.map((bets) => (
 							<Link to={`/bet-history/${bets?.bet_id}`} onClick={swap}>
 								<div key={bets?.bet_id} className="bet_item">
 									<>
@@ -224,10 +232,10 @@ const KironBetHistory = React.memo(
 										<div className=" mt-0 kiron-right">
 											<p><span className="bold">Bet Amount</span> : {bets?.bet_amount}
 												<span style={{ position: "relative" }}>
-                                                    <FontAwesomeIcon className="ico  position-absolute top-50 left -50"  icon={faChevronCircleDown} />
+
                                                     </span>
 											</p>
-											<p className="ban mt-1"
+											<p className="ban  ban-value-data mt-1"
 
 
 											   style={{
@@ -295,7 +303,7 @@ const KironBetHistory = React.memo(
 			const ActiveBet = () => {
 				return (
 					<>  {
-						state?.kironbethistory?.map((bets) => (
+						state?.kironbethistory&&state?.kironbethistory?.map((bets) => (
 							<Link to={`/bet-history/${bets?.bet_id}`} onClick={swap}>
 								<div key={bets?.bet_id} className="bet_item">
 									<>
@@ -305,9 +313,8 @@ const KironBetHistory = React.memo(
 										</div>
 										<div className=" kiron-right mt-0">
 											<p><span className="bold">Bet Amount </span>: {bets?.bet_amount} <span style={{ position: "relative" }}>
-                                                    <FontAwesomeIcon className="ico  position-absolute top-50 left -50"  icon={faChevronCircleDown} />
                                                     </span></p>
-											<p className="ban mt-1"
+											<p className="ban ban-value-data mt-1"
 
 											   style={{
 												   backgroundColor: parseInt(bets?.bet_status) === 5 ? 'hsl(120, 70%, 50%)' : parseInt(bets?.bet_status) === 3 ? '#ff9900' : 'inherit',

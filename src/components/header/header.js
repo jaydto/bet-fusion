@@ -5,8 +5,6 @@ import {LazyLoadImage} from 'react-lazy-load-image-component';
 import {StoreContext } from "../../context/store";
 import {getFromLocalStorage, setLocalStorage} from '../utils/local-storage';
 import {toast, ToastContainer} from 'react-toastify';
-import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
 import 'react-toastify/dist/ReactToastify.css';
 import makeRequest from '../utils/fetch-request';
 import 'react-lazy-load-image-component/src/effects/blur.css';
@@ -41,6 +39,7 @@ const Header = React.memo(
         const [isOpen, setIsOpen] = useState(false);
         const [, setShowLoadingModal] = useState(false);
         const pathname = window.location.pathname;
+        const settingsData=getFromLocalStorage('settings')
 
 
         // useEffect(() => {
@@ -223,14 +222,30 @@ const Header = React.memo(
 
                 if (c_status === 200) {
                     setSettings(c_result?.message);
-                    setLocalStorage('settings', c_result?.message);
+                    setLocalStorage('settings', c_result?.message,1800000);
                 }
 
             } else {
                 setSettings(cached_settings);
             }
         })
-        const urlPath = window.location.pathname
+
+        const setUtmCampaign=()=>{
+            const utm_source=new URL(window.location).searchParams.get('utm_source')
+            const utm_campaign=new URL(window.location).searchParams.get('utm_campaign')
+            const btag=new URL(window.location).searchParams.get('btag')
+            if(utm_source){
+                setLocalStorage("utm_source", utm_source)
+            }
+            if(utm_campaign){
+                setLocalStorage("utm_campaign", utm_campaign)
+
+            }
+            if(btag){
+                setLocalStorage("btag", btag)
+            }
+        }
+
         const showDownload = ["/nare-games", "/bethistory", "/terms-and-conditions",
             "/gameplay", "/smart-play", "/betslip-slip", "/betslip-nare",
             "/betslip-jackpot", "/nare-league", "/bet-history",
@@ -238,16 +253,16 @@ const Header = React.memo(
             "/smart-soft", "/virtuals", "/competition",
             "/my-bets", "/profile", "/promotions","/leader-board","/responsible-gambling"]
 
+
         useEffect(() => {
-
-            const abortController = new AbortController();
-            fetchData();
+            const abort=new AbortController()
             fetchAppConfigurations();
-
+            fetchData();
+            setUtmCampaign();
             return () => {
-                abortController.abort();
+                abort.abort()
             };
-        }, [fetchData]);
+        }, []);
 
         const NotifyToastContainer = () => {
             return (

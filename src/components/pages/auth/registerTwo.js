@@ -43,6 +43,8 @@ const RegisterTwo = props => {
         await makeRequest({url: endpoint, method: "POST", data: null}).then(
             ([status, result]) => {
                 if (status === 200) {
+                    setLocalStorage('settings',result?.message,1800000)
+
                     dispatch({type: "SET", key: "app_config", payload: result?.data || result});
                 }
 

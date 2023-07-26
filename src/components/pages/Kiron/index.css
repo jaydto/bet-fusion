@@ -355,7 +355,7 @@
 @media (max-width: 767px){
     .standings-container-heading {
         position: fixed;
-        top: 17.6rem!important;
+        top: 17.9rem!important;
         width: 100vw;
         background: var(--orange);
         z-index: 100;

@@ -6,7 +6,7 @@ import {useNavigate} from "react-router-dom";
 
 const ExclusionModal = React.memo(
     (props) => {
-        const {visible, setShowLoadingModal, message} = props
+        const {visible, setShowLoadingModal, message, timeDuration} = props
         const [isOpen, setIsOpen] = useState(visible)
         const navigate = useNavigate()
 
@@ -42,8 +42,11 @@ const ExclusionModal = React.memo(
 
                     <div className={"d-flex"}>
                         <div className="col-12 text-center mt-4 ">
-                            <p>You are Currently Self Excluded from Betnare </p>
-                            <p>{message}</p>
+                            <p>{message} </p>
+                            <div className={'d-flex justify-content-center w-100 gap-2'}>
+                                <strong style={{color:'var(--red)'}}>Time</strong> :{timeDuration}
+                            </div>
+
                         </div>
 
                     </div>

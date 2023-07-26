@@ -217,7 +217,7 @@ const MobileNav1 = React.memo(
                                     />
                                 </div>
                                 <p style={{textAlign: "center"}}>
-                                    Virtuals
+                                    Casino
                                 </p>
                             </div>
                         </div>

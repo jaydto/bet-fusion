@@ -79,7 +79,7 @@ const BetslipSubmitForm = React.memo(
         const { state, dispatch } = useContext(StoreContext);
         const [loadingShare, setLoadingShare] = useState(false);
 
-        const [stake, setStake] = useState(jackpot ? parseInt(jackpotData?.bet_amount) : state?.userStake||getFromLocalStorage("userStake"))||100;
+        const [stake, setStake] = useState(jackpot ? parseInt(jackpotData?.bet_amount) : state?.userStake||getFromLocalStorage("userStake")||100);
         const [stakeBoosted, setStakeBoosted] = useState(100);
 
         const [stakeAfterTax, setStakeAfterTax] = useState(0);
@@ -278,7 +278,19 @@ const BetslipSubmitForm = React.memo(
                                 message: response?.message,
                             });
                         } else {
+                            let betslips =  getBetslip();
+                            Object.entries(betslips).map(([match_id, match]) => {
+                                let match_selector = match.match_id + "_selected";
+                                let ucn = clean_rep(
+                                    match.match_id
+                                    + "" + match.sub_type_id
+                                    + (match.bet_pick)
+                                );
+
+                                dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
+                            });
                             clearSlip();
+
                         }
                         setBetslipsData(null);
                         dispatch({
@@ -333,24 +345,32 @@ const BetslipSubmitForm = React.memo(
                     raw_possible_win = jackpotData?.jackpot_amount;
                 }
 
-
+                console.log("betslip_length", betslipLength)
                 if (betslipLength === 1 && !jackpot) {
-                    if (raw_possible_win > (sportBookLimits?.singleBetMaxWin||500000)) {
-                        raw_possible_win = (sportBookLimits?.singleBetMaxWin||500000);
+                    if (Number(raw_possible_win) > (Number(sportBookLimits?.singleBetMaxWin)||500000)) {
+                        raw_possible_win = (Number(sportBookLimits?.singleBetMaxWin)||500000);
                     }
 
-                    if (boosted_raw_possible_win > (sportBookLimits?.singleBetMaxWin||500000)) {
-                        boosted_raw_possible_win = (sportBookLimits?.singleBetMaxWin||500000);
+                    if (Number(boosted_raw_possible_win) > (Number(sportBookLimits?.singleBetMaxWin)||500000)) {
+                        boosted_raw_possible_win = (Number(sportBookLimits?.singleBetMaxWin)||500000);
                     }
                 } else if (betslipLength > 1 && !jackpot) {
-                    if (raw_possible_win > (sportBookLimits?.multiBetMaxWin||500000)) {
-                        raw_possible_win = (sportBookLimits?.multiBetMaxWin||500000);
+                    if (Number(raw_possible_win) > (Number(sportBookLimits?.multiBetMaxWin)||500000)) {
+                        raw_possible_win = (Number(sportBookLimits?.multiBetMaxWin)||500000);
                     }
 
-                    if (boosted_raw_possible_win > (sportBookLimits?.multiBetMaxWin||500000)) {
-                        boosted_raw_possible_win = (sportBookLimits?.multiBetMaxWin||500000);
+                    if (Number(boosted_raw_possible_win) > (Number(sportBookLimits?.multiBetMaxWin)||500000)) {
+                        boosted_raw_possible_win = (Number(sportBookLimits?.multiBetMaxWin)||500000);
+                    }
+                }else{
+                    if (Number(raw_possible_win) > 500000 && !jackpot) {
+                        raw_possible_win = 500000;
+                    }
+                    if (Number(boosted_raw_possible_win) > 500000 && !jackpot) {
+                        boosted_raw_possible_win = 500000;
                     }
                 }
+
 
                 let taxable_amount = Float(raw_possible_win) - Float(stake_after_tax);
                 let taxable_amount_boosted =
@@ -425,10 +445,10 @@ const BetslipSubmitForm = React.memo(
         useEffect(() => {
             updateWinnings();
         }, [updateWinnings]);
-        console.log("value for accepting odds change",)
+
         const value_for_odds_change=getFromLocalStorage("accept_all_odds_change")===undefined?true:getFromLocalStorage("accept_all_odds_change")
         const initialValues = {
-            bet_amount: jackpot ? jackpotData?.bet_amount : bonusBet ? 100 : state?.userStake||getFromLocalStorage('userStake')||100,
+            bet_amount: jackpot ? jackpotData?.bet_amount : bonusBet ? 100 : (state?.userStake||getFromLocalStorage('userStake')||100),
             accept_all_odds_change: value_for_odds_change,
             user_id: state?.user?.profile_id,
             total_games: totalGames,
@@ -507,6 +527,7 @@ const BetslipSubmitForm = React.memo(
                         settings?.betnareGifts?.giftBoostMinOdds
                     } or above to redeem your gift.`
                 );
+
 
                 dispatch({
                     type: "SET",
@@ -604,7 +625,7 @@ const BetslipSubmitForm = React.memo(
                             value = value.replace(/[^\d]/g, "");
                             let newValue = value;
 
-                            let message = { status: 401, message: 'You have reached the maximum allowable stake for this betting', token: '' };
+                            let message = { status: 401, message: 'You have reached the maximum allowable stake for this bet', token: '' };
                             let minStakeMessage = {  message: `Minimum amount is ${sportBookLimits?.singleBetMinStake} KSH` };
 
                             if (betslipLength === 1 && !jackpot) {
@@ -763,8 +784,8 @@ const BetslipSubmitForm = React.memo(
                                     {state?.user && !jackpot && <div
                                         className="hide-on-affix d-flex justify-content-between p-lg-2 p-md-2 py-sm-0">
                                         <div
-                                            className={"bet-align-left nare-boost-color d-flex align-items-center"}>Nare
-                                            Boost&nbsp;<FontAwesomeIcon icon={faBolt} className={'boost-betslip'}/>
+                                            className={"bet-align-left nare-boost-color d-flex align-items-center"}>Nare Boost
+                                            &nbsp;<FontAwesomeIcon icon={faBolt} className={'boost-betslip'}/>
                                         </div>
                                         <div className={"bet-align-right nare-boost-color"}>
                                             <b>{multiBoostAmount}</b>

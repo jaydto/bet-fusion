@@ -29,7 +29,7 @@ const SkeletonLoader = React.memo(
                                 </div>
                             </div>
                             <div className={'d-flex w-100 justify-content-end align-items-end flex-column'}>
-                                <div className={'d-flex w-100'}>
+                                <div className={'d-flex '}>
                                     <div className={'d-flex w-100 my-3 align-items-end justify-content-end mx-2'}>
                                         <div className="loading-btn web-desktop" style={backgroundLoaderbtn}></div>
                                         <div className="loading-btn web-desktop" style={backgroundLoaderbtn}></div>

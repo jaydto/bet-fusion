@@ -1,7 +1,7 @@
 import React, {useCallback, useContext, useEffect, useRef, useState,} from "react";
-import {Context} from "../../context/store";
+import {StoreContext } from "../../context/store";
 import {clearKironSlip, formatNumber, getKironSlip, removeFromKironSlip,} from "../utils/betslip";
-import publicIp from "public-ip";
+import { publicIpv4 as publicIp } from "public-ip";
 import makeRequest from "../utils/fetch-request";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -36,7 +36,7 @@ const KironslipSubmitForm = React.memo(
         const [betSharePayload, setBetSharePayload] = useState({});
         const [ipv4, setIpv4] = useState(null);
         const [message, setMessage] = useState(null);
-        const [state, dispatch] = useContext(Context);
+        const { state, dispatch } = useContext(StoreContext);
         const [loadingShare, setLoadingShare] = useState(false);
 
         const [stake, setStake] = useState(100);
@@ -106,15 +106,17 @@ const KironslipSubmitForm = React.memo(
         }, []);
 
         const ipAddress = useCallback(async () => {
-            let ip = await publicIp
-                .v4({
+            try {
+                let ip = await publicIp({
                     fallbackUrls: ["https://ifconfig.co/ip"],
-                })
-                .then((result) => {
-                    return result;
                 });
 
-            setIpv4(ip);
+                setIpv4(ip);
+            } catch (error) {
+                console.error("Error getting IPv4 address:", error);
+            }
+
+
         }, [ipv4]);
 
         const Alert = (props) => {

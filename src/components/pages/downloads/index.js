@@ -5,7 +5,7 @@ import makeRequest from "../../utils/fetch-request";
 import Select from 'react-select'
 import {Card, Tab, Tabs} from "react-bootstrap";
 import {formatNumber} from "../../utils/betslip";
-import {Context} from "../../../context/store";
+import {StoreContext } from "../../../context/store"
 import useWindowDimensions from "../../header/Dimensions";
 
 const Header = React.lazy(() => import('../../header/header'));
@@ -22,7 +22,7 @@ export default function MatchesList() {
     const [jackpotData, setJackpotData] = useState([])
     const [key, setKey] = useState('home');
     const {height, width} = useWindowDimensions();
-    const [state, dispatch] = useContext(Context);
+    const { state, dispatch } = useContext(StoreContext);
     const [isJackpot, setIsJackpot] = useState(false);
     useEffect(() => {
         fetchMatches()

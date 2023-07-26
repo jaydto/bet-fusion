@@ -1,7 +1,7 @@
 import React, {useCallback, useContext, useLayoutEffect, useState} from 'react';
 import './test.css'
 import {useParams} from "react-router-dom";
-import {Context} from "../context/store";
+import {StoreContext } from "../context/store"
 import {getBetslip} from "./utils/betslip";
 import useInterval from "../hooks/set-interval.hook";
 import makeRequest from "./utils/fetch-request";
@@ -24,7 +24,7 @@ const AllMarkets = React.memo(
         const id = params.id
 
         // const [userSlipsValidation, setUserSlipsValidation] = useState();
-        const [state, dispatch] = useContext(Context);
+        const { state, dispatch } = useContext(StoreContext);
 
         const [isLoading, setIsLoading] = useState(false);
 

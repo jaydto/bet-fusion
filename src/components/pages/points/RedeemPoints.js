@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import makeRequest from "../../utils/fetch-request";
 import {Form, Formik} from 'formik';
-import {Context} from '../../../context/store';
+import {StoreContext } from "../../../context/store"
 import {getBetslip} from '../../utils/betslip'
 
 
@@ -13,7 +13,7 @@ const Footer = React.lazy(() => import('../../footer/footer'));
 const RedeemPoints = React.memo(
     (props) => {
     //todo get the phone number from logged in user ....
-    const [state, dispatch] = useContext(Context);
+    const { state, dispatch } = useContext(StoreContext);
 
     const [success, setSuccess] = useState(false);
     const [message, setMessage] = useState(null);

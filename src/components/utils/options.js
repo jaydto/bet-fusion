@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import {getFromLocalStorage} from "./local-storage";
-import {Context} from "../../context/store";
+import {StoreContext } from "../../context/store";
 
 const LinkOption=React.memo(
     (props)=> {
@@ -22,7 +22,7 @@ const LinkSelect=React.memo(
     (props)=> {
     const {options, ...rest} = props;
     const navigate = useNavigate();
-    const [state, dispatch] = useContext(Context);
+    const { state, dispatch } = useContext(StoreContext);
 
 
     const [pathname, setPathname] = useState(() => {

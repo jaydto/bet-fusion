@@ -1,5 +1,5 @@
 import React, {useCallback, useContext, useEffect, useState} from "react";
-import {Context} from '../../../../context/store';
+import {StoreContext } from "../../../../context/store"
 import makeRequest from '../../../utils/fetch-request';
 import './newProfile.css'
 import {
@@ -33,7 +33,7 @@ const Styles = {
 };
 
 const MyBets = (props) => {
-    const [state, dispatch] = useContext(Context);
+    const { state, dispatch } = useContext(StoreContext);
     const [isLoading, setIsLoading] = useState(false);
     const {height, width} = useWindowDimensions();
 

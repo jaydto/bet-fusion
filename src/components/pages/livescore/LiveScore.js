@@ -2,12 +2,12 @@ import Header from "../../header/header";
 import Footer from "../../footer/footer";
 import React, {useContext} from "react";
 import useWindowDimensions from "../../header/Dimensions";
-import {Context} from "../../../context/store";
+import {StoreContext } from "../../../context/store"
 
 const LiveScore = React.memo(
     () => {
     const {height, width} = useWindowDimensions();
-    const [state, dispatch] = useContext(Context);
+    const { state, dispatch } = useContext(StoreContext);
     return (
         <>
             <Header/>

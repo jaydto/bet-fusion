@@ -2,7 +2,7 @@ import React, {useCallback, useContext, useEffect, useRef, useState} from 'react
 import './test.css'
 import {useParams} from "react-router-dom";
 import useWindowDimensions from "./header/Dimensions";
-import {Context} from "../context/store";
+import {StoreContext } from "../context/store"
 import {getBetslip} from "./utils/betslip";
 import useInterval from "../hooks/set-interval.hook";
 import makeRequest from "./utils/fetch-request";
@@ -10,6 +10,10 @@ import Testimonials from "./carousel/Testimonials";
 import LiveSideBar from "./sidebar/live-sidebar";
 import {Spinner} from "react-bootstrap";
 import {ToastContainer} from "react-toastify";
+import SkeletonLive from "./pages/skeletonLoadersWeb/SkeletonLive";
+import SkeletonMobileLive from "./pages/skeletonLoadersWeb/SkeletonLoaderMobile";
+import SkeletonLoaderMobile from "./pages/skeletonLoadersWeb/SkeletonLoaderMobile";
+import SkeletonLoader from "./pages/skeletonLoadersWeb/SkeletonLoader";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -20,7 +24,7 @@ const Right = React.lazy(() => import('./right'));
 const  Live= React.memo(
     () => {
     const [matches, setMatches] = useState();
-    const [state, dispatch] = useContext(Context);
+    const { state, dispatch } = useContext(StoreContext);
     const {height, width} = useWindowDimensions();
     const {spid} = useParams();
     const [sportID, setSportID] = useState(79)
@@ -143,8 +147,8 @@ const  Live= React.memo(
             <div className="item4"><Header scrollPosition={scrollPosition}/>
             <ToastContainer/></div>
             <div className="flex-container">
-                <div className="item1">
-                    <div className={"mobile-remove"}>
+                <div className="item1 live">
+                    <div className={"mobile-live-remove"}>
                         <LiveSideBar/>
                     </div>
                 </div>
@@ -156,9 +160,8 @@ const  Live= React.memo(
                             <div className={`${width<=991?"d-block":"d-none"}`}>
                                 <LiveSideBar/>
                             </div>
-                            {loading ? <div className={`text-center mt-2 text-white d-block`}>
-                                <Spinner animation={'grow'} size={'lg'}/>
-                            </div>: matches && <MatchList live={1} matches={matches} pdown={producerDown}/>}
+                            {loading ?  width < 1259 ? <SkeletonMobileLive/> :
+                                <SkeletonLive/>: matches && <MatchList live={1} matches={matches} pdown={producerDown}/>}
                         </div>
                     </div>
                 </div>

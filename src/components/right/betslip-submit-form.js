@@ -1,5 +1,5 @@
 import React, {useCallback, useContext, useEffect, useRef, useState,} from "react";
-import {Context} from "../../context/store";
+import {StoreContext } from "../../context/store";
 import {
     clearJackpotSlip,
     clearSlip,
@@ -9,7 +9,7 @@ import {
     removeFromJackpotSlip,
     removeFromSlip,
 } from "../utils/betslip";
-import publicIp from "public-ip";
+import { publicIpv4 as publicIp } from "public-ip";
 import makeRequest from "../utils/fetch-request";
 import "react-toastify/dist/ReactToastify.css";
 import {Form as FormikForm, Formik, useFormikContext} from "formik";
@@ -18,10 +18,11 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 import {faBolt, faFireAlt, faGift, faInfoCircle, faShare, faTrash,} from "@fortawesome/free-solid-svg-icons";
 import {Spinner} from "react-bootstrap";
-import {Switch} from "@material-ui/core";
+import {Switch} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import useWindowDimensions from "../header/Dimensions";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
+import Notify from "../utils/Notify";
 
 const BetslipShareModal = React.lazy(() =>
     import("../modals/BetslipShareModal")
@@ -75,10 +76,10 @@ const BetslipSubmitForm = React.memo(
         const [betSharePayload, setBetSharePayload] = useState({});
         const [ipv4, setIpv4] = useState(null);
         const [message, setMessage] = useState(null);
-        const [state, dispatch] = useContext(Context);
+        const { state, dispatch } = useContext(StoreContext);
         const [loadingShare, setLoadingShare] = useState(false);
 
-        const [stake, setStake] = useState(jackpot ? parseInt(jackpotData?.bet_amount) : state?.userStake||getFromLocalStorage("userStake"))||100;
+        const [stake, setStake] = useState(jackpot ? parseInt(jackpotData?.bet_amount) : state?.userStake||getFromLocalStorage("userStake")||100);
         const [stakeBoosted, setStakeBoosted] = useState(100);
 
         const [stakeAfterTax, setStakeAfterTax] = useState(0);
@@ -96,7 +97,7 @@ const BetslipSubmitForm = React.memo(
         const [netWin, setNetWin] = useState(0);
         const [netWinBoosted, setNetWinBoosted] = useState(0);
 
-        const [settings, setSettings] = useState(getFromLocalStorage("settings"));
+        const settings = getFromLocalStorage("settings");
         const [multiBoostMessage, setMultiBoostMessage] = useState("");
         const [awardMultiGift, setAwardMultiGift] = useState(false);
 
@@ -147,15 +148,17 @@ const BetslipSubmitForm = React.memo(
         }, [jackpot]);
 
         const ipAddress = useCallback(async () => {
-            let ip = await publicIp
-                .v4({
+            try {
+                let ip = await publicIp({
                     fallbackUrls: ["https://ifconfig.co/ip"],
-                })
-                .then((result) => {
-                    return result;
                 });
 
-            setIpv4(ip);
+                setIpv4(ip);
+            } catch (error) {
+                console.error("Error getting IPv4 address:", error);
+            }
+
+
         }, [ipv4]);
 
         const Alert = (props) => {
@@ -183,6 +186,10 @@ const BetslipSubmitForm = React.memo(
         useEffect(() => {
             ipAddress();
         }, [ipAddress])
+
+        const betItem=getBetslip()
+        const sportBookLimits=settings?.sportsBookLimits
+        const betslipLength = Object.keys(betItem || {}).length;
 
         const gaEventTracker=useAnalyticsEventTracker(live?'PlaceLiveBet':'PlacePrematchBet')
 
@@ -271,7 +278,19 @@ const BetslipSubmitForm = React.memo(
                                 message: response?.message,
                             });
                         } else {
+                            let betslips =  getBetslip();
+                            Object.entries(betslips).map(([match_id, match]) => {
+                                let match_selector = match.match_id + "_selected";
+                                let ucn = clean_rep(
+                                    match.match_id
+                                    + "" + match.sub_type_id
+                                    + (match.bet_pick)
+                                );
+
+                                dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
+                            });
                             clearSlip();
+
                         }
                         setBetslipsData(null);
                         dispatch({
@@ -326,12 +345,32 @@ const BetslipSubmitForm = React.memo(
                     raw_possible_win = jackpotData?.jackpot_amount;
                 }
 
-                if (raw_possible_win > 500000 && !jackpot) {
-                    raw_possible_win = 500000;
+                console.log("betslip_length", betslipLength)
+                if (betslipLength === 1 && !jackpot) {
+                    if (Number(raw_possible_win) > (Number(sportBookLimits?.singleBetMaxWin)||500000)) {
+                        raw_possible_win = (Number(sportBookLimits?.singleBetMaxWin)||500000);
+                    }
+
+                    if (Number(boosted_raw_possible_win) > (Number(sportBookLimits?.singleBetMaxWin)||500000)) {
+                        boosted_raw_possible_win = (Number(sportBookLimits?.singleBetMaxWin)||500000);
+                    }
+                } else if (betslipLength > 1 && !jackpot) {
+                    if (Number(raw_possible_win) > (Number(sportBookLimits?.multiBetMaxWin)||500000)) {
+                        raw_possible_win = (Number(sportBookLimits?.multiBetMaxWin)||500000);
+                    }
+
+                    if (Number(boosted_raw_possible_win) > (Number(sportBookLimits?.multiBetMaxWin)||500000)) {
+                        boosted_raw_possible_win = (Number(sportBookLimits?.multiBetMaxWin)||500000);
+                    }
+                }else{
+                    if (Number(raw_possible_win) > 500000 && !jackpot) {
+                        raw_possible_win = 500000;
+                    }
+                    if (Number(boosted_raw_possible_win) > 500000 && !jackpot) {
+                        boosted_raw_possible_win = 500000;
+                    }
                 }
-                if (boosted_raw_possible_win > 500000 && !jackpot) {
-                    boosted_raw_possible_win = 500000;
-                }
+
 
                 let taxable_amount = Float(raw_possible_win) - Float(stake_after_tax);
                 let taxable_amount_boosted =
@@ -406,11 +445,11 @@ const BetslipSubmitForm = React.memo(
         useEffect(() => {
             updateWinnings();
         }, [updateWinnings]);
-        console.log("accept_odds_cahnge",getFromLocalStorage("accept_odds_change"))
 
+        const value_for_odds_change=getFromLocalStorage("accept_all_odds_change")===undefined?true:getFromLocalStorage("accept_all_odds_change")
         const initialValues = {
-            bet_amount: jackpot ? jackpotData?.bet_amount : bonusBet ? 100 : state?.userStake||getFromLocalStorage('userStake')||100,
-            accept_all_odds_change: getFromLocalStorage("accept_odds_change")||true,
+            bet_amount: jackpot ? jackpotData?.bet_amount : bonusBet ? 100 : (state?.userStake||getFromLocalStorage('userStake')||100),
+            accept_all_odds_change: value_for_odds_change,
             user_id: state?.user?.profile_id,
             total_games: totalGames,
             total_odd: totalOdds,
@@ -488,6 +527,7 @@ const BetslipSubmitForm = React.memo(
                         settings?.betnareGifts?.giftBoostMinOdds
                     } or above to redeem your gift.`
                 );
+
 
                 dispatch({
                     type: "SET",
@@ -572,20 +612,56 @@ const BetslipSubmitForm = React.memo(
                     const {isValid, errors, values, submitForm, setFieldValue} = props;
 
                     const onFieldChanged = (ev) => {
-
                         let field = ev.target.name;
                         let value = ev.target.type === "checkbox" ? ev.target.checked : ev.target.value;
-                        console.log("checked here")
-                        if (field == "bet_amount") {
+
+                        if (field === "accept_all_odds_change") {
+                            // Handle the value of the accept_all_odds_change checkbox here
+
+                            setLocalStorage("accept_all_odds_change", value)
+                        }
+
+                        if (field === "bet_amount") {
                             value = value.replace(/[^\d]/g, "");
-                            dispatch({type: "SET", key: "userStake", payload: value});
-                            setFieldValue(field, value);
-                            setLocalStorage('userStake',value)
-                            setStake(value);
+                            let newValue = value;
+
+                            let message = { status: 401, message: 'You have reached the maximum allowable stake for this betting', token: '' };
+                            let minStakeMessage = {  message: `Minimum amount is ${sportBookLimits?.singleBetMinStake} KSH` };
+
+                            if (betslipLength === 1 && !jackpot) {
+                                const maxStake = sportBookLimits?.singleBetMaxStake ;
+                                if (Number(value) > Number(maxStake)) {
+                                    Notify(message);
+                                    newValue = maxStake;
+                                }else {
+                                    newValue=value
+                                }
+                            } else if (betslipLength > 1 && !jackpot) {
+                                const maxStake = sportBookLimits?.multiBetMaxStake ;
+                                if (Number(value) > Number(maxStake)) {
+                                    Notify(message);
+                                    newValue = maxStake;
+                                } else{
+                                    newValue=value
+                                }
+                            }
+                            const minStake = sportBookLimits?.singleBetMinStake || 1;
+                            if (Number(value) < Number(minStake)) {
+                                dispatch({type: "SET", key: "minStake", payload: minStakeMessage});
+                            }else {
+                                dispatch({type: "SET", key: "minStake", payload: null});
+                            }
+
+                            dispatch({ type: "SET", key: "userStake", payload: newValue });
+                            setFieldValue(field, newValue);
+                            setLocalStorage('userStake', newValue);
+                            setStake(newValue);
                         } else {
                             setFieldValue(field, value);
                         }
                     };
+
+
                     const UserInfoContainer = () => {
                         return (
                             <table className={"show-tax-info "}>
@@ -708,8 +784,8 @@ const BetslipSubmitForm = React.memo(
                                     {state?.user && !jackpot && <div
                                         className="hide-on-affix d-flex justify-content-between p-lg-2 p-md-2 py-sm-0">
                                         <div
-                                            className={"bet-align-left nare-boost-color d-flex align-items-center"}>Nare
-                                            Boost&nbsp;<FontAwesomeIcon icon={faBolt} className={'boost-betslip'}/>
+                                            className={"bet-align-left nare-boost-color d-flex align-items-center"}>Nare Boost
+                                            &nbsp;<FontAwesomeIcon icon={faBolt} className={'boost-betslip'}/>
                                         </div>
                                         <div className={"bet-align-right nare-boost-color"}>
                                             <b>{multiBoostAmount}</b>
@@ -723,9 +799,9 @@ const BetslipSubmitForm = React.memo(
                                         </div>
                                         <div className={"w-100"}>
                                             <div id="betting">
-                                                {jackpot ?
-                                                    jackpotData?.bet_amount :
-                                                    (<input type="text"
+                                                {jackpot
+                                                    ? jackpotData?.bet_amount :
+                                                    (<input type="number"
                                                             className="bet-select bet-stake-input"
                                                             name="bet_amount"
                                                             id="bet_amount"
@@ -733,8 +809,14 @@ const BetslipSubmitForm = React.memo(
                                                             value={values.bet_amount || ""}
                                                             onChange={(e) => onFieldChanged(e)}
                                                     />)}
+
                                             </div>
                                         </div>
+                                    </div>
+                                    <div className={'w-100 justify-content-end p-1 d-flex min-skake-container'}>
+                                        {state?.minStake?.message&&<span className={'min_stake_alert'}>
+                                                    {state?.minStake?.message}
+                                                </span>}
                                     </div>
                                     <br className={"ipad-show"}/>
                                     <div className="bet-win-tr hide-on-affix">

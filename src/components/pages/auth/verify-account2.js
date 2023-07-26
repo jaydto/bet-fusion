@@ -16,7 +16,7 @@ import {faBackspace} from "@fortawesome/free-solid-svg-icons";
 import SidebarMobile from "../../sidebar/awesome/SidebarMobile";
 import makeRequest from "../../utils/fetch-request";
 import {Form, Formik} from "formik";
-import {Context} from "../../../context/store";
+import {StoreContext } from "../../../context/store"
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 
 const backgroundStyle = {
@@ -29,7 +29,7 @@ const backgroundStyle = {
 const VerifyAccount2 = React.memo(
     props => {
         // const [message, setMessage] = useState(null);
-        const [state, dispatch] = useContext(Context)
+        const { state, dispatch } = useContext(StoreContext);
         // const {setUser} = props;
         const expand = "md"
         const FormTitle = () => {
@@ -184,7 +184,7 @@ const VerifyAccount2 = React.memo(
 const MyVerifyAccountForm = React.memo(
     (props) => {
         const {errors, values, submitForm, setFieldValue} = props;
-        const [state, dispatch] = useContext(Context)
+        const { state, dispatch } = useContext(StoreContext);
 
         const gaEventTracker=useAnalyticsEventTracker("Resend Verifiction Code")
         const resendOTP = () => {
@@ -322,7 +322,7 @@ const MyVerifyAccountForm = React.memo(
 
 const VerifyAccountForm = React.memo(
     (props) => {
-        const [state, dispatch] = useContext(Context)
+        const { state, dispatch } = useContext(StoreContext);
         let number = String(state?.signup_msisdn).split("0")[1]
         let msisdn = number ? "254" + number : ""
 

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import makeRequest from "../utils/fetch-request";
-import {Card, CardActionArea, Typography} from "@material-ui/core";
+import {Card, CardActionArea, Typography} from "@mui/material";
 
 const BetHistoryDetails= React.memo(
     props => {

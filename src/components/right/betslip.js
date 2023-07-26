@@ -1,6 +1,6 @@
 import React, {useCallback, useContext, useEffect, useState} from "react";
 import BetslipSubmitForm from "./betslip-submit-form";
-import {Context} from "../../context/store";
+import {StoreContext } from "../../context/store";
 import {getBetslip, getJackpotBetslip, removeFromJackpotSlip, removeFromSlip,} from "../utils/betslip";
 import useWindowDimensions from "../header/Dimensions";
 import {getFromLocalStorage} from "../utils/local-storage";
@@ -17,7 +17,7 @@ const BetSlip = React.memo(
         const {jackpot, betslipValidationData, jackpotData,live} = props;
         const [betslipKey, setBetslipKey] = useState(jackpot ? "jackpotbetslip" : "betslip");
         const [betslipsData, setBetslipsData] = useState(null);
-        const [state, dispatch] = useContext(Context);
+        const { state, dispatch } = useContext(StoreContext);
         const totalGames = betslipsData ? Object.keys(betslipsData).length : 0;
         const [message, setMessage] = useState(null);
         const [qualifiesBonus, setQualifiesBonus] = useState(false);
@@ -50,7 +50,7 @@ const BetSlip = React.memo(
         const validateBetslipwithDbData = useCallback(() => {
             if (betslipValidationData && betslipsData) {
                 let clone_slip = betslipsData;
-                Object.entries(betslipValidationData).forEach(([key, slipdata]) => {
+                Object.entries(betslipValidationData)?.forEach(([key, slipdata]) => {
                     let match_id = slipdata.match_id;
                     let slip = clone_slip[match_id];
                     if (slip) {

@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useRef, useState} from 'react';
 
 import {Form, Formik} from 'formik';
 import makeRequest from "../../utils/fetch-request";
-import {Context} from '../../../context/store';
+import {StoreContext } from "../../../context/store"
 import {getBetslip} from '../../utils/betslip'
 import {clearTrackingData, setTrackingData} from "../../utils/local-storage";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
@@ -12,7 +12,7 @@ const SideBar = React.lazy(() => import('../../sidebar/awesome/Sidebar'));
 const Deposit = React.memo(
     (props) => {
 
-        const [state, dispatch] = useContext(Context);
+        const { state, dispatch } = useContext(StoreContext);
         const [success, setSuccess] = useState(false);
         const [message, setMessage] = useState(null);
         const {mobile} = props

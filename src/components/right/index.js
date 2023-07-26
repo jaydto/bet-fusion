@@ -26,13 +26,22 @@ const AlertMessage = React.memo(
 
 const Right = React.memo(
     (props) => {
-    const {jackpot, betslipValidationData, jackpotData, kiron,test,matches,live} = props;
+    const {jackpot, betslipValidationData, jackpotData, kiron,test,matches,live,remove_mobile} = props;
     const {height, width} = useWindowDimensions();
     const [betSlipMobile, setBetSlipMobile] = useState(false)
     const pathname=window.location.pathname
 
     return (
-        <div className={`${width>991&& `col ${test?'':'gn'} ${jackpot&&'jackpot-height'} ipad-dismiss-info betslip-container sticky-top vh-100 overflow-scroll betslip-container-mozilla container-sticky-top top-login-background-img-bg ${kiron&&'kiron-betslip-size'}`}`}>
+        <div className={`${width>991&& 
+        `col ${test?'':'gn'} 
+        ${jackpot&&'jackpot-height'} ipad-dismiss-info betslip-container sticky-top vh-100 overflow-scroll betslip-container-mozilla container-sticky-top top-login-background-img-bg
+         ${kiron&&'kiron-betslip-size'}
+         `}
+         ${remove_mobile&&' desktop-only-show '}
+         ${pathname.includes('bet-history')&&' desktop-only-show '}
+         ${pathname.includes('results')&&' desktop-only-show '}
+         ${pathname.includes('standing')&&' desktop-only-show '}
+         `}>
             <div className={`betslip-container  ${jackpot?'d-none':'d-none d-md-block'}`}>
                 {props?.message && <AlertMessage classname={props.classname} message={props.message}/>}
                 <div className="bet-option-list " id=''>

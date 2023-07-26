@@ -13,19 +13,19 @@ import {
     getJackpotBetslip,
     removeFromJackpotSlip,
 } from "../utils/betslip";
-import {Context} from "../../context/store";
+import {StoreContext } from "../../context/store";
 import {SubmitButton} from "../right/betslip-submit-form";
 import {Form, Formik} from "formik";
 import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
 import makeRequest from "../utils/fetch-request";
-import publicIp from "public-ip";
+import {publicIpv4 as publicIp} from "public-ip";
 import Notify from "../utils/Notify";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 
 const MobileMenu = React.memo(
     (props) => {
         const {jackpotData, matches} = props
-        const [state,dispatch]=useContext(Context)
+        const { state, dispatch } = useContext(StoreContext);
         const [ipv4, setIpv4] = useState(null);
         const [selections, setSelections] = useState([])
         const randomize = async () => {
@@ -38,7 +38,7 @@ const MobileMenu = React.memo(
                 selections[index] = team
                 let selection = match?.match_id.toString() + match?.sub_type_id.toString() +
                     team.toString()
-                document.querySelectorAll('button[custom="' + selection + '"]').forEach((el) => {
+                document.querySelectorAll('button[custom="' + selection + '"]')?.forEach((el) => {
                     if (!el.classList.contains('picked')) {
                         el.click()
                     }
@@ -52,16 +52,19 @@ const MobileMenu = React.memo(
             return str.replace(/-+/g, "-");
         };
         const ipAddress = useCallback(async () => {
-            let ip = await publicIp
-                .v4({
+            try {
+                let ip = await publicIp({
                     fallbackUrls: ["https://ifconfig.co/ip"],
-                })
-                .then((result) => {
-                    return result;
                 });
 
-            setIpv4(ip);
+                setIpv4(ip);
+            } catch (error) {
+                console.error("Error getting IPv4 address:", error);
+            }
+
+
         }, [ipv4]);
+
 
         useEffect(() => {
             ipAddress();

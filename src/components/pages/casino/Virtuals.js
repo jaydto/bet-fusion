@@ -7,7 +7,7 @@ import {Button} from "react-bootstrap";
 import {ToastContainer} from "react-toastify";
 import {useLocation, useNavigate} from 'react-router-dom';
 import SearchComponent from "./searchField";
-import {Context} from "../../../context/store";
+import {StoreContext } from "../../../context/store"
 import SideBar from "../../sidebar/awesome/Sidebar";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
@@ -19,7 +19,7 @@ const Virtuals = React.memo(
 
         const [categories, setCategories] = useState([])
 
-        const [state] = useContext(Context)
+        const {state} = useContext(StoreContext )
 
         const [games, setGames] = useState([])
         const [isOnline, setIsOnline] = useState(true)

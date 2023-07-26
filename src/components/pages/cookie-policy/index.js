@@ -9,7 +9,7 @@ import {
 import '../../test.css'
 import 'react-accessible-accordion/dist/fancy-example.css';
 import useWindowDimensions from "../../header/Dimensions";
-import {Context} from "../../../context/store";
+import {StoreContext } from "../../../context/store"
 
 const Header = React.lazy(()=>import('../../header/header'));
 const SideBar = React.lazy(()=>import('../../sidebar/awesome/Sidebar'));
@@ -20,7 +20,7 @@ const Right = React.lazy(()=>import('../../right/index'));
 
 const CookiePolicy = () => {
     const {height, width} = useWindowDimensions();
-    const [state, dispatch] = useContext(Context);
+    const { state, dispatch } = useContext(StoreContext);
 
     return (
         <div className={'flex-item'}>

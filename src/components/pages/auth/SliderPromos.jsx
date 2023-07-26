@@ -1,12 +1,12 @@
 import React, {useContext, useEffect, useState} from 'react';
 import "./slider.css"
-import {Context} from "../../../context/store";
+import {StoreContext } from "../../../context/store"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCoins} from "@fortawesome/free-solid-svg-icons";
 
 const Slider = React.memo(
     (props) => {
-        const [state,] = useContext(Context)
+        const { state, dispatch } = useContext(StoreContext);
         const promosData = state?.app_config?.message?.accountConfiguration?.registrationPromos
 
         const [slideIndex, setSlideIndex] = useState(0);

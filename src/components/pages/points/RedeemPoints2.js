@@ -15,7 +15,7 @@ import {faBackspace,} from "@fortawesome/free-solid-svg-icons";
 import SidebarMobile from "../../sidebar/awesome/SidebarMobile";
 import makeRequest from "../../utils/fetch-request";
 import {Form, Formik} from "formik";
-import {Context} from "../../../context/store";
+import {StoreContext } from "../../../context/store"
 import {getBetslip} from "../../utils/betslip";
 
 const backgroundStyle = {
@@ -32,7 +32,7 @@ const RedeemPoints= React.memo(
     const expand = "md"
     const [user, setUser] = useState(getFromLocalStorage("user"));
 
-    const [state, dispatch] = useContext(Context);
+    const { state, dispatch } = useContext(StoreContext);
     const [success, setSuccess] = useState(false);
 
     const initialValues = {

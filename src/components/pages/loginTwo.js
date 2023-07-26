@@ -17,7 +17,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBackspace} from "@fortawesome/free-solid-svg-icons";
 import SidebarMobile from "../sidebar/awesome/SidebarMobile";
 import betNiMoto from '../../assets/img/BetniMoto.webp'
-import {Context} from "../../context/store";
+import {StoreContext } from "../../context/store";
 
 const backgroundStyle = {
 	backgroundImage: `url(${backgroundURL})`,
@@ -93,7 +93,7 @@ const LoginTwo = React.memo(
 		);
 	}
 
-	const [state, ]=useContext(Context)
+	const { state, dispatch } = useContext(StoreContext);
 
 	return (
 		<div style={{height:'100vh', background:'#16202C',overflowX:'hidden'}}>

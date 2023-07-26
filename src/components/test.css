@@ -57,6 +57,9 @@
     align-self:auto;
     max-width:20%;
 }
+.item1.live{
+    min-width:18%;
+}
 
 .item2 {
     /* flex:2 1 auto; */

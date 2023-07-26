@@ -3,7 +3,7 @@ import React, {useContext} from "react";
 import {Accordion,} from 'react-accessible-accordion';
 import 'react-accessible-accordion/dist/fancy-example.css';
 import useWindowDimensions from "../../header/Dimensions";
-import {Context} from "../../../context/store";
+import {StoreContext } from "../../../context/store"
 import GiftWallet from "./GiftWallet";
 
 const Header = React.lazy(()=>import('../../header/header'));
@@ -35,7 +35,7 @@ const Definitions =React.lazy(()=>import('./Definitions'))
 const TermsAndConditions = React.memo(
     (props) => {
     const {height, width} = useWindowDimensions();
-    const [state, dispatch] = useContext(Context);
+    const { state, dispatch } = useContext(StoreContext);
     return (
         <>
             <Header/>

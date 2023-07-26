@@ -264,6 +264,12 @@ a.text-logout{
     box-shadow: 0 1px 5px -1px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(0, 0, 0, 0.15);
 }
 @media (min-width:992px){
+    .user-profile{
+        margin-left:3rem;
+    }
+    .text-profile{
+        font-size:17px;
+    }
     .header-profile-summary {
         display: flex;
         flex-direction: column;
@@ -294,7 +300,6 @@ a.text-logout{
     }
 }
 @media (max-width:991px){
-
     .header-profile-summary {
         display: flex;
         flex-direction: column;

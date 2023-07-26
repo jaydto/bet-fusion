@@ -1,9 +1,11 @@
 import React, {Suspense, useCallback, useEffect} from "react";
-import {render} from "react-dom";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 import {BrowserRouter, Navigate, Route, Routes, useNavigate,} from 'react-router-dom'
 import {setLocalStorage} from "./components/utils/local-storage";
 import reportWebVitals from './reportWebVitals';
+// Correct import inside src/
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/css/application.css';
 import './assets/css/tolkits.css';
@@ -12,11 +14,13 @@ import './index.css';
 import './assets/css/newCss.css'
 import './tailwind.css';
 import './assets/css/Themes.css'
-import Store from './context/store';
+import { StoreProvider } from "./context/store";
 import ReactGA from 'react-ga4';
 import Loading from "./components/loading/LoadingSuspense";
-import ReactPixel from 'react-facebook-pixel';
+import { createRoot } from 'react-dom/client';
 
+import ReactPixel from 'react-facebook-pixel';
+import "firebase/messaging"; // Import the FCM module
 
 const TRACKING_ID = "G-5NLSN9BLN4";
 ReactGA.initialize(TRACKING_ID);
@@ -140,6 +144,7 @@ const NewProfile =React.lazy(()=>import( "./components/pages/Accounts/NewProfile
 const Affiliate =React.lazy(()=>import( "./components/Affiliate/Affiliate"));
 
 const BetHistory =React.lazy(()=>import( "./components/pages/Accounts/component/BetHistory"));
+const Lobby =React.lazy(()=>import( "./components/lobby/Index"));
 
 const Logout = () => {
     let navigate = useNavigate();
@@ -156,8 +161,9 @@ const Logout = () => {
 }
 
 const container = document.getElementById("app");
-render((
-    <Store>
+createRoot(container).render(
+    <StoreProvider>
+        <Provider store={store}>
         <BrowserRouter>
             <Suspense fallback={<Loading/>}>
                 <Routes>
@@ -185,6 +191,8 @@ render((
                     <Route exact path={"/nare-league"} element={<Kiron/>}/>
                     <Route exact path={"/results"} element={<Kiron/>}/>
                     <Route exact path={"/standing"} element={<Kiron/>}/>
+                    <Route path={"/bet-history/:betID"} element={<ProtectedRoute><Kiron/></ProtectedRoute>}/>
+                    <Route path={"/bet-history"} element={<ProtectedRoute><Kiron/></ProtectedRoute>}/>
                     <Route exact path={"/bet-history"} element={<ProtectedRoute><Kiron/></ProtectedRoute>}/>
                     <Route exact path={"/profile"} element={<NewProfile/>}/>
                     <Route exact path={"/my-bets"} element={<ProtectedRoute><BetHistory/></ProtectedRoute>}/>
@@ -207,6 +215,7 @@ render((
                     <Route exact path="/cookie-policy" element={<CookiePolicy/>}/>
                     <Route exact path="/terms-and-conditions" element={<TermsAndConditions/>}/>
                     <Route exact path="/how-to-play" element={<HowToPlay/>}/>
+                    {/*<Route exact path="/lobby" element={<Lobby/>}/>*/}
                     <Route exact path="/signup" element={<Signup/>}/>
                     <Route exact path="/reset-password" element={<ResetPassword/>}/>
                     <Route exact path="/verify" element={<VerifyAccount/>}/>
@@ -227,8 +236,9 @@ render((
                 </Routes>
             </Suspense>
         </BrowserRouter>
-    </Store>
-), container);
+        </Provider>
+    </StoreProvider>
+);
 
 
 // If you want to start measuring performance in your app, pass a function

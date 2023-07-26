@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import "./results.css"
 import {getFromLocalStorage} from "../../../utils/local-storage";
 import makeRequest from "../../../utils/fetch-request";
-import {Context} from "../../../../context/store";
+import {StoreContext } from "../../../../context/store"
 import {LazyLoadImage} from "react-lazy-load-image-component";
 
 const KironPlayouts = React.memo(
@@ -10,7 +10,7 @@ const KironPlayouts = React.memo(
     const {playout, isCountdownTimerActive} = props
     const [success, setSuccess] = useState(false)
     // const [resulted, setResulted] = useState([]);
-    const [state, dispatch] = useContext(Context);
+    const { state, dispatch } = useContext(StoreContext);
 
     const kironSearchCompetition = getFromLocalStorage("kiron_search_data")?.competition_id
     const kironSearchRoundId = getFromLocalStorage("kiron_first_round") || new URL(window.location).searchParams.get('round_id')

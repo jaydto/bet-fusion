@@ -242,7 +242,51 @@ input.text-white {
 .accordion-item.bet-history-kiron {
     background: var(--betnare-primary) !important;
 }
+.ReactModal__Overlay{
+    z-index: 5000!important;
+    top: 8rem!important;
+    background-color: rgb(10 14 25 / 85%) !important;
+    /*opacity:0.5;*/
+}
+/* Customize DateRangePicker text color and background color */
+.react-daterange-picker {
+    color: #fff;
+    background-color: #141d28;
+}
 
+/* Customize DateRangePicker calendar header text color */
+.DayPicker-Caption {
+    color: #fff;
+}
+
+/* Customize DateRangePicker calendar selected date range background color */
+.DayPicker-Week .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
+    background-color: #2b3c4e;
+}
+
+/* Customize DateRangePicker calendar selected start date background color */
+.DayPicker-Week .DayPicker-Day--selected.DayPicker-Day--start {
+    background-color: #1b2a3a;
+}
+
+/* Customize DateRangePicker calendar selected end date background color */
+.DayPicker-Week .DayPicker-Day--selected.DayPicker-Day--end {
+    background-color: #1b2a3a;
+}
+.update_self_exclusion {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.update_button {
+    /* height: 41px; */
+    padding: 4px 124px;
+    margin: 5px;
+    border-radius: 6px;
+    font-size: 19px;
+    font-weight: 600;
+    background-color: var(--betnare-button-login);
+}
 .accordion-button.bet-history-button {
     padding: 10px;
     padding-left: 7px;
@@ -393,11 +437,33 @@ input.text-white {
     /*background: #253743 !important;*/
     background: var(--betnare-header-bg) !important;
 }
-
+.container-size-match{
+    width:100% !important;
+}
 .more-sports {
 
 }
+/*css loader button */
+.custom-loader {
+    --d:22px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    color: #70F4F4;
+    box-shadow:
+            calc(1*var(--d))      calc(0*var(--d))     0 0,
+            calc(0.707*var(--d))  calc(0.707*var(--d)) 0 1px,
+            calc(0*var(--d))      calc(1*var(--d))     0 2px,
+            calc(-0.707*var(--d)) calc(0.707*var(--d)) 0 3px,
+            calc(-1*var(--d))     calc(0*var(--d))     0 4px,
+            calc(-0.707*var(--d)) calc(-0.707*var(--d))0 5px,
+            calc(0*var(--d))      calc(-1*var(--d))    0 6px;
+    animation: s7 1s infinite steps(8);
+}
 
+@keyframes s7 {
+    100% {transform: rotate(1turn)}
+}
 .sport_dropdowns {
     display: flex;
     width: 100%;
@@ -758,6 +824,24 @@ select::after {
 .matches .top-matches.more-markets {
     background: var(--betnare-side-bg) !important;
     margin-bottom: 1px;
+}
+input.bet-select bet-stake-input{
+    color:var(--light) !important;
+}
+input::placeholder{
+    color:var(--light) !important
+}
+.min_stake_alert{
+    background: rgb(146 5 5);
+    padding:6px;
+    font-weight:600;
+
+}
+.min-skake-container:empty{
+    display:none;
+}
+input:placeholder-shown{
+    color:var(--light) !important
 }
 
 .mobile-profile-columns:empty {
@@ -1274,7 +1358,7 @@ img.nare-league {
 
     .slip-max-height {
         display: grid;
-        align-items: start;
+        align-items: flex-start;
         height: 90vh !important;
     }
 
@@ -1347,6 +1431,17 @@ img.nare-league {
         position: relative;
         z-index: 1009;
     }
+    .pro-sidebar.live-pro-sidebar {
+        color: #adadad;
+        height: 100%;
+        min-width: 100%!important;
+        position: relative;
+        text-align: left;
+        transition: width,left,right,.3s;
+        width: var(--width-side)!important;
+        z-index: 1009;
+    }
+
 
     .pro-sidebar .pro-menu .pro-menu-item {
         font-size: var(--font-size-side) !important;
@@ -1740,6 +1835,9 @@ img.nare-league {
 }
 
 @media (min-width: 992px) {
+    .desktop-only-show{
+        display:flex;
+    }
     .top-spacing-casino{
         margin-top:9rem!important;
     }
@@ -1781,11 +1879,12 @@ img.nare-league {
         overflow: hidden;
         /* margin-left: 400px; */
         /* max-width: 500px; */
-        height: 34px;
+        /*height: 34px;*/
     }
 
     .text-header-jackpot p {
-        font-size: 20px;
+        font-size: 26px;
+        padding: 5px;
     }
 
     .slip-team {
@@ -1984,6 +2083,27 @@ img.nare-league {
 }
 
 @media (max-width: 991px) {
+    .spacing-backbutton{
+        padding-right:23px;
+    }
+    .line-mobile-spacing{
+        line-height:1.5;
+    }
+    .update_button {
+        /* height: 41px; */
+        padding: 10px 124px!important;
+    }
+    .desktop-only-show{
+        display:none!important;
+    }
+    .rdrDateRangePickerWrapper.date-range-picker-exclusion{
+        display:flex !important;
+        flex-direction:column !important;
+        width:100% !important;
+    }
+    .rdrDateRangePickerWrapper.date-range-picker-exclusion .rdrDefinedRangesWrapper{
+        width:100% !important;
+    }
     .tag {
         font-size: 10px;
         line-height: 1.4;
@@ -2018,6 +2138,9 @@ img.nare-league {
         min-height: 50px!important;
     }
     .top-smartsoft {
+        margin-top: 10rem !important;
+    }
+    .top-leader-board {
         margin-top: 10rem !important;
     }
     .top-nare-games {
@@ -2132,10 +2255,15 @@ img.nare-league {
     }
 
     .filters-modal .modal-content {
-        background-color: var(--betnare-primary);
+        background-color: var(--betnare-body-bg);
         color: #fff;
         position: fixed;
         bottom: 0;
+    }
+    .filters-modal.exclude .modal-content {
+        background-color: var(--betnare-body-bg);
+        color: #fff;
+        position: fixed;
     }
 
     .more_markets_category_sport{
@@ -2283,6 +2411,9 @@ img.nare-league {
     .top-smartsoft {
         margin-top: 10rem !important;
     }
+    .top-leader-board {
+        margin-top: 10rem !important;
+    }
     .top-spacing-casino{
         margin-top: 7rem !important;
     }
@@ -2296,6 +2427,9 @@ img.nare-league {
     }
 
     .top-smartsoft {
+        margin-top: 8rem !important;
+    }
+    .top-leader-board {
         margin-top: 8rem !important;
     }
 
@@ -2420,7 +2554,9 @@ img.nare-league {
     .mobile-full-height {
         height: 100vh;
     }
-
+    .container-size-match{
+        width:100% !important;
+    }
 
     /*.mobile-full-height.all-markets {*/
     /*    margin-top: 16px;*/
@@ -2446,6 +2582,11 @@ img.nare-league {
     }
 
     .top-matches a.odds-container-size {
+        color: var(--light) !important;
+        font-weight: 400;
+        line-height: 1.5;
+    }
+    .top-matches a.odds-container-size-match {
         color: var(--light) !important;
         font-weight: 400;
         line-height: 1.5;
@@ -2570,7 +2711,7 @@ img.nare-league {
 
     .slip-max-height {
         display: grid;
-        align-items: start;
+        align-items: flex-start;
         height: var(--slip-height) !important;
     }
 
@@ -3028,6 +3169,9 @@ img.nare-league {
     .odds-container-size {
         min-height: 23px;
     }
+    .odds-container-size-match {
+        min-height: 23px;
+    }
 
     .matches .top-matches .match-detail .all-markets {
         font-size: 12px;
@@ -3304,6 +3448,9 @@ img.nare-league {
     }
 
     .top-smartsoft {
+        margin-top: 7rem !important;
+    }
+    .top-leader-board {
         margin-top: 7rem !important;
     }
 

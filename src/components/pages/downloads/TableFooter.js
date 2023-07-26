@@ -1,8 +1,8 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from '@react-pdf/renderer';
-import PrintFooter from "../../../assets/img/banner/print-matches/FOOTER.jpg"
+import { Document, Page, Image, StyleSheet, Text, View } from '@react-pdf/renderer';
+import PrintFooter from "../../../assets/img/banner/print-matches/FOOTER.jpg";
 
-const borderColor = '#90e5fc'
+const borderColor = '#90e5fc';
 const styles = StyleSheet.create({
     row: {
         flexDirection: 'row',
@@ -26,36 +26,37 @@ const styles = StyleSheet.create({
         paddingRight: 8,
     },
     headerContainer: {
-        marginTop: 5
+        marginTop: 5,
     },
     companyMetaData: {
         paddingBottom: 3,
-        fontFamily: 'Helvetica-Oblique'
+        fontFamily: 'Helvetica-Oblique',
     },
     companyMetaText: {
         paddingLeft: 4,
-        fontSize: 10
+        fontSize: 10,
     },
     license: {
         fontSize: 9,
-        textAlign: "center",
-        width: "100%"
-    }
+        textAlign: 'center',
+        width: '100%',
+    },
+    logo: {
+        width: '100%',
+        height: 'auto',
+    },
 });
 
-
-const TableFooter = ({items}) => {
+const TableFooter = ({ items }) => {
     return (
         <>
             <View style={styles.row}>
                 <Text style={styles.companyName}>PAYBILL</Text>
-                <Text style={styles.companyAddress}>
-                    4087777
-                </Text>
+                <Text style={styles.companyAddress}>4087777</Text>
             </View>
-            <Image style={styles.logo} src={PrintFooter}/>
+            <Image style={styles.logo} src={PrintFooter} />
         </>
-    )
+    );
 };
 
-export default TableFooter
+export default TableFooter;

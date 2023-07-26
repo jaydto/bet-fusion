@@ -6,13 +6,13 @@ import makeRequest from "../../../utils/fetch-request";
 
 import Button from "../../../utils/button";
 import LinkSelect from "../../../utils/options";
-import {Context} from "../../../../context/store";
+import {StoreContext } from "../../../../context/store"
 
 
 const KironMoreMarkets= React.memo(
     () => {
     const [options, setOptions] = useState(getFromLocalStorage('kiron-more'));
-    const [state,dispatch]=useContext(Context)
+    const { state, dispatch } = useContext(StoreContext);
 
     const [pathname, setPathname] = useState(() => {
         const searchParams = new URLSearchParams(window.location.search);
@@ -68,11 +68,11 @@ const KironMoreMarkets= React.memo(
     }, []);
 
     useEffect(() => {
-        const abortController = new AbortController();
+        const abort = new AbortController();
         fetchData();
 
         return () => {
-            abortController.abort();
+            abort.abort()
         };
     }, [])
     const handleMarketChoice=(market)=>{

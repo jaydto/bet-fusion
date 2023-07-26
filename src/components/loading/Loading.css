@@ -1,0 +1,37 @@
+
+/* Loading.css */
+.loading-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    height: 70vh;
+}
+
+.logo-container img {
+    height: 53px;
+}
+
+.progress-bar-container {
+    width: 150px;
+    height: 10px;
+    background-color: #242e3a;
+    border-radius: 5px;
+    margin-top: 20px;
+    overflow: hidden;
+}
+.progress-bar.suspense {
+    height: 100%;
+    width: 100%;
+    background-color: var(--dark);
+    animation: loadingAnimation 2s linear infinite;
+}
+
+@keyframes loadingAnimation {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}

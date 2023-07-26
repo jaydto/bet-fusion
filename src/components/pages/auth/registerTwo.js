@@ -19,7 +19,7 @@ import SidebarMobile from "../../sidebar/awesome/SidebarMobile";
 import makeRequest from "../../utils/fetch-request";
 import betNiMoto from '../../../assets/img/BetniMoto.webp'
 import {Form, Formik} from "formik";
-import {Context} from "../../../context/store";
+import {StoreContext } from "../../../context/store"
 import SliderPromos from "./SliderPromos";
 import {Notify} from "../../header/top-login";
 import {ToastContainer} from "react-toastify";
@@ -33,7 +33,7 @@ const backgroundStyle = {
 
 const RegisterTwo = props => {
 
-    const [state, dispatch] = useContext(Context)
+    const { state, dispatch } = useContext(StoreContext);
     // const {setUser} = props;
     const expand = "md"
 
@@ -43,6 +43,8 @@ const RegisterTwo = props => {
         await makeRequest({url: endpoint, method: "POST", data: null}).then(
             ([status, result]) => {
                 if (status === 200) {
+                    setLocalStorage('settings',result?.message,1800000)
+
                     dispatch({type: "SET", key: "app_config", payload: result?.data || result});
                 }
 
@@ -188,7 +190,7 @@ const RegisterTwo = props => {
 
 const MyVerifyAccountForm = (props) => {
     const {errors, values, submitForm, setFieldValue} = props;
-    const [state, dispatch] = useContext(Context)
+    const { state, dispatch } = useContext(StoreContext);
     const resendOTP = () => {
 
         let endpoint = '/v1/code';
@@ -307,7 +309,7 @@ const MyVerifyAccountForm = (props) => {
 }
 
 const VerifyAccountForm = (props) => {
-    const [state, dispatch] = useContext(Context)
+    const { state, dispatch } = useContext(StoreContext);
 
     const initialValues = {
         mobile: '',
@@ -389,7 +391,7 @@ const VerifyAccountForm = (props) => {
 }
 
 const SignupForm = (props) => {
-    const [state, dispatch] = useContext(Context)
+    const { state, dispatch } = useContext(StoreContext);
     const initialValues = {
         msisdn: '',
     }
@@ -433,7 +435,7 @@ const FormTitle = () => {
     )
 }
 const MySignupForm = (props) => {
-    const [state, dispatch] = useContext(Context)
+    const { state, dispatch } = useContext(StoreContext);
     const {errors, values, submitForm, setFieldValue} = props;
     const onFieldChanged = (ev) => {
         let field = ev.target.name;
@@ -487,7 +489,7 @@ const MySignupForm = (props) => {
 }
 
 const PasswordForm = (props) => {
-    const [state, dispatch] = useContext(Context)
+    const { state, dispatch } = useContext(StoreContext);
     const navigate = useNavigate();
     const initialResetFormValues = {
         link_code: '',
@@ -662,7 +664,7 @@ const MyPasswordForm = (props) => {
 const ReferalForm = React.memo(
     (props) => {
         const gaEventTracker = useAnalyticsEventTracker('SignUp')
-        const [state, dispatch] = useContext(Context)
+        const { state, dispatch } = useContext(StoreContext);
         const initialValues = {
             promo_code: '',
         }
@@ -829,7 +831,7 @@ const navigateToFormStep = (stepNumber) => {
 
 const Steppers = () => {
 
-    const [state, dispatch] = useContext(Context)
+    const { state, dispatch } = useContext(StoreContext);
 
     const Alert = (props) => {
         let c = state?.registerSuccess ? 'success' : 'danger';

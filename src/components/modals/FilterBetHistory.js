@@ -1,14 +1,14 @@
 import React, {useContext, useEffect, useRef, useState} from 'react';
 import { ToastContainer, Modal, Button, Form } from 'react-bootstrap';
 import "./modals-custom.css"
-import {Context} from "../../context/store";
+import {StoreContext } from "../../context/store";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCheckCircle} from "@fortawesome/free-solid-svg-icons";
 
 const GameHistoryList = (props) => {
     const {visible, games,setShowGameFilter} = props
     const [isOpen, setIsOpen] = useState(visible)
-    const [state, dispatch]=useContext(Context)
+    const [state, dispatch]=useContext(StoreContext )
     const [selectedFilter, setSelectedFilter] = useState(state?.selected_filter_category||"");
     const handleOpenModal = () => {
         setIsOpen(true);

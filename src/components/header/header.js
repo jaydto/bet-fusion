@@ -2,9 +2,10 @@ import React, {useCallback, useContext, useEffect, useRef, useState} from 'react
 import {Link} from "react-router-dom"
 import Row from 'react-bootstrap/Row';
 import {LazyLoadImage} from 'react-lazy-load-image-component';
-import {Context} from '../../context/store';
+import {StoreContext } from "../../context/store";
 import {getFromLocalStorage, setLocalStorage} from '../utils/local-storage';
-import {ToastContainer} from 'react-toastify';
+import {toast, ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import makeRequest from '../utils/fetch-request';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import androidIcon from "../../assets/img/mobile/android-icon.webp"
@@ -12,7 +13,6 @@ import logo from '../../assets/img/Logo.webp';
 import {Navbar, Offcanvas} from "react-bootstrap";
 import SidebarMobile from "../sidebar/awesome/SidebarMobile";
 import MobileNav1 from "../mobile-navigation/MobileNav1";
-
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTimes} from "@fortawesome/free-solid-svg-icons";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
@@ -22,22 +22,107 @@ import {UserInfo} from "./UserInfo";
 const ProfileMenu = React.lazy(() => import('./profile-menu'));
 const HeaderNav = React.lazy(() => import('./header-nav'));
 
+
 const Header = React.memo(
     (props) => {
         const {slip, scrollPosition, jackpot} = props
         const gaEventTracker = useAnalyticsEventTracker('Navigation');
         const [user, setUser] = useState(getFromLocalStorage("user"));
-        const [state, dispatch] = useContext(Context);
+        const { state, dispatch } = useContext(StoreContext);
         // const [searching, setSearching] = useState(false)
         const containerRef = useRef();
         const searchInputRef = useRef(null)
         const [matches, setMatches] = useState([])
         const {current} = containerRef;
-        const [competitions, setCompetitions] = useState({});
-        const [settings, setSettings] = useState({});
+        const [, setCompetitions] = useState({});
+        const [, setSettings] = useState({});
         const [isOpen, setIsOpen] = useState(false);
-        const [showLoadingModal, setShowLoadingModal] = useState(false);
+        const [, setShowLoadingModal] = useState(false);
         const pathname = window.location.pathname;
+        const settingsData=getFromLocalStorage('settings')
+
+
+        // useEffect(() => {
+        //     const abort = new AbortController();
+        //
+        //     const requestNotificationPermission = async () => {
+        //         try {
+        //             const permission = await Notification.requestPermission();
+        //             if (permission === 'granted') {
+        //                 onMessage(messaging, (payload) => {
+        //                     console.log('Notification received:', payload);
+        //                     // Handle the notification payload here.
+        //                 });
+        //             } else {
+        //                 console.log('Notification permission denied.');
+        //             }
+        //         } catch (error) {
+        //             console.error('Error requesting notification permission:', error);
+        //         }
+        //     };
+        //
+        //     requestNotificationPermission();
+        //
+        //     return () => abort.abort();
+        // }, []);
+
+  //       const CustomNotification = () =>
+  //       {
+  //           useEffect(() => {
+  //               const abort = new AbortController();
+  //
+  //               const requestNotificationPermission = async () => {
+  //                   try {
+  //                       // Customized notification permission request
+  //                       const permission = await customRequestPermission();
+  //                       if (permission === 'granted') {
+  //                           onMessage(messaging, (payload) => {
+  //                               console.log('Notification received:', payload);
+  //                               // Handle the notification payload here.
+  //                           });
+  //                       } else {
+  //                           console.log('Notification permission denied.');
+  //                       }
+  //                   } catch (error) {
+  //                       console.error('Error requesting notification permission:', error);
+  //                   }
+  //               };
+  //
+  //               requestNotificationPermission();
+  //
+  //               return () => abort.abort();
+  //           }, []);
+  //           // Customized notification permission function with UI elements
+  //           const customRequestPermission = async () => {
+  //               return new Promise((resolve, reject) => {
+  //                   // Your custom UI elements and logic to ask for notification permission
+  //                   const customNotificationUI = document.createElement('div');
+  //                   customNotificationUI.innerHTML = `
+  //   <p>This website would like to send you notifications.</p>
+  //   <button class="permission-button" value="granted">Allow</button>
+  //   <button class="permission-button" value="denied">Deny</button>
+  // `;
+  //                   document.body.appendChild(customNotificationUI);
+  //
+  //                   const permissionButtons = customNotificationUI.getElementsByClassName('permission-button');
+  //                   Array.from(permissionButtons).forEach((button) => {
+  //                       button.addEventListener('click', (event) => {
+  //                           const value = event.target.value;
+  //                           customNotificationUI.remove();
+  //
+  //                           if (value === 'granted') {
+  //                               resolve('granted');
+  //                           } else {
+  //                               resolve('denied');
+  //                           }
+  //                       });
+  //                   });
+  //               });
+  //           };
+  //
+  //           return <div>Custom Notification Component</div>;
+  //       };
+
 
         useEffect(() => {
             const removeElement = () => {
@@ -49,6 +134,7 @@ const Header = React.memo(
 
             setTimeout(removeElement, 1000);
         }, []);
+
 
 
         useEffect(() => {
@@ -136,44 +222,67 @@ const Header = React.memo(
 
                 if (c_status === 200) {
                     setSettings(c_result?.message);
-                    setLocalStorage('settings', c_result?.message);
+                    setLocalStorage('settings', c_result?.message,1800000);
                 }
 
             } else {
                 setSettings(cached_settings);
             }
         })
-        const urlPath = window.location.pathname
+
+        const setUtmCampaign=()=>{
+            const utm_source=new URL(window.location).searchParams.get('utm_source')
+            const utm_campaign=new URL(window.location).searchParams.get('utm_campaign')
+            const btag=new URL(window.location).searchParams.get('btag')
+            if(utm_source){
+                setLocalStorage("utm_source", utm_source)
+            }
+            if(utm_campaign){
+                setLocalStorage("utm_campaign", utm_campaign)
+
+            }
+            if(btag){
+                setLocalStorage("btag", btag)
+            }
+        }
+
         const showDownload = ["/nare-games", "/bethistory", "/terms-and-conditions",
             "/gameplay", "/smart-play", "/betslip-slip", "/betslip-nare",
             "/betslip-jackpot", "/nare-league", "/bet-history",
             "/standing", "/results", "/casino", "/jackpot",
             "/smart-soft", "/virtuals", "/competition",
-            "/my-bets", "/profile", "/promotions"]
+            "/my-bets", "/profile", "/promotions","/leader-board","/responsible-gambling"]
+
 
         useEffect(() => {
-
-            const abortController = new AbortController();
-            fetchData();
+            const abort=new AbortController()
             fetchAppConfigurations();
-
+            fetchData();
+            setUtmCampaign();
             return () => {
-                abortController.abort();
+                abort.abort()
             };
-        }, [fetchData]);
+        }, []);
 
-        const NotifyToastContaner = () => {
-            return <ToastContainer
-                position="top-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-            />
+        const NotifyToastContainer = () => {
+            return (
+                <>
+                    {/* Render the ToastContainer */}
+                    <ToastContainer
+                        position="top-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                    />
+
+                    {/* Render the CustomNotification component */}
+                </>
+            );
         };
         const updateUserOnHistory = useCallback(() => {
             if (!user) {
@@ -194,8 +303,8 @@ const Header = React.memo(
 
         }, [current]);
 
-        const notShowMobileNav = ['/signup', '/nare-league', '/results','/my-bets','/casino','/smart-soft','/virtuals',
-            '/standing', '/playouts', '/standing', '/bet-history', '/nare-games']
+        const notShowMobileNav = ['/signup','/leader-board', '/nare-league', '/results','/my-bets','/casino','/smart-soft','/virtuals',
+            '/standing', '/playouts', '/standing', '/bet-history', '/nare-games','/responsible-gambling']
 
         const updateUserOnLogin = useCallback(() => {
             dispatch({type: "SET", key: "user", payload: user});
@@ -229,8 +338,9 @@ const Header = React.memo(
 
         return (
             <>
+
                 <div className={'d-flex flex-column'}>
-                    {(!showDownload.includes(pathname) && !pathname.includes('match') &&!pathname.includes('nare-games')&&!pathname.includes('gameplay')) &&
+                    {(!showDownload.includes(pathname) && !pathname.includes('match') &&!pathname.includes('nare-games')&&!pathname.includes('bet-history')&&!pathname.includes('gameplay')) &&
                         <div>
                             <a href={'https://storage.googleapis.com/nare-app/betnare-app.apk'}
                                   target={"_self"}
@@ -252,7 +362,7 @@ const Header = React.memo(
                     }
 
                     <Navbar expand="md"
-                            className={`${(scrollPosition || (showDownload.includes(pathname)||pathname.includes('match')||pathname.includes('nare-games')||pathname.includes('gameplay'))) && 'fixed-top-nav'} mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${(slip || jackpot) && "top-betslip-page-fix"} ${user ? 'top-nav-login' : 'top-nav-login'}`}
+                            className={`${(scrollPosition || (showDownload.includes(pathname)||pathname.includes('match')||pathname.includes('nare-games')||pathname.includes('bet-history')||pathname.includes('leader-board')||pathname.includes('gameplay'))) && 'fixed-top-nav'} mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${(slip || jackpot) && "top-betslip-page-fix"} ${user ? 'top-nav-login' : 'top-nav-login'}`}
                             fixed="top" variant="dark">
                         <div
                             className={'w-100 d-flex justify-content-between mobile-change desktop-ipad-size top-header-main'}>

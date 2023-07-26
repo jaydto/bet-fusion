@@ -6,7 +6,7 @@ import useInterval from "../../hooks/set-interval.hook";
 import {getBetslip} from '../utils/betslip';
 
 import {MarketList} from '../matches';
-import {Context} from "../../context/store";
+import {StoreContext } from "../../context/store";
 import useWindowDimensions from "../header/Dimensions";
 
 const Header = React.lazy(()=>import('../header/header'));
@@ -27,7 +27,7 @@ const MatchAllMarkets = React.memo(
     const [matchwithmarkets, setMatchWithMarkets] = useState();
     const [userSlipsValidation, setUserSlipsValidation] = useState();
     const {height, width} = useWindowDimensions();
-    const [state, dispatch] = useContext(Context);
+    const { state, dispatch } = useContext(StoreContext);
 
 
     const [isLoading, setIsLoading] = useState(false);

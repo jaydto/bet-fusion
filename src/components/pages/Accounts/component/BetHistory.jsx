@@ -1,6 +1,6 @@
 import "./bethistory.css"
 import React, {useCallback, useContext, useEffect, useState} from "react";
-import {Context} from "../../../../context/store";
+import {StoreContext } from "../../../../context/store"
 import useWindowDimensions from "../../../header/Dimensions";
 import makeRequest from "../../../utils/fetch-request";
 import Header from "../../../header/header";
@@ -8,7 +8,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowLeft, faCaretDown} from "@fortawesome/free-solid-svg-icons";
 import BetDetails from "./BetDetails";
 import {getFromLocalStorage, setLocalStorage} from "../../../utils/local-storage";
-import {Switch} from "@material-ui/core";
+import {Switch} from "@mui/material";
 import GameHistoryList from "../../../modals/FilterBetHistory";
 import moment from "moment";
 import Skeleton1 from "../../../skeleton/skeleton";
@@ -17,7 +17,7 @@ import {faXbox} from "@fortawesome/free-brands-svg-icons";
 
 const BetHistory = () => {
     const {width} = useWindowDimensions()
-    const [state, dispatch] = useContext(Context);
+    const { state, dispatch } = useContext(StoreContext);
     const [isLoading, setIsLoading] = useState(false);
 
     const fetchData = useCallback(async () => {
@@ -49,7 +49,7 @@ const BetHistory = () => {
 
 
     const PageBody = () => {
-        const [state, dispatch] = useContext(Context)
+        const { state, dispatch } = useContext(StoreContext);
 
         const CancelBetMarkup = (props) => {
             const { bet_id, can_cancel, created } = props;

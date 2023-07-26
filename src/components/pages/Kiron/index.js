@@ -4,7 +4,7 @@ import KironTabs from "./KironTabs/KironTabs";
 import KironCompetitions from "./competitions/KironCompetitions";
 import MatchList from "./matches";
 import makeRequest from "../../utils/fetch-request";
-import {Context} from "../../../context/store";
+import {StoreContext} from "../../../context/store";
 import {useLocation} from "react-router-dom";
 import KironPeriods from "./periods";
 import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
@@ -22,7 +22,7 @@ import KironPlayouts from "./playout";
 
 
 const TestKiron = React.memo(() => {
-    const [state, dispatch] = useContext(Context)
+    const {state, dispatch} = useContext(StoreContext)
     const [tab, setTab] = useState('kiron')
     const [fetching, setFetching] = useState(false)
     const [playout, setPlayout] = useState(null)
@@ -71,7 +71,7 @@ const TestKiron = React.memo(() => {
     useEffect(() => {
         dispatch({type: "SET", key: 'playout_data', payload: null})
         dispatch({type: "SET", key: 'close_spinner', payload: false})
-        dispatch({type: "SET", key: 'nareLoading', payload: true})
+        // dispatch({type: "SET", key: 'nareLoading', payload: true})
         if (window.location.pathname == "/nare-league") {
             if (state?.inPlay) {
                 dispatch({type: "SET", key: 'nareLoading', payload: false})
@@ -194,38 +194,37 @@ const TestKiron = React.memo(() => {
                                     {tab == "results" ? <KironResults/> : tab == "standing" ?
                                         <Standing/> : tab == "bet-history" ? <KironBetHistory/> :
                                             <>
-                                            <div className="d-flex flex-column kiron-matches-header">
-                                                <KironPeriods setPlayout={setPlayout}
-                                                              isCountdownTimerActive={isCountdownTimerActive}
-                                                              setIsCountdownTimerActive={setIsCountdownTimerActive}/>
-                                                {!state?.inPlay && <KironMoreMarkets/>}
-                                            </div>
+                                                <div className="d-flex flex-column kiron-matches-header">
+                                                    <KironPeriods setPlayout={setPlayout}
+                                                                  isCountdownTimerActive={isCountdownTimerActive}
+                                                                  setIsCountdownTimerActive={setIsCountdownTimerActive}/>
+                                                    {!state?.inPlay && <KironMoreMarkets/>}
+                                                </div>
 
-                                            {state?.nareLoading ? <SkeletonLoader/> : state?.close_spinner ?
-                                                <div className="kiron-loader" id="kiron-loader">
-                                                    <span id='game_week'></span>
-                                                    <div
-                                                        className="match-start d-flex flex-column align-items-center justify-content-center "
-                                                        style={{marginTop: '120px'}}>
-                                                        <span id="countdown"></span>
-                                                    </div>
-                                                    <div className="loading loading--full-height"></div>
-                                                </div> : state?.inPlay ? <KironPlayouts playout={playout}
-                                                                                        isCountdownTimerActive={isCountdownTimerActive}/> :
-                                                    <div className="kiron_matches_now">
-                                                        <MatchList
-                                                            fetching={fetching}
-                                                            competition_id={newData?.competition_id}
+                                                {state?.nareLoading ? <SkeletonLoader/> : state?.close_spinner ?
+                                                    <div className="kiron-loader" id="kiron-loader">
+                                                        <span id='game_week'></span>
+                                                        <div
+                                                            className="match-start d-flex flex-column align-items-center justify-content-center "
+                                                            style={{marginTop: '120px'}}>
+                                                            <span id="countdown"></span>
+                                                        </div>
+                                                        <div className="loading loading--full-height"></div>
+                                                    </div> : state?.inPlay ? <KironPlayouts playout={playout}
+                                                                                            isCountdownTimerActive={isCountdownTimerActive}/> :
+                                                        <div className="kiron_matches_now">
+                                                            <MatchList
+                                                                fetching={fetching}
+                                                                competition_id={newData?.competition_id}
 
-                                                        />
-                                                    </div>
-                                                    }
-                                        </>}
+                                                            />
+                                                        </div>
+                                                }
+                                            </>}
                                 </div>
 
                             </div>
                             <Right kiron={true} nareleague={true}/>
-
                         </div>
                     </div>
                 </div>

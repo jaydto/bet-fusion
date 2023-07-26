@@ -10,12 +10,12 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {formatNumber} from "../utils/betslip";
 import {Link} from "react-router-dom";
 import {Navbar} from "react-bootstrap";
-import {Context} from "../../context/store";
+import {StoreContext } from "../../context/store";
 
 const ProfileMenu = React.memo(
     (props) => {
     const {user} = props;
-    const [state,dispatch]=useContext(Context)
+    const { state, dispatch } = useContext(StoreContext);
     const [themeLight, setThemeLight]=useState(false)
     const handleThemeChange=()=>{
         setThemeLight(!themeLight)

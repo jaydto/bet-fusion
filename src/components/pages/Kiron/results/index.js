@@ -1,14 +1,16 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useContext, useEffect, useState} from 'react';
 import "./results.css"
 import makeRequest from "../../../utils/fetch-request";
 import {Spinner} from "react-bootstrap";
 import {getFromLocalStorage} from "../../../utils/local-storage";
 import {LazyLoadImage} from "react-lazy-load-image-component";
+import {StoreContext} from "../../../../context/store";
 
 const KironResults =
     () => {
         const [loading, setLoading] = useState(false)
         const [resulted, setResulted] = useState([]);
+        const {state,dispatch}=useContext(StoreContext)
         const newCompetition = new URL(window.location).searchParams.get('competition_id') || getFromLocalStorage("kiron_search_data")?.competition_id
 
         let endpoint = "/v1/nare-league/results"
@@ -33,6 +35,10 @@ const KironResults =
 
         useEffect(() => {
             fetchData();
+            const payload = {
+                start: '', round: '', end: ''
+            }
+            dispatch({type: "SET", key: 'current_selection_period', payload: payload})
         }, [newCompetition]);
 
         return (

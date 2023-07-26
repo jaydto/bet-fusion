@@ -94,7 +94,7 @@ export const matchesMorePrematchMarkets =
     }
 );
 
-const mathesSlice = createSlice({
+const matchesSlice = createSlice({
     name: "matches",
     initialState,
     reducers: {},

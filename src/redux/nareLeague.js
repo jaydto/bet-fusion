@@ -123,6 +123,23 @@ export const nareLeagueResults = createAsyncThunk(
     }
 );
 
+export const nareLeaguePlayouts = createAsyncThunk(
+    "nareLeague/playouts",
+    async (playoutsData) => {
+        const [status, response] = await makeRequest({
+            url: "/v1/nare-league/live",
+            method: "POST",
+            data: playoutsData,
+        });
+        if (status === 200) {
+            return response;
+        } else {
+            throw new Error(response?.error || "Nare League Playouts fetch  failed");
+        }
+
+    }
+);
+
 const nareLeagueSlice = createSlice({
     name: "nareLeague",
     initialState,
@@ -133,12 +150,22 @@ const nareLeagueSlice = createSlice({
                 state.loading = true;
             })
             .addCase(nareLeagueMatches.fulfilled, (state, action) => {
-                state.isLoggedIn = true;
-                state.user = action.payload;
+                state.loading = false;
+                state.error = null;
+                state.matches_data=action.payload
+            })
+            .addCase(nareLeagueMatches.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
+            .addCase(nareLeaguePlayouts.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(nareLeaguePlayouts.fulfilled, (state, action) => {
                 state.loading = false;
                 state.error = null;
             })
-            .addCase(nareLeagueMatches.rejected, (state, action) => {
+            .addCase(nareLeaguePlayouts.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
             })
@@ -146,10 +173,10 @@ const nareLeagueSlice = createSlice({
                 state.loading = true;
             })
             .addCase(nareLeagueStandings.fulfilled, (state, action) => {
-                state.isLoggedIn = true;
-                state.user = action.payload;
-                state.loading = false;
+                state.isLoading = false;
                 state.error = null;
+                state.loading=false;
+                state.standings_data=action.payload;
             })
             .addCase(nareLeagueStandings.rejected, (state, action) => {
                 state.loading = false;
@@ -158,9 +185,10 @@ const nareLeagueSlice = createSlice({
             .addCase(nareLeagueResults.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(nareLeagueResults.fulfilled, (state) => {
+            .addCase(nareLeagueResults.fulfilled, (state,action) => {
                 state.loading = false;
                 state.error = null;
+                state.results_data = action.payload;
             })
             .addCase(nareLeagueResults.rejected, (state, action) => {
                 state.loading = false;
@@ -180,9 +208,33 @@ const nareLeagueSlice = createSlice({
             .addCase(nareLeaguePeriods.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(nareLeaguePeriods.fulfilled, (state) => {
+            .addCase(nareLeaguePeriods.fulfilled, (state,action) => {
+                // When nareLeaguePeriods is fulfilled, update the state with the first period's data
+                const periodsData = action.payload;
+
+                if (periodsData.length > 0) {
+                    // Get the first period from the array
+                    const firstPeriod = periodsData[0];
+
+                    // Extract round_id, start_time, and end_time from the first period
+                    const { round_id, start_time, end_time } = firstPeriod;
+
+                    // Update the Redux state with the first period's data
+                    state.round_id = round_id;
+                    state.start_time = start_time;
+                    state.end_time = end_time;
+                }
                 state.loading = false;
                 state.error = null;
+                state.isLoading = false;
+                state.error = null;
+                state.periods_data = action.payload; // Update periods_data with the response
+                state.periods_ready = true; // Set periods_ready to true
+                state.timeLeft = null; // Reset timeLeft when periods are fetched
+                state.timeAfter = null; // Reset timeAfter when periods are fetched
+                state.isCountDownTimeActive = null; // Reset isCountDownTimeActive when periods are fetched
+                state.current_selection_period = null; // Reset current_selection_period when periods are fetched
+                state.inPlay = false; // Set inPlay to false when periods are fetched
             })
             .addCase(nareLeaguePeriods.rejected, (state, action) => {
                 state.loading = false;

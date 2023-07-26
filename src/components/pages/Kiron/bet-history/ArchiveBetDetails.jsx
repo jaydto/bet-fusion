@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Context } from "../../../../context/store";
 import { BASE_URL } from "../../../utils/fetch-request";
 import axios from "axios";
 import { getFromLocalStorage } from "../../../utils/local-storage";

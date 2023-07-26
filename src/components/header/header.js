@@ -340,7 +340,7 @@ const Header = React.memo(
             <>
 
                 <div className={'d-flex flex-column'}>
-                    {(!showDownload.includes(pathname) && !pathname.includes('match') &&!pathname.includes('nare-games')&&!pathname.includes('bet-history')&&!pathname.includes('gameplay')) &&
+                    {(!showDownload.includes(pathname) && !pathname.includes('match')&&!pathname.includes('competition') &&!pathname.includes('nare-games')&&!pathname.includes('bet-history')&&!pathname.includes('gameplay')) &&
                         <div>
                             <a href={'https://storage.googleapis.com/nare-app/betnare-app.apk'}
                                   target={"_self"}

@@ -5,29 +5,27 @@ import {getFromLocalStorage} from "../../../utils/local-storage";
 import {Spinner} from "react-bootstrap";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import {StoreContext} from "../../../../context/store";
-
+import { useDispatch,useSelector } from 'react-redux'; // Import useDispatch hook
+import {nareLeagueStandings} from '../../../../redux/nareLeague';
 const Standing = () => {
     const [standings, setStandings] = useState([]);
     const [loading, setLoading] = useState(false);
     const newCompetition = new URL(window.location).searchParams.get('competition_id') || getFromLocalStorage("kiron_search_data")?.competition_id
     const {state,dispatch}=useContext(StoreContext)
-    let endpoint = "/v1/nare-league/standings"
+    const dispatchRedux=useDispatch()
     const fetchData = useCallback(async () => {
-        setLoading(true)
-        endpoint = endpoint.replaceAll(" ", '')
 
         const kiron_data = {
             competition_id: new URL(window.location).searchParams.get('competition_id') || getFromLocalStorage("kiron_search_data")?.competition_id
         }
-        await makeRequest({url: endpoint, method: "POST", data: kiron_data}).then(([status, result]) => {
-            if (status == 200) {
-                setStandings(result?.data || result)
-                setLoading(false)
+        dispatchRedux(nareLeagueStandings(kiron_data))
 
-            }
-        });
+
 
     }, []);
+    const loadingData = useSelector((state) => state.nareLeague.loading);
+    const standingsData = useSelector((state) => state.nareLeague.standings_data);
+
 
 
     useEffect(() => {
@@ -54,7 +52,7 @@ const Standing = () => {
             </section>
             <div className="league-wrapper">
                 <div className="match-standing-wrapper pt-0">
-                    {!loading ? <table className={"mx-1 table"}>
+                    {!loadingData ? <table className={"mx-1 table"}>
                         <tbody style={{background: '#fff'}}>
                         <tr className="table-header">
                             <th className={'standings-menu'}>Position</th>
@@ -63,8 +61,8 @@ const Standing = () => {
                             <th className={'standings-menu'} style={{textAlign: 'center'}}>Played</th>
                             <th className={'standings-menu text-center'}>Form</th>
                         </tr>
-                        {standings &&
-                            Object.entries(standings).map(([key, standing],index) => (
+                        {standingsData &&
+                            Object.entries(standingsData).map(([key, standing],index) => (
                                 <tr key={index}>
                                     <td className={'standings-menu'}>{standing?.position}</td>
                                     <td className="playing-teams-r standings-menu">

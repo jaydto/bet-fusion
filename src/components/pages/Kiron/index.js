@@ -8,7 +8,7 @@ import {StoreContext} from "../../../context/store";
 import {useLocation} from "react-router-dom";
 import KironPeriods from "./periods";
 import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
-
+import { useDispatch } from 'react-redux';
 import Right from "../../right";
 import KironMoreMarkets from "./kironMoreMarkets";
 import Footer from "../../footer/footer";
@@ -23,6 +23,8 @@ import KironPlayouts from "./playout";
 
 const TestKiron = React.memo(() => {
     const {state, dispatch} = useContext(StoreContext)
+    ; // Import the async thunk from your nareLeagueSlice
+
     const [tab, setTab] = useState('kiron')
     const [fetching, setFetching] = useState(false)
     const [playout, setPlayout] = useState(null)

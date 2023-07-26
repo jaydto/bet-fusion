@@ -6,6 +6,12 @@
 .leaderboard .awards .t.p-2 {
     padding-top: .75em;
 }
+.how_to_play{
+    max-width: 991px;
+    margin: auto;
+    color: var(--light);
+}
+
 .leaderboard .awards .t {
     display: table-cell;
     width: 33.33%;
@@ -138,6 +144,12 @@
     width: 50%;
 }
 @media (min-width:992px){
+    .header-leader h2{
+        font-size:26px;
+    }
+    .header-leader h3{
+        font-size:24px;
+    }
     .logo .aniversary{
         width:20rem
     }

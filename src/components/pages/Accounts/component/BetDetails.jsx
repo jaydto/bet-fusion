@@ -95,7 +95,7 @@ const BetDetails = (props) => {
 
 			// remove highlight class from all links
 			const links = document.querySelectorAll('.link');
-			links.forEach((link) => link.classList.remove('highlight'));
+			links?.forEach((link) => link.classList.remove('highlight'));
 
 			// add highlight class to clicked link
 			event.currentTarget.classList.add('highlight');

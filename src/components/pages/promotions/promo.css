@@ -22,7 +22,13 @@
     top: 4rem;
     margin-left: 2px;
     outline: none !important;
-    min-height: 23rem;
+    min-height: 21rem;
+}
+.container.text-data-promotions {
+    white-space: nowrap;
+    overflow: hidden;
+    width: 95%;
+    text-overflow: ellipsis;
 }
 .promo-inner-promo-item{
     box-shadow: none !important;

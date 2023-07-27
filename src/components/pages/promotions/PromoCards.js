@@ -38,7 +38,7 @@ const PromoCards = () => {
                         >
                             KARIBU GIFT WALLET
                         </h5>
-                        <p className="container mx-1 px-2">
+                        <p className="container mx-1 px-2 text-data-promotions">
                             Get Up to 3,000/= FREE Bet Booster once you register as a Free Nare Booster...
                         </p>
                         <hr/>
@@ -77,7 +77,7 @@ const PromoCards = () => {
                         >
                             Pepea Angani na SpaceMan
                         </h5>
-                        <p className="container mx-1 px-2">
+                        <p className="container mx-1 px-2 text-data-promotions">
                             Win big cash prizes when you hit the top spot and collect UPTO x5000...
                         </p>
                         <hr/>
@@ -108,7 +108,7 @@ const PromoCards = () => {
                         >
                             FIRST DEPOSIT BOOSTER
                         </h5>
-                        <div className="container mx-1  mb-2 px-2">
+                        <div className="container mx-1  mb-2 px-2 text-data-promotions">
                             Get 1500% BONUS on the FIRST ever deposit as Free Nare Booster now...
                         </div>
                         <hr/>
@@ -141,7 +141,7 @@ const PromoCards = () => {
                         >
                             Gurumisha Mamili na Aviator
                         </h5>
-                        <p className="container mx-1 px-2">
+                        <p className="container mx-1 px-2 text-data-promotions">
                             With as low as a stake of 10 bob tu, pata kushinda millions...
                         </p>
                         <hr/>
@@ -176,7 +176,7 @@ const PromoCards = () => {
                             20% FIRST DAILY DEPOSIT BONUS{" "}
                         </h5>
 
-                        <div className="container mx-1 px-2">
+                        <div className="container mx-1 px-2 text-data-promotions">
                             Get 20% daily deposit Boost on your 1st deposit of the day...
                         </div>
                         <hr/>
@@ -215,7 +215,7 @@ const PromoCards = () => {
                                 {" "}
                                 100% MULTIBET LOST BONUS
                             </h5>
-                            <div className="container mx-1 px-2">
+                            <div className="container mx-1 px-2 text-data-promotions">
                                 Place a pre-match Multibet of 5 or MORE selections...
                             </div>
                             <hr/>
@@ -250,7 +250,7 @@ const PromoCards = () => {
                         >
                             JetX the Money Multiplier daily
                         </h5>
-                        <p className="container mx-1 px-2">
+                        <p className="container mx-1 px-2 text-data-promotions">
                             Predict which multiplier the plane will crash. The longer the plane flies, the higher the ...
                         </p>
                         <hr/>
@@ -283,7 +283,7 @@ const PromoCards = () => {
                                 BETNARE NGWARE
                             </h5>
                             <hr/>
-                            <span className="container mx-1 px-2">
+                            <span className="container mx-1 px-2 text-data-promotions">
                 Monday promotion. BetNare Ngware, anzisha Wiki na Thao.
               </span>
                             <hr/>

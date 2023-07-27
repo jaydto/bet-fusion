@@ -338,21 +338,20 @@ const Header = React.memo(
                 <div className={'d-flex flex-column'}>
                     {(!showDownload) &&
                         <div>
-                            <a href={'/deposit'}
+                            <Link to={'/deposit?utm_source=anniversary-promo'}
                                   target={"_self"}
-                                  title={'Download App'}
-                                  download={'betnare-app.apk'}
+                                  title={''}
                                   className={"lite-top d-flex flex-column"}
                                   onClick={() => {
-                                      gaEventTracker('Downloaded App');
+                                      gaEventTracker('Aniversary Promotion');
                                   }}>
                                 <div className={"app-download-link  d-flex flex-column"}>
                                     <div className={"app-color"}>
-                                        <span className={"color-app-text flashy"}>Deposit <span style={{color:'var(--gold'}}>365/=</span> to get <span style={{color:'var(--gold'}}>365/= </span>Anniversary Bonus </span>
+                                        <span className={"color-app-text flashy"}>Deposit <strong style={{color:'var(--gold'}}>365/=</strong> to get <strong style={{color:'var(--gold'}}>365/= </strong>Anniversary Bonus </span>
                                         {/*<LazyLoadImage src={androidIcon} className={"icon-android"}/>*/}
                                     </div>
                                 </div>
-                            </a>
+                            </Link>
 
                         </div>
                     }

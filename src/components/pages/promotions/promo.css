@@ -1,0 +1,86 @@
+.promo-container{
+    display:flex!important;
+    flex-wrap:wrap!important;
+    padding: 0.5rem!important;
+}
+.promo-styling{
+    width: 100%;
+    background: transparent!important;
+}
+.promo-image {
+    min-height: 13rem!important;
+}
+
+.promo-inner {
+    box-shadow: 0px 1px 5px 3px #253743 !important;
+    margin-bottom: 15px !important;
+    border-radius: 7px!important;
+    border: thin solid #253743;
+    /* background-color: #0e131b; */
+    padding: 2px;
+    color: white;
+    position: sticky !important;
+    top: 4rem;
+    margin-left: 2px;
+    outline: none !important;
+    min-height: 25rem;
+}
+.promo-inner-promo-item{
+    box-shadow: none !important;
+    margin-bottom: 15px !important;
+    border-radius: 7px!important;
+    border: thin solid #253743;
+    /* background-color: #0e131b; */
+    padding: 2px;
+    color: white;
+    position: sticky !important;
+    top: 4rem;
+    border:none;
+    margin-left: 2px;
+    outline: none !important;
+    min-height: 25rem;
+}
+.promotion-header {
+    font-size: 16px;
+    font-weight: 700;
+    opacity: 0.8;
+}
+.promo-button{
+    background: rgb(234, 93, 11);
+    min-height: 3rem;
+}
+.button-promotions{
+    background: var(--gold) !important;
+    border:thin solid ;
+    border-radius: 10px;
+    padding: 1px 10px;
+    min-width:30px;
+    color:var(--dark) !important
+}
+hr {
+    margin-top: 0.5rem;
+    margin-bottom: 0px;
+    margin-left: 0.7rem;
+    margin-right: 0.7rem;
+}
+.mobile-promo-top{
+    margin-top:5rem!important;
+}
+.desktop-promotions-info{
+    max-width:991px;
+    margin:auto;
+}
+
+@media (max-width: 991px){
+    .promotions-app-top{
+        margin-top:5rem;
+    }
+}
+@media (min-width: 992px){
+    .promotions-app-top{
+        margin-top:8rem;
+    }
+    .promo-styling{
+        width:33% !important
+    }
+}

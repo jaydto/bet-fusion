@@ -5,8 +5,6 @@ import {LazyLoadImage} from 'react-lazy-load-image-component';
 import {StoreContext } from "../../context/store";
 import {getFromLocalStorage, setLocalStorage} from '../utils/local-storage';
 import {toast, ToastContainer} from 'react-toastify';
-import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
 import 'react-toastify/dist/ReactToastify.css';
 import makeRequest from '../utils/fetch-request';
 import 'react-lazy-load-image-component/src/effects/blur.css';
@@ -21,6 +19,7 @@ import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import ListGroup from "react-bootstrap/ListGroup";
 import LoginSection from "./LoginSection";
 import {UserInfo} from "./UserInfo";
+import { shouldShowMobileNav, shouldShowDownload } from './NavigationsHelper';
 const ProfileMenu = React.lazy(() => import('./profile-menu'));
 const HeaderNav = React.lazy(() => import('./header-nav'));
 
@@ -35,12 +34,16 @@ const Header = React.memo(
         const containerRef = useRef();
         const searchInputRef = useRef(null)
         const [matches, setMatches] = useState([])
+       // Import the navigationConfig object
         const {current} = containerRef;
         const [, setCompetitions] = useState({});
         const [, setSettings] = useState({});
         const [isOpen, setIsOpen] = useState(false);
         const [, setShowLoadingModal] = useState(false);
+
         const pathname = window.location.pathname;
+        const notShowMobileNav = shouldShowMobileNav(pathname);
+        const showDownload = shouldShowDownload(pathname);
 
 
         // useEffect(() => {
@@ -223,31 +226,40 @@ const Header = React.memo(
 
                 if (c_status === 200) {
                     setSettings(c_result?.message);
-                    setLocalStorage('settings', c_result?.message);
+                    setLocalStorage('settings', c_result?.message,1800000);
                 }
 
             } else {
                 setSettings(cached_settings);
             }
         })
-        const urlPath = window.location.pathname
-        const showDownload = ["/nare-games", "/bethistory", "/terms-and-conditions",
-            "/gameplay", "/smart-play", "/betslip-slip", "/betslip-nare",
-            "/betslip-jackpot", "/nare-league", "/bet-history",
-            "/standing", "/results", "/casino", "/jackpot",
-            "/smart-soft", "/virtuals", "/competition",
-            "/my-bets", "/profile", "/promotions","/leader-board","/responsible-gambling"]
+
+        const setUtmCampaign=()=>{
+            const utm_source=new URL(window.location).searchParams.get('utm_source')
+            const utm_campaign=new URL(window.location).searchParams.get('utm_campaign')
+            const btag=new URL(window.location).searchParams.get('btag')
+            if(utm_source){
+                setLocalStorage("utm_source", utm_source)
+            }
+            if(utm_campaign){
+                setLocalStorage("utm_campaign", utm_campaign)
+
+            }
+            if(btag){
+                setLocalStorage("btag", btag)
+            }
+        }
+
 
         useEffect(() => {
-
-            const abortController = new AbortController();
-            fetchData();
+            const abort=new AbortController()
             fetchAppConfigurations();
-
+            fetchData();
+            setUtmCampaign();
             return () => {
-                abortController.abort();
+                abort.abort()
             };
-        }, [fetchData]);
+        }, []);
 
         const NotifyToastContainer = () => {
             return (
@@ -288,9 +300,6 @@ const Header = React.memo(
 
         }, [current]);
 
-        const notShowMobileNav = ['/signup','/leader-board', '/nare-league', '/results','/my-bets','/casino','/smart-soft','/virtuals',
-            '/standing', '/playouts', '/standing', '/bet-history', '/nare-games','/responsible-gambling']
-
         const updateUserOnLogin = useCallback(() => {
             dispatch({type: "SET", key: "user", payload: user});
         }, [user?.msisdn, user?.balance]);
@@ -321,33 +330,35 @@ const Header = React.memo(
         }, [pathname])
 
 
+
         return (
             <>
+                {console.log("notshowDownload",!showDownload)}
 
                 <div className={'d-flex flex-column'}>
-                    {(!showDownload.includes(pathname) && !pathname.includes('match') &&!pathname.includes('nare-games')&&!pathname.includes('bet-history')&&!pathname.includes('gameplay')) &&
+                    {(!showDownload) &&
                         <div>
-                            <a href={'https://storage.googleapis.com/nare-app/betnare-app.apk'}
+                            <Link to={'/deposit?utm_source=anniversary-promo'}
                                   target={"_self"}
-                                  title={'Download App'}
-                                  download={'betnare-app.apk'}
+                                  title={''}
                                   className={"lite-top d-flex flex-column"}
                                   onClick={() => {
-                                      gaEventTracker('Downloaded App');
+                                      gaEventTracker('Aniversary Promotion');
                                   }}>
                                 <div className={"app-download-link  d-flex flex-column"}>
                                     <div className={"app-color"}>
-                                        <span className={"color-app-text"}>APP Your Game with Betnare App</span>
-                                        <LazyLoadImage src={androidIcon} className={"icon-android"}/>
+                                        <span className={"color-app-text flashy"}>Deposit <strong style={{color:'var(--gold'}}>365/=</strong> to get <strong style={{color:'var(--gold'}}>365/= </strong>Anniversary Bonus </span>
+                                        {/*<LazyLoadImage src={androidIcon} className={"icon-android"}/>*/}
                                     </div>
                                 </div>
-                            </a>
+                            </Link>
 
                         </div>
                     }
+                    {console.log("showDownload",showDownload)}
 
                     <Navbar expand="md"
-                            className={`${(scrollPosition || (showDownload.includes(pathname)||pathname.includes('match')||pathname.includes('nare-games')||pathname.includes('bet-history')||pathname.includes('leader-board')||pathname.includes('gameplay'))) && 'fixed-top-nav'} mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${(slip || jackpot) && "top-betslip-page-fix"} ${user ? 'top-nav-login' : 'top-nav-login'}`}
+                            className={`${(scrollPosition || (showDownload)) && 'fixed-top-nav'} mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${(slip || showDownload)&& "top-betslip-page-fix"} ${user ? 'top-nav-login' : 'top-nav-login'}`}
                             fixed="top" variant="dark">
                         <div
                             className={'w-100 d-flex justify-content-between mobile-change desktop-ipad-size top-header-main'}>
@@ -417,7 +428,7 @@ const Header = React.memo(
 
                                     </ListGroup>
                                 </div>
-                                : (!notShowMobileNav.includes(pathname) && !slip && !jackpot && !pathname.includes('match'))&&
+                                : (notShowMobileNav && !slip && !jackpot && !pathname.includes('match'))&&
                                 <MobileNav1/>}
 
 

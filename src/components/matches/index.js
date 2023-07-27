@@ -186,7 +186,7 @@ const MatchHeaderRow = React.memo(
 
             let extraMarkets = []
 
-            sub_types.forEach((sub_type) => {
+            sub_types?.forEach((sub_type) => {
                 let selectedMarket = markets.filter((market) => Number(market.id) === Number(sub_type))
 
                 if (selectedMarket.length > 0) {
@@ -388,7 +388,7 @@ const MoreMarketsHeaderRow = React.memo(
         const handleLinkClick = (event) => {
             // remove highlight class from all links
             const links = document.querySelectorAll('.link');
-            links.forEach((link) => link.classList.remove('highlight'));
+            links?.forEach((link) => link.classList.remove('highlight'));
 
             // add highlight class to clicked link
             event.currentTarget.classList.add('highlight');
@@ -1078,7 +1078,7 @@ const MatchRow = React.memo(
 
             let extraMarkets = []
 
-            sub_types.forEach((sub_type) => {
+            sub_types?.forEach((sub_type) => {
                 let selectedMarket = markets.filter((market) => Number(market.id) === Number(sub_type))
 
                 if (selectedMarket.length > 0) {
@@ -1552,7 +1552,7 @@ export const MarketList = React.memo(
         return (
             <div className="matches full-width" style={{marginBottom: "0px"}}>
 
-                <div className="web-element" style={{marginBottom: "7px"}}>
+                <div className={`web-element ${allMarkets&&'bottom-more-markets-mobile '}`} style={{marginBottom: "7px"}}>
                     {!filters ? (
                         <div className="top-matches">Event not available for betting.</div>
                     ) : (
@@ -1663,7 +1663,7 @@ export const JackpotMatchList = React.memo(
                 selections[index] = team
                 let selection = match?.match_id.toString() + match?.sub_type_id.toString() +
                     team.toString()
-                document.querySelectorAll('button[custom="' + selection + '"]').forEach((el) => {
+                document.querySelectorAll('button[custom="' + selection + '"]')?.forEach((el) => {
                     if (!el.classList.contains('picked')) {
                         el.click()
                     }

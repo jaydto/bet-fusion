@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Context } from "../../../../context/store";
 import { BASE_URL } from "../../../utils/fetch-request";
 import axios from "axios";
 import { getFromLocalStorage } from "../../../utils/local-storage";
@@ -24,7 +23,6 @@ const BetDetails = (props) => {
 	);
 
 	var data = [];
-	console.log("Here is the datum : ", datum)
 
 	const specificBetId = String(parseInt(betID));
 	const foundBet = datum.find((bet) => bet.bet_id === specificBetId);
@@ -89,8 +87,6 @@ const BetDetails = (props) => {
 					<FontAwesomeIcon className="ico" icon={faChevronCircleLeft} /> Back to
 					my active bets
 				</Link>
-
-				{console.log("Kiron history details")}
 
 				<div className="bet_item_details">
 					<div className="right">

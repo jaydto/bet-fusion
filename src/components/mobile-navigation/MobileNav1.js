@@ -197,6 +197,30 @@ const MobileNav1 = React.memo(
                         </Link>
 
                     </td>
+                    <td className={`menu-t m-auto sport-check ${window.location.search.includes('FootballX') ? "active_link" : ""} `}>
+                        <div
+                            className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center  `}
+                            onClick={() => {
+                                navigate('/jackpot')
+                                gaEventTracker('Visit Jackpot Page')
+                            }}>
+                            <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center`}>
+
+                                <div className="menu-img ">
+                                    <LazyLoadImage
+                                        className="side-icon football-x"
+                                        src={jackpot}
+                                        alt=""
+                                        style={{height: "23px", marginTop: "-6px"}}
+                                    />
+                                </div>
+                                <p style={{textAlign: "center"}}>
+                                    Jackpot
+                                </p>
+                            </div>
+                        </div>
+
+                    </td>
 
 
                     <td className={`menu-t m-auto sport-check ${pathname === `/casino` ? " active_link" : ""} `}>
@@ -223,6 +247,7 @@ const MobileNav1 = React.memo(
                         </div>
 
                     </td>
+
                   <td className={`menu-t m-auto sport-check ${window.location.search.includes('JetX') ? "active_link" : ""} `}>
                         <div
                             className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center  `}
@@ -268,29 +293,6 @@ const MobileNav1 = React.memo(
                                 </div>
                                 <p style={{textAlign: "center"}}>
                                     FootballX
-                                </p>
-                            </div>
-                        </div>
-
-                    </td>   <td className={`menu-t m-auto sport-check ${window.location.search.includes('FootballX') ? "active_link" : ""} `}>
-                        <div
-                            className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center  `}
-                            onClick={() => {
-                                navigate('/jackpot')
-                                gaEventTracker('Visit Jackpot Page')
-                            }}>
-                            <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center`}>
-
-                                <div className="menu-img ">
-                                    <LazyLoadImage
-                                        className="side-icon football-x"
-                                        src={jackpot}
-                                        alt=""
-                                        style={{height: "23px", marginTop: "-6px"}}
-                                    />
-                                </div>
-                                <p style={{textAlign: "center"}}>
-                                    Jackpot
                                 </p>
                             </div>
                         </div>
@@ -477,6 +479,9 @@ const MobileNav1 = React.memo(
                                         alt=""
                                         style={{height: "23px", marginTop: "-6px"}}
                                     />
+                                    <span className="badge rounded-pill bg-warning text-dark promo-count ">
+                                        7
+                                </span>
                                 </div>
                                 <p style={{textAlign: "center"}}>
                                     Promo

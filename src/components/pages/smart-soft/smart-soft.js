@@ -15,7 +15,7 @@ const SmartSoft = React.memo(
     () => {
 
     const [games, setGames] = useState([])
-    const [state,]=useContext(StoreContext )
+    const {state,}=useContext(StoreContext )
     const [gamesLoaded, setGamesLoaded] = useState(false)
 
     const getSmartGames = async () => {

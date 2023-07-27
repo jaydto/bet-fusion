@@ -114,7 +114,7 @@ const LiveCasino = React.memo(
 
     const getGamesForTableKeys = () => {
         // console.log("Table keys are ", typeof tableKeys)
-        Object.values(tableKeys).forEach((data, key) => {
+        Object.values(tableKeys)?.forEach((data, key) => {
             window.dga.subscribe('ppcdk00000009542', data?.id, 'Ksh')
         })
     }

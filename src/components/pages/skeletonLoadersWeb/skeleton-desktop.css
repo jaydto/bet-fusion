@@ -31,7 +31,7 @@
     border: none;
     outline: none;
     background: #2D4352;
-    height: 33px!important;
+    height: 40px!important;
     box-sizing: border-box;
     margin-right: 18px;
     background-image: linear-gradient(left, #2D4352 0px, #ddd 40px, #2D4352 80px);
@@ -49,7 +49,7 @@
     display: block;
     width: calc(100% * (1/2));
     text-align: center;
-    padding: 8px 24px;
+    padding: 15px 20px;
     border: none;
     outline: none;
     background: #2D4352;

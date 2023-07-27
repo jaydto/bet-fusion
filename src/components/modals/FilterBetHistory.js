@@ -8,7 +8,7 @@ import {faCheckCircle} from "@fortawesome/free-solid-svg-icons";
 const GameHistoryList = (props) => {
     const {visible, games,setShowGameFilter} = props
     const [isOpen, setIsOpen] = useState(visible)
-    const [state, dispatch]=useContext(StoreContext )
+    const {state, dispatch}=useContext(StoreContext )
     const [selectedFilter, setSelectedFilter] = useState(state?.selected_filter_category||"");
     const handleOpenModal = () => {
         setIsOpen(true);

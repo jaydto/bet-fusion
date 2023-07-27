@@ -54,6 +54,7 @@ const Deposit3 = React.memo(
             let method='POST'
             await makeRequest({url:endpoint,method:method,data:null}).then(([status,response])=>{
                 if(status===200){
+                    setLocalStorage('settings',response?.message,1800000)
                     setDepositPromos(response?.message?.betnareDeposit)
                     dispatch({type: "SET", key: "depositPromos", payload: response?.message?.betnareDeposit});
 
@@ -236,7 +237,7 @@ const Deposit3 = React.memo(
                                                             <div className="homepage d-flex vh-100 flex-column align-items-center  login-page">
 
                                                                 <Alert/>
-                                                                <div className="modal-body pb-0" data-backdrop="static">
+                                                                <div className=" pb-0" data-backdrop="static">
 
                                                                     <DepositForm/>
                                                                 </div>
@@ -435,7 +436,7 @@ const DepositFormFields = (props) => {
                 <div className=" d-flex align-items-start deposit-withdraw-button-desktop">
                     <button type={"submit"}
                             className='btn btn-lg w-100 deposit-button button-radius input-field btn-font cg login-button2 btn bold d-flex justify-content-center align-items-center' style={{marginTop:"30px"}} disabled={values?.amount==''}>
-                        {state?.depositLoading && <div className="custom-loader"></div>} PAY&nbsp;{values?.amount}
+                        {state?.depositLoading && <div className="custom-loader"></div>} PAY &nbsp;{values?.amount}
                     </button>
                 </div>
             </div>
@@ -489,7 +490,7 @@ const DepositForm = (props) => {
     const depositValues =  state?.depositValue||''; // Initialize depositValues as an empty array if it's not available in the state
 
     const initialValues = {
-        amount: depositValues||0,
+        amount: depositValues||100,
         msisdn: state?.user?.msisdn||user?.msisdn
     }
     const gaEventTracker = useAnalyticsEventTracker('Deposit')

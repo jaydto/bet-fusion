@@ -443,7 +443,30 @@ input.text-white {
 .more-sports {
 
 }
+/*css loader button */
+.footer-custom{
+    line-height:2;
+}
+.custom-loader {
+    --d:22px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    color: #70F4F4;
+    box-shadow:
+            calc(1*var(--d))      calc(0*var(--d))     0 0,
+            calc(0.707*var(--d))  calc(0.707*var(--d)) 0 1px,
+            calc(0*var(--d))      calc(1*var(--d))     0 2px,
+            calc(-0.707*var(--d)) calc(0.707*var(--d)) 0 3px,
+            calc(-1*var(--d))     calc(0*var(--d))     0 4px,
+            calc(-0.707*var(--d)) calc(-0.707*var(--d))0 5px,
+            calc(0*var(--d))      calc(-1*var(--d))    0 6px;
+    animation: s7 1s infinite steps(8);
+}
 
+@keyframes s7 {
+    100% {transform: rotate(1turn)}
+}
 .sport_dropdowns {
     display: flex;
     width: 100%;
@@ -1125,6 +1148,10 @@ input[type="radio"], input[type="checkbox"] {
 
 .user_logged {
     margin-top: 7rem;
+}
+.promo-count {
+    position: absolute;
+    top: -4px;
 }
 
 img.nare-league {
@@ -1815,6 +1842,9 @@ img.nare-league {
 }
 
 @media (min-width: 992px) {
+    .top-leader-board {
+        margin-top: 7rem !important;
+    }
     .desktop-only-show{
         display:flex;
     }
@@ -2045,6 +2075,7 @@ img.nare-league {
 }
 
 @media (min-width: 991px) {
+
     .item2 {
         height: max-content;
     }
@@ -2063,6 +2094,12 @@ img.nare-league {
 }
 
 @media (max-width: 991px) {
+    .homepage.all-markets{
+        margin-top:3rem;
+    }
+    .bottom-more-markets-mobile{
+        margin-bottom:7rem!important;
+    }
     .spacing-backbutton{
         padding-right:23px;
     }
@@ -2389,16 +2426,14 @@ img.nare-league {
     }
 
     .top-smartsoft {
-        margin-top: 10rem !important;
+        margin-top: 2rem !important;
     }
     .top-leader-board {
         margin-top: 10rem !important;
     }
-    .top-spacing-casino{
-        margin-top: 7rem !important;
+    .top-spacing-casino {
+        margin-top: 5rem !important;
     }
-
-
     .slip-team {
         width: 270px;
         white-space: nowrap;
@@ -2441,7 +2476,7 @@ img.nare-league {
     }
 
     .top-spacing-page-no-download {
-        margin-top: 7rem;
+        margin-top: 2rem;
     }
 
     .slip-message-alert {
@@ -3260,8 +3295,9 @@ img.nare-league {
     .top-nav-login.top-betslip-page-fix {
         min-height: 50px;
     }
-    .top-nav-login.top-betslip-page-fix.top-betslip-page-fix{
+    .top-nav-login.top-betslip-page-fix.top-betslip-page-fix {
         min-height: 50px!important;
+        position: fixed;
     }
     .top-nav-login {
         padding-top: 0px;

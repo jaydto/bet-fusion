@@ -16942,9 +16942,8 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 }
 
 .promotion {
-    background-color: #454d56;
     width: 96%;
-    margin: 0 auto;
+    margin-right: auto;
     margin-top: 10px;
     padding: 5px;
     border-radius: 5px;

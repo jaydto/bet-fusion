@@ -188,7 +188,7 @@ const PromoCards = () => {
                 100% MULTIBET LOST BONUS
               </h5>
               <div className="container mx-1 px-2">
-                Place a pre-match Multibet/ accumulator of 5 or MORE selections...
+                Place a pre-match Multibet of 5 or MORE selections...
               </div>
               <hr/>
               <div className="d-flex justify-content-between my-2 mx-2">

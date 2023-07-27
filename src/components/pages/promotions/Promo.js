@@ -10,6 +10,7 @@ import PromoCards from "./PromoCards";
 import {getFromLocalStorage} from "../../utils/local-storage";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
+
 const Header = React.lazy(() => import('../../header/header'));
 
 const Promo = () => {
@@ -110,8 +111,14 @@ const Promo = () => {
                             {item?.heading}
                           </u>
                         </span>}
-
-                                                {item?.intro && <p>{item?.intro}</p>}
+                                                {item?.intro && <p>
+                                                    {item?.intro.split("\n").map((line, index) => (
+                                                        <React.Fragment key={index}>
+                                                            {line}
+                                                            <br/>
+                                                        </React.Fragment>
+                                                    ))}
+                                                </p>}
                                                 <ul>
                                                     {item?.instructions &&
                                                         <p
@@ -120,7 +127,12 @@ const Promo = () => {
                                                         >
                                                             {item?.instructions}
                                                         </p>}
-                                                    {item?.description && <>{item?.description}</>}
+                                                    {item?.description && <>{item?.description.split("\n").map((line, index) => (
+                                                        <React.Fragment key={index}>
+                                                            {line}
+                                                            <br/>
+                                                        </React.Fragment>
+                                                    ))}</>}
                                                 </ul>
                                                 {item?.headingBooster && <span>
                           <u
@@ -132,7 +144,14 @@ const Promo = () => {
                         </span>}
                                                 <ul>
                                                     {item?.boosterDescription && (
-                                                        <>{item?.boosterDescription}</>
+                                                        <>
+                                                            {item?.boosterDescription?.split("\n").map((line, index) => (
+                                                                <React.Fragment key={index}>
+                                                                    {line}
+                                                                    <br/>
+                                                                </React.Fragment>
+                                                            ))}
+                                                        </>
                                                     )}
 
                                                     {item?.nb && (
@@ -199,7 +218,14 @@ const Promo = () => {
                               {item?.termsHeading}
                             </u>
                           </span>
-                                                    <div>{item?.termsContent}</div>
+                                                    <div>
+                                                        {item?.termsContent.split("\n").map((line, index) => (
+                                                            <React.Fragment key={index}>
+                                                                {line}
+                                                                <br/>
+                                                            </React.Fragment>
+                                                        ))}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

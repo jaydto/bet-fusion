@@ -78,7 +78,7 @@ const PromoCards = () => {
                             Pepea Angani na SpaceMan
                         </h5>
                         <p className="container mx-1 px-2">
-                            Win big cash prizes when you hit the top spot and collect UPTO x5000
+                            Win big cash prizes when you hit the top spot and collect UPTO x5000...
                         </p>
                         <hr/>
                         <div className="d-flex justify-content-between my-2 mx-2">
@@ -142,7 +142,7 @@ const PromoCards = () => {
                             Gurumisha Mamili na Aviator
                         </h5>
                         <p className="container mx-1 px-2">
-                            With as low as a stake of 10 bob tu, pata kushinda millions
+                            With as low as a stake of 10 bob tu, pata kushinda millions...
                         </p>
                         <hr/>
                         <div className="d-flex justify-content-between my-2 mx-2">
@@ -251,8 +251,7 @@ const PromoCards = () => {
                             JetX the Money Multiplier daily
                         </h5>
                         <p className="container mx-1 px-2">
-                            Predict which multiplier the plane will crash. The longer the plane flies, the higher the
-                            multiplier
+                            Predict which multiplier the plane will crash. The longer the plane flies, the higher the ...
                         </p>
                         <hr/>
                         <div className="d-flex justify-content-between my-2 mx-2">

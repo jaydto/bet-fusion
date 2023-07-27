@@ -219,7 +219,7 @@ const Promo = () => {
                             </u>
                           </span>
                                                     <div>
-                                                        {item?.termsContent.split("\n").map((line, index) => (
+                                                        {item?.termsContent?.split("\n").map((line, index) => (
                                                             <React.Fragment key={index}>
                                                                 {line}
                                                                 <br/>

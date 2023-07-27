@@ -109,7 +109,7 @@ const PromoCards = () => {
                             FIRST DEPOSIT BOOSTER
                         </h5>
                         <div className="container mx-1  mb-2 px-2">
-                            Get 1500% BONUS on the FIRST ever deposit as Free Nare Booster...
+                            Get 1500% BONUS on the FIRST ever deposit as Free Nare Booster now...
                         </div>
                         <hr/>
                         <div className="d-flex justify-content-between my-2 mx-2">

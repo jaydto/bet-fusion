@@ -6,7 +6,5 @@ export const shouldShowMobileNav = (pathname) => {
 
 export const shouldShowDownload = (pathname) => {
 	const trimmedPathname = pathname.substring(1);
-	console.log("pathname",pathname)
-	console.log("trimmedPath", trimmedPathname)
 	return navigationConfig.showDownload.some(path => trimmedPathname.includes(path));
 };

@@ -237,7 +237,7 @@ const Deposit3 = React.memo(
                                                             <div className="homepage d-flex vh-100 flex-column align-items-center  login-page">
 
                                                                 <Alert/>
-                                                                <div className="modal-body pb-0" data-backdrop="static">
+                                                                <div className=" pb-0" data-backdrop="static">
 
                                                                     <DepositForm/>
                                                                 </div>

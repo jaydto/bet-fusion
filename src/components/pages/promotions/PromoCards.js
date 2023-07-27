@@ -228,12 +228,7 @@ const PromoCards = () => {
                                     setUtmSouceCampaignOnPromotions('promo_100_MULTIBET_LOST_BONUS')
                                 }}>Bet Now
                                 </button>
-                                {/*<div*/}
-                                {/*    className={"  h-25   button-promotions"}*/}
-                                {/*    style={{ color: "#ea5d0b" }}*/}
-                                {/*    onClick={()=>navigate(`/`)}>*/}
-                                {/*  Bet*/}
-                                {/*</div>*/}
+
                                 <div
                                     className={"  d-flex align-self-center h-25 border-0 bg-transparent"}
                                     style={{color: "#ea5d0b"}}

@@ -2075,6 +2075,7 @@ img.nare-league {
 }
 
 @media (min-width: 991px) {
+
     .item2 {
         height: max-content;
     }
@@ -2093,6 +2094,9 @@ img.nare-league {
 }
 
 @media (max-width: 991px) {
+    .homepage.all-markets{
+        margin-top:3rem;
+    }
     .bottom-more-markets-mobile{
         margin-bottom:7rem!important;
     }

@@ -162,7 +162,7 @@ const PromoCards = () => {
                         </div>
                     </div>
                 </div>
-                <div className="col-md-2 promo-styling card shadow-lg promotion">
+                <div className="col-md-2 promo-styling card shadow-lg promotion" style={{opacity:'0.4'}}>
                     <div className="d-flex flex-column promo-inner">
                         <img
                             src={twentyPercentDepositBonus}
@@ -180,23 +180,18 @@ const PromoCards = () => {
                         </div>
                         <hr/>
                         <div className="d-flex justify-content-between my-2 mx-2">
-                            <button className={"profile-button border-0 h-25 rounded promo-button"}
+                            <button disabled={true} className={"profile-button border-0 h-25 rounded promo-button"}
                                     style={{background: "#ea5d0b"}} onClick={() => {
                                 navigate(`/deposit`);
                                 gaEventTracker('promo 20% deposit Boost');
                                 setUtmSouceCampaignOnPromotions('promo_20_deposit_Boost')
                             }}>Deposit
                             </button>
-                            {/*<div*/}
-                            {/*    className={"  h-25   button-promotions"}*/}
-                            {/*    style={{ color: "#ea5d0b" }}*/}
-                            {/*    onClick={()=>navigate(`/deposit`)}>*/}
-                            {/*  Deposit*/}
-                            {/*</div>*/}
+                            {/*onClick={() => navigate(`/promo?id=${ids[2]}`)}*/}
                             <div
                                 className={"d-flex  align-self-center   h-25 border-0 bg-transparent"}
                                 style={{color: "#ea5d0b"}}
-                                onClick={() => navigate(`/promo?id=${ids[2]}`)}
+
                             >
                                 Read More
                             </div>

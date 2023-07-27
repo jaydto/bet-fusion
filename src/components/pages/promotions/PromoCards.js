@@ -13,10 +13,10 @@ const PromoCards = () => {
   let ids = [1, 2, 3, 4, 5, 6, 7, 8];
   const navigate=useNavigate()
   return (
-    <div className="col px-4">
+    <div className="col px-4 d-flex align-items-start align-self-start justify-content-start">
       <div
         className={
-          "row text-white pt-2 border-0 d-flex justify-content-center promo-container"
+          "row text-white pt-2 border-0 d-flex justify-content-center promo-container d-flex align-self-start align-items-start"
         }
       >
         <div className="col-md-2 promo-styling shadow-lg promotion">
@@ -69,7 +69,7 @@ const PromoCards = () => {
             <hr/>
             <div className="d-flex justify-content-between my-2 mx-2">
               <button className={"profile-button border-0 h-25 rounded promo-button"} style={{background:"#ea5d0b"}} onClick={()=> {
-                navigate(`/gameplay/1301&live=1`);gaEventTracker('promo SpaceMan')
+                navigate(`/gameplay/1301/1`);gaEventTracker('promo SpaceMan')
               }}>Play SpaceMan</button>
               <div
                   className={"d-flex  align-self-center  h-25 border-0 bg-transparent"}
@@ -125,7 +125,7 @@ const PromoCards = () => {
             <hr/>
             <div className="d-flex justify-content-between my-2 mx-2">
               <button className={"profile-button border-0 h-25 rounded promo-button"} style={{background:"#ea5d0b"}} onClick={()=> {
-                navigate(`/nare-game/Aviator`);
+                navigate(`/nare-games/aviator`);
                 gaEventTracker('promo Aviator')
               }}>Play Aviator</button>
               <div

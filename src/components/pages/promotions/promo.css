@@ -22,7 +22,7 @@
     top: 4rem;
     margin-left: 2px;
     outline: none !important;
-    min-height: 25rem;
+    min-height: 21rem;
 }
 .promo-inner-promo-item{
     box-shadow: none !important;
@@ -75,7 +75,7 @@ hr {
         margin-top:5rem;
     }
     .promo-image {
-        min-height: 10rem!important;
+        min-height: 12rem!important;
     }
     .promo-inner{
         min-height:20rem!important;

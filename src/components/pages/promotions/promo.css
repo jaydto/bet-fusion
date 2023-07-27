@@ -2,14 +2,13 @@
     display:flex!important;
     flex-wrap:wrap!important;
     padding: 0.5rem!important;
+    line-height:2;
 }
 .promo-styling{
     width: 100%;
     background: transparent!important;
 }
-.promo-image {
-    min-height: 13rem!important;
-}
+
 
 .promo-inner {
     box-shadow: 0px 1px 5px 3px #253743 !important;
@@ -75,8 +74,17 @@ hr {
     .promotions-app-top{
         margin-top:5rem;
     }
+    .promo-image {
+        min-height: 10rem!important;
+    }
+    .promo-inner{
+        min-height:20rem!important;
+    }
 }
 @media (min-width: 992px){
+    .promo-image {
+        min-height: 10rem!important;
+    }
     .promotions-app-top{
         margin-top:8rem;
     }

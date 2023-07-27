@@ -99,12 +99,6 @@ const HeaderNav = React.memo(
             <Container  fluid id="navbar-collapse-main"
                        className={`d-none d-sm-flex d-flex flex-row  header-menu  ${searching ? 'hidden' : 'd-block'}`}>
 
-
-                {/*<ListGroup as="ul" xs="12" horizontal*/}
-                {/*           className="nav navbar-nav og d-flex ale ss  col-lg-2 col-md-2 col-sm-2 change-display" >*/}
-
-                {/*   */}
-                {/*</ListGroup>*/}
                 <ListGroup as="ul" xs="12" horizontal
                            className="nav navbar-nav og d-flex ale ss  col-lg-9 col-md-9 col-sm-9 change-display" style={{margin:'0px 10px 0px 0px'}}>
                     <li className={pathname === '/' ? "active" : ''} onClick={() => gaEventTracker('Visit Homepage')}>

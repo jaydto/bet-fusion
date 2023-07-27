@@ -100,7 +100,7 @@ const PromoCards = () => {
                     </div>
                 </div>
                 <div className="col-md-2 promo-styling card shadow-lg promotion">
-                    <div className="d-flex flex-column promo-inner">
+                    <div className="d-flex flex-column promo-inner" style={{opacity:'0.4'}}>
                         <img src={firstDeposit} className={"rounded promo-image"}/>
                         <h5
                             className="bold d-flex justify-content-center h4 pt-2 pb-1"
@@ -113,18 +113,17 @@ const PromoCards = () => {
                         </div>
                         <hr/>
                         <div className="d-flex justify-content-between my-2 mx-2">
-                            <button className={"profile-button border-0 h-25 rounded promo-button"}
+                            <button disabled={true} className={"profile-button border-0 h-25 rounded promo-button"}
                                     style={{background: "#ea5d0b"}} onClick={() => {
                                 navigate(`/deposit`);
                                 gaEventTracker('promo  FIRST DEPOSIT BOOSTER');
                                 setUtmSouceCampaignOnPromotions('promo_FIRST_DEPOSIT_BOOSTER')
                             }}>Deposit
                             </button>
-
+                            {/*onClick={() => navigate(`/promo?id=${ids[1]}`)}*/}
                             <div
                                 className={"d-flex  align-self-center   h-25 border-0 bg-transparent"}
                                 style={{color: "#ea5d0b"}}
-                                onClick={() => navigate(`/promo?id=${ids[1]}`)}
                             >
                                 Read More
                             </div>

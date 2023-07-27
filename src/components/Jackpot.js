@@ -232,7 +232,6 @@ const Jackpot = React.memo(
                                     </div>
 
                                 </div>}
-                                {console.log("matches_jackpot", matches)}
                                 {(!matches?.meta?.start_time==null && !matches?.meta?.length>0)&&<div className={'no-jackpot-text'}>There are no Jackpot Events at the moment</div>}
                             </div>
 

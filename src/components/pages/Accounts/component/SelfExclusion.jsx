@@ -26,7 +26,6 @@ const SelfExclusion = () => {
 
     const handleUpdate = async () => {
         setLoading(true)
-        console.log("date range", dateRange)
         // Perform API call with dateRange.startDate and dateRange.endDate as the data
         const data = {
             start_date: dateRange.startDate.toLocaleDateString("en-CA", {
@@ -40,7 +39,6 @@ const SelfExclusion = () => {
                 day: "2-digit",
             })
         }
-        console.log("dateRange", data)
 
         if(user){
             let endpoint = "/v1/self-exclude"

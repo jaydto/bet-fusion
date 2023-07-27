@@ -842,7 +842,7 @@ const Steppers = () => {
         // Select all form navigation buttons and add event listeners
         const formNavigationButtons = document.querySelectorAll(".btn-navigate-form-step");
 
-        formNavigationButtons.forEach((formNavigationBtn) => {
+        formNavigationButtons?.forEach((formNavigationBtn) => {
             // Add a click event listener to the button
             formNavigationBtn.addEventListener("click", () => {
                 // Get the value of the step
@@ -856,7 +856,7 @@ const Steppers = () => {
 
         // Cleanup the event listeners on component unmount
         return () => {
-            formNavigationButtons.forEach((formNavigationBtn) => {
+            formNavigationButtons?.forEach((formNavigationBtn) => {
                 formNavigationBtn.removeEventListener("click", () => {
                 });
             });

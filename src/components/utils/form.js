@@ -160,7 +160,7 @@ export const DatabaeSelectField = (props) => {
     }
     let query_params = "";
     if(props.where){
-       Object.entries(props.where).forEach(([key,params]) => {
+       Object.entries(props.where)?.forEach(([key,params]) => {
            if(query_params){
                query_params += "&";
            }

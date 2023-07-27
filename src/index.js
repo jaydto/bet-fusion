@@ -143,7 +143,7 @@ const Login=React.lazy(()=>import('./components/pages/loginTwo'));
 const NewProfile =React.lazy(()=>import( "./components/pages/Accounts/NewProfile"));
 
 const Affiliate =React.lazy(()=>import( "./components/Affiliate/Affiliate"));
-
+const Promo = React.lazy(() => import('./components/pages/promotions/Promo'))
 const BetHistory =React.lazy(()=>import( "./components/pages/Accounts/component/BetHistory"));
 const Lobby =React.lazy(()=>import( "./components/lobby/Index"));
 
@@ -227,6 +227,7 @@ createRoot(container).render(
                     <Route exact path="/logout" element={<Logout/>}/>
                     <Route exact path="/print-matches" element={<PrintMatches/>}/>
                     <Route exact path="/promotions" element={<Promotions/>}/>
+                    <Route exact path="/promo" element={<Promo/>}/>
                     <Route exact path="/deposit"
                            element={<ProtectedRoute><Deposit3/> </ProtectedRoute>}/>
                     <Route exact path="/affiliate"

@@ -86,11 +86,9 @@ const BetDetails = (props) => {
 
 
 	const switchLmt=(value)=>{
-		console.log("value_switch",value)
 		setSwitches(value)
 	}
 	const handleLinkClick = (event) => {
-		console.log("event",event)
 		if (event) {
 
 			// remove highlight class from all links

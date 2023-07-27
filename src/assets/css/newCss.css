@@ -1149,6 +1149,10 @@ input[type="radio"], input[type="checkbox"] {
 .user_logged {
     margin-top: 7rem;
 }
+.promo-count {
+    position: absolute;
+    top: -4px;
+}
 
 img.nare-league {
     margin-bottom: 30px;
@@ -2071,6 +2075,7 @@ img.nare-league {
 }
 
 @media (min-width: 991px) {
+
     .item2 {
         height: max-content;
     }
@@ -2089,6 +2094,9 @@ img.nare-league {
 }
 
 @media (max-width: 991px) {
+    .homepage.all-markets{
+        margin-top:3rem;
+    }
     .bottom-more-markets-mobile{
         margin-bottom:7rem!important;
     }
@@ -2424,10 +2432,8 @@ img.nare-league {
         margin-top: 10rem !important;
     }
     .top-spacing-casino {
-        margin-top: 2rem !important;
+        margin-top: 5rem !important;
     }
-
-
     .slip-team {
         width: 270px;
         white-space: nowrap;

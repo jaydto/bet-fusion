@@ -13,8 +13,8 @@ const Promotions = () => {
     const navigate=useNavigate()
     return (
         <>
-            <ToastContainer/>
             <Header/>
+            <ToastContainer/>
             <div >
                 <div className="d-flex flex-row">
                     <div className="gz home promotions-app-top" style={{width: '100%'}}>

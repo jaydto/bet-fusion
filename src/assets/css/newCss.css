@@ -1149,6 +1149,10 @@ input[type="radio"], input[type="checkbox"] {
 .user_logged {
     margin-top: 7rem;
 }
+.promo-count {
+    position: absolute;
+    top: -4px;
+}
 
 img.nare-league {
     margin-bottom: 30px;

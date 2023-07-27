@@ -477,6 +477,9 @@ const MobileNav1 = React.memo(
                                         alt=""
                                         style={{height: "23px", marginTop: "-6px"}}
                                     />
+                                    <span className="badge rounded-pill bg-warning text-dark promo-count ">
+                                        7
+                                </span>
                                 </div>
                                 <p style={{textAlign: "center"}}>
                                     Promo

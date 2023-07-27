@@ -338,7 +338,7 @@ const Header = React.memo(
                 <div className={'d-flex flex-column'}>
                     {(!showDownload) &&
                         <div>
-                            <a href={'https://storage.googleapis.com/nare-app/betnare-app.apk'}
+                            <a href={'/deposit'}
                                   target={"_self"}
                                   title={'Download App'}
                                   download={'betnare-app.apk'}
@@ -348,8 +348,8 @@ const Header = React.memo(
                                   }}>
                                 <div className={"app-download-link  d-flex flex-column"}>
                                     <div className={"app-color"}>
-                                        <span className={"color-app-text"}>APP Your Game with Betnare App</span>
-                                        <LazyLoadImage src={androidIcon} className={"icon-android"}/>
+                                        <span className={"color-app-text flashy"}>Deposit <span style={{color:'var(--gold'}}>365/=</span> to get <span style={{color:'var(--gold'}}>365/= </span>Anniversary Bonus </span>
+                                        {/*<LazyLoadImage src={androidIcon} className={"icon-android"}/>*/}
                                     </div>
                                 </div>
                             </a>

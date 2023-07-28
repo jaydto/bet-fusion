@@ -7,13 +7,27 @@ import {Link, useNavigate} from "react-router-dom";
 import "./promo.css";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
+import Notify from "../../utils/Notify";
 
 
 const PromoCards = () => {
     const gaEventTracker = useAnalyticsEventTracker('Promotions');
+    const user=getFromLocalStorage('user')
 
     let ids = [1, 2, 3, 4, 5, 6, 7, 8];
     const navigate = useNavigate()
+
+    let message = { status: 401, message: 'This Promotion is for new Users', token: '' };
+
+    const checkIfUser=()=>{
+        if(user){
+            Notify(message)
+        }
+        else{
+            navigate('/signup')
+        }
+
+    }
 
     const setUtmSouceCampaignOnPromotions = (event) => {
         const utm_source = getFromLocalStorage('utm_source')
@@ -42,20 +56,16 @@ const PromoCards = () => {
                             Get Up to 3,000/= FREE Bet Booster once you register as a Free Nare Booster...
                         </p>
                         <hr/>
+
                         <div className="d-flex justify-content-between my-2 mx-2">
-                            <button className={"profile-button border-0 h-25 rounded promo-button"}
-                                    style={{background: "#ea5d0b"}} onClick={() => {
-                                navigate(`/signup`);
-                                gaEventTracker('promo Gift Wallet');
-                                setUtmSouceCampaignOnPromotions('promo_Gift_Wallet')
-                            }}>Sign Up
-                            </button>
-                            {/*<div*/}
-                            {/*    className={"  h-25   button-promotions"}*/}
-                            {/*    style={{ color: "#ea5d0b" }}*/}
-                            {/*    onClick={()=>navigate(`/signup`)}>*/}
-                            {/*  Sign Up*/}
-                            {/*</div>*/}
+
+                                <button className={"profile-button border-0 h-25 rounded promo-button"}
+                                        style={{background: "#ea5d0b"}} onClick={() => {
+                                    checkIfUser();
+                                    gaEventTracker('promo Gift Wallet');
+                                    setUtmSouceCampaignOnPromotions('promo_Gift_Wallet')
+                                }}>Sign Up
+                                </button>
                             <div
                                 className={"d-flex  align-self-center   h-25 border-0 bg-transparent"}
                                 style={{color: "#ea5d0b"}}
@@ -162,7 +172,7 @@ const PromoCards = () => {
                         </div>
                     </div>
                 </div>
-                <div className="col-md-2 promo-styling card shadow-lg promotion">
+                <div className="col-md-2 promo-styling card shadow-lg promotion" style={{opacity:'0.4'}}>
                     <div className="d-flex flex-column promo-inner">
                         <img
                             src={twentyPercentDepositBonus}
@@ -180,23 +190,18 @@ const PromoCards = () => {
                         </div>
                         <hr/>
                         <div className="d-flex justify-content-between my-2 mx-2">
-                            <button className={"profile-button border-0 h-25 rounded promo-button"}
+                            <button disabled={true} className={"profile-button border-0 h-25 rounded promo-button"}
                                     style={{background: "#ea5d0b"}} onClick={() => {
                                 navigate(`/deposit`);
                                 gaEventTracker('promo 20% deposit Boost');
                                 setUtmSouceCampaignOnPromotions('promo_20_deposit_Boost')
                             }}>Deposit
                             </button>
-                            {/*<div*/}
-                            {/*    className={"  h-25   button-promotions"}*/}
-                            {/*    style={{ color: "#ea5d0b" }}*/}
-                            {/*    onClick={()=>navigate(`/deposit`)}>*/}
-                            {/*  Deposit*/}
-                            {/*</div>*/}
+                            {/*onClick={() => navigate(`/promo?id=${ids[2]}`)}*/}
                             <div
                                 className={"d-flex  align-self-center   h-25 border-0 bg-transparent"}
                                 style={{color: "#ea5d0b"}}
-                                onClick={() => navigate(`/promo?id=${ids[2]}`)}
+
                             >
                                 Read More
                             </div>

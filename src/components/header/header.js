@@ -249,20 +249,59 @@ const Header = React.memo(
         }
 
 
-        useEffect(() => {
-            const abort=new AbortController()
-            fetchData();
-            setUtmCampaign();
-            return () => {
-                abort.abort()
-            };
-        }, []);
+        // useEffect(() => {
+        //     const abort=new AbortController()
+        //     fetchData();
+        //     setUtmCampaign();
+        //     return () => {
+        //         abort.abort()
+        //     };
+        // }, []);
+        //
+        // useEffect(()=>{
+        //     fetchAppConfigurations();
+        // },[settings])
 
-        useEffect(()=>{
-            fetchAppConfigurations();
-        },[settings])
+        useEffect( () => {
+            const cleanUpFuction= async()=>{
+                const abort = new AbortController();
+                await fetchAppConfigurations();
+                await fetchData();
 
-        const NotifyToastContainer = () => {
+                // Custom function to clear settings from localStorage
+                const clearLocalStorageSettings = () => {
+                    localStorage.removeItem('settings');
+                    // Manually call fetchAppConfigurations to update the settings
+                    fetchAppConfigurations();
+                };
+
+                // Listen for the "storage" event to detect changes in "settings" localStorage
+                const handleStorageChange = (event) => {
+                    if (event.key === 'settings') {
+                        fetchAppConfigurations();
+                    }
+                };
+
+                // Listen for "beforeunload" event to handle clearing localStorage in the same tab
+                const handleBeforeUnload = () => {
+                    clearLocalStorageSettings();
+                };
+
+                window.addEventListener('storage', handleStorageChange);
+                window.addEventListener('beforeunload', handleBeforeUnload);
+
+                return () => {
+                    // Clean up the event listeners when the component unmounts
+                    window.removeEventListener('storage', handleStorageChange);
+                    window.removeEventListener('beforeunload', handleBeforeUnload);
+                    abort.abort();
+                };
+            }
+            cleanUpFuction()
+        }, [settings]);
+
+
+const NotifyToastContainer = () => {
             return (
                 <>
                     {/* Render the ToastContainer */}

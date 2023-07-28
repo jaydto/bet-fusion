@@ -37,13 +37,12 @@ const Header = React.memo(
        // Import the navigationConfig object
         const {current} = containerRef;
         const [, setCompetitions] = useState({});
-        const [, setSettings] = useState({});
         const [isOpen, setIsOpen] = useState(false);
         const [, setShowLoadingModal] = useState(false);
-
         const pathname = window.location.pathname;
         const notShowMobileNav = shouldShowMobileNav(pathname);
         const showDownload = shouldShowDownload(pathname);
+        const [settings,]=useState(getFromLocalStorage('settings'));
 
 
         // useEffect(() => {
@@ -225,12 +224,11 @@ const Header = React.memo(
 
 
                 if (c_status === 200) {
-                    setSettings(c_result?.message);
                     setLocalStorage('settings', c_result?.message,1800000);
                 }
 
             } else {
-                setSettings(cached_settings);
+
             }
         })
 
@@ -253,13 +251,16 @@ const Header = React.memo(
 
         useEffect(() => {
             const abort=new AbortController()
-            fetchAppConfigurations();
             fetchData();
             setUtmCampaign();
             return () => {
                 abort.abort()
             };
         }, []);
+
+        useEffect(()=>{
+            fetchAppConfigurations();
+        },[settings])
 
         const NotifyToastContainer = () => {
             return (

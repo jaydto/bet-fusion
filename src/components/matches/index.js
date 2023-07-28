@@ -577,7 +577,7 @@ const SideBets = React.memo(
                         href={`https://s5.sir.sportradar.com/betnaremts/en/match/${match.parent_match_id}`}
                         target={"_blank"}
                         style={{color: "aqua", padding: '0px 13px'}}
-                        title={"View Stats"}
+                        title={"View Stats"} rel="noreferrer"
                     >
                         {" "}
                         Stats
@@ -590,7 +590,7 @@ const SideBets = React.memo(
                             href={`https://s5.sir.sportradar.com/betnaremts/en/match/${match.parent_match_id}`}
                             target={"_blank"}
                             style={{color: "aqua"}}
-                            title={"View Stats"}
+                            title={"View Stats"} rel="noreferrer"
                         >
                             {" "}
                             <span className={'stats-mobile more-options-font'}>Stats</span>
@@ -732,6 +732,7 @@ const OddButton = React.memo(
         }, [updateBeslipKey, updatePickedChoices, updateOddValue, updateMatchPicked]);
 
         const maxPickReached = () => {
+            console.log("max_pick_reached")
             setPicked("");
             Notify({
                 status: 401,
@@ -764,7 +765,7 @@ const OddButton = React.memo(
                     attributes.odd_key +
                     (marketKey !== undefined ? marketKey : "")
                 );
-
+                const betItems = getBetslip();
                 const slip = {
                     match_id: attributes.match_id,
                     parent_match_id: attributes.parent_match_id,
@@ -788,9 +789,7 @@ const OddButton = React.memo(
                     position: match?.pos || 0,
                 };
 
-
                 if (cstm === ucn) {
-
                     let betslip;
                     if (picked === "picked") {
                         betslip =
@@ -801,15 +800,15 @@ const OddButton = React.memo(
                         setPicked("");
                         dispatch({type: "SET", key: reference, payload: null});
                     } else {
-                        betslip =
-                            jackpot !== true
-                                ? (getBetslip() && Object.keys(getBetslip())?.length <= settings?.sportsBookLimits?.multiBetMaxSelections || 29) ||
-                                getBetslip() == null
-                                    ? addToSlip(slip)
-                                    : maxPickReached()
-                                : addToJackpotSlip(slip);
-                        console.log("Adding to slip...");
-                        dispatch({type: "SET", key: reference, payload: cstm});
+
+                        if(Object.keys(betItems || {}).length===Number(settings?.sportsBookLimits?.multiBetMaxSelections)){
+                            maxPickReached()
+                        }else{
+                            addToSlip(slip)
+                            betslip =getBetslip()
+                            dispatch({type: "SET", key: reference, payload: cstm});
+                        }
+
                     }
                     dispatch({type: "SET", key: betslip_key, payload: betslip});
                 }

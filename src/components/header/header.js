@@ -249,19 +249,6 @@ const Header = React.memo(
         }
 
 
-        // useEffect(() => {
-        //     const abort=new AbortController()
-        //     fetchData();
-        //     setUtmCampaign();
-        //     return () => {
-        //         abort.abort()
-        //     };
-        // }, []);
-        //
-        // useEffect(()=>{
-        //     fetchAppConfigurations();
-        // },[settings])
-
         useEffect( () => {
             const cleanUpFuction= async()=>{
                 const abort = new AbortController();

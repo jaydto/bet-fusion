@@ -37,7 +37,7 @@ const Right = React.memo(
             ()=>{
             return (<Badge pill
                            bg="warning nav__betslip d-flex justify-content-center align-items-center">
-                {state?.betslipLength}
+                {kiron?state?.betslipKironLength:state?.betslipLength}
             </Badge>)
         })
 

@@ -440,7 +440,9 @@ li.bet-option {
     border-radius: 10px !important;
     border-bottom: var(--transparent);
 }
-
+.bet-cancel input:focus{
+    border:none!important;
+}
 .slip-bg {
     border-bottom: thin solid var(--slip-separator-color) !important;
     height: 7rem;

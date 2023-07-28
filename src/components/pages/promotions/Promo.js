@@ -10,6 +10,7 @@ import PromoCards from "./PromoCards";
 import {getFromLocalStorage} from "../../utils/local-storage";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
+import {ToastContainer} from "react-toastify";
 
 const Header = React.lazy(() => import('../../header/header'));
 
@@ -62,6 +63,7 @@ const Promo = () => {
     return (
         <>
             <Header/>
+            <ToastContainer/>
             <div>
                 <div className="d-flex flex-row">
                     <div className="gz home promotions-app-top"

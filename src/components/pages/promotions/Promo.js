@@ -24,8 +24,8 @@ const Promo = () => {
 
     const banners = [
         {src: twentyPercentDepositBonus, id: 4},
-        {src: firstDeposit, id: 2},
-        {src: multibetCashback, id: 3},
+        {src: firstDeposit, id: 3},
+        {src: multibetCashback, id: 2},
         {src: karibuGiftWallet, id: 1},
     ];
 

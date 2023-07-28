@@ -1,60 +1,28 @@
-import React, {useContext, useEffect, useState} from "react";
-import {BASE_URL} from '../../../utils/fetch-request';
-import '../../../../assets/css/accordion.react.css';
-import axios from "axios";
+import React, {useEffect, useState} from "react";
 import {getFromLocalStorage} from "../../../utils/local-storage";
 import {Spinner} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { faGamepad,faChevronCircleLeft, faMoneyBillAlt} from "@fortawesome/free-solid-svg-icons";
 import './kiron.css';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch,useSelector } from 'react-redux'; // Import useDispatch hook
+import {nareLeagueOldBetDetails} from '../../../../redux/nareLeague';
 
-
-const OldBetDetails = (props) => {
+const OldBetDetails = React.memo(
+	(props) => {
 	const { betID } = props;
-	const [OldBetDetails, setOldBetDetails] = useState([]);
-	let user = getFromLocalStorage('user');
-	const [isLoading, setIsLoading] = useState(false);
+	console.log("betId",betID)
 	const [activeTab, setActiveTab] = useState(getFromLocalStorage("tab_history_kiron") || "active");
-
-
+	const dispatchRedux=useDispatch()
+	const loading=useSelector((state)=>state.nareLeague.loading)
 	const fetchOldBetDetails = async () => {
-		if (isLoading) return;
-		setIsLoading(true);
-		let endpoint = '/v1/nare-league/old-bet-details';
-		const API_URL = BASE_URL;
-		const token = user?.token;
-		const headers = {
-			'Authorization': `Bearer ${token}`,
-			'Content-Type': 'application/json',
-			'accept': '*/*'
-		};
-		const options = {
-			mode: 'cors',
-			cache: 'no-cache',
-			credentials: 'same-origin',
-			redirect: 'follow',
-			referrerPolicy: 'no-referrer',
-		};
-
 		const data = {
 			'bet_id': betID
 		};
-
-		try {
-			const response = await axios.post(`${API_URL}${endpoint}`, data, { headers, ...options });
-			if (response.status === 200) {
-				setIsLoading(false);
-				setOldBetDetails(response?.data);
-			} else {
-				throw new Error('Request failed');
-			}
-		} catch (error) {
-			console.error(error);
-			// Handle error here or set appropriate state indicating error
-		}
+		dispatchRedux(nareLeagueOldBetDetails(data))
 	};
 
+	const OldBetDetails=useSelector((state)=>state.nareLeague.old_bet_details)
 
 	useEffect(() => {
 		const abort=new AbortController()
@@ -67,7 +35,7 @@ const OldBetDetails = (props) => {
 			abort.abort()
 		};
 
-	}, [ betID, user?.token,getFromLocalStorage("tab_kiron_history")]);
+	}, []);
 
 	const navigate=useNavigate()
 	return (
@@ -77,8 +45,8 @@ const OldBetDetails = (props) => {
 					<FontAwesomeIcon className="ico" icon={faChevronCircleLeft} /> Back to my bets
 				</div>
 
-				{OldBetDetails.map((bet) => (
-					<React.Fragment key={bet.bet_date}>
+				{OldBetDetails?.map((bet,index) => (
+					<React.Fragment key={index}>
 
 						<div className="bet_item_details">
 							<div className="right">
@@ -120,7 +88,7 @@ const OldBetDetails = (props) => {
 
 						<h3 className="sel">Selections</h3>
 
-						{isLoading ?
+						{loading ?
 							<div className={`text-center mt-2 text-white d-block`}>
 								<Spinner animation={'grow'} size={'lg'}/>
 							</div>:
@@ -181,7 +149,7 @@ const OldBetDetails = (props) => {
 			</div>
 		</div>
 	);
-};
+});
 
-export default OldBetDetails
+export default React.memo(OldBetDetails)
 

@@ -1,10 +1,11 @@
 // nareLeagueSlice.js
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {createAction, createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import initialState from "./state"; // Import the initial state from state.js
-import makeRequest from "../components/utils/fetch-request";
-import {setLocalStorage} from "../components/utils/local-storage"; // Import the makeRequest function
+import makeRequest from "../components/utils/fetch-request";// Import the makeRequest function
+import {setLocalStorage} from "../components/utils/local-storage";
 // Async thunk for nareLeague
-export const nareLeaguePeriods = createAsyncThunk("nareLeague/periods",
+export const nareLeaguePeriods =
+    createAsyncThunk("nareLeague/periods",
     async (periodsData) => {
         const [status, response] = await makeRequest({
             url: "/v1/nare-league/periods",
@@ -15,33 +16,6 @@ export const nareLeaguePeriods = createAsyncThunk("nareLeague/periods",
             return response;
         } else {
             throw new Error(response?.error || "Fetching Periods failed");
-        }
-    });
-export const nareLeagueCompetitions = createAsyncThunk("nareLeague/competitions",
-    async () => {
-        const [status, response] = await makeRequest({
-            url: "/v1/nare-league/competitions",
-            method: "POST",
-        });
-        if (status === 200) {
-            return response;
-        } else {
-            throw new Error(response?.error || "Fetching Competitons failed");
-        }
-    });
-
-export const nareLeagueBetHistory =
-    createAsyncThunk("nareLeague/betHistory",
-    async (betHistoryData) => {
-        const [status, response] = await makeRequest({
-            url: "/v1/nare-league/bet-history",
-            method: "POST",
-            data: betHistoryData,
-        });
-        if (status === 200) {
-            return response;
-        } else {
-            throw new Error(response?.error || "Fetching BetHistory failed");
         }
     });
 export const nareLeagueBetDetails =
@@ -55,11 +29,51 @@ export const nareLeagueBetDetails =
         if (status === 200) {
             return response;
         } else {
+            throw new Error(response?.error || "Fetching betDetails failed");
+        }
+    });
+export const nareLeagueBetHistory =
+    createAsyncThunk("nareLeague/betHistory",
+    async () => {
+        const [status, response] = await makeRequest({
+            url: "/v1/nare-league/bet-history",
+            method: "POST"
+        });
+        if (status === 200) {
+            return response;
+        } else {
             throw new Error(response?.error || "Fetching BetHistory failed");
         }
     });
-
-export const nareLeagueMarkets = createAsyncThunk("nareLeague/markets",
+export const nareLeagueOldBetDetails =
+    createAsyncThunk("nareLeague/oldBetDetails",
+    async (betDetailsData) => {
+        const [status, response] = await makeRequest({
+            url: "/v1/nare-league/old-bet-details",
+            method: "POST",
+            data: betDetailsData,
+        });
+        if (status === 200) {
+            return response;
+        } else {
+            throw new Error(response?.error || "Fetching BetHistory failed");
+        }
+    });
+export const nareLeagueOldBets =
+    createAsyncThunk("nareLeague/nareLeagueOldBets",
+        async () => {
+            const [status, response] = await makeRequest({
+                url: "/v1/nare-league/old-bets",
+                method: "POST"
+            });
+            if (status === 200) {
+                return response;
+            } else {
+                throw new Error(response?.error || "Fetching nareLeagueOldBets failed");
+            }
+        });
+export const nareLeagueMarkets =
+    createAsyncThunk("nareLeague/markets",
     async () => {
         const [status, response] = await makeRequest({
             url: "/v1/nare-league/markets",
@@ -71,8 +85,8 @@ export const nareLeagueMarkets = createAsyncThunk("nareLeague/markets",
             throw new Error(response?.error || "Fetching Markets failed");
         }
     });
-// Async thunk for matches
-export const nareLeagueMatches = createAsyncThunk("nareLeague/matches",
+export const nareLeagueMatches =
+    createAsyncThunk("nareLeague/matches",
     async (matchesData) => {
         const [status, response] = await makeRequest({
             url: "/v1/nare-league/matches",
@@ -85,9 +99,8 @@ export const nareLeagueMatches = createAsyncThunk("nareLeague/matches",
             throw new Error(response?.error || "Fetching Nare League Matches failed");
         }
     });
-
-// Async thunk for standings
-export const nareLeagueStandings = createAsyncThunk(
+export const nareLeagueStandings =
+    createAsyncThunk(
     "nareLeague/standings",
     async (standingsData) => {
         const [status, response] = await makeRequest({
@@ -103,9 +116,8 @@ export const nareLeagueStandings = createAsyncThunk(
 
     }
 );
-
-// Async thunk for Results
-export const nareLeagueResults = createAsyncThunk(
+export const nareLeagueResults =
+    createAsyncThunk(
     "nareLeague/results",
     async (resultsData) => {
         const [status, response] = await makeRequest({
@@ -121,8 +133,8 @@ export const nareLeagueResults = createAsyncThunk(
 
     }
 );
-
-export const nareLeaguePlayouts = createAsyncThunk(
+export const nareLeaguePlayouts =
+    createAsyncThunk(
     "nareLeague/playouts",
     async (playoutsData) => {
         const [status, response] = await makeRequest({
@@ -138,6 +150,26 @@ export const nareLeaguePlayouts = createAsyncThunk(
 
     }
 );
+export const nareLeagueCompetitions =
+    createAsyncThunk(
+    "nareLeague/competitions",
+    async () => {
+        const [status, response] = await makeRequest({
+            url: "/v1/nare-league/competitions",
+            method: "POST",
+        });
+        if (status === 200) {
+            return response;
+        } else {
+            throw new Error(response?.error || "Nare League competitions fetch  failed");
+        }
+
+    }
+);
+export const resetState =
+    createAction("betting/resetKiron", (stateToReset) => {
+    return { payload: stateToReset };
+});
 
 const nareLeagueSlice = createSlice({
     name: "nareLeague",
@@ -264,9 +296,10 @@ const nareLeagueSlice = createSlice({
             .addCase(nareLeagueBetHistory.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(nareLeagueBetHistory.fulfilled, (state) => {
+            .addCase(nareLeagueBetHistory.fulfilled, (state,action) => {
                 state.loading = false;
                 state.error = null;
+                state.bet_history_data=action.payload;
             })
             .addCase(nareLeagueBetHistory.rejected, (state, action) => {
                 state.loading = false;
@@ -275,13 +308,47 @@ const nareLeagueSlice = createSlice({
             .addCase(nareLeagueBetDetails.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(nareLeagueBetDetails.fulfilled, (state) => {
+            .addCase(nareLeagueBetDetails.fulfilled, (state,action) => {
                 state.loading = false;
                 state.error = null;
+                state.bet_details_data=action.payload;
             })
             .addCase(nareLeagueBetDetails.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
+            })
+            .addCase(nareLeagueOldBetDetails.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(nareLeagueOldBetDetails.fulfilled, (state,action) => {
+                state.loading = false;
+                state.error = null;
+                state.old_bet_details=action.payload;
+
+            })
+            .addCase(nareLeagueOldBetDetails.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
+            .addCase(nareLeagueOldBets.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(nareLeagueOldBets.fulfilled, (state,action) => {
+                state.loading = false;
+                state.error = null;
+                state.old_bets_data=action.payload;
+
+            })
+            .addCase(nareLeagueOldBets.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
+            .addCase(resetState, (state, action) => {
+                const stateToReset = action.payload;
+                if (state.hasOwnProperty(stateToReset)) {
+                    state[stateToReset] = null;
+                }
+                state.error = null;
             })
     },
 });

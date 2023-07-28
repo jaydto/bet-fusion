@@ -1,10 +1,9 @@
-import React, {useCallback, useContext, useEffect, useState} from 'react';
+import React, {useCallback,  useEffect, useState} from 'react';
 import {Link, useLocation,} from "react-router-dom";
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import {getFromLocalStorage} from "../../../utils/local-storage";
 import "./competition.css"
-import {StoreContext } from "../../../../context/store"
 import { useDispatch,useSelector } from 'react-redux'; // Import useDispatch hook
 import {nareLeagueCompetitions} from '../../../../redux/nareLeague';
 

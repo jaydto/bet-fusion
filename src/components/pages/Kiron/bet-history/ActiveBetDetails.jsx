@@ -1,71 +1,34 @@
-import React, { useContext, useEffect, useState } from "react";
-import { BASE_URL } from "../../../utils/fetch-request";
-import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { getFromLocalStorage } from "../../../utils/local-storage";
 import { Spinner } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGamepad, faChevronCircleLeft, faMoneyBillAlt} from "@fortawesome/free-solid-svg-icons";
 import "./kiron.css";
 import { Link } from "react-router-dom";
-import { useRef } from "react";
+import { useDispatch,useSelector } from 'react-redux'; // Import useDispatch hook
+import {nareLeagueBetDetails} from '../../../../redux/nareLeague';
 
-const BetDetails = (props) => {
+const BetDetails = React.memo(
+	(props) => {
 	const betID = props.betID;
-	// const datum = props.data;
-	const [datum, setDatum] = useState(getFromLocalStorage('hist'))
-	const [isLoading, setIsLoading] = useState(false);
-	const [ActiveBetDetails, setActiveBetDetails] = useState([]);
-	const isMounted = useRef(true);
+	const dispatchRedux=useDispatch()
+	const [datum, ] = useState(getFromLocalStorage('hist'))
 	let user = getFromLocalStorage("user");
-	const [dat, setData] = useState([]);
-	const [activeTab, setActiveTab] = useState(
+	const [activeTab,setActiveTab ] = useState(
 		getFromLocalStorage("tab_history_kiron") || "active"
 	);
 
-	var data = [];
-
 	const specificBetId = String(parseInt(betID));
-	const foundBet = datum.find((bet) => bet.bet_id === specificBetId);
 
+	const loading=useSelector((state)=>state.nareLeague.loading)
 	const fetchActiveBetDetails = async () => {
-		if (isLoading) return;
-		setIsLoading(true);
-		let endpoint = "/v1/nare-league/bet-details";
-		const API_URL = BASE_URL;
-		const token = user?.token;
-		const headers = {
-			Authorization: `Bearer ${token}`,
-			"Content-Type": "application/json",
-			accept: "*/*",
-		};
-		const options = {
-			mode: "cors",
-			cache: "no-cache",
-			credentials: "same-origin",
-			redirect: "follow",
-			referrerPolicy: "no-referrer",
-		};
+		// if (isLoading) return;
 
-		const datas = {
+		const betIdData = {
 			bet_id: betID,
 		};
+		dispatchRedux(nareLeagueBetDetails(betIdData))
 
-		try {
-			const response = await axios.post(`${API_URL}${endpoint}`, datas, {
-				headers,
-				...options,
-			});
-			if (response.status === 200) {
-				data = response?.data;
-				setIsLoading(false);
-				setData(data);
-				setActiveBetDetails(response?.data);
-			} else {
-				throw new Error("Request failed");
-			}
-		} catch (error) {
-			console.error(error);
-		}
 	};
 
 	useEffect(() => {
@@ -79,6 +42,9 @@ const BetDetails = (props) => {
 			abort.abort()
 		};
 	}, [betID, user?.token, getFromLocalStorage("tab_kiron_history")]);
+
+	const betDetails=useSelector((state)=>state.nareLeague.bet_details_data)
+	const foundBet = datum?.find((bet) => bet.bet_id === specificBetId);
 
 	return (
 		<div className="bet_details">
@@ -151,13 +117,13 @@ const BetDetails = (props) => {
 				</div>
 
 				<h3 className="sel">Selections</h3>
-				{isLoading ? (
+				{loading ? (
 					<div className={`text-center mt-2 text-white d-block`}>
 						<Spinner animation={"grow"} size={"lg"} />
 					</div>
 				) : (
 					<div className="container-fluid ">
-						{dat.map((item, index) => (
+						{betDetails?.map((item, index) => (
 							<div key={index}>
 								<div className="bet_slip d-flex justify-content-between row">
 									<div className="col-3">
@@ -230,6 +196,6 @@ const BetDetails = (props) => {
 			</div>
 		</div>
 	);
-};
+});
 
-export default BetDetails;
+export default React.memo(BetDetails);

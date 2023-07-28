@@ -18,6 +18,7 @@ import BetslipShareModal from "../../../modals/BetslipShareModal";
 import {getFromLocalStorage, setLocalStorage} from "../../../utils/local-storage";
 import {addToSlip} from "../../../utils/betslip";
 import {useNavigate} from "react-router-dom";
+
 const BetDetails = (props) => {
 	const {bet_id}=props
 	const { state, dispatch } = useContext(StoreContext);

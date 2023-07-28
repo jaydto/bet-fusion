@@ -1,5 +1,14 @@
 const initialState = {
     data: [], // Initial state for the data reducer
+    betting: {
+        loading: false,
+        error: null,
+        matchesGames: null,
+        jackpot: null,
+        kiron: null,
+        slip:null,
+        picked:'',
+    },
     auth: {
         isLoading: false,
         error: null,
@@ -26,8 +35,8 @@ const initialState = {
             standings_data:null,
             competitions_data:null,
             bet_history_data:null,
-            old_bets_data:null,
             bet_details_data:null,
+            old_bets_data:null,
             old_bet_details:null,
             current_selection:null,
             round_id:null,

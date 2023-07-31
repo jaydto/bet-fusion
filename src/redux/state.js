@@ -1,3 +1,5 @@
+import {getFromLocalStorage} from "../components/utils/local-storage";
+
 const initialState = {
     data: [], // Initial state for the data reducer
     betting: {
@@ -22,8 +24,8 @@ const initialState = {
             isLoggedIn: false,
             user: null,
             loading: false,
-            timeLeft:null,
-            timeAfter:null,
+            time_left:null,
+            play_time:null,
             periods_data:null,
             isCountDownTimeActive:null,
             current_selection_period:null,
@@ -42,11 +44,16 @@ const initialState = {
             round_id:null,
             first_period:null,
             market_id:null,
-            competition_id:null,
+            competition_id:2,
+            active_market:3,
             start_time:null,
             end_time:null,
             markets_data:null,
             market_options:null,
+            close_spinner:null,
+            start_playouts:null,
+            game_week:null,
+            ended:null
 
         }, // Initial state for the nareLeague reducer
 };

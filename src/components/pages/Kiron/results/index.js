@@ -1,27 +1,23 @@
-import React, {useCallback, useContext, useEffect, useState} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import "./results.css"
-import makeRequest from "../../../utils/fetch-request";
 import {Spinner} from "react-bootstrap";
-import {getFromLocalStorage} from "../../../utils/local-storage";
 import {LazyLoadImage} from "react-lazy-load-image-component";
-import {StoreContext} from "../../../../context/store";
 import { useDispatch,useSelector } from 'react-redux'; // Import useDispatch hook
-import {nareLeagueResults} from '../../../../redux/nareLeague';
+import {nareLeagueResults, resetState} from '../../../../redux/nareLeague';
 
 const KironResults =
     () => {
-        const {state,dispatch}=useContext(StoreContext)
-        const newCompetition = new URL(window.location).searchParams.get('competition_id') || getFromLocalStorage("kiron_search_data")?.competition_id
+        const competition_id=useSelector((state)=>state.nareLeague.competition_id)
+        const newCompetition = new URL(window.location).searchParams.get('competition_id') || competition_id
 
         const dispatchRedux=useDispatch()
 
         const fetchData = useCallback(async () => {
 
             const kiron_data = {
-                competition_id: new URL(window.location).searchParams.get('competition_id') || getFromLocalStorage("kiron_search_data")?.competition_id
+                competition_id: new URL(window.location).searchParams.get('competition_id')||competition_id
             }
-            dispatchRedux(nareLeagueResults(kiron_data))
-
+            dispatchRedux(nareLeagueResults(kiron_data));
 
         }, []);
         const loadingData = useSelector((state) => state.nareLeague.loading);
@@ -29,10 +25,7 @@ const KironResults =
 
         useEffect(() => {
             fetchData();
-            const payload = {
-                start: '', round: '', end: ''
-            }
-            dispatch({type: "SET", key: 'current_selection_period', payload: payload})
+            dispatchRedux(resetState('current_selection_period'))
         }, [newCompetition]);
 
         return (

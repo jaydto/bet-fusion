@@ -39,11 +39,6 @@
     background-color: #888888; /* Set the color of the scrollbar thumb */
 }
 
-
-
-
-
-
 .left{
     justify-content: flex-start;
     margin-left: 10px;
@@ -137,7 +132,18 @@
 .row{
     width: 100%;
 }
-
+.bet_item_details >div div {
+    /* border: thin solid; */
+    width: 95%;
+    min-height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 1px 0px 2px 2px var(--bet-history);
+    border-radius: 4px;
+    padding: 7px 4px;
+    margin: 7px 7px;
+}
 
 .bet_item,
 .bet_slip {
@@ -179,6 +185,23 @@
     font-size: large; /* Adjusted font size for consistency */
 }
 @media (min-width: 992px){
+    .bet_item_details{
+        flex-direction:row!important;
+        margin-bottom:1.5cm;
+    }
+    .bet_item_details.active_bet_detials{
+        margin-bottom:0.5cm;
+    }
+    .bet_slip >div {
+        height: 100%;
+        justify-content: center!important;
+        display: flex;
+        flex-direction: column;
+        gap:3px!important;
+    }
+    .bet_slip >div p{
+        margin-bottom:0px!important;
+    }
     .kiron-bet-history-badge{
         min-height:2.4rem;
     }
@@ -220,7 +243,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        box-shadow: 1px 1px 2px 1px var(--bet-history);
+        box-shadow: 1px 0px 2px 2px var(--bet-history);
         border-radius: 4px;
         padding: 7px 4px;
         margin: 7px 7px;
@@ -251,7 +274,9 @@
         font-size: .7em;
         margin-bottom: 1.5cm;
     }
-
+    .bet_item_details.active_bet_detials{
+        margin-bottom: 0.5cm;
+    }
 
     .ban{
         border-radius: 5px;

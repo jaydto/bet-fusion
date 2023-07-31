@@ -18,7 +18,7 @@ const initialState = {
         user: null,
         loading: false,
     }, // Initial state for the auth reducer
-        nareLeague: {
+    nareLeague: {
             isLoading: false,
             error: null,
             isLoggedIn: false,
@@ -56,6 +56,13 @@ const initialState = {
             ended:null
 
         }, // Initial state for the nareLeague reducer
+    matchesData:{
+        isLoading: false,
+        error: null,
+        user: null,
+        loading: false,
+        favorites_data:[],
+    }
 };
 
 export default initialState;

@@ -6,22 +6,18 @@ import {Spinner} from "react-bootstrap";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import {StoreContext} from "../../../../context/store";
 import { useDispatch,useSelector } from 'react-redux'; // Import useDispatch hook
-import {nareLeagueStandings} from '../../../../redux/nareLeague';
+import {nareLeagueStandings, resetState} from '../../../../redux/nareLeague';
 const Standing = () => {
-    const [standings, setStandings] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const newCompetition = new URL(window.location).searchParams.get('competition_id') || getFromLocalStorage("kiron_search_data")?.competition_id
+    const competition_id=useSelector((state)=>state.nareLeague.competition_id)
+    const newCompetition = new URL(window.location).searchParams.get('competition_id') ||competition_id
     const {state,dispatch}=useContext(StoreContext)
     const dispatchRedux=useDispatch()
     const fetchData = useCallback(async () => {
 
         const kiron_data = {
-            competition_id: new URL(window.location).searchParams.get('competition_id') || getFromLocalStorage("kiron_search_data")?.competition_id
+            competition_id: new URL(window.location).searchParams.get('competition_id') || competition_id
         }
         dispatchRedux(nareLeagueStandings(kiron_data))
-
-
-
     }, []);
     const loadingData = useSelector((state) => state.nareLeague.loading);
     const standingsData = useSelector((state) => state.nareLeague.standings_data);
@@ -30,10 +26,7 @@ const Standing = () => {
 
     useEffect(() => {
         fetchData();
-        const payload = {
-            start: '', round: '', end: ''
-        }
-        dispatch({type: "SET", key: 'current_selection_period', payload: payload})
+        dispatchRedux(resetState('current_selection_period'))
     }, [newCompetition]);
 
 

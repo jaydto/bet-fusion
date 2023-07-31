@@ -40,6 +40,8 @@ import {
     AccordionItemPanel,
 } from "react-accessible-accordion";
 import "react-accessible-accordion/dist/fancy-example.css";
+import {useDispatch, useSelector} from "react-redux";
+import {favoriteMarkets, favoriteMarketsData} from "../../redux/matchesSlice";
 
 const clean = (_str) => {
     _str = _str.replace(/[^A-Za-z0-9\-]/g, '');
@@ -391,7 +393,7 @@ const MoreMarketsHeaderRow = React.memo(
             links?.forEach((link) => link.classList.remove('highlight'));
 
             // add highlight class to clicked link
-            event.currentTarget.classList.add('highlight');
+            event?.currentTarget?.classList.add('highlight');
         }
 
         return (
@@ -861,121 +863,147 @@ const MktOddsButton = React.memo(
         );
     });
 
-const MarketRow = React.memo
-(
-    (props) => {
-        const {markets, match, width, live, pdown, allMarkets} = props;
-        const [isExpanded,] = useState(false);
-        const {state, dispatch} = useContext(StoreContext);
+
+const MarketRow = React.memo((props) => {
+    const { markets, match, width, live, pdown, allMarkets } = props;
+    const [isExpanded, setIsExpanded] = useState(false);
+    const { state, dispatch } = useContext(StoreContext);
+    const dispatchRedux=useDispatch()
+    const favoriteMarketValue=useSelector((state)=>state.matchesData.favorites_data)||getFromLocalStorage('favorite_markets')||[]
+    const [userFavoriteMarkets, setUserFavoriteMarkets] = useState(()=>{
+        return favoriteMarketValue
+    });
+
+    // Get favorite items from the API
+    const getFavoriteMarkets = useCallback(async () => {
+       dispatchRedux(favoriteMarkets())
+    }, []);
 
 
-        const [userFavoriteMarkets, setUserFavoriteMarkets] = useState(getFromLocalStorage('favorite_markets'));
+    // Append favoriteMarketValue to the userFavoriteMarkets
+    useEffect(() => {
+        // Combine existing favorites with the new data from the API
+        const combinedFavorites = [...userFavoriteMarkets, ...favoriteMarketValue];
 
-        // set favorite items from the api
-        const setMarketsFavorite = (sub_type_id) => {
+        // Filter out duplicates based on sub_type_id
+        const updatedFavoriteValues = combinedFavorites.filter(
+            (favorite, index, self) => index === self.findIndex(f => f.sub_type_id === favorite.sub_type_id)
+        );
 
-            let endpoint = '/v1/favorite-market'
-            let method = 'POST'
-            const data = {
-                "sub_type_id": sub_type_id
-            }
-            makeRequest({url: endpoint, method: method, data: data})
-                .then(([status, response]) => {
-                    if (status === 200 || status === 201) {
-                        getFavoriteMarkets()
-                        return response?.data
-                    }
-                }).catch(error => {
+        console.log("userFavoriteMarkets after update:", updatedFavoriteValues);
 
-            })
+        // Update the userFavoriteMarkets state with the combined data (without duplicates)
+        setUserFavoriteMarkets(updatedFavoriteValues);
+
+    }, [favoriteMarketValue]);
+
+    // Handle the click event for a specific market to be marked as favorite
+    const favoriteMarket = (event, marketId) => {
+        // Prevent the click event from propagating to the Accordion
+        event.stopPropagation();
+
+        // Check if the marketId is already in the userFavoriteMarkets array
+        const isFavorite = userFavoriteMarkets.some(favorite => favorite.sub_type_id === marketId);
+        console.log("isFavorite", isFavorite);
+
+        // Toggle the favorite status
+        if (isFavorite) {
+            console.log("removing");
+            // If already favorite, remove from favorites
+            setUserFavoriteMarkets(prevFavorites => prevFavorites.filter(fav => fav.sub_type_id !== marketId));
+        } else {
+            console.log("adding");
+            // If not favorite, add to favorites
+            setUserFavoriteMarkets(prevFavorites => [...prevFavorites, { sub_type_id: marketId }]);
         }
 
-        // Handle the click event for a specific market to be marked as favorite
-        const favoriteMarket = (event, marketId) => {
-            // Prevent the click event from propagating to the Accordion
-            event.stopPropagation();
+        // Update favorite status on the server
+        setMarketsFavorite(marketId);
+    };
 
-            setMarketsFavorite(marketId)
 
+    // Function to set favorite items on the server
+    const setMarketsFavorite = (sub_type_id) => {
+        const data = {
+            "sub_type_id": sub_type_id
         };
 
+        // Immediately update the local state with the new favorite market (optimistically)
+        setUserFavoriteMarkets(prevFavorites => [...prevFavorites, sub_type_id]);
 
-        // Get favorite items from the api
-        const getFavoriteMarkets = useCallback(async () => {
-            let endpoint = '/v1/user-favorite-markets'
-            let method = 'POST'
-            await makeRequest({url: endpoint, method: method, data: {}}).then(([status, response]) => {
-                if (status === 200 || status === 201) {
-                    const responsedata = response?.data
-                    setLocalStorage('favorite_markets', responsedata)
-                    setUserFavoriteMarkets(responsedata)
-
-                }
+        // Dispatch the favoriteMarketsData asyncThunk to set the favorite market on the server
+        dispatchRedux(favoriteMarketsData(data))
+            .then(() => {
+                // API call is successful (asynchronously), no need to update local state here again
+                // Fetch updated favorite markets from the API if needed
+                getFavoriteMarkets();
             })
-        }, [])
+            .catch((error) => {
+                // Handle error
+                console.error("Error setting favorite market:", error);
+                // API call failed, revert local state change
+                setUserFavoriteMarkets(prevFavorites => prevFavorites.filter(fav => fav !== sub_type_id));
+            });
+    };
 
 
-        const valuesforPreexpanding = () => {
-            const allMarketNames = [...new Set(state?.all_markets?.data?.odds?.flatMap(item => item?.sub_type_id))];
-            const preExpandedMarkets = allMarketNames.slice(0, 5);
-            return preExpandedMarkets;
-        };
+    const valuesforPreexpanding = () => {
+        const allMarketNames = [...new Set(state?.all_markets?.data?.odds?.flatMap(item => item?.sub_type_id))];
+        const preExpandedMarkets = allMarketNames.slice(0, 5);
+        return preExpandedMarkets;
+    };
 
-
-        return (
-            <div className="top-matches match more-markets">
-                <Accordion preExpanded={valuesforPreexpanding()} allowZeroExpanded className="size-accordion">
-                    <AccordionItem className="pb-2" uuid={markets?.sub_type_id}>
-                        <AccordionItemHeading>
-                            <AccordionItemButton className={`accordion-button more-markets-button `}>
-                                <div className={"d-flex justify-content-between w-100 more-markets-header-text"}>
-                                        <span className={"d-flex align-items-center"}>
-                                          {live && (
-                                              <div
-                                                  style={{
-                                                      width: '2px',
-                                                      marginTop: '-5px',
-                                                      marginRight: '5px',
-                                                      opacity: 0.6,
-                                                  }}
-                                              >
-                                                  <ColoredCircle color="#cc5500"/>
-                                              </div>
-                                          )}
-                                            <FontAwesomeIcon
-                                                icon={faStar}
-                                                style={{
-                                                    fontSize: "20px",
-                                                    color: userFavoriteMarkets?.filter((market) => Number(market?.sub_type_id) === Number(markets?.sub_type_id))?.length === 1 ? 'gold' : 'white',
-                                                }}
-                                                onClick={(event) => favoriteMarket(event, markets?.sub_type_id)}
-                                                className={`${state?.user ? 'favorite' : 'd-none'}`}
-                                            />&nbsp; {markets?.market_name}
-
-                                        </span>
+    return (
+        <div className="top-matches match more-markets">
+            <Accordion preExpanded={valuesforPreexpanding()} allowZeroExpanded className="size-accordion">
+                <AccordionItem className="pb-2" uuid={markets?.sub_type_id}>
+                    <AccordionItemHeading>
+                        <AccordionItemButton className={`accordion-button more-markets-button `}>
+                            <div className={"d-flex justify-content-between w-100 more-markets-header-text"}>
+                                <span className={"d-flex align-items-center"}>
+                                    {live && (
+                                        <div
+                                            style={{
+                                                width: '2px',
+                                                marginTop: '-5px',
+                                                marginRight: '5px',
+                                                opacity: 0.6,
+                                            }}
+                                        >
+                                        </div>
+                                    )}
                                     <FontAwesomeIcon
-                                        icon={isExpanded ? faCaretRight : faCaretDown}
-                                        style={{fontSize: "20px", color: "var(--light)"}}
-                                    />
-                                </div>
-                            </AccordionItemButton>
-                        </AccordionItemHeading>
-                        <AccordionItemPanel className="accordion-item-panel px-1 pt-1">
-                            {markets &&
-                                markets[markets?.market_name]?.map((mkt_odds, index) => (
-                                    <Col uuid={index.toString()} key={index} className="match-detail"
-                                         style={{width: width, float: 'left'}}>
-                                        <MktOddsButton match={match} mktodds={mkt_odds} live={live} pdown={pdown}
-                                                       allMarkets={allMarkets}/>
-                                    </Col>
-                                ))}
-                        </AccordionItemPanel>
-                    </AccordionItem>
-                </Accordion>
-            </div>
-        );
-    }
-);
+                                        icon={faStar}
+                                        style={{
+                                            fontSize: "20px",
+                                            color: userFavoriteMarkets?.some(favorite => favorite.sub_type_id === markets?.sub_type_id) ? 'gold' : 'white',
+                                        }}
+                                        onClick={(event) => favoriteMarket(event, markets?.sub_type_id)}                                        className={`${state?.user ? 'favorite' : 'd-none'}`}
+                                    />&nbsp; {markets?.market_name}
+                                    {console.log("userFav", userFavoriteMarkets)}
+
+                                </span>
+                                <FontAwesomeIcon
+                                    icon={isExpanded ? faCaretRight : faCaretDown}
+                                    style={{ fontSize: "20px", color: "var(--light)" }}
+                                />
+                            </div>
+                        </AccordionItemButton>
+                    </AccordionItemHeading>
+                    <AccordionItemPanel className="accordion-item-panel px-1 pt-1">
+                        {markets &&
+                            markets[markets?.market_name]?.map((mkt_odds, index) => (
+                                <Col uuid={index.toString()} key={index} className="match-detail" style={{ width: width, float: 'left' }}>
+                                    <MktOddsButton match={match} mktodds={mkt_odds} live={live} pdown={pdown} allMarkets={allMarkets} />
+                                </Col>
+                            ))}
+                    </AccordionItemPanel>
+                </AccordionItem>
+            </Accordion>
+        </div>
+    );
+});
+
 
 const ColoredCircle = React.memo(
     ({color}) => {

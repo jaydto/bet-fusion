@@ -52,7 +52,7 @@ const KironTabs = React.memo(
                     </Link>
                 </div>
                 {user&&
-                    <div className="col bg-black text-center kiron-tabs-padding">
+                    <div className="col bg-black text-center kiron-tabs-padding mobile-remove-kiron-bet-history-tab">
                         <Link className={`cursor-pointer w-100 ${b_class}`} to={'/bet-history?' }>
                             <span className="col-sm-11 main-header"><FontAwesomeIcon icon={faReceipt}/>&nbsp; Bet History</span>
                         </Link>

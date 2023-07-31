@@ -167,10 +167,17 @@ export const nareLeagueCompetitions =
     }
 );
 export const resetState =
-    createAction("betting/resetKiron", (stateToReset) => {
+    createAction("betting/reset", (stateToReset) => {
     return { payload: stateToReset };
 });
-
+export const setState =
+    createAction("betting/set", (stateToSet,data) => {
+        return {payload:{stateToSet, data} };
+    });
+export const setTimerData =
+    createAction("betting/timerData", (stateToSet,data) => {
+        return {payload:{stateToSet, data} };
+    });
 const nareLeagueSlice = createSlice({
     name: "nareLeague",
     initialState,
@@ -195,6 +202,7 @@ const nareLeagueSlice = createSlice({
             .addCase(nareLeaguePlayouts.fulfilled, (state, action) => {
                 state.loading = false;
                 state.error = null;
+                state.playouts_data=action.payload
             })
             .addCase(nareLeaguePlayouts.rejected, (state, action) => {
                 state.loading = false;
@@ -247,6 +255,7 @@ const nareLeagueSlice = createSlice({
             })
             .addCase(nareLeaguePeriods.pending, (state) => {
                 state.loading = true;
+                state.periods_ready=false
             })
             .addCase(nareLeaguePeriods.fulfilled, (state,action) => {
                 // When nareLeaguePeriods is fulfilled, update the state with the first period's data
@@ -257,12 +266,13 @@ const nareLeagueSlice = createSlice({
                     const firstPeriod = periodsData[0];
 
                     // Extract round_id, start_time, and end_time from the first period
-                    const { round_id, start_time, end_time } = firstPeriod;
+                    const { round_id, start_time, end_time,round_number } = firstPeriod;
 
                     // Update the Redux state with the first period's data
                     state.round_id = round_id;
                     state.start_time = start_time;
                     state.end_time = end_time;
+                    state.game_week = round_number;
                 }
                 state.loading = false;
                 state.error = null;
@@ -346,7 +356,21 @@ const nareLeagueSlice = createSlice({
             .addCase(resetState, (state, action) => {
                 const stateToReset = action.payload;
                 if (state.hasOwnProperty(stateToReset)) {
-                    state[stateToReset] = null;
+                    state[stateToReset] = initialState.nareLeague[stateToReset];
+                }
+                state.error = null;
+            })
+            .addCase(setState, (state, action) => {
+                const { stateToSet, data } = action.payload;
+                if (state.hasOwnProperty(stateToSet)) {
+                    state[stateToSet] = data;
+                }
+                state.error = null;
+            })
+            .addCase(setTimerData, (state, action) => {
+                const { stateToSet, data } = action.payload;
+                if (state.hasOwnProperty(stateToSet)) {
+                    state[stateToSet] = data;
                 }
                 state.error = null;
             })

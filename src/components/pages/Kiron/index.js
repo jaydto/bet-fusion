@@ -101,7 +101,7 @@ const TestKiron = React.memo(() => {
                                                     <KironPeriods setPlayout={setPlayout}
                                                                   isCountdownTimerActive={isCountdownTimerActive}
                                                                   setIsCountdownTimerActive={setIsCountdownTimerActive}/>
-                                                    {!inPlay && <KironMoreMarkets/>}
+                                                    {(!inPlay||current_selection_period)&& <KironMoreMarkets/>}
                                                 </div>
 
                                                 {loading ? <SkeletonLoader/> : close_spinner&&!current_selection_period ?

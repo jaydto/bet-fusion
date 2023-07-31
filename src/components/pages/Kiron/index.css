@@ -355,7 +355,7 @@
 @media (max-width: 767px){
     .standings-container-heading {
         position: fixed;
-        top: 17.9rem!important;
+        top: 18.4rem!important;
         width: 100vw;
         background: var(--orange);
         z-index: 100;
@@ -368,7 +368,7 @@
         position: relative;
     }
     .kiron-body {
-        margin-top: 9.9rem!important;
+        margin-top: 10.2rem!important;
         position: relative;
     }
     .kiron-matches-header {
@@ -376,10 +376,10 @@
         z-index: 1999;
         width: 100%;
         background: var(--betnare-header-bg);
-        top: 14rem!important;
+        top: 14.4rem!important;
     }
     .kiron_matches_now {
-        margin-top: 10.6rem!important;
+        margin-top: 11rem!important;
         background: var(--betnare-primary);
     }
 }
@@ -456,6 +456,9 @@
 }
 
 @media (max-width:991px){
+    .mobile-remove-kiron-bet-history-tab{
+        display:none!important;
+    }
     .compt-teams .team {
         font-size: 12px;
         opacity: 0.9;
@@ -475,8 +478,8 @@
         z-index: 100;
     }
 
-    .league-games-wrapper.playout{
-        margin-top:7rem;
+    .league-games-wrapper.playout {
+        margin-top: 8rem;
     }
     .kiron-sticky-nav{
         z-index:2000;
@@ -496,7 +499,7 @@
         background: var(--betnare-primary);
     }
     .kiron-body {
-        margin-top: 10.9rem;
+        margin-top: 12.9rem;
         position: relative;
     }
     .kiron-body-pages {

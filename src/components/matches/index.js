@@ -577,7 +577,7 @@ const SideBets = React.memo(
                         href={`https://s5.sir.sportradar.com/betnaremts/en/match/${match.parent_match_id}`}
                         target={"_blank"}
                         style={{color: "aqua", padding: '0px 13px'}}
-                        title={"View Stats"}
+                        title={"View Stats"} rel="noreferrer"
                     >
                         {" "}
                         Stats
@@ -590,7 +590,7 @@ const SideBets = React.memo(
                             href={`https://s5.sir.sportradar.com/betnaremts/en/match/${match.parent_match_id}`}
                             target={"_blank"}
                             style={{color: "aqua"}}
-                            title={"View Stats"}
+                            title={"View Stats"} rel="noreferrer"
                         >
                             {" "}
                             <span className={'stats-mobile more-options-font'}>Stats</span>
@@ -1411,14 +1411,12 @@ const MatchRow = React.memo(
                                                                                     odd_key,
                                                                                     odd_data
                                                                                 })}
-                                                                                key={odd_key} live={live}/>) : (
-                                                                            <EmptyTextRow odd_key={match?.odd_key}
+                                                                                key={index} live={live}/>) : (
+                                                                            <EmptyTextRow key={index} odd_key={match?.odd_key}
                                                                                           live={live}/>
                                                                         )
                                                                     }
                                                                 </div>
-
-
                                                             </div>
 
                                                         ))

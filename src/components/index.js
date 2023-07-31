@@ -357,12 +357,12 @@ const Index = React.memo(
             };
         }, [window.location.pathname, window.location.search]);
 
+        console.log("matches_length", matches?.length)
 
         useEffect(() => {
 
             if (prevLimit.current !== limit && limit > prevLimit.current) {
                 setReset(c => c + 1);
-
                 prevLimit.current = limit
 
             }
@@ -378,7 +378,7 @@ const Index = React.memo(
         }, [prevLimit.current])
 
         document.addEventListener('scrollEnd', (event) => {
-            if (!fetching) {
+            if (!fetching && matches?.length >= limit) {
                 setFetching(true)
                 setLimit(limit + 20)
             }

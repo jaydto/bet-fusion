@@ -49,6 +49,24 @@ const Deposit3 = React.memo(
             setActiveTab(eventKey);
         }
 
+        const setUtmCampaign=()=>{
+            const utm_source=new URL(window.location).searchParams.get('utm_source')
+            const utm_campaign=new URL(window.location).searchParams.get('utm_campaign')
+            const btag=new URL(window.location).searchParams.get('btag')
+            if(utm_source){
+                setLocalStorage("utm_source", utm_source)
+            }
+            if(utm_campaign){
+                setLocalStorage("utm_campaign", utm_campaign)
+
+            }
+            if(btag){
+                setLocalStorage("btag", btag)
+            }
+        }
+
+
+
         const fetchDepositOffers=async()=>{
             let endpoint = "/v1/bet/settings"
             let method='POST'
@@ -66,6 +84,7 @@ const Deposit3 = React.memo(
         useEffect(()=>{
             const abort=new AbortController();
             fetchDepositOffers()
+            setUtmCampaign()
             return () => {
                 abort.abort(); // Cleanup function to abort the controller when the component unmounts.
             };

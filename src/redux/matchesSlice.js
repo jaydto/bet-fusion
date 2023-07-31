@@ -1,7 +1,8 @@
 // matchesSlice.js
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import initialState from "./state"; // Import the initial state from state.js
-import makeRequest from "../components/utils/fetch-request"; // Import the makeRequest function
+import makeRequest from "../components/utils/fetch-request";
+import {setLocalStorage} from "../components/utils/local-storage"; // Import the makeRequest function
 // Async thunk for matches
 export const matchesPrematch =
     createAsyncThunk("matches/prematch",
@@ -17,6 +18,34 @@ export const matchesPrematch =
             throw new Error(response?.error || "Fetching Prematch failed");
         }
     });
+export const favoriteMarkets =
+    createAsyncThunk("matches/favoriteMarkets",
+    async () => {
+        const [status, response] = await makeRequest({
+            url: "/v1/user-favorite-markets",
+            method: "POST"
+        });
+        if (status === 200) {
+            return response;
+        } else {
+            throw new Error(response?.error || "Fetching Prematch failed");
+        }
+    });
+export const favoriteMarketsData =
+    createAsyncThunk("matches/favoriteMarketsData",
+    async (favoriteMarket) => {
+        const [status, response] = await makeRequest({
+            url: "/v1/favorite-market",
+            method: "POST",
+            data: favoriteMarket,
+        });
+        if (status === 200) {
+            return response;
+        } else {
+            throw new Error(response?.error || "Fetching Prematch failed");
+        }
+    });
+
 export const matchesLive =
     createAsyncThunk("matches/live",
     async (competitionsData) => {
@@ -167,6 +196,35 @@ const matchesSlice = createSlice({
                 state.error = null;
             })
             .addCase(matchesMoreLiveMarkets.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
+            .addCase(favoriteMarkets.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(favoriteMarkets.fulfilled, (state,action) => {
+                state.loading = false;
+                state.error = null;
+                const responsedata = action.payload?.data || [];
+
+                // Combine existing favorites with the new data
+                // const updatedFavorites = [...new Set([...state.favorites_data, ...responsedata])];
+                state.favorites_data = action.payload?.data || [];
+                // Update localStorage with the updated favorites
+                setLocalStorage('favorite_markets', responsedata);
+            })
+            .addCase(favoriteMarkets.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
+            .addCase(favoriteMarketsData.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(favoriteMarketsData.fulfilled, (state) => {
+                state.loading = false;
+                state.error = null;
+            })
+            .addCase(favoriteMarketsData.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
             })

@@ -76,7 +76,7 @@ const KironMoreMarkets= React.memo(
                     </div>
                     <div className="double-chance-market text-center">
 
-                        <div className="select ">
+                        <div className="select">
                             <LinkSelect options={options}  />
                         </div>
                     </div>

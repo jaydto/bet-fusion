@@ -283,6 +283,9 @@
     background-color: red;
     color: white;
 }
+#more_markets_selection_kiron {
+    background-color: var(--betnare-body-bg) !important;
+}
 .kiron-more-button-color {
     background: var(--betnare-button-login)!important;
     color: var(--dark)!important;
@@ -296,8 +299,17 @@
     color:var(--light);
     font-weight:800;
 }
+.more-market-button{
+    color:var(--light) !important;
+}
 .more-market-button:hover{
     color:var(--light) !important;
+}
+.more-market-button.kiron-more-button-color{
+    color:var(--dark) !important;
+}
+.more-market-button.kiron-more-button-color:hover{
+    color:var(--dark) !important;
 }
 .font-bold-md{
     font-weight:800!important;
@@ -477,6 +489,7 @@
         background: var(--orange);
         z-index: 100;
     }
+
 
     .league-games-wrapper.playout {
         margin-top: 8rem;

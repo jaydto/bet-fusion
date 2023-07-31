@@ -2,7 +2,6 @@ import React, {useContext, useEffect, useState} from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import {getFromLocalStorage} from "./local-storage";
-import {StoreContext} from "../../context/store";
 import {useDispatch} from "react-redux";
 import {setState} from "../../redux/nareLeague";
 
@@ -24,9 +23,7 @@ const LinkSelect = React.memo(
     (props) => {
         const {options, ...rest} = props;
         const navigate = useNavigate();
-        const dispatchRedux = useDispatch()
-        const {state, dispatch} = useContext(StoreContext);
-
+        const dispatchRedux = useDispatch();
 
         const [pathname, setPathname] = useState(() => {
             const searchParams = new URLSearchParams(window.location.search);
@@ -83,7 +80,7 @@ const LinkSelect = React.memo(
             }))];
 
             return optionLabels.map((option, index) => (
-                <LinkOption key={index} to={`${option.to}`} pathname={pathname} className={`btn more-market-button `}>
+                <LinkOption key={index} to={`${option.to}`} pathname={pathname} className={`btn more-market-button `} >
                     {option.label}
                 </LinkOption>
             ));
@@ -100,6 +97,7 @@ const LinkSelect = React.memo(
                 ).length > 0 && ' opt-color'} more-market-button px-4`}
                 onChange={handleSelectChange}
                 style={{fontSize: '12px'}}
+                id={'more_markets_selection_kiron'}
             >
                 {showOptions()}
             </Form.Select>

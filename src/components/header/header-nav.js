@@ -152,7 +152,7 @@ const HeaderNav = React.memo(
                            title="Space Man">
                             <span>
                                 <strong>Spaceman</strong>
-                                    <span className="hot-alert-badge-item">HOT</span>
+                                    {/*<span className="hot-alert-badge-item">HOT</span>*/}
                             </span>
                         </div>
                     </li>
@@ -166,7 +166,7 @@ const HeaderNav = React.memo(
                               }}>
                             <span>
                                 <strong>JetX</strong>
-                                    <span className="hot-alert-badge-item">HOT</span>
+                                    {/*<span className="hot-alert-badge-item">HOT</span>*/}
 
                             </span>
                         </div>
@@ -181,7 +181,7 @@ const HeaderNav = React.memo(
                              }}>
                             <span>
                                 <strong>FootballX</strong>
-                                    <span className="new-alert-badge-item">NEW</span>
+                                    {/*<span className="new-alert-badge-item">NEW</span>*/}
 
                             </span>
                         </div>
@@ -194,7 +194,7 @@ const HeaderNav = React.memo(
                         }} title="Nare League" >
                             <span>
                                 <strong>Nare League</strong>
-                                    <span className="hot-alert-badge-item">HOT</span>
+                                    {/*<span className="hot-alert-badge-item">HOT</span>*/}
                             </span>
                         </div>
                     </li>
@@ -232,7 +232,7 @@ const HeaderNav = React.memo(
                             <strong className={"px-1"}>
                                 {/*<FontAwesomeIcon icon={faFireAlt} style={{color: "orange"}}/> */}
                                 Nare Games
-                                <span className="hot-alert-badge-item">HOT</span>
+                                {/*<span className="hot-alert-badge-item">HOT</span>*/}
                             </strong>
                         </div>
                     </li>

@@ -121,7 +121,7 @@ const   CompetitionMatches= React.memo(
         <div className={'flex-item'}>
             <div className="item4"><Header/>
             <ToastContainer/></div>
-            <div className={`flex-container ${!showDownload&&'top-spacing-page-no-download'}`}>
+            <div className={`flex-container ${!showDownload&&'top-spacing-page-no-download competitions-page'}`}>
                 <div className="item1"> <SideBar loadCompetitions/></div>
                 <div className="item2"><div className="gz home match-overflow " >
                     <div className="gz home match-overflow" >

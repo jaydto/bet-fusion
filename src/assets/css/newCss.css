@@ -2133,6 +2133,9 @@ img.nare-league {
 }
 
 @media (max-width: 991px) {
+    .top-spacing-page-no-download.competitions-page{
+        margin-top:10.4rem!important;
+    }
     .homepage.all-markets {
         margin-top: 3rem;
     }

@@ -45,7 +45,6 @@ const navigationConfig = {
 		'smart-soft',
 		'casino',
 		'gameplay',
-
 	]
 };
 

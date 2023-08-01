@@ -120,20 +120,20 @@ const SelfExclusion = () => {
 
     return (
         <div>
-            <h2 className={'text-light w-100 py-1 px-2'}>Select a Date Range:</h2>
+            <h2 className={'text-light w-100 py-1 px-2 self-exclusion_form'}>Select a Date Range:</h2>
             <DateRangePicker
                 ranges={[dateRange]}
                 onChange={handleDateRangeChange}
                 months={2}
                 direction="horizontal"
-                className="date-range-picker-exclusion"
+                className="date-range-picker-exclusion w-100 d-flex justify-content-center"
                 minDate={today}
                 maxDate={maxDate} // Set the maximum date to 6 years from today
                 presets={customPresets} // Use custom presets
                 showSelectionPreview={true}
             />
             <form onSubmit={formik.handleSubmit}>
-                <div className="form-group">
+                <div className="form-group self-exclusion_form">
                     <label htmlFor="reason_for_self_exclusion">Reason for Self Exclusion:</label>
                     <textarea
                         type="text"

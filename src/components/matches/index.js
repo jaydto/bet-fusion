@@ -20,7 +20,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import padlock from '../../assets/img/padlock.png';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft, faCaretDown, faCaretRight, faChartLine, faShield, faStar} from "@fortawesome/free-solid-svg-icons";
-import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
+import {getFromLocalStorage} from "../utils/local-storage";
 
 import myGif from '../../assets/img/fire.webp'
 
@@ -637,8 +637,7 @@ const OddValueDisplay = React.memo(({match, detail, oddValue}) => (
 
 const OddButton = React.memo(
     (props) => {
-        const {match, mkt, detail, live, jackpot, subType, marketKey, allMarkets} =
-            props;
+        const {match, mkt, detail, live, jackpot, marketKey, allMarkets} = props;
 
         const [ucn, setUcn] = useState("");
 
@@ -865,18 +864,18 @@ const MktOddsButton = React.memo(
 
 
 const MarketRow = React.memo((props) => {
-    const { markets, match, width, live, pdown, allMarkets } = props;
+    const {markets, match, width, live, pdown, allMarkets} = props;
     const [isExpanded, setIsExpanded] = useState(false);
-    const { state, dispatch } = useContext(StoreContext);
-    const dispatchRedux=useDispatch()
-    const favoriteMarketValue=useSelector((state)=>state.matchesData.favorites_data)||getFromLocalStorage('favorite_markets')||[]
-    const [userFavoriteMarkets, setUserFavoriteMarkets] = useState(()=>{
+    const {state, dispatch} = useContext(StoreContext);
+    const dispatchRedux = useDispatch()
+    const favoriteMarketValue = useSelector((state) => state.matchesData.favorites_data) || getFromLocalStorage('favorite_markets') || []
+    const [userFavoriteMarkets, setUserFavoriteMarkets] = useState(() => {
         return favoriteMarketValue
     });
 
     // Get favorite items from the API
     const getFavoriteMarkets = useCallback(async () => {
-       dispatchRedux(favoriteMarkets())
+        dispatchRedux(favoriteMarkets())
     }, []);
 
 
@@ -914,7 +913,7 @@ const MarketRow = React.memo((props) => {
         } else {
             console.log("adding");
             // If not favorite, add to favorites
-            setUserFavoriteMarkets(prevFavorites => [...prevFavorites, { sub_type_id: marketId }]);
+            setUserFavoriteMarkets(prevFavorites => [...prevFavorites, {sub_type_id: marketId}]);
         }
 
         // Update favorite status on the server
@@ -978,14 +977,15 @@ const MarketRow = React.memo((props) => {
                                             fontSize: "20px",
                                             color: userFavoriteMarkets?.some(favorite => favorite.sub_type_id === markets?.sub_type_id) ? 'gold' : 'white',
                                         }}
-                                        onClick={(event) => favoriteMarket(event, markets?.sub_type_id)}                                        className={`${state?.user ? 'favorite' : 'd-none'}`}
+                                        onClick={(event) => favoriteMarket(event, markets?.sub_type_id)}
+                                        className={`${state?.user ? 'favorite' : 'd-none'}`}
                                     />&nbsp; {markets?.market_name}
                                     {console.log("userFav", userFavoriteMarkets)}
 
                                 </span>
                                 <FontAwesomeIcon
                                     icon={isExpanded ? faCaretRight : faCaretDown}
-                                    style={{ fontSize: "20px", color: "var(--light)" }}
+                                    style={{fontSize: "20px", color: "var(--light)"}}
                                 />
                             </div>
                         </AccordionItemButton>
@@ -993,8 +993,10 @@ const MarketRow = React.memo((props) => {
                     <AccordionItemPanel className="accordion-item-panel px-1 pt-1">
                         {markets &&
                             markets[markets?.market_name]?.map((mkt_odds, index) => (
-                                <Col uuid={index.toString()} key={index} className="match-detail" style={{ width: width, float: 'left' }}>
-                                    <MktOddsButton match={match} mktodds={mkt_odds} live={live} pdown={pdown} allMarkets={allMarkets} />
+                                <Col uuid={index.toString()} key={index} className="match-detail"
+                                     style={{width: width, float: 'left'}}>
+                                    <MktOddsButton match={match} mktodds={mkt_odds} live={live} pdown={pdown}
+                                                   allMarkets={allMarkets}/>
                                 </Col>
                             ))}
                     </AccordionItemPanel>
@@ -1079,15 +1081,15 @@ export const FormatDate = (props) => {
 const MatchRow = React.memo(
     (props) => {
 
-        const {first_match, match, jackpot, live, pdown, three_way} = props;
-        const [extraMarketDisplays, setExtraMarketDisplays] = useState([])
+        const {first_match, match, jackpot, live, pdown} = props;
+        const [, setExtraMarketDisplays] = useState([])
         const categories = getFromLocalStorage('categories')
         const sport_id = new URL(window.location).searchParams.get('sport_id') || 79
         let sport = categories?.all_sports?.filter((category) => category?.sport_id == sport_id)
-        const [sportName, setSportName] = useState(sport?.[0]?.sport_name || 'Soccer');
-        const [showX, setShowX] = useState(true);
-        const [market, setMarket] = useState('1x2');
-        const {height, width} = useWindowDimensions();
+        const [, setSportName] = useState(sport?.[0]?.sport_name || 'Soccer');
+        const [, setShowX] = useState(true);
+        const [, setMarket] = useState('1x2');
+        const {width} = useWindowDimensions();
         const [threeWay, setThreeWay] = useState(false)
         const getSelectedMarkets = () => {
 
@@ -1132,8 +1134,10 @@ const MatchRow = React.memo(
         }, [first_match?.parent_match_id])
 
         let url = new URL(window.location)
-        match.market_active = 1
-        match.odds.home_odd_active = 1
+        if (!jackpot) {
+            match.market_active = 1
+            match.odds.home_odd_active = 1
+        }
         let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29").split(",")
         const [totalMarkets] = useState(sub_types.length)
         let append = totalMarkets - Object.keys(match?.extra_odds || {}).length - 1
@@ -1305,15 +1309,15 @@ const MatchRow = React.memo(
                                         </div>
                                     </div>}
                             </div>
-                            <div className={`c-btn-group align-self-center checking ${jackpot ? 'w-100' : ''}`}>{
-                                match?.odds?.home_odd ? (match?.odds?.home_odd && (!pdown && match?.odds?.home_odd && match.odds.home_odd !== 'NaN' &&
-                                        match.market_active == 1 && match.odds.home_odd_active == 1)
-                                        ? <OddButton match={match} mkt="home_team" live={live} jackpot={jackpot}/>
-                                        : <EmptyTextRow odd_key={match?.odd_key} live={live}/>) :
-                                    match?.odds?.home_odd ?
-                                        <EmptyTextRow odd_key={match?.odd_key} live={live}/> : ''
-                            }
-
+                            {console.log("home_check",match)}
+                            <div className={`c-btn-group align-self-center checking ${jackpot ? 'w-100' : ''}`}>
+                                {match?.odds?.home_odd
+                                    ? (match?.odds?.home_odd && (!pdown && match?.odds?.home_odd && match.odds.home_odd !== 'NaN' &&
+                                            match.market_active == 1 && match.odds.home_odd_active == 1||jackpot)
+                                            ? <OddButton match={match} mkt="home_team" live={live} jackpot={jackpot}/>
+                                            : <EmptyTextRow odd_key={match?.odd_key} live={live}/>) :
+                                        match?.odds?.home_odd ? <EmptyTextRow odd_key={match?.odd_key} live={live}/> : ''
+                                }
                                 {match?.odds?.neutral_odd ? ((!pdown && match?.odds?.neutral_odd && match.odds.neutral_odd !== 'NaN' &&
                                     match.market_active == 1 && match.odds.neutral_odd_active == 1 || jackpot)
                                     ? <OddButton match={match} mkt="draw" live={live} jackpot={jackpot}/>
@@ -1323,11 +1327,10 @@ const MatchRow = React.memo(
                                         match.market_active == 1 && match.odds.away_odd_active == 1 || jackpot)
                                         ? <OddButton match={match} mkt="away_team" live={live} jackpot={jackpot}/>
                                         : <EmptyTextRow odd_key={match?.odd_key} live={live}/>) :
-                                    match?.odds?.away_odd ?
-                                        <EmptyTextRow odd_key={match?.odd_key} live={live}/> : ''
+                                    match?.odds?.away_odd ? <EmptyTextRow odd_key={match?.odd_key} live={live}/> : ''
                                 }
-
                             </div>
+
                         </div>
                         <div
                             className={`${width <= 767 ? 'c-btn-group align-self-center to-flex-1 to-tabview' : 'd-none'}`}>
@@ -1380,13 +1383,13 @@ const MatchRow = React.memo(
 
                         </div>
                         <div
-                            className={`${width <= 767 ? 'c-btn-group align-self-center markets-container-data-check' : 'd-none'}`}>{
+                            className={`${width <= 767 ? 'c-btn-group align-self-center markets-container-data-check' : 'd-none'}`}>
+                            {
                             match?.odds?.home_odd ? (match?.odds?.home_odd && (!pdown && match?.odds?.home_odd && match.odds.home_odd !== 'NaN' &&
-                                    match.market_active == 1 && match.odds.home_odd_active == 1)
+                                    match.market_active == 1 && match.odds.home_odd_active == 1||jackpot)
                                     ? <OddButton match={match} mkt="home_team" live={live} jackpot={jackpot}/>
                                     : <EmptyTextRow odd_key={match?.odd_key} live={live}/>) :
-                                match?.odds?.home_odd ? <EmptyTextRow odd_key={match?.odd_key} live={live}/> : ''
-                        }
+                                match?.odds?.home_odd ? <EmptyTextRow odd_key={match?.odd_key} live={live}/> : ''}
 
                             {match?.odds?.neutral_odd ? ((!pdown && match?.odds?.neutral_odd && match.odds.neutral_odd !== 'NaN' &&
                                 match.market_active == 1 && match.odds.neutral_odd_active == 1 || jackpot)
@@ -1440,7 +1443,8 @@ const MatchRow = React.memo(
                                                                                     odd_data
                                                                                 })}
                                                                                 key={index} live={live}/>) : (
-                                                                            <EmptyTextRow key={index} odd_key={match?.odd_key}
+                                                                            <EmptyTextRow key={index}
+                                                                                          odd_key={match?.odd_key}
                                                                                           live={live}/>
                                                                         )
                                                                     }
@@ -1578,7 +1582,8 @@ export const MarketList = React.memo(
         return (
             <div className="matches full-width" style={{marginBottom: "0px"}}>
 
-                <div className={`web-element ${allMarkets&&'bottom-more-markets-mobile '}`} style={{marginBottom: "7px"}}>
+                <div className={`web-element ${allMarkets && 'bottom-more-markets-mobile '}`}
+                     style={{marginBottom: "7px"}}>
                     {!filters ? (
                         <div className="top-matches">Event not available for betting.</div>
                     ) : (

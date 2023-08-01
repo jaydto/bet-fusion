@@ -78,8 +78,8 @@ hr {
 
 @media (max-width: 991px){
     .container.text-data-promotions {
-        white-space: normal!important;
-    }
+    white-space: normal !important;
+}
     .promotions-app-top{
         margin-top:5rem;
     }

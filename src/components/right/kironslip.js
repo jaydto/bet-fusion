@@ -74,6 +74,13 @@ const KironSlip = React.memo(
             setKironSlipkey();
         }, [setKironSlipkey]);
 
+        const betItem=getKironSlip();
+
+        const betslipLength = Object.keys(betItem || {}).length;
+        useEffect(()=>{
+            dispatch({type: "SET", key: "betslipKironLength", payload: betslipLength});
+        },[betslipLength] )
+
         const navigate= useNavigate()
         const handledRemoveSlip = (match) => {
             let betslip = removeFromKironSlip(match?.parent_match_id)

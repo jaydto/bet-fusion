@@ -188,9 +188,13 @@ const BetslipSubmitForm = React.memo(
         }, [ipAddress])
 
         const betItem=getBetslip()
+
+
         const sportBookLimits=settings?.sportsBookLimits
         const betslipLength = Object.keys(betItem || {}).length;
-
+        useEffect(()=>{
+            dispatch({type: "SET", key: "betslipLength", payload: betslipLength});
+        },[betslipLength] )
         const gaEventTracker=useAnalyticsEventTracker(live?'PlaceLiveBet':'PlacePrematchBet')
 
         const handlePlaceBet = useCallback((values,
@@ -345,7 +349,7 @@ const BetslipSubmitForm = React.memo(
                     raw_possible_win = jackpotData?.jackpot_amount;
                 }
 
-                console.log("betslip_length", betslipLength)
+
                 if (betslipLength === 1 && !jackpot) {
                     if (Number(raw_possible_win) > (Number(sportBookLimits?.singleBetMaxWin)||500000)) {
                         raw_possible_win = (Number(sportBookLimits?.singleBetMaxWin)||500000);

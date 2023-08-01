@@ -37,13 +37,12 @@ const Header = React.memo(
        // Import the navigationConfig object
         const {current} = containerRef;
         const [, setCompetitions] = useState({});
-        const [, setSettings] = useState({});
         const [isOpen, setIsOpen] = useState(false);
         const [, setShowLoadingModal] = useState(false);
-
         const pathname = window.location.pathname;
         const notShowMobileNav = shouldShowMobileNav(pathname);
         const showDownload = shouldShowDownload(pathname);
+        const [settings,]=useState(getFromLocalStorage('settings'));
 
 
         // useEffect(() => {
@@ -225,12 +224,11 @@ const Header = React.memo(
 
 
                 if (c_status === 200) {
-                    setSettings(c_result?.message);
                     setLocalStorage('settings', c_result?.message,1800000);
                 }
 
             } else {
-                setSettings(cached_settings);
+
             }
         })
 
@@ -251,17 +249,46 @@ const Header = React.memo(
         }
 
 
-        useEffect(() => {
-            const abort=new AbortController()
-            fetchAppConfigurations();
-            fetchData();
-            setUtmCampaign();
-            return () => {
-                abort.abort()
-            };
-        }, []);
+        useEffect( () => {
+            const cleanUpFuction= async()=>{
+                const abort = new AbortController();
+                await fetchAppConfigurations();
+                await fetchData();
 
-        const NotifyToastContainer = () => {
+                // Custom function to clear settings from localStorage
+                const clearLocalStorageSettings = () => {
+                    localStorage.removeItem('settings');
+                    // Manually call fetchAppConfigurations to update the settings
+                    fetchAppConfigurations();
+                };
+
+                // Listen for the "storage" event to detect changes in "settings" localStorage
+                const handleStorageChange = (event) => {
+                    if (event.key === 'settings') {
+                        fetchAppConfigurations();
+                    }
+                };
+
+                // Listen for "beforeunload" event to handle clearing localStorage in the same tab
+                const handleBeforeUnload = () => {
+                    clearLocalStorageSettings();
+                };
+
+                window.addEventListener('storage', handleStorageChange);
+                window.addEventListener('beforeunload', handleBeforeUnload);
+
+                return () => {
+                    // Clean up the event listeners when the component unmounts
+                    window.removeEventListener('storage', handleStorageChange);
+                    window.removeEventListener('beforeunload', handleBeforeUnload);
+                    abort.abort();
+                };
+            }
+            cleanUpFuction()
+        }, [settings]);
+
+
+const NotifyToastContainer = () => {
             return (
                 <>
                     {/* Render the ToastContainer */}

@@ -1,7 +1,6 @@
-import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useRef} from 'react';
 import {getFromLocalStorage} from "../../../utils/local-storage";
 import './period.css'
-import {StoreContext} from "../../../../context/store"
 import moment from "moment"
 import {useDispatch, useSelector} from 'react-redux'; // Import useDispatch hook
 import {
@@ -24,21 +23,15 @@ let timerVar;
 const KironPeriods = React.memo(
     (props) => {
         const dispatchRedux = useDispatch();
-        const {setPlayout, setIsCountdownTimerActive, isCountdownTimerActive} = props
-        const {state, dispatch} = useContext(StoreContext);
-        const firstMatchEndTime = getFromLocalStorage('kiron_end_time')
-        const kironSearch1 = getFromLocalStorage('kiron_search_data') || {}; // Use empty object as default value if kiron_search_data is null or undefined
+        const {setIsCountdownTimerActive} = props
+        const firstMatchEndTime = getFromLocalStorage('kiron_end_time') // Use empty object as default value if kiron_search_data is null or undefined
         const kironPeriodsRef = useRef(null);
-        const competition_id = useSelector((state) => state.nareLeague.competition_id)
-        const newCompetition = new URL(window.location).searchParams.get('competition_id') || competition_id
-        const [initialCompetition, setCompetition] = useState({
-            competition_id: newCompetition
-        })
+        const competition = useSelector((state) => state.nareLeague.competition_id)
+        const competition_id=Number(new URL(window.location).searchParams.get('competition_id'))||competition
 
         const fetchData = useCallback(async () => {
-            setIsCountdownTimerActive(false);
-            const newCompetition2 = {competition_id: Number(new URL(window.location).searchParams.get('competition_id')) || Number(competition_id)}
-            await dispatchRedux(nareLeaguePeriods(newCompetition2));
+            const newCompetition = {competition_id: Number(new URL(window.location).searchParams.get('competition_id')) || Number(competition_id)}
+            await dispatchRedux(nareLeaguePeriods(newCompetition));
         }, [competition_id]);
 
         useEffect(() => {
@@ -48,6 +41,27 @@ const KironPeriods = React.memo(
                 abort.abort()
             }
         }, [])
+
+
+        // track when competiton_id changes and resets for all previous states
+        useEffect(() => {
+            const links = document.querySelectorAll('.link');
+            links?.forEach((link) => link.classList.remove('highlight'));
+            clearInterval(timerVar)
+            clearInterval(timerInterval)
+            dispatchRedux(resetState('current_selection_period'))
+            dispatchRedux(setState('close_spinner', false))
+            dispatchRedux(resetState('start_time'))
+            dispatchRedux(resetState('inPlay'))
+            dispatchRedux(resetState('playout_data'))
+            dispatchRedux(resetState('active_market'))
+            dispatchRedux(resetState('play_time'))
+            dispatchRedux(resetState('time_left'))
+            dispatchRedux(resetState('playout_data'))
+            dispatchRedux(resetState('matches_data'))
+            fetchData()
+
+        }, [competition_id])
 
         // Access the nareLeague period states
         const periodsData = useSelector((state) => state.nareLeague.periods_data);
@@ -64,7 +78,6 @@ const KironPeriods = React.memo(
 
 
         useEffect(() => {
-            const newCompetition2 = {competition_id: Number(new URL(window.location).searchParams.get('competition_id')) || Number(competition_id)}
             const data = {
                 competition_id: Number(new URL(window.location).searchParams.get('competition_id')) || Number(competition_id),
                 round_id: round_id
@@ -74,6 +87,17 @@ const KironPeriods = React.memo(
                 round_id: (current_selection_period?.round !== '' || current_selection_period?.round !== undefined) ? current_selection_period?.round : round_id,
                 market_id: Number(market_id)
             }
+            // todo initial calculations here
+            const startTime = periodFirst;
+            const timeInPlay = (moment().valueOf() - moment(startTime).valueOf()) / 1000;
+            const timeMapping = Math.round(timeInPlay * (90 / 65));
+
+            if (timeMapping < 0) {
+                dispatchRedux(setState('inPlay', false));
+            } else if(timeMapping>0){
+                dispatchRedux(setState('inPlay', true));
+            }
+
             if (periodsReady && (current_selection_period || !inPlay)) {
                 dispatchRedux(nareLeagueMatches(dataMatches)); // Dispatch nareLeagueMatches async thunk
                 dispatchRedux(resetState('playouts_data'))
@@ -89,26 +113,6 @@ const KironPeriods = React.memo(
             event.currentTarget.classList.add('highlight');
         }
 
-        // track when competiton_id changes and resets for all previous states
-        useEffect(() => {
-            const links = document.querySelectorAll('.link');
-            links?.forEach((link) => link.classList.remove('highlight'));
-
-            const competition1 = new URL(window.location).searchParams.get('competition_id') || competition_id
-
-            if (competition1) {
-                clearInterval(timerVar)
-                clearInterval(timerInterval)
-                dispatchRedux(resetState('current_selection_period'))
-                dispatchRedux(setState('close_spinner', false))
-                dispatchRedux(resetState('start_time'))
-                dispatchRedux(resetState('inPlay'))
-                dispatchRedux(resetState('playout_data'))
-                dispatchRedux(resetState('active_market'))
-                fetchData()
-            }
-
-        }, [competition_id])
 
         const pathname = window.location.pathname;
 
@@ -218,9 +222,9 @@ const KironPeriods = React.memo(
             const payload = {
                 start: start, round: round, end: end
             }
-            if(start?.length>0){
+            if (start?.length > 0) {
                 dispatchRedux(setState('current_selection_period', payload))
-            }else{
+            } else {
                 dispatchRedux(resetState('current_selection_period'))
             }
 
@@ -283,7 +287,7 @@ const KironPeriods = React.memo(
                                                 (
                                                     <div style={{color: '#fff'}}
                                                          className={`countdown-timer `}>
-                                                        {Ended === true ? Ended : `${play_time > 0 ? "LIVE'" + play_time : 'START'}`}
+                                                        {Ended === true ? Ended : `${play_time > 0 ? "LIVE'" + play_time : 'LIVE'}`}
                                                     </div>
                                                 ) :
                                                 (

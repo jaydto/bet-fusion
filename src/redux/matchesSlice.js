@@ -63,11 +63,11 @@ export const matchesLive =
 
 export const matchesJackpot =
     createAsyncThunk("matches/jackpot",
-    async (betHistoryData) => {
+    async () => {
+
         const [status, response] = await makeRequest({
             url: "/v1/matches/jackpot",
-            method: "POST",
-            data: betHistoryData,
+            method: "GET",
         });
         if (status === 200) {
             return response;
@@ -75,6 +75,34 @@ export const matchesJackpot =
             throw new Error(response?.error || "Fetching JackpotMatches failed");
         }
     });
+export const jackpotById =
+    createAsyncThunk("matches/jackpotById",
+        async (jackpotData) => {
+            let endpoint=  `/v1/matches/jackpot?jackpot_id=${jackpotData?.jackpot_id}&jackpot_status=${jackpotData?.jackpot_status}`;
+            const [status, response] = await makeRequest({
+                url: endpoint,
+                method: "GET",
+            });
+            if (status === 200) {
+                return response;
+            } else {
+                throw new Error(response?.error || "Fetching JackpotMatches failed");
+            }
+        });
+export const jackpotHistoryData =
+    createAsyncThunk("matches/jackpotHistoryData",
+        async () => {
+
+            const [status, response] = await makeRequest({
+                url: "/v1/matches/jp-history",
+                method: "GET",
+            });
+            if (status === 200) {
+                return response;
+            } else {
+                throw new Error(response?.error || "Fetching JackpotMatches failed");
+            }
+        });
 export const matchesCompetition =
     createAsyncThunk("matches/competition",
     async (marketsData) => {
@@ -158,9 +186,10 @@ const matchesSlice = createSlice({
             .addCase(matchesJackpot.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(matchesJackpot.fulfilled, (state) => {
+            .addCase(matchesJackpot.fulfilled, (state, action) => {
                 state.loading = false;
                 state.error = null;
+                state.jackpot_data=action.payload;
             })
             .addCase(matchesJackpot.rejected, (state, action) => {
                 state.loading = false;
@@ -206,9 +235,6 @@ const matchesSlice = createSlice({
                 state.loading = false;
                 state.error = null;
                 const responsedata = action.payload?.data || [];
-
-                // Combine existing favorites with the new data
-                // const updatedFavorites = [...new Set([...state.favorites_data, ...responsedata])];
                 state.favorites_data = action.payload?.data || [];
                 // Update localStorage with the updated favorites
                 setLocalStorage('favorite_markets', responsedata);
@@ -228,6 +254,40 @@ const matchesSlice = createSlice({
                 state.loading = false;
                 state.error = action.error.message;
             })
+            .addCase(jackpotHistoryData.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(jackpotHistoryData.fulfilled, (state, action) => {
+                state.loading = false;
+                state.error = null;
+                const m_result = action.payload;
+                if (m_result) {
+                    const jp_history = m_result.map((result) => ({
+                        value: result,
+                        label: result?.jackpot_name,
+                    }));
+                    state.jackpot_history = jp_history;
+                } else {
+                    state.jackpot_history = [];
+                }
+            })
+            .addCase(jackpotHistoryData.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
+            .addCase(jackpotById.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(jackpotById.fulfilled, (state,action) => {
+                state.loading = false;
+                state.error = null;
+                state.jackpot_by_id=action.payload;
+            })
+            .addCase(jackpotById.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
+
 
     },
 });

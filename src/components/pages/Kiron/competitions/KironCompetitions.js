@@ -5,7 +5,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import {getFromLocalStorage} from "../../../utils/local-storage";
 import "./competition.css"
 import {useDispatch, useSelector} from 'react-redux'; // Import useDispatch hook
-import {nareLeagueCompetitions, setState} from '../../../../redux/nareLeague';
+import {nareLeagueCompetitions, resetState, setState} from '../../../../redux/nareLeague';
 
 
 const KironCompetitions = React.memo(

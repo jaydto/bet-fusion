@@ -1028,7 +1028,7 @@ input[type="radio"], input[type="checkbox"] {
     text-transform: none;
     padding-top: 1px;
     color: var(--always-white);
-    background: var(--hot);
+    background: var(--red);
     background-size: 35px 16px;
     width: 28px;
     height: 13px;
@@ -1039,7 +1039,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .new-alert-badge-items {
-    background: var(--hot);
+    background: var(--red);
     background-size: 35px 16px;
     color: var(--always-white);
     display: flex;

@@ -71,7 +71,7 @@ const Footer =React.memo(
                         <h5 className={""}>LICENSING</h5>
                         <p>
                             We are licensed and regulated by the Betting Control and Licensing
-                            Board BCLB 0000453
+                            Board BCLB 0000540
                         </p>
                     </div>
                 </div>

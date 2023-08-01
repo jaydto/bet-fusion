@@ -223,7 +223,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </script>
 
 </head>
-<body onscroll="getScrollLength()">
+<!--onscroll="getScrollLength()"-->
+<body >
 <script defer>
     (function (c, l, a, r, i, t, y) {
         c[a] =
@@ -282,16 +283,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 &noscript=1"/>
 </noscript>
 
-<script defer>
-    function getScrollLength() {
-        if (
-            window.innerHeight + window.scrollY >=
-            document.body.scrollHeight - 500
-        ) {
-            document.dispatchEvent(new Event("scrollEnd"));
-        }
-    }
-</script>
+<!--<script defer>-->
+<!--    function getScrollLength() {-->
+<!--        if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 500) {-->
+<!--            document.dispatchEvent(new Event("scroll"));-->
+<!--        }-->
+<!--    }-->
+<!--</script>-->
+
 
 <!--End of Scroll Script-->
 

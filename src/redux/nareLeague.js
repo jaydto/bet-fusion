@@ -197,7 +197,7 @@ const nareLeagueSlice = createSlice({
                 state.error = action.error.message;
             })
             .addCase(nareLeaguePlayouts.pending, (state) => {
-                state.loading = true;
+                state.loading = false;
             })
             .addCase(nareLeaguePlayouts.fulfilled, (state, action) => {
                 state.loading = false;

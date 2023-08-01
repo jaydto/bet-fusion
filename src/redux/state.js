@@ -1,5 +1,3 @@
-import {getFromLocalStorage} from "../components/utils/local-storage";
-
 const initialState = {
     data: [], // Initial state for the data reducer
     betting: {
@@ -62,6 +60,9 @@ const initialState = {
         user: null,
         loading: false,
         favorites_data:[],
+        jackpot_data:null,
+        jackpot_history:[],
+        jackpot_by_id:null,
     }
 };
 

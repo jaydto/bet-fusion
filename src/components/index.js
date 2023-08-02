@@ -474,7 +474,7 @@ const Index = React.memo(
 
                 <div className="item4">
                     <Header scrollPosition={scrollPosition}/>
-                    {(sportValue===79||sportValue===null)&&
+                    {(sportValue==='79'||sportValue===null)&&
                         <MobileNav2/>}
                     <ToastContainer/>
                 </div>

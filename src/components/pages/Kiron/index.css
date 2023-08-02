@@ -200,7 +200,7 @@
 }
 .kiron-playout-score-animation {
     background-color: red;
-    padding: 3px 3px;
+    padding: 5px 5px;
     color: white;
     animation: scoreblink 1s linear infinite;
 }
@@ -286,15 +286,7 @@
     opacity: .6;
     margin-bottom: 3px;
 }
-.col-results-page-1{
-    width:40%
-}
-.col-results-page-2{
-    width:20%
-}
-.col-results-page-3{
-    width:40%
-}
+
 
 .results-title{
     color: #FFC107;
@@ -388,7 +380,16 @@
     margin-top: 7rem;
 }
 .red-txt {
-    color: #d32027;
+    color: var(--red);
+    font-size: 16px;
+}
+.score-value-txt {
+    color: var(--orange);
+    font-size: 16px;
+}
+.score-value-txt-stopped{
+    color: var(--red);
+    font-size: 16px;
 }
 .white-txt{
     color: #fff2f2;
@@ -449,6 +450,15 @@
 }
 
 @media (min-width:992px){
+    .col-results-page-1{
+        width:46%
+    }
+    .col-results-page-2{
+        width:8%
+    }
+    .col-results-page-3{
+        width:46%
+    }
     .kiron-body-pages {
         margin-top: 11.6rem;
         position: relative;
@@ -499,6 +509,15 @@
 }
 
 @media (max-width:991px){
+    .col-results-page-1{
+        width:40%
+    }
+    .col-results-page-2{
+        width:20%
+    }
+    .col-results-page-3{
+        width:40%
+    }
     .mobile-remove-kiron-bet-history-tab{
         display:none!important;
     }

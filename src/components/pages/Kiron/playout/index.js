@@ -16,6 +16,7 @@ const KironPlayouts = React.memo(
         const loading = useSelector((state) => state.nareLeague.loading)
         const round_id = useSelector((state) => state.nareLeague.round_id);
         const play_time = useSelector((state) => state.nareLeague.play_time);
+        const Ended = useSelector((state) => state.nareLeague.ended);
 
         const fetchData = () => {
             const data = {
@@ -112,37 +113,39 @@ const KironPlayouts = React.memo(
                                             <div className="live-match-selection pt-1 pb-1">
                                                 <div className="container">
                                                     <div className="row px-3">
-
-                                                        <div className="col-6 text-right pt-1">
-                                                        <span className="team-jersey">
-                                                            <LazyLoadImage src={results?.home_team_image}
-                                                                           alt="Nare League"
-                                                                           style={{height: '32px'}}/>
-                                                        </span>
-                                                            <a href="#" style={{color: "var(--black)"}}
-                                                               className={"d-flex justify-content-between align-items-center"}>
-                                                            <span
-                                                                className="home-team-r bold px-2">{results.home_team}</span>
-                                                                <span
-                                                                    className={`mr-2 bold ${handleScore_home(results.home_scores.filter((score) => score <= play_time).length, results.away_scores.filter((score) => score <= play_time).length) ? `${state?.Ended ? '' : 'kiron-playout-score-animation kiron-playout-score'}` : 'red-txt'}`}>
-                                                            {results.home_scores.filter((score) => score <= play_time).length}
-                                                            </span>
+                                                        <div className="col-results-page-1 text-right pt-1 d-flex justify-content-between align-items-center"><span
+                                                            className="team-jersey"><LazyLoadImage
+                                                            src={results?.home_team_image}
+                                                            alt="Nare League"/></span>
+                                                            <a href="#"
+                                                               className={'d-flex  justify-content-between align-items-center gap-4 '}
+                                                               style={{color: "var(--black)"}}>
+                                                                    <span
+                                                                        className="home-team-r bold px-2">{results.home_team}</span>
                                                             </a>
                                                         </div>
-
-                                                        <div className="col-6 text-left pt-1">
-                                                            <a href="#"
-                                                               className={"d-flex justify-content-between align-items-center"}
-                                                               style={{color: "var(--black)"}}>
+                                                        <div className="col-results-page-2 d-flex align-items-center justify-content-between ">
+                                                                    <span
+                                                                        className={`mr-2 bold ${handleScore_home(results.home_scores.filter((score) => score <= play_time).length, results.away_scores.filter((score) => score <= play_time).length) ? `${Ended ? 'score-value-txt-stopped' : 'kiron-playout-score-animation kiron-playout-score'}` : 'score-value-txt'}`}>
+                                                                         {results.home_scores.filter((score) => score <= play_time).length}
+                                                                    </span>
+                                                            <span className={'separator-style'}>
+                                                                    </span>
                                                             <span
-                                                                className={`mr-2 bold ${handleScore_away(results.home_scores.filter((score) => score <= play_time).length, results.away_scores.filter((score) => score <= play_time).length) ? `${state?.Ended ? '' : 'kiron-playout-score-animation kiron-playout-score'}` : 'red-txt'}`}> {results.away_scores.filter((score) => score <= play_time).length}</span>
-                                                                <span
-                                                                    className="away-team-r bold px-2">{results.away_team}</span>
-
+                                                                className={`mr-2 bold ${handleScore_away(results.home_scores.filter((score) => score <= play_time).length, results.away_scores.filter((score) => score <= play_time).length) ? `${Ended ? 'score-value-txt-stopped' : 'kiron-playout-score-animation kiron-playout-score'}` : 'score-value-txt'}`}>
+                                                                {results.away_scores.filter((score) => score <= play_time).length}
+                                                            </span>
+                                                        </div>
+                                                        <div className="col-results-page-3 text-left pt-1 d-flex justify-content-between align-items-center">
+                                                            <a href="#"
+                                                               className={"d-flex justify-content-between align-items-center gap-4"}
+                                                               style={{color: "var(--black)"}}>
+                                                                        <span
+                                                                            className="away-team-r bold px-2">{results.away_team}</span>
                                                             </a>
                                                             <span className="team-jersey"><LazyLoadImage
                                                                 src={results?.away_team_image}
-                                                                alt="Nare League" style={{height: '32px'}}/></span>
+                                                                alt="Nare League"/></span>
                                                         </div>
                                                     </div>
                                                 </div>

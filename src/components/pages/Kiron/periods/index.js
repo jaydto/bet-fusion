@@ -11,7 +11,6 @@ import {
     setState,
     setTimerData
 } from '../../../../redux/nareLeague';
-
 export const getTime = (time) => {
     const start = new Date(time);
     const startTimeString = start.toLocaleTimeString('en-Us', {hour12: false, hour: '2-digit', minute: '2-digit'});
@@ -23,7 +22,6 @@ let timerVar;
 const KironPeriods = React.memo(
     (props) => {
         const dispatchRedux = useDispatch();
-        const {setIsCountdownTimerActive} = props
         const firstMatchEndTime = getFromLocalStorage('kiron_end_time') // Use empty object as default value if kiron_search_data is null or undefined
         const kironPeriodsRef = useRef(null);
         const competition = useSelector((state) => state.nareLeague.competition_id)
@@ -272,7 +270,7 @@ const KironPeriods = React.memo(
                                         style={{textAlign: 'center', lineHeight: '1.5'}}>
                                 <div style={{width: "100%", color: "#000"}}>
                                     <div
-                                        className={` inner-div active d-flex align-items-center kiron-value flex-column justify-content-center link period-height ${isFirst ? !inPlay ? 'count-red' : inPlay ? 'count-green' : '' : ''}`}
+                                        className={` inner-div active d-flex align-items-center kiron-value flex-column justify-content-center link period-height ${isFirst ? !inPlay ? 'count-red' : inPlay ? 'count-red' : '' : ''}`}
                                         onClick={(event) => {
                                             handleLinkClick(event);
                                             handleNextSelected(startTime, roundId, endTime)
@@ -287,7 +285,7 @@ const KironPeriods = React.memo(
                                                 (
                                                     <div style={{color: '#fff'}}
                                                          className={`countdown-timer `}>
-                                                        {Ended === true ? Ended : `${play_time > 0 ? "LIVE'" + play_time : 'LIVE'}`}
+                                                        {Ended ? Ended : `${play_time > 0 ? "LIVE '" + play_time : 'LIVE'}`}
                                                     </div>
                                                 ) :
                                                 (

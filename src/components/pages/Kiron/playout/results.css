@@ -136,6 +136,11 @@
     font-size: 1.5em;
     font-weight: 800;
 }
+.standings-container-heading.playouts{
+    background:var(--orange);
+    color:var(--dark);
+    font-weight:500;
+}
 
 @media (max-width: 991px){
     .home-team-r, .away-team-r{

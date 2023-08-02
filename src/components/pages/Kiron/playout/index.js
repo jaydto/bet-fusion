@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect} from 'react';
 import "./results.css"
 import {StoreContext} from "../../../../context/store"
 import {LazyLoadImage} from "react-lazy-load-image-component";
@@ -10,14 +10,14 @@ const KironPlayouts = React.memo(
     (props) => {
         const {state, dispatch} = useContext(StoreContext);
         let timeVar;
-        const dispatchRedux=useDispatch()
+        const dispatchRedux = useDispatch()
         const playouts_data = useSelector((state) => state.nareLeague.playouts_data)
         const competition_id = useSelector((state) => state.nareLeague.competition_id)
         const loading = useSelector((state) => state.nareLeague.loading)
         const round_id = useSelector((state) => state.nareLeague.round_id);
         const play_time = useSelector((state) => state.nareLeague.play_time);
 
-        const fetchData=()=>{
+        const fetchData = () => {
             const data = {
                 competition_id: Number(competition_id),
                 round_id: round_id
@@ -85,16 +85,18 @@ const KironPlayouts = React.memo(
                 <section className="standing-wrapper text-center pt-2 pb-2">
                     <div className="w-100">
                         <div className="w-100">
-                            <div className="col-12 pb-2 standings-container-heading">
-                            <span className="standing-heading d-flex  flex-column
-                            ">{competition_id == 1 ? "KENYAN" : competition_id == 2 ? "ENGLISH " : competition_id == 3 ? "SPANISH" : "ITALIAN"} LEAGUE</span>
-                                <span><strong className={'font-bold-md'}>
-                                GAME WEEK {playouts_data?.game_week}
-                            </strong> </span> &nbsp;  <span>
-                            <strong className={'font-bold-md'}>
-                                TOTAL SELECTIONS {playouts_data?.selections || 0}
-                            </strong>
-                        </span>
+                            <div
+                                className="col-12 py-1 standings-container-heading playouts d-flex align-items-center justify-content-between px-3">
+                                <span>
+                                    <div className={'d-flex align-items-center'}>
+                                        Matchday #{playouts_data?.game_week}
+                                    </div>
+                                </span>
+                                <span>
+                                    <div className={'d-flex align-items-center'}>
+                                        You have {playouts_data?.selections || 0} selections
+                                    </div>
+                                </span>
                             </div>
                         </div>
                     </div>

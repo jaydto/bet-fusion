@@ -200,7 +200,7 @@
 }
 .kiron-playout-score-animation {
     background-color: red;
-    padding: 0px 9px;
+    padding: 3px 3px;
     color: white;
     animation: scoreblink 1s linear infinite;
 }

@@ -28,6 +28,14 @@ const KironResults =
             dispatchRedux(resetState('current_selection_period'))
         }, [newCompetition]);
 
+        const FormatTime=(props)=>{
+            const {time}=props
+            const [dateString, timeString] = time?.split(' ');
+            const [hour, minute] = timeString?.split(':');
+            const formatedTime=hour+':'+minute
+            return formatedTime
+        }
+
         return (
             <>
                 {resultsData && !loadingData ?
@@ -41,7 +49,7 @@ const KironResults =
                                     className="standing-heading-r"><strong>{league?.competition_name.toUpperCase()} LEAGUE&nbsp; WEEK {league?.round_number}&nbsp;#{league?.round_id}</strong></span>
                                         </div>
                                         <div className="col-12"><span
-                                            className="standing-time">{league?.event_time}</span></div>
+                                            className="standing-time"><FormatTime time={league?.event_time}/></span></div>
                                     </div>
                                 </div>
                             </section>
@@ -55,7 +63,7 @@ const KironResults =
                                                     <div className="live-match-selection pt-1 pb-1">
                                                         <div className="container">
                                                             <div className="row px-3">
-                                                                <div className="col-6 text-right pt-1"><span
+                                                                <div className="col-results-page-1 text-right pt-1 d-flex justify-content-between align-items-center"><span
                                                                     className="team-jersey"><LazyLoadImage
                                                                     src={results?.home_icon}
                                                                     alt="Nare League"/></span>
@@ -64,16 +72,21 @@ const KironResults =
                                                                        style={{color: "var(--black)"}}>
                                                                     <span
                                                                         className="home-team-r bold px-2">{results.home_team}</span>
-                                                                    <span
-                                                                        className="ml-2 scores-txt">{results.home_score}</span></a>
+                                                                    </a>
                                                                 </div>
-
-                                                                <div className="col-6 text-left pt-1">
+                                                                <div className="col-results-page-2 d-flex align-items-center justify-content-between ">
+                                                                    <span
+                                                                        className="ml-2 scores-txt">{results.home_score}</span>
+                                                                    <span className={'separator-style'}>
+                                                                    </span>
+                                                                    <span
+                                                                        className="mr-2 scores-txt">{results.away_score}</span>
+                                                                </div>
+                                                                <div className="col-results-page-3 text-left pt-1 d-flex justify-content-between align-items-center">
                                                                     <a href="#"
                                                                        className={"d-flex justify-content-between align-items-center gap-4"}
                                                                        style={{color: "var(--black)"}}>
-                                                                        <span
-                                                                            className="mr-2 scores-txt">{results.away_score}</span>
+
                                                                         <span
                                                                             className="away-team-r bold px-2">{results.away_team}</span>
                                                                     </a>

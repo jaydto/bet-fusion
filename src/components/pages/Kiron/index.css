@@ -48,7 +48,22 @@
 }
 
 .standing-time{
-    font-weight:800
+    font-weight:600;
+    color:var(--dark);
+    font-size:13px;
+}
+.kiron-tabs-active {
+    /* background: #28374e; */
+    border-right: 3px solid #a7164600;
+    border-top: 3px solid #a7164600;
+    padding: 5px;
+    width: 33.33333333%;
+    float: left;
+    text-align: center;
+    /* border-bottom: 1px solid #FFC428; */
+}
+.kiron-tabs-active .main-header{
+    color: var(--orange)!important;
 }
 /*spinner */
 .kiron-competitions{
@@ -213,7 +228,12 @@
 .kiron-tabs-padding{
     padding:3px!important;
     white-space: nowrap;
+    border-right: thin solid!important;
 }
+.kiron-tabs-padding:last-child{
+    border-right:none!important;
+}
+
 .kiron-match-playout{
     display: flex;
     color: white;
@@ -266,6 +286,16 @@
     opacity: .6;
     margin-bottom: 3px;
 }
+.col-results-page-1{
+    width:40%
+}
+.col-results-page-2{
+    width:20%
+}
+.col-results-page-3{
+    width:40%
+}
+
 .results-title{
     color: #FFC107;
     font-size: 13px;
@@ -300,6 +330,9 @@
 }
 .more-market-button{
     color:var(--light) !important;
+}
+.team-jersey img{
+    width:25px!important;
 }
 .more-market-button:hover{
     color:var(--light) !important;

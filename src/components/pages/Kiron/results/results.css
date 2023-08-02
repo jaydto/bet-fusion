@@ -126,12 +126,19 @@
 .green-txt {
     color: #009d75;
 }
+.separator-style {
+    width: 5px;
+    border: thin solid var(--light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .standing-wrapper {
     margin:0;
     width: 100%;
     float: left;
     background-color: orange;
-    border-bottom: 1px solid yellow;
+    border-bottom: none;
     font-weight: 400;
     color: #fff;
     font-size: 1em;

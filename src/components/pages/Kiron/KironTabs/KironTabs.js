@@ -1,4 +1,4 @@
-import Row from 'react-bootstrap/Row';
+    import Row from 'react-bootstrap/Row';
 import React from "react";
 import {Link} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -10,10 +10,10 @@ const KironTabs = React.memo(
     // console.log("tabs_main_tab", tab)
 
 
-    const u_class = tab === 'results' ? "home-tabs-active" : "home-tabs";
-    const h_class = (!tab || tab === 'nare-league') ? "home-tabs-active" : "home-tabs";
-    const t_class = tab === 'standing' ? "home-tabs-active" : "home-tabs";
-    const b_class = tab === 'bet-history' ? "home-tabs-active" : "home-tabs";
+    const u_class = tab === 'results' ? "kiron-tabs-active" : "home-tabs";
+    const h_class = (!tab || tab === 'nare-league') ? "kiron-tabs-active" : "home-tabs";
+    const t_class = tab === 'standing' ? "kiron-tabs-active" : "home-tabs";
+    const b_class = tab === 'bet-history' ? "kiron-tabs-active" : "home-tabs";
 
 
 
@@ -37,7 +37,7 @@ const KironTabs = React.memo(
             <Row className="top-matches d-flex flex-row ">
                 <div className="col bg-black text-center kiron-tabs-padding">
                     <Link className={`cursor-pointer w-100 ${h_class}`} to={'/nare-league?' + getLink()}>
-                        <span className="col-sm-11 main-header">Markets</span>
+                        <span className="col-sm-11 main-header">Matches</span>
                     </Link>
                 </div>
                 <div className="col bg-black text-center kiron-tabs-padding">
@@ -48,7 +48,7 @@ const KironTabs = React.memo(
 
                 <div className="col bg-black text-center kiron-tabs-padding">
                     <Link className={`cursor-pointer w-100 ${t_class}`} to={'/standing?' }>
-                        <span className="col-sm-11 main-header">Standing</span>
+                        <span className="col-sm-11 main-header">Standings</span>
                     </Link>
                 </div>
                 {user&&

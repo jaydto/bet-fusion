@@ -230,7 +230,7 @@
     white-space: nowrap;
     border-right: thin solid!important;
 }
-.kiron-tabs-padding:last-child{
+.kiron-tabs-padding:nth-child(3){
     border-right:none!important;
 }
 
@@ -514,6 +514,9 @@
 }
 .background-color-orange{
   background:var(--orange)!important;
+}
+.kiron-tabs-padding{
+    overflow:hidden!important;
 }
 @media (max-width:991px){
     .kiron-tabs-active .main-header {

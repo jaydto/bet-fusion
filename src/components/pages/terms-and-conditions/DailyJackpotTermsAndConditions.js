@@ -78,7 +78,7 @@ const DailyJackpotTermsAndConditions = () =>
 
                         <h4 className='text-decoration-underline'>SMS format</h4>
                         <p>SMS JP (Daily Jackpot) pick1pick2pick3pick4pick5…. to 29877</p>
-                        <p>Example JP12X21X… to 29877</p>
+                        <p>Example JP#12X21X… to 29877</p>
 
                         <h4 className='text-decoration-underline'>Jackpot rollover</h4>
                         <p>BETNARE may, at its own discretion, introduce a Jackpot rollover, in which jackpot totals

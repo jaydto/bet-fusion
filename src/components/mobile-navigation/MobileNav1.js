@@ -164,7 +164,7 @@ const MobileNav1 = React.memo(
                                         alt=""
                                         style={{height: "23px", marginTop:"-6px"}}
                                     />
-                                    <span className=" hot-alert-badge" >HOT</span>
+
                                 </div>
                                 <p style={{textAlign: "center"}}>
                                     League
@@ -264,7 +264,7 @@ const MobileNav1 = React.memo(
                                         alt=""
                                         style={{height: "23px", marginTop: "-6px"}}
                                     />
-                                    <span className=" hot-alert-badge ">HOT</span>
+
                                 </div>
                                 <p style={{textAlign: "center"}}>
                                     JetX
@@ -289,7 +289,7 @@ const MobileNav1 = React.memo(
                                         alt=""
                                         style={{height: "23px", marginTop: "-6px"}}
                                     />
-                                    <span className=" new-alert-badge">NEW</span>
+                                    {/*<span className=" new-alert-badge">NEW</span>*/}
                                 </div>
                                 <p style={{textAlign: "center"}}>
                                     FootballX
@@ -340,7 +340,7 @@ const MobileNav1 = React.memo(
                                         alt=""
                                         style={{height: "23px", marginTop: "-6px", width: '30px'}}
                                     />
-                                    <span className=" hot-alert-badge">HOT</span>
+
                                 </div>
                                 <p style={{textAlign: "center"}}>
                                     Spaceman

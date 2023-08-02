@@ -276,7 +276,7 @@ const Jackpot = React.memo(
                                                     GAME
                                                 </div>
                                                 <div className="col-md-3 col-sm-3 bold ">
-                                                    PICK
+                                                    OUTCOME
                                                 </div>
                                                 <div className="col-md-2 col-sm-4 bold ">
                                                     RESULT

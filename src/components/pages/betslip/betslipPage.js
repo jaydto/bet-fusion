@@ -7,6 +7,7 @@ import SlipTabs from "./tabs/slip-tabs";
 
 import KironSlip from "../../right/kironslip";
 import Header from "../../header/header";
+import {ToastContainer} from "react-toastify";
 
 const BetslipPage = React.memo(
     () => {
@@ -73,6 +74,7 @@ const BetslipPage = React.memo(
                     style={{overflow: 'hidden'}}>
                     <div>
                         <Header slip={true}/>
+                        <ToastContainer/>
                     </div>
                     <div className={"w-100 top-spacing-betslip "}>
                         <div className="bet-option-list w-100" id="" style={{bottom: "0", height: "100%"}}>

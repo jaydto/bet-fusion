@@ -733,6 +733,7 @@ const OddButton = React.memo(
         }, [updateBeslipKey, updatePickedChoices, updateOddValue, updateMatchPicked]);
 
         const maxPickReached = () => {
+            console.log("max_pick_reached")
             setPicked("");
             Notify({
                 status: 401,
@@ -765,7 +766,7 @@ const OddButton = React.memo(
                     attributes.odd_key +
                     (marketKey !== undefined ? marketKey : "")
                 );
-
+                const betItems = getBetslip();
                 const slip = {
                     match_id: attributes.match_id,
                     parent_match_id: attributes.parent_match_id,
@@ -789,9 +790,7 @@ const OddButton = React.memo(
                     position: match?.pos || 0,
                 };
 
-
                 if (cstm === ucn) {
-
                     let betslip;
                     if (picked === "picked") {
                         betslip =
@@ -802,15 +801,15 @@ const OddButton = React.memo(
                         setPicked("");
                         dispatch({type: "SET", key: reference, payload: null});
                     } else {
-                        betslip =
-                            jackpot !== true
-                                ? (getBetslip() && Object.keys(getBetslip())?.length <= settings?.sportsBookLimits?.multiBetMaxSelections || 29) ||
-                                getBetslip() == null
-                                    ? addToSlip(slip)
-                                    : maxPickReached()
-                                : addToJackpotSlip(slip);
-                        console.log("Adding to slip...");
-                        dispatch({type: "SET", key: reference, payload: cstm});
+
+                        if(!jackpot&&Object.keys(betItems || {}).length===Number(settings?.sportsBookLimits?.multiBetMaxSelections)){
+                            maxPickReached()
+                        }else{
+                            addToSlip(slip)
+                            betslip =getBetslip()
+                            dispatch({type: "SET", key: reference, payload: cstm});
+                        }
+
                     }
                     dispatch({type: "SET", key: betslip_key, payload: betslip});
                 }

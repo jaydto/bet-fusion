@@ -474,8 +474,6 @@ const Index = React.memo(
 
                 <div className="item4">
                     <Header scrollPosition={scrollPosition}/>
-                    {(sportValue==='79'||sportValue===null)&&
-                        <MobileNav2/>}
                     <ToastContainer/>
                 </div>
                 <div className="flex-container">
@@ -484,7 +482,8 @@ const Index = React.memo(
                         <div className="gz home match-overflow ">
                             <div className="homepage mobile-full-height" ref={homePageRef}
                                  style={width < 991 ? {height: `${height}px`, overflowY: 'auto'} : {}}>
-                                {/*<MobileNav2/>*/}
+                                {(sportValue==='79'||sportValue===null)&&
+                                    <MobileNav2/>}
                                 <CarouselLoader/>
                                 <Testimonials/>
                                 <div className={'filters-navigation gap-3 d-flex justify-content-between align-items-center'}>

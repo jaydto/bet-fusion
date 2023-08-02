@@ -78,7 +78,7 @@ const MobileNav2 = React.memo(
                 {sport?.top_soccer.map((top_league, index) => (
                     <td key={index} className={` d-flex menu-t sport-check ${pathname===top_league.competition_id?" active":""}`} style={{paddingLeft: "4px",textAlign: 'center',lineHeight: '1.5'}}>
                         <Link  style={{paddingRight: "4px",width:"max-content"}}  to={ `/competition/79/${top_league.category_id}/${top_league.competition_id}?sport_id=79&sub_type_id=1`}>
-                         <div className="inner-div active d-flex align-items-center justify-content-center">
+                         <div className="inner-div active d-flex align-items-center justify-content-center gap-2">
                                 <LazyLoadImage
                                     className="side-icon nav-mobile"
                                     src={getSportImageIcon(top_league.competition_name)}

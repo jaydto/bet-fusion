@@ -11,6 +11,7 @@ import {ToastContainer} from "react-toastify";
 import throttle from "lodash/throttle";
 import SkeletonLoaderMobile from "./pages/skeletonLoadersWeb/SkeletonLoaderMobile";
 import SkeletonLoader from "./pages/skeletonLoadersWeb/SkeletonLoader";
+import MobileNav2 from "./mobile-navigation/MobileNav2";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -33,6 +34,7 @@ const CompetitionMatches = React.memo(
         const [reset, setReset] = useState(0);
         const [shouldFetch, setShouldFetch] = useState(true);
         const {width} = useWindowDimensions();
+        let sportValue = new URL(window.location).searchParams.get('sport_id')
 
 
         const findPostableSlip = () => {
@@ -153,6 +155,8 @@ const CompetitionMatches = React.memo(
                         <div className="gz home match-overflow ">
                             <div className="gz home match-overflow">
                                 <div className="homepage mobile-full-height">
+                                    {(sportValue==='79'||sportValue===null)&&
+                                        <MobileNav2/>}
                                     <CarouselLoader/>
                                     <Testimonials/>
                                     {matches && <MatchList

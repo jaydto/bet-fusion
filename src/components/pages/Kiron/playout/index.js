@@ -154,7 +154,7 @@ const KironPlayouts = React.memo(
                                             {results?.bet_pick !== null &&
                                                 <div className={'w-100 d-flex align-items-center'}>
                                              <span
-                                                 className="w-100  d-flex  justify-content-center bold px-2 font-color-orange w-100"
+                                                 className="w-100  d-flex  justify-content-center bold px-2 align-items-center background-color-orange w-100"
                                                  style={{fontSize: '13px', height: '23px'}}>
                                                  &nbsp;
                                                  <span className={'text-dark '}>Bet Pick:&nbsp;

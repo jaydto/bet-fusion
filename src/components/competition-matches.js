@@ -30,7 +30,6 @@ const CompetitionMatches = React.memo(
         const [producerDown, setProducerDown] = useState(false);
         const [userSlipsValidation, setUserSlipsValidation] = useState();
         const [fetching, setFetching] = useState(false)
-        const [limit, setLimit] = useState(20);
         const [reset, setReset] = useState(0);
         const [shouldFetch, setShouldFetch] = useState(true);
         const {width} = useWindowDimensions();
@@ -123,31 +122,6 @@ const CompetitionMatches = React.memo(
                 setMatches(null);
             };
         }, [fetchPagedData]);
-
-        // Define throttledHandleScroll outside of useEffect to create it only once
-        const throttledHandleScroll = throttle(() => {
-            const scrollPosition = window.scrollY;
-            const windowHeight = window.innerHeight;
-            const documentHeight = document.documentElement.scrollHeight;
-            const distanceToBottom = documentHeight - (scrollPosition + windowHeight);
-
-            if (!fetching && distanceToBottom <= 500 && matchSizeRef.current >= limit) {
-                // Update the state when the user is close to the bottom
-                setFetching(true);
-                setLimit(prevLimit => prevLimit + 20);
-                setReset(prevReset => prevReset + 1);
-            }
-        }, 100);
-
-        useEffect(() => {
-            // Add the throttled event listener
-            window?.addEventListener('scroll', throttledHandleScroll);
-
-            // Clean up the event listener when the component unmounts
-            return () => {
-                window?.removeEventListener('scroll', throttledHandleScroll);
-            };
-        }, [throttledHandleScroll, fetching, limit, reset, matchSizeRef]);
 
         const urlPath = window.location.pathname
         const showDownload = (!urlPath.includes("nare-games") && !urlPath.includes("gameplay") && !urlPath.includes("smart-play") && !urlPath.includes("betslip-slip") && !urlPath.includes("nare-league") && !urlPath.includes("bet-history") && !urlPath.includes("standings") && !urlPath.includes("results") && !urlPath.includes("casino") && !urlPath.includes("jackpot") && !urlPath.includes("smart-soft") && !urlPath.includes("virtuals") && !urlPath.includes("match") && !urlPath.includes("competition"))

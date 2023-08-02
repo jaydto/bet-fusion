@@ -10,7 +10,7 @@ import useWindowDimensions from "./header/Dimensions";
 import {ToastContainer} from "react-toastify";
 import throttle from "lodash/throttle";
 import SkeletonLoaderMobile from "./pages/skeletonLoadersWeb/SkeletonLoaderMobile";
-import SkeletonLoader from "./pages/skeletonLoadersWeb/SkeletonLoader";
+import SkeletonLoader from "./pages/skeletonLoadersWeb/SkeletonLive";
 import MobileNav2 from "./mobile-navigation/MobileNav2";
 
 const Header = React.lazy(() => import('./header/header'));

@@ -449,6 +449,9 @@
 }
 
 @media (min-width:992px){
+    .kiron-playout-score-animation {
+        padding: 1px 8px!important;
+    }
     .col-results-page-1{
         width:46%
     }
@@ -502,7 +505,7 @@
 
     }
     .league-games-wrapper.playout{
-        margin-top:10rem;
+        margin-top:7.4rem;
     }
 
 }
@@ -544,7 +547,7 @@
 
 
     .league-games-wrapper.playout {
-        margin-top: 8rem;
+        margin-top: 7.4rem;
     }
     .kiron-sticky-nav{
         z-index:2000;

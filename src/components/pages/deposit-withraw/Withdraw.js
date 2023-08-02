@@ -2,10 +2,10 @@ import React, {useContext, useEffect, useState} from 'react';
 import mpesa from '../../../assets/img/mpesa-3.png';
 import makeRequest from "../../utils/fetch-request";
 import {Form, Formik} from 'formik';
-import {StoreContext } from "../../../context/store"
+import {StoreContext} from "../../../context/store"
 import {Navbar, Offcanvas} from "react-bootstrap";
 import Container from "react-bootstrap/Container";
-import {Link, useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBackspace} from "@fortawesome/free-solid-svg-icons";
 import {LazyLoadImage} from "react-lazy-load-image-component";
@@ -27,11 +27,11 @@ const backgroundStyle = {
 const Withdrawal = React.memo(
     (props) => {
         //todo get the phone number from logged in user ....
-        const { state, dispatch } = useContext(StoreContext);
-        const navigate = useNavigate();
+        const {state, dispatch} = useContext(StoreContext);
         const [success, setSuccess] = useState(false);
         const [message, setMessage] = useState(null);
-        const {mobile} = props;
+        const settings = getFromLocalStorage('settings')
+        const withdrawalLimits = settings?.withdrawalLimits
         const [user, setUser] = useState(getFromLocalStorage("user"));
         const updateUserOnHistory = () => {
             if (!user) {
@@ -47,7 +47,7 @@ const Withdrawal = React.memo(
                     setLocalStorage('user', u);
                     setUser(u)
                     dispatch({type: "SET", key: "user", payload: u});
-                }else{
+                } else {
 
                 }
             });
@@ -69,18 +69,18 @@ const Withdrawal = React.memo(
                 setSuccess(status === 200 || status === 201);
                 setMessage(response);
                 if (status === 200 || status === 201) {
-                    const data={
-                        msisdn:state?.user?.msisdn,
-                        amount:values?.amount
+                    const data = {
+                        msisdn: state?.user?.msisdn,
+                        amount: values?.amount
                     }
                     gaEventTracker('Withdraw', data)
-                }else{
-                    const data={
-                        msisdn:state?.user?.msisdn,
-                        amount:values?.amount,
-                        message:response?.message
+                } else {
+                    const data = {
+                        msisdn: state?.user?.msisdn,
+                        amount: values?.amount,
+                        message: response?.message
                     }
-                    gaEventTracker('Withdraw Failed',data )
+                    gaEventTracker('Withdraw Failed', data)
                 }
             })
         }
@@ -93,7 +93,7 @@ const Withdrawal = React.memo(
                 errors.msisdn = 'Please enter a valid phone number'
             }
             //Removed the  upper limit  values.amount > 70000
-            if (!values.amount || values.amount < 10) {
+            if (!values.amount || values.amount < withdrawalLimits?.minimumAmount || values.amount > withdrawalLimits?.maximumAmount) {
                 errors.amount = "Please enter amount above KES 10";
             }
             return errors

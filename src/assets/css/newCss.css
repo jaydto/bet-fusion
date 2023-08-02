@@ -3620,10 +3620,10 @@ img.nare-league {
     .mobile-profile1.ipad-show{
         gap:0px!important;
     }
-    .deposit-button.size-font-user-action span:nth-child(1){
-        white-space:normal!important;
-        font-size:10px!important;
-
+    .deposit-button.size-font-user-action span:nth-child(1) {
+        white-space: normal!important;
+        font-size: 10px!important;
+        min-width: 51px;
     }
     .deposit-button.size-font-user-action{
         margin-right:0px!important;

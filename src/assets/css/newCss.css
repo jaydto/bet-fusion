@@ -3386,6 +3386,18 @@ img.nare-league {
 }
 
 @media (max-width: 575px) {
+    .deposit-button.size-font-user-action span:nth-child(1){
+        white-space:nowrap!important;
+        font-size:11px!important;
+
+    }
+    .deposit-button.size-font-user-action{
+        margin-right:0px!important;
+    }
+    .deposit-button.deposit-button-header.size-font-user-action span:nth-child(1){
+        white-space:nowrap!important;
+        font-size:10px!important;
+    }
     .empty-more-markets-button {
         height: 32px !important;
     }
@@ -3598,7 +3610,16 @@ img.nare-league {
     }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 380px) {
+    .home-tabs-filters-active {
+        font-size: 12px!important;
+    }
+    .home-tabs-filters {
+        font-size: 11px;
+    }
+    .mobile-profile1.ipad-show{
+        gap:0px!important;
+    }
     .deposit-button.size-font-user-action span:nth-child(1){
         white-space:normal!important;
         font-size:10px!important;
@@ -3873,7 +3894,7 @@ img.nare-league {
 
 }
 
-@media (min-width: 200px) and (max-width: 300px) {
+@media (min-width: 200px) and (max-width: 310px) {
     .size-font-user-action {
         font-size: 7px !important;
     }

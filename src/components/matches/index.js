@@ -1309,7 +1309,6 @@ const MatchRow = React.memo(
                                         </div>
                                     </div>}
                             </div>
-                            {console.log("home_check",match)}
                             <div className={`c-btn-group align-self-center checking ${jackpot ? 'w-100' : ''}`}>
                                 {match?.odds?.home_odd
                                     ? (match?.odds?.home_odd && (!pdown && match?.odds?.home_odd && match.odds.home_odd !== 'NaN' &&

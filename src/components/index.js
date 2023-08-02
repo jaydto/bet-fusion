@@ -11,6 +11,7 @@ import Testimonials from "./carousel/Testimonials";
 import Countries from "./countries/Countries";
 import {toast, ToastContainer} from "react-toastify";
 import {marketChoiceOptions} from "./matches";
+import throttle from 'lodash/throttle';
 import SkeletonLoader from "./pages/skeletonLoadersWeb/SkeletonLoader";
 import SkeletonLoaderMobile from "./pages/skeletonLoadersWeb/SkeletonLoaderMobile";
 import {onMessage} from "firebase/messaging";
@@ -35,6 +36,7 @@ const Index = React.memo(
 
         const {height, width} = useWindowDimensions();
         const [matches, setMatches] = useState([]);
+        const matchSizeRef=useRef(0)
         const [limit, setLimit] = useState(20);
         const [producerDown, setProducerDown] = useState(false);
         const [threeWay, setThreeWay] = useState(false);
@@ -46,7 +48,7 @@ const Index = React.memo(
         const bottomSheetRef = useRef()
         const prevLimit = useRef(limit);
         const [reset, setReset] = useState(0);
-        const [showNotificationModal, setShowNotificationModal] = useState(true);
+        const [, setShowNotificationModal] = useState(true);
         const handleCloseNotificationModal = () => {
             setShowNotificationModal(false);
         };
@@ -237,10 +239,11 @@ const Index = React.memo(
                 return
             }
             makeRequest({url: endpoint, method: method, data: betslip}).then(([status, result]) => {
-                if (status == 200) {
-                    setMatches(matches.length > 0 ? {...matches, ...result?.data} : result?.data || result)
+                if (status === 200) {
+                    setMatches(matches?.length > 0 ? {...matches, ...result?.data} : result?.data || result)
                     setFetching(false)
                     setLoading(false)
+                    matchSizeRef.current=result?.data?.length
                     if (result?.slip_data) {
                         setUserSlipsValidation(result?.slip_data)
                     }
@@ -284,10 +287,10 @@ const Index = React.memo(
 
             await makeRequest({url: endpoint, method: "POST", data: betslip}).then(([status, result]) => {
                 if (status == 200) {
-                    setMatches(matches.length > 0 ? {...matches, ...result?.data} : result?.data || result)
+                    setMatches(matches?.length > 0 ? {...matches, ...result?.data} : result?.data || result)
                     setFetching(false)
                     setLoading(false)
-                    setScrollEndedActive(false)
+                    matchSizeRef.current=result?.data?.length
                     if (result?.slip_data) {
                         setUserSlipsValidation(result?.slip_data)
                     }
@@ -326,12 +329,15 @@ const Index = React.memo(
 
             if (new_tab !== tab) {
                 setTab(new_tab)
+                setLimit(20)
+                prevLimit.current=20
                 setLoading(true)
             }
 
 
             if (sportID !== new_sport_id) {
-
+                setLimit(20)
+                prevLimit.current=20
                 setSportID(new_sport_id)
                 setLoading(true)
                 setMatches([])
@@ -364,7 +370,6 @@ const Index = React.memo(
             if (prevLimit.current !== limit && limit > prevLimit.current) {
                 setReset(c => c + 1);
                 prevLimit.current = limit
-
             }
 
         }, [limit])
@@ -377,12 +382,40 @@ const Index = React.memo(
 
         }, [prevLimit.current])
 
-        document.addEventListener('scrollEnd', (event) => {
-            if (!fetching && matches?.length >= limit) {
-                setFetching(true)
-                setLimit(limit + 20)
-            }
-        })
+
+
+        useEffect(() => {
+            // Wrap handleScroll with throttle and set the desired throttle time (200ms )
+            const throttledHandleScroll = throttle(() => {
+                const scrollPosition = window.scrollY;
+                const windowHeight = window.innerHeight;
+                const documentHeight = document.documentElement.scrollHeight;
+
+                // Calculate the distance from the current scroll position to the bottom of the application
+                const distanceToBottom = documentHeight - (scrollPosition + windowHeight);
+
+                // Update the limits and resetInterval states based on the condition (500 pixels from the bottom)
+                if (!fetching&&distanceToBottom <= 500 && !fetching) {
+                    // Update the state when the user is close to the bottom
+                    if(matchSizeRef.current >= limit){
+                        setFetching(true);
+                        setLimit(prevLimit => prevLimit + 20);
+                        setReset(prevReset => prevReset + 1);
+                    }
+
+                } else {
+                    // additional logic here if needed
+                }
+            }, 100); // Adjust the throttle time (in milliseconds) as per your requirements
+
+            // Add the throttled event listener
+            window.addEventListener('scroll', throttledHandleScroll);
+
+            // Clean up the event listener when the component unmounts
+            return () => {
+                window.removeEventListener('scroll', throttledHandleScroll);
+            };
+        }, []);
 
         useEffect(() => {
             /**

@@ -509,6 +509,9 @@
     }
 
 }
+.kiron-tabs-padding{
+    overflow: hidden!important;
+}
 .background-color-orange{
   background:var(--orange)!important;
 }
@@ -610,4 +613,13 @@
     .more-market-default{
         display:contents;
     }
+}
+@media (max-width:375px){
+    .kiron-tabs-active .main-header {
+        font-size: 12px;
+    }
+    .team-badge {
+        width: 80%!important;
+    }
+
 }

@@ -17,11 +17,10 @@
     align-items:flex-end;
 }
 .matches .top-matches .kiron-btn {
-    height: 30px;
     border-radius: 20px !important;
     margin-right: 4px;
     outline: none;
-    height: 35px;
+    height: 40px;
     box-sizing: border-box;
 }
 .container-sticky-top {
@@ -410,10 +409,9 @@
         border-radius: 10px !important;
         margin-right: 4px;
         outline: none;
-        height: 35px;
+        height: 40px;
         box-sizing: border-box;
-        width: 55px;
-        height: 36px;
+        width: 60px;
     }
 }
 
@@ -535,12 +533,12 @@
         align-items: center;
     }
     .matches .top-matches .kiron-btn {
-        height: 30px;
         border-radius: 4px !important;
         margin-right: 4px;
         outline: none;
-        height: 35px;
+        height: 40px;
         box-sizing: border-box;
+        width:60px;
     }
     .team-badge img {
         height: 19px;

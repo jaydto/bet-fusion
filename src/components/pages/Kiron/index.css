@@ -305,7 +305,7 @@
     color: white;
 }
 #more_markets_selection_kiron {
-    background-color: var(--betnare-body-bg) !important;
+    background-color: var(--betnare-footer);
 }
 .kiron-more-button-color {
     background: var(--betnare-button-login)!important;
@@ -431,7 +431,6 @@
 
 @media (max-width: 376px){
     .double-chance-market{
-        margin-left:9px!important;
         height:30px;
     }
     .size-market-kiron{
@@ -509,6 +508,9 @@
 }
 
 @media (max-width:991px){
+    .kiron-tabs-active .main-header {
+        font-size: 13px;
+    }
     .col-results-page-1{
         width:40%
     }

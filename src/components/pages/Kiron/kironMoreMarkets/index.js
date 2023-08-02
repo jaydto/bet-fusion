@@ -74,7 +74,7 @@ const KironMoreMarkets= React.memo(
                     <div className="double-chance-market text-center">
                         <Button  to={`/nare-league?sub_type_id=8`} type="button" choice={pathname.includes(`sub_type_id=8`)&& 'kiron-more-button-color '} className={`more-market-button btn remove-on-smaller-screen size-market-kiron  ${pathname.includes(`sub_type_id=8`)&& 'kiron-more-button-color '} `}onClick={()=>handleMarketChoice(8)}>Over/Under 2.5</Button>
                     </div>
-                    <div className="double-chance-market text-center">
+                    <div className="double-chance-market mx-3">
 
                         <div className="select">
                             <LinkSelect options={options}  />

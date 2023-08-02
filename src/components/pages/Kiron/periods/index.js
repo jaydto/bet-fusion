@@ -54,6 +54,7 @@ const KironPeriods = React.memo(
             dispatchRedux(resetState('playout_data'))
             dispatchRedux(resetState('active_market'))
             dispatchRedux(resetState('play_time'))
+            dispatchRedux(resetState('ended'))
             dispatchRedux(resetState('time_left'))
             dispatchRedux(resetState('playout_data'))
             dispatchRedux(resetState('matches_data'))
@@ -196,7 +197,7 @@ const KironPeriods = React.memo(
                     setTimeout(() => {
                         dispatchRedux(resetState('play_time'));
                         dispatchRedux(resetState('periods_first'));
-                        dispatchRedux(resetState('Ended'));
+                        dispatchRedux(resetState('ended'));
                         dispatchRedux(resetState('inPlay'));
                         dispatchRedux(resetState('playouts_data'));
                         dispatchRedux(resetState('active_market'));

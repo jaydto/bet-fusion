@@ -209,6 +209,9 @@ font-weight: 900;
     .container-history.top-spacing{
         margin-top:3.5rem!important;
     }
+    .back-navigation.top-spacing{
+        margin-top:3.5rem!important;
+    }
     .modal.show .modal-dialog {
         transform: none;
         margin: inherit;

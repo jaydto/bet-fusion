@@ -131,11 +131,11 @@ const CompetitionMatches = React.memo(
 
         useEffect(() => {
             // Add the throttled event listener
-            window.addEventListener('scroll', throttledHandleScroll);
+            window?.addEventListener('scroll', throttledHandleScroll);
 
             // Clean up the event listener when the component unmounts
             return () => {
-                window.removeEventListener('scroll', throttledHandleScroll);
+                window?.removeEventListener('scroll', throttledHandleScroll);
             };
         }, [throttledHandleScroll, fetching, limit, reset, matchSizeRef]);
 

@@ -274,13 +274,13 @@ const Header = React.memo(
                     clearLocalStorageSettings();
                 };
 
-                window.addEventListener('storage', handleStorageChange);
-                window.addEventListener('beforeunload', handleBeforeUnload);
+                window?.addEventListener('storage', handleStorageChange);
+                window?.addEventListener('beforeunload', handleBeforeUnload);
 
                 return () => {
                     // Clean up the event listeners when the component unmounts
-                    window.removeEventListener('storage', handleStorageChange);
-                    window.removeEventListener('beforeunload', handleBeforeUnload);
+                    window?.removeEventListener('storage', handleStorageChange);
+                    window?.removeEventListener('beforeunload', handleBeforeUnload);
                     abort.abort();
                 };
             }

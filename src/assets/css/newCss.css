@@ -3623,7 +3623,7 @@ img.nare-league {
     .deposit-button.size-font-user-action span:nth-child(1) {
         white-space: normal!important;
         font-size: 10px!important;
-        min-width: 51px;
+        min-width: 63px;
     }
     .deposit-button.size-font-user-action{
         margin-right:0px!important;
@@ -3893,6 +3893,11 @@ img.nare-league {
         padding: 5px 1px;
     }
 
+}
+@media (max-width: 324px) {
+    .w-change2.gap-2.ipad-show{
+        gap:2px!important;
+    }
 }
 
 @media (min-width: 200px) and (max-width: 310px) {

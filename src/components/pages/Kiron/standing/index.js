@@ -46,29 +46,29 @@ const Standing = () => {
             <div className="league-wrapper">
                 <div className="match-standing-wrapper pt-0">
                     {!loadingData ? <table className={"mx-1 table"}>
-                        <tbody style={{background: '#fff'}}>
+                        <tbody style={{background: 'var(--betnare-body-bg)'}}>
                         <tr className="table-header">
                             <th className={'standings-menu'}>Position</th>
                             <th className={'standings-menu'}>Team</th>
-                            <th className={'standings-menu'}>Points</th>
                             <th className={'standings-menu'} style={{textAlign: 'center'}}>Played</th>
                             <th className={'standings-menu text-center'}>Form</th>
+                            <th className={'standings-menu'}>Points</th>
                         </tr>
                         {standingsData &&
                             Object.entries(standingsData).map(([key, standing],index) => (
                                 <tr key={index}>
                                     <td className={'standings-menu'}>{standing?.position}</td>
                                     <td className="playing-teams-r standings-menu">
-                                    <span className="team-badge">
-                                         <LazyLoadImage
-                                             src={standing?.icon_url}
-                                             alt="Nare League"/>&nbsp;
-                                        {standing?.team_name}
-                                  </span>
+                                        <span className="team-badge">
+                                             <LazyLoadImage
+                                                 src={standing?.icon_url}
+                                                 alt="Nare League"/>&nbsp;
+                                            {standing?.team_name}
+                                      </span>
                                     </td>
                                     <td className={'standings-menu'}>{standing?.points}</td>
-                                    <td className={'standings-menu'}>{standing?.games_played}</td>
-                                    <td className={'standings-menu'}><span className="team-form">
+                                    <td className={'standings-menu'}>
+                                        <span className="team-form">
                                        {Array.from(standing?.form)?.map((item, index) => (
                                            <span key={index} title={`${item == 'L' ? ' Lost' : item == 'W' ? ' Won ' : ' Draw '}`}
                                                  className={`size-form btn btn-sm ${item == 'L' ? ' btn-danger ' : item == 'W' ? ' btn-success ' : ' btn-dark '} mx-1`}
@@ -77,8 +77,7 @@ const Standing = () => {
                                        ))}
                                          </span>
                                     </td>
-
-
+                                    <td className={'standings-menu'}>{standing?.games_played}</td>
                                 </tr>)
                             )
                         }

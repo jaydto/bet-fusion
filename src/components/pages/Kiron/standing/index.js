@@ -10,7 +10,6 @@ import {nareLeagueStandings, resetState} from '../../../../redux/nareLeague';
 const Standing = () => {
     const competition_id=useSelector((state)=>state.nareLeague.competition_id)
     const newCompetition = new URL(window.location).searchParams.get('competition_id') ||competition_id
-    const {state,dispatch}=useContext(StoreContext)
     const dispatchRedux=useDispatch()
     const fetchData = useCallback(async () => {
 
@@ -37,9 +36,12 @@ const Standing = () => {
                     <div className="row">
                         <div className="col-12 pb-2 ">
                        <span
-                           className="standing-heading mt-2">{newCompetition == 1 ? "KENYAN " : newCompetition == 2 ? "ENGLISH " : newCompetition == 3 ? "SPANISH " : newCompetition == 4 && "ITALIAN "} LEAGUE</span>
+                           className="heading-standings mt-2 d-flex gap-4 justify-content-center">
+                           {newCompetition == 1 ? "KENYAN " : newCompetition == 2 ? "ENGLISH " : newCompetition == 3 ? "SPANISH " : newCompetition == 4 && "ITALIAN "}
+                           LEAGUE
+                           <span className="standing-time">SEASON {standingsData?.[0]?.season_id}</span>
+                       </span>
                         </div>
-                        <div className="col-12"><span className="standing-time">STANDING</span></div>
                     </div>
                 </div>
             </section>
@@ -51,7 +53,7 @@ const Standing = () => {
                             <th className={'standings-menu'}>Position</th>
                             <th className={'standings-menu'}>Team</th>
                             <th className={'standings-menu'} style={{textAlign: 'center'}}>Played</th>
-                            <th className={'standings-menu text-center'}>Form</th>
+                            <th className={'standings-menu'}>Form</th>
                             <th className={'standings-menu'}>Points</th>
                         </tr>
                         {standingsData &&
@@ -59,11 +61,11 @@ const Standing = () => {
                                 <tr key={index}>
                                     <td className={'standings-menu'}>{standing?.position}</td>
                                     <td className="playing-teams-r standings-menu">
-                                        <span className="team-badge">
+                                        <span className="team-badge d-flex align-items-center">
                                              <LazyLoadImage
                                                  src={standing?.icon_url}
                                                  alt="Nare League"/>&nbsp;
-                                            {standing?.team_name}
+                                            <span>{standing?.team_name}</span>
                                       </span>
                                     </td>
                                     <td className={'standings-menu'}>{standing?.points}</td>

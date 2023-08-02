@@ -49,7 +49,7 @@ const ProfileMenu = React.memo(
 
                         </div>}
 
-                        {!profile&&<div className="w-auto d-flex text-white align-items-start">
+                       <div className="w-auto d-flex text-white align-items-start">
                             <div className={"profile-wrap"}>
                                 <Link
                                     to={{pathname: "/deposit"}}
@@ -62,7 +62,7 @@ const ProfileMenu = React.memo(
                                       </span>
                                 </Link>
                             </div>
-                        </div>}
+                        </div>
                         <div className="w-auto d-flex text-white align-items-start">
                             <div className={"profile-wrap"} style={{color: "#FFB200"}}>
                                 <Link

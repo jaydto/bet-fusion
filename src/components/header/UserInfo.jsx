@@ -43,7 +43,7 @@ export const UserInfo = React.memo(
                         className="col-md-6  d-flex  right justify-content-end align-items-center w-change2 gap-2 ipad-show"
                         style={{marginLeft: 'auto'}}>
 
-                        {!profile&&<div>
+                        <div>
                             <Link
                                 to={{pathname: "/deposit"}}
                                 className={"deposit-button size-font-user-action deposit-button-header"}>
@@ -53,8 +53,8 @@ export const UserInfo = React.memo(
                                               DEPOSIT
                                           </span>
                             </Link>
-                        </div>}
-                        {showBalance && !profile&& <div>
+                        </div>
+                        {showBalance && <div>
                             <div
                                 className={"deposit-button size-font-user-action d-flex align-items-center"}
                                 style={{marginRight: "12px"}}>

@@ -26,7 +26,7 @@ const HeaderNav = React.lazy(() => import('./header-nav'));
 
 const Header = React.memo(
     (props) => {
-        const {slip, scrollPosition, jackpot} = props
+        const {slip, scrollPosition, jackpot, profile} = props
         const gaEventTracker = useAnalyticsEventTracker('Navigation');
         const [user, setUser] = useState(getFromLocalStorage("user"));
         const {state, dispatch} = useContext(StoreContext);
@@ -416,16 +416,16 @@ const Header = React.memo(
                                 <div className={` col-10 change-size desk-top`} id="navbar-collapse-main ">
                                     <div
                                         className="col-md-11 col-sm-12 col-lg-7 right fix-view-2 disable-ipad to-navcheck justify-content-end pt-lg-0 pt-md-3">
-                                        {user ? <ProfileMenu user={user}/> : <LoginSection/>}
+                                        {user ? <ProfileMenu user={user} profile={profile}/> : <LoginSection/>}
                                     </div>
 
                                 </div>
                             </div>
 
-                            <Row
+                            {!profile&&<Row
                                 className={`second-nav ck pc os app-navbar ${user ? ' app-header-nav-login ' : ' app-header-nav '} to-navcheck `}>
                                 <HeaderNav/>
-                            </Row>
+                            </Row>}
                             {state?.searching ?
                                 <div id="navbar-collapse-main"
                                      className={`fadeIn header-menu d-flex justify-content-center w-100 d-block`}>
@@ -461,7 +461,7 @@ const Header = React.memo(
 
                                     </ListGroup>
                                 </div>
-                                : (notShowMobileNav && !slip && !jackpot && !pathname.includes('match')) &&
+                                : (notShowMobileNav && !slip && !jackpot&&!profile && !pathname.includes('match')) &&
                                 <MobileNav1/>}
 
 

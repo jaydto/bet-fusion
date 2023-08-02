@@ -11,6 +11,7 @@ import SidebarProfile from "../../sidebar/sidebarProfile";
 import makeRequest from "../../utils/fetch-request";
 import {StoreContext } from "../../../context/store"
 import {LazyLoadImage} from "react-lazy-load-image-component";
+const Header=React.lazy(()=>import('../../header/header'))
 
 const NewProfile = React.memo(
     () => {
@@ -47,7 +48,7 @@ const NewProfile = React.memo(
         const navigate = useNavigate()
         return (
             <>
-                {/*todo else clause */}
+                <Header profile={true}/>
                 <div>
                     <div className="profile-container-desktop d-flex">
                         <div className={' mobile-ipad-remove-profile stats-desktop'}>
@@ -56,34 +57,7 @@ const NewProfile = React.memo(
 
                         <div className="col mobile-full-width">
                             <div className="iphone">
-                                <div className="header-profile">
-                                    <div className="user-profile d-flex align-items-center">
-                                        <LazyLoadImage src={accounts} className="user-photo "/>
-
-                                    </div>
-                                    <div className="header-profile-summary">
-                                        <div className="summary-text d-flex gap-3">
-                                            {/*	session information*/}
-                                            <>
-                                                My Account (<span
-                                                className={"text-warning"}>+{state?.user?.msisdn?state?.user?.msisdn:""}</span>)
-                                            </>
-                                            <Link
-                                                to={{pathname: "/"}}
-                                                className={" text-profile-link"} title={'HOME'}
-                                            >
-                                      <span className="text-profile-link">
-                                       <span className=" text-profile-link"> <FontAwesomeIcon
-                                           icon={faHome}/></span>&nbsp;
-                                          HOME
-                                      </span>
-                                            </Link>
-
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div className="content mt-3 mb-4">
+                                <div className="content pt-5 mb-4">
                                     <div className="card">
                                         <div className="upper-row">
                                             <div className="card-item">
@@ -207,9 +181,6 @@ const NewProfile = React.memo(
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className={'ipad-show'} style={{visibility:'hidden'}}>
-                    <Right/>
                 </div>
 
 

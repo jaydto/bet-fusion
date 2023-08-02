@@ -14,7 +14,7 @@ import {StoreContext } from "../../context/store";
 
 const ProfileMenu = React.memo(
     (props) => {
-    const {user} = props;
+    const {user,profile} = props;
     const { state, dispatch } = useContext(StoreContext);
     const [themeLight, setThemeLight]=useState(false)
     const handleThemeChange=()=>{
@@ -40,7 +40,7 @@ const ProfileMenu = React.memo(
                 <>
                     <div className="row w-100 d-flex align-items-center justify-content-end px-3 ">
 
-                        {showBalance&&<div className="w-auto d-flex  text-white align-items-end" title={'CASH'}>
+                        {showBalance&&!profile&&<div className="w-auto d-flex  text-white align-items-end" title={'CASH'}>
                             <div className={"profile-wrap"} style={{color: "#FFB200"}}>
                                 <FontAwesomeIcon
                                     icon={faCoins}/>
@@ -81,14 +81,14 @@ const ProfileMenu = React.memo(
                             </div>
                         </div>
                         <div className="w-auto d-flex  text-white align-items-end " title={'PROFILE'} >
-                            <Link className={"profile-wrap"} to={'/profile'}>
-                              <div className="font-btn text-light" >
-                              <div className="space-icons text-light" >
-                                  <FontAwesomeIcon icon={faUserAlt}/> </div>
-
-                                  <strong>Profile</strong>
-                              </div>
-                            </Link>
+                            {!profile&&<Link className={"profile-wrap"} to={'/profile'}>
+                                <div className="font-btn text-light">
+                                    <div className="space-icons text-light">
+                                        <FontAwesomeIcon icon={faUserAlt}/>
+                                    </div>
+                                    <strong>Profile</strong>
+                                </div>
+                            </Link>}
 
                             <div className="col-1 button-toggle space-button">
                                 <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"md"}`} className="px-3 py-3"/>

@@ -58,20 +58,22 @@ const KironResults =
                                                                 <div className="col-6 text-right pt-1"><span
                                                                     className="team-jersey"><LazyLoadImage
                                                                     src={results?.home_icon}
-                                                                    alt="Nare League"/></span> <a href="#"
-                                                                                                  style={{color: "var(--black)"}}>
+                                                                    alt="Nare League"/></span>
+                                                                    <a href="#"
+                                                                       className={'d-flex  justify-content-between align-items-center gap-4 '}
+                                                                       style={{color: "var(--black)"}}>
                                                                     <span
                                                                         className="home-team-r bold px-2">{results.home_team}</span>
                                                                     <span
-                                                                        className="ml-2 red-txt">{results.home_score}</span></a>
+                                                                        className="ml-2 scores-txt">{results.home_score}</span></a>
                                                                 </div>
 
                                                                 <div className="col-6 text-left pt-1">
                                                                     <a href="#"
-                                                                       className={"d-flex justify-content-between align-items-center"}
+                                                                       className={"d-flex justify-content-between align-items-center gap-4"}
                                                                        style={{color: "var(--black)"}}>
                                                                         <span
-                                                                            className="mr-2 red-txt">{results.away_score}</span>
+                                                                            className="mr-2 scores-txt">{results.away_score}</span>
                                                                         <span
                                                                             className="away-team-r bold px-2">{results.away_team}</span>
                                                                     </a>

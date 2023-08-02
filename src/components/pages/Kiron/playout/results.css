@@ -7,7 +7,7 @@
     width: 100%;
     float: left;
     overflow-y: auto;
-    background-color: #fff;
+    background-color: var(--betnare-body-bg);
 }
 .playing-games-wrapper {
     padding-bottom: 0 !important;
@@ -62,12 +62,12 @@
     text-transform: none !important;
 }
 .live-match-selection {
-    border-bottom: 1px solid #f1f1f1;
+    border-bottom: 1px solid var(--bet-history);
     font-size: 1.13em;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 70px;
+    height: 60px;
 }
 
 .live-match-selection .col-6 {
@@ -140,6 +140,7 @@
 @media (max-width: 991px){
     .home-team-r, .away-team-r{
         max-width: 110px;
+        color:var(--light);
     }
     .standing-heading-r {
         color: #000;

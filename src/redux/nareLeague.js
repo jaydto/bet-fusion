@@ -310,6 +310,15 @@ const nareLeagueSlice = createSlice({
                 state.loading = false;
                 state.error = null;
                 state.bet_history_data=action.payload;
+                const status=action.payload.status;
+                if(status===200){
+                    state.bet_history_data=action.payload;
+                }else if(status===undefined){
+                    state.bet_history_data=action.payload;
+                }
+                else{
+                    state.bet_history_data=[]
+                }
             })
             .addCase(nareLeagueBetHistory.rejected, (state, action) => {
                 state.loading = false;
@@ -346,7 +355,16 @@ const nareLeagueSlice = createSlice({
             .addCase(nareLeagueOldBets.fulfilled, (state,action) => {
                 state.loading = false;
                 state.error = null;
-                state.old_bets_data=action.payload;
+                const status=action.payload.status;
+                if(status===200){
+                    state.old_bets_data=action.payload;
+                }else if(status===undefined){
+                    state.old_bets_data=action.payload;
+                }
+                else{
+                    state.old_bets_data=[]
+                }
+
 
             })
             .addCase(nareLeagueOldBets.rejected, (state, action) => {

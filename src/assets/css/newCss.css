@@ -154,7 +154,7 @@ input.text-white {
     /* background: var(--betnare-odds-body); */
     padding-top: 10px;
     padding-bottom: 3px;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     padding-left: 10px;
     padding-right: 10px;
     font-weight: normal;
@@ -597,7 +597,7 @@ b, strong {
 .filters-navigation {
     opacity: 1;
     position: sticky;
-    top: 5.7rem;
+    top: 2.7rem;
     z-index: 2000;
 }
 
@@ -3233,6 +3233,11 @@ img.nare-league {
 }
 
 @media (max-width: 767px) {
+    .shadow-sports-header.header-sports{
+        max-height: 34px!important;
+        display: flex;
+        align-items: center;
+    }
     .slip-top {
         top: 5rem;
         height: 70vh;

@@ -18,6 +18,7 @@ import {onMessage} from "firebase/messaging";
 import {messaging} from "../firebaseConfig";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import MobileNav2 from "./mobile-navigation/MobileNav2";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -33,7 +34,7 @@ const Index = React.memo(
         const [tab, setTab] = useState('highlights');
         const [sportID, setSportID] = useState(79);
         const [loading, setLoading] = useState(false);
-
+        const searchTerm=window.location.search
         const {height, width} = useWindowDimensions();
         const [matches, setMatches] = useState([]);
         const matchSizeRef=useRef(0)
@@ -468,12 +469,13 @@ const Index = React.memo(
         let sportId = new URLSearchParams(window.location.search).get('sport_id')||'79'
         const filteredMarkets = markets.find((market) => market.sport_id === sportId);
 
-
         return (
             <div className={'flex-item'}>
 
                 <div className="item4">
                     <Header scrollPosition={scrollPosition}/>
+                    {(sportValue===79||sportValue===null)&&
+                        <MobileNav2/>}
                     <ToastContainer/>
                 </div>
                 <div className="flex-container">

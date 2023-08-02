@@ -597,9 +597,10 @@ b, strong {
 .filters-navigation {
     opacity: 1;
     position: sticky;
-    top: 2.7rem;
+    top: 5.7rem;
     z-index: 2000;
 }
+
 
 /*end top navigation web */
 .login-text:hover {

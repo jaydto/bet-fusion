@@ -76,6 +76,7 @@ const CompetitionMatches = React.memo(
         }, 20000,reset);
 
         const fetchPagedData = useCallback(() => {
+            console.log("called here")
             if (!fetching && shouldFetch) {
                 setFetching(true);
                 let betslip = findPostableSlip();
@@ -102,7 +103,14 @@ const CompetitionMatches = React.memo(
 
                 });
             }
-        }, []);
+        }, [competitionid]);
+
+        useEffect(() => {
+            console.log("called this")
+            setReset(c => c + 1);
+            fetchPagedData()
+
+        }, [window.location.pathname, window.location.search]);
 
 
         useEffect(() => {
@@ -159,7 +167,9 @@ const CompetitionMatches = React.memo(
                                         <MobileNav2/>}
                                     <CarouselLoader/>
                                     <Testimonials/>
-                                    {matches && <MatchList
+                                    {fetching?width < 1259 ? <SkeletonLoaderMobile/> :
+                                        <SkeletonLoader/>:
+                                        matches && <MatchList
                                         live={false}
                                         matches={matches}
                                         pdown={producerDown}

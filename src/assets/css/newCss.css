@@ -663,7 +663,11 @@ input {
     /* margin-bottom: 6px; */
     line-height: 11;
     height: 26px;
-    color:var(--light);
+    color: var(--light);
+    /* margin-left: auto; */
+    display: flex;
+    justify-content: space-around;
+    background: var(--app-download-link-color);
 }
 .menu-t div.inner-div {
     /* background-color: #2D4352; */

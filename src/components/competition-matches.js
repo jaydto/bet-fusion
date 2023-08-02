@@ -114,30 +114,22 @@ const CompetitionMatches = React.memo(
             };
         }, [fetchPagedData]);
 
+        // Define throttledHandleScroll outside of useEffect to create it only once
+        const throttledHandleScroll = throttle(() => {
+            const scrollPosition = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            const distanceToBottom = documentHeight - (scrollPosition + windowHeight);
+
+            if (!fetching && distanceToBottom <= 500 && matchSizeRef.current >= limit) {
+                // Update the state when the user is close to the bottom
+                setFetching(true);
+                setLimit(prevLimit => prevLimit + 20);
+                setReset(prevReset => prevReset + 1);
+            }
+        }, 100);
+
         useEffect(() => {
-            // Wrap handleScroll with throttle and set the desired throttle time (200ms )
-            const throttledHandleScroll = throttle(() => {
-                const scrollPosition = window.scrollY;
-                const windowHeight = window.innerHeight;
-                const documentHeight = document.documentElement.scrollHeight;
-
-                // Calculate the distance from the current scroll position to the bottom of the application
-                const distanceToBottom = documentHeight - (scrollPosition + windowHeight);
-
-                // Update the limits and resetInterval states based on the condition (500 pixels from the bottom)
-                if (!fetching && distanceToBottom <= 500 && !fetching) {
-                    // Update the state when the user is close to the bottom
-                    if (matchSizeRef.current >= limit) {
-                        setFetching(true);
-                        setLimit(prevLimit => prevLimit + 20);
-                        setReset(prevReset => prevReset + 1);
-                    }
-
-                } else {
-                    // additional logic here if needed
-                }
-            }, 100); // Adjust the throttle time (in milliseconds) as per your requirements
-
             // Add the throttled event listener
             window.addEventListener('scroll', throttledHandleScroll);
 
@@ -145,7 +137,7 @@ const CompetitionMatches = React.memo(
             return () => {
                 window.removeEventListener('scroll', throttledHandleScroll);
             };
-        }, []);
+        }, [throttledHandleScroll, fetching, limit, reset, matchSizeRef]);
 
         const urlPath = window.location.pathname
         const showDownload = (!urlPath.includes("nare-games") && !urlPath.includes("gameplay") && !urlPath.includes("smart-play") && !urlPath.includes("betslip-slip") && !urlPath.includes("nare-league") && !urlPath.includes("bet-history") && !urlPath.includes("standings") && !urlPath.includes("results") && !urlPath.includes("casino") && !urlPath.includes("jackpot") && !urlPath.includes("smart-soft") && !urlPath.includes("virtuals") && !urlPath.includes("match") && !urlPath.includes("competition"))

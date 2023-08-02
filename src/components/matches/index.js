@@ -1148,7 +1148,7 @@ const MatchRow = React.memo(
         return (
             <div className="top-matches d-flex flex-sm-column flex-lg-row  styling-matches">
                 <div
-                    className="to-deskview to-block to-tabview  mx-lg-0 px-sm-4 px-md-4 px-lg-0 py-sm-4 py-md-4 py-lg-0 mt-2 container-size-match ">
+                    className="to-deskview to-block to-tabview  mx-lg-0 px-sm-4 px-md-2 px-lg-0 py-md-4 py-lg-0 mt-2 container-size-match ">
                     <div className="size-info mobile-for-desktop d-flex col-xs-12 pad left-text flex-row live-col">
                         <div
                             className={`d-flex flex-column px-1 justify-content-sm-center justify-content-md-start change-date1 mobile-remove display-ipad-remove-id ${jackpot ? "jackpot-width" : ""}`}>
@@ -1719,7 +1719,7 @@ export const JackpotMatchList = React.memo(
                         {/*</div>*/}
                     </div>
                 </div>
-                <Row className="web-element jackpot-page top-login-background-img-bg">
+                <div className="web-element jackpot-page top-login-background-img-bg w-100">
                     {matches && Object.entries(matches?.data).map(([key, match], index) => (
                         <MatchRow match={match} jackpot key={index}/>
                     ))
@@ -1729,7 +1729,7 @@ export const JackpotMatchList = React.memo(
                             No events found.
                         </div>
                     }
-                </Row>
+                </div>
             </div>
         )
     })
@@ -1744,7 +1744,7 @@ const MatchList = React.memo(
             <div className="matches full-width">
                 {matches && <MatchHeaderRow live={live} first_match={matches ? matches[0] : {}}/>}
 
-                <Row className="web-element px-lg-3 top-login-background-img-bg ">
+                <div className="web-element px-lg-3 top-login-background-img-bg w-100">
                     {matches &&
                         Object.entries(matches).map(([key, match], index) => (
                             <MatchRow match={match} key={index} live={live} pdown={pdown} three_way={three_way}/>
@@ -1755,7 +1755,7 @@ const MatchList = React.memo(
                             No events found.
                         </div>
                     }
-                </Row>
+                </div>
             </div>
         )
     })

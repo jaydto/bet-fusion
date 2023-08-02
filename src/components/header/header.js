@@ -409,7 +409,7 @@ const Header = React.memo(
                                         />
                                     </div>
 
-                                    <UserInfo/>
+                                    <UserInfo profile={profile}/>
                                 </Navbar.Brand>
 
                                 {/*todo check information provided for a user*/}

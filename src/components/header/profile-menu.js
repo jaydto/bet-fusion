@@ -25,7 +25,6 @@ const ProfileMenu = React.memo(
     const [balance,setBalance]=useState(state?.user?.balance||user?.balance)
 
     const urlPath=window.location.pathname
-    const searchParam=window.location.search
     const showBalance=(!urlPath.includes("nare-games")&&!urlPath.includes("gameplay")&&!urlPath.includes("smart-play"))
 
 
@@ -50,7 +49,7 @@ const ProfileMenu = React.memo(
 
                         </div>}
 
-                        <div className="w-auto d-flex text-white align-items-start">
+                        {!profile&&<div className="w-auto d-flex text-white align-items-start">
                             <div className={"profile-wrap"}>
                                 <Link
                                     to={{pathname: "/deposit"}}
@@ -59,13 +58,11 @@ const ProfileMenu = React.memo(
                                       <span className="">
                                        <span className=" "> <FontAwesomeIcon
                                            icon={faCloudDownloadAlt}/></span>
-                                          <strong style={{fontSize:"15px", fontWeight:"700"}}> Deposit</strong>
+                                          <strong style={{fontSize: "15px", fontWeight: "700"}}> Deposit</strong>
                                       </span>
                                 </Link>
                             </div>
-
-
-                        </div>
+                        </div>}
                         <div className="w-auto d-flex text-white align-items-start">
                             <div className={"profile-wrap"} style={{color: "#FFB200"}}>
                                 <Link

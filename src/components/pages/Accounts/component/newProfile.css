@@ -306,7 +306,7 @@ a.text-logout{
 }
 @media (max-width:991px){
     .content{
-        margin-top:5rem!important;
+        margin-top:6rem!important;
     }
     .user-profile {
         height: 42px!important;
@@ -338,6 +338,6 @@ a.text-logout{
 }
 @media (max-width: 767px){
     .content {
-        margin-top: 2rem!important;
+        margin-top: 6rem!important;
     }
 }

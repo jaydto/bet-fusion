@@ -152,19 +152,19 @@ const KironPlayouts = React.memo(
 
                                             </div>
                                             {results?.bet_pick !== null &&
-                                                <div className={'w-100 d-flex'}>
+                                                <div className={'w-100 d-flex align-items-center'}>
                                              <span
-                                                 className="w-100  d-flex  justify-content-center bold px-2 bg-success w-100"
+                                                 className="w-100  d-flex  justify-content-center bold px-2 font-color-orange w-100"
                                                  style={{fontSize: '13px', height: '23px'}}>
                                                  &nbsp;
-                                                 <span className={'text-warning '}>Bet Pick:&nbsp;
+                                                 <span className={'text-dark '}>Bet Pick:&nbsp;
                                                      <span
-                                                         className={'text-light kiron_choice'}>{results?.bet_pick}</span>&nbsp;
+                                                         className={'text-success kiron_choice'}>{results?.bet_pick}</span>&nbsp;
                                                  </span>
 
-                                                 <span className={'text-warning'}>Market :&nbsp;
+                                                 <span className={'text-secondary'}>Market :&nbsp;
                                                      <span
-                                                         className={'text-light kiron_choice'}>{results?.market}</span></span>
+                                                         className={'text-dark kiron_choice'}>{results?.market}</span></span>
 
 
                                              </span>

@@ -73,7 +73,7 @@ const Standing = () => {
                                         <span className="team-form">
                                        {Array.from(standing?.form)?.map((item, index) => (
                                            <span key={index} title={`${item == 'L' ? ' Lost' : item == 'W' ? ' Won ' : ' Draw '}`}
-                                                 className={`size-form btn btn-sm ${item == 'L' ? ' btn-danger ' : item == 'W' ? ' btn-success ' : ' btn-dark '} mx-1`}
+                                                 className={`size-form btn btn-sm ${item == 'L' ? ' btn-danger ' : item == 'W' ? ' btn-success ' : ' btn-secondary '} mx-1`}
                                                  style={{width: '18%', cursor: 'default'}}><strong
                                                className={'bold'}>{item}</strong></span>
                                        ))}

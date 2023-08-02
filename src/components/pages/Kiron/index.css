@@ -509,7 +509,9 @@
     }
 
 }
-
+.font-color-orange{
+   color:var(--orange)!important;
+}
 @media (max-width:991px){
     .kiron-tabs-active .main-header {
         font-size: 13px;

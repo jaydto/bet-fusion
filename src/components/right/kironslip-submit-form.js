@@ -401,6 +401,10 @@ const KironslipSubmitForm = React.memo(
                     dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
                     let betslip = removeFromKironSlip(match?.parent_match_id)
                     dispatch({type: "SET", key: 'kironbetslip', payload: betslip});
+                    if(Object.keys(betslip).length === 0){
+                        return navigate('/nare-league')
+                    }
+
                 }
 
 

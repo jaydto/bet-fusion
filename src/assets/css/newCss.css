@@ -3834,6 +3834,7 @@ img.nare-league {
     .app-navbar .e img {
         max-width: 100px !important;
         background: var(--betnare-header-bg);
+        height: 23px;
     }
 
     .button-toggle {

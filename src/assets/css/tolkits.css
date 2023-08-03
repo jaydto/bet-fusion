@@ -8244,6 +8244,22 @@ ul.sport {
 }
 
 @media (min-width: 1400px) {
+    .team_category_game {
+        display: flex;
+        align-items: center;
+    }
+    .compt-teams .compt-teams-item{
+        overflow-x: hidden;
+        width: 200px!important;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    .team_category_game small {
+        overflow-x: hidden;
+        width: 200px!important;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
     .separations{
         gap:14%!important;
     }

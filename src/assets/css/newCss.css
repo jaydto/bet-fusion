@@ -1902,6 +1902,26 @@ img.nare-league {
 }
 
 @media (min-width: 992px) {
+    .team_category_game {
+        display: flex;
+        align-items: center;
+    }
+    .compt-teams .compt-teams-item{
+        overflow-x: hidden;
+        width: 140px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    .team_category_game small {
+        overflow-x: hidden;
+        width: 120px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    .matches .top-matches {
+        padding-left:10px;
+        padding-right:10px;
+    }
     .top-leader-board {
         margin-top: 7rem !important;
     }

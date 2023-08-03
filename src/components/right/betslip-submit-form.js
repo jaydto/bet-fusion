@@ -688,7 +688,7 @@ const BetslipSubmitForm = React.memo(
                                 </tr>}
 
                                 <tr className="bet-win-tr hide-on-affix">
-                                    <td className={"bet-align-left tax-info"}> Excise Tax (7.5%)</td>
+                                    <td className={"bet-align-left tax-info"}> Excise Tax (12.5%)</td>
                                     <td className={"bet-align-right tax-info"}>KES. <span
                                         id="tax">{formatNumber(hasMultiBetBoost ? exciseTaxBoosted : exciseTax)}</span>
                                     </td>

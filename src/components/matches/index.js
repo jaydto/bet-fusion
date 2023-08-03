@@ -807,7 +807,6 @@ const OddButton = React.memo(
                         }else{
                             betslip =
                                 jackpot !== true
-                                    getBetslip() == null
                                         ? addToSlip(slip)
                                     : addToJackpotSlip(slip);
                             dispatch({type: "SET", key: reference, payload: cstm});

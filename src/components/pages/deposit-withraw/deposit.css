@@ -12,6 +12,7 @@
 .paybill-offers{
 
 }
+
 .header-offer {
     display: flex;
     width: 100%;
@@ -65,7 +66,6 @@
 }
 .size-deposit{
     width: 100%;
-    max-width: 767px;
 }
 .width-page-centric.deposit-page{
     box-shadow:none!important;
@@ -121,5 +121,8 @@ label.deposit {
 @media (min-width:992px){
     .width-page-centric.deposit-page{
         margin-top:10rem;
+    }
+    .deposit-paybill-information{
+        max-height: 70vh;
     }
 }

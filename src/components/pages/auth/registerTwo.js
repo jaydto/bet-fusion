@@ -189,7 +189,7 @@ const RegisterTwo = props => {
 }
 
 const MyVerifyAccountForm = (props) => {
-    const {errors, values, submitForm, setFieldValue} = props;
+    const {errors, values,  setFieldValue} = props;
     const { state, dispatch } = useContext(StoreContext);
     const resendOTP = () => {
 
@@ -295,7 +295,6 @@ const MyVerifyAccountForm = (props) => {
                         <div className="col">
                             <button type="submit"
                                     disabled={state?.inputDisabled}
-                                    onClick={submitForm}
                                     className=' btn btn-lg w-100 button-radius input-field btn-font cg login-button btn button-page'
                                     style={{marginTop: "47px"}}>
                                 VERIFY ACCOUNT
@@ -436,7 +435,7 @@ const FormTitle = () => {
 }
 const MySignupForm = (props) => {
     const { state, dispatch } = useContext(StoreContext);
-    const {errors, values, submitForm, setFieldValue} = props;
+    const {errors, values, setFieldValue} = props;
     const onFieldChanged = (ev) => {
         let field = ev.target.name;
         let value = ev.target.value;
@@ -540,7 +539,7 @@ const PasswordForm = (props) => {
 }
 
 const MyPasswordForm = (props) => {
-    const {errors, values, submitForm, setFieldValue} = props;
+    const {errors, values, setFieldValue} = props;
     const [showPassword, setShowPassword] = useState(false);
     const toggleShowPassword = () => {
         setShowPassword(!showPassword);
@@ -649,7 +648,6 @@ const MyPasswordForm = (props) => {
                 <div className="form-group w-100 d-flex justify-content-left mb-4">
                     <div className="col">
                         <button type="submit"
-                                onClick={submitForm}
                                 className='w-100 btn btn-lg btn-primary mt-5 col-md-12 deposit-withdraw-button button-page'>
                             NEXT
                         </button>
@@ -742,7 +740,7 @@ const ReferalForm = React.memo(
         );
     })
 const MyReferalCodeForm = (props) => {
-    const {errors, values, submitForm, setFieldValue} = props;
+    const {errors, values,  setFieldValue} = props;
     const onFieldChanged = (ev) => {
         let field = ev.target.name;
         let value = ev.target.value;
@@ -779,7 +777,6 @@ const MyReferalCodeForm = (props) => {
                     <div className="form-group w-100 d-flex justify-content-left mb-4">
                         <div className="col">
                             <button type="submit"
-                                    onClick={submitForm}
                                     className='w-100 btn btn-lg btn-primary mt-5 col-md-12 deposit-withdraw-button button-page'>
                                 COMPLETE
                             </button>

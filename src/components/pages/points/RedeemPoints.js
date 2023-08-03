@@ -84,9 +84,9 @@ const RedeemPoints = React.memo(
                     </div>
                 </div>
                 <div className="form-group row d-flex justify-content-left mb-4">
-                    <div className="col-md-3">
+                    <div className="col-md-12">
                         <button
-                            className='btn btn-lg btn-primary mt-5 col-md-12 deposit-withdraw-button'>
+                            className='w-100 btn btn-lg btn-primary mt-5 col-md-12 deposit-withdraw-button'>
                             Redeem Points
                         </button>
                     </div>

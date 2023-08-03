@@ -593,7 +593,9 @@ b, strong {
     transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
 }
-
+.width-page-centric.redeem-points-page{
+    box-shadow:none!important;
+}
 .filters-navigation {
     opacity: 1;
     position: sticky;
@@ -791,8 +793,11 @@ select::after {
 
 .betnare-text-light {
     color: var(--light) !important;
+    line-height:1.5;
 }
-
+.tab-pane.active{
+    border-bottom:none!important;
+}
 .expired-bg {
     background: transparent !important;
 }

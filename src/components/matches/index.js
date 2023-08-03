@@ -805,8 +805,11 @@ const OddButton = React.memo(
                         if(!jackpot&&Object.keys(betItems || {}).length===Number(settings?.sportsBookLimits?.multiBetMaxSelections)){
                             maxPickReached()
                         }else{
-                            addToSlip(slip)
-                            betslip =getBetslip()
+                            betslip =
+                                jackpot !== true
+                                    getBetslip() == null
+                                        ? addToSlip(slip)
+                                    : addToJackpotSlip(slip);
                             dispatch({type: "SET", key: reference, payload: cstm});
                         }
 

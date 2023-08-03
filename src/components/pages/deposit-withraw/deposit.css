@@ -72,6 +72,7 @@
 }
 .paybill-instructions {
     margin-top: 4rem;
+    line-height:1.5;
 }
 .deposit-values {
     color: var(--gold);
@@ -116,13 +117,13 @@ label.deposit {
     color:var(--light);
 }
 
-
+.deposit-paybill-information{
+    max-height: 70vh;
+}
 
 @media (min-width:992px){
     .width-page-centric.deposit-page{
         margin-top:10rem;
     }
-    .deposit-paybill-information{
-        max-height: 70vh;
-    }
+
 }

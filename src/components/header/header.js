@@ -444,7 +444,7 @@ const Header = React.memo(
                                                     {matches.map((match, index) => (
                                                         <Link to={`/?search=${match.home_team}&sub_type_id=1`}
                                                               key={index}
-                                                              onClick={() => window.location.href = `/?search=${match.home_team}&sub_type_id=1`}>
+                                                              onClick={() => dismissSearch()}>
                                                             <li>
                                                                 {match.home_team}
                                                             </li>

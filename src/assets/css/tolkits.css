@@ -16324,9 +16324,9 @@ img.zoom-img {
     .top-matches .side{
         height: 1.5rem!important  ;
     }
-    .matches .top-matches{
-        padding-right: 0.5rem!important;
-        padding-left: 0.5rem!important;
+    .matches .top-matches {
+        padding-right: 0rem!important;
+        padding-left: 0rem!important;
     }
     .container-size {
         width: 100%!important;

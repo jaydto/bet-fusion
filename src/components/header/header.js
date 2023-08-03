@@ -396,7 +396,7 @@ const Header = React.memo(
                                     <div onClick={() => navigate('/')}
                                          className="col-4 logo-betnare resize-mobile"
                                          style={{marginLeft: "2px"}}>
-                                        <LazyLoadImage
+                                        <img
                                             src={logo}
                                             alt="Betnare"
                                             title="Betnare"
@@ -482,7 +482,7 @@ const Header = React.memo(
                                     <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
                                         <div className="col-5">
                                             <div>
-                                                <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"/>
+                                                <img src={logo} alt="Betnare" title="Betnare" effects="blur"/>
                                             </div>
                                         </div>
                                     </Offcanvas.Title>

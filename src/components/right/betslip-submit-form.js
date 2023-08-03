@@ -333,9 +333,9 @@ const BetslipSubmitForm = React.memo(
 
         const updateWinnings = useCallback(() => {
             if (betslip) {
-                let stake_after_tax = (Float(stake) / Float(107.5)) * 100;
+                let stake_after_tax = (Float(stake) / Float(112.5)) * 100;
                 let stake_after_tax_boosted =
-                    ((Float(stake) + Float(multiBoostAmount)) / Float(107.5)) * 100;
+                    ((Float(stake) + Float(multiBoostAmount)) / Float(112.5)) * 100;
 
                 let ext = Float(stake) - Float(stake_after_tax);
                 let ext_boosted =

@@ -244,7 +244,7 @@ const KironBetHistory = React.memo(
                 const handleTabSelect = (eventKey) => {
                     setActiveTab(eventKey); // Update activeTab state when a tab is selected
                     setLocalStorage("tab_history_kiron", eventKey)
-                    navigate('/bet-history/')
+                    navigate('/bet-history')
                 };
 
                 return (

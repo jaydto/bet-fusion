@@ -190,13 +190,13 @@ const Sidebar = React.memo(
                                                         />
                                                     }
                                                 >
-                                                    <a
+                                                    <Link
                                                         onClick={() =>
                                                             gaEventTracker(
                                                                 `Top Leagues ${top_league?.competition_name}`
                                                             )
                                                         }
-                                                        href={`/competition/${top_league.sport_id}/${
+                                                        to={`/competition/${top_league.sport_id}/${
                                                             top_league.category_id
                                                         }/${top_league.competition_id}?sport_id=${
                                                             competition.sport_id
@@ -205,7 +205,7 @@ const Sidebar = React.memo(
                                                         )}`}
                                                     >
                                                         {top_league?.competition_name}
-                                                    </a>
+                                                    </Link>
                                                 </MenuItem>
                                             ))}
                                         </SubMenu>
@@ -239,8 +239,8 @@ const Sidebar = React.memo(
                                                 >
                                                     {country?.competitions.map((league, leagueKey) => (
                                                         <MenuItem key={`${leagueKey}_league`}>
-                                                            <a
-                                                                href={`/competition/${competition.sport_id}/${
+                                                            <Link
+                                                                to={`/competition/${competition.sport_id}/${
                                                                     country.category_id
                                                                 }/${league.competition_id}?sport_id=${
                                                                     competition.sport_id
@@ -256,7 +256,7 @@ const Sidebar = React.memo(
                                                                 }}
                                                             >
                                                                 {league.competition_name}
-                                                            </a>
+                                                            </Link>
                                                         </MenuItem>
                                                     ))}
                                                 </SubMenu>

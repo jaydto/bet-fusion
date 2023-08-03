@@ -2160,6 +2160,12 @@ img.nare-league {
 }
 
 @media (max-width: 991px) {
+    .top-smartsoft.gameplay{
+        margin-top:5.7rem!important;
+    }
+    .user_logged.virtuals{
+        margin-top: 5.7rem !important;
+    }
     .top-spacing-page-no-download.competitions-page{
         margin-top:10.4rem!important;
     }

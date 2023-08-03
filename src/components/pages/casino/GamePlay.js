@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import Header from "../../header/header";
 import Footer from "../../footer/footer";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import makeRequest from "../../utils/fetch-request";
 import Skeleton, {SkeletonTheme} from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
@@ -9,18 +9,17 @@ import {getFromLocalStorage} from "../../utils/local-storage";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import {Stack} from "react-bootstrap";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
 
 
 const GamePlay = React.memo(
     (props) => {
-        // let url = new URL(window.location)
-        // const live = url.searchParams.get('live')
-        // const game_id= url.searchParams.get('game_id')
         const gaEventTracker = useAnalyticsEventTracker("Casino Game")
 
         const {game_id, live} = useParams()
 
-        const [user, setUser] = useState(getFromLocalStorage("user"));
+        const [user, ] = useState(getFromLocalStorage("user"));
 
         const [gameUrl, setGameUrl] = useState('')
 
@@ -72,24 +71,6 @@ const GamePlay = React.memo(
             });
         }
 
-
-        const CategoryGames = () => (
-
-            <Stack direction="horizontal" gap={1} style={{overflow: "scroll"}}
-                   className={'d-flex justify-content-center w-100'}>
-                {
-                    games?.map((game, index) => (
-                        <LazyLoadImage
-                            key={index}
-                            onClick={() => startGame(game.game_id)}
-                            style={{height: "50px", width: "60px", float: "left"}}
-                            src={`${game.game_icon}`}
-                            className={'virtual-game-image'}/>
-                    ))
-                }
-            </Stack>
-        )
-
         useEffect(() => {
             isLoggedIn ?
                 createPlayer().then(() => {
@@ -98,14 +79,35 @@ const GamePlay = React.memo(
                 window.location.href = "/casino"
 
         }, [])
+        const navigate=useNavigate()
         return (
             <>
                 <Header/>
-                <div className={(user ? "user_logged" : "amt")}>
+                <div className={'d-flex align-items-center'}>
+                                            <span className={'px-3 remove-backbutton-on-desktop'} onClick={() => navigate('/casino')}>
+                                             <FontAwesomeIcon icon={faAngleLeft} style={{
+                                                 fontSize: "22px",
+                                                 color: 'var(--light)',
+                                                 fontWeight: '700',
+                                                 opacity: '0.7'
+                                             }}/>
+                                                <FontAwesomeIcon icon={faAngleLeft} style={{
+                                                    fontSize: "22px",
+                                                    color: 'var(--light)',
+                                                    fontWeight: '700',
+                                                    opacity: '0.7'
+                                                }}/>
+                                                <span style={{fontSize: "20px",
+                                                    color: 'var(--light)',
+                                                    fontWeight: '700',
+                                                    opacity: '0.7',
+                                                    paddingLeft:'11px'}}> Back</span>
+                                            </span>
+                </div>
+                <div className={(user ? "user_logged virtuals" : "amt")}>
                     <div className="d-flex flex-row justify-content-between">
                         <div className="col-md-12 virtual-width-mobile">
                             <div className="homepage mt-2">
-                                {/*<CategoryGames/>*/}
                                 <div
                                     className={`col-md-12 ${gameUrlLoaded ? 'd-none' : 'd-block'}`}>
                                     <SkeletonTheme baseColor="#0e131b" highlightColor="#3f6878">

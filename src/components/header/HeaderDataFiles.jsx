@@ -16,7 +16,9 @@ const navigationConfig = {
 		'bet-history',
 		'nare-games',
 		'responsible-gambling',
-		'promo'
+		'promo',
+		'smart-play',
+		'gameplay'
 	],
 	showDownload: [
 		'nare-games',

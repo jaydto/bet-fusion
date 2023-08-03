@@ -356,7 +356,7 @@ const HeaderNav = React.memo(
                         className={`autocomplete-box search-results-box position-fixed  border-dark col-md-5 mt-1 shadow-lg text-start`}
                         onClick={() => gaEventTracker('View Search Results')}>
                         {matches.map((match, index) => (
-                            <Link to={`/?search=${match.home_team}`} key={index}>
+                            <Link to={`/?search=${match.home_team}`} key={index} onClick={()=>dismissSearch()}>
                                 <li>
                                     {match.home_team}
                                 </li>

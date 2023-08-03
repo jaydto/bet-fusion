@@ -57,7 +57,7 @@ const NewProfile = React.memo(
 
                         <div className="col mobile-full-width">
                             <div className="iphone">
-                                <div className="content pt-5 mb-4">
+                                <div className="content mb-4">
                                     <div className="card">
                                         <div className="upper-row">
                                             <div className="card-item">

@@ -184,15 +184,15 @@ const matchesSlice = createSlice({
                 state.error = action.error.message;
             })
             .addCase(matchesJackpot.pending, (state) => {
-                state.loading = true;
+                state.jackpot_loading = true;
             })
             .addCase(matchesJackpot.fulfilled, (state, action) => {
-                state.loading = false;
-                state.error = null;
                 state.jackpot_data=action.payload;
+                state.error = null;
+                state.jackpot_loading = false;
             })
             .addCase(matchesJackpot.rejected, (state, action) => {
-                state.loading = false;
+                state.jackpot_loading = false;
                 state.error = action.error.message;
             })
             .addCase(matchesCompetition.pending, (state) => {

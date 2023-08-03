@@ -56,6 +56,7 @@ const initialState = {
         }, // Initial state for the nareLeague reducer
     matchesData:{
         isLoading: false,
+        jackpot_loading: false,
         error: null,
         user: null,
         loading: false,

@@ -26,17 +26,16 @@ const Jackpot = React.memo(
         const jackpot_data = useSelector((state) => state.matchesData.jackpot_data)
         const jackpot_history = useSelector((state) => state.matchesData.jackpot_history)
         const jackpot_by_id = useSelector((state) => state.matchesData.jackpot_by_id)
-        const loading = useSelector((state) => state.matchesData.loading)
+        const loading = useSelector((state) => state.matchesData.jackpot_loading)
 
         const fetchData = useCallback(async () => {
-
             dispatchRedux(matchesJackpot())
         }, []);
         const fetchJackpotById = useCallback(async (jackpot_id = '', jackpot_status = '') => {
             const trimmedStatus = jackpot_status.trim();
-            const jackpotData={
-                jackpot_id:jackpot_id,
-                jackpot_status:trimmedStatus
+            const jackpotData = {
+                jackpot_id: jackpot_id,
+                jackpot_status: trimmedStatus
             }
             dispatchRedux(jackpotById(jackpotData))
         }, []);
@@ -48,13 +47,13 @@ const Jackpot = React.memo(
         useEffect(() => {
 
             const abortController = new AbortController();
-            fetchData();
-            jackpotHistory()
-
+            fetchData().then(()=>{
+                jackpotHistory()
+            });
             return () => {
                 abortController.abort();
             };
-        }, [fetchData]);
+        }, []);
 
         const CountDownJackpot = () => {
             // Get the first match from the array
@@ -137,7 +136,6 @@ const Jackpot = React.memo(
 
 
         const PrizeComponent = () => {
-            const prizesJSON = JSON.stringify(jackpot_data?.meta?.prizes);
 
             return (
 
@@ -159,7 +157,7 @@ const Jackpot = React.memo(
 
 
         const loadJPResults = (jackpot) => {
-            console.log("status",jackpot?.value?.jackpot_status)
+            console.log("status", jackpot?.value?.jackpot_status)
             fetchJackpotById(jackpot?.value?.jackpot_event_id, jackpot?.value?.jackpot_status)
         }
 
@@ -225,16 +223,16 @@ const Jackpot = React.memo(
                                     justify
                                     onSelect={handleTabSelect}>
                                     <Tab eventKey="home" title="Jackpot" className={'background-primary'}>
-
-                                        {jackpot_data?.data?.length > 0 ? (
+                                        {loading ? (
                                             <>
-                                                <JackpotMatchList matches={jackpot_data} jackpot={true}/>
+                                                {width < 1259 ? <SkeletonMobileJackpot/> :
+                                                    <SkeletonJackpot/>}
                                             </>
                                         ) : (
-                                            loading ? (
+
+                                            jackpot_data && jackpot_data?.data?.length > 0 ? (
                                                 <>
-                                                    {width < 1259 ? <SkeletonMobileJackpot/> :
-                                                        <SkeletonJackpot/>}
+                                                    <JackpotMatchList matches={jackpot_data} jackpot={true}/>
                                                 </>
                                             ) : (
                                                 <div
@@ -249,6 +247,7 @@ const Jackpot = React.memo(
                                                 </div>
                                             )
                                         )}
+
                                     </Tab>
                                     <Tab eventKey="results" title="Results">
                                         <div className="row shadow-lg">

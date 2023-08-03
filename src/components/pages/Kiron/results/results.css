@@ -7,7 +7,7 @@
     width: 100%;
     float: left;
     overflow-y: auto;
-    background: #fff2f2;
+    background-color: var(--betnare-body-bg);
 }
 .playing-games-wrapper {
     padding-bottom: 0 !important;
@@ -62,12 +62,12 @@
     text-transform: none !important;
 }
 .live-match-selection {
-    border-bottom: 1px solid #f1f1f1;
+    border-bottom: 1px solid var(--bet-history);
     font-size: 1.13em;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 70px;
+    height: 60px;
 }
 
 .live-match-selection .col-6 {
@@ -84,11 +84,18 @@
     font-size: var(--font-medium);
     text-transform: none !important;
 }
+.scores-txt{
+    font-size:18px;
+    font-weight:700;
+    color:var(--light);
+}
 .home-team-r, .away-team-r {
     white-space: nowrap;
     max-width: 150px;
+    color:var(--light);
     overflow: hidden;
     text-overflow: ellipsis;
+    font-weight:500;
     /*display: inline-block;*/
     /*line-height: 10px;*/
 }
@@ -119,12 +126,19 @@
 .green-txt {
     color: #009d75;
 }
+.separator-style {
+    width: 5px;
+    border: thin solid var(--light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .standing-wrapper {
     margin:0;
     width: 100%;
     float: left;
     background-color: orange;
-    border-bottom: 1px solid yellow;
+    border-bottom: none;
     font-weight: 400;
     color: #fff;
     font-size: 1em;

@@ -7,13 +7,12 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 
 import {Spinner} from "react-bootstrap";
 import {LazyLoadImage} from "react-lazy-load-image-component";
+import {useSelector} from "react-redux";
 
 const clean = (_str) => {
   _str = _str.replace(/[^A-Za-z0-9\-]/g, "");
   return _str.replace(/-+/g, "-");
 };
-
-
 const marketChoice = () => {
   const markets = [
     [
@@ -208,15 +207,13 @@ const marketChoice = () => {
 
   return markets;
 };
-
 export const MatchRow = React.memo(
     (props) => {
-  const {  match, three_way, competition_id} = props;
+  const {  match, three_way} = props;
 
-  const { state, dispatch } = useContext(StoreContext);
-  const [market, setMarket] = useState("1x2");
+  const [, setMarket] = useState("1x2");
 
-  const [threeWay, setThreeWay] = useState(false);
+  const [, setThreeWay] = useState(false);
 
   const markets = marketChoice();
 
@@ -225,9 +222,6 @@ export const MatchRow = React.memo(
     if (sub_types=="3") {
       setThreeWay(true);
     }
-
-    let extraMarkets = [];
-
     let selectedMarket = markets.find((innerArray) =>
         innerArray.some((market) => market.market_id === Number(three_way))
     );
@@ -248,7 +242,6 @@ export const MatchRow = React.memo(
 
     }
   }, [three_way]);
-
 
   return (
       match?.odds?.length>3?
@@ -349,7 +342,7 @@ export const MatchRow = React.memo(
 
 const   OddButton = React.memo(
     (props) => {
-  const {  mkt, detail, odds,oddkey, marketName, eventTime,homeTeam, awayTeam,parentId,marketId,  allMarkets, competition_id,round_id } = props;
+  const { detail, odds,oddkey, marketName, eventTime,homeTeam, awayTeam,parentId,marketId,  allMarkets, competition_id,round_id } = props;
 
   const [ucn, setUcn] = useState("");
   const [parentMatchId, setParentMatchId]=useState('')
@@ -393,7 +386,6 @@ const   OddButton = React.memo(
     updateMatchPicked();
   }, [updateMatchPicked])
 
-
   const handleButtonOnClick = (event) => {
     const button=event.currentTarget;
     const attributes = {
@@ -425,13 +417,10 @@ const   OddButton = React.memo(
       start_time: attributes.start_time,
       outcome_id: attributes.odd_key,
       away_team: attributes.away_team,
-      // bet_type: attributes.bet_type,
       odd_type: attributes.odd_type,
       ucn: clean(`${attributes.parent_match_id}${attributes.sub_type_id}${(attributes.odd_key||'draw')}`),
-      // position: 0,
     };
     setParentMatchId (attributes.parent_match_id)
-
 
     let betslip;
     if (cstm === ucn) {
@@ -458,7 +447,6 @@ const   OddButton = React.memo(
 
 
   };
-
 
   return (
       <button
@@ -489,12 +477,12 @@ const   OddButton = React.memo(
 
 const MatchList = React.memo(
     (props) => {
-  const {state,dispatch}=useContext(StoreContext )
+      const matchesData=useSelector((state)=>state.nareLeague.matches_data)
+      const loading=useSelector((state)=>state.nareLeague.loading)
+      const competition_id=useSelector((state)=>state.nareLeague.competition_id)
   const {
     pdown,
-    three_way,
-    fetching,
-    competition_id
+    three_way
   } = props;
 
   return (
@@ -502,8 +490,8 @@ const MatchList = React.memo(
 
         <div className="web-element px-lg-0 ">
           {
-              state?.nare_league_matches&&
-              Object.entries(state?.nare_league_matches).map(([key, match], index) => (
+              matchesData&&
+              Object.entries(matchesData).map(([key, match], index) => (
                   <MatchRow
                       match={match}
                       key={index}
@@ -514,12 +502,12 @@ const MatchList = React.memo(
               ))
 
           }
-          {fetching && (
+          {loading && (
               <div className={`text-center mt-2 text-white d-block`}>
                 <Spinner animation={"grow"} size={"lg"} />
               </div>
           )}
-          {state?.nare_league_matches !== null && state?.nare_league_matches?.length === 0 && (
+          {matchesData !== null && matchesData?.length === 0 && (
               <div className="top-matches row kiron mx-2">No events found.</div>
           )}
         </div>

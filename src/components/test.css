@@ -183,6 +183,12 @@
    }
 }
 @media (max-width: 767px){
+    .carousel-item img {
+        min-height: 88px!important;
+    }
+    .carousel.slide {
+        height: 89px!important;
+    }
     .carousel.slide {
         height: 125px;
     }
@@ -202,10 +208,6 @@
     }
 }
 @media  (max-width: 575px){
-    .carousel.slide {
-        height: 102px!important;
-    }
-
     .item2 {
         /* flex:2 1 auto; */
         flex-grow: 6;

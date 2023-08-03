@@ -35,19 +35,9 @@ const SidebarProfile = React.memo(
         const gaEventTracker = useAnalyticsEventTracker('Navigation');
         return (<ProSidebar
             className={` ${profile_side && ' profile-width-side'}`}
-            style={{width: "100%"}}
+            style={{width: "100%",marginTop:'6rem'}}
             image={false}>
             <SidebarHeader className={""}>
-                <div className={'d-flex gap-4 align-items-center justify-content-start'}>
-                    <Link  to="/" className={'bold px-1'}><LazyLoadImage src={'https://storage.googleapis.com/nareimages/logo-white.webp'} style={{
-                        width:"200px",
-                        marginTop: "2rem",
-                        marginLeft: "2rem",
-                        marginBottom: "2rem"
-                    }}
-                    /> </Link>
-
-                </div>
                 <Menu>
                     <MenuItem>
                         <Link to={"/terms-and-conditions"} className={"d-flex gap-4 align-items-center px-3"}>

@@ -1,7 +1,8 @@
 // matchesSlice.js
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import initialState from "./state"; // Import the initial state from state.js
-import makeRequest from "../components/utils/fetch-request"; // Import the makeRequest function
+import makeRequest from "../components/utils/fetch-request";
+import {setLocalStorage} from "../components/utils/local-storage"; // Import the makeRequest function
 // Async thunk for matches
 export const matchesPrematch =
     createAsyncThunk("matches/prematch",
@@ -17,6 +18,34 @@ export const matchesPrematch =
             throw new Error(response?.error || "Fetching Prematch failed");
         }
     });
+export const favoriteMarkets =
+    createAsyncThunk("matches/favoriteMarkets",
+    async () => {
+        const [status, response] = await makeRequest({
+            url: "/v1/user-favorite-markets",
+            method: "POST"
+        });
+        if (status === 200) {
+            return response;
+        } else {
+            throw new Error(response?.error || "Fetching Prematch failed");
+        }
+    });
+export const favoriteMarketsData =
+    createAsyncThunk("matches/favoriteMarketsData",
+    async (favoriteMarket) => {
+        const [status, response] = await makeRequest({
+            url: "/v1/favorite-market",
+            method: "POST",
+            data: favoriteMarket,
+        });
+        if (status === 200) {
+            return response;
+        } else {
+            throw new Error(response?.error || "Fetching Prematch failed");
+        }
+    });
+
 export const matchesLive =
     createAsyncThunk("matches/live",
     async (competitionsData) => {
@@ -34,11 +63,11 @@ export const matchesLive =
 
 export const matchesJackpot =
     createAsyncThunk("matches/jackpot",
-    async (betHistoryData) => {
+    async () => {
+
         const [status, response] = await makeRequest({
             url: "/v1/matches/jackpot",
-            method: "POST",
-            data: betHistoryData,
+            method: "GET",
         });
         if (status === 200) {
             return response;
@@ -46,6 +75,34 @@ export const matchesJackpot =
             throw new Error(response?.error || "Fetching JackpotMatches failed");
         }
     });
+export const jackpotById =
+    createAsyncThunk("matches/jackpotById",
+        async (jackpotData) => {
+            let endpoint=  `/v1/matches/jackpot?jackpot_id=${jackpotData?.jackpot_id}&jackpot_status=${jackpotData?.jackpot_status}`;
+            const [status, response] = await makeRequest({
+                url: endpoint,
+                method: "GET",
+            });
+            if (status === 200) {
+                return response;
+            } else {
+                throw new Error(response?.error || "Fetching JackpotMatches failed");
+            }
+        });
+export const jackpotHistoryData =
+    createAsyncThunk("matches/jackpotHistoryData",
+        async () => {
+
+            const [status, response] = await makeRequest({
+                url: "/v1/matches/jp-history",
+                method: "GET",
+            });
+            if (status === 200) {
+                return response;
+            } else {
+                throw new Error(response?.error || "Fetching JackpotMatches failed");
+            }
+        });
 export const matchesCompetition =
     createAsyncThunk("matches/competition",
     async (marketsData) => {
@@ -94,7 +151,7 @@ export const matchesMorePrematchMarkets =
     }
 );
 
-const mathesSlice = createSlice({
+const matchesSlice = createSlice({
     name: "matches",
     initialState,
     reducers: {},
@@ -127,14 +184,15 @@ const mathesSlice = createSlice({
                 state.error = action.error.message;
             })
             .addCase(matchesJackpot.pending, (state) => {
-                state.loading = true;
+                state.jackpot_loading = true;
             })
-            .addCase(matchesJackpot.fulfilled, (state) => {
-                state.loading = false;
+            .addCase(matchesJackpot.fulfilled, (state, action) => {
+                state.jackpot_data=action.payload;
                 state.error = null;
+                state.jackpot_loading = false;
             })
             .addCase(matchesJackpot.rejected, (state, action) => {
-                state.loading = false;
+                state.jackpot_loading = false;
                 state.error = action.error.message;
             })
             .addCase(matchesCompetition.pending, (state) => {
@@ -170,6 +228,66 @@ const mathesSlice = createSlice({
                 state.loading = false;
                 state.error = action.error.message;
             })
+            .addCase(favoriteMarkets.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(favoriteMarkets.fulfilled, (state,action) => {
+                state.loading = false;
+                state.error = null;
+                const responsedata = action.payload?.data || [];
+                state.favorites_data = action.payload?.data || [];
+                // Update localStorage with the updated favorites
+                setLocalStorage('favorite_markets', responsedata);
+            })
+            .addCase(favoriteMarkets.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
+            .addCase(favoriteMarketsData.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(favoriteMarketsData.fulfilled, (state) => {
+                state.loading = false;
+                state.error = null;
+            })
+            .addCase(favoriteMarketsData.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
+            .addCase(jackpotHistoryData.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(jackpotHistoryData.fulfilled, (state, action) => {
+                state.loading = false;
+                state.error = null;
+                const m_result = action.payload;
+                if (m_result) {
+                    const jp_history = m_result.map((result) => ({
+                        value: result,
+                        label: result?.jackpot_name,
+                    }));
+                    state.jackpot_history = jp_history;
+                } else {
+                    state.jackpot_history = [];
+                }
+            })
+            .addCase(jackpotHistoryData.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
+            .addCase(jackpotById.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(jackpotById.fulfilled, (state,action) => {
+                state.loading = false;
+                state.error = null;
+                state.jackpot_by_id=action.payload;
+            })
+            .addCase(jackpotById.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
+
 
     },
 });

@@ -12,7 +12,7 @@ import {faReceipt, faTimes,} from "@fortawesome/free-solid-svg-icons";
 
 import {Link, useNavigate} from "react-router-dom";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
-import {getBetslip, getJackpotBetslip, getKironSlip} from "../utils/betslip";
+import {formatNumber, getBetslip, getJackpotBetslip, getKironSlip} from "../utils/betslip";
 import {StoreContext } from "../../context/store";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 
@@ -162,7 +162,7 @@ const MobileMenu = React.memo((props) => {
                                     Odds {parseFloat(sumOfOdds).toFixed(2) || 1}
                                 </td>
                                 <td className={"bet-align-right-slip"}>
-                                    Winnings {winnings}
+                                    Winnings {winnings?.toLocaleString('en-US')}
                                 </td>
                             </tr>}
                         <tr className={"mt-3"} onClick={() => navigate("/betslip-slip")}>

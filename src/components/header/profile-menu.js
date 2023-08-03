@@ -14,7 +14,7 @@ import {StoreContext } from "../../context/store";
 
 const ProfileMenu = React.memo(
     (props) => {
-    const {user} = props;
+    const {user,profile} = props;
     const { state, dispatch } = useContext(StoreContext);
     const [themeLight, setThemeLight]=useState(false)
     const handleThemeChange=()=>{
@@ -25,7 +25,6 @@ const ProfileMenu = React.memo(
     const [balance,setBalance]=useState(state?.user?.balance||user?.balance)
 
     const urlPath=window.location.pathname
-    const searchParam=window.location.search
     const showBalance=(!urlPath.includes("nare-games")&&!urlPath.includes("gameplay")&&!urlPath.includes("smart-play"))
 
 
@@ -40,7 +39,7 @@ const ProfileMenu = React.memo(
                 <>
                     <div className="row w-100 d-flex align-items-center justify-content-end px-3 ">
 
-                        {showBalance&&<div className="w-auto d-flex  text-white align-items-end" title={'CASH'}>
+                        {showBalance&&!profile&&<div className="w-auto d-flex  text-white align-items-end" title={'CASH'}>
                             <div className={"profile-wrap"} style={{color: "#FFB200"}}>
                                 <FontAwesomeIcon
                                     icon={faCoins}/>
@@ -50,7 +49,7 @@ const ProfileMenu = React.memo(
 
                         </div>}
 
-                        <div className="w-auto d-flex text-white align-items-start">
+                       <div className="w-auto d-flex text-white align-items-start">
                             <div className={"profile-wrap"}>
                                 <Link
                                     to={{pathname: "/deposit"}}
@@ -59,12 +58,10 @@ const ProfileMenu = React.memo(
                                       <span className="">
                                        <span className=" "> <FontAwesomeIcon
                                            icon={faCloudDownloadAlt}/></span>
-                                          <strong style={{fontSize:"15px", fontWeight:"700"}}> Deposit</strong>
+                                          <strong style={{fontSize: "15px", fontWeight: "700"}}> Deposit</strong>
                                       </span>
                                 </Link>
                             </div>
-
-
                         </div>
                         <div className="w-auto d-flex text-white align-items-start">
                             <div className={"profile-wrap"} style={{color: "#FFB200"}}>
@@ -81,14 +78,14 @@ const ProfileMenu = React.memo(
                             </div>
                         </div>
                         <div className="w-auto d-flex  text-white align-items-end " title={'PROFILE'} >
-                            <Link className={"profile-wrap"} to={'/profile'}>
-                              <div className="font-btn text-light" >
-                              <div className="space-icons text-light" >
-                                  <FontAwesomeIcon icon={faUserAlt}/> </div>
-
-                                  <strong>Profile</strong>
-                              </div>
-                            </Link>
+                            {!profile&&<Link className={"profile-wrap"} to={'/profile'}>
+                                <div className="font-btn text-light">
+                                    <div className="space-icons text-light">
+                                        <FontAwesomeIcon icon={faUserAlt}/>
+                                    </div>
+                                    <strong>Profile</strong>
+                                </div>
+                            </Link>}
 
                             <div className="col-1 button-toggle space-button">
                                 <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"md"}`} className="px-3 py-3"/>

@@ -11,12 +11,14 @@ import Testimonials from "./carousel/Testimonials";
 import Countries from "./countries/Countries";
 import {toast, ToastContainer} from "react-toastify";
 import {marketChoiceOptions} from "./matches";
+import throttle from 'lodash/throttle';
 import SkeletonLoader from "./pages/skeletonLoadersWeb/SkeletonLoader";
 import SkeletonLoaderMobile from "./pages/skeletonLoadersWeb/SkeletonLoaderMobile";
 import {onMessage} from "firebase/messaging";
 import {messaging} from "../firebaseConfig";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import MobileNav2 from "./mobile-navigation/MobileNav2";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -32,9 +34,10 @@ const Index = React.memo(
         const [tab, setTab] = useState('highlights');
         const [sportID, setSportID] = useState(79);
         const [loading, setLoading] = useState(false);
-
+        const searchTerm=window.location.search
         const {height, width} = useWindowDimensions();
         const [matches, setMatches] = useState([]);
+        const matchSizeRef=useRef(0)
         const [limit, setLimit] = useState(20);
         const [producerDown, setProducerDown] = useState(false);
         const [threeWay, setThreeWay] = useState(false);
@@ -46,7 +49,7 @@ const Index = React.memo(
         const bottomSheetRef = useRef()
         const prevLimit = useRef(limit);
         const [reset, setReset] = useState(0);
-        const [showNotificationModal, setShowNotificationModal] = useState(true);
+        const [, setShowNotificationModal] = useState(true);
         const handleCloseNotificationModal = () => {
             setShowNotificationModal(false);
         };
@@ -237,10 +240,11 @@ const Index = React.memo(
                 return
             }
             makeRequest({url: endpoint, method: method, data: betslip}).then(([status, result]) => {
-                if (status == 200) {
-                    setMatches(matches.length > 0 ? {...matches, ...result?.data} : result?.data || result)
+                if (status === 200) {
+                    setMatches(matches?.length > 0 ? {...matches, ...result?.data} : result?.data || result)
                     setFetching(false)
                     setLoading(false)
+                    matchSizeRef.current=result?.data?.length
                     if (result?.slip_data) {
                         setUserSlipsValidation(result?.slip_data)
                     }
@@ -284,10 +288,10 @@ const Index = React.memo(
 
             await makeRequest({url: endpoint, method: "POST", data: betslip}).then(([status, result]) => {
                 if (status == 200) {
-                    setMatches(matches.length > 0 ? {...matches, ...result?.data} : result?.data || result)
+                    setMatches(matches?.length > 0 ? {...matches, ...result?.data} : result?.data || result)
                     setFetching(false)
                     setLoading(false)
-                    setScrollEndedActive(false)
+                    matchSizeRef.current=result?.data?.length
                     if (result?.slip_data) {
                         setUserSlipsValidation(result?.slip_data)
                     }
@@ -326,12 +330,15 @@ const Index = React.memo(
 
             if (new_tab !== tab) {
                 setTab(new_tab)
+                setLimit(20)
+                prevLimit.current=20
                 setLoading(true)
             }
 
 
             if (sportID !== new_sport_id) {
-
+                setLimit(20)
+                prevLimit.current=20
                 setSportID(new_sport_id)
                 setLoading(true)
                 setMatches([])
@@ -362,9 +369,7 @@ const Index = React.memo(
 
             if (prevLimit.current !== limit && limit > prevLimit.current) {
                 setReset(c => c + 1);
-
                 prevLimit.current = limit
-
             }
 
         }, [limit])
@@ -377,12 +382,31 @@ const Index = React.memo(
 
         }, [prevLimit.current])
 
-        document.addEventListener('scrollEnd', (event) => {
-            if (!fetching) {
-                setFetching(true)
-                setLimit(limit + 20)
+
+        // Define throttledHandleScroll outside of useEffect to create it only once
+        const throttledHandleScroll = throttle(() => {
+            const scrollPosition = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            const distanceToBottom = documentHeight - (scrollPosition + windowHeight);
+
+            if (!fetching && distanceToBottom <= 500 && matchSizeRef.current >= limit) {
+                // Update the state when the user is close to the bottom
+                setFetching(true);
+                setLimit(prevLimit => prevLimit + 20);
+                setReset(prevReset => prevReset + 1);
             }
-        })
+        }, 100);
+
+        useEffect(() => {
+            // Add the throttled event listener
+            window?.addEventListener('scroll', throttledHandleScroll);
+
+            // Clean up the event listener when the component unmounts
+            return () => {
+                window?.removeEventListener('scroll', throttledHandleScroll);
+            };
+        }, [throttledHandleScroll, fetching, limit, reset, matchSizeRef]);
 
         useEffect(() => {
             /**
@@ -445,7 +469,6 @@ const Index = React.memo(
         let sportId = new URLSearchParams(window.location.search).get('sport_id')||'79'
         const filteredMarkets = markets.find((market) => market.sport_id === sportId);
 
-
         return (
             <div className={'flex-item'}>
 
@@ -459,7 +482,8 @@ const Index = React.memo(
                         <div className="gz home match-overflow ">
                             <div className="homepage mobile-full-height" ref={homePageRef}
                                  style={width < 991 ? {height: `${height}px`, overflowY: 'auto'} : {}}>
-                                {/*<MobileNav2/>*/}
+                                {(sportValue==='79'||sportValue===null)&&
+                                    <MobileNav2/>}
                                 <CarouselLoader/>
                                 <Testimonials/>
                                 <div className={'filters-navigation gap-3 d-flex justify-content-between align-items-center'}>

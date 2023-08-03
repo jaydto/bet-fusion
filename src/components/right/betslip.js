@@ -319,12 +319,6 @@ const BetSlip = React.memo(
                                                             </b>
                                                         </div>
                                                         <div className={"d-flex w-100 slip-dim-color-selections"}>
-                                                            <div className="row">
-                                                                <div className="bet-value">
-                                                                    <br/>
-                                                                    <span className="sp_sport"> </span>
-                                                                </div>
-                                                            </div>
                                                             <div className="row d-flex flex-column">
                                                                 <div
                                                                     className="bet-value picks-user-slip"> {slip.odd_type} - <span

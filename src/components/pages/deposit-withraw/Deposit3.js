@@ -214,7 +214,7 @@ const Deposit3 = React.memo(
                                                                                                    alt={'betnare'}/></p>
                                 </Col>
                             </Row>
-                            <div className="d-flex justify-content-end pb-4">
+                            <div className="d-flex justify-content-end pb-4 mb-3">
                                 <div className={'d-flex justify-content-center align-items-center'}>
                                     <div
                                         className="text-white mx-2 bold d-flex justify-content-center align-items-center">
@@ -253,7 +253,7 @@ const Deposit3 = React.memo(
                                                     {!user?setTimeout(navigate("/"),500):""}
                                                     <div className={"d-flex flex-row justify-content-between"}>
                                                         <div className=" w-100">
-                                                            <div className="homepage d-flex vh-100 flex-column align-items-center  login-page">
+                                                            <div className="homepage d-flex  flex-column align-items-center  login-page">
 
                                                                 <Alert/>
                                                                 <div className=" pb-0" data-backdrop="static">
@@ -274,14 +274,14 @@ const Deposit3 = React.memo(
                                         </div>
                                     </Tab>
                                     <Tab eventKey="paybill" title="PAYBILL" className={'background-primary'}>
-                                        <div justify="center" className={'w-100'}>
+                                        <div className={'w-100 overflow-auto'}>
                                             <div className={'d-flex'}>
                                                 <div className={'size-deposit'}>
                                                     {!user?setTimeout(navigate("/"),500):""}
                                                     <div className={"d-flex flex-row justify-content-between"}>
                                                         <div className=" w-100">
                                                             <div className="homepage d-flex flex-column align-items-center justify-content-center login-page">
-                                                                <div className="modal-body pb-0" data-backdrop="static">
+                                                                <div className="deposit-paybill-information pb-0" data-backdrop="static">
                                                                     <div className={'paybill-component justify-content-center d-flex flex-column align-items-center'}>
                                                                         <h3 className={'header-paybill'}>
                                                                             paybill Number

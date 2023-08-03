@@ -1,14 +1,13 @@
 import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import Row from 'react-bootstrap/Row';
 import {LazyLoadImage} from 'react-lazy-load-image-component';
-import {StoreContext } from "../../context/store";
+import {StoreContext} from "../../context/store";
 import {getFromLocalStorage, setLocalStorage} from '../utils/local-storage';
-import {toast, ToastContainer} from 'react-toastify';
+import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import makeRequest from '../utils/fetch-request';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import androidIcon from "../../assets/img/mobile/android-icon.webp"
 import logo from '../../assets/img/Logo.webp';
 import {Navbar, Offcanvas} from "react-bootstrap";
 import SidebarMobile from "../sidebar/awesome/SidebarMobile";
@@ -19,22 +18,24 @@ import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import ListGroup from "react-bootstrap/ListGroup";
 import LoginSection from "./LoginSection";
 import {UserInfo} from "./UserInfo";
-import { shouldShowMobileNav, shouldShowDownload } from './NavigationsHelper';
+import {shouldShowDownload, shouldShowMobileNav} from './NavigationsHelper';
+
 const ProfileMenu = React.lazy(() => import('./profile-menu'));
 const HeaderNav = React.lazy(() => import('./header-nav'));
 
 
 const Header = React.memo(
     (props) => {
-        const {slip, scrollPosition, jackpot} = props
+        const {slip, scrollPosition, jackpot, profile} = props
         const gaEventTracker = useAnalyticsEventTracker('Navigation');
         const [user, setUser] = useState(getFromLocalStorage("user"));
-        const { state, dispatch } = useContext(StoreContext);
+        const {state, dispatch} = useContext(StoreContext);
         // const [searching, setSearching] = useState(false)
         const containerRef = useRef();
         const searchInputRef = useRef(null)
         const [matches, setMatches] = useState([])
-       // Import the navigationConfig object
+        const navigate = useNavigate()
+        // Import the navigationConfig object
         const {current} = containerRef;
         const [, setCompetitions] = useState({});
         const [isOpen, setIsOpen] = useState(false);
@@ -42,7 +43,7 @@ const Header = React.memo(
         const pathname = window.location.pathname;
         const notShowMobileNav = shouldShowMobileNav(pathname);
         const showDownload = shouldShowDownload(pathname);
-        const [settings,]=useState(getFromLocalStorage('settings'));
+        const [settings,] = useState(getFromLocalStorage('settings'));
 
 
         // useEffect(() => {
@@ -69,62 +70,62 @@ const Header = React.memo(
         //     return () => abort.abort();
         // }, []);
 
-  //       const CustomNotification = () =>
-  //       {
-  //           useEffect(() => {
-  //               const abort = new AbortController();
-  //
-  //               const requestNotificationPermission = async () => {
-  //                   try {
-  //                       // Customized notification permission request
-  //                       const permission = await customRequestPermission();
-  //                       if (permission === 'granted') {
-  //                           onMessage(messaging, (payload) => {
-  //                               console.log('Notification received:', payload);
-  //                               // Handle the notification payload here.
-  //                           });
-  //                       } else {
-  //                           console.log('Notification permission denied.');
-  //                       }
-  //                   } catch (error) {
-  //                       console.error('Error requesting notification permission:', error);
-  //                   }
-  //               };
-  //
-  //               requestNotificationPermission();
-  //
-  //               return () => abort.abort();
-  //           }, []);
-  //           // Customized notification permission function with UI elements
-  //           const customRequestPermission = async () => {
-  //               return new Promise((resolve, reject) => {
-  //                   // Your custom UI elements and logic to ask for notification permission
-  //                   const customNotificationUI = document.createElement('div');
-  //                   customNotificationUI.innerHTML = `
-  //   <p>This website would like to send you notifications.</p>
-  //   <button class="permission-button" value="granted">Allow</button>
-  //   <button class="permission-button" value="denied">Deny</button>
-  // `;
-  //                   document.body.appendChild(customNotificationUI);
-  //
-  //                   const permissionButtons = customNotificationUI.getElementsByClassName('permission-button');
-  //                   Array.from(permissionButtons).forEach((button) => {
-  //                       button.addEventListener('click', (event) => {
-  //                           const value = event.target.value;
-  //                           customNotificationUI.remove();
-  //
-  //                           if (value === 'granted') {
-  //                               resolve('granted');
-  //                           } else {
-  //                               resolve('denied');
-  //                           }
-  //                       });
-  //                   });
-  //               });
-  //           };
-  //
-  //           return <div>Custom Notification Component</div>;
-  //       };
+        //       const CustomNotification = () =>
+        //       {
+        //           useEffect(() => {
+        //               const abort = new AbortController();
+        //
+        //               const requestNotificationPermission = async () => {
+        //                   try {
+        //                       // Customized notification permission request
+        //                       const permission = await customRequestPermission();
+        //                       if (permission === 'granted') {
+        //                           onMessage(messaging, (payload) => {
+        //                               console.log('Notification received:', payload);
+        //                               // Handle the notification payload here.
+        //                           });
+        //                       } else {
+        //                           console.log('Notification permission denied.');
+        //                       }
+        //                   } catch (error) {
+        //                       console.error('Error requesting notification permission:', error);
+        //                   }
+        //               };
+        //
+        //               requestNotificationPermission();
+        //
+        //               return () => abort.abort();
+        //           }, []);
+        //           // Customized notification permission function with UI elements
+        //           const customRequestPermission = async () => {
+        //               return new Promise((resolve, reject) => {
+        //                   // Your custom UI elements and logic to ask for notification permission
+        //                   const customNotificationUI = document.createElement('div');
+        //                   customNotificationUI.innerHTML = `
+        //   <p>This website would like to send you notifications.</p>
+        //   <button class="permission-button" value="granted">Allow</button>
+        //   <button class="permission-button" value="denied">Deny</button>
+        // `;
+        //                   document.body.appendChild(customNotificationUI);
+        //
+        //                   const permissionButtons = customNotificationUI.getElementsByClassName('permission-button');
+        //                   Array.from(permissionButtons).forEach((button) => {
+        //                       button.addEventListener('click', (event) => {
+        //                           const value = event.target.value;
+        //                           customNotificationUI.remove();
+        //
+        //                           if (value === 'granted') {
+        //                               resolve('granted');
+        //                           } else {
+        //                               resolve('denied');
+        //                           }
+        //                       });
+        //                   });
+        //               });
+        //           };
+        //
+        //           return <div>Custom Notification Component</div>;
+        //       };
 
 
         useEffect(() => {
@@ -137,7 +138,6 @@ const Header = React.memo(
 
             setTimeout(removeElement, 1000);
         }, []);
-
 
 
         useEffect(() => {
@@ -224,7 +224,7 @@ const Header = React.memo(
 
 
                 if (c_status === 200) {
-                    setLocalStorage('settings', c_result?.message,1800000);
+                    setLocalStorage('settings', c_result?.message, 1800000);
                 }
 
             } else {
@@ -232,25 +232,25 @@ const Header = React.memo(
             }
         })
 
-        const setUtmCampaign=()=>{
-            const utm_source=new URL(window.location).searchParams.get('utm_source')
-            const utm_campaign=new URL(window.location).searchParams.get('utm_campaign')
-            const btag=new URL(window.location).searchParams.get('btag')
-            if(utm_source){
+        const setUtmCampaign = () => {
+            const utm_source = new URL(window.location).searchParams.get('utm_source')
+            const utm_campaign = new URL(window.location).searchParams.get('utm_campaign')
+            const btag = new URL(window.location).searchParams.get('btag')
+            if (utm_source) {
                 setLocalStorage("utm_source", utm_source)
             }
-            if(utm_campaign){
+            if (utm_campaign) {
                 setLocalStorage("utm_campaign", utm_campaign)
 
             }
-            if(btag){
+            if (btag) {
                 setLocalStorage("btag", btag)
             }
         }
 
 
-        useEffect( () => {
-            const cleanUpFuction= async()=>{
+        useEffect(() => {
+            const cleanUpFuction = async () => {
                 const abort = new AbortController();
                 await fetchAppConfigurations();
                 await fetchData();
@@ -274,13 +274,13 @@ const Header = React.memo(
                     clearLocalStorageSettings();
                 };
 
-                window.addEventListener('storage', handleStorageChange);
-                window.addEventListener('beforeunload', handleBeforeUnload);
+                window?.addEventListener('storage', handleStorageChange);
+                window?.addEventListener('beforeunload', handleBeforeUnload);
 
                 return () => {
                     // Clean up the event listeners when the component unmounts
-                    window.removeEventListener('storage', handleStorageChange);
-                    window.removeEventListener('beforeunload', handleBeforeUnload);
+                    window?.removeEventListener('storage', handleStorageChange);
+                    window?.removeEventListener('beforeunload', handleBeforeUnload);
                     abort.abort();
                 };
             }
@@ -288,7 +288,7 @@ const Header = React.memo(
         }, [settings]);
 
 
-const NotifyToastContainer = () => {
+        const NotifyToastContainer = () => {
             return (
                 <>
                     {/* Render the ToastContainer */}
@@ -357,10 +357,8 @@ const NotifyToastContainer = () => {
         }, [pathname])
 
 
-
         return (
             <>
-                {console.log("notshowDownload",!showDownload)}
 
                 <div className={'d-flex flex-column'}>
                     {(!showDownload) &&
@@ -374,7 +372,9 @@ const NotifyToastContainer = () => {
                                   }}>
                                 <div className={"app-download-link  d-flex flex-column"}>
                                     <div className={"app-color"}>
-                                        <span className={"color-app-text flashy"}>Deposit <strong style={{color:'var(--gold'}}>365/=</strong> to get <strong style={{color:'var(--gold'}}>365/= </strong>Anniversary Bonus </span>
+                                        <span className={"color-app-text flashy"}>Deposit <strong
+                                            style={{color: 'var(--gold'}}>365/=</strong> to get <strong
+                                            style={{color: 'var(--gold'}}>365/= </strong>Anniversary Bonus </span>
                                         {/*<LazyLoadImage src={androidIcon} className={"icon-android"}/>*/}
                                     </div>
                                 </div>
@@ -382,10 +382,10 @@ const NotifyToastContainer = () => {
 
                         </div>
                     }
-                    {console.log("showDownload",showDownload)}
+
 
                     <Navbar expand="md"
-                            className={`${(scrollPosition || (showDownload)) && 'fixed-top-nav'} mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${(slip || showDownload)&& "top-betslip-page-fix"} ${user ? 'top-nav-login' : 'top-nav-login'}`}
+                            className={`${(scrollPosition || (showDownload)) && 'fixed-top-nav'} mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${(slip || showDownload) && "top-betslip-page-fix"} ${user ? 'top-nav-login' : 'top-nav-login'}`}
                             fixed="top" variant="dark">
                         <div
                             className={'w-100 d-flex justify-content-between mobile-change desktop-ipad-size top-header-main'}>
@@ -393,33 +393,39 @@ const NotifyToastContainer = () => {
                                 <Navbar.Brand
                                     className={`e logo align-self-start menu-control d-flex justify-content-between w-100`}
                                     title="Betnare">
-                                    <Link to={{pathname: "/"}} className="col-4 logo-betnare resize-mobile"
-                                          style={{marginLeft: "2px"}}>
-                                        <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"
-                                                       className={`image-size ${!user && 'logo-top'}`}
-                                                       style={user ? {marginBottom: "0px"} : {
-                                                           marginBottom: "11px",
-                                                           width: 'auto'
-                                                       }}/>
-                                    </Link>
+                                    <div onClick={() => navigate('/')}
+                                         className="col-4 logo-betnare resize-mobile"
+                                         style={{marginLeft: "2px"}}>
+                                        <img
+                                            src={logo}
+                                            alt="Betnare"
+                                            title="Betnare"
+                                            effects="blur"
+                                            className={`image-size ${!user && 'logo-top'}`}
+                                            style={user ? {marginBottom: "0px"} : {
+                                                marginBottom: "11px",
+                                                width: 'auto'
+                                            }}
+                                        />
+                                    </div>
 
-                                    <UserInfo/>
+                                    <UserInfo profile={profile}/>
                                 </Navbar.Brand>
 
                                 {/*todo check information provided for a user*/}
                                 <div className={` col-10 change-size desk-top`} id="navbar-collapse-main ">
                                     <div
                                         className="col-md-11 col-sm-12 col-lg-7 right fix-view-2 disable-ipad to-navcheck justify-content-end pt-lg-0 pt-md-3">
-                                        {user ? <ProfileMenu user={user}/> : <LoginSection/>}
+                                        {user ? <ProfileMenu user={user} profile={profile}/> : <LoginSection/>}
                                     </div>
 
                                 </div>
                             </div>
 
-                            <Row
+                            {!profile&&<Row
                                 className={`second-nav ck pc os app-navbar ${user ? ' app-header-nav-login ' : ' app-header-nav '} to-navcheck `}>
                                 <HeaderNav/>
-                            </Row>
+                            </Row>}
                             {state?.searching ?
                                 <div id="navbar-collapse-main"
                                      className={`fadeIn header-menu d-flex justify-content-center w-100 d-block`}>
@@ -438,7 +444,7 @@ const NotifyToastContainer = () => {
                                                     {matches.map((match, index) => (
                                                         <Link to={`/?search=${match.home_team}&sub_type_id=1`}
                                                               key={index}
-                                                              onClick={() => window.location.href = `/?search=${match.home_team}&sub_type_id=1`}>
+                                                              onClick={() => dismissSearch()}>
                                                             <li>
                                                                 {match.home_team}
                                                             </li>
@@ -455,7 +461,7 @@ const NotifyToastContainer = () => {
 
                                     </ListGroup>
                                 </div>
-                                : (notShowMobileNav && !slip && !jackpot && !pathname.includes('match'))&&
+                                : (notShowMobileNav && !slip && !jackpot&&!profile && !pathname.includes('match')) &&
                                 <MobileNav1/>}
 
 
@@ -476,7 +482,7 @@ const NotifyToastContainer = () => {
                                     <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
                                         <div className="col-5">
                                             <div>
-                                                <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"/>
+                                                <img src={logo} alt="Betnare" title="Betnare" effects="blur"/>
                                             </div>
                                         </div>
                                     </Offcanvas.Title>

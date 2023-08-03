@@ -2,7 +2,6 @@ import React, {useCallback, useEffect, useState} from 'react';
 import './test.css'
 import "../assets/css/jackpot.css"
 import useWindowDimensions from "./header/Dimensions";
-import makeRequest from "./utils/fetch-request";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import {FormatDate, FormatDate2, JackpotMatchList} from "./matches";
@@ -14,72 +13,51 @@ import {ToastContainer} from "react-toastify";
 import moment from "moment/moment";
 import SkeletonJackpot from "./pages/skeletonLoadersWeb/SkeletonJackpot";
 import SkeletonMobileJackpot from "./pages/skeletonLoadersWeb/SkeletonLoaderJackpotMobile";
-
+import caution from '../assets/img/mobile/caution.png'
+import {useDispatch, useSelector} from "react-redux";
+import {jackpotById, jackpotHistoryData, matchesJackpot} from "../redux/matchesSlice";
 
 const Header = React.lazy(() => import('./header/header'));
 const Right = React.lazy(() => import('./right'));
 const Jackpot = React.memo(
     () => {
-        const [matches, setMatches] = useState(null);
-        const [loading, setLoading] = useState(false)
-        const [finishedJackpots, setFinishedJackpots] = useState([])
         const {width} = useWindowDimensions();
+        const dispatchRedux = useDispatch()
+        const jackpot_data = useSelector((state) => state.matchesData.jackpot_data)
+        const jackpot_history = useSelector((state) => state.matchesData.jackpot_history)
+        const jackpot_by_id = useSelector((state) => state.matchesData.jackpot_by_id)
+        const loading = useSelector((state) => state.matchesData.jackpot_loading)
 
-        const fetchData = useCallback(async (jackpot_id = '', jackpot_status = '') => {
-            setLoading(true)
-            let match_endpoint = "/v1/matches/jackpot";
-            if (jackpot_id !== '') {
-                match_endpoint += '?jackpot_id=' + jackpot_id
-            }
-            if (jackpot_status !== '') {
-                match_endpoint += "&jackpot_status=" + jackpot_status
-            }
+        const fetchData = useCallback(async () => {
+            dispatchRedux(matchesJackpot())
+        }, []);
 
-            const [match_result] = await Promise.all([
-                makeRequest({url: match_endpoint, method: "get", data: null})
-            ]);
-            let [m_status, m_result] = match_result;
-            if (m_status === 200) {
-                setMatches(m_result);
-                setLoading(false)
+        const fetchJackpotById = useCallback(async (jackpot_id = '', jackpot_status = '') => {
+            const trimmedStatus = jackpot_status.trim();
+            const jackpotData = {
+                jackpot_id: jackpot_id,
+                jackpot_status: trimmedStatus
             }
-
+            dispatchRedux(jackpotById(jackpotData))
         }, []);
 
         const jackpotHistory = useCallback(async () => {
-
-            let endpoint = "/v1/matches/jp-history"
-
-            const [match_result] = await Promise.all([
-                makeRequest({url: endpoint, method: "get", data: null})
-            ]);
-
-            let [m_status, m_result] = match_result;
-
-            if (m_status === 200) {
-                m_result?.map((result) => {
-                    result.value = result
-                    result.label = result?.jackpot_name
-                    return result
-                })
-                setFinishedJackpots(m_result)
-            }
+            dispatchRedux(jackpotHistoryData())
         })
 
         useEffect(() => {
-
             const abortController = new AbortController();
-            fetchData();
-            jackpotHistory()
-
+            fetchData().then(() => {
+                jackpotHistory()
+            });
             return () => {
                 abortController.abort();
             };
-        }, [fetchData]);
+        }, []);
 
         const CountDownJackpot = () => {
             // Get the first match from the array
-            const first_match = matches?.meta?.start_time
+            const first_match = jackpot_data?.meta?.start_time
             const [countdownDay, setCountdownDay] = useState('');
             const [countdownHours, setCountdownHours] = useState('');
             const [countdownMinutes, setCountdownMinutes] = useState('');
@@ -113,10 +91,10 @@ const Jackpot = React.memo(
 
             return (
                 <div>
-                    {matches?.meta?.start_time &&
+                    {jackpot_data?.meta?.start_time &&
                         <p className={"text-expiry-style"}>Expires on&nbsp;
-                            <FormatDate live={0} start_time={matches?.meta?.start_time}
-                                        match_time={matches?.meta?.start_time}/>
+                            <FormatDate live={0} start_time={jackpot_data?.meta?.start_time}
+                                        match_time={jackpot_data?.meta?.start_time}/>
                         </p>}
                     {activeTab === "home" && <p className={"text-light count-down-jackpot d-flex gap-4"}>
                         <span className="days d-flex flex-column">
@@ -158,17 +136,14 @@ const Jackpot = React.memo(
 
 
         const PrizeComponent = () => {
-            const [currentIndex, setCurrentIndex] = useState(0);
-            const prizesJSON = JSON.stringify(matches?.meta?.prizes);
-            const cleanedJSON = prizesJSON?.replace(/[\[\]"]/g, '');
 
             return (
 
                 <div className="scroller">
                         <span>
-                            {matches?.meta?.prizes?.map((prize,index) => {
+                            {jackpot_data?.meta?.prizes?.map((prize, index) => {
                                     return (
-                                        <div key={index} >
+                                        <div key={index}>
                                             {prize}<br/>
                                         </div>
                                     )
@@ -182,16 +157,15 @@ const Jackpot = React.memo(
 
 
         const loadJPResults = (jackpot) => {
-            fetchData(jackpot?.jackpot_event_id, jackpot?.jackpot_status)
+            fetchJackpotById(jackpot?.value?.jackpot_event_id, jackpot?.value?.jackpot_status)
         }
-        const urlPath = window.location.pathname
-        const showDownload = (!urlPath.includes("nare-games") && !urlPath.includes("gameplay") && !urlPath.includes("smart-play") && !urlPath.includes("betslip-slip") && !urlPath.includes("nare-league") && !urlPath.includes("bet-history") && !urlPath.includes("standings") && !urlPath.includes("results") && !urlPath.includes("casino") && !urlPath.includes("jackpot"))
 
         const [activeTab, setActiveTab] = useState('home'); // Set the initially active tab here
 
         const handleTabSelect = (eventKey) => {
             setActiveTab(eventKey);
         };
+
         return (
             <div className={'flex-item jackpot-container'}>
                 <div className="item4">
@@ -200,31 +174,32 @@ const Jackpot = React.memo(
                 </div>
                 <div className={`flex-container jackpot flex-column  top-spacing-page-no-download-jackpot`}>
                     <div className="item2 size-all-markets jp-header-banner">
-                         <div className={"jp-banner-image"}>
-                            <div className="d-flex h-100 w-100 justify-content-around  px-5 align-items-center jackpot-mobile-appearance">
-                                {matches?.meta?.start_time &&<div className="jackpot-counter-time">
+                        <div className={"jp-banner-image"}>
+                            <div
+                                className="d-flex h-100 w-100 justify-content-around  px-5 align-items-center jackpot-mobile-appearance">
+                                {jackpot_data?.meta?.start_time && <div className="jackpot-counter-time">
 
                                     <div className="jackpot-count-text">
                                         <div className="jackpot-text">
-                                            {matches && 'Time left'}
+                                            {jackpot_data && 'Time left'}
                                         </div>
-                                        {matches?.meta?.start_time && <CountDownJackpot/>}
+                                        {jackpot_data?.meta?.start_time && <CountDownJackpot/>}
                                     </div>
                                 </div>}
-                                {matches?.meta?.start_time &&<div className="jackpot-pages-information">
-                                    <div className={`predict ${matches ? '' : 'd-none'}`}>
+                                {jackpot_data?.meta?.start_time && <div className="jackpot-pages-information">
+                                    <div className={`predict ${jackpot_data ? '' : 'd-none'}`}>
                                         <span>
                                             <span className="predict-text">
-                                                Predict {matches?.meta?.total_games} Games
+                                                Predict {jackpot_data?.meta?.total_games} Games
                                             </span>&nbsp;
                                             <span className={"predict-text-2"}>
                                                 To Win
                                             </span>
                                         </span>
-                                        {matches?.meta?.jackpot_amount && <span className={"predict-amount"}>
+                                        {jackpot_data?.meta?.jackpot_amount && <span className={"predict-amount"}>
                                            KES&nbsp;
                                             <span className={"predict-amount-kes"}>
-                                            {Number(matches?.meta?.jackpot_amount).toLocaleString()}
+                                            {Number(jackpot_data?.meta?.jackpot_amount).toLocaleString()}
                                         </span>
                                         </span>}
                                         <PrizeComponent/>
@@ -232,9 +207,9 @@ const Jackpot = React.memo(
                                     </div>
 
                                 </div>}
-                                {(!matches?.meta?.start_time==null && !matches?.meta?.length>0)&&<div className={'no-jackpot-text'}>There are no Jackpot Events at the moment</div>}
+                                {(!jackpot_data?.meta?.start_time == null && !jackpot_data?.meta?.length > 0) &&
+                                    <div className={'no-jackpot-text'}>There are no Jackpot Events at the moment</div>}
                             </div>
-
 
                         </div>
                         <div className="gz home jackpot-page-structure" style={{width: "100%", overflowX: "clip"}}>
@@ -247,35 +222,36 @@ const Jackpot = React.memo(
                                     justify
                                     onSelect={handleTabSelect}>
                                     <Tab eventKey="home" title="Jackpot" className={'background-primary'}>
-
-                                        {matches?.data?.length > 0 ? (
+                                        {loading ? (
+                                            // Show skeleton loaders or loading indicators while data is being fetched
                                             <>
-                                                <JackpotMatchList matches={matches} jackpot={true}/>
+                                                {width < 1259 ? <SkeletonMobileJackpot/> : <SkeletonJackpot/>}
                                             </>
                                         ) : (
-                                            loading ? (
-                                                <>
-                                                    {width < 1259 ? <SkeletonMobileJackpot/> :
-                                                        <SkeletonJackpot/>}
-                                                </>
-                                            ) : (
-                                                <div
-                                                    className={'text-white col-md-12 text-center background-primary shadow mt-2 p-3 d-flex flex-column  align-items-center justify-content-center'}
-                                                    style={{height: "30vh"}}>
-                                                    <LazyLoadImage src={'../assets/img/mobile/caution.png'}
-                                                                   className={'jackpot-image-caution'}/>
-                                                    <p className={'jackpot-text-inactive'}>
-                                                        1 Million Daily Jackpot not available. Please check back
-                                                        later.
-                                                    </p>
-                                                </div>
-                                            )
+                                            <>
+                                                {jackpot_data && jackpot_data?.data?.length > 0 ? (
+                                                    <JackpotMatchList matches={jackpot_data} jackpot={true}/>
+                                                ) : (
+                                                    <div
+                                                        className={'text-white col-md-12 text-center background-primary shadow mt-2 p-3 d-flex flex-column  align-items-center justify-content-center'}
+                                                        style={{height: "30vh"}}>
+                                                        <LazyLoadImage src={caution}
+                                                                       className={'jackpot-image-caution'}/>
+                                                        <p className={'jackpot-text-inactive'}>
+                                                            1 Million Daily Jackpot not available. Please check back
+                                                            later.
+                                                        </p>
+                                                    </div>
+                                                )}
+                                            </>
                                         )}
+
+
                                     </Tab>
                                     <Tab eventKey="results" title="Results">
                                         <div className="row shadow-lg">
                                             <h4 className={'text-white'}>Jackpot Results</h4>
-                                            <Select options={finishedJackpots} className={'bg-secondary'}
+                                            <Select options={jackpot_history} className={'bg-secondary'}
                                                     menuPortalTarget={document.body}
                                                     menuPosition="fixed"
                                                     isSearchable={true}
@@ -306,7 +282,7 @@ const Jackpot = React.memo(
                                             </div>
                                         </div>
 
-                                        {matches?.data.map((match, index) => (
+                                        {(jackpot_by_id)?.data?.map((match, index) => (
                                             <div className={'matches full-width'} key={index}>
                                                 <div className={`${width <= 767 ? "w-100 px-2" : "web-element px-2"}`}>
                                                     <div
@@ -350,9 +326,11 @@ const Jackpot = React.memo(
 
                         </div>
                     </div>
-                    {activeTab === "home" && matches?.meta?.start_time && <div className="item3">
-                        <Right jackpot={true} jackpotData={matches?.meta} test={true} matches={matches}/>
-                    </div>}
+                    {(activeTab === "home" && !jackpot_data?.meta?.length > 0) &&
+                        <div className="item3">
+                        <Right jackpot={true} jackpotData={jackpot_data?.meta} test={true} matches={jackpot_data}/>
+                    </div>
+                    }
 
                 </div>
             </div>

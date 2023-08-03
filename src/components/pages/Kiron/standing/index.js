@@ -5,37 +5,27 @@ import {getFromLocalStorage} from "../../../utils/local-storage";
 import {Spinner} from "react-bootstrap";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import {StoreContext} from "../../../../context/store";
-
+import { useDispatch,useSelector } from 'react-redux'; // Import useDispatch hook
+import {nareLeagueStandings, resetState} from '../../../../redux/nareLeague';
 const Standing = () => {
-    const [standings, setStandings] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const newCompetition = new URL(window.location).searchParams.get('competition_id') || getFromLocalStorage("kiron_search_data")?.competition_id
-    const {state,dispatch}=useContext(StoreContext)
-    let endpoint = "/v1/nare-league/standings"
+    const competition_id=useSelector((state)=>state.nareLeague.competition_id)
+    const newCompetition = new URL(window.location).searchParams.get('competition_id') ||competition_id
+    const dispatchRedux=useDispatch()
     const fetchData = useCallback(async () => {
-        setLoading(true)
-        endpoint = endpoint.replaceAll(" ", '')
 
         const kiron_data = {
-            competition_id: new URL(window.location).searchParams.get('competition_id') || getFromLocalStorage("kiron_search_data")?.competition_id
+            competition_id: new URL(window.location).searchParams.get('competition_id') || competition_id
         }
-        await makeRequest({url: endpoint, method: "POST", data: kiron_data}).then(([status, result]) => {
-            if (status == 200) {
-                setStandings(result?.data || result)
-                setLoading(false)
-
-            }
-        });
-
+        dispatchRedux(nareLeagueStandings(kiron_data))
     }, []);
+    const loadingData = useSelector((state) => state.nareLeague.loading);
+    const standingsData = useSelector((state) => state.nareLeague.standings_data);
+
 
 
     useEffect(() => {
         fetchData();
-        const payload = {
-            start: '', round: '', end: ''
-        }
-        dispatch({type: "SET", key: 'current_selection_period', payload: payload})
+        dispatchRedux(resetState('current_selection_period'))
     }, [newCompetition]);
 
 
@@ -46,48 +36,50 @@ const Standing = () => {
                     <div className="row">
                         <div className="col-12 pb-2 ">
                        <span
-                           className="standing-heading mt-2">{newCompetition == 1 ? "KENYAN " : newCompetition == 2 ? "ENGLISH " : newCompetition == 3 ? "SPANISH " : newCompetition == 4 && "ITALIAN "} LEAGUE</span>
+                           className="heading-standings mt-2 d-flex gap-4 justify-content-center">
+                           {newCompetition == 1 ? "KENYAN " : newCompetition == 2 ? "ENGLISH " : newCompetition == 3 ? "SPANISH " : newCompetition == 4 && "ITALIAN "}
+                           LEAGUE
+                           <span className="standing-time">SEASON {standingsData?.[0]?.season_id}</span>
+                       </span>
                         </div>
-                        <div className="col-12"><span className="standing-time">STANDING</span></div>
                     </div>
                 </div>
             </section>
             <div className="league-wrapper">
                 <div className="match-standing-wrapper pt-0">
-                    {!loading ? <table className={"mx-1 table"}>
-                        <tbody style={{background: '#fff'}}>
+                    {!loadingData ? <table className={"mx-1 table"}>
+                        <tbody style={{background: 'var(--betnare-body-bg)'}}>
                         <tr className="table-header">
                             <th className={'standings-menu'}>Position</th>
                             <th className={'standings-menu'}>Team</th>
-                            <th className={'standings-menu'}>Points</th>
                             <th className={'standings-menu'} style={{textAlign: 'center'}}>Played</th>
-                            <th className={'standings-menu text-center'}>Form</th>
+                            <th className={'standings-menu'}>Form</th>
+                            <th className={'standings-menu'}>Points</th>
                         </tr>
-                        {standings &&
-                            Object.entries(standings).map(([key, standing],index) => (
+                        {standingsData &&
+                            Object.entries(standingsData).map(([key, standing],index) => (
                                 <tr key={index}>
                                     <td className={'standings-menu'}>{standing?.position}</td>
                                     <td className="playing-teams-r standings-menu">
-                                    <span className="team-badge">
-                                         <LazyLoadImage
-                                             src={standing?.icon_url}
-                                             alt="Nare League"/>&nbsp;
-                                        {standing?.team_name}
-                                  </span>
+                                        <span className="team-badge d-flex align-items-center">
+                                             <LazyLoadImage
+                                                 src={standing?.icon_url}
+                                                 alt="Nare League"/>&nbsp;
+                                            <span>{standing?.team_name}</span>
+                                      </span>
                                     </td>
                                     <td className={'standings-menu'}>{standing?.points}</td>
-                                    <td className={'standings-menu'}>{standing?.games_played}</td>
-                                    <td className={'standings-menu'}><span className="team-form">
+                                    <td className={'standings-menu'}>
+                                        <span className="team-form">
                                        {Array.from(standing?.form)?.map((item, index) => (
                                            <span key={index} title={`${item == 'L' ? ' Lost' : item == 'W' ? ' Won ' : ' Draw '}`}
-                                                 className={`size-form btn btn-sm ${item == 'L' ? ' btn-danger ' : item == 'W' ? ' btn-success ' : ' btn-dark '} mx-1`}
+                                                 className={`size-form btn btn-sm ${item == 'L' ? ' btn-danger ' : item == 'W' ? ' btn-success ' : ' btn-secondary '} mx-1`}
                                                  style={{width: '18%', cursor: 'default'}}><strong
                                                className={'bold'}>{item}</strong></span>
                                        ))}
                                          </span>
                                     </td>
-
-
+                                    <td className={'standings-menu'}>{standing?.games_played}</td>
                                 </tr>)
                             )
                         }

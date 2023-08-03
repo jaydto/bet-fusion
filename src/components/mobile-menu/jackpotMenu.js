@@ -152,8 +152,26 @@ const MobileMenu = React.memo(
                             data:payload
                         }
                         gaEventTracker("Jackpot Bet Placed",data)
+                        let betslips = getJackpotBetslip()
+                        Object.entries(betslips).map(([match_id, match]) => {
+                            // let slip=
+                            removeFromJackpotSlip(match_id)
 
-                            clearJackpotSlip();
+                            let match_selector = match.match_id + "_selected";
+                            let ucn = clean_rep(
+                                match.match_id
+                                + "" + match.sub_type_id
+                                + (match.bet_pick)
+                            );
+
+                            dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
+                        });
+                        dispatch({
+                            type: "SET",
+                            key: "jackpotbetslip" ,
+                            payload: {},
+                        });
+                            // clearJackpotSlip();
                         let message = {
                             status: 201,
                             message: response?.message,

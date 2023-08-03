@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from "react";
 import Header from "../../header/header";
 import Footer from "../../footer/footer";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import makeRequest from "../../utils/fetch-request";
 import Skeleton, {SkeletonTheme} from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import {getFromLocalStorage} from "../../utils/local-storage";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faFire} from "@fortawesome/free-solid-svg-icons";
+import {faAngleLeft, faFire} from "@fortawesome/free-solid-svg-icons";
 import useWindowDimensions from "../../header/Dimensions";
 import Right from "../../right";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
@@ -80,10 +80,32 @@ const GamePlay = React.memo(
                 configureDemoGame()
 
         }, [])
+        const navigate=useNavigate()
         return (
             <>
                 <Header/>
-                <div className={(width <= 575 ? user ? "user_logged" : "amt" : "amt")}>
+                <div className={(width <= 575 ? user ? "user_logged virtuals" : "amt" : "amt")}>
+                    <div className={'d-flex align-items-center'}>
+                                            <span className={'px-3 remove-backbutton-on-desktop'} onClick={() => navigate('/nare-games')}>
+                                             <FontAwesomeIcon icon={faAngleLeft} style={{
+                                                 fontSize: "22px",
+                                                 color: 'var(--light)',
+                                                 fontWeight: '700',
+                                                 opacity: '0.7'
+                                             }}/>
+                                                <FontAwesomeIcon icon={faAngleLeft} style={{
+                                                    fontSize: "22px",
+                                                    color: 'var(--light)',
+                                                    fontWeight: '700',
+                                                    opacity: '0.7'
+                                                }}/>
+                                               <span style={{fontSize: "20px",
+                                                   color: 'var(--light)',
+                                                   fontWeight: '700',
+                                                   opacity: '0.7',
+                                                   paddingLeft:'11px'}}> Back</span>
+                                            </span>
+                    </div>
                     <div className="d-flex flex-row justify-content-between">
                         <div className="col-md-12 w-100">
                             <div className="homepage mt-2">

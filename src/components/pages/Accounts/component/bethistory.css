@@ -206,6 +206,12 @@ font-weight: 900;
         display: inline-block;
 
     }
+    .container-history.top-spacing{
+        margin-top:3.5rem!important;
+    }
+    .back-navigation.top-spacing{
+        margin-top:3.5rem!important;
+    }
     .modal.show .modal-dialog {
         transform: none;
         margin: inherit;

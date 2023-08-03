@@ -6,27 +6,22 @@ import Skeleton, {SkeletonTheme} from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import {getFromLocalStorage} from "../../utils/local-storage";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faFire} from "@fortawesome/free-solid-svg-icons";
+import {faAngleLeft, faFire} from "@fortawesome/free-solid-svg-icons";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
+import {useNavigate} from "react-router-dom";
 
 const SmartPlay = React.memo(
     (props) => {
-
         const url = new URL(window.location)
         const game = url.searchParams.get('game')
         const category = url.searchParams.get('category')
         const [gameUrl, setGameUrl] = useState('')
-        const [token, setUserToken] = useState('')
-        const [user_id, setUserID] = useState('')
+        const [, setUserToken] = useState('')
+        const [, setUserID] = useState('')
         const [demo, setDemo] = useState(false)
         const pathname = window.location.search
-
-        const [games] = useState(getFromLocalStorage('category_games'))
-
         const [isLoggedIn] = useState(getFromLocalStorage('user'))
-
         const [gameUrlLoaded, setGameUrlLoaded] = useState(false)
-
         const gaEventTracker = useAnalyticsEventTracker("Smart Soft Game")
 
         const createToken = async () => {
@@ -81,10 +76,32 @@ const SmartPlay = React.memo(
                 configureDemoGame()
 
         }, [])
+        const navigate=useNavigate()
         return (
             <>
                 <Header/>
-                <div className="amt top-smartsoft">
+                <div className="amt top-smartsoft gameplay">
+                    <div className={'d-flex align-items-center'}>
+                                            <span className={'px-3 remove-backbutton-on-desktop'} onClick={() => navigate('/smart-soft')}>
+                                             <FontAwesomeIcon icon={faAngleLeft} style={{
+                                                 fontSize: "22px",
+                                                 color: 'var(--light)',
+                                                 fontWeight: '700',
+                                                 opacity: '0.7'
+                                             }}/>
+                                                <FontAwesomeIcon icon={faAngleLeft} style={{
+                                                    fontSize: "22px",
+                                                    color: 'var(--light)',
+                                                    fontWeight: '700',
+                                                    opacity: '0.7'
+                                                }}/>
+                                               <span style={{fontSize: "20px",
+                                                   color: 'var(--light)',
+                                                   fontWeight: '700',
+                                                   opacity: '0.7',
+                                                   paddingLeft:'11px'}}> Back</span>
+                                            </span>
+                    </div>
                     <div className="d-flex flex-row justify-content-between">
                         <div className="col-md-12 w-100">
                             <div className="homepage">

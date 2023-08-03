@@ -10,6 +10,8 @@ import {MarketList} from "./matches";
 import LiveSideBar from "./sidebar/live-sidebar";
 import {ToastContainer} from "react-toastify";
 import Skeleton1 from "./skeleton/skeleton";
+import {favoriteMarkets} from "../redux/matchesSlice";
+import {useDispatch} from "react-redux";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -20,6 +22,7 @@ const AllMarkets = React.memo(
         const [producerDown, setProducerDown] = useState(false);
         const [allMarkets, ] = useState(true)
         const params = useParams()
+        const dispatchRedux=useDispatch()
         const {live} = props
         const id = params.id
 
@@ -79,21 +82,9 @@ const AllMarkets = React.memo(
             }
         }, []);
 
-        const getFavoriteMarkets = useCallback(async()=> {
-            let endpoint = '/v1/user-favorite-markets'
-            let method = 'POST'
-            await makeRequest({url: endpoint, method: method, data: {}}).then(([status, response]) => {
-                if (status === 200 || status === 201) {
-                    const responsedata = response?.data
-                    responsedata?.map((item) => {
-                        // dispatch({type: "SET", key: "all_markets", payload: item?.sub_type_id});
-
-                        // setLocalStorage("favoriteMarkets",item?.sub_type_id)
-                    })
-                }
-                // setFavoriteMarkets()}
-            })
-        },[])
+        const getFavoriteMarkets = useCallback(async () => {
+            dispatchRedux(favoriteMarkets())
+        }, []);
 
         useLayoutEffect(() => {
             const abortController = new AbortController();

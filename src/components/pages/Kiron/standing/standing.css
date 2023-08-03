@@ -25,15 +25,14 @@
     width: 100%;
     float: left;
     background-color: orange;
-    border-bottom: 1px solid yellow;
+    border-bottom: none;
     font-weight: 400;
     color: #fff;
     font-size: 1em;
     text-transform: capitalize;
 }
-.standing-heading {
-    color: #fff;
-    font-size: 1.3em;
+.heading-standings{
+    color: var(--dark);
 }
 .league-wrapper {
     padding-bottom: 0 !important;
@@ -115,14 +114,14 @@ table tr td.standings-menu:nth-child(2) {
     background: transparent;
 }
 
-.match-standing-wrapper table tr td:nth-child(4) {
+.match-standing-wrapper table tr td:nth-child(5) {
     width: 95px;
     border: 1px solid #f1f1f1;
 }
 tr th.standings-menu:nth-child(2){
     width:100%;
 }
-tr td.standings-menu:nth-child(4) {
+tr td.standings-menu:nth-child(5) {
     width: 115px;
     text-align: center;
 }
@@ -130,22 +129,30 @@ tr td.standings-menu:nth-child(4) {
     height: 20px;
     background: #f7f7f7;
 }
-.match-standing-wrapper table tr.table-header th:nth-child(2) {
-    padding-left: 5px;
+
+.match-standing-wrapper table tr td{
+    background: var(--betnare-body-bg);
+    color:var(--light);
+    border:none!important;
 }
 .match-standing-wrapper table tr.table-header th:nth-child(1) {
     padding-left: 5px;
 }
+.match-standing-wrapper table tr.table-header th:nth-child(2) {
+    padding-left: 5px;
+    text-align:center;
+}
 .match-standing-wrapper table tr.table-header th:nth-child(3) {
     padding-left: 5px;
 }
-.match-standing-wrapper table tr.table-header th:nth-child(4) {
+.match-standing-wrapper table tr.table-header th:nth-child(5) {
     padding-left: 5px;
 }
 .match-standing-wrapper table tr.table-header th {
     padding-top: 5px;
     padding-bottom: 4px;
     border: 1px solid #f1f1f1;
+    text-align: center;
 }
 .match-standing-wrapper table tr td:nth-child(1) {
     width: 2.5em;
@@ -162,21 +169,22 @@ match-standing-wrapper table tr td:nth-child(1) {
     width: 2.5em;
     border: 1px solid #f1f1f1;
 }
-.match-standing-wrapper table tr td:nth-child(4) {
+.match-standing-wrapper table tr td:nth-child(5) {
     width: 250px;
     border: 1px solid #f1f1f1;
     line-height: 13px;
     font-weight: 400;
+}
+table tr td.standings-menu:nth-child(4) {
+    /*padding-left: 5px;*/
+    width: 100%;
 }
 table tr td.standings-menu:first-child {
     padding-left: 5px;
     width: 10%;
 }
 
-table tr td.standings-menu:nth-child(5) {
-    /*padding-left: 5px;*/
-    width: 100%;
-}
+
 .match-standing-wrapper table tr td:nth-child(2) {
     padding: 5px;
     border-bottom: 1px solid #f1f1f1;
@@ -188,11 +196,14 @@ table tr td.standings-menu:first-child {
 tr th.standings-menu:nth-child(2) {
     width: 50%;
 }
-/*tr th.standings-menu:nth-child(5) {*/
+/*tr th.standings-menu:nth-child(4) {*/
 /*    width: 30%;*/
 /*}*/
-tr th.standings-menu:nth-child(4) {
+tr th.standings-menu:nth-child(5) {
     width: 10%;
+    text-align: center;
+}
+tr th.standings-menu:nth-child(5){
     text-align: center;
 }
 tr th.standings-menu:nth-child(3) {
@@ -213,7 +224,7 @@ table tr td.standings-menu:nth-child(3) {
     width: 10%;
     /* padding-left: 5px; */
 }
-tr td.standings-menu:nth-child(4) {
+tr td.standings-menu:nth-child(5) {
     width: 115px;
     text-align: center;
 }
@@ -230,7 +241,7 @@ tr td.standings-menu:nth-child(4) {
 
         font-size: 10px;
     }
-    .match-standing-wrapper table tr td:nth-child(4) {
+    .match-standing-wrapper table tr td:nth-child(5) {
         font-size: 10px;
     }
     .size-form{

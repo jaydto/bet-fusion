@@ -8244,6 +8244,22 @@ ul.sport {
 }
 
 @media (min-width: 1400px) {
+    .team_category_game {
+        display: flex;
+        align-items: center;
+    }
+    .compt-teams .compt-teams-item{
+        overflow-x: hidden;
+        width: 200px!important;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    .team_category_game small {
+        overflow-x: hidden;
+        width: 200px!important;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
     .separations{
         gap:14%!important;
     }
@@ -16099,8 +16115,8 @@ img.zoom-img {
     }
 
     .menu-table .menu-t {
-        min-width: 8rem;
-        opacity:0.7;
+        min-width: 6rem;
+        opacity: 0.7;
     }
     .menu-wrapper::-webkit-scrollbar {
         display: none;
@@ -16159,9 +16175,9 @@ img.zoom-img {
         height: 23px!important;
         margin-top: -6px!important;
     }
-    .menu-t.nare-league img{
+    .menu-t.nare-league img {
         height: 40px!important;
-        margin-top: -9px!important;
+        margin-top: -13px!important;
         width: 38px!important;
     }
     .menu-t.nare-games img{
@@ -16324,9 +16340,9 @@ img.zoom-img {
     .top-matches .side{
         height: 1.5rem!important  ;
     }
-    .matches .top-matches{
-        padding-right: 0.5rem!important;
-        padding-left: 0.5rem!important;
+    .matches .top-matches {
+        padding-right: 0rem!important;
+        padding-left: 0rem!important;
     }
     .container-size {
         width: 100%!important;
@@ -16685,7 +16701,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     border: none;
     font-size: 14px;
     text-transform: uppercase;
-    background: #527994;
+    background: var(--betnare-button-login);
     color: var(--dark);
 }
 

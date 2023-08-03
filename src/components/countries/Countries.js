@@ -7,17 +7,12 @@ import makeRequest from "../utils/fetch-request";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 
-
 const Countries = React.memo(
     (props) => {
         const gaEventTracker = useAnalyticsEventTracker("Navigation");
-        const [collapsed, setCollapsed] = useState(false);
+        const [, setCollapsed] = useState(false);
 
         const [sport, setSport] = useState(79);
-
-        const handleCollapsedChange = (checked) => {
-            setCollapsed(checked);
-        };
 
         const [competitions, setCompetitions] = useState(props?.competitions);
 

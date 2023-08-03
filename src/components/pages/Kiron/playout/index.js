@@ -1,208 +1,189 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect} from 'react';
 import "./results.css"
-import {getFromLocalStorage} from "../../../utils/local-storage";
-import makeRequest from "../../../utils/fetch-request";
-import {StoreContext } from "../../../../context/store"
+import {StoreContext} from "../../../../context/store"
 import {LazyLoadImage} from "react-lazy-load-image-component";
+import {useDispatch, useSelector} from 'react-redux';
+import {nareLeaguePlayouts} from "../../../../redux/nareLeague"; // Import useDispatch hook
+
 
 const KironPlayouts = React.memo(
     (props) => {
-    const {playout, isCountdownTimerActive} = props
-    const [success, setSuccess] = useState(false)
-    // const [resulted, setResulted] = useState([]);
-    const { state, dispatch } = useContext(StoreContext);
+        const {state, dispatch} = useContext(StoreContext);
+        let timeVar;
+        const dispatchRedux = useDispatch()
+        const playouts_data = useSelector((state) => state.nareLeague.playouts_data)
+        const competition_id = useSelector((state) => state.nareLeague.competition_id)
+        const loading = useSelector((state) => state.nareLeague.loading)
+        const round_id = useSelector((state) => state.nareLeague.round_id);
+        const play_time = useSelector((state) => state.nareLeague.play_time);
+        const Ended = useSelector((state) => state.nareLeague.ended);
 
-    const kironSearchCompetition = getFromLocalStorage("kiron_search_data")?.competition_id
-    const kironSearchRoundId = getFromLocalStorage("kiron_first_round") || new URL(window.location).searchParams.get('round_id')
-    let endpoint = "/v1/nare-league/live"
-    let timeVar;
-
-
-    const fetchData = async () => {
-        setSuccess(false)
-        // dispatch({type: 'SET', key: 'playout_data', payload: null})
-
-        endpoint = endpoint.replaceAll(" ", '')
-
-        const kiron_data = {
-            round_id: kironSearchRoundId
+        const fetchData = () => {
+            const data = {
+                competition_id: Number(competition_id),
+                round_id: round_id
+            }
+            dispatchRedux(nareLeaguePlayouts(data)); // Dispatch nareLeaguePlayouts async thunk
         }
 
-        await makeRequest({url: endpoint, method: "POST", data: kiron_data}).then(([status, result]) => {
-            if (status == 200) {
-                dispatch({type: "SET", key: 'playout_data', payload: result?.data || result})
-                setSuccess(true)
-                dispatch({type: "SET", key: 'nareLoading', payload: false})
+        useEffect(() => {
+            let totalEmptyPlayouts = 0;
 
-            }
-        });
-
-    }
-
-
-    useEffect(() => {
-        if(state?.start_playout|| !state?.Ended){
-            if(!state?.periods_ready){
-                fetchData();
-            }else{
-                dispatch({type: "SET", key: 'inPlay', payload: false})
-            }
-
-        }
-
-    }, [state?.period_first_round]);
-
-
-    useEffect(() => {
-        let totalEmptyPlayouts = 0;
-        if (isCountdownTimerActive) {
             {
-                state?.playout_data?.playouts?.map((results, key) => {
+                playouts_data?.playouts?.map((results, key) => {
                     if (results.home_scores.length == 0 && results.away_scores.length == 0) {
                         ++totalEmptyPlayouts
                     }
                 })
             }
-            // console.log("totalEmpty", totalEmptyPlayouts)
-            if (totalEmptyPlayouts == state?.playout_data?.playouts?.length) {
-                timeVar=setTimeout(() => {
+            console.log("totalEmpty", totalEmptyPlayouts)
+            if (totalEmptyPlayouts == playouts_data?.playouts?.length) {
+                timeVar = setTimeout(() => {
                     fetchData()
                 }, 5000)
 
-            }else{
-                if(success){
+            } else {
+                if (loading) {
                     return clearTimeout(timeVar)
                 }
 
 
             }
 
-        }
 
-    }, [success])
+        }, [loading])
 
 
-    const handleScore_home = (home_score, away_score) => {
-        if (home_score != 0 && (home_score > away_score)) {
-            return true
-        } else if ((home_score != 0)) {
-            if (home_score == away_score) {
+        const handleScore_home = (home_score, away_score) => {
+            if (home_score != 0 && (home_score > away_score)) {
                 return true
+            } else if ((home_score != 0)) {
+                if (home_score == away_score) {
+                    return true
+                } else {
+                    return false
+                }
             } else {
                 return false
             }
-        } else {
-            return false
         }
-    }
-    const handleScore_away = (home_score, away_score) => {
-        if (away_score != 0 && (away_score > home_score)) {
-            return true
-        } else if ((away_score != 0)) {
-            if (away_score == home_score) {
+        const handleScore_away = (home_score, away_score) => {
+            if (away_score != 0 && (away_score > home_score)) {
                 return true
+            } else if ((away_score != 0)) {
+                if (away_score == home_score) {
+                    return true
+                } else {
+                    return false
+                }
             } else {
                 return false
             }
-        } else {
-            return false
         }
-    }
 
-    return (
-        <>
-            <section className="standing-wrapper text-center pt-2 pb-2">
-                <div className="w-100">
+        return (
+            <>
+                <section className="standing-wrapper text-center pt-2 pb-2">
                     <div className="w-100">
-                        <div className="col-12 pb-2 standings-container-heading">
-                            <span className="standing-heading d-flex  flex-column
-                            ">{kironSearchCompetition == 1 ? "KENYAN" : kironSearchCompetition == 2 ? "ENGLISH " : kironSearchCompetition == 3 ? "SPANISH" : "ITALIAN"} LEAGUE</span>
-                            <span><strong className={'font-bold-md'}>
-                                GAME WEEK {state?.playout_data?.game_week}
-                            </strong> </span> &nbsp;  <span>
-                            <strong className={'font-bold-md'}>
-                                TOTAL SELECTIONS {state?.playout_data?.selections || 0}
-                            </strong>
-                        </span>
+                        <div className="w-100">
+                            <div
+                                className="col-12 py-1 standings-container-heading playouts d-flex align-items-center justify-content-between px-3">
+                                <span>
+                                    <div className={'d-flex align-items-center'}>
+                                        Matchday #{playouts_data?.game_week}
+                                    </div>
+                                </span>
+                                <span>
+                                    <div className={'d-flex align-items-center'}>
+                                        You have {playouts_data?.selections || 0} selections
+                                    </div>
+                                </span>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
-            <div className="league-games-wrapper playout">
+                </section>
+                <div className="league-games-wrapper playout">
 
-                <div className={'w-100'}>
-                    <div className="playing-games-wrapper float-left w-100 small">
-                        <div className="league-wrapper">
-                            <div className="matches-wrapper pt-2">
-                                {state?.playout_data?.playouts?.map((results, key) => (
-                                    <div key={key}>
-                                        <div className="live-match-selection pt-1 pb-1" >
-                                            <div className="container">
-                                                <div className="row px-3">
-
-                                                    <div className="col-6 text-right pt-1">
-                                                        <span className="team-jersey">
-                                                            <LazyLoadImage src={results?.home_team_image} alt="Nare League"
-                                                                 style={{height: '32px'}}/>
-                                                        </span>
-                                                        <a href="#" style={{color: "var(--black)"}}
-                                                           className={"d-flex justify-content-between align-items-center"}>
+                    <div className={'w-100'}>
+                        <div className="playing-games-wrapper float-left w-100 small">
+                            <div className="league-wrapper">
+                                <div className="matches-wrapper pt-2">
+                                    {playouts_data?.playouts?.map((results, index) => (
+                                        <div key={index}>
+                                            <div className="live-match-selection pt-1 pb-1">
+                                                <div className="container">
+                                                    <div className="row px-3">
+                                                        <div className="col-results-page-1 text-right pt-1 d-flex justify-content-between align-items-center"><span
+                                                            className="team-jersey"><LazyLoadImage
+                                                            src={results?.home_team_image}
+                                                            alt="Nare League"/></span>
+                                                            <a href="#"
+                                                               className={'d-flex  justify-content-between align-items-center gap-4 '}
+                                                               style={{color: "var(--black)"}}>
+                                                                    <span
+                                                                        className="home-team-r bold px-2">{results.home_team}</span>
+                                                            </a>
+                                                        </div>
+                                                        <div className="col-results-page-2 d-flex align-items-center justify-content-between ">
+                                                                    <span
+                                                                        className={`mr-2 bold ${handleScore_home(results.home_scores.filter((score) => score <= play_time).length, results.away_scores.filter((score) => score <= play_time).length) ? `${Ended ? 'score-value-txt-stopped' : 'kiron-playout-score-animation kiron-playout-score'}` : 'score-value-txt'}`}>
+                                                                         {results.home_scores.filter((score) => score <= play_time).length}
+                                                                    </span>
+                                                            <span className={'separator-style'}>
+                                                                    </span>
                                                             <span
-                                                                className="home-team-r bold px-2">{results.home_team}</span>
-                                                            <span
-                                                                className={`mr-2 bold ${handleScore_home(results.home_scores.filter((score) => score <= playout).length, results.away_scores.filter((score) => score <= playout).length) ? `${state?.Ended?'': 'kiron-playout-score-animation kiron-playout-score'}`: 'red-txt'}`}>
-                                                            {results.home_scores.filter((score) => score <= playout).length}
+                                                                className={`mr-2 bold ${handleScore_away(results.home_scores.filter((score) => score <= play_time).length, results.away_scores.filter((score) => score <= play_time).length) ? `${Ended ? 'score-value-txt-stopped' : 'kiron-playout-score-animation kiron-playout-score'}` : 'score-value-txt'}`}>
+                                                                {results.away_scores.filter((score) => score <= play_time).length}
                                                             </span>
-                                                        </a>
-                                                    </div>
-
-                                                    <div className="col-6 text-left pt-1">
-                                                        <a href="#"
-                                                           className={"d-flex justify-content-between align-items-center"}
-                                                           style={{color: "var(--black)"}}>
-                                                            <span
-                                                                className={`mr-2 bold ${handleScore_away(results.home_scores.filter((score) => score <= playout).length, results.away_scores.filter((score) => score <= playout).length) ?`${state?.Ended?'': 'kiron-playout-score-animation kiron-playout-score'}`: 'red-txt'}`}> {results.away_scores.filter((score) => score <= playout).length}</span>
-                                                            <span
-                                                                className="away-team-r bold px-2">{results.away_team}</span>
-
-                                                        </a>
-                                                        <span className="team-jersey"><LazyLoadImage
-                                                            src={results?.away_team_image}
-                                                            alt="Nare League" style={{height: '32px'}}/></span>
+                                                        </div>
+                                                        <div className="col-results-page-3 text-left pt-1 d-flex justify-content-between align-items-center">
+                                                            <a href="#"
+                                                               className={"d-flex justify-content-between align-items-center gap-4"}
+                                                               style={{color: "var(--black)"}}>
+                                                                        <span
+                                                                            className="away-team-r bold px-2">{results.away_team}</span>
+                                                            </a>
+                                                            <span className="team-jersey"><LazyLoadImage
+                                                                src={results?.away_team_image}
+                                                                alt="Nare League"/></span>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                        </div>
-                                        {results?.bet_pick !== null &&
-                                            <div className={'w-100 d-flex'}>
-                                             <span className="w-100  d-flex  justify-content-center bold px-2 bg-success w-100" style={{fontSize:'13px',height:'23px'}}>
+                                            </div>
+                                            {results?.bet_pick !== null &&
+                                                <div className={'w-100 d-flex align-items-center'}>
+                                             <span
+                                                 className="w-100  d-flex  justify-content-center bold px-2 align-items-center background-color-orange w-100"
+                                                 style={{fontSize: '13px', height: '23px'}}>
                                                  &nbsp;
-                                                 <span className={'text-warning '}>Bet Pick:&nbsp;
-                                                     <span className={'text-light kiron_choice'}>{results?.bet_pick}</span>&nbsp;
+                                                 <span className={'text-dark '}>Bet Pick:&nbsp;
+                                                     <span
+                                                         className={'text-success kiron_choice'}>{results?.bet_pick}</span>&nbsp;
                                                  </span>
 
-                                                 <span className={'text-warning'}>Market :&nbsp;
-                                                     <span className={'text-light kiron_choice'}>{results?.market}</span></span>
+                                                 <span className={'text-secondary'}>Market :&nbsp;
+                                                     <span
+                                                         className={'text-dark kiron_choice'}>{results?.market}</span></span>
 
 
                                              </span>
-                                            </div>
-                                        }
-                                    </div>
-                                ))}
-                            </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    ))}
+                                </div>
 
+                            </div>
                         </div>
                     </div>
+
                 </div>
-
-            </div>
-        </>
+            </>
 
 
-    );
-});
+        );
+    });
 
 export default KironPlayouts;
 

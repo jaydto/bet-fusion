@@ -8,6 +8,18 @@ git branch /*
     background-color: #fff;
     border-color: #d3e0e9;
 }
+#reason_for_self_exclusion {
+    min-height: 8rem;
+    background: var(--bet-history);
+    color: var(--light);
+}
+.error-message {
+    color: red;
+    font-size: 15px;
+}
+#reason_for_self_exclusion::placeholder{
+    color: var(--light);
+}
 
 .hot-alert-badge {
     right: -16px;
@@ -443,6 +455,7 @@ li.bet-option {
 .bet-cancel input:focus{
     border:none!important;
 }
+
 .slip-bg {
     border-bottom: thin solid var(--slip-separator-color) !important;
     height: 7rem;

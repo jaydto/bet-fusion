@@ -6,12 +6,16 @@ import initialState from './state'
 import dataReducer from "./dataSlice"
 import authReducer from "./authSlice"
 import nareLeagueReducer from "./nareLeague"
+import bettingReducer from "./bettingSlice"
+import matchesReducer from "./matchesSlice"
 
 const rootReducer = combineReducers({
     // Add your individual reducers here
     data: dataReducer,
     auth: authReducer,
-    nareLeague: nareLeagueReducer
+    nareLeague: nareLeagueReducer,
+    betting: bettingReducer,
+    matchesData:matchesReducer
 });
 
 export default (state = initialState, action) => rootReducer(state, action);

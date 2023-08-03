@@ -1,50 +1,45 @@
-import React, {useCallback, useContext, useEffect, useState} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import "./results.css"
-import makeRequest from "../../../utils/fetch-request";
 import {Spinner} from "react-bootstrap";
-import {getFromLocalStorage} from "../../../utils/local-storage";
 import {LazyLoadImage} from "react-lazy-load-image-component";
-import {StoreContext} from "../../../../context/store";
+import { useDispatch,useSelector } from 'react-redux'; // Import useDispatch hook
+import {nareLeagueResults, resetState} from '../../../../redux/nareLeague';
 
 const KironResults =
     () => {
-        const [loading, setLoading] = useState(false)
-        const [resulted, setResulted] = useState([]);
-        const {state,dispatch}=useContext(StoreContext)
-        const newCompetition = new URL(window.location).searchParams.get('competition_id') || getFromLocalStorage("kiron_search_data")?.competition_id
+        const competition_id=useSelector((state)=>state.nareLeague.competition_id)
+        const newCompetition = new URL(window.location).searchParams.get('competition_id') || competition_id
 
-        let endpoint = "/v1/nare-league/results"
+        const dispatchRedux=useDispatch()
 
         const fetchData = useCallback(async () => {
-            setLoading(true)
-            endpoint = endpoint.replaceAll(" ", '')
 
             const kiron_data = {
-                competition_id: new URL(window.location).searchParams.get('competition_id') || getFromLocalStorage("kiron_search_data")?.competition_id
+                competition_id: new URL(window.location).searchParams.get('competition_id')||competition_id
             }
-            await makeRequest({url: endpoint, method: "POST", data: kiron_data}).then(([status, result]) => {
-                if (status == 200) {
-                    setResulted(result?.data || result)
-                    setLoading(false)
-
-                }
-            });
+            dispatchRedux(nareLeagueResults(kiron_data));
 
         }, []);
-
+        const loadingData = useSelector((state) => state.nareLeague.loading);
+        const resultsData = useSelector((state) => state.nareLeague.results_data);
 
         useEffect(() => {
             fetchData();
-            const payload = {
-                start: '', round: '', end: ''
-            }
-            dispatch({type: "SET", key: 'current_selection_period', payload: payload})
+            dispatchRedux(resetState('current_selection_period'))
         }, [newCompetition]);
+
+        const FormatTime=(props)=>{
+            const {time}=props
+            const [dateString, timeString] = time?.split(' ');
+            const [hour, minute] = timeString?.split(':');
+            const formatedTime=hour+':'+minute
+            return formatedTime
+        }
 
         return (
             <>
-                {resulted && !loading ?
-                    Object.entries(resulted).map(([key, league], index) => (
+                {resultsData && !loadingData ?
+                    Object.entries(resultsData).map(([key, league], index) => (
                         <>
                             <section className="standing-wrapper text-center pt-2 pb-2" key={index}>
                                 <div className="container">
@@ -54,7 +49,7 @@ const KironResults =
                                     className="standing-heading-r"><strong>{league?.competition_name.toUpperCase()} LEAGUE&nbsp; WEEK {league?.round_number}&nbsp;#{league?.round_id}</strong></span>
                                         </div>
                                         <div className="col-12"><span
-                                            className="standing-time">{league?.event_time}</span></div>
+                                            className="standing-time"><FormatTime time={league?.event_time}/></span></div>
                                     </div>
                                 </div>
                             </section>
@@ -68,23 +63,30 @@ const KironResults =
                                                     <div className="live-match-selection pt-1 pb-1">
                                                         <div className="container">
                                                             <div className="row px-3">
-                                                                <div className="col-6 text-right pt-1"><span
+                                                                <div className="col-results-page-1 text-right pt-1 d-flex justify-content-between align-items-center"><span
                                                                     className="team-jersey"><LazyLoadImage
                                                                     src={results?.home_icon}
-                                                                    alt="Nare League"/></span> <a href="#"
-                                                                                                  style={{color: "var(--black)"}}>
+                                                                    alt="Nare League"/></span>
+                                                                    <a href="#"
+                                                                       className={'d-flex  justify-content-between align-items-center gap-4 '}
+                                                                       style={{color: "var(--black)"}}>
                                                                     <span
                                                                         className="home-team-r bold px-2">{results.home_team}</span>
-                                                                    <span
-                                                                        className="ml-2 red-txt">{results.home_score}</span></a>
+                                                                    </a>
                                                                 </div>
-
-                                                                <div className="col-6 text-left pt-1">
+                                                                <div className="col-results-page-2 d-flex align-items-center justify-content-between ">
+                                                                    <span
+                                                                        className="ml-2 scores-txt">{results.home_score}</span>
+                                                                    <span className={'separator-style'}>
+                                                                    </span>
+                                                                    <span
+                                                                        className="mr-2 scores-txt">{results.away_score}</span>
+                                                                </div>
+                                                                <div className="col-results-page-3 text-left pt-1 d-flex justify-content-between align-items-center">
                                                                     <a href="#"
-                                                                       className={"d-flex justify-content-between align-items-center"}
+                                                                       className={"d-flex justify-content-between align-items-center gap-4"}
                                                                        style={{color: "var(--black)"}}>
-                                                                        <span
-                                                                            className="mr-2 red-txt">{results.away_score}</span>
+
                                                                         <span
                                                                             className="away-team-r bold px-2">{results.away_team}</span>
                                                                     </a>

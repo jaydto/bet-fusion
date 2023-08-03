@@ -222,7 +222,7 @@ const MatchHeaderRow = React.memo(
                     <div className={"size-info  d-flex col-xs-12 pad left-text"}>
                         <div className="col pad left-text d-flex">
                             <div className="align-self-center col">
-                                <h3 className="main-heading-1 text-white">
+                                <h3 className="mx-2 main-heading-1 text-white">
                                     {live && <span className="live-header">LIVE </span>}
                                     {sportName} {market && <></>}
                                 </h3>

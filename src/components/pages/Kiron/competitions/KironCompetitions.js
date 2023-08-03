@@ -7,9 +7,8 @@ import "./competition.css"
 import {useDispatch, useSelector} from 'react-redux'; // Import useDispatch hook
 import {nareLeagueCompetitions, setState} from '../../../../redux/nareLeague';
 
-
 const KironCompetitions = React.memo(
-    (props) => {
+    () => {
         const dispatchRedux = useDispatch()
         const pathLocation = window.location.pathname
         const [pathname, setPathname] = useState(() => {
@@ -61,7 +60,6 @@ const KironCompetitions = React.memo(
         }
 
         const setActiveCompetition = (id) => {
-            console.log("competition_id_clicked", id)
             dispatchRedux(setState('competition_id', id))
         }
 

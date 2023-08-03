@@ -1,14 +1,13 @@
-import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
+import React, {useContext, useEffect,  useState} from 'react';
 import Header from "../../header/header";
 import KironTabs from "./KironTabs/KironTabs";
 import KironCompetitions from "./competitions/KironCompetitions";
 import MatchList from "./matches";
-import makeRequest from "../../utils/fetch-request";
 import {StoreContext} from "../../../context/store";
 import {useLocation} from "react-router-dom";
 import KironPeriods from "./periods";
-import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
-import { useDispatch,useSelector } from 'react-redux';
+import {getFromLocalStorage} from "../../utils/local-storage";
+import { useSelector } from 'react-redux';
 import Right from "../../right";
 import KironMoreMarkets from "./kironMoreMarkets";
 import Footer from "../../footer/footer";

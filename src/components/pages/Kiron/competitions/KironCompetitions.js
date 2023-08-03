@@ -5,7 +5,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import {getFromLocalStorage} from "../../../utils/local-storage";
 import "./competition.css"
 import {useDispatch, useSelector} from 'react-redux'; // Import useDispatch hook
-import {nareLeagueCompetitions, resetState, setState} from '../../../../redux/nareLeague';
+import {nareLeagueCompetitions, setState} from '../../../../redux/nareLeague';
 
 
 const KironCompetitions = React.memo(
@@ -65,8 +65,6 @@ const KironCompetitions = React.memo(
             dispatchRedux(setState('competition_id', id))
         }
 
-        const competition_id = useSelector((state) => state.nareLeague.competition_id)
-
         return (
             competitionData &&
             <div className="app-countries-icons mt-4">
@@ -82,7 +80,7 @@ const KironCompetitions = React.memo(
                                     <div
                                         className={`country-flag-icon ${(pathname.includes(`competition_id=${kiron_options?.competition_id}`)) ? ' active-league ' : " "} justify-content-center`}>
                                         <Link
-                                            to={`${pathLocation == '/bet-history' ? '/nare-league' : pathLocation}?competition_id=${kiron_options?.competition_id}`}
+                                            to={`${pathLocation.includes('bet-history') ? '/nare-league' : pathLocation}?competition_id=${kiron_options?.competition_id}`}
                                             onClick={() => setActiveCompetition(kiron_options?.competition_id)}>
                                 <span className="icon">
                                    <LazyLoadImage

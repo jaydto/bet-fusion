@@ -155,8 +155,8 @@ input.text-white {
     padding-top: 10px;
     padding-bottom: 3px;
     margin-bottom: 12px;
-    padding-left: 10px;
-    padding-right: 10px;
+    /* padding-left: 10px; */
+    /* padding-right: 10px; */
     font-weight: normal;
     color: var(--light);
     font-size: 12px;

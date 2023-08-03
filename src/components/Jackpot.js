@@ -31,6 +31,7 @@ const Jackpot = React.memo(
         const fetchData = useCallback(async () => {
             dispatchRedux(matchesJackpot())
         }, []);
+
         const fetchJackpotById = useCallback(async (jackpot_id = '', jackpot_status = '') => {
             const trimmedStatus = jackpot_status.trim();
             const jackpotData = {
@@ -45,9 +46,8 @@ const Jackpot = React.memo(
         })
 
         useEffect(() => {
-
             const abortController = new AbortController();
-            fetchData().then(()=>{
+            fetchData().then(() => {
                 jackpotHistory()
             });
             return () => {
@@ -157,7 +157,6 @@ const Jackpot = React.memo(
 
 
         const loadJPResults = (jackpot) => {
-            console.log("status", jackpot?.value?.jackpot_status)
             fetchJackpotById(jackpot?.value?.jackpot_event_id, jackpot?.value?.jackpot_status)
         }
 
@@ -166,6 +165,7 @@ const Jackpot = React.memo(
         const handleTabSelect = (eventKey) => {
             setActiveTab(eventKey);
         };
+
         return (
             <div className={'flex-item jackpot-container'}>
                 <div className="item4">
@@ -211,7 +211,6 @@ const Jackpot = React.memo(
                                     <div className={'no-jackpot-text'}>There are no Jackpot Events at the moment</div>}
                             </div>
 
-
                         </div>
                         <div className="gz home jackpot-page-structure" style={{width: "100%", overflowX: "clip"}}>
                             <div className="homepage mobile-full-height ">
@@ -224,29 +223,29 @@ const Jackpot = React.memo(
                                     onSelect={handleTabSelect}>
                                     <Tab eventKey="home" title="Jackpot" className={'background-primary'}>
                                         {loading ? (
+                                            // Show skeleton loaders or loading indicators while data is being fetched
                                             <>
-                                                {width < 1259 ? <SkeletonMobileJackpot/> :
-                                                    <SkeletonJackpot/>}
+                                                {width < 1259 ? <SkeletonMobileJackpot/> : <SkeletonJackpot/>}
                                             </>
                                         ) : (
-
-                                            jackpot_data && jackpot_data?.data?.length > 0 ? (
-                                                <>
+                                            <>
+                                                {jackpot_data && jackpot_data?.data?.length > 0 ? (
                                                     <JackpotMatchList matches={jackpot_data} jackpot={true}/>
-                                                </>
-                                            ) : (
-                                                <div
-                                                    className={'text-white col-md-12 text-center background-primary shadow mt-2 p-3 d-flex flex-column  align-items-center justify-content-center'}
-                                                    style={{height: "30vh"}}>
-                                                    <LazyLoadImage src={caution}
-                                                                   className={'jackpot-image-caution'}/>
-                                                    <p className={'jackpot-text-inactive'}>
-                                                        1 Million Daily Jackpot not available. Please check back
-                                                        later.
-                                                    </p>
-                                                </div>
-                                            )
+                                                ) : (
+                                                    <div
+                                                        className={'text-white col-md-12 text-center background-primary shadow mt-2 p-3 d-flex flex-column  align-items-center justify-content-center'}
+                                                        style={{height: "30vh"}}>
+                                                        <LazyLoadImage src={caution}
+                                                                       className={'jackpot-image-caution'}/>
+                                                        <p className={'jackpot-text-inactive'}>
+                                                            1 Million Daily Jackpot not available. Please check back
+                                                            later.
+                                                        </p>
+                                                    </div>
+                                                )}
+                                            </>
                                         )}
+
 
                                     </Tab>
                                     <Tab eventKey="results" title="Results">
@@ -327,9 +326,11 @@ const Jackpot = React.memo(
 
                         </div>
                     </div>
-                    {activeTab === "home" && jackpot_data?.meta?.start_time && <div className="item3">
+                    {(activeTab === "home" && !jackpot_data?.meta?.length > 0) &&
+                        <div className="item3">
                         <Right jackpot={true} jackpotData={jackpot_data?.meta} test={true} matches={jackpot_data}/>
-                    </div>}
+                    </div>
+                    }
 
                 </div>
             </div>

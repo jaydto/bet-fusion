@@ -310,8 +310,7 @@ const BetslipSubmitForm = React.memo(
                             event: jackpot ? 'place_jackpot_bet' : live ? 'place_live_bet' : 'place_prematch_bet',
                             message: response?.message
                         }
-                        console.log("Bet Placement Failed " + response?.message)
-                        gaEventTracker("Bet Placement Failed " + response?.message, data)
+                        // gaEventTracker("Bet Placement Failed " + response?.message, data)
                         let response_message = response?.message;
                         if (response_message === "" || response_message === undefined) {
                             response_message = response?.error;

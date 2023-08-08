@@ -419,16 +419,16 @@ const PaymentInstructions = (props) => {
 const ConfirmationInstructions = (props) => {
     return (
         <>
-            <label className='betnare-text-light'>Confirmation Instructions</label>
+            <label className='betnare-text-light'>Deposit Confirmation Instructions</label>
             <div className="container d-flex flex-column">
                 <div className="row">
-                    <div className="col betnare-text-light"> 1. Enter Mpesa Transactional Code When a Subsequent Deposit has not Reflected in Your Account  </div>
+                    <div className="col betnare-text-light"> 1. Enter Mpesa Transaction code when your deposit has not reflected in your account.  </div>
                 </div>
                 <div className="row">
-                    <div className="col betnare-text-light"> 2. A Confirmation Message will be sent to you.</div>
+                    <div className="col betnare-text-light"> 2. Click on confirm deposit..</div>
                 </div>
                 <div className="row">
-                    <div className="col betnare-text-light"> 3. Your Deposit would reflect.</div>
+                    <div className="col betnare-text-light"> 3. Your deposit will be credited to your account.</div>
                 </div>
             </div>
         </>

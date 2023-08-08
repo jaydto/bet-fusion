@@ -193,7 +193,7 @@ createRoot(container).render(
                     <Route exact path={"/standing"} element={<Kiron/>}/>
                     <Route path={"/bet-history/:betID"} element={<ProtectedRoute><Kiron/></ProtectedRoute>}/>
                     <Route exact path={"/bet-history"} element={<ProtectedRoute><Kiron/></ProtectedRoute>}/>
-                    <Route exact path={"/profile"} element={<NewProfile/>}/>
+                    <Route exact path={"/profile"} element={<ProtectedRoute><NewProfile/></ProtectedRoute>}/>
                     <Route exact path={"/my-bets"} element={<ProtectedRoute><BetHistory/></ProtectedRoute>}/>
                      <Route exact path={"/betslip"} element={<BetslipPage/>}/>
                     <Route exact path="/betslip-slip" element={<BetslipPage/>}/>

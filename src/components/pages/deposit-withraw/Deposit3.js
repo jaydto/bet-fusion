@@ -144,6 +144,16 @@ const Deposit3 = React.memo(
 
         };
 
+        const ConfirmationAlert = (props) => {
+            let c = state?.confirmdepositSuccess ? 'success' : 'danger';
+            state?.confirmdepositMessage&&setTimeout(()=>{
+                dispatch({type: "SET", key: "confirmdepositMessage", payload: null})
+            },5500)
+            return (<>{state?.depositMessage &&
+                <div role="alert" className={`fade alert alert-${c} show`}>{state?.confirmdepositMessage}</div>} </>);
+
+        };
+
 
         return (
             <div style={{height: '100vh', background: '#16202C'}}>
@@ -245,7 +255,7 @@ const Deposit3 = React.memo(
                                     className="background-primary mb-3 px-3"
                                     justify
                                     onSelect={handleTabSelect}>
-                                    <Tab eventKey="online" title="ONLINE DEPOSIT" className={'background-primary'}>
+                                    <Tab eventKey="online" title="ONLINE" className={'background-primary'}>
                                         <div  className={'w-100'}>
                                             <div className={'d-flex'}>
                                                 {/**/}
@@ -349,7 +359,7 @@ const Deposit3 = React.memo(
                                                         <div className=" w-100">
                                                             <div className="homepage d-flex  flex-column align-items-center  login-page">
 
-                                                                <Alert/>
+                                                                <ConfirmationAlert/>
                                                                 <div className=" pb-0" data-backdrop="static">
 
                                                                     <DepositConfirmForm/>
@@ -400,6 +410,25 @@ const PaymentInstructions = (props) => {
                     <div className="col betnare-text-light"> 5. On successful payment, you will receive an M-Pesa
                         Confirmation.
                     </div>
+                </div>
+            </div>
+        </>
+    );
+}
+
+const ConfirmationInstructions = (props) => {
+    return (
+        <>
+            <label className='betnare-text-light'>Confirmation Instructions</label>
+            <div className="container d-flex flex-column">
+                <div className="row">
+                    <div className="col betnare-text-light"> 1. Enter Mpesa Transactional Code When a Subsequent Deposit has not Reflected in Your Account  </div>
+                </div>
+                <div className="row">
+                    <div className="col betnare-text-light"> 2. A Confirmation Message will be sent to you.</div>
+                </div>
+                <div className="row">
+                    <div className="col betnare-text-light"> 3. Your Deposit would reflect.</div>
                 </div>
             </div>
         </>
@@ -495,26 +524,13 @@ const DepositConfirmFormFields = (props) => {
     const {state,dispatch}=useContext(StoreContext)
 
 
-
     return (
         <>
             <div className="form-group row d-flex justify-content-center deposit-widthdraw-input-desktop">
                 <div className={`col-md-12 w-100`}>
-                    <div className={'d-flex '}>
-                        <label className={'text-light deposit col-5 deposit-label'}>Phone Number</label>
-                        <div className={'text-light col-7 text-end text-msisdn'}>
-                            +{values?.msisdn}
-                        </div>
+                    <div className={'d-flex justify-content-start'}>
+                        <label className={'text-light deposit col-5 deposit-label'}>MPESA CODE</label>
                     </div>
-                    {!state?.user&&<input
-                        className="text-light deposit-input form-control input-field"
-                        id="msisdn"
-                        name="msisdn"
-                        type="text"
-                        value={values.msisdn}
-                        placeholder='Enter Phone Number'
-                    />}
-                    {errors?.msisdn && <div className='text-danger'> {errors?.msisdn} </div>}
                 </div>
             </div>
             {state?.user&&<hr/>}
@@ -539,7 +555,7 @@ const DepositConfirmFormFields = (props) => {
                 <div className=" d-flex align-items-start deposit-withdraw-button-desktop">
                     <button type={"submit"}
                             className='btn btn-lg w-100 deposit-button button-radius input-field btn-font cg login-button2 btn bold d-flex justify-content-center align-items-center' style={{marginTop:"30px"}} disabled={values?.amount==''}>
-                        {state?.confirmdepositLoading && <div className="custom-loader"></div>} CONFIRMATION &nbsp;
+                        {state?.confirmdepositLoading && <div className="custom-loader"></div>}  CONFIRM DEPOSIT &nbsp;
                     </button>
                 </div>
             </div>
@@ -612,6 +628,9 @@ const MyDepositConfirmationForm = (props) => {
                                        // Pass confirmation code  here
 
                     />
+                    <div className={``}>
+                        <ConfirmationInstructions/>
+                    </div>
 
                 </div>
             </div>
@@ -689,8 +708,7 @@ const DepositConfirmForm = (props) => {
     const user = getFromLocalStorage('user')
 
     const initialValues = {
-        confirmation: '',
-        msisdn: state?.user?.msisdn||user?.msisdn
+        confirmation_code: '',
     }
     const gaEventTracker = useAnalyticsEventTracker('Deposit Confirmation')
 
@@ -726,10 +744,6 @@ const DepositConfirmForm = (props) => {
     const validate = values => {
 
         let errors = {}
-
-        if (!values.msisdn || !values.msisdn.match(/(254|0|)?[71]\d{8}/g)) {
-            errors.msisdn = 'Please enter a valid phone number'
-        }
 
         if (!values.confirmation) {
             errors.confirmation = "Please enter Your Mpesa Deposit Transactional Code";

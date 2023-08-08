@@ -149,7 +149,7 @@ const Deposit3 = React.memo(
             state?.confirmdepositMessage&&setTimeout(()=>{
                 dispatch({type: "SET", key: "confirmdepositMessage", payload: null})
             },5500)
-            return (<>{state?.confirmmdepositMessage &&
+            return (<>{state?.confirmdepositMessage &&
                 <div role="alert" className={`fade alert alert-${c} show`}>{state?.confirmdepositMessage}</div>} </>);
 
         };

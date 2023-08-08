@@ -419,7 +419,7 @@ const PaymentInstructions = (props) => {
 const ConfirmationInstructions = (props) => {
     return (
         <>
-            <label className='betnare-text-light'>Deposit Confirmation Instructions</label>
+            <label className='betnare-text-light'>Missing Deposit?</label>
             <div className="container d-flex flex-column">
                 <div className="row">
                     <div className="col betnare-text-light"> 1. Enter Mpesa Transaction code when your deposit has not reflected in your account.  </div>

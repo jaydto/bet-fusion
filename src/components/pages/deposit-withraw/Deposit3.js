@@ -721,7 +721,7 @@ const DepositConfirmForm = (props) => {
             // setSuccess(status === 200 || status === 201);
             // setMessage(response);
             dispatch({type: "SET", key: "confirmdepositSuccess", payload: status === 200 || status === 201})
-            dispatch({type: "SET", key: "confirmdepositMessage", payload: response})
+            dispatch({type: "SET", key: "confirmdepositMessage", payload: response?.success})
             clearTrackingData()
             if (status === 200 || status === 201) {
                 dispatch({type: "SET", key: "confirmdepositLoading", payload: false});

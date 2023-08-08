@@ -149,7 +149,7 @@ const Deposit3 = React.memo(
             state?.confirmdepositMessage&&setTimeout(()=>{
                 dispatch({type: "SET", key: "confirmdepositMessage", payload: null})
             },5500)
-            return (<>{state?.depositMessage &&
+            return (<>{state?.confirmmdepositMessage &&
                 <div role="alert" className={`fade alert alert-${c} show`}>{state?.confirmdepositMessage}</div>} </>);
 
         };
@@ -542,13 +542,13 @@ const DepositConfirmFormFields = (props) => {
                             onFieldChanged(ev);
                         }}
                         className="text-light deposit-input form-control col-md-12 input-field"
-                        id="confirmation"
-                        name="confirmation"
+                        id="confirmation_code"
+                        name="confirmation_code"
                         type="text"
-                        value={ values?.confirmation}
+                        value={ values?.confirmation_code||''}
                         placeholder='Enter Transactional Code'
                     />
-                    {errors.amount && <div className='text-danger'> {errors.amount} </div>}
+                    {errors.confirmation_code && <div className='text-danger'> {errors.confirmation_code} </div>}
                 </div>
             </div>
             <div className="form-group row d-flex justify-content-left mb-4">
@@ -726,14 +726,13 @@ const DepositConfirmForm = (props) => {
             if (status === 200 || status === 201) {
                 dispatch({type: "SET", key: "confirmdepositLoading", payload: false});
                 const data={
-                    msisdn:state?.user?.msisdn,
-                    confirmation:values?.confirmation
+                    confirmation_code:values?.confirmation_code
                 }
                 gaEventTracker('Deposit Confirmation',data )
             }else{
                 const data={
                     msisdn:state?.user?.msisdn,
-                    confirmation:values?.confirmation,
+                    confirmation:values?.confirmation_code,
                     message:response?.message
                 }
                 gaEventTracker('Deposit Confirmation Failed',data )
@@ -745,8 +744,8 @@ const DepositConfirmForm = (props) => {
 
         let errors = {}
 
-        if (!values.confirmation) {
-            errors.confirmation = "Please enter Your Mpesa Deposit Transactional Code";
+        if (!values.confirmation_code) {
+            errors.confirmation_code = "Please enter Your Mpesa Deposit Transactional Code";
         }
         return errors
     }

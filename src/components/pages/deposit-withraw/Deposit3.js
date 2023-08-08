@@ -339,6 +339,34 @@ const Deposit3 = React.memo(
                                             </div>
                                         </div>
                                     </Tab>
+                                    <Tab eventKey="confirmation" title="CONFIRMATION" className={'background-primary'}>
+                                        <div  className={'w-100'}>
+                                            <div className={'d-flex'}>
+                                                {/**/}
+                                                <div className={'size-deposit'}>
+                                                    {!user?setTimeout(navigate("/"),500):""}
+                                                    <div className={"d-flex flex-row justify-content-between"}>
+                                                        <div className=" w-100">
+                                                            <div className="homepage d-flex  flex-column align-items-center  login-page">
+
+                                                                <Alert/>
+                                                                <div className=" pb-0" data-backdrop="static">
+
+                                                                    <DepositConfirmForm/>
+                                                                </div>
+
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {/* <p>Don't have an account yet? <a href="/auth/register-2">Sign Up</a></p> */}
+                                                <div className="mt-4">
+                                                    {/*<LoginForm {...props}/>*/}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </Tab>
 
                                 </Tabs>
 
@@ -462,6 +490,62 @@ const DepositFormFields = (props) => {
         </>
     )
 }
+const DepositConfirmFormFields = (props) => {
+    const {values, errors, onFieldChanged} = props;
+    const {state,dispatch}=useContext(StoreContext)
+
+
+
+    return (
+        <>
+            <div className="form-group row d-flex justify-content-center deposit-widthdraw-input-desktop">
+                <div className={`col-md-12 w-100`}>
+                    <div className={'d-flex '}>
+                        <label className={'text-light deposit col-5 deposit-label'}>Phone Number</label>
+                        <div className={'text-light col-7 text-end text-msisdn'}>
+                            +{values?.msisdn}
+                        </div>
+                    </div>
+                    {!state?.user&&<input
+                        className="text-light deposit-input form-control input-field"
+                        id="msisdn"
+                        name="msisdn"
+                        type="text"
+                        value={values.msisdn}
+                        placeholder='Enter Phone Number'
+                    />}
+                    {errors?.msisdn && <div className='text-danger'> {errors?.msisdn} </div>}
+                </div>
+            </div>
+            {state?.user&&<hr/>}
+            <div className="form-group row d-flex justify-content-center mt-3 deposit-widthdraw-input-desktop">
+                <div className="col-md-12">
+                    <label className={'text-light deposit'}>Mpesa Transaction Code</label>
+                    <input
+                        onChange={ev => {
+                            onFieldChanged(ev);
+                        }}
+                        className="text-light deposit-input form-control col-md-12 input-field"
+                        id="confirmation"
+                        name="confirmation"
+                        type="text"
+                        value={ values?.confirmation}
+                        placeholder='Enter Transactional Code'
+                    />
+                    {errors.amount && <div className='text-danger'> {errors.amount} </div>}
+                </div>
+            </div>
+            <div className="form-group row d-flex justify-content-left mb-4">
+                <div className=" d-flex align-items-start deposit-withdraw-button-desktop">
+                    <button type={"submit"}
+                            className='btn btn-lg w-100 deposit-button button-radius input-field btn-font cg login-button2 btn bold d-flex justify-content-center align-items-center' style={{marginTop:"30px"}} disabled={values?.amount==''}>
+                        {state?.confirmdepositLoading && <div className="custom-loader"></div>} CONFIRMATION &nbsp;
+                    </button>
+                </div>
+            </div>
+        </>
+    )
+}
 
 const MyDepositForm = (props) => {
     const {errors, values, setFieldValue,setCurrentDepositValue, currentDepositValue} = props;
@@ -496,6 +580,38 @@ const MyDepositForm = (props) => {
                     <div className={``}>
                         <PaymentInstructions/>
                     </div>
+
+                </div>
+            </div>
+        </Form>
+    );
+}
+const MyDepositConfirmationForm = (props) => {
+    const {errors, values, setFieldValue} = props;
+
+    const onFieldChanged = (ev) => {
+        let field = ev.target.name;
+        let value = ev.target.value;
+        setFieldValue(field, value);
+
+    }
+
+    return (
+        <Form className="shadow-sm rounded border-0">
+            <div className="pt-0">
+
+                <div className="row">
+                    <div className='col-md-7 text-center'>
+                        <div className={`col-md-7 text-center`}>
+                            <LazyLoadImage src={mpesa} alt=""/>
+                        </div>
+                    </div>
+
+                    <DepositConfirmFormFields onFieldChanged={onFieldChanged}
+                                       values={values} errors={errors}
+                                       // Pass confirmation code  here
+
+                    />
 
                 </div>
             </div>
@@ -567,6 +683,71 @@ const DepositForm = (props) => {
             render={(props) => <MyDepositForm {...props} setCurrentDepositValue={setCurrentDepositValue} currentDepositValue={currentDepositValue}/>}/>
     );
 }
+
+const DepositConfirmForm = (props) => {
+    const { state, dispatch } = useContext(StoreContext);
+    const user = getFromLocalStorage('user')
+
+    const initialValues = {
+        confirmation: '',
+        msisdn: state?.user?.msisdn||user?.msisdn
+    }
+    const gaEventTracker = useAnalyticsEventTracker('Deposit Confirmation')
+
+    const handleSubmit = values => {
+
+        dispatch({type: "SET", key: "confirmdepositLoading", payload: true});
+        let endpoint = '/v1/deposit-confirmation';
+        setTrackingData(values)
+        makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
+            // setSuccess(status === 200 || status === 201);
+            // setMessage(response);
+            dispatch({type: "SET", key: "confirmdepositSuccess", payload: status === 200 || status === 201})
+            dispatch({type: "SET", key: "confirmdepositMessage", payload: response})
+            clearTrackingData()
+            if (status === 200 || status === 201) {
+                dispatch({type: "SET", key: "confirmdepositLoading", payload: false});
+                const data={
+                    msisdn:state?.user?.msisdn,
+                    confirmation:values?.confirmation
+                }
+                gaEventTracker('Deposit Confirmation',data )
+            }else{
+                const data={
+                    msisdn:state?.user?.msisdn,
+                    confirmation:values?.confirmation,
+                    message:response?.message
+                }
+                gaEventTracker('Deposit Confirmation Failed',data )
+            }
+        })
+    }
+
+    const validate = values => {
+
+        let errors = {}
+
+        if (!values.msisdn || !values.msisdn.match(/(254|0|)?[71]\d{8}/g)) {
+            errors.msisdn = 'Please enter a valid phone number'
+        }
+
+        if (!values.confirmation) {
+            errors.confirmation = "Please enter Your Mpesa Deposit Transactional Code";
+        }
+        return errors
+    }
+
+    return (
+        <Formik
+            initialValues={initialValues}
+            onSubmit={handleSubmit}
+            validateOnChange={false}
+            validateOnBlur={false}
+            validate={validate}
+            render={(props) => <MyDepositConfirmationForm {...props}/>}/>
+    );
+}
+
 
 export default React.memo(Deposit3)
 

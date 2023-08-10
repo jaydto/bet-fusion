@@ -374,7 +374,7 @@ const Header = React.memo(
                                    <span className={"color-app-text flashy"}>Deposit
                                        <strong style={{color: 'var(--gold'}}>380/=</strong> to get
                                        <strong style={{color: 'var(--gold'}}>200/= </strong>
-                                       PowerPlay Bonus
+                                       PowerPlayBonus
                                    </span>
                                 </div>
                             </Link>

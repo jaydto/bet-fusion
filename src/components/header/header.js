@@ -371,12 +371,9 @@ const Header = React.memo(
                                       gaEventTracker('Aniversary Promotion');
                                   }}>
                                 <div className={"app-download-link  d-flex flex-column"}>
-                                    <div className={"app-color"}>
-                                        <span className={"color-app-text flashy"}>Deposit <strong
-                                            style={{color: 'var(--gold'}}>365/=</strong> to get <strong
-                                            style={{color: 'var(--gold'}}>365/= </strong>Anniversary Bonus </span>
-                                        {/*<LazyLoadImage src={androidIcon} className={"icon-android"}/>*/}
-                                    </div>
+                                   <span className={"color-app-text flashy"}>Deposit <strong
+                                       style={{color: 'var(--gold'}}>365/=</strong> to get <strong
+                                       style={{color: 'var(--gold'}}>365/= </strong><span style={{color:'var(--orange)'}}>Power</span> Play <span style={{color:'var(--aqua)'}}> Bonus</span> </span>
                                 </div>
                             </Link>
 

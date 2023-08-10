@@ -374,7 +374,7 @@ const Header = React.memo(
                                    <span className={"color-app-text flashy"}>Deposit
                                        <strong style={{color: 'var(--gold'}}> 380/=</strong>  unlock
                                        <strong style={{color: 'var(--gold'}}> 200/= </strong>
-                                       PowerPlay <span style={{color:'var(--aqua)'}}>Bonus</span>
+                                       PowerPlay <span style={{color:'var(--aqua-text)'}}>Bonus</span>
                                    </span>
                                 </div>
                             </Link>

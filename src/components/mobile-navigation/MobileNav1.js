@@ -164,6 +164,7 @@ const MobileNav1 = React.memo(
                                         alt=""
                                         style={{height: "23px", marginTop:"-6px"}}
                                     />
+                                    <span className=" hot-alert-badge">HOT</span>
 
                                 </div>
                                 <p style={{textAlign: "center"}}>
@@ -188,7 +189,6 @@ const MobileNav1 = React.memo(
                                         alt=""
                                         style={{height: "23px", marginTop: "-6px", width:'30px'}}
                                     />
-                                    <span className=" hot-alert-badge">HOT</span>
                                 </div>
                                 <p style={{textAlign: "center"}}>
                                     Aviator

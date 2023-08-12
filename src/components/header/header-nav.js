@@ -131,7 +131,7 @@ const HeaderNav = React.memo(
                             <strong>
                                 <div className={'d-flex menu-item'}>
                                     Aviator
-                                    <span className="hot-alert-badge-item">HOT</span>
+
                                 </div>
                             </strong>
                         </div>
@@ -194,6 +194,7 @@ const HeaderNav = React.memo(
                         }} title="Nare League" >
                             <span>
                                 <strong>Nare League</strong>
+                                 <span className="hot-alert-badge-item">HOT</span>
                                     {/*<span className="hot-alert-badge-item">HOT</span>*/}
                             </span>
                         </div>

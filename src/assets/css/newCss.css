@@ -1076,7 +1076,7 @@ input[type="radio"], input[type="checkbox"] {
     width: 28px;
     height: 13px;
     text-align: center;
-    top: -7px;
+    top: -5px;
     flex-direction: column-reverse;
     display: flex;
 }

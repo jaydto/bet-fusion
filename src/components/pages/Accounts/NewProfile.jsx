@@ -1,12 +1,10 @@
 import React, {useContext, useEffect, useState} from 'react';
 import './component/newProfile.css'
 import {Link, useNavigate} from "react-router-dom";
-import accounts from '../../../assets/img/mobile/user.png'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBars, faCoins, faDownload, faHome, faPowerOff, faUpload} from "@fortawesome/free-solid-svg-icons";
 import {formatNumber} from "../../utils/betslip";
 import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
-import Right from "../../right";
 import SidebarProfile from "../../sidebar/sidebarProfile";
 import makeRequest from "../../utils/fetch-request";
 import {StoreContext } from "../../../context/store"
@@ -22,28 +20,6 @@ const NewProfile = React.memo(
             setLocalStorage("user", null)
             return window.location.href = "/logout"
         }
-        const updateUserOnHistory = () => {
-            if (!user) {
-                return false;
-            }
-            let endpoint = "/v1/balance";
-            let udata = {
-                token: user.token
-            }
-            makeRequest({url: endpoint, method: "post", data: udata}).then(([_status, response]) => {
-                if (_status == 200) {
-                    let u = {...user, ...response.user};
-                    setLocalStorage('user', u);
-                    setUser(u)
-                    dispatch({type: "SET", key: "user", payload: u});
-                }
-            });
-
-        };
-
-        useEffect(() => {
-            updateUserOnHistory()
-        }, [updateUserOnHistory])
 
         const navigate = useNavigate()
         return (

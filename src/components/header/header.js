@@ -363,7 +363,7 @@ const Header = React.memo(
                 <div className={'d-flex flex-column'}>
                     {(!showDownload) &&
                         <div>
-                            <Link to={'/deposit?utm_source=anniversary-promo'}
+                            <Link to={'/deposit?utm_source=365-promo'}
                                   target={"_self"}
                                   title={''}
                                   className={"lite-top d-flex flex-column"}
@@ -372,8 +372,8 @@ const Header = React.memo(
                                   }}>
                                 <div className={"app-download-link  d-flex flex-column"}>
                                    <span className={"color-app-text flashy"}>Deposit
-                                       <strong style={{color: 'var(--gold'}}> 380/=</strong>  Unlock
-                                       <strong style={{color: 'var(--gold'}}> 200/= </strong>
+                                       <strong style={{color: 'var(--gold'}}> 365/=</strong>  Unlock
+                                       <strong style={{color: 'var(--gold'}}> 365/= </strong>
                                        PowerPlay <span style={{color:'var(--aqua-text)'}}>Bonus</span>
                                    </span>
                                 </div>

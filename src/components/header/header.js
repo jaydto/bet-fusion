@@ -372,9 +372,9 @@ const Header = React.memo(
                                   }}>
                                 <div className={"app-download-link  d-flex flex-column"}>
                                    <span className={"color-app-text flashy"}>Deposit
-                                       <strong style={{color: 'var(--gold'}}> 365/=</strong>  Unlock
+                                       <strong style={{color: 'var(--gold'}}> 365/=</strong>  Get
                                        <strong style={{color: 'var(--gold'}}> 365/= </strong>
-                                       PowerPlay <span style={{color:'var(--aqua-text)'}}>Bonus</span>
+                                       <span style={{color:'var(--aqua-text)'}}> Instant  Bonus</span>
                                    </span>
                                 </div>
                             </Link>

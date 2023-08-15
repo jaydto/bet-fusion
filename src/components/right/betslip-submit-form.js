@@ -600,7 +600,7 @@ const BetslipSubmitForm = React.memo(
         };
 
         const closeAlert=()=> {
-            setMessage(null)
+            setMultiBoostMessage(null)
         }
 
         return (
@@ -730,7 +730,8 @@ const BetslipSubmitForm = React.memo(
                         <div>
                             {!jackpot &&
                             awardMultiGift &&
-                            Number(totalGames) > settings?.betnareBonus?.bonusBetLegs ? (
+                            Number(totalGames) > settings?.betnareBonus?.bonusBetLegs && (
+                                multiBoostMessage&&
                                 <div className={" slip-message-alert "}>
                                     <div colSpan="2" className={'d-flex col-2'} style={{width: '100%'}}>
                                         <FontAwesomeIcon icon={faGift}/> {multiBoostMessage}
@@ -744,9 +745,7 @@ const BetslipSubmitForm = React.memo(
                                     </td>
 
                                 </div>
-                            ) : (
-                                <div></div>
-                            )}
+                            ) }
                         </div>
                         {totalGames > 0 && (
                             <div className="bet-table w-100 box-shadow-table-submit-form ">

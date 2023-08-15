@@ -16,6 +16,8 @@ const Reducer = (state,  action) => {
             const { [key]: foo, ...rest } = state;
             state = rest;
             return state;
+        case 'CLEAR_ALL_ITEMS':
+            return {}; // Clear all items by returning an empty object
         default:
             return state;
     }

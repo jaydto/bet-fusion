@@ -647,7 +647,7 @@ const BetslipSubmitForm = React.memo(
                                     newValue = value
                                 }
                             }
-                            const minStake = sportBookLimits?.singleBetMinStake || 0;
+                            const minStake = sportBookLimits?.singleBetMinStake ;
                             if (Number(value) < Number(minStake)) {
                                 dispatch({type: "SET", key: "minStake", payload: minStakeMessage});
                             } else {

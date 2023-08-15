@@ -79,7 +79,8 @@ const BetslipSubmitForm = React.memo(
         const {state, dispatch} = useContext(StoreContext);
         const [loadingShare, setLoadingShare] = useState(false);
         const settings = getFromLocalStorage("settings");
-        const [stake, setStake] = useState(jackpot ? parseInt(jackpotData?.bet_amount) : state?.userStake || getFromLocalStorage("userStake") || 100);
+        const [stake, setStake] = useState(jackpot ? parseInt(jackpotData?.bet_amount) : state?.userStake || getFromLocalStorage("userStake") || settings?.sportBookLimits?.defaultBetAmount
+        );
         const [stakeBoosted, setStakeBoosted] = useState(100);
 
         const [stakeAfterTax, setStakeAfterTax] = useState(0);
@@ -447,7 +448,7 @@ const BetslipSubmitForm = React.memo(
 
         const value_for_odds_change = getFromLocalStorage("accept_all_odds_change") === undefined ? true : getFromLocalStorage("accept_all_odds_change")
         const initialValues = {
-            bet_amount: (jackpot && jackpotData?.bet_amount) || (bonusBet ? Number(settings?.betnareBonus?.defaultBonusBetAmount): stake),
+            bet_amount: (jackpot && jackpotData?.bet_amount) || (bonusBet ? Number(settings?.betnareBonus?.defaultBonusBetAmount) : stake),
             accept_all_odds_change: value_for_odds_change,
             user_id: state?.user?.profile_id,
             total_games: totalGames,
@@ -647,7 +648,7 @@ const BetslipSubmitForm = React.memo(
                                     newValue = value
                                 }
                             }
-                            const minStake = sportBookLimits?.singleBetMinStake ;
+                            const minStake = sportBookLimits?.singleBetMinStake;
                             if (Number(value) < Number(minStake)) {
                                 dispatch({type: "SET", key: "minStake", payload: minStakeMessage});
                             } else {

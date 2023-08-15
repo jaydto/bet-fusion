@@ -728,7 +728,7 @@ const BetslipSubmitForm = React.memo(
                             />
                         )}
                         <div>
-                            {!jackpot &&
+                            {!jackpot && !message &&
                             awardMultiGift &&
                             Number(totalGames) > settings?.betnareBonus?.bonusBetLegs && (
                                 multiBoostMessage&&

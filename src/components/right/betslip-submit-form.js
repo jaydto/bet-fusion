@@ -123,7 +123,7 @@ const BetslipSubmitForm = React.memo(
                     dispatch({type: "SET", key: "user", payload: u});
                     setTimeout(() => {
                         setMessage(null)
-                    }, 8000)
+                    }, 10000)
                     dispatch({type: "SET", key: "placebet", payload: true});
                 }
             });

@@ -449,7 +449,7 @@ const BetslipSubmitForm = React.memo(
 
         const value_for_odds_change = getFromLocalStorage("accept_all_odds_change") === undefined ? true : getFromLocalStorage("accept_all_odds_change")
         const initialValues = {
-            bet_amount: jackpot ? jackpotData?.bet_amount : bonusBet ? 100 : (state?.userStake || getFromLocalStorage('userStake') || 100),
+            bet_amount: (jackpot && jackpotData?.bet_amount) || (bonusBet ? 100 : stake),
             accept_all_odds_change: value_for_odds_change,
             user_id: state?.user?.profile_id,
             total_games: totalGames,
@@ -649,7 +649,7 @@ const BetslipSubmitForm = React.memo(
                                     newValue = value
                                 }
                             }
-                            const minStake = sportBookLimits?.singleBetMinStake || 1;
+                            const minStake = sportBookLimits?.singleBetMinStake || 0;
                             if (Number(value) < Number(minStake)) {
                                 dispatch({type: "SET", key: "minStake", payload: minStakeMessage});
                             } else {

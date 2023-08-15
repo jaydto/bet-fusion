@@ -2180,6 +2180,15 @@ img.nare-league {
 }
 
 @media (max-width: 991px) {
+    .betslip-alert-close {
+        position: absolute;
+        right: -4px;
+        top: -10px;
+    }
+    .betslip-alert-close input{
+        border-radius: 20px !important;
+        background: var(--bet-history) !important;
+    }
     .top-smartsoft.gameplay{
         margin-top:5.7rem!important;
     }

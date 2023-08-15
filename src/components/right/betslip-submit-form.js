@@ -107,6 +107,7 @@ const BetslipSubmitForm = React.memo(
         const {height, width} = useWindowDimensions();
         const [user, setUser] = useState(getFromLocalStorage("user"));
 
+        let timeoutId = null;
         const updateUserOnHistory = () => {
             if (!user) {
                 return false;
@@ -116,20 +117,33 @@ const BetslipSubmitForm = React.memo(
                 token: user.token
             }
             makeRequest({url: endpoint, method: "post", data: udata}).then(([_status, response]) => {
-                if (_status == 200) {
+                clearTimeout(timeoutId); // Clear any existing timeouts
+                if (_status == 200)
+                {
                     let u = {...user, ...response.user};
                     setLocalStorage('user', u);
                     setUser(u)
                     dispatch({type: "SET", key: "user", payload: u});
-                    setTimeout(() => {
-                        setMessage(null)
-                    }, 6000)
                     dispatch({type: "SET", key: "placebet", payload: true});
+                    if (timeoutId) {
+                        clearTimeout(timeoutId);
+                    }
+
+                    timeoutId = setTimeout(() => {
+                        setMessage(null);
+                    }, 10000);
+                }else{
+                    if (timeoutId) {
+                        clearTimeout(timeoutId);
+                    }
+
+                    timeoutId = setTimeout(() => {
+                        setMessage(null);
+                    }, 10000);
                 }
             });
 
         };
-
 
         useEffect(() => {
             updateUserOnHistory()
@@ -599,6 +613,10 @@ const BetslipSubmitForm = React.memo(
             }
         };
 
+        const closeAlert=()=> {
+            setMultiBoostMessage(null)
+        }
+
         return (
             <Formik
                 initialValues={initialValues}
@@ -724,18 +742,24 @@ const BetslipSubmitForm = React.memo(
                             />
                         )}
                         <div>
-                            {!jackpot &&
+                            {!jackpot && !message &&
                             awardMultiGift &&
-                            Number(totalGames) > settings?.betnareBonus?.bonusBetLegs ? (
+                            Number(totalGames) > settings?.betnareBonus?.bonusBetLegs && (
+                                multiBoostMessage&&
                                 <div className={" slip-message-alert "}>
                                     <div colSpan="2" className={'d-flex col-2'} style={{width: '100%'}}>
                                         <FontAwesomeIcon icon={faGift}/> {multiBoostMessage}
                                     </div>
+                                    <td colSpan={2} className={" bet-align-right betslip-alert-close"}>
+                                        <input
+                                            type="submit"
+                                            value="X"
+                                            onClick={() => closeAlert()}
+                                        />
+                                    </td>
 
                                 </div>
-                            ) : (
-                                <div></div>
-                            )}
+                            ) }
                         </div>
                         {totalGames > 0 && (
                             <div className="bet-table w-100 box-shadow-table-submit-form ">

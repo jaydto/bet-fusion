@@ -1,4 +1,4 @@
-import React, {Suspense, useCallback, useEffect} from "react";
+import React, {Suspense, useCallback, useContext, useEffect} from "react";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 
@@ -14,7 +14,7 @@ import './index.css';
 import './assets/css/newCss.css'
 import './tailwind.css';
 import './assets/css/Themes.css'
-import { StoreProvider } from "./context/store";
+import {StoreContext, StoreProvider} from "./context/store";
 import ReactGA from 'react-ga4';
 import Loading from "./components/loading/LoadingSuspense";
 import { createRoot } from 'react-dom/client';
@@ -147,10 +147,13 @@ const BetHistory =React.lazy(()=>import( "./components/pages/Accounts/component/
 const Lobby =React.lazy(()=>import( "./components/lobby/Index"));
 
 const Logout = () => {
+    const { state, dispatch } = useContext(StoreContext);
     let navigate = useNavigate();
     setLocalStorage('user', null)
     const out = useCallback(() => {
         localStorage.clear();
+        dispatch({ type: 'CLEAR_ALL_ITEMS' }); // Dispatch the action to clear all items
+
         navigate("/");
     }, [navigate]);
 

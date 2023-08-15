@@ -599,6 +599,10 @@ const BetslipSubmitForm = React.memo(
             }
         };
 
+        const closeAlert=()=> {
+            setMessage(null)
+        }
+
         return (
             <Formik
                 initialValues={initialValues}
@@ -731,6 +735,13 @@ const BetslipSubmitForm = React.memo(
                                     <div colSpan="2" className={'d-flex col-2'} style={{width: '100%'}}>
                                         <FontAwesomeIcon icon={faGift}/> {multiBoostMessage}
                                     </div>
+                                    <td colSpan={2} className={" bet-align-right betslip-alert-close"}>
+                                        <input
+                                            type="submit"
+                                            value="X"
+                                            onClick={() => closeAlert()}
+                                        />
+                                    </td>
 
                                 </div>
                             ) : (

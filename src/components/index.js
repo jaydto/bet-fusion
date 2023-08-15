@@ -29,12 +29,10 @@ const Right = React.lazy(() => import('./right'));
 const SideBar = React.lazy(() => import('./sidebar/awesome/Sidebar'))
 const Index = React.memo(
     () => {
-        const [, setScrollEndedActive] = useState(false)
         const location = useLocation();
         const [tab, setTab] = useState('highlights');
         const [sportID, setSportID] = useState(79);
         const [loading, setLoading] = useState(false);
-        const searchTerm=window.location.search
         const {height, width} = useWindowDimensions();
         const [matches, setMatches] = useState([]);
         const matchSizeRef=useRef(0)

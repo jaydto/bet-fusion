@@ -130,7 +130,6 @@ const BetslipSubmitForm = React.memo(
 
         };
 
-
         useEffect(() => {
             updateUserOnHistory()
         }, [message?.message])

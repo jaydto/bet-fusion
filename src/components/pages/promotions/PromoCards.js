@@ -2,6 +2,7 @@ import React from "react";
 import twentyPercentDepositBonus from "../../../assets/img/banner/products/Bet_Nare_gift_Mobile.webp";
 import firstDeposit from "../../../assets/img/banner/products/Firstdeposit.jpeg";
 import multibetCashback from "../../../assets/img/banner/products/Bet_Nare_100_Cashback_Mobile.webp";
+import DepositBonus from "../../../assets/img/banner/products/365.jpg";
 import karibuGiftWallet from "../../../assets/img/banner/products/Bet_Nare_3000_karibu_gift_Mobile.webp";
 import {Link, useNavigate} from "react-router-dom";
 import "./promo.css";
@@ -12,28 +13,24 @@ import Notify from "../../utils/Notify";
 
 const PromoCards = () => {
     const gaEventTracker = useAnalyticsEventTracker('Promotions');
-    const user=getFromLocalStorage('user')
+    const user = getFromLocalStorage('user')
 
-    let ids = [1, 2, 3, 4, 5, 6, 7, 8];
+    let ids = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     const navigate = useNavigate()
 
-    let message = { status: 401, message: 'This Promotion is for new Users', token: '' };
+    let message = {status: 401, message: 'This Promotion is for new Users', token: ''};
 
-    const checkIfUser=()=>{
-        if(user){
+    const checkIfUser = () => {
+        if (user) {
             Notify(message)
-        }
-        else{
+        } else {
             navigate('/signup')
         }
 
     }
 
     const setUtmSouceCampaignOnPromotions = (event) => {
-        const utm_source = getFromLocalStorage('utm_source')
-        if (!utm_source) {
-            setLocalStorage('utm_source', event)
-        }
+        setLocalStorage('utm_source', event)
     }
 
     return (
@@ -43,6 +40,43 @@ const PromoCards = () => {
                     "row text-white pt-2 border-0 d-flex justify-content-center promo-container d-flex align-self-start align-items-start"
                 }
             >
+                <div className="col-md-2 promo-styling card shadow-lg promotion">
+                    <div className="d-flex flex-column  promo-inner">
+                        <div className="d-flex flex-column">
+                            <img src={DepositBonus} className={"rounded promo-image"}/>
+                            <h5
+                                className="bold d-flex justify-content-center h4 pt-2"
+                                style={{color: "#ea5d0b"}}
+                            >
+                                {" "}
+                                365 DEPOSIT BONUS
+                            </h5>
+                            <div className="container mx-1 px-2 text-data-promotions">
+                                Get 365/= Free When you deposit 365/=
+                            </div>
+                            <hr/>
+                            <div className="d-flex justify-content-between my-2 mx-2">
+                                <button className={"profile-button border-0 h-25 rounded promo-button"}
+                                        style={{background: "#ea5d0b"}} onClick={() => {
+                                    navigate(`/deposit`);
+                                    gaEventTracker('365 Depoist Bonus');
+                                    setUtmSouceCampaignOnPromotions('promo_365_deposit_bonus')
+                                    setUtmSouceCampaignOnPromotions('promo_365_deposit_bonus')
+                                }}>
+                                    Deposit Now
+                                </button>
+
+                                <div
+                                    className={"  d-flex align-self-center h-25 border-0 bg-transparent"}
+                                    style={{color: "#ea5d0b"}}
+                                    onClick={() => navigate(`/promo?id=${ids[8]}`)}
+                                >
+                                    Read More
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div className="col-md-2 promo-styling shadow-lg promotion">
                     <div className="d-flex flex-column promo-inner">
                         <img src={karibuGiftWallet} className={"rounded promo-image "}/>
@@ -59,149 +93,17 @@ const PromoCards = () => {
 
                         <div className="d-flex justify-content-between my-2 mx-2">
 
-                                <button className={"profile-button border-0 h-25 rounded promo-button"}
-                                        style={{background: "#ea5d0b"}} onClick={() => {
-                                    checkIfUser();
-                                    gaEventTracker('promo Gift Wallet');
-                                    setUtmSouceCampaignOnPromotions('promo_Gift_Wallet')
-                                }}>Sign Up
-                                </button>
+                            <button className={"profile-button border-0 h-25 rounded promo-button"}
+                                    style={{background: "#ea5d0b"}} onClick={() => {
+                                checkIfUser();
+                                gaEventTracker('promo Gift Wallet');
+                                setUtmSouceCampaignOnPromotions('promo_Gift_Wallet')
+                            }}>Sign Up
+                            </button>
                             <div
                                 className={"d-flex  align-self-center   h-25 border-0 bg-transparent"}
                                 style={{color: "#ea5d0b"}}
                                 onClick={() => navigate(`/promo?id=${ids[0]}`)}
-                            >
-                                Read More
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="col-md-2 promo-styling shadow-lg promotion">
-                    <div className="d-flex flex-column promo-inner">
-                        <img src={'https://storage.googleapis.com/nareimages/carousel/SpaceMan.webp'}
-                             className={"rounded promo-image "}/>
-                        <h5
-                            className="bold d-flex justify-content-center h4 pt-2"
-                            style={{color: "#ea5d0b"}}
-                        >
-                            Pepea Angani na SpaceMan
-                        </h5>
-                        <p className="container mx-1 px-2 text-data-promotions">
-                            Win big cash prizes when you hit the top spot and collect UPTO x5000...
-                        </p>
-                        <hr/>
-                        <div className="d-flex justify-content-between my-2 mx-2">
-                            <button className={"profile-button border-0 h-25 rounded promo-button"}
-                                    style={{background: "#ea5d0b"}} onClick={() => {
-                                navigate(`/gameplay/1301/1`);
-                                gaEventTracker('promo SpaceMan');
-                                setUtmSouceCampaignOnPromotions('promo_SpaceMan')
-                            }}>Play SpaceMan
-                            </button>
-                            <div
-                                className={"d-flex  align-self-center  h-25 border-0 bg-transparent"}
-                                style={{color: "#ea5d0b"}}
-                                onClick={() => navigate(`/promo?id=${ids[6]}`)}
-                            >
-                                Read More
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-md-2 promo-styling card shadow-lg promotion">
-                    <div className="d-flex flex-column promo-inner" style={{opacity:'0.4'}}>
-                        <img src={firstDeposit} className={"rounded promo-image"}/>
-                        <h5
-                            className="bold d-flex justify-content-center h4 pt-2 pb-1"
-                            style={{color: "#ea5d0b", whiteSpace: "nowrap"}}
-                        >
-                            FIRST DEPOSIT BOOSTER
-                        </h5>
-                        <div className="container mx-1  mb-2 px-2 text-data-promotions">
-                            Get 1500% BONUS on the FIRST ever deposit as Free Nare Booster now...
-                        </div>
-                        <hr/>
-                        <div className="d-flex justify-content-between my-2 mx-2">
-                            <button disabled={true} className={"profile-button border-0 h-25 rounded promo-button"}
-                                    style={{background: "#ea5d0b"}} onClick={() => {
-                                navigate(`/deposit`);
-                                gaEventTracker('promo  FIRST DEPOSIT BOOSTER');
-                                setUtmSouceCampaignOnPromotions('promo_FIRST_DEPOSIT_BOOSTER')
-                            }}>Deposit
-                            </button>
-                            {/*onClick={() => navigate(`/promo?id=${ids[1]}`)}*/}
-                            <div
-                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent"}
-                                style={{color: "#ea5d0b"}}
-                            >
-                                Read More
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-md-2 promo-styling shadow-lg promotion">
-                    <div className="d-flex flex-column promo-inner">
-                        <img src={'https://storage.googleapis.com/nareimages/carousel/Aviator.webp'}
-                             className={"rounded promo-image "}/>
-                        <h5
-                            className="bold d-flex justify-content-center h4 pt-2"
-                            style={{color: "#ea5d0b"}}
-                        >
-                            Gurumisha Mamili na Aviator
-                        </h5>
-                        <p className="container mx-1 px-2 text-data-promotions">
-                            With as low as a stake of 10 bob tu, pata kushinda millions...
-                        </p>
-                        <hr/>
-                        <div className="d-flex justify-content-between my-2 mx-2">
-                            <button className={"profile-button border-0 h-25 rounded promo-button"}
-                                    style={{background: "#ea5d0b"}} onClick={() => {
-                                navigate(`/nare-games/aviator`);
-                                gaEventTracker('promo Aviator');
-                                setUtmSouceCampaignOnPromotions('promo_Aviator')
-                            }}>Play Aviator
-                            </button>
-                            <div
-                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent"}
-                                style={{color: "#ea5d0b"}}
-                                onClick={() => navigate(`/promo?id=${ids[5]}`)}
-                            >
-                                Read More
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-md-2 promo-styling card shadow-lg promotion" style={{opacity:'0.4'}}>
-                    <div className="d-flex flex-column promo-inner">
-                        <img
-                            src={twentyPercentDepositBonus}
-                            className={"rounded promo-image"}
-                        />
-                        <h5
-                            className="bold d-flex justify-content-center h4 pt-2"
-                            style={{color: "#ea5d0b"}}
-                        >
-                            20% FIRST DAILY DEPOSIT BONUS{" "}
-                        </h5>
-
-                        <div className="container mx-1 px-2 text-data-promotions">
-                            Get 20% daily deposit Boost on your 1st deposit of the day...
-                        </div>
-                        <hr/>
-                        <div className="d-flex justify-content-between my-2 mx-2">
-                            <button disabled={true} className={"profile-button border-0 h-25 rounded promo-button"}
-                                    style={{background: "#ea5d0b"}} onClick={() => {
-                                navigate(`/deposit`);
-                                gaEventTracker('promo 20% deposit Boost');
-                                setUtmSouceCampaignOnPromotions('promo_20_deposit_Boost')
-                            }}>Deposit
-                            </button>
-                            {/*onClick={() => navigate(`/promo?id=${ids[2]}`)}*/}
-                            <div
-                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent"}
-                                style={{color: "#ea5d0b"}}
-
                             >
                                 Read More
                             </div>
@@ -244,8 +146,140 @@ const PromoCards = () => {
                         </div>
                     </div>
                 </div>
+
                 <div className="col-md-2 promo-styling shadow-lg promotion">
+                    <div className="d-flex flex-column promo-inner promo-inactive">
+                        <img src={'https://storage.googleapis.com/nareimages/carousel/SpaceMan.webp'}
+                             className={"rounded promo-image "}/>
+                        <h5
+                            className="bold d-flex justify-content-center h4 pt-2"
+                            style={{color: "#ea5d0b"}}
+                        >
+                            Pepea Angani na SpaceMan
+                        </h5>
+                        <p className="container mx-1 px-2 text-data-promotions">
+                            Win big cash prizes when you hit the top spot and collect UPTO x5000...
+                        </p>
+                        <hr/>
+                        <div className="d-flex justify-content-between my-2 mx-2">
+                            <button className={"profile-button border-0 h-25 rounded promo-button"}
+                                    style={{background: "#ea5d0b"}} onClick={() => {
+                                navigate(`/gameplay/1301/1`);
+                                gaEventTracker('promo SpaceMan');
+                                setUtmSouceCampaignOnPromotions('promo_SpaceMan')
+                            }}>Play SpaceMan
+                            </button>
+                            <div
+                                className={"d-flex  align-self-center  h-25 border-0 bg-transparent"}
+                                style={{color: "#ea5d0b"}}
+                                onClick={() => navigate(`/promo?id=${ids[6]}`)}
+                            >
+                                Read More
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-md-2 promo-styling card shadow-lg promotion">
+                    <div className="d-flex flex-column promo-inner promo-inactive">
+                        <img src={firstDeposit} className={"rounded promo-image"}/>
+                        <h5
+                            className="bold d-flex justify-content-center h4 pt-2 pb-1"
+                            style={{color: "#ea5d0b", whiteSpace: "nowrap"}}
+                        >
+                            FIRST DEPOSIT BOOSTER
+                        </h5>
+                        <div className="container mx-1  mb-2 px-2 text-data-promotions">
+                            Get 1500% BONUS on the FIRST ever deposit as Free Nare Booster now...
+                        </div>
+                        <hr/>
+                        <div className="d-flex justify-content-between my-2 mx-2">
+                            <button disabled={true} className={"profile-button border-0 h-25 rounded promo-button"}
+                                    style={{background: "#ea5d0b"}} onClick={() => {
+                                navigate(`/deposit`);
+                                gaEventTracker('promo  FIRST DEPOSIT BOOSTER');
+                                setUtmSouceCampaignOnPromotions('promo_FIRST_DEPOSIT_BOOSTER')
+                            }}>Deposit
+                            </button>
+                            {/*onClick={() => navigate(`/promo?id=${ids[1]}`)}*/}
+                            <div
+                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent"}
+                                style={{color: "#ea5d0b"}}
+                            >
+                                Read More
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-md-2 promo-styling shadow-lg promotion">
+                    <div className="d-flex flex-column promo-inner promo-inactive">
+                        <img src={'https://storage.googleapis.com/nareimages/carousel/Aviator.webp'}
+                             className={"rounded promo-image "}/>
+                        <h5
+                            className="bold d-flex justify-content-center h4 pt-2"
+                            style={{color: "#ea5d0b"}}
+                        >
+                            Gurumisha Mamili na Aviator
+                        </h5>
+                        <p className="container mx-1 px-2 text-data-promotions">
+                            With as low as a stake of 10 bob tu, pata kushinda millions...
+                        </p>
+                        <hr/>
+                        <div className="d-flex justify-content-between my-2 mx-2">
+                            <button className={"profile-button border-0 h-25 rounded promo-button"}
+                                    style={{background: "#ea5d0b"}} onClick={() => {
+                                navigate(`/nare-games/aviator`);
+                                gaEventTracker('promo Aviator');
+                                setUtmSouceCampaignOnPromotions('promo_Aviator')
+                            }}>Play Aviator
+                            </button>
+                            <div
+                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent"}
+                                style={{color: "#ea5d0b"}}
+                                onClick={() => navigate(`/promo?id=${ids[5]}`)}
+                            >
+                                Read More
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-md-2 promo-styling card shadow-lg promotion" style={{opacity: '0.4'}}>
                     <div className="d-flex flex-column promo-inner">
+                        <img
+                            src={twentyPercentDepositBonus}
+                            className={"rounded promo-image"}
+                        />
+                        <h5
+                            className="bold d-flex justify-content-center h4 pt-2"
+                            style={{color: "#ea5d0b"}}
+                        >
+                            20% FIRST DAILY DEPOSIT BONUS{" "}
+                        </h5>
+
+                        <div className="container mx-1 px-2 text-data-promotions">
+                            Get 20% daily deposit Boost on your 1st deposit of the day...
+                        </div>
+                        <hr/>
+                        <div className="d-flex justify-content-between my-2 mx-2">
+                            <button disabled={true} className={"profile-button border-0 h-25 rounded promo-button"}
+                                    style={{background: "#ea5d0b"}} onClick={() => {
+                                navigate(`/deposit`);
+                                gaEventTracker('promo 20% deposit Boost');
+                                setUtmSouceCampaignOnPromotions('promo_20_deposit_Boost')
+                            }}>Deposit
+                            </button>
+                            {/*onClick={() => navigate(`/promo?id=${ids[2]}`)}*/}
+                            <div
+                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent"}
+                                style={{color: "#ea5d0b"}}
+
+                            >
+                                Read More
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-md-2 promo-styling shadow-lg promotion">
+                    <div className="d-flex flex-column promo-inner promo-inactive">
                         <img src={'https://storage.googleapis.com/nareimages/smartsoft/jetx.png'}
                              className={"rounded promo-image "}/>
                         <h5
@@ -255,7 +289,8 @@ const PromoCards = () => {
                             JetX the Money Multiplier daily
                         </h5>
                         <p className="container mx-1 px-2 text-data-promotions">
-                            Predict which multiplier the plane will crash. The longer the plane flies, the higher the ...
+                            Predict which multiplier the plane will crash. The longer the plane flies, the higher the
+                            ...
                         </p>
                         <hr/>
                         <div className="d-flex justify-content-between my-2 mx-2">

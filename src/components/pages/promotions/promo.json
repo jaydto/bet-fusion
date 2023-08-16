@@ -10,7 +10,8 @@
     "boosterDescription": "✅Place a bet with a minimum of odds of 1.5 per leg\n✅A minimum of 4 games on a Multi Bet.\n✅BetNare will top up your stake by 20% of the stake used. e.g., When you stake 50/= BetNare will boost your stake by 20% meaning your stake will be 60/=, if you place a Stake of 200/=, BetNare will boost it to 240/=",
     "nb": "  - Kindly Note that the Maximum Gift Bonus One can be topped up with is 40/= PER TICKET.  - Kindly Note that the BOOSTER wallet funds Do Not have an expiry date",
     "termsHeading": "TERMS AND CONDITIONS",
-    "termsContent": "✅ One account one Nare Booster. Accounts with the same IP address and same Password will be regarded as the same customer and will not be able to claim the Booster Gift. First Deposit Gifts would be available only if the user makes a deposit within the first 3 months of account opening. \n✅ Once you REGISTER you get GIFT BOOSTER in total value of up to KES.3,000. \n✅ You will receive all the gifts once you REGISTER . The gifts will become valid only on cash bets. \n✅ The Gifts can only be used for &quot;Real Sports&quot; and no on Virtuals , Jackpot an Casino. \n✅ These Free Bet Gifts can only be used to place bets with 4+ selections with at least 4 selections having Odds &gt; 1.5. \n✅ Only 1 Booster Gift can be used in 1 Betslip. \n✅ In this promotion, BetNare only allows one chance to award Gifts per person / mobile number/ IP address/device number. \n✅ Duplicate accounts will be closed and will not qualify for this offer. Any winnings obtained unlawfully from this bonus will be removed. Promotion and Gifts ar created in order to reward our most valued customers."
+    "termsContent": "✅ One account one Nare Booster. Accounts with the same IP address and same Password will be regarded as the same customer and will not be able to claim the Booster Gift. First Deposit Gifts would be available only if the user makes a deposit within the first 3 months of account opening. \n✅ Once you REGISTER you get GIFT BOOSTER in total value of up to KES.3,000. \n✅ You will receive all the gifts once you REGISTER . The gifts will become valid only on cash bets. \n✅ The Gifts can only be used for &quot;Real Sports&quot; and no on Virtuals , Jackpot an Casino. \n✅ These Free Bet Gifts can only be used to place bets with 4+ selections with at least 4 selections having Odds &gt; 1.5. \n✅ Only 1 Booster Gift can be used in 1 Betslip. \n✅ In this promotion, BetNare only allows one chance to award Gifts per person / mobile number/ IP address/device number. \n✅ Duplicate accounts will be closed and will not qualify for this offer. Any winnings obtained unlawfully from this bonus will be removed. Promotion and Gifts ar created in order to reward our most valued customers.",
+    "active": true
   },
   {
     "id": 6,
@@ -20,23 +21,35 @@
     "instructions": "How to Win Aviator",
     "description": "Press the Cashout button before the Aviator Plane flies away.\nAviator features a Double Bet Feature that allows a second bet during play. The second bet is set and activated independently of the first one and can be cashed out without cashing the initial set bet.",
     "headingBooster": "Aviator Freebets",
+    "active": false,
     "boosterDescription": "Play Aviator on BetNare & Get Freebets every time.\nRegister now on https://betnare.com/nare-games/aviator and become a potential winner.\nSign Up to play Aviator here https://betnare.com/nare-games/aviator ."
- },
+  },
   {
     "id": 7,
     "name": "Pepea Angani na SpaceMan",
     "heading": "HOW TO PLAY",
     "intro": "Playing Spaceman is very thrilling and fun.\nWin big cash prizes when you hit the top spot and collect UPTO x5000. The multiplier always starts from 1X and goes UPTO a maximum of 5,000X.\nMinimum Bet – KSH10, Maximum Bet – KSH5000, Maximum Win Per Spaceman Bet is KES 2,500,000.\nCashOut before the spaceman crashes. Get high profits the longer Spaceman flies.\nYou can also cashout 50% of your bet and leaving the remaining 50% in play as long as you desire. The Auto CashOut and the 50% Auto Cashout as additional options. The Auto Cash-out feature finishes the game completely crediting you with the current level of winnings. The 50% Auto Cashout feature cashes out half of your stake, allowing you to continue with the remaining half to try and win a bigger prize. Get speedy outcomes whenever you play SpaceMan. Utilize the individual betting strategies using Auto",
     "instructions": "CashOut and Auto Play",
+    "active": false,
     "description": "Interact with a detailed bet history, statistics with a leader board showing actual Stakes and Wins. The Live chat indicates real time conversation amongst all the SpaceMan players. See up to 500 last results with each round details.\nPlay Spaceman only on BetNare. Click here to play https://betnare.com/gameplay/1301/1\nSpaceMan is available to NEW and EXISTING customers on the platfor"
- },
+  },
   {
     "id": 8,
     "name": "JetX the Money Multiplier daily",
     "heading": "HOW TO PLAY",
     "intro": "When playing JetX, you can put more than one bet on each round to predict which multiplier the plane will crash. The longer the plane flies, the higher the multiplier. Attain high multipliers and win Big by cashing out before the Jet goes up in flames.\nPlay JetX only on BetNare. Click here to play https://betnare.com/smart-play?game=JetX&category=JetX\nCashing out on JetX is Easy. You can Cash-Out by clicking the cashout button or by using the auto-withdraw option. With the Auto-CashOut option, you are able to set the Multiplier to Auto-Collect your winnings\nCashOut has never been easier as it is possible to withdraw manually while using the auto-withdraw feature. Maximize your Winnings and Minimize loses by using the auto-withdraw feature on JetX.",
     "instructions": "Winnings",
-    "description": "Minimum Bet – KSH10, Maximum Stake per Bet is KES12,000. Maximum Win per Bet is KES 2,500,000.\nGame on real-time events, Fast Plays for High and instant Pay-outs on every successful cashout.\nThe Auto-Bet feature allows players to automatically place the bets based on their preferred betting strategy as the Auto-Cashout feature automatically Pays Out your Winnings when you reach the predefined multiplier.\nJetX offers live statistics on running live bets in the statistics sectio"
+    "active": false,
+    "description": "Minimum Bet – KSH10, Maximum Stake per Bet is KES12,000. Maximum Win per Bet is KES 2,500,000.\nGame on real-time events, Fast Plays for High and instant Pay-outs on every successful cashout.\nThe Auto-Bet feature allows players to automatically place the bets based on their preferred betting strategy as the Auto-Cashout feature automatically Pays Out your Winnings when you reach the predefined multiplier.\nJetX offers live statistics on running live bets in the statistics section"
+  },
+  {
+    "id": 9,
+    "name": "Deposit 365/= get 365/= Free",
+    "heading": "HOW TO PLAY",
+    "intro": "Deposit 365/= to get 365/= Free Bonus for any deposit.",
+    "instructions": "Winnings",
+    "active": false,
+    "description": "Once you deposit 365/=, Betnare will match your deposit of 365/= with a bonus of 365/= which can be used to place bets on the platform. The bonus rules will apply for the bonus accrued. Please note that the 365/= will not be withdrawable on depositing."
   },
   {
     "id": 2,
@@ -46,6 +59,7 @@
     "termsHeading": "TERMS AND CONDITIONS",
     "termsContent": "✅ Make a single first deposit of any AMOUNT on BetNare.\n✅Get 1500% of your first deposit value as Free Nare Booster to be used at BetNare when placing bets (in the Betslip)\n✅ Start using your BOOSTERS immediately on your 1st Cash Bet. day.\n ✅This offer ONLY applies to your first ever deposit from November 25th\n✅The BOOSTER wallet funds Do Not have an expiry date.",
     "headingBooster": "",
+    "active": false,
     "nd": "",
     "boosterDescription": ""
   },
@@ -58,6 +72,7 @@
     "termsHeading": "TERMS AND CONDITIONS",
     "termsContent": "✅ Deposit any AMOUNT to GET the 20% DAILY BOOSTER \n✅ The GIFT is ONLY to be issued ONCE per player, per account, per day. \n✅ Kindly Note that the Gift wallet funds Do Not have an expiry date.",
     "headingBooster": "",
+    "active": false,
     "nd": "",
     "boosterDescription": ""
   },
@@ -70,6 +85,7 @@
     "termsHeading": "TERMS AND CONDITIONS",
     "termsContent": " This offer ONLY applies to returns on Pre-Match accumulators \n✅ The MAXIMUM BONUS that you can receive is KES250. \n✅ BetNare may, at any time reclaim any bonus amount; Free Bets, Nare Points and enhanced payments that you may have been awarded in error. \n✅ BetNare may at any time make minor amendments to this promotion to correct typographical errors or to improve on clarity of customer experience and may CANCEL this promotion for legal or regulatory reasons. \n✅ Bets placed with Bonuses DO NOT apply/qualify for this offer \n✅ The refund is paid in BONUS and BONUS RULES apply \n✅ Jackpot bets will not apply/ be considered for this promotion \n✅ Voided bets will not apply / be considered.",
     "exampleHeading": "EXAMPLE",
+    "active": true,
     "example": "✅ If I lose 1/5 and my stake was 100% THEN I will be awarded a BONUS of KES.30. \n✅ If I LOSE 1/10 folds and my STAKE was KES 100, THEN I will be awarded a bonus of KES.55. \n✅ If I LOSE 1/20 selections and my STAKE was 1000, THEN I will be awarded a bonus of KES250.",
     "tableData": {
       "headings": [

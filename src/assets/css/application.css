@@ -810,3 +810,7 @@ li.bet-option {
     background: var(--picked) !important;
     color: var(--black) !important;
 }
+
+.promo-inactive{
+    opacity: 0.4 !important;
+}

@@ -36,7 +36,7 @@ const Promo = () => {
             try {
                 const response = await import("./promo.json");
                 const item = response.default.find((item) => item.id === parseInt(id));
-
+                console.log("Item now ", item)
                 setData(item);
             } catch (error) {
                 setError(error);

@@ -2,6 +2,7 @@ import React from "react";
 import twentyPercentDepositBonus from "../../../assets/img/banner/products/Bet_Nare_gift_Mobile.webp";
 import firstDeposit from "../../../assets/img/banner/products/Firstdeposit.jpeg";
 import multibetCashback from "../../../assets/img/banner/products/Bet_Nare_100_Cashback_Mobile.webp";
+import DepositBonus from "../../../assets/img/banner/products/365.jpg";
 import karibuGiftWallet from "../../../assets/img/banner/products/Bet_Nare_3000_karibu_gift_Mobile.webp";
 import {Link, useNavigate} from "react-router-dom";
 import "./promo.css";
@@ -42,7 +43,7 @@ const PromoCards = () => {
                 <div className="col-md-2 promo-styling card shadow-lg promotion">
                     <div className="d-flex flex-column  promo-inner">
                         <div className="d-flex flex-column">
-                            <img src={multibetCashback} className={"rounded promo-image"}/>
+                            <img src={DepositBonus} className={"rounded promo-image"}/>
                             <h5
                                 className="bold d-flex justify-content-center h4 pt-2"
                                 style={{color: "#ea5d0b"}}

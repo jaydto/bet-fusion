@@ -79,8 +79,7 @@ const BetslipSubmitForm = React.memo(
         const {state, dispatch} = useContext(StoreContext);
         const [loadingShare, setLoadingShare] = useState(false);
         const settings = getFromLocalStorage("settings");
-        const [stake, setStake] = useState(jackpot ? parseInt(jackpotData?.bet_amount) : state?.userStake || getFromLocalStorage("userStake") || settings?.sportBookLimits?.defaultBetAmount
-        );
+        const [stake, setStake] = useState(jackpot ? parseInt(jackpotData?.bet_amount) : state?.userStake || getFromLocalStorage("userStake") || Number(settings?.sportsBookLimits?.defaultBetAmount) || Number(state?.settings?.sportsBookLimits?.defaultBetAmount));
         const [stakeBoosted, setStakeBoosted] = useState(100);
 
         const [stakeAfterTax, setStakeAfterTax] = useState(0);
@@ -100,13 +99,16 @@ const BetslipSubmitForm = React.memo(
         const [multiBoostMessage, setMultiBoostMessage] = useState("");
         const [awardMultiGift, setAwardMultiGift] = useState(false);
 
-        const [betslipKey, setBetslipKey] = useState("betslip");
+        const [, setBetslipKey] = useState("betslip");
 
         const scrollToRef = useRef(null);
-        const {height, width} = useWindowDimensions();
+        const {width} = useWindowDimensions();
         const [user, setUser] = useState(getFromLocalStorage("user"));
 
-        let timeoutId = null;
+        useEffect(() => {
+            setStake(state?.userStake || getFromLocalStorage("userStake") || Number(settings?.sportsBookLimits?.defaultBetAmount))
+        }, settings)
+
         const updateUserOnHistory = () => {
             if (!user) {
                 return false;
@@ -116,37 +118,17 @@ const BetslipSubmitForm = React.memo(
                 token: user.token
             }
             makeRequest({url: endpoint, method: "post", data: udata}).then(([_status, response]) => {
-                clearTimeout(timeoutId); // Clear any existing timeouts
-                if (_status == 200)
-                {
+                if (_status == 200) {
                     let u = {...user, ...response.user};
                     setLocalStorage('user', u);
                     setUser(u)
                     dispatch({type: "SET", key: "user", payload: u});
                     dispatch({type: "SET", key: "placebet", payload: true});
-                    if (timeoutId) {
-                        clearTimeout(timeoutId);
-                    }
 
-                    timeoutId = setTimeout(() => {
-                        setMessage(null);
-                    }, 10000);
-                }else{
-                    if (timeoutId) {
-                        clearTimeout(timeoutId);
-                    }
-
-                    timeoutId = setTimeout(() => {
-                        setMessage(null);
-                    }, 10000);
                 }
             });
 
         };
-
-        useEffect(() => {
-            updateUserOnHistory()
-        }, [message?.message])
 
         useEffect(() => {
             if (scrollToRef.current) {
@@ -317,7 +299,8 @@ const BetslipSubmitForm = React.memo(
                         setLocalStorage('betslip_share_code', null)
                         setLocalStorage('userStake', null)
                         dispatch({type: 'SET', key: 'userStake', data: null})
-                        return width < 991 ? navigate(-1) : "";
+                        updateUserOnHistory()
+                        return width < 991 ? setTimeout(()=>{navigate(-1)},5000) : "";
                     } else {
                         const data = {
                             event: jackpot ? 'place_jackpot_bet' : live ? 'place_live_bet' : 'place_prematch_bet',
@@ -337,8 +320,12 @@ const BetslipSubmitForm = React.memo(
                         };
                         setMessage(qmessage);
                     }
-                    setSubmitting(false);
                 });
+            let timer = setTimeout(() => {
+                setMessage(null)
+                clearTimeout(timer)
+            }, 10000)
+            setSubmitting(false);
         });
 
         const updateWinnings = useCallback(() => {
@@ -612,7 +599,7 @@ const BetslipSubmitForm = React.memo(
             }
         };
 
-        const closeAlert=()=> {
+        const closeAlert = () => {
             setMultiBoostMessage(null)
         }
 
@@ -742,23 +729,23 @@ const BetslipSubmitForm = React.memo(
                         )}
                         <div>
                             {!jackpot && !message &&
-                            awardMultiGift &&
-                            Number(totalGames) > settings?.betnareBonus?.bonusBetLegs && (
-                                multiBoostMessage&&
-                                <div className={" slip-message-alert "}>
-                                    <div colSpan="2" className={'d-flex col-2'} style={{width: '100%'}}>
-                                        <FontAwesomeIcon icon={faGift}/> {multiBoostMessage}
-                                    </div>
-                                    <td colSpan={2} className={" bet-align-right betslip-alert-close"}>
-                                        <input
-                                            type="submit"
-                                            value="X"
-                                            onClick={() => closeAlert()}
-                                        />
-                                    </td>
+                                awardMultiGift &&
+                                Number(totalGames) > settings?.betnareBonus?.bonusBetLegs && (
+                                    multiBoostMessage &&
+                                    <div className={" slip-message-alert "}>
+                                        <div colSpan="2" className={'d-flex col-2'} style={{width: '100%'}}>
+                                            <FontAwesomeIcon icon={faGift}/> {multiBoostMessage}
+                                        </div>
+                                        <td colSpan={2} className={" bet-align-right betslip-alert-close"}>
+                                            <input
+                                                type="submit"
+                                                value="X"
+                                                onClick={() => closeAlert()}
+                                            />
+                                        </td>
 
-                                </div>
-                            ) }
+                                    </div>
+                                )}
                         </div>
                         {totalGames > 0 && (
                             <div className="bet-table w-100 box-shadow-table-submit-form ">
@@ -769,7 +756,8 @@ const BetslipSubmitForm = React.memo(
                                                 <Switch id={"accept_all_odds_change"} {...label}
                                                         className="odds-change-box"
                                                         name={"accept_all_odds_change"}
-                                                        checked={values?.accept_all_odds_change} color="primary"
+                                                        checked={values?.accept_all_odds_change || false}
+                                                        color="primary"
 
                                                         onChange={(e) => onFieldChanged(e)}
                                                 /> Accept any odds change
@@ -834,7 +822,6 @@ const BetslipSubmitForm = React.memo(
                                                             className="bet-select bet-stake-input"
                                                             name="bet_amount"
                                                             id="bet_amount"
-                                                            placeholder={"AMOUNT"}
                                                             value={values.bet_amount || ""}
                                                             onChange={(e) => onFieldChanged(e)}
                                                     />)}

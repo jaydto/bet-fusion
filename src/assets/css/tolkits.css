@@ -574,7 +574,7 @@ background: var(--betnare-side-bg)!important;
 
 .homepage img {
     width: 100%;
-    /*max-height: 13rem;*/
+    max-height: 12rem;
 }
 
 .homepage .header-holder {
@@ -16958,8 +16958,8 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 }
 
 .promotion {
-    width: 96%;
-    margin-right: auto;
+    /*width: 96%;*/
+    margin-left: 0;
     margin-top: 10px;
     padding: 5px;
     border-radius: 5px;

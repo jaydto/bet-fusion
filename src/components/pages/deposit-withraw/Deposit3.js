@@ -274,6 +274,34 @@ const Deposit3 = React.memo(
                                             </div>
                                         </div>
                                     </Tab>
+                                    <Tab eventKey="confirmation" title="CONFIRMATION" className={'background-primary'}>
+                                        <div  className={'w-100'}>
+                                            <div className={'d-flex'}>
+                                                {/**/}
+                                                <div className={'size-deposit'}>
+                                                    {!user?setTimeout(navigate("/"),500):""}
+                                                    <div className={"d-flex flex-row justify-content-between"}>
+                                                        <div className=" w-100">
+                                                            <div className="homepage d-flex  flex-column align-items-center  login-page">
+
+                                                                <ConfirmationAlert/>
+                                                                <div className=" pb-0" data-backdrop="static">
+
+                                                                    <DepositConfirmForm/>
+                                                                </div>
+
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {/* <p>Don't have an account yet? <a href="/auth/register-2">Sign Up</a></p> */}
+                                                <div className="mt-4">
+                                                    {/*<LoginForm {...props}/>*/}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </Tab>
 
                                 </Tabs>
 

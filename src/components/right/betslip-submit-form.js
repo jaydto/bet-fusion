@@ -106,7 +106,7 @@ const BetslipSubmitForm = React.memo(
         const [user, setUser] = useState(getFromLocalStorage("user"));
 
         useEffect(()=>{
-            setStake(Number(settings?.sportsBookLimits?.defaultBetAmount))
+            setStake(state?.userStake || getFromLocalStorage("userStake")||Number(settings?.sportsBookLimits?.defaultBetAmount))
         }, settings)
 
         const updateUserOnHistory = () => {

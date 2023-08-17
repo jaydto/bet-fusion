@@ -482,6 +482,41 @@ const MyDepositForm = (props) => {
         </Form>
     );
 }
+const MyDepositConfirmationForm = (props) => {
+    const {errors, values, setFieldValue} = props;
+
+    const onFieldChanged = (ev) => {
+        let field = ev.target.name;
+        let value = ev.target.value;
+        setFieldValue(field, value);
+
+    }
+
+    return (
+        <Form className="shadow-sm rounded border-0">
+            <div className="pt-0">
+
+                <div className="row">
+                    <div className='col-md-7 text-center'>
+                        <div className={`col-md-7 text-center`}>
+                            <LazyLoadImage src={mpesa} alt=""/>
+                        </div>
+                    </div>
+
+                    <DepositConfirmFormFields onFieldChanged={onFieldChanged}
+                                              values={values} errors={errors}
+                        // Pass confirmation code  here
+
+                    />
+                    <div className={``}>
+                        <ConfirmationInstructions/>
+                    </div>
+
+                </div>
+            </div>
+        </Form>
+    );
+}
 const DepositForm = (props) => {
     const { state, dispatch } = useContext(StoreContext);
     const [currentDepositValue, setCurrentDepositValue] = useState(0); // New state for current deposit value

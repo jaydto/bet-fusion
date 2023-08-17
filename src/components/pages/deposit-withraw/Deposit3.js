@@ -1,31 +1,22 @@
-import React, {useContext, useEffect, useRef, useState} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import {Col, Row} from "antd";
 import authImg from '../../../assets/img/Logo.webp'
-import logo from '../../../assets/img/Logo.webp'
 import betNiMoto from '../../../assets/img/BetniMoto.webp'
-
 import {Link, useNavigate} from "react-router-dom";
-
 import {clearTrackingData, getFromLocalStorage, setLocalStorage, setTrackingData} from "../../utils/local-storage";
 import only18 from '../../../assets/img/auth/18only.png'
 import backgroundURL from '../../../assets/img/auth/img-17.webp'
-import {Navbar, Offcanvas} from "react-bootstrap";
-import Container from "react-bootstrap/Container";
 import {LazyLoadImage} from "react-lazy-load-image-component";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faBackspace,} from "@fortawesome/free-solid-svg-icons";
-import SidebarMobile from "../../sidebar/awesome/SidebarMobile";
 import makeRequest from "../../utils/fetch-request";
 import {Form, Formik} from "formik";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
-
-
 import {StoreContext } from "../../../context/store"
 import {getBetslip} from "../../utils/betslip";
 import mpesa from "../../../assets/img/mpesa.png";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 import './deposit.css'
+import Header2 from "../../header/Header2";
 const backgroundStyle = {
     backgroundImage: `url(${backgroundURL})`,
     backgroundRepeat: 'no-repeat',
@@ -42,9 +33,9 @@ const Deposit3 = React.memo(
         const navigate = useNavigate();
         const expand = "md"
         const [activeTab, setActiveTab] = useState('online'); // Set the initially active tab here
-        const [depositPromos, setDepositPromos] = useState(); // Set the initially active tab here
         const { state, dispatch } = useContext(StoreContext);
         const [user, setUser] = useState(getFromLocalStorage("user"));
+        const settings=getFromLocalStorage("settings")
         const handleTabSelect = (eventKey) => {
             setActiveTab(eventKey);
         }
@@ -67,28 +58,15 @@ const Deposit3 = React.memo(
 
 
 
-        const fetchDepositOffers=async()=>{
-            let endpoint = "/v1/bet/settings"
-            let method='POST'
-            await makeRequest({url:endpoint,method:method,data:null}).then(([status,response])=>{
-                if(status===200){
-                    setLocalStorage('settings',response?.message,1800000)
-                    setDepositPromos(response?.message?.betnareDeposit)
-                    dispatch({type: "SET", key: "depositPromos", payload: response?.message?.betnareDeposit});
 
-                }
-
-            })
-        }
 
         useEffect(()=>{
             const abort=new AbortController();
-            fetchDepositOffers()
             setUtmCampaign()
             return () => {
                 abort.abort(); // Cleanup function to abort the controller when the component unmounts.
             };
-        },[])
+        },[settings])
 
 
         const updateUserOnHistory = () => {
@@ -144,64 +122,11 @@ const Deposit3 = React.memo(
 
         };
 
-        const ConfirmationAlert = (props) => {
-            let c = state?.confirmdepositSuccess ? 'success' : 'danger';
-            state?.confirmdepositMessage&&setTimeout(()=>{
-                dispatch({type: "SET", key: "confirmdepositMessage", payload: null})
-            },5500)
-            return (<>{state?.confirmdepositMessage &&
-                <div role="alert" className={`fade alert alert-${c} show`}>{state?.confirmdepositMessage}</div>} </>);
-
-        };
-
 
         return (
             <div style={{height: '100vh', background: '#16202C'}}>
                 <div className={''}>
-                    <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav top-section-page" fixed="top"
-                            variant="dark" style={{paddingLeft: '0px', paddingBottom: '0px'}}>
-                        <Container fluid
-                                   className={'d-flex justify-content-between mobile-change top-login-background-img'}>
-                            <Navbar.Brand className="e logo align-self-start menu-control d-flex w-100 " title="Betnare"
-                                          style={{paddingLeft: '0px', paddingBottom: '0px'}}>
-                                <Link to={'/'} className={'betnare-text-light'}>
-                                    <FontAwesomeIcon icon={faBackspace}/> Home
-                                </Link>
-
-                                <div
-                                    className="col-md-6  d-flex  right justify-content-end align-items-center w-change3 gap-2 top-login-background-img-bg-page"
-                                    style={{marginLeft: 'auto'}}>
-
-                                    <Link to={{pathname: "/"}} className=" resize-mobile">
-                                        <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"
-                                                       className={"image-size "}/>
-                                    </Link>
-                                </div>
-
-                            </Navbar.Brand>
-
-                            <Navbar.Offcanvas
-                                style={{width: "80%", height: "100%", zIndex: "9999", marginTop: "0px"}}
-                                className='off-canvas background-primary p-0 user-profile'
-                                id={`offcanvasNavbar-expand-${expand}`}
-                                aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-                                placement="start">
-                                <Offcanvas.Header closeButton className='text-white' closeVariant={"white"}>
-                                    <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                                        <div className="col-3">
-                                            <div>
-                                                <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"/>
-                                            </div>
-                                        </div>
-                                    </Offcanvas.Title>
-                                </Offcanvas.Header>
-                                <Offcanvas.Body className={('')}>
-                                    <SidebarMobile/>
-                                </Offcanvas.Body>
-                            </Navbar.Offcanvas>
-                        </Container>
-                    </Navbar>
-
+                    <Header2/>
                 </div>
                 <Row justify="center" className="align-items-stretch h-100">
 
@@ -255,7 +180,7 @@ const Deposit3 = React.memo(
                                     className="background-primary mb-3 px-3"
                                     justify
                                     onSelect={handleTabSelect}>
-                                    <Tab eventKey="online" title="ONLINE" className={'background-primary'}>
+                                    <Tab eventKey="online" title="ONLINE DEPOSIT" className={'background-primary'}>
                                         <div  className={'w-100'}>
                                             <div className={'d-flex'}>
                                                 {/**/}
@@ -307,9 +232,9 @@ const Deposit3 = React.memo(
                                                                     </span>
                                                                         <div className={'paybill-offers-list'}>
                                                                             <ul className={'paybill-offers-list-items'}>
-                                                                                {depositPromos&&depositPromos?.map((deposit,index)=> {
+                                                                                {settings?.betnareDeposit&&settings?.betnareDeposit?.map((deposit,index)=> {
                                                                                     return (
-                                                                                        <li>{index+1}. Only pay
+                                                                                        <li key={index}>{index+1}. Only pay
                                                                                             KES {deposit?.deposit_amount} to {deposit?.display_text}</li>
                                                                                     )
                                                                                 })}
@@ -337,34 +262,6 @@ const Deposit3 = React.memo(
 
 
                                                                 </div>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                {/* <p>Don't have an account yet? <a href="/auth/register-2">Sign Up</a></p> */}
-                                                <div className="mt-4">
-                                                    {/*<LoginForm {...props}/>*/}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </Tab>
-                                    <Tab eventKey="confirmation" title="CONFIRMATION" className={'background-primary'}>
-                                        <div  className={'w-100'}>
-                                            <div className={'d-flex'}>
-                                                {/**/}
-                                                <div className={'size-deposit'}>
-                                                    {!user?setTimeout(navigate("/"),500):""}
-                                                    <div className={"d-flex flex-row justify-content-between"}>
-                                                        <div className=" w-100">
-                                                            <div className="homepage d-flex  flex-column align-items-center  login-page">
-
-                                                                <ConfirmationAlert/>
-                                                                <div className=" pb-0" data-backdrop="static">
-
-                                                                    <DepositConfirmForm/>
-                                                                </div>
-
 
                                                             </div>
                                                         </div>
@@ -416,28 +313,12 @@ const PaymentInstructions = (props) => {
     );
 }
 
-const ConfirmationInstructions = (props) => {
-    return (
-        <>
-            <label className='betnare-text-light'>Missing Deposit?</label>
-            <div className="container d-flex flex-column">
-                <div className="row">
-                    <div className="col betnare-text-light"> 1. Enter Mpesa Transaction code when your deposit has not reflected in your account.  </div>
-                </div>
-                <div className="row">
-                    <div className="col betnare-text-light"> 2. Click on confirm deposit..</div>
-                </div>
-                <div className="row">
-                    <div className="col betnare-text-light"> 3. Your deposit will be credited to your account.</div>
-                </div>
-            </div>
-        </>
-    );
-}
-
 const DepositFormFields = (props) => {
     const {values, errors, onFieldChanged,setCurrentDepositValue, currentDepositValue} = props;
     const {state,dispatch}=useContext(StoreContext)
+    const settings=getFromLocalStorage("settings")
+
+    console.log("depositPromos", settings?.betnareDeposit)
     state?.depositValidateError?.amount&&setTimeout(()=>{
         dispatch({type: "SET", key: "depositValidateError", payload: {
                 msisdn:'',
@@ -464,6 +345,9 @@ const DepositFormFields = (props) => {
                         </div>
                     </div>
                     {!state?.user&&<input
+                        onChange={ev => {
+                            onFieldChanged(ev);
+                        }}
                         className="text-light deposit-input form-control input-field"
                         id="msisdn"
                         name="msisdn"
@@ -478,8 +362,8 @@ const DepositFormFields = (props) => {
             <div className="form-group row d-flex justify-content-center mt-3 deposit-widthdraw-input-desktop">
                 <div className="btn-group w-100 gap-3 justify-content-around" role="group" aria-label="Basic example">
                     <div className={'d-flex flex-wrap col-12 justify-content-between'}>
-                        {state?.depositPromos&&state?.depositPromos?.map((deposit)=>{
-                            return (<div className={'col-3'}>
+                        {settings?.betnareDeposit && settings?.betnareDeposit?.map((deposit, index)=>{
+                            return (<div key={index} className={'col-3'}>
                                     <button type="button" onClick={() => incrementDepositValue(deposit?.deposit_amount)}
                                             className="deposit-buttons-value  m-2 gap-3 ">
                                         <div className={'deposit-values'}>+&nbsp;{deposit?.deposit_amount}</div>
@@ -519,49 +403,6 @@ const DepositFormFields = (props) => {
         </>
     )
 }
-const DepositConfirmFormFields = (props) => {
-    const {values, errors, onFieldChanged} = props;
-    const {state,dispatch}=useContext(StoreContext)
-
-
-    return (
-        <>
-            <div className="form-group row d-flex justify-content-center deposit-widthdraw-input-desktop">
-                <div className={`col-md-12 w-100`}>
-                    <div className={'d-flex justify-content-start'}>
-                        <label className={'text-light deposit col-5 deposit-label'}>MPESA CODE</label>
-                    </div>
-                </div>
-            </div>
-            {state?.user&&<hr/>}
-            <div className="form-group row d-flex justify-content-center mt-3 deposit-widthdraw-input-desktop">
-                <div className="col-md-12">
-                    <label className={'text-light deposit'}>Mpesa Transaction Code</label>
-                    <input
-                        onChange={ev => {
-                            onFieldChanged(ev);
-                        }}
-                        className="text-light deposit-input form-control col-md-12 input-field"
-                        id="confirmation_code"
-                        name="confirmation_code"
-                        type="text"
-                        value={ values?.confirmation_code||''}
-                        placeholder='Enter Transactional Code'
-                    />
-                    {errors.confirmation_code && <div className='text-danger'> {errors.confirmation_code} </div>}
-                </div>
-            </div>
-            <div className="form-group row d-flex justify-content-left mb-4">
-                <div className=" d-flex align-items-start deposit-withdraw-button-desktop">
-                    <button type={"submit"}
-                            className='btn btn-lg w-100 deposit-button button-radius input-field btn-font cg login-button2 btn bold d-flex justify-content-center align-items-center' style={{marginTop:"30px"}} disabled={values?.amount==''}>
-                        {state?.confirmdepositLoading && <div className="custom-loader"></div>}  CONFIRM DEPOSIT &nbsp;
-                    </button>
-                </div>
-            </div>
-        </>
-    )
-}
 
 const MyDepositForm = (props) => {
     const {errors, values, setFieldValue,setCurrentDepositValue, currentDepositValue} = props;
@@ -595,41 +436,6 @@ const MyDepositForm = (props) => {
 
                     <div className={``}>
                         <PaymentInstructions/>
-                    </div>
-
-                </div>
-            </div>
-        </Form>
-    );
-}
-const MyDepositConfirmationForm = (props) => {
-    const {errors, values, setFieldValue} = props;
-
-    const onFieldChanged = (ev) => {
-        let field = ev.target.name;
-        let value = ev.target.value;
-        setFieldValue(field, value);
-
-    }
-
-    return (
-        <Form className="shadow-sm rounded border-0">
-            <div className="pt-0">
-
-                <div className="row">
-                    <div className='col-md-7 text-center'>
-                        <div className={`col-md-7 text-center`}>
-                            <LazyLoadImage src={mpesa} alt=""/>
-                        </div>
-                    </div>
-
-                    <DepositConfirmFormFields onFieldChanged={onFieldChanged}
-                                       values={values} errors={errors}
-                                       // Pass confirmation code  here
-
-                    />
-                    <div className={``}>
-                        <ConfirmationInstructions/>
                     </div>
 
                 </div>
@@ -702,65 +508,6 @@ const DepositForm = (props) => {
             render={(props) => <MyDepositForm {...props} setCurrentDepositValue={setCurrentDepositValue} currentDepositValue={currentDepositValue}/>}/>
     );
 }
-
-const DepositConfirmForm = (props) => {
-    const { state, dispatch } = useContext(StoreContext);
-    const user = getFromLocalStorage('user')
-
-    const initialValues = {
-        confirmation_code: '',
-    }
-    const gaEventTracker = useAnalyticsEventTracker('Deposit Confirmation')
-
-    const handleSubmit = values => {
-
-        dispatch({type: "SET", key: "confirmdepositLoading", payload: true});
-        let endpoint = '/v1/deposit-confirmation';
-        setTrackingData(values)
-        makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
-            // setSuccess(status === 200 || status === 201);
-            // setMessage(response);
-            dispatch({type: "SET", key: "confirmdepositSuccess", payload: status === 200 || status === 201})
-            dispatch({type: "SET", key: "confirmdepositMessage", payload: response?.success})
-            clearTrackingData()
-            if (status === 200 || status === 201) {
-                dispatch({type: "SET", key: "confirmdepositLoading", payload: false});
-                const data={
-                    confirmation_code:values?.confirmation_code
-                }
-                gaEventTracker('Deposit Confirmation',data )
-            }else{
-                const data={
-                    msisdn:state?.user?.msisdn,
-                    confirmation:values?.confirmation_code,
-                    message:response?.message
-                }
-                gaEventTracker('Deposit Confirmation Failed',data )
-            }
-        })
-    }
-
-    const validate = values => {
-
-        let errors = {}
-
-        if (!values.confirmation_code) {
-            errors.confirmation_code = "Please enter Your Mpesa Deposit Transactional Code";
-        }
-        return errors
-    }
-
-    return (
-        <Formik
-            initialValues={initialValues}
-            onSubmit={handleSubmit}
-            validateOnChange={false}
-            validateOnBlur={false}
-            validate={validate}
-            render={(props) => <MyDepositConfirmationForm {...props}/>}/>
-    );
-}
-
 
 export default React.memo(Deposit3)
 

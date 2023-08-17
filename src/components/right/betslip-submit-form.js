@@ -79,7 +79,7 @@ const BetslipSubmitForm = React.memo(
         const {state, dispatch} = useContext(StoreContext);
         const [loadingShare, setLoadingShare] = useState(false);
         const settings = getFromLocalStorage("settings");
-        const [stake, setStake] = useState(jackpot ? parseInt(jackpotData?.bet_amount) : state?.userStake || getFromLocalStorage("userStake") || Number(settings?.sportsBookLimits?.defaultBetAmount) ||Number(state?.settings?.sportsBookLimits?.defaultBetAmount));
+        const [stake, setStake] = useState(jackpot ? parseInt(jackpotData?.bet_amount) : state?.userStake || getFromLocalStorage("userStake") || Number(settings?.sportsBookLimits?.defaultBetAmount) || Number(state?.settings?.sportsBookLimits?.defaultBetAmount));
         const [stakeBoosted, setStakeBoosted] = useState(100);
 
         const [stakeAfterTax, setStakeAfterTax] = useState(0);
@@ -105,8 +105,8 @@ const BetslipSubmitForm = React.memo(
         const {width} = useWindowDimensions();
         const [user, setUser] = useState(getFromLocalStorage("user"));
 
-        useEffect(()=>{
-            setStake(state?.userStake || getFromLocalStorage("userStake")||Number(settings?.sportsBookLimits?.defaultBetAmount))
+        useEffect(() => {
+            setStake(state?.userStake || getFromLocalStorage("userStake") || Number(settings?.sportsBookLimits?.defaultBetAmount))
         }, settings)
 
         const updateUserOnHistory = () => {
@@ -126,18 +126,9 @@ const BetslipSubmitForm = React.memo(
                     dispatch({type: "SET", key: "placebet", payload: true});
 
                 }
-
-                let timer = setInterval(() => {
-                    setMessage(null)
-                    clearInterval(timer)
-                }, 10000)
             });
 
         };
-
-        useEffect(() => {
-            updateUserOnHistory()
-        }, [message?.message])
 
         useEffect(() => {
             if (scrollToRef.current) {
@@ -308,7 +299,8 @@ const BetslipSubmitForm = React.memo(
                         setLocalStorage('betslip_share_code', null)
                         setLocalStorage('userStake', null)
                         dispatch({type: 'SET', key: 'userStake', data: null})
-                        return width < 991 ? navigate(-1) : "";
+                        updateUserOnHistory()
+                        return width < 991 ? setTimeout(()=>{navigate(-1)},5000) : "";
                     } else {
                         const data = {
                             event: jackpot ? 'place_jackpot_bet' : live ? 'place_live_bet' : 'place_prematch_bet',
@@ -328,8 +320,12 @@ const BetslipSubmitForm = React.memo(
                         };
                         setMessage(qmessage);
                     }
-                    setSubmitting(false);
                 });
+            let timer = setTimeout(() => {
+                setMessage(null)
+                clearTimeout(timer)
+            }, 10000)
+            setSubmitting(false);
         });
 
         const updateWinnings = useCallback(() => {
@@ -760,7 +756,8 @@ const BetslipSubmitForm = React.memo(
                                                 <Switch id={"accept_all_odds_change"} {...label}
                                                         className="odds-change-box"
                                                         name={"accept_all_odds_change"}
-                                                        checked={values?.accept_all_odds_change} color="primary"
+                                                        checked={values?.accept_all_odds_change || false}
+                                                        color="primary"
 
                                                         onChange={(e) => onFieldChanged(e)}
                                                 /> Accept any odds change

@@ -107,7 +107,6 @@ const BetslipSubmitForm = React.memo(
         const {height, width} = useWindowDimensions();
         const [user, setUser] = useState(getFromLocalStorage("user"));
 
-        let timeoutId = null;
         const updateUserOnHistory = () => {
             if (!user) {
                 return false;
@@ -117,7 +116,6 @@ const BetslipSubmitForm = React.memo(
                 token: user.token
             }
             makeRequest({url: endpoint, method: "post", data: udata}).then(([_status, response]) => {
-                clearTimeout(timeoutId); // Clear any existing timeouts
                 if (_status == 200)
                 {
                     let u = {...user, ...response.user};
@@ -125,21 +123,6 @@ const BetslipSubmitForm = React.memo(
                     setUser(u)
                     dispatch({type: "SET", key: "user", payload: u});
                     dispatch({type: "SET", key: "placebet", payload: true});
-                    if (timeoutId) {
-                        clearTimeout(timeoutId);
-                    }
-
-                    timeoutId = setTimeout(() => {
-                        setMessage(null);
-                    }, 10000);
-                }else{
-                    if (timeoutId) {
-                        clearTimeout(timeoutId);
-                    }
-
-                    timeoutId = setTimeout(() => {
-                        setMessage(null);
-                    }, 10000);
                 }
             });
 

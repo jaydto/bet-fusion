@@ -2,7 +2,7 @@ import React from "react";
 import twentyPercentDepositBonus from "../../../assets/img/banner/products/Bet_Nare_gift_Mobile.webp";
 import firstDeposit from "../../../assets/img/banner/products/Firstdeposit.jpeg";
 import multibetCashback from "../../../assets/img/banner/products/Bet_Nare_100_Cashback_Mobile.webp";
-import DepositBonus from "../../../assets/img/banner/products/365.jpg";
+import DepositBonus from "../../../assets/img/banner/products/365.webp";
 import karibuGiftWallet from "../../../assets/img/banner/products/Bet_Nare_3000_karibu_gift_Mobile.webp";
 import {Link, useNavigate} from "react-router-dom";
 import "./promo.css";
@@ -37,7 +37,7 @@ const PromoCards = () => {
         <div className="col px-4 d-flex align-items-start align-self-start justify-content-start">
             <div
                 className={
-                    "row text-white pt-2 border-0 d-flex justify-content-center promo-container d-flex align-self-start align-items-start"
+                    "row text-white pt-2 border-0 d-flex promo-container d-flex align-self-start align-items-start"
                 }
             >
                 <div className="col-md-2 promo-styling card shadow-lg promotion">
@@ -162,7 +162,7 @@ const PromoCards = () => {
                         </p>
                         <hr/>
                         <div className="d-flex justify-content-between my-2 mx-2">
-                            <button className={"profile-button border-0 h-25 rounded promo-button"}
+                            <button disabled={true} className={"profile-button border-0 h-25 rounded promo-button"}
                                     style={{background: "#ea5d0b"}} onClick={() => {
                                 navigate(`/gameplay/1301/1`);
                                 gaEventTracker('promo SpaceMan');
@@ -225,7 +225,7 @@ const PromoCards = () => {
                         </p>
                         <hr/>
                         <div className="d-flex justify-content-between my-2 mx-2">
-                            <button className={"profile-button border-0 h-25 rounded promo-button"}
+                            <button disabled className={"profile-button border-0 h-25 rounded promo-button"}
                                     style={{background: "#ea5d0b"}} onClick={() => {
                                 navigate(`/nare-games/aviator`);
                                 gaEventTracker('promo Aviator');

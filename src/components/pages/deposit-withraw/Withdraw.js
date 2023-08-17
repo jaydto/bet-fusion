@@ -269,7 +269,7 @@ const MyWithdrawForm = (props) => {
             const maxWithdrawal = withdrawalLimits.maximumAmount ;
             if (Number(value) < Number(minWithdrawal)) {
                 Notify(minWithdrawalAmount);
-                newValue = minWithdrawal;
+                newValue = value;
             }else if(Number(value) > Number(maxWithdrawal)) {
                 Notify(maxWithdrawalAmount);
                 newValue = maxWithdrawal;

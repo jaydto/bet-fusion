@@ -224,6 +224,7 @@ const Header = React.memo(
 
 
                 if (c_status === 200) {
+                    dispatch({type: "SET", key: "settings", payload: c_result?.message})
                     setLocalStorage('settings', c_result?.message, 1800000);
                 }
 

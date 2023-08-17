@@ -79,8 +79,7 @@ const BetslipSubmitForm = React.memo(
         const {state, dispatch} = useContext(StoreContext);
         const [loadingShare, setLoadingShare] = useState(false);
         const settings = getFromLocalStorage("settings");
-        const [stake, setStake] = useState(jackpot ? parseInt(jackpotData?.bet_amount) : state?.userStake || getFromLocalStorage("userStake") || settings?.sportBookLimits?.defaultBetAmount
-        );
+        const [stake, setStake] = useState(jackpot ? parseInt(jackpotData?.bet_amount) : state?.userStake || getFromLocalStorage("userStake") || Number(settings?.sportsBookLimits?.defaultBetAmount) ||Number(state?.settings?.sportsBookLimits?.defaultBetAmount));
         const [stakeBoosted, setStakeBoosted] = useState(100);
 
         const [stakeAfterTax, setStakeAfterTax] = useState(0);
@@ -100,11 +99,15 @@ const BetslipSubmitForm = React.memo(
         const [multiBoostMessage, setMultiBoostMessage] = useState("");
         const [awardMultiGift, setAwardMultiGift] = useState(false);
 
-        const [betslipKey, setBetslipKey] = useState("betslip");
+        const [, setBetslipKey] = useState("betslip");
 
         const scrollToRef = useRef(null);
-        const {height, width} = useWindowDimensions();
+        const {width} = useWindowDimensions();
         const [user, setUser] = useState(getFromLocalStorage("user"));
+
+        useEffect(()=>{
+            setStake(state?.userStake || getFromLocalStorage("userStake")||Number(settings?.sportsBookLimits?.defaultBetAmount))
+        }, settings)
 
         const updateUserOnHistory = () => {
             if (!user) {
@@ -822,7 +825,6 @@ const BetslipSubmitForm = React.memo(
                                                             className="bet-select bet-stake-input"
                                                             name="bet_amount"
                                                             id="bet_amount"
-                                                            placeholder={"AMOUNT"}
                                                             value={values.bet_amount || ""}
                                                             onChange={(e) => onFieldChanged(e)}
                                                     />)}

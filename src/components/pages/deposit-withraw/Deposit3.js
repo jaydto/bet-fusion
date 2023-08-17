@@ -191,7 +191,7 @@ const Deposit3 = React.memo(
                                     className="background-primary mb-3 px-3"
                                     justify
                                     onSelect={handleTabSelect}>
-                                    <Tab eventKey="online" title="ONLINE DEPOSIT" className={'background-primary'}>
+                                    <Tab eventKey="online" title="ONLINE " className={'background-primary'}>
                                         <div  className={'w-100'}>
                                             <div className={'d-flex'}>
                                                 {/**/}
@@ -351,6 +351,71 @@ const PaymentInstructions = (props) => {
         </>
     );
 }
+
+const ConfirmationInstructions = (props) => {
+    return (
+        <>
+            <label className='betnare-text-light'>Missing Deposit?</label>
+            <div className="container d-flex flex-column">
+                <div className="row">
+                    <div className="col betnare-text-light"> 1. Enter Mpesa Transaction code when your deposit has not reflected in your account.  </div>
+                </div>
+                <div className="row">
+                    <div className="col betnare-text-light"> 2. Click on confirm deposit..</div>
+                </div>
+                <div className="row">
+                    <div className="col betnare-text-light"> 3. Your deposit will be credited to your account.</div>
+                </div>
+            </div>
+        </>
+    );
+}
+
+const DepositConfirmFormFields = (props) => {
+    const {values, errors, onFieldChanged} = props;
+    const {state,dispatch}=useContext(StoreContext)
+
+
+    return (
+        <>
+            <div className="form-group row d-flex justify-content-center deposit-widthdraw-input-desktop">
+                <div className={`col-md-12 w-100`}>
+                    <div className={'d-flex justify-content-start'}>
+                        <label className={'text-light deposit col-5 deposit-label'}>MPESA CODE</label>
+                    </div>
+                </div>
+            </div>
+            {state?.user&&<hr/>}
+            <div className="form-group row d-flex justify-content-center mt-3 deposit-widthdraw-input-desktop">
+                <div className="col-md-12">
+                    <label className={'text-light deposit'}>Mpesa Transaction Code</label>
+                    <input
+                        onChange={ev => {
+                            onFieldChanged(ev);
+                        }}
+                        className="text-light deposit-input form-control col-md-12 input-field"
+                        id="confirmation_code"
+                        name="confirmation_code"
+                        type="text"
+                        value={ values?.confirmation_code||''}
+                        placeholder='Enter Transactional Code'
+                    />
+                    {errors.confirmation_code && <div className='text-danger'> {errors.confirmation_code} </div>}
+                </div>
+            </div>
+            <div className="form-group row d-flex justify-content-left mb-4">
+                <div className=" d-flex align-items-start deposit-withdraw-button-desktop">
+                    <button type={"submit"}
+                            className='btn btn-lg w-100 deposit-button button-radius input-field btn-font cg login-button2 btn bold d-flex justify-content-center align-items-center' style={{marginTop:"30px"}} disabled={values?.amount==''}>
+                        {state?.confirmdepositLoading && <div className="custom-loader"></div>}  CONFIRM DEPOSIT &nbsp;
+                    </button>
+                </div>
+            </div>
+        </>
+    )
+}
+
+
 
 const DepositFormFields = (props) => {
     const {values, errors, onFieldChanged,setCurrentDepositValue, currentDepositValue} = props;

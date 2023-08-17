@@ -79,7 +79,7 @@ const BetslipSubmitForm = React.memo(
         const {state, dispatch} = useContext(StoreContext);
         const [loadingShare, setLoadingShare] = useState(false);
         const settings = getFromLocalStorage("settings");
-        const [stake, setStake] = useState(jackpot ? parseInt(jackpotData?.bet_amount) : state?.userStake || getFromLocalStorage("userStake") || settings?.sportBookLimits?.defaultBetAmount
+        const [stake, setStake] = useState(jackpot ? parseInt(jackpotData?.bet_amount) : state?.userStake || getFromLocalStorage("userStake") || Number(settings?.sportBookLimits?.defaultBetAmount)
         );
         const [stakeBoosted, setStakeBoosted] = useState(100);
 

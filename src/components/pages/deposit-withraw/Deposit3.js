@@ -115,7 +115,6 @@ const Deposit3 = React.memo(
             updateUserOnHistory()
         }, [state?.depositMessage])
 
-
         useEffect(() => {
             let betslip = getBetslip();
             if (betslip) {

@@ -79,8 +79,7 @@ const BetslipSubmitForm = React.memo(
         const {state, dispatch} = useContext(StoreContext);
         const [loadingShare, setLoadingShare] = useState(false);
         const settings = getFromLocalStorage("settings");
-        const [stake, setStake] = useState(jackpot ? parseInt(jackpotData?.bet_amount) : state?.userStake || getFromLocalStorage("userStake") || Number(settings?.sportsBookLimits?.defaultBetAmount)
-        );
+        const [stake, setStake] = useState(jackpot ? parseInt(jackpotData?.bet_amount) : state?.userStake || getFromLocalStorage("userStake") || Number(settings?.sportsBookLimits?.defaultBetAmount) ||Number(state?.settings?.sportsBookLimits?.defaultBetAmount));
         const [stakeBoosted, setStakeBoosted] = useState(100);
 
         const [stakeAfterTax, setStakeAfterTax] = useState(0);
@@ -100,11 +99,15 @@ const BetslipSubmitForm = React.memo(
         const [multiBoostMessage, setMultiBoostMessage] = useState("");
         const [awardMultiGift, setAwardMultiGift] = useState(false);
 
-        const [betslipKey, setBetslipKey] = useState("betslip");
+        const [, setBetslipKey] = useState("betslip");
 
         const scrollToRef = useRef(null);
-        const {height, width} = useWindowDimensions();
+        const {width} = useWindowDimensions();
         const [user, setUser] = useState(getFromLocalStorage("user"));
+
+        useEffect(()=>{
+            setStake(Number(settings?.sportsBookLimits?.defaultBetAmount))
+        }, settings)
 
         const updateUserOnHistory = () => {
             if (!user) {
@@ -448,7 +451,7 @@ const BetslipSubmitForm = React.memo(
 
         const value_for_odds_change = getFromLocalStorage("accept_all_odds_change") === undefined ? true : getFromLocalStorage("accept_all_odds_change")
         const initialValues = {
-            bet_amount: (jackpot && jackpotData?.bet_amount) || (bonusBet ? Number(settings?.betnareBonus?.defaultBonusBetAmount) : stake||Number(settings?.sportsBookLimits?.defaultBetAmount)),
+            bet_amount: (jackpot && jackpotData?.bet_amount) || (bonusBet ? Number(settings?.betnareBonus?.defaultBonusBetAmount) : stake),
             accept_all_odds_change: value_for_odds_change,
             user_id: state?.user?.profile_id,
             total_games: totalGames,
@@ -810,7 +813,6 @@ const BetslipSubmitForm = React.memo(
                                                             className="bet-select bet-stake-input"
                                                             name="bet_amount"
                                                             id="bet_amount"
-                                                            placeholder={"AMOUNT"}
                                                             value={values.bet_amount || ""}
                                                             onChange={(e) => onFieldChanged(e)}
                                                     />)}

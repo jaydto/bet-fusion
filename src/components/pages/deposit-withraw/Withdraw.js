@@ -262,8 +262,8 @@ const MyWithdrawForm = (props) => {
         if (field=== "amount"){
             value = value.replace(/[^\d]/g, "");
             let newValue = value;
-            let minWithdrawalAmount = {  message: `Minimum allowed withdrwal amount is ${withdrawalLimits?.minimumAmount} KSH` };
-            let maxWithdrawalAmount = {  message: `Maximum allowed withdrwal amount is ${withdrawalLimits?.maximumAmount} KSH` };
+            let minWithdrawalAmount = {  message: `Minimum allowed withdrawal amount is ${withdrawalLimits?.minimumAmount} KSH` };
+            let maxWithdrawalAmount = {  message: `Maximum allowed withdrawal amount is ${withdrawalLimits?.maximumAmount} KSH` };
 
             const minWithdrawal = withdrawalLimits.minimumAmount ;
             const maxWithdrawal = withdrawalLimits.maximumAmount ;

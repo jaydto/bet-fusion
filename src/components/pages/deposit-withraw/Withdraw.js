@@ -1,7 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react'
 import {Col, Row} from "antd";
 import authImg from '../../../assets/img/Logo.webp'
-import logo from '../../../assets/img/Logo.webp'
 import betNiMoto from '../../../assets/img/BetniMoto.webp'
 
 import {Link, useNavigate} from "react-router-dom";

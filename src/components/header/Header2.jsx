@@ -9,7 +9,6 @@ import SidebarMobile from "../sidebar/awesome/SidebarMobile";
 import React, {useCallback, useEffect, useState} from "react";
 import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
 import makeRequest from "../utils/fetch-request";
-Header2
 
 const Header2 = React.memo(
 	() => {

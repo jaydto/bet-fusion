@@ -123,6 +123,17 @@ const Deposit3 = React.memo(
         };
 
 
+        const ConfirmationAlert = (props) => {
+            let c = state?.confirmdepositSuccess ? 'success' : 'danger';
+            state?.confirmdepositMessage&&setTimeout(()=>{
+                dispatch({type: "SET", key: "confirmdepositMessage", payload: null})
+            },5500)
+            return (<>{state?.confirmdepositMessage &&
+                <div role="alert" className={`fade alert alert-${c} show`}>{state?.confirmdepositMessage}</div>} </>);
+
+        };
+
+
         return (
             <div style={{height: '100vh', background: '#16202C'}}>
                 <div className={''}>
@@ -536,6 +547,65 @@ const DepositForm = (props) => {
             render={(props) => <MyDepositForm {...props} setCurrentDepositValue={setCurrentDepositValue} currentDepositValue={currentDepositValue}/>}/>
     );
 }
+
+const DepositConfirmForm = (props) => {
+    const { state, dispatch } = useContext(StoreContext);
+    const user = getFromLocalStorage('user')
+
+    const initialValues = {
+        confirmation_code: '',
+    }
+    const gaEventTracker = useAnalyticsEventTracker('Deposit Confirmation')
+
+    const handleSubmit = values => {
+
+        dispatch({type: "SET", key: "confirmdepositLoading", payload: true});
+        let endpoint = '/v1/deposit-confirmation';
+        setTrackingData(values)
+        makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
+            // setSuccess(status === 200 || status === 201);
+            // setMessage(response);
+            dispatch({type: "SET", key: "confirmdepositSuccess", payload: status === 200 || status === 201})
+            dispatch({type: "SET", key: "confirmdepositMessage", payload: response?.success})
+            clearTrackingData()
+            if (status === 200 || status === 201) {
+                dispatch({type: "SET", key: "confirmdepositLoading", payload: false});
+                const data={
+                    confirmation_code:values?.confirmation_code
+                }
+                gaEventTracker('Deposit Confirmation',data )
+            }else{
+                const data={
+                    msisdn:state?.user?.msisdn,
+                    confirmation:values?.confirmation_code,
+                    message:response?.message
+                }
+                gaEventTracker('Deposit Confirmation Failed',data )
+            }
+        })
+    }
+
+    const validate = values => {
+
+        let errors = {}
+
+        if (!values.confirmation_code) {
+            errors.confirmation_code = "Please enter Your Mpesa Deposit Transactional Code";
+        }
+        return errors
+    }
+
+    return (
+        <Formik
+            initialValues={initialValues}
+            onSubmit={handleSubmit}
+            validateOnChange={false}
+            validateOnBlur={false}
+            validate={validate}
+            render={(props) => <MyDepositConfirmationForm {...props}/>}/>
+    );
+}
+
 
 export default React.memo(Deposit3)
 

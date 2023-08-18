@@ -147,38 +147,6 @@ const PromoCards = () => {
                     </div>
                 </div>
 
-                <div className="col-md-2 promo-styling shadow-lg promotion">
-                    <div className="d-flex flex-column promo-inner promo-inactive">
-                        <img src={'https://storage.googleapis.com/nareimages/carousel/SpaceMan.webp'}
-                             className={"rounded promo-image "}/>
-                        <h5
-                            className="bold d-flex justify-content-center h4 pt-2"
-                            style={{color: "#ea5d0b"}}
-                        >
-                            Pepea Angani na SpaceMan
-                        </h5>
-                        <p className="container mx-1 px-2 text-data-promotions">
-                            Win big cash prizes when you hit the top spot and collect UPTO x5000...
-                        </p>
-                        <hr/>
-                        <div className="d-flex justify-content-between my-2 mx-2">
-                            <button disabled={true} className={"profile-button border-0 h-25 rounded promo-button"}
-                                    style={{background: "#ea5d0b"}} onClick={() => {
-                                navigate(`/gameplay/1301/1`);
-                                gaEventTracker('promo SpaceMan');
-                                setUtmSouceCampaignOnPromotions('promo_SpaceMan')
-                            }}>Play SpaceMan
-                            </button>
-                            <div
-                                className={"d-flex  align-self-center  h-25 border-0 bg-transparent"}
-                                style={{color: "#ea5d0b"}}
-                                onClick={() => navigate(`/promo?id=${ids[6]}`)}
-                            >
-                                Read More
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div className="col-md-2 promo-styling card shadow-lg promotion">
                     <div className="d-flex flex-column promo-inner promo-inactive">
                         <img src={firstDeposit} className={"rounded promo-image"}/>
@@ -210,38 +178,7 @@ const PromoCards = () => {
                         </div>
                     </div>
                 </div>
-                <div className="col-md-2 promo-styling shadow-lg promotion">
-                    <div className="d-flex flex-column promo-inner promo-inactive">
-                        <img src={'https://storage.googleapis.com/nareimages/carousel/Aviator.webp'}
-                             className={"rounded promo-image "}/>
-                        <h5
-                            className="bold d-flex justify-content-center h4 pt-2"
-                            style={{color: "#ea5d0b"}}
-                        >
-                            Gurumisha Mamili na Aviator
-                        </h5>
-                        <p className="container mx-1 px-2 text-data-promotions">
-                            With as low as a stake of 10 bob tu, pata kushinda millions...
-                        </p>
-                        <hr/>
-                        <div className="d-flex justify-content-between my-2 mx-2">
-                            <button disabled className={"profile-button border-0 h-25 rounded promo-button"}
-                                    style={{background: "#ea5d0b"}} onClick={() => {
-                                navigate(`/nare-games/aviator`);
-                                gaEventTracker('promo Aviator');
-                                setUtmSouceCampaignOnPromotions('promo_Aviator')
-                            }}>Play Aviator
-                            </button>
-                            <div
-                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent"}
-                                style={{color: "#ea5d0b"}}
-                                onClick={() => navigate(`/promo?id=${ids[5]}`)}
-                            >
-                                Read More
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
                 <div className="col-md-2 promo-styling card shadow-lg promotion" style={{opacity: '0.4'}}>
                     <div className="d-flex flex-column promo-inner">
                         <img
@@ -272,39 +209,6 @@ const PromoCards = () => {
                                 className={"d-flex  align-self-center   h-25 border-0 bg-transparent"}
                                 style={{color: "#ea5d0b"}}
 
-                            >
-                                Read More
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-md-2 promo-styling shadow-lg promotion">
-                    <div className="d-flex flex-column promo-inner promo-inactive">
-                        <img src={'https://storage.googleapis.com/nareimages/smartsoft/jetx.png'}
-                             className={"rounded promo-image "}/>
-                        <h5
-                            className="bold d-flex justify-content-center h4 pt-2"
-                            style={{color: "#ea5d0b"}}
-                        >
-                            JetX the Money Multiplier daily
-                        </h5>
-                        <p className="container mx-1 px-2 text-data-promotions">
-                            Predict which multiplier the plane will crash. The longer the plane flies, the higher the
-                            ...
-                        </p>
-                        <hr/>
-                        <div className="d-flex justify-content-between my-2 mx-2">
-                            <button className={"profile-button border-0 h-25 rounded promo-button"}
-                                    style={{background: "#ea5d0b"}}
-                                    onClick={() => navigate(`/smart-play?game=JetX&category=JetXr`)}>Play JetX
-                            </button>
-                            <div
-                                className={" d-flex align-self-center h-25 border-0 bg-transparent"}
-                                style={{color: "#ea5d0b"}}
-                                onClick={() => {
-                                    navigate(`/promo?id=${ids[7]}`);
-                                    gaEventTracker('promo JetX')
-                                }}
                             >
                                 Read More
                             </div>

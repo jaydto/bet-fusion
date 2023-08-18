@@ -71,7 +71,7 @@ const BetDetails = (props) => {
 	};
 
 	const [collapsed, setCollapsed] = useState([]);
-	const [collapsedAll, setCollapsedAll] = useState(true);
+	const [collapsedAll, setCollapsedAll] = useState(false);
 	const [activeParentMatchId, setActiveParentMatchId] = useState(null);
 	let match=state?.mybets?.data;
 	let sport;
@@ -84,6 +84,25 @@ const BetDetails = (props) => {
 	let lmtIncludes = [79, 85, 82, 80, 107];
 
 	const [switches, setSwitches]=useState("scoreboard")
+
+	const LMT=({parent_match_id})=>{
+		useEffect(()=>{
+			window?.SIR("addWidget", "#sr-widget-" + parent_match_id, "match.lmtPlus", {
+				branding: {tabs: {option: "icon", variant: "fullWidth"}},
+				goalBannerImage:
+					"https://storage.googleapis.com/nareimages/logo-white.webp",
+				logo: ["https://storage.googleapis.com/nareimages/logo-dark.webp"],
+				momentum: "disable",
+				matchId: parent_match_id,
+				collapseTo: switches,
+				layout: "single",
+				scoreboard: "extended",
+				detailedScoreboard: "disable",
+			});
+		})
+
+		return <div id={`sr-widget-${parent_match_id}`}></div>
+	}
 
 
 	const switchLmt=(value)=>{
@@ -103,23 +122,37 @@ const BetDetails = (props) => {
 
 
 	useEffect(() => {
-		if(activeParentMatchId){
-			window?.SIR("addWidget", "#sr-widget-"+ activeParentMatchId, "match.lmtPlus", {
-				branding: { tabs: { option: "icon", variant: "fullWidth" } },
-				goalBannerImage:
-					"https://storage.googleapis.com/nareimages/logo-white.webp",
-				logo: ["https://storage.googleapis.com/nareimages/logo-dark.webp"],
-				momentum: "disable",
-				matchId: activeParentMatchId,
-				collapseTo: switches,
-				layout: "single",
-				scoreboard: "extended",
-				detailedScoreboard: "disable",
-			});
-		}
 
-	},[activeParentMatchId,switches]);
+			state?.mybets?.data?.map((item,index) => {
+				console.log("items_switch", item)
+				return
+				window?.SIR("addWidget", "#sr-widget-" + item?.parent_match_id, "match.lmtPlus", {
+					branding: {tabs: {option: "icon", variant: "fullWidth"}},
+					goalBannerImage:
+						"https://storage.googleapis.com/nareimages/logo-white.webp",
+					logo: ["https://storage.googleapis.com/nareimages/logo-dark.webp"],
+					momentum: "disable",
+					matchId: item?.parent_match_,
+					collapseTo: switches,
+					layout: "single",
+					scoreboard: "extended",
+					detailedScoreboard: "disable",
+				});
+			})
 
+
+	},[]);
+
+	// const toggleCollapse = (index,parent_match_id) => {
+	// 	setActiveParentMatchId(parent_match_id)
+	// 	const updatedCollapsed = [...collapsed];
+	// 	if (updatedCollapsed.includes(index)) {
+	// 		updatedCollapsed.splice(updatedCollapsed.indexOf(index), 1);
+	// 	} else {
+	// 		updatedCollapsed.push(index);
+	// 	}
+	// 	setCollapsed(updatedCollapsed);
+	// };
 	const toggleCollapse = (index,parent_match_id) => {
 		setActiveParentMatchId(parent_match_id)
 		const updatedCollapsed = [...collapsed];
@@ -140,6 +173,15 @@ const BetDetails = (props) => {
 		setCollapsedAll(!collapsedAll);
 	}
 
+	useEffect(()=>{
+		const abort=new AbortController()
+		setCollapsed(Array.from({ length: state?.mybets?.data?.length }, (_, index) => index));
+
+		return ()=>{
+				abort.abort()
+			}
+
+	},[])
 	const WinLostTotal=()=>{
 		const data=state?.mybets?.data
 		const filteredData = data?.filter(bet => bet.win === 1 || bet.win === 0);
@@ -327,6 +369,7 @@ const BetDetails = (props) => {
 		)}
 			{!isLoading?
 				<div className="d-flex details flex-column bet-details">
+					{console.log("matchesData", state?.mybets)}
 					{state?.mybets?.data?.map((item,index) => (
 						<div key={index}>
 							{index===0&&<div className="d-flex history-details flex-column bet-summary-info">
@@ -410,7 +453,7 @@ const BetDetails = (props) => {
 																														className={"text-warning"}/>:<FontAwesomeIcon icon={faXmarkCircle}
 																										className={"text-danger"}/> }&nbsp;<span className={"team-info"}>{item?.home_team}</span></div>
 									<div className="outcome">vs</div>
-									<div className="team" onClick={()=>toggleCollapse(index, item?.parent_match_id)}><span className={"team-info text-end"}>{item?.away_team}</span>&nbsp;{!collapsed.includes(index)?<FontAwesomeIcon icon={faCaretRight}/>:<FontAwesomeIcon icon={faCaretDown}/>}</div>
+									<div className="team" onClick={()=>toggleCollapse(index, item?.parent_match_id)}><span className={"team-info text-end"}>{item?.away_team}</span>&nbsp;{collapsed.includes(index)?<FontAwesomeIcon icon={faCaretRight}/>:<FontAwesomeIcon icon={faCaretDown}/>}</div>
 								</div>
 								<div className={`${!collapsed.includes(index)?"d-none ":"d-flex justify-content-between gap-4 "} w-100 px-3 bethistory-items flex-column`}>
 									<div className="d-flex">
@@ -445,14 +488,15 @@ const BetDetails = (props) => {
 												<div className="outcome-t">
 													Outcome
 												</div>
-												<div className="outcome-h">
+												<div className="outcome-h bet-details-data">
 													{item?.winning_outcome}
 												</div>
 											</div>
 										</div>
 									</div>
 									{lmtIncludes.includes(sport) &&< div className="d-flex flex-column col">
-										<div id={`sr-widget-${item?.parent_match_id}`}></div>
+										<LMT parent_match_id={item?.parent_match_id}/>
+
 										<ButtonGroup aria-label="stats button actions" className='w-100 d-flex justify-content-start'>
 											{item?.winning_outcome?<Button className="place-bet-btn w-25 btn link" title="Status of match when bet was placed"
 													 type="button"

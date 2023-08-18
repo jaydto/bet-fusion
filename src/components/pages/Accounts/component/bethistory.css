@@ -47,12 +47,23 @@
 .bet-history-items.games{
 
 }
+/*.pick-h {*/
+/*    width: 100px;*/
+/*    white-space: nowrap;*/
+/*    overflow: hidden;*/
+/*    text-overflow: ellipsis;*/
+/*    text-align: end;*/
+/*}*/
 .pick-h {
-    width: 100px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-align: end;
+    width: 70px;
+    white-space: normal;
+    word-break: break-all;
+    /*white-space: nowrap;*/
+    /*overflow: hidden;*/
+    /*text-overflow: ellipsis;*/
+    /*text-align: end;*/
+    /*height: max-content;*/
+    /*display: flex;*/
 }
 .text-align-on-mobile-bet-history{
     text-align: center!important;
@@ -117,6 +128,19 @@
     font-size: 16px;
     font-weight: 600;
     color: var(--dark);
+}
+.outcome-h.bet-details-data {
+    width:82px;
+    word-break: break-all;
+    white-space: normal;
+    /*height: max-content;*/
+    /*text-overflow: ellipsis;*/
+    /*width: 100px;*/
+    /*white-space: nowrap;*/
+    /*overflow: hidden;*/
+    /*display: inline-block;*/
+    /*display: flex;*/
+    /*justify-content: end;*/
 }
 .history-details{
 

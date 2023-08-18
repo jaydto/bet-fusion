@@ -81,7 +81,7 @@ const Promo = () => {
                                              }}/>
                                             </span>
                                     <div
-                                        className="shadow-sm d-flex justify-content-center col-10 p-2 shadow-sm promotion-header text-white">
+                                        className="shadow-sm d-flex justify-content-center col-8 p-2 shadow-sm promotion-header text-white">
                                         BETNARE PROMOTIONS
                                     </div>
                                 </div>

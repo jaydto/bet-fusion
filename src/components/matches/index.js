@@ -1739,8 +1739,6 @@ export const JackpotMatchList = React.memo(
 const MatchList = React.memo(
     (props) => {
         const {live, matches, pdown, fetching, three_way} = props;
-        const listInnerRef = useRef();
-
 
         return (
             <div className="matches full-width">

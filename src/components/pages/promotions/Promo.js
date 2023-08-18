@@ -86,10 +86,10 @@ const Promo = () => {
                                 <div className="col">
                                     <div
                                         className={
-                                            "row text-white p-2 shadow-sm d-flex justify-content-center promo-container"
+                                            "row text-white p-2 shadow-sm d-flex justify-content-center promo-container flex-column"
                                         }
                                     >
-                                        <div className="col-md-2  shadow-lg promotion">
+                                        <div className="col-md-12  shadow-lg promotion">
                                             <div className="d-flex flex-column promo-inner-promo-item">
                                                 <h5
                                                     className="bold border-bottom d-flex justify-content-center"

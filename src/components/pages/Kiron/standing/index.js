@@ -52,9 +52,9 @@ const Standing = () => {
                         <tr className="table-header">
                             <th className={'standings-menu'}>Position</th>
                             <th className={'standings-menu'}>Team</th>
-                            <th className={'standings-menu'} style={{textAlign: 'center'}}>Played</th>
+                            <th className={'standings-menu'} style={{textAlign: 'center'}}>Points</th>
                             <th className={'standings-menu'}>Form</th>
-                            <th className={'standings-menu'}>Points</th>
+                            <th className={'standings-menu'}>Played</th>
                         </tr>
                         {standingsData &&
                             Object.entries(standingsData).map(([key, standing],index) => (

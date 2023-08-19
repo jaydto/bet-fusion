@@ -7,7 +7,7 @@ import {useNavigate} from "react-router-dom";
 const FullscreenButton = ({ onClick, navigation, isCustomFullScreen }) => {
 	const navigate=useNavigate()
 	return (
-		<div className={`d-flex align-items-center justify-content-between ${isCustomFullScreen &&'full-screen-component'}`} >
+		<div className={` height-max-custom d-flex align-items-center justify-content-between ${isCustomFullScreen &&'full-screen-component'}`} >
                         <span className={'px-3 '} onClick={() => navigate(navigation)}>
 
                                                 <FontAwesomeIcon icon={faAngleLeft} style={{

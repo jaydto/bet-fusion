@@ -1190,7 +1190,7 @@ input[type="radio"], input[type="checkbox"] {
     top: 93px;
     position: sticky;
 }
-/* Add this to your CSS stylesheet */
+
 .custom-fullscreen-wrapper {
     position: fixed;
     top: 50px;
@@ -1205,6 +1205,15 @@ input[type="radio"], input[type="checkbox"] {
 }
 .virtuals-container-position{
 
+}
+.full-screen-component.height-max-custom{
+    max-height:max-content;
+}
+.height-max-custom{
+    max-height:16px;
+}
+.amt-virtual{
+    margin-top:89px;
 }
 
 .custom-fullscreen-wrapper.active {

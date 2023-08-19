@@ -76,7 +76,7 @@ const GamePlay = React.memo(
             setDemo(true)
         }
 
-        const [iframeHeight, setIframeHeight] = useState(550); // Initial height
+        const [iframeHeight, setIframeHeight] = useState(600); // Initial height
 
         // Define the CSS style for the iframe
         const iframeStyle = {
@@ -84,12 +84,12 @@ const GamePlay = React.memo(
             width: "100%",
             height: `${iframeHeight}vh`, // Set the height dynamically
         };
-        const maxIframeHeight = width>991?isCustomFullscreen?window.innerHeight * 2: window.innerHeight * 0.72:window.innerHeight * 0.9; // Maximum height is 75% desktop  and 90% mobile of the screen height
+        const maxIframeHeight = width>991?isCustomFullscreen?window.innerHeight * 2: window.innerHeight * 0.77:window.innerHeight * 0.9; // Maximum height is 75% desktop  and 90% mobile of the screen height
 
         // // Function to update the iframe height
         const updateIframeHeight = useCallback(() => {
             console.log("this was called to resize",maxIframeHeight )
-            setIframeHeight(isCustomFullscreen?800:600); // Set the fixed height here
+            setIframeHeight(isCustomFullscreen?800:620); // Set the fixed height here
         }, []);
 
         // Function to update the iframe height
@@ -132,7 +132,7 @@ const GamePlay = React.memo(
         return (
             <div style={{position:'relative'}}>
                 <Header/>
-                <div className={`virtuals-container-position ${(width <= 575 ? user ? "user_logged virtuals" : "amt" : "amt")}`} >
+                <div className={`virtuals-container-position ${(width <= 575 ? user ? "user_logged virtuals" : "amt-virtual" : "amt-virtual")}`} >
                     <FullscreenButton onClick={toggleFullscreen} navigation={'/nare-games'} isCustomFullScreen={isCustomFullscreen}/>
                     <div className="d-flex flex-row justify-content-between">
                         <div className="col-md-12 w-100">

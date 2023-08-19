@@ -23,7 +23,7 @@ const FullscreenButton = ({ onClick, navigation, isCustomFullScreen }) => {
 												   paddingLeft:'11px'}}> Back</span>
                                             </span>
 
-			<div className="fullscreen-button" onClick={onClick}>
+			<div className="fullscreen-button px-3" onClick={onClick}>
 				{isCustomFullScreen?'Exit':'View'} Fullscreen <FontAwesomeIcon icon={faExpand} />
 			</div>
 		</div>

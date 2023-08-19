@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useCallback, useEffect, useRef, useState} from "react";
 import Header from "../../header/header";
 import Footer from "../../footer/footer";
 import {useNavigate, useParams} from "react-router-dom";
@@ -30,6 +30,8 @@ const GamePlay = React.memo(
         const [gameUrlLoaded, setGameUrlLoaded] = useState(false)
         const gaEventTracker = useAnalyticsEventTracker("Spribe Games")
         const [isCustomFullscreen, setCustomFullscreen] = useState(false);
+
+        const iframeContent=useRef()
 
 
         const createToken = async () => {
@@ -76,7 +78,7 @@ const GamePlay = React.memo(
             setDemo(true)
         }
 
-        const [iframeHeight, setIframeHeight] = useState(600); // Initial height
+        const [iframeHeight, setIframeHeight] = useState(620); // Initial height
 
         // Define the CSS style for the iframe
         const iframeStyle = {
@@ -84,7 +86,12 @@ const GamePlay = React.memo(
             width: "100%",
             height: `${iframeHeight}vh`, // Set the height dynamically
         };
-        const maxIframeHeight = width>991?isCustomFullscreen?window.innerHeight * 2: window.innerHeight * 0.77:window.innerHeight * 0.9; // Maximum height is 75% desktop  and 90% mobile of the screen height
+        const maxIframeHeight =
+            width>991?
+            isCustomFullscreen?
+            window.innerHeight * 2:
+            window.innerHeight * 0.77:
+            window.innerHeight * 0.92; // Maximum height is 77% desktop  and 92% mobile of the screen height
 
         // // Function to update the iframe height
         const updateIframeHeight = useCallback(() => {
@@ -92,13 +99,6 @@ const GamePlay = React.memo(
             setIframeHeight(isCustomFullscreen?800:620); // Set the fixed height here
         }, []);
 
-        // Function to update the iframe height
-        // const updateIframeHeight = useCallback(() => {
-        //     const windowHeight = window.innerHeight;
-        //     const newHeight = windowHeight
-        //
-        //     setIframeHeight(newHeight);
-        // }, []);
 
         useEffect(() => {
             // Initial iframe height calculation
@@ -129,6 +129,8 @@ const GamePlay = React.memo(
         }, [])
 
 
+
+
         return (
             <div style={{position:'relative'}}>
                 <Header/>
@@ -154,11 +156,13 @@ const GamePlay = React.memo(
                                             </div>
                                         )}
                                         <iframe
+                                            ref={iframeContent}
                                             className="mt-3 shadow-lg"
                                             allowFullScreen
                                             id="spribeGamePlay"
                                             src={gameUrl}
-                                            title="Gadme"
+                                            title="Spribe"
+
                                             style={{
                                                 ...iframeStyle,
                                                 height: `${Math.min(iframeHeight, maxIframeHeight)}px`,

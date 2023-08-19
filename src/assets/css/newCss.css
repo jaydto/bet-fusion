@@ -1190,6 +1190,51 @@ input[type="radio"], input[type="checkbox"] {
     top: 93px;
     position: sticky;
 }
+/* Add this to your CSS stylesheet */
+.custom-fullscreen-wrapper {
+    position: fixed;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    min-heigth:100vh;
+    overflow:auto;
+    background-color: rgba(0, 0, 0, 1); /* Semi-transparent overlay */
+    z-index: 9999; /* Ensure the overlay is on top */
+    /*display: none; !* Hidden by default *!*/
+}
+.virtuals-container-position{
+
+}
+
+.custom-fullscreen-wrapper.active {
+    display: block; /* Show the overlay when active */
+
+}
+
+.full-screen-component{
+    /*position: absolute; !* or fixed *!*/
+    z-index: 1000; /* Higher value than iframe's z-index */
+    /*top: 50px; !* Adjust top positioning *!*/
+    /*right: 10px; !* Adjust right positioning *!*/
+    /*width:100%;*/
+}
+.fullscreen-button {
+    color:var(--light);
+
+}
+.full-screen-component {
+    position: fixed;
+    top: 0px; /* Adjust the position based on your layout */
+    right: 0px; /* Adjust the position based on your layout */
+    z-index: 10000; /* Ensure the button is on top of the overlay */
+    background-color: var(--betnare-body-bg); /* Button background color */
+    padding: 15px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    color:var(--light);
+    width:100%;
+}
 
 .user_logged {
     margin-top: 7rem;

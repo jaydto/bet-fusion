@@ -41,6 +41,17 @@ const GamePlay = React.memo(
             });
         }
 
+        const toggleFullscreen = () => {
+            const iframeElement = document.getElementById("casinoGameplay");
+
+            if (!document.fullscreenElement) {
+                iframeElement.requestFullscreen().catch((err) => {
+                    console.log("Fullscreen request failed:", err);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        };
         const startGame = async (game_id) => {
 
             let endpoint = live === '0' ? `/v1/casino/game/demo-url?game-id=${game_id}` : `/v1/casino/game/url?game-id=${game_id}`
@@ -83,7 +94,7 @@ const GamePlay = React.memo(
         return (
             <>
                 <Header/>
-                <div className={'d-flex align-items-center'}>
+                <div className={'d-flex align-items-center justify-content-between'}>
                                             <span className={'px-3 remove-backbutton-on-desktop'} onClick={() => navigate('/casino')}>
                                              <FontAwesomeIcon icon={faAngleLeft} style={{
                                                  fontSize: "22px",
@@ -103,6 +114,9 @@ const GamePlay = React.memo(
                                                     opacity: '0.7',
                                                     paddingLeft:'11px'}}> Back</span>
                                             </span>
+                    <div className="fullscreen-button">
+                        <button onClick={toggleFullscreen}>Toggle Fullscreen</button>
+                    </div>
                 </div>
                 <div className={(user ? "user_logged virtuals" : "amt")}>
                     <div className="d-flex flex-row justify-content-between">
@@ -115,7 +129,7 @@ const GamePlay = React.memo(
                                     </SkeletonTheme>
                                 </div>
                                 {gameUrlLoaded && <>
-                                    <iframe className={'mt-3 shadow-lg'} allowFullScreen
+                                    <iframe className={'mt-3 shadow-lg'} allowFullScreen id={'casinoGamePLay'}
                                             src={gameUrl} title="Gadme" width={'100%'} height={'700px'}></iframe>
                                 </>}
                                 {!gameUrlLoaded && (pathname == "1301" || pathname.includes("1301")) &&

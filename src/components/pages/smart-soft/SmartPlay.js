@@ -41,28 +41,39 @@ const SmartPlay = React.memo(
 
             await makeRequest({url: endpoint, method: method, data: payload}).then(([status, result]) => {
                 if (status === 200) {
-                    const data={
-                        user_id:user?.profile_id,
-                        event:'Smart-Soft Game',
-                        game_id:game,
+                    const data = {
+                        user_id: user?.profile_id,
+                        event: 'Smart-Soft Game',
+                        game_id: game,
                     }
-                    gaEventTracker("Playing Smart Soft Game",data)
+                    gaEventTracker("Playing Smart Soft Game", data)
                     setUserToken(result.token)
                     setUserID(result.profile_id)
                     setGameUrl(result?.game_url)
                     setGameUrlLoaded(true)
-                }else{
-                    const data={
-                        user_id:user?.profile_id,
-                        event:'Smart-Soft Game Launch Fail',
-                        game_id:game,
-                        message:"Game Launch Failed"
+                } else {
+                    const data = {
+                        user_id: user?.profile_id,
+                        event: 'Smart-Soft Game Launch Fail',
+                        game_id: game,
+                        message: "Game Launch Failed"
                     }
-                    gaEventTracker("Playing Smart Soft Game Failed",data)
+                    gaEventTracker("Playing Smart Soft Game Failed", data)
                 }
             });
         }
 
+        const toggleFullscreen = () => {
+            const iframeElement = document.getElementById("smartPlayGames");
+
+            if (!document.fullscreenElement) {
+                iframeElement.requestFullscreen().catch((err) => {
+                    console.log("Fullscreen request failed:", err);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        };
         const configureDemoGame = () => {
             setGameUrl(`https://www.smartsoftgaming.com/GameDemo/${game || 'JetX'}?currency=USD&lang=EN&return_url=https://betnare.com`)
             setGameUrlLoaded(true)
@@ -76,13 +87,14 @@ const SmartPlay = React.memo(
                 configureDemoGame()
 
         }, [])
-        const navigate=useNavigate()
+        const navigate = useNavigate()
         return (
             <>
                 <Header/>
                 <div className="amt top-smartsoft gameplay">
-                    <div className={'d-flex align-items-center'}>
-                                            <span className={'px-3 remove-backbutton-on-desktop'} onClick={() => navigate('/smart-soft')}>
+                    <div className={'d-flex align-items-center justify-content-between'}>
+                        <span className={'px-3 remove-backbutton-on-desktop'}
+                              onClick={() => navigate('/smart-soft')}>
                                              <FontAwesomeIcon icon={faAngleLeft} style={{
                                                  fontSize: "22px",
                                                  color: 'var(--light)',
@@ -95,12 +107,17 @@ const SmartPlay = React.memo(
                                                     fontWeight: '700',
                                                     opacity: '0.7'
                                                 }}/>
-                                               <span style={{fontSize: "20px",
+                                               <span style={{
+                                                   fontSize: "20px",
                                                    color: 'var(--light)',
                                                    fontWeight: '700',
                                                    opacity: '0.7',
-                                                   paddingLeft:'11px'}}> Back</span>
+                                                   paddingLeft: '11px'
+                                               }}> Back</span>
                                             </span>
+                        <div className="fullscreen-button">
+                            <button onClick={toggleFullscreen}>Toggle Fullscreen</button>
+                        </div>
                     </div>
                     <div className="d-flex flex-row justify-content-between">
                         <div className="col-md-12 w-100">
@@ -122,7 +139,7 @@ const SmartPlay = React.memo(
                                     )}{
 
                                 }
-                                    <iframe className={'mt-3 shadow-lg'} allowFullScreen
+                                    <iframe className={'mt-3 shadow-lg'} allowFullScreen id={'smartPlayGames'}
                                             src={gameUrl} title="Gadme" width={'100%'} height={'700px'}></iframe>
                                 </>}
                                 {pathname.includes("JetX") &&

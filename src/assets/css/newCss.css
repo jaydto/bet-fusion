@@ -1197,7 +1197,8 @@ input[type="radio"], input[type="checkbox"] {
 
 .promo-count {
     position: absolute;
-    top: -4px;
+    top: -2px;
+    right:0px;
 }
 
 img.nare-league {

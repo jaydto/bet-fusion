@@ -69,7 +69,10 @@ const PromoCards = () => {
                                 <div
                                     className={"  d-flex align-self-center h-25 border-0 bg-transparent"}
                                     style={{color: "#ea5d0b"}}
-                                    onClick={() => navigate(`/promo?id=${ids[8]}`)}
+                                    onClick={() => {
+                                        navigate(`/promo?id=${ids[8]}`);
+                                        window.scrollTo(0, 0); // Scroll to the top of the page
+                                    }}
                                 >
                                     Read More
                                 </div>
@@ -103,7 +106,10 @@ const PromoCards = () => {
                             <div
                                 className={"d-flex  align-self-center   h-25 border-0 bg-transparent"}
                                 style={{color: "#ea5d0b"}}
-                                onClick={() => navigate(`/promo?id=${ids[0]}`)}
+                                onClick={() => {
+                                    navigate(`/promo?id=${ids[0]}`);
+                                    window.scrollTo(0, 0); // Scroll to the top of the page
+                                }}
                             >
                                 Read More
                             </div>
@@ -138,7 +144,11 @@ const PromoCards = () => {
                                 <div
                                     className={"  d-flex align-self-center h-25 border-0 bg-transparent"}
                                     style={{color: "#ea5d0b"}}
-                                    onClick={() => navigate(`/promo?id=${ids[3]}`)}
+                                    onClick={() => {
+                                        navigate(`/promo?id=${ids[3]}`);
+                                        window.scrollTo(0, 0); // Scroll to the top of the page
+                                    }
+                                }
                                 >
                                     Read More
                                 </div>

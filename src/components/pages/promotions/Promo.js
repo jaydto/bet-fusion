@@ -4,6 +4,7 @@ import twentyPercentDepositBonus from "../../../assets/img/banner/products/Bet_N
 import firstDeposit from "../../../assets/img/banner/products/Firstdeposit.jpeg";
 import multibetCashback from "../../../assets/img/banner/products/Bet_Nare_100_Cashback_Mobile.webp";
 import karibuGiftWallet from "../../../assets/img/banner/products/Bet_Nare_3000_karibu_gift_Mobile.webp";
+import DepositBonus from "../../../assets/img/banner/products/365.webp";
 
 import {Table} from "react-bootstrap";
 import PromoCards from "./PromoCards";
@@ -28,6 +29,7 @@ const Promo = () => {
         {src: firstDeposit, id: 3},
         {src: multibetCashback, id: 2},
         {src: karibuGiftWallet, id: 1},
+        {src: DepositBonus, id: 9},
     ];
 
     useEffect(() => {
@@ -79,17 +81,17 @@ const Promo = () => {
                                              }}/>
                                             </span>
                                     <div
-                                        className="shadow-sm d-flex justify-content-center col-10 p-2 shadow-sm promotion-header text-white">
+                                        className="shadow-sm d-flex justify-content-center col-8 p-2 shadow-sm promotion-header text-white">
                                         BETNARE PROMOTIONS
                                     </div>
                                 </div>
                                 <div className="col">
                                     <div
                                         className={
-                                            "row text-white p-2 shadow-sm d-flex justify-content-center promo-container"
+                                            "row text-white p-2 shadow-sm d-flex justify-content-center promo-container flex-column"
                                         }
                                     >
-                                        <div className="col-md-2  shadow-lg promotion">
+                                        <div className="col-md-12  shadow-lg promotion">
                                             <div className="d-flex flex-column promo-inner-promo-item">
                                                 <h5
                                                     className="bold border-bottom d-flex justify-content-center"

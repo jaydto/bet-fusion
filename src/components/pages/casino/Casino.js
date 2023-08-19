@@ -59,15 +59,20 @@ const Casino = React.memo(
                                     <div
                                         className={'d-flex w-100 flex-column justify-content-between nare-header-container'}>
                                         <div className={'d-flex align-items-center'}>
-                                            <span className={'px-3 remove-backbutton-on-desktop'} onClick={() => navigate('/')}>
+                                            <span className={'px-3 d-flex gap-3 align-items-center '} onClick={() => navigate('/')} style={{
+                                                fontSize: "20px",
+                                                color: 'var(--light)',
+                                                fontWeight: '700',
+                                                opacity: '0.7'
+                                            }}>
                                              <FontAwesomeIcon icon={faAngleLeft} style={{
                                                  fontSize: "24px",
                                                  color: 'var(--light)',
                                                  fontWeight: '700',
                                                  opacity: '0.7'
-                                             }}/>
+                                             }}/>  Back
                                             </span>
-                                            <span className={'col-12 justify-content-center d-flex mt-3 mb-4 casino-header'}
+                                            <span className={'col-10 justify-content-center d-flex mb-4 casino-header'}
                                                   id={'nare-games-header'}>
                             CASINO
                         </span>

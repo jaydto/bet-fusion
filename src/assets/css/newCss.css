@@ -1958,6 +1958,12 @@ img.nare-league {
 }
 
 @media (min-width: 992px) {
+    .amt-casino{
+        margin-top:9rem;
+    }
+    .user_logged.casino{
+        margin-top: 9rem;
+    }
     .team_category_game {
         display: flex;
         align-items: center;

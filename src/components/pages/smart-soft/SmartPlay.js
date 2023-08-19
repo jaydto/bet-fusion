@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import Header from "../../header/header";
 import Footer from "../../footer/footer";
 import makeRequest from "../../utils/fetch-request";
@@ -9,6 +9,8 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft, faFire} from "@fortawesome/free-solid-svg-icons";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 import {useNavigate} from "react-router-dom";
+import useWindowDimensions from "../../header/Dimensions";
+import FullscreenButton from "../../shared/FullScreenButton";
 
 const SmartPlay = React.memo(
     (props) => {
@@ -62,16 +64,49 @@ const SmartPlay = React.memo(
                 }
             });
         }
+        const { width} = useWindowDimensions();
+        const [isCustomFullscreen, setCustomFullscreen] = useState(false);
+
+        const [iframeHeight, setIframeHeight] = useState(700); // Initial height
+
+        // Define the CSS style for the iframe
+        const iframeStyle = {
+            maxWidth: "100%",
+            width: "100%",
+            height: `${iframeHeight}vh`, // Set the height dynamically
+        };
+        const maxIframeHeight =
+            width>991?
+                isCustomFullscreen?
+                    window.innerHeight * 2:
+                    window.innerHeight * 0.82:
+                window.innerHeight * 0.92; // Maximum height is 77% desktop  and 92% mobile of the screen height
+
+        // // Function to update the iframe height
+        const updateIframeHeight = useCallback(() => {
+            console.log("this was called to resize",maxIframeHeight )
+            setIframeHeight(isCustomFullscreen?800:700); // Set the fixed height here
+        }, []);
+
+
+        useEffect(() => {
+            // Initial iframe height calculation
+            updateIframeHeight();
+
+            // Update iframe height when the window is resized
+            window.addEventListener("resize", updateIframeHeight);
+
+            // Clean up the event listener when the component is unmounted
+            return () => {
+                window.removeEventListener("resize", updateIframeHeight);
+            };
+        }, [updateIframeHeight, isCustomFullscreen]);
 
         const toggleFullscreen = () => {
-            const iframeElement = document.getElementById("smartPlayGames");
-
-            if (!document.fullscreenElement) {
-                iframeElement.requestFullscreen().catch((err) => {
-                    console.log("Fullscreen request failed:", err);
-                });
+            if (!isCustomFullscreen) {
+                setCustomFullscreen(true);
             } else {
-                document.exitFullscreen();
+                setCustomFullscreen(false);
             }
         };
         const configureDemoGame = () => {
@@ -87,38 +122,12 @@ const SmartPlay = React.memo(
                 configureDemoGame()
 
         }, [])
-        const navigate = useNavigate()
+
         return (
             <>
                 <Header/>
                 <div className="amt top-smartsoft gameplay">
-                    <div className={'d-flex align-items-center justify-content-between'}>
-                        <span className={'px-3 remove-backbutton-on-desktop'}
-                              onClick={() => navigate('/smart-soft')}>
-                                             <FontAwesomeIcon icon={faAngleLeft} style={{
-                                                 fontSize: "22px",
-                                                 color: 'var(--light)',
-                                                 fontWeight: '700',
-                                                 opacity: '0.7'
-                                             }}/>
-                                                <FontAwesomeIcon icon={faAngleLeft} style={{
-                                                    fontSize: "22px",
-                                                    color: 'var(--light)',
-                                                    fontWeight: '700',
-                                                    opacity: '0.7'
-                                                }}/>
-                                               <span style={{
-                                                   fontSize: "20px",
-                                                   color: 'var(--light)',
-                                                   fontWeight: '700',
-                                                   opacity: '0.7',
-                                                   paddingLeft: '11px'
-                                               }}> Back</span>
-                                            </span>
-                        <div className="fullscreen-button">
-                            <button onClick={toggleFullscreen}>Toggle Fullscreen</button>
-                        </div>
-                    </div>
+                    <FullscreenButton onClick={toggleFullscreen} navigation={'/smart-soft'} isCustomFullScreen={isCustomFullscreen}/>
                     <div className="d-flex flex-row justify-content-between">
                         <div className="col-md-12 w-100">
                             <div className="homepage">
@@ -128,20 +137,25 @@ const SmartPlay = React.memo(
                                         <Skeleton height={'100px'}/>
                                     </SkeletonTheme>
                                 </div>
-                                {gameUrlLoaded && <>
+                                {gameUrlLoaded && <div className={` ${isCustomFullscreen ? "active custom-fullscreen-wrapper" : ""}`}>
                                     {demo && (
-                                        <>
+                                        <div >
                                             <div className="alert alert-info">
                                                 This is {game} demo. To play the real game, please Log In.
                                                 &nbsp;<FontAwesomeIcon icon={faFire} style={{color: "orangered"}}/>
                                             </div>
-                                        </>
+                                        </div>
                                     )}{
 
                                 }
                                     <iframe className={'mt-3 shadow-lg'} allowFullScreen id={'smartPlayGames'}
-                                            src={gameUrl} title="Gadme" width={'100%'} height={'700px'}></iframe>
-                                </>}
+                                            src={gameUrl} title="Gadme"
+                                            style={{
+                                                ...iframeStyle,
+                                                height: `${Math.min(iframeHeight, maxIframeHeight)}px`,
+                                            }}
+                                    ></iframe>
+                                </div>}
                                 {pathname.includes("JetX") &&
                                     <div className={'card rounded-3 e '} style={{
                                         color: "#999",

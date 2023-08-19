@@ -156,7 +156,6 @@ const GamePlay = React.memo(
                                             </div>
                                         )}
                                         <iframe
-                                            ref={iframeContent}
                                             className="mt-3 shadow-lg"
                                             allowFullScreen
                                             id="spribeGamePlay"

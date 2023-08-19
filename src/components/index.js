@@ -19,7 +19,7 @@ import {messaging} from "../firebaseConfig";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import MobileNav2 from "./mobile-navigation/MobileNav2";
-import {setLocalStorage} from "./utils/local-storage";
+import {getFromLocalStorage, setLocalStorage} from "./utils/local-storage";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -31,6 +31,7 @@ const SideBar = React.lazy(() => import('./sidebar/awesome/Sidebar'))
 const Index = React.memo(
     () => {
         const location = useLocation();
+        const [user, setUser] = useState(getFromLocalStorage("user"));
         const [tab, setTab] = useState('highlights');
         const [sportID, setSportID] = useState(79);
         const [loading, setLoading] = useState(false);
@@ -206,11 +207,7 @@ const Index = React.memo(
                 if (_status == 200) {
                     let u = {...user, ...response.user};
                     setLocalStorage('user', u);
-                    setUser(u)
                     dispatch({type: "SET", key: "user", payload: u});
-                    setTimeout(() => {
-                        setMessage(null)
-                    }, 6000)
                     dispatch({type: "SET", key: "placebet", payload: true});
                 }
             });

@@ -8,6 +8,11 @@ git branch /*
     background-color: #fff;
     border-color: #d3e0e9;
 }
+.nav__betslip.boost-message-count {
+    height: 36px!important;
+    width: 36px!important;
+
+}
 #reason_for_self_exclusion {
     min-height: 8rem;
     background: var(--bet-history);

@@ -19,6 +19,7 @@ import {messaging} from "../firebaseConfig";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import MobileNav2 from "./mobile-navigation/MobileNav2";
+import {setLocalStorage} from "./utils/local-storage";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -193,6 +194,36 @@ const Index = React.memo(
         };
 
 
+        const updateUserOnHistory = () => {
+            if (!user) {
+                return false;
+            }
+            let endpoint = "/v1/balance";
+            let udata = {
+                token: user.token
+            }
+            makeRequest({url: endpoint, method: "post", data: udata}).then(([_status, response]) => {
+                if (_status == 200) {
+                    let u = {...user, ...response.user};
+                    setLocalStorage('user', u);
+                    setUser(u)
+                    dispatch({type: "SET", key: "user", payload: u});
+                    setTimeout(() => {
+                        setMessage(null)
+                    }, 6000)
+                    dispatch({type: "SET", key: "placebet", payload: true});
+                }
+            });
+
+        };
+
+
+        useEffect(() => {
+            const abort=new AbortController()
+            updateUserOnHistory()
+            return ()=>{}
+            abort.abort()
+        }, [])
 
 
         useEffect(() => {

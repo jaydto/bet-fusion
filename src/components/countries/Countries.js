@@ -57,7 +57,6 @@ const Countries = React.memo(
             }
         };
         let sport_id = new URL(window.location.href).searchParams.get("sport_id");
-        console.log("sport_id", sport_id)
 
 
         const getActiveSport = (matchId) => {
@@ -102,8 +101,6 @@ const Countries = React.memo(
         const targetSports = competitions?.all_sports.filter(sports =>Number(sports?.sport_id)===Number(sport_id)
 
         );
-
-        console.log("all_sports_data", targetSports)
 
 
         return (

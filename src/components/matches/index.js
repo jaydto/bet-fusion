@@ -1157,26 +1157,8 @@ const MatchRow = React.memo(
                             <div className="c-btn-group align-self-center to-flex-1 to-tabview">
                                 {threeWay &&
                                     <div className="d-flex flex-row ">
-                                        <div className="d-flex flex-column text-center text-white fit-ipad w-100">
-                                            <div className={"d-sm-none d-md-none"}>
-                                            <span className='d-flex justify-content-start'>
-                                                {match?.tags?.map((tag, index) => (
-                                                    <span key={index} className='px-2 w-100 ' style={{
-                                                        color: tag?.color,
-                                                        backgroundColor: tag?.background_color,
-                                                        fontSize: "8px",
-                                                        borderRadius: "10px",
-                                                        marginLeft: "3px",
-                                                        width: "4px",
-                                                        marginTop: "8px"
-                                                    }}>
-                                                            <strong>
-                                                            {tag.name}
-                                                            </strong>
-                                                        </span>
-                                                ))}
-                                            </span>
-                                            </div>
+                                        <div className="d-flex flex-column text-center text-white fit-ipad w-100 align-items-end">
+
                                             <div
                                                 className="d-flex flex-row px-1 justify-content-end change-date1 mobile-only display-ipad-dates">
                                             <span className={'date-size wrapping px-3'}>
@@ -1338,7 +1320,7 @@ const MatchRow = React.memo(
 
                         </>
                         }
-                        <div className={'display-ipad-more-options'}>
+                        <div className={'display-ipad-more-options justify-content-end'}>
 
                             {!pdown && !jackpot &&
                                 <SideBets match={match} live={live} style={{d: "inline"}}/>}

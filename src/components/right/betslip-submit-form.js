@@ -871,7 +871,16 @@ const BetslipSubmitForm = React.memo(
                                             <SubmitButton
                                                 id="place_bet_button_submit"
                                                 className="place-bet-btn bold "
-                                                title={`${loading ? 'PLEASE WAIT' : 'PLACE BET'}`}
+                                                title={
+                                                    loading ? (
+                                                        <div className={'d-flex align-items-center justify-content-center'} style={{whiteSpace:'nowrap'}}>
+                                                            <div className="custom-loader"></div>
+                                                            PLEASE WAIT
+                                                        </div>
+                                                    ) : (
+                                                        'PLACE BET'
+                                                    )
+                                                }
                                             ></SubmitButton>
                                         </div>
 

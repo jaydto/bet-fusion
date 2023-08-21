@@ -56,20 +56,15 @@ const Countries = React.memo(
                 setCollapsed(false);
             }
         };
-        const updateSidebarState = () => {
-            let sport_id = new URL(window.location.href).searchParams.get("sport_id");
-            if (sport_id === null && window.location.pathname === "/") {
-                sport_id = 79;
-            }
-            setSport(sport_id);
-        };
+        let sport_id = new URL(window.location.href).searchParams.get("sport_id");
+        console.log("sport_id", sport_id)
+
 
         const getActiveSport = (matchId) => {
             return Number(sport || 79) === Number(matchId);
         };
         useEffect(() => {
             updateDimensions();
-            updateSidebarState();
             window.addEventListener("resize", updateDimensions);
             return () => window.removeEventListener("resize", updateDimensions);
         }, [width]);
@@ -86,9 +81,6 @@ const Countries = React.memo(
 
             }
 
-
-
-
             let default_img = "default_sport";
             let sport_image;
             try {
@@ -104,6 +96,15 @@ const Countries = React.memo(
         const getDefaultMarketsForSport = (competition) => {
             return competition?.default_display_markets;
         };
+
+
+
+        const targetSports = competitions?.all_sports.filter(sports =>Number(sports?.sport_id)===Number(sport_id)
+
+        );
+
+        console.log("all_sports_data", targetSports)
+
 
         return (
             <div>
@@ -124,86 +125,83 @@ const Countries = React.memo(
                         image={false}
                     >
                         <SidebarContent>
-                            <Menu iconShape="circle" className="100vw">
-                                {competitions?.all_sports.map((competition, index) => (
-                                    <SubMenu
-                                        title={competition.sport_name}
-                                        defaultOpen={getActiveSport(competition.sport_id)}
-                                        onClick={() => gaEventTracker(`${competition?.sport_name}`)}
-                                        icon={
-                                            <LazyLoadImage
-                                                style={{
-                                                    borderRadius: "50%",
-                                                    height: "25px",
-                                                    display: "block",
-                                                    width:'25px'
-                                                }}
-                                                src={getSportImageIcon(competition.sport_name)}
-                                            />
-                                        }
-                                        key={index}
-                                        className="100vw"
+                            {targetSports?.map((competition, index) => (
+                            <Menu
+                                iconShape="circle" className="100vw"
+                                key={index}
+                                title={"Countries"}
+                                >
+                                <div className={"d-flex gap-3 w-100 align-items-center "}>
+                                    <LazyLoadImage
+                                        style={{
+                                            borderRadius: "50%",
+                                            height: "22px",
+                                            display: "block",
+                                            width:'22px'
+                                        }}
+                                        src={getSportImageIcon(competition.sport_name)}
+                                    /> Countries
+                                </div>
+
+                                    <Menu
+                                        iconShape="circle" className="100vw"
+                                        title={"Countries"}
+                                        style={{
+                                            maxHeight: "300px",
+                                            overflowY: "auto",
+                                            overflowX: "hidden",
+                                        }}
                                     >
-                                        <SubMenu
-                                            title={"Countries"}
-                                            defaultOpen={competition?.categories}
-                                            style={{
-                                                maxHeight: "300px",
-                                                overflowY: "auto",
-                                                overflowX: "hidden",
-                                            }}
-                                        >
-                                            {competition?.categories.map((country, countryKey) => (
-                                                <div key={`${countryKey}_category`}>
-                                                    <SubMenu
-                                                        title={country.category_name}
-                                                        onClick={() =>
-                                                            gaEventTracker(`${country?.category_name}`)
-                                                        }
-                                                        icon={
-                                                            <LazyLoadImage
-                                                                style={{ borderRadius: "50%", height: "20px" }}
-                                                                src={getSportImageIcon(
-                                                                    country.category_name,
-                                                                    "flags-1-1",
-                                                                    true,
-                                                                    true
-                                                                )}
-                                                            />
-                                                        }
-                                                    >
-                                                        {country?.competitions.map((league, leagueKey) => (
-                                                            <MenuItem
-                                                                key={`${leagueKey}_league`}
-                                                                className="100vw"
-                                                            >
-                                                                <a
-                                                                    href={`/competition/${competition.sport_id}/${
-                                                                        country.category_id
-                                                                    }/${league.competition_id}?sport_id=${
+                                        {competition?.categories.map((country, countryKey) => (
+                                            <div key={`${countryKey}_category`}>
+                                                <SubMenu
+                                                    title={country.category_name}
+                                                    onClick={() =>
+                                                        gaEventTracker(`${country?.category_name}`)
+                                                    }
+                                                    icon={
+                                                        <LazyLoadImage
+                                                            style={{ borderRadius: "50%", height: "20px" }}
+                                                            src={getSportImageIcon(
+                                                                country.category_name,
+                                                                "flags-1-1",
+                                                                true,
+                                                                true
+                                                            )}
+                                                        />
+                                                    }
+                                                >
+                                                    {country?.competitions.map((league, leagueKey) => (
+                                                        <MenuItem
+                                                            key={`${leagueKey}_league`}
+                                                            className="100vw"
+                                                        >
+                                                            <a
+                                                                href={`/competition/${competition.sport_id}/${
+                                                                    country.category_id
+                                                                }/${league.competition_id}?sport_id=${
+                                                                    competition.sport_id
+                                                                }&sub_type_id=${getDefaultMarketsForSport(
+                                                                    competition
+                                                                )}`}
+                                                                onClick={() => {
+                                                                    setLocalStorage(
+                                                                        "active_item",
                                                                         competition.sport_id
-                                                                    }&sub_type_id=${getDefaultMarketsForSport(
-                                                                        competition
-                                                                    )}`}
-                                                                    onClick={() => {
-                                                                        setLocalStorage(
-                                                                            "active_item",
-                                                                            competition.sport_id
-                                                                        );
-                                                                        gaEventTracker(league?.competition_name);
-                                                                    }}
-                                                                >
-                                                                    {league.competition_name}
-                                                                </a>
-                                                            </MenuItem>
-                                                        ))}
-                                                    </SubMenu>
-                                                </div>
-                                            ))}
-                                        </SubMenu>
-                                    </SubMenu>
-                                ))}
+                                                                    );
+                                                                    gaEventTracker(league?.competition_name);
+                                                                }}
+                                                            >
+                                                                {league.competition_name}
+                                                            </a>
+                                                        </MenuItem>
+                                                    ))}
+                                                </SubMenu>
+                                            </div>
+                                        ))}
+                                    </Menu>
                             </Menu>
+                                ))}
                         </SidebarContent>
                     </ProSidebar>
                 </div>

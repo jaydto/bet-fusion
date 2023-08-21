@@ -601,8 +601,9 @@ b, strong {
 .filters-navigation {
     opacity: 1;
     position: sticky;
-    top: 5.7rem;
+    top: 6.7rem;
     z-index: 2000;
+    background: var(--betnare-side-bg);
 }
 
 
@@ -873,6 +874,7 @@ input.bet-select bet-stake-input {
     color: var(--light) !important;
 }
 
+
 input::placeholder {
     color: var(--light) !important
 }
@@ -1011,7 +1013,6 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .top-matches .side {
-    background: #1e2d36;
     padding: 2px 8px 2px 5px;
     outline-style: none;
     outline: none;
@@ -1378,6 +1379,16 @@ img.nare-league {
 /*end back button*/
 /*media queries*/
 @media (min-width: 1260px) {
+    .compt-teams .compt-teams-item{
+        font-size:14px;
+        line-height:2.3;
+    }
+    .c-btn-group> .c-btn {
+        height: 44px!important;
+        line-height: 30px!important;
+        font-weight: 400;
+        min-width: 40px;
+    }
     .market-groups-container {
         top: 93px !important;
     }
@@ -2175,6 +2186,27 @@ img.nare-league {
 .cursor-pointer {
     cursor: pointer !important;
 }
+.myButton.markets-button {
+    border: 1px solid #4e6096;
+    border-radius: 21px;
+    padding: 0px 13px;
+    line-height: 2.4 !important;
+    font-size: 9px !important;
+    white-space: nowrap;
+}
+
+.myButton.markets-button:after {
+    content: '';
+    /* margin-top: -5px; */
+    margin-left: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 2px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    /* color: #fff; */
+}
 
 @media (max-width: 991px) {
     .betslip-alert-close {
@@ -2355,28 +2387,6 @@ img.nare-league {
 
     .c-btn-header {
         text-align: end !important;
-    }
-
-    .myButton.markets-button {
-        border: 1px solid #4e6096;
-        border-radius: 21px;
-        padding: 0px 13px;
-        line-height: 2.4 !important;
-        font-size: 9px !important;
-        white-space: nowrap;
-    }
-
-    .myButton.markets-button:after {
-        content: '';
-        /* margin-top: -5px; */
-        margin-left: 10px;
-        border: solid white;
-        border-width: 0 2px 2px 0;
-        display: inline-block;
-        padding: 2px;
-        transform: rotate(45deg);
-        -webkit-transform: rotate(45deg);
-        /* color: #fff; */
     }
 
     .nav-tabs {

@@ -7776,8 +7776,46 @@ ul.sport {
     }
 }
 
+.card-small {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-clip: border-box;
+    border: none;
+    border-radius: 10px;
+    /*transform: translate(1px, 2px);*/
+}
+.wrapping{
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
 
+}
 @media (max-width: 991px) {
+
+    .menu-wrapper::-webkit-scrollbar {
+        display: none;
+    }
+    .menu-t .menu-img {
+        width: 100% !important;
+        height: 2.8rem !important;
+        text-align: center;
+        padding: 5px 0px;
+        position: relative;
+    }
+    .menu-wrapper {
+        /*max-width: 100vw;*/
+        width: 100vw;
+        /*max-width: 767px;*/
+        display: inline-block;
+        overflow-y: hidden;
+        overflow-x: auto;
+        background: #16202C!important;
+        /* background: orange!important; */
+        -webkit-overflow-scrolling: touch;
+    }
     .betslip td.tax-info {
         padding: 10px 4px!important;
     }
@@ -7886,17 +7924,6 @@ ul.sport {
     .container-size{
         width:95%!important;
     }
-    .card-small {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        min-width: 0;
-        word-wrap: break-word;
-        background-clip: border-box;
-        border: 1px solid rgba(0, 0, 0, .125);
-        border-radius: 10px;
-        /*transform: translate(1px, 2px);*/
-    }
     .card-sm {
         position: relative;
         display: flex;
@@ -7926,7 +7953,7 @@ ul.sport {
     }
 
     .size-info {
-        width: 100% !important;
+        width: 39% !important;
     }
 
     .c-btn-group {
@@ -8888,7 +8915,7 @@ ul.sport {
 
 @media (max-width: 1147px) {
     .c-btn-group > .c-btn {
-        min-width: 10rem ;
+        min-width: 4rem ;
         transition: min-width 0.01s ease-in-out;
     }
     .betslip-container {
@@ -11638,7 +11665,9 @@ button.close {
         display: table-cell !important;
     }
 }
-
+.to-flex-1{
+    flex-direction: column;
+}
 @media (min-width: 768px) and (max-width: 991px) {
     .sj {
         display: block !important;
@@ -15588,9 +15617,7 @@ img.zoom-img {
         min-width: 6rem;
         opacity: 0.7;
     }
-    .menu-wrapper::-webkit-scrollbar {
-        display: none;
-    }
+
 
     table.menu-table tr {
         white-space: nowrap;
@@ -15669,28 +15696,8 @@ img.zoom-img {
         font-weight: 700!important;
         font-size: 13px;
     }
-    .menu-wrapper {
-        /*max-width: 100vw;*/
-        width: 100vw;
-        /*max-width: 767px;*/
-        display: inline-block;
-        overflow-y: hidden;
-        overflow-x: auto;
-        background: #16202C!important;
-        /* background: orange!important; */
-        -webkit-overflow-scrolling: touch;
-    }
-    .card-small {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        min-width: 0;
-        word-wrap: break-word;
-        background-clip: border-box;
-        border: none;
-        border-radius: 10px;
-        /*transform: translate(1px, 2px);*/
-    }
+
+
     .matches .top-matches{
         padding-top: 0px!important;
         padding-bottom: 0px !important;
@@ -15716,12 +15723,6 @@ img.zoom-img {
 
     }
 
-    .wrapping{
-        white-space: nowrap;
-        display: flex;
-        align-items: center;
-
-    }
 
     .to-none{
         display: none;
@@ -15755,9 +15756,7 @@ img.zoom-img {
 
 
 
-    .to-flex-1{
-        flex-direction: column;
-    }
+
     .to-flex{
         flex-direction: column;
     }
@@ -15768,6 +15767,9 @@ img.zoom-img {
 }
 .matches .top-matches button {
     height: 40px;
+}
+.match-detail-container {
+    width: 100%!important;
 }
 @media (max-width:514px){
     .image-size {
@@ -15850,9 +15852,7 @@ img.zoom-img {
     .thedate {
         display: none;
     }
-    .match-detail-container {
-        width: 100%!important;
-    }
+
 
 }
 

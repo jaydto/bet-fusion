@@ -8,12 +8,10 @@ import useInterval from "../hooks/set-interval.hook";
 import makeRequest from "./utils/fetch-request";
 import Testimonials from "./carousel/Testimonials";
 import LiveSideBar from "./sidebar/live-sidebar";
-import {Spinner} from "react-bootstrap";
 import {ToastContainer} from "react-toastify";
 import SkeletonLive from "./pages/skeletonLoadersWeb/SkeletonLive";
 import SkeletonMobileLive from "./pages/skeletonLoadersWeb/SkeletonLoaderMobile";
-import SkeletonLoaderMobile from "./pages/skeletonLoadersWeb/SkeletonLoaderMobile";
-import SkeletonLoader from "./pages/skeletonLoadersWeb/SkeletonLoader";
+
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));

@@ -241,7 +241,7 @@ const HeaderNav = React.memo(
                     <li className={`${pathname.includes('Premier') || (window.location.href.includes("Premier")) ? 'active px-2' : 'px-2'}`}
                         onClick={() => gaEventTracker('Premier League')}>
                         <Link className="cg fm ox anl url-link"
-                              to="/competition/79/8076/16805?sport_id=79&sub_type_id=1,18,29&limit=500&c=Premier League"
+                              to="/competition/79/8076/16805?sport_id=79&sub_type_id=1&limit=500&c=Premier League"
                               title="Premier League">
                             <div className={'notification-item'}>
                                 <strong>Premier League</strong>

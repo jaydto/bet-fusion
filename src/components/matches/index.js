@@ -212,12 +212,11 @@ const MatchHeaderRow = React.memo(
 
             }
         }, [first_match?.parent_match_id])
-        const {width} = useWindowDimensions()
 
         return (
 
             <Row
-                className={`full-mobile sticky-top ${jackpot ? 'd-none ' : user ? "sticky-user " : 'sticky-responsive no-sticky '}px-lg-3`}>
+                className={`full-mobile sticky-top ${jackpot ? 'd-none ' : user ? "sticky-user " : 'sticky-responsive no-sticky '}`}>
                 <div className="top-matches d-flex position-sticky sticky-top shadow-sports-header header-sports">
                     <div className={"size-info  d-flex col-xs-12 pad left-text"}>
                         <div className="col pad left-text d-flex">
@@ -232,7 +231,6 @@ const MatchHeaderRow = React.memo(
                         <div className={'col match-detail-container'}></div>
                     </div>
                     {/*match heading*/}
-                    {width < 991 ?
                         <div className={"col flex-row justify-content-between space-bets"} style={{minWidth: "45%"}}>
                             {extraMarketDisplays && !jackpot && (
                                 <div className="d-flex flex-row ">
@@ -249,85 +247,6 @@ const MatchHeaderRow = React.memo(
                                 </div>
                             )}
                         </div>
-                        : <div
-                            className={`col  to-deskview flex-row justify-content-between ${state?.kiron_page == true && ' space-bets '}`}>
-                            <div className={" separations to-tabview"}>
-                                {!live && !jackpot && extraMarketDisplays.length > 0 &&
-                                    extraMarketDisplays?.map((extra_market, index) => (
-                                        <div className={'d-flex flex-row'} key={index}>
-                                            <div className={'d-flex flex-column text-center text-white fit-ipad'}>
-                                            <span className={'small'}>
-                                                {extra_market.name}
-                                            </span>
-                                                <div className={'c-btn-group m-lg-1 mt-sm-1 justify-content-center'}>
-                                                    <a className="c-btn-header mx-2 ">
-                                                        {(extra_market.extra_markets_display[0])}
-                                                    </a>
-                                                    <a className="c-btn-header mx-2 ">
-                                                        {(extra_market.extra_markets_display[1])}
-
-                                                    </a>
-                                                    {extra_market?.extra_market_cols > 2 &&
-                                                        <a className={`c-btn-header`}>
-                                                            {(extra_market.extra_markets_display[2])}
-                                                        </a>}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    ))}
-                            </div>
-                            {/*desktop*/}
-                            {(!live && !jackpot && extraMarketDisplays.length > 0)
-                                ? (
-                                    <>
-                                        {extraMarketDisplays?.map((extra_market, index) => (
-                                            <div key={index} className={'to-deskview flex-column text-white'}>
-                                    <span className={'small text-center text-uppercase bold'}>
-                                        {extra_market.name}
-                                    </span>
-                                                <div className={'c-btn-group'}>
-                                                    <a className="c-btn-header">
-                                                        {(extra_market.extra_markets_display[0])}
-                                                    </a>
-                                                    <a className="c-btn-header">
-                                                        {(extra_market.extra_markets_display[1])}
-                                                    </a>
-                                                    {extra_market?.extra_market_cols > 2 &&
-                                                        <a className={`c-btn-header`}>
-                                                            {(extra_market.extra_markets_display[2])}
-                                                        </a>}
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </>) : live && (
-                                <div className={"col flex-row justify-content-between space-bets"}
-                                     style={{minWidth: "45%"}}>
-                                    {extraMarketDisplays && !jackpot && (
-                                        <div className="d-flex flex-row ">
-                                            <div
-                                                className="d-flex flex-column text-center text-white mt-3 fit-ipad w-100">
-
-                                                <div className={"c-btn-group"}>
-                                                    {extraMarketDisplays?.[0]?.extra_markets_display?.map((display, index) => (
-                                                        <span className={'c-btn-header text-white'} key={index}>
-                                              {display}
-                                            </span>
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )}
-                                </div>
-
-                            )
-
-                            }
-                            <div
-                                className="bet-fix events-odd pad undefined align-items-md-start align-items-lg-center more-markets-container m-lg-2 col-3 d-flex h-100 d-flex align-self-center justify-content-md-start justify-content-lg-center">
-                                <LazyLoadImage src={myGif} className={'fire '}/>
-                            </div>
-                        </div>
-                    }
                 </div>
             </Row>
         )
@@ -596,8 +515,6 @@ const SideBets = React.memo(
                         >
                             {" "}
                             <span className={'stats-mobile more-options-font'}>Stats</span>
-                            <span className={'stats-desktop'}><FontAwesomeIcon className={"icon-size"}
-                                                                               icon={faChartLine}/> </span>
                         </a>
                         <span className={'stats-mobile'}>|</span>
                         <Link
@@ -610,7 +527,6 @@ const SideBets = React.memo(
                         >
                             <strong className="more-options-font bold">
                                 <span className={'stats-mobile more-markets-text text-warning'}>+{match.side_bets} More Markets</span>
-                                <span className={'stats-desktop more-markets-text'}>+{match.side_bets}</span>
                             </strong>
                         </Link>
                     </>
@@ -890,8 +806,6 @@ const MarketRow = React.memo((props) => {
             (favorite, index, self) => index === self.findIndex(f => f.sub_type_id === favorite.sub_type_id)
         );
 
-        console.log("userFavoriteMarkets after update:", updatedFavoriteValues);
-
         // Update the userFavoriteMarkets state with the combined data (without duplicates)
         setUserFavoriteMarkets(updatedFavoriteValues);
 
@@ -1099,9 +1013,9 @@ const MatchRow = React.memo(
             let url = new URL(window.location)
 
             let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29").split(",")
-            if (width <= 767) {
-                sub_types = [sub_types[0]]
-            }
+
+            sub_types = [sub_types[0]]
+
 
             if (sub_types.includes("1")) {
                 setThreeWay(true)
@@ -1232,18 +1146,14 @@ const MatchRow = React.memo(
                                     : ""}
                             </div>
                         </div>
-                        <div className={'to-tabview'}>
-                            {!pdown && !jackpot &&
-                                <SideBets match={match} live={live} style={{d: "inline"}}/>}
-                        </div>
 
 
                     </div>
                     <hr className={"to-block m-sm-1 m-md-1 m-lg-0"}/>
                     <div
-                        className={`col d-flex  flex-row   ${width > 1259 ? '' : 'space-bets'} justify-content-lg-between  justify-spacing-ipad card-small`}>
+                        className={`col d-flex  space-bets justify-content-lg-between  justify-spacing-ipad card-small`}>
 
-                        <div className={`${width > 767 ? `d-flex to-flex-1 ${jackpot ? ' w-100' : ""}` : 'd-none'}`}>
+                        <div className={`d-flex to-flex-1 ${jackpot ? 'w-100':" "}`}>
                             <div className="c-btn-group align-self-center to-flex-1 to-tabview">
                                 {threeWay &&
                                     <div className="d-flex flex-row ">
@@ -1332,78 +1242,6 @@ const MatchRow = React.memo(
                             </div>
 
                         </div>
-                        <div
-                            className={`${width <= 767 ? 'c-btn-group align-self-center to-flex-1 to-tabview' : 'd-none'}`}>
-
-                            <div className="d-flex flex-row date-size-data">
-                                <div
-                                    className="d-flex flex-column text-center text-white fit-ipad w-100 date-size-data ">
-
-                                    <div
-                                        className="d-flex flex-row px-1 justify-content-end change-date1  mobile-only date-size-data">
-                                           <span className={'date-size wrapping px-3'}>
-                                             {live == 1 && match?.match_time ? (
-                                                 <div className={'d-flex gap-3 align-items-center'}>
-                                                     <div className={'live-status'}>
-                                                         {`${match.event_status}'`}
-                                                     </div>
-                                                     <>{`${match.match_time}'`}</>
-                                                 </div>
-                                             ) : (
-                                                 <>
-
-                                                     <>
-                                                         {match?.event_status == undefined ? "" :
-                                                             <div className={'d-flex align-items-center gap-4'}>
-                                   <span className={'match-status'}>
-                                        {match?.match_status}'
-                                  </span>
-                                                                 <span className={'live-status'}>
-                                        {match?.event_status}'
-                                  </span>
-                                                             </div>
-                                                         }
-                                                         <FormatDate live={live} start_time={match?.start_time}
-                                                                     match_time={match?.match_time} jackpot={jackpot}/>
-
-                                                     </>
-
-
-                                                 </>
-
-                                             )}</span>
-                                        <div
-                                            className={"px-1 wrapping mobile-display-game-id"}>ID: {match?.game_id}</div>
-
-                                    </div>
-
-
-                                </div>
-                            </div>
-
-                        </div>
-                        <div
-                            className={`${width <= 767 ? 'c-btn-group align-self-center markets-container-data-check' : 'd-none'}`}>
-                            {
-                            match?.odds?.home_odd ? (match?.odds?.home_odd && (!pdown && match?.odds?.home_odd && match.odds.home_odd !== 'NaN' &&
-                                    match.market_active == 1 && match.odds.home_odd_active == 1||jackpot)
-                                    ? <OddButton match={match} mkt="home_team" live={live} jackpot={jackpot}/>
-                                    : <EmptyTextRow odd_key={match?.odd_key} live={live}/>) :
-                                match?.odds?.home_odd ? <EmptyTextRow odd_key={match?.odd_key} live={live}/> : ''}
-
-                            {match?.odds?.neutral_odd ? ((!pdown && match?.odds?.neutral_odd && match.odds.neutral_odd !== 'NaN' &&
-                                match.market_active == 1 && match.odds.neutral_odd_active == 1 || jackpot)
-                                ? <OddButton match={match} mkt="draw" live={live} jackpot={jackpot}/>
-                                : <EmptyTextRow odd_key={match?.odd_key} live={live}/>) : ''
-                            }
-                            {match?.odds?.away_odd ? (match?.odds?.away_odd && (!pdown && match?.odds?.away_odd && match.odds.away_odd !== 'NaN' &&
-                                    match.market_active == 1 && match.odds.away_odd_active == 1 || jackpot)
-                                    ? <OddButton match={match} mkt="away_team" live={live} jackpot={jackpot}/>
-                                    : <EmptyTextRow odd_key={match?.odd_key} live={live}/>) :
-                                match?.odds?.away_odd ? <EmptyTextRow odd_key={match?.odd_key} live={live}/> : ''
-                            }
-
-                        </div>
 
                         {/*mobile  display and odds*/}
                         <div className={"to-profile-check separations to-flex-2"}>
@@ -1466,10 +1304,7 @@ const MatchRow = React.memo(
                             </>
                             }
                         </div>
-                        <div className={'to-tabview mobile-to-desktop-options justify-content-end'}>
-                            {!pdown && !jackpot &&
-                                <SideBets match={match} live={live} style={{d: "inline"}}/>}
-                        </div>
+
                         {/*desktop display of odds*/}
                         {!jackpot && <>
                             {Object.entries(match?.extra_odds || {}).map(([marketName, odds], index) => (
@@ -1744,7 +1579,7 @@ const MatchList = React.memo(
             <div className="matches full-width">
                 {matches && <MatchHeaderRow live={live} first_match={matches ? matches[0] : {}}/>}
 
-                <div className="web-element px-lg-3 top-login-background-img-bg w-100">
+                <div className="web-element top-login-background-img-bg w-100">
                     {matches &&
                         Object.entries(matches).map(([key, match], index) => (
                             <MatchRow match={match} key={index} live={live} pdown={pdown} three_way={three_way}/>

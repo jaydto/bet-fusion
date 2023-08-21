@@ -5152,13 +5152,7 @@ input[type="button"].btn-block {
     }
 }
 
-@media (min-width: 1260px) {
 
-
-    .by {
-        width: 100%;
-    }
-}
 
 .gb {
     margin-right: auto;
@@ -5803,215 +5797,6 @@ input[type="button"].btn-block {
     }
 }
 
-@media (min-width: 1260px) {
-    .gg, .gk, .go, .gs, .gw, .ha, .he, .hi, .hm, .hq, .hu, .hy {
-        float: left;
-    }
-
-    .hy {
-        width: 100%;
-    }
-
-    .hu {
-        width: 91.66666667%;
-    }
-
-    .hq {
-        width: 83.33333333%;
-    }
-
-    .hm {
-        width: 75%;
-    }
-
-    .hi {
-        width: 66.66666667%;
-    }
-
-    .he {
-        width: 58.33333333%;
-    }
-
-    .ha {
-        width: 50%;
-    }
-
-    .gw {
-        width: 41.66666667%;
-    }
-
-    .gs {
-        width: 33.33333333%;
-    }
-
-    .go {
-        width: 25%;
-    }
-
-    .gk {
-        width: 16.66666667%;
-    }
-
-    .gg {
-        width: 8.33333333%;
-    }
-
-    .mn {
-        right: 100%;
-    }
-
-    .mo {
-        right: 91.66666667%;
-    }
-
-    .mp {
-        right: 83.33333333%;
-    }
-
-    .mq {
-        right: 75%;
-    }
-
-    .mr {
-        right: 66.66666667%;
-    }
-
-    .ms {
-        right: 58.33333333%;
-    }
-
-    .mt {
-        right: 50%;
-    }
-
-    .mu {
-        right: 41.66666667%;
-    }
-
-    .mv {
-        right: 33.33333333%;
-    }
-
-    .mw {
-        right: 25%;
-    }
-
-    .mx {
-        right: 16.66666667%;
-    }
-
-    .my {
-        right: 8.33333333%;
-    }
-
-    .mz {
-        right: auto;
-    }
-
-    .na {
-        left: 100%;
-    }
-
-    .nb {
-        left: 91.66666667%;
-    }
-
-    .nc {
-        left: 83.33333333%;
-    }
-
-    .nd {
-        left: 75%;
-    }
-
-    .ne {
-        left: 66.66666667%;
-    }
-
-    .nf {
-        left: 58.33333333%;
-    }
-
-    .ng {
-        left: 50%;
-    }
-
-    .nh {
-        left: 41.66666667%;
-    }
-
-    .ni {
-        left: 33.33333333%;
-    }
-
-    .nj {
-        left: 25%;
-    }
-
-    .nk {
-        left: 16.66666667%;
-    }
-
-    .nl {
-        left: 8.33333333%;
-    }
-
-    .nm {
-        left: auto;
-    }
-
-    .nn {
-        margin-left: 100%;
-    }
-
-    .no {
-        margin-left: 91.66666667%;
-    }
-
-    .np {
-        margin-left: 83.33333333%;
-    }
-
-    .nq {
-        margin-left: 75%;
-    }
-
-    .nr {
-        margin-left: 66.66666667%;
-    }
-
-    .ns {
-        margin-left: 58.33333333%;
-    }
-
-    .nt {
-        margin-left: 50%;
-    }
-
-    .nu {
-        margin-left: 41.66666667%;
-    }
-
-    .nv {
-        margin-left: 33.33333333%;
-    }
-
-    .nw {
-        margin-left: 25%;
-    }
-
-    .nx {
-        margin-left: 16.66666667%;
-    }
-
-    .ny {
-        margin-left: 8.33333333%;
-    }
-
-    .nz {
-        margin-left: 0%;
-    }
-}
 
 .fade {
     /*transition: opacity 0.1s linear;*/
@@ -7211,6 +6996,9 @@ ul.sport {
 }
 
 @media (max-width: 767px) {
+    .to-tabview{
+        display: none;
+    }
     .casino-category-container {
 
         width:fit-content;
@@ -8031,9 +7819,6 @@ ul.sport {
     .gn{
         padding:0px!important;
     }
-    .display-ipad-more-options{
-        display:none;
-    }
     .mobile-to-desktop-options{
         display: flex!important;
     }
@@ -8286,23 +8071,6 @@ ul.sport {
     }
 }
 
-@media (min-width: 1260px) {
-    /*.jackpot-width{*/
-    /*    width:min-content!important;*/
-    /*}*/
-
-    .to-profile-check{
-        display:none;
-    }
-    .c-btn-group > .c-btn {
-        width: 50px;
-        height:40px!important;
-    }
-
-    .by {
-        width: 100%;
-    }
-}
 
 @media (min-width: 768px) {
     .ge,
@@ -8784,226 +8552,6 @@ ul.sport {
     }
 }
 
-@media (min-width: 1260px) {
-    .gg,
-    .gk,
-    .go,
-    .gs,
-    .gw,
-    .ha,
-    .he,
-    .hi,
-    .hm,
-    .hq,
-    .hu,
-    .hy {
-        float: left;
-    }
-
-    .hy {
-        width: 100%;
-    }
-
-    .hu {
-        width: 91.66666667%;
-    }
-
-    .hq {
-        width: 83.33333333%;
-    }
-
-    .hm {
-        width: 75%;
-    }
-
-    .hi {
-        width: 66.66666667%;
-    }
-
-    .he {
-        width: 58.33333333%;
-    }
-
-    .ha {
-        width: 50%;
-    }
-
-    .gw {
-        width: 41.66666667%;
-    }
-
-    .gs {
-        width: 33.33333333%;
-    }
-
-    .go {
-        width: 25%;
-    }
-
-    .gk {
-        width: 16.66666667%;
-    }
-
-    .gg {
-        width: 8.33333333%;
-    }
-
-    .mn {
-        right: 100%;
-    }
-
-    .mo {
-        right: 91.66666667%;
-    }
-
-    .mp {
-        right: 83.33333333%;
-    }
-
-    .mq {
-        right: 75%;
-    }
-
-    .mr {
-        right: 66.66666667%;
-    }
-
-    .ms {
-        right: 58.33333333%;
-    }
-
-    .mt {
-        right: 50%;
-    }
-
-    .mu {
-        right: 41.66666667%;
-    }
-
-    .mv {
-        right: 33.33333333%;
-    }
-
-    .mw {
-        right: 25%;
-    }
-
-    .mx {
-        right: 16.66666667%;
-    }
-
-    .my {
-        right: 8.33333333%;
-    }
-
-    .mz {
-        right: auto;
-    }
-
-    .na {
-        left: 100%;
-    }
-
-    .nb {
-        left: 91.66666667%;
-    }
-
-    .nc {
-        left: 83.33333333%;
-    }
-
-    .nd {
-        left: 75%;
-    }
-
-    .ne {
-        left: 66.66666667%;
-    }
-
-    .nf {
-        left: 58.33333333%;
-    }
-
-    .ng {
-        left: 50%;
-    }
-
-    .nh {
-        left: 41.66666667%;
-    }
-
-    .ni {
-        left: 33.33333333%;
-    }
-
-    .nj {
-        left: 25%;
-    }
-
-    .nk {
-        left: 16.66666667%;
-    }
-
-    .nl {
-        left: 8.33333333%;
-    }
-
-    .nm {
-        left: auto;
-    }
-
-    .nn {
-        margin-left: 100%;
-    }
-
-    .no {
-        margin-left: 91.66666667%;
-    }
-
-    .np {
-        margin-left: 83.33333333%;
-    }
-
-    .nq {
-        margin-left: 75%;
-    }
-
-    .nr {
-        margin-left: 66.66666667%;
-    }
-
-    .ns {
-        margin-left: 58.33333333%;
-    }
-
-    .nt {
-        margin-left: 50%;
-    }
-
-    .nu {
-        margin-left: 41.66666667%;
-    }
-
-    .nv {
-        margin-left: 33.33333333%;
-    }
-
-    .nw {
-        margin-left: 25%;
-    }
-
-    .nx {
-        margin-left: 16.66666667%;
-    }
-
-    .ny {
-        margin-left: 8.33333333%;
-    }
-
-    .nz {
-        margin-left: 0%;
-    }
-}
 
 @media (min-width: 768px) {
     .og .dropdown-menu {
@@ -11342,7 +10890,7 @@ button.close {
 @media (min-width: 992px) {
 
     .c-btn-header{
-        width: 50px;
+        width: 100%;
     }
     .size-info {
         width: 34%;
@@ -12111,15 +11659,15 @@ button.close {
         display: inline-block !important;
     }
 }
-
-@media (min-width: 992px) and (max-width: 1259px) {
+.display-ipad-more-options{
+    display:flex;
+    justify-content:flex-end;
+}
+@media (min-width: 992px)  {
     .justify-spacing-ipad{
         justify-content:center!important;
     }
-    .display-ipad-more-options{
-        display:flex;
-        justify-content:flex-end;
-    }
+
     .fix-view-2{
         width:77.8% !important;
     }
@@ -12213,29 +11761,6 @@ button.close {
 
 /*}*/
 
-@media (min-width: 1260px){
-    .to-navcheck{
-        display: flex;
-    }
-    .to-profilecheck{
-        display:none;
-    }
-    .to-tabview{
-        display: none!important;
-    }
-    .c-btn-group> .c-btn {
-        width: 50px!important;
-    }
-    .to-flex-1{
-        flex-direction: row;
-    }
-    .to-deskview{
-        display: flex!important;
-    }
-    .to-flex{
-        flex-direction: column;
-    }
-}
 
 /*@media (min-width: 992px) and (max-width: 1259px) {*/
 /*    .sticky-responsive{*/
@@ -12258,50 +11783,6 @@ button.close {
 /*    }*/
 /*}*/
 
-@media (min-width: 1260px) {
-
-    .matches .top-matches button{
-        /*width:53px!important;*/
-        border-radius: 0.5rem!important;
-    }
-    .display-ipad-more-options{
-        display:flex;
-    }
-    .sf {
-        display: block !important;
-    }
-
-    table.sf {
-        display: table !important;
-    }
-
-    tr.sf {
-        display: table-row !important;
-    }
-
-    th.sf,
-    td.sf {
-        display: table-cell !important;
-    }
-}
-
-@media (min-width: 1260px) {
-    .sp {
-        display: block !important;
-    }
-}
-
-@media (min-width: 1260px) {
-    .sq {
-        display: inline !important;
-    }
-}
-
-@media (min-width: 1260px) {
-    .sr {
-        display: inline-block !important;
-    }
-}
 
 .scrollbar-container {
     height: 100vh;
@@ -12369,7 +11850,7 @@ button.close {
     }
 }
 
-@media (min-width: 992px) and (max-width: 1259px) {
+@media (min-width: 992px) {
     .casino-category-container {
 
         width:fit-content;
@@ -12380,11 +11861,7 @@ button.close {
     }
 }
 
-@media (min-width: 1260px) {
-    .sv {
-        display: none !important;
-    }
-}
+
 
 .sw {
     display: none !important;
@@ -12520,19 +11997,6 @@ body {
     }
 }
 
-@media (min-width: 1260px) {
-    .tn {
-        text-align: left;
-    }
-
-    .to {
-        text-align: right;
-    }
-
-    .tp {
-        text-align: center;
-    }
-}
 
 .alert-dark {
     background-color: rgba(0, 0, 0, 0.9);
@@ -15981,6 +15445,9 @@ img.zoom-img {
     background: #f9f9f9;
     /* box-sizing: ; */
 }
+.to-deskview{
+    display: none!important;
+}
 
 .password-change {
     background: #FFC428;
@@ -15990,6 +15457,9 @@ img.zoom-img {
     font-weight: normal;
     font-size: 19px;
     text-align: center;
+}
+.space-bets {
+    flex-direction: column !important;
 }
 .login-mobile{
     flex-direction: column;
@@ -16020,7 +15490,7 @@ img.zoom-img {
     border-bottom:thin solid #ffc107!important;
 }
 
-@media (max-width: 1259px) and (min-width: 768px){
+@media (min-width: 768px){
     /*todo changed mobile display here*/
     .display-ipad-dates{
         display:flex!important;
@@ -16033,7 +15503,7 @@ img.zoom-img {
     }
 }
 
-@media (max-width: 1259px){
+@media (min-width: 768px){
     .compt-teams{
         display:block!important;
     }
@@ -16134,6 +15604,7 @@ img.zoom-img {
         margin-top: 5px !important;
         font-size: 13px;
     }
+
     .tr-style{
         display: flex;
         justify-content: center;
@@ -16281,23 +15752,19 @@ img.zoom-img {
     .size-info {
         width: 50%!important;
     }
-    .to-deskview{
-        display: none!important;
-    }
-    .to-tabview{
-        display: none;
-    }
-    .to-block{
-        display: flex!important;
-    }
+
+
+
     .to-flex-1{
         flex-direction: column;
     }
     .to-flex{
         flex-direction: column;
     }
-    .space-bets {
-        flex-direction: column !important;}
+
+}
+.to-block{
+    display: flex!important;
 }
 .matches .top-matches button {
     height: 40px;
@@ -16353,7 +15820,7 @@ img.zoom-img {
     }
 }
 
-@media (max-width: 1259px) {
+@media (min-width: 768px) {
     hr{
         margin-top:0px;
         margin-bottom: 0px;

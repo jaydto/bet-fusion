@@ -224,13 +224,10 @@ const Index = React.memo(
             if (sport_id !== null) {
                 endpoint += " &sport_id=" + sport_id
             }
-            let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29").split(",")
-            if (width <= 1259) {
-                sub_types = [sub_types[0]]
-            }
+            let sub_types = (url.searchParams.get('sub_type_id') || "1")
 
             endpoint = endpoint.replaceAll(" ", '')
-            endpoint += `&sub_type_id=` + (sub_types || "1,18,29")
+            endpoint += `&sub_type_id=` + (sub_types || "1")
 
             let search_term = url.searchParams.get('search')
 
@@ -275,13 +272,9 @@ const Index = React.memo(
                 endpoint += ' &search=' + search_term
             }
             //splitting before api call
-            let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29").split(",")
+            let sub_types = (url.searchParams.get('sub_type_id') || "1")
 
-            if (width <= 1259) {
-                sub_types = [sub_types[0]]
-            }
-
-            endpoint += `&sub_type_id=` + (sub_types || "1,18,29")
+            endpoint += `&sub_type_id=` + (sub_types || "1")
 
 
             await makeRequest({url: endpoint, method: "POST", data: betslip}).then(([status, result]) => {
@@ -301,7 +294,7 @@ const Index = React.memo(
 
         const checkThreeWay = () => {
             let url = new URL(window.location)
-            let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29").split(",")
+            let sub_types = (url.searchParams.get('sub_type_id') || "1")
             setThreeWay(sub_types.includes("1"))
         }
 

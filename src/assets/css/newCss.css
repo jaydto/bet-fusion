@@ -1614,12 +1614,9 @@ img.nare-league {
     }
 
     .stats-mobile {
-        display: none;
+        display: flex;
     }
 
-    .stats-desktop {
-        display: flex
-    }
 
 }
 
@@ -1708,9 +1705,6 @@ img.nare-league {
         display: flex;
     }
 
-    .stats-desktop {
-        display: none;
-    }
 
 }
 
@@ -1922,8 +1916,8 @@ img.nare-league {
         text-overflow: ellipsis;
     }
     .matches .top-matches {
-        padding-left:10px;
-        padding-right:10px;
+        padding-left:0px;
+        padding-right:0px;
     }
     .top-leader-board {
         margin-top: 7rem !important;

@@ -71,8 +71,8 @@ const MobileNav2 = React.memo(
 
 
 
-    return (<div className={"league-container"}>
-        <table  style={{width: "100%", textAlign: "center"}}>
+    return (
+        <table  style={{width: "100%", textAlign: "center"}} className={"league-container"}>
             <tbody>
             <tr className={"d-flex league-row-mobile"}>
                 {sport?.top_soccer.map((top_league, index) => (
@@ -99,8 +99,7 @@ const MobileNav2 = React.memo(
             </tbody>
 
         </table>
-
-    </div>)
+    )
 });
 
 export default React.memo(MobileNav2);

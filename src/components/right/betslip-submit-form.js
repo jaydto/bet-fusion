@@ -78,6 +78,7 @@ const BetslipSubmitForm = React.memo(
         const [message, setMessage] = useState(null);
         const {state, dispatch} = useContext(StoreContext);
         const [loadingShare, setLoadingShare] = useState(false);
+        const [loading, setLoading] = useState(false);
         const settings = getFromLocalStorage("settings");
         const [stake, setStake] = useState(jackpot ? parseInt(jackpotData?.bet_amount) : state?.userStake || getFromLocalStorage("userStake") || Number(settings?.sportsBookLimits?.defaultBetAmount) || Number(state?.settings?.sportsBookLimits?.defaultBetAmount));
         const [stakeBoosted, setStakeBoosted] = useState(100);
@@ -200,7 +201,6 @@ const BetslipSubmitForm = React.memo(
 
             let jackpotMessage = 'jp'
 
-
             if (jackpot) {
 
                 bs = bs.sort(function (a, b) {
@@ -256,11 +256,12 @@ const BetslipSubmitForm = React.memo(
                 endpoint = "/jp/bet"
                 method = "POST"
             }
-
+            setLoading(true)
             makeRequest({url: endpoint, method: method, data: payload, use_jwt: use_jwt})
                 .then(([status, response]) => {
-
-                    if (status === 200 || status == 201 || status == 204) {
+                    if (status === 200 || status == 201 || status == 204)
+                    {
+                        setLoading(false)
                         setMessage(response);
                         const data = {
                             event: jackpot ? 'place_jackpot_bet' : live ? 'place_live_bet' : 'place_prematch_bet',
@@ -268,7 +269,6 @@ const BetslipSubmitForm = React.memo(
                         }
                         gaEventTracker("Bet Placed", data)
                         // setLocalStorage("winnings",null)
-                        //all is good am be quiet
                         if (jackpot) {
                             clearJackpotSlip();
                             setMessage({
@@ -301,7 +301,10 @@ const BetslipSubmitForm = React.memo(
                         dispatch({type: 'SET', key: 'userStake', data: null})
                         updateUserOnHistory()
                         return width < 991 ? setTimeout(()=>{navigate(-1)},5000) : "";
-                    } else {
+                    }
+                    else
+                    {
+                        setLoading(false)
                         const data = {
                             event: jackpot ? 'place_jackpot_bet' : live ? 'place_live_bet' : 'place_prematch_bet',
                             message: response?.message
@@ -868,7 +871,7 @@ const BetslipSubmitForm = React.memo(
                                             <SubmitButton
                                                 id="place_bet_button_submit"
                                                 className="place-bet-btn bold "
-                                                title="PLACE BET"
+                                                title={`${loading ? 'PLEASE WAIT' : 'PLACE BET'}`}
                                             ></SubmitButton>
                                         </div>
 

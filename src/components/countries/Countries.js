@@ -128,7 +128,7 @@ const Countries = React.memo(
                                 key={index}
                                 title={"Countries"}
                                 >
-                                <div className={"d-flex gap-3 w-100 align-items-center "}>
+                                <div className={"d-flex gap-3 w-100 align-items-center px-2"}>
                                     <LazyLoadImage
                                         style={{
                                             borderRadius: "50%",

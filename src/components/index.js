@@ -19,6 +19,7 @@ import {messaging} from "../firebaseConfig";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import MobileNav2 from "./mobile-navigation/MobileNav2";
+import Skeleton1 from "./skeleton/skeleton";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -495,7 +496,7 @@ const Index = React.memo(
                                 </div>
                                 {loading ?
                                     <div className={`text-center mt-2 text-white d-block`}>
-                                        {width < 1259 ? <SkeletonLoaderMobile/> :
+                                        {tab == 'countries'?<Skeleton1/>:width < 1259 ? <SkeletonLoaderMobile/> :
                                             <SkeletonLoader/>}
                                     </div> : tab == 'countries' ? <Countries/> :
                                         <div>

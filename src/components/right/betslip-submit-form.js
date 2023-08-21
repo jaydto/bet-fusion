@@ -46,7 +46,7 @@ export const SubmitButton = (props) => {
                 fontSize: "14px",
                 background: "var(--betnare-button-login",
                 whiteSpace:'nowrap'
-            } : {padding: "10px", width: "100%", borderRadius: "0.7rem"}}
+            } : {padding: "10px", width: "100%", borderRadius: "0.7rem",  whiteSpace:'nowrap', display:'flex', alignItems:'center', justifyContent:'center', gap:'5px'}}
             className={`${disabled ? "disabled" : ""} ${button_size ? " jackpot-button-placebet " : " "} 'bg-warning bold rounded-2 text-dark cursor-pointer'`}
             disabled={isSubmitting || disabled}
             title="Place Bet"

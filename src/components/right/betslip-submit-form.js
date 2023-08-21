@@ -869,6 +869,7 @@ const BetslipSubmitForm = React.memo(
                                         <div className={"d-flex bet-select-values w-100 mt-2 p-lg-2 p-md-2 py-sm-0"}
                                              style={{whiteSpace: "nowrap"}} ref={scrollToRef}>
                                             <SubmitButton
+                                                style={{whiteSpace:'nowrap'}}
                                                 id="place_bet_button_submit"
                                                 className="place-bet-btn bold "
                                                 title={

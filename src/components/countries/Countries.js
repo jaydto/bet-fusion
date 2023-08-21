@@ -9,7 +9,7 @@ import {LazyLoadImage} from "react-lazy-load-image-component";
 
 const Countries = React.memo(
     (props) => {
-        const gaEventTracker = useAnalyticsEventTracker("Navigation");
+        const gaEventTracker = useAnalyticsEventTracker("Counties Page");
         const [, setCollapsed] = useState(false);
 
         const [sport, setSport] = useState(79);
@@ -157,7 +157,7 @@ const Countries = React.memo(
                                                 <SubMenu
                                                     title={country.category_name}
                                                     onClick={() =>
-                                                        gaEventTracker(`${country?.category_name}`)
+                                                        gaEventTracker(`Country Sport ${sport_id}`,`${country?.category_name}`)
                                                     }
                                                     icon={
                                                         <LazyLoadImage

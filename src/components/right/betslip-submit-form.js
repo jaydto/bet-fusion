@@ -68,8 +68,6 @@ export const SubmitButton = (props) => {
 
 const BetslipSubmitForm = React.memo(
     (props) => {
-
-
         const {
             live,
             jackpot,
@@ -89,7 +87,7 @@ const BetslipSubmitForm = React.memo(
         const {state, dispatch} = useContext(StoreContext);
         const [loadingShare, setLoadingShare] = useState(false);
         const [loading, setLoading] = useState(false);
-        const settings = getFromLocalStorage("settings");
+        const [settings,] = useState(getFromLocalStorage("settings"));
         const [stake, setStake] = useState(jackpot ? parseInt(jackpotData?.bet_amount) : state?.userStake || getFromLocalStorage("userStake") || Number(settings?.sportsBookLimits?.defaultBetAmount) || Number(state?.settings?.sportsBookLimits?.defaultBetAmount));
         const [stakeBoosted, setStakeBoosted] = useState(100);
 
@@ -758,7 +756,6 @@ const BetslipSubmitForm = React.memo(
                                 <div className={"slip-body"}>
                                     <div id="odd-change-text">
                                         <div className={"odd-change-position"}>
-                                            <form>
                                                 <Switch id={"accept_all_odds_change"} {...label}
                                                         className="odds-change-box"
                                                         name={"accept_all_odds_change"}
@@ -767,7 +764,6 @@ const BetslipSubmitForm = React.memo(
 
                                                         onChange={(e) => onFieldChanged(e)}
                                                 /> Accept any odds change
-                                            </form>
 
                                         </div>
                                         <div className={"slip-clear-all"}>

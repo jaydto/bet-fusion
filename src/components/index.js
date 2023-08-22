@@ -250,7 +250,7 @@ const Index = React.memo(
 
         const fetchData = useCallback(async () => {
             // setFetching(true)
-            // setLoading(true)
+            setLoading(true)
             let tab = location.pathname.replace("/", "") || 'highlights';
             let tabInfo = window.location.pathname
             tabInfo = tabInfo.substring(tabInfo.lastIndexOf('/') + 1)

@@ -2224,7 +2224,7 @@ img.nare-league {
 }
 
 @media (max-width: 991px) {
-    .mobile-ipad-remove-profile stats-desktop{
+    .mobile-ipad-remove-profile.stats-desktop{
         display:none!important;
     }
     .filters-navigation {

@@ -601,7 +601,6 @@ b, strong {
 .filters-navigation {
     opacity: 1;
     position: sticky;
-    top: 6.7rem;
     z-index: 2000;
     background: var(--betnare-side-bg);
 }
@@ -2225,6 +2224,9 @@ img.nare-league {
 }
 
 @media (max-width: 991px) {
+    .filters-navigation {
+        top: 6.7rem;
+    }
     .matches .top-matches button {
         height: 34px!important;
     }

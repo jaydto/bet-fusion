@@ -218,7 +218,7 @@ const MatchHeaderRow = React.memo(
             <Row
                 className={`full-mobile sticky-top ${jackpot ? 'd-none ' : user ? "sticky-user " : 'sticky-responsive no-sticky '}`}>
                 <div className="top-matches d-flex position-sticky sticky-top shadow-sports-header header-sports">
-                    <div className={"size-info  d-flex col-xs-12 pad left-text"}>
+                    <div className={"size-info  d-flex col-xs-12 pad left-text px-2"}>
                         <div className="col pad left-text d-flex">
                             <div className="align-self-center col">
                                 <h3 className="mx-2 main-heading-1 text-white">

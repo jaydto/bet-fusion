@@ -557,12 +557,12 @@ b, strong {
 
 .home-tabs-filters-active {
     color: var(--light) !important;
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 700;
 }
 
 .home-tabs-filters {
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 500;
     opacity: .8;
 
@@ -1916,6 +1916,11 @@ img.nare-league {
 }
 
 @media (min-width: 992px) {
+    .myButton.markets-button{
+        font-size:12px!important;
+        align-items:center;
+        display:flex;
+    }
     .team_category_game {
         display: flex;
         align-items: center;
@@ -2197,7 +2202,7 @@ img.nare-league {
     border-radius: 21px;
     padding: 0px 13px;
     line-height: 2.4 !important;
-    font-size: 9px !important;
+    font-size: 9px;
     white-space: nowrap;
 }
 
@@ -2215,6 +2220,15 @@ img.nare-league {
 }
 
 @media (max-width: 991px) {
+    .matches .top-matches button {
+        height: 34px!important;
+    }
+    .compt-teams .compt-teams-item{
+        overflow-x: hidden;
+        width: 140px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
     .betslip-alert-close {
         position: absolute;
         right: -4px;
@@ -3778,7 +3792,7 @@ img.nare-league {
     }
 
     .size-info {
-        width: 50% !important;
+        width: 46% !important;
     }
 
     .top-matches .side {

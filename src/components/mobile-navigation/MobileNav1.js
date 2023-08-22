@@ -162,7 +162,7 @@ const MobileNav1 = React.memo(
                                         className="side-icon"
                                         src={league}
                                         alt=""
-                                        style={{height: "23px", marginTop:"-6px"}}
+                                        style={{height: "39px", marginTop:"-11px"}}
                                     />
                                     <span className=" hot-alert-badge">HOT</span>
 

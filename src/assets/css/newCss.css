@@ -2224,11 +2224,21 @@ img.nare-league {
 }
 
 @media (max-width: 991px) {
+    .home-tabs-filters-active{
+        font-size:15px!important;
+    }
+    .home-tabs-filters{
+        font-size:13px!important;
+    }
     .mobile-ipad-remove-profile.stats-desktop{
         display:none!important;
     }
     .filters-navigation {
-        top: 6.7rem;
+        top: 7.3rem;
+        height: 35px;
+    }
+    .myButton.markets-button{
+        line-height:2.1!important;
     }
     .matches .top-matches button {
         height: 34px!important;
@@ -2402,10 +2412,6 @@ img.nare-league {
 
     .c-btn-header {
         border-right: none !important;
-    }
-
-    .filters-navigation {
-        background: var(--betnare-header-bg);
     }
 
     .c-btn-group {
@@ -3607,7 +3613,7 @@ img.nare-league {
     }
 
     table.menu-table tr {
-        height: 5rem;
+        height: 4.5rem;
         margin-left: 1rem;
     }
 
@@ -3732,7 +3738,7 @@ img.nare-league {
         border-radius: 21px;
         padding: 0px 10px;
         line-height: 1.7;
-        font-size: 12px;
+        font-size: 9px;
     }
 
     .show-tax-info {

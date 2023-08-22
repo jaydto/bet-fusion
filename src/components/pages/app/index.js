@@ -51,7 +51,7 @@ const  Index= () => {
                                     Take Control of Your Bets
                                 </div>
                                 <div className={'col-md-12 justify-content-center d-flex'}>
-                                    <LazyLoadImage src={mobileBanner} style={{width: "80%"}} className={'rounded-3 shadow-lg'}/>
+                                    <LazyLoadImage src={mobileBanner} style={{width: "80%", minHeight:'71rem'}} className={'rounded-3 shadow-lg'}/>
                                 </div>
                                 <div className="col p-2">
                                     <br/>✅ Only 2MB in size
@@ -83,9 +83,7 @@ const  Index= () => {
                         </div>
                     </div>
                 </div>
-                <div className="item3">
-                    <Right app={true} test={true}/>
-                </div>
+
 
             </div>
             <div className="item6"><div className={"footer-mobile-none"}>

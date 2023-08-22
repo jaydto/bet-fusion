@@ -6,13 +6,12 @@ import closeIcon from "../../../src/assets/img/mobile/close_icon.png"
 
 import makeRequest from "../utils/fetch-request";
 import {Badge} from "react-bootstrap";
-
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faReceipt, faTimes,} from "@fortawesome/free-solid-svg-icons";
 
 import {Link, useNavigate} from "react-router-dom";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
-import {formatNumber, getBetslip, getJackpotBetslip, getKironSlip} from "../utils/betslip";
+import {getBetslip, getJackpotBetslip, getKironSlip} from "../utils/betslip";
 import {StoreContext } from "../../context/store";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 
@@ -159,10 +158,29 @@ const MobileMenu = React.memo((props) => {
                         {!pathSlipSummary.includes(pathname) &&
                             <tr className={`${slip_condition ? "info_bet_alert" : "info-slip-bets"} d-flex w-100 justify-content-between px-3`}>
                                 <td className={"bet-align-left-slip"}>
-                                    Odds {parseFloat(sumOfOdds).toFixed(2) || 1}
+                                    <div className={"d-flex justify-content-start align-items-center gap-2"}>
+                                        <Badge
+                                            pill
+                                            bg="warning nav__betslip boost-message-count gap-3  d-flex justify-content-center align-items-center text-dark"
+                                        >
+                                            {/*fixed size 50 for bets clicked*/}
+                                            {jackpot === true && jackpot != undefined || pathname == "/betslip-jackpot" ? getJackpotBetslip() != null ?
+                                                <strong>{Object.keys(getJackpotBetslip())?.length}</strong> : <strong
+                                                    className={'badge-font-weight'}>0</strong> : kiron == true || pathname == "/betslip-nare" ? getKironSlip() != null ? Object.keys(getKironSlip()).length :
+                                                <strong
+                                                    className={'badge-font-weight'}>0</strong> : getBetslip() ? Object.keys(betItems || {}).length <= 50 ?
+                                                <strong>{Object.keys(betItems || {}).length}</strong> :
+                                                <strong className={'badge-font-weight'}>50</strong> : <strong>0</strong>}
+                                        </Badge> <h4> <strong>Betslip</strong> </h4>
+                                    </div>
+
                                 </td>
                                 <td className={"bet-align-right-slip"}>
-                                    Winnings {winnings?.toLocaleString('en-US')}
+                                    <div className={'d-flex flex-column'}>
+                                        <span>Odds {parseFloat(sumOfOdds).toFixed(2) || 1}</span>
+                                        <span>Winnings {winnings?.toLocaleString('en-US')}</span>
+                                    </div>
+
                                 </td>
                             </tr>}
                         <tr className={"mt-3"} onClick={() => navigate("/betslip-slip")}>

@@ -1379,9 +1379,12 @@ img.nare-league {
 /*end back button*/
 /*media queries*/
 @media (min-width: 1260px) {
+    .carousel-item img {
+        min-height: 180px;
+    }
     .compt-teams .compt-teams-item{
-        font-size:14px;
-        line-height:2.3;
+        font-size:16px;
+        line-height:2;
     }
     .c-btn-group> .c-btn {
         height: 40px!important;
@@ -1632,6 +1635,9 @@ img.nare-league {
 }
 
 @media (max-width: 1259px) {
+    .carousel-item img {
+        min-height: 100px!important;
+    }
     .share-button-styling {
         padding: 5px;
         background: repeating-linear-gradient(45deg, rgb(63, 154, 209), black 100px);

@@ -131,10 +131,10 @@
         width: 25%;
     }
 }
+
 @media (max-width: 991px){
-    .carousel-item img {
-        min-height: 100px!important;
-    }
+
+
     .flex-item >div {
         padding: 0px 0px!important;
     }

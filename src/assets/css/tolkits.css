@@ -2282,7 +2282,7 @@ small {
     font-size: 80%;
 }
 .date-size{
-    font-size: 80%;
+    font-size: 100%;
 }
 sub,
 sup {
@@ -16306,7 +16306,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     min-width: 55px;
     color: white;
     text-transform: uppercase;
-    border-right: 1px solid gray;
+    /*border-right: 1px solid gray;*/
     font-weight: bold;
 }
 

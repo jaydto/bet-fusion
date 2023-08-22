@@ -22,8 +22,8 @@ const GamePlay = React.memo(
         const [, setUserToken] = useState('')
         const [, setUserID] = useState('')
         const [demo, setDemo] = useState(false)
-        const [user, ] = useState(getFromLocalStorage("user"));
-        const { width} = useWindowDimensions();
+        const [user,] = useState(getFromLocalStorage("user"));
+        const {width} = useWindowDimensions();
 
         const [isLoggedIn] = useState(getFromLocalStorage('user'))
 
@@ -50,7 +50,7 @@ const GamePlay = React.memo(
                 if (status === 200) {
                     const data = {
                         user_id: user?.profile_id,
-                        event:'Spribe Game',
+                        event: 'Spribe Game',
                         game_id: game,
                     }
                     gaEventTracker("Playing Spribe Game", data)
@@ -58,14 +58,14 @@ const GamePlay = React.memo(
                     setUserID(result.profile_id)
                     setGameUrl(result?.game_url)
                     setGameUrlLoaded(true)
-                }else{
-                    const data={
-                        user_id:user?.profile_id,
-                        event:'Spribe Game Launch Failed',
-                        game_id:game,
-                        message:"Game Launch Failed"
+                } else {
+                    const data = {
+                        user_id: user?.profile_id,
+                        event: 'Spribe Game Launch Failed',
+                        game_id: game,
+                        message: "Game Launch Failed"
                     }
-                    gaEventTracker("Playing Spribe Game Failed",data)
+                    gaEventTracker("Playing Spribe Game Failed", data)
                 }
             });
         }
@@ -85,16 +85,16 @@ const GamePlay = React.memo(
             height: `${iframeHeight}vh`, // Set the height dynamically
         };
         const maxIframeHeight =
-            width>991?
-            isCustomFullscreen?
-            window.innerHeight * 2:
-            window.innerHeight * 0.82:
-            window.innerHeight * 0.92; // Maximum height is 77% desktop  and 92% mobile of the screen height
+            width > 991 ?
+                isCustomFullscreen ?
+                    window.innerHeight * 2 :
+                    window.innerHeight * 0.82 :
+                window.innerHeight * 0.92; // Maximum height is 77% desktop  and 92% mobile of the screen height
 
         // // Function to update the iframe height
         const updateIframeHeight = useCallback(() => {
-            console.log("this was called to resize",maxIframeHeight )
-            setIframeHeight(isCustomFullscreen?800:660); // Set the fixed height here
+            console.log("this was called to resize", maxIframeHeight)
+            setIframeHeight(isCustomFullscreen ? 800 : 660); // Set the fixed height here
         }, []);
 
 
@@ -113,39 +113,40 @@ const GamePlay = React.memo(
 
         const toggleFullscreen = () => {
             const element = document.documentElement; // Fullscreen the whole document
+            console.log("Element fullscreen is now ... ",element)
 
             if (!isCustomFullscreen) {
-                try{
-                    if (element?.requestFullscreen) {
-                        element?.requestFullscreen();
-                    } else if (element?.mozRequestFullScreen) {
-                        element?.mozRequestFullScreen();
-                    } else if (element?.webkitRequestFullscreen) {
-                        element?.webkitRequestFullscreen();
-                    } else if (element?.msRequestFullscreen) {
-                        element?.msRequestFullscreen();
-                    }
-                }catch(err){
-                    //there was an error encountered
-                    console.error("error_message", err)
-                }
+                // try {
+                //     if (element?.requestFullscreen) {
+                //         element?.requestFullscreen();
+                //     } else if (element?.mozRequestFullScreen) {
+                //         element?.mozRequestFullScreen();
+                //     } else if (element?.webkitRequestFullscreen) {
+                //         element?.webkitRequestFullscreen();
+                //     } else if (element?.msRequestFullscreen) {
+                //         element?.msRequestFullscreen();
+                //     }
+                // } catch (err) {
+                //     //there was an error encountered
+                //     console.error("error_message", err)
+                // }
 
                 setCustomFullscreen(true);
 
             } else {
-                try{
-                    if (document.exitFullscreen) {
-                        document.exitFullscreen();
-                    } else if (document.mozCancelFullScreen) {
-                        document.mozCancelFullScreen();
-                    } else if (document.webkitExitFullscreen) {
-                        document.webkitExitFullscreen();
-                    } else if (document.msExitFullscreen) {
-                        document.msExitFullscreen();
-                    }
-                }catch(err){
-                    console.error("error_encountered", err)
-                }
+                // try {
+                //     if (document.exitFullscreen) {
+                //         document.exitFullscreen();
+                //     } else if (document.mozCancelFullScreen) {
+                //         document.mozCancelFullScreen();
+                //     } else if (document.webkitExitFullscreen) {
+                //         document.webkitExitFullscreen();
+                //     } else if (document.msExitFullscreen) {
+                //         document.msExitFullscreen();
+                //     }
+                // } catch (err) {
+                //     console.error("error_encountered", err)
+                // }
 
                 setCustomFullscreen(false);
             }
@@ -159,13 +160,13 @@ const GamePlay = React.memo(
         }, [])
 
 
-
-
         return (
-            <div style={{position:'relative'}}>
+            <div style={{position: 'relative'}}>
                 <Header/>
-                <div className={`virtuals-container-position ${(width <= 575 ? user ? "user_logged virtuals" : "amt-virtual" : "amt-virtual")}`} >
-                    <FullscreenButton onClick={()=>toggleFullscreen()} navigation={'/nare-games'} isCustomFullScreen={isCustomFullscreen}/>
+                <div
+                    className={`virtuals-container-position ${(width <= 575 ? user ? "user_logged virtuals" : "amt-virtual" : "amt-virtual")}`}>
+                    <FullscreenButton onClick={() => toggleFullscreen()} navigation={'/nare-games'}
+                                      isCustomFullScreen={isCustomFullscreen}/>
                     <div className="d-flex flex-row justify-content-between">
                         <div className="col-md-12 w-100">
                             <div className="homepage mt-2">
@@ -182,7 +183,7 @@ const GamePlay = React.memo(
                                         {demo && (
                                             <div className="alert alert-info">
                                                 This is {game} Demo. To play the real game, please Log In.
-                                                &nbsp;<FontAwesomeIcon icon={faFire} style={{ color: "orangered" }} />
+                                                &nbsp;<FontAwesomeIcon icon={faFire} style={{color: "orangered"}}/>
                                             </div>
                                         )}
                                         <iframe

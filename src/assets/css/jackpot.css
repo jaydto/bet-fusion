@@ -219,8 +219,8 @@
         flex-direction:column-reverse;
         padding:0px!important;
     }
-    .predict{
-        line-height:1.1!important;
+    .predict {
+        line-height: 0.85!important;
     }
     .predict-text {
         font-size: 2rem;

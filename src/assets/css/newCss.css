@@ -1487,7 +1487,7 @@ img.nare-league {
     .sticky-responsive {
         position: -webkit-sticky;
         position: sticky;
-        top: 120px;
+        top: 93px;
     }
 
     .slip-max {
@@ -3393,6 +3393,9 @@ img.nare-league {
 }
 
 @media (max-width: 767px) {
+    .filters-navigation{
+        top:8.3rem!important;
+    }
     .shadow-sports-header.header-sports{
         max-height: 34px!important;
         display: flex;

@@ -180,7 +180,7 @@ const MatchHeaderRow = React.memo(
 
             let url = new URL(window.location)
 
-            let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29").split(",")
+            let sub_types = ( "1,18,29").split(",")
 
             if (sub_types.includes("1")) {
                 setThreeWay(true)
@@ -1012,7 +1012,7 @@ const MatchRow = React.memo(
 
             let url = new URL(window.location)
 
-            let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29").split(",")
+            let sub_types = ("1,18,29").split(",")
 
             sub_types = [sub_types[0]]
 
@@ -1053,7 +1053,7 @@ const MatchRow = React.memo(
             match.market_active = 1
             match.odds.home_odd_active = 1
         }
-        let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29").split(",")
+        let sub_types = ("1,18,29").split(",")
         const [totalMarkets] = useState(sub_types.length)
         let append = totalMarkets - Object.keys(match?.extra_odds || {}).length - 1
         let loops = []
@@ -1499,26 +1499,7 @@ export const JackpotHeader = React.memo(
 
 export const JackpotMatchList = React.memo(
     (props) => {
-        const {matches, jackpotData, jackpot} = props;
-        const [selections, setSelections] = useState([])
-        const randomize = async () => {
-            matches?.data?.forEach((match, index) => {
-                let teams = [match?.home_team, 'draw', match?.away_team]
-                let team = teams[Math.floor(Math.random() * teams.length)].replaceAll(" ", "")
-                while (selections[index] === team) {
-                    team = teams[Math.floor(Math.random() * teams.length)].replaceAll(" ", "")
-                }
-                selections[index] = team
-                let selection = match?.match_id.toString() + match?.sub_type_id.toString() +
-                    team.toString()
-                document.querySelectorAll('button[custom="' + selection + '"]')?.forEach((el) => {
-                    if (!el.classList.contains('picked')) {
-                        el.click()
-                    }
-                })
-            })
-            setSelections(selections)
-        }
+        const {matches} = props;
 
         return (
             <div className="matches full-width mt-1 ">
@@ -1528,14 +1509,6 @@ export const JackpotMatchList = React.memo(
                         <div className={'text-white col text-header-jackpot'}>
                             <p>Wekelea Jackpot Bet bila worries na Nare Auto pick.</p>
                         </div>
-                        {/*<div className={'col-md-12 text-center autopick-remove-on-mobile'}>*/}
-                        {/*    <button className={'btn btn-square btn-lg  place-bet-btn bold mb-1 bg-warning'}*/}
-                        {/*            id={"jp-nare-pick-button"}*/}
-                        {/*            style={{fontWeight: "bold", fontSize: "20px"}}*/}
-                        {/*            onClick={() => randomize()}>*/}
-                        {/*        <FontAwesomeIcon icon={faFire}/> Nare Auto Pick*/}
-                        {/*    </button>*/}
-                        {/*</div>*/}
                     </div>
                 </div>
                 <div className="web-element jackpot-page top-login-background-img-bg w-100">
@@ -1543,7 +1516,7 @@ export const JackpotMatchList = React.memo(
                         <MatchRow match={match} jackpot key={index}/>
                     ))
                     }
-                    {(matches !== null && matches.length === 0) &&
+                    {(matches !== null && matches?.length === 0) &&
                         <div className="top-matches row  mx-2">
                             No events found.
                         </div>
@@ -1568,7 +1541,7 @@ const MatchList = React.memo(
                         ))
                     }
 
-                    {(matches.length === 0) &&
+                    {(matches?.length === 0) &&
                         <div className="top-matches row  mx-2">
                             No events found.
                         </div>

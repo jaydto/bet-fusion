@@ -1,7 +1,6 @@
 import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
 import {Link, useNavigate} from "react-router-dom"
 import Row from 'react-bootstrap/Row';
-import {LazyLoadImage} from 'react-lazy-load-image-component';
 import {StoreContext} from "../../context/store";
 import {getFromLocalStorage, setLocalStorage} from '../utils/local-storage';
 import {ToastContainer} from 'react-toastify';
@@ -364,7 +363,7 @@ const Header = React.memo(
                 <div className={'d-flex flex-column'}>
                     {(!showDownload) &&
                         <div>
-                            <Link to={'/deposit?utm_source=365-promo'}
+                            <Link to={'/deposit?utm_source=free-deposit-promo'}
                                   target={"_self"}
                                   title={''}
                                   className={"lite-top d-flex flex-column"}
@@ -372,9 +371,9 @@ const Header = React.memo(
                                       gaEventTracker('Aniversary Promotion');
                                   }}>
                                 <div className={"app-download-link  d-flex flex-column"}>
-                                   <span className={"color-app-text flashy"}>Deposit
-                                       <strong style={{color: 'var(--gold'}}> 365/=</strong>  Get
-                                       <strong style={{color: 'var(--gold'}}> 365/= </strong>Instant  <span style={{color:'var(--aqua-text)'}}>  Bonus</span>
+                                   <span className={"color-app-text flashy"}>Enjoy
+                                       <strong style={{color: 'var(--gold'}}> Free</strong>  Deposits on
+                                       <strong style={{color: 'var(--gold'}}> ALL </strong>Deposits
                                    </span>
                                 </div>
                             </Link>

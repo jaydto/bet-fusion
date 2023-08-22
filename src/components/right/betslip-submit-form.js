@@ -44,8 +44,9 @@ export const SubmitButton = (props) => {
                 padding: "10px",
                 borderRadius: "0.7rem",
                 fontSize: "14px",
-                background: "var(--betnare-button-login"
-            } : {padding: "10px", width: "100%", borderRadius: "0.7rem"}}
+                background: "var(--betnare-button-login",
+                whiteSpace:'nowrap'
+            } : {padding: "10px", width: "100%", borderRadius: "0.7rem",  whiteSpace:'nowrap', display:'flex', alignItems:'center', justifyContent:'center', gap:'5px'}}
             className={`${disabled ? "disabled" : ""} ${button_size ? " jackpot-button-placebet " : " "} 'bg-warning bold rounded-2 text-dark cursor-pointer'`}
             disabled={isSubmitting || disabled}
             title="Place Bet"
@@ -78,6 +79,7 @@ const BetslipSubmitForm = React.memo(
         const [message, setMessage] = useState(null);
         const {state, dispatch} = useContext(StoreContext);
         const [loadingShare, setLoadingShare] = useState(false);
+        const [loading, setLoading] = useState(false);
         const settings = getFromLocalStorage("settings");
         const [stake, setStake] = useState(jackpot ? parseInt(jackpotData?.bet_amount) : state?.userStake || getFromLocalStorage("userStake") || Number(settings?.sportsBookLimits?.defaultBetAmount) || Number(state?.settings?.sportsBookLimits?.defaultBetAmount));
         const [stakeBoosted, setStakeBoosted] = useState(100);
@@ -200,7 +202,6 @@ const BetslipSubmitForm = React.memo(
 
             let jackpotMessage = 'jp'
 
-
             if (jackpot) {
 
                 bs = bs.sort(function (a, b) {
@@ -256,11 +257,12 @@ const BetslipSubmitForm = React.memo(
                 endpoint = "/jp/bet"
                 method = "POST"
             }
-
+            setLoading(true)
             makeRequest({url: endpoint, method: method, data: payload, use_jwt: use_jwt})
                 .then(([status, response]) => {
-
-                    if (status === 200 || status == 201 || status == 204) {
+                    if (status === 200 || status == 201 || status == 204)
+                    {
+                        setLoading(false)
                         setMessage(response);
                         const data = {
                             event: jackpot ? 'place_jackpot_bet' : live ? 'place_live_bet' : 'place_prematch_bet',
@@ -268,7 +270,6 @@ const BetslipSubmitForm = React.memo(
                         }
                         gaEventTracker("Bet Placed", data)
                         // setLocalStorage("winnings",null)
-                        //all is good am be quiet
                         if (jackpot) {
                             clearJackpotSlip();
                             setMessage({
@@ -301,7 +302,10 @@ const BetslipSubmitForm = React.memo(
                         dispatch({type: 'SET', key: 'userStake', data: null})
                         updateUserOnHistory()
                         return width < 991 ? setTimeout(()=>{navigate(-1)},5000) : "";
-                    } else {
+                    }
+                    else
+                    {
+                        setLoading(false)
                         const data = {
                             event: jackpot ? 'place_jackpot_bet' : live ? 'place_live_bet' : 'place_prematch_bet',
                             message: response?.message
@@ -866,9 +870,19 @@ const BetslipSubmitForm = React.memo(
                                         <div className={"d-flex bet-select-values w-100 mt-2 p-lg-2 p-md-2 py-sm-0"}
                                              style={{whiteSpace: "nowrap"}} ref={scrollToRef}>
                                             <SubmitButton
+                                                style={{whiteSpace:'nowrap'}}
                                                 id="place_bet_button_submit"
                                                 className="place-bet-btn bold "
-                                                title="PLACE BET"
+                                                title={
+                                                    loading ? (
+                                                        <div className={'d-flex align-items-center justify-content-center'} style={{whiteSpace:'nowrap'}}>
+                                                            <div className="custom-loader"></div>
+                                                            PLEASE WAIT
+                                                        </div>
+                                                    ) : (
+                                                        'PLACE BET'
+                                                    )
+                                                }
                                             ></SubmitButton>
                                         </div>
 

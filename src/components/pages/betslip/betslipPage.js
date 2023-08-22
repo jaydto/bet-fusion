@@ -12,7 +12,7 @@ import {ToastContainer} from "react-toastify";
 const BetslipPage = React.memo(
     () => {
         const [tab, setTab] = useState(null);
-        const [loading, setLoading] = useState(false);
+        const [, setLoading] = useState(false);
 
         let url = new URL(window.location);
         const jp = url.searchParams.get("jackpot");

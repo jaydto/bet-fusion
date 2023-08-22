@@ -1,7 +1,7 @@
 import React, {useCallback, useContext, useEffect, useRef, useState,} from "react";
-import {StoreContext } from "../../context/store";
+import {StoreContext} from "../../context/store";
 import {clearKironSlip, formatNumber, getKironSlip, removeFromKironSlip,} from "../utils/betslip";
-import { publicIpv4 as publicIp } from "public-ip";
+import {publicIpv4 as publicIp} from "public-ip";
 import makeRequest from "../utils/fetch-request";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -36,7 +36,7 @@ const KironslipSubmitForm = React.memo(
         const [betSharePayload, setBetSharePayload] = useState({});
         const [ipv4, setIpv4] = useState(null);
         const [message, setMessage] = useState(null);
-        const { state, dispatch } = useContext(StoreContext);
+        const {state, dispatch} = useContext(StoreContext);
         const [loadingShare, setLoadingShare] = useState(false);
 
         const [stake, setStake] = useState(100);
@@ -105,19 +105,19 @@ const KironslipSubmitForm = React.memo(
             }
         }, []);
 
-        const ipAddress = useCallback(async () => {
-            try {
-                let ip = await publicIp({
-                    fallbackUrls: ["https://ifconfig.co/ip"],
-                });
-
-                setIpv4(ip);
-            } catch (error) {
-                console.error("Error getting IPv4 address:", error);
-            }
-
-
-        }, [ipv4]);
+        // const ipAddress = useCallback(async () => {
+        //     try {
+        //         let ip = await publicIp({
+        //             fallbackUrls: ["https://ifconfig.co/ip"],
+        //         });
+        //
+        //         setIpv4(ip);
+        //     } catch (error) {
+        //         console.error("Error getting IPv4 address:", error);
+        //     }
+        //
+        //
+        // }, [ipv4]);
 
 
         const Alert = (props) => {
@@ -155,10 +155,10 @@ const KironslipSubmitForm = React.memo(
                 </>
             );
         };
-        useEffect(() => {
-            ipAddress();
-        }, [ipAddress]);
-        const gaEventTracker=useAnalyticsEventTracker('Place Kiron Bet')
+        // useEffect(() => {
+        //     ipAddress();
+        // }, [ipAddress]);
+        const gaEventTracker = useAnalyticsEventTracker('Place Kiron Bet')
 
         const handlePlaceBet = useCallback(
             (values, {setSubmitting, resetForm, setStatus, setErrors}) => {
@@ -206,11 +206,11 @@ const KironslipSubmitForm = React.memo(
                     use_jwt: use_jwt,
                 }).then(([status, response]) => {
                     if (status === 200 || status == 201 || status == 204) {
-                        const data={
-                            event:'place_kiron_bet',
-                            data:payload
+                        const data = {
+                            event: 'place_kiron_bet',
+                            data: payload
                         }
-                        gaEventTracker("Kiron Bet Placed",data)
+                        gaEventTracker("Kiron Bet Placed", data)
                         setMessage(response);
                         let betslips = getKironSlip()
                         Object.entries(betslips || {})?.map(([match_id, match]) => {
@@ -236,11 +236,11 @@ const KironslipSubmitForm = React.memo(
                         });
                         return width < 991 ? navigate(-1) : ""
                     } else {
-                        const data={
-                            event:'place_kiron_bet',
-                            message:response?.message
+                        const data = {
+                            event: 'place_kiron_bet',
+                            message: response?.message
                         }
-                        gaEventTracker("Kiron Bet Failed",data)
+                        gaEventTracker("Kiron Bet Failed", data)
                         let response_message = response?.message;
                         if (response_message === "" || response_message === undefined) {
                             response_message = response?.error;
@@ -401,7 +401,7 @@ const KironslipSubmitForm = React.memo(
                     dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
                     let betslip = removeFromKironSlip(match?.parent_match_id)
                     dispatch({type: "SET", key: 'kironbetslip', payload: betslip});
-                    if(Object.keys(betslip).length === 0){
+                    if (Object.keys(betslip).length === 0) {
                         return navigate('/nare-league')
                     }
 

@@ -28,8 +28,7 @@ const backgroundStyle = {
 
 const VerifyAccount2 = React.memo(
     props => {
-        // const [message, setMessage] = useState(null);
-        const { state, dispatch } = useContext(StoreContext);
+        const { state } = useContext(StoreContext);
         // const {setUser} = props;
         const expand = "md"
         const FormTitle = () => {

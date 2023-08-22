@@ -93,7 +93,7 @@ const GamePlay = React.memo(
 
         // // Function to update the iframe height
         const updateIframeHeight = useCallback(() => {
-            console.log("this was called to resize", maxIframeHeight)
+            // console.log("this was called to resize", maxIframeHeight)
             setIframeHeight(isCustomFullscreen ? 800 : 660); // Set the fixed height here
         }, []);
 
@@ -112,8 +112,8 @@ const GamePlay = React.memo(
         }, [updateIframeHeight, isCustomFullscreen]);
 
         const toggleFullscreen = () => {
-            const element = document.documentElement; // Fullscreen the whole document
-            console.log("Element fullscreen is now ... ",element)
+            // const element = document.documentElement; // Fullscreen the whole document
+            // console.log("Element fullscreen is now ... ",element)
 
             if (!isCustomFullscreen) {
                 // try {

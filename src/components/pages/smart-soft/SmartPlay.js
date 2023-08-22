@@ -6,7 +6,7 @@ import Skeleton, {SkeletonTheme} from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import {getFromLocalStorage} from "../../utils/local-storage";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faAngleLeft, faFire} from "@fortawesome/free-solid-svg-icons";
+import {faFire} from "@fortawesome/free-solid-svg-icons";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 import useWindowDimensions from "../../header/Dimensions";
 import FullscreenButton from "../../shared/FullScreenButton";
@@ -63,7 +63,7 @@ const SmartPlay = React.memo(
                 }
             });
         }
-        const { width} = useWindowDimensions();
+        const {width} = useWindowDimensions();
         const [isCustomFullscreen, setCustomFullscreen] = useState(false);
 
         const [iframeHeight, setIframeHeight] = useState(700); // Initial height
@@ -75,16 +75,16 @@ const SmartPlay = React.memo(
             height: `${iframeHeight}vh`, // Set the height dynamically
         };
         const maxIframeHeight =
-            width>991?
-                isCustomFullscreen?
-                    window.innerHeight * 2:
-                    window.innerHeight * 0.82:
+            width > 991 ?
+                isCustomFullscreen ?
+                    window.innerHeight * 2 :
+                    window.innerHeight * 0.82 :
                 window.innerHeight * 0.92; // Maximum height is 77% desktop  and 92% mobile of the screen height
 
         // // Function to update the iframe height
         const updateIframeHeight = useCallback(() => {
-            console.log("this was called to resize",maxIframeHeight )
-            setIframeHeight(isCustomFullscreen?800:700); // Set the fixed height here
+            console.log("this was called to resize", maxIframeHeight)
+            setIframeHeight(isCustomFullscreen ? 800 : 700); // Set the fixed height here
         }, []);
 
 
@@ -102,41 +102,41 @@ const SmartPlay = React.memo(
         }, [updateIframeHeight, isCustomFullscreen]);
 
         const toggleFullscreen = () => {
-            const element = document.documentElement; // Fullscreen the whole document
+            // const element = document.documentElement; // Fullscreen the whole document
 
             if (!isCustomFullscreen) {
-                try{
-                    if (element?.requestFullscreen) {
-                        element?.requestFullscreen();
-                    } else if (element?.mozRequestFullScreen) {
-                        element?.mozRequestFullScreen();
-                    } else if (element?.webkitRequestFullscreen) {
-                        element?.webkitRequestFullscreen();
-                    } else if (element?.msRequestFullscreen) {
-                        element?.msRequestFullscreen();
-                    }
-                }catch(err){
-                    //there was an error encountered
-                    console.error("error_message", err)
-                }
+                // try {
+                //     if (element?.requestFullscreen) {
+                //         element?.requestFullscreen();
+                //     } else if (element?.mozRequestFullScreen) {
+                //         element?.mozRequestFullScreen();
+                //     } else if (element?.webkitRequestFullscreen) {
+                //         element?.webkitRequestFullscreen();
+                //     } else if (element?.msRequestFullscreen) {
+                //         element?.msRequestFullscreen();
+                //     }
+                // } catch (err) {
+                //     //there was an error encountered
+                //     console.error("error_message", err)
+                // }
 
 
                 setCustomFullscreen(true);
 
             } else {
-                try{
-                    if (document.exitFullscreen) {
-                        document.exitFullscreen();
-                    } else if (document.mozCancelFullScreen) {
-                        document.mozCancelFullScreen();
-                    } else if (document.webkitExitFullscreen) {
-                        document.webkitExitFullscreen();
-                    } else if (document.msExitFullscreen) {
-                        document.msExitFullscreen();
-                    }
-                }catch(err){
-                    console.error("error_encountered", err)
-                }
+                // try {
+                //     if (document.exitFullscreen) {
+                //         document.exitFullscreen();
+                //     } else if (document.mozCancelFullScreen) {
+                //         document.mozCancelFullScreen();
+                //     } else if (document.webkitExitFullscreen) {
+                //         document.webkitExitFullscreen();
+                //     } else if (document.msExitFullscreen) {
+                //         document.msExitFullscreen();
+                //     }
+                // } catch (err) {
+                //     console.error("error_encountered", err)
+                // }
 
                 setCustomFullscreen(false);
             }
@@ -160,7 +160,8 @@ const SmartPlay = React.memo(
             <>
                 <Header/>
                 <div className="amt top-smartsoft gameplay">
-                    <FullscreenButton onClick={()=>toggleFullscreen()} navigation={'/smart-soft'} isCustomFullScreen={isCustomFullscreen}/>
+                    <FullscreenButton onClick={() => toggleFullscreen()} navigation={'/smart-soft'}
+                                      isCustomFullScreen={isCustomFullscreen}/>
                     <div className="d-flex flex-row justify-content-between">
                         <div className="col-md-12 w-100">
                             <div className="homepage">
@@ -170,25 +171,26 @@ const SmartPlay = React.memo(
                                         <Skeleton height={'100px'}/>
                                     </SkeletonTheme>
                                 </div>
-                                {gameUrlLoaded && <div className={` ${isCustomFullscreen ? "active custom-fullscreen-wrapper" : ""}`}>
-                                    {demo && (
-                                        <div >
-                                            <div className="alert alert-info">
-                                                This is {game} demo. To play the real game, please Log In.
-                                                &nbsp;<FontAwesomeIcon icon={faFire} style={{color: "orangered"}}/>
+                                {gameUrlLoaded &&
+                                    <div className={` ${isCustomFullscreen ? "active custom-fullscreen-wrapper" : ""}`}>
+                                        {demo && (
+                                            <div>
+                                                <div className="alert alert-info">
+                                                    This is {game} demo. To play the real game, please Log In.
+                                                    &nbsp;<FontAwesomeIcon icon={faFire} style={{color: "orangered"}}/>
+                                                </div>
                                             </div>
-                                        </div>
-                                    )}{
+                                        )}{
 
-                                }
-                                    <iframe className={'mt-3 shadow-lg'}  id={'smartPlayGames'}
-                                            src={gameUrl} title="Gadme"
-                                            style={{
-                                                ...iframeStyle,
-                                                height: `${Math.min(iframeHeight, maxIframeHeight)}px`,
-                                            }}
-                                    ></iframe>
-                                </div>}
+                                    }
+                                        <iframe className={'mt-3 shadow-lg'} id={'smartPlayGames'}
+                                                src={gameUrl} title="Gadme"
+                                                style={{
+                                                    ...iframeStyle,
+                                                    height: `${Math.min(iframeHeight, maxIframeHeight)}px`,
+                                                }}
+                                        ></iframe>
+                                    </div>}
                                 {pathname.includes("JetX") &&
                                     <div className={'card rounded-3 e '} style={{
                                         color: "#999",

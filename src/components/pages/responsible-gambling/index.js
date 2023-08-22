@@ -23,9 +23,9 @@ const Right = React.lazy(() => import('../../right/index'));
 
 const ResponsibleGambling = React.memo(
     () => {
-        const {height, width} = useWindowDimensions();
-        const {state, dispatch} = useContext(StoreContext);
-        const navigate=useNavigate()
+        const {width} = useWindowDimensions();
+        const {state} = useContext(StoreContext);
+        const navigate = useNavigate()
         const [activeTab, setActiveTab] = useState('responsible_gambling');
         const handleTabSelect = (eventKey) => {
             setActiveTab(eventKey);
@@ -40,15 +40,21 @@ const ResponsibleGambling = React.memo(
                             <div className="homepage">
                                 <div className='col-md-12 primary-bg p-4 text-center'>
                                     <div className={'d-flex align-items-center'}>
-                                            <span className={'spacing-backbutton remove-backbutton-on-desktop'} onClick={()=>navigate('/')}>
-                                             <FontAwesomeIcon icon={faAngleLeft} style={{fontSize:"24px",color:'var(--light)', fontWeight:'700', opacity:'0.7'}}/>
+                                            <span className={'spacing-backbutton remove-backbutton-on-desktop'}
+                                                  onClick={() => navigate('/')}>
+                                             <FontAwesomeIcon icon={faAngleLeft} style={{
+                                                 fontSize: "24px",
+                                                 color: 'var(--light)',
+                                                 fontWeight: '700',
+                                                 opacity: '0.7'
+                                             }}/>
                                             </span>
-                                    <h4 className="inline-block">
-                                        RESPONSIBLE GAMBLING POLICY
-                                    </h4>
+                                        <h4 className="inline-block">
+                                            RESPONSIBLE GAMBLING POLICY
+                                        </h4>
                                     </div>
                                 </div>
-                                <div className="col-md-12 mt-2 text-white p-2 line-mobile-spacing" >
+                                <div className="col-md-12 mt-2 text-white p-2 line-mobile-spacing">
                                     Responsible Gambling is a key corporate strategy endorsed by BetNare and championed
                                     by
                                     all staff. BetNare recognizes the importance of putting in place practices and
@@ -245,7 +251,7 @@ const ResponsibleGambling = React.memo(
                                 </Tabs>
                             </div>
                         </div>
-                            <Right remove_mobile={true}/>
+                        <Right remove_mobile={true}/>
 
                     </div>
                 </div>

@@ -29,7 +29,6 @@ const CompetitionMatches = React.memo(
         const [fetching, setFetching] = useState(false)
         const [reset, setReset] = useState(0);
         const [shouldFetch, setShouldFetch] = useState(true);
-        const {width} = useWindowDimensions();
         let sportValue = new URL(window.location).searchParams.get('sport_id')
 
 
@@ -69,7 +68,7 @@ const CompetitionMatches = React.memo(
         }, 20000,reset);
 
         const fetchPagedData = useCallback(() => {
-            console.log("called here")
+            // console.log("called here")
             if (!fetching && shouldFetch) {
                 setFetching(true);
                 let betslip = findPostableSlip();
@@ -96,7 +95,7 @@ const CompetitionMatches = React.memo(
         }, [competitionid]);
 
         useEffect(() => {
-            console.log("called this")
+            // console.log("called this")
             setReset(c => c + 1);
             fetchPagedData()
 

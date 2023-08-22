@@ -26,7 +26,7 @@ const Index = React.memo(
             await makeRequest({url: endpoint, method: method}).then(([status, result]) => {
                 if (status === 200) {
                     dispatch({type: "SET", key: 'filter_lobby_success', payload: false});
-                    console.log("casino_games",result)
+                    // console.log("casino_games",result)
                     setCategories(result?.categories)
                     setGames(result?.games)
                     setLocalStorage('lobby_category_games', result.games)
@@ -54,7 +54,7 @@ const Index = React.memo(
                 <div className={"lobby-body-size"}>
                     <LobbyCategoriesAndFilters category_data={categories}/>
 
-                    {console.log("games", games)}
+                    {/*{console.log("games", games)}*/}
 
                     {games&&games?.map((game)=>(
                         game?.games_data.length>0&&

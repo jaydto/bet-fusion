@@ -24,7 +24,7 @@ const Deposit = React.memo(
         }
 
         const handleSubmit = values => {
-            console.log("hello here")
+            // console.log("hello here")
             let endpoint = '/stk/deposit';
             setTrackingData(values)
             makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
@@ -157,7 +157,7 @@ const Deposit = React.memo(
                     <div
                         className="form-group w-100 row d-flex justify-content-center mt-3 deposit-widthdraw-input-desktop">
                         <div className="col-md-12">
-                            {console.log("depositValue", state?.depositValue)}
+                            {/*{console.log("depositValue", state?.depositValue)}*/}
                             <label>Amount to Deposit</label>
                             <input
                                 onChange={ev => {

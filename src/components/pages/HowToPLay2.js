@@ -20,14 +20,14 @@ const Right = React.lazy(() => import("../right/index"));
 const  HowToPlay= React.memo(
     (props) => {
 
-    const { state, dispatch } = useContext(StoreContext);
-
-    useEffect(() => {
-        let betslip = getBetslip();
-        if (betslip) {
-            dispatch({type: "SET", key: "betslip", payload: betslip});
-        }
-    }, []);
+    const { dispatch } = useContext(StoreContext);
+    //
+    // useEffect(() => {
+    //     let betslip = getBetslip();
+    //     if (betslip) {
+    //         dispatch({type: "SET", key: "betslip", payload: betslip});
+    //     }
+    // }, []);
 
     return (
         <div className={'flex-item'}>

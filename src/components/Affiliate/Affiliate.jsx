@@ -15,8 +15,7 @@ const Footer = React.lazy(() => import('../footer/footer'));
 const Affiliate = React.memo(
     (props) => {
     const {profile}=props
-    const { state, dispatch } = useContext(StoreContext);
-    const expand = "md"
+    const { state } = useContext(StoreContext);
     return (
         <>
             <div className={'flex-item py-0'}>

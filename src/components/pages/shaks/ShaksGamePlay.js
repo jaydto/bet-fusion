@@ -14,12 +14,8 @@ const ShaksGamePlay = React.memo(
 
     const {game} = useParams()
     const [gameUrl, setGameUrl] = useState('')
-    const [token, setUserToken] = useState('')
     const [user_id, setUserID] = useState('')
     const [demo, setDemo] = useState(false)
-
-
-    const [games] = useState(getFromLocalStorage('category_games'))
 
     const [isLoggedIn] = useState(getFromLocalStorage('user'))
 

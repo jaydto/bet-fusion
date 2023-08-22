@@ -7,12 +7,12 @@ import LobbySearchField from "./lobbySearchField";
 const LobbyCategoriesAndFilters = React.memo(
 	(props) => {
 		const {category_data}=props
-		const data=getFromLocalStorage('lobby_categories')
+		// const data=getFromLocalStorage('lobby_categories')
 		const categories=category_data
-		console.log("category_data_for_filters",categories)
-		const getCategoryGames=(category)=>{
-			console.log("category",category)
-		}
+		// console.log("category_data_for_filters",categories)
+		// const getCategoryGames=(category)=>{
+			// console.log("category",category)
+		// }
 
 	return (
 		<div className="col-md-12 casino-scroll" >

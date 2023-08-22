@@ -21,8 +21,6 @@ const GamePlay = React.memo(
 
         const [gameUrl, setGameUrl] = useState('')
 
-        const [games] = useState(getFromLocalStorage('category_games'))
-
         const [isLoggedIn] = useState(getFromLocalStorage('user'))
 
         const [gameUrlLoaded, setGameUrlLoaded] = useState(false)
@@ -59,7 +57,7 @@ const GamePlay = React.memo(
 
         // // Function to update the iframe height
         const updateIframeHeight = useCallback(() => {
-            console.log("this was called to resize",maxIframeHeight )
+            // console.log("this was called to resize",maxIframeHeight )
             setIframeHeight(isCustomFullscreen?800:750); // Set the fixed height here
         }, []);
 
@@ -81,38 +79,38 @@ const GamePlay = React.memo(
             const element = document.documentElement; // Fullscreen the whole document
 
             if (!isCustomFullscreen) {
-                try{
-                    if (element?.requestFullscreen) {
-                        element?.requestFullscreen();
-                    } else if (element?.mozRequestFullScreen) {
-                        element?.mozRequestFullScreen();
-                    } else if (element?.webkitRequestFullscreen) {
-                        element?.webkitRequestFullscreen();
-                    } else if (element?.msRequestFullscreen) {
-                        element?.msRequestFullscreen();
-                    }
-                }catch(err){
-                    //there was an error encountered
-                    console.error("error_message", err)
-                }
+                // try{
+                //     if (element?.requestFullscreen) {
+                //         element?.requestFullscreen();
+                //     } else if (element?.mozRequestFullScreen) {
+                //         element?.mozRequestFullScreen();
+                //     } else if (element?.webkitRequestFullscreen) {
+                //         element?.webkitRequestFullscreen();
+                //     } else if (element?.msRequestFullscreen) {
+                //         element?.msRequestFullscreen();
+                //     }
+                // }catch(err){
+                //     //there was an error encountered
+                //     console.error("error_message", err)
+                // }
 
 
                 setCustomFullscreen(true);
 
             } else {
-                try{
-                    if (document.exitFullscreen) {
-                        document.exitFullscreen();
-                    } else if (document.mozCancelFullScreen) {
-                        document.mozCancelFullScreen();
-                    } else if (document.webkitExitFullscreen) {
-                        document.webkitExitFullscreen();
-                    } else if (document.msExitFullscreen) {
-                        document.msExitFullscreen();
-                    }
-                }catch(err){
-                    console.error("error_encountered", err)
-                }
+                // try{
+                //     if (document.exitFullscreen) {
+                //         document.exitFullscreen();
+                //     } else if (document.mozCancelFullScreen) {
+                //         document.mozCancelFullScreen();
+                //     } else if (document.webkitExitFullscreen) {
+                //         document.webkitExitFullscreen();
+                //     } else if (document.msExitFullscreen) {
+                //         document.msExitFullscreen();
+                //     }
+                // }catch(err){
+                //     console.error("error_encountered", err)
+                // }
 
                 setCustomFullscreen(false);
             }

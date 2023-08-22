@@ -6,7 +6,6 @@ import {setLocalStorage} from "../../utils/local-storage";
 import {Button, ButtonGroup} from "react-bootstrap";
 import SearchComponent from "./searchField";
 import {StoreContext } from "../../../context/store"
-import SideBar from "../../sidebar/awesome/Sidebar";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
 import {useNavigate} from "react-router-dom";
@@ -18,7 +17,7 @@ const Casino = React.memo(
 
         const [games, setGames] = useState([])
 
-        const { state, dispatch } = useContext(StoreContext);
+        const { state } = useContext(StoreContext);
 
         const fetchGames = async (category = 'vs') => {
             let endpoint = "/v1/casino-games?game-type-id=" + category

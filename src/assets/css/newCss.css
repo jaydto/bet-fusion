@@ -4134,6 +4134,7 @@ img.nare-league {
 
 /*animations*/
 .flashy {
+    will-change: transform;
     opacity: 0;
     animation: flashyShow 2s ease-in-out infinite;
 }

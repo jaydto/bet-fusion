@@ -649,7 +649,7 @@ const OddButton = React.memo(
         }, [updateBeslipKey, updatePickedChoices, updateOddValue, updateMatchPicked]);
 
         const maxPickReached = () => {
-            console.log("max_pick_reached")
+            // console.log("max_pick_reached")
             setPicked("");
             Notify({
                 status: 401,
@@ -818,15 +818,15 @@ const MarketRow = React.memo((props) => {
 
         // Check if the marketId is already in the userFavoriteMarkets array
         const isFavorite = userFavoriteMarkets.some(favorite => favorite.sub_type_id === marketId);
-        console.log("isFavorite", isFavorite);
+        // console.log("isFavorite", isFavorite);
 
         // Toggle the favorite status
         if (isFavorite) {
-            console.log("removing");
+            // console.log("removing");
             // If already favorite, remove from favorites
             setUserFavoriteMarkets(prevFavorites => prevFavorites.filter(fav => fav.sub_type_id !== marketId));
         } else {
-            console.log("adding");
+            // console.log("adding");
             // If not favorite, add to favorites
             setUserFavoriteMarkets(prevFavorites => [...prevFavorites, {sub_type_id: marketId}]);
         }
@@ -895,7 +895,7 @@ const MarketRow = React.memo((props) => {
                                         onClick={(event) => favoriteMarket(event, markets?.sub_type_id)}
                                         className={`${state?.user ? 'favorite' : 'd-none'}`}
                                     />&nbsp; {markets?.market_name}
-                                    {console.log("userFav", userFavoriteMarkets)}
+                                    {/*{console.log("userFav", userFavoriteMarkets)}*/}
 
                                 </span>
                                 <FontAwesomeIcon
@@ -1053,7 +1053,7 @@ const MatchRow = React.memo(
             match.market_active = 1
             match.odds.home_odd_active = 1
         }
-        let sub_types = (url.searchParams.get('sub_type_id') ||"1,18,29")?.split(",")
+        let sub_types = (url.searchParams.get('sub_type_id') ||"1")?.split(",")
         const [totalMarkets] = useState(sub_types.length)
         let append = totalMarkets - Object.keys(match?.extra_odds || {}).length - 1
         let loops = []
@@ -1227,7 +1227,7 @@ const MatchRow = React.memo(
 
                         {/*mobile  display and odds*/}
                         <div className={"to-profile-check separations to-flex-2"}>
-                            {match?.competition_name != "World Cup" && !jackpot && <>
+                            {!jackpot && <>
                                 {Object.entries(match?.extra_odds || {}).map(([marketName, odds], index) => (
                                     marketName !== '' && (
                                         <div key={index}
@@ -1281,8 +1281,6 @@ const MatchRow = React.memo(
                                     )
                                 ))
                                 }
-
-
                             </>
                             }
                         </div>

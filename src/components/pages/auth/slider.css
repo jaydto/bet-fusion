@@ -109,7 +109,6 @@
         border-radius: 5px;
         left: 50%;
         text-align: center;
-        text-shadow: 0 0 2px #000;
         background-color: var(--app-download-link-color);
         display: inline-block;
         transform: translate(-50%, -5px);
@@ -145,7 +144,6 @@
         border-radius: 5px;
         left: 50%;
         text-align: center;
-        text-shadow: 0 0 2px #000;
         background-color: var(--app-download-link-color);
         display: inline-block;
         transform: translate(-50%, -5px);

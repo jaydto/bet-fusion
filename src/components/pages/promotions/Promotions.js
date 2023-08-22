@@ -1,15 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import './promo.css'
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import PromoCards from "./PromoCards";
-import { getFromLocalStorage } from "../../utils/local-storage";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
 import {ToastContainer} from "react-toastify";
 
 const Header = React.lazy(() => import('../../header/header'));
 const Promotions = () => {
-    const [user] = useState(getFromLocalStorage("user"));
     const navigate=useNavigate()
     return (
         <>

@@ -35,7 +35,7 @@ const Styles = {
 const MyBets = (props) => {
     const { state, dispatch } = useContext(StoreContext);
     const [isLoading, setIsLoading] = useState(false);
-    const {height, width} = useWindowDimensions();
+    const { width} = useWindowDimensions();
 
     const fetchData = useCallback(async() => {
         if(isLoading) return;
@@ -222,47 +222,8 @@ const MyBets = (props) => {
         <>
             <div >
                 <Header/>
-                {/*<div className={'back-navigation original-button top-spacing'}  onClick={()=>window.history.back()}>*/}
-                {/*    <FontAwesomeIcon icon={faArrowLeft} className={'back-navigation-icon'} /> Back*/}
-                {/*</div>*/}
                 <div className="container top-spacing">
                     <div className="iphone background-profile">
-                        {/*<div className="header">*/}
-                        {/*    <div className="user-profile d-flex align-items-center">*/}
-                        {/*        <img src={accounts} className="user-photo "/>*/}
-
-                        {/*    </div>*/}
-                        {/*    /!*<div className="header-summary">*!/*/}
-                        {/*    /!*    <div className="summary-text d-flex gap-2 text-align-center">*!/*/}
-                        {/*    /!*    *!/*/}
-                        {/*    /!*        <>*!/*/}
-                        {/*    /!*            <Link to="/" className={'betslip-links'}  style={{textDecoration: "none", color: "black"}}>*!/*/}
-                        {/*    /!*                <div className="navigations-mybets-page align-items-end ">*!/*/}
-                        {/*    /!*                    <div className="b-details">*!/*/}
-                        {/*    /!*                        <div className="b-title">Home </div>*!/*/}
-                        {/*    /!*                    </div>*!/*/}
-                        {/*    /!*                    <div className="b-icon">*!/*/}
-                        {/*    /!*                        /!*<i className="fas fa-power-off" style={{fontSize: "24px"}}></i>*!/*!/*/}
-                        {/*    /!*                        <FontAwesomeIcon  icon={faHome} style={{fontSize: "24px"}}/>*!/*/}
-                        {/*    /!*                    </div>*!/*/}
-                        {/*    /!*                </div>*!/*/}
-                        {/*    /!*            </Link>*!/*/}
-                        {/*    /!*            <Link to="/logout" className={'betslip-links'} style={{textDecoration: "none"}}>*!/*/}
-                        {/*    /!*                <div className="navigations-mybets-page align-items-end ">*!/*/}
-                        {/*    /!*                    <div className="b-details">*!/*/}
-                        {/*    /!*                        <div className="b-title">logout </div>*!/*/}
-                        {/*    /!*                    </div>*!/*/}
-                        {/*    /!*                    <div className="b-icon">*!/*/}
-                        {/*    /!*                        /!*<i className="fas fa-power-off" style={{fontSize: "24px"}}></i>*!/*!/*/}
-                        {/*    /!*                        <FontAwesomeIcon  icon={faPowerOff} style={{fontSize: "24px"}}/>*!/*/}
-                        {/*    /!*                    </div>*!/*/}
-                        {/*    /!*                </div>*!/*/}
-                        {/*    /!*            </Link>*!/*/}
-
-                        {/*    /!*        </>*!/*/}
-                        {/*    /!*    </div>*!/*/}
-                        {/*    /!*</div>*!/*/}
-                        {/*</div>*/}
                         <div className="d-flex flex-row justify-content-between">
 
                             <div className="gz home" style={{width: '100%'}}>
@@ -277,11 +238,9 @@ const MyBets = (props) => {
                         </div>
                     </div>
 
-
                 </div>
 
             </div>
-
 
         </>
     )

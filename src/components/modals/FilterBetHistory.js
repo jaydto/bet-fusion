@@ -76,7 +76,7 @@ const GameHistoryList = (props) => {
             }
             return false;
         });
-        console.log("filteredByDatesGames",filteredGames )
+        // console.log("filteredByDatesGames",filteredGames )
 
         dispatch({type: "SET", key: "bets_by_date", payload: filteredGames });
     };
@@ -98,7 +98,7 @@ const GameHistoryList = (props) => {
 
     },[selectedFilter])
 
-    console.log("selected current",selected )
+    // console.log("selected current",selected )
 
 
     return (

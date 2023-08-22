@@ -11,62 +11,54 @@ import makeRequest from "../../utils/fetch-request";
 import {Form, Formik} from "formik";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
-import {StoreContext } from "../../../context/store"
-import {getBetslip} from "../../utils/betslip";
+import {StoreContext} from "../../../context/store"
 import mpesa from "../../../assets/img/mpesa.png";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 import './deposit.css'
 import Header2 from "../../header/Header2";
+
 const backgroundStyle = {
     backgroundImage: `url(${backgroundURL})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover'
 }
-// let initialValues = {
-//     amount: '',
-//     msisdn: ''
-// }
 
 const Deposit3 = React.memo(
     props => {
         // const [message, setMessage] = useState(null);
         const navigate = useNavigate();
-        const expand = "md"
         const [activeTab, setActiveTab] = useState('online'); // Set the initially active tab here
-        const { state, dispatch } = useContext(StoreContext);
+        const {state, dispatch} = useContext(StoreContext);
         const [user, setUser] = useState(getFromLocalStorage("user"));
-        const settings=getFromLocalStorage("settings")
+        const settings = getFromLocalStorage("settings")
         const handleTabSelect = (eventKey) => {
             setActiveTab(eventKey);
         }
 
-        const setUtmCampaign=()=>{
-            const utm_source=new URL(window.location).searchParams.get('utm_source')
-            const utm_campaign=new URL(window.location).searchParams.get('utm_campaign')
-            const btag=new URL(window.location).searchParams.get('btag')
-            if(utm_source){
+        const setUtmCampaign = () => {
+            const utm_source = new URL(window.location).searchParams.get('utm_source')
+            const utm_campaign = new URL(window.location).searchParams.get('utm_campaign')
+            const btag = new URL(window.location).searchParams.get('btag')
+            if (utm_source) {
                 setLocalStorage("utm_source", utm_source)
             }
-            if(utm_campaign){
+            if (utm_campaign) {
                 setLocalStorage("utm_campaign", utm_campaign)
 
             }
-            if(btag){
+            if (btag) {
                 setLocalStorage("btag", btag)
             }
         }
 
 
-
-
-
-        useEffect(()=>{
-            const abort=new AbortController();
+        useEffect(() => {
+            const abort = new AbortController();
             setUtmCampaign()
             return () => {
                 abort.abort(); // Cleanup function to abort the controller when the component unmounts.
             };
-        },[settings])
+        }, [settings])
 
 
         const updateUserOnHistory = () => {
@@ -93,13 +85,6 @@ const Deposit3 = React.memo(
             updateUserOnHistory()
         }, [state?.depositMessage])
 
-        useEffect(() => {
-            let betslip = getBetslip();
-            if (betslip) {
-                dispatch({type: "SET", key: "betslip", payload: betslip});
-            }
-        }, [])
-
         const FormTitle = () => {
             return (
                 <div className='col-md-12  p-4 text-center' style={{background: 'transparent'}}>
@@ -113,9 +98,9 @@ const Deposit3 = React.memo(
 
         const Alert = (props) => {
             let c = state?.depositSuccess ? 'success' : 'danger';
-            state?.depositMessage&&setTimeout(()=>{
+            state?.depositMessage && setTimeout(() => {
                 dispatch({type: "SET", key: "depositMessage", payload: null})
-            },5500)
+            }, 5500)
             return (<>{state?.depositMessage &&
                 <div role="alert" className={`fade alert alert-${c} show`}>{state?.depositMessage}</div>} </>);
 
@@ -124,9 +109,9 @@ const Deposit3 = React.memo(
 
         const ConfirmationAlert = (props) => {
             let c = state?.confirmdepositSuccess ? 'success' : 'danger';
-            state?.confirmdepositMessage&&setTimeout(()=>{
+            state?.confirmdepositMessage && setTimeout(() => {
                 dispatch({type: "SET", key: "confirmdepositMessage", payload: null})
-            },5500)
+            }, 5500)
             return (<>{state?.confirmdepositMessage &&
                 <div role="alert" className={`fade alert alert-${c} show`}>{state?.confirmdepositMessage}</div>} </>);
 
@@ -191,14 +176,15 @@ const Deposit3 = React.memo(
                                     justify
                                     onSelect={handleTabSelect}>
                                     <Tab eventKey="online" title="ONLINE " className={'background-primary'}>
-                                        <div  className={'w-100'}>
+                                        <div className={'w-100'}>
                                             <div className={'d-flex'}>
                                                 {/**/}
                                                 <div className={'size-deposit'}>
-                                                    {!user?setTimeout(navigate("/"),500):""}
+                                                    {!user ? setTimeout(navigate("/"), 500) : ""}
                                                     <div className={"d-flex flex-row justify-content-between"}>
                                                         <div className=" w-100">
-                                                            <div className="homepage d-flex  flex-column align-items-center  login-page">
+                                                            <div
+                                                                className="homepage d-flex  flex-column align-items-center  login-page">
 
                                                                 <Alert/>
                                                                 <div className=" pb-0" data-backdrop="static">
@@ -222,16 +208,22 @@ const Deposit3 = React.memo(
                                         <div className={'w-100 overflow-auto'}>
                                             <div className={'d-flex'}>
                                                 <div className={'size-deposit'}>
-                                                    {!user?setTimeout(navigate("/"),500):""}
+                                                    {!user ? setTimeout(navigate("/"), 500) : ""}
                                                     <div className={"d-flex flex-row justify-content-between"}>
                                                         <div className=" w-100">
-                                                            <div className="homepage d-flex flex-column align-items-center justify-content-center login-page">
-                                                                <div className="deposit-paybill-information pb-0" data-backdrop="static">
-                                                                    <div className={'paybill-component justify-content-center d-flex flex-column align-items-center'}>
+                                                            <div
+                                                                className="homepage d-flex flex-column align-items-center justify-content-center login-page">
+                                                                <div className="deposit-paybill-information pb-0"
+                                                                     data-backdrop="static">
+                                                                    <div
+                                                                        className={'paybill-component justify-content-center d-flex flex-column align-items-center'}>
                                                                         <h3 className={'header-paybill'}>
                                                                             paybill Number
                                                                         </h3>
-                                                                        <LazyLoadImage src={'https://storage.googleapis.com/nareimages/icons/mpesa.png'} className={'paybill-image'} width="50px" alt="mpesa"/>
+                                                                        <LazyLoadImage
+                                                                            src={'https://storage.googleapis.com/nareimages/icons/mpesa.png'}
+                                                                            className={'paybill-image'} width="50px"
+                                                                            alt="mpesa"/>
                                                                         <strong className={'bold paybill-number'}>
                                                                             4087777
                                                                         </strong>
@@ -242,15 +234,17 @@ const Deposit3 = React.memo(
                                                                     </span>
                                                                         <div className={'paybill-offers-list'}>
                                                                             <ul className={'paybill-offers-list-items'}>
-                                                                                {settings?.betnareDeposit&&settings?.betnareDeposit?.map((deposit,index)=> {
+                                                                                {settings?.betnareDeposit && settings?.betnareDeposit?.map((deposit, index) => {
                                                                                     return (
-                                                                                        <li key={index}>{index+1}. Only pay
+                                                                                        <li key={index}>{index + 1}.
+                                                                                            Only pay
                                                                                             KES {deposit?.deposit_amount} to {deposit?.display_text}</li>
                                                                                     )
                                                                                 })}
                                                                             </ul>
                                                                             <br/>
-                                                                            (Betnare will credit your Account with  The offers above.)
+                                                                            (Betnare will credit your Account with The
+                                                                            offers above.)
                                                                         </div>
 
                                                                     </div>
@@ -263,10 +257,18 @@ const Deposit3 = React.memo(
                                                                             <li>2. Select Payment services</li>
                                                                             <li>3. Click on Paybill</li>
                                                                             <li>4. Enter business number as 4087777</li>
-                                                                            <li>5. Enter the account number as phone number</li>
-                                                                            <li>6. Enter the amount you want to transfer to Betnare account</li>
-                                                                            <li>7. Enter your Mpesa pin and Confirm the request</li>
-                                                                            <li>8. You will shortly receive an SMS from Mpesa to confirm the transaction</li>
+                                                                            <li>5. Enter the account number as phone
+                                                                                number
+                                                                            </li>
+                                                                            <li>6. Enter the amount you want to transfer
+                                                                                to Betnare account
+                                                                            </li>
+                                                                            <li>7. Enter your Mpesa pin and Confirm the
+                                                                                request
+                                                                            </li>
+                                                                            <li>8. You will shortly receive an SMS from
+                                                                                Mpesa to confirm the transaction
+                                                                            </li>
                                                                         </ul>
                                                                     </div>
 
@@ -285,14 +287,15 @@ const Deposit3 = React.memo(
                                         </div>
                                     </Tab>
                                     <Tab eventKey="confirmation" title="CONFIRMATION" className={'background-primary'}>
-                                        <div  className={'w-100'}>
+                                        <div className={'w-100'}>
                                             <div className={'d-flex'}>
                                                 {/**/}
                                                 <div className={'size-deposit'}>
-                                                    {!user?setTimeout(navigate("/"),500):""}
+                                                    {!user ? setTimeout(navigate("/"), 500) : ""}
                                                     <div className={"d-flex flex-row justify-content-between"}>
                                                         <div className=" w-100">
-                                                            <div className="homepage d-flex  flex-column align-items-center  login-page">
+                                                            <div
+                                                                className="homepage d-flex  flex-column align-items-center  login-page">
 
                                                                 <ConfirmationAlert/>
                                                                 <div className=" pb-0" data-backdrop="static">
@@ -357,7 +360,9 @@ const ConfirmationInstructions = (props) => {
             <label className='betnare-text-light'>Missing Deposit?</label>
             <div className="container d-flex flex-column">
                 <div className="row">
-                    <div className="col betnare-text-light"> 1. Enter Mpesa Transaction code when your deposit has not reflected in your account.  </div>
+                    <div className="col betnare-text-light"> 1. Enter Mpesa Transaction code when your deposit has not
+                        reflected in your account.
+                    </div>
                 </div>
                 <div className="row">
                     <div className="col betnare-text-light"> 2. Click on confirm deposit..</div>
@@ -372,7 +377,7 @@ const ConfirmationInstructions = (props) => {
 
 const DepositConfirmFormFields = (props) => {
     const {values, errors, onFieldChanged} = props;
-    const {state,dispatch}=useContext(StoreContext)
+    const {state, dispatch} = useContext(StoreContext)
 
 
     return (
@@ -384,7 +389,7 @@ const DepositConfirmFormFields = (props) => {
                     </div>
                 </div>
             </div>
-            {state?.user&&<hr/>}
+            {state?.user && <hr/>}
             <div className="form-group row d-flex justify-content-center mt-3 deposit-widthdraw-input-desktop">
                 <div className="col-md-12">
                     <label className={'text-light deposit'}>Mpesa Transaction Code</label>
@@ -396,7 +401,7 @@ const DepositConfirmFormFields = (props) => {
                         id="confirmation_code"
                         name="confirmation_code"
                         type="text"
-                        value={ values?.confirmation_code||''}
+                        value={values?.confirmation_code || ''}
                         placeholder='Enter Transactional Code'
                     />
                     {errors.confirmation_code && <div className='text-danger'> {errors.confirmation_code} </div>}
@@ -405,8 +410,9 @@ const DepositConfirmFormFields = (props) => {
             <div className="form-group row d-flex justify-content-left mb-4">
                 <div className=" d-flex align-items-start deposit-withdraw-button-desktop">
                     <button type={"submit"}
-                            className='btn btn-lg w-100 deposit-button button-radius input-field btn-font cg login-button2 btn bold d-flex justify-content-center align-items-center' style={{marginTop:"30px"}} disabled={values?.amount==''}>
-                        {state?.confirmdepositLoading && <div className="custom-loader"></div>}  CONFIRM DEPOSIT &nbsp;
+                            className='btn btn-lg w-100 deposit-button button-radius input-field btn-font cg login-button2 btn bold d-flex justify-content-center align-items-center'
+                            style={{marginTop: "30px"}} disabled={values?.amount == ''}>
+                        {state?.confirmdepositLoading && <div className="custom-loader"></div>} CONFIRM DEPOSIT &nbsp;
                     </button>
                 </div>
             </div>
@@ -415,25 +421,26 @@ const DepositConfirmFormFields = (props) => {
 }
 
 
-
 const DepositFormFields = (props) => {
-    const {values, errors, onFieldChanged,setCurrentDepositValue, currentDepositValue} = props;
-    const {state,dispatch}=useContext(StoreContext)
-    const settings=getFromLocalStorage("settings")
+    const {values, errors, onFieldChanged, setCurrentDepositValue, currentDepositValue} = props;
+    const {state, dispatch} = useContext(StoreContext)
+    const settings = getFromLocalStorage("settings")
 
-    console.log("depositPromos", settings?.betnareDeposit)
-    state?.depositValidateError?.amount&&setTimeout(()=>{
-        dispatch({type: "SET", key: "depositValidateError", payload: {
-                msisdn:'',
-                amount:''
-            }});
-    },5000)
+    // console.log("depositPromos", settings?.betnareDeposit)
+    state?.depositValidateError?.amount && setTimeout(() => {
+        dispatch({
+            type: "SET", key: "depositValidateError", payload: {
+                msisdn: '',
+                amount: ''
+            }
+        });
+    }, 5000)
 
 
     const incrementDepositValue = (value) => {
-        dispatch({type: "SET", key: "depositValue", payload:value });
+        dispatch({type: "SET", key: "depositValue", payload: value});
         setCurrentDepositValue(value); // Update the currentDepositValue state instead of values?.amount
-        onFieldChanged({ target: { name: "amount", value: value } });
+        onFieldChanged({target: {name: "amount", value: value}});
     };
 
 
@@ -447,7 +454,7 @@ const DepositFormFields = (props) => {
                             +{values.msisdn}
                         </div>
                     </div>
-                    {!state?.user&&<input
+                    {!state?.user && <input
                         onChange={ev => {
                             onFieldChanged(ev);
                         }}
@@ -461,11 +468,11 @@ const DepositFormFields = (props) => {
                     {errors.msisdn && <div className='text-danger'> {errors.msisdn} </div>}
                 </div>
             </div>
-            {state?.user&&<hr/>}
+            {state?.user && <hr/>}
             <div className="form-group row d-flex justify-content-center mt-3 deposit-widthdraw-input-desktop">
                 <div className="btn-group w-100 gap-3 justify-content-around" role="group" aria-label="Basic example">
                     <div className={'d-flex flex-wrap col-12 justify-content-between'}>
-                        {settings?.betnareDeposit && settings?.betnareDeposit?.map((deposit, index)=>{
+                        {settings?.betnareDeposit && settings?.betnareDeposit?.map((deposit, index) => {
                             return (<div key={index} className={'col-3'}>
                                     <button type="button" onClick={() => incrementDepositValue(deposit?.deposit_amount)}
                                             className="deposit-buttons-value  m-2 gap-3 ">
@@ -489,7 +496,7 @@ const DepositFormFields = (props) => {
                         id="amount"
                         name="amount"
                         type="number"
-                        value={(values.amount == '' ? state?.depositValues||currentDepositValue :currentDepositValue || values.amount)}
+                        value={(values.amount == '' ? state?.depositValues || currentDepositValue : currentDepositValue || values.amount)}
                         placeholder='Enter Amount'
                     />
                     {errors.amount && <div className='text-danger'> {errors.amount} </div>}
@@ -498,7 +505,8 @@ const DepositFormFields = (props) => {
             <div className="form-group row d-flex justify-content-left mb-4">
                 <div className=" d-flex align-items-start deposit-withdraw-button-desktop">
                     <button type={"submit"}
-                            className='btn btn-lg w-100 deposit-button button-radius input-field btn-font cg login-button2 btn bold d-flex justify-content-center align-items-center' style={{marginTop:"30px"}} disabled={values?.amount==''}>
+                            className='btn btn-lg w-100 deposit-button button-radius input-field btn-font cg login-button2 btn bold d-flex justify-content-center align-items-center'
+                            style={{marginTop: "30px"}} disabled={values?.amount == ''}>
                         {state?.depositLoading && <div className="custom-loader"></div>} PAY &nbsp;{values?.amount}
                     </button>
                 </div>
@@ -508,8 +516,7 @@ const DepositFormFields = (props) => {
 }
 
 const MyDepositForm = (props) => {
-    const {errors, values, setFieldValue,setCurrentDepositValue, currentDepositValue} = props;
-    const { state, dispatch } = useContext(StoreContext);
+    const {errors, values, setFieldValue, setCurrentDepositValue, currentDepositValue} = props;
 
     const onFieldChanged = (ev) => {
         let field = ev.target.name;
@@ -582,14 +589,14 @@ const MyDepositConfirmationForm = (props) => {
     );
 }
 const DepositForm = (props) => {
-    const { state, dispatch } = useContext(StoreContext);
+    const {state, dispatch} = useContext(StoreContext);
     const [currentDepositValue, setCurrentDepositValue] = useState(0); // New state for current deposit value
     const user = getFromLocalStorage('user')
-    const depositValues =  state?.depositValue||''; // Initialize depositValues as an empty array if it's not available in the state
+    const depositValues = state?.depositValue || ''; // Initialize depositValues as an empty array if it's not available in the state
 
     const initialValues = {
-        amount: depositValues||100,
-        msisdn: state?.user?.msisdn||user?.msisdn
+        amount: depositValues || 100,
+        msisdn: state?.user?.msisdn || user?.msisdn
     }
     const gaEventTracker = useAnalyticsEventTracker('Deposit')
 
@@ -606,18 +613,18 @@ const DepositForm = (props) => {
             clearTrackingData()
             if (status === 200 || status === 201) {
                 dispatch({type: "SET", key: "depositLoading", payload: false});
-                const data={
-                    msisdn:state?.user?.msisdn,
-                    amount:values?.amount
+                const data = {
+                    msisdn: state?.user?.msisdn,
+                    amount: values?.amount
                 }
-                gaEventTracker('Deposit',data )
-            }else{
-                const data={
-                    msisdn:state?.user?.msisdn,
-                    amount:values?.amount,
-                    message:response?.message
+                gaEventTracker('Deposit', data)
+            } else {
+                const data = {
+                    msisdn: state?.user?.msisdn,
+                    amount: values?.amount,
+                    message: response?.message
                 }
-                gaEventTracker('Deposit Failed',data )
+                gaEventTracker('Deposit Failed', data)
             }
         })
     }
@@ -643,13 +650,13 @@ const DepositForm = (props) => {
             validateOnChange={false}
             validateOnBlur={false}
             validate={validate}
-            render={(props) => <MyDepositForm {...props} setCurrentDepositValue={setCurrentDepositValue} currentDepositValue={currentDepositValue}/>}/>
+            render={(props) => <MyDepositForm {...props} setCurrentDepositValue={setCurrentDepositValue}
+                                              currentDepositValue={currentDepositValue}/>}/>
     );
 }
 
 const DepositConfirmForm = (props) => {
-    const { state, dispatch } = useContext(StoreContext);
-    const user = getFromLocalStorage('user')
+    const {state, dispatch} = useContext(StoreContext);
 
     const initialValues = {
         confirmation_code: '',
@@ -669,17 +676,17 @@ const DepositConfirmForm = (props) => {
             clearTrackingData()
             if (status === 200 || status === 201) {
                 dispatch({type: "SET", key: "confirmdepositLoading", payload: false});
-                const data={
-                    confirmation_code:values?.confirmation_code
+                const data = {
+                    confirmation_code: values?.confirmation_code
                 }
-                gaEventTracker('Deposit Confirmation',data )
-            }else{
-                const data={
-                    msisdn:state?.user?.msisdn,
-                    confirmation:values?.confirmation_code,
-                    message:response?.message
+                gaEventTracker('Deposit Confirmation', data)
+            } else {
+                const data = {
+                    msisdn: state?.user?.msisdn,
+                    confirmation: values?.confirmation_code,
+                    message: response?.message
                 }
-                gaEventTracker('Deposit Confirmation Failed',data )
+                gaEventTracker('Deposit Confirmation Failed', data)
             }
         })
     }

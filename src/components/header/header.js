@@ -38,106 +38,10 @@ const Header = React.memo(
         const {current} = containerRef;
         const [, setCompetitions] = useState({});
         const [isOpen, setIsOpen] = useState(false);
-        const [, setShowLoadingModal] = useState(false);
         const pathname = window.location.pathname;
         const notShowMobileNav = shouldShowMobileNav(pathname);
         const showDownload = shouldShowDownload(pathname);
         const [settings,] = useState(getFromLocalStorage('settings'));
-
-
-        // useEffect(() => {
-        //     const abort = new AbortController();
-        //
-        //     const requestNotificationPermission = async () => {
-        //         try {
-        //             const permission = await Notification.requestPermission();
-        //             if (permission === 'granted') {
-        //                 onMessage(messaging, (payload) => {
-        //                     console.log('Notification received:', payload);
-        //                     // Handle the notification payload here.
-        //                 });
-        //             } else {
-        //                 console.log('Notification permission denied.');
-        //             }
-        //         } catch (error) {
-        //             console.error('Error requesting notification permission:', error);
-        //         }
-        //     };
-        //
-        //     requestNotificationPermission();
-        //
-        //     return () => abort.abort();
-        // }, []);
-
-        //       const CustomNotification = () =>
-        //       {
-        //           useEffect(() => {
-        //               const abort = new AbortController();
-        //
-        //               const requestNotificationPermission = async () => {
-        //                   try {
-        //                       // Customized notification permission request
-        //                       const permission = await customRequestPermission();
-        //                       if (permission === 'granted') {
-        //                           onMessage(messaging, (payload) => {
-        //                               console.log('Notification received:', payload);
-        //                               // Handle the notification payload here.
-        //                           });
-        //                       } else {
-        //                           console.log('Notification permission denied.');
-        //                       }
-        //                   } catch (error) {
-        //                       console.error('Error requesting notification permission:', error);
-        //                   }
-        //               };
-        //
-        //               requestNotificationPermission();
-        //
-        //               return () => abort.abort();
-        //           }, []);
-        //           // Customized notification permission function with UI elements
-        //           const customRequestPermission = async () => {
-        //               return new Promise((resolve, reject) => {
-        //                   // Your custom UI elements and logic to ask for notification permission
-        //                   const customNotificationUI = document.createElement('div');
-        //                   customNotificationUI.innerHTML = `
-        //   <p>This website would like to send you notifications.</p>
-        //   <button class="permission-button" value="granted">Allow</button>
-        //   <button class="permission-button" value="denied">Deny</button>
-        // `;
-        //                   document.body.appendChild(customNotificationUI);
-        //
-        //                   const permissionButtons = customNotificationUI.getElementsByClassName('permission-button');
-        //                   Array.from(permissionButtons).forEach((button) => {
-        //                       button.addEventListener('click', (event) => {
-        //                           const value = event.target.value;
-        //                           customNotificationUI.remove();
-        //
-        //                           if (value === 'granted') {
-        //                               resolve('granted');
-        //                           } else {
-        //                               resolve('denied');
-        //                           }
-        //                       });
-        //                   });
-        //               });
-        //           };
-        //
-        //           return <div>Custom Notification Component</div>;
-        //       };
-
-
-        useEffect(() => {
-            const removeElement = () => {
-                const element = document.querySelector('.app-color.lite-top-color');
-                if (element) {
-                    element.remove();
-                }
-            };
-
-            setTimeout(removeElement, 1000);
-        }, []);
-
 
         useEffect(() => {
             if (pathname !== "/login") {
@@ -145,22 +49,6 @@ const Header = React.memo(
             }
 
         }, [pathname])
-
-
-        useEffect(() => {
-            const handleBackButton = () => {
-                if (window.location.pathname === '/') {
-                    setShowLoadingModal(true);
-                    // let ans = window.confirm("Are you sure you want to exit this application?");
-                    // if (ans) {
-                    //   App.exitApp();
-                    // }
-                } else {
-                    window.history.back();
-                }
-            };
-
-        }, [setShowLoadingModal]);
 
 
         const dismissSearch = () => {
@@ -232,23 +120,6 @@ const Header = React.memo(
             }
         })
 
-        const setUtmCampaign = () => {
-            const utm_source = new URL(window.location).searchParams.get('utm_source')
-            const utm_campaign = new URL(window.location).searchParams.get('utm_campaign')
-            const btag = new URL(window.location).searchParams.get('btag')
-            if (utm_source) {
-                setLocalStorage("utm_source", utm_source)
-            }
-            if (utm_campaign) {
-                setLocalStorage("utm_campaign", utm_campaign)
-
-            }
-            if (btag) {
-                setLocalStorage("btag", btag)
-            }
-        }
-
-
         useEffect(() => {
             const cleanUpFuction = async () => {
                 const abort = new AbortController();
@@ -288,26 +159,6 @@ const Header = React.memo(
         }, [settings]);
 
 
-        const NotifyToastContainer = () => {
-            return (
-                <>
-                    {/* Render the ToastContainer */}
-                    <ToastContainer
-                        position="top-right"
-                        autoClose={5000}
-                        hideProgressBar={false}
-                        newestOnTop={false}
-                        closeOnClick
-                        rtl={false}
-                        pauseOnFocusLoss
-                        draggable
-                        pauseOnHover
-                    />
-
-                    {/* Render the CustomNotification component */}
-                </>
-            );
-        };
         const updateUserOnHistory = useCallback(() => {
             if (!user) {
                 return false;
@@ -420,9 +271,9 @@ const Header = React.memo(
                                 </div>
                             </div>
 
-                            {!profile&&<Row
+                            {!profile && <Row
                                 className={`second-nav ck pc os app-navbar ${user ? ' app-header-nav-login ' : ' app-header-nav '} to-navcheck `}>
-                                {!pathname.includes('casino')&&<HeaderNav/>}
+                                {!pathname.includes('casino') && <HeaderNav/>}
                             </Row>}
                             {state?.searching ?
                                 <div id="navbar-collapse-main"
@@ -459,7 +310,7 @@ const Header = React.memo(
 
                                     </ListGroup>
                                 </div>
-                                : (notShowMobileNav && !slip && !jackpot&&!profile && !pathname.includes('match')) &&
+                                : (notShowMobileNav && !slip && !jackpot && !profile && !pathname.includes('match')) &&
                                 <MobileNav1/>}
 
 

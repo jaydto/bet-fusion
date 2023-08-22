@@ -45,8 +45,17 @@ export const SubmitButton = (props) => {
                 borderRadius: "0.7rem",
                 fontSize: "14px",
                 background: "var(--betnare-button-login",
-                whiteSpace:'nowrap'
-            } : {padding: "10px", width: "100%", borderRadius: "0.7rem",  whiteSpace:'nowrap', display:'flex', alignItems:'center', justifyContent:'center', gap:'5px'}}
+                whiteSpace: 'nowrap'
+            } : {
+                padding: "10px",
+                width: "100%",
+                borderRadius: "0.7rem",
+                whiteSpace: 'nowrap',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '5px'
+            }}
             className={`${disabled ? "disabled" : ""} ${button_size ? " jackpot-button-placebet " : " "} 'bg-warning bold rounded-2 text-dark cursor-pointer'`}
             disabled={isSubmitting || disabled}
             title="Place Bet"
@@ -144,19 +153,6 @@ const BetslipSubmitForm = React.memo(
             }
         }, [jackpot]);
 
-        const ipAddress = useCallback(async () => {
-            try {
-                let ip = await publicIp({
-                    fallbackUrls: ["https://ifconfig.co/ip"],
-                });
-
-                setIpv4(ip);
-            } catch (error) {
-                console.error("Error getting IPv4 address:", error);
-            }
-
-
-        }, [ipv4]);
 
         const Alert = (props) => {
             let c = message?.status == 201 ? 'success' : message?.status == 421 ? 'warning' : 'danger';
@@ -180,9 +176,16 @@ const BetslipSubmitForm = React.memo(
             </>);
 
         };
+        const getIpAddress = async () => {
+            let ip = await publicIp({
+                fallbackUrls: ["https://ifconfig.co/ip"],
+            });
+
+            setIpv4(ip);
+        }
         useEffect(() => {
-            ipAddress();
-        }, [ipAddress])
+            getIpAddress();
+        }, [])
 
         const betItem = getBetslip()
 
@@ -260,8 +263,7 @@ const BetslipSubmitForm = React.memo(
             setLoading(true)
             makeRequest({url: endpoint, method: method, data: payload, use_jwt: use_jwt})
                 .then(([status, response]) => {
-                    if (status === 200 || status == 201 || status == 204)
-                    {
+                    if (status === 200 || status == 201 || status == 204) {
                         setLoading(false)
                         setMessage(response);
                         const data = {
@@ -301,10 +303,10 @@ const BetslipSubmitForm = React.memo(
                         setLocalStorage('userStake', null)
                         dispatch({type: 'SET', key: 'userStake', data: null})
                         updateUserOnHistory()
-                        return width < 991 ? setTimeout(()=>{navigate(-1)},5000) : "";
-                    }
-                    else
-                    {
+                        return width < 991 ? setTimeout(() => {
+                            navigate(-1)
+                        }, 5000) : "";
+                    } else {
                         setLoading(false)
                         const data = {
                             event: jackpot ? 'place_jackpot_bet' : live ? 'place_live_bet' : 'place_prematch_bet',
@@ -870,12 +872,14 @@ const BetslipSubmitForm = React.memo(
                                         <div className={"d-flex bet-select-values w-100 mt-2 p-lg-2 p-md-2 py-sm-0"}
                                              style={{whiteSpace: "nowrap"}} ref={scrollToRef}>
                                             <SubmitButton
-                                                style={{whiteSpace:'nowrap'}}
+                                                style={{whiteSpace: 'nowrap'}}
                                                 id="place_bet_button_submit"
                                                 className="place-bet-btn bold "
                                                 title={
                                                     loading ? (
-                                                        <div className={'d-flex align-items-center justify-content-center'} style={{whiteSpace:'nowrap'}}>
+                                                        <div
+                                                            className={'d-flex align-items-center justify-content-center'}
+                                                            style={{whiteSpace: 'nowrap'}}>
                                                             <div className="custom-loader"></div>
                                                             PLEASE WAIT
                                                         </div>

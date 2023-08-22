@@ -8,7 +8,6 @@ import DepositBonus from "../../../assets/img/banner/products/365.webp";
 
 import {Table} from "react-bootstrap";
 import PromoCards from "./PromoCards";
-import {getFromLocalStorage} from "../../utils/local-storage";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
 import {ToastContainer} from "react-toastify";
@@ -22,7 +21,6 @@ const Promo = () => {
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [user] = useState(getFromLocalStorage("user"));
 
     const banners = [
         {src: twentyPercentDepositBonus, id: 4},
@@ -385,50 +383,6 @@ const Promo = () => {
                                                             the Funds
                                                         </strong>
                                                     </div>
-                                                    {/*<div className="col-md-12 d-flex flex-row shadow-lg mt-2 promotion">*/}
-                                                    {/*    <div className="col-md-12">*/}
-                                                    {/*        <div className="d-flex flex-column">*/}
-                                                    {/*            <h5 className={'text-uppercase'}>*/}
-                                                    {/*                Open to all NEW and Existing customers.*/}
-                                                    {/*                It is Christmas come early in BetNare, 5 JOGOOS & 2 MBUZI’s UP*/}
-                                                    {/*                FOR GRABS DAILY*/}
-                                                    {/*            </h5>*/}
-                                                    {/*            /!*<img src={krisi} className={' promo-inner '}/>*!/*/}
-                                                    {/*            <div className="col-md-12">*/}
-                                                    {/*                ✅*/}
-                                                    {/*                This applies to both Multibets and Single bets.*/}
-                                                    {/*                <br/>*/}
-                                                    {/*                ✅*/}
-                                                    {/*                The promotion is Open for a customer once you place a bet*/}
-                                                    {/*                (Any type of bet).*/}
-                                                    {/*                <br/>*/}
-
-                                                    {/*                ✅*/}
-                                                    {/*                No Minimum odds or Number of legs are required for One to*/}
-                                                    {/*                qualify for the award*/}
-                                                    {/*                <br/>*/}
-
-                                                    {/*                ✅*/}
-                                                    {/*                Daily winners will receive different prizes credited into*/}
-                                                    {/*                their BetNare account. This can be WITHDRAWN directly via Mpesa*/}
-                                                    {/*                <br/>*/}
-                                                    {/*                ✅Winners are chosen randomly by the BetNare promotion systems*/}
-                                                    {/*                <br/>*/}
-                                                    {/*                ✅JOGOOS up for grabs daily when you stake using KES29/= or*/}
-                                                    {/*                MORE*/}
-                                                    {/*                <br/>*/}
-                                                    {/*                ✅*/}
-                                                    {/*                MBUZIS up for grabs daily when you stake using KES49/= or MORE*/}
-                                                    {/*                <br/>*/}
-                                                    {/*                ✅*/}
-                                                    {/*                Promo runs from the 10th December 2022 to 25th December 2022.*/}
-                                                    {/*                <br/>*/}
-                                                    {/*                ✅*/}
-                                                    {/*                General BetNare terms and conditions apply.*/}
-                                                    {/*            </div>*/}
-                                                    {/*        </div>*/}
-                                                    {/*    </div>*/}
-                                                    {/*</div>*/}
                                                 </div>
                                             </div>
                                         </div>

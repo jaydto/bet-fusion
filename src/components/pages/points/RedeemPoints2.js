@@ -30,9 +30,9 @@ const RedeemPoints= React.memo(
     const [message, setMessage] = useState(null);
     const navigate = useNavigate();
     const expand = "md"
-    const [user, setUser] = useState(getFromLocalStorage("user"));
+    const [user] = useState(getFromLocalStorage("user"));
 
-    const { state, dispatch } = useContext(StoreContext);
+    const { dispatch } = useContext(StoreContext);
     const [success, setSuccess] = useState(false);
 
     const initialValues = {
@@ -272,10 +272,7 @@ const RedeemPoints= React.memo(
                                             </div>
                                         </div>
                                     </div>
-                                    {/* <p>Don't have an account yet? <a href="/auth/register-2">Sign Up</a></p> */}
-                                    <div className="mt-4">
-                                        {/*<LoginForm {...props}/>*/}
-                                    </div>
+                                    <div className="mt-4"></div>
                                 </div>
                             </Row>
                         </div>

@@ -124,7 +124,7 @@ const BetDetails = (props) => {
 	useEffect(() => {
 
 			state?.mybets?.data?.map((item,index) => {
-				console.log("items_switch", item)
+				// console.log("items_switch", item)
 				return
 				window?.SIR("addWidget", "#sr-widget-" + item?.parent_match_id, "match.lmtPlus", {
 					branding: {tabs: {option: "icon", variant: "fullWidth"}},
@@ -369,7 +369,7 @@ const BetDetails = (props) => {
 		)}
 			{!isLoading?
 				<div className="d-flex details flex-column bet-details">
-					{console.log("matchesData", state?.mybets)}
+					{/*{console.log("matchesData", state?.mybets)}*/}
 					{state?.mybets?.data?.map((item,index) => (
 						<div key={index}>
 							{index===0&&<div className="d-flex history-details flex-column bet-summary-info">

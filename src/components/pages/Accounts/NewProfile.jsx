@@ -1,20 +1,17 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import './component/newProfile.css'
 import {Link, useNavigate} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faBars, faCoins, faDownload, faHome, faPowerOff, faUpload} from "@fortawesome/free-solid-svg-icons";
+import {faBars, faCoins, faDownload, faPowerOff, faUpload} from "@fortawesome/free-solid-svg-icons";
 import {formatNumber} from "../../utils/betslip";
 import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
 import SidebarProfile from "../../sidebar/sidebarProfile";
-import makeRequest from "../../utils/fetch-request";
-import {StoreContext } from "../../../context/store"
 import {LazyLoadImage} from "react-lazy-load-image-component";
 const Header=React.lazy(()=>import('../../header/header'))
 
 const NewProfile = React.memo(
     () => {
-        const [user, setUser] = useState(getFromLocalStorage("user"));
-        const { state, dispatch } = useContext(StoreContext);
+        const [user,] = useState(getFromLocalStorage("user"));
 
         const clearHistory = () => {
             setLocalStorage("user", null)
@@ -130,17 +127,6 @@ const NewProfile = React.memo(
                                             </div>
                                         </div>
                                     </Link>
-                                    {/*<Link to="/affiliate" style={{textDecoration: "none", color: "black"}}>*/}
-                                    {/*	<div className="transaction">*/}
-                                    {/*		<div className="t-details">*/}
-                                    {/*			<div className="t-title">Become An Affiliate </div>*/}
-                                    {/*		</div>*/}
-                                    {/*		<div className="t-amount">*/}
-                                    {/*			/!*<i className="fas fa-fire" style={{fontSize: "24px"}}></i>*!/*/}
-                                    {/*			<FontAwesomeIcon  icon={faFire} style={{fontSize: "24px"}}/>*/}
-                                    {/*		</div>*/}
-                                    {/*	</div>*/}
-                                    {/*</Link>*/}
                                     <Link to={"#"} style={{textDecoration: "none", color: "black"}}
                                           onClick={() => clearHistory()}>
                                         <div className="transaction">

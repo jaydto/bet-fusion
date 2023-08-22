@@ -3,7 +3,6 @@ import Header from "../../header/header";
 import './leader-boards.css'
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
-import {LazyLoadImage} from "react-lazy-load-image-component";
 import makeRequest from "../../utils/fetch-request";
 
 const LeaderBoards = () => {

@@ -1,5 +1,4 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import './test.css'
 import "../assets/css/jackpot.css"
 import useWindowDimensions from "./header/Dimensions";
 import Tabs from "react-bootstrap/Tabs";

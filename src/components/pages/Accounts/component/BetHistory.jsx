@@ -1,7 +1,6 @@
 import "./bethistory.css"
 import React, {useCallback, useContext, useEffect, useState} from "react";
 import {StoreContext } from "../../../../context/store"
-import useWindowDimensions from "../../../header/Dimensions";
 import makeRequest from "../../../utils/fetch-request";
 import Header from "../../../header/header";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -16,7 +15,6 @@ import {ToastContainer} from "react-toastify";
 import {faXbox} from "@fortawesome/free-brands-svg-icons";
 
 const BetHistory = () => {
-    const {width} = useWindowDimensions()
     const { state, dispatch } = useContext(StoreContext);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -58,7 +56,6 @@ const BetHistory = () => {
             let interval;
 
             useEffect(() => {
-                let storedEndTime = localStorage.getItem('cancelEndTime');
                 if (can_cancel && created) {
                     cancelEndTime = moment(created).add(5, 'minutes');
                     localStorage.setItem('cancelEndTime', cancelEndTime);

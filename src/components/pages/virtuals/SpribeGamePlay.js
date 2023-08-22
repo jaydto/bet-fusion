@@ -1,13 +1,13 @@
 import React, {useCallback, useEffect, useRef, useState} from "react";
 import Header from "../../header/header";
 import Footer from "../../footer/footer";
-import {useNavigate, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import makeRequest from "../../utils/fetch-request";
 import Skeleton, {SkeletonTheme} from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import {getFromLocalStorage} from "../../utils/local-storage";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faAngleLeft, faFire} from "@fortawesome/free-solid-svg-icons";
+import {faFire} from "@fortawesome/free-solid-svg-icons";
 import useWindowDimensions from "../../header/Dimensions";
 import Right from "../../right";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";

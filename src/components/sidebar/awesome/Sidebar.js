@@ -16,10 +16,6 @@ const Sidebar = React.memo(
         const [toggled, setToggled] = useState(false);
         const [sport, setSport] = useState(79);
 
-        const handleCollapsedChange = (checked) => {
-            setCollapsed(checked);
-        };
-
         const handleToggleSidebar = (value) => {
             setToggled(value);
         };

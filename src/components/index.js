@@ -237,14 +237,14 @@ const Index = React.memo(
             makeRequest({url: endpoint, method: method, data: betslip}).then(([status, result]) => {
                 if (status === 200) {
                     setMatches(matches?.length > 0 ? {...matches, ...result?.data} : result?.data || result)
-                    setFetching(false)
-                    setLoading(false)
                     matchSizeRef.current=result?.data?.length
                     if (result?.slip_data) {
                         setUserSlipsValidation(result?.slip_data)
                     }
                     setProducerDown(result?.producer_status === 1);
                 }
+                setFetching(false)
+                setLoading(false)
             });
         }, 20000, reset);
 

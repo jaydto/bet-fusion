@@ -8814,6 +8814,7 @@ ul.sport {
         line-height: 5px;
         display: flex;
         align-items: center;
+        min-width:6rem;
     }
 
     .navbar-nav > li > a {

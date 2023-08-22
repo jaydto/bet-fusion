@@ -9,7 +9,6 @@ import {getFromLocalStorage} from "../../utils/local-storage";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFire} from "@fortawesome/free-solid-svg-icons";
 import useWindowDimensions from "../../header/Dimensions";
-import Right from "../../right";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 import FullscreenButton from "../../shared/FullScreenButton";
 
@@ -277,9 +276,7 @@ const GamePlay = React.memo(
                         </div>
                     </div>
                 </div>
-                <div className="d-lg-none mobile-top stats-desktop">
-                    <Right/>
-                </div>
+
                 <div className={"mobile-remove"}>
                     <Footer/>
                 </div>

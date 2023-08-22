@@ -527,6 +527,7 @@ input.text-white {
 
 .menu-t img.nav-mobile {
     height: 19px !important;
+    width:19px!important;
     margin-top: -6px !important;
     border-radius: 16px;
     background: var(--betnare-header-bg);

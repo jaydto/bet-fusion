@@ -7,12 +7,10 @@ import {StoreContext } from "../context/store"
 import {getBetslip} from "./utils/betslip";
 import useInterval from "../hooks/set-interval.hook";
 import makeRequest from "./utils/fetch-request";
-import Testimonials from "./carousel/Testimonials";
 import Countries from "./countries/Countries";
 import {toast, ToastContainer} from "react-toastify";
 import {marketChoiceOptions} from "./matches";
 import throttle from 'lodash/throttle';
-import SkeletonLoader from "./pages/skeletonLoadersWeb/SkeletonLoader";
 import SkeletonLoaderMobile from "./pages/skeletonLoadersWeb/SkeletonLoaderMobile";
 import {onMessage} from "firebase/messaging";
 import {messaging} from "../firebaseConfig";
@@ -35,7 +33,7 @@ const Index = React.memo(
         const [user, setUser] = useState(getFromLocalStorage("user"));
         const [tab, setTab] = useState('highlights');
         const [sportID, setSportID] = useState(79);
-        const [loading, setLoading] = useState(false);
+        const [loading, setLoading] = useState(true);
         const {height, width} = useWindowDimensions();
         const [matches, setMatches] = useState([]);
         const matchSizeRef=useRef(0)
@@ -253,13 +251,10 @@ const Index = React.memo(
             if (sport_id !== null) {
                 endpoint += " &sport_id=" + sport_id
             }
-            let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29").split(",")
-            if (width <= 1259) {
-                sub_types = [sub_types[0]]
-            }
+            let sub_types = (url.searchParams.get('sub_type_id') || "1")
 
             endpoint = endpoint.replaceAll(" ", '')
-            endpoint += `&sub_type_id=` + (sub_types || "1,18,29")
+            endpoint += `&sub_type_id=` + (sub_types || "1")
 
             let search_term = url.searchParams.get('search')
 
@@ -269,19 +264,20 @@ const Index = React.memo(
             makeRequest({url: endpoint, method: method, data: betslip}).then(([status, result]) => {
                 if (status === 200) {
                     setMatches(matches?.length > 0 ? {...matches, ...result?.data} : result?.data || result)
-                    setFetching(false)
-                    setLoading(false)
                     matchSizeRef.current=result?.data?.length
                     if (result?.slip_data) {
                         setUserSlipsValidation(result?.slip_data)
                     }
                     setProducerDown(result?.producer_status === 1);
                 }
+                setFetching(false)
+                setLoading(false)
             });
         }, 20000, reset);
 
         const fetchData = useCallback(async () => {
             // setFetching(true)
+            setLoading(true)
             let tab = location.pathname.replace("/", "") || 'highlights';
             let tabInfo = window.location.pathname
             tabInfo = tabInfo.substring(tabInfo.lastIndexOf('/') + 1)
@@ -304,33 +300,29 @@ const Index = React.memo(
                 endpoint += ' &search=' + search_term
             }
             //splitting before api call
-            let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29").split(",")
+            let sub_types = (url.searchParams.get('sub_type_id') || "1")
 
-            if (width <= 1259) {
-                sub_types = [sub_types[0]]
-            }
-
-            endpoint += `&sub_type_id=` + (sub_types || "1,18,29")
+            endpoint += `&sub_type_id=` + (sub_types || "1")
 
 
             await makeRequest({url: endpoint, method: "POST", data: betslip}).then(([status, result]) => {
                 if (status == 200) {
                     setMatches(matches?.length > 0 ? {...matches, ...result?.data} : result?.data || result)
-                    setFetching(false)
-                    setLoading(false)
                     matchSizeRef.current=result?.data?.length
                     if (result?.slip_data) {
                         setUserSlipsValidation(result?.slip_data)
                     }
                     setProducerDown(result?.producer_status === 1);
                 }
+                setFetching(false)
+                setLoading(false)
             });
 
         }, []);
 
         const checkThreeWay = () => {
             let url = new URL(window.location)
-            let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29").split(",")
+            let sub_types = (url.searchParams.get('sub_type_id') || "1")
             setThreeWay(sub_types.includes("1"))
         }
 
@@ -512,20 +504,18 @@ const Index = React.memo(
                                 {(sportValue==='79'||sportValue===null)&&
                                     <MobileNav2/>}
                                 <CarouselLoader/>
-                                <Testimonials/>
                                 <div className={'filters-navigation gap-3 d-flex justify-content-between align-items-center'}>
                                     <MainTabs tab={location.pathname.replace("/", "")}/>
-                                    {width<991&&<div className={'d-flex justify-content-between my-3 my-filter-button'}>
+                                    <div className={'d-flex justify-content-between my-3 my-filter-button'}>
                                         {filteredMarkets?.default_markets.length > 0 &&
                                             <div className="myButton markets-button"
                                                  onClick={()=>showBottomSheet()}> {marketName || '1x2'}</div>
                                         }
-                                    </div>}
+                                    </div>
                                 </div>
                                 {loading ?
                                     <div className={`text-center mt-2 text-white d-block`}>
-                                        {tab == 'countries'?<Skeleton1/>:width < 1259 ? <SkeletonLoaderMobile/> :
-                                            <SkeletonLoader/>}
+                                        {tab == 'countries'?<Skeleton1/>:<SkeletonLoaderMobile/>}
                                     </div> : tab == 'countries' ? <Countries/> :
                                         <div>
                                             <MatchList
@@ -538,8 +528,7 @@ const Index = React.memo(
                                             />
                                             <div
                                                 className={`text-center mt-2 text-white ${fetching ? 'd-block' : 'd-none'}`}>
-                                                {width < 1259 ? <SkeletonLoaderMobile/> :
-                                                    <SkeletonLoader/>}
+                                                <SkeletonLoaderMobile/>
                                             </div>
                                         </div>
 

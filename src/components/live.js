@@ -6,14 +6,11 @@ import {StoreContext } from "../context/store"
 import {getBetslip} from "./utils/betslip";
 import useInterval from "../hooks/set-interval.hook";
 import makeRequest from "./utils/fetch-request";
-import Testimonials from "./carousel/Testimonials";
 import LiveSideBar from "./sidebar/live-sidebar";
-import {Spinner} from "react-bootstrap";
 import {ToastContainer} from "react-toastify";
 import SkeletonLive from "./pages/skeletonLoadersWeb/SkeletonLive";
 import SkeletonMobileLive from "./pages/skeletonLoadersWeb/SkeletonLoaderMobile";
-import SkeletonLoaderMobile from "./pages/skeletonLoadersWeb/SkeletonLoaderMobile";
-import SkeletonLoader from "./pages/skeletonLoadersWeb/SkeletonLoader";
+
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -156,7 +153,6 @@ const  Live= React.memo(
                     <div className="gz home match-overflow " >
                         <div className="homepage mobile-full-height" ref={homePageRef} style={width<991?{height: `${height}px`,overflowY:'auto'}:{}}>
                             <CarouselLoader/>
-                            <Testimonials/>
                             <div className={`${width<=991?"d-block":"d-none"}`}>
                                 <LiveSideBar/>
                             </div>

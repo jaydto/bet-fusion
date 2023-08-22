@@ -560,12 +560,12 @@ b, strong {
 
 .home-tabs-filters-active {
     color: var(--light) !important;
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 700;
 }
 
 .home-tabs-filters {
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 500;
     opacity: .8;
 
@@ -604,8 +604,8 @@ b, strong {
 .filters-navigation {
     opacity: 1;
     position: sticky;
-    top: 5.7rem;
     z-index: 2000;
+    background: var(--betnare-side-bg);
 }
 
 
@@ -876,6 +876,7 @@ input.bet-select bet-stake-input {
     color: var(--light) !important;
 }
 
+
 input::placeholder {
     color: var(--light) !important
 }
@@ -1014,7 +1015,6 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .top-matches .side {
-    background: #1e2d36;
     padding: 2px 8px 2px 5px;
     outline-style: none;
     outline: none;
@@ -1177,7 +1177,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .sticky-user {
-    top: 114px;
+    top: 89px;
     position: sticky;
 }
 
@@ -1435,6 +1435,19 @@ img.nare-league {
 /*end back button*/
 /*media queries*/
 @media (min-width: 1260px) {
+    .carousel-item img {
+        min-height: 164px;
+    }
+    .compt-teams .compt-teams-item{
+        font-size:14px;
+        line-height:2;
+    }
+    .c-btn-group> .c-btn {
+        height: 40px!important;
+        line-height: 30px!important;
+        font-weight: 400;
+        min-width: 40px;
+    }
     .market-groups-container {
         top: 93px !important;
     }
@@ -1468,7 +1481,7 @@ img.nare-league {
     }
 
     .sticky-testimony {
-        top: 98px;
+        top: 93px;
     }
 
     .sticky-responsive {
@@ -1671,16 +1684,16 @@ img.nare-league {
     }
 
     .stats-mobile {
-        display: none;
+        display: flex;
     }
 
-    .stats-desktop {
-        display: flex
-    }
 
 }
 
 @media (max-width: 1259px) {
+    .carousel-item img {
+        min-height: 100px!important;
+    }
     .share-button-styling {
         padding: 5px;
         background: repeating-linear-gradient(45deg, rgb(63, 154, 209), black 100px);
@@ -1765,9 +1778,6 @@ img.nare-league {
         display: flex;
     }
 
-    .stats-desktop {
-        display: none;
-    }
 
 }
 
@@ -1961,8 +1971,18 @@ img.nare-league {
         padding: 7px 14px 0px 0px;
     }
 }
-
+.mobile-menu-container{
+    width:100vw;
+}
+.mobile-menu-container table{
+    width:100vw;
+}
 @media (min-width: 992px) {
+    .myButton.markets-button{
+        font-size:12px!important;
+        align-items:center;
+        display:flex;
+    }
     .amt-casino{
         margin-top:9rem;
     }
@@ -1986,8 +2006,8 @@ img.nare-league {
         text-overflow: ellipsis;
     }
     .matches .top-matches {
-        padding-left:10px;
-        padding-right:10px;
+        padding-left:0px;
+        padding-right:0px;
     }
     .top-leader-board {
         margin-top: 7rem !important;
@@ -2245,8 +2265,54 @@ img.nare-league {
 .cursor-pointer {
     cursor: pointer !important;
 }
+.myButton.markets-button {
+    border: 1px solid #4e6096;
+    border-radius: 21px;
+    padding: 0px 13px;
+    line-height: 2.4 !important;
+    font-size: 9px;
+    white-space: nowrap;
+}
+
+.myButton.markets-button:after {
+    content: '';
+    /* margin-top: -5px; */
+    margin-left: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 2px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    /* color: #fff; */
+}
 
 @media (max-width: 991px) {
+    .home-tabs-filters-active{
+        font-size:15px!important;
+    }
+    .home-tabs-filters{
+        font-size:13px!important;
+    }
+    .mobile-ipad-remove-profile.stats-desktop{
+        display:none!important;
+    }
+    .filters-navigation {
+        top: 7.3rem;
+        height: 35px;
+    }
+    .myButton.markets-button{
+        line-height:2.1!important;
+    }
+    .matches .top-matches button {
+        height: 34px!important;
+    }
+    .compt-teams .compt-teams-item{
+        overflow-x: hidden;
+        width: 140px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
     .betslip-alert-close {
         position: absolute;
         right: -4px;
@@ -2412,10 +2478,6 @@ img.nare-league {
         border-right: none !important;
     }
 
-    .filters-navigation {
-        background: var(--betnare-header-bg);
-    }
-
     .c-btn-group {
         text-align: end !important;
         display: flex;
@@ -2425,28 +2487,6 @@ img.nare-league {
 
     .c-btn-header {
         text-align: end !important;
-    }
-
-    .myButton.markets-button {
-        border: 1px solid #4e6096;
-        border-radius: 21px;
-        padding: 0px 13px;
-        line-height: 2.4 !important;
-        font-size: 9px !important;
-        white-space: nowrap;
-    }
-
-    .myButton.markets-button:after {
-        content: '';
-        /* margin-top: -5px; */
-        margin-left: 10px;
-        border: solid white;
-        border-width: 0 2px 2px 0;
-        display: inline-block;
-        padding: 2px;
-        transform: rotate(45deg);
-        -webkit-transform: rotate(45deg);
-        /* color: #fff; */
     }
 
     .nav-tabs {
@@ -3637,7 +3677,7 @@ img.nare-league {
     }
 
     table.menu-table tr {
-        height: 5rem;
+        height: 4.5rem;
         margin-left: 1rem;
     }
 
@@ -3762,7 +3802,7 @@ img.nare-league {
         border-radius: 21px;
         padding: 0px 10px;
         line-height: 1.7;
-        font-size: 12px;
+        font-size: 9px;
     }
 
     .show-tax-info {
@@ -3832,7 +3872,7 @@ img.nare-league {
     }
 
     .size-info {
-        width: 50% !important;
+        width: 46% !important;
     }
 
     .top-matches .side {
@@ -3971,6 +4011,7 @@ img.nare-league {
         line-height: 20px;
         height: 30px;
         border: thin solid #654d4d;
+        color:var(--aqua-text);
         /* background-color: rgb(82, 121, 148); */
         padding: 10px;
         display: flex;

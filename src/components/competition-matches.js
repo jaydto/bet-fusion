@@ -4,13 +4,10 @@ import makeRequest from "./utils/fetch-request";
 import {StoreContext} from "../context/store"
 import useInterval from "../hooks/set-interval.hook";
 import {getBetslip} from './utils/betslip';
-import Testimonials from "./carousel/Testimonials";
 import './test.css'
 import useWindowDimensions from "./header/Dimensions";
 import {ToastContainer} from "react-toastify";
-import throttle from "lodash/throttle";
 import SkeletonLoaderMobile from "./pages/skeletonLoadersWeb/SkeletonLoaderMobile";
-import SkeletonLoader from "./pages/skeletonLoadersWeb/SkeletonLive";
 import MobileNav2 from "./mobile-navigation/MobileNav2";
 
 const Header = React.lazy(() => import('./header/header'));
@@ -51,13 +48,10 @@ const CompetitionMatches = React.memo(
             }
             let endpoint = "/v1/sports/competition?id=" + competitionid + "&page=" + (page || 1) + "&sport_id=79";
             let url = new URL(window.location.href)
-            let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29").split(",")
+            let sub_types = (url.searchParams.get('sub_type_id') || "1")
 
-            if (width <= 1259) {
-                sub_types = [sub_types[0]]
-            }
 
-            endpoint += `&sub_type_id=` + (sub_types || "1,18,29")
+            endpoint += `&sub_type_id=` + (sub_types || "1")
             let betslip = findPostableSlip();
             let method = betslip ? "POST" : "GET";
             await makeRequest({url: endpoint, method: method, data: betslip}).then(([status, result]) => {
@@ -81,13 +75,10 @@ const CompetitionMatches = React.memo(
                 let betslip = findPostableSlip();
                 let endpoint = "/v1/sports/competition?id=" + competitionid + "&page=" + (page || 1);
                 let url = new URL(window.location.href)
-                let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29").split(",")
+                let sub_types = (url.searchParams.get('sub_type_id') || "1")
 
-                if (width <= 1259) {
-                    sub_types = [sub_types[0]]
-                }
 
-                endpoint += `&sub_type_id=` + (sub_types || "1,18,29")
+                endpoint += `&sub_type_id=` + (sub_types || "1")
                 makeRequest({url: endpoint, method: "post", data: betslip}).then(([status, result]) => {
                     if(status===200){
                         setMatches(result?.data || result);
@@ -140,9 +131,8 @@ const CompetitionMatches = React.memo(
                                     {(sportValue==='79'||sportValue===null)&&
                                         <MobileNav2/>}
                                     <CarouselLoader/>
-                                    <Testimonials/>
-                                    {fetching?width < 1259 ? <SkeletonLoaderMobile/> :
-                                        <SkeletonLoader/>:
+                                    {fetching?
+                                        <SkeletonLoaderMobile/>:
                                         matches && <MatchList
                                         live={false}
                                         matches={matches}
@@ -150,8 +140,7 @@ const CompetitionMatches = React.memo(
                                     />}
                                 </div>
                                 <div className={`text-center mt-2 text-white ${fetching ? 'd-block' : 'd-none'}`}>
-                                    {width < 1259 ? <SkeletonLoaderMobile/> :
-                                        <SkeletonLoader/>}
+                                    <SkeletonLoaderMobile/>
                                 </div>
                             </div>
                         </div>

@@ -34,13 +34,6 @@ const BetslipPage = React.memo(
             jackpotParam && JSON.parse(decodeURIComponent(jackpotParam));
 
 
-        const [isOpen, setIsOpen] = useState(false);
-        const expand = "lg";
-
-
-        const toggle = () => {
-            setIsOpen(!isOpen);
-        };
         // console.log("slip-jackpot_slip", getJackpotBetslip())
         // console.log("slip-betslip_slip", getBetslip())
 
@@ -110,7 +103,7 @@ const BetslipPage = React.memo(
                 {/*<footer>*/}
                 <div className={"styling-mobile-size"}>
                     <Right betslipValidationData={betslipValidationData} jackpotData={jackpotData}
-                           jackpot={jackpot ? true : false}/>
+                           jackpot={jackpot ? true : false} slipPage={true}/>
                 </div>
                 {/*</footer>*/}
             </>

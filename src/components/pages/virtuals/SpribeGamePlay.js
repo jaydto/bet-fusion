@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useRef, useState} from "react";
 import Header from "../../header/header";
 import Footer from "../../footer/footer";
 import {useNavigate, useParams} from "react-router-dom";
@@ -11,6 +11,7 @@ import {faAngleLeft, faFire} from "@fortawesome/free-solid-svg-icons";
 import useWindowDimensions from "../../header/Dimensions";
 import Right from "../../right";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
+import FullscreenButton from "../../shared/FullScreenButton";
 
 const GamePlay = React.memo(
     (props) => {
@@ -28,6 +29,8 @@ const GamePlay = React.memo(
 
         const [gameUrlLoaded, setGameUrlLoaded] = useState(false)
         const gaEventTracker = useAnalyticsEventTracker("Spribe Games")
+        const [isCustomFullscreen, setCustomFullscreen] = useState(false);
+
 
         const createToken = async () => {
 
@@ -73,6 +76,80 @@ const GamePlay = React.memo(
             setDemo(true)
         }
 
+        const [iframeHeight, setIframeHeight] = useState(660); // Initial height
+
+        // Define the CSS style for the iframe
+        const iframeStyle = {
+            maxWidth: "100%",
+            width: "100%",
+            height: `${iframeHeight}vh`, // Set the height dynamically
+        };
+        const maxIframeHeight =
+            width>991?
+            isCustomFullscreen?
+            window.innerHeight * 2:
+            window.innerHeight * 0.82:
+            window.innerHeight * 0.92; // Maximum height is 77% desktop  and 92% mobile of the screen height
+
+        // // Function to update the iframe height
+        const updateIframeHeight = useCallback(() => {
+            console.log("this was called to resize",maxIframeHeight )
+            setIframeHeight(isCustomFullscreen?800:660); // Set the fixed height here
+        }, []);
+
+
+        useEffect(() => {
+            // Initial iframe height calculation
+            updateIframeHeight();
+
+            // Update iframe height when the window is resized
+            window.addEventListener("resize", updateIframeHeight);
+
+            // Clean up the event listener when the component is unmounted
+            return () => {
+                window.removeEventListener("resize", updateIframeHeight);
+            };
+        }, [updateIframeHeight, isCustomFullscreen]);
+
+        const toggleFullscreen = () => {
+            const element = document.documentElement; // Fullscreen the whole document
+
+            if (!isCustomFullscreen) {
+                try{
+                    if (element?.requestFullscreen) {
+                        element?.requestFullscreen();
+                    } else if (element?.mozRequestFullScreen) {
+                        element?.mozRequestFullScreen();
+                    } else if (element?.webkitRequestFullscreen) {
+                        element?.webkitRequestFullscreen();
+                    } else if (element?.msRequestFullscreen) {
+                        element?.msRequestFullscreen();
+                    }
+                }catch(err){
+                    //there was an error encountered
+                    console.error("error_message", err)
+                }
+
+                setCustomFullscreen(true);
+
+            } else {
+                try{
+                    if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                    } else if (document.mozCancelFullScreen) {
+                        document.mozCancelFullScreen();
+                    } else if (document.webkitExitFullscreen) {
+                        document.webkitExitFullscreen();
+                    } else if (document.msExitFullscreen) {
+                        document.msExitFullscreen();
+                    }
+                }catch(err){
+                    console.error("error_encountered", err)
+                }
+
+                setCustomFullscreen(false);
+            }
+        };
 
         useEffect(() => {
             isLoggedIn ?
@@ -80,32 +157,15 @@ const GamePlay = React.memo(
                 configureDemoGame()
 
         }, [])
-        const navigate=useNavigate()
+
+
+
+
         return (
-            <>
+            <div style={{position:'relative'}}>
                 <Header/>
-                <div className={(width <= 575 ? user ? "user_logged virtuals" : "amt" : "amt")}>
-                    <div className={'d-flex align-items-center'}>
-                                            <span className={'px-3 remove-backbutton-on-desktop'} onClick={() => navigate('/nare-games')}>
-                                             <FontAwesomeIcon icon={faAngleLeft} style={{
-                                                 fontSize: "22px",
-                                                 color: 'var(--light)',
-                                                 fontWeight: '700',
-                                                 opacity: '0.7'
-                                             }}/>
-                                                <FontAwesomeIcon icon={faAngleLeft} style={{
-                                                    fontSize: "22px",
-                                                    color: 'var(--light)',
-                                                    fontWeight: '700',
-                                                    opacity: '0.7'
-                                                }}/>
-                                               <span style={{fontSize: "20px",
-                                                   color: 'var(--light)',
-                                                   fontWeight: '700',
-                                                   opacity: '0.7',
-                                                   paddingLeft:'11px'}}> Back</span>
-                                            </span>
-                    </div>
+                <div className={`virtuals-container-position ${(width <= 575 ? user ? "user_logged virtuals" : "amt-virtual" : "amt-virtual")}`} >
+                    <FullscreenButton onClick={()=>toggleFullscreen()} navigation={'/nare-games'} isCustomFullScreen={isCustomFullscreen}/>
                     <div className="d-flex flex-row justify-content-between">
                         <div className="col-md-12 w-100">
                             <div className="homepage mt-2">
@@ -115,18 +175,29 @@ const GamePlay = React.memo(
                                         <Skeleton height={'100px'}/>
                                     </SkeletonTheme>
                                 </div>
-                                {gameUrlLoaded && <>
-                                    {demo && (
-                                        <>
+                                {gameUrlLoaded && (
+                                    <div
+                                        className={` ${isCustomFullscreen ? "active custom-fullscreen-wrapper" : ""}`}
+                                    >
+                                        {demo && (
                                             <div className="alert alert-info">
                                                 This is {game} Demo. To play the real game, please Log In.
-                                                &nbsp;<FontAwesomeIcon icon={faFire} style={{color: "orangered"}}/>
+                                                &nbsp;<FontAwesomeIcon icon={faFire} style={{ color: "orangered" }} />
                                             </div>
-                                        </>
-                                    )}
-                                    <iframe className={'mt-3 shadow-lg'} allowFullScreen
-                                            src={gameUrl} title="Gadme" width={'100%'} height={'700px'}></iframe>
-                                </>}
+                                        )}
+                                        <iframe
+                                            className="mt-3 shadow-lg"
+                                            id="spribeGamePlay"
+                                            src={gameUrl}
+                                            title="Spribe"
+                                            style={{
+                                                ...iframeStyle,
+                                                height: `${Math.min(iframeHeight, maxIframeHeight)}px`,
+                                            }}
+                                        ></iframe>
+                                    </div>
+                                )}
+
                                 {pathname == "aviator" || pathname.includes("aviator") &&
                                     <div className={'card rounded-3 e '} style={{
                                         color: "#999",
@@ -212,7 +283,7 @@ const GamePlay = React.memo(
                     <Footer/>
                 </div>
 
-            </>
+            </div>
         )
     })
 

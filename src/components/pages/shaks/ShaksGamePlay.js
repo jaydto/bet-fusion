@@ -38,7 +38,17 @@ const ShaksGamePlay = React.memo(
             "profile_id": user.profile_id,
             "game": game === undefined ? 'Crashlite' : game.trim()
         }
+        const toggleFullscreen = () => {
+            const iframeElement = document.getElementById("gameIframe");
 
+            if (!document.fullscreenElement) {
+                iframeElement.requestFullscreen().catch((err) => {
+                    console.log("Fullscreen request failed:", err);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        };
         await makeRequest({url: endpoint, method: method, data: payload}).then(([status, result]) => {
             if (status === 200) {
                

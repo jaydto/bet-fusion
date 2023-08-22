@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import Header from "../../header/header";
 import Footer from "../../footer/footer";
 import {useNavigate, useParams} from "react-router-dom";
@@ -6,11 +6,9 @@ import makeRequest from "../../utils/fetch-request";
 import Skeleton, {SkeletonTheme} from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import {getFromLocalStorage} from "../../utils/local-storage";
-import {LazyLoadImage} from "react-lazy-load-image-component";
-import {Stack} from "react-bootstrap";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
+import FullscreenButton from "../../shared/FullScreenButton";
+import useWindowDimensions from "../../header/Dimensions";
 
 
 const GamePlay = React.memo(
@@ -40,6 +38,85 @@ const GamePlay = React.memo(
             await makeRequest({url: endpoint, method: method}).then(([status, result]) => {
             });
         }
+
+        const { width} = useWindowDimensions();
+        const [isCustomFullscreen, setCustomFullscreen] = useState(false);
+
+        const [iframeHeight, setIframeHeight] = useState(750); // Initial height
+
+        // Define the CSS style for the iframe
+        const iframeStyle = {
+            maxWidth: "100%",
+            width: "100%",
+            height: `${iframeHeight}vh`, // Set the height dynamically
+        };
+        const maxIframeHeight =
+            width>991?
+                isCustomFullscreen?
+                    window.innerHeight * 2:
+                    window.innerHeight * 0.86:
+                window.innerHeight * 0.92; // Maximum height is 77% desktop  and 92% mobile of the screen height
+
+        // // Function to update the iframe height
+        const updateIframeHeight = useCallback(() => {
+            console.log("this was called to resize",maxIframeHeight )
+            setIframeHeight(isCustomFullscreen?800:750); // Set the fixed height here
+        }, []);
+
+
+        useEffect(() => {
+            // Initial iframe height calculation
+            updateIframeHeight();
+
+            // Update iframe height when the window is resized
+            window.addEventListener("resize", updateIframeHeight);
+
+            // Clean up the event listener when the component is unmounted
+            return () => {
+                window.removeEventListener("resize", updateIframeHeight);
+            };
+        }, [updateIframeHeight, isCustomFullscreen]);
+
+        const toggleFullscreen = () => {
+            const element = document.documentElement; // Fullscreen the whole document
+
+            if (!isCustomFullscreen) {
+                try{
+                    if (element?.requestFullscreen) {
+                        element?.requestFullscreen();
+                    } else if (element?.mozRequestFullScreen) {
+                        element?.mozRequestFullScreen();
+                    } else if (element?.webkitRequestFullscreen) {
+                        element?.webkitRequestFullscreen();
+                    } else if (element?.msRequestFullscreen) {
+                        element?.msRequestFullscreen();
+                    }
+                }catch(err){
+                    //there was an error encountered
+                    console.error("error_message", err)
+                }
+
+
+                setCustomFullscreen(true);
+
+            } else {
+                try{
+                    if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                    } else if (document.mozCancelFullScreen) {
+                        document.mozCancelFullScreen();
+                    } else if (document.webkitExitFullscreen) {
+                        document.webkitExitFullscreen();
+                    } else if (document.msExitFullscreen) {
+                        document.msExitFullscreen();
+                    }
+                }catch(err){
+                    console.error("error_encountered", err)
+                }
+
+                setCustomFullscreen(false);
+            }
+        };
 
         const startGame = async (game_id) => {
 
@@ -83,28 +160,8 @@ const GamePlay = React.memo(
         return (
             <>
                 <Header/>
-                <div className={'d-flex align-items-center'}>
-                                            <span className={'px-3 remove-backbutton-on-desktop'} onClick={() => navigate('/casino')}>
-                                             <FontAwesomeIcon icon={faAngleLeft} style={{
-                                                 fontSize: "22px",
-                                                 color: 'var(--light)',
-                                                 fontWeight: '700',
-                                                 opacity: '0.7'
-                                             }}/>
-                                                <FontAwesomeIcon icon={faAngleLeft} style={{
-                                                    fontSize: "22px",
-                                                    color: 'var(--light)',
-                                                    fontWeight: '700',
-                                                    opacity: '0.7'
-                                                }}/>
-                                                <span style={{fontSize: "20px",
-                                                    color: 'var(--light)',
-                                                    fontWeight: '700',
-                                                    opacity: '0.7',
-                                                    paddingLeft:'11px'}}> Back</span>
-                                            </span>
-                </div>
-                <div className={(user ? "user_logged virtuals" : "amt")}>
+                <div className={(user ? "user_logged casino" : "amt-casino")}>
+                    <FullscreenButton onClick={()=>toggleFullscreen()} navigation={'/casino'} isCustomFullScreen={isCustomFullscreen}/>
                     <div className="d-flex flex-row justify-content-between">
                         <div className="col-md-12 virtual-width-mobile">
                             <div className="homepage mt-2">
@@ -114,10 +171,14 @@ const GamePlay = React.memo(
                                         <Skeleton height={'100px'}/>
                                     </SkeletonTheme>
                                 </div>
-                                {gameUrlLoaded && <>
-                                    <iframe className={'mt-3 shadow-lg'} allowFullScreen
-                                            src={gameUrl} title="Gadme" width={'100%'} height={'700px'}></iframe>
-                                </>}
+                                {gameUrlLoaded && <div className={` ${isCustomFullscreen ? "active custom-fullscreen-wrapper" : ""}`}>
+                                    <iframe className={'mt-3 shadow-lg'}  id={'casinoGamePlay'}
+                                            src={gameUrl} title="Gadme"
+                                            style={{
+                                                ...iframeStyle,
+                                                height: `${Math.min(iframeHeight, maxIframeHeight)}px`,
+                                            }}></iframe>
+                                </div>}
                                 {!gameUrlLoaded && (pathname == "1301" || pathname.includes("1301")) &&
                                     <div className={'card rounded-3 e '} style={{
                                         color: "#999",

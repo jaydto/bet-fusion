@@ -53,22 +53,26 @@ const Casino = React.memo(
                 <Header/>
                 <div>
                     <div className={"d-flex"}>
-                        <div className="stats-desktop"><SideBar loadCompetitions/></div>
                         <div className="gz home top-spacing-casino " style={{width: '100%'}}>
                             <div className="homepage ">
                                 <div className="col-md-12 d-flex flex-column mt-2">
                                     <div
                                         className={'d-flex w-100 flex-column justify-content-between nare-header-container'}>
                                         <div className={'d-flex align-items-center'}>
-                                            <span className={'px-3 remove-backbutton-on-desktop'} onClick={() => navigate('/')}>
+                                            <span className={'px-3 d-flex gap-3 align-items-center '} onClick={() => navigate('/')} style={{
+                                                fontSize: "20px",
+                                                color: 'var(--light)',
+                                                fontWeight: '700',
+                                                opacity: '0.7'
+                                            }}>
                                              <FontAwesomeIcon icon={faAngleLeft} style={{
                                                  fontSize: "24px",
                                                  color: 'var(--light)',
                                                  fontWeight: '700',
                                                  opacity: '0.7'
-                                             }}/>
+                                             }}/>  Back
                                             </span>
-                                            <span className={'col-12 justify-content-center d-flex mt-3 mb-4'}
+                                            <span className={'col-10 justify-content-center d-flex mb-4 casino-header'}
                                                   id={'nare-games-header'}>
                             CASINO
                         </span>

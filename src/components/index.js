@@ -32,7 +32,7 @@ const Index = React.memo(
         const location = useLocation();
         const [tab, setTab] = useState('highlights');
         const [sportID, setSportID] = useState(79);
-        const [loading, setLoading] = useState(false);
+        const [loading, setLoading] = useState(true);
         const {height, width} = useWindowDimensions();
         const [matches, setMatches] = useState([]);
         const matchSizeRef=useRef(0)
@@ -250,6 +250,7 @@ const Index = React.memo(
 
         const fetchData = useCallback(async () => {
             // setFetching(true)
+            // setLoading(true)
             let tab = location.pathname.replace("/", "") || 'highlights';
             let tabInfo = window.location.pathname
             tabInfo = tabInfo.substring(tabInfo.lastIndexOf('/') + 1)
@@ -280,14 +281,14 @@ const Index = React.memo(
             await makeRequest({url: endpoint, method: "POST", data: betslip}).then(([status, result]) => {
                 if (status == 200) {
                     setMatches(matches?.length > 0 ? {...matches, ...result?.data} : result?.data || result)
-                    setFetching(false)
-                    setLoading(false)
                     matchSizeRef.current=result?.data?.length
                     if (result?.slip_data) {
                         setUserSlipsValidation(result?.slip_data)
                     }
                     setProducerDown(result?.producer_status === 1);
                 }
+                setFetching(false)
+                setLoading(false)
             });
 
         }, []);
@@ -501,13 +502,11 @@ const Index = React.memo(
                                             />
                                             <div
                                                 className={`text-center mt-2 text-white ${fetching ? 'd-block' : 'd-none'}`}>
-                                                {width < 1259 ? <SkeletonLoaderMobile/> :
-                                                    <SkeletonLoader/>}
+                                                <SkeletonLoaderMobile/>
                                             </div>
                                         </div>
 
                                 }
-                                {/*{showNotificationModal && <CustomNotificationModal onClose={handleCloseNotificationModal} />}*/}
                             </div>
                         </div>
                     </div>

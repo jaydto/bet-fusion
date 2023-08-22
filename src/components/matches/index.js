@@ -1567,7 +1567,8 @@ const MatchList = React.memo(
                             <MatchRow match={match} key={index} live={live} pdown={pdown} three_way={three_way}/>
                         ))
                     }
-                    {(matches !== null && matches.length === 0) &&
+
+                    {(matches.length === 0) &&
                         <div className="top-matches row  mx-2">
                             No events found.
                         </div>

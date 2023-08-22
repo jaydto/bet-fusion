@@ -6,11 +6,7 @@ import makeRequest from "../../utils/fetch-request";
 import Skeleton, {SkeletonTheme} from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import {getFromLocalStorage} from "../../utils/local-storage";
-import {LazyLoadImage} from "react-lazy-load-image-component";
-import {Stack} from "react-bootstrap";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
 import FullscreenButton from "../../shared/FullScreenButton";
 import useWindowDimensions from "../../header/Dimensions";
 
@@ -82,12 +78,46 @@ const GamePlay = React.memo(
         }, [updateIframeHeight, isCustomFullscreen]);
 
         const toggleFullscreen = () => {
+            const element = document.documentElement; // Fullscreen the whole document
+
             if (!isCustomFullscreen) {
+                try{
+                    if (element?.requestFullscreen) {
+                        element?.requestFullscreen();
+                    } else if (element?.mozRequestFullScreen) {
+                        element?.mozRequestFullScreen();
+                    } else if (element?.webkitRequestFullscreen) {
+                        element?.webkitRequestFullscreen();
+                    } else if (element?.msRequestFullscreen) {
+                        element?.msRequestFullscreen();
+                    }
+                }catch(err){
+                    //there was an error encountered
+                    console.error("error_message", err)
+                }
+
+
                 setCustomFullscreen(true);
+
             } else {
+                try{
+                    if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                    } else if (document.mozCancelFullScreen) {
+                        document.mozCancelFullScreen();
+                    } else if (document.webkitExitFullscreen) {
+                        document.webkitExitFullscreen();
+                    } else if (document.msExitFullscreen) {
+                        document.msExitFullscreen();
+                    }
+                }catch(err){
+                    console.error("error_encountered", err)
+                }
+
                 setCustomFullscreen(false);
             }
         };
+
         const startGame = async (game_id) => {
 
             let endpoint = live === '0' ? `/v1/casino/game/demo-url?game-id=${game_id}` : `/v1/casino/game/url?game-id=${game_id}`
@@ -142,7 +172,7 @@ const GamePlay = React.memo(
                                     </SkeletonTheme>
                                 </div>
                                 {gameUrlLoaded && <div className={` ${isCustomFullscreen ? "active custom-fullscreen-wrapper" : ""}`}>
-                                    <iframe className={'mt-3 shadow-lg'} allowFullScreen id={'casinoGamePlay'}
+                                    <iframe className={'mt-3 shadow-lg'}  id={'casinoGamePlay'}
                                             src={gameUrl} title="Gadme"
                                             style={{
                                                 ...iframeStyle,

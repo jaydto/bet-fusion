@@ -180,7 +180,7 @@ const MatchHeaderRow = React.memo(
 
             let url = new URL(window.location)
 
-            let sub_types = ( "1,18,29").split(",")
+            let sub_types = ( url.searchParams.get('sub_type_id') ||"1,18,29")?.split(",")
 
             if (sub_types.includes("1")) {
                 setThreeWay(true)
@@ -1012,7 +1012,7 @@ const MatchRow = React.memo(
 
             let url = new URL(window.location)
 
-            let sub_types = ("1,18,29").split(",")
+            let sub_types = (url.searchParams.get('sub_type_id') ||"1,18,29")?.split(",")
 
             sub_types = [sub_types[0]]
 
@@ -1053,7 +1053,7 @@ const MatchRow = React.memo(
             match.market_active = 1
             match.odds.home_odd_active = 1
         }
-        let sub_types = ("1,18,29").split(",")
+        let sub_types = (url.searchParams.get('sub_type_id') ||"1,18,29")?.split(",")
         const [totalMarkets] = useState(sub_types.length)
         let append = totalMarkets - Object.keys(match?.extra_odds || {}).length - 1
         let loops = []

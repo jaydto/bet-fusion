@@ -1914,7 +1914,12 @@ img.nare-league {
         padding: 7px 14px 0px 0px;
     }
 }
-
+.mobile-menu-container{
+    width:100vw;
+}
+.mobile-menu-container table{
+    width:100vw;
+}
 @media (min-width: 992px) {
     .myButton.markets-button{
         font-size:12px!important;

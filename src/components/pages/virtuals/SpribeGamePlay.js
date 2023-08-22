@@ -76,7 +76,7 @@ const GamePlay = React.memo(
             setDemo(true)
         }
 
-        const [iframeHeight, setIframeHeight] = useState(620); // Initial height
+        const [iframeHeight, setIframeHeight] = useState(660); // Initial height
 
         // Define the CSS style for the iframe
         const iframeStyle = {
@@ -88,13 +88,13 @@ const GamePlay = React.memo(
             width>991?
             isCustomFullscreen?
             window.innerHeight * 2:
-            window.innerHeight * 0.77:
+            window.innerHeight * 0.82:
             window.innerHeight * 0.92; // Maximum height is 77% desktop  and 92% mobile of the screen height
 
         // // Function to update the iframe height
         const updateIframeHeight = useCallback(() => {
             console.log("this was called to resize",maxIframeHeight )
-            setIframeHeight(isCustomFullscreen?800:620); // Set the fixed height here
+            setIframeHeight(isCustomFullscreen?800:660); // Set the fixed height here
         }, []);
 
 
@@ -129,7 +129,6 @@ const GamePlay = React.memo(
                     //there was an error encountered
                     console.error("error_message", err)
                 }
-
 
                 setCustomFullscreen(true);
 
@@ -166,7 +165,7 @@ const GamePlay = React.memo(
             <div style={{position:'relative'}}>
                 <Header/>
                 <div className={`virtuals-container-position ${(width <= 575 ? user ? "user_logged virtuals" : "amt-virtual" : "amt-virtual")}`} >
-                    <FullscreenButton onClick={toggleFullscreen} navigation={'/nare-games'} isCustomFullScreen={isCustomFullscreen}/>
+                    <FullscreenButton onClick={()=>toggleFullscreen()} navigation={'/nare-games'} isCustomFullScreen={isCustomFullscreen}/>
                     <div className="d-flex flex-row justify-content-between">
                         <div className="col-md-12 w-100">
                             <div className="homepage mt-2">
@@ -191,7 +190,6 @@ const GamePlay = React.memo(
                                             id="spribeGamePlay"
                                             src={gameUrl}
                                             title="Spribe"
-
                                             style={{
                                                 ...iframeStyle,
                                                 height: `${Math.min(iframeHeight, maxIframeHeight)}px`,

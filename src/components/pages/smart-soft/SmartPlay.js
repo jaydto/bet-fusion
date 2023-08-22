@@ -8,7 +8,6 @@ import {getFromLocalStorage} from "../../utils/local-storage";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft, faFire} from "@fortawesome/free-solid-svg-icons";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
-import {useNavigate} from "react-router-dom";
 import useWindowDimensions from "../../header/Dimensions";
 import FullscreenButton from "../../shared/FullScreenButton";
 
@@ -161,7 +160,7 @@ const SmartPlay = React.memo(
             <>
                 <Header/>
                 <div className="amt top-smartsoft gameplay">
-                    <FullscreenButton onClick={toggleFullscreen} navigation={'/smart-soft'} isCustomFullScreen={isCustomFullscreen}/>
+                    <FullscreenButton onClick={()=>toggleFullscreen()} navigation={'/smart-soft'} isCustomFullScreen={isCustomFullscreen}/>
                     <div className="d-flex flex-row justify-content-between">
                         <div className="col-md-12 w-100">
                             <div className="homepage">

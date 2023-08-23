@@ -96,7 +96,7 @@ const Casino = React.memo(
                                         <SearchComponent data={games}/>
                                     </div>
                                     <div className="col">
-                                        <div className={'row text-white p-2 shadow-sm'}>
+                                        <div className={'row text-white p-2 shadow-sm justify-content-center'}>
                                             {state?.casino_search !== undefined && state?.casino_search.length > 0 ? state?.casino_search?.map((search_game, index) => (
                                                     search_game?.game_id == "rgs-vsv" ? "" :
                                                         <div key={index}

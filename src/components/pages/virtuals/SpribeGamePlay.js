@@ -93,8 +93,23 @@ const GamePlay = React.memo(
         // // Function to update the iframe height
         const updateIframeHeight = useCallback(() => {
             // console.log("this was called to resize", maxIframeHeight)
-            setIframeHeight(isCustomFullscreen ? 800 : 660); // Set the fixed height here
+            setIframeHeight(isCustomFullscreen ? 660 : 800); // Set the fixed height here
         }, []);
+
+        useEffect(() => {
+            console.log("called escape here entry to function")
+            const handleEsc = (event) => {
+                if (event.key === 'Escape') {
+                    console.log("called escape here")
+                    setCustomFullscreen(false);
+                }
+            };
+            window.addEventListener('keydown', handleEsc);
+
+            return () => {
+                window.removeEventListener('keydown', handleEsc);
+            };
+        },[document.fullscreenElement]);
 
 
         useEffect(() => {
@@ -111,41 +126,44 @@ const GamePlay = React.memo(
         }, [updateIframeHeight, isCustomFullscreen]);
 
         const toggleFullscreen = () => {
-            // const element = document.documentElement; // Fullscreen the whole document
+            const element = document.documentElement; // Fullscreen the whole document
             // console.log("Element fullscreen is now ... ",element)
 
             if (!isCustomFullscreen) {
-                // try {
-                //     if (element?.requestFullscreen) {
-                //         element?.requestFullscreen();
-                //     } else if (element?.mozRequestFullScreen) {
-                //         element?.mozRequestFullScreen();
-                //     } else if (element?.webkitRequestFullscreen) {
-                //         element?.webkitRequestFullscreen();
-                //     } else if (element?.msRequestFullscreen) {
-                //         element?.msRequestFullscreen();
-                //     }
-                // } catch (err) {
-                //     //there was an error encountered
-                //     console.error("error_message", err)
-                // }
+                try {
+                    if (element?.requestFullscreen) {
+                        element?.requestFullscreen();
+                    } else if (element?.mozRequestFullScreen) {
+                        element?.mozRequestFullScreen();
+                    } else if (element?.webkitRequestFullscreen) {
+                        element?.webkitRequestFullscreen();
+                    } else if (element?.msRequestFullscreen) {
+                        element?.msRequestFullscreen();
+                    }
+                } catch (err) {
+                    //there was an error encountered
+                    console.error("error_message", err)
+                }
 
                 setCustomFullscreen(true);
 
             } else {
-                // try {
-                //     if (document.exitFullscreen) {
-                //         document.exitFullscreen();
-                //     } else if (document.mozCancelFullScreen) {
-                //         document.mozCancelFullScreen();
-                //     } else if (document.webkitExitFullscreen) {
-                //         document.webkitExitFullscreen();
-                //     } else if (document.msExitFullscreen) {
-                //         document.msExitFullscreen();
-                //     }
-                // } catch (err) {
-                //     console.error("error_encountered", err)
-                // }
+                try {
+                    if(document.fullscreenElement){
+                        if (document.exitFullscreen) {
+                            document.exitFullscreen();
+                        } else if (document.mozCancelFullScreen) {
+                            document.mozCancelFullScreen();
+                        } else if (document.webkitExitFullscreen) {
+                            document.webkitExitFullscreen();
+                        } else if (document.msExitFullscreen) {
+                            document.msExitFullscreen();
+                        }
+                    }
+
+                } catch (err) {
+                    console.error("error_encountered", err)
+                }
 
                 setCustomFullscreen(false);
             }
@@ -164,7 +182,7 @@ const GamePlay = React.memo(
                 <Header/>
                 <div
                     className={`virtuals-container-position ${(width <= 575 ? user ? "user_logged virtuals" : "amt-virtual" : "amt-virtual")}`}>
-                    <FullscreenButton onClick={() => toggleFullscreen()} navigation={'/nare-games'}
+                    <FullscreenButton onClick={() => toggleFullscreen()} navigation={'/'}
                                       isCustomFullScreen={isCustomFullscreen}/>
                     <div className="d-flex flex-row justify-content-between">
                         <div className="col-md-12 w-100">
@@ -189,6 +207,7 @@ const GamePlay = React.memo(
                                             className="mt-3 shadow-lg"
                                             id="spribeGamePlay"
                                             src={gameUrl}
+                                            allowFullScreen
                                             title="Spribe"
                                             style={{
                                                 ...iframeStyle,

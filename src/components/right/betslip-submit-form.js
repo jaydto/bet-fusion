@@ -77,7 +77,9 @@ const BetslipSubmitForm = React.memo(
             setBetslipsData,
             jackpotData,
             bonusBet,
+
         } = props;
+
         const [hasMultiBetBoost, setHasMultiBetBoost] = useState(true);
         const [multiBoostAmount, setMultiBoostAmount] = useState(0);
         const [showShareModal, setShowShareModal] = useState(false);
@@ -88,7 +90,8 @@ const BetslipSubmitForm = React.memo(
         const [loadingShare, setLoadingShare] = useState(false);
         const [loading, setLoading] = useState(false);
         const [settings,] = useState(getFromLocalStorage("settings"));
-        const [stake, setStake] = useState(jackpot ? parseInt(jackpotData?.bet_amount) : state?.userStake || getFromLocalStorage("userStake") || Number(settings?.sportsBookLimits?.defaultBetAmount) || Number(state?.settings?.sportsBookLimits?.defaultBetAmount));
+        const [stake, setStake] = useState(jackpot ? parseInt(jackpotData?.bet_amount) : state?.stakeValue);
+
         const [stakeBoosted, setStakeBoosted] = useState(100);
 
         const [stakeAfterTax, setStakeAfterTax] = useState(0);
@@ -114,9 +117,10 @@ const BetslipSubmitForm = React.memo(
         const {width} = useWindowDimensions();
         const [user, setUser] = useState(getFromLocalStorage("user"));
 
-        useEffect(() => {
-            setStake(state?.userStake || getFromLocalStorage("userStake") || Number(settings?.sportsBookLimits?.defaultBetAmount))
-        }, [settings])
+        useEffect(()=>{
+                setStake(state?.stakeValue)
+        }, [state?.stakeValue])
+
 
         const updateUserOnHistory = () => {
             if (!user) {
@@ -756,14 +760,14 @@ const BetslipSubmitForm = React.memo(
                                 <div className={"slip-body"}>
                                     <div id="odd-change-text">
                                         <div className={"odd-change-position"}>
-                                                <Switch id={"accept_all_odds_change"} {...label}
-                                                        className="odds-change-box"
-                                                        name={"accept_all_odds_change"}
-                                                        checked={values?.accept_all_odds_change || false}
-                                                        color="primary"
+                                            <Switch id={"accept_all_odds_change"} {...label}
+                                                    className="odds-change-box"
+                                                    name={"accept_all_odds_change"}
+                                                    checked={values?.accept_all_odds_change || false}
+                                                    color="primary"
 
-                                                        onChange={(e) => onFieldChanged(e)}
-                                                /> Accept any odds change
+                                                    onChange={(e) => onFieldChanged(e)}
+                                            /> Accept any odds change
 
                                         </div>
                                         <div className={"slip-clear-all"}>

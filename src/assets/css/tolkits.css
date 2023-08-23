@@ -15542,9 +15542,16 @@ img.zoom-img {
     .virtual-game-container{
         width:100%;
     }
+
     .virtual-width {
-        width: 18%;
+        width: 16%;
         margin: auto;
+        height: 27rem;
+        max-height: 26rem;
+    }
+    .virtual-game-container div img{
+        width: 100%;
+        max-height: 18rem!important;
     }
     .font-slip{
         font-size:11px;

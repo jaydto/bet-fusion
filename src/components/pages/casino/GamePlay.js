@@ -42,6 +42,22 @@ const GamePlay = React.memo(
 
         const [iframeHeight, setIframeHeight] = useState(750); // Initial height
 
+        useEffect(() => {
+            const handleEsc = (event) => {
+                if (event.key === 'Escape') {
+                    setCustomFullscreen(false);
+                }
+            };
+
+            window.addEventListener('keydown', handleEsc);
+
+            return () => {
+                window.removeEventListener('keydown', handleEsc);
+            };
+        }, []); // Empty dependency array to run the effect only on mount and unmount
+
+
+
         // Define the CSS style for the iframe
         const iframeStyle = {
             maxWidth: "100%",

@@ -102,19 +102,20 @@ const SmartPlay = React.memo(
         }, [updateIframeHeight, isCustomFullscreen]);
 
         useEffect(() => {
-            console.log("called escape here entry to function")
             const handleEsc = (event) => {
                 if (event.key === 'Escape') {
-                    console.log("called escape here")
                     setCustomFullscreen(false);
                 }
             };
+
             window.addEventListener('keydown', handleEsc);
 
             return () => {
                 window.removeEventListener('keydown', handleEsc);
             };
-        }, []);
+        }, []); // Empty dependency array to run the effect only on mount and unmount
+
+
 
 
 

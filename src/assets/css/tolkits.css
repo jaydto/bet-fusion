@@ -77,7 +77,7 @@ input, select, textarea {
         font-size:9px;
     }
     .slip-body {
-        width: 50%;
+        width: 100%;
         line-height: 6px !important;
     }
 }

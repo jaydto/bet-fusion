@@ -62,8 +62,6 @@ const Virtuals = React.memo(
         return (
             <>
                 <Header/>
-                {/* <OnlineCheck setIsOnline={setIsOnline} isOnline={isOnline}/> */}
-                {/*{showLoadingModal && ( <LoginModal setShowLoadingModal={setShowLoadingModal} visible={showLoadingModal} location={location}/>)}*/}
                 <ToastContainer/>
                 <div className={'d-flex'}>
                     <div className="d-flex flex-row">

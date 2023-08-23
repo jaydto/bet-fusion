@@ -17,14 +17,14 @@ import {StoreContext, StoreProvider} from "./context/store";
 import Loading from "./components/loading/LoadingSuspense";
 import { createRoot } from 'react-dom/client';
 
-import ReactPixel from 'react-facebook-pixel';
-import "firebase/messaging"; // Import the FCM module
+// import ReactPixel from 'react-facebook-pixel';
+// import "firebase/messaging"; // Import the FCM module
 
 // const TRACKING_ID = "G-5NLSN9BLN4";
 // ReactGA.initialize(TRACKING_ID);
 
-const TRACKING_PIXEL_ID = "1297171947681785";
-ReactPixel.init(TRACKING_PIXEL_ID);
+// const TRACKING_PIXEL_ID = "1297171947681785";
+// ReactPixel.init(TRACKING_PIXEL_ID);
 
 const Deposit3=React.lazy(()=>import("./components/pages/deposit-withraw/Deposit3"));
 
@@ -139,7 +139,7 @@ const Login=React.lazy(()=>import('./components/pages/loginTwo'));
 
 const NewProfile =React.lazy(()=>import( "./components/pages/Accounts/NewProfile"));
 
-const Affiliate =React.lazy(()=>import( "./components/Affiliate/Affiliate"));
+
 const Promo = React.lazy(() => import('./components/pages/promotions/Promo'))
 const BetHistory =React.lazy(()=>import( "./components/pages/Accounts/component/BetHistory"));
 
@@ -228,8 +228,7 @@ createRoot(container).render(
                     <Route exact path="/promo" element={<Promo/>}/>
                     <Route exact path="/deposit"
                            element={<ProtectedRoute><Deposit3/> </ProtectedRoute>}/>
-                    <Route exact path="/affiliate"
-                           element={<Affiliate/> }/>
+                 
                     <Route exact path="/withdraw"
                            element={<ProtectedRoute><Withdraw/></ProtectedRoute>}/>
                     <Route exact path="/redeem-points"

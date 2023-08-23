@@ -1,8 +1,17 @@
 import React, {useCallback, useContext, useEffect, useState} from "react";
-import HomeSvg from "../../assets/img/mobile/home.png";
-import LiveSvg from "../../assets/img/mobile/live.png";
-import ProfileSvg from "../../assets/img/mobile/user.png";
-import closeIcon from "../../../src/assets/img/mobile/close_icon.png"
+
+//images
+// import HomeSvg from "../../assets/img/mobile/home.png";
+// import LiveSvg from "../../assets/img/mobile/live.png";
+// import ProfileSvg from "../../assets/img/mobile/user.png";
+// import closeIcon from "../../../src/assets/img/mobile/close_icon.png"
+
+//SVGs
+import {ReactComponent as HomeSvg} from "../../assets/svg/home.svg"
+import { ReactComponent as LiveSvg} from "../../assets/svg/live.svg"
+import { ReactComponent as ProfileSvg} from "../../assets/svg/person.svg"
+
+
 
 import makeRequest from "../utils/fetch-request";
 import {Badge} from "react-bootstrap";

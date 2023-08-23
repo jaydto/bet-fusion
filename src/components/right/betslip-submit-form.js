@@ -58,8 +58,6 @@ export const SubmitButton = (props) => {
 
 const BetslipSubmitForm = React.memo(
     (props) => {
-
-
         const {
             live,
             jackpot,
@@ -79,8 +77,7 @@ const BetslipSubmitForm = React.memo(
         const {state, dispatch} = useContext(StoreContext);
         const [loadingShare, setLoadingShare] = useState(false);
         const settings = getFromLocalStorage("settings");
-        const [stake, setStake] = useState(jackpot ? parseInt(jackpotData?.bet_amount) : state?.userStake || getFromLocalStorage("userStake") || Number(settings?.sportsBookLimits?.defaultBetAmount) || Number(state?.settings?.sportsBookLimits?.defaultBetAmount));
-        const [stakeBoosted, setStakeBoosted] = useState(100);
+        const [stake, setStake] = useState(jackpot ? parseInt(jackpotData?.bet_amount) : state?.userStake || getFromLocalStorage("userStake") || Number(settings?.sportsBookLimits?.defaultBetAmount) || Number(state?.settings?.sportsBookLimits?.defaultBetAmount) || Number(0));
 
         const [stakeAfterTax, setStakeAfterTax] = useState(0);
         const [stakeAfterTaxBoosted, setStakeAfterTaxBoosted] = useState(0);
@@ -105,9 +102,9 @@ const BetslipSubmitForm = React.memo(
         const {width} = useWindowDimensions();
         const [user, setUser] = useState(getFromLocalStorage("user"));
 
-        useEffect(() => {
-            setStake(state?.userStake || getFromLocalStorage("userStake") || Number(settings?.sportsBookLimits?.defaultBetAmount))
-        }, [settings])
+        // useEffect(() => {
+        //     setStake(state?.userStake || getFromLocalStorage("userStake") || Number(settings?.sportsBookLimits?.defaultBetAmount))
+        // }, [settings])
 
         const updateUserOnHistory = () => {
             if (!user) {
@@ -300,7 +297,9 @@ const BetslipSubmitForm = React.memo(
                         setLocalStorage('userStake', null)
                         dispatch({type: 'SET', key: 'userStake', data: null})
                         updateUserOnHistory()
-                        return width < 991 ? setTimeout(()=>{navigate(-1)},5000) : "";
+                        return width < 991 ? setTimeout(() => {
+                            navigate(-1)
+                        }, 5000) : "";
                     } else {
                         const data = {
                             event: jackpot ? 'place_jackpot_bet' : live ? 'place_live_bet' : 'place_prematch_bet',
@@ -339,6 +338,7 @@ const BetslipSubmitForm = React.memo(
                     Float(stake) + Float(multiBoostAmount) - Float(stake_after_tax_boosted);
 
                 let raw_possible_win = Float(stake_after_tax) * Float(totalOdds);
+                console.log("Raw possible win ", stake)
                 let boosted_raw_possible_win =
                     Float(stake_after_tax_boosted) * Float(totalOdds);
 
@@ -592,6 +592,7 @@ const BetslipSubmitForm = React.memo(
             );
         };
         const [showInfo, setShowInfo] = useState()
+
         const label = {
             inputProps: {
                 'aria-label': 'accept_all_odds_change',
@@ -758,7 +759,6 @@ const BetslipSubmitForm = React.memo(
                                                         name={"accept_all_odds_change"}
                                                         checked={values?.accept_all_odds_change || false}
                                                         color="primary"
-
                                                         onChange={(e) => onFieldChanged(e)}
                                                 /> Accept any odds change
                                             </form>

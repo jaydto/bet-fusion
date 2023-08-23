@@ -400,7 +400,7 @@ const Index = React.memo(
                                             />
                                             <div
                                                 className={`text-center mt-2 text-white ${fetching ? 'd-block' : 'd-none'}`}>
-                                                <SkeletonLoaderMobile/>
+                                                {tab == 'countries' ? <Skeleton1/> :<SkeletonLoaderMobile/>}
                                             </div>
                                         </div>
 

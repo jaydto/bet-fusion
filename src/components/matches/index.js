@@ -1429,16 +1429,17 @@ export const MarketList = React.memo(
                     </div>
                     <div className="text-white market-groups-container">
                         {state?.market_groups?.length > 0 && <button onClick={() => filterMarketGroups('favorite')}
-                                                                     className={'market-group-pill text-white badge badge-pill badge-primary bg-transparent outline-1 p-2 border-white'}>
+                                                                     className={'market-group-pill text-white badge badge-pill badge-primary bg-transparent p-2'}>
                             Favorite Markets
                         </button>}
                         {state?.market_groups?.length > 0 && <button onClick={() => filterMarketGroups('all')}
-                                                                     className={'market-group-pill text-white badge badge-pill badge-primary bg-transparent outline-1 p-2 border-white'}>
+                                                                     autoFocus
+                                                                     className={'market-group-pill text-white badge badge-pill badge-primary bg-transparent p-2'}>
                             All Markets
                         </button>}
                         {state?.market_groups?.map((group) => (
                             <button
-                                className={'market-group-pill text-white badge badge-pill badge-primary bg-transparent outline-1 p-2 border-white'}
+                                className={'market-group-pill text-white badge badge-pill badge-primary bg-transparent p-2'}
                                 onClick={() => filterMarketGroups(group?.id)}>
                                 {group?.name}
                             </button>

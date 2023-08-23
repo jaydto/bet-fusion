@@ -8,21 +8,25 @@ git branch /*
     background-color: #fff;
     border-color: #d3e0e9;
 }
+
 .nav__betslip.boost-message-count {
-    height: 36px!important;
-    width: 36px!important;
+    height: 36px !important;
+    width: 36px !important;
 
 }
+
 #reason_for_self_exclusion {
     min-height: 8rem;
     background: var(--bet-history);
     color: var(--light);
 }
+
 .error-message {
     color: red;
     font-size: 15px;
 }
-#reason_for_self_exclusion::placeholder{
+
+#reason_for_self_exclusion::placeholder {
     color: var(--light);
 }
 
@@ -46,6 +50,7 @@ git branch /*
     flex-direction: column-reverse;
     display: flex;
 }
+
 /* general overrides */
 .b .c {
     line-height: 1.4;
@@ -180,36 +185,40 @@ git branch /*
     /* border-top-left-radius: 0px!important; */
     /* border-bottom-left-radius: 0px!important; */
 }
+
 .box-shadow-table-submit-form {
     /* box-shadow: 10px 10px 10px 10px var(--betnare-input); */
     padding: 5px;
     border-radius: 10px;
-     border: thin solid var(--betnare-input);
+    border: thin solid var(--betnare-input);
 }
-.pick-user-match{
+
+.pick-user-match {
     transform: scale(1.5);
-    color:var(--lite-top-color);
+    color: var(--lite-top-color);
 }
+
 .slip-message-alert {
     height: 5rem;
     /* width: 100vw; */
     display: inline-table;
     /* word-wrap: break-word; */
-    white-space: normal!important;
-    line-height: 15px!important;
+    white-space: normal !important;
+    line-height: 15px !important;
     color: green;
     border: thin solid var(--betnare-input);
     border-radius: 6px;
     align-items: center;
     display: flex;
 }
+
 .slip-message-alert {
     height: 5rem;
     /* width: 100vw; */
     display: inline-table;
     /* word-wrap: break-word; */
-    white-space: normal!important;
-    line-height: 15px!important;
+    white-space: normal !important;
+    line-height: 15px !important;
     color: green;
     border: thin solid var(--betnare-input);
     border-radius: 6px;
@@ -217,26 +226,33 @@ git branch /*
     display: flex;
     margin-bottom: 5px;
 }
-.slip-message-alert:empty{
-    display:none;
+
+.slip-message-alert:empty {
+    display: none;
 }
+
 #odd-change-text {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}#odd-change-text2 {
+}
+
+#odd-change-text2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+
 .slip-clear-all {
     padding-right: 8px;
 }
+
 .odd-change-position .odds-change-box {
     /* padding-left: 0px!important; */
     /*width: 16%;*/
     /*padding: 13px;*/
 }
+
 #betting input {
     color: var(--light);
     padding: 3px;
@@ -253,13 +269,16 @@ git branch /*
     box-sizing: border-box;
     line-height: 0.8;
 }
-.container-styling-input-placebet{
-    border-radius:10px;
+
+.container-styling-input-placebet {
+    border-radius: 10px;
 
 }
-.bg-input-placebet{
+
+.bg-input-placebet {
     background: var(--betnare-input);
 }
+
 .bg-input-placebet {
     height: 3.5rem;
     font-weight: 700;
@@ -274,6 +293,7 @@ git branch /*
     background: var(--betnare-primary);
     padding-right: 10px;
 }
+
 #quick-login a {
     color: #fff;
     background: #c91d56;
@@ -438,42 +458,50 @@ li.bet-option {
     width: 15%;
     padding: 9px;
 }
-.bet-align-left.nare-boost-color{
-    color:var(--lite-top-color)!important;
+
+.bet-align-left.nare-boost-color {
+    color: var(--lite-top-color) !important;
     /*font-weight: 800;*/
 }
+
 .show-values-betslip {
     font-size: 14px;
     padding-left: 10px;
 }
+
 .boost-betslip {
     font-size: 12.5px;
     /*padding-left: 11px;*/
 }
-.bet-align-right.nare-boost-color{
-    color:var(--lite-top-color)!important;
+
+.bet-align-right.nare-boost-color {
+    color: var(--lite-top-color) !important;
 }
+
 .bet-cancel input {
     border-radius: 10px !important;
     border-bottom: var(--transparent);
 }
-.bet-cancel input:focus{
-    border:none!important;
+
+.bet-cancel input:focus {
+    border: none !important;
 }
 
 .slip-bg {
     border-bottom: thin solid var(--slip-separator-color) !important;
     height: 7rem;
 }
-.picks-user-slip{
-    color:darkgrey;
+
+.picks-user-slip {
+    color: darkgrey;
     font-size: 11px !important;
 
 }
+
 .time-slip-value {
     font-size: 10px !important;
     opacity: 0.8;
-    color:lightgrey;
+    color: lightgrey;
 }
 
 .slip-bg:last-of-type {
@@ -504,7 +532,7 @@ li.bet-option {
     border-radius: 50% !important;
     font-size: 9px;
     font-weight: bolder !important;
-    background: var(--slip-separator-color)!important;
+    background: var(--slip-separator-color) !important;
 }
 
 .bet-align-left {
@@ -564,9 +592,10 @@ li.bet-option {
     float: left;
     width: auto;
     font-weight: bold;
-     display: flex;
+    display: flex;
     align-items: center;
 }
+
 .team-info-slip-list-kiron {
     float: left;
     width: auto;
@@ -609,6 +638,7 @@ li.bet-option {
     color: #000;
     border-radius: 0.7rem !important;
 }
+
 /*.place-bet-btn.jp-button{*/
 /*    background: var(--betnare-button-login)!important;*/
 /*}*/
@@ -787,15 +817,16 @@ li.bet-option {
 #jp-nare-pick-button:hover {
     color: orangered !important;
 }
+
 .market-groups-container {
     display: flex;
     margin-bottom: 5px;
     min-height: 3rem;
-    overflow-x: scroll!important;
-    position: -webkit-sticky!important;
-    position: sticky!important;
+    overflow-x: scroll !important;
+    position: -webkit-sticky !important;
+    position: sticky !important;
     position: sticky;
-    z-index:2001;
+    z-index: 2001;
 }
 
 .market-groups-container::-webkit-scrollbar {
@@ -803,12 +834,13 @@ li.bet-option {
 }
 
 .market-group-pill {
+    outline: none !important;
     border-radius: 15px !important;
-    background: var(--betnare-header-bg);
+    background: var(--betnare-odds-body);
     margin: 0px 4px;
     padding: 10px 5px;
     cursor: pointer;
-    min-width: 12rem;
+    border: 0.5px solid var(--betnare-odds-body);
 }
 
 .market-group-pill:focus {
@@ -816,6 +848,6 @@ li.bet-option {
     color: var(--black) !important;
 }
 
-.promo-inactive{
+.promo-inactive {
     opacity: 0.4 !important;
 }

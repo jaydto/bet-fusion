@@ -12,7 +12,6 @@ import {ToastContainer} from "react-toastify";
 import {marketChoiceOptions} from "./matches";
 import throttle from 'lodash/throttle';
 import SkeletonLoaderMobile from "./pages/skeletonLoadersWeb/SkeletonLoaderMobile";
-import MobileNav2 from "./mobile-navigation/MobileNav2";
 import Skeleton1 from "./skeleton/skeleton";
 import {getFromLocalStorage, setLocalStorage} from "./utils/local-storage";
 
@@ -372,9 +371,6 @@ const Index = React.memo(
                         <div className="gz home match-overflow ">
                             <div className="homepage mobile-full-height" ref={homePageRef}
                                  style={width < 991 ? {height: `${height}px`, overflowY: 'auto'} : {}}>
-                                {(sportValue === '79' || sportValue === null) &&
-                                    <MobileNav2/>}
-                                <CarouselLoader/>
                                 <div
                                     className={'filters-navigation gap-3 d-flex justify-content-between align-items-center'}>
                                     <MainTabs tab={location.pathname.replace("/", "")}/>
@@ -385,6 +381,7 @@ const Index = React.memo(
                                         }
                                     </div>
                                 </div>
+                                <CarouselLoader/>
                                 {loading ?
                                     <div className={`text-center mt-2 text-white d-block`}>
                                         {tab == 'countries' ? <Skeleton1/> : <SkeletonLoaderMobile/>}

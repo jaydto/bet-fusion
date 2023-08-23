@@ -118,43 +118,11 @@ const Sidebar = React.memo(
                 className={`vh-100 text-white sticky-top d-none d-md-none d-lg-block up container-sticky-top`}
             >
                 <ProSidebar
-                    style={{ backgroundColor: "#16202c !important" }}
                     image={false}
                     onToggle={handleToggleSidebar}
                     collapsed={collapsed}
                     toggled={toggled}
                 >
-                    <SidebarHeader>
-                        <div
-                            style={{
-                                padding: "5px",
-                                textTransform: "uppercase",
-                                fontWeight: "bold",
-                                fontSize: 14,
-                                letterSpacing: "1px",
-                                overflow: "hidden",
-                                textOverflow: "ellipsis",
-                                whiteSpace: "nowrap",
-                            }}
-                        >
-                            <div className="d-flex justify-content-end">
-              <span
-                  onClick={() => setCollapsed(!collapsed)}
-                  className={"cursor-pointer"}
-              >
-                {collapsed ? (
-                    <>
-                        Show <FontAwesomeIcon icon={faArrowRight} />
-                    </>
-                ) : (
-                    <>
-                        <FontAwesomeIcon icon={faArrowLeft} /> Hide
-                    </>
-                )}
-              </span>
-                            </div>
-                        </div>
-                    </SidebarHeader>
                     <SidebarContent>
                         <Menu iconShape="circle">
                             {competitions?.all_sports.map((competition, index) => (

@@ -12,8 +12,6 @@ const Header = React.lazy(() => import('../header/header'));
 const Footer = React.lazy(() => import('../footer/footer'));
 const SideBar = React.lazy(() => import('../sidebar/awesome/Sidebar'));
 const CarouselLoader = React.lazy(() => import('../carousel'));
-const MainTabs = React.lazy(() => import('../header/main-tabs'));
-const SearchBar = React.lazy(() => import('../header/search-bar'));
 const MatchList = React.lazy(() => import('../matches'));
 const Right = React.lazy(() => import('../right'));
 

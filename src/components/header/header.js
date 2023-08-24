@@ -75,7 +75,7 @@ const Header = React.memo(
         };
 
         const fetchData = useCallback(async () => {
-            let cached_categories = getFromLocalStorage('categories');
+            let cached_categories = getFromLocalStorage('sport_categories');
             let endpoint = "/v1/categories";
 
             if (!cached_categories) {
@@ -86,7 +86,7 @@ const Header = React.memo(
 
                 if (c_status === 200) {
                     setCompetitions(c_result);
-                    setLocalStorage('categories', c_result);
+                    setLocalStorage('sport_categories', c_result);
                 }
             } else {
                 setCompetitions(cached_categories);

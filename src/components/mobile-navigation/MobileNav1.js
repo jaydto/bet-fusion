@@ -30,7 +30,7 @@ const MobileNav1 = React.memo(
         const pathname = window.location.pathname;
 
         const fetchData = useCallback(async () => {
-            let cached_competitions = getFromLocalStorage('categories');
+            let cached_competitions = getFromLocalStorage('sport_categories');
             let endpoint = "/v1/categories";
 
             if (!cached_competitions) {
@@ -43,7 +43,7 @@ const MobileNav1 = React.memo(
                     // setSport(c_result);
                     dispatch({type: "SET", key: "sport", payload: c_result})
 
-                    setLocalStorage('categories', c_result);
+                    setLocalStorage('sport_categories', c_result);
 
                 } else {
                     fetchData()

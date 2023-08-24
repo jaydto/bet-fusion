@@ -75,7 +75,6 @@
     justify-content: space-evenly;
 }
 .card {
-    font-family: 'Montserrat', sans-serif;
     align-self: stretch;
     background-color: white;
     border-radius: 12px;
@@ -151,7 +150,6 @@ a.text-logout{
     color: #939393;
 }
 .transactions {
-    font-family: 'Montserrat', sans-serif;
     display: flex;
     position: relative;
     margin-top: 1.5rem;
@@ -278,7 +276,6 @@ a.text-logout{
     .header-profile-summary {
         display: flex;
         flex-direction: column;
-        /* font-family: 'Montserrat', sans-serif; */
         color: white;
         justify-content: space-between;
         margin-left: auto;
@@ -316,7 +313,6 @@ a.text-logout{
     .header-profile-summary {
         display: flex;
         flex-direction: column;
-        /* font-family: 'Montserrat', sans-serif; */
         color: white;
         justify-content: space-between;
         margin-left: auto;

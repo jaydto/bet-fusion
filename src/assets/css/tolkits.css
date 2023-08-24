@@ -222,17 +222,16 @@ input, select, textarea {
     background: #f98f06 !important;
 }
 
-@font-face {
-    font-family: 'GothamBold';
-    src: url('../fonts/GothamBold.eot');
-    src: url('../fonts/GothamBold.eot?#iefix&v=4.6.1') format('embedded-opentype'), url('../fonts/GothamBold.eot?v=4.6.1') format('woff2'), url('../fonts/GothamBold.woff?v=4.6.1') format('woff'), url('../fonts/GothamBold.ttf?v=4.6.1') format('truetype'), url('../fonts/GothamBold.svg?v=4.6.1#') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
+/*@font-face {*/
+/*    font-family: 'GothamBold';*/
+/*    src: url('../fonts/GothamBold.eot');*/
+/*    src: url('../fonts/GothamBold.eot?#iefix&v=4.6.1') format('embedded-opentype'), url('../fonts/GothamBold.eot?v=4.6.1') format('woff2'), url('../fonts/GothamBold.woff?v=4.6.1') format('woff'), url('../fonts/GothamBold.ttf?v=4.6.1') format('truetype'), url('../fonts/GothamBold.svg?v=4.6.1#') format('svg');*/
+/*    font-weight: normal;*/
+/*    font-style: normal;*/
+/*}*/
 
 
 html {
-    font-family: sans-serif;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
 }
@@ -277,7 +276,7 @@ video {
 }
 
 .gothb {
-    font-family: 'Roboto', sans-serif;
+
 }
 
 .header-menu li{
@@ -588,7 +587,6 @@ background: var(--betnare-body-bg)!important;
 
 .compt {
     color: #adb2c5;
-    font-family: 'gothambook';
 }
 
 .odds-up {
@@ -881,7 +879,6 @@ background: var(--betnare-body-bg)!important;
     justify-content: flex-start;
     color: #fff !important;
     font-size: 11px;
-    font-family: inherit;
     text-transform: uppercase;
     font-weight: bolder;
 }
@@ -1127,7 +1124,6 @@ background: var(--betnare-body-bg)!important;
 }
 
 .f-league {
-    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
 }
 
@@ -1199,7 +1195,6 @@ background: var(--betnare-body-bg)!important;
     float: left;
     padding-right: 6px;
     font-size: 17px !important;
-    font-family: arial;
 }
 
 .shrink-header {
@@ -1847,7 +1842,6 @@ events-header {
     /* padding: 30px 0; */
     margin: 5px 0;
     font-size: 15px;
-    font-family: arial;
     line-height: 35px;
 }
 
@@ -1870,7 +1864,6 @@ events-header {
     font-weight: bold;
     padding: 0;
     margin: 5px 0 0;
-    font-family: 'GothamBook';
     text-transform: lowercase;
     font-weight: bold;
     box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.2);
@@ -1887,7 +1880,6 @@ events-header {
     text-align: center;
     text-transform: uppercase;
     font-weight: bold;
-    font-family: 'GothamBook';
     text-transform: lowercase;
     font-weight: bold;
     background: #c91d56;
@@ -2210,7 +2202,6 @@ code,
 kbd,
 pre,
 samp {
-    font-family: monospace, monospace;
     font-size: 1em;
 }
 
@@ -2413,7 +2404,6 @@ input,
 button,
 select,
 textarea {
-    font-family: inherit;
     font-size: inherit;
     line-height: inherit;
     border: 2px solid #333;
@@ -2469,7 +2459,6 @@ img {
     margin-bottom: 5px;
     border-radius: 2px !important;
     font-size: 18px;
-    /*font-family: ;*/
 }
 
 .panel-header .header-text, .panel-header .start-time {
@@ -2518,7 +2507,6 @@ footer a {
 .teams p {
     margin: 0;
     text-transform: capitalize;
-    font-family: 'GothamBook', sans-serif;
     font-weight: 100;
     font-size: 12px;
 }
@@ -2557,7 +2545,6 @@ footer a {
 
 .social {
     padding-left: 0;
-    font-family: 'GothamBook', sans-serif;
     display: inline-block;
     float: right;
     text-transform: uppercase;
@@ -2646,13 +2633,11 @@ footer a {
     color: #1e1c1c;
     border-bottom: 0px solid #fff;
     padding: 30px 0;
-    font-family: arial;
     font-size: 15px;
     background: #A9A9A9;
 }
 
 .footer-info {
-    font-family: 'GothamBook', sans-serif;
     font-weight: normal;
     font-size: 13px;
     line-height: 18px;
@@ -2877,7 +2862,6 @@ nav .mobi {
     font-weight: 500;
     text-transform: uppercase;
     font-weight: normal !important;
-    /*font-family: 'Roboto', sans-serif;*/
 }
 
 .bet-option.warn {
@@ -2955,7 +2939,6 @@ h6,
 .db,
 .dc,
 .dd {
-    font-family: 'Roboto', sans-serif;
     font-weight: 600;
     line-height: 1.2;
     color: inherit;
@@ -3103,7 +3086,6 @@ p {
 
 .bigger-list li {
     margin-bottom: 8px;
-    font-family: 'GothamBook';
 }
 
 .quick-login .fm {
@@ -3406,7 +3388,7 @@ code,
 kbd,
 pre,
 samp {
-    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+
 }
 code {
     padding: 2px 4px;
@@ -3826,7 +3808,6 @@ input[type="checkbox"]:focus {
     padding-top: 10px;
     text-shadow: 3px 1px 1px #000;
     /* font-weight: bolder !important; */
-    font-family: arial;
 }
 
 .top-matches {
@@ -3923,21 +3904,18 @@ output {
     color: #999;
     opacity: 0.6;
     font-weight: 100 !important;
-    font-family: arial;
 }
 
 .form-control:-ms-input-placeholder {
     color: #999;
     opacity: 0.6;
     font-weight: 100 !important;
-    font-family: arial;
 }
 
 .form-control::-webkit-input-placeholder {
     color: #999;
     opacity: 0.6;
     font-weight: 100 !important;
-    font-family: arial;
 }
 
 .form-control::-ms-expand {
@@ -4584,19 +4562,13 @@ fieldset[disabled] .fm.fl {
 
 .sign-up.btn {
     padding: 7px 25px;
-    /* font-family: 'Roboto', sans-serif; */
     margin-right: 35px;
     font-size: 15px;
-    /* background-image: linear-gradient(#ed4381 30%, #c51759 80%); */
-    /* background-image: -webkit-linear-gradient(#ed4381 30%, #c51759 80%); */
-    /* background-image: -moz-linear-gradient(#ed4381 30%, #c51759 80%); */
-    /* background-image: -o-linear-gradient(#ed4381 30%, #c51759 80%); */
 }
 
 .ss.profile {
     padding-bottom: 7px;
     padding-top: 5px;
-    /*margin-right: 40px !important;*/
     width: auto;
     font-size: 12px;
     font-weight: normal;
@@ -6325,7 +6297,6 @@ select[multiple].eq > .fj > .cg {
 .sport > li {
     list-style-type: none;
     background: transparent !important;
-    font-family: 'gothambook';
     border-bottom: 1px solid #cdcdd1 !important;
 }
 
@@ -6341,7 +6312,6 @@ ul.sport {
     /* color: #dcdcdc; */
     /* font-size: 12px; */
     padding: 7px 0;
-    font-family: 'gothambook';
 }
 
 .basic-list li {
@@ -6352,7 +6322,6 @@ ul.sport {
     border: none !important;
     font-weight: normal !important;
     color: #444 !important;
-    font-family: arial;
     font-size: 20px !important;
 }
 
@@ -8824,7 +8793,6 @@ ul.sport {
 
     .sign-up.btn {
         padding: 7px 7px;
-        /* font-family: 'Roboto', sans-serif; */
         margin-right: 10px;
         font-size: 16px;
 
@@ -10817,7 +10785,6 @@ button.close {
     position: absolute;
     z-index: 1070;
     display: block;
-    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: normal;
     letter-spacing: normal;
@@ -10951,7 +10918,6 @@ button.close {
     display: none;
     max-width: 276px;
     padding: 1px;
-    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: normal;
     letter-spacing: normal;
@@ -11248,7 +11214,6 @@ button.close {
     width: 20px;
     height: 20px;
     line-height: 1;
-    font-family: 'Roboto', sans-serif;
 }
 
 .rr .rs:before {
@@ -11838,8 +11803,6 @@ button.close {
 
 body {
     letter-spacing: 0;
-    /*font-family:Graphik, sans-serif !important;*/
-    font-family: 'Roboto', sans-serif;
 }
 
 .df {
@@ -11868,7 +11831,6 @@ body {
 }
 
 .td {
-    font-family: 'Roboto', sans-serif;
 }
 
 .te {
@@ -16080,7 +16042,6 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     position: relative;
     transform: translate(-50%, -50%);
     left: 50%;
-    font-family: 'Roboto', sans-serif;
     letter-spacing: 5px;
     -webkit-background-clip: text;
     display: inline-block;
@@ -16379,7 +16340,6 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     border-collapse: collapse;
     margin: 25px 0;
     font-size: 0.9em;
-    font-family: 'Roboto', sans-serif;
     width: 98%;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     text-align: center;
@@ -16390,7 +16350,6 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     border-collapse: collapse;
     margin: 25px 0;
     font-size: 0.9em;
-    font-family: 'Roboto', sans-serif;
     width: 98%;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     text-align: center;
@@ -16691,7 +16650,6 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 
 /* start lmt */
 .sr-bb {
-    font-family: 'Roboto', sans-serif;
     text-align: left;
     background: #FFFFFF;
 }

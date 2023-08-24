@@ -17,7 +17,7 @@ const Countries = React.memo(
         const [competitions, setCompetitions] = useState(props?.competitions);
 
         const fetchData = useCallback(async () => {
-            let cached_competitions = getFromLocalStorage("categories");
+            let cached_competitions = getFromLocalStorage("sport_categories");
             let endpoint = "/v1/categories";
 
             if (!cached_competitions) {
@@ -28,7 +28,7 @@ const Countries = React.memo(
 
                 if (c_status === 200) {
                     setCompetitions(c_result);
-                    setLocalStorage("categories", c_result);
+                    setLocalStorage("sport_categories", c_result);
                 } else {
                     fetchData();
                 }
@@ -119,6 +119,7 @@ const Countries = React.memo(
                 >
                     <ProSidebar
                         style={{ backgroundColor: "#16202c !important", width: "100vw" }}
+                        className={'countries-container-desktop'}
                         image={false}
                     >
                         <SidebarContent>

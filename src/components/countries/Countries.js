@@ -136,6 +136,7 @@ const Countries = React.memo(
                                             display: "block",
                                             width:'22px'
                                         }}
+                                        effect="blur"
                                         src={getSportImageIcon(competition.sport_name)}
                                     /> Countries
                                 </div>
@@ -158,6 +159,7 @@ const Countries = React.memo(
                                                     }
                                                     icon={
                                                         <LazyLoadImage
+                                                            effect="blur"
                                                             style={{ borderRadius: "50%", height: "20px" }}
                                                             src={getSportImageIcon(
                                                                 country.category_name,

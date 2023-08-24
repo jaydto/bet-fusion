@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useRef} from 'react'
 import {Col, Row} from "antd";
 import authImg from '../../../assets/img/Logo.webp'
 import logo from '../../../assets/img/Logo.webp'
-import fire from '../../../assets/img/fire.webp'
+import fire from '../../../assets/svg/fire.svg'
 
 import {Link} from "react-router-dom";
 import {setLocalStorage} from "../../utils/local-storage";

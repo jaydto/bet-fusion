@@ -5,7 +5,7 @@ import {Form, Formik} from 'formik';
 import makeRequest from "../utils/fetch-request";
 import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import fire from "../../assets/img/fire.webp"
+import fire from "../../assets/svg/fire.svg"
 import {setLocalStorage} from '../utils/local-storage';
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {Link} from "react-router-dom";

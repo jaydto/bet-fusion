@@ -6,7 +6,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import {Button} from "react-bootstrap";
 import {StoreContext } from "../../../context/store"
-import LoginModal from "../../modals/LoginModal";
+
 
 const ShaksGames = React.memo(
     (props) => {
@@ -66,7 +66,6 @@ const ShaksGames = React.memo(
     return (
         <> 
 
-            {showLoadingModal && ( <LoginModal setShowLoadingModal={setShowLoadingModal} visible={showLoadingModal} location={location}/>)}
             {gamesLoaded && games?.map((game,index) => (
                 <div className={'col cursor-pointer'} key={index}>
                     <div

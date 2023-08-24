@@ -1,6 +1,6 @@
 import React from "react";
-import ReactGA from "react-ga4";
-import ReactPixel from 'react-facebook-pixel';
+// import ReactGA from "react-ga4";
+// import ReactPixel from 'react-facebook-pixel';
 
 export function trackEventToGTM(category, action, label) {
     window.dataLayer = window.dataLayer || [];
@@ -24,19 +24,19 @@ const useAnalyticsEventTracker = (category = 'Home', action = 'Page Visit') => {
         const gaCategory = action_data || action;
         const gaLabel = label || category;
 
-        trackEventToGTM(gaCategory, category, gaLabel);
+        // trackEventToGTM(gaCategory, category, gaLabel);
 
-        ReactGA.event(gaCategory,{
-            event:gaCategory,
-            eventAction:category,
-            eventData:gaLabel,
-        }) ;
+        // ReactGA.event(gaCategory,{
+        //     event:gaCategory,
+        //     eventAction:category,
+        //     eventData:gaLabel,
+        // }) ;
 
-        ReactPixel.track(gaCategory, {
-            event: gaCategory,
-            eventAction:category,
-            eventData: gaLabel
-        });
+        // ReactPixel.track(gaCategory, {
+        //     event: gaCategory,
+        //     eventAction:category,
+        //     eventData: gaLabel
+        // });
     };
     return eventTracker;
 };

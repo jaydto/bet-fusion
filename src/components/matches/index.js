@@ -15,14 +15,11 @@ import {
 import './matches.css'
 import {NumericFormat as CurrencyFormat} from 'react-number-format';
 import {LazyLoadImage} from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/blur.css';
 
-import padlock from '../../assets/img/padlock.png';
+import padlock from '../../assets/img/padlock.svg';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft, faCaretDown, faCaretRight, faChartLine, faShield, faStar} from "@fortawesome/free-solid-svg-icons";
 import {getFromLocalStorage} from "../utils/local-storage";
-
-import myGif from '../../assets/img/fire.webp'
 
 import {Input} from "@mui/material";
 import useWindowDimensions from "../header/Dimensions";

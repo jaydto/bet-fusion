@@ -1,5 +1,5 @@
 import {toast} from "react-toastify";
-import fire from "../../assets/img/fire.webp"
+import fire from "../../assets/svg/fire.svg"
 import React from "react";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 

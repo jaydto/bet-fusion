@@ -96,7 +96,7 @@ const Sidebar = React.memo(
             try {
                 sport_image = topLeagues
                     ? require(`../../../assets/img/${folder}/${sport_name}.svg`)
-                    : require(`../../../assets/svg/${folder}/${sport_name}.png`);
+                    : require(`../../../assets/svg/${folder}/${sport_name}.svg`);
             } catch (error) {
                 sport_image = require(`../../../assets/img/${default_img}.svg`);
             }

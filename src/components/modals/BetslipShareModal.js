@@ -1,7 +1,7 @@
 import React, {useRef, useState} from "react";
 import Modal from "react-bootstrap/Modal";
 import {Button} from "react-bootstrap";
-import whatsap from "../../assets/svg/whatsapp.svg"
+import {ReactComponent as whatsap} from "../../assets/svg/whatsapp.svg"
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 
 const BetslipShareModal = React.memo(

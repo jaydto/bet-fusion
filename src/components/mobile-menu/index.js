@@ -9,6 +9,12 @@ import makeRequest from "../utils/fetch-request";
 import {Badge} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faReceipt, faTimes,faClose} from "@fortawesome/free-solid-svg-icons";
+import {
+    UserOutlined ,
+    HomeOutlined,
+    FileProtectOutlined,
+    PhoneOutlined
+} from '@ant-design/icons';
 
 import {Link, useNavigate} from "react-router-dom";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";

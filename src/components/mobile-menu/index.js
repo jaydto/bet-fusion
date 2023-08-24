@@ -1,17 +1,9 @@
 import React, {useCallback, useContext, useEffect, useState} from "react";
 
-//images
-// import HomeSvg from "../../assets/img/mobile/home.png";
-// import LiveSvg from "../../assets/img/mobile/live.png";
-// import ProfileSvg from "../../assets/img/mobile/user.png";
-// import closeIcon from "../../../src/assets/img/mobile/close_icon.png"
-
 //SVGs
-import {ReactComponent as HomeSvg} from "../../assets/svg/home.svg"
-import { ReactComponent as LiveSvg} from "../../assets/svg/live.svg"
-import { ReactComponent as ProfileSvg} from "../../assets/svg/person.svg"
-
-
+import HomeSvg from "../../assets/svg/home.svg"
+import LiveSvg from "../../assets/svg/live.svg"
+import ProfileSvg from "../../assets/svg/person.svg"
 
 import makeRequest from "../utils/fetch-request";
 import {Badge} from "react-bootstrap";
@@ -174,7 +166,6 @@ const MobileMenu = React.memo((props) => {
                                             pill
                                             bg="warning nav__betslip boost-message-count gap-3  d-flex justify-content-center align-items-center text-dark"
                                         >
-                                            {/*fixed size 50 for bets clicked*/}
                                             {jackpot === true && jackpot != undefined || pathname == "/betslip-jackpot" ? getJackpotBetslip() != null ?
                                                 <strong>{Object.keys(getJackpotBetslip())?.length}</strong> : <strong
                                                     className={'badge-font-weight'}>0</strong> : kiron == true || pathname == "/betslip-nare" ? getKironSlip() != null ? Object.keys(getKironSlip()).length :
@@ -238,7 +229,9 @@ const MobileMenu = React.memo((props) => {
                                         to={"/"}
                                         onClick={() => gaEventTracker("Visit Homepage")}
                                     >
-                                        <LazyLoadImage src={HomeSvg} alt="" style={{width: "30px", height: "25px"}}/>
+                                        <LazyLoadImage src={HomeSvg} alt=""
+                                        effect="blur"
+                                        style={{width: "30px", height: "25px"}}/>
                                         <p>Home</p>
                                     </Link>
                                 </td>
@@ -248,7 +241,9 @@ const MobileMenu = React.memo((props) => {
                                         to={`/live`}
                                         onClick={() => gaEventTracker("Visit Live  Page")}
                                     >
-                                        <LazyLoadImage src={LiveSvg} alt=""/>
+                                        <LazyLoadImage src={LiveSvg} 
+                                        effect="blur"
+                                        alt=""/>
                                         {liveSports?.forEach((sport) => {
                                             totalCount += sport.count;
                                         })}
@@ -267,7 +262,7 @@ const MobileMenu = React.memo((props) => {
                                             pill
                                             bg="warning nav__betslip d-flex justify-content-center align-items-center text-dark"
                                         >
-                                            {/*fixed size 50 for bets clicked*/}
+                                    
                                             {jackpot === true && jackpot != undefined || pathname == "/betslip-jackpot" ? getJackpotBetslip() != null ?
                                                 <strong>{Object.keys(getJackpotBetslip())?.length}</strong> : <strong
                                                     className={'badge-font-weight'}>0</strong> : kiron == true || pathname == "/betslip-nare" ? getKironSlip() != null ? Object.keys(getKironSlip()).length :
@@ -296,7 +291,9 @@ const MobileMenu = React.memo((props) => {
                                         to={"/profile"}
 
                                     >
-                                        <LazyLoadImage src={ProfileSvg} alt=""/>
+                                        <LazyLoadImage src={ProfileSvg}
+                                        effect="blur"
+                                        alt=""/>
                                         <p>Profile</p>
                                     </Link>
                                 </td>) : (<td className={`bloc-icon ${pathname === "/login" ? "active" : ""}`}>
@@ -305,6 +302,7 @@ const MobileMenu = React.memo((props) => {
 
                                         >
                                             <LazyLoadImage src={ProfileSvg} alt=""
+                                            effect="blur"
                                                            style={{width: "30px", height: "25px"}}/>
                                             <p>Profile</p>
                                         </Link>

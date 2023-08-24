@@ -1,25 +1,15 @@
 import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
 import {Link, useNavigate} from "react-router-dom";
 
-import 'react-lazy-load-image-component/src/effects/blur.css';
-
 //Images
-
-import aviator from "../../../src/assets/img/aviator.webp"
+import aviator from "../../../src/assets/img/Aviator.svg"
 import league from "../../../src/assets/img/kiron/nare-league.webp"
 
-
 //SVGs
-
-import {ReactComponent as soccer }from "../../assets/svg/sports/Soccer.svg"
-
-import {ReactComponent as  casino1} from "../../assets/svg/casino.svg"
-
-import {ReactComponent as jackpot} from "../../assets/svg/jackpot.svg"
-import {ReactComponent as promo} from "../../assets/svg/fire.svg"
-
-
-
+import soccer from "../../assets/svg/sports/Soccer.svg"
+import casino1 from "../../assets/svg/casino.svg"
+import jackpot from "../../assets/svg/jackpot.svg"
+import promo from "../../assets/svg/fire.svg"
 
 import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
 import makeRequest from "../utils/fetch-request";
@@ -29,8 +19,7 @@ import {StoreContext } from "../../context/store";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 
 const MobileNav1 = React.memo(
-    () => {
-      
+    () => {    
 
         const { state, dispatch } = useContext(StoreContext);
 
@@ -109,6 +98,7 @@ const MobileNav1 = React.memo(
                                         className="side-icon"
                                         src={soccer}
                                         alt=""
+                                        effect='blur'
                                         style={{height: "23px", marginTop: "-6px"}}
                                     />
                                 </div>
@@ -128,6 +118,7 @@ const MobileNav1 = React.memo(
                                         className="side-icon"
                                         src={league}
                                         alt=""
+                                        effect='blur'
                                         style={{height: "23px", marginTop:"-6px"}}
                                     />
                                     <span className=" hot-alert-badge">HOT</span>
@@ -153,6 +144,7 @@ const MobileNav1 = React.memo(
                                         className="side-icon aviator"
                                         src={aviator}
                                         alt=""
+                                        effect='blur'
                                         style={{height: "23px", marginTop: "-6px", width:'30px'}}
                                     />
                                 </div>
@@ -177,6 +169,7 @@ const MobileNav1 = React.memo(
                                         className="side-icon football-x"
                                         src={jackpot}
                                         alt=""
+                                        effect='blur'
                                         style={{height: "23px", marginTop: "-6px"}}
                                     />
                                 </div>
@@ -203,6 +196,7 @@ const MobileNav1 = React.memo(
                                         className="side-icon"
                                         src={casino1}
                                         alt=""
+                                        effect='blur'
                                         style={{height: "23px", marginTop: "-6px"}}
                                     />
                                 </div>
@@ -230,6 +224,7 @@ const MobileNav1 = React.memo(
                                                 className="side-icon"
                                                 src={getSportImageIcon(allsports?.sport_name)}
                                                 alt=""
+                                                effect='blur'
                                                 style={{height: "23px", marginTop: "-6px"}}
                                             />
                                         </div>
@@ -242,25 +237,6 @@ const MobileNav1 = React.memo(
                         );
                     })}
 
-                    {/*<td  className={`menu-t m-auto sport-check  ${pathname===`/affiliate`?"active_link":""}`}  >*/}
-                    {/*    <Link className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center `} onClick={() => gaEventTracker('Visit Affiliate Page')}  to={`/affiliate`}   >*/}
-                    {/*        <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>*/}
-                    {/*            <div className="menu-img ">*/}
-                    {/*                <LazyLoadImage*/}
-                    {/*                    className="side-icon"*/}
-                    {/*                    src={Affiliate}*/}
-                    {/*                    alt=""*/}
-                    {/*                    style={{height: "23px", marginTop:"-6px"}}*/}
-                    {/*                />*/}
-                    {/*            </div>*/}
-                    {/*            <p style={{textAlign: "center"}}>*/}
-                    {/*                Affiliate*/}
-                    {/*            </p>*/}
-                    {/*        </div>*/}
-                    {/*    </Link>*/}
-
-                    {/*</td>*/}
-
                     <td className={`menu-t m-auto sport-check ${pathname === `/promotions` ? "active_link" : ""} `}>
                         <Link
                             className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `}
@@ -271,6 +247,7 @@ const MobileNav1 = React.memo(
                                         className="side-icon"
                                         src={promo}
                                         alt=""
+                                        effect='blur'
                                         style={{height: "23px", marginTop: "-6px"}}
                                     />
                                     <span className="badge rounded-pill bg-warning text-dark promo-count ">

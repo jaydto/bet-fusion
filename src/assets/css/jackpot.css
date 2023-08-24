@@ -20,7 +20,6 @@
 .jp-banner-image {
     max-height: 208px;
     height: 208px;
-    /*background:  linear-gradient(0deg, rgba(21, 17, 17, 0.54), rgba(28, 20, 25, 0.69)),url(http://localhost:3000/static/media/jackpot-bg.32ade9e2e4e1081ebf7e.jpg);*/
 }
 
 
@@ -49,15 +48,6 @@
     display: none;
 }
 
-.count-down-jackpot .days{
-
-}.count-down-jackpot .hours{
-
-}.count-down-jackpot minutes{
-
-}.count-down-jackpot .seconds{
-
-}
 .predict {
     display: flex;
     flex-direction: column;
@@ -84,12 +74,7 @@
     color: var(--gold);
     font-weight: 600;
 }
-.jackpot-counter-time{
 
-}
-.jackpot-pages-information{
-
-}
 .jackpot-page{
     margin-bottom:10rem;
 }
@@ -119,11 +104,9 @@
 }
 .flex-item.jackpot-container >div {
     background: var(--betnare-primary);
-    /* border: 3px solid #ffcc80; */
     border-radius: 5px;
     padding: 0px 0px!important;
     height: max-content;
-    /* overflow-y: scroll; */
 }
 .jackpot-page-structure{
     background:var(--betnare-body-bg)
@@ -249,18 +232,12 @@
         width: 100%;
         background-size: cover!important;
         background: url('../../assets/img/banner/products/mobile-jp.jpg');;
-        /* background: linear-gradient(0deg, rgba(20, 29, 40, 0.94), rgba(20, 29, 40, 0.84)),url(http://localhost:3000/static/media/jackpot-bg.32ade9e2e4e1081ebf7e.jpg); */
     }
 }
 
-/*.predict-prices{*/
-/*    animation: slide-left 10s infinite;*/
-/*    animation-delay: 1s;*/
-/*}*/
 .text-header-jackpot p {
     overflow: hidden;
     font-weight: 600;
-    /*animation: slide-left 10s infinite;*/
     animation-delay: 1s;
     color: var(--gold);
 }

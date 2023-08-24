@@ -5,10 +5,8 @@ import {StoreContext} from "../context/store"
 import useInterval from "../hooks/set-interval.hook";
 import {getBetslip} from './utils/betslip';
 import './test.css'
-import useWindowDimensions from "./header/Dimensions";
 import {ToastContainer} from "react-toastify";
 import SkeletonLoaderMobile from "./pages/skeletonLoadersWeb/SkeletonLoaderMobile";
-import MobileNav2 from "./mobile-navigation/MobileNav2";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -29,7 +27,6 @@ const CompetitionMatches = React.memo(
         const [fetching, setFetching] = useState(false)
         const [reset, setReset] = useState(0);
         const [shouldFetch, setShouldFetch] = useState(true);
-        let sportValue = new URL(window.location).searchParams.get('sport_id')
 
 
         const findPostableSlip = () => {
@@ -127,8 +124,6 @@ const CompetitionMatches = React.memo(
                         <div className="gz home match-overflow ">
                             <div className="gz home match-overflow">
                                 <div className="homepage mobile-full-height">
-                                    {(sportValue==='79'||sportValue===null)&&
-                                        <MobileNav2/>}
                                     <CarouselLoader/>
                                     {fetching?
                                         <SkeletonLoaderMobile/>:
@@ -147,8 +142,6 @@ const CompetitionMatches = React.memo(
                     <div className="item3">
                         <Right betslipValidationData={userSlipsValidation} test={true}/>
                     </div>
-
-
                 </div>
                 <div className="item6">
                     <div className={"footer-mobile-none"}>

@@ -2,7 +2,7 @@ import React, {useCallback, useContext, useEffect, useRef, useState} from 'react
 import {Link, useNavigate} from "react-router-dom";
 
 //Images
-import aviator from "../../../src/assets/img/Aviator.svg"
+import aviator from "../../../src/assets/svg/sports/aviator.svg"
 import league from "../../../src/assets/img/kiron/nare-league.webp"
 
 //SVGs
@@ -14,14 +14,14 @@ import promo from "../../assets/svg/fire.svg"
 import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
 import makeRequest from "../utils/fetch-request";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
-import {StoreContext } from "../../context/store";
+import {StoreContext} from "../../context/store";
 
 import {LazyLoadImage} from "react-lazy-load-image-component";
 
 const MobileNav1 = React.memo(
     () => {
 
-        const { state, dispatch } = useContext(StoreContext);
+        const {state, dispatch} = useContext(StoreContext);
 
         const scrollContainerRef = useRef(null);
 
@@ -87,7 +87,7 @@ const MobileNav1 = React.memo(
             <table className="menu-table" style={{width: "100%", textAlign: "center", marginLeft: "-9px"}}>
                 <tbody>
                 <tr className={"tr-style mobile-nav-top"} ref={scrollContainerRef}>
-                    <td className={`menu-t m-auto   sport-check  ${pathname==="/" || Number(state?.active_sport)===79 ? "active_link" : ""}`}>
+                    <td className={`menu-t m-auto   sport-check  ${pathname === "/" || Number(state?.active_sport) === 79 ? "active_link" : ""}`}>
                         <Link
                             className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center  `}
                             onClick={() => gaEventTracker('Visit Home Page')} to={`/`}>
@@ -102,15 +102,17 @@ const MobileNav1 = React.memo(
                                         style={{height: "23px", marginTop: "-6px"}}
                                     />
                                 </div>
-                                <p style={{textAlign: "center"}}>
+                                <p style={{textAlign: "center", marginBottom: "unset"}}>
                                     Soccer
                                 </p>
                             </div>
                         </Link>
 
                     </td>
-                    <td  className={`menu-t m-auto sport-check nare-league ${pathname.includes('/nare-league')?"active_link":""}`}  >
-                        <Link className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `} onClick={() => gaEventTracker('Visit Nare League Page')}  to={`/nare-league`}   >
+                    <td className={`menu-t m-auto sport-check nare-league ${pathname.includes('/nare-league') ? "active_link" : ""}`}>
+                        <Link
+                            className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `}
+                            onClick={() => gaEventTracker('Visit Nare League Page')} to={`/nare-league`}>
                             <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center  `}>
 
                                 <div className="menu-img  ">
@@ -119,17 +121,17 @@ const MobileNav1 = React.memo(
                                         src={league}
                                         alt=""
                                         effect='blur'
-                                        style={{height: "39px", marginTop:"-11px"}}
+                                        style={{height: "39px", marginTop: "-11px"}}
                                     />
                                     <span className=" hot-alert-badge">HOT</span>
 
                                 </div>
-                                <p style={{textAlign: "center"}}>
+                                <p style={{textAlign: "center", marginBottom: "unset"}}>
                                     League
                                 </p>
                             </div>
                         </Link>
-                        </td>
+                    </td>
 
                     <td className={`menu-t m-auto sport-check  ${pathname.includes('aviator') ? "active_link" : ""}`}>
                         <Link to={"/nare-games/aviator"}
@@ -145,10 +147,10 @@ const MobileNav1 = React.memo(
                                         src={aviator}
                                         alt=""
                                         effect='blur'
-                                        style={{height: "23px", marginTop: "-6px", width:'30px'}}
+                                        style={{height: "23px", marginTop: "-6px", width: '30px'}}
                                     />
                                 </div>
-                                <p style={{textAlign: "center"}}>
+                                <p style={{textAlign: "center", marginBottom: "unset"}}>
                                     Aviator
                                 </p>
                             </div>
@@ -173,7 +175,7 @@ const MobileNav1 = React.memo(
                                         style={{height: "23px", marginTop: "-6px"}}
                                     />
                                 </div>
-                                <p style={{textAlign: "center"}}>
+                                <p style={{textAlign: "center", marginBottom: "unset"}}>
                                     Jackpot
                                 </p>
                             </div>
@@ -200,7 +202,7 @@ const MobileNav1 = React.memo(
                                         style={{height: "23px", marginTop: "-6px"}}
                                     />
                                 </div>
-                                <p style={{textAlign: "center"}}>
+                                <p style={{textAlign: "center", marginBottom: "unset"}}>
                                     Casino
                                 </p>
                             </div>
@@ -228,7 +230,7 @@ const MobileNav1 = React.memo(
                                                 style={{height: "23px", marginTop: "-6px"}}
                                             />
                                         </div>
-                                        <p style={{textAlign: "center"}}>
+                                        <p style={{textAlign: "center", marginBottom: "unset"}}>
                                             {allsports?.sport_name}
                                         </p>
                                     </div>

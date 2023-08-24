@@ -3,7 +3,6 @@ import {Link, useNavigate} from "react-router-dom"
 import Row from 'react-bootstrap/Row';
 import {StoreContext} from "../../context/store";
 import {getFromLocalStorage, setLocalStorage} from '../utils/local-storage';
-import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import makeRequest from '../utils/fetch-request';
 import 'react-lazy-load-image-component/src/effects/blur.css';

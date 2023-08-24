@@ -7699,6 +7699,7 @@ ul.sport {
         background: #16202C!important;
         /* background: orange!important; */
         -webkit-overflow-scrolling: touch;
+        height:63px;
     }
     .betslip td.tax-info {
         padding: 10px 4px!important;

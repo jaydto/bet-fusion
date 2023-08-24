@@ -138,7 +138,7 @@ const MobileMenu = React.memo((props) => {
                    style={!pathSlipSummary.includes(pathname) ? sumOfOdds === 1 ? {height: "70px"} : countInfo ? {height: "92px"} : {height: "70px"} : {height: "53px"}}>
                 <tbody>
                 {slip_condition ?
-                    <tr className={"mobile-menu-container"}>
+                    <tr className={"mobile-menu-container"} onClick={()=>navigate("/betslip-slip")}>
                         <table>
                             <tbody className={"slip-menu-prematch"}>
                             <tr>
@@ -152,8 +152,6 @@ const MobileMenu = React.memo((props) => {
                                                         icon={faClose}
                                                         className={"align-self-center"}
                                                     />
-                                                    {/*<img src={closeIcon} className={"close-icon-alert"}*/}
-                                                    {/*     onClick={() => removeCountInformation()}/>*/}
                                                 </div>
 
                                             </div>
@@ -164,11 +162,10 @@ const MobileMenu = React.memo((props) => {
 
                         </tr>
                         {!pathSlipSummary.includes(pathname) &&
-                            <tr className={`${slip_condition ? "info_bet_alert" : "info-slip-bets"} d-flex w-100 justify-content-between px-3`}>
+                            <tr className={`${slip_condition ? "info_bet_alert" : "info-slip-bets"} d-flex w-100 justify-content-between px-3`} onClick={()=>navigate("/betslip-slip")}>
                                 <td className={"bet-align-left-slip"}>
                                     <div className={"d-flex justify-content-start align-items-center gap-2"}>
                                         <Badge
-                                            onClick={()=>navigate("/betslip-slip")}
                                             pill
                                             bg="warning nav__betslip boost-message-count gap-3  d-flex justify-content-center align-items-center text-dark"
                                         >
@@ -247,7 +244,7 @@ const MobileMenu = React.memo((props) => {
                                         to={`/live`}
                                         onClick={() => gaEventTracker("Visit Live  Page")}
                                     >
-                                        <LazyLoadImage src={LiveSvg} 
+                                        <LazyLoadImage src={LiveSvg}
                                         effect="blur"
                                         alt=""/>
                                         {liveSports?.forEach((sport) => {
@@ -268,7 +265,7 @@ const MobileMenu = React.memo((props) => {
                                             pill
                                             bg="warning nav__betslip d-flex justify-content-center align-items-center text-dark"
                                         >
-                                    
+
                                             {jackpot === true && jackpot != undefined || pathname == "/betslip-jackpot" ? getJackpotBetslip() != null ?
                                                 <strong>{Object.keys(getJackpotBetslip())?.length}</strong> : <strong
                                                     className={'badge-font-weight'}>0</strong> : kiron == true || pathname == "/betslip-nare" ? getKironSlip() != null ? Object.keys(getKironSlip()).length :
@@ -294,9 +291,7 @@ const MobileMenu = React.memo((props) => {
 
                                 {state?.user ? (<td className={`bloc-icon ${pathname === "/profile" ? "active" : ""}`}>
                                     <Link
-                                        to={"/profile"}
-
-                                    >
+                                        to={"/profile"}>
                                         <LazyLoadImage src={ProfileSvg}
                                         effect="blur"
                                         alt=""/>
@@ -304,9 +299,7 @@ const MobileMenu = React.memo((props) => {
                                     </Link>
                                 </td>) : (<td className={`bloc-icon ${pathname === "/login" ? "active" : ""}`}>
                                         <Link
-                                            to={"/login"}
-
-                                        >
+                                            to={"/login"}>
                                             <LazyLoadImage src={ProfileSvg} alt=""
                                             effect="blur"
                                                            style={{width: "30px", height: "25px"}}/>

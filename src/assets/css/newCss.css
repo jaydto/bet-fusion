@@ -2099,6 +2099,9 @@ img.nare-league {
 }
 
 @media (max-width: 991px) {
+    .main-navigations{
+        top:0rem!important;
+    }
     .home-tabs-filters-active{
         font-size:15px!important;
     }
@@ -2109,8 +2112,9 @@ img.nare-league {
         display:none!important;
     }
     .filters-navigation {
-        padding-top: 10px;
-        height: 35px;
+        padding-top: 0px;
+        height: 27px;
+        padding-bottom:0px;
     }
     .myButton.markets-button{
         line-height:2.1!important;
@@ -3271,7 +3275,7 @@ img.nare-league {
 
     .top-nav-login {
         padding-top: 0px;
-        height: auto !important;
+        /*height: 100px !important;*/
         padding-bottom: 0px !important;
     }
 

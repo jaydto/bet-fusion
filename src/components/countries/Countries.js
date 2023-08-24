@@ -85,7 +85,7 @@ const Countries = React.memo(
             try {
                 sport_image = topLeagues
                     ? require(`../../assets/img/${folder}/${sport_name}.svg`)
-                    : require(`../../assets/svg/${folder}/${sport_name}.png`);
+                    : require(`../../../src/assets/svg/${folder}/${sport_name}.svg`);
             } catch (error) {
                 sport_image = require(`../../assets/img/${default_img}.svg`);
             }
@@ -128,7 +128,7 @@ const Countries = React.memo(
                                 key={index}
                                 title={"Countries"}
                                 >
-                                <div className={"d-flex gap-3 w-100 align-items-center px-2"}>
+                                <div className={"d-flex gap-3 w-100 align-items-center px-3"}>
                                     <LazyLoadImage
                                         style={{
                                             borderRadius: "50%",

@@ -1,6 +1,5 @@
-import React, {useContext} from "react";
+import React from "react";
 
-import {getFromLocalStorage} from "../utils/local-storage";
 import {Button} from "react-bootstrap";
 import LobbySearchField from "./lobbySearchField";
 
@@ -10,9 +9,9 @@ const LobbyCategoriesAndFilters = React.memo(
 		// const data=getFromLocalStorage('lobby_categories')
 		const categories=category_data
 		// console.log("category_data_for_filters",categories)
-		// const getCategoryGames=(category)=>{
-			// console.log("category",category)
-		// }
+		const getCategoryGames=(category)=>{
+			console.log("category",category)
+		}
 
 	return (
 		<div className="col-md-12 casino-scroll" >

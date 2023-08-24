@@ -96,7 +96,7 @@ const Casino = React.memo(
                                         <SearchComponent data={games}/>
                                     </div>
                                     <div className="col">
-                                        <div className={'row text-white p-2 shadow-sm'}>
+                                        <div className={'row text-white p-2 shadow-sm justify-content-center'}>
                                             {state?.casino_search !== undefined && state?.casino_search.length > 0 ? state?.casino_search?.map((search_game, index) => (
                                                     search_game?.game_id == "rgs-vsv" ? "" :
                                                         <div key={index}
@@ -109,8 +109,10 @@ const Casino = React.memo(
                                                                     <p className={'text-center bold text-elipsis text-uppercase'}>
                                                                         {search_game?.game_name}
                                                                     </p>
-                                                                    <LazyLoadImage src={`${search_game.game_icon}`}
-                                                                                   className={'virtual-game-image'}/>
+                                                                    <LazyLoadImage
+                                                                        effect={'blur'}
+                                                                        src={`${search_game.game_icon}`}
+                                                                                   className={'virtual-game-image vw-100'}/>
                                                                 </div>
                                                                 <div className="overlay shadow-sm row">
                                                                     <ButtonGroup aria-label="Basic example">
@@ -140,7 +142,8 @@ const Casino = React.memo(
                                                                             {game?.game_name}
                                                                         </p>
                                                                         <LazyLoadImage src={`${game.game_icon}`}
-                                                                                       className={'virtual-game-image'}/>
+                                                                                       effect={'blur'}
+                                                                                       className={'virtual-game-image vw-100'}/>
                                                                     </div>
                                                                     <div className="overlay shadow-sm row">
                                                                         <ButtonGroup aria-label="Basic example">

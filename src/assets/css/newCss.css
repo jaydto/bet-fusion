@@ -1124,7 +1124,7 @@ input[type="radio"], input[type="checkbox"] {
     max-height:16px;
 }
 .amt-virtual{
-    margin-top:89px;
+    margin-top:98px;
 }
 
 .custom-fullscreen-wrapper.active {
@@ -1325,7 +1325,7 @@ img.nare-league {
         line-height:2;
     }
     .c-btn-group> .c-btn {
-        height: 40px!important;
+        height: 32px!important;
         line-height: 30px!important;
         font-weight: 400;
         min-width: 40px;
@@ -3271,7 +3271,7 @@ img.nare-league {
 
     .top-nav-login {
         padding-top: 0px;
-        min-height: 72px;
+        height: auto !important;
         padding-bottom: 0px !important;
     }
 

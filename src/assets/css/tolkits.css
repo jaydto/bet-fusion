@@ -69,7 +69,7 @@ input, select, textarea {
         font-size:9px;
     }
     .slip-body {
-        width: 50%;
+        width: 100%;
         line-height: 6px !important;
     }
 }
@@ -280,17 +280,39 @@ video {
     font-family: 'Roboto', sans-serif;
 }
 
+.header-menu li{
+    position:relative;
+    text-align: center;
+}
 .header-menu li.active {
-    background-color: #3f6878;
-    border-bottom: 2px solid #ffc428;
+    border-bottom: none!important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .header-menu{
     background: var(--betnare-body-bg);
 }
 
-.header-menu a.active {
-    border-bottom: 2px solid #dfbc64;
+.header-menu li.active:after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 5px;
+    left: 50%;
+    transform: translate(-50%);
+    background: var(--betnare-button-login);
+    bottom: 0;
+    border-bottom: none;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.header-menu li.active a strong{
+    color:var(--betnare-button-login)!important;
+    font-weight:700;
 }
 
 .betslip::-webkit-scrollbar {
@@ -2067,7 +2089,7 @@ events-header {
 /*todo changed styling of buttons*/
 .matches .top-matches button {
     height: 30px;
-    border-radius: 20px !important;
+    border-radius: 15px !important;
     margin-right: 4px;
     outline: none;
     box-sizing: border-box;
@@ -2443,6 +2465,7 @@ img {
     padding: 10px;
     margin-top: 0px;
     line-height: 1;
+    border: 1px solid #101B25;
     margin-bottom: 5px;
     border-radius: 2px !important;
     font-size: 18px;
@@ -8875,7 +8898,7 @@ ul.sport {
         align-items: center;
         overflow-x: auto;
         padding-left: 0px;
-        background: var(--betnare-body-bg) !important;
+        background: #162024;
         padding-top: 6px;
         height: 4.2rem;
         margin-top: -7px;
@@ -15405,9 +15428,14 @@ img.zoom-img {
     .virtual-game-container{
         width:100%;
     }
-    .virtual-width{
-        width:33%;
-        margin:auto;
+    .virtual-width {
+        width: 16.5%;
+        height: 27rem;
+        max-height: 26rem;
+    }
+    .virtual-game-container div img{
+        width: 100%;
+        max-height: 18rem!important;
     }
     .font-slip{
         font-size:11px;

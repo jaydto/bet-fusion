@@ -145,7 +145,6 @@ const Countries = React.memo(
                                         iconShape="circle" className="100vw"
                                         title={"Countries"}
                                         style={{
-                                            maxHeight: "300px",
                                             overflowY: "auto",
                                             overflowX: "hidden",
                                         }}

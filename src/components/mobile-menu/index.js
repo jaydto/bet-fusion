@@ -168,6 +168,7 @@ const MobileMenu = React.memo((props) => {
                                 <td className={"bet-align-left-slip"}>
                                     <div className={"d-flex justify-content-start align-items-center gap-2"}>
                                         <Badge
+                                            onClick={()=>navigate("/betslip-slip")}
                                             pill
                                             bg="warning nav__betslip boost-message-count gap-3  d-flex justify-content-center align-items-center text-dark"
                                         >

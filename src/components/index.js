@@ -146,7 +146,7 @@ const Index = React.memo(
 
         const fetchData = useCallback(async () => {
             // setFetching(true)
-            setLoading(true)
+            // setLoading(true)
             let tab = location.pathname.replace("/", "") || 'highlights';
             let tabInfo = window.location.pathname
             tabInfo = tabInfo.substring(tabInfo.lastIndexOf('/') + 1)
@@ -397,7 +397,7 @@ const Index = React.memo(
                                             />
                                             <div
                                                 className={`text-center mt-2 text-white ${fetching ? 'd-block' : 'd-none'}`}>
-                                                <SkeletonLoaderMobile/>
+                                                {tab == 'countries' ? <Skeleton1/> :<SkeletonLoaderMobile/>}
                                             </div>
                                         </div>
 

@@ -1500,8 +1500,8 @@ export const JackpotMatchList = React.memo(
         return (
             <div className="matches full-width mt-1 ">
                 <MatchHeaderRow jackpot={true} first_match={matches ? matches[0] : []}/>
-                <div className={'row d-flex flex-row justify-content-between shadow-lg '}>
-                    <div className="col-md-12 text-center shadow-lg">
+                <div className={'row d-flex flex-row justify-content-between'}>
+                    <div className="col-md-12 text-center">
                         <div className={'text-white col text-header-jackpot'}>
                             <p>Wekelea Jackpot Bet bila worries na Nare Auto pick.</p>
                         </div>

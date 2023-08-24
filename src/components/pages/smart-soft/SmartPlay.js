@@ -83,8 +83,8 @@ const SmartPlay = React.memo(
 
         // // Function to update the iframe height
         const updateIframeHeight = useCallback(() => {
-            console.log("this was called to resize", maxIframeHeight)
-            setIframeHeight(isCustomFullscreen ? 800 : 700); // Set the fixed height here
+            // console.log("this was called to resize", maxIframeHeight)
+            setIframeHeight(isCustomFullscreen ? 660 : 800); // Set the fixed height here
         }, []);
 
 
@@ -101,47 +101,71 @@ const SmartPlay = React.memo(
             };
         }, [updateIframeHeight, isCustomFullscreen]);
 
+        useEffect(() => {
+            const handleEsc = (event) => {
+                if (event.key === 'Escape') {
+                    setCustomFullscreen(false);
+                }
+            };
+
+            window.addEventListener('keydown', handleEsc);
+
+            return () => {
+                window.removeEventListener('keydown', handleEsc);
+            };
+        }, []); // Empty dependency array to run the effect only on mount and unmount
+
+
+
+
+
         const toggleFullscreen = () => {
-            // const element = document.documentElement; // Fullscreen the whole document
+            const element = document.documentElement; // Fullscreen the whole document
+            // console.log("Element fullscreen is now ... ",element)
 
             if (!isCustomFullscreen) {
-                // try {
-                //     if (element?.requestFullscreen) {
-                //         element?.requestFullscreen();
-                //     } else if (element?.mozRequestFullScreen) {
-                //         element?.mozRequestFullScreen();
-                //     } else if (element?.webkitRequestFullscreen) {
-                //         element?.webkitRequestFullscreen();
-                //     } else if (element?.msRequestFullscreen) {
-                //         element?.msRequestFullscreen();
-                //     }
-                // } catch (err) {
-                //     //there was an error encountered
-                //     console.error("error_message", err)
-                // }
-
+                try {
+                    if (element?.requestFullscreen) {
+                        element?.requestFullscreen();
+                    } else if (element?.mozRequestFullScreen) {
+                        element?.mozRequestFullScreen();
+                    } else if (element?.webkitRequestFullscreen) {
+                        element?.webkitRequestFullscreen();
+                    } else if (element?.msRequestFullscreen) {
+                        element?.msRequestFullscreen();
+                    }
+                } catch (err) {
+                    //there was an error encountered
+                    console.error("error_message", err)
+                }
 
                 setCustomFullscreen(true);
 
             } else {
-                // try {
-                //     if (document.exitFullscreen) {
-                //         document.exitFullscreen();
-                //     } else if (document.mozCancelFullScreen) {
-                //         document.mozCancelFullScreen();
-                //     } else if (document.webkitExitFullscreen) {
-                //         document.webkitExitFullscreen();
-                //     } else if (document.msExitFullscreen) {
-                //         document.msExitFullscreen();
-                //     }
-                // } catch (err) {
-                //     console.error("error_encountered", err)
-                // }
+                try {
+                    if(!document.fullscreenEnabled){
+                        setCustomFullscreen(false);
+                    }
+                    if(document.fullscreenElement){
+
+                        if (document.exitFullscreen) {
+                            document.exitFullscreen();
+                        } else if (document.mozCancelFullScreen) {
+                            document.mozCancelFullScreen();
+                        } else if (document.webkitExitFullscreen) {
+                            document.webkitExitFullscreen();
+                        } else if (document.msExitFullscreen) {
+                            document.msExitFullscreen();
+                        }
+                    }
+
+                } catch (err) {
+                    console.error("error_encountered", err)
+                }
 
                 setCustomFullscreen(false);
             }
         };
-
         const configureDemoGame = () => {
             setGameUrl(`https://www.smartsoftgaming.com/GameDemo/${game || 'JetX'}?currency=USD&lang=EN&return_url=https://betnare.com`)
             setGameUrlLoaded(true)
@@ -160,7 +184,7 @@ const SmartPlay = React.memo(
             <>
                 <Header/>
                 <div className="amt top-smartsoft gameplay">
-                    <FullscreenButton onClick={() => toggleFullscreen()} navigation={'/smart-soft'}
+                    <FullscreenButton onClick={() => toggleFullscreen()} navigation={'/'}
                                       isCustomFullScreen={isCustomFullscreen}/>
                     <div className="d-flex flex-row justify-content-between">
                         <div className="col-md-12 w-100">

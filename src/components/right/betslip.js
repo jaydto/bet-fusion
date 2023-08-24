@@ -22,8 +22,9 @@ const BetSlip = React.memo(
         const [message, setMessage] = useState(null);
         const [qualifiesBonus, setQualifiesBonus] = useState(false);
         const [settings,] = useState(getFromLocalStorage("settings"));
-        const {height, width} = useWindowDimensions();
-        const [popUpHeight, setPopUpHeight] = useState(0);
+        const {height} = useWindowDimensions();
+
+        const [, setPopUpHeight] = useState(0);
         const [totalOdds, setTotalOdds] = useState(1);
         //initial betslip loading
         const loadBetslip = useCallback(() => {

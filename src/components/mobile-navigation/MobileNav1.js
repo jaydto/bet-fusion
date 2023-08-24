@@ -19,7 +19,7 @@ import {StoreContext } from "../../context/store";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 
 const MobileNav1 = React.memo(
-    () => {    
+    () => {
 
         const { state, dispatch } = useContext(StoreContext);
 
@@ -81,7 +81,7 @@ const MobileNav1 = React.memo(
             return sport_image
         }
         const navigate = useNavigate()
-   
+
         return (<div className="menu-wrapper mobile-nav-remove ">
 
             <table className="menu-table" style={{width: "100%", textAlign: "center", marginLeft: "-9px"}}>
@@ -119,7 +119,7 @@ const MobileNav1 = React.memo(
                                         src={league}
                                         alt=""
                                         effect='blur'
-                                        style={{height: "23px", marginTop:"-6px"}}
+                                        style={{height: "39px", marginTop:"-11px"}}
                                     />
                                     <span className=" hot-alert-badge">HOT</span>
 
@@ -207,7 +207,7 @@ const MobileNav1 = React.memo(
                         </div>
 
                     </td>
-               
+
 
                     {state.sport?.all_sports.map((allsports, index) => {
 

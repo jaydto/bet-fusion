@@ -162,7 +162,7 @@ export const marketChoice = () => {
 const MatchHeaderRow = React.memo(
     (props) => {
         const {live, first_match, jackpot} = props;
-        const categories = getFromLocalStorage('categories')
+        const categories = getFromLocalStorage('sport_categories')
         const sport_id = new URL(window.location).searchParams.get('sport_id') || 79
         let sport = categories?.all_sports?.filter((category) => category.sport_id == sport_id)
         const [sportName, setSportName] = useState(sport != null ? sport?.[0]?.sport_name || 'Soccer' : "");
@@ -995,7 +995,7 @@ const MatchRow = React.memo(
 
         const {first_match, match, jackpot, live, pdown} = props;
         const [, setExtraMarketDisplays] = useState([])
-        const categories = getFromLocalStorage('categories')
+        const categories = getFromLocalStorage('sport_categories')
         const sport_id = new URL(window.location).searchParams.get('sport_id') || 79
         let sport = categories?.all_sports?.filter((category) => category?.sport_id == sport_id)
         const [, setSportName] = useState(sport?.[0]?.sport_name || 'Soccer');

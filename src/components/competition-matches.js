@@ -7,6 +7,7 @@ import {getBetslip} from './utils/betslip';
 import './test.css'
 import {ToastContainer} from "react-toastify";
 import SkeletonLoaderMobile from "./pages/skeletonLoadersWeb/SkeletonLoaderMobile";
+import MainTabs from "./header/main-tabs";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -124,6 +125,10 @@ const CompetitionMatches = React.memo(
                         <div className="gz home match-overflow ">
                             <div className="gz home match-overflow">
                                 <div className="homepage mobile-full-height">
+                                    <div
+                                        className={'filters-navigation gap-3 d-flex justify-content-between align-items-center'}>
+                                    <MainTabs/>
+                                    </div>
                                     <CarouselLoader/>
                                     {fetching?
                                         <SkeletonLoaderMobile/>:

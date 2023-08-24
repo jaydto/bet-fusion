@@ -47,11 +47,11 @@ const MainTabs = (props) => {
                         <span className="col ">Tomorrow</span>
                     </Link>
                 </div>
-                {width<991&&<div className="col  px-1  ">
+                <div className="col  px-1 ">
                     <Link className={`cursor-pointer w-100 ${c_class}`} to={'/countries?' + getLink()}>
                         <span className="col ">Countries</span>
                     </Link>
-                </div>}
+                </div>
             </div>
         </div>
     )

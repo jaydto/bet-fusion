@@ -21,7 +21,7 @@ import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 
 const SidebarMobile = React.memo(
     (props) => {
-        // const [competitions, setCompetitions] = useState(getFromLocalStorage('categories'));
+        // const [competitions, setCompetitions] = useState(getFromLocalStorage('sport_categories'));
         const [user, setUser] = useState(getFromLocalStorage("user"));
         const gaEventTracker = useAnalyticsEventTracker('Navigation');
         return (<ProSidebar

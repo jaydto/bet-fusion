@@ -20,7 +20,7 @@ const SideBar = React.memo(
 
 
     const fetchData = useCallback(async() => {
-        let cached_competitions = getFromLocalStorage('categories');
+        let cached_competitions = getFromLocalStorage('sport_categories');
         let endpoint = "/v1/categories";     
         
         if(!cached_competitions) {
@@ -32,7 +32,7 @@ const SideBar = React.memo(
             if(c_status === 200){
                 setCompetitions(c_result);
             }
-            setLocalStorage('categories', c_result);
+            setLocalStorage('sport_categories', c_result);
         } else {
             setCompetitions(cached_competitions);
         }

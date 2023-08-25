@@ -1,6 +1,4 @@
 import React, {useCallback, useContext, useEffect, useState} from "react";
-
-//SVGs
 import HomeSvg from "../../assets/svg/home.svg"
 import LiveSvg from "../../assets/svg/live.svg"
 import ProfileSvg from "../../assets/svg/person.svg"
@@ -9,12 +7,6 @@ import makeRequest from "../utils/fetch-request";
 import {Badge} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faReceipt, faTimes,faClose} from "@fortawesome/free-solid-svg-icons";
-import {
-    UserOutlined ,
-    HomeOutlined,
-    FileProtectOutlined,
-    PhoneOutlined
-} from '@ant-design/icons';
 
 import {Link, useNavigate} from "react-router-dom";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
@@ -104,8 +96,9 @@ const MobileMenu = React.memo((props) => {
         "/nare-games", "/promotions","/terms-and-conditions", "/profile"]
     const [countInfo, setCountInfo] = useState(true)
 
-    const removeCountInformation = () => {
+    const removeCountInformation = (e) => {
         setCountInfo(!countInfo)
+        e.stopPropagation()
     }
 
     const slip_condition = (!pathSlipSummary.includes(pathname) && state?.multiboostmessage && sumOfOdds > 1 && countInfo)
@@ -154,7 +147,7 @@ const MobileMenu = React.memo((props) => {
                                             <div className={"close-prompt close-alert-slip"} title={"close suggestions"}>
                                                 <div>
                                                     <FontAwesomeIcon
-                                                        onClick={()=>removeCountInformation()}
+                                                        onClick={removeCountInformation}
                                                         icon={faClose}
                                                         className={"align-self-center"}
                                                     />

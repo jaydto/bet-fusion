@@ -40,46 +40,7 @@ const PromoCards = () => {
                     "row text-white pt-2 border-0 d-flex promo-container d-flex align-self-start align-items-start"
                 }
             >
-                <div className="col-md-2 promo-styling card shadow-lg promotion">
-                    <div className="d-flex flex-column  promo-inner">
-                        <div className="d-flex flex-column">
-                            <img src={DepositBonus} className={"rounded promo-image"}/>
-                            <h5
-                                className="bold d-flex justify-content-center h4 pt-2"
-                                style={{color: "#ea5d0b"}}
-                            >
-                                {" "}
-                                365 DEPOSIT BONUS
-                            </h5>
-                            <div className="container mx-1 px-2 text-data-promotions">
-                                Get 365/= Free When you deposit 365/=
-                            </div>
-                            <hr/>
-                            <div className="d-flex justify-content-between my-2 mx-2">
-                                <button className={"profile-button border-0 h-25 rounded promo-button"}
-                                        style={{background: "#ea5d0b"}} onClick={() => {
-                                    navigate(`/deposit`);
-                                    gaEventTracker('365 Depoist Bonus');
-                                    setUtmSouceCampaignOnPromotions('promo_365_deposit_bonus')
-                                    setUtmSouceCampaignOnPromotions('promo_365_deposit_bonus')
-                                }}>
-                                    Deposit Now
-                                </button>
 
-                                <div
-                                    className={"  d-flex align-self-center h-25 border-0 bg-transparent"}
-                                    style={{color: "#ea5d0b"}}
-                                    onClick={() => {
-                                        navigate(`/promo?id=${ids[8]}`);
-                                        window.scrollTo(0, 0); // Scroll to the top of the page
-                                    }}
-                                >
-                                    Read More
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div className="col-md-2 promo-styling shadow-lg promotion">
                     <div className="d-flex flex-column promo-inner">
                         <img src={karibuGiftWallet} className={"rounded promo-image "}/>
@@ -149,6 +110,46 @@ const PromoCards = () => {
                                         window.scrollTo(0, 0); // Scroll to the top of the page
                                     }
                                 }
+                                >
+                                    Read More
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-md-2 promo-styling card shadow-lg promotion">
+                    <div className="d-flex flex-column  promo-inner promo-inactive">
+                        <div className="d-flex flex-column">
+                            <img src={DepositBonus} className={"rounded promo-image"}/>
+                            <h5
+                                className="bold d-flex justify-content-center h4 pt-2"
+                                style={{color: "#ea5d0b"}}
+                            >
+                                {" "}
+                                365 DEPOSIT BONUS
+                            </h5>
+                            <div className="container mx-1 px-2 text-data-promotions">
+                                Get 365/= Free When you deposit 365/=
+                            </div>
+                            <hr/>
+                            <div className="d-flex justify-content-between my-2 mx-2">
+                                <button disabled={true}  className={"profile-button border-0 h-25 rounded promo-button"}
+                                        style={{background: "#ea5d0b"}} onClick={() => {
+                                    navigate(`/deposit`);
+                                    gaEventTracker('365 Depoist Bonus');
+                                    setUtmSouceCampaignOnPromotions('promo_365_deposit_bonus')
+                                    setUtmSouceCampaignOnPromotions('promo_365_deposit_bonus')
+                                }}>
+                                    Deposit Now
+                                </button>
+
+                                <div
+                                    className={"  d-flex align-self-center h-25 border-0 bg-transparent"}
+                                    style={{color: "#ea5d0b"}}
+                                    onClick={() => {
+                                        navigate(`/promo?id=${ids[8]}`);
+                                        window.scrollTo(0, 0); // Scroll to the top of the page
+                                    }}
                                 >
                                     Read More
                                 </div>

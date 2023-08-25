@@ -189,7 +189,7 @@ const MobileNav1 = React.memo(
                             className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center `}
                             onClick={() => {
                                 gaEventTracker('Visit Casino Page')
-                                navigate('casino');
+                                navigate('/casino');
                             }}>
                             <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
 

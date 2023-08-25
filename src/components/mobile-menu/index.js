@@ -1,8 +1,9 @@
 import React, {useCallback, useContext, useEffect, useState} from "react";
-import HomeSvg from "../../assets/svg/home.svg"
-import LiveSvg from "../../assets/svg/live.svg"
-import ProfileSvg from "../../assets/svg/person.svg"
+import HomeSvg from "../../assets/img/mobile/Home.svg"
+import LiveSvg from "../../assets/img/mobile/Live.svg"
+import ProfileSvg from "../../assets/img/mobile/Profile.svg"
 import CloseIcon from "../../assets/img/mobile/close_icon.png"
+import Mybets from "../../assets/img/mobile/MyBets.svg"
 
 import makeRequest from "../utils/fetch-request";
 import {Badge} from "react-bootstrap";
@@ -284,7 +285,9 @@ const MobileMenu = React.memo((props) => {
                                     <Link
                                         to={`${kiron?'/bet-history':'/my-bets'}`}
                                         onClick={() => gaEventTracker("Visit My Bets Page")}>
-                                        <FontAwesomeIcon icon={faReceipt} style={{fontSize: "22px", color: "#FFB200"}}/>
+                                        <LazyLoadImage src={Mybets}
+                                                       effect="blur"
+                                                       alt=""/>
                                         <p>
                                             My Bets
                                         </p>

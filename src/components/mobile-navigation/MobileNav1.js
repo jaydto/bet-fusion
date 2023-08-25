@@ -2,13 +2,13 @@ import React, {useCallback, useContext, useEffect, useRef, useState} from 'react
 import {Link, useNavigate} from "react-router-dom";
 
 //Images
-import aviator from "../../../src/assets/svg/sports/aviator.svg"
-import league from "../../../src/assets/img/kiron/nare-league.webp"
+import aviator from "../../../src/assets/img/mobile/Aviator.svg"
+import league from "../../../src/assets/img/mobile/League.svg"
 
 //SVGs
 import soccer from "../../assets/svg/sports/Soccer.svg"
-import casino1 from "../../assets/svg/casino.svg"
-import jackpot from "../../assets/svg/jackpot.svg"
+import casino1 from "../../assets/img/mobile/Casino.svg"
+import jackpot from "../../assets/img/mobile/Jackpot.svg"
 import promo from "../../assets/svg/fire.svg"
 
 import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
@@ -121,7 +121,7 @@ const MobileNav1 = React.memo(
                                         src={league}
                                         alt=""
                                         effect='blur'
-                                        style={{height: "39px", marginTop: "-11px"}}
+                                        style={{height: "29px", marginTop: "-4px"}}
                                     />
                                     <span className=" hot-alert-badge">HOT</span>
 

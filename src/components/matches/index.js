@@ -1388,9 +1388,7 @@ export const MarketList = React.memo(
 
         const startIndex = (currentPage - 1) * perPage;
         const endIndex = startIndex + perPage;
-        const marketsToShow = Object.entries(filters?.data?.odds || {}).slice(startIndex, endIndex);
-
-
+        const marketsToShow = Object.entries(filters?.data?.odds || {});
         return (
             <div className="matches full-width" style={{marginBottom: "0px"}}>
 

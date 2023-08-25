@@ -355,14 +355,13 @@ input.text-white {
 }
 
 #nare-games-header {
-    font-style: italic;
     text-transform: uppercase;
     text-align: center;
     font-size: 26px;
     letter-spacing: 3px;
     word-spacing: 2px;
-    color: rgb(255, 166, 0);
-    text-shadow: rgb(0, 0, 0) 6px 2px 2px;
+    color: var(--light);
+    /*text-shadow: rgb(0, 0, 0) 6px 2px 2px;*/
 }
 
 .pro-sidebar .pro-menu .pro-menu-item.pro-sub-menu .pro-inner-list-item {
@@ -1858,7 +1857,7 @@ img.nare-league {
     }
 
     .top-spacing-casino {
-        margin-top: 4.4rem !important;
+        margin-top: 8.4rem !important;
     }
 
     .top-nare-games {
@@ -2097,6 +2096,9 @@ img.nare-league {
 }
 
 @media (max-width: 991px) {
+    #nare-games-header{
+        padding-right:4pc;
+    }
     .main-navigations{
         top:0rem!important;
     }
@@ -2473,7 +2475,7 @@ img.nare-league {
     }
 
     .top-spacing-casino {
-        margin-top: 5rem !important;
+        margin-top: 11rem !important;
     }
 
     .slip-team {

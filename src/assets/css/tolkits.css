@@ -16404,14 +16404,18 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     margin-right: 5px;
     padding: 5px 15px;
     white-space: nowrap;
-    width:fit-content;
+    width: fit-content;
+    width: fit-content;
+    background: var(--odds-button);
 }
 
 
 .casino-category-button:hover {
-    background: #ffc428;
+    background: #f98f06;
 }
-
+.casino-category-button:active{
+    background: #f98f06!important;
+}
 .clearfix:before,
 .clearfix:after {
     display: table;

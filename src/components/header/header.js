@@ -272,7 +272,7 @@ const Header = React.memo(
 
                             {!profile && <Row
                                 className={`second-nav ck pc os app-navbar ${user ? ' app-header-nav-login ' : ' app-header-nav '} to-navcheck `}>
-                                {!pathname.includes('casino') && <HeaderNav/>}
+                                 <HeaderNav/>
                             </Row>}
                             {state?.searching ?
                                 <div id="navbar-collapse-main"

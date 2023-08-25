@@ -560,9 +560,9 @@ const BetslipSubmitForm = React.memo(
                     let boostedStake = Number(stake) + Number(boost);
                     boostedStake = formatNumber(boostedStake);
                     setMultiBoostMessage(
-                        "Congratulations! we have gifted you KES " +
+                        "Congratulations! we have boosted you stake from KES " +
                         boost +
-                        " on your stake. Your new stake is " +
+                        " to " +
                         boostedStake
                     );
                     dispatch({type: "SET", key: "remaining_games", payload: 0});
@@ -841,56 +841,58 @@ const BetslipSubmitForm = React.memo(
                                                 </span>}
                                     </div>
                                     <br className={"ipad-show"}/>
-                                    <div className="bet-win-tr hide-on-affix">
-                                        <div className={"d-flex w-100"} style={{whiteSpace: "nowrap"}}>
-                                            <button
-                                                id=""
-                                                onClick={() => encodeBetSlip()}
-                                                style={{
-                                                    padding: "9px",
-                                                    backgroundColor: "linear-gradient(45deg, rgb(63, 154, 209), transparent)",
-                                                    whiteSpace: "nowrap",
-                                                    fontSize: "14px",
-                                                    borderRadius: "0.7rem",
-                                                }}
-                                                type={"button"}
-                                                className="bold btn-secondary  flex-nowrap w-100 d-flex justify-content-center share-button-styling"
-                                                title="SHARE BET"
-                                            >
-                                                Share&nbsp;
-                                                {loadingShare ? (
-                                                    <div className={`text-center  text-white d-block`}>
-                                                        <Spinner animation={"grow"} size={"sm"}/>
-                                                    </div>
-                                                ) : (
-                                                    <FontAwesomeIcon icon={faShare}/>
-                                                )}
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div id="odd-change-text">
-                                        <div className={"d-flex bet-select-values w-100 mt-2 p-lg-2 p-md-2 py-sm-0"}
-                                             style={{whiteSpace: "nowrap"}} ref={scrollToRef}>
-                                            <SubmitButton
-                                                style={{whiteSpace: 'nowrap'}}
-                                                id="place_bet_button_submit"
-                                                className="place-bet-btn bold "
-                                                title={
-                                                    loading ? (
-                                                        <div
-                                                            className={'d-flex align-items-center justify-content-center'}
-                                                            style={{whiteSpace: 'nowrap'}}>
-                                                            <div className="custom-loader"></div>
-                                                            PLEASE WAIT
+                                    <div className={"d-flex gap-2 align-items-center"}>
+                                        <div className="bet-win-tr hide-on-affix col-4">
+                                            <div className={"d-flex w-100 align-items-center"} style={{whiteSpace: "nowrap"}}>
+                                                <button
+                                                    id=""
+                                                    onClick={() => encodeBetSlip()}
+                                                    style={{
+                                                        padding: "9px",
+                                                        backgroundColor: "var(--odds-button)",
+                                                        whiteSpace: "nowrap",
+                                                        fontSize: "14px",
+                                                        borderRadius: "4px",
+                                                    }}
+                                                    type={"button"}
+                                                    className="bold btn-secondary  flex-nowrap w-100 d-flex justify-content-center share-button-styling"
+                                                    title="SHARE BET"
+                                                >
+                                                    Share&nbsp;
+                                                    {loadingShare ? (
+                                                        <div className={`text-center  text-white d-block`}>
+                                                            <Spinner animation={"grow"} size={"sm"}/>
                                                         </div>
                                                     ) : (
-                                                        'PLACE BET'
-                                                    )
-                                                }
-                                            ></SubmitButton>
+                                                        <FontAwesomeIcon icon={faShare}/>
+                                                    )}
+                                                </button>
+                                            </div>
                                         </div>
-
+                                        <div id="odd-change-text" className={"col-8"}>
+                                            <div className={"d-flex bet-select-values w-100  p-lg-2 p-md-2 py-sm-0"}
+                                                 style={{whiteSpace: "nowrap"}} ref={scrollToRef}>
+                                                <SubmitButton
+                                                    style={{whiteSpace: 'nowrap'}}
+                                                    id="place_bet_button_submit"
+                                                    className="place-bet-btn bold "
+                                                    title={
+                                                        loading ? (
+                                                            <div
+                                                                className={'d-flex align-items-center justify-content-center'}
+                                                                style={{whiteSpace: 'nowrap'}}>
+                                                                <div className="custom-loader"></div>
+                                                                PLEASE WAIT
+                                                            </div>
+                                                        ) : (
+                                                            'PLACE BET'
+                                                        )
+                                                    }
+                                                ></SubmitButton>
+                                            </div>
+                                        </div>
                                     </div>
+
                                 </div>
                             </div>
                         )}

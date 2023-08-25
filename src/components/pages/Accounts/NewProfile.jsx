@@ -71,7 +71,6 @@ const NewProfile = React.memo(
                                             <div className="transaction">
                                                 <div className="t-icon-container">
                                                     <div className="icon">
-                                                        {/*<i className="fas fa-upload"></i>*/}
                                                         <FontAwesomeIcon icon={faUpload}/>
                                                     </div>
                                                 </div>
@@ -80,6 +79,7 @@ const NewProfile = React.memo(
                                                 </div>
                                                 <div className="t-amount">
                                                     <LazyLoadImage
+                                                        effects={"blur"}
                                                         src="https://storage.googleapis.com/nareimages/affiliate/mpesa.svg"
                                                         width="50px" alt=""/>
                                                 </div>
@@ -100,6 +100,7 @@ const NewProfile = React.memo(
                                             </div>
                                             <div className="t-amount">
                                                 <LazyLoadImage
+                                                    effect={"blur"}
                                                     src="https://storage.googleapis.com/nareimages/affiliate/mpesa.svg"
                                                     width="50px" alt=""/>
                                             </div>

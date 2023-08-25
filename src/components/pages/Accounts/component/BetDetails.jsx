@@ -144,16 +144,6 @@ const BetDetails = (props) => {
 
 	},[]);
 
-	// const toggleCollapse = (index,parent_match_id) => {
-	// 	setActiveParentMatchId(parent_match_id)
-	// 	const updatedCollapsed = [...collapsed];
-	// 	if (updatedCollapsed.includes(index)) {
-	// 		updatedCollapsed.splice(updatedCollapsed.indexOf(index), 1);
-	// 	} else {
-	// 		updatedCollapsed.push(index);
-	// 	}
-	// 	setCollapsed(updatedCollapsed);
-	// };
 	const toggleCollapse = (index,parent_match_id) => {
 		setActiveParentMatchId(parent_match_id)
 		const updatedCollapsed = [...collapsed];
@@ -175,14 +165,8 @@ const BetDetails = (props) => {
 	}
 
 	useEffect(()=>{
-		const abort=new AbortController()
 		setCollapsed(Array.from({ length: state?.mybets?.data?.length }, (_, index) => index));
-
-		return ()=>{
-				abort.abort()
-			}
-
-	},[])
+	},[bet_id])
 
 	const WinLostTotal=()=>{
 		const data=state?.mybets?.data

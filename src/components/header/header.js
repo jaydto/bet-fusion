@@ -211,8 +211,7 @@ const Header = React.memo(
             <>
 
                 <div className={'d-flex flex-column'}>
-                    {(!showDownload) &&
-                        <div>
+                    <div className={` optional-action ${showDownload?'d-none':'d-flex'}`}>
                             <Link to={'/deposit?utm_source=free-deposit-promo'}
                                   target={"_self"}
                                   title={''}
@@ -229,9 +228,6 @@ const Header = React.memo(
                             </Link>
 
                         </div>
-                    }
-
-
                     <Navbar expand="md"
                             className={`${(scrollPosition || (showDownload)) && 'fixed-top-nav'} mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${(slip || showDownload) && "top-betslip-page-fix"} ${user ? 'top-nav-login' : 'top-nav-login'}`}
                             fixed="top" variant="dark">

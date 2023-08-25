@@ -74,20 +74,20 @@ const Countries = React.memo(
             topLeagues = false,
             flag=false
         ) => {
-            if (flag){
-                let splitString = sport_name.split(" ");
-                sport_name = (splitString[0].substr(0, 2)).toString().toLowerCase();
 
-            }
+            // if (flag){
+            //     let splitString = sport_name.split(" ");
+            //     sport_name = (splitString[0].substr(0, 2)).toString().toLowerCase();
+            //
+            // }
 
-            let default_img = "default_sport";
             let sport_image;
             try {
                 sport_image = topLeagues
                     ? require(`../../assets/img/${folder}/${sport_name}.svg`)
-                    : require(`../../../src/assets/svg/${folder}/${sport_name}.svg`);
+                    : require(`../../assets/img/${folder}/${sport_name}.svg`);
             } catch (error) {
-                sport_image = require(`../../assets/img/${default_img}.svg`);
+                // sport_image = require(`../../assets/img/${folder}/${default_img}.svg`);
             }
             return sport_image;
         };
@@ -96,11 +96,9 @@ const Countries = React.memo(
             return competition?.default_display_markets;
         };
 
+        console.log("competitions now ", competitions?.all_sports)
 
-
-        const targetSports = competitions?.all_sports.filter(sports =>Number(sports?.sport_id)===Number(sport_id)
-
-        );
+        const targetSports = competitions?.all_sports.filter(sports =>Number(sports?.sport_id)===Number(sport_id));
 
 
         return (
@@ -151,6 +149,7 @@ const Countries = React.memo(
                                         }}
                                     >
                                         {competition?.categories.map((country, countryKey) => (
+
                                             <div key={`${countryKey}_category`}>
                                                 <SubMenu
                                                     title={country.category_name}
@@ -162,9 +161,9 @@ const Countries = React.memo(
                                                             effect="blur"
                                                             style={{ borderRadius: "50%", height: "20px" }}
                                                             src={getSportImageIcon(
-                                                                country.category_name,
+                                                                country?.cat_flag,
                                                                 "flags-1-1",
-                                                                true,
+                                                                false,
                                                                 true
                                                             )}
                                                         />

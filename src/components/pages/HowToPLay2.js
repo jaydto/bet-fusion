@@ -9,7 +9,6 @@ import {
 } from "react-accessible-accordion";
 import "react-accessible-accordion/dist/fancy-example.css";
 import '../test.css'
-import {getBetslip} from '../utils/betslip';
 import {StoreContext } from "../../context/store";
 
 const Header = React.lazy(() => import("../header/header"));

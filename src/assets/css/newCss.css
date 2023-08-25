@@ -1924,6 +1924,7 @@ img.nare-league {
         opacity: 1;
         border-radius: 3px;
         top: -8rem;
+        background: var(--betnare-body-bg) !important;
     }
 
     .os {
@@ -2753,11 +2754,12 @@ img.nare-league {
         z-index: 200;
         box-sizing: border-box;
         box-shadow: 1px 2px 4px 2px var(--tax-info-color);
-        opacity: 0.95;
+        opacity: 1 !important;
         border-radius: 3px;
         position: absolute;
         top: -9rem;
         right: -13rem;
+        background: var(--betnare-body-bg) !important;
     }
 
     .slip-max-height {

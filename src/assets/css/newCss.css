@@ -2096,6 +2096,10 @@ img.nare-league {
 }
 
 @media (max-width: 991px) {
+    .matches .top-matches{
+        margin-bottom:1px!important;
+
+    }
     #nare-games-header{
         padding-right:4pc;
     }

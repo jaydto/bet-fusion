@@ -8,9 +8,10 @@ import {
     faCloudDownloadAlt,
     faHome,
     faInfo,
-    faLaptop,
+    faMobilePhone,
     faMagic,
-    faMobile, faPause, faPlay,
+    faMobile,
+    faPlay,
     faPrint,
     faQuestionCircle,
     faStream,
@@ -64,6 +65,14 @@ const SidebarMobile = React.memo(
                         <div className={"d-flex gap-4 align-items-center"}>
                             <FontAwesomeIcon icon={faPrint}/>
                             <Link to={"/print-matches"}>Print</Link>
+                        </div>
+                    </MenuItem>
+                </Menu>
+                <Menu>
+                    <MenuItem className={"d-flex justify-content-between"}>
+                        <div className={"d-flex gap-4 align-items-center"}>
+                            <FontAwesomeIcon icon={faMobilePhone}/>
+                            <a href={"tel:0701087777"}>Call Customer Care</a>
                         </div>
                     </MenuItem>
                 </Menu>

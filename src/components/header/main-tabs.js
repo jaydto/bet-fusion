@@ -1,4 +1,3 @@
-import Row from 'react-bootstrap/Row';
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import useWindowDimensions from "./Dimensions";

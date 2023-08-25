@@ -138,18 +138,6 @@ const HeaderNav = React.memo(
                             </div>
                         </li>
 
-                        <li className={pathname === '/app' ? 'active' : ''}
-                            onClick={() => gaEventTracker('Visit App Page')}>
-                            <Link className="url-link fm anl cg ox" to="/app" title="App"
-                                  onClick={() => gaEventTracker('Visit App Page')}>
-                            <span>
-                                <strong>
-                                    APP
-                                </strong>
-                            </span>
-                            </Link>
-                        </li>
-
                         <>
 
                             <li className={pathname === '/livescore' ? 'active' : ''}>

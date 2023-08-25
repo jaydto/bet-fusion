@@ -221,7 +221,7 @@ createRoot(container).render(
                     <Route path={"/bet-history"} element={<ProtectedRoute><Kiron/></ProtectedRoute>}/>
                     <Route exact path="/reset-password" element={<ResetPassword/>}/>
                     <Route exact path="/verify" element={<VerifyAccount/>}/>
-                    <Route exact path="/app" element={<MobileApp/>}/>
+                    {/*<Route exact path="/app" element={<MobileApp/>}/>*/}
                     <Route exact path="/logout" element={<Logout/>}/>
                     <Route exact path="/print-matches" element={<PrintMatches/>}/>
                     <Route exact path="/promotions" element={<Promotions/>}/>

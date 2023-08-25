@@ -98,18 +98,6 @@ const SidebarMobile = React.memo(
                     </MenuItem>
 
                 </Menu>
-                <Menu>
-                    <MenuItem className={"d-flex justify-content-between"}>
-                        <div className={"d-flex gap-4 align-items-center"}>
-                            <FontAwesomeIcon icon={faMobile}/>
-                            <Link className="" to={"/app"} title="App"
-                                  onClick={() => gaEventTracker('Visit App Page')}>
-                                Download App
-                            </Link>
-
-                        </div>
-                    </MenuItem>
-                </Menu>
 
                 <Menu>
 

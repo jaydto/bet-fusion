@@ -47,12 +47,12 @@ const  Live= React.memo(
         await makeRequest({url: endpoint, method: method, data: betslip}).then(([status, result]) => {
             if (status == 200) {
                 setMatches(result?.data || result)
-                setLoading(false)
                 if (result?.slip_data) {
                     setUserSlipsValidation(result?.slip_data)
                 }
                 setProducerDown(result?.producer_status === 1);
             }
+            setLoading(false)
         });
     }, 5000);
 
@@ -69,12 +69,13 @@ const  Live= React.memo(
         let [m_status, m_result] = match_result;
         if (m_status == 200) {
             setMatches(m_result?.data || m_result)
-            setLoading(false)
+
             if (m_result?.slip_data) {
                 setUserSlipsValidation(m_result?.slip_data);
             }
             setProducerDown(m_result?.producer_status === 1);
         }
+        setLoading(false)
 
     }, []);
 

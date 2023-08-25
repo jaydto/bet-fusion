@@ -55,28 +55,6 @@ const Casino = React.memo(
                         <div className="gz home top-spacing-casino " style={{width: '100%'}}>
                             <div className="homepage ">
                                 <div className="col-md-12 d-flex flex-column mt-2">
-                                    <div
-                                        className={'d-flex w-100 flex-column justify-content-between nare-header-container'}>
-                                        <div className={'d-flex align-items-center'}>
-                                            <span className={'px-3 d-flex gap-3 align-items-center '} onClick={() => navigate('/')} style={{
-                                                fontSize: "20px",
-                                                color: 'var(--light)',
-                                                fontWeight: '700',
-                                                opacity: '0.7'
-                                            }}>
-                                             <FontAwesomeIcon icon={faAngleLeft} style={{
-                                                 fontSize: "24px",
-                                                 color: 'var(--light)',
-                                                 fontWeight: '700',
-                                                 opacity: '0.7'
-                                             }}/>  Back
-                                            </span>
-                                            <span className={'col-10 justify-content-center d-flex mb-4 casino-header'}
-                                                  id={'nare-games-header'}>
-                            CASINO
-                        </span>
-                                        </div>
-                                    </div>
                                     <div className="col-md-12 casino-scroll">
                                         <div
                                             className="shadow-sm p-2 shadow-sm casino-category-container mt-2">

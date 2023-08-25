@@ -81,7 +81,8 @@ const SidebarMobile = React.memo(
                 <Menu>
                     <MenuItem className={"d-flex justify-content-between"}>
                         <a className={"d-flex gap-4 align-items-center"} href={"https://api.whatsapp.com/send?phone=+254701087777"} target={"_blank"} rel="noreferrer">
-                            <LazyLoadImage src={whatsapp} effect={"blur"} style={{width:'15px'}}/>Whatsap Us
+                            <LazyLoadImage src={whatsapp} effect={"blur"} style={{width:'15px'}}/>
+                            Whatsapp Us
                         </a>
                     </MenuItem>
                 </Menu>

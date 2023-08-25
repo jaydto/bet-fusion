@@ -11,13 +11,12 @@ import {
     faMobile,
     faPrint,
     faQuestionCircle,
-    faMobilePhone
+    faPhoneFlip
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {StoreContext } from "../../context/store";
-import {LazyLoadImage} from "react-lazy-load-image-component";
-import whatsapp from "../../assets/img/mobile/whatsapp.svg";
+import {faWhatsapp} from "@fortawesome/free-brands-svg-icons";
 
 const SidebarProfile = React.memo(
     (props) => {
@@ -133,14 +132,18 @@ const SidebarProfile = React.memo(
             <SidebarFooter>
                 <Menu>
                     <MenuItem>
-                        <div className={"d-flex gap-1 align-items-center px-3 flex-column rounded-3 shadow-lg card text-light"} style={{background:"var(--betnare-body-bg)"}}>
-                            <div className={'text-profile'} >Support</div>
-                            <div className={'text-profile'} >Call Customer Care</div>
-                            <div className={'text-profile'} >0701087777</div>
-                            <a className={'text-profile'} href={"https://api.whatsapp.com/send?phone=0701087777"} target={"_blank"} rel="noreferrer"><LazyLoadImage src={whatsapp} effect={"blur"} style={{width:'15px'}}/>Whatsap Us</a>
-
+                        <div className={"d-flex gap-4 align-items-center px-3"}>
+                            <FontAwesomeIcon icon={faWhatsapp} style={{fontSize:'24px'}}/>
+                            <a href={"https://api.whatsapp.com/send?phone=+254701087777"} target={"_blank"} className={'text-profile'}>Whatsapp Us</a>
                         </div>
-
+                    </MenuItem>
+                </Menu>
+                <Menu>
+                    <MenuItem>
+                        <div className={"d-flex gap-4 align-items-center px-3"}>
+                            <FontAwesomeIcon icon={faPhoneFlip} style={{fontSize:'24px'}}/>
+                            <a href={'javascript:void(0)'} className={'text-profile'}>0701087777</a>
+                        </div>
                     </MenuItem>
                 </Menu>
             </SidebarFooter>

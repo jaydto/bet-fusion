@@ -72,7 +72,9 @@ const Right = React.memo(
                                     <div className="betslip-header d-flex justify-content-between w-100">
                             <span className="col-sm-2 bkmrk d-none">
                             <i className="fa fa-bookmark" aria-hidden="true"></i></span>
-                                        <span className="col-sm-8 slp">BETSLIP</span>
+                                        <span className="col-sm-8 slp bold">
+                                            BETSLIP
+                                        </span>
                                         <span className="col-sm-2 slip-counter ">
                                         <CountBadge/>
                                     </span>

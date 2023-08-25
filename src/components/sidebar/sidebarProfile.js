@@ -17,6 +17,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {StoreContext } from "../../context/store";
 import {LazyLoadImage} from "react-lazy-load-image-component";
+import whatsapp from "../../assets/img/mobile/whatsapp.svg";
 
 const SidebarProfile = React.memo(
     (props) => {
@@ -136,6 +137,8 @@ const SidebarProfile = React.memo(
                             <div className={'text-profile'} >Support</div>
                             <div className={'text-profile'} >Call Customer Care</div>
                             <div className={'text-profile'} >0701087777</div>
+                            <a className={'text-profile'} href={"https://api.whatsapp.com/send?phone=0701087777"} target={"_blank"} rel="noreferrer"><LazyLoadImage src={whatsapp} effect={"blur"} style={{width:'15px'}}/>Whatsap Us</a>
+
                         </div>
 
                     </MenuItem>

@@ -1,7 +1,7 @@
 import React, {useRef, useState} from "react";
 import Modal from "react-bootstrap/Modal";
 import {Button} from "react-bootstrap";
-import {ReactComponent as whatsap} from "../../assets/svg/whatsapp.svg"
+import whatsap from "../../assets/img/mobile/whatsapp.svg"
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 
 const BetslipShareModal = React.memo(
@@ -42,7 +42,7 @@ const BetslipShareModal = React.memo(
                         <strong style={{width:"90%"}}>Share Link</strong>
                         <div className="col-1 text-center  ">
 
-                            <a href={"https://wa.me/?text="+payload?.success} className={"bg-warning"} target={"_blank"}>
+                            <a href={"https://wa.me/?text="+payload?.success} className={"bg-warning"} target={"_blank"} rel="noreferrer">
                                 <LazyLoadImage src={whatsap} style={{height:"30px"}}/>
 
                             </a>

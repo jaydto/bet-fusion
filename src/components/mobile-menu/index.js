@@ -2,11 +2,12 @@ import React, {useCallback, useContext, useEffect, useState} from "react";
 import HomeSvg from "../../assets/svg/home.svg"
 import LiveSvg from "../../assets/svg/live.svg"
 import ProfileSvg from "../../assets/svg/person.svg"
+import CloseIcon from "../../assets/img/mobile/close_icon.png"
 
 import makeRequest from "../utils/fetch-request";
 import {Badge} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faReceipt, faTimes,faClose} from "@fortawesome/free-solid-svg-icons";
+import {faReceipt, faTimes} from "@fortawesome/free-solid-svg-icons";
 
 import {Link, useNavigate} from "react-router-dom";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
@@ -146,11 +147,13 @@ const MobileMenu = React.memo((props) => {
                                         <div>
                                             <div className={"close-prompt close-alert-slip"} title={"close suggestions"}>
                                                 <div>
-                                                    <FontAwesomeIcon
+                                                    <LazyLoadImage
+                                                        src={CloseIcon}
                                                         onClick={removeCountInformation}
-                                                        icon={faClose}
-                                                        className={"align-self-center"}
+                                                        effect={'blur'}
+                                                        className={"align-self-center close-icon-alert"}
                                                     />
+
                                                 </div>
 
                                             </div>
@@ -201,7 +204,8 @@ const MobileMenu = React.memo((props) => {
                                                       top: "50%",
                                                       fontWeight: "600",
                                                       transform: "translate(-50%, -50%)",
-                                                      color: "var(--dark)"
+                                                      color: "var(--dark)",
+                                                      fontSize:"10px"
                                                   }}>
 								{state?.multiboostmessage}</span>
                                         </div>

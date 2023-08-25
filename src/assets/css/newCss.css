@@ -2096,13 +2096,13 @@ img.nare-league {
 }
 
 .optional-action{
-    transition: display linear 1s;
+    transition: display linear 0.7s;
 }
 .fixed-top-nav{
-    transition: position linear 1s;
+    transition: position linear 0.7s;
 }
 .app-navbar{
-    transition: position linear 1s;
+    transition: position linear 0.7s;
 }
 
 @media (max-width: 991px) {

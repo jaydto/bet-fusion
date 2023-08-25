@@ -92,7 +92,7 @@ hr {
 }
 @media (min-width: 992px){
     .promo-image {
-        min-height: 10rem!important;
+        min-height: 14rem!important;
     }
     .promotions-app-top{
         margin-top:8rem;

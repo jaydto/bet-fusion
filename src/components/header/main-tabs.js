@@ -1,4 +1,3 @@
-import Row from 'react-bootstrap/Row';
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import useWindowDimensions from "./Dimensions";
@@ -30,7 +29,7 @@ const MainTabs = (props) => {
 
     return (
         // + `${user ? "highlight-logged-in-menu" : "highlight-menu"}`
-        <div className={"full-mobile main-navigations w-100"}>
+        <div className={"full-mobile main-navigations"}>
             <div className=" d-flex flex-row ">
                 <div className="col  px-1  ">
                     <Link className={`cursor-pointer w-100 ${h_class}`} to={'/highlights?' + getLink()}>
@@ -47,11 +46,11 @@ const MainTabs = (props) => {
                         <span className="col ">Tomorrow</span>
                     </Link>
                 </div>
-                {width<991&&<div className="col  px-1  ">
+                <div className="col  px-1 ">
                     <Link className={`cursor-pointer w-100 ${c_class}`} to={'/countries?' + getLink()}>
                         <span className="col ">Countries</span>
                     </Link>
-                </div>}
+                </div>
             </div>
         </div>
     )

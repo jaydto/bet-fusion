@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 
 import Betslip from "../../right/betslip";
 import Right from "../../right";
@@ -8,11 +8,13 @@ import SlipTabs from "./tabs/slip-tabs";
 import KironSlip from "../../right/kironslip";
 import Header from "../../header/header";
 import {ToastContainer} from "react-toastify";
+import {StoreContext} from "../../../context/store";
+import {getFromLocalStorage} from "../../utils/local-storage";
 
 const BetslipPage = React.memo(
     () => {
         const [tab, setTab] = useState(null);
-        const [loading, setLoading] = useState(false);
+        const [, setLoading] = useState(false);
 
         let url = new URL(window.location);
         const jp = url.searchParams.get("jackpot");
@@ -24,6 +26,20 @@ const BetslipPage = React.memo(
         const nareParams = url.searchParams.get('nare-league')
         const pathname = window.location.pathname;
 
+        const {state, dispatch}=useContext((StoreContext))
+        const [settings,] = useState(getFromLocalStorage("settings"));
+
+
+        useEffect(() => {
+            let value=state?.userStake || getFromLocalStorage("userStake") || Number(settings?.sportsBookLimits?.defaultBetAmount)
+            if(isNaN(value)){
+                dispatch({type: "SET", key: "stakeValue", payload: 0});
+            }else{
+                dispatch({type: "SET", key: "stakeValue", payload: value});
+            }
+        }, [settings])
+
+
 
         const betslipValidationData =
             slipParam && JSON.parse(decodeURIComponent(slipParam));
@@ -33,16 +49,6 @@ const BetslipPage = React.memo(
         const jackpotData =
             jackpotParam && JSON.parse(decodeURIComponent(jackpotParam));
 
-
-        const [isOpen, setIsOpen] = useState(false);
-        const expand = "lg";
-
-
-        const toggle = () => {
-            setIsOpen(!isOpen);
-        };
-        // console.log("slip-jackpot_slip", getJackpotBetslip())
-        // console.log("slip-betslip_slip", getBetslip())
 
         useEffect(() => {
             let new_tab = "";
@@ -59,7 +65,6 @@ const BetslipPage = React.memo(
                 new_tab = "betslip-nare";
             }
 
-            // console.log("tabs", new_tab)
             if (new_tab !== tab) {
                 setTab(new_tab);
                 setLoading(true);
@@ -110,7 +115,7 @@ const BetslipPage = React.memo(
                 {/*<footer>*/}
                 <div className={"styling-mobile-size"}>
                     <Right betslipValidationData={betslipValidationData} jackpotData={jackpotData}
-                           jackpot={jackpot ? true : false}/>
+                           jackpot={jackpot ? true : false} slipPage={true}/>
                 </div>
                 {/*</footer>*/}
             </>

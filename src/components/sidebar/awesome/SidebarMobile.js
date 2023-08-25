@@ -2,15 +2,17 @@ import {Menu, MenuItem, ProSidebar, SidebarContent, SidebarFooter, SidebarHeader
 import {getFromLocalStorage,} from "../../utils/local-storage";
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
+import whatsapp from "../../../assets/img/mobile/whatsapp.svg"
 import Footer from "../../footer/footer";
 import 'react-pro-sidebar/dist/css/styles.css';
 import {
     faCloudDownloadAlt,
     faHome,
     faInfo,
-    faLaptop,
+    faMobilePhone,
     faMagic,
-    faMobile, faPause, faPlay,
+    faMobile,
+    faPlay,
     faPrint,
     faQuestionCircle,
     faStream,
@@ -18,10 +20,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
+import {LazyLoadImage} from "react-lazy-load-image-component";
 
 const SidebarMobile = React.memo(
     (props) => {
-        // const [competitions, setCompetitions] = useState(getFromLocalStorage('categories'));
+        // const [competitions, setCompetitions] = useState(getFromLocalStorage('sport_categories'));
         const [user, setUser] = useState(getFromLocalStorage("user"));
         const gaEventTracker = useAnalyticsEventTracker('Navigation');
         return (<ProSidebar
@@ -65,6 +68,22 @@ const SidebarMobile = React.memo(
                             <FontAwesomeIcon icon={faPrint}/>
                             <Link to={"/print-matches"}>Print</Link>
                         </div>
+                    </MenuItem>
+                </Menu>
+                <Menu>
+                    <MenuItem className={"d-flex justify-content-between"}>
+                        <div className={"d-flex gap-4 align-items-center"}>
+                            <FontAwesomeIcon icon={faMobilePhone}/>
+                            <a href={"tel:0701087777"}>Call Customer Care</a>
+                        </div>
+                    </MenuItem>
+                </Menu>
+                <Menu>
+                    <MenuItem className={"d-flex justify-content-between"}>
+                        <a className={"d-flex gap-4 align-items-center"} href={"https://wa.me/+254701087777"} target={"_blank"} rel="noreferrer">
+                            <LazyLoadImage src={whatsapp} effect={"blur"} style={{width:'15px'}}/>
+                            Whatsapp Us
+                        </a>
                     </MenuItem>
                 </Menu>
             </SidebarHeader>

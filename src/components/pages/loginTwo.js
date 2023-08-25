@@ -27,10 +27,10 @@ const backgroundStyle = {
 
 const LoginTwo = React.memo(
 	props => {
-	const [message, setMessage] = useState(null);
+	const [message,] = useState(null);
 	// const {setUser} = props;
 	const expand = "md"
-	const {height, width} = useWindowDimensions();
+	const { width} = useWindowDimensions();
 	const [user, setUser] = useState(getFromLocalStorage("user"));
 
 	const navigate = useNavigate();
@@ -142,9 +142,7 @@ const LoginTwo = React.memo(
 
 				<Col xs={0} sm={0} md={0} lg={8}>
 					<div className="d-flex flex-column justify-content-between h-100 px-4" style={backgroundStyle}>
-						<div className="text-right">
-							{/*<LazyLoadImage src="/img/logo-sm.jpg" style={{height:"35px"}}alt="logo"/>*/}
-						</div>
+						<div className="text-right"></div>
 						<Row justify="center">
 							<Col xs={0} sm={0} md={0} lg={20}>
 								<Link to={'/'}>
@@ -200,9 +198,7 @@ const LoginTwo = React.memo(
 											</div>
 										</div>
 									</div>
-									{/* <p>Don't have an account yet? <a href="/auth/register-2">Sign Up</a></p> */}
 									<div className="mt-4">
-										{/*<LoginForm {...props}/>*/}
 									</div>
 								</div>
 							</Row>

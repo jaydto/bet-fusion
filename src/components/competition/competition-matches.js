@@ -7,13 +7,12 @@ import {getBetslip} from '../utils/betslip';
 import {Spinner} from "react-bootstrap";
 import useWindowDimensions from "../header/Dimensions";
 import Testimonials from "../carousel/Testimonials";
+import MainTabs from "../header/main-tabs";
 
 const Header = React.lazy(() => import('../header/header'));
 const Footer = React.lazy(() => import('../footer/footer'));
 const SideBar = React.lazy(() => import('../sidebar/awesome/Sidebar'));
 const CarouselLoader = React.lazy(() => import('../carousel'));
-const MainTabs = React.lazy(() => import('../header/main-tabs'));
-const SearchBar = React.lazy(() => import('../header/search-bar'));
 const MatchList = React.lazy(() => import('../matches'));
 const Right = React.lazy(() => import('../right'));
 
@@ -136,6 +135,10 @@ const CompetitionMatches = React.memo(
                     <SideBar loadCompetitions/>
                     <div className="gz home match-overflow" >
                         <div className="homepage mobile-full-height">
+                            <div
+                                className={'filters-navigation gap-3 d-flex justify-content-between align-items-center'}>
+                            <MainTabs/>
+                            </div>
                             <CarouselLoader/>
                             <Testimonials/>
                             {loading?

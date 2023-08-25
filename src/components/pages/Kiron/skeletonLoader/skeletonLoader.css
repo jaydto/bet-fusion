@@ -29,8 +29,6 @@
     background-image: -o-linear-gradient(left, #ECECEC 0px, #ddd 40px, #ECECEC 80px);
     background-size: 250px;
     border-radius: 10px;
-    -webkit-animation: shine-loading-container-items 2s infinite ease-out;
-    animation: shine-loading-container-items 2s infinite ease-out;
 }
 .movie--isloading .loading-content .loading-sub-text {
     height: 10px;
@@ -41,8 +39,7 @@
     background-image: -o-linear-gradient(left, #ECECEC 0px, #ddd 40px, #ECECEC 80px);
     background-size: 250px;
     border-radius: 10px;
-    -webkit-animation: shine-loading-container-items 2s infinite ease-out;
-    animation: shine-loading-container-items 2s infinite ease-out;
+
 }
 .movie--isloading .loading-content .loading-btn {
     color: #FFFFFF;
@@ -63,38 +60,4 @@
     background-image: -o-linear-gradient(left, #2D4352 0px, #ddd 40px, #2D4352 80px);
     background-size: 250px;
     border-radius: 3px;
-    -webkit-animation: shine-loading-container-items 3s infinite ease-out;
-    animation: shine-loading-container-items 3s infinite ease-out;
-}
-@-webkit-keyframes shine-loading-image {
-    0% {
-        background-position: -32px;
-    }
-    40%, 100% {
-        background-position: 208px;
-    }
-}
-@keyframes shine-loading-image {
-    0% {
-        background-position: -32px;
-    }
-    40%, 100% {
-        background-position: 208px;
-    }
-}
-@-webkit-keyframes shine-loading-container-items {
-    0% {
-        background-position: -100px;
-    }
-    40%, 100% {
-        background-position: 140px;
-    }
-}
-@keyframes shine-loading-container-items {
-    0% {
-        background-position: -100px;
-    }
-    40%, 100% {
-        background-position: 140px;
-    }
 }

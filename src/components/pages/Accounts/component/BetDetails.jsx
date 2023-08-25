@@ -18,6 +18,7 @@ import BetslipShareModal from "../../../modals/BetslipShareModal";
 import {getFromLocalStorage, setLocalStorage} from "../../../utils/local-storage";
 import {addToSlip} from "../../../utils/betslip";
 import {useNavigate} from "react-router-dom";
+import useWindowDimensions from "../../../header/Dimensions";
 
 const BetDetails = (props) => {
 	const {bet_id}=props
@@ -124,7 +125,7 @@ const BetDetails = (props) => {
 	useEffect(() => {
 
 			state?.mybets?.data?.map((item,index) => {
-				console.log("items_switch", item)
+				// console.log("items_switch", item)
 				return
 				window?.SIR("addWidget", "#sr-widget-" + item?.parent_match_id, "match.lmtPlus", {
 					branding: {tabs: {option: "icon", variant: "fullWidth"}},
@@ -143,16 +144,6 @@ const BetDetails = (props) => {
 
 	},[]);
 
-	// const toggleCollapse = (index,parent_match_id) => {
-	// 	setActiveParentMatchId(parent_match_id)
-	// 	const updatedCollapsed = [...collapsed];
-	// 	if (updatedCollapsed.includes(index)) {
-	// 		updatedCollapsed.splice(updatedCollapsed.indexOf(index), 1);
-	// 	} else {
-	// 		updatedCollapsed.push(index);
-	// 	}
-	// 	setCollapsed(updatedCollapsed);
-	// };
 	const toggleCollapse = (index,parent_match_id) => {
 		setActiveParentMatchId(parent_match_id)
 		const updatedCollapsed = [...collapsed];
@@ -174,14 +165,9 @@ const BetDetails = (props) => {
 	}
 
 	useEffect(()=>{
-		const abort=new AbortController()
 		setCollapsed(Array.from({ length: state?.mybets?.data?.length }, (_, index) => index));
+	},[bet_id])
 
-		return ()=>{
-				abort.abort()
-			}
-
-	},[])
 	const WinLostTotal=()=>{
 		const data=state?.mybets?.data
 		const filteredData = data?.filter(bet => bet.win === 1 || bet.win === 0);
@@ -310,8 +296,7 @@ const BetDetails = (props) => {
 		}
 	};
 
-
-
+	const {width}=useWindowDimensions()
 	const navigate=useNavigate()
 	const rebetRequest= async (bet_id)=>{
 		let endpoint="/v1/rebet"
@@ -333,7 +318,7 @@ const BetDetails = (props) => {
 					addToSlip(match)
 				})
 
-				return window.location.href="/betslip-slip"
+				return width<=991?window.location.href="/betslip-slip":navigate("/")
 			}
 		})
 	}
@@ -369,7 +354,7 @@ const BetDetails = (props) => {
 		)}
 			{!isLoading?
 				<div className="d-flex details flex-column bet-details">
-					{console.log("matchesData", state?.mybets)}
+					{/*{console.log("matchesData", state?.mybets)}*/}
 					{state?.mybets?.data?.map((item,index) => (
 						<div key={index}>
 							{index===0&&<div className="d-flex history-details flex-column bet-summary-info">

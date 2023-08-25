@@ -1,18 +1,18 @@
 import React, {useCallback, useContext, useEffect, useState} from "react";
-import HomeSvg from "../../assets/img/mobile/home.png";
-import LiveSvg from "../../assets/img/mobile/live.png";
-import ProfileSvg from "../../assets/img/mobile/user.png";
-import closeIcon from "../../../src/assets/img/mobile/close_icon.png"
+import HomeSvg from "../../assets/img/mobile/Home.svg"
+import LiveSvg from "../../assets/img/mobile/Live.svg"
+import ProfileSvg from "../../assets/img/mobile/Profile.svg"
+import CloseIcon from "../../assets/img/mobile/close_icon.png"
+import Mybets from "../../assets/img/mobile/MyBets.svg"
 
 import makeRequest from "../utils/fetch-request";
 import {Badge} from "react-bootstrap";
-
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faReceipt, faTimes,} from "@fortawesome/free-solid-svg-icons";
+import {faReceipt, faTimes} from "@fortawesome/free-solid-svg-icons";
 
 import {Link, useNavigate} from "react-router-dom";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
-import {formatNumber, getBetslip, getJackpotBetslip, getKironSlip} from "../utils/betslip";
+import {getBetslip, getJackpotBetslip, getKironSlip} from "../utils/betslip";
 import {StoreContext } from "../../context/store";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 
@@ -98,8 +98,9 @@ const MobileMenu = React.memo((props) => {
         "/nare-games", "/promotions","/terms-and-conditions", "/profile"]
     const [countInfo, setCountInfo] = useState(true)
 
-    const removeCountInformation = () => {
+    const removeCountInformation = (e) => {
         setCountInfo(!countInfo)
+        e.stopPropagation()
     }
 
     const slip_condition = (!pathSlipSummary.includes(pathname) && state?.multiboostmessage && sumOfOdds > 1 && countInfo)
@@ -137,32 +138,57 @@ const MobileMenu = React.memo((props) => {
             <table className={`${slip_condition ? "prematch-menu mobile-menu" : "mobile-menu"}`}
                    style={!pathSlipSummary.includes(pathname) ? sumOfOdds === 1 ? {height: "70px"} : countInfo ? {height: "92px"} : {height: "70px"} : {height: "53px"}}>
                 <tbody>
-                {slip_condition ? <table>
-                        <tbody className={"slip-menu-prematch"}>
-                        <tr>
-                            <td className={"bet-align-right"}>
-                                <div className={"d-flex gap-4 justify-content-end mx-4"}>
-                                    <div>
-                                        <div className={"close-prompt close-alert-slip"} title={"close suggestions"}>
-                                            <div>
-                                                <img src={closeIcon} className={"close-icon-alert"}
-                                                     onClick={() => removeCountInformation()}/>
-                                            </div>
+                {slip_condition ?
+                    <tr className={"mobile-menu-container"} onClick={()=>navigate("/betslip-slip")}>
+                        <table>
+                            <tbody className={"slip-menu-prematch"}>
+                            <tr>
+                                <td className={"bet-align-right"}>
+                                    <div className={"d-flex gap-4 justify-content-end mx-4"}>
+                                        <div>
+                                            <div className={"close-prompt close-alert-slip"} title={"close suggestions"}>
+                                                <div>
+                                                    <LazyLoadImage
+                                                        src={CloseIcon}
+                                                        onClick={removeCountInformation}
+                                                        effect={'blur'}
+                                                        className={"align-self-center close-icon-alert"}
+                                                    />
 
+                                                </div>
+
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                            </td>
+                                </td>
 
                         </tr>
                         {!pathSlipSummary.includes(pathname) &&
-                            <tr className={`${slip_condition ? "info_bet_alert" : "info-slip-bets"} d-flex w-100 justify-content-between px-3`}>
+                            <tr className={`${slip_condition ? "info_bet_alert" : "info-slip-bets"} d-flex w-100 justify-content-between px-3`} onClick={()=>navigate("/betslip-slip")}>
                                 <td className={"bet-align-left-slip"}>
-                                    Odds {parseFloat(sumOfOdds).toFixed(2) || 1}
+                                    <div className={"d-flex justify-content-start align-items-center gap-2"}>
+                                        <Badge
+                                            pill
+                                            bg="warning nav__betslip boost-message-count gap-3  d-flex justify-content-center align-items-center text-dark"
+                                        >
+                                            {jackpot === true && jackpot != undefined || pathname == "/betslip-jackpot" ? getJackpotBetslip() != null ?
+                                                <strong>{Object.keys(getJackpotBetslip())?.length}</strong> : <strong
+                                                    className={'badge-font-weight'}>0</strong> : kiron == true || pathname == "/betslip-nare" ? getKironSlip() != null ? Object.keys(getKironSlip()).length :
+                                                <strong
+                                                    className={'badge-font-weight'}>0</strong> : getBetslip() ? Object.keys(betItems || {}).length <= 50 ?
+                                                <strong>{Object.keys(betItems || {}).length}</strong> :
+                                                <strong className={'badge-font-weight'}>50</strong> : <strong>0</strong>}
+                                        </Badge> <h4> <strong>Betslip</strong> </h4>
+                                    </div>
+
                                 </td>
                                 <td className={"bet-align-right-slip"}>
-                                    Winnings {winnings?.toLocaleString('en-US')}
+                                    <div className={'d-flex flex-column'}>
+                                        <span>Odds {parseFloat(sumOfOdds).toFixed(2) || 1}</span>
+                                        <span>Winnings {winnings?.toLocaleString('en-US')}</span>
+                                    </div>
+
                                 </td>
                             </tr>}
                         <tr className={"mt-3"} onClick={() => navigate("/betslip-slip")}>
@@ -179,109 +205,120 @@ const MobileMenu = React.memo((props) => {
                                                       top: "50%",
                                                       fontWeight: "600",
                                                       transform: "translate(-50%, -50%)",
-                                                      color: "var(--dark)"
+                                                      color: "var(--dark)",
+                                                      fontSize:"10px"
                                                   }}>
 								{state?.multiboostmessage}</span>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
-
-                        </tbody>
-                    </table> :
-                    <table>
-                        <tbody>
-                        {!pathSlipSummary.includes(pathname) &&
-                            <tr className={"info-slip-bets d-flex w-100 justify-content-between px-3"}>
-                                <td className={"bet-align-left-slip"}>
-                                    Odds {parseFloat(sumOfOdds).toFixed(2) || 1}
                                 </td>
-                                <td className={"bet-align-right-slip"}>
-                                    Winnings {winnings}
-                                </td>
-                            </tr>}
-                        <tr className={"d-flex w-100"}>
-                            <td className={`bloc-icon ${pathname === "/" ? "active" : ""}`}>
-                                <Link
-                                    to={"/"}
-                                    onClick={() => gaEventTracker("Visit Homepage")}
-                                >
-                                    <LazyLoadImage src={HomeSvg} alt="" style={{width: "30px", height: "25px"}}/>
-                                    <p>Home</p>
-                                </Link>
-                            </td>
+                            </tr>
 
-                            <td className={`bloc-icon ${pathname === "/live" ? "active" : ""}`}>
-                                <Link
-                                    to={`/live`}
-                                    onClick={() => gaEventTracker("Visit Live  Page")}
-                                >
-                                    <LazyLoadImage src={LiveSvg} alt=""/>
-                                    {liveSports?.forEach((sport) => {
-                                        totalCount += sport.count;
-                                    })}
-                                    <p>
-                                        Live <span className={"text-light"}>({totalCount || 0})</span>
-                                    </p>
-
-                                </Link>
-                            </td>
-                            <td className={` nav__betslip bloc-icon bet-slip-footer-toggle text-white`}>
-                                <Link to={{
-                                    pathname: `${jackpot ? "/betslip-jackpot" : kiron ? `/betslip-nare` : "/betslip-slip"}`,
-                                    search: `${jackpot !== undefined ? 'jackpot=' + jackpot : ''}${jackpotData !== undefined ? '&jackpotData=' + encodeURIComponent(JSON.stringify(jackpotData)) : ''}${kiron !== undefined ? 'nare-league=' + kiron : ''}`
-                                }}>
-                                    <Badge
-                                        pill
-                                        bg="warning nav__betslip d-flex justify-content-center align-items-center text-dark"
-                                    >
-                                        {/*fixed size 50 for bets clicked*/}
-                                        {jackpot === true && jackpot != undefined || pathname == "/betslip-jackpot" ? getJackpotBetslip() != null ?
-                                            <strong>{Object.keys(getJackpotBetslip())?.length}</strong> : <strong
-                                                className={'badge-font-weight'}>0</strong> : kiron == true || pathname == "/betslip-nare" ? getKironSlip() != null ? Object.keys(getKironSlip()).length :
-                                            <strong
-                                                className={'badge-font-weight'}>0</strong> : getBetslip() ? Object.keys(betItems || {}).length <= 50 ?
-                                            <strong>{Object.keys(betItems || {}).length}</strong> :
-                                            <strong className={'badge-font-weight'}>50</strong> : <strong>0</strong>}
-                                    </Badge>
-                                </Link>
-                            </td>
-
-                            <td className={`bloc-icon ${pathname === (kiron?'/bet-history':'/my-bets') ? "active" : ""}`}>
-                                <Link
-                                    to={`${kiron?'/bet-history':'/my-bets'}`}
-                                    onClick={() => gaEventTracker("Visit My Bets Page")}>
-                                    <FontAwesomeIcon icon={faReceipt} style={{fontSize: "22px", color: "#FFB200"}}/>
-                                    <p>
-                                        My Bets
-                                    </p>
-
-                                </Link>
-                            </td>
-
-                            {state?.user ? (<td className={`bloc-icon ${pathname === "/profile" ? "active" : ""}`}>
-                                <Link
-                                    to={"/profile"}
-
-                                >
-                                    <LazyLoadImage src={ProfileSvg} alt=""/>
-                                    <p>Profile</p>
-                                </Link>
-                            </td>) : (<td className={`bloc-icon ${pathname === "/login" ? "active" : ""}`}>
+                            </tbody>
+                        </table>
+                    </tr>
+                    :
+                    <tr className={"mobile-menu-container"}>
+                        <table>
+                            <tbody>
+                            {!pathSlipSummary.includes(pathname) &&
+                                <tr className={"info-slip-bets d-flex w-100 justify-content-between px-3"}>
+                                    <td className={"bet-align-left-slip"}>
+                                        Odds {parseFloat(sumOfOdds).toFixed(2) || 1}
+                                    </td>
+                                    <td className={"bet-align-right-slip"}>
+                                        Winnings {winnings}
+                                    </td>
+                                </tr>}
+                            <tr className={"d-flex w-100"}>
+                                <td className={`bloc-icon ${pathname === "/" ? "active" : ""}`}>
                                     <Link
-                                        to={"/login"}
-
+                                        to={"/"}
+                                        onClick={() => gaEventTracker("Visit Homepage")}
                                     >
-                                        <LazyLoadImage src={ProfileSvg} alt=""
-                                                       style={{width: "30px", height: "25px"}}/>
-                                        <p>Profile</p>
+                                        <LazyLoadImage src={HomeSvg} alt=""
+                                        effect="blur"
+                                        style={{width: "30px", height: "25px"}}/>
+                                        <p>Home</p>
                                     </Link>
                                 </td>
 
-                            )}
-                        </tr>
-                        </tbody>
-                    </table>}
+                                <td className={`bloc-icon ${pathname === "/live" ? "active" : ""}`}>
+                                    <Link
+                                        to={`/live`}
+                                        onClick={() => gaEventTracker("Visit Live  Page")}
+                                    >
+                                        <LazyLoadImage src={LiveSvg}
+                                        effect="blur"
+                                        alt=""/>
+                                        {liveSports?.forEach((sport) => {
+                                            totalCount += sport.count;
+                                        })}
+                                        <p>
+                                            Live <span className={"text-light"}>({totalCount || 0})</span>
+                                        </p>
+
+                                    </Link>
+                                </td>
+                                <td className={` nav__betslip bloc-icon bet-slip-footer-toggle text-white`}>
+                                    <Link to={{
+                                        pathname: `${jackpot ? "/betslip-jackpot" : kiron ? `/betslip-nare` : "/betslip-slip"}`,
+                                        search: `${jackpot !== undefined ? 'jackpot=' + jackpot : ''}${jackpotData !== undefined ? '&jackpotData=' + encodeURIComponent(JSON.stringify(jackpotData)) : ''}${kiron !== undefined ? 'nare-league=' + kiron : ''}`
+                                    }}>
+                                        <Badge
+                                            pill
+                                            bg="warning nav__betslip d-flex justify-content-center align-items-center text-dark"
+                                        >
+
+                                            {jackpot === true && jackpot != undefined || pathname == "/betslip-jackpot" ? getJackpotBetslip() != null ?
+                                                <strong>{Object.keys(getJackpotBetslip())?.length}</strong> : <strong
+                                                    className={'badge-font-weight'}>0</strong> : kiron == true || pathname == "/betslip-nare" ? getKironSlip() != null ? Object.keys(getKironSlip()).length :
+                                                <strong
+                                                    className={'badge-font-weight'}>0</strong> : getBetslip() ? Object.keys(betItems || {}).length <= 50 ?
+                                                <strong>{Object.keys(betItems || {}).length}</strong> :
+                                                <strong className={'badge-font-weight'}>50</strong> : <strong>0</strong>}
+                                        </Badge>
+                                    </Link>
+                                </td>
+
+                                <td className={`bloc-icon ${pathname === (kiron?'/bet-history':'/my-bets') ? "active" : ""}`}>
+                                    <Link
+                                        to={`${kiron?'/bet-history':'/my-bets'}`}
+                                        onClick={() => gaEventTracker("Visit My Bets Page")}>
+                                        <LazyLoadImage src={Mybets}
+                                                       effect="blur"
+                                                       alt=""/>
+                                        <p>
+                                            My Bets
+                                        </p>
+
+                                    </Link>
+                                </td>
+
+                                {state?.user ? (<td className={`bloc-icon ${pathname === "/profile" ? "active" : ""}`}>
+                                    <Link
+                                        to={"/profile"}>
+                                        <LazyLoadImage src={ProfileSvg}
+                                        effect="blur"
+                                        alt=""/>
+                                        <p>Profile</p>
+                                    </Link>
+                                </td>) : (<td className={`bloc-icon ${pathname === "/login" ? "active" : ""}`}>
+                                        <Link
+                                            to={"/login"}>
+                                            <LazyLoadImage src={ProfileSvg} alt=""
+                                            effect="blur"
+                                                           style={{width: "30px", height: "25px"}}/>
+                                            <p>Profile</p>
+                                        </Link>
+                                    </td>
+
+                                )}
+                            </tr>
+                            </tbody>
+                        </table>
+                    </tr>}
+
                 </tbody>
 
 

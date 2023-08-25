@@ -51,24 +51,24 @@ const MobileMenu = React.memo(
             str = str.replace(/[^A-Za-z0-9\-]/g, "");
             return str.replace(/-+/g, "-");
         };
-        const ipAddress = useCallback(async () => {
-            try {
-                let ip = await publicIp({
-                    fallbackUrls: ["https://ifconfig.co/ip"],
-                });
+        // const ipAddress = useCallback(async () => {
+        //     try {
+        //         let ip = await publicIp({
+        //             fallbackUrls: ["https://ifconfig.co/ip"],
+        //         });
+        //
+        //         setIpv4(ip);
+        //     } catch (error) {
+        //         console.error("Error getting IPv4 address:", error);
+        //     }
+        //
+        //
+        // }, [ipv4]);
 
-                setIpv4(ip);
-            } catch (error) {
-                console.error("Error getting IPv4 address:", error);
-            }
 
-
-        }, [ipv4]);
-
-
-        useEffect(() => {
-            ipAddress();
-        }, [ipAddress])
+        // useEffect(() => {
+        //     ipAddress();
+        // }, [ipAddress])
 
 
         let winnings = jackpotData?.jackpot_amount;

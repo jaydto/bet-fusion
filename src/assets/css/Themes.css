@@ -6,13 +6,12 @@
     --betnare-button-login: #FFC107;
     --betnare-button-register: #ffffff;
     --banner-background: url(../../assets/img/auth/img-17.webp)!important;
-    --betnare-header-bg:#141d28;
-    --betnare-body-bg:#141d28;
+    --betnare-header-bg:#16202c;
+    --betnare-body-bg:#16202c;
     --hot:#f66203;
     --black:#000;
     --text-value:#e95e0b;
-    --odds-button:rgb(31 54 69);
-    --odds-button:rgb(31 54 69);
+    --odds-button: #23313d;
     --bet-history:#1e2b36;
     --betnare-live:red;
     --slip-separator-color:rgb(51, 76, 92);
@@ -27,10 +26,10 @@
     --betnare-shadow-borders:#2c3c44;
     --betnare-font-size-nav:14px;
     --betnare-font-size-small:12px;
-    --font-size-side:1.2rem;
+    --font-size-side:1.5rem;
     --font-size-side-sm:1.3rem;
     --body-line-weight:2;
-    --body-line-weight-sm:1;
+    --body-line-weight-sm:1.5;
     --width-side:18.75rem;
     --width-side-sm:100%;
     --button-color:#334c5c;
@@ -82,11 +81,10 @@
     --font-tiny:8px;
     --font-weight-normal:normal;
     --always-white:#fff;
-    --badge-bg:url(../../assets/img/mobile/new_badge.webp);
     --box-shadow-sports: 0 0.5rem 0.2rem rgba(0,0,0,.175);
 }
 .shadow-sports-header{
-    box-shadow:var(--box-shadow-sports) !important;
+    /*box-shadow:var(--box-shadow-sports) !important;*/
 }
 
 .light-theme {

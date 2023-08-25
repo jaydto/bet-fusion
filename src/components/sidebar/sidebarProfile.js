@@ -1,4 +1,4 @@
-import {Menu, MenuItem, ProSidebar, SidebarHeader} from "react-pro-sidebar";
+import {Menu, MenuItem, ProSidebar, SidebarFooter, SidebarHeader} from "react-pro-sidebar";
 import React, {useContext, useEffect} from "react";
 import {Link} from "react-router-dom";
 import 'react-pro-sidebar/dist/css/styles.css';
@@ -10,12 +10,13 @@ import {
     faMagic,
     faMobile,
     faPrint,
-    faQuestionCircle
+    faQuestionCircle,
+    faPhoneFlip
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {StoreContext } from "../../context/store";
-import {LazyLoadImage} from "react-lazy-load-image-component";
+import {faWhatsapp} from "@fortawesome/free-brands-svg-icons";
 
 const SidebarProfile = React.memo(
     (props) => {
@@ -47,25 +48,7 @@ const SidebarProfile = React.memo(
 
                     </MenuItem>
                 </Menu>
-                {/*<Menu>*/}
-                {/*    <MenuItem>*/}
-                {/*        <div className={"d-flex gap-4 align-items-center px-3"}>*/}
-                {/*            <FontAwesomeIcon icon={faUser}/>*/}
-                {/*            <div className={'text-profile'} onClick={() => showCentricPage('cash')}>Cash</div>*/}
-                {/*        </div>*/}
 
-                {/*    </MenuItem>*/}
-                {/*</Menu>*/}
-
-                {/*<Menu>*/}
-                {/*    <MenuItem>*/}
-                {/*        <div className={"d-flex gap-4 align-items-center px-3"}>*/}
-                {/*            <FontAwesomeIcon icon={faCloudDownloadAlt}/>*/}
-                {/*            <div className={'text-profile'} onClick={() => showCentricPage('gift')}>Gift</div>*/}
-                {/*        </div>*/}
-
-                {/*    </MenuItem>*/}
-                {/*</Menu>*/}
                 <Menu>
                     <MenuItem className={"d-flex justify-content-between"}>
                         <Link  className={"d-flex gap-4 align-items-center px-3"} to={"/my-bets"}>
@@ -146,6 +129,24 @@ const SidebarProfile = React.memo(
 
                 </Menu>
             </SidebarHeader>
+            <SidebarFooter>
+                <Menu>
+                    <MenuItem>
+                        <div className={"d-flex gap-4 align-items-center px-3"}>
+                            <FontAwesomeIcon icon={faWhatsapp} style={{fontSize:'24px'}}/>
+                            <a href={"https://wa.me/+254701087777"} target={"_blank"} className={'text-profile'}>Whatsapp Us</a>
+                        </div>
+                    </MenuItem>
+                </Menu>
+                <Menu>
+                    <MenuItem>
+                        <div className={"d-flex gap-4 align-items-center px-3"}>
+                            <FontAwesomeIcon icon={faPhoneFlip} style={{fontSize:'24px'}}/>
+                            <a href={'javascript:void(0)'} className={'text-profile'}>0701087777</a>
+                        </div>
+                    </MenuItem>
+                </Menu>
+            </SidebarFooter>
 
         </ProSidebar>)
     })

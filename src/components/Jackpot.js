@@ -1,5 +1,4 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import './test.css'
 import "../assets/css/jackpot.css"
 import useWindowDimensions from "./header/Dimensions";
 import Tabs from "react-bootstrap/Tabs";
@@ -236,6 +235,7 @@ const Jackpot = React.memo(
                                                         className={'text-white col-md-12 text-center background-primary shadow mt-2 p-3 d-flex flex-column  align-items-center justify-content-center'}
                                                         style={{height: "30vh"}}>
                                                         <LazyLoadImage src={caution}
+                                                         effect='blur'
                                                                        className={'jackpot-image-caution'}/>
                                                         <p className={'jackpot-text-inactive'}>
                                                             1 Million Daily Jackpot not available. Please check back

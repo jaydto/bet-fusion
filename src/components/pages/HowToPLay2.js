@@ -9,7 +9,6 @@ import {
 } from "react-accessible-accordion";
 import "react-accessible-accordion/dist/fancy-example.css";
 import '../test.css'
-import {getBetslip} from '../utils/betslip';
 import {StoreContext } from "../../context/store";
 
 const Header = React.lazy(() => import("../header/header"));
@@ -20,14 +19,14 @@ const Right = React.lazy(() => import("../right/index"));
 const  HowToPlay= React.memo(
     (props) => {
 
-    const { state, dispatch } = useContext(StoreContext);
-
-    useEffect(() => {
-        let betslip = getBetslip();
-        if (betslip) {
-            dispatch({type: "SET", key: "betslip", payload: betslip});
-        }
-    }, []);
+    const { dispatch } = useContext(StoreContext);
+    //
+    // useEffect(() => {
+    //     let betslip = getBetslip();
+    //     if (betslip) {
+    //         dispatch({type: "SET", key: "betslip", payload: betslip});
+    //     }
+    // }, []);
 
     return (
         <div className={'flex-item'}>

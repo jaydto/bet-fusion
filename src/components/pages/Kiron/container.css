@@ -103,6 +103,7 @@
         padding-left:0px!important;
         padding-right:0px!important;
         margin-right:0px!important;
+        padding-bottom:10px;
     }
     .flex-item-kiron {
         display: flex;

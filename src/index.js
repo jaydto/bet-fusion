@@ -12,21 +12,19 @@ import './assets/css/tolkits.css';
 import './assets/css/sidebar-menu.css';
 import './index.css';
 import './assets/css/newCss.css'
-import './tailwind.css';
 import './assets/css/Themes.css'
 import {StoreContext, StoreProvider} from "./context/store";
-import ReactGA from 'react-ga4';
 import Loading from "./components/loading/LoadingSuspense";
 import { createRoot } from 'react-dom/client';
 
-import ReactPixel from 'react-facebook-pixel';
-import "firebase/messaging"; // Import the FCM module
+// import ReactPixel from 'react-facebook-pixel';
+// import "firebase/messaging"; // Import the FCM module
 
-const TRACKING_ID = "G-5NLSN9BLN4";
-ReactGA.initialize(TRACKING_ID);
+// const TRACKING_ID = "G-5NLSN9BLN4";
+// ReactGA.initialize(TRACKING_ID);
 
-const TRACKING_PIXEL_ID = "1297171947681785";
-ReactPixel.init(TRACKING_PIXEL_ID);
+// const TRACKING_PIXEL_ID = "1297171947681785";
+// ReactPixel.init(TRACKING_PIXEL_ID);
 
 const Deposit3=React.lazy(()=>import("./components/pages/deposit-withraw/Deposit3"));
 
@@ -141,10 +139,9 @@ const Login=React.lazy(()=>import('./components/pages/loginTwo'));
 
 const NewProfile =React.lazy(()=>import( "./components/pages/Accounts/NewProfile"));
 
-const Affiliate =React.lazy(()=>import( "./components/Affiliate/Affiliate"));
+
 const Promo = React.lazy(() => import('./components/pages/promotions/Promo'))
 const BetHistory =React.lazy(()=>import( "./components/pages/Accounts/component/BetHistory"));
-const Lobby =React.lazy(()=>import( "./components/lobby/Index"));
 
 const Logout = () => {
     const { state, dispatch } = useContext(StoreContext);
@@ -231,8 +228,7 @@ createRoot(container).render(
                     <Route exact path="/promo" element={<Promo/>}/>
                     <Route exact path="/deposit"
                            element={<ProtectedRoute><Deposit3/> </ProtectedRoute>}/>
-                    <Route exact path="/affiliate"
-                           element={<Affiliate/> }/>
+                 
                     <Route exact path="/withdraw"
                            element={<ProtectedRoute><Withdraw/></ProtectedRoute>}/>
                     <Route exact path="/redeem-points"
@@ -246,8 +242,4 @@ createRoot(container).render(
     </StoreProvider>
 );
 
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

@@ -26,7 +26,7 @@ const backgroundStyle = {
 const ResetPassword2 = React.memo(
     props => {
 
-   const { state, dispatch } = useContext(StoreContext);
+   const { state } = useContext(StoreContext);
     const expand = "md"
 
     const FormTitle = () => {
@@ -162,7 +162,7 @@ const ResetPassword2 = React.memo(
 })
 const MyOtpForm = React.memo(
     (props) => {
-    const { state, dispatch } = useContext(StoreContext);
+    const { state } = useContext(StoreContext);
     const {errors, values, submitForm, setFieldValue} = props;
 
     const onFieldChanged = (ev) => {
@@ -212,7 +212,7 @@ const MyOtpForm = React.memo(
 
 const MyPasswordResetForm = React.memo(
     (props) => {
-    const { state, dispatch } = useContext(StoreContext);
+    const { state } = useContext(StoreContext);
     const {errors, values, submitForm, setFieldValue} = props;
     const [showPassword, setShowPassword] = useState(false);
     const toggleShowPassword = () => {
@@ -417,7 +417,7 @@ const PasswordResetForm = React.memo(
 
 const OptForm = React.memo(
     (props) => {
-    const { state, dispatch } = useContext(StoreContext);
+    const { dispatch } = useContext(StoreContext);
     const initialValues = {
         mobile: '',
     }

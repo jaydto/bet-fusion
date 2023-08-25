@@ -6,7 +6,6 @@ import {setLocalStorage} from "../../utils/local-storage";
 import {Button, ButtonGroup} from "react-bootstrap";
 import SearchComponent from "./searchField";
 import {StoreContext } from "../../../context/store"
-import SideBar from "../../sidebar/awesome/Sidebar";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
 import {useNavigate} from "react-router-dom";
@@ -18,7 +17,7 @@ const Casino = React.memo(
 
         const [games, setGames] = useState([])
 
-        const { state, dispatch } = useContext(StoreContext);
+        const { state } = useContext(StoreContext);
 
         const fetchGames = async (category = 'vs') => {
             let endpoint = "/v1/casino-games?game-type-id=" + category
@@ -53,27 +52,9 @@ const Casino = React.memo(
                 <Header/>
                 <div>
                     <div className={"d-flex"}>
-                        <div className="stats-desktop"><SideBar loadCompetitions/></div>
                         <div className="gz home top-spacing-casino " style={{width: '100%'}}>
                             <div className="homepage ">
                                 <div className="col-md-12 d-flex flex-column mt-2">
-                                    <div
-                                        className={'d-flex w-100 flex-column justify-content-between nare-header-container'}>
-                                        <div className={'d-flex align-items-center'}>
-                                            <span className={'px-3 remove-backbutton-on-desktop'} onClick={() => navigate('/')}>
-                                             <FontAwesomeIcon icon={faAngleLeft} style={{
-                                                 fontSize: "24px",
-                                                 color: 'var(--light)',
-                                                 fontWeight: '700',
-                                                 opacity: '0.7'
-                                             }}/>
-                                            </span>
-                                            <span className={'col-12 justify-content-center d-flex mt-3 mb-4'}
-                                                  id={'nare-games-header'}>
-                            CASINO
-                        </span>
-                                        </div>
-                                    </div>
                                     <div className="col-md-12 casino-scroll">
                                         <div
                                             className="shadow-sm p-2 shadow-sm casino-category-container mt-2">
@@ -93,7 +74,7 @@ const Casino = React.memo(
                                         <SearchComponent data={games}/>
                                     </div>
                                     <div className="col">
-                                        <div className={'row text-white p-2 shadow-sm'}>
+                                        <div className={'row text-white p-2 shadow-sm justify-content-center'}>
                                             {state?.casino_search !== undefined && state?.casino_search.length > 0 ? state?.casino_search?.map((search_game, index) => (
                                                     search_game?.game_id == "rgs-vsv" ? "" :
                                                         <div key={index}
@@ -106,8 +87,10 @@ const Casino = React.memo(
                                                                     <p className={'text-center bold text-elipsis text-uppercase'}>
                                                                         {search_game?.game_name}
                                                                     </p>
-                                                                    <LazyLoadImage src={`${search_game.game_icon}`}
-                                                                                   className={'virtual-game-image'}/>
+                                                                    <LazyLoadImage
+                                                                        effect={'blur'}
+                                                                        src={`${search_game.game_icon}`}
+                                                                                   className={'virtual-game-image vw-100'}/>
                                                                 </div>
                                                                 <div className="overlay shadow-sm row">
                                                                     <ButtonGroup aria-label="Basic example">
@@ -137,7 +120,8 @@ const Casino = React.memo(
                                                                             {game?.game_name}
                                                                         </p>
                                                                         <LazyLoadImage src={`${game.game_icon}`}
-                                                                                       className={'virtual-game-image'}/>
+                                                                                       effect={'blur'}
+                                                                                       className={'virtual-game-image vw-100'}/>
                                                                     </div>
                                                                     <div className="overlay shadow-sm row">
                                                                         <ButtonGroup aria-label="Basic example">

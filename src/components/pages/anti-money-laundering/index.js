@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React from "react";
 import {
     Accordion,
     AccordionItem,
@@ -8,8 +8,7 @@ import {
 } from 'react-accessible-accordion';
 import '../../test.css'
 import 'react-accessible-accordion/dist/fancy-example.css';
-import useWindowDimensions from "../../header/Dimensions";
-import {StoreContext } from "../../../context/store"
+
 
 const Header = React.lazy(()=>import('../../header/header'));
 const Footer = React.lazy(()=>import('../../footer/footer'));
@@ -17,8 +16,6 @@ const Right = React.lazy(()=>import('../../right/index'));
 const SideBar = React.lazy(()=>import('../../sidebar/awesome/Sidebar'));
 
 const AntiMoneyLaundering = () => {
-    const {height, width} = useWindowDimensions();
-    const { state, dispatch } = useContext(StoreContext);
     return (
         <div className={'flex-item'}>
             <div className="item4"><Header/></div>

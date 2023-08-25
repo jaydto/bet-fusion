@@ -27,11 +27,11 @@
     animation: loadingAnimation 2s linear infinite;
 }
 
-@keyframes loadingAnimation {
+/* @keyframes loadingAnimation {
     0% {
         transform: translateX(-100%);
     }
     100% {
         transform: translateX(100%);
     }
-}
+} */

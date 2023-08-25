@@ -6,19 +6,15 @@ import {
     AccordionItemPanel,
 } from 'react-accessible-accordion';
 import 'react-accessible-accordion/dist/fancy-example.css';
-import React, {useContext} from "react";
+import React from "react";
 import Footer from '../../footer/footer'
 import Header from '../../header/header'
 import Right from '../../right/index'
 import SideBar from '../../sidebar/awesome/Sidebar'
-import useWindowDimensions from "../../header/Dimensions";
-import {StoreContext } from "../../../context/store"
 import '../../test.css'
 
 const PrivacyPolicy = React.memo(
     () => {
-    const {height, width} = useWindowDimensions();
-    const { state, dispatch } = useContext(StoreContext);
 
     return (
         <div className={'flex-item'}>

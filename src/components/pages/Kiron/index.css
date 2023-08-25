@@ -596,12 +596,13 @@
         padding-right: 0rem!important;
         /* margin-bottom: 0.4rem; */
         align-items: center;
+        align-self: baseline;
     }
     .matches .top-matches .kiron-btn {
         border-radius: 4px !important;
         margin-right: 4px;
         outline: none;
-        height: 46px;
+        height: 46px!important;
         box-sizing: border-box;
         width: 66px;
     }

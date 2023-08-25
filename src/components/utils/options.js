@@ -60,7 +60,7 @@ const LinkSelect = React.memo(
             // Call the function to get the value of "sub_type_id"
             const subTypeId = getSubTypeIdFromURL(selectedValue);
             dispatchRedux(setState('active_market', subTypeId))
-            console.log("selected_value", subTypeId)
+            // console.log("selected_value", subTypeId)
             navigate(selectedValue);
         };
 

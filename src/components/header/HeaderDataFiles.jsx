@@ -7,7 +7,6 @@ const navigationConfig = {
 		'nare-league',
 		'results',
 		'my-bets',
-		'casino',
 		'promotions',
 		'smart-soft',
 		'virtuals',

@@ -14,12 +14,8 @@ const ShaksGamePlay = React.memo(
 
     const {game} = useParams()
     const [gameUrl, setGameUrl] = useState('')
-    const [token, setUserToken] = useState('')
     const [user_id, setUserID] = useState('')
     const [demo, setDemo] = useState(false)
-
-
-    const [games] = useState(getFromLocalStorage('category_games'))
 
     const [isLoggedIn] = useState(getFromLocalStorage('user'))
 
@@ -38,7 +34,17 @@ const ShaksGamePlay = React.memo(
             "profile_id": user.profile_id,
             "game": game === undefined ? 'Crashlite' : game.trim()
         }
+        const toggleFullscreen = () => {
+            const iframeElement = document.getElementById("gameIframe");
 
+            if (!document.fullscreenElement) {
+                iframeElement.requestFullscreen().catch((err) => {
+                    console.log("Fullscreen request failed:", err);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        };
         await makeRequest({url: endpoint, method: method, data: payload}).then(([status, result]) => {
             if (status === 200) {
                

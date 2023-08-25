@@ -6,7 +6,7 @@ import {LazyLoadImage} from "react-lazy-load-image-component";
 
 const MobileCategories = React.memo(
     () => {
-    let categories = getFromLocalStorage('categories');
+    let categories = getFromLocalStorage('sport_categories');
     return (
         <Container>
             <div className="container-fluid py-2">

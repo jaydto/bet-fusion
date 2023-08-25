@@ -36,7 +36,7 @@ const KironPlayouts = React.memo(
                     }
                 })
             }
-            console.log("totalEmpty", totalEmptyPlayouts)
+            // console.log("totalEmpty", totalEmptyPlayouts)
             if (totalEmptyPlayouts == playouts_data?.playouts?.length) {
                 timeVar = setTimeout(() => {
                     fetchData()

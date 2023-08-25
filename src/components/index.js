@@ -216,11 +216,13 @@ const Index = React.memo(
             }
 
 
-            if (new_tab !== tab) {
+            if (new_tab !== tab && new_tab !=='countries') {
                 setTab(new_tab)
                 setLimit(20)
                 prevLimit.current = 20
                 setLoading(true)
+            }else{
+                setTab(new_tab)
             }
 
 
@@ -232,7 +234,7 @@ const Index = React.memo(
                 setMatches([])
 
             } else {
-
+                setSportID(new_sport_id)
             }
 
         })

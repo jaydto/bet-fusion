@@ -4,7 +4,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import {Menu, MenuItem, ProSidebar, SidebarContent, SidebarHeader} from "react-pro-sidebar";
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import useWindowDimensions from "../header/Dimensions";
 
 
@@ -12,7 +12,7 @@ const LiveSideBar = React.memo(
     (props) => {
 
         const [liveSports, setLiveSports] = useState()
-        const {height, width} = useWindowDimensions();
+        const {width} = useWindowDimensions();
 
         const fetchData = useCallback(() => {
             let endpoint = "/v1/sports?live=1";
@@ -31,7 +31,7 @@ const LiveSideBar = React.memo(
             return () => {
                 abortController.abort();
             };
-        }, [fetchData]);
+        }, []);
 
         return (
             <div className={`${width<=991?"":"d-md-block  h-100"}`} >
@@ -112,45 +112,5 @@ const LiveSideBar = React.memo(
             </div>
         );
 
-        // return (
-        //     <div className="gn d-md-block">
-        //
-        //       <PerfectScrollbar >
-        //         <div className="qv rc aog alu web-element block-shadow bottom-std-margin-spacing">
-        //             <header>
-        //                 <div className="header-holder">
-        //                     <span className="col-sm-10">Live Sports</span>
-        //                     <span className="col-sm-2 header-icon">
-        //                     <img
-        //                       height="14px"
-        //                       src={football}
-        //                       alt="-"
-        //                       />
-        //                     </span>
-        //                 </div>
-        //             </header>
-        //
-        //             <ul className="aoi nav base-bg">
-        //                 {  liveSports && Object.entries(liveSports).map(([index, livesport])  => (
-        //                     <li className="li-white-h" key={index}>
-        //                         <a className="col-12"
-        //                             href={`/live/${livesport.sport_id}`}>
-        //                             <Row>
-        //                             <Col lg="11" md="11" sm="11" xs="11" className="topl" >
-        //                                 <Row style={{color:"#69819a"}}>
-        //                                     <Col>{livesport.sport_name} </Col>
-        //                                     <Col><span style={{float:"right", color:"#fff"}}>{livesport.count }</span></Col>
-        //                                 </Row>
-        //                             </Col>
-        //                            </Row>
-        //                         </a>
-        //                     </li>)
-        //                   )
-        //                 }
-        //             </ul>
-        //         </div>
-        //       </PerfectScrollbar>
-        //     </div>
-        // )
     })
 export default React.memo(LiveSideBar);

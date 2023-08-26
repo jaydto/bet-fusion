@@ -96,8 +96,6 @@ const Countries = React.memo(
             return competition?.default_display_markets;
         };
 
-        console.log("competitions now ", competitions?.all_sports)
-
         const targetSports = competitions?.all_sports.filter(sports =>Number(sports?.sport_id)===Number(sport_id));
 
 

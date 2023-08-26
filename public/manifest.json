@@ -11,13 +11,13 @@
 
       "src": "fire2.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "50x50"
     },
     {
 
       "src": "fire2.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "50x50"
     }
   ],
   "start_url": ".",

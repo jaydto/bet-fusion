@@ -1,17 +1,22 @@
-// dataSlice.js (or dataSlice.ts for TypeScript)
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-
-const initialState = {
-    items: [],
-    status: "idle",
-    error: null,
-};
-
-export const fetchData = createAsyncThunk("data/fetchData", async () => {
-    const response = await axios.get("https://jsonplaceholder.typicode.com/posts");
-    return response.data;
-});
+// matchesSlice.js
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import initialState from "./state"; // Import the initial state from state.js
+import makeRequest from "../components/utils/fetch-request";
+import {setLocalStorage} from "../components/utils/local-storage";
+// Async thunk for matches
+export const configSettings =
+    createAsyncThunk("data/configSettings",
+        async () => {
+            const [status, response] = await makeRequest({
+                url: "/v1/bet/settings",
+                method: "POST"
+            });
+            if (status === 200) {
+                return response;
+            } else {
+                throw new Error(response?.error || "Fetching Prematch failed");
+            }
+        });
 
 const dataSlice = createSlice({
     name: "data",
@@ -19,17 +24,24 @@ const dataSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(fetchData.pending, (state) => {
-                state.status = "loading";
+            .addCase(configSettings.pending, (state) => {
+                state.loading = true;
             })
-            .addCase(fetchData.fulfilled, (state, action) => {
-                state.status = "succeeded";
-                state.items = action.payload;
+            .addCase(configSettings.fulfilled, (state, action) => {
+                state.app_config= action.payload;
+                state.loading = false;
+                state.error = null;
+                const status=action.payload.status
+                if(status===200){
+                    setLocalStorage('settings', action.payload.message, 1800000)
+                }
             })
-            .addCase(fetchData.rejected, (state, action) => {
-                state.status = "failed";
+            .addCase(configSettings.rejected, (state, action) => {
+                state.loading = false;
                 state.error = action.error.message;
-            });
+            })
+
+
     },
 });
 

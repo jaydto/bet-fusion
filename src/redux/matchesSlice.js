@@ -59,7 +59,6 @@ export const marketGroups =
                 throw new Error(response?.error || "Fetching Market Groups failed");
             }
         });
-
 export const matchesLive =
     createAsyncThunk("matches/live",
     async (competitionsData) => {
@@ -74,7 +73,6 @@ export const matchesLive =
             throw new Error(response?.error || "Fetching Live Matches failed");
         }
     });
-
 export const matchesJackpot =
     createAsyncThunk("matches/jackpot",
     async () => {
@@ -164,6 +162,25 @@ export const matchesMorePrematchMarkets =
 
     }
 );
+
+let fetchInterval; // Declare the interval variable outside the action creator
+
+export const startFetchingMatches = () => async (dispatch) => {
+    // Dispatch the initial fetch
+    dispatch(matchesPrematch());
+
+    // Set up the interval to fetch matches every 20 seconds
+    fetchInterval = setInterval(() => {
+        dispatch(matchesPrematch());
+    }, 20000); // 20000 milliseconds = 20 seconds
+};
+
+// Action creator to stop fetching matches
+export const stopFetchingMatches = () => () => {
+    if (fetchInterval) {
+        clearInterval(fetchInterval);
+    }
+};
 
 const matchesSlice = createSlice({
     name: "matches",

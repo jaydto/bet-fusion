@@ -23,6 +23,10 @@ import {StoreContext} from "../../../context/store"
 import SliderPromos from "./SliderPromos";
 import {ToastContainer} from "react-toastify";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
+import {useDispatch, useSelector} from "react-redux";
+import {signupUser} from "../../../redux/authSlice";
+import {Notify} from "../../header/top-login";
+import {configSettings} from "../../../redux/dataSlice";
 
 const backgroundStyle = {
     backgroundImage: `url(${backgroundURL})`,
@@ -30,26 +34,16 @@ const backgroundStyle = {
     backgroundSize: 'cover'
 }
 
-const RegisterTwo = props => {
+const RegisterTwo = () => {
 
-    const {state, dispatch} = useContext(StoreContext);
+    const successMessage = useSelector((state)=>state.auth.user_sign_up);
+    const appConfig = useSelector((state)=>state.data.app_config);
     // const {setUser} = props;
     const expand = "md"
+    const dispatchRedux=useDispatch();
 
     const AppConfig = useCallback(async () => {
-        let endpoint = "/v1/bet/settings"
-
-        await makeRequest({url: endpoint, method: "POST", data: null}).then(
-            ([status, result]) => {
-                if (status === 200) {
-                    setLocalStorage('settings', result?.message, 1800000)
-
-                    dispatch({type: "SET", key: "app_config", payload: result?.data || result});
-                }
-
-            }
-        );
-
+        dispatchRedux(configSettings())
     }, []);
 
 
@@ -59,9 +53,13 @@ const RegisterTwo = props => {
         return abortController.abort()
     }, [])
 
-    {
-        (state?.registerSuccess && state?.app_config?.message?.accountConfiguration?.verificationEnabled == "1") && setTimeout(navigateToFormStep(3), 1500)
-    }
+    useEffect(() => {
+        if (successMessage && appConfig?.message?.accountConfiguration?.verificationEnabled === "1") {
+            const timeoutId = setTimeout(() => navigateToFormStep(3), 1500);
+            return () => clearTimeout(timeoutId);
+        }
+    }, [successMessage, appConfig]);
+
     return (<>
 
             <div style={{height: '100vh', background: '#16202C'}}>
@@ -187,209 +185,8 @@ const RegisterTwo = props => {
     )
 }
 
-const MyVerifyAccountForm = (props) => {
-    const {errors, values, setFieldValue} = props;
-    const {state, dispatch} = useContext(StoreContext);
-    const resendOTP = () => {
-
-        let endpoint = '/v1/code';
-
-        let payload = {
-            mobile: values?.mobile
-        }
-
-        makeRequest({url: endpoint, method: 'POST', data: payload}).then(([status, response]) => {
-
-            // setMessage(response.success ? response.success.message : response.error.message);
-            dispatch({
-                type: "SET",
-                key: "verifyMessage",
-                payload: response.success ? response.success.message : response.error.message
-            })
-            // response.success?dispatch({type: "SET", key: "verifySuccess", payload: true}):dispatch({type: "SET", key: "verifySuccess", payload: false})
-
-            let timer = setInterval(() => {
-                // setIsMobileNumberValid(false)
-                dispatch({type: "SET", key: "isMobileNumberValid", payload: false})
-                clearInterval(timer)
-            }, 3000)
-            response?.success && timer()
-            // response.error ? setSuccess(false) : setSuccess(false)
-            response.success ? dispatch({type: "SET", key: "verifySuccess", payload: true}) : dispatch({
-                type: "SET",
-                key: "verifySuccess",
-                payload: false
-            })
-
-        })
-    }
-
-    const onFieldChanged = (ev) => {
-        let field = ev.target.name;
-        let value = ev.target.value;
-        setFieldValue(field, value);
-        // setIsMobileNumberValid(value.trim() !== '');
-        dispatch({type: "SET", key: "isMobileNumberValid", payload: value.trim() !== ''})
-    }
-    return (
-        <Form>
-            <div className="pt-0">
-                <div className="w-100">
-
-                    <div className="form-group row d-flex justify-content-center mt-3">
-                        <div className="col-md-12">
-                            <label>Mobile Number</label>
-                            <div className="row">
-                                <div className="col-md-12 mb-3">
-                                    <input
-                                        value={values.mobile}
-                                        className="h-100 text-light deposit-input form-control col-md-12 input-field"
-                                        id="mobile"
-                                        name="mobile"
-                                        type="text"
-                                        placeholder='Phone number'
-                                        onChange={ev => onFieldChanged(ev)}
-                                    />
-                                    {state?.isMobileNumberValid && errors.mobile && (
-                                        <div className='text-danger'>{errors.mobile}</div>
-                                    )}
-                                </div>
-                                <div className="col-md-4 d-flex justify-content-between">
-                                        <span className='' style={{
-                                            marginLeft: 'auto',
-                                            whiteSpace: 'nowrap',
-                                            gap: '10px',
-                                            width: 'auto',
-                                        }}>
-                                            Didn't receive code? Resend Code
-                                        </span>
-                                    &nbsp;
-                                    <button onClick={() => resendOTP()} type={"button"}
-                                            className='btn py-1 px-2 text-light btn-sm bg-success rounded-3 border-0 '
-                                            style={{fontSize: "12px", whiteSpace: 'nowrap'}}
-                                            disabled={!state?.isMobileNumberValid}>Resend OTP
-                                    </button>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div className="form-group row d-flex  mt-4">
-                        <div className="col-md-12">
-                            <label>Code (OTP)</label>
-                            <input
-                                value={values?.code || ''}
-                                className="text-light deposit-input form-control col-md-12 input-field"
-                                id="code"
-                                name="code"
-                                type="code"
-                                placeholder='Code'
-                                onChange={ev => onFieldChanged(ev)}
-                            />
-                            {errors.code && <div className='text-danger'> {errors.code} </div>}
-                        </div>
-                    </div>
-                    <div className="form-group row d-flex justify-content-left mb-4">
-                        <div className="col">
-                            <button type="submit"
-                                    disabled={state?.inputDisabled}
-                                    className=' btn btn-lg w-100 button-radius input-field btn-font cg login-button btn button-page'
-                                    style={{marginTop: "47px"}}>
-                                VERIFY ACCOUNT
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </Form>
-    );
-}
-
-const VerifyAccountForm = (props) => {
-    const {state, dispatch} = useContext(StoreContext);
-
-    const initialValues = {
-        mobile: '',
-        code: ''
-    }
-    const verifyAccount = () => {
-        let code = new URL(window.location).searchParams.get('code')
-        let msisdn = new URL(window.location).searchParams.get('msisdn')
-        if (code !== null && msisdn !== null) {
-            dispatch({type: "SET", key: "inputDisabled", payload: true})
-
-            handleSubmit({
-                mobile: msisdn,
-                code: code
-            })
-        }
-    }
-
-    useEffect(() => {
-        verifyAccount()
-    }, [])
-    const handleSubmit = values => {
-        let endpoint = '/v1/verify';
-        makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
-            // setMessage(response.success ? response.success.message : response.error.message);
-            // response.success ? setSuccess(true) : setSuccess(false)
-            dispatch({
-                type: "SET",
-                key: "verifyMessage",
-                payload: response.success ? response.success.message : response.error.message
-            })
-            response.success ? dispatch({type: "SET", key: "verifySuccess", payload: true}) : dispatch({
-                type: "SET",
-                key: "verifySuccess",
-                payload: false
-            })
-            dispatch({type: "SET", key: "signup_msisdn", payload: null})
-
-            if (response?.success) {
-                setLocalStorage('user', response?.success?.user);
-                let timer = setInterval(() => {
-                    clearInterval(timer)
-                    window.location.href = "/"
-                }, 1000)
-            }
-
-        }).catch((err) => {
-
-        })
-    }
-
-    const validate = values => {
-
-        let errors = {}
-
-        if (!values.mobile || !values.mobile.match(/(254|0|)?[71]\d{8}/g)) {
-            errors.mobile = 'Please enter a valid phone number'
-        }
-
-        if (!values.code || values.code.length < 4) {
-            errors.code = "Please enter four or more characters for code";
-        }
-
-        return errors
-    }
-
-    const verifyRef = useRef()
-
-    return (
-        <Formik
-            innerRef={verifyRef}
-            initialValues={initialValues}
-            onSubmit={handleSubmit}
-            validateOnChange={false}
-            validateOnBlur={false}
-            validate={validate}
-            render={(props) => <    MyVerifyAccountForm {...props} />}/>
-    );
-}
-
-const SignupForm = (props) => {
-    const {state, dispatch} = useContext(StoreContext);
+const SignupForm = () => {
+    const { dispatch} = useContext(StoreContext);
     const initialValues = {
         msisdn: '',
     }
@@ -434,6 +231,7 @@ const FormTitle = () => {
 }
 const MySignupForm = (props) => {
     const {state, dispatch} = useContext(StoreContext);
+    const appConfig=useSelector((state)=>state.data.app_config)
     const {errors, values, setFieldValue} = props;
     const onFieldChanged = (ev) => {
         let field = ev.target.name;
@@ -470,7 +268,7 @@ const MySignupForm = (props) => {
                                     style={{marginTop: "28px"}}>
                                 <strong style={{fontWeight: "800"}}>NEXT</strong>
                             </button>
-                            {state?.app_config?.message?.accountConfiguration?.verificationEnabled !== "0" &&
+                            {appConfig?.message?.accountConfiguration?.verificationEnabled !== "0" &&
                                 <div className={`d-flex justify-content-center w-100 mt-3 cursor-pointer`}
                                      title="Verify" onClick={() => {
                                     navigate("/verify");
@@ -612,6 +410,7 @@ const MyPasswordForm = (props) => {
                                     className="w-75 text-light deposit-input form-control col-md-12 input-field"
                                     id="confirm_password"
                                     name="repeat_password"
+                                    autoComplete={'on'}
                                     type={showPassword ? 'text' : 'password'}
                                     placeholder='Password'
                                     onChange={ev => onFieldChanged(ev)}
@@ -660,61 +459,83 @@ const MyPasswordForm = (props) => {
 const ReferalForm = React.memo(
     (props) => {
         const gaEventTracker = useAnalyticsEventTracker('SignUp')
-        const {state, dispatch} = useContext(StoreContext);
+        const {state} = useContext(StoreContext);
+        const dispatchRedux = useDispatch()
         const initialValues = {
             promo_code: '',
         }
         const navigate = useNavigate()
-        const handleSubmit = values => {
-
-            let endpoint = '/v1/signup'
-
-            setTrackingData(values)
+        const successMessage=useSelector((state)=>state.auth.user_sign_up)
+        const appConfig=useSelector((state)=>state.data.app_config)
+        const errorMessage=useSelector((state)=>state.auth.error)
+        const handleSubmit = (values) => {
+            setTrackingData(values);
 
             const payload = {
                 promo_code: values.promo_code,
                 msisdn: state?.signup_msisdn,
                 password: state?.signup_password
-            }
-            setTrackingData(payload)
+            };
+            setTrackingData(payload);
 
-            makeRequest({url: endpoint, method: 'POST', data: payload}).then(([status, response]) => {
-                // setSuccess(status === 200 || status === 201);
-                // setMessage(response?.success?.message || "");
-                dispatch({type: "SET", key: "registerSuccess", payload: status === 200 || status === 201})
-                dispatch({type: "SET", key: "registerMessage", payload: response?.success?.message})
 
+           dispatchRedux(signupUser(payload))
+            .then(() => {
                 if (values.utm_source !== undefined) {
                     if (values.utm_source === 'eskimi') {
                         window.esk('track', 'Conversion');
                     }
                     if (values.utm_source === 'google') {
-                        window.gtag_report_conversion(window.location)
+                        window.gtag_report_conversion(window.location);
                     }
                 }
-                clearTrackingData()
-                let timer = setTimeout(() => {
-                    if (status === 200) {
-                        const data = {
-                            msisdn: state?.signup_msisdn,
-                            promo_code: values?.promo_code.length === 0 ? "no promo code" : values?.promo_code
-                        }
-                        gaEventTracker("Sign Up", data)
-                        return state?.app_config?.message?.accountConfiguration?.verificationEnabled !== "0" ? navigate("/verify") : navigate("/login")
+
+                clearTrackingData();
+
+                const data = {
+                    msisdn: state?.signup_msisdn,
+                    promo_code: values?.promo_code.length === 0 ? "no promo code" : values?.promo_code
+                };
+                gaEventTracker("Sign Up", data);
+
+
+                // Redirect the user as needed
+
+            }).catch(error => {
+                console.error("Error in handleSubmit:", error);
+            });
+        };
+
+        useEffect(()=>{
+            let message=""
+            if(successMessage?.success?.status===201){
+                const timeoutId = setTimeout(() =>{
+                    if (appConfig?.message?.accountConfiguration?.verificationEnabled !== "0") {
+                        navigate("/verify");
                     } else {
-                        const data = {
-                            msisdn: state?.signup_msisdn,
-                            event: 'sign_up_failed',
-                            message: 'sign up failed'
-                        }
-                        gaEventTracker("Sign Up Failed", data)
+                        navigate("/login");
                     }
-                    clearTimeout(timer)
-                }, 3000)
+                } , 1650);
+                return () => clearTimeout(timeoutId);
+            }
+            else if(errorMessage){
+                message = {
+                    status: 400,
+                    message: errorMessage || "Error attempting to Register"
+                };
 
-            })
+                const data = {
+                    msisdn: state?.signup_msisdn,
+                    event: 'sign_up_failed',
+                    message: 'sign up failed'
+                };
+                gaEventTracker("Sign Up Failed", data);
+                // Add a notification for  registration
+                Notify(message);
 
-        }
+            }
+
+        }, [successMessage,errorMessage])
 
         return (
             <Formik
@@ -812,11 +633,12 @@ const navigateToFormStep = (stepNumber) => {
 
 const Steppers = () => {
 
-    const {state, dispatch} = useContext(StoreContext);
+    const {dispatch} = useContext(StoreContext);
+    const successMessage=useSelector((state)=>state.auth.user_sign_up)
 
     const Alert = (props) => {
-        let c = state?.registerSuccess ? 'success' : 'danger';
-        return (<div role="alert" className={`fade alert alert-${c} show`}>{state?.registerMessage}</div>);
+        let c = successMessage? 'success' : 'danger';
+        return (<div role="alert" className={`fade alert alert-${c} show`}>{successMessage?.success?.message}</div>);
 
     };
     useEffect(() => {
@@ -848,7 +670,7 @@ const Steppers = () => {
         <>
             <div className={"stepper"}>
                 <FormTitle/>
-                {state?.registerMessage && <Alert/>}
+                {successMessage && <Alert/>}
                 <div id="multi-step-form-container">
                     {/*//Form Steps / Progress Bar*/}
                     <ul className="form-stepper form-stepper-horizontal text-center-stepper mx-auto pl-0">

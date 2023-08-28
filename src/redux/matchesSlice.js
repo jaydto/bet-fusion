@@ -165,13 +165,13 @@ export const matchesMorePrematchMarkets =
 
 let fetchInterval; // Declare the interval variable outside the action creator
 
-export const startFetchingMatches = () => async (dispatch) => {
+export const startFetchingMatches = () => (matchesData) => async (dispatch) =>  {
     // Dispatch the initial fetch
-    dispatch(matchesPrematch());
+    dispatch(matchesPrematch(matchesData));
 
     // Set up the interval to fetch matches every 20 seconds
     fetchInterval = setInterval(() => {
-        dispatch(matchesPrematch());
+        dispatch(matchesPrematch(matchesData));
     }, 20000); // 20000 milliseconds = 20 seconds
 };
 
@@ -263,10 +263,12 @@ const matchesSlice = createSlice({
             })
             .addCase(matchesMoreLiveMarkets.pending, (state) => {
                 state.loading = true;
+                state.error = null;
             })
-            .addCase(matchesMoreLiveMarkets.fulfilled, (state) => {
+            .addCase(matchesMoreLiveMarkets.fulfilled, (state, action) => {
                 state.loading = false;
                 state.error = null;
+                state.matches=action.payload
             })
             .addCase(matchesMoreLiveMarkets.rejected, (state, action) => {
                 state.loading = false;

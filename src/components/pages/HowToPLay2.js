@@ -373,7 +373,7 @@ const  HowToPlay= React.memo(
                                                                         <p>
                                                                             The Jackpot has 11 pre-selected matches
                                                                             that usually play daily. The cash prize
-                                                                            for the Jackpot starts at KSH 300,000 . To
+                                                                            for the Jackpot starts at KSH 100,000 . To
                                                                             place a bet on the Jackpot, SMS to 29877
                                                                             "JP" followed by "#" then the 11
                                                                             predictions of the pre-selected Jackpot
@@ -706,7 +706,7 @@ const  HowToPlay= React.memo(
                                                             <p>
                                                                 If you correctly predict all the 9 match
                                                                 results, you win the Daily Jackpot prize of Kshs
-                                                                300,000 /=
+                                                                100,000 /=
                                                             </p>
                                                         </AccordionItemPanel>
                                                         <AccordionItemHeading>

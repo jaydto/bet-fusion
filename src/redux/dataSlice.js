@@ -2,7 +2,7 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import initialState from "./state"; // Import the initial state from state.js
 import makeRequest from "../components/utils/fetch-request";
-import {setLocalStorage} from "../components/utils/local-storage";
+import { setLocalStorage} from "../components/utils/local-storage";
 // Async thunk for matches
 export const configSettings =
     createAsyncThunk("data/configSettings",
@@ -15,6 +15,21 @@ export const configSettings =
                 return response;
             } else {
                 throw new Error(response?.error || "Fetching Prematch failed");
+            }
+        });
+// need to pass also the user data as part of the arguments being dispatched to userBalance thunk
+export const userBalance =
+    createAsyncThunk("data/userBalance",
+        async (userData, user) => {
+            const [status, response] = await makeRequest({
+                url: "/v1/balance",
+                method: "POST",
+                data:userData
+            });
+            if (status === 200) {
+                return {response, user};
+            } else {
+                throw new Error(response?.error || "Fetching User Balance failed");
             }
         });
 
@@ -40,7 +55,24 @@ const dataSlice = createSlice({
                 state.loading = false;
                 state.error = action.error.message;
             })
-
+            .addCase(userBalance.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(userBalance.fulfilled, (state, action) => {
+                state.app_config= action.payloadresponse;
+                state.loading = false;
+                state.error = null;
+                const status=action.payload.response.status
+                let u = {...action.payload.user, ...action.payload.user};
+                state.user=u
+                if(status===200){
+                    setLocalStorage('user', u )
+                }
+            })
+            .addCase(userBalance.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
 
     },
 });

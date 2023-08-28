@@ -2,15 +2,15 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import initialState from "./state"; // Import the initial state from state.js
 import makeRequest from "../components/utils/fetch-request";
-import {setLocalStorage} from "../components/utils/local-storage"; // Import the makeRequest function
+import {setLocalStorage} from "../components/utils/local-storage"; // Import the localstorage function
 // Async thunk for matches
 export const matchesPrematch =
     createAsyncThunk("matches/prematch",
-    async (periodsData) => {
+    async (matchesData) => {
         const [status, response] = await makeRequest({
             url: "/v1/matches",
             method: "POST",
-            data: periodsData,
+            data: matchesData,
         });
         if (status === 200) {
             return response;
@@ -45,6 +45,20 @@ export const favoriteMarketsData =
             throw new Error(response?.error || "Fetching Prematch failed");
         }
     });
+export const marketGroups =
+    createAsyncThunk("matches/marketGroups",
+        async (sport_id) => {
+            const [status, response] = await makeRequest({
+                url: "'/v1/market-groups",
+                method: "POST",
+                data: sport_id,
+            });
+            if (status === 200) {
+                return response;
+            } else {
+                throw new Error(response?.error || "Fetching Market Groups failed");
+            }
+        });
 
 export const matchesLive =
     createAsyncThunk("matches/live",
@@ -167,6 +181,19 @@ const matchesSlice = createSlice({
                 state.error = null;
             })
             .addCase(matchesPrematch.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
+            .addCase(marketGroups.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(marketGroups.fulfilled, (state, action) => {
+                state.market_groups = action.payload;
+                state.loading = false;
+                state.error = null;
+            })
+            .addCase(marketGroups.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
             })

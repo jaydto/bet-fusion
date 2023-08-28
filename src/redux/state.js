@@ -71,6 +71,7 @@ const initialState = {
         jackpot_history:[],
         jackpot_by_id:null,
         market_groups:null,
+        matches:null
     }// Initial state for the matches Slice reducer
 };
 

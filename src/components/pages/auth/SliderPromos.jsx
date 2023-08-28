@@ -1,13 +1,13 @@
 import React, {useContext, useEffect, useState} from 'react';
 import "./slider.css"
 import {StoreContext } from "../../../context/store"
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCoins} from "@fortawesome/free-solid-svg-icons";
+import {useSelector} from "react-redux";
 
 const Slider = React.memo(
     (props) => {
-        const { state, dispatch } = useContext(StoreContext);
-        const promosData = state?.app_config?.message?.accountConfiguration?.registrationPromos
+        const { state } = useContext(StoreContext);
+        const appConfig=useSelector((state)=>state.data.app_config)
+        const promosData = appConfig?.message?.accountConfiguration?.registrationPromos
 
         const [slideIndex, setSlideIndex] = useState(0);
 
@@ -63,9 +63,6 @@ const Slider = React.memo(
                                          style={{position: "absolute", left: "50%", top: "50%", transform: "translate(-50%, -50%)"}}>
                                   {<UserResponse/>}</span>
                               </span>
-                              {/*{!progressNow==0&&<span className={"coin-indicator"}>*/}
-                              {/*    <FontAwesomeIcon icon={faCoins}/>*/}
-                              {/*</span>}*/}
                           </span>
 
                       </div>

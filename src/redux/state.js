@@ -2,7 +2,8 @@ const initialState = {
     data: {
         loading:false,
         error:null,
-        app_config:null
+        app_config:null,
+        user:null
     }, // Initial state for the data reducer
     betting: {
         loading: false,
@@ -12,7 +13,7 @@ const initialState = {
         kiron: null,
         slip:null,
         picked:'',
-    },
+    },// Initial state for the betting Slice reducer
     auth: {
         isLoading: false,
         error: null,
@@ -69,7 +70,8 @@ const initialState = {
         jackpot_data:null,
         jackpot_history:[],
         jackpot_by_id:null,
-    }
+        market_groups:null,
+    }// Initial state for the matches Slice reducer
 };
 
 export default initialState;

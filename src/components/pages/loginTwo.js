@@ -2,7 +2,6 @@ import React, {useCallback, useContext, useEffect, useState} from 'react'
 import {Col, Row} from "antd";
 import authImg from '../../assets/img/Logo.webp'
 import logo from '../../assets/img/Logo.webp'
-
 import {Link, useNavigate} from "react-router-dom";
 import HeaderLogin from "../header/top-login";
 import useWindowDimensions from "../header/Dimensions";
@@ -32,9 +31,7 @@ const LoginTwo = React.memo(
 	const expand = "md"
 	const { width} = useWindowDimensions();
 	const [user, setUser] = useState(getFromLocalStorage("user"));
-
 	const navigate = useNavigate();
-
 
 
 	const Notify = (message) => {

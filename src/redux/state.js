@@ -1,5 +1,9 @@
 const initialState = {
-    data: [], // Initial state for the data reducer
+    data: {
+        loading:false,
+        error:null,
+        app_config:null
+    }, // Initial state for the data reducer
     betting: {
         loading: false,
         error: null,
@@ -15,6 +19,7 @@ const initialState = {
         isLoggedIn: false,
         user: null,
         loading: false,
+        user_sign_up:null,
     }, // Initial state for the auth reducer
     nareLeague: {
             isLoading: false,

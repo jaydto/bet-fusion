@@ -14,6 +14,8 @@ import throttle from 'lodash/throttle';
 import SkeletonLoaderMobile from "./pages/skeletonLoadersWeb/SkeletonLoaderMobile";
 import Skeleton1 from "./skeleton/skeleton";
 import {getFromLocalStorage, setLocalStorage} from "./utils/local-storage";
+import {useDispatch, useSelector} from "react-redux";
+import {matchesPrematch} from "../redux/matchesSlice";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -48,6 +50,8 @@ const Index = React.memo(
         let sportValue = new URL(window.location).searchParams.get('sport_id')
         let url = new URL(window.location.href)
         let sub_type = (url.searchParams.get("sub_type_id") || "1")
+        const dispatchRedux=useDispatch()
+        const matches_data=useSelector((state)=>state.matchesData.matches)
         const updateSearchTerm = () => {
             const params = new URL(window.location).searchParams;
             const sportId = params.get('sport_id');
@@ -147,6 +151,7 @@ const Index = React.memo(
         const fetchData = useCallback(async () => {
             // setFetching(true)
             // setLoading(true)
+
             let tab = location.pathname.replace("/", "") || 'highlights';
             let tabInfo = window.location.pathname
             tabInfo = tabInfo.substring(tabInfo.lastIndexOf('/') + 1)
@@ -173,7 +178,7 @@ const Index = React.memo(
 
             endpoint += `&sub_type_id=` + (sub_types || "1")
 
-
+            dispatchRedux(matchesPrematch({endpoint,method:"POST",data:betslip})); // Dispatch matchesPrematch with the updated fetchParams
             await makeRequest({url: endpoint, method: "POST", data: betslip}).then(([status, result]) => {
                 if (status == 200) {
                     setMatches(matches?.length > 0 ? {...matches, ...result?.data} : result?.data || result)

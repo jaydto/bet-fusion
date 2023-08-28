@@ -1,5 +1,5 @@
 import React, {Suspense, useCallback, useContext, useEffect} from "react";
-import { Provider } from "react-redux";
+import {Provider, useDispatch} from "react-redux";
 import store from "./redux/store";
 
 import {BrowserRouter, Navigate, Route, Routes, useNavigate,} from 'react-router-dom'
@@ -16,6 +16,7 @@ import './assets/css/Themes.css'
 import {StoreContext, StoreProvider} from "./context/store";
 import Loading from "./components/loading/LoadingSuspense";
 import { createRoot } from 'react-dom/client';
+import {resetState} from "./redux/authSlice";
 
 // import ReactPixel from 'react-facebook-pixel';
 // import "firebase/messaging"; // Import the FCM module
@@ -145,9 +146,12 @@ const BetHistory =React.lazy(()=>import( "./components/pages/Accounts/component/
 
 const Logout = () => {
     const { state, dispatch } = useContext(StoreContext);
+    const dispatchRedux = useDispatch();
     let navigate = useNavigate();
     setLocalStorage('user', null)
     const out = useCallback(() => {
+        dispatchRedux(resetState("user"))
+        dispatchRedux(resetState("user"))
         localStorage.clear();
         dispatch({ type: 'CLEAR_ALL_ITEMS' }); // Dispatch the action to clear all items
 

@@ -6,11 +6,11 @@ import {setLocalStorage} from "../components/utils/local-storage"; // Import the
 // Async thunk for matches
 export const matchesPrematch =
     createAsyncThunk("matches/prematch",
-    async (matchesData) => {
+    async ({endpoint,method,data}) => {
         const [status, response] = await makeRequest({
-            url: "/v1/matches",
-            method: "POST",
-            data: matchesData,
+            url: endpoint,
+            method: method,
+            data: data,
         });
         if (status === 200) {
             return response;
@@ -193,9 +193,15 @@ const matchesSlice = createSlice({
             })
             .addCase(matchesPrematch.fulfilled, (state, action) => {
                 state.isLoggedIn = true;
-                state.user = action.payload;
+                state.matches = action.payload;
+                const matches=action.payload
+                if(matches.slip_data){
+                    state.user_slip_data=matches.slip_data
+                }
+                state.producer_down=action.payload.producer_status === 1
                 state.loading = false;
                 state.error = null;
+                state.fetching=false
             })
             .addCase(matchesPrematch.rejected, (state, action) => {
                 state.loading = false;

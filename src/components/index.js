@@ -105,52 +105,8 @@ const Index = React.memo(
         }, [])
 
 
-        useInterval(() => {
-
-            let endpoint = "/v1/matches";
-
-            let betslip = findPostableSlip();
-
-            let method = betslip ? "POST" : "GET";
-
-            let tab = location.pathname.replace("/", "") || 'highlights';
-
-            endpoint += "?page=" + (page || 1) + `&limit=${prevLimit.current}&tab=` + tab
-
-            let url = new URL(window.location.href)
-
-            let sport_id = url.searchParams.get('sport_id')
-
-            if (sport_id !== null) {
-                endpoint += " &sport_id=" + sport_id
-            }
-            let sub_types = (url.searchParams.get('sub_type_id') || "1")
-
-            endpoint = endpoint.replaceAll(" ", '')
-            endpoint += `&sub_type_id=` + (sub_types || "1")
-
-            let search_term = url.searchParams.get('search')
-
-            if (search_term !== null) {
-                return
-            }
-            makeRequest({url: endpoint, method: method, data: betslip}).then(([status, result]) => {
-                if (status === 200) {
-                    setMatches(matches?.length > 0 ? {...matches, ...result?.data} : result?.data || result)
-                    matchSizeRef.current = result?.data?.length
-                    if (result?.slip_data) {
-                        setUserSlipsValidation(result?.slip_data)
-                    }
-                    setProducerDown(result?.producer_status === 1);
-                }
-                setFetching(false)
-                setLoading(false)
-            });
-        }, 20000, reset);
 
         const fetchData = useCallback(async () => {
-            // setFetching(true)
-            // setLoading(true)
 
             let tab = location.pathname.replace("/", "") || 'highlights';
             let tabInfo = window.location.pathname
@@ -179,18 +135,19 @@ const Index = React.memo(
             endpoint += `&sub_type_id=` + (sub_types || "1")
 
             dispatchRedux(matchesPrematch({endpoint,method:"POST",data:betslip})); // Dispatch matchesPrematch with the updated fetchParams
-            await makeRequest({url: endpoint, method: "POST", data: betslip}).then(([status, result]) => {
-                if (status == 200) {
-                    setMatches(matches?.length > 0 ? {...matches, ...result?.data} : result?.data || result)
-                    matchSizeRef.current = result?.data?.length
-                    if (result?.slip_data) {
-                        setUserSlipsValidation(result?.slip_data)
-                    }
-                    setProducerDown(result?.producer_status === 1);
-                }
-                setFetching(false)
-                setLoading(false)
-            });
+            matchSizeRef.current = matches_data?.data?.length
+            // await makeRequest({url: endpoint, method: "POST", data: betslip}).then(([status, result]) => {
+            //     if (status == 200) {
+            //         setMatches(matches?.length > 0 ? {...matches, ...result?.data} : result?.data || result)
+            //         matchSizeRef.current = result?.data?.length
+            //         if (result?.slip_data) {
+            //             setUserSlipsValidation(result?.slip_data)
+            //         }
+            //         setProducerDown(result?.producer_status === 1);
+            //     }
+            //     setFetching(false)
+            //     setLoading(false)
+            // });
 
         }, []);
 

@@ -1046,10 +1046,11 @@ const MatchRow = React.memo(
         }, [first_match?.parent_match_id])
 
         let url = new URL(window.location)
-        if (!jackpot) {
-            match.market_active = 1
-            match.odds.home_odd_active = 1
-        }
+        // if (!jackpot) {
+        //     console.log("matches_match_checking_activity", match)
+        //     match.market_active = 1
+        //     match.odds.home_odd_active = 1
+        // }
         let sub_types = (url.searchParams.get('sub_type_id') ||"1")?.split(",")
         const [totalMarkets] = useState(sub_types.length)
         let append = totalMarkets - Object.keys(match?.extra_odds || {}).length - 1
@@ -1523,6 +1524,7 @@ export const JackpotMatchList = React.memo(
 const MatchList = React.memo(
     (props) => {
         const {live, matches, pdown, fetching, three_way} = props;
+        // console.log("matches_data_match_list", matches);
 
         return (
             <div className="matches full-width">

@@ -8,6 +8,8 @@ import authReducer from "./authSlice"
 import nareLeagueReducer from "./nareLeague"
 import bettingReducer from "./bettingSlice"
 import matchesReducer from "./matchesSlice"
+import scrollReducer from './ScrollBehaviorSlice';
+
 
 const rootReducer = combineReducers({
     // Add your individual reducers here
@@ -15,7 +17,9 @@ const rootReducer = combineReducers({
     auth: authReducer,
     nareLeague: nareLeagueReducer,
     betting: bettingReducer,
-    matchesData:matchesReducer
+    matchesData:matchesReducer,
+    scroll: scrollReducer,
+
 });
 
 export default (state = initialState, action) => rootReducer(state, action);

@@ -1,5 +1,5 @@
 // matchesSlice.js
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {createAction, createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import initialState from "./state"; // Import the initial state from state.js
 import makeRequest from "../components/utils/fetch-request";
 import {setLocalStorage} from "../components/utils/local-storage"; // Import the localstorage function
@@ -61,11 +61,11 @@ export const marketGroups =
         });
 export const matchesLive =
     createAsyncThunk("matches/live",
-    async (competitionsData) => {
+    async ({endpoint,method,data}) => {
         const [status, response] = await makeRequest({
-            url: "/v1/matches/live",
-            method: "POST",
-            data: competitionsData,
+            url: endpoint,
+            method: method,
+            data: data,
         });
         if (status === 200) {
             return response;
@@ -162,17 +162,33 @@ export const matchesMorePrematchMarkets =
 
     }
 );
+export const setInitialLoadingState = createAction("matches/set", ( param_fetch_type, tab, sport_id) => {
+    return { payload: {param_fetch_type ,tab, sport_id } };
+});
+
+export const setFetching = createAction("matches/setFetching", ( status) => {
+    return { payload: {status } };
+});
+
+export const setLimit = createAction("matches/setLimit", ( limit) => {
+    return { payload: {limit } };
+});
 
 let fetchInterval; // Declare the interval variable outside the action creator
 
-export const startFetchingMatches = () => (matchesData) => async (dispatch) =>  {
+export const startFetchingMatches = ({ endpoint, method, data, interval, prematch }) => async (dispatch) =>  {
     // Dispatch the initial fetch
-    dispatch(matchesPrematch(matchesData));
+    const matchesData={endpoint, method, data}
 
     // Set up the interval to fetch matches every 20 seconds
     fetchInterval = setInterval(() => {
-        dispatch(matchesPrematch(matchesData));
-    }, 20000); // 20000 milliseconds = 20 seconds
+        if(prematch){
+            dispatch(matchesPrematch(matchesData));
+        }else{
+            matchesLive(matchesData)
+        }
+
+    }, interval); // 20000 milliseconds = 20 seconds
 };
 
 // Action creator to stop fetching matches
@@ -189,22 +205,39 @@ const matchesSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(matchesPrematch.pending, (state) => {
-                state.loading = true;
+                if (state.initialLoading) {
+                    state.loading = true; // Set loading to true only during the initial fetch
+                }
             })
             .addCase(matchesPrematch.fulfilled, (state, action) => {
                 state.isLoggedIn = true;
-                state.matches = action.payload;
+                state.loading=false;
+
                 const matches=action.payload
+                state.matches = matches?.data?.length > 0 ? { ...state.matches, ...matches } : matches;
+                console.log("matches_data", state.matches)
+                console.log("matches_data_length_of_data",  matches.length)
+                console.log("matches_data_length", state.matches?.data?.length)
                 if(matches.slip_data){
-                    state.user_slip_data=matches.slip_data
+                    state.user_slip_validation=matches.slip_data
                 }
                 state.producer_down=action.payload.producer_status === 1
-                state.loading = false;
+                // Reset initialLoading flag after initial fetch
+                if (state.initialLoading) {
+                    state.initialLoading = false;
+                }
                 state.error = null;
                 state.fetching=false
+                // state.prev_match_size = state.match_size || 10// prev_match_size
+                state.match_size = matches.data?.length; // Update matchSize
+
+
             })
             .addCase(matchesPrematch.rejected, (state, action) => {
-                state.loading = false;
+                state.loading=false;
+                if (state.initialLoading) {
+                    state.initialLoading = false;
+                }
                 state.error = action.error.message;
             })
             .addCase(marketGroups.pending, (state) => {
@@ -225,7 +258,7 @@ const matchesSlice = createSlice({
             })
             .addCase(matchesLive.fulfilled, (state, action) => {
                 state.isLoggedIn = true;
-                state.user = action.payload;
+                state.live_matches = action.payload;
                 state.loading = false;
                 state.error = null;
             })
@@ -339,8 +372,31 @@ const matchesSlice = createSlice({
                 state.loading = false;
                 state.error = action.error.message;
             })
+            .addCase(setInitialLoadingState, (state, action) => {
+                const { param_fetch_type,tab, sport_id } = action.payload;
+                // Append tab or sport_id to the list of visited tabs
+                if(param_fetch_type==="tabs"){
+                    state.visited_tabs = Array.from(new Set([...state.visited_tabs, tab]));
+                    // Update initialLoading based on visitedTabs
+                    state.initial_loading = !state.visited_tabs.includes(tab);
+                }else{
+                    state.visited_sport_id = Array.from(new Set([...state.visited_sport_id, sport_id]));
+                    // Update initialLoading based on visitedTabs
+                    state.initial_loading = !state.visited_sport_id.includes(sport_id);
 
+                }
 
+                state.error = null;
+            })
+            .addCase(setFetching, (state, action) => {
+                const { status } = action.payload;
+                // fetching status
+                state.fetching = status;
+            })
+            .addCase(setLimit, (state, action) => {
+                const { limit } = action.payload;
+                state.limit +=limit
+            })
     },
 });
 

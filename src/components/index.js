@@ -5,7 +5,6 @@ import {Link, useLocation} from "react-router-dom";
 import useWindowDimensions from "./header/Dimensions";
 import {StoreContext} from "../context/store"
 import {getBetslip} from "./utils/betslip";
-import useInterval from "../hooks/set-interval.hook";
 import makeRequest from "./utils/fetch-request";
 import Countries from "./countries/Countries";
 import {ToastContainer} from "react-toastify";
@@ -15,7 +14,12 @@ import SkeletonLoaderMobile from "./pages/skeletonLoadersWeb/SkeletonLoaderMobil
 import Skeleton1 from "./skeleton/skeleton";
 import {getFromLocalStorage, setLocalStorage} from "./utils/local-storage";
 import {useDispatch, useSelector} from "react-redux";
-import {matchesPrematch} from "../redux/matchesSlice";
+import {
+    matchesPrematch, setFetching,
+    setInitialLoadingState, setLimit,
+    startFetchingMatches,
+    stopFetchingMatches
+} from "../redux/matchesSlice";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -30,28 +34,27 @@ const Index = React.memo(
         const [user,] = useState(getFromLocalStorage("user"));
         const [tab, setTab] = useState('highlights');
         const [sportID, setSportID] = useState(79);
-        const [loading, setLoading] = useState(true);
         const {height, width} = useWindowDimensions();
-        const [matches, setMatches] = useState([]);
-        const matchSizeRef = useRef(0)
-        const [limit, setLimit] = useState(20);
-        const [producerDown, setProducerDown] = useState(false);
         const [threeWay, setThreeWay] = useState(false);
         const [page,] = useState(1);
-        const [userSlipsValidation, setUserSlipsValidation] = useState();
         const {state, dispatch} = useContext(StoreContext);
-        const [fetching, setFetching] = useState(false)
         const homePageRef = useRef()
         const bottomSheetRef = useRef()
-        const prevLimit = useRef(limit);
-        const [reset, setReset] = useState(0);
 
         const markets = marketChoiceOptions();
         let sportValue = new URL(window.location).searchParams.get('sport_id')
         let url = new URL(window.location.href)
         let sub_type = (url.searchParams.get("sub_type_id") || "1")
         const dispatchRedux=useDispatch()
-        const matches_data=useSelector((state)=>state.matchesData.matches)
+        const matches=useSelector((state)=>state.matchesData.matches)
+        // const prev_match_size=useSelector((state)=>state.matchesData.prev_match_size)
+        const match_size=useSelector((state)=>state.matchesData.match_size)
+        const producer_down=useSelector((state)=>state.matchesData.producer)
+        const user_slip_validation=useSelector((state)=>state.matchesData.user_slip_validation)
+        const loading=useSelector((state)=>state.matchesData.loading)
+        const fetching=useSelector((state)=>state.matchesData.fetching)
+        const limit=useSelector((state)=>state.matchesData.limit)
+        // console.log("matchesData", matches)
         const updateSearchTerm = () => {
             const params = new URL(window.location).searchParams;
             const sportId = params.get('sport_id');
@@ -114,7 +117,7 @@ const Index = React.memo(
 
             let betslip = findPostableSlip();
 
-            let endpoint = "/v1/matches?page=" + (page || 1) + `&limit=${prevLimit.current}&tab=` + tabInfo || tab;
+            let endpoint = "/v1/matches?page=" + (page || 1) + `&limit=${limit}&tab=` + tabInfo || tab;
             let url = new URL(window.location.href)
             let sport_id = url.searchParams.get('sport_id')
 
@@ -135,19 +138,9 @@ const Index = React.memo(
             endpoint += `&sub_type_id=` + (sub_types || "1")
 
             dispatchRedux(matchesPrematch({endpoint,method:"POST",data:betslip})); // Dispatch matchesPrematch with the updated fetchParams
-            matchSizeRef.current = matches_data?.data?.length
-            // await makeRequest({url: endpoint, method: "POST", data: betslip}).then(([status, result]) => {
-            //     if (status == 200) {
-            //         setMatches(matches?.length > 0 ? {...matches, ...result?.data} : result?.data || result)
-            //         matchSizeRef.current = result?.data?.length
-            //         if (result?.slip_data) {
-            //             setUserSlipsValidation(result?.slip_data)
-            //         }
-            //         setProducerDown(result?.producer_status === 1);
-            //     }
-            //     setFetching(false)
-            //     setLoading(false)
-            // });
+
+            // Clear the interval when fetchParams change
+            dispatchRedux(startFetchingMatches({endpoint,method:"POST",data:betslip, interval:20000, prematch:true}));
 
         }, []);
 
@@ -180,20 +173,18 @@ const Index = React.memo(
 
             if (new_tab !== tab && new_tab !=='countries') {
                 setTab(new_tab)
-                setLimit(20)
-                prevLimit.current = 20
-                setLoading(true)
+                // dispatchRedux(setLimit(limit+10))
+                dispatchRedux(setInitialLoadingState("tabs", new_tab))
             }else{
                 setTab(new_tab)
             }
 
 
             if (sportID !== new_sport_id) {
-                setLimit(20)
-                prevLimit.current = 20
+                // dispatchRedux(setLimit(limit+10))
                 setSportID(new_sport_id)
-                setLoading(true)
-                setMatches([])
+                dispatchRedux(setInitialLoadingState("sport_id", new_sport_id))
+                // setMatches([])
 
             } else {
                 setSportID(new_sport_id)
@@ -203,62 +194,23 @@ const Index = React.memo(
 
 
         useEffect(() => {
-            setReset(c => c + 1);
+            // stop the fetchInterva;
+            dispatchRedux(stopFetchingMatches())
+
+            // Start fetching matches with the new fetchParams
             fetchData();
+
 
             checkThreeWay()
             let cachedSlips = getBetslip("betslip");
             if (cachedSlips) {
                 dispatch({type: "SET", key: "betslip", payload: cachedSlips});
             }
-            return () => {
-                setMatches(null);
-            };
+
         }, [window.location.pathname, window.location.search]);
 
 
-        useEffect(() => {
 
-            if (prevLimit.current !== limit && limit > prevLimit.current) {
-                setReset(c => c + 1);
-                prevLimit.current = limit
-            }
-
-        }, [limit])
-
-        useEffect(() => {
-
-            if (prevLimit.current !== 20) {
-                fetchData()
-            }
-
-        }, [prevLimit.current])
-
-
-        // Define throttledHandleScroll outside of useEffect to create it only once
-        const throttledHandleScroll = throttle(() => {
-            const scrollPosition = window.scrollY;
-            const windowHeight = window.innerHeight;
-            const documentHeight = document.documentElement.scrollHeight;
-            const distanceToBottom = documentHeight - (scrollPosition + windowHeight);
-
-            if (!fetching && distanceToBottom <= 500 && matchSizeRef.current >= limit) {
-                // Update the state when the user is close to the bottom
-                setFetching(true);
-                setLimit(prevLimit => prevLimit + 20);
-                setReset(prevReset => prevReset + 1);
-            }
-        }, 100);
-
-        useEffect(() => {
-            // Add the throttled event listener
-            window?.addEventListener('scroll', throttledHandleScroll);
-
-            // Clean up the event listener when the component unmounts
-            return () => {
-                window?.removeEventListener('scroll', throttledHandleScroll);
-            };
-        }, [throttledHandleScroll, fetching, limit, reset, matchSizeRef]);
 
         useEffect(() => {
             /**
@@ -354,8 +306,8 @@ const Index = React.memo(
                                             <MatchList
                                                 live={false}
                                                 fetching={fetching}
-                                                matches={matches}
-                                                pdown={producerDown}
+                                                matches={matches?.data}
+                                                pdown={producer_down}
                                                 three_way={threeWay}
 
                                             />
@@ -371,7 +323,7 @@ const Index = React.memo(
                         </div>
                     </div>
                     <div className="item3">
-                        <Right betslipValidationData={userSlipsValidation}
+                        <Right betslipValidationData={user_slip_validation}
                                jackpotData={matches?.meta}
                                test={true}/>
                         <div className={`${state?.bottomSheet ? 'bottom-sheet show ' : 'd-none'}`} ref={bottomSheetRef}>

@@ -61,21 +61,31 @@ const initialState = {
 
         }, // Initial state for the nareLeague reducer
     matchesData:{
+        initial_loading:true,
         isLoading: false,
+        visited_tabs:[],
+        visited_sport_id:[],
         jackpot_loading: false,
         error: null,
         user: null,
-        user_slip_data:null,
+        user_slip_validation:null,
         producer_down:null,
         fetching:null,
-        loading: false,
+        loading: true,
         favorites_data:[],
         jackpot_data:null,
         jackpot_history:[],
         jackpot_by_id:null,
         market_groups:null,
-        matches:null
-    }// Initial state for the matches Slice reducer
+        matches:null,
+        limit: 10,
+        // prev_match_size:0,
+        match_size:0
+    },// Initial state for the matches Slice reducer
+    scroll:{
+        fetching: false,
+        limit: 10,
+    }
 };
 
 export default initialState;

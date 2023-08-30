@@ -383,13 +383,14 @@ const matchesSlice = createSlice({
                 const { param_fetch_type,tab, sport_id } = action.payload;
                 // Append tab or sport_id to the list of visited tabs
                 if(param_fetch_type==="tabs"){
+                    state.initialLoading = !state.visited_tabs.includes(tab);
                     state.visited_tabs = Array.from(new Set([...state.visited_tabs, tab]));
                     // Update initialLoading based on visitedTabs
-                    state.initial_loading = !state.visited_tabs.includes(tab);
+
                 }else{
                     state.visited_sport_id = Array.from(new Set([...state.visited_sport_id, sport_id]));
                     // Update initialLoading based on visitedTabs
-                    state.initial_loading = !state.visited_sport_id.includes(sport_id);
+                    state.initialLoading = !state.visited_sport_id.includes(sport_id);
 
                 }
 

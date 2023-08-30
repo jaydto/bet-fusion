@@ -1523,9 +1523,41 @@ export const JackpotMatchList = React.memo(
 
 const MatchList = React.memo(
     (props) => {
-        const {live, matches, pdown, fetching, three_way} = props;
+        const {live, matches, pdown, fetching, three_way, onEndReached} = props;
         // console.log("matches_data_match_list", matches);
+        const listRef = useRef();
 
+        const observerRef = useRef(); // Ref to hold the observer
+
+        useEffect(() => {
+            observerRef.current = new IntersectionObserver(entries => {
+                if (entries[0].isIntersecting && !fetching) {
+                    // Call the onEndReached function to fetch more data
+                    onEndReached();
+                    // Stop observing to avoid fetching repeatedly
+                    observerRef.current.unobserve(entries[0].target);
+                }
+            });
+
+            if (listRef.current) {
+                observerRef.current.observe(listRef.current);
+            }
+
+            return () => {
+                if (observerRef.current) {
+                    observerRef.current.disconnect(); // Disconnect the observer when the component unmounts
+                }
+            };
+        }, [onEndReached,fetching]);
+
+        useEffect(() => {
+            if (!fetching) {
+                // After fetching and updating the data, set up the observer again
+                if (listRef.current && observerRef.current) {
+                    observerRef.current.observe(listRef.current);
+                }
+            }
+        }, [matches, fetching, observerRef]);
         return (
             <div className="matches full-width">
                 {matches && <MatchHeaderRow live={live} first_match={matches ? matches[0] : {}}/>}
@@ -1542,6 +1574,7 @@ const MatchList = React.memo(
                             No events found.
                         </div>
                     }
+                    <div ref={listRef}></div>
                 </div>
             </div>
         )

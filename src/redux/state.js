@@ -3,7 +3,8 @@ const initialState = {
         loading:false,
         error:null,
         app_config:null,
-        user:null
+        user:null,
+        carousel_banners:null
     }, // Initial state for the data reducer
     betting: {
         loading: false,

@@ -174,6 +174,11 @@ export const setLimit = createAction("matches/setLimit", ( limit) => {
     return { payload: {limit } };
 });
 
+export const resetState =
+    createAction("matches/reset", (stateToReset) => {
+        return { payload: stateToReset };
+    });
+
 let fetchInterval; // Declare the interval variable outside the action creator
 
 export const startFetchingMatches = ({ endpoint, method, data, interval, prematch }) => async (dispatch) =>  {
@@ -213,13 +218,16 @@ const matchesSlice = createSlice({
                 state.isLoggedIn = true;
                 state.loading=false;
 
-                const matches=action.payload
-                state.matches = matches?.data?.length > 0 ? { ...state.matches, ...matches } : matches;
-                console.log("matches_data", state.matches)
-                console.log("matches_data_length_of_data",  matches.length)
-                console.log("matches_data_length", state.matches?.data?.length)
-                if(matches.slip_data){
-                    state.user_slip_validation=matches.slip_data
+                const newMatches = action.payload?.data;
+
+                const mergedMatches = newMatches.length > 0 ? { ...state.matches, ...newMatches } : newMatches;
+
+                state.matches = mergedMatches;
+                console.log("matches_data", mergedMatches);
+                console.log("matches_data_length_of_data", newMatches.length);
+
+                if (newMatches.slip_data) {
+                    state.user_slip_validation=newMatches.slip_data
                 }
                 state.producer_down=action.payload.producer_status === 1
                 // Reset initialLoading flag after initial fetch
@@ -229,8 +237,7 @@ const matchesSlice = createSlice({
                 state.error = null;
                 state.fetching=false
                 // state.prev_match_size = state.match_size || 10// prev_match_size
-                state.match_size = matches.data?.length; // Update matchSize
-
+                state.match_size = newMatches?.length;
 
             })
             .addCase(matchesPrematch.rejected, (state, action) => {
@@ -397,6 +404,13 @@ const matchesSlice = createSlice({
                 const { limit } = action.payload;
                 state.limit +=limit
             })
+            .addCase(resetState, (state, action) => {
+            const stateToReset = action.payload;
+            if (state.hasOwnProperty(stateToReset)) {
+                state[stateToReset] = initialState.matchesData[stateToReset];
+            }
+            state.error = null;
+        })
     },
 });
 

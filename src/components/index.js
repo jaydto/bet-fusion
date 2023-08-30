@@ -53,10 +53,8 @@ const Index = React.memo(
         const loading=useSelector((state)=>state.matchesData.loading)
         const fetching=useSelector((state)=>state.matchesData.fetching)
         const limit=useSelector((state)=>state.matchesData.limit)
-        console.log("limit_for_data", limit)
         const [newLimit, setNewLimit]=useState(10)
         const [newMatches, setNewMatches]=useState()
-        // console.log("matchesData", matches)
         useEffect(()=>{
             setNewLimit(limit)
         },[limit])
@@ -70,7 +68,6 @@ const Index = React.memo(
                 fetchData()
             }
         },[newLimit])
-        console.log("newLimits", newLimit)
         const updateSearchTerm = () => {
             const params = new URL(window.location).searchParams;
             const sportId = params.get('sport_id');
@@ -209,6 +206,7 @@ const Index = React.memo(
         })
 
 
+
         useEffect(() => {
             // stop the fetchInterva;
             dispatchRedux(stopFetchingMatches())
@@ -290,7 +288,6 @@ const Index = React.memo(
         const fetchAdditionalData=()=>{
             dispatchRedux(setLimit(10))
             dispatchRedux(setFetching(true))
-            console.log("endReached")
         }
 
 

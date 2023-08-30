@@ -62,7 +62,7 @@ const initialState = {
 
         }, // Initial state for the nareLeague reducer
     matchesData:{
-        initial_loading:true,
+        initialLoading:true,
         isLoading: false,
         visited_tabs:[],
         visited_sport_id:[],

@@ -17,6 +17,19 @@ export const configSettings =
                 throw new Error(response?.error || "Fetching Prematch failed");
             }
         });
+export const carouselImages =
+    createAsyncThunk("data/carouselImages",
+        async () => {
+            const [status, response] = await makeRequest({
+                url: "/v1/carousel-images",
+                method: "GET"
+            });
+            if (status === 200) {
+                return response;
+            } else {
+                throw new Error(response?.error || "Fetching Carousel images failed");
+            }
+        });
 // need to pass also the user data as part of the arguments being dispatched to userBalance thunk
 export const userBalance =
     createAsyncThunk("data/userBalance",
@@ -39,6 +52,22 @@ const dataSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
+            .addCase(carouselImages.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(carouselImages.fulfilled, (state, action) => {
+                state.carousel_banners= action.payload.images;
+                state.loading = false;
+                state.error = null;
+                const status=action.payload.status
+                if(status===200){
+                    setLocalStorage('carousel_banners', action.payload.images, 1800000)
+                }
+            })
+            .addCase(carouselImages.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
             .addCase(configSettings.pending, (state) => {
                 state.loading = true;
             })

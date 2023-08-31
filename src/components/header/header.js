@@ -19,6 +19,7 @@ import {UserInfo} from "./UserInfo";
 import {shouldShowDownload, shouldShowMobileNav} from './NavigationsHelper';
 import {useDispatch, useSelector} from "react-redux";
 import {configSettings} from "../../redux/dataSlice";
+import {matchCategories} from "../../redux/matchesSlice";
 
 const ProfileMenu = React.lazy(() => import('./profile-menu'));
 const HeaderNav = React.lazy(() => import('./header-nav'));
@@ -37,7 +38,6 @@ const Header = React.memo(
         const navigate = useNavigate()
         // Import the navigationConfig object
         const {current} = containerRef;
-        const [, setCompetitions] = useState({});
         const [isOpen, setIsOpen] = useState(false);
         const pathname = window.location.pathname;
         const notShowMobileNav = shouldShowMobileNav(pathname);
@@ -86,26 +86,14 @@ const Header = React.memo(
 
         const fetchData = useCallback(async () => {
             let cached_categories = getFromLocalStorage('sport_categories');
-            let endpoint = "/v1/categories";
 
             if (!cached_categories) {
-                const [competition_result] = await Promise.all([
-                    makeRequest({url: endpoint, method: "get", data: null}),
-                ]);
-                let [c_status, c_result] = competition_result
-
-                if (c_status === 200) {
-                    setCompetitions(c_result);
-                    setLocalStorage('sport_categories', c_result);
-                }
-            } else {
-                setCompetitions(cached_categories);
+               dispatchRedux(matchCategories())
             }
 
         }, []);
 
         const fetchAppConfigurations = useCallback(async () => {
-            console.log("how many calls are made upon this request")
 
             let cached_settings = getFromLocalStorage('settings');
 

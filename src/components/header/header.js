@@ -17,6 +17,8 @@ import ListGroup from "react-bootstrap/ListGroup";
 import LoginSection from "./LoginSection";
 import {UserInfo} from "./UserInfo";
 import {shouldShowDownload, shouldShowMobileNav} from './NavigationsHelper';
+import {useDispatch, useSelector} from "react-redux";
+import {configSettings} from "../../redux/dataSlice";
 
 const ProfileMenu = React.lazy(() => import('./profile-menu'));
 const HeaderNav = React.lazy(() => import('./header-nav'));
@@ -40,7 +42,15 @@ const Header = React.memo(
         const pathname = window.location.pathname;
         const notShowMobileNav = shouldShowMobileNav(pathname);
         const showDownload = shouldShowDownload(pathname);
-        const [settings,] = useState(getFromLocalStorage('settings'));
+
+        const dispatchRedux = useDispatch()
+        const appConfigs=useSelector((state)=>state.data.app_config)
+
+        const [settings,setSettings] = useState(getFromLocalStorage('settings'));
+
+        useEffect(()=>{
+            setSettings(appConfigs||getFromLocalStorage('settings'))
+        },[appConfigs ])
 
         useEffect(() => {
             if (pathname !== "/login") {
@@ -95,27 +105,12 @@ const Header = React.memo(
         }, []);
 
         const fetchAppConfigurations = useCallback(async () => {
+            console.log("how many calls are made upon this request")
 
             let cached_settings = getFromLocalStorage('settings');
 
-            let endpoint = "/v1/bet/settings";
-
             if (!cached_settings) {
-
-                const [result] = await Promise.all([
-                    makeRequest({url: endpoint, method: "POST", data: null}),
-                ]);
-
-                let [c_status, c_result] = result
-
-
-                if (c_status === 200) {
-                    dispatch({type: "SET", key: "settings", payload: c_result?.message})
-                    setLocalStorage('settings', c_result?.message, 1800000);
-                }
-
-            } else {
-
+                dispatchRedux(configSettings())
             }
         })
 

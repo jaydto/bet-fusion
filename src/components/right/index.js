@@ -11,6 +11,7 @@ import useWindowDimensions from "../header/Dimensions";
 import JackpotMenu from "../mobile-menu/jackpotMenu";
 import {StoreContext} from "../../context/store";
 import {getFromLocalStorage} from "../utils/local-storage";
+import {useSelector} from "react-redux";
 
 const AlertMessage = React.memo(
     (props) => {
@@ -32,7 +33,12 @@ const Right = React.memo(
         const [betSlipMobile, ] = useState(false)
         const pathname = window.location.pathname
         const {state, dispatch}=useContext((StoreContext))
-        const [settings,] = useState(getFromLocalStorage("settings"));
+        const appConfigs=useSelector((state)=>state.data.app_config)
+        const [settings,setSettings] = useState(getFromLocalStorage('settings'));
+
+        useEffect(()=>{
+            setSettings(appConfigs||getFromLocalStorage('settings'))
+        },[appConfigs ])
 
         useEffect(() => {
             let value=state?.userStake || getFromLocalStorage("userStake") || Number(settings?.sportsBookLimits?.defaultBetAmount)
@@ -42,7 +48,7 @@ const Right = React.memo(
                 dispatch({type: "SET", key: "stakeValue", payload: value});
             }
 
-        }, [state?.settings])
+        }, [settings])
 
         const CountBadge=React.memo(
             ()=>{

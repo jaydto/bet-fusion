@@ -1,13 +1,17 @@
-import React, {useCallback, useContext, useEffect, useRef, useState} from "react";
+import React, { useEffect, useState} from "react";
 import {useParams} from 'react-router-dom';
-import makeRequest from "./utils/fetch-request";
-import {StoreContext} from "../context/store"
-import useInterval from "../hooks/set-interval.hook";
 import {getBetslip} from './utils/betslip';
 import './test.css'
 import {ToastContainer} from "react-toastify";
 import SkeletonLoaderMobile from "./pages/skeletonLoadersWeb/SkeletonLoaderMobile";
 import MainTabs from "./header/main-tabs";
+import {useDispatch, useSelector} from "react-redux";
+import {
+    matchesCompetition,
+    setFetching,
+    startFetchingMatches,
+    stopFetchingMatches
+} from "../redux/matchesSlice";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -19,15 +23,21 @@ const Right = React.lazy(() => import('./right/index'));
 const CompetitionMatches = React.memo(
     () => {
         const [page,] = useState(1);
-        const [matches, setMatches] = useState(null);
-        const {state, dispatch} = useContext(StoreContext);
-        const matchSizeRef = useRef(0)
         const {competitionid} = useParams();
-        const [producerDown, setProducerDown] = useState(false);
-        const [userSlipsValidation, setUserSlipsValidation] = useState();
-        const [fetching, setFetching] = useState(false)
-        const [reset, setReset] = useState(0);
-        const [shouldFetch, setShouldFetch] = useState(true);
+
+        const dispatchRedux=useDispatch()
+        const producer_down=useSelector((state)=>state.matchesData.producer_down)
+        const user_slip_validation=useSelector((state)=>state.matchesData.user_slip_validation)
+        const fetching=useSelector((state)=>state.matchesData.fetching)
+        const competitonMatches=useSelector((state)=>state.matchesData.matches)
+        const [matches, setMatches]=useState()
+        useEffect(()=>{
+            setMatches(competitonMatches)
+        },[competitonMatches])
+
+        const fetchAdditionalData=()=>{
+            console.log("fetching live")
+        }
 
 
         const findPostableSlip = () => {
@@ -39,36 +49,10 @@ const CompetitionMatches = React.memo(
             return values;
         };
 
-        useInterval(async () => {
-            if (!shouldFetch) {
-                return;
-            }
-            let endpoint = "/v1/sports/competition?id=" + competitionid + "&page=" + (page || 1) + "&sport_id=79";
-            let url = new URL(window.location.href)
-            let sub_types = (url.searchParams.get('sub_type_id') || "1")
 
-
-            endpoint += `&sub_type_id=` + (sub_types || "1")
-            let betslip = findPostableSlip();
-            let method = betslip ? "POST" : "GET";
-            await makeRequest({url: endpoint, method: method, data: betslip}).then(([status, result]) => {
-                if (status == 200) {
-                    setMatches(result?.data || result)
-                    setShouldFetch(result?.data.length > 0)
-                    matchSizeRef.current=result?.data?.length
-                    if (result?.slip_data) {
-                        setUserSlipsValidation(result?.slip_data)
-                    }
-                    setProducerDown(result?.producer_status === 1);
-                    setFetching(false)
-                }
-            });
-        }, 20000,reset);
-
-        const fetchPagedData = useCallback(() => {
+        const fetchPagedData = () => {
             // console.log("called here")
-            if (!fetching && shouldFetch) {
-                setFetching(true);
+
                 let betslip = findPostableSlip();
                 let endpoint = "/v1/sports/competition?id=" + competitionid + "&page=" + (page || 1);
                 let url = new URL(window.location.href)
@@ -76,40 +60,24 @@ const CompetitionMatches = React.memo(
 
 
                 endpoint += `&sub_type_id=` + (sub_types || "1")
-                makeRequest({url: endpoint, method: "post", data: betslip}).then(([status, result]) => {
-                    if(status===200){
-                        setMatches(result?.data || result);
-                        setShouldFetch(result?.data.length > 0)
-                        matchSizeRef.current=result?.data?.length
-                        if (result?.slip_data) {
-                            setUserSlipsValidation(result?.slip_data)
-                        }
-                        setProducerDown(result?.producer_status === 1);
-                        setFetching(false);
-                    }
+                dispatchRedux(matchesCompetition({endpoint,method:"POST",data:betslip})); // Dispatch matchesCompetition with the updated fetchParams
 
-                });
-            }
-        }, [competitionid]);
+                // Clear the interval when fetchParams change
+                dispatchRedux(startFetchingMatches({endpoint,method:"POST",data:betslip, interval:20000, competition:true}));
+
+
+
+        };
 
         useEffect(() => {
             // console.log("called this")
-            setReset(c => c + 1);
+            dispatchRedux(stopFetchingMatches())
             fetchPagedData()
+            dispatchRedux(setFetching("fetching",true))
+
 
         }, [window.location.pathname, window.location.search]);
 
-
-        useEffect(() => {
-            fetchPagedData();
-            let cachedSlips = getBetslip("betslip");
-            if (cachedSlips) {
-                dispatch({type: "SET", key: "betslip", payload: cachedSlips});
-            }
-            return () => {
-                setMatches(null);
-            };
-        }, [fetchPagedData]);
 
         const urlPath = window.location.pathname
         const showDownload = (!urlPath.includes("nare-games") && !urlPath.includes("gameplay") && !urlPath.includes("smart-play") && !urlPath.includes("betslip-slip") && !urlPath.includes("nare-league") && !urlPath.includes("bet-history") && !urlPath.includes("standings") && !urlPath.includes("results") && !urlPath.includes("casino") && !urlPath.includes("jackpot") && !urlPath.includes("smart-soft") && !urlPath.includes("virtuals") && !urlPath.includes("match") && !urlPath.includes("competition"))
@@ -135,7 +103,8 @@ const CompetitionMatches = React.memo(
                                         matches && <MatchList
                                         live={false}
                                         matches={matches}
-                                        pdown={producerDown}
+                                        pdown={producer_down}
+                                        onEndReached={fetchAdditionalData}
                                     />}
                                 </div>
                                 <div className={`text-center mt-2 text-white ${fetching ? 'd-block' : 'd-none'}`}>
@@ -145,7 +114,7 @@ const CompetitionMatches = React.memo(
                         </div>
                     </div>
                     <div className="item3">
-                        <Right betslipValidationData={userSlipsValidation} test={true}/>
+                        <Right betslipValidationData={user_slip_validation} test={true}/>
                     </div>
                 </div>
                 <div className="item6">

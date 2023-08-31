@@ -5,24 +5,23 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import makeRequest from "../utils/fetch-request";
 import { StoreContext } from "../../context/store";
 import {useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {carouselImages} from "../../redux/dataSlice";
 
 const CarouselLoader = React.memo(
     (props) => {
-        const { state, dispatch } = useContext(StoreContext);
-
+        const dispatchRedux=useDispatch()
+        const banner_images=useSelector((state)=>state.data.carousel_banners)
         const getCarouselImages = async () => {
-            let endpoint = "/v1/carousel-images";
-            const [carousel_results] = await Promise.all([
-                makeRequest({ url: endpoint, method: "GET" })
-            ]);
-            let [status, carousel_result] = carousel_results;
-            if (status === 200) {
-                dispatch({ type: "SET", key: "carousel_banners", payload: carousel_result?.images });
-            }
+            dispatchRedux(carouselImages())
         }
 
         useEffect(() => {
+            const abort= new AbortController()
             getCarouselImages()
+            return ()=>{
+                abort.abort()
+            }
         }, [])
 
         const [imageLoaded, setImageLoaded] = useState(false);
@@ -33,7 +32,7 @@ const CarouselLoader = React.memo(
 
         return (
             <Carousel indicators={false} controls={false}>
-                {state?.carousel_banners?.map((banner, idx) => (
+                {banner_images?.map((banner, idx) => (
                     <Carousel.Item key={idx}>
                         <LazyLoadImage
                             loading={"lazy"}

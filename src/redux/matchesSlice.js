@@ -35,8 +35,9 @@ export const matchCategories =
 export const sportLiveCount =
     createAsyncThunk("matches/sportLiveCount",
         async () => {
+
             const [status, response] = await makeRequest({
-                url: "v1/sports?live=1",
+                url: "/v1/sports?live=1",
                 method: "GET"
             });
             if (status === 200) {
@@ -228,6 +229,24 @@ export const startFetchingMatches = ({ endpoint, method, data, interval, prematc
     }, interval); // 20000 milliseconds = 20 seconds //5000 milliseconds = 5 seconds
 };
 
+let countInterval; // Declare the interval variable outside the action creator
+
+export const startFetchingLiveCount = ({ interval }) =>
+    async (dispatch) =>  {
+
+        // Set up the interval to fetch matches every 20 seconds
+        countInterval = setInterval(() => {
+
+        dispatch(sportLiveCount())
+        }, interval); // 20000 milliseconds = 20 seconds //5000 milliseconds = 5 seconds
+    };
+
+export const stopFetchingLiveCount = () => () => {
+    if (countInterval) {
+        clearInterval(countInterval);
+    }
+};
+
 // Action creator to stop fetching matches
 export const stopFetchingMatches = () => () => {
     if (fetchInterval) {
@@ -323,7 +342,7 @@ const matchesSlice = createSlice({
                 state.error = null;
             })
             .addCase(sportLiveCount.fulfilled, (state, action) => {
-                state.sport_live_count= action.payload;
+                state.sport_live_count= action.payload.data;
                 state.error = null;
             })
             .addCase(sportLiveCount.rejected, (state, action) => {

@@ -17,6 +17,7 @@ import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {StoreContext} from "../../context/store";
 
 import {LazyLoadImage} from "react-lazy-load-image-component";
+import {useSelector} from "react-redux";
 
 const MobileNav1 = React.memo(
     () => {
@@ -29,41 +30,14 @@ const MobileNav1 = React.memo(
 
         const pathname = window.location.pathname;
 
-        const fetchData = useCallback(async () => {
-            let cached_competitions = getFromLocalStorage('sport_categories');
-            let endpoint = "/v1/categories";
+        const availableCategories = useSelector((state) => state.matchesData.sport_categories)
 
-            if (!cached_competitions) {
-                const [competition_result] = await Promise.all([
-                    makeRequest({url: endpoint, method: "get", data: null}),
-                ]);
-                let [c_status, c_result] = competition_result
-
-                if (c_status === 200) {
-                    // setSport(c_result);
-                    dispatch({type: "SET", key: "sport", payload: c_result})
-
-                    setLocalStorage('sport_categories', c_result);
-
-                } else {
-                    fetchData()
-                }
-            } else {
-                dispatch({type: "SET", key: "sport", payload: cached_competitions})
-
-            }
-
-
-        }, []);
+        const [competitions, setCompetitions] = useState(getFromLocalStorage("sport_categories"));
 
         useEffect(() => {
-            const abortController = new AbortController();
-            fetchData();
+            setCompetitions(availableCategories||getFromLocalStorage("sport_categories"))
 
-            return () => {
-                abortController.abort();
-            };
-        }, []);
+        }, [availableCategories])
 
         const getDefaultMarketsForSport = (allsports) => {
             return allsports?.default_display_markets
@@ -211,7 +185,7 @@ const MobileNav1 = React.memo(
                     </td>
 
 
-                    {state.sport?.all_sports.map((allsports, index) => {
+                    {competitions?.all_sports.map((allsports, index) => {
 
                         return allsports?.sport_id !== 79 && (
                             <td key={index}

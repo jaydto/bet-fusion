@@ -4,12 +4,16 @@ import {useParams} from "react-router-dom";
 import useWindowDimensions from "./header/Dimensions";
 import {StoreContext} from "../context/store"
 import {getBetslip} from "./utils/betslip";
-import useInterval from "../hooks/set-interval.hook";
-import makeRequest from "./utils/fetch-request";
 import LiveSideBar from "./sidebar/live-sidebar";
 import {ToastContainer} from "react-toastify";
 import SkeletonMobileLive from "./pages/skeletonLoadersWeb/SkeletonLoaderMobile";
-
+import {
+    matchesLive,
+    setFetching,
+    startFetchingMatches,
+    stopFetchingMatches
+} from "../redux/matchesSlice";
+import {useDispatch, useSelector} from "react-redux";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -19,16 +23,21 @@ const Right = React.lazy(() => import('./right'));
 
 const Live = React.memo(
     () => {
-        const [matches, setMatches] = useState();
-        const {state, dispatch} = useContext(StoreContext);
+        const { dispatch} = useContext(StoreContext);
         const {height, width} = useWindowDimensions();
         const {spid} = useParams();
-        const [reset, setReset] = useState(0);
         const [sportID, setSportID] = useState(79)
 
-        const [producerDown, setProducerDown] = useState(false);
-        const [userSlipsValidation, setUserSlipsValidation] = useState();
-        const [loading, setLoading] = useState(false)
+        const dispatchRedux=useDispatch()
+        const producer_down=useSelector((state)=>state.matchesData.live_producer_down)
+        const user_slip_validation=useSelector((state)=>state.matchesData.live_user_slip_validation)
+        const fetching=useSelector((state)=>state.matchesData.live_fetching)
+        const liveMatches=useSelector((state)=>state.matchesData.live_matches)
+        const [matches, setMatches]=useState()
+        useEffect(()=>{
+            setMatches(liveMatches)
+        },[liveMatches])
+
         const findPostableSlip = () => {
             let betslips = getBetslip() || {};
             var values = Object.keys(betslips).map(function (key) {
@@ -38,73 +47,36 @@ const Live = React.memo(
         };
 
 
-        useInterval(() => {
+        const fetchData = async () => {
             let endpoint = "/v1/matches/live";
             if (spid) {
                 endpoint += "?spid=" + spid;
             }
             let betslip = findPostableSlip();
-            let method = betslip ? "POST" : "GET";
-            makeRequest({url: endpoint, method: method, data: betslip}).then(([status, result]) => {
-                if (status == 200) {
-                    setMatches(result?.data || result)
-                    if (result?.slip_data) {
-                        setUserSlipsValidation(result?.slip_data)
-                    }
-                    setProducerDown(result?.producer_status === 1);
-                }
-                setLoading(false)
-            });
-        }, 6000, reset);
+            let method_type = betslip ? "POST" : "GET";
+            dispatchRedux(matchesLive({endpoint,method:method_type,data:betslip}))
 
-        const fetchData = useCallback(async () => {
-            let endpoint = "/v1/matches/live";
-            if (spid) {
-                endpoint += "?spid=" + spid;
-            }
-            let betslip = findPostableSlip();
-            let method = betslip ? "POST" : "GET";
-            const [match_result] = await Promise.all([
-                makeRequest({url: endpoint, method: method, data: betslip})
-            ]);
-            let [m_status, m_result] = match_result;
-            if (m_status == 200) {
-                setMatches(m_result?.data || m_result)
+            // Clear the interval when fetchParams change
+            dispatchRedux(startFetchingMatches({endpoint,method:method_type,data:betslip, interval:5000, prematch:false}));
 
-                if (m_result?.slip_data) {
-                    setUserSlipsValidation(m_result?.slip_data);
-                }
-                setProducerDown(m_result?.producer_status === 1);
-            }
-            setLoading(false)
-
-        }, []);
+        };
 
 
-        useEffect(() => {
-            const abort = new AbortController()
+        useEffect(()=>{
+            dispatchRedux(stopFetchingMatches())
+            dispatchRedux(setFetching("live_fetching",true))
 
-            fetchData();
+            fetchData()
             let cachedSlips = getBetslip("betslip");
             if (cachedSlips) {
                 dispatch({type: "SET", key: "betslip", payload: cachedSlips});
             }
-            setMatches(null)
-            return () => {
-                abort.abort()
-            };
-        }, []);
+        },[sportID])
 
         useEffect(() => {
             const new_sport_id = spid
             if (sportID !== new_sport_id) {
                 setSportID(new_sport_id)
-                setLoading(true)
-                setMatches([])
-                setReset(c => c + 1);
-
-            } else {
-
             }
         })
         const homePageRef = useRef()
@@ -141,6 +113,10 @@ const Live = React.memo(
             };
         }, [homePageRef, scrolledPast, scrolledToTop]);
 
+        const fetchAdditionalData=()=>{
+            console.log("fetching live")
+        }
+
         return (
             <div className={'flex-item'}>
                 <div className="item4"><Header scrollPosition={scrollPosition}/>
@@ -159,13 +135,14 @@ const Live = React.memo(
                                 <div className={`${width <= 991 ? "d-block" : "d-none"}`}>
                                     <LiveSideBar/>
                                 </div>
-                                {loading ? <SkeletonMobileLive/> : matches &&
-                                    <MatchList live={1} matches={matches} pdown={producerDown}/>}
+                                {console.log("live_matches", matches)}
+                                {fetching ? <SkeletonMobileLive/> : matches &&
+                                    <MatchList live={1}  fetching={true} matches={matches} pdown={producer_down} onEndReached={fetchAdditionalData}/>}
                             </div>
                         </div>
                     </div>
                     <div className="item3">
-                        <Right betslipValidationData={userSlipsValidation} jackpotData={matches?.meta} test={true}
+                        <Right betslipValidationData={user_slip_validation} jackpotData={matches?.meta} test={true}
                                live={true}/>
                     </div>
 

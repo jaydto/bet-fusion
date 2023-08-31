@@ -57,7 +57,7 @@ const Live = React.memo(
             dispatchRedux(matchesLive({endpoint,method:method_type,data:betslip}))
 
             // Clear the interval when fetchParams change
-            dispatchRedux(startFetchingMatches({endpoint,method:method_type,data:betslip, interval:5000, prematch:false}));
+            dispatchRedux(startFetchingMatches({endpoint,method:method_type,data:betslip, interval:5000, live:true}));
 
         };
 

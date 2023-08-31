@@ -9,32 +9,26 @@ import SidebarMobile from "../sidebar/awesome/SidebarMobile";
 import React, {useCallback, useEffect, useState} from "react";
 import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
 import makeRequest from "../utils/fetch-request";
+import {configSettings} from "../../redux/dataSlice";
+import {useDispatch, useSelector} from "react-redux";
 
 const Header2 = React.memo(
 	() => {
 		const expand = "md"
-		const [settings,] = useState(getFromLocalStorage('settings'));
+		const dispatchRedux = useDispatch()
+		const appConfigs=useSelector((state)=>state.data.app_config)
+		const [settings,setSettings] = useState(getFromLocalStorage('settings'));
+
+		useEffect(()=>{
+			setSettings(appConfigs||getFromLocalStorage('settings'))
+		},[appConfigs ])
+
 		const fetchAppConfigurations = useCallback(async () => {
 
 			let cached_settings = getFromLocalStorage('settings');
 
-			let endpoint = "/v1/bet/settings";
-
 			if (!cached_settings) {
-
-				const [result] = await Promise.all([
-					makeRequest({url: endpoint, method: "POST", data: null}),
-				]);
-
-				let [c_status, c_result] = result
-
-
-				if (c_status === 200) {
-					setLocalStorage('settings', c_result?.message, 1800000);
-				}
-
-			} else {
-
+				dispatchRedux(configSettings())
 			}
 		})
 

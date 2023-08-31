@@ -8,6 +8,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 import {Link} from "react-router-dom";
 import {LazyLoadImage} from "react-lazy-load-image-component";
+import {useSelector} from "react-redux";
 
 const Sidebar = React.memo(
     (props) => {
@@ -20,37 +21,14 @@ const Sidebar = React.memo(
             setToggled(value);
         };
 
-        const [competitions, setCompetitions] = useState(props?.competitions);
+        const availableCategories=useSelector((state)=>state.matchesData.sport_categories)
 
-        const fetchData = useCallback(async () => {
-            let cached_competitions = getFromLocalStorage("sport_categories");
-            let endpoint = "/v1/categories";
+        const [competitions, setCompetitions] = useState(getFromLocalStorage("sport_categories"));
 
-            if (!cached_competitions) {
-                const [competition_result] = await Promise.all([
-                    makeRequest({url: endpoint, method: "get", data: null}),
-                ]);
-                let [c_status, c_result] = competition_result;
+        useEffect(()=>{
+            setCompetitions(availableCategories||getFromLocalStorage("sport_categories"))
 
-                if (c_status === 200) {
-                    setCompetitions(c_result);
-                    setLocalStorage("sport_categories", c_result);
-                } else {
-                    fetchData();
-                }
-            } else {
-                setCompetitions(cached_competitions);
-            }
-        }, []);
-
-        useEffect(() => {
-            const abortController = new AbortController();
-            fetchData();
-
-            return () => {
-                abortController.abort();
-            };
-        }, []);
+        },[availableCategories])
 
         const [width, setWidth] = useState(window.innerWidth);
 

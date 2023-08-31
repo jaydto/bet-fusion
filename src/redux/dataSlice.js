@@ -75,7 +75,8 @@ const dataSlice = createSlice({
                 state.app_config= action.payload;
                 state.loading = false;
                 state.error = null;
-                const status=action.payload.status
+                const status=action.payload?.status_code
+
                 if(status===200){
                     setLocalStorage('settings', action.payload.message, 1800000)
                 }

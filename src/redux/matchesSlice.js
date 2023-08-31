@@ -18,6 +18,33 @@ export const matchesPrematch =
             throw new Error(response?.error || "Fetching Prematch failed");
         }
     });
+
+export const matchCategories =
+    createAsyncThunk("matches/matchCategories",
+        async () => {
+            const [status, response] = await makeRequest({
+                url: "/v1/categories",
+                method: "GET"
+            });
+            if (status === 200) {
+                return response;
+            } else {
+                throw new Error(response?.error || "Fetching Categories failed");
+            }
+        });
+export const sportLiveCount =
+    createAsyncThunk("matches/sportLiveCount",
+        async () => {
+            const [status, response] = await makeRequest({
+                url: "v1/sports?live=1",
+                method: "GET"
+            });
+            if (status === 200) {
+                return response;
+            } else {
+                throw new Error(response?.error || "Fetching Sports Count failed");
+            }
+        });
 export const favoriteMarkets =
     createAsyncThunk("matches/favoriteMarkets",
     async () => {
@@ -278,6 +305,28 @@ const matchesSlice = createSlice({
             .addCase(matchesLive.rejected, (state, action) => {
                 state.loading = false;
                 state.fetching = false;
+                state.error = action.error.message;
+            })
+            .addCase(matchCategories.pending, (state) => {
+                state.error = null;
+            })
+            .addCase(matchCategories.fulfilled, (state, action) => {
+                state.sport_categories= action.payload;
+                const data=action.payload
+                setLocalStorage('sport_categories', data);
+                state.error = null;
+            })
+            .addCase(matchCategories.rejected, (state, action) => {
+                state.error = action.error.message;
+            })
+            .addCase(sportLiveCount.pending, (state) => {
+                state.error = null;
+            })
+            .addCase(sportLiveCount.fulfilled, (state, action) => {
+                state.sport_live_count= action.payload;
+                state.error = null;
+            })
+            .addCase(sportLiveCount.rejected, (state, action) => {
                 state.error = action.error.message;
             })
 

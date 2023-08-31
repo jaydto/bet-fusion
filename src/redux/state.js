@@ -70,8 +70,11 @@ const initialState = {
         error: null,
         user: null,
         user_slip_validation:null,
+        live_user_slip_validation:null,
         producer_down:null,
+        live_producer_down:null,
         fetching:null,
+        live_fetching:null,
         loading: true,
         favorites_data:[],
         jackpot_data:null,
@@ -80,8 +83,10 @@ const initialState = {
         market_groups:null,
         matches:null,
         limit: 10,
+        live_matches:null,
         // prev_match_size:0,
-        match_size:0
+        match_size:0,
+        live_match_size:0
     },// Initial state for the matches Slice reducer
     scroll:{
         fetching: false,

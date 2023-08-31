@@ -76,6 +76,8 @@ const initialState = {
         fetching:null,
         live_fetching:null,
         loading: true,
+        sport_categories:null,
+        sport_live_count:null,
         favorites_data:[],
         jackpot_data:null,
         jackpot_history:[],

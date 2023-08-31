@@ -85,7 +85,7 @@ const initialState = {
         limit: 10,
         live_matches:null,
         // prev_match_size:0,
-        match_size:0,
+        match_size:10,
         live_match_size:0
     },// Initial state for the matches Slice reducer
     scroll:{

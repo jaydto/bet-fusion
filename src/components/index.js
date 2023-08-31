@@ -48,7 +48,7 @@ const Index = React.memo(
         const matches=useSelector((state)=>state.matchesData.matches)
         // const prev_match_size=useSelector((state)=>state.matchesData.prev_match_size)
         // const match_size=useSelector((state)=>state.matchesData.match_size)
-        const producer_down=useSelector((state)=>state.matchesData.producer)
+        const producer_down=useSelector((state)=>state.matchesData.producer_down)
         const user_slip_validation=useSelector((state)=>state.matchesData.user_slip_validation)
         const loading=useSelector((state)=>state.matchesData.loading)
         const fetching=useSelector((state)=>state.matchesData.fetching)
@@ -287,7 +287,7 @@ const Index = React.memo(
 
         const fetchAdditionalData=()=>{
             dispatchRedux(setLimit(10))
-            dispatchRedux(setFetching(true))
+            dispatchRedux(setFetching("fetching",true))
         }
 
 

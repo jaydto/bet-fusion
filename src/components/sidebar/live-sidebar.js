@@ -1,37 +1,29 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import makeRequest from "../utils/fetch-request";
+
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import {Menu, MenuItem, ProSidebar, SidebarContent, SidebarHeader} from "react-pro-sidebar";
-import {Link, useParams} from "react-router-dom";
+import {Link} from "react-router-dom";
 import useWindowDimensions from "../header/Dimensions";
+import { useSelector} from "react-redux";
+
 
 
 const LiveSideBar = React.memo(
-    (props) => {
+    () => {
+
+
+        const {width} = useWindowDimensions();
+        const liveCount=useSelector((state)=>state.matchesData.sport_live_count)
 
         const [liveSports, setLiveSports] = useState()
-        const {width} = useWindowDimensions();
+        useEffect(()=>{
+            setLiveSports(liveCount)
 
-        const fetchData = useCallback(() => {
-            let endpoint = "/v1/sports?live=1";
-            makeRequest({url: endpoint, method: "get", data: null})
-                .then(([c_status, c_result]) => {
-                    if (c_status === 200) {
-                        setLiveSports(c_result?.data)
-                    }
-                });
-        }, []);
+        },[liveCount])
 
-        useEffect(() => {
-            const abortController = new AbortController();
-            fetchData();
 
-            return () => {
-                abortController.abort();
-            };
-        }, []);
 
         return (
             <div className={`${width<=991?"":"d-md-block  h-100"}`} >

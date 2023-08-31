@@ -15,39 +15,28 @@ import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {getBetslip, getJackpotBetslip, getKironSlip} from "../utils/betslip";
 import {StoreContext } from "../../context/store";
 import {LazyLoadImage} from "react-lazy-load-image-component";
+import {useSelector} from "react-redux";
 
 const MobileMenu = React.memo((props) => {
 
     const betItems = getBetslip();
-    const [liveSports, setLiveSports] = useState();
     const {jackpot, kiron, jackpotData} = props;
     const [betSlipMobile, setBetSlipMobile] = useState(false);
     const gaEventTracker = useAnalyticsEventTracker("Navigation");
     const pathname = window.location.pathname;
     const { state, dispatch } = useContext(StoreContext);
     const navigate = useNavigate();
+    const liveCount=useSelector((state)=>state.matchesData.sport_live_count)
 
-    const fetchData = useCallback(() => {
-        let endpoint = "/v1/sports?live=1";
-        makeRequest({url: endpoint, method: "get", data: null}).then(([c_status, c_result]) => {
-            if (c_status === 200) {
-                setLiveSports(c_result?.data);
+    const [liveSports, setLiveSports] = useState()
+    useEffect(()=>{
+        setLiveSports(liveCount)
 
-            }
-        });
-    }, []);
+    },[liveCount])
 
     let totalCount = 0;
+
     const [progress, setProgress] = useState()
-
-    useEffect(() => {
-        const abortController = new AbortController();
-        fetchData();
-
-        return () => {
-            abortController.abort();
-        };
-    }, [fetchData]);
 
     let sumOfOdds = 1;
 

@@ -117,11 +117,11 @@ export const jackpotHistoryData =
         });
 export const matchesCompetition =
     createAsyncThunk("matches/competition",
-    async (marketsData) => {
+    async ({endpoint,method,data}) => {
         const [status, response] = await makeRequest({
-            url: "/v1/sports/competition?id=",
-            method: "POST",
-            data: marketsData,
+            url: endpoint,
+            method: method,
+            data: data,
         });
         if (status === 200) {
             return response;
@@ -181,7 +181,8 @@ export const resetState =
 
 let fetchInterval; // Declare the interval variable outside the action creator
 
-export const startFetchingMatches = ({ endpoint, method, data, interval, prematch }) => async (dispatch) =>  {
+export const startFetchingMatches = ({ endpoint, method, data, interval, prematch = false, live = false, competition = false }) =>
+    async (dispatch) =>  {
     // Dispatch the initial fetch
     const matchesData={endpoint, method, data}
 
@@ -189,11 +190,15 @@ export const startFetchingMatches = ({ endpoint, method, data, interval, prematc
     fetchInterval = setInterval(() => {
         if(prematch){
             dispatch(matchesPrematch(matchesData));
-        }else{
+        }
+        if(live){
             dispatch(matchesLive(matchesData));
         }
+        if(competition){
+            dispatch(matchesCompetition(matchesData))
+        }
 
-    }, interval); // 20000 milliseconds = 20 seconds
+    }, interval); // 20000 milliseconds = 20 seconds //5000 milliseconds = 5 seconds
 };
 
 // Action creator to stop fetching matches
@@ -245,21 +250,8 @@ const matchesSlice = createSlice({
                 }
                 state.error = action.error.message;
             })
-            .addCase(marketGroups.pending, (state) => {
-                state.loading = true;
-                state.error = null;
-            })
-            .addCase(marketGroups.fulfilled, (state, action) => {
-                state.market_groups = action.payload;
-                state.loading = false;
-                state.error = null;
-            })
-            .addCase(marketGroups.rejected, (state, action) => {
-                state.loading = false;
-                state.error = action.error.message;
-            })
             .addCase(matchesLive.pending, (state) => {
-                // state.loading = true;
+                state.loading= false;
             })
             .addCase(matchesLive.fulfilled, (state, action) => {
                 state.isLoggedIn = true;
@@ -267,9 +259,7 @@ const matchesSlice = createSlice({
 
                 const newMatches = action.payload?.data;
 
-                const mergedMatches = newMatches.length > 0 ? { ...state.live_matches, ...newMatches } : newMatches;
-
-                state.live_matches = mergedMatches;
+                state.live_matches = newMatches;
 
                 if (newMatches.slip_data) {
                     state.live_user_slip_validation=newMatches.slip_data
@@ -290,6 +280,20 @@ const matchesSlice = createSlice({
                 state.fetching = false;
                 state.error = action.error.message;
             })
+
+            .addCase(marketGroups.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(marketGroups.fulfilled, (state, action) => {
+                state.market_groups = action.payload;
+                state.loading = false;
+                state.error = null;
+            })
+            .addCase(marketGroups.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
             .addCase(matchesJackpot.pending, (state) => {
                 state.jackpot_loading = true;
             })
@@ -303,11 +307,30 @@ const matchesSlice = createSlice({
                 state.error = action.error.message;
             })
             .addCase(matchesCompetition.pending, (state) => {
-                state.loading = true;
+                // state.loading = true;
             })
-            .addCase(matchesCompetition.fulfilled, (state) => {
-                state.loading = false;
+            .addCase(matchesCompetition.fulfilled, (state, action) => {
+                state.isLoggedIn = true;
+                state.loading=false;
+
+                const newMatches = action.payload?.data;
+
+                const mergedMatches = newMatches.length > 0 ? { ...state.matches, ...newMatches } : newMatches;
+
+                state.matches = mergedMatches;
+
+                if (newMatches.slip_data) {
+                    state.user_slip_validation=newMatches.slip_data
+                }
+                state.producer_down=action.payload.producer_status === 1
+                // Reset initialLoading flag after initial fetch
+                if (state.initialLoading) {
+                    state.initialLoading = false;
+                }
                 state.error = null;
+                state.fetching=false
+                // state.prev_match_size = state.match_size || 10// prev_match_size
+                state.match_size = newMatches?.length;
             })
             .addCase(matchesCompetition.rejected, (state, action) => {
                 state.loading = false;
@@ -400,14 +423,14 @@ const matchesSlice = createSlice({
                 const { param_fetch_type,tab, sport_id } = action.payload;
                 // Append tab or sport_id to the list of visited tabs
                 if(param_fetch_type==="tabs"){
-                    state.initialLoading = !state.visited_tabs.includes(tab);
+                    state.initialLoading = true
                     state.visited_tabs = Array.from(new Set([...state.visited_tabs, tab]));
                     // Update initialLoading based on visitedTabs
 
                 }else{
                     state.visited_sport_id = Array.from(new Set([...state.visited_sport_id, sport_id]));
                     // Update initialLoading based on visitedTabs
-                    state.initialLoading = !state.visited_sport_id.includes(sport_id);
+                    state.initialLoading = true
 
                 }
 

@@ -944,18 +944,15 @@ const getUpdatedMatchFromOdds = (props) => {
 }
 export const FormatDate2 = (props) => {
     const {start_time, match_time, live} = props;
-    // Extract the date and time components
-    const [dateString, timeString] = start_time.split(' ');
-    const [year, month, day] = dateString.split('-');
-    const [hour, minute] = timeString.split(':');
-
-    // Format the date and time
-    const formattedDateTime = `${month}/${day} ${hour}:${minute}`;
-
-    if (live) {
-        return match_time
-    } else {
+    if(!live) {
+        const [dateString, timeString] = start_time.split(' ');
+        const [year, month, day] = dateString.split('-');
+        const [hour, minute] = timeString.split(':');
+        // Format the date and time
+        const formattedDateTime = `${month}/${day} ${hour}:${minute}`;
         return formattedDateTime;
+    }else {
+        return match_time
     }
 
 };
@@ -1001,8 +998,9 @@ const MatchRow = React.memo(
         const [, setSportName] = useState(sport?.[0]?.sport_name || 'Soccer');
         const [, setShowX] = useState(true);
         const [, setMarket] = useState('1x2');
-        const {width} = useWindowDimensions();
         const [threeWay, setThreeWay] = useState(false)
+
+        console.log("matche_item", match)
         const getSelectedMarkets = () => {
 
             const markets = marketChoice();
@@ -1074,7 +1072,7 @@ const MatchRow = React.memo(
                             }
 
                             <span className={'date-size wrapping px-sm-3 px-md-0 date-remove display-ipad-remove-id'}>
-                                           {live == 1 && match?.match_time ? (
+                                           {live === 1 && match?.match_time ? (
                                                <div className={'d-flex gap-3 align-items-center'}>
                                                    <div className={'live-status'}>
                                                        {`${match.event_status}'`}
@@ -1182,8 +1180,8 @@ const MatchRow = React.memo(
                                   </span>
                                                             </div>
                                                         }
-                                                        <FormatDate2 live={live} start_time={match?.start_time}
-                                                                     match_time={match?.match_time}/>
+                                                        {/*<FormatDate2 live={live} start_time={match?.start_time}*/}
+                                                        {/*             match_time={match?.match_time}/>*/}
 
                                                     </>
 
@@ -1563,6 +1561,7 @@ const MatchList = React.memo(
                 {matches && <MatchHeaderRow live={live} first_match={matches ? matches[0] : {}}/>}
 
                 <div className="web-element top-login-background-img-bg w-100">
+                    {console.log("matches_live", matches)}
                     {matches &&
                         Object.entries(matches).map(([key, match], index) => (
                             <MatchRow match={match} key={index} live={live} pdown={pdown} three_way={three_way}/>

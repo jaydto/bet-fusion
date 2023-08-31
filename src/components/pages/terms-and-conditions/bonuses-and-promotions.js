@@ -112,6 +112,38 @@ const BonusesAndPromotions = () => {
                     {/*   	In the event of an error when attributing a bonus to a customer account, the company reserves the right to correct such errors by removing any funds that were put into the customer’s account erroneously and by avoid*/}
                     {/*</li>*/}
                 </ol>
+
+                <strong className="text-decoration-underline">650 FOR 650 PROMOTION TERMS AND CONDITIONS</strong>
+                <br/>
+                <p>Within the next 14 days, ONCE you DEPOSIT 650/=, BetNare Rewards you 650/= BONUS INSTANTLY.</p>
+                <ol>
+                    <li>The bonus must be used within 13 days of registration. After 14 days the bonus and all winnings made on the bonus will be revoked.
+                    </li>
+                    <li>
+                    A customer is entitled to only TWO bonus per day. The required Deposit to activate the bonus is Ksh650.
+                    </li>
+                    <li>
+                    The bonus will be credited to the customer's account automatically once they have made their 1st and 2nd deposit.
+                    </li>
+                    <li>
+                    To use the bonus the customer will be required to have placed an equivalent Sports Cash Bet on 1.5 Minimum odds.
+                    </li>
+                    <li>
+                    The Bonus can only be used to place a Sports bet.
+                    </li>
+                    <li>
+                    Sports Bet Cancellation will NOT be allowed during this promotion.
+                    </li>
+                    <li>
+                    BetNare may limit or refuse to allow customers to take part in this or any other offer.
+                    </li>
+                    <li>
+                    BetNare reserves the right to review customer transaction records and logs for any reason. If, upon such review, it appears that a customer is using strategies which BetNare, at its sole discretion, deems to be abusive, BetNare reserves the right to revoke that customer's right to participate in the bonus program and void their bonus and or winnings.
+                    </li>
+                    <li>
+                    Only ONE bonus is allowed per customer, family, address, shared computer, shared IP address. Any misuse of this bonus offer will lead to an account being closed.
+                    </li>
+                </ol>
                 <p><strong><strong>NB;</strong> APART FROM JACKPOT BONUSES , THE REST CANNOT BE WITHDRAWN</strong></p>
             </AccordionItemPanel>
         </AccordionItem>

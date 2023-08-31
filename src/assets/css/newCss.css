@@ -337,6 +337,7 @@ input.text-white {
 
 .match-status {
     color: var(--betnare-button-login) !important;
+    white-space:nowrap;
 }
 
 .live-status {
@@ -1562,7 +1563,7 @@ img.nare-league {
         
         /*top: 0.3rem;*/
         right: 49px;
-        width: 40% !important;
+        /*width: 40% !important;*/
         padding: 8px !important;
     }
 

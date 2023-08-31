@@ -61,7 +61,7 @@ export const marketGroups =
         });
 export const matchesLive =
     createAsyncThunk("matches/live",
-    async ({endpoint,method,data}) => {
+        async ({endpoint,method,data}) => {
         const [status, response] = await makeRequest({
             url: endpoint,
             method: method,
@@ -166,8 +166,8 @@ export const setInitialLoadingState = createAction("matches/set", ( param_fetch_
     return { payload: {param_fetch_type ,tab, sport_id } };
 });
 
-export const setFetching = createAction("matches/setFetching", ( status) => {
-    return { payload: {status } };
+export const setFetching = createAction("matches/setFetching", ( type,status) => {
+    return { payload: {type,status } };
 });
 
 export const setLimit = createAction("matches/setLimit", ( limit) => {
@@ -190,7 +190,7 @@ export const startFetchingMatches = ({ endpoint, method, data, interval, prematc
         if(prematch){
             dispatch(matchesPrematch(matchesData));
         }else{
-            matchesLive(matchesData)
+            dispatch(matchesLive(matchesData));
         }
 
     }, interval); // 20000 milliseconds = 20 seconds
@@ -223,8 +223,6 @@ const matchesSlice = createSlice({
                 const mergedMatches = newMatches.length > 0 ? { ...state.matches, ...newMatches } : newMatches;
 
                 state.matches = mergedMatches;
-                console.log("matches_data", mergedMatches);
-                console.log("matches_data_length_of_data", newMatches.length);
 
                 if (newMatches.slip_data) {
                     state.user_slip_validation=newMatches.slip_data
@@ -261,16 +259,35 @@ const matchesSlice = createSlice({
                 state.error = action.error.message;
             })
             .addCase(matchesLive.pending, (state) => {
-                state.loading = true;
+                // state.loading = true;
             })
             .addCase(matchesLive.fulfilled, (state, action) => {
                 state.isLoggedIn = true;
-                state.live_matches = action.payload;
+                state.loading=false;
+
+                const newMatches = action.payload?.data;
+
+                const mergedMatches = newMatches.length > 0 ? { ...state.live_matches, ...newMatches } : newMatches;
+
+                state.live_matches = mergedMatches;
+
+                if (newMatches.slip_data) {
+                    state.live_user_slip_validation=newMatches.slip_data
+                }
+                state.live_producer_down=action.payload.producer_status === 1
+                // Reset initialLoading flag after initial fetch
+                state.error = null;
+                state.live_fetching=false
+                // state.prev_match_size = state.match_size || 10// prev_match_size
+                state.live_match_size = newMatches?.length;
+
+                state.isLoggedIn = true;
                 state.loading = false;
                 state.error = null;
             })
             .addCase(matchesLive.rejected, (state, action) => {
                 state.loading = false;
+                state.fetching = false;
                 state.error = action.error.message;
             })
             .addCase(matchesJackpot.pending, (state) => {
@@ -397,9 +414,11 @@ const matchesSlice = createSlice({
                 state.error = null;
             })
             .addCase(setFetching, (state, action) => {
-                const { status } = action.payload;
+                const { type,status } = action.payload;
                 // fetching status
-                state.fetching = status;
+                if (state.hasOwnProperty(type)) {
+                    state[type] = status
+                }
             })
             .addCase(setLimit, (state, action) => {
                 const { limit } = action.payload;

@@ -45,6 +45,51 @@ export const userBalance =
                 throw new Error(response?.error || "Fetching User Balance failed");
             }
         });
+export const userPoints =
+    createAsyncThunk("data/userPoints",
+        async (values) => {
+            const [status, response] = await makeRequest({
+                url: "/redeem-points",
+                method: "POST",
+                data:values
+            });
+            if (status === 200) {
+                return response;
+            } else {
+                throw new Error(response?.error || "Redeem Points failed");
+            }
+        });
+
+export const userWithdrawal =
+    createAsyncThunk("data/userWithdrawal",
+        async (amount) => {
+            const [status, response] = await makeRequest({
+                url: "/withdraw",
+                method: "POST",
+                data:amount,
+                use_jwt: true
+            });
+            if (status === 200) {
+                return response;
+            } else {
+                throw new Error(response || "Withdrawal Request failed");
+            }
+        });
+
+export const userDeposits =
+    createAsyncThunk("data/userDeposits",
+        async (userData, user) => {
+            const [status, response] = await makeRequest({
+                url: "/v1/balance",
+                method: "POST",
+                data:userData
+            });
+            if (status === 200) {
+                return {response, user};
+            } else {
+                throw new Error(response?.error || "Fetching User Balance failed");
+            }
+        });
 
 const dataSlice = createSlice({
     name: "data",
@@ -52,6 +97,48 @@ const dataSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
+            .addCase(userPoints.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+                state.points_message=null;
+            })
+            .addCase(userPoints.fulfilled, (state, action) => {
+                state.loading = false;
+                state.error = null;
+                state.points_message=action.payload?.message;
+
+            })
+            .addCase(userPoints.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
+            .addCase(userWithdrawal.pending, (state) => {
+                state.withdraw_loading=true;
+                state.error = null;
+            })
+            .addCase(userWithdrawal.fulfilled, (state, action) => {
+                state.error = null;
+                state.withdraw_loading=false;
+                state.withdrawal_message=action.payload;
+
+            })
+            .addCase(userWithdrawal.rejected, (state, action) => {
+                state.withdraw_loading=false;
+                state.error = action.error.message;
+            })
+            .addCase(userDeposits.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(userDeposits.fulfilled, (state, action) => {
+                state.loading = false;
+                state.error = null;
+                state.deposits_message=action.payload;
+
+            })
+            .addCase(userDeposits.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
             .addCase(carouselImages.pending, (state) => {
                 state.loading = true;
             })

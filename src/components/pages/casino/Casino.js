@@ -9,7 +9,9 @@ import {StoreContext } from "../../../context/store"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
 import {useNavigate} from "react-router-dom";
-
+import aviator from '../../../assets/img/aviator.png'
+import {Link} from  'react-router-dom'
+ 
 const Casino = React.memo(
     () => {
 
@@ -47,6 +49,15 @@ const Casino = React.memo(
 
         const navigate=useNavigate()
 
+        const launchAviator=(status)=>{
+            if(status==="demo"){
+                navigate("/nare-games/aviator?status=demo")
+            }else{
+                navigate("/nare-games/aviator?status=live")
+            }
+            
+        }
+
         return (
             <>
                 <Header/>
@@ -54,10 +65,21 @@ const Casino = React.memo(
                     <div className={"d-flex"}>
                         <div className="gz home top-spacing-casino " style={{width: '100%'}}>
                             <div className="homepage ">
+                      
+                                
                                 <div className="col-md-12 d-flex flex-column mt-2">
                                     <div className="col-md-12 casino-scroll">
                                         <div
                                             className="shadow-sm p-2 shadow-sm casino-category-container mt-2">
+                                             <Button bg="warning"
+                                                           
+                                                           style={{marginRight: '2px'}}
+                                                           className={`cursor-pointer text-center casino-category casino-category-button`}
+                                                           onClick={() => navigate("/nare-games/aviator")}
+                                                           >
+                                                   Aviator
+                                                </Button>
+                                            
                                             {categories?.map((category, index) => (
                                                 category?.game_type_id !== "rgs-vsb"
                                                 && <Button bg="warning"
@@ -75,11 +97,45 @@ const Casino = React.memo(
                                     </div>
                                     <div className="col">
                                         <div className={'row text-white p-2 shadow-sm justify-content-center'}>
+
+
+
+
+
+                                    <div className={'col-md-4 col-lg-3 col-sm-4 virtual-width'}>
+                                        <div className={'mt-1 mb-1 d-flex flex-column shadow-lg virtual-game-container'}>
+                                                    <div   onClick={() => navigate("/nare-games/aviator")} className="">
+                                                        <p className={'text-center bold text-elipsis text-uppercase'}>Aviator</p>
+                                                        <LazyLoadImage effect={'blur'} src={aviator} 
+                                                        className={'virtual-game-image vw-100'}/>
+                                                    </div>
+                                                    <div className="overlay shadow-sm row">
+                                                        <ButtonGroup aria-label="Basic example">
+                                                            <div>
+                                                            <Button variant="warning"
+                                                
+                                                                    onClick={() => launchAviator("demo")}
+
+                                                                    >
+                                                                Play Demo
+                                                            </Button>
+                                                            </div>
+                                                            <Button variant="danger"
+                                                              onClick={()=> launchAviator("live")}
+                                                                    >
+                                                                Play Game
+                                                            </Button>
+                                                        </ButtonGroup>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            
                                             {state?.casino_search !== undefined && state?.casino_search.length > 0 ? state?.casino_search?.map((search_game, index) => (
                                                     search_game?.game_id == "rgs-vsv" ? "" :
                                                         <div key={index}
                                                              className={'col-md-4 col-lg-3 col-sm-4 virtual-width'}>
-                                                            <div
+                                                              <div
                                                                 className={'mt-1 mb-1 d-flex flex-column shadow-lg virtual-game-container'}>
                                                                 <div onClick={() => launchGame(search_game?.game_id, true)}
                                                                      className=""
@@ -95,7 +151,8 @@ const Casino = React.memo(
                                                                 <div className="overlay shadow-sm row">
                                                                     <ButtonGroup aria-label="Basic example">
                                                                         <Button variant="warning"
-                                                                                onClick={() => launchGame(search_game?.game_id, false)}>
+                                                                                onClick={() => launchGame(search_game?.game_id, false)}
+                                                                                >
                                                                             Play Demo
                                                                         </Button>
                                                                         <Button variant="danger"

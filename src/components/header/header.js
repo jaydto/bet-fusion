@@ -220,9 +220,9 @@ const Header = React.memo(
                                       gaEventTracker('Aniversary Promotion');
                                   }}>
                                 <div className={"app-download-link  d-flex flex-column"}>
-                                   <span className={"color-app-text flashy"}>Enjoy
-                                       <strong style={{color: 'var(--gold'}}> Free</strong>  Deposits on
-                                       <strong style={{color: 'var(--gold'}}> ALL </strong>Deposits
+                                   <span className={"color-app-text flashy"}>Deposit
+                                       <strong style={{color: 'var(--gold'}}> 650/=</strong>  get
+                                       <strong style={{color: 'var(--gold'}}> 650/= </strong>Free Bonus!
                                    </span>
                                 </div>
                             </Link>

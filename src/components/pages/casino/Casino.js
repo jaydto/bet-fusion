@@ -67,7 +67,7 @@ const Casino = React.memo(
                             <div className="homepage ">
                       
                                 
-                                <div className="col-md-12 d-flex flex-column mt-2 w-50 mx-auto">
+                                <div className="col-md-12 d-flex flex-column mt-2">
                                     <div className="col-md-12 casino-scroll">
                                         <div
                                             className="shadow-sm p-2 shadow-sm casino-category-container mt-2">

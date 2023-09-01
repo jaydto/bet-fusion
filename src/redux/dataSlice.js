@@ -33,14 +33,15 @@ export const carouselImages =
 // need to pass also the user data as part of the arguments being dispatched to userBalance thunk
 export const userBalance =
     createAsyncThunk("data/userBalance",
-        async (userData, user) => {
+        async ({udata,user}) => {
             const [status, response] = await makeRequest({
                 url: "/v1/balance",
                 method: "POST",
-                data:userData
+                data:udata
             });
+
             if (status === 200) {
-                return {response, user};
+                return { user: user, data: response }; // Return an object with both user and data properties
             } else {
                 throw new Error(response?.error || "Fetching User Balance failed");
             }
@@ -210,15 +211,16 @@ const dataSlice = createSlice({
                 state.loading = true;
             })
             .addCase(userBalance.fulfilled, (state, action) => {
-                state.app_config= action.payloadresponse;
                 state.loading = false;
                 state.error = null;
-                const status=action.payload.response.status
-                let u = {...action.payload.user, ...action.payload.user};
+                const { user, data } = action.payload;
+
+                let u = {...user, ...data.user};
+
                 state.user=u
-                if(status===200){
-                    setLocalStorage('user', u )
-                }
+
+                setLocalStorage('user', u )
+
             })
             .addCase(userBalance.rejected, (state, action) => {
                 state.loading = false;

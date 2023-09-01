@@ -19,6 +19,7 @@ import {
     startFetchingMatches,
     stopFetchingMatches
 } from "../redux/matchesSlice";
+import {userBalance} from "../redux/dataSlice";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -104,18 +105,15 @@ const Index = React.memo(
             if (!user) {
                 return false;
             }
-            let endpoint = "/v1/balance";
             let udata = {
                 token: user.token
             }
-            makeRequest({url: endpoint, method: "post", data: udata}).then(([_status, response]) => {
-                if (_status == 200) {
-                    let u = {...user, ...response.user};
-                    setLocalStorage('user', u);
-                    dispatch({type: "SET", key: "user", payload: u});
-                    dispatch({type: "SET", key: "placebet", payload: true});
-                }
-            });
+            const userValues={
+                udata:udata,
+                user:user
+            }
+
+            dispatchRedux(userBalance(userValues))
 
         };
 

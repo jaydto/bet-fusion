@@ -78,7 +78,12 @@ const KironslipSubmitForm = React.memo(
             let udata = {
                 token: user.token
             }
-            dispatchRedux(userBalance(udata, user))
+            const userValues={
+                udata:udata,
+                user:user
+            }
+
+            dispatchRedux(userBalance(userValues))
 
         };
 

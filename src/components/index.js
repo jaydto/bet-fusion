@@ -30,7 +30,8 @@ const SideBar = React.lazy(() => import('./sidebar/awesome/Sidebar'))
 const Index = React.memo(
     () => {
         const location = useLocation();
-        const [user,] = useState(getFromLocalStorage("user"));
+        const userData=useSelector((state)=>state.data.user)
+        const [user, setUser]=useState(getFromLocalStorage("user"))
         const [tab, setTab] = useState('highlights');
         const [sportID, setSportID] = useState(79);
         const {height, width} = useWindowDimensions();
@@ -39,6 +40,13 @@ const Index = React.memo(
         const {state, dispatch} = useContext(StoreContext);
         const homePageRef = useRef()
         const bottomSheetRef = useRef()
+
+        useEffect(()=>{
+            if(userData){
+                setUser(userData||getFromLocalStorage("user"))
+            }
+        }, userData)
+
 
         const markets = marketChoiceOptions();
         let sportValue = new URL(window.location).searchParams.get('sport_id')

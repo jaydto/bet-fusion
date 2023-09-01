@@ -16,6 +16,8 @@ import mpesa from "../../../assets/img/mpesa.png";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 import './deposit.css'
 import Header2 from "../../header/Header2";
+import {userBalance} from "../../../redux/dataSlice";
+import {useDispatch, useSelector} from "react-redux";
 
 const backgroundStyle = {
     backgroundImage: `url(${backgroundURL})`,
@@ -29,8 +31,18 @@ const Deposit3 = React.memo(
         const navigate = useNavigate();
         const [activeTab, setActiveTab] = useState('online'); // Set the initially active tab here
         const {state, dispatch} = useContext(StoreContext);
+        const dispatchRedux=useDispatch()
+        const userData=useSelector((state)=>state.data.user)
         const [user, setUser] = useState(getFromLocalStorage("user"));
-        const settings = getFromLocalStorage("settings")
+        const appConfigs=useSelector((state)=>state.data.app_config)
+        const [settings,setSettings] = useState(getFromLocalStorage('settings'));
+
+        useEffect(()=>{
+            setSettings(appConfigs||getFromLocalStorage('settings'))
+        },[appConfigs ])
+        useEffect(()=>{
+            setUser(userData||getFromLocalStorage("user"))
+        },[userData])
         const handleTabSelect = (eventKey) => {
             setActiveTab(eventKey);
         }
@@ -39,6 +51,8 @@ const Deposit3 = React.memo(
             const utm_source = new URL(window.location).searchParams.get('utm_source')
             const utm_campaign = new URL(window.location).searchParams.get('utm_campaign')
             const btag = new URL(window.location).searchParams.get('btag')
+
+
             if (utm_source) {
                 setLocalStorage("utm_source", utm_source)
             }
@@ -65,21 +79,12 @@ const Deposit3 = React.memo(
             if (!user) {
                 return false;
             }
-            let endpoint = "/v1/balance";
             let udata = {
                 token: user.token
             }
-            makeRequest({url: endpoint, method: "post", data: udata}).then(([_status, response]) => {
-                if (_status == 200) {
-                    let u = {...user, ...response.user};
-                    setLocalStorage('user', u);
-                    setUser(u)
-                    dispatch({type: "SET", key: "user", payload: u});
-                }
-            });
+            dispatchRedux(userBalance(udata, user))
 
         };
-
 
         useEffect(() => {
             updateUserOnHistory()

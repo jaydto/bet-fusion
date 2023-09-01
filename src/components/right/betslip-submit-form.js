@@ -23,6 +23,7 @@ import {useNavigate} from "react-router-dom";
 import useWindowDimensions from "../header/Dimensions";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import Notify from "../utils/Notify";
+import {useSelector} from "react-redux";
 
 const BetslipShareModal = React.lazy(() =>
     import("../modals/BetslipShareModal")
@@ -115,7 +116,14 @@ const BetslipSubmitForm = React.memo(
 
         const scrollToRef = useRef(null);
         const {width} = useWindowDimensions();
-        const [user, setUser] = useState(getFromLocalStorage("user"));
+        const userData=useSelector((state)=>state.data.user)
+        const [user, setUser]=useState(getFromLocalStorage("user"))
+
+        useEffect(()=>{
+            if(userData){
+                setUser(userData||getFromLocalStorage("user"))
+            }
+        }, userData)
 
         useEffect(()=>{
                 setStake(state?.stakeValue)

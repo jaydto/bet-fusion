@@ -36,7 +36,7 @@ const Withdraw = React.memo(
         const dispatchRedux=useDispatch()
         const userData=useSelector((state)=>state.data.user)
 
-        const [user, setUser] = useState();
+        const [user, setUser] = useState(getFromLocalStorage("user"));
         useEffect(()=>{
             setUser(userData||getFromLocalStorage("user"))
         },[userData])
@@ -326,25 +326,23 @@ const MyWithdrawForm = (props) => {
 }
 const WithdrawForm = (props) => {
     const dispatchRedux=useDispatch()
-    const userData=useSelector((state)=>state.data.user)
-    const app_config=useSelector((state)=>state.data.user)
+    const app_config=useSelector((state)=>state.data.app_config)
     const [settings, setSettings] = useState(getFromLocalStorage('settings'))
-    useEffect(()=>{
-        if(app_config){
-            setSettings(app_config||getFromLocalStorage('settings'))
-        }
-    },[app_config])
     const [currentWithdrawValue, setCurrentWithdrawValue] = useState(0); // New state for current deposit value
     const withdrawalLimits = settings?.withdrawalLimits
+    const userData=useSelector((state)=>state.data.user)
     const [user, setUser]=useState(getFromLocalStorage("user"))
-
-
 
     useEffect(()=>{
         if(userData){
             setUser(userData||getFromLocalStorage("user"))
         }
     }, userData)
+    useEffect(()=>{
+        if(app_config){
+            setSettings(app_config||getFromLocalStorage('settings'))
+        }
+    },[app_config])
 
 
     const initialValues = {

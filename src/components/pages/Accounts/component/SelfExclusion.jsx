@@ -8,13 +8,21 @@ import {useNavigate} from "react-router-dom";
 import * as Yup from 'yup';
 import ExclusionModal from "../../../modals/ExclusionModal";
 import {useFormik} from "formik";
+import {useSelector} from "react-redux";
 const SelfExclusion = () => {
-    const [user,] = useState(getFromLocalStorage("user"));
     const navigate=useNavigate();
     const [showModal, setShowModal] = useState(false);
     const [loading, setLoading] = useState(false);
     const [apiResponseMessage, setApiResponseMessage] = useState(null);
     const [apiResponseTime, setApiResponseTime] = useState(null);
+    const userData=useSelector((state)=>state.data.user)
+    const [user, setUser]=useState(getFromLocalStorage("user"))
+
+    useEffect(()=>{
+        if(userData){
+            setUser(userData||getFromLocalStorage("user"))
+        }
+    }, userData)
 
     const [dateRange, setDateRange] = useState({
         startDate: new Date(),

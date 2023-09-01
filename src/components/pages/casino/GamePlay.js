@@ -9,6 +9,7 @@ import {getFromLocalStorage} from "../../utils/local-storage";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 import FullscreenButton from "../../shared/FullScreenButton";
 import useWindowDimensions from "../../header/Dimensions";
+import {useSelector} from "react-redux";
 
 
 const GamePlay = React.memo(
@@ -17,7 +18,14 @@ const GamePlay = React.memo(
 
         const {game_id, live} = useParams()
 
-        const [user, ] = useState(getFromLocalStorage("user"));
+        const userData=useSelector((state)=>state.data.user)
+        const [user, setUser]=useState(getFromLocalStorage("user"))
+
+        useEffect(()=>{
+            if(userData){
+                setUser(userData||getFromLocalStorage("user"))
+            }
+        }, userData)
 
         const [gameUrl, setGameUrl] = useState('')
 

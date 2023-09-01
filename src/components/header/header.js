@@ -29,7 +29,6 @@ const Header = React.memo(
     (props) => {
         const {slip, scrollPosition, jackpot, profile} = props
         const gaEventTracker = useAnalyticsEventTracker('Navigation');
-        const [user, setUser] = useState(getFromLocalStorage("user"));
         const {state, dispatch} = useContext(StoreContext);
         // const [searching, setSearching] = useState(false)
         const containerRef = useRef();
@@ -47,6 +46,14 @@ const Header = React.memo(
         const appConfigs=useSelector((state)=>state.data.app_config)
 
         const [settings,setSettings] = useState(getFromLocalStorage('settings'));
+        const userData=useSelector((state)=>state.data.user)
+        const [user, setUser]=useState(getFromLocalStorage("user"))
+
+        useEffect(()=>{
+            if(userData){
+                setUser(userData||getFromLocalStorage("user"))
+            }
+        }, userData)
 
         useEffect(()=>{
             setSettings(appConfigs||getFromLocalStorage('settings'))

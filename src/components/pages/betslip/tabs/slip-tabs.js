@@ -8,8 +8,6 @@ const SlipTabs = (props) => {
     const {tab} = props;
     const url = new URL(window.location)
 
-    const [user, setUser] = useState(getFromLocalStorage("user"));
-
 
     function replaceQueryParam(param, newval, search) {
         var regex = new RegExp("([?;&])" + param + "[^&;]*[;&]?");

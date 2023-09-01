@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './component/newProfile.css'
 import {Link, useNavigate} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -7,12 +7,19 @@ import {formatNumber} from "../../utils/betslip";
 import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
 import SidebarProfile from "../../sidebar/sidebarProfile";
 import {LazyLoadImage} from "react-lazy-load-image-component";
+import {useSelector} from "react-redux";
 const Header=React.lazy(()=>import('../../header/header'))
 
 const NewProfile = React.memo(
     () => {
-        const [user,] = useState(getFromLocalStorage("user"));
+        const userData=useSelector((state)=>state.data.user)
+        const [user, setUser]=useState(getFromLocalStorage("user"))
 
+        useEffect(()=>{
+            if(userData){
+                setUser(userData||getFromLocalStorage("user"))
+            }
+        }, userData)
         const clearHistory = () => {
             setLocalStorage("user", null)
             return window.location.href = "/logout"

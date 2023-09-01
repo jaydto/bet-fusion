@@ -21,6 +21,7 @@ import makeRequest from "../utils/fetch-request";
 import {publicIpv4 as publicIp} from "public-ip";
 import Notify from "../utils/Notify";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
+import {useSelector} from "react-redux";
 
 const MobileMenu = React.memo(
     (props) => {
@@ -51,24 +52,33 @@ const MobileMenu = React.memo(
             str = str.replace(/[^A-Za-z0-9\-]/g, "");
             return str.replace(/-+/g, "-");
         };
-        // const ipAddress = useCallback(async () => {
-        //     try {
-        //         let ip = await publicIp({
-        //             fallbackUrls: ["https://ifconfig.co/ip"],
-        //         });
-        //
-        //         setIpv4(ip);
-        //     } catch (error) {
-        //         console.error("Error getting IPv4 address:", error);
-        //     }
-        //
-        //
-        // }, [ipv4]);
+
+        const userData=useSelector((state)=>state.data.user)
+        const [user, setUser]=useState(getFromLocalStorage("user"))
+
+        useEffect(()=>{
+            if(userData){
+                setUser(userData||getFromLocalStorage("user"))
+            }
+        }, userData)
+        const ipAddress = useCallback(async () => {
+            try {
+                let ip = await publicIp({
+                    fallbackUrls: ["https://ifconfig.co/ip"],
+                });
+
+                setIpv4(ip);
+            } catch (error) {
+                console.error("Error getting IPv4 address:", error);
+            }
 
 
-        // useEffect(() => {
-        //     ipAddress();
-        // }, [ipAddress])
+        }, [ipv4]);
+
+
+        useEffect(() => {
+            ipAddress();
+        }, [ipAddress])
 
 
         let winnings = jackpotData?.jackpot_amount;
@@ -121,7 +131,7 @@ const MobileMenu = React.memo(
                 bet_string: 'web',
                 app_name: 'desktop',
                 possible_win: winnings,
-                profile_id: state?.user?.profile_id||getFromLocalStorage("user")?.profile_id,
+                profile_id: user?.profile_id,
                 stake_amount: jackpotData?.bet_amount,
                 amount: jackpotData?.bet_amount,
                 bet_total_odds: "",
@@ -131,7 +141,7 @@ const MobileMenu = React.memo(
                 message:jackpotMessage,
                 jackpot_id:jackpotData?.jackpot_event_id,
                 account: 1,
-                msisdn: state?.user?.msisdn||getFromLocalStorage("user")?.msisdn,
+                msisdn: user?.msisdn,
             };
 
 

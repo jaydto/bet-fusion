@@ -1,6 +1,6 @@
 import {Menu, MenuItem, ProSidebar, SidebarContent, SidebarFooter, SidebarHeader} from "react-pro-sidebar";
 import {getFromLocalStorage,} from "../../utils/local-storage";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import whatsapp from "../../../assets/img/mobile/whatsapp.svg"
 import Footer from "../../footer/footer";
@@ -21,11 +21,19 @@ import {
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 import {LazyLoadImage} from "react-lazy-load-image-component";
+import {useSelector} from "react-redux";
 
 const SidebarMobile = React.memo(
     (props) => {
         // const [competitions, setCompetitions] = useState(getFromLocalStorage('sport_categories'));
-        const [user, setUser] = useState(getFromLocalStorage("user"));
+        const userData=useSelector((state)=>state.data.user)
+        const [user, setUser]=useState(getFromLocalStorage("user"))
+
+        useEffect(()=>{
+            if(userData){
+                setUser(userData||getFromLocalStorage("user"))
+            }
+        }, userData)
         const gaEventTracker = useAnalyticsEventTracker('Navigation');
         return (<ProSidebar
             className={'background-primary'}

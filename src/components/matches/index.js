@@ -169,9 +169,16 @@ const MatchHeaderRow = React.memo(
         const [showX, setShowX] = useState(true);
         const [market, setMarket] = useState('1x2');
         const {state, dispatch} = useContext(StoreContext);
-        const [user,] = useState(getFromLocalStorage("user"));
         const [extraMarketDisplays, setExtraMarketDisplays] = useState([])
         const [threeWay, setThreeWay] = useState(false)
+        const userData=useSelector((state)=>state.data.user)
+        const [user, setUser]=useState(getFromLocalStorage("user"))
+
+        useEffect(()=>{
+            if(userData){
+                setUser(userData||getFromLocalStorage("user"))
+            }
+        }, userData)
         const getSelectedMarkets = () => {
             const markets = marketChoice();
 

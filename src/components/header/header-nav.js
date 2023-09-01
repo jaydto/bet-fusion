@@ -101,7 +101,7 @@ const HeaderNav = React.memo(
                                     Jackpot</strong>
                             </Link>
                         </li>
-                        <li className={pathname.includes('aviator') ? 'active live-bg' : ''}
+                        {/* <li className={pathname.includes('aviator') ? 'active live-bg' : ''}
                             onClick={() => gaEventTracker('Aviator')}>
                             <div className="url-link fm anl cg ox"
                                  onClick={() => navigate("/nare-games/aviator")}
@@ -113,7 +113,7 @@ const HeaderNav = React.memo(
                                     </div>
                                 </strong>
                             </div>
-                        </li>
+                        </li> */}
 
                         <li className={`${pathname === '/casino' ? 'active' : ''}`}>
                             <div className="url-link fm anl cg ox " title="Live Casino" onClick={() => {

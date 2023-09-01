@@ -109,23 +109,23 @@ const Casino = React.memo(
                                                         <LazyLoadImage effect={'blur'} src={aviator} 
                                                         className={'virtual-game-image vw-100'}/>
                                                     </div>
-                                                    <div className="overlay shadow-sm row">
-                                                        <ButtonGroup aria-label="Basic example">
-                                                            <div>
-                                                            <Button variant="warning"
-                                                
-                                                                    onClick={() => launchAviator("demo")}
+                                                    <div className="overlay shadow-sm row">                                      
 
-                                                                    >
-                                                                Play Demo
-                                                            </Button>
-                                                            </div>
-                                                            <Button variant="danger"
-                                                              onClick={()=> launchAviator("live")}
-                                                                    >
-                                                                Play Game
-                                                            </Button>
-                                                        </ButtonGroup>
+
+                                                        <ButtonGroup aria-label="Basic example">
+                                                                        <Button variant="warning"
+                                                                   
+                                                                                onClick={() => launchAviator("demo")}
+                                                                                >
+                                                                            Play Demo
+                                                                        </Button>
+                                                                        <Button variant="danger"
+                                                                             
+                                                                                onClick={()=> launchAviator("live")}   
+                                                                                >
+                                                                            Play Game
+                                                                        </Button>
+                                                                    </ButtonGroup>
                                                     </div>
                                                 </div>
                                             </div>

@@ -5,6 +5,8 @@ import firstDeposit from "../../../assets/img/banner/products/Firstdeposit.jpeg"
 import multibetCashback from "../../../assets/img/banner/products/Bet_Nare_100_Cashback_Mobile.webp";
 import karibuGiftWallet from "../../../assets/img/banner/products/Bet_Nare_3000_karibu_gift_Mobile.webp";
 import DepositBonus from "../../../assets/img/banner/products/365.webp";
+import mia_sita_hamsini from "../../../assets/img/banner/products/FreeKickBonanzaWeb.webp";
+
 
 import {Table} from "react-bootstrap";
 import PromoCards from "./PromoCards";
@@ -28,6 +30,7 @@ const Promo = () => {
         {src: multibetCashback, id: 2},
         {src: karibuGiftWallet, id: 1},
         {src: DepositBonus, id: 9},
+        {src: mia_sita_hamsini, id: 10},
     ];
 
     useEffect(() => {

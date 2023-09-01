@@ -18,7 +18,7 @@ import LoginSection from "./LoginSection";
 import {UserInfo} from "./UserInfo";
 import {shouldShowDownload, shouldShowMobileNav} from './NavigationsHelper';
 import {useDispatch, useSelector} from "react-redux";
-import {configSettings} from "../../redux/dataSlice";
+import {configSettings, userBalance} from "../../redux/dataSlice";
 import {matchCategories} from "../../redux/matchesSlice";
 
 const ProfileMenu = React.lazy(() => import('./profile-menu'));
@@ -76,6 +76,8 @@ const Header = React.memo(
         useEffect(() => {
             fetchMatches()
         }, [state?.searching])
+
+
         const fetchMatches = async (search) => {
 
             if (search && search.length >= 3) {
@@ -109,9 +111,10 @@ const Header = React.memo(
             }
         })
 
+
+
         useEffect(() => {
             const cleanUpFuction = async () => {
-                const abort = new AbortController();
                 await fetchAppConfigurations();
                 await fetchData();
 
@@ -141,40 +144,40 @@ const Header = React.memo(
                     // Clean up the event listeners when the component unmounts
                     window?.removeEventListener('storage', handleStorageChange);
                     window?.removeEventListener('beforeunload', handleBeforeUnload);
-                    abort.abort();
+
                 };
             }
             cleanUpFuction()
         }, [settings]);
 
-
-        const updateUserOnHistory = useCallback(() => {
+        const updateUserOnHistory = () => {
             if (!user) {
                 return false;
             }
-            let endpoint = "/v1/balance";
             let udata = {
                 token: user.token
             }
-            makeRequest({url: endpoint, method: "post", data: udata}).then(([_status, response]) => {
-                if (_status == 200) {
-                    let u = {...user, ...response.user};
-                    setLocalStorage('user', u);
-                    setUser(u)
-                    dispatch({type: "SET", key: "user", payload: u});
-                }
-            });
+            const userValues={
+                udata:udata,
+                user:user
+            }
 
-        }, [current]);
+            dispatchRedux(userBalance(userValues))
+
+        };
+
+        useEffect(()=>{
+            const abort=new AbortController()
+            updateUserOnHistory()
+            return ()=>{
+                abort.abort()
+            }
+        },[])
 
         const updateUserOnLogin = useCallback(() => {
             dispatch({type: "SET", key: "user", payload: user});
         }, [user?.msisdn, user?.balance]);
 
-
-        useEffect(() => {
-            updateUserOnHistory()
-        }, [updateUserOnHistory])
 
 
         useEffect(() => {

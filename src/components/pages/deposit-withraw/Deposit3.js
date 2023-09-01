@@ -101,7 +101,12 @@ const Deposit3 = React.memo(
             let udata = {
                 token: user.token
             }
-            dispatchRedux(userBalance(udata, user))
+            const userValues={
+                udata:udata,
+                user:user
+            }
+
+            dispatchRedux(userBalance(userValues))
 
         };
 
@@ -486,7 +491,7 @@ const DepositFormFields = (props) => {
                             +{values.msisdn}
                         </div>
                     </div>
-                    {user && <input
+                    {!user && <input
                         onChange={ev => {
                             onFieldChanged(ev);
                         }}

@@ -11,7 +11,6 @@ import {
     faInfo,
     faMobilePhone,
     faMagic,
-    faMobile,
     faPlay,
     faPrint,
     faQuestionCircle,
@@ -33,7 +32,7 @@ const SidebarMobile = React.memo(
             if(userData){
                 setUser(userData||getFromLocalStorage("user"))
             }
-        }, userData)
+        }, [userData])
         const gaEventTracker = useAnalyticsEventTracker('Navigation');
         return (<ProSidebar
             className={'background-primary'}

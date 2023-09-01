@@ -167,7 +167,7 @@ const dataSlice = createSlice({
                 state.deposit_confirm_loading = false;
                 state.error = null;
                 clearTrackingData()
-                state.deposits_confirm_message=action.payload;
+                state.deposits_confirm_message=action.payload?.success;
 
             })
             .addCase(userDepositsConfirm.rejected, (state, action) => {

@@ -2,7 +2,7 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import initialState from "./state"; // Import the initial state from state.js
 import makeRequest from "../components/utils/fetch-request";
-import { setLocalStorage} from "../components/utils/local-storage";
+import {clearTrackingData, setLocalStorage} from "../components/utils/local-storage";
 // Async thunk for matches
 export const configSettings =
     createAsyncThunk("data/configSettings",
@@ -78,18 +78,34 @@ export const userWithdrawal =
 
 export const userDeposits =
     createAsyncThunk("data/userDeposits",
-        async (userData, user) => {
+        async (amount) => {
             const [status, response] = await makeRequest({
-                url: "/v1/balance",
+                url: "/stk/deposit",
                 method: "POST",
-                data:userData
+                data:amount
             });
             if (status === 200) {
-                return {response, user};
+                return response;
             } else {
-                throw new Error(response?.error || "Fetching User Balance failed");
+                throw new Error(response?.error || "Fetching Deposit failed");
             }
         });
+
+export const userDepositsConfirm =
+    createAsyncThunk("data/userDepositsConfirm",
+        async (confirmation) => {
+            const [status, response] = await makeRequest({
+                url: "/v1/deposit-confirmation",
+                method: "POST",
+                data:confirmation
+            });
+            if (status === 200) {
+                return response;
+            } else {
+                throw new Error(response?.error || "Fetching Deposit failed");
+            }
+        });
+
 
 const dataSlice = createSlice({
     name: "data",
@@ -127,16 +143,34 @@ const dataSlice = createSlice({
                 state.error = action.error.message;
             })
             .addCase(userDeposits.pending, (state) => {
-                state.loading = true;
+                state.deposit_loading = true;
+                state.error = null;
             })
             .addCase(userDeposits.fulfilled, (state, action) => {
-                state.loading = false;
+                state.deposit_loading = false;
                 state.error = null;
+                clearTrackingData()
                 state.deposits_message=action.payload;
 
             })
             .addCase(userDeposits.rejected, (state, action) => {
-                state.loading = false;
+                state.deposit_loading = false;
+                state.error = action.error.message;
+            })
+            .addCase(userDepositsConfirm.pending, (state) => {
+                state.deposit_confirm_loading = true;
+                state.deposits_confirm_message=null;
+                state.error = null;
+            })
+            .addCase(userDepositsConfirm.fulfilled, (state, action) => {
+                state.deposit_confirm_loading = false;
+                state.error = null;
+                clearTrackingData()
+                state.deposits_confirm_message=action.payload;
+
+            })
+            .addCase(userDepositsConfirm.rejected, (state, action) => {
+                state.deposit_confirm_loading = false;
                 state.error = action.error.message;
             })
             .addCase(carouselImages.pending, (state) => {

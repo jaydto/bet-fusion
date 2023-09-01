@@ -2,13 +2,16 @@ const initialState = {
     data: {
         loading:false,
         withdraw_loading:false,
+        deposit_loading:false,
+        deposit_confirm_loading:false,
         error:null,
         app_config:null,
         user:null,
         carousel_banners:null,
         points_message:null,
         withdrawal_message:null,
-        deposits_message:null
+        deposits_message:null,
+        deposits_confirm_message:null,
     }, // Initial state for the data reducer
     betting: {
         loading: false,

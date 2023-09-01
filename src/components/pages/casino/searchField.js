@@ -29,7 +29,7 @@ const SearchComponent = React.memo(
     };
 
     return (
-        <div className={'w-50'}>
+        <div className={'w-100'}>
             <div className="search-container my-2 ">
             <input type="text" name="search" placeholder="Search..."
                    value={searchTerm}

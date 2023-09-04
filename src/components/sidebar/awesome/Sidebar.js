@@ -1,10 +1,7 @@
 import React, {useCallback, useEffect, useState} from "react";
 import {Menu, MenuItem, ProSidebar, SidebarContent, SidebarHeader, SubMenu,} from "react-pro-sidebar";
 import "react-pro-sidebar/dist/css/styles.css";
-import {getFromLocalStorage, setLocalStorage,} from "../../utils/local-storage";
-import makeRequest from "../../utils/fetch-request";
-import {faArrowLeft, faArrowRight} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {getFromLocalStorage} from "../../utils/local-storage";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 import {Link} from "react-router-dom";
 import {LazyLoadImage} from "react-lazy-load-image-component";

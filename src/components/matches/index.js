@@ -38,7 +38,7 @@ import {
 } from "react-accessible-accordion";
 import "react-accessible-accordion/dist/fancy-example.css";
 import {useDispatch, useSelector} from "react-redux";
-import {favoriteMarkets, favoriteMarketsData} from "../../redux/matchesSlice";
+import {favoriteMarkets, favoriteMarketsData, marketGroups} from "../../redux/matchesSlice";
 
 const clean = (_str) => {
     _str = _str.replace(/[^A-Za-z0-9\-]/g, '');
@@ -275,6 +275,7 @@ const MoreMarketsHeaderRow = React.memo(
         } = props;
         const [switches, setSwitches] = useState("scoreboard")
         const {state, dispatch} = useContext(StoreContext);
+        const dispatchRedux=useDispatch()
         const switchLmt = (value) => {
             setSwitches(value)
         }
@@ -295,15 +296,10 @@ const MoreMarketsHeaderRow = React.memo(
 
         useEffect(() => {
             if (sport_id !== undefined && sport_id !== "") {
-                makeRequest({
-                    url: '/v1/market-groups', method: 'POST', data: {
-                        "sport_id": sport_id
-                    }
-                }).then(([status, result]) => {
-                    if (status === 200) {
-                        dispatch({type: "SET", key: 'market_groups', payload: result?.data});
-                    }
-                });
+                dispatchRedux(marketGroups({
+                    "sport_id": sport_id
+                }))
+
             }
         }, [sport_id])
         const navigate = useNavigate()
@@ -789,6 +785,7 @@ const MarketRow = React.memo((props) => {
     const [isExpanded, setIsExpanded] = useState(false);
     const {state, dispatch} = useContext(StoreContext);
     const dispatchRedux = useDispatch()
+    const moreMatches=useSelector((state)=>state.matchesData.more_matches)
     const favoriteMarketValue = useSelector((state) => state.matchesData.favorites_data) || getFromLocalStorage('favorite_markets') || []
     const [userFavoriteMarkets, setUserFavoriteMarkets] = useState(() => {
         return favoriteMarketValue
@@ -866,7 +863,7 @@ const MarketRow = React.memo((props) => {
 
 
     const valuesforPreexpanding = () => {
-        const allMarketNames = [...new Set(state?.all_markets?.data?.odds?.flatMap(item => item?.sub_type_id))];
+        const allMarketNames = [...new Set(moreMatches?.data?.odds?.flatMap(item => item?.sub_type_id))];
         const preExpandedMarkets = allMarketNames.slice(0, 5);
         return preExpandedMarkets;
     };
@@ -1340,16 +1337,14 @@ const MatchRow = React.memo(
 export const MarketList = React.memo(
     (props) => {
         const {live, allMarkets, pdown, groups} = props;
-        const {state, dispatch} = useContext(StoreContext);
         const [filters, setFilters] = useState({});
         const [perPage,] = useState(1000);
         const [currentPage,] = useState(1);
         const [groupMarketsAvailable, setGroupMarketsAvailable] = useState(null)
+        const moreMatches=useSelector((state)=>state.matchesData.more_matches)
 
         //  fetching More Markets from redux state
-        const matchwithmarkets = allMarkets
-            ? state?.all_markets
-            : dispatch({type: "SET", key: "all_markets", payload: null});
+        const matchwithmarkets = moreMatches
 
         const filterMarkets = (value, group) => {
             const elements = matchwithmarkets?.data?.odds;
@@ -1392,6 +1387,7 @@ export const MarketList = React.memo(
 
         }, [matchwithmarkets]);
 
+        const market_groups=useSelector((state)=>state.matchesData.market_groups)
 
         const startIndex = (currentPage - 1) * perPage;
         const endIndex = startIndex + perPage;
@@ -1430,16 +1426,16 @@ export const MarketList = React.memo(
                         />
                     </div>
                     <div className="text-white market-groups-container">
-                        {state?.market_groups?.length > 0 && <button onClick={() => filterMarketGroups('favorite')}
+                        {market_groups?.length > 0 && <button onClick={() => filterMarketGroups('favorite')}
                                                                      className={'market-group-pill text-white badge badge-pill badge-primary bg-transparent p-2'}>
                             Favorite Markets
                         </button>}
-                        {state?.market_groups?.length > 0 && <button onClick={() => filterMarketGroups('all')}
+                        {market_groups?.length > 0 && <button onClick={() => filterMarketGroups('all')}
                                                                      autoFocus
                                                                      className={'market-group-pill text-white badge badge-pill badge-primary bg-transparent p-2'}>
                             All Markets
                         </button>}
-                        {state?.market_groups?.map((group) => (
+                        {market_groups?.map((group) => (
                             <button
                                 className={'market-group-pill text-white badge badge-pill badge-primary bg-transparent p-2'}
                                 onClick={() => filterMarketGroups(group?.id)}>

@@ -5,7 +5,6 @@ import {Link, useLocation} from "react-router-dom";
 import useWindowDimensions from "./header/Dimensions";
 import {StoreContext} from "../context/store"
 import {getBetslip} from "./utils/betslip";
-import makeRequest from "./utils/fetch-request";
 import Countries from "./countries/Countries";
 import {ToastContainer} from "react-toastify";
 import {marketChoiceOptions} from "./matches";

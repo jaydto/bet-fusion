@@ -79,6 +79,14 @@ const Live = React.memo(
                 setSportID(new_sport_id)
             }
         })
+        useEffect(()=>{
+            const abort=new AbortController()
+            dispatchRedux(stopFetchingMatches())
+            return ()=>{
+                dispatchRedux(stopFetchingMatches())
+                abort.abort()
+            }
+        },[])
         const homePageRef = useRef()
         const [scrolledPast, setScrolledPast] = useState(false);
         const [scrolledToTop, setScrolledToTop] = useState(false);
@@ -135,7 +143,6 @@ const Live = React.memo(
                                 <div className={`${width <= 991 ? "d-block" : "d-none"}`}>
                                     <LiveSideBar/>
                                 </div>
-                                {console.log("live_matches", matches)}
                                 {fetching ? <SkeletonMobileLive/> : matches &&
                                     <MatchList live={1}  fetching={true} matches={matches} pdown={producer_down} onEndReached={fetchAdditionalData}/>}
                             </div>

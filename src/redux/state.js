@@ -72,6 +72,7 @@ const initialState = {
     matchesData:{
         initialLoading:true,
         isLoading: false,
+        searched_matches:null,
         visited_tabs:[],
         visited_sport_id:[],
         jackpot_loading: false,
@@ -102,6 +103,10 @@ const initialState = {
         bet_details_meta:null,
         back_navigation:false,
         live_matches:null,
+        bet_cancel_end_time:null,
+        share_bet:null,
+        rebet_match:null,
+        loading_bet_history:null,
         // prev_match_size:0,
         match_size:10,
         live_match_size:0

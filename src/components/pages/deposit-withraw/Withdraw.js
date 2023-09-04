@@ -19,8 +19,8 @@ import Header2 from "../../header/Header2";
 import Notify from "../../utils/Notify";
 import {ToastContainer} from "react-toastify";
 import {useDispatch, useSelector} from "react-redux";
-import {userBalance, userWithdrawal} from "../../../redux/dataSlice";
-
+import { userWithdrawal} from "../../../redux/dataSlice";
+import {userBalance} from "../../../redux/authSlice";
 const backgroundStyle = {
     backgroundImage: `url(${backgroundURL})`,
     backgroundRepeat: 'no-repeat',

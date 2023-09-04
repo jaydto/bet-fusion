@@ -13,7 +13,7 @@ import {getTime} from "../pages/Kiron/periods";
 import {useNavigate} from "react-router-dom";
 import useWindowDimensions from "../header/Dimensions";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
-import {userBalance} from "../../redux/dataSlice";
+import {userBalance} from "../../redux/authSlice";
 import {useDispatch, useSelector} from "react-redux";
 
 const Float = (equation, precision = 4) => {

@@ -145,9 +145,8 @@ const Logout = () => {
     const dispatchRedux = useDispatch();
     let navigate = useNavigate();
     setLocalStorage('user', null)
+    dispatchRedux(resetState("user"))
     const out = useCallback(() => {
-        dispatchRedux(resetState("user"))
-        dispatchRedux(resetState("user"))
         localStorage.clear();
         dispatch({ type: 'CLEAR_ALL_ITEMS' }); // Dispatch the action to clear all items
 

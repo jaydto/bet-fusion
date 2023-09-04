@@ -1,7 +1,8 @@
 // authSlice.js
 import {createSlice, createAsyncThunk, createAction} from "@reduxjs/toolkit";
 import initialState from "./state"; // Import the initial state from state.js
-import makeRequest from "../components/utils/fetch-request"; // Import the makeRequest function
+import makeRequest from "../components/utils/fetch-request";
+import {setLocalStorage} from "../components/utils/local-storage";
 // Async thunk for user login
 export const loginUser = createAsyncThunk("auth/loginUser", async (loginData) => {
     const [status, response] = await makeRequest({
@@ -71,6 +72,23 @@ export const resetState =
         return { payload: stateToReset };
     });
 
+// need to pass also the user data as part of the arguments being dispatched to userBalance thunk
+export const userBalance =
+    createAsyncThunk("auth/userBalance",
+        async ({udata,user}) => {
+            const [status, response] = await makeRequest({
+                url: "/v1/balance",
+                method: "POST",
+                data:udata
+            });
+
+            if (status === 200) {
+                return { user: user, data: response }; // Return an object with both user and data properties
+            } else {
+                throw new Error(response?.error || "Fetching User Balance failed");
+            }
+        });
+
 const authSlice = createSlice({
     name: "auth",
     initialState,
@@ -80,6 +98,25 @@ const authSlice = createSlice({
             .addCase(loginUser.pending, (state) => {
                 state.loading = true;
                 state.error = null;
+            })
+            .addCase(userBalance.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(userBalance.fulfilled, (state, action) => {
+                state.loading = false;
+                state.error = null;
+                const { user, data } = action.payload;
+
+                let u = {...user, ...data.user};
+
+                state.user=u
+
+                setLocalStorage('user', u )
+
+            })
+            .addCase(userBalance.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
             })
             .addCase(loginUser.fulfilled, (state, action) => {
                 state.isLoggedIn = true;

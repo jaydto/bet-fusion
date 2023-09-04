@@ -16,12 +16,11 @@ export const UserInfo = React.memo(
         const {state, dispatch} = useContext(StoreContext);
         const gaEventTracker = useAnalyticsEventTracker('Navigation');
         const [isOpen, setIsOpen] = useState(false);
-        const [balance, setBalance] = useState(state?.user?.balance || user?.balance)
+        const [balance, setBalance] = useState( user?.balance)
 
         useEffect(() => {
-            setBalance(state?.user?.balance || user?.balance)
-            dispatch({type: "SET", key: "placebet", payload: false})
-        }, [user?.balance, state?.placebet])
+            setBalance( user?.balance)
+        }, [user?.balance])
 
         const toggle = () => {
             setIsOpen(!isOpen);

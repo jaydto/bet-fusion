@@ -18,7 +18,8 @@ import LoginSection from "./LoginSection";
 import {UserInfo} from "./UserInfo";
 import {shouldShowDownload, shouldShowMobileNav} from './NavigationsHelper';
 import {useDispatch, useSelector} from "react-redux";
-import {configSettings, userBalance} from "../../redux/dataSlice";
+import {configSettings} from "../../redux/dataSlice";
+import { userBalance} from "../../redux/authSlice";
 import {matchCategories, matchesSearch} from "../../redux/matchesSlice";
 
 const ProfileMenu = React.lazy(() => import('./profile-menu'));
@@ -35,7 +36,6 @@ const Header = React.memo(
         const searchInputRef = useRef(null)
         const navigate = useNavigate()
         // Import the navigationConfig object
-        const {current} = containerRef;
         const [isOpen, setIsOpen] = useState(false);
         const pathname = window.location.pathname;
         const notShowMobileNav = shouldShowMobileNav(pathname);
@@ -249,7 +249,7 @@ const Header = React.memo(
                                         />
                                     </div>
 
-                                    <UserInfo profile={profile}/>
+                                    <UserInfo profile={profile} user={user}/>
                                 </Navbar.Brand>
 
                                 {/*todo check information provided for a user*/}

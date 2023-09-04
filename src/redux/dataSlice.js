@@ -1,5 +1,5 @@
 // matchesSlice.js
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {createAction, createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import initialState from "./state"; // Import the initial state from state.js
 import makeRequest from "../components/utils/fetch-request";
 import {clearTrackingData, setLocalStorage} from "../components/utils/local-storage";
@@ -30,22 +30,7 @@ export const carouselImages =
                 throw new Error(response?.error || "Fetching Carousel images failed");
             }
         });
-// need to pass also the user data as part of the arguments being dispatched to userBalance thunk
-export const userBalance =
-    createAsyncThunk("data/userBalance",
-        async ({udata,user}) => {
-            const [status, response] = await makeRequest({
-                url: "/v1/balance",
-                method: "POST",
-                data:udata
-            });
 
-            if (status === 200) {
-                return { user: user, data: response }; // Return an object with both user and data properties
-            } else {
-                throw new Error(response?.error || "Fetching User Balance failed");
-            }
-        });
 export const userPoints =
     createAsyncThunk("data/userPoints",
         async (values) => {
@@ -91,6 +76,25 @@ export const userDeposits =
                 throw new Error(response?.error || "Fetching Deposit failed");
             }
         });
+export const userSelfExclusion =
+    createAsyncThunk("data/userSelfExclusion",
+        async (data) => {
+            const [status, response] = await makeRequest({
+                url: "/v1/self-exclude",
+                method: "POST",
+                data:data
+            });
+            if (status === 200) {
+                return response;
+            } else {
+                throw new Error(response?.error || "SelfExclusion failed");
+            }
+        });
+export const resetState =
+    createAction("data/reset", (stateToReset) => {
+        return {payload: stateToReset};
+    });
+
 
 export const userDepositsConfirm =
     createAsyncThunk("data/userDepositsConfirm",
@@ -126,6 +130,31 @@ const dataSlice = createSlice({
 
             })
             .addCase(userPoints.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
+            .addCase(userSelfExclusion.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+                state.self_exclsuion_message=null;
+                state.show_modal=false;
+            })
+            .addCase(userSelfExclusion.fulfilled, (state, action) => {
+                state.loading = false;
+                state.error = null;
+                state.self_exclsuion_message=action.payload?.success;
+                state.self_exclsuion_time=action.payload?.time_duration;
+                state.show_modal=true
+
+            })
+            .addCase(resetState, (state, action) => {
+                const stateToReset = action.payload;
+                if (state.hasOwnProperty(stateToReset)) {
+                    state[stateToReset] = initialState.matchesData[stateToReset];
+                }
+                state.error = null;
+            })
+            .addCase(userSelfExclusion.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
             })
@@ -207,25 +236,7 @@ const dataSlice = createSlice({
                 state.loading = false;
                 state.error = action.error.message;
             })
-            .addCase(userBalance.pending, (state) => {
-                state.loading = true;
-            })
-            .addCase(userBalance.fulfilled, (state, action) => {
-                state.loading = false;
-                state.error = null;
-                const { user, data } = action.payload;
 
-                let u = {...user, ...data.user};
-
-                state.user=u
-
-                setLocalStorage('user', u )
-
-            })
-            .addCase(userBalance.rejected, (state, action) => {
-                state.loading = false;
-                state.error = action.error.message;
-            })
 
     },
 });

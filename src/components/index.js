@@ -18,7 +18,7 @@ import {
     startFetchingMatches,
     stopFetchingMatches
 } from "../redux/matchesSlice";
-import {userBalance} from "../redux/dataSlice";
+import {userBalance} from "../redux/authSlice";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));

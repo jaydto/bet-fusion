@@ -15,7 +15,9 @@ import mpesa from "../../../assets/img/mpesa.png";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 import './deposit.css'
 import Header2 from "../../header/Header2";
-import {userBalance, userDeposits, userDepositsConfirm} from "../../../redux/dataSlice";
+import { userDeposits, userDepositsConfirm} from "../../../redux/dataSlice";
+import {userBalance} from "../../../redux/authSlice";
+
 import {useDispatch, useSelector} from "react-redux";
 
 const backgroundStyle = {

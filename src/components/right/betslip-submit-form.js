@@ -25,7 +25,7 @@ import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import Notify from "../utils/Notify";
 import {useDispatch, useSelector} from "react-redux";
 import {matchesShareBet, resetState} from "../../redux/matchesSlice";
-import {userBalance} from "../../redux/dataSlice";
+import {userBalance} from "../../redux/authSlice";
 
 const BetslipShareModal = React.lazy(() =>
     import("../modals/BetslipShareModal")

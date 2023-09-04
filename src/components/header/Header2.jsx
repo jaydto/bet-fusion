@@ -17,7 +17,7 @@ const Header2 = React.memo(
 		const expand = "md"
 		const dispatchRedux = useDispatch()
 		const appConfigs=useSelector((state)=>state.data.app_config)
-		const [settings,setSettings] = useState(getFromLocalStorage('settings'));
+		const [	settings,setSettings] = useState(getFromLocalStorage('settings'));
 
 		useEffect(()=>{
 			setSettings(appConfigs||getFromLocalStorage('settings'))
@@ -32,44 +32,45 @@ const Header2 = React.memo(
 			}
 		})
 
-		useEffect(() => {
-			const cleanUpFuction = async () => {
-				const abort = new AbortController();
-				await fetchAppConfigurations();
+		const cleanUpFuction = async () => {
+			await fetchAppConfigurations();
 
+			// Custom function to clear settings from localStorage
+			// const clearLocalStorageSettings = () => {
+			//     localStorage.removeItem('settings');
+			//     // Manually call fetchAppConfigurations to update the settings
+			//     fetchAppConfigurations();
+			// };
 
-				// Custom function to clear settings from localStorage
-				const clearLocalStorageSettings = () => {
-					localStorage.removeItem('settings');
-					// Manually call fetchAppConfigurations to update the settings
+			// Listen for the "storage" event to detect changes in "settings" localStorage
+			const handleStorageChange = (event) => {
+				if (event.key === 'settings') {
 					fetchAppConfigurations();
-				};
+				}
+			};
 
-				// Listen for the "storage" event to detect changes in "settings" localStorage
-				const handleStorageChange = (event) => {
-					if (event.key === 'settings') {
-						fetchAppConfigurations();
-					}
-				};
+			// Listen for "beforeunload" event to handle clearing localStorage in the same tab
+			// const handleBeforeUnload = () => {
+			//     clearLocalStorageSettings();
+			// };
 
-				// Listen for "beforeunload" event to handle clearing localStorage in the same tab
-				const handleBeforeUnload = () => {
-					clearLocalStorageSettings();
-				};
+			window?.addEventListener('storage', handleStorageChange);
+			// window?.addEventListener('beforeunload', handleBeforeUnload);
 
-				window?.addEventListener('storage', handleStorageChange);
-				window?.addEventListener('beforeunload', handleBeforeUnload);
+			return () => {
+				// Clean up the event listeners when the component unmounts
+				window?.removeEventListener('storage', handleStorageChange);
+				// window?.removeEventListener('beforeunload', handleBeforeUnload);
 
-				return () => {
-					// Clean up the event listeners when the component unmounts
-					window?.removeEventListener('storage', handleStorageChange);
-					window?.removeEventListener('beforeunload', handleBeforeUnload);
-					abort.abort();
-				};
+			};
+		}
+
+		useEffect(() => {
+			if(settings==undefined){
+				cleanUpFuction()
 			}
-			cleanUpFuction()
-		}, [settings]);
 
+		}, [settings]);
 		return (
 			<div className={''}>
 				<Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav top-section-page" fixed="top"

@@ -72,13 +72,14 @@ const AllMarkets = React.memo(
             dispatchRedux(favoriteMarkets())
         }, []);
 
-        useLayoutEffect(() => {
+        useEffect(() => {
             const abortController = new AbortController();
             dispatchRedux(stopFetchingMoreMatches())
             dispatchRedux(setFetching("fetching",true))
             fetchPagedData();
             getFavoriteMarkets()
             return () => {
+                dispatchRedux(stopFetchingMoreMatches())
                 abortController.abort();
             };
         }, []);

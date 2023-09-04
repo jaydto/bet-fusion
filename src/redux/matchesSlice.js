@@ -77,7 +77,7 @@ export const marketGroups =
     createAsyncThunk("matches/marketGroups",
         async (sport_id) => {
             const [status, response] = await makeRequest({
-                url: "'/v1/market-groups",
+                url: "/v1/market-groups",
                 method: "POST",
                 data: sport_id,
             });
@@ -160,11 +160,11 @@ export const matchesCompetition =
 // Async thunk for matches
 export const matchesMoreLiveMarkets =
     createAsyncThunk("matches/moreLiveMatches",
-    async (matchesData) => {
+    async ({endpoint,method,data}) => {
         const [status, response] = await makeRequest({
-            url: "/v2/matches/live?id=",
-            method: "POST",
-            data: matchesData,
+            url: endpoint,
+            method: method,
+            data: data,
         });
         if (status === 200) {
             return response;
@@ -176,11 +176,11 @@ export const matchesMoreLiveMarkets =
 export const matchesMorePrematchMarkets =
     createAsyncThunk(
     "matches/morePrematchMatches",
-    async (standingsData) => {
+    async ({endpoint,method,data}) => {
         const [status, response] = await makeRequest({
-            url: "/v2/matches?id=",
-            method: "POST",
-            data: standingsData,
+            url: endpoint,
+            method: method,
+            data: data,
         });
         if (status === 200) {
             return response;
@@ -228,7 +228,29 @@ export const startFetchingMatches = ({ endpoint, method, data, interval, prematc
 
     }, interval); // 20000 milliseconds = 20 seconds //5000 milliseconds = 5 seconds
 };
+let fetchMoreInterval;
+export const startFetchingMoreMatches = ({ endpoint, method, data, interval, more_prematch = false, more_live = false }) =>
+    async (dispatch) =>  {
+        // Dispatch the initial fetch
+        const matchesData={endpoint, method, data}
 
+        // Set up the interval to fetch matches every 20 seconds
+        fetchMoreInterval = setInterval(() => {
+            if(more_prematch){
+                dispatch(matchesMorePrematchMarkets(matchesData));
+            }
+            if(more_live){
+                dispatch(matchesMoreLiveMarkets(matchesData));
+            }
+
+
+        }, interval); // 20000 milliseconds = 20 seconds //5000 milliseconds = 5 seconds
+    };
+export const stopFetchingMoreMatches = () => () => {
+    if (fetchMoreInterval) {
+        clearInterval(fetchMoreInterval);
+    }
+};
 let countInterval; // Declare the interval variable outside the action creator
 
 export const startFetchingLiveCount = ({ interval }) =>
@@ -354,7 +376,7 @@ const matchesSlice = createSlice({
                 state.error = null;
             })
             .addCase(marketGroups.fulfilled, (state, action) => {
-                state.market_groups = action.payload;
+                state.market_groups = action.payload.data;
                 state.loading = false;
                 state.error = null;
             })
@@ -405,26 +427,34 @@ const matchesSlice = createSlice({
                 state.error = action.error.message;
             })
             .addCase(matchesMorePrematchMarkets.pending, (state) => {
-                state.loading = true;
+                state.error = null;
             })
-            .addCase(matchesMorePrematchMarkets.fulfilled, (state) => {
+            .addCase(matchesMorePrematchMarkets.fulfilled, (state,action) => {
+                state.fetching=false
                 state.loading = false;
+                state.more_matches=action.payload.data
+                state.user_slip_validation=action.payload.slip_data
+                state.producer_down=action.payload.producer_status === 1
                 state.error = null;
             })
             .addCase(matchesMorePrematchMarkets.rejected, (state, action) => {
+                state.fetching = false;
                 state.loading = false;
                 state.error = action.error.message;
             })
             .addCase(matchesMoreLiveMarkets.pending, (state) => {
-                state.loading = true;
                 state.error = null;
             })
             .addCase(matchesMoreLiveMarkets.fulfilled, (state, action) => {
+                state.fetching = false;
                 state.loading = false;
+                state.user_slip_validation=action.payload.slip_data
+                state.producer_down=action.payload.producer_status === 1
                 state.error = null;
-                state.matches=action.payload
+                state.more_matches=action.payload.data
             })
             .addCase(matchesMoreLiveMarkets.rejected, (state, action) => {
+                state.fetching = false;
                 state.loading = false;
                 state.error = action.error.message;
             })

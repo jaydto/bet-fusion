@@ -1,7 +1,6 @@
 import React, {useCallback, useContext, useEffect, useRef, useState,} from "react";
 import {StoreContext} from "../../context/store";
 import {clearKironSlip, formatNumber, getKironSlip, removeFromKironSlip,} from "../utils/betslip";
-import {publicIpv4 as publicIp} from "public-ip";
 import makeRequest from "../utils/fetch-request";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -198,7 +197,6 @@ const KironslipSubmitForm = React.memo(
                 let endpoint = "/v1/nare-league/bet"
                 let method = "POST";
                 let use_jwt = false;
-
 
                 makeRequest({
                     url: endpoint,

@@ -21,6 +21,7 @@ body {
     background: var(--slip-separator-color);
 }
 
+
 .carousel-item{
     border-bottom: unset !important;
 }
@@ -2103,6 +2104,9 @@ img.nare-league {
 }
 
 @media (max-width: 991px) {
+    .filters-modal.share-modal .modal-content{
+        bottom:40% !important;
+    }
     .close-icon-alert {
         height: 27px;
     }

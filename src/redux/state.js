@@ -12,6 +12,7 @@ const initialState = {
         withdrawal_message:null,
         deposits_message:null,
         deposits_confirm_message:null,
+
     }, // Initial state for the data reducer
     betting: {
         loading: false,
@@ -65,7 +66,8 @@ const initialState = {
             close_spinner:null,
             start_playouts:null,
             game_week:null,
-            ended:null
+            ended:null,
+        more_matches:null
 
         }, // Initial state for the nareLeague reducer
     matchesData:{

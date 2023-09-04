@@ -1,4 +1,4 @@
-// reducers.js (or reducers.ts for TypeScript)
+// reducers.js
 import { combineReducers } from "redux";
 import initialState from './state'
 

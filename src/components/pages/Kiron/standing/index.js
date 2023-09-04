@@ -1,10 +1,7 @@
 import React, {useCallback, useContext, useEffect, useState} from 'react';
 import "./standing.css"
-import makeRequest from "../../../utils/fetch-request";
-import {getFromLocalStorage} from "../../../utils/local-storage";
 import {Spinner} from "react-bootstrap";
 import {LazyLoadImage} from "react-lazy-load-image-component";
-import {StoreContext} from "../../../../context/store";
 import { useDispatch,useSelector } from 'react-redux'; // Import useDispatch hook
 import {nareLeagueStandings, resetState} from '../../../../redux/nareLeague';
 const Standing = () => {

@@ -19,34 +19,10 @@ import {getFromLocalStorage, setLocalStorage} from "../../../utils/local-storage
 import {addToSlip} from "../../../utils/betslip";
 import {useNavigate} from "react-router-dom";
 import useWindowDimensions from "../../../header/Dimensions";
+import { useSelector} from "react-redux";
 
 const BetDetails = (props) => {
 	const {bet_id}=props
-	const { state, dispatch } = useContext(StoreContext);
-	const [isLoading, setIsLoading] = useState(false);
-	const payload={
-		"bet_id":bet_id
-	}
-
-	const fetchBetDetails = useCallback(async() => {
-		if(isLoading) return;
-		setIsLoading(true);
-		let endpoint = "/v1/betdetails";
-		makeRequest({url: endpoint, method: "POST", data: payload}).then(([status, result]) => {
-			dispatch({type: "SET", key: "mybets", payload: result});
-			setIsLoading(false);
-		});
-
-	}, []);
-
-	useEffect(() => {
-		const abort =new AbortController()
-			fetchBetDetails();
-		return () => {
-                abort.abort(); // Cleanup function to abort the controller when the component unmounts.
-            };
-	}, []);
-
 
 	const FormatDate = (props) => {
 		const { date } = props;
@@ -73,8 +49,11 @@ const BetDetails = (props) => {
 
 	const [collapsed, setCollapsed] = useState([]);
 	const [collapsedAll, setCollapsedAll] = useState(false);
+	const mybets_details=useSelector((state)=>state.matchesData.bet_details)
+	const fetching=useSelector((state)=>state.matchesData.fetching)
+	const bet_details_meta=useSelector((state)=>state.matchesData.bet_details_meta)
 	const [activeParentMatchId, setActiveParentMatchId] = useState(null);
-	let match=state?.mybets?.data;
+	let match=mybets_details;
 	let sport;
 	let parent_match_id;
 	match?.map((bet)=>{
@@ -124,7 +103,7 @@ const BetDetails = (props) => {
 
 	useEffect(() => {
 
-			state?.mybets?.data?.map((item,index) => {
+		mybets_details?.map((item,index) => {
 				// console.log("items_switch", item)
 				return
 				window?.SIR("addWidget", "#sr-widget-" + item?.parent_match_id, "match.lmtPlus", {
@@ -165,11 +144,11 @@ const BetDetails = (props) => {
 	}
 
 	useEffect(()=>{
-		setCollapsed(Array.from({ length: state?.mybets?.data?.length }, (_, index) => index));
+		setCollapsed(Array.from({ length: mybets_details?.length }, (_, index) => index));
 	},[bet_id])
 
 	const WinLostTotal=()=>{
-		const data=state?.mybets?.data
+		const data=mybets_details
 		const filteredData = data?.filter(bet => bet.win === 1 || bet.win === 0);
 		const won = filteredData?.filter(bet => bet.win === 1)?.length;
 		const lost = filteredData?.filter(bet =>
@@ -352,10 +331,10 @@ const BetDetails = (props) => {
 				setShowShareModal={setShowShareModal}
 			/>
 		)}
-			{!isLoading?
+			{!fetching?
 				<div className="d-flex details flex-column bet-details">
-					{/*{console.log("matchesData", state?.mybets)}*/}
-					{state?.mybets?.data?.map((item,index) => (
+
+					{mybets_details?.map((item,index) => (
 						<div key={index}>
 							{index===0&&<div className="d-flex history-details flex-column bet-summary-info">
 								<div className="id">
@@ -366,14 +345,14 @@ const BetDetails = (props) => {
 								</div>
 								<div className="status d-flex justify-content-between px-2 mb-3">
 								<span
-									className={` badge  ${state?.mybets?.meta.bet_info?.status == 3 ? "bg-dark text-warning" : state?.mybets?.meta.bet_info?.status == 5 ? "bg-success" : state?.mybets?.meta.bet_info?.status == 1 ? "bg-dark " : ""}`}
+									className={` badge  ${bet_details_meta?.bet_info?.status == 3 ? "bg-dark text-warning" : bet_details_meta?.bet_info?.status == 5 ? "bg-success" : bet_details_meta?.bet_info?.status == 1 ? "bg-dark " : ""}`}
 									style={{
 										color: "white",
 										marginTop: "10px",
 										borderRadius: "7px",
 										marginLeft: "1px",
 										padding: "2.9px 9px "
-									}}>{state?.mybets?.meta.bet_info?.status === 3 ? "NOT WON" : state?.mybets?.meta.bet_info?.status === 5 ? "WON" : "PENDING"}
+									}}>{bet_details_meta?.bet_info?.status === 3 ? "NOT WON" : bet_details_meta?.bet_info?.status === 5 ? "WON" : "PENDING"}
 								</span>
 								</div>
 								{index === 0 &&  (<div className="d-flex history-details-padding gap-3 ">
@@ -403,10 +382,10 @@ const BetDetails = (props) => {
 									</div>
 								</div>)}
 								{item?.status==1&&<div className="d-flex w-100 justify-content-around">
-									{state?.mybets?.meta.bet_info.can_cancel !== true &&
+									{bet_details_meta?.bet_info.can_cancel !== true &&
 										<CancelBetMarkup bet_id={item?.bet_id}
-														 can_cancel={!state?.mybets?.meta.bet_info.can_cancel}
-														 created={state?.mybets?.meta.bet_info?.created}/>
+														 can_cancel={!bet_details_meta?.bet_info.can_cancel}
+														 created={bet_details_meta?.bet_info?.created}/>
 									}
 									<div className={"bet-history-options"} onClick={() => rebetRequest(item?.bet_id)}>
 										Rebet
@@ -417,11 +396,11 @@ const BetDetails = (props) => {
 								</div>}
 								<div className="d-flex options-details-history w-100 justify-content-between">
 									<div className="d-flex">
-										Events (Odds {state?.mybets?.meta?.bet_info?.total_odd})
+										Events (Odds {bet_details_meta?.bet_info?.total_odd})
 									</div>
 									{index === 0 && (
 										<div className="d-flex text-warning bold d-flex gap-2 align-items-center"
-											 onClick={()=>toggleCollapseAll(state?.mybets?.data)}>
+											 onClick={()=>toggleCollapseAll(mybets_details)}>
 											Toggle collapse all {!collapsedAll ? <FontAwesomeIcon icon={faCaretRight}/> :
 											<FontAwesomeIcon icon={faCaretDown}/>}
 										</div>

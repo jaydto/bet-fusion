@@ -8,7 +8,8 @@ import {useNavigate} from "react-router-dom";
 import * as Yup from 'yup';
 import ExclusionModal from "../../../modals/ExclusionModal";
 import {useFormik} from "formik";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {resetState, userSelfExclusion} from "../../../../redux/dataSlice";
 const SelfExclusion = () => {
     const navigate=useNavigate();
     const [showModal, setShowModal] = useState(false);
@@ -16,6 +17,10 @@ const SelfExclusion = () => {
     const [apiResponseMessage, setApiResponseMessage] = useState(null);
     const [apiResponseTime, setApiResponseTime] = useState(null);
     const userData=useSelector((state)=>state.data.user)
+    const show_modal=useSelector((state)=>state.data.show_modal)
+    const exclusion_time=useSelector((state)=>state.data.self_exclsuion_time)
+    const exclusion_message=useSelector((state)=>state.data.self_exclsuion_message)
+    const dispatchRedux=useDispatch()
     const [user, setUser]=useState(getFromLocalStorage("user"))
 
     useEffect(()=>{
@@ -53,21 +58,21 @@ const SelfExclusion = () => {
         }
 
         if(user){
-            let endpoint = "/v1/self-exclude"
-            const [self_exclusion_results] = await Promise.all([
-                makeRequest({url: endpoint, method: "POST", data: data})
-            ]);
-            let [status, exclusion] = self_exclusion_results;
-            if (status === 200) {
-                setApiResponseMessage(exclusion?.success);
-                setApiResponseTime(exclusion?.time_duration);
-                setShowModal(true);
-                setLoading(false)
-            }
+            dispatchRedux(userSelfExclusion(data))
+
         }else{
             navigate('/login')
         }
     }
+    useEffect(() => {
+        const abort=new AbortController()
+        return()=>{
+            dispatchRedux(resetState("show_modal"))
+            dispatchRedux(resetState("self_exclsuion_message"))
+            dispatchRedux(resetState("self_exclsuion_time"))
+            abort.abort()
+        }
+    }, []);
     // Calculate today's date
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -170,7 +175,7 @@ const SelfExclusion = () => {
 
             {/* Render the ExclusionModal based on the showModal state */}
             {showModal && (
-                <ExclusionModal visible={true} setShowLoadingModal={setShowModal} message={apiResponseMessage} timeDuration={apiResponseTime}/>
+                <ExclusionModal visible={true} setShowLoadingModal={show_modal} message={exclusion_message} timeDuration={exclusion_time}/>
             )}
         </div>
     );

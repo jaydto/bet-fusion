@@ -44,9 +44,6 @@ const Live = React.lazy(
     () => import('./components/live')
 );
 
-const MyBets = React.lazy(
-    () => import('./components/pages/Accounts/component/my-bets2')
-);
 
 const HowToPlay = React.lazy(
     () => import('./components/pages/HowToPLay2')
@@ -236,8 +233,6 @@ createRoot(container).render(
                            element={<ProtectedRoute><Withdraw/></ProtectedRoute>}/>
                     <Route exact path="/redeem-points"
                            element={<ProtectedRoute><RedeemPoints/></ProtectedRoute>}/>
-                    <Route exact path="/bethistory"
-                           element={<ProtectedRoute><MyBets/> </ProtectedRoute>}/>
                 </Routes>
             </Suspense>
         </BrowserRouter>

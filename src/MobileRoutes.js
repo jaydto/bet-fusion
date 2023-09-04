@@ -44,9 +44,7 @@ const Withdraw = React.lazy(
 const RedeemPoints = React.lazy(
     () => import('./components/pages/points/RedeemPoints')
 );
-const Deposit = React.lazy(
-    () => import('./components/pages/deposit-withraw/Deposit')
-);
+
 
 const Signup = React.lazy(
     () => import('./components/pages/signup')

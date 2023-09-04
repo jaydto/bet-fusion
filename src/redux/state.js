@@ -67,7 +67,6 @@ const initialState = {
             start_playouts:null,
             game_week:null,
             ended:null,
-        more_matches:null
 
         }, // Initial state for the nareLeague reducer
     matchesData:{
@@ -92,8 +91,12 @@ const initialState = {
         jackpot_history:[],
         jackpot_by_id:null,
         market_groups:null,
+        more_matches:null,
         matches:null,
         limit: 10,
+        bet_cancel:null,
+        full_bet_details:null,
+        bet_details:null,
         live_matches:null,
         // prev_match_size:0,
         match_size:10,

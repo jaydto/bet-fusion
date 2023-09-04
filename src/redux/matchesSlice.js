@@ -32,6 +32,49 @@ export const matchCategories =
                 throw new Error(response?.error || "Fetching Categories failed");
             }
         });
+export const fullBetDetails =
+    createAsyncThunk("matches/fullBetDetails",
+        async () => {
+            const [status, response] = await makeRequest({
+                url: "/v1/full/betdetails",
+                method: "POST"
+            });
+            if (status === 200) {
+                return response;
+            } else {
+                throw new Error(response?.error || "Fetching fullBetDetails failed");
+            }
+        });
+export const betDetails =
+    createAsyncThunk("matches/betDetails",
+        async (data) => {
+            const [status, response] = await makeRequest({
+                url: "/v1/full/betdetails",
+                method: "POST",
+                data:data
+            });
+            if (status === 200) {
+                return response;
+            } else {
+                throw new Error(response?.error || "Fetching betDetails failed");
+            }
+        });
+
+export const betCancel =
+    createAsyncThunk("matches/betCancel",
+        async (data) => {
+            const [status, response] = await makeRequest({
+                url: "/bet-cancel",
+                method: "POST",
+                data:data,
+                use_jwt:true
+            });
+            if (status === 200) {
+                return response;
+            } else {
+                throw new Error(response?.error || " betCancel failed");
+            }
+        });
 export const sportLiveCount =
     createAsyncThunk("matches/sportLiveCount",
         async () => {
@@ -360,6 +403,40 @@ const matchesSlice = createSlice({
             .addCase(matchCategories.rejected, (state, action) => {
                 state.error = action.error.message;
             })
+            .addCase(fullBetDetails.pending, (state) => {
+                state.error = null;
+            })
+            .addCase(fullBetDetails.fulfilled, (state, action) => {
+                state.sport_categories= action.payload;
+                state.full_bet_details=action.payload
+                state.error = null;
+            })
+            .addCase(fullBetDetails.rejected, (state, action) => {
+                state.error = action.error.message;
+            })
+            .addCase(betDetails.rejected, (state, action) => {
+                state.error = action.error.message;
+            })
+            .addCase(betDetails.pending, (state) => {
+                state.error = null;
+            })
+            .addCase(betDetails.fulfilled, (state, action) => {
+                state.sport_categories= action.payload;
+                state.bet_details=action.payload
+                state.error = null;
+            })
+            .addCase(betCancel.rejected, (state, action) => {
+                state.error = action.error.message;
+            })
+            .addCase(betCancel.pending, (state) => {
+                state.error = null;
+            })
+            .addCase(betCancel.fulfilled, (state, action) => {
+                state.sport_categories= action.payload;
+                state.bet_cancel=action.payload
+                state.error = null;
+            })
+
             .addCase(sportLiveCount.pending, (state) => {
                 state.error = null;
             })

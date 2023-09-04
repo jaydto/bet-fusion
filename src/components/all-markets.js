@@ -1,4 +1,4 @@
-import React, {useCallback, useContext, useLayoutEffect, useState} from 'react';
+import React, {useCallback, useContext, useEffect, useLayoutEffect, useState} from 'react';
 import './test.css'
 import {useParams} from "react-router-dom";
 import {StoreContext } from "../context/store"
@@ -10,8 +10,12 @@ import {MarketList} from "./matches";
 import LiveSideBar from "./sidebar/live-sidebar";
 import {ToastContainer} from "react-toastify";
 import Skeleton1 from "./skeleton/skeleton";
-import {favoriteMarkets} from "../redux/matchesSlice";
-import {useDispatch} from "react-redux";
+import {
+    favoriteMarkets, matchesMoreLiveMarkets,
+    matchesMorePrematchMarkets, setFetching,
+    startFetchingMoreMatches, stopFetchingMoreMatches
+} from "../redux/matchesSlice";
+import {useDispatch, useSelector} from "react-redux";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -19,17 +23,22 @@ const Right = React.lazy(() => import('./right'));
 const SideBar = React.lazy(() => import('./sidebar/awesome/Sidebar'))
 const AllMarkets = React.memo(
     (props) => {
-        const [producerDown, setProducerDown] = useState(false);
         const [allMarkets, ] = useState(true)
         const params = useParams()
         const dispatchRedux=useDispatch()
         const {live} = props
         const id = params.id
-
         // const [userSlipsValidation, setUserSlipsValidation] = useState();
-        const { state, dispatch } = useContext(StoreContext);
+        const market_groups=useSelector((state)=>state.matchesData.market_groups)
+        const fetching=useSelector((state)=>state.matchesData.live_fetching)
+        const moreMatches=useSelector((state)=>state.matchesData.more_matches)
+        const producer_down=useSelector((state)=>state.matchesData.producer_down)
+        const user_slip_validation=useSelector((state)=>state.matchesData.user_slip_validation)
 
-        const [isLoading, setIsLoading] = useState(false);
+        const [matches, setMatches]=useState()
+        useEffect(()=>{
+            setMatches(moreMatches)
+        },[moreMatches])
 
         const findPostableSlip = () => {
             let betslips = getBetslip() || {};
@@ -39,48 +48,25 @@ const AllMarkets = React.memo(
             return values;
         };
 
-        useInterval(
-            () => {
-                let endpoint = live
-                    ? "/v2/matches/live?id=" + id
-                    : "/v2/matches?id=" + id;
 
-                let betslip = findPostableSlip();
-                let method = betslip ? "POST" : "GET";
-
-                makeRequest({url: endpoint, method: method, data: betslip}).then(
-                    ([_status, response]) => {
-                        dispatch({type: "SET", key: "all_markets", payload: response?.data || response});
-                        // setMatchWithMarkets(response?.data || response);
-                        if (response?.slip_data) {
-                            dispatch({type: "SET", key: "user_slip_validation", payload: response?.slip_data});
-                            // setUserSlipsValidation(response?.slip_data);
-                        }
-                        setProducerDown(response?.producer_status === 1);
-                    }
-                );
-            },
-            live ? 5000 : null
-        );
-
-        const fetchPagedData = useCallback(async () => {
-            if (!isLoading && !isNaN(+id)) {
-                setIsLoading(true);
+        const fetchPagedData = async () => {
+            if (!isNaN(id)) {
                 let betslip = findPostableSlip();
                 let endpoint = live
                     ? "/v2/matches/live?id=" + id
                     : "/v2/matches?id=" + id;
+                if(live){
+                    dispatchRedux(matchesMoreLiveMarkets({endpoint,method:"POST",data:betslip}))
+                    dispatchRedux(startFetchingMoreMatches({endpoint,method:"POST",data:betslip, interval:5000, more_live:true}));
 
-                await makeRequest({url: endpoint, method: "POST", data: betslip}).then(
-                    ([status, result]) => {
-                        dispatch({type: "SET", key: "all_markets", payload: result?.data || result});
-                        // setMatchWithMarkets(result?.data || result);
-                        setProducerDown(result?.producer_status === 1);
-                        setIsLoading(false);
-                    }
-                );
+                }else{
+                    dispatchRedux(matchesMorePrematchMarkets({endpoint,method:"POST",data:betslip}))
+                    dispatchRedux(startFetchingMoreMatches({endpoint,method:"POST",data:betslip, interval:20000, more_prematch:true}));
+
+                }
+
             }
-        }, []);
+        };
 
         const getFavoriteMarkets = useCallback(async () => {
             dispatchRedux(favoriteMarkets())
@@ -88,6 +74,8 @@ const AllMarkets = React.memo(
 
         useLayoutEffect(() => {
             const abortController = new AbortController();
+            dispatchRedux(stopFetchingMoreMatches())
+            dispatchRedux(setFetching("fetching",true))
             fetchPagedData();
             getFavoriteMarkets()
             return () => {
@@ -111,12 +99,12 @@ const AllMarkets = React.memo(
 
                             <div className="homepage mobile-full-height all-markets">
 
-                                {state?.all_markets? <MarketList
+                                {!fetching&&matches? <MarketList
                                     allMarkets={allMarkets}
                                     live={live}
-                                    matchwithmarkets={state?.all_markets}
-                                    pdown={producerDown}
-                                    groups={state?.market_groups}
+                                    matchwithmarkets={matches}
+                                    pdown={producer_down}
+                                    groups={market_groups}
                                 />:
                                     <div>
                                         <Skeleton1/>
@@ -127,7 +115,7 @@ const AllMarkets = React.memo(
                         </div>
                     </div>
                     <div className="item3">
-                        <Right betslipValidationData={state?.user_slip_validation} test={true}/>
+                        <Right betslipValidationData={user_slip_validation} test={true}/>
                     </div>
 
                 </div>

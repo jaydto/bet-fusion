@@ -151,10 +151,9 @@ const MobileMenu = React.memo((props) => {
                                     </div>
 
                                 </td>
-
-                        </tr>
+                             </tr>
                         {!pathSlipSummary.includes(pathname) &&
-                            <tr className={`${slip_condition ? "info_bet_alert" : "info-slip-bets"} d-flex w-100 justify-content-between px-3`} onClick={()=>navigate("/betslip-slip")}>
+                             <tr className={`${slip_condition ? "info_bet_alert" : "info-slip-bets"} d-flex w-100 justify-content-between px-3`} onClick={()=>navigate("/betslip-slip")}>
                                 <td className={"bet-align-left-slip"}>
                                     <div className={"d-flex justify-content-start align-items-center gap-2"}>
                                         <Badge
@@ -180,7 +179,7 @@ const MobileMenu = React.memo((props) => {
 
                                 </td>
                             </tr>}
-                        <tr className={"mt-3"} onClick={() => navigate("/betslip-slip")}>
+                             <tr className={"mt-3"} onClick={() => navigate("/betslip-slip")}>
                             <td className={"bet-align-left w-100"}>
                                 <div className="progress mx-3 my-3 prematch-slip">
                                     <div className="progress-bar prematch" role="progressbar"

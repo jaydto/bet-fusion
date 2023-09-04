@@ -11,8 +11,7 @@ import casino1 from "../../assets/img/mobile/Casino.svg"
 import jackpot from "../../assets/img/mobile/Jackpot.svg"
 import promo from "../../assets/svg/fire.svg"
 
-import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
-import makeRequest from "../utils/fetch-request";
+import {getFromLocalStorage} from "../utils/local-storage";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {StoreContext} from "../../context/store";
 

@@ -45,18 +45,18 @@ export const fullBetDetails =
                 throw new Error(response?.error || "Fetching fullBetDetails failed");
             }
         });
-export const betDetails =
-    createAsyncThunk("matches/betDetails",
+export const betHistoryDetails =
+    createAsyncThunk("matches/betHistoryDetails",
         async (data) => {
             const [status, response] = await makeRequest({
-                url: "/v1/full/betdetails",
+                url: "/v1/betdetails",
                 method: "POST",
                 data:data
             });
             if (status === 200) {
                 return response;
             } else {
-                throw new Error(response?.error || "Fetching betDetails failed");
+                throw new Error(response?.error || "Fetching betHistoryDetails failed");
             }
         });
 
@@ -240,7 +240,9 @@ export const setInitialLoadingState = createAction("matches/set", ( param_fetch_
 export const setFetching = createAction("matches/setFetching", ( type,status) => {
     return { payload: {type,status } };
 });
-
+export const backNavigation = createAction("matches/backNavigation", ( status) => {
+    return { payload: {status } };
+});
 export const setLimit = createAction("matches/setLimit", ( limit) => {
     return { payload: {limit } };
 });
@@ -401,29 +403,35 @@ const matchesSlice = createSlice({
                 state.error = null;
             })
             .addCase(matchCategories.rejected, (state, action) => {
-                state.error = action.error.message;
+                state.error = action.error.message
             })
             .addCase(fullBetDetails.pending, (state) => {
-                state.error = null;
+                state.error = null
+                state.full_bet_details=null;
             })
             .addCase(fullBetDetails.fulfilled, (state, action) => {
-                state.sport_categories= action.payload;
                 state.full_bet_details=action.payload
-                state.error = null;
+                state.fetching=false
+                state.error = null
             })
             .addCase(fullBetDetails.rejected, (state, action) => {
                 state.error = action.error.message;
+                state.fetching=false
             })
-            .addCase(betDetails.rejected, (state, action) => {
+            .addCase(betHistoryDetails.pending, (state) => {
+                state.error = null
+                state.bet_details=null
+                state.bet_details_meta=null
+            })
+            .addCase(betHistoryDetails.fulfilled, (state, action) => {
+                state.fetching=false
+                state.bet_details=action.payload.data
+                state.bet_details_meta=action.payload.meta
+                state.error = null;
+            })
+            .addCase(betHistoryDetails.rejected, (state, action) => {
+                state.fetching=false
                 state.error = action.error.message;
-            })
-            .addCase(betDetails.pending, (state) => {
-                state.error = null;
-            })
-            .addCase(betDetails.fulfilled, (state, action) => {
-                state.sport_categories= action.payload;
-                state.bet_details=action.payload
-                state.error = null;
             })
             .addCase(betCancel.rejected, (state, action) => {
                 state.error = action.error.message;
@@ -432,8 +440,9 @@ const matchesSlice = createSlice({
                 state.error = null;
             })
             .addCase(betCancel.fulfilled, (state, action) => {
-                state.sport_categories= action.payload;
                 state.bet_cancel=action.payload
+                state.bet_cancel_status='CANCEL RQ'
+                state.bet_can_cancel_status=false
                 state.error = null;
             })
 
@@ -617,6 +626,11 @@ const matchesSlice = createSlice({
                 if (state.hasOwnProperty(type)) {
                     state[type] = status
                 }
+            })
+            .addCase(backNavigation, (state, action) => {
+                const { status } = action.payload;
+                // fetching status
+                state.back_navigation=status
             })
             .addCase(setLimit, (state, action) => {
                 const { limit } = action.payload;

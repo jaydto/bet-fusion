@@ -19,7 +19,7 @@ import {UserInfo} from "./UserInfo";
 import {shouldShowDownload, shouldShowMobileNav} from './NavigationsHelper';
 import {useDispatch, useSelector} from "react-redux";
 import {configSettings, userBalance} from "../../redux/dataSlice";
-import {matchCategories} from "../../redux/matchesSlice";
+import {matchCategories, matchesSearch} from "../../redux/matchesSlice";
 
 const ProfileMenu = React.lazy(() => import('./profile-menu'));
 const HeaderNav = React.lazy(() => import('./header-nav'));
@@ -33,7 +33,6 @@ const Header = React.memo(
         // const [searching, setSearching] = useState(false)
         const containerRef = useRef();
         const searchInputRef = useRef(null)
-        const [matches, setMatches] = useState([])
         const navigate = useNavigate()
         // Import the navigationConfig object
         const {current} = containerRef;
@@ -47,7 +46,13 @@ const Header = React.memo(
 
         const [settings,setSettings] = useState(getFromLocalStorage('settings'));
         const userData=useSelector((state)=>state.data.user)
+        const matchesData=useSelector((state)=>state.matchesData.searched_matches)
         const [user, setUser]=useState(getFromLocalStorage("user"))
+        const [matches, setMatches] = useState([])
+
+        useEffect(()=>{
+            setMatches(matchesData)
+        },[matchesData])
 
         useEffect(()=>{
             if(userData){
@@ -84,11 +89,7 @@ const Header = React.memo(
                 gaEventTracker('Searching')
                 let method = "POST"
                 let endpoint = "/v1/matches?page=" + (1) + `&limit=${10}&search=${search}`;
-                await makeRequest({url: endpoint, method: method, data: []}).then(([status, result]) => {
-                    if (status === 200) {
-                        setMatches(result?.data || result)
-                    }
-                });
+                dispatchRedux(matchesSearch({endpoint:endpoint, method:method}))
             }
 
         };
@@ -111,43 +112,45 @@ const Header = React.memo(
             }
         })
 
+        const cleanUpFuction = async () => {
+            await fetchAppConfigurations();
+            await fetchData();
 
+            // Custom function to clear settings from localStorage
+            // const clearLocalStorageSettings = () => {
+            //     localStorage.removeItem('settings');
+            //     // Manually call fetchAppConfigurations to update the settings
+            //     fetchAppConfigurations();
+            // };
+
+            // Listen for the "storage" event to detect changes in "settings" localStorage
+            const handleStorageChange = (event) => {
+                if (event.key === 'settings') {
+                    fetchAppConfigurations();
+                }
+            };
+
+            // Listen for "beforeunload" event to handle clearing localStorage in the same tab
+            // const handleBeforeUnload = () => {
+            //     clearLocalStorageSettings();
+            // };
+
+            window?.addEventListener('storage', handleStorageChange);
+            // window?.addEventListener('beforeunload', handleBeforeUnload);
+
+            return () => {
+                // Clean up the event listeners when the component unmounts
+                window?.removeEventListener('storage', handleStorageChange);
+                // window?.removeEventListener('beforeunload', handleBeforeUnload);
+
+            };
+        }
 
         useEffect(() => {
-            const cleanUpFuction = async () => {
-                await fetchAppConfigurations();
-                await fetchData();
+                if(settings==undefined){
+                    cleanUpFuction()
+                }
 
-                // Custom function to clear settings from localStorage
-                const clearLocalStorageSettings = () => {
-                    localStorage.removeItem('settings');
-                    // Manually call fetchAppConfigurations to update the settings
-                    fetchAppConfigurations();
-                };
-
-                // Listen for the "storage" event to detect changes in "settings" localStorage
-                const handleStorageChange = (event) => {
-                    if (event.key === 'settings') {
-                        fetchAppConfigurations();
-                    }
-                };
-
-                // Listen for "beforeunload" event to handle clearing localStorage in the same tab
-                const handleBeforeUnload = () => {
-                    clearLocalStorageSettings();
-                };
-
-                window?.addEventListener('storage', handleStorageChange);
-                window?.addEventListener('beforeunload', handleBeforeUnload);
-
-                return () => {
-                    // Clean up the event listeners when the component unmounts
-                    window?.removeEventListener('storage', handleStorageChange);
-                    window?.removeEventListener('beforeunload', handleBeforeUnload);
-
-                };
-            }
-            cleanUpFuction()
         }, [settings]);
 
         const updateUserOnHistory = () => {
@@ -278,7 +281,7 @@ const Header = React.memo(
                                                 <div style={{overflowY: 'auto', borderRadius: '2px'}}
                                                      className={`col-10 autocomplete-box  rounded position-fixed  search-results-box border-dark col-md-5 shadow-lg text-start`}
                                                      onClick={() => gaEventTracker('View Search Results')}>
-                                                    {matches.map((match, index) => (
+                                                    {matches?.map((match, index) => (
                                                         <Link to={`/?search=${match.home_team}&sub_type_id=1`}
                                                               key={index}
                                                               onClick={() => dismissSearch()}>

@@ -14,16 +14,14 @@ const Countries = React.memo(
 
         const [sport, ] = useState(79);
 
-        const availableCategories=useSelector((state)=>state.matchesData.sport_categories)||getFromLocalStorage("sport_categories")
+        const availableCategories=useSelector((state)=>state.matchesData.sport_categories)
 
-        const [competitions, setCompetitions] = useState();
+        const [competitions, setCompetitions] = useState(getFromLocalStorage("sport_categories"));
 
         useEffect(()=>{
-            setCompetitions(availableCategories)
+            setCompetitions(availableCategories||getFromLocalStorage("sport_categories"))
 
         },[availableCategories])
-
-
 
 
         const [width, setWidth] = useState(window.innerWidth);

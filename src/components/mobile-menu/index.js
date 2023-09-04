@@ -5,7 +5,6 @@ import ProfileSvg from "../../assets/img/mobile/Profile.svg"
 import CloseIcon from "../../assets/img/mobile/close_icon.png"
 import Mybets from "../../assets/img/mobile/MyBets.svg"
 
-import makeRequest from "../utils/fetch-request";
 import {Badge} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faReceipt, faTimes} from "@fortawesome/free-solid-svg-icons";

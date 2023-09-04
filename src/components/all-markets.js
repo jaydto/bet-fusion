@@ -1,10 +1,8 @@
-import React, {useCallback, useContext, useEffect, useLayoutEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import './test.css'
 import {useParams} from "react-router-dom";
-import {StoreContext } from "../context/store"
 import {getBetslip} from "./utils/betslip";
-import useInterval from "../hooks/set-interval.hook";
-import makeRequest from "./utils/fetch-request";
+
 
 import {MarketList} from "./matches";
 import LiveSideBar from "./sidebar/live-sidebar";

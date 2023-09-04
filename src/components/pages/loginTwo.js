@@ -39,7 +39,7 @@ const LoginTwo = React.memo(
             if (userData) {
                 setUser(userData || getFromLocalStorage("user"))
             }
-        }, userData)
+        }, [userData])
 
 
         const Notify = (message) => {

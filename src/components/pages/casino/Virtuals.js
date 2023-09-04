@@ -35,7 +35,7 @@ const Virtuals = React.memo(
             if(userData){
                 setUser(userData||getFromLocalStorage("user"))
             }
-        }, userData)
+        }, [userData])
 
         useEffect(() => {
             setLocation(locationH.pathname)

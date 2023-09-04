@@ -343,7 +343,7 @@ const WithdrawForm = (props) => {
         if(userData){
             setUser(userData||getFromLocalStorage("user"))
         }
-    }, userData)
+    }, [userData])
     useEffect(()=>{
         if(app_config){
             setSettings(app_config||getFromLocalStorage('settings'))

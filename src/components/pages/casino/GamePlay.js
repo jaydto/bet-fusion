@@ -25,7 +25,7 @@ const GamePlay = React.memo(
             if(userData){
                 setUser(userData||getFromLocalStorage("user"))
             }
-        }, userData)
+        }, [userData])
 
         const [gameUrl, setGameUrl] = useState('')
 

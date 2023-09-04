@@ -53,7 +53,7 @@ const Header = React.memo(
             if(userData){
                 setUser(userData||getFromLocalStorage("user"))
             }
-        }, userData)
+        }, [userData])
 
         useEffect(()=>{
             setSettings(appConfigs||getFromLocalStorage('settings'))

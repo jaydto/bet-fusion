@@ -46,7 +46,7 @@ const Index = React.memo(
             if(userData){
                 setUser(userData||getFromLocalStorage("user"))
             }
-        }, userData)
+        }, [userData])
 
 
         const markets = marketChoiceOptions();
@@ -122,6 +122,7 @@ const Index = React.memo(
             const abort = new AbortController()
             updateUserOnHistory()
             return () => {
+                dispatchRedux(stopFetchingMatches())
                 abort.abort()
             }
         }, [])
@@ -209,7 +210,7 @@ const Index = React.memo(
                 setSportID(new_sport_id)
             }
 
-        })
+        }, [sportID, tab, window.location.href])
 
 
 

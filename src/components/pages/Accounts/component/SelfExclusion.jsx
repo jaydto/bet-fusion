@@ -22,7 +22,7 @@ const SelfExclusion = () => {
         if(userData){
             setUser(userData||getFromLocalStorage("user"))
         }
-    }, userData)
+    }, [userData])
 
     const [dateRange, setDateRange] = useState({
         startDate: new Date(),

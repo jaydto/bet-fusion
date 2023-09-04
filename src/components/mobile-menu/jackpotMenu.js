@@ -60,7 +60,7 @@ const MobileMenu = React.memo(
             if(userData){
                 setUser(userData||getFromLocalStorage("user"))
             }
-        }, userData)
+        }, [userData])
         const ipAddress = useCallback(async () => {
             try {
                 let ip = await publicIp({

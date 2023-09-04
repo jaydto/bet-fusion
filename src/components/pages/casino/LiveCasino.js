@@ -29,7 +29,7 @@ const LiveCasino = React.memo(
             if (userData) {
                 setUser(userData || getFromLocalStorage("user"))
             }
-        }, userData)
+        }, [userData])
 
         const fetchGames = async (category = 'vs') => {
             let endpoint = "/v1/casino-games?game-type-id=" + category

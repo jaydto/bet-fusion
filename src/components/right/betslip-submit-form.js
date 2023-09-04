@@ -123,7 +123,7 @@ const BetslipSubmitForm = React.memo(
             if(userData){
                 setUser(userData||getFromLocalStorage("user"))
             }
-        }, userData)
+        }, [userData])
 
         useEffect(()=>{
                 setStake(state?.stakeValue)

@@ -19,7 +19,7 @@ const NewProfile = React.memo(
             if(userData){
                 setUser(userData||getFromLocalStorage("user"))
             }
-        }, userData)
+        }, [userData])
         const clearHistory = () => {
             setLocalStorage("user", null)
             return window.location.href = "/logout"

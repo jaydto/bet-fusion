@@ -178,7 +178,7 @@ const MatchHeaderRow = React.memo(
             if(userData){
                 setUser(userData||getFromLocalStorage("user"))
             }
-        }, userData)
+        }, [userData])
         const getSelectedMarkets = () => {
             const markets = marketChoice();
 
@@ -292,6 +292,7 @@ const MoreMarketsHeaderRow = React.memo(
                 scoreboard: "extended",
                 detailedScoreboard: "disable",
             });
+
         });
 
         useEffect(() => {
@@ -1435,8 +1436,9 @@ export const MarketList = React.memo(
                                                                      className={'market-group-pill text-white badge badge-pill badge-primary bg-transparent p-2'}>
                             All Markets
                         </button>}
-                        {market_groups?.map((group) => (
+                        {market_groups?.map((group,index) => (
                             <button
+                                key={index}
                                 className={'market-group-pill text-white badge badge-pill badge-primary bg-transparent p-2'}
                                 onClick={() => filterMarketGroups(group?.id)}>
                                 {group?.name}

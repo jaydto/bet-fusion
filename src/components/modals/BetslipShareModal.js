@@ -30,7 +30,7 @@ const BetslipShareModal = React.memo(
     }
     return (
         <Modal show={isOpen}
-               className={'shadow-lg filters-modal'}
+               className={'shadow-lg filters-modal share-modal'}
                dialogClassName={'modal-50w'}
                centered={true}
                size={"md"}

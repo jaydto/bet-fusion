@@ -115,7 +115,7 @@ const Sidebar = React.memo(
                                             />}
                                         key={index}>
                                         {index === 0 && (
-                                            <SubMenu title={"Top Leagues"} defaultOpen={true}>
+                                            <SubMenu title={"Top Leagues"} defaultOpen={true} key={index}>
                                                 {competitions?.top_soccer?.map((top_league, index) => (
                                                     <MenuItem
                                                         key={`l_${index}`}
@@ -151,7 +151,7 @@ const Sidebar = React.memo(
                                             </SubMenu>
                                         )}
                                     </SubMenu>
-                                    : <>
+                                    : <div key={`b_${index}`}>
                                         <MenuItem
                                             key={`l_${index}`}
                                             icon={
@@ -170,7 +170,7 @@ const Sidebar = React.memo(
                                                 {competition?.sport_name}
                                             </Link>
                                         </MenuItem>
-                                    </>
+                                    </div>
                             ))}
                         </Menu>
                     </SidebarContent>

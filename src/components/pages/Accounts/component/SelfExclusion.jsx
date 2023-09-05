@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {DateRangePicker} from 'react-date-range';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
-import makeRequest from "../../../utils/fetch-request";
 import {getFromLocalStorage} from "../../../utils/local-storage";
 import {useNavigate} from "react-router-dom";
 import * as Yup from 'yup';
@@ -14,8 +13,6 @@ const SelfExclusion = () => {
     const navigate=useNavigate();
     const [showModal, setShowModal] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [apiResponseMessage, setApiResponseMessage] = useState(null);
-    const [apiResponseTime, setApiResponseTime] = useState(null);
     const userData=useSelector((state)=>state.data.user)
     const show_modal=useSelector((state)=>state.data.show_modal)
     const exclusion_time=useSelector((state)=>state.data.self_exclsuion_time)

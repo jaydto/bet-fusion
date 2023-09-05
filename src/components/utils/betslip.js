@@ -1,6 +1,6 @@
 import {getFromLocalStorage, removeItem, setLocalStorage} from './local-storage';
 
-export const addToSlip = (slip) => {
+export const   addToSlip = (slip) => {
     let current_slip = getFromLocalStorage('betslip');
     if(current_slip){
         current_slip[slip.match_id] = slip;

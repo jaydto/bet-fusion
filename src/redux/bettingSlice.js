@@ -2,20 +2,21 @@
 import {createAction, createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import initialState from "./state"; // Import the initial state from state.js
 import makeRequest from "../components/utils/fetch-request";
-import {getBetslip, getJackpotBetslip} from "../components/utils/betslip"; // Import the makeRequest function
+import {clearJackpotSlip, clearSlip, getBetslip, getJackpotBetslip} from "../components/utils/betslip"; // Import the makeRequest function
 // Async thunk for matches
 export const bettingMatchesGames =
     createAsyncThunk("betting/matchesGames",
-        async (periodsData) => {
+        async ({endpoint, method, data, jackpot}) => {
             const [status, response] = await makeRequest({
-                url: "/bet",
-                method: "POST",
-                data: periodsData,
+                url: endpoint,
+                method: method,
+                data: data,
+                use_jwt:true
             });
-            if (status === 200) {
+            if (status === 201) {
                 return response;
             } else {
-                throw new Error(response?.error || "Fetching Prematch failed");
+                throw new Error(response?.message || `${jackpot?"jackpot ":""} Bet placement failed`);
             }
         });
 export const bettingJackpot =
@@ -46,6 +47,12 @@ export const bettingKiron =
                 throw new Error(response?.error || "Fetching Markets failed");
             }
         });
+
+// Your regular action creator (if needed)
+export const matchSelector = (matchId, matchSelector, ucn) => ({
+    type: 'matchSelector',
+    payload: { matchId, matchSelector, ucn },
+});
 // Async thunk for matches
 const clean = (str) => {
     if (typeof str !== "string") return "";
@@ -60,10 +67,46 @@ export const addToSlip = createAction("betting/addToSlip", (slipData) => {
 export const removeFromSlip = createAction("betting/removeFromSlip", (match_id, isitJackpot, kiron, matches) => {
     return { payload: { match_id, isitJackpot, kiron, matches } };
 });
+export const setSelected = createAction("betting/setSelected", (reference, cstn) => {
+    return { payload: {reference,cstn} };
+});
+export const resetStateBetslip =
+    createAction("betting/reset", (stateToReset) => {
+        return {payload: stateToReset};
+    });
+
+
+export const getSelected = (reference) => {
+    return (dispatch, getState) => {
+        const state = getState();
+        const referencedState = state.betting[reference]; // Assuming 'betting' is your slice name
+        return referencedState;
+    };
+};
+
+
+export const removeSelected = createAction("betting/removeSelected", (reference) => {
+    return { payload: { reference } };
+});
+
+export const setPickedData = createAction("betting/setPickedData", (picked) => {
+    return { payload: picked };
+});
+
+export const removePickedData = createAction("betting/removePickedData", (picked) => {
+    return { payload: { picked } };
+});
+export const setMatchBetslip = createAction("betting/setMatchBetslip", ({betslip_type,data}) => {
+    return { payload: { betslip_type, data } };
+});
 export const maxPickReached = createAction("betting/maxPickReached");
 export const updateMatchPicked = createAction("betting/updateMatchPicked");
 export const updatePickedChoices = createAction("betting/updatePickedChoices");
 export const updateOddValue = createAction("betting/updateOddValue");
+export const removeSlipSelection = createAction("betting/removeSlipSelection",({match_selector, ucn})=>{
+    return {payload: {match_selector, ucn}};
+});
+
 
 const bettingSlice = createSlice({
     name: "betting",
@@ -73,12 +116,13 @@ const bettingSlice = createSlice({
         builder
             .addCase(bettingMatchesGames.pending, (state) => {
                 state.loading = true;
+                state.bet_placement_message=null;
             })
             .addCase(bettingMatchesGames.fulfilled, (state, action) => {
                 state.isLoggedIn = true;
                 state.loading = false;
                 state.error = null;
-                state.matche = action.payload;
+                state.bet_placement_message = action.payload.message;
             })
             .addCase(bettingMatchesGames.rejected, (state, action) => {
                 state.loading = false;
@@ -185,7 +229,42 @@ const bettingSlice = createSlice({
                             state.oddValue = match.odd_value;
                     }
                 }
-            });
+            })
+            .addCase(setSelected, (state, action) => {
+                const dynamicKey = action.payload.reference;
+                state[dynamicKey]=action.payload.cstn
+            })
+            .addCase(setMatchBetslip, (state, action) => {
+                const type= action.payload.betslip_type;
+                const data = action.payload.data;
+                if(type==="betslip"){
+                    state.betslip=data
+                }else{
+                    state.jackpot_bestlip=data
+                }
+
+            })
+            .addCase(removeSlipSelection, (state, action) => {
+                const dynamicKey = action.payload.match_selector;
+                state[dynamicKey]=action.payload. ucn
+            })
+
+            .addCase(removeSelected, (state, action) => {
+                const dynamicKey = action.payload.reference;
+                delete state[dynamicKey]
+            })
+            .addCase(setPickedData, (state, action) => {
+                state.picked = action.payload.picked;
+            })
+            .addCase(removePickedData, (state, action) => {
+                state.picked = action.payload.picked;
+            })
+            .addCase(resetStateBetslip, (state, action) => {
+                const stateToReset = action.payload;
+                if (state.hasOwnProperty(stateToReset)) {
+                    state[stateToReset] = initialState.betting[stateToReset];
+                }
+            })
 
     },
 });

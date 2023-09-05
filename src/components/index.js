@@ -19,6 +19,7 @@ import {
     stopFetchingMatches
 } from "../redux/matchesSlice";
 import {userBalance} from "../redux/authSlice";
+import {setMatchBetslip} from "../redux/bettingSlice";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -222,7 +223,12 @@ const Index = React.memo(
             checkThreeWay()
             let cachedSlips = getBetslip("betslip");
             if (cachedSlips) {
-                dispatch({type: "SET", key: "betslip", payload: cachedSlips});
+                const betslip_data={
+                    betslip_type:"betslip",
+                    data:cachedSlips
+                }
+                dispatchRedux(setMatchBetslip(betslip_data))
+                // dispatch({type: "SET", key: "betslip", payload: cachedSlips});
             }
 
         }, [window.location.pathname, window.location.search]);

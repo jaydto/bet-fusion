@@ -323,16 +323,8 @@ export const resetState =
 
 let fetchInterval; // Declare the interval variable outside the action creator
 
-export const startFetchingMatches = ({
-                                         endpoint,
-                                         method,
-                                         data,
-                                         interval,
-                                         prematch = false,
-                                         live = false,
-                                         competition = false
-                                     }) =>
-    async (dispatch) => {
+export const startFetchingMatches = ({endpoint, method, data, interval, prematch = false, live = false, competition = false
+}) => async (dispatch) => {
         // Dispatch the initial fetch
         const matchesData = {endpoint, method, data}
 
@@ -457,9 +449,9 @@ const matchesSlice = createSlice({
                 state.loading = false;
 
                 const newMatches = action.payload?.data;
-                state.searched_matches=newMatches;
-                console.log("matches",newMatches )
-                state.matches=newMatches;
+                state.searched_matches = newMatches;
+                console.log("matches", newMatches)
+                state.matches = newMatches;
 
                 if (newMatches.slip_data) {
                     state.user_slip_validation = newMatches.slip_data
@@ -560,8 +552,8 @@ const matchesSlice = createSlice({
             .addCase(matchesDecodeBet.fulfilled, (state, action) => {
                 state.share_bet = true
                 const decoded_match = action.payload.response.success
-                const addDataToSlip=action.payload.betslip_share_code
-                if(addDataToSlip){
+                const addDataToSlip = action.payload.betslip_share_code
+                if (addDataToSlip) {
                     Object.entries(decoded_match).map(([match_id, match]) => {
                         match.live = Number(match?.live) !== 0
                         match.bet_type = String(match?.bet_type)
@@ -570,7 +562,7 @@ const matchesSlice = createSlice({
                     setLocalStorage('betslip_share_code', addDataToSlip)
                 }
                 state.loading_bet_history = false
-                state.show_share_modal=true
+                state.show_share_modal = true
 
             })
             .addCase(matchesDecodeBet.rejected, (state, action) => {

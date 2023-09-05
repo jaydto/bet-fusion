@@ -39,6 +39,7 @@ import {
 import "react-accessible-accordion/dist/fancy-example.css";
 import {useDispatch, useSelector} from "react-redux";
 import {favoriteMarkets, favoriteMarketsData, marketGroups} from "../../redux/matchesSlice";
+import {getSelected, removeSelected, setMatchBetslip, setSelected} from "../../redux/bettingSlice";
 
 const clean = (_str) => {
     _str = _str.replace(/[^A-Za-z0-9\-]/g, '');
@@ -486,7 +487,7 @@ const MoreMarketsHeaderRow = React.memo(
 const SideBets = React.memo(
     (props) => {
         const {match, live, jackpot} = props;
-        const [picked] = useState();
+        const [picked,] = useState();
 
         return (
             <div
@@ -555,14 +556,11 @@ const OddValueDisplay = React.memo(({match, detail, oddValue}) => (
 const OddButton = React.memo(
     (props) => {
         const {match, mkt, detail, live, jackpot, marketKey, allMarkets} = props;
-
         const [ucn, setUcn] = useState("");
-
-        const [picked, setPicked] = useState("");
-
+        const [picked, setPicked]=useState("");
         const [oddValue, setOddValue] = useState(null);
-
         const {state, dispatch} = useContext(StoreContext);
+        const dispatchRedux=useDispatch()
         const settings = getFromLocalStorage("settings");
         const ref = useRef();
         let reference = match.match_id + "_selected";
@@ -589,8 +587,12 @@ const OddButton = React.memo(
                 uc == betslip?.[match.match_id]?.ucn
             ) {
                 setPicked("picked");
+                // dispatchRedux(setPickedData("picked"));
+
             } else {
                 setPicked("");
+                // dispatchRedux(removePickedData(""));
+
             }
         }, [match, mkt, jackpot]);
 
@@ -619,11 +621,13 @@ const OddButton = React.memo(
             }
         }, [match, mkt]);
 
-        const updateMatchPicked = useCallback(() => {
-
-            if (state?.[reference]) {
-                if (state?.[reference].startsWith("remove.")) {
+        const updateMatchPicked = () => {
+            const referencedState = dispatchRedux(getSelected(reference));
+            console.log("referenced_state", referencedState)
+            if (typeof referencedState === 'string') { // Check if referencedState is a string
+                if (referencedState.startsWith("remove.")) {
                     setPicked("");
+                    // dispatchRedux(removePickedData(""));
                 } else {
                     let uc = clean(
                         match.match_id +
@@ -632,15 +636,16 @@ const OddButton = React.memo(
                         (match?.[mkt] || match?.odd_key || "draw")
                     );
 
-                    if (state?.[reference] === uc) {
+                    if (referencedState === uc) {
                         setPicked("picked");
+                        // dispatchRedux(setPickedData("picked"));
                     } else {
                         setPicked("");
+                        // dispatchRedux(removePickedData(""));
                     }
                 }
             }
-        }, [state?.[reference], match, mkt]);
-
+        };
         useEffect(() => {
             updateBeslipKey();
             updatePickedChoices();
@@ -652,6 +657,7 @@ const OddButton = React.memo(
         const maxPickReached = () => {
             // console.log("max_pick_reached")
             setPicked("");
+            // dispatchRedux(removePickedData(""));
             Notify({
                 status: 401,
                 message: "Maximum selections reached",
@@ -715,8 +721,10 @@ const OddButton = React.memo(
                                 ? removeFromSlip(attributes.match_id)
                                 : removeFromJackpotSlip(attributes.match_id);
 
+                        // dispatchRedux(removePickedData(""));
                         setPicked("");
-                        dispatch({type: "SET", key: reference, payload: null});
+                        dispatchRedux(removeSelected(reference))
+                        // dispatch({type: "SET", key: reference, payload: null});
                     } else {
 
                         if(!jackpot&&Object.keys(betItems || {}).length===Number(settings?.sportsBookLimits?.multiBetMaxSelections)){
@@ -726,11 +734,18 @@ const OddButton = React.memo(
                                 jackpot !== true
                                         ? addToSlip(slip)
                                     : addToJackpotSlip(slip);
-                            dispatch({type: "SET", key: reference, payload: cstm});
+                            dispatchRedux(setSelected(reference, cstm))
+
+                            // dispatch({type: "SET", key: reference, payload: cstm});
                         }
 
                     }
-                    dispatch({type: "SET", key: betslip_key, payload: betslip});
+                    const betslip_data={
+                        betslip_type:betslip_key,
+                        data:betslip
+                    }
+                    dispatchRedux(setMatchBetslip(betslip_data))
+                    // dispatch({type: "SET", key: betslip_key, payload: betslip});
                 }
             }, [ucn, picked, jackpot, settings]);
 

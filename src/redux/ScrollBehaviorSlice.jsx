@@ -9,7 +9,7 @@ const scrollSlice = createSlice({
 			state.fetching = true;
 		},
 		increaseLimit: state => {
-			state.limit += 20;
+			state.limit += 10;
 		}
 	},
 });

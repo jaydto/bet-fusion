@@ -17,13 +17,14 @@ const initialState = {
 
     }, // Initial state for the data reducer
     betting: {
+        bet_placement_message:null,
         loading: false,
         error: null,
-        matchesGames: null,
         jackpot: null,
         kiron: null,
         slip:null,
-        picked:'',
+        betslip:null,
+        jackpot_bestlip:null,
     },// Initial state for the betting Slice reducer
     auth: {
         isLoading: false,

@@ -2,9 +2,8 @@ import React, {useCallback, useContext, useEffect, useRef, useState} from 'react
 import {Link, useNavigate} from "react-router-dom"
 import Row from 'react-bootstrap/Row';
 import {StoreContext} from "../../context/store";
-import {getFromLocalStorage, setLocalStorage} from '../utils/local-storage';
+import {getFromLocalStorage} from '../utils/local-storage';
 import 'react-toastify/dist/ReactToastify.css';
-import makeRequest from '../utils/fetch-request';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import logo from '../../assets/img/Logo.webp';
 import {Navbar, Offcanvas} from "react-bootstrap";

@@ -5,11 +5,10 @@ import betNiMoto from '../../../assets/img/BetniMoto.webp'
 
 import {Link, useNavigate} from "react-router-dom";
 
-import {clearTrackingData, getFromLocalStorage, setLocalStorage, setTrackingData} from "../../utils/local-storage";
+import { getFromLocalStorage, setTrackingData} from "../../utils/local-storage";
 import only18 from '../../../assets/img/auth/18only.png'
 import backgroundURL from '../../../assets/img/auth/img-17.webp'
 import {LazyLoadImage} from "react-lazy-load-image-component";
-import makeRequest from "../../utils/fetch-request";
 import {Form, Formik} from "formik";
 import {StoreContext} from "../../../context/store"
 import mpesa from "../../../assets/img/mpesa.png";

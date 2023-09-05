@@ -7,8 +7,7 @@ import {LazyLoadImage} from "react-lazy-load-image-component";
 import logo from "../../assets/img/Logo.webp";
 import SidebarMobile from "../sidebar/awesome/SidebarMobile";
 import React, {useCallback, useEffect, useState} from "react";
-import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
-import makeRequest from "../utils/fetch-request";
+import {getFromLocalStorage} from "../utils/local-storage";
 import {configSettings} from "../../redux/dataSlice";
 import {useDispatch, useSelector} from "react-redux";
 

@@ -10,7 +10,6 @@ import {
     removeFromSlip,
 } from "../utils/betslip";
 import {publicIpv4 as publicIp} from "public-ip";
-import makeRequest from "../utils/fetch-request";
 import "react-toastify/dist/ReactToastify.css";
 import {Form as FormikForm, Formik, useFormikContext} from "formik";
 import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
@@ -26,6 +25,7 @@ import Notify from "../utils/Notify";
 import {useDispatch, useSelector} from "react-redux";
 import {matchesShareBet, resetState} from "../../redux/matchesSlice";
 import {userBalance} from "../../redux/authSlice";
+import {bettingMatchesGames, removeSlipSelection, setMatchBetslip, resetStateBetslip} from "../../redux/bettingSlice";
 
 const BetslipShareModal = React.lazy(() =>
     import("../modals/BetslipShareModal")
@@ -77,7 +77,6 @@ const BetslipSubmitForm = React.memo(
             totalGames,
             totalOdds,
             betslip,
-            setBetslipsData,
             jackpotData,
             bonusBet,
 
@@ -88,7 +87,7 @@ const BetslipSubmitForm = React.memo(
         const [ipv4, setIpv4] = useState(null);
         const [message, setMessage] = useState(null);
         const {state, dispatch} = useContext(StoreContext);
-        const [loading, setLoading] = useState(false);
+        const loading=useSelector((state)=>state.betting.loading)
         const [settings,] = useState(getFromLocalStorage("settings"));
         const [stake, setStake] = useState(jackpot ? parseInt(jackpotData?.bet_amount) : state?.stakeValue);
 
@@ -261,72 +260,102 @@ const BetslipSubmitForm = React.memo(
                 endpoint = "/jp/bet"
                 method = "POST"
             }
-            setLoading(true)
-            makeRequest({url: endpoint, method: method, data: payload, use_jwt: use_jwt})
-                .then(([status, response]) => {
-                    if (status === 200 || status == 201 || status == 204) {
-                        setLoading(false)
-                        setMessage(response);
-                        const data = {
-                            event: jackpot ? 'place_jackpot_bet' : live ? 'place_live_bet' : 'place_prematch_bet',
-                            data: payload
-                        }
-                        gaEventTracker("Bet Placed", data)
-                        // setLocalStorage("winnings",null)
-                        if (jackpot) {
-                            clearJackpotSlip();
-                            setMessage({
-                                status: 201,
-                                message: response?.message,
-                            });
-                        } else {
-                            let betslips = getBetslip();
-                            Object.entries(betslips).map(([match_id, match]) => {
-                                let match_selector = match.match_id + "_selected";
-                                let ucn = clean_rep(
-                                    match.match_id
-                                    + "" + match.sub_type_id
-                                    + (match.bet_pick)
-                                );
 
-                                dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
-                            });
-                            clearSlip();
+            // const data = {
+            //     event: jackpot ? 'place_jackpot_bet' : live ? 'place_live_bet' : 'place_prematch_bet',
+            //     data: payload
+            // }
+            // gaEventTracker("Bet Placed", data)
+            dispatchRedux(bettingMatchesGames({endpoint:endpoint, method:method, data:payload, jackpot:jackpot})).then((response) => {
+                // Check if the action was fulfilled successfully
+                if (bettingMatchesGames.fulfilled.match(response)) {
+                    console.log("response_message", response?.message)
+                    if(jackpot){
+                        let betslips = getJackpotBetslip()
+                        Object.entries(betslips).map(([match_id, match]) => {
+                            // let slip=
+                            removeFromJackpotSlip(match_id)
 
-                        }
-                        setBetslipsData(null);
-                        dispatch({
-                            type: "SET",
-                            key: jackpot ? "jackpotbetslip" : "betslip",
-                            payload: {},
-                        });
-                        setLocalStorage('betslip_share_code', null)
-                        setLocalStorage('userStake', null)
-                        dispatch({type: 'SET', key: 'userStake', data: null})
-                        updateUserOnHistory()
-                        return width < 991 ? setTimeout(() => {
-                            navigate(-1)
-                        }, 5000) : "";
-                    } else {
-                        setLoading(false)
-                        const data = {
-                            event: jackpot ? 'place_jackpot_bet' : live ? 'place_live_bet' : 'place_prematch_bet',
-                            message: response?.message
-                        }
-                        // gaEventTracker("Bet Placement Failed " + response?.message, data)
-                        let response_message = response?.message;
-                        if (response_message === "" || response_message === undefined) {
-                            response_message = response?.error;
-                            if (response_message === "" || response_message === undefined) {
-                                response_message = "Something went wrong. Please try again later or contact support. 0701 087 777";
+                            let match_selector = match.match_id + "_selected";
+                            let ucn = clean_rep(
+                                match.match_id
+                                + "" + match.sub_type_id
+                                + (match.bet_pick)
+                            );
+                            // dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
+                            const match_items={
+                                match_selector:match_selector,
+                                ucn:"remove." + ucn
                             }
+                            dispatchRedux(resetStateBetslip("jackpot_betslip"))
+                            dispatchRedux(removeSlipSelection(match_items));
+
+                        });
+                        const betslip_data={
+                            betslip_type:"jackpotbetslip",
+                            data:{}
                         }
-                        let qmessage = {
-                            status: status,
-                            message: response_message,
-                        };
-                        setMessage(qmessage);
+                        dispatchRedux(setMatchBetslip(betslip_data))
+
                     }
+                    else{
+                        // Dispatch the clearUcn action when fulfilled
+                        setMessage(response?.payload)
+                        let betslips = getBetslip();
+                        Object.entries(betslips).map(([match_id, match]) => {
+                            let match_selector = match.match_id + "_selected";
+                            let ucn = clean_rep(
+                                match.match_id
+                                + "" + match.sub_type_id
+                                + (match.bet_pick)
+                            );
+                            const match_items={
+                                match_selector:match_selector,
+                                ucn:"remove." + ucn
+                            }
+                            dispatchRedux(resetStateBetslip("betslip"))
+                            dispatchRedux(removeSlipSelection(match_items));
+                        });
+                        clearSlip();
+                        const betslip_data={
+                            betslip_type:"betslip",
+                            data:{}
+                        }
+                        dispatchRedux(setMatchBetslip(betslip_data))
+                    }
+                    setLocalStorage('betslip_share_code', null)
+                    setLocalStorage('userStake', null)
+                    dispatch({type: 'SET', key: 'userStake', data: null})
+                    updateUserOnHistory()
+                    return width < 991 ? setTimeout(() => {
+                        navigate("/")
+                    }, 4500) : "";
+
+                }
+                else if(bettingMatchesGames.rejected.match(response)){
+                    // const data = {
+                    //     event: jackpot ? 'place_jackpot_bet' : live ? 'place_live_bet' : 'place_prematch_bet',
+                    //     message: response?.message
+                    // }
+                    // gaEventTracker("Bet Placement Failed " + response?.message, data)
+                    console.log("response_error",  response?.error?.message)
+
+                    let response_message = response?.error?.message;
+                    if (response_message === "" || response_message === undefined) {
+                        response_message = response?.error?.message;
+                        if (response_message === "" || response_message === undefined) {
+                            response_message = "Something went wrong. Please try again later or contact support. 0701 087 777";
+                        }
+                    }
+                    let qmessage = {
+                        status: 404,
+                        message: response_message,
+                    };
+                    setMessage(qmessage)
+                }
+            })
+                .catch((error) => {
+                    // Handle errors if needed
                 });
             let timer = setTimeout(() => {
                 setMessage(null)
@@ -435,7 +464,13 @@ const BetslipSubmitForm = React.memo(
                     + (match.bet_pick)
                 );
 
-                dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
+                // dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
+                const match_items={
+                    match_selector:match_selector,
+                    ucn:"remove." + ucn
+                }
+                dispatchRedux(removeSlipSelection(match_items));
+
             });
             dispatch({
                 type: "SET",

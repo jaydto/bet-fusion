@@ -1,4 +1,4 @@
-import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import './test.css'
 import "../assets/css/bottomSheet.css"
 import {Link, useLocation} from "react-router-dom";
@@ -193,18 +193,23 @@ const Index = React.memo(
 
             if (new_tab !== tab && new_tab !=='countries') {
                 setTab(new_tab)
-                // dispatchRedux(setLimit(limit+10))
-                dispatchRedux(setInitialLoadingState("tabs", new_tab))
+                const data={
+                    param_fetch_type:"tabs",
+                    tab:new_tab
+                }
+                dispatchRedux(setInitialLoadingState(data))
             }else{
                 setTab(new_tab)
             }
 
 
             if (sportID !== new_sport_id) {
-                // dispatchRedux(setLimit(limit+10))
                 setSportID(new_sport_id)
-                dispatchRedux(setInitialLoadingState("sport_id", new_sport_id))
-                // setMatches([])
+                const data={
+                    param_fetch_type:"sport_id",
+                    tab:new_sport_id
+                }
+                dispatchRedux(setInitialLoadingState(data))
 
             } else {
                 setSportID(new_sport_id)
@@ -306,7 +311,13 @@ const Index = React.memo(
             }
 
         }
-
+        const setFilterPicked=(filters)=>{
+            const data={
+                param_fetch_type:"filters",
+                tab:filters
+            }
+            dispatchRedux(setInitialLoadingState(data))
+        }
 
 
         return (
@@ -375,7 +386,7 @@ const Index = React.memo(
                                             key={market?.id}
                                             to={`/highlights?sport_id=79&sub_type_id=${market?.id}&market_name=${market?.name}`}
                                             className={`markets-default ${sub_type === market?.id && 'active-market-display'}`}
-                                            onClick={collapseBottomSheet}>
+                                            onClick={()=>{collapseBottomSheet();setFilterPicked(market?.market_name)}}>
                                             {market?.market_name}
                                         </Link>
                                     ))}

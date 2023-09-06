@@ -2,7 +2,7 @@
 import {createAction, createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import initialState from "./state"; // Import the initial state from state.js
 import makeRequest from "../components/utils/fetch-request";
-import {clearJackpotSlip, clearSlip, getBetslip, getJackpotBetslip} from "../components/utils/betslip"; // Import the makeRequest function
+import { getBetslip, getJackpotBetslip} from "../components/utils/betslip"; // Import the makeRequest function
 // Async thunk for matches
 export const bettingMatchesGames =
     createAsyncThunk("betting/matchesGames",
@@ -246,7 +246,7 @@ const bettingSlice = createSlice({
             })
             .addCase(removeSlipSelection, (state, action) => {
                 const dynamicKey = action.payload.match_selector;
-                state[dynamicKey]=action.payload. ucn
+                state[dynamicKey]=action.payload.ucn
             })
 
             .addCase(removeSelected, (state, action) => {

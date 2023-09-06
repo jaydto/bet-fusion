@@ -585,10 +585,7 @@ const OddButton = React.memo(
 
         }, [betslip_data_item,jackpot_slip_data_item,getJackpotBetslip(),getBetslip()]);
 
-        console.log("betslip_item", slipType)
-        console.log("betslip_item_type", betslip_data_item+" jp: "+jackpot_slip_data_item)
-
-
+        
         const updatePickedChoices = useCallback(() => {
             const betslip = jackpot ? jackpot_slip_data_item || getJackpotBetslip() : betslip_data_item ||getBetslip() || {};
             const referencedState = dispatchRedux(getSelected(reference));
@@ -634,9 +631,9 @@ const OddButton = React.memo(
                 setPicked("");
 
             }
-        }, [match, mkt, jackpot, slipType, betslip_data_item, jackpot_slip_data_item]);
+        }, [ mkt, jackpot, slipType, betslip_data_item, jackpot_slip_data_item]);
 
-        const updatePicked = useCallback(() => {
+        const updatePicked = () => {
             const referencedState = dispatchRedux(getSelected(reference));
             console.log("referenced_state", referencedState)
             if (typeof referencedState === 'string') { // Check if referencedState is a string
@@ -663,7 +660,7 @@ const OddButton = React.memo(
                 }
             }
 
-        }, [ jackpot, slipType, betslip_data_item, jackpot_slip_data_item, reference]);
+        };
 
         const updateOddValue = useCallback(() => {
             if (match) {
@@ -705,7 +702,7 @@ const OddButton = React.memo(
 
         useEffect(() => {
             updatePicked()
-        }, [ updatePicked]);
+        }, [ jackpot, slipType, betslip_data_item, jackpot_slip_data_item, reference]);
 
         useEffect(() => {
             updateBeslipKey();

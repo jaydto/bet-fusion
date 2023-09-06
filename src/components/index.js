@@ -9,6 +9,7 @@ import {ToastContainer} from "react-toastify";
 import MatchList, {marketChoiceOptions, MatchHeaderRow} from "./matches";
 import SkeletonLoaderMobile from "./pages/skeletonLoadersWeb/SkeletonLoaderMobile";
 import Skeleton1 from "./skeleton/skeleton";
+import Countries from "./countries/Countries";
 import {getFromLocalStorage, setLocalStorage} from "./utils/local-storage";
 import {useDispatch, useSelector} from "react-redux";
 import {
@@ -21,7 +22,6 @@ import {userBalance} from "../redux/authSlice";
 import {setMatchBetslip} from "../redux/bettingSlice";
 
 const Header = React.lazy(() => import('./header/header'));
-const Countries = React.lazy(() => import('./countries/Countries'));
 const Footer = React.lazy(() => import('./footer/footer'));
 const CarouselLoader = React.lazy(() => import('./carousel'));
 const MainTabs = React.lazy(() => import('./header/main-tabs'));

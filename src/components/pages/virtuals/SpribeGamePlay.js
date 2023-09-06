@@ -17,6 +17,8 @@ const GamePlay = React.memo(
     (props) => {
 
         const {game} = useParams()
+        let url = new URL(window.location.href)
+        const searchparam=url.searchParams.get('status')
         const pathname = window.location.pathname;
         const [gameUrl, setGameUrl] = useState('')
         const [, setUserToken] = useState('')
@@ -99,7 +101,6 @@ const GamePlay = React.memo(
 
         // // Function to update the iframe height
         const updateIframeHeight = useCallback(() => {
-            // console.log("this was called to resize", maxIframeHeight)
             setIframeHeight(isCustomFullscreen ? 660 : 800); // Set the fixed height here
         }, []);
 
@@ -133,7 +134,6 @@ const GamePlay = React.memo(
 
         const toggleFullscreen = () => {
             const element = document.documentElement; // Fullscreen the whole document
-            // console.log("Element fullscreen is now ... ",element)
 
             if (!isCustomFullscreen) {
                 try {
@@ -176,7 +176,7 @@ const GamePlay = React.memo(
         };
 
         useEffect(() => {
-            isLoggedIn ?
+            isLoggedIn && searchparam==="live" ?
                 createToken() :
                 configureDemoGame()
 

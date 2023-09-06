@@ -2,7 +2,7 @@ import React, {useCallback, useContext, useEffect, useRef, useState} from 'react
 import {Link, useNavigate} from "react-router-dom";
 
 //Images
-import aviator from "../../../src/assets/img/mobile/Aviator.svg"
+// import aviator from "../../../src/assets/img/mobile/Aviator.svg"
 import league from "../../../src/assets/img/mobile/League.svg"
 
 //SVGs
@@ -106,7 +106,7 @@ const MobileNav1 = React.memo(
                         </Link>
                     </td>
 
-                    <td className={`menu-t m-auto sport-check  ${pathname.includes('aviator') ? "active_link" : ""}`}>
+                    {/* <td className={`menu-t m-auto sport-check  ${pathname.includes('aviator') ? "active_link" : ""}`}>
                         <Link to={"/nare-games/aviator"}
                               className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `}
                               onClick={() => {
@@ -129,7 +129,7 @@ const MobileNav1 = React.memo(
                             </div>
                         </Link>
 
-                    </td>
+                    </td> */}
                     <td className={`menu-t m-auto sport-check ${window.location.search.includes('FootballX') ? "active_link" : ""} `}>
                         <div
                             className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center  `}

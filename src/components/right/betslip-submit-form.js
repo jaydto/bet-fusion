@@ -549,7 +549,7 @@ const BetslipSubmitForm = React.memo(
                     boostedStake = formatNumber(boostedStake);
                     setMultiBoostMessage(
                         "Congratulations! we have boosted you stake from KES " +
-                        boost +
+                        stake +
                         " to " +
                         boostedStake
                     );

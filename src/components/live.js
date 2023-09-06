@@ -20,7 +20,7 @@ const Right = React.lazy(() => import('./right'));
 const Live = React.memo(
     () => {
         const [matches, setMatches] = useState();
-        const {state, dispatch} = useContext(StoreContext);
+        const {dispatch} = useContext(StoreContext);
         const {height, width} = useWindowDimensions();
         const {spid} = useParams();
         const [reset, setReset] = useState(0);
@@ -57,7 +57,7 @@ const Live = React.memo(
             });
         }, 6000, reset);
 
-        const fetchData = useCallback(async () => {
+        const fetchData = async () => {
             let endpoint = "/v1/matches/live";
             if (spid) {
                 endpoint += "?spid=" + spid;
@@ -78,7 +78,7 @@ const Live = React.memo(
             }
             setLoading(false)
 
-        }, []);
+        };
 
 
         useEffect(() => {
@@ -93,20 +93,18 @@ const Live = React.memo(
             return () => {
                 abort.abort()
             };
-        }, []);
+        }, [sportID]);
 
-        useEffect(() => {
+
+        useEffect(()=>{
             const new_sport_id = spid
-            if (sportID !== new_sport_id) {
-                setSportID(new_sport_id)
-                setLoading(true)
-                setMatches([])
-                setReset(c => c + 1);
-
-            } else {
-
-            }
-        })
+                if (sportID !== new_sport_id) {
+                    setSportID(new_sport_id)
+                    setLoading(true)
+                    setMatches([])
+                    setReset(c => c + 1);
+                }
+        },[spid])
         const homePageRef = useRef()
         const [scrolledPast, setScrolledPast] = useState(false);
         const [scrolledToTop, setScrolledToTop] = useState(false);

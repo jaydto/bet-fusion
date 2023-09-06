@@ -302,8 +302,8 @@ export const matchesMorePrematchMarkets =
 
         }
     );
-export const setInitialLoadingState = createAction("matches/set", (param_fetch_type, tab, sport_id) => {
-    return {payload: {param_fetch_type, tab, sport_id}};
+export const setInitialLoadingState = createAction("matches/set", ({param_fetch_type="", tab="", sport_id="", filters=""}) => {
+    return {payload: {param_fetch_type, tab, sport_id, filters}};
 });
 
 export const setFetching = createAction("matches/setFetching", (type, status) => {
@@ -784,14 +784,18 @@ const matchesSlice = createSlice({
                 state.error = action.error.message;
             })
             .addCase(setInitialLoadingState, (state, action) => {
-                const {param_fetch_type, tab, sport_id} = action.payload;
+                const {param_fetch_type, tab, sport_id, filters} = action.payload;
                 // Append tab or sport_id to the list of visited tabs
                 if (param_fetch_type === "tabs") {
                     state.initialLoading = true
                     state.visited_tabs = Array.from(new Set([...state.visited_tabs, tab]));
                     // Update initialLoading based on visitedTabs
 
-                } else {
+                }else if(param_fetch_type==="filters"){
+                    state.visited_filters = Array.from(new Set([...state.filters, filters]));
+                    state.initialLoading = true
+
+                } else if(param_fetch_type==="sport_id"){
                     state.visited_sport_id = Array.from(new Set([...state.visited_sport_id, sport_id]));
                     // Update initialLoading based on visitedTabs
                     state.initialLoading = true

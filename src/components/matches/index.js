@@ -1581,9 +1581,10 @@ export const JackpotMatchList = React.memo(
                     </div>
                 </div>
                 <div className="web-element jackpot-page top-login-background-img-bg w-100">
-                    {matches && Object.entries(matches?.data).map(([key, match], index) => (
+                    {matches ?
+                        Object.entries(matches?.data).map(([key, match], index) => (
                         <MatchRow match={match} jackpot key={index}/>
-                    ))
+                    )):<></>
                     }
                     {(matches !== null && matches?.length === 0) &&
                         <div className="top-matches row  mx-2">

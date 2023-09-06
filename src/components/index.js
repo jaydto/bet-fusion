@@ -7,7 +7,7 @@ import {StoreContext} from "../context/store"
 import {getBetslip} from "./utils/betslip";
 import Countries from "./countries/Countries";
 import {ToastContainer} from "react-toastify";
-import {marketChoiceOptions} from "./matches";
+import {marketChoiceOptions, MatchHeaderRow} from "./matches";
 import SkeletonLoaderMobile from "./pages/skeletonLoadersWeb/SkeletonLoaderMobile";
 import Skeleton1 from "./skeleton/skeleton";
 import {getFromLocalStorage, setLocalStorage} from "./utils/local-storage";
@@ -54,7 +54,7 @@ const Index = React.memo(
         let url = new URL(window.location.href)
         let sub_type = (url.searchParams.get("sub_type_id") || "1")
         const dispatchRedux=useDispatch()
-        const matches=useSelector((state)=>state.matchesData.matches)
+        const newMatches=useSelector((state)=>state.matchesData.matches)
         // const prev_match_size=useSelector((state)=>state.matchesData.prev_match_size)
         const match_size=useSelector((state)=>state.matchesData.match_size)
         const producer_down=useSelector((state)=>state.matchesData.producer_down)
@@ -63,13 +63,11 @@ const Index = React.memo(
         const fetching=useSelector((state)=>state.matchesData.fetching)
         const limit=useSelector((state)=>state.matchesData.limit)
         const [newLimit, setNewLimit]=useState(10)
-        const [newMatches, setNewMatches]=useState()
+
         useEffect(()=>{
             setNewLimit(limit)
         },[limit])
-        useEffect(()=>{
-            setNewMatches(matches)
-        },[matches])
+
 
         useEffect(()=>{
             if(limit!==10){
@@ -312,6 +310,7 @@ const Index = React.memo(
 
         }
         const setFilterPicked=(filters)=>{
+            console.log("filters", filters)
             const data={
                 param_fetch_type:"filters",
                 tab:filters
@@ -345,6 +344,7 @@ const Index = React.memo(
                                     </div>
                                 </div>
                                 <CarouselLoader/>
+                                {(newMatches&&tab!=="countries")&& <MatchHeaderRow live={false} first_match={newMatches ? newMatches[0] : {}} loading={loading}/>}
                                 {loading ?
                                     <div className={`text-center mt-2 text-white d-block`}>
                                         {tab == 'countries' ? <Skeleton1/> : <SkeletonLoaderMobile/>}
@@ -381,9 +381,9 @@ const Index = React.memo(
                                     <div className="drag-icon"><span></span></div>
                                 </div>
                                 <div className="body d-flex flex-column gap-4">
-                                    {filteredMarkets?.default_markets?.map((market) => (
+                                    {filteredMarkets?.default_markets?.map((market,index) => (
                                         <Link
-                                            key={market?.id}
+                                            key={index}
                                             to={`/highlights?sport_id=79&sub_type_id=${market?.id}&market_name=${market?.name}`}
                                             className={`markets-default ${sub_type === market?.id && 'active-market-display'}`}
                                             onClick={()=>{collapseBottomSheet();setFilterPicked(market?.market_name)}}>

@@ -410,8 +410,6 @@ const matchesSlice = createSlice({
             })
             .addCase(matchesPrematch.fulfilled, (state, action) => {
                 state.isLoggedIn = true;
-                state.loading = false;
-
                 const newMatches = action.payload?.data;
 
                 const mergedMatches = newMatches.length > 0 ? {...state.matches, ...newMatches} : newMatches;
@@ -430,6 +428,7 @@ const matchesSlice = createSlice({
                 state.fetching = false
                 // state.prev_match_size = state.match_size || 10// prev_match_size
                 state.match_size = newMatches?.length;
+                state.loading=false
 
             })
             .addCase(matchesPrematch.rejected, (state, action) => {
@@ -438,6 +437,7 @@ const matchesSlice = createSlice({
                     state.initialLoading = false;
                 }
                 state.error = action.error.message;
+                state.loading=false
             })
             .addCase(matchesSearch.pending, (state) => {
                 if (state.initialLoading) {
@@ -792,7 +792,7 @@ const matchesSlice = createSlice({
                     // Update initialLoading based on visitedTabs
 
                 }else if(param_fetch_type==="filters"){
-                    state.visited_filters = Array.from(new Set([...state.filters, filters]));
+                    state.visited_filters = Array.from(new Set([...state.visited_filters, filters]));
                     state.initialLoading = true
 
                 } else if(param_fetch_type==="sport_id"){

@@ -37,9 +37,6 @@ const BetSlip = React.memo(
 
         const totalGames = betslipsData ? Object.keys(betslipsData).length : 0;
 
-        console.log("slip_data", slip_data)
-
-
         useEffect(() => {
             if (slip_data) {
                 jackpot && Object.keys(getJackpotBetslip() || {}).length == 0

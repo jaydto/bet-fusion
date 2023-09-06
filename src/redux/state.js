@@ -81,6 +81,7 @@ const initialState = {
         jackpot_loading: false,
         error: null,
         user: null,
+        visited_filters:[],
         user_slip_validation:null,
         live_user_slip_validation:null,
         producer_down:null,

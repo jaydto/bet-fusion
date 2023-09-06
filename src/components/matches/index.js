@@ -160,9 +160,9 @@ export const marketChoice = () => {
 }
 
 
-const MatchHeaderRow = React.memo(
+export const MatchHeaderRow = React.memo(
     (props) => {
-        const {live, first_match, jackpot} = props;
+        const {live, first_match, jackpot,loading} = props;
         const categories = getFromLocalStorage('sport_categories')
         const sport_id = new URL(window.location).searchParams.get('sport_id') || 79
         let sport = categories?.all_sports?.filter((category) => category.sport_id == sport_id)
@@ -216,12 +216,12 @@ const MatchHeaderRow = React.memo(
                 setShowX(!["186", "340"].includes(first_match.sub_type_id));
 
             }
-        }, [first_match?.parent_match_id])
+        }, [first_match])
 
         return (
 
             <Row
-                className={`full-mobile sticky-top ${jackpot ? 'd-none ' : user ? "sticky-user " : 'sticky-responsive no-sticky '}`}>
+                className={`full-mobile sticky-top ${jackpot ? 'd-none ' : user ? "sticky-user d-flex align-items-center " : 'sticky-responsive no-sticky d-flex align-items-center'}`}>
                 <div className="top-matches d-flex position-sticky sticky-top shadow-sports-header header-sports">
                     <div className={"size-info  d-flex col-xs-12 pad left-text px-2"}>
                         <div className="col pad left-text d-flex">
@@ -238,8 +238,8 @@ const MatchHeaderRow = React.memo(
                     {/*match heading*/}
                         <div className={"col flex-row justify-content-between space-bets"} style={{minWidth: "45%"}}>
                             {extraMarketDisplays && !jackpot && (
-                                <div className="d-flex flex-row ">
-                                    <div className="d-flex flex-column text-center text-white mt-3 fit-ipad w-100">
+                                <div className= {`${loading&&first_match?'d-none':'d-flex flex-row'}`}>
+                                    <div className="d-flex flex-column text-center text-white mt-0 fit-ipad w-100">
 
                                         <div className={"c-btn-group align-self-end"}>
                                             {extraMarketDisplays?.[0]?.extra_markets_display?.map((display, index) => (
@@ -583,7 +583,7 @@ const OddButton = React.memo(
                 setSlipType(getBetslip())
             }
 
-        }, [betslip_data_item,jackpot_slip_data_item,getJackpotBetslip(),getBetslip()]);
+        }, [betslip_data_item,jackpot_slip_data_item]);
 
         
         const updatePickedChoices = () => {
@@ -1634,7 +1634,7 @@ const MatchList = React.memo(
         }, [matches, fetching, observerRef]);
         return (
             <div className="matches full-width">
-                {matches && <MatchHeaderRow live={live} first_match={matches ? matches[0] : {}}/>}
+                {/*{matches && <MatchHeaderRow live={live} first_match={matches ? matches[0] : {}}/>}*/}
 
                 <div className="web-element top-login-background-img-bg w-100">
                     {matches &&

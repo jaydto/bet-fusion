@@ -236,22 +236,22 @@ export const MatchHeaderRow = React.memo(
                         <div className={'col match-detail-container'}></div>
                     </div>
                     {/*match heading*/}
-                        <div className={"col flex-row justify-content-between space-bets"} style={{minWidth: "45%"}}>
-                            {extraMarketDisplays && !jackpot && (
-                                <div className= {`${loading&&first_match?'d-none':'d-flex flex-row'}`}>
-                                    <div className="d-flex flex-column text-center text-white mt-0 fit-ipad w-100">
+                    <div className={"col flex-row justify-content-between space-bets"} style={{minWidth: "45%"}}>
+                        {extraMarketDisplays && !jackpot && (
+                            <div className= {`${loading&&first_match?'d-none':'d-flex flex-row'}`}>
+                                <div className="d-flex flex-column text-center text-white mt-0 fit-ipad w-100">
 
-                                        <div className={"c-btn-group align-self-end"}>
-                                            {extraMarketDisplays?.[0]?.extra_markets_display?.map((display, index) => (
-                                                <span className={'c-btn-header text-white'} key={index}>
+                                    <div className={"c-btn-group align-self-end"}>
+                                        {extraMarketDisplays?.[0]?.extra_markets_display?.map((display, index) => (
+                                            <span className={'c-btn-header text-white'} key={index}>
                                               {display}
                                             </span>
-                                            ))}
-                                        </div>
+                                        ))}
                                     </div>
                                 </div>
-                            )}
-                        </div>
+                            </div>
+                        )}
+                    </div>
                 </div>
             </Row>
         )
@@ -710,7 +710,7 @@ const OddButton = React.memo(
                         }else{
                             betslip =
                                 jackpot !== true
-                                        ? addToSlip(slip)
+                                    ? addToSlip(slip)
                                     : addToJackpotSlip(slip);
                             dispatchRedux(setSelected(reference, cstm))
 
@@ -1200,10 +1200,10 @@ const MatchRow = React.memo(
                             <div className={`c-btn-group align-self-center checking ${jackpot ? 'w-100' : ''}`}>
                                 {match?.odds?.home_odd
                                     ? (match?.odds?.home_odd && (!pdown && match?.odds?.home_odd && match.odds.home_odd !== 'NaN' &&
-                                            match.market_active == 1 && match.odds.home_odd_active == 1||jackpot)
-                                            ? <OddButton match={match} mkt="home_team" live={live} jackpot={jackpot}/>
-                                            : <EmptyTextRow odd_key={match?.odd_key} live={live}/>) :
-                                        match?.odds?.home_odd ? <EmptyTextRow odd_key={match?.odd_key} live={live}/> : ''
+                                        match.market_active == 1 && match.odds.home_odd_active == 1||jackpot)
+                                        ? <OddButton match={match} mkt="home_team" live={live} jackpot={jackpot}/>
+                                        : <EmptyTextRow odd_key={match?.odd_key} live={live}/>) :
+                                    match?.odds?.home_odd ? <EmptyTextRow odd_key={match?.odd_key} live={live}/> : ''
                                 }
                                 {match?.odds?.neutral_odd ? ((!pdown && match?.odds?.neutral_odd && match.odds.neutral_odd !== 'NaN' &&
                                     match.market_active == 1 && match.odds.neutral_odd_active == 1 || jackpot)
@@ -1421,12 +1421,12 @@ export const MarketList = React.memo(
                     </div>
                     <div className="text-white market-groups-container">
                         {market_groups?.length > 0 && <button onClick={() => filterMarketGroups('favorite')}
-                                                                     className={'market-group-pill text-white badge badge-pill badge-primary bg-transparent p-2'}>
+                                                              className={'market-group-pill text-white badge badge-pill badge-primary bg-transparent p-2'}>
                             Favorite Markets
                         </button>}
                         {market_groups?.length > 0 && <button onClick={() => filterMarketGroups('all')}
-                                                                     autoFocus
-                                                                     className={'market-group-pill text-white badge badge-pill badge-primary bg-transparent p-2'}>
+                                                              autoFocus
+                                                              className={'market-group-pill text-white badge badge-pill badge-primary bg-transparent p-2'}>
                             All Markets
                         </button>}
                         {market_groups?.map((group,index) => (
@@ -1526,8 +1526,8 @@ export const JackpotMatchList = React.memo(
                 <div className="web-element jackpot-page top-login-background-img-bg w-100">
                     {matches ?
                         Object.entries(matches?.data).map(([key, match], index) => (
-                        <MatchRow match={match} jackpot key={index}/>
-                    )):<></>
+                            <MatchRow match={match} jackpot key={index}/>
+                        )):<></>
                     }
                     {(matches !== null && matches?.length === 0) &&
                         <div className="top-matches row  mx-2">

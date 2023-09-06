@@ -586,10 +586,9 @@ const OddButton = React.memo(
         }, [betslip_data_item,jackpot_slip_data_item,getJackpotBetslip(),getBetslip()]);
 
         
-        const updatePickedChoices = useCallback(() => {
+        const updatePickedChoices = () => {
             const betslip = jackpot ? jackpot_slip_data_item || getJackpotBetslip() : betslip_data_item ||getBetslip() || {};
             const referencedState = dispatchRedux(getSelected(reference));
-            console.log("referenced_state", referencedState)
             if (typeof referencedState === 'string') { // Check if referencedState is a string
                 if (referencedState.startsWith("remove.")) {
                     setPicked("");
@@ -631,11 +630,10 @@ const OddButton = React.memo(
                 setPicked("");
 
             }
-        }, [ mkt, jackpot, slipType, betslip_data_item, jackpot_slip_data_item]);
+        };
 
         const updatePicked = () => {
             const referencedState = dispatchRedux(getSelected(reference));
-            console.log("referenced_state", referencedState)
             if (typeof referencedState === 'string') { // Check if referencedState is a string
                 if (referencedState.startsWith("remove.")) {
                     setPicked("");
@@ -698,11 +696,11 @@ const OddButton = React.memo(
 
         useEffect(() => {
             updatePickedChoices();
-        }, []);
+        }, [jackpot]);
 
         useEffect(() => {
             updatePicked()
-        }, [ jackpot, slipType, betslip_data_item, jackpot_slip_data_item, reference]);
+        }, [ jackpot, slipType, betslip_data_item, jackpot_slip_data_item]);
 
         useEffect(() => {
             updateBeslipKey();

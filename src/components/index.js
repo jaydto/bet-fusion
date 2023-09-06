@@ -10,7 +10,7 @@ import MatchList, {marketChoiceOptions, MatchHeaderRow} from "./matches";
 import SkeletonLoaderMobile from "./pages/skeletonLoadersWeb/SkeletonLoaderMobile";
 import Skeleton1 from "./skeleton/skeleton";
 import Countries from "./countries/Countries";
-import {getFromLocalStorage, setLocalStorage} from "./utils/local-storage";
+import {getFromLocalStorage} from "./utils/local-storage";
 import {useDispatch, useSelector} from "react-redux";
 import {
     matchesPrematch, resetState, setFetching,
@@ -237,14 +237,7 @@ const Index = React.memo(
         }, [window.location.pathname, window.location.search]);
 
 
-        useEffect(() => {
-            const betslip=getBetslip()
-            const betslip_data={
-                betslip_type:'betslip',
-                data:betslip
-            }
-            dispatchRedux(setMatchBetslip(betslip_data))
-        }, []);
+
 
         useEffect(() => {
             /**

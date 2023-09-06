@@ -54,7 +54,7 @@ const Index = React.memo(
         let url = new URL(window.location.href)
         let sub_type = (url.searchParams.get("sub_type_id") || "1")
         const dispatchRedux=useDispatch()
-        const newMatches=useSelector((state)=>state.matchesData.matches)
+        const matches=useSelector((state)=>state.matchesData.matches)
         // const prev_match_size=useSelector((state)=>state.matchesData.prev_match_size)
         const match_size=useSelector((state)=>state.matchesData.match_size)
         const producer_down=useSelector((state)=>state.matchesData.producer_down)
@@ -63,11 +63,13 @@ const Index = React.memo(
         const fetching=useSelector((state)=>state.matchesData.fetching)
         const limit=useSelector((state)=>state.matchesData.limit)
         const [newLimit, setNewLimit]=useState(10)
-
+        const [newMatches, setNewMatches]=useState()
         useEffect(()=>{
             setNewLimit(limit)
         },[limit])
-
+        useEffect(()=>{
+            setNewMatches(matches)
+        },[matches])
 
         useEffect(()=>{
             if(limit!==10){
@@ -231,7 +233,6 @@ const Index = React.memo(
                     data:cachedSlips
                 }
                 dispatchRedux(setMatchBetslip(betslip_data))
-                // dispatch({type: "SET", key: "betslip", payload: cachedSlips});
             }
 
         }, [window.location.pathname, window.location.search]);

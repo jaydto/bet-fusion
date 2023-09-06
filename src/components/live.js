@@ -14,6 +14,7 @@ import {
     stopFetchingMatches
 } from "../redux/matchesSlice";
 import {useDispatch, useSelector} from "react-redux";
+import {setMatchBetslip} from "../redux/bettingSlice";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -68,9 +69,11 @@ const Live = React.memo(
 
             fetchData()
             let cachedSlips = getBetslip("betslip");
-            if (cachedSlips) {
-                dispatch({type: "SET", key: "betslip", payload: cachedSlips});
+            const betslip_data={
+                betslip_type:"betslip",
+                data:cachedSlips
             }
+            dispatchRedux(setMatchBetslip(betslip_data))
         },[sportID])
 
         useEffect(() => {

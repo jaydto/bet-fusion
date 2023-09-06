@@ -6,17 +6,17 @@ import {clearJackpotSlip, clearSlip, getBetslip, getJackpotBetslip} from "../com
 // Async thunk for matches
 export const bettingMatchesGames =
     createAsyncThunk("betting/matchesGames",
-        async ({endpoint, method, data, jackpot}) => {
+        async ({endpoint, method, data, jackpot, use_jwt}) => {
             const [status, response] = await makeRequest({
                 url: endpoint,
                 method: method,
                 data: data,
-                use_jwt:true
+                use_jwt:use_jwt
             });
             if (status === 201) {
                 return response;
             } else {
-                throw new Error(response?.message || `${jackpot?"jackpot ":""} Bet placement failed`);
+                throw new Error(jackpot?response?.error:response?.message || `${jackpot?"jackpot ":""} Bet placement failed`);
             }
         });
 export const bettingJackpot =
@@ -240,7 +240,7 @@ const bettingSlice = createSlice({
                 if(type==="betslip"){
                     state.betslip=data
                 }else{
-                    state.jackpot_bestlip=data
+                    state.jackpotbestlip=data
                 }
 
             })

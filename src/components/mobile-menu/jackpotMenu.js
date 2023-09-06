@@ -9,26 +9,26 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import {
-    clearJackpotSlip,
     getJackpotBetslip,
     removeFromJackpotSlip,
 } from "../utils/betslip";
-import {StoreContext } from "../../context/store";
+import {StoreContext} from "../../context/store";
 import {SubmitButton} from "../right/betslip-submit-form";
 import {Form, Formik} from "formik";
 import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
-import makeRequest from "../utils/fetch-request";
 import {publicIpv4 as publicIp} from "public-ip";
 import Notify from "../utils/Notify";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {bettingMatchesGames, removeSlipSelection, resetStateBetslip, setMatchBetslip} from "../../redux/bettingSlice";
 
-const MobileMenu = React.memo(
+const JackpotMenu = React.memo(
     (props) => {
         const {jackpotData, matches} = props
-        const { state, dispatch } = useContext(StoreContext);
+        const {state, dispatch} = useContext(StoreContext);
         const [ipv4, setIpv4] = useState(null);
         const [selections, setSelections] = useState([])
+        const dispatchRedux = useDispatch()
         const randomize = async () => {
             matches?.data?.forEach((match, index) => {
                 let teams = [match?.home_team, 'draw', match?.away_team]
@@ -45,6 +45,7 @@ const MobileMenu = React.memo(
                     }
                 })
             })
+            console.log("selections", selections)
             setSelections(selections)
         }
 
@@ -53,12 +54,13 @@ const MobileMenu = React.memo(
             return str.replace(/-+/g, "-");
         };
 
-        const userData=useSelector((state)=>state.data.user)
-        const [user, setUser]=useState(getFromLocalStorage("user"))
+        const userData = useSelector((state) => state.data.user)
+        const jackpot_data = useSelector((state) => state.betting.jackpotbestlip)
+        const [user, setUser] = useState(getFromLocalStorage("user"))
 
-        useEffect(()=>{
-            if(userData){
-                setUser(userData||getFromLocalStorage("user"))
+        useEffect(() => {
+            if (userData) {
+                setUser(userData || getFromLocalStorage("user"))
             }
         }, [userData])
         const ipAddress = useCallback(async () => {
@@ -97,20 +99,23 @@ const MobileMenu = React.memo(
                     + "" + match.sub_type_id
                     + (match.bet_pick)
                 );
+                const match_items = {
+                    match_selector: match_selector,
+                    ucn: "remove." + ucn
+                }
+                dispatchRedux(removeSlipSelection(match_items));
 
-                dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
             });
-            dispatch({
-                type: "SET",
-                key: "jackpotbetslip" ,
-                payload: {},
-            });
-
+            const betslip_data = {
+                betslip_type: "jackpotbetslip",
+                data: {}
+            }
+            dispatchRedux(setMatchBetslip(betslip_data))
             // setLocalStorage("winnings",null)
             setLocalStorage('betslip_share_code', null)
         }, []);
 
-        const gaEventTracker=useAnalyticsEventTracker('Place Jackpot Bet')
+        const gaEventTracker = useAnalyticsEventTracker('Place Jackpot Bet')
 
         const handlePlaceBet = useCallback(() => {
             let betslips = getJackpotBetslip()
@@ -138,30 +143,29 @@ const MobileMenu = React.memo(
                 endCustomerIP: ipv4,
                 channelID: 'web',
                 slip: '',
-                message:jackpotMessage,
-                jackpot_id:jackpotData?.jackpot_event_id,
+                message: jackpotMessage,
+                jackpot_id: jackpotData?.jackpot_event_id,
                 account: 1,
                 msisdn: user?.msisdn,
             };
 
 
-            let endpoint="/jp/bet" ;
+            let endpoint = "/jp/bet";
             let use_jwt = false
             let method = "POST"
 
+            dispatchRedux(bettingMatchesGames({
+                endpoint: endpoint,
+                method: method,
+                data: payload,
+                jackpot: true,
+                use_jwt: use_jwt
+            }))
+                .then((response) => {
+                    // Check if the action was fulfilled successfully
+                    if (bettingMatchesGames.fulfilled.match(response)) {
+                        console.log("response_message", response?.message)
 
-            makeRequest({url: endpoint, method: method, data: payload, use_jwt: use_jwt})
-                .then(([status, response]) => {
-
-
-                    if (status === 200 || status == 201 || status == 204)
-                    {
-                        // setMessage(response);
-                        const data={
-                            event:'place_jackpot_bet',
-                            data:payload
-                        }
-                        gaEventTracker("Jackpot Bet Placed",data)
                         let betslips = getJackpotBetslip()
                         Object.entries(betslips).map(([match_id, match]) => {
                             // let slip=
@@ -173,15 +177,16 @@ const MobileMenu = React.memo(
                                 + "" + match.sub_type_id
                                 + (match.bet_pick)
                             );
+                            // dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
+                            const match_items = {
+                                match_selector: match_selector,
+                                ucn: "remove." + ucn
+                            }
+                            dispatchRedux(resetStateBetslip("jackpotbetslip"))
+                            dispatchRedux(removeSlipSelection(match_items));
 
-                            dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
                         });
-                        dispatch({
-                            type: "SET",
-                            key: "jackpotbetslip" ,
-                            payload: {},
-                        });
-                            // clearJackpotSlip();
+
                         let message = {
                             status: 201,
                             message: response?.message,
@@ -189,47 +194,46 @@ const MobileMenu = React.memo(
 
                         Notify(message)
 
-                        // setBetslipsData(null);
-                        dispatch({
-                            type: "SET",
-                            key:  "jackpotbetslip" ,
-                            payload: {},
-                        });
 
-                    } else {
-                        const data={
-                            event:'place_jackpot_bet',
-                            message:response?.message
+                        const betslip_data = {
+                            betslip_type: "jackpotbetslip",
+                            data: {}
                         }
-                        gaEventTracker("Bet Failed",data)
-                        let response_message = response?.message;
+                        dispatchRedux(setMatchBetslip(betslip_data))
+                    } else if (bettingMatchesGames.rejected.match(response)) {
+                        // const data = {
+                        //     event: jackpot ? 'place_jackpot_bet' : live ? 'place_live_bet' : 'place_prematch_bet',
+                        //     message: response?.message
+                        // }
+                        // gaEventTracker("Bet Placement Failed " + response?.message, data)
+                        console.log("response_error", response?.error?.message)
+
+                        let response_message = response?.error?.message;
                         if (response_message === "" || response_message === undefined) {
-                            response_message = response?.error;
+                            response_message = response?.error?.message;
                             if (response_message === "" || response_message === undefined) {
-                                response_message =
-                                    "Something went wrong. Please try again later or contact support. 0701 087 777";
+                                response_message = "Something went wrong. Please try again later or contact support. 0701 087 777";
                             }
                         }
                         let qmessage = {
-                            status: status,
+                            status: 404,
                             message: response_message,
                         };
                         Notify(qmessage)
-
                     }
-                    // setSubmitting(false);
+                })
+                .catch((error) => {
+                    // Handle errors if needed
                 });
         });
 
+
         const [betSlipMobile, setBetSlipMobile] = useState(false);
-
-
-
-
 
         return (
             <div className={'jp-placebet-container'}>
-                <div className={`fixed-bottom text-white d-block  shadow-lg betslip-container-mobile jackpot-page-structure ${
+                <div
+                    className={`fixed-bottom text-white d-block  shadow-lg betslip-container-mobile jackpot-page-structure ${
                         betSlipMobile ? "d-flex" : "d-none"
                     }`}
                     style={{margin: "auto", marginBottom: "6.5rem"}}
@@ -267,17 +271,18 @@ const MobileMenu = React.memo(
                     <tbody>
                     <tr className={"info-slip-bets d-flex w-100 justify-content-between px-3"}>
 
-                        <td className={"bet-align-left-jackpot bold"} style={{fontSize:"15px"}}>
+                        <td className={"bet-align-left-jackpot bold"} style={{fontSize: "15px"}}>
                             Bet Amount
                         </td>
-                        <td className={"bet-align-left-jackpot bold"} style={{color:"var(--gold)",fontSize:"15px"}}>
+                        <td className={"bet-align-left-jackpot bold"} style={{color: "var(--gold)", fontSize: "15px"}}>
                             {jackpot_stake}/=
                         </td>
                     </tr>
                     <tr className={"d-flex w-100 justify-content-between px-4"}>
                         <td className={`d-flex align-items-center bet-align-left w-100`}>
                             <div className="d-flex align-items-center w-100 justify-content-between ">
-                                <div className={"d-flex align-items-center flex-column bold jackpot-autopick"} onClick={randomize} style={{fontSize:"15px"}}>
+                                <div className={"d-flex align-items-center flex-column bold jackpot-autopick"}
+                                     onClick={randomize} style={{fontSize: "15px"}}>
                                     <FontAwesomeIcon icon={faShuffle} style={{fontSize: "18px", color: "var(--light)"}}
                                                      title={"Auto Pick"}/> Auto Pick
                                 </div>
@@ -286,11 +291,17 @@ const MobileMenu = React.memo(
                                         <div className={"d-flex bet-select-values w-100 mt-2 p-lg-2 p-md-2 py-sm-0"}
                                              style={{whiteSpace: "nowrap"}}>
                                             <Formik>
-                                                <Form>
-                                                    {/* Your form fields */}
-                                                    <SubmitButton title="PLACE BET" className="place-bet-btn jp-button bold "
-                                                                  button_size={true} />
-                                                </Form>
+                                                {({ isSubmitting }) => (
+                                                    <Form>
+                                                        {/* Your form fields */}
+                                                        <SubmitButton
+                                                            title="PLACE BET"
+                                                            className="place-bet-btn jp-button bold"
+                                                            button_size={true}
+                                                            isSubmitting={isSubmitting} // Pass isSubmitting as a prop
+                                                        />
+                                                    </Form>
+                                                )}
                                             </Formik>
                                         </div>
 
@@ -312,15 +323,15 @@ const MobileMenu = React.memo(
                                     icon={faExclamationCircle}
                                     style={{color: "var(--betnare-login-button)", fontSize: "12px"}}/> Picked
                                     &nbsp;{getJackpotBetslip() != null
-                                        ? <strong>{Object.keys(getJackpotBetslip())?.length}</strong>
+                                        ? <strong>{Object.keys(jackpot_data||getJackpotBetslip())?.length}</strong>
                                         : <strong className={'slip-count-color'}>0</strong>
                                     } /{jackpot_games} Matches
                                 </span>
 
                                 </div>
-                                <div className={"bold"} style={{color: "var(--gold", fontSize:"15px"}}>
+                                <div className={"bold"} style={{color: "var(--gold", fontSize: "15px"}}>
                                     KES&nbsp;
-                                    {winnings&&Number(winnings).toLocaleString()
+                                    {winnings && Number(winnings).toLocaleString()
                                     }
                                 </div>
                             </div>
@@ -333,4 +344,4 @@ const MobileMenu = React.memo(
             </div>
         );
     });
-export default React.memo(MobileMenu);
+export default React.memo(JackpotMenu);

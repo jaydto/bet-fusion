@@ -24,7 +24,7 @@ const initialState = {
         kiron: null,
         slip:null,
         betslip:null,
-        jackpot_bestlip:null,
+        jackpotbestlip:null,
     },// Initial state for the betting Slice reducer
     auth: {
         isLoading: false,

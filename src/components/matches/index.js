@@ -564,6 +564,7 @@ const OddButton = React.memo(
         const settings = getFromLocalStorage("settings");
         const ref = useRef();
         let reference = match.match_id + "_selected";
+
         const [betslip_key, setBetslipKey] = useState("betslip");
 
         const updateBeslipKey = useCallback(() => {
@@ -572,8 +573,49 @@ const OddButton = React.memo(
             }
         }, [jackpot]);
 
+        const [slipType, setSlipType]=useState(jackpot?getJackpotBetslip():getBetslip())
+        const betslip_data_item=useSelector((state)=>state.betting.betslip)
+        const jackpot_slip_data_item=useSelector((state)=>state.betting.jackpotbestlip)
+        useEffect(() => {
+            if(jackpot){
+                setSlipType(getJackpotBetslip())
+            }else{
+                setSlipType(getBetslip())
+            }
+
+        }, [betslip_data_item,jackpot_slip_data_item,getJackpotBetslip(),getBetslip()]);
+
+        console.log("betslip_item", slipType)
+        console.log("betslip_item_type", betslip_data_item+" jp: "+jackpot_slip_data_item)
+
+
         const updatePickedChoices = useCallback(() => {
-            const betslip = jackpot ? getJackpotBetslip() : getBetslip() || {};
+            const betslip = jackpot ? jackpot_slip_data_item || getJackpotBetslip() : betslip_data_item ||getBetslip() || {};
+            const referencedState = dispatchRedux(getSelected(reference));
+            console.log("referenced_state", referencedState)
+            if (typeof referencedState === 'string') { // Check if referencedState is a string
+                if (referencedState.startsWith("remove.")) {
+                    setPicked("");
+                    // dispatchRedux(removePickedData(""));
+                }else{
+                    let uc = clean(
+                        match.match_id +
+                        "" +
+                        match.sub_type_id +
+                        (match?.[mkt] || match?.odd_key || "draw")
+                    );
+
+
+
+                    if (referencedState === uc) {
+                        setPicked("picked");
+                        // dispatchRedux(setPickedData("picked"));
+                    } else {
+                        setPicked("");
+                        // dispatchRedux(removePickedData(""));
+                    }
+                }
+            }
 
             let uc = clean(
                 match.match_id +
@@ -587,14 +629,41 @@ const OddButton = React.memo(
                 uc == betslip?.[match.match_id]?.ucn
             ) {
                 setPicked("picked");
-                // dispatchRedux(setPickedData("picked"));
 
             } else {
                 setPicked("");
-                // dispatchRedux(removePickedData(""));
 
             }
-        }, [match, mkt, jackpot]);
+        }, [match, mkt, jackpot, slipType, betslip_data_item, jackpot_slip_data_item]);
+
+        const updatePicked = useCallback(() => {
+            const referencedState = dispatchRedux(getSelected(reference));
+            console.log("referenced_state", referencedState)
+            if (typeof referencedState === 'string') { // Check if referencedState is a string
+                if (referencedState.startsWith("remove.")) {
+                    setPicked("");
+                    // dispatchRedux(removePickedData(""));
+                }else{
+                    let uc = clean(
+                        match.match_id +
+                        "" +
+                        match.sub_type_id +
+                        (match?.[mkt] || match?.odd_key || "draw")
+                    );
+
+
+
+                    if (referencedState === uc) {
+                        setPicked("picked");
+                        // dispatchRedux(setPickedData("picked"));
+                    } else {
+                        setPicked("");
+                        // dispatchRedux(removePickedData(""));
+                    }
+                }
+            }
+
+        }, [ jackpot, slipType, betslip_data_item, jackpot_slip_data_item, reference]);
 
         const updateOddValue = useCallback(() => {
             if (match) {
@@ -621,38 +690,30 @@ const OddButton = React.memo(
             }
         }, [match, mkt]);
 
-        const updateMatchPicked = () => {
-            const referencedState = dispatchRedux(getSelected(reference));
-            console.log("referenced_state", referencedState)
-            if (typeof referencedState === 'string') { // Check if referencedState is a string
-                if (referencedState.startsWith("remove.")) {
-                    setPicked("");
-                    // dispatchRedux(removePickedData(""));
-                } else {
-                    let uc = clean(
-                        match.match_id +
-                        "" +
-                        match.sub_type_id +
-                        (match?.[mkt] || match?.odd_key || "draw")
-                    );
-
-                    if (referencedState === uc) {
-                        setPicked("picked");
-                        // dispatchRedux(setPickedData("picked"));
-                    } else {
-                        setPicked("");
-                        // dispatchRedux(removePickedData(""));
-                    }
-                }
+        useEffect(() => {
+            const betslip=jackpot?getJackpotBetslip():getBetslip()
+            const betslip_data={
+                betslip_type:betslip_key,
+                data:betslip
             }
-        };
+            dispatchRedux(setMatchBetslip(betslip_data))
+        }, [jackpot]);
+
+        useEffect(() => {
+            updatePickedChoices();
+        }, []);
+
+        useEffect(() => {
+            updatePicked()
+        }, [ updatePicked]);
+
         useEffect(() => {
             updateBeslipKey();
-            updatePickedChoices();
             updateOddValue();
-            updateMatchPicked();
 
-        }, [updateBeslipKey, updatePickedChoices, updateOddValue, updateMatchPicked]);
+        }, [updateBeslipKey, updateOddValue]);
+
+
 
         const maxPickReached = () => {
             // console.log("max_pick_reached")
@@ -714,6 +775,7 @@ const OddButton = React.memo(
                 };
 
                 if (cstm === ucn) {
+                    console.log("this is a conditional check")
                     let betslip;
                     if (picked === "picked") {
                         betslip =
@@ -721,10 +783,8 @@ const OddButton = React.memo(
                                 ? removeFromSlip(attributes.match_id)
                                 : removeFromJackpotSlip(attributes.match_id);
 
-                        // dispatchRedux(removePickedData(""));
                         setPicked("");
                         dispatchRedux(removeSelected(reference))
-                        // dispatch({type: "SET", key: reference, payload: null});
                     } else {
 
                         if(!jackpot&&Object.keys(betItems || {}).length===Number(settings?.sportsBookLimits?.multiBetMaxSelections)){
@@ -1352,7 +1412,7 @@ const MatchRow = React.memo(
 
 export const MarketList = React.memo(
     (props) => {
-        const {live, allMarkets, pdown, groups} = props;
+        const {live, allMarkets, pdown} = props;
         const [filters, setFilters] = useState({});
         const [perPage,] = useState(1000);
         const [currentPage,] = useState(1);
@@ -1406,7 +1466,7 @@ export const MarketList = React.memo(
         const market_groups=useSelector((state)=>state.matchesData.market_groups)
 
         const startIndex = (currentPage - 1) * perPage;
-        const endIndex = startIndex + perPage;
+        // const endIndex = startIndex + perPage;
         const marketsToShow = Object.entries(filters?.data?.odds || {});
         return (
             <div className="matches full-width" style={{marginBottom: "0px"}}>

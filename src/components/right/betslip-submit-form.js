@@ -197,26 +197,13 @@ const BetslipSubmitForm = React.memo(
         }, [betslipLength])
         const gaEventTracker = useAnalyticsEventTracker(live ? 'PlaceLiveBet' : 'PlacePrematchBet')
 
-        const handlePlaceBet = useCallback((values,
+        const handlePlaceBet = (values,
                                             {setSubmitting, resetForm, setStatus, setErrors}) => {
             let bs = Object.values(betslip || []);
 
             let slipHasOddsChange = false;
 
-            let jackpotMessage = 'jp'
-
-            if (jackpot) {
-
-                bs = bs.sort(function (a, b) {
-                    return Number(a.position) - Number(b.position);
-                });
-
-            }
-
             for (let slip of bs) {
-                if (jackpot) {
-                    jackpotMessage += "#" + slip.bet_pick
-                }
                 if (slip.prev_odds
                     && slip.prev_odds != slip.odd_value
                     && values.accept_all_odds_change === false) {
@@ -252,53 +239,19 @@ const BetslipSubmitForm = React.memo(
             };
             let endpoint = '/bet';
             let method = "GET"
-            let use_jwt = !jackpot
-            if (jackpot) {
-                payload.message = jackpotMessage
-                payload.jackpot_id = jackpotData?.jackpot_event_id
-                payload.slip = ''
-                endpoint = "/jp/bet"
-                method = "POST"
-            }
+            let use_jwt = true
+
 
             // const data = {
             //     event: jackpot ? 'place_jackpot_bet' : live ? 'place_live_bet' : 'place_prematch_bet',
             //     data: payload
             // }
             // gaEventTracker("Bet Placed", data)
-            dispatchRedux(bettingMatchesGames({endpoint:endpoint, method:method, data:payload, jackpot:jackpot})).then((response) => {
+            dispatchRedux(bettingMatchesGames({endpoint:endpoint, method:method, data:payload, jackpot:jackpot, use_jwt:use_jwt})).then((response) => {
                 // Check if the action was fulfilled successfully
                 if (bettingMatchesGames.fulfilled.match(response)) {
                     console.log("response_message", response?.message)
-                    if(jackpot){
-                        let betslips = getJackpotBetslip()
-                        Object.entries(betslips).map(([match_id, match]) => {
-                            // let slip=
-                            removeFromJackpotSlip(match_id)
 
-                            let match_selector = match.match_id + "_selected";
-                            let ucn = clean_rep(
-                                match.match_id
-                                + "" + match.sub_type_id
-                                + (match.bet_pick)
-                            );
-                            // dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
-                            const match_items={
-                                match_selector:match_selector,
-                                ucn:"remove." + ucn
-                            }
-                            dispatchRedux(resetStateBetslip("jackpot_betslip"))
-                            dispatchRedux(removeSlipSelection(match_items));
-
-                        });
-                        const betslip_data={
-                            betslip_type:"jackpotbetslip",
-                            data:{}
-                        }
-                        dispatchRedux(setMatchBetslip(betslip_data))
-
-                    }
-                    else{
                         // Dispatch the clearUcn action when fulfilled
                         setMessage(response?.payload)
                         let betslips = getBetslip();
@@ -322,7 +275,7 @@ const BetslipSubmitForm = React.memo(
                             data:{}
                         }
                         dispatchRedux(setMatchBetslip(betslip_data))
-                    }
+
                     setLocalStorage('betslip_share_code', null)
                     setLocalStorage('userStake', null)
                     dispatch({type: 'SET', key: 'userStake', data: null})
@@ -362,7 +315,7 @@ const BetslipSubmitForm = React.memo(
                 clearTimeout(timer)
             }, 10000)
             setSubmitting(false);
-        });
+        };
 
         const updateWinnings = useCallback(() => {
             if (betslip) {
@@ -472,11 +425,12 @@ const BetslipSubmitForm = React.memo(
                 dispatchRedux(removeSlipSelection(match_items));
 
             });
-            dispatch({
-                type: "SET",
-                key: jackpot ? "jackpotbetslip" : "betslip",
-                payload: {},
-            });
+
+            const betslip_data={
+                betslip_type:"betslip",
+                data:{}
+            }
+            dispatchRedux(setMatchBetslip(betslip_data))
             setMessage(null);
             // setLocalStorage("winnings",null)
             setLocalStorage('userStake', null)

@@ -15904,7 +15904,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     font-size: 12px;
 }
 .c-resize{
-    min-width:33%!important
+    min-width:25%!important
 }
 
 .home-team.disabled, .disabled, .draw.disabled, .away_team.disabled, .market-butt.disabled {

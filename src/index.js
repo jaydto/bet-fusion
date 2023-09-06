@@ -5,7 +5,6 @@ import store from "./redux/store";
 import {BrowserRouter, Navigate, Route, Routes, useNavigate,} from 'react-router-dom'
 import {setLocalStorage} from "./components/utils/local-storage";
 import reportWebVitals from './reportWebVitals';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/css/application.css';
 import './assets/css/tolkits.css';
 import './assets/css/sidebar-menu.css';

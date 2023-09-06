@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap');
-
+@import 'bootstrap/dist/css/bootstrap.min.css';
 .lite-version{
     color:#0DCAF0;
     height: 70vh;

@@ -5,7 +5,6 @@ import {Link, useLocation} from "react-router-dom";
 import useWindowDimensions from "./header/Dimensions";
 import {StoreContext} from "../context/store"
 import {getBetslip} from "./utils/betslip";
-import Countries from "./countries/Countries";
 import {ToastContainer} from "react-toastify";
 import MatchList, {marketChoiceOptions, MatchHeaderRow} from "./matches";
 import SkeletonLoaderMobile from "./pages/skeletonLoadersWeb/SkeletonLoaderMobile";
@@ -22,6 +21,7 @@ import {userBalance} from "../redux/authSlice";
 import {setMatchBetslip} from "../redux/bettingSlice";
 
 const Header = React.lazy(() => import('./header/header'));
+const Countries = React.lazy(() => import('./countries/Countries'));
 const Footer = React.lazy(() => import('./footer/footer'));
 const CarouselLoader = React.lazy(() => import('./carousel'));
 const MainTabs = React.lazy(() => import('./header/main-tabs'));
@@ -344,10 +344,10 @@ const Index = React.memo(
                                     </div>
                                 </div>
                                 <CarouselLoader/>
-                                {(newMatches&&tab!=="countries")?<MatchHeaderRow live={false} first_match={newMatches ? newMatches[0] : {}} loading={loading}/>:<></>}
+                                {(newMatches&&tab!=="countries")&&<MatchHeaderRow live={false} first_match={newMatches ? newMatches[0] : {}} loading={loading}/>}
                                 {loading ?
                                     <div className={`text-center mt-2 text-white d-block`}>
-                                        {tab == 'countries' ? <Skeleton1/> : <SkeletonLoaderMobile/>}
+                                        {tab === 'countries' ? <Skeleton1/> : <SkeletonLoaderMobile/>}
                                     </div> : tab == 'countries' ? <Countries/> :
                                         <div>
                                             <MatchList

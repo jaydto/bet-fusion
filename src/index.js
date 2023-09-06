@@ -37,13 +37,11 @@ const BetslipShareDecode = React.lazy(() => import('./components/betslip/Betslip
 
 const MatchAllMarkets = React.lazy(() => import('./components/all-markets'));
 
-
 const Jackpot = React.lazy(() => import('./components/Jackpot'));
 
 const Live = React.lazy(
     () => import('./components/live')
 );
-
 
 const HowToPlay = React.lazy(
     () => import('./components/pages/HowToPLay2')
@@ -96,7 +94,6 @@ const VerifyAccount = React.lazy(
 // const MobileApp = React.lazy(() => import('./components/pages/app'))
 const MobileApp = React.lazy(() => import('./components/pages/app'))
 
-
 const ProtectedRoute = React.lazy(
     () => import('./components/utils/protected-route')
 );
@@ -135,7 +132,6 @@ const BetslipPage =React.lazy(()=> import("./components/pages/betslip/betslipPag
 const Login=React.lazy(()=>import('./components/pages/loginTwo'));
 
 const NewProfile =React.lazy(()=>import( "./components/pages/Accounts/NewProfile"));
-
 
 const Promo = React.lazy(() => import('./components/pages/promotions/Promo'))
 const BetHistory =React.lazy(()=>import( "./components/pages/Accounts/component/BetHistory"));

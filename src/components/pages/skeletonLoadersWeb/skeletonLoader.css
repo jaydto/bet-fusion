@@ -65,7 +65,7 @@
 }
 .movie--isloading .loading-content .loading-main-text {
     height: 10px;
-    width: 65%;
+    width: 55%;
     margin-bottom: 10px;
     background: #ECECEC;
     background-image: linear-gradient(90deg, #ECECEC 0px, #ddd 40px, #ECECEC 80px);
@@ -76,7 +76,7 @@
 }
 .movie--isloading .loading-content .loading-sub-text {
     height: 10px;
-    width: 50%;
+    width: 37%;
     background: #ECECEC;
     background-image: linear-gradient(90deg, #ECECEC 0px, #ddd 40px, #ECECEC 80px);
     background-image: -webkit-linear-gradient(left, #ECECEC 0px, #ddd 40px, #ECECEC 80px);

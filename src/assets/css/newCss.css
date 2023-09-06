@@ -1,5 +1,4 @@
 
-@import 'bootstrap/dist/css/bootstrap.min.css';
 body {
     font-size: var(--betnare-font-size-nav);
     line-height: var(--body-line-weight);

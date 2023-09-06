@@ -4,7 +4,7 @@ import "../assets/css/bottomSheet.css"
 import {Link, useLocation} from "react-router-dom";
 import useWindowDimensions from "./header/Dimensions";
 import {StoreContext} from "../context/store"
-import {getBetslip} from "./utils/betslip";
+import {getBetslip, getJackpotBetslip} from "./utils/betslip";
 import {ToastContainer} from "react-toastify";
 import MatchList, {marketChoiceOptions, MatchHeaderRow} from "./matches";
 import SkeletonLoaderMobile from "./pages/skeletonLoadersWeb/SkeletonLoaderMobile";
@@ -48,6 +48,8 @@ const Index = React.memo(
         }, [userData])
 
 
+
+
         const markets = marketChoiceOptions();
         let sportValue = new URL(window.location).searchParams.get('sport_id')
         let url = new URL(window.location.href)
@@ -66,9 +68,7 @@ const Index = React.memo(
         useEffect(()=>{
             setNewLimit(limit)
         },[limit])
-        // useEffect(()=>{
-        //     setNewMatches(matches)
-        // },[matches])
+
 
         useEffect(()=>{
             if(limit!==10){
@@ -237,7 +237,14 @@ const Index = React.memo(
         }, [window.location.pathname, window.location.search]);
 
 
-
+        useEffect(() => {
+            const betslip=getBetslip()
+            const betslip_data={
+                betslip_type:'betslip',
+                data:betslip
+            }
+            dispatchRedux(setMatchBetslip(betslip_data))
+        }, []);
 
         useEffect(() => {
             /**

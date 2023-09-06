@@ -15,6 +15,8 @@ import SkeletonMobileJackpot from "./pages/skeletonLoadersWeb/SkeletonLoaderJack
 import caution from '../assets/img/mobile/caution.png'
 import {useDispatch, useSelector} from "react-redux";
 import {jackpotById, jackpotHistoryData, matchesJackpot} from "../redux/matchesSlice";
+import {getBetslip, getJackpotBetslip} from "./utils/betslip";
+import {setMatchBetslip} from "../redux/bettingSlice";
 
 const Header = React.lazy(() => import('./header/header'));
 const Right = React.lazy(() => import('./right'));
@@ -87,6 +89,14 @@ const Jackpot = React.memo(
                 return () => clearInterval(interval);
             }, [first_match?.meta?.start_time]);
 
+            useEffect(() => {
+                const betslip=getJackpotBetslip()
+                const betslip_data={
+                    betslip_type:"jackpotbetslip",
+                    data:betslip
+                }
+                dispatchRedux(setMatchBetslip(betslip_data))
+            }, []);
 
             return (
                 <div>

@@ -569,6 +569,7 @@ const OddButton = React.memo(
         const [slipType, setSlipType] = useState(jackpot ? getJackpotBetslip() : getBetslip())
         const betslip_data_item = useSelector((state) => state.betting.betslip)
         const jackpot_slip_data_item = useSelector((state) => state.betting.jackpotbestlip)
+
         useEffect(() => {
             if (jackpot) {
                 setSlipType(getJackpotBetslip())
@@ -612,7 +613,7 @@ const OddButton = React.memo(
 
         useEffect(() => {
             updatePicked()
-        }, [jackpot, slipType, betslip_data_item, jackpot_slip_data_item, mkt]);
+        }, [jackpot, slipType, betslip_data_item, jackpot_slip_data_item]);
 
         const updateOddValue = useCallback(() => {
             if (match) {
@@ -621,6 +622,9 @@ const OddButton = React.memo(
                 let uc = clean(
                     match_id + "" + sub_type_id + (match?.[mkt] || odd_key || "draw")
                 );
+                if (jackpot) {
+                    uc = "jp_" + uc;
+                }
 
                 setUcn(uc);
                 switch (mkt) {
@@ -638,9 +642,9 @@ const OddButton = React.memo(
                 }
             }
         }, [match, mkt]);
+
         useEffect(() => {
             updateOddValue();
-
         }, [updateOddValue]);
 
 

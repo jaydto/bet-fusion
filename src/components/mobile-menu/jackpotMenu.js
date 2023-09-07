@@ -44,7 +44,7 @@ const JackpotMenu = React.memo(
                 }
                 selections[index] = team
                 let selection = "jp_" + match?.match_id.toString() + match?.sub_type_id.toString() + team.toString();
-
+console.log("randomization")
                 document.querySelectorAll('button[custom="' + selection + '"]')?.forEach((el) => {
                     if (!el.classList.contains('picked')) {
                         el.click()
@@ -94,7 +94,7 @@ const JackpotMenu = React.memo(
 
         const handleRemoveAll = useCallback(() => {
             let betslips = getJackpotBetslip()
-            Object.entries(betslips).map(([match_id, match]) => {
+            Object.entries(betslips||{}).map(([match_id, match]) => {
                 // let slip=
                 removeFromJackpotSlip(match_id)
 

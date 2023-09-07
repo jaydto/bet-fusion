@@ -7660,8 +7660,8 @@ ul.sport {
     }
     .menu-wrapper {
         /*max-width: 100vw;*/
-        /*width: 100vw;*/
-        max-width: 991px;
+        width: 100vw;
+        /*max-width: 991px;*/
         display: inline-block;
         overflow-y: hidden;
         overflow-x: auto;

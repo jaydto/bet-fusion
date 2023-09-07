@@ -15,6 +15,7 @@ import {
 } from "../redux/matchesSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {setMatchBetslip} from "../redux/bettingSlice";
+import {MatchHeaderRow} from "./matches";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -56,9 +57,7 @@ const Live = React.memo(
             let betslip = findPostableSlip();
             let method_type = betslip ? "POST" : "GET";
             dispatchRedux(matchesLive({endpoint,method:method_type,data:betslip}))
-
-            // Clear the interval when fetchParams change
-            dispatchRedux(startFetchingMatches({endpoint,method:method_type,data:betslip, interval:5000, live:true}));
+            dispatchRedux(startFetchingMatches({endpoint,method:method_type,data:betslip, interval:6000, live:true}));
 
         };
 
@@ -66,7 +65,6 @@ const Live = React.memo(
         useEffect(()=>{
             dispatchRedux(stopFetchingMatches())
             dispatchRedux(setFetching("live_fetching",true))
-
             fetchData()
             let cachedSlips = getBetslip("betslip");
             const betslip_data={
@@ -74,6 +72,8 @@ const Live = React.memo(
                 data:cachedSlips
             }
             dispatchRedux(setMatchBetslip(betslip_data))
+            return ()=>{
+                dispatchRedux(stopFetchingMatches())}
         },[sportID])
 
         useEffect(() => {
@@ -82,14 +82,7 @@ const Live = React.memo(
                 setSportID(new_sport_id)
             }
         })
-        useEffect(()=>{
-            const abort=new AbortController()
-            dispatchRedux(stopFetchingMatches())
-            return ()=>{
-                dispatchRedux(stopFetchingMatches())
-                abort.abort()
-            }
-        },[])
+
         const homePageRef = useRef()
         const [scrolledPast, setScrolledPast] = useState(false);
         const [scrolledToTop, setScrolledToTop] = useState(false);
@@ -143,6 +136,7 @@ const Live = React.memo(
                             <div className="homepage mobile-full-height" ref={homePageRef}
                                  style={width < 991 ? {height: `${height}px`, overflowY: 'auto'} : {}}>
                                 <CarouselLoader/>
+                                {matches&&<MatchHeaderRow live={false} first_match={matches ? matches[0] : {}} loading={fetching}/>}
                                 <div className={`${width <= 991 ? "d-block" : "d-none"}`}>
                                     <LiveSideBar/>
                                 </div>

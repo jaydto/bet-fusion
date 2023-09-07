@@ -10,7 +10,7 @@ import {ToastContainer} from "react-toastify";
 import Skeleton1 from "./skeleton/skeleton";
 import {
     favoriteMarkets, matchesMoreLiveMarkets,
-    matchesMorePrematchMarkets, setFetching,
+    matchesMorePrematchMarkets, setFetching, setInitialLoadingState,
     startFetchingMoreMatches, stopFetchingMoreMatches
 } from "../redux/matchesSlice";
 import {useDispatch, useSelector} from "react-redux";
@@ -73,8 +73,14 @@ const AllMarkets = React.memo(
         useEffect(() => {
             const abortController = new AbortController();
             dispatchRedux(stopFetchingMoreMatches())
+            const data={
+                param_fetch_type:"more_markets",
+                match:id
+            }
+            dispatchRedux(setInitialLoadingState(data))
             dispatchRedux(setFetching("fetching",true))
             fetchPagedData();
+
             getFavoriteMarkets()
             return () => {
                 dispatchRedux(stopFetchingMoreMatches())

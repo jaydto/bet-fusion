@@ -302,8 +302,8 @@ export const matchesMorePrematchMarkets =
 
         }
     );
-export const setInitialLoadingState = createAction("matches/set", ({param_fetch_type="", tab="", sport_id="", filters=""}) => {
-    return {payload: {param_fetch_type, tab, sport_id, filters}};
+export const setInitialLoadingState = createAction("matches/set", ({param_fetch_type="", tab="", sport_id="", filters="", match=""}) => {
+    return {payload: {param_fetch_type, tab, sport_id, filters, match}};
 });
 
 export const setFetching = createAction("matches/setFetching", (type, status) => {
@@ -693,10 +693,13 @@ const matchesSlice = createSlice({
             })
             .addCase(matchesMorePrematchMarkets.pending, (state) => {
                 state.error = null;
-                state.more_matches = null
+                if (state.initialLoading) {
+                    state.more_matches = null
+                }
             })
             .addCase(matchesMorePrematchMarkets.fulfilled, (state, action) => {
                 state.fetching = false
+                state.initialLoading = false
                 state.loading = false;
                 state.more_matches = action.payload.data
                 state.user_slip_validation = action.payload.slip_data
@@ -705,15 +708,18 @@ const matchesSlice = createSlice({
             })
             .addCase(matchesMorePrematchMarkets.rejected, (state, action) => {
                 state.fetching = false;
+                state.initialLoading = false
                 state.loading = false;
                 state.error = action.error.message;
             })
             .addCase(matchesMoreLiveMarkets.pending, (state) => {
                 state.error = null;
-                state.more_matches = null
-            })
+                if (state.initialLoading) {
+                    state.more_matches = null
+                }            })
             .addCase(matchesMoreLiveMarkets.fulfilled, (state, action) => {
                 state.fetching = false;
+                state.initialLoading = false
                 state.loading = false;
                 state.user_slip_validation = action.payload.slip_data
                 state.producer_down = action.payload.producer_status === 1
@@ -722,6 +728,7 @@ const matchesSlice = createSlice({
             })
             .addCase(matchesMoreLiveMarkets.rejected, (state, action) => {
                 state.fetching = false;
+                state.initialLoading = false
                 state.loading = false;
                 state.error = action.error.message;
             })
@@ -785,21 +792,25 @@ const matchesSlice = createSlice({
                 state.error = action.error.message;
             })
             .addCase(setInitialLoadingState, (state, action) => {
-                const {param_fetch_type, tab, sport_id, filters} = action.payload;
+                const {param_fetch_type, tab, sport_id, filters, match} = action.payload;
                 // Append tab or sport_id to the list of visited tabs
+
                 if (param_fetch_type === "tabs") {
                     state.initialLoading = true
-                    state.visited_tabs = Array.from(new Set([...state.visited_tabs, tab]));
-                    // Update initialLoading based on visitedTabs
+                    state.visited_tabs = Array.from(new Set([...state.visited_tabs, tab]));// Update initialLoading based on visitedTabs
 
                 }else if(param_fetch_type==="filters"){
-                    state.visited_filters = Array.from(new Set([...state.visited_filters, filters]));
                     state.initialLoading = true
+                    state.visited_filters = Array.from(new Set([...state.visited_filters, filters]));
 
                 } else if(param_fetch_type==="sport_id"){
+                    state.initialLoading = true
                     state.visited_sport_id = Array.from(new Set([...state.visited_sport_id, sport_id]));
                     // Update initialLoading based on visitedTabs
+
+                }else if(param_fetch_type === "more_markets"){
                     state.initialLoading = true
+                    state.visited_more_markets=   Array.from(new Set([...state.visited_more_markets, match]));
 
                 }
 

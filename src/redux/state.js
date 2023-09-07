@@ -82,6 +82,7 @@ const initialState = {
         error: null,
         user: null,
         visited_filters:[],
+        visited_more_markets:[],
         user_slip_validation:null,
         live_user_slip_validation:null,
         producer_down:null,

@@ -206,7 +206,7 @@ const Index = React.memo(
                 setSportID(new_sport_id)
                 const data={
                     param_fetch_type:"sport_id",
-                    tab:new_sport_id
+                    sport_id:new_sport_id
                 }
                 dispatchRedux(setInitialLoadingState(data))
 
@@ -312,7 +312,7 @@ const Index = React.memo(
         const setFilterPicked=(filters)=>{
             const data={
                 param_fetch_type:"filters",
-                tab:filters
+                filters:filters
             }
             dispatchRedux(setInitialLoadingState(data))
         }

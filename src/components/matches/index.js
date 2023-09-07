@@ -593,7 +593,6 @@ const OddButton = React.memo(
                 if (jackpot) {
                     uc = "jp_" + uc;
                 }
-                console.log("referenced_state: ",referencedState+" uc: "+uc)
 
                 if (referencedState === uc ) {
                     setPicked("picked");

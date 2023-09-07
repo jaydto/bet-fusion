@@ -147,6 +147,10 @@ const dataSlice = createSlice({
                 state.show_modal=true
 
             })
+            .addCase(userSelfExclusion.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
             .addCase(resetState, (state, action) => {
                 const stateToReset = action.payload;
                 if (state.hasOwnProperty(stateToReset)) {
@@ -154,10 +158,7 @@ const dataSlice = createSlice({
                 }
                 state.error = null;
             })
-            .addCase(userSelfExclusion.rejected, (state, action) => {
-                state.loading = false;
-                state.error = action.error.message;
-            })
+
             .addCase(userWithdrawal.pending, (state) => {
                 state.withdraw_loading=true;
                 state.error = null;

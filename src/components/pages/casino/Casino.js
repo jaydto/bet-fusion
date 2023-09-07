@@ -6,12 +6,11 @@ import {setLocalStorage} from "../../utils/local-storage";
 import {Button, ButtonGroup} from "react-bootstrap";
 import SearchComponent from "./searchField";
 import {StoreContext } from "../../../context/store"
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
 import {useNavigate} from "react-router-dom";
 import aviator from '../../../assets/img/aviator.png'
-import {Link} from  'react-router-dom'
- 
+import {useDispatch, useSelector} from "react-redux";
+import {casinoList} from "../../../redux/virtualsSlice";
+
 const Casino = React.memo(
     () => {
 
@@ -20,17 +19,28 @@ const Casino = React.memo(
         const [games, setGames] = useState([])
 
         const { state } = useContext(StoreContext);
+        const dispatchRedux=useDispatch()
+        // const loading=useSelector((state)=>state.virtuals.loading)
+        const casino_games=useSelector((state)=>state.virtuals.casino_games)
+        const casino_categories=useSelector((state)=>state.virtuals.casino_categories)
+
+        useEffect(()=>{
+            if(casino_games){
+                setGames(casino_games)
+            }
+            if(casino_categories){
+                setCategories(casino_categories)
+            }
+        }, [casino_games, casino_categories])
 
         const fetchGames = async (category = 'vs') => {
             let endpoint = "/v1/casino-games?game-type-id=" + category
             let method = "GET"
-            await makeRequest({url: endpoint, method: method}).then(([status, result]) => {
-                if (status === 200) {
-                    setCategories(result.types)
-                    setGames(result.data)
-                    setLocalStorage('category_games', result.data)
-                }
-            });
+            const data={
+                endpoint:endpoint,
+                method:method
+            }
+            dispatchRedux(casinoList(data))
         }
 
         const getCategoryGames = (category) => {

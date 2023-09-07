@@ -9,6 +9,7 @@ import nareLeagueReducer from "./nareLeague"
 import bettingReducer from "./bettingSlice"
 import matchesReducer from "./matchesSlice"
 import scrollReducer from './ScrollBehaviorSlice';
+import virtualsReducer from './virtualsSlice';
 
 
 const rootReducer = combineReducers({
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
     betting: bettingReducer,
     matchesData:matchesReducer,
     scroll: scrollReducer,
+    virtuals: virtualsReducer,
 
 });
 

@@ -16,7 +16,6 @@ import {useSelector} from "react-redux";
 const Virtuals = React.memo(
     (props) => {
 
-
         const [categories, setCategories] = useState([])
 
         const {state} = useContext(StoreContext )

@@ -16,6 +16,16 @@ const initialState = {
         show_modal:null,
 
     }, // Initial state for the data reducer
+    virtuals: {
+        loading:false,
+        error:null,
+        casino_games:null,
+        show_modal:null,
+        casino_categories:null,
+        casino_game_url:null,
+        fetching:null
+
+    }, // Initial state for the virtuals reducer
     betting: {
         bet_placement_message:null,
         loading: false,

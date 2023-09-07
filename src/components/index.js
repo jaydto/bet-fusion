@@ -310,7 +310,6 @@ const Index = React.memo(
 
         }
         const setFilterPicked=(filters)=>{
-            console.log("filters", filters)
             const data={
                 param_fetch_type:"filters",
                 tab:filters

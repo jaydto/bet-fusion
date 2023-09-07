@@ -51,7 +51,6 @@ const JackpotMenu = React.memo(
                     }
                 })
             })
-            console.log("selections", selections)
             setSelections(selections)
         }
 
@@ -162,7 +161,6 @@ const JackpotMenu = React.memo(
                 .then((response) => {
                     // Check if the action was fulfilled successfully
                     if (bettingMatchesGames.fulfilled.match(response)) {
-                        console.log("response_message", response?.message)
 
                         let betslips = getJackpotBetslip()
                         Object.entries(betslips).map(([match_id, match]) => {
@@ -198,7 +196,6 @@ const JackpotMenu = React.memo(
                         //     message: response?.message
                         // }
                         // gaEventTracker("Bet Placement Failed " + response?.message, data)
-                        console.log("response_error", response?.error?.message)
 
                         let response_message = response?.error?.message;
                         if (response_message === "" || response_message === undefined) {

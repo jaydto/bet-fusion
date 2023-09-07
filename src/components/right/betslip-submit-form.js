@@ -256,7 +256,6 @@ const BetslipSubmitForm = React.memo(
             dispatchRedux(bettingMatchesGames({endpoint:endpoint, method:method, data:payload, jackpot:jackpot, use_jwt:use_jwt})).then((response) => {
                 // Check if the action was fulfilled successfully
                 if (bettingMatchesGames.fulfilled.match(response)) {
-                    console.log("response_message", response?.message)
 
                         // Dispatch the clearUcn action when fulfilled
                         setMessage(response?.payload)
@@ -290,7 +289,6 @@ const BetslipSubmitForm = React.memo(
                     //     message: response?.message
                     // }
                     // gaEventTracker("Bet Placement Failed " + response?.message, data)
-                    console.log("response_error",  response?.error?.message)
 
                     let response_message = response?.error?.message;
                     if (response_message === "" || response_message === undefined) {

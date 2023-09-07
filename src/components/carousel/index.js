@@ -2,8 +2,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import makeRequest from "../utils/fetch-request";
-import { StoreContext } from "../../context/store";
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {carouselImages} from "../../redux/dataSlice";
@@ -38,10 +36,12 @@ const CarouselLoader = React.memo(
                             loading={"lazy"}
                             title={banner?.title}
                             className="d-block w-100 cursor-pointer"
-                            style={{ display: imageLoaded ? 'block' : 'none' }}
+                            style={{ display: imageLoaded ? 'block' : 'none', height: 'auto', // Allow the height to adjust based on the aspect ratio
+                            }}
                             src={banner?.image_url}
                             onLoad={onImageLoaded}
                             alt="Batnare"
+                            width={""}
                             effects="blur"
                             onClick={() => {
                                 navigate(banner?.desktop_link_url)

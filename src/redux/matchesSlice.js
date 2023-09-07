@@ -450,7 +450,6 @@ const matchesSlice = createSlice({
 
                 const newMatches = action.payload?.data;
                 state.searched_matches = newMatches;
-                console.log("matches", newMatches)
                 state.matches = newMatches;
 
                 if (newMatches.slip_data) {

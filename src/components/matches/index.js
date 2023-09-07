@@ -581,7 +581,6 @@ const OddButton = React.memo(
 
         const updatePicked = () => {
             const referencedState = dispatchRedux(getSelected(reference));
-            console.log("referenced_state_mkt", mkt)
 
             if (typeof referencedState === 'string') { // Check if referencedState is a string
                 let uc = clean(
@@ -713,7 +712,6 @@ const OddButton = React.memo(
                 }
 
                 if (cstm === ucn) {
-                    console.log("this is a conditional check")
                     let betslip;
                     if (picked === "picked") {
                         betslip =
@@ -1404,28 +1402,6 @@ export const MarketList = React.memo(
 
         const market_groups = useSelector((state) => state.matchesData.market_groups)
 
-        // useEffect(() => {
-        //     const betslip = getBetslip()
-        //     const betslip_data = {
-        //         betslip_type: 'betslip',
-        //         data: betslip
-        //     }
-        //     Object.entries(betslip || {}).map(([matchId, match]) => {
-        //         let uc = clean(
-        //             match.match_id +
-        //             "" +
-        //             match.sub_type_id +
-        //             (match?.bet_pick || "draw")
-        //         );
-        //         const reference = matchId + "_selected";
-        //         console.log("reference:", reference, "uc:", uc);
-        //         dispatchRedux(setSelected(reference, uc));
-        //     });
-        //
-        //     dispatchRedux(setMatchBetslip(betslip_data))
-        //
-        // }, []);
-
 
         const startIndex = (currentPage - 1) * perPage;
         // const endIndex = startIndex + perPage;
@@ -1551,7 +1527,6 @@ export const JackpotMatchList = React.memo(
 
                 let uc = clear_rep("jp_" + match?.match_id.toString() + match?.sub_type_id.toString() + (match?.bet_pick || "draw"));
                 const reference = "jp_" + matchId + "_selected";
-                console.log("reference:", reference, "uc:", uc);
                 dispatchRedux(setSelected(reference, uc));
             });
 
@@ -1638,7 +1613,6 @@ const MatchList = React.memo(
                     (match?.bet_pick || "draw")
                 );
                 const reference = matchId + "_selected";
-                console.log("reference:", reference, "uc:", uc);
                 dispatchRedux(setSelected(reference, uc));
             });
 
@@ -1648,8 +1622,6 @@ const MatchList = React.memo(
 
         return (
             <div className="matches full-width">
-                {/*{matches && <MatchHeaderRow live={live} first_match={matches ? matches[0] : {}}/>}*/}
-
                 <div className="web-element top-login-background-img-bg w-100">
                     {matches &&
                         Object.entries(matches).map(([key, match], index) => (

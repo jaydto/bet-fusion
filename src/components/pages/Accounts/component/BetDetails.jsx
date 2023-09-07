@@ -336,7 +336,6 @@ const BetDetails = (props) => {
         let data = {
             "bet_id": bet_id
         }
-        console.log("matches_share_data", data)
         dispatchRedux(matchesShareBet(data))
     };
 

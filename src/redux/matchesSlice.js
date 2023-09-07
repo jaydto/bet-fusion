@@ -694,6 +694,7 @@ const matchesSlice = createSlice({
             })
             .addCase(matchesMorePrematchMarkets.pending, (state) => {
                 state.error = null;
+                state.more_matches = null
             })
             .addCase(matchesMorePrematchMarkets.fulfilled, (state, action) => {
                 state.fetching = false
@@ -710,6 +711,7 @@ const matchesSlice = createSlice({
             })
             .addCase(matchesMoreLiveMarkets.pending, (state) => {
                 state.error = null;
+                state.more_matches = null
             })
             .addCase(matchesMoreLiveMarkets.fulfilled, (state, action) => {
                 state.fetching = false;

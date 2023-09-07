@@ -25,7 +25,13 @@ import Notify from "../utils/Notify";
 import {useDispatch, useSelector} from "react-redux";
 import {matchesShareBet, resetState} from "../../redux/matchesSlice";
 import {userBalance} from "../../redux/authSlice";
-import {bettingMatchesGames, removeSlipSelection, setMatchBetslip, resetStateBetslip} from "../../redux/bettingSlice";
+import {
+    bettingMatchesGames,
+    removeSlipSelection,
+    setMatchBetslip,
+    resetStateBetslip,
+    removeSelected
+} from "../../redux/bettingSlice";
 
 const BetslipShareModal = React.lazy(() =>
     import("../modals/BetslipShareModal")
@@ -257,17 +263,10 @@ const BetslipSubmitForm = React.memo(
                         let betslips = getBetslip();
                         Object.entries(betslips).map(([match_id, match]) => {
                             let match_selector = match.match_id + "_selected";
-                            let ucn = clean_rep(
-                                match.match_id
-                                + "" + match.sub_type_id
-                                + (match.bet_pick)
-                            );
-                            const match_items={
-                                match_selector:match_selector,
-                                ucn:"remove." + ucn
-                            }
+
                             dispatchRedux(resetStateBetslip("betslip"))
-                            dispatchRedux(removeSlipSelection(match_items));
+                            dispatchRedux(removeSelected(match_selector))
+
                         });
                         clearSlip();
                         const betslip_data={

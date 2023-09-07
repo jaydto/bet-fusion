@@ -162,7 +162,7 @@ export const marketChoice = () => {
 
 export const MatchHeaderRow = React.memo(
     (props) => {
-        const {live, first_match, jackpot,loading} = props;
+        const {live, first_match, jackpot, loading} = props;
         const categories = getFromLocalStorage('sport_categories')
         const sport_id = new URL(window.location).searchParams.get('sport_id') || 79
         let sport = categories?.all_sports?.filter((category) => category.sport_id == sport_id)
@@ -172,12 +172,12 @@ export const MatchHeaderRow = React.memo(
         const {state, dispatch} = useContext(StoreContext);
         const [extraMarketDisplays, setExtraMarketDisplays] = useState([])
         const [threeWay, setThreeWay] = useState(false)
-        const userData=useSelector((state)=>state.data.user)
-        const [user, setUser]=useState(getFromLocalStorage("user"))
+        const userData = useSelector((state) => state.data.user)
+        const [user, setUser] = useState(getFromLocalStorage("user"))
 
-        useEffect(()=>{
-            if(userData){
-                setUser(userData||getFromLocalStorage("user"))
+        useEffect(() => {
+            if (userData) {
+                setUser(userData || getFromLocalStorage("user"))
             }
         }, [userData])
         const getSelectedMarkets = () => {
@@ -185,7 +185,7 @@ export const MatchHeaderRow = React.memo(
 
             let url = new URL(window.location)
 
-            let sub_types = ( url.searchParams.get('sub_type_id') ||"1,18,29")?.split(",")
+            let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29")?.split(",")
 
             if (sub_types.includes("1")) {
                 setThreeWay(true)
@@ -238,7 +238,7 @@ export const MatchHeaderRow = React.memo(
                     {/*match heading*/}
                     <div className={"col flex-row justify-content-between space-bets"} style={{minWidth: "45%"}}>
                         {extraMarketDisplays && !jackpot && (
-                            <div className= {`${loading&&first_match?'d-none':'d-flex flex-row'}`}>
+                            <div className={`${loading && first_match ? 'd-none' : 'd-flex flex-row'}`}>
                                 <div className="d-flex flex-column text-center text-white mt-0 fit-ipad w-100">
 
                                     <div className={"c-btn-group align-self-end"}>
@@ -276,7 +276,7 @@ const MoreMarketsHeaderRow = React.memo(
         } = props;
         const [switches, setSwitches] = useState("scoreboard")
         const {state, dispatch} = useContext(StoreContext);
-        const dispatchRedux=useDispatch()
+        const dispatchRedux = useDispatch()
         const switchLmt = (value) => {
             setSwitches(value)
         }
@@ -557,52 +557,66 @@ const OddButton = React.memo(
     (props) => {
         const {match, mkt, detail, live, jackpot, marketKey, allMarkets} = props;
         const [ucn, setUcn] = useState("");
-        const [picked, setPicked]=useState("");
+        const [picked, setPicked] = useState("");
         const [oddValue, setOddValue] = useState(null);
         const {state, dispatch} = useContext(StoreContext);
-        const dispatchRedux=useDispatch()
+        const dispatchRedux = useDispatch()
         const settings = getFromLocalStorage("settings");
         const ref = useRef();
-        let reference = match.match_id + "_selected";
+        let reference = jackpot ? "jp_" + match.match_id + "_selected" : match.match_id + "_selected";
 
 
-        const [slipType, setSlipType]=useState(jackpot?getJackpotBetslip():getBetslip())
-        const betslip_data_item=useSelector((state)=>state.betting.betslip)
-        const jackpot_slip_data_item=useSelector((state)=>state.betting.jackpotbestlip)
+        const [slipType, setSlipType] = useState(jackpot ? getJackpotBetslip() : getBetslip())
+        const betslip_data_item = useSelector((state) => state.betting.betslip)
+        const jackpot_slip_data_item = useSelector((state) => state.betting.jackpotbestlip)
         useEffect(() => {
-            if(jackpot){
+            if (jackpot) {
                 setSlipType(getJackpotBetslip())
-            }else{
+            } else {
                 setSlipType(getBetslip())
             }
 
-        }, [betslip_data_item,jackpot_slip_data_item]);
-
+        }, [betslip_data_item, jackpot_slip_data_item]);
 
 
         const updatePicked = () => {
             const referencedState = dispatchRedux(getSelected(reference));
+            console.log("referenced_state_mkt", mkt)
+
             if (typeof referencedState === 'string') { // Check if referencedState is a string
-                if (referencedState.startsWith("remove.")) {
+                let uc = clean(
+                    match.match_id +
+                    "" +
+                    match.sub_type_id +
+                    (match?.[mkt] || match?.odd_key || "draw")
+                );
+
+                if (jackpot) {
+                    uc = "jp_" + uc;
+                }
+                console.log("referenced_state: ",referencedState+" uc: "+uc)
+
+                if (referencedState === uc ) {
+                    setPicked("picked");
+                    // dispatchRedux(setPickedData("picked"));
+                } else {
                     setPicked("");
                     // dispatchRedux(removePickedData(""));
-                }else{
-                    let uc = clean(
-                        match.match_id +
-                        "" +
-                        match.sub_type_id +
-                        (match?.[mkt] || match?.odd_key || "draw")
-                    );
-
-                    if (referencedState === uc) {
-                        setPicked("picked");
-                        // dispatchRedux(setPickedData("picked"));
-                    } else {
-                        setPicked("");
-                        // dispatchRedux(removePickedData(""));
-                    }
                 }
+
+            } else if (typeof referencedState !== "string") {
+                setPicked("")
+            }else{
+                setPicked("")
             }
+
+        };
+
+        useEffect(() => {
+            updatePicked()
+        }, [jackpot, slipType, betslip_data_item, jackpot_slip_data_item, mkt]);
+
+        const updateOddValue = useCallback(() => {
             if (match) {
                 const {match_id, sub_type_id, odds, odd_key} = match;
 
@@ -625,12 +639,11 @@ const OddButton = React.memo(
                         setOddValue(match.odd_value);
                 }
             }
-
-        };
-
+        }, [match, mkt]);
         useEffect(() => {
-            updatePicked()
-        }, [ jackpot, slipType, betslip_data_item, jackpot_slip_data_item]);
+            updateOddValue();
+
+        }, [updateOddValue]);
 
 
         const maxPickReached = () => {
@@ -668,6 +681,9 @@ const OddButton = React.memo(
                     attributes.odd_key +
                     (marketKey !== undefined ? marketKey : "")
                 );
+                if (jackpot) {
+                    cstm = "jp_" + cstm;
+                }
                 const betItems = getBetslip();
                 const slip = {
                     match_id: attributes.match_id,
@@ -692,6 +708,10 @@ const OddButton = React.memo(
                     position: match?.pos || 0,
                 };
 
+                if (jackpot) {
+                    slip.ucn = "jp_" + slip.ucn;
+                }
+
                 if (cstm === ucn) {
                     console.log("this is a conditional check")
                     let betslip;
@@ -705,9 +725,9 @@ const OddButton = React.memo(
                         dispatchRedux(removeSelected(reference))
                     } else {
 
-                        if(!jackpot&&Object.keys(betItems || {}).length===Number(settings?.sportsBookLimits?.multiBetMaxSelections)){
+                        if (!jackpot && Object.keys(betItems || {}).length === Number(settings?.sportsBookLimits?.multiBetMaxSelections)) {
                             maxPickReached()
-                        }else{
+                        } else {
                             betslip =
                                 jackpot !== true
                                     ? addToSlip(slip)
@@ -718,14 +738,14 @@ const OddButton = React.memo(
                         }
 
                     }
-                    const betslip_data={
-                        betslip_type:jackpot?"jackpotbetslip":"betslip",
-                        data:betslip
+                    const betslip_data = {
+                        betslip_type: jackpot ? "jackpotbetslip" : "betslip",
+                        data: betslip
                     }
                     dispatchRedux(setMatchBetslip(betslip_data))
                     // dispatch({type: "SET", key: betslip_key, payload: betslip});
                 }
-            }, [ucn, picked, jackpot, settings]);
+            }, [ucn, picked, jackpot, settings, allMarkets]);
 
         const OddValueDisplayMemoized = React.useCallback(
             () => <OddValueDisplay match={match} detail={detail} oddValue={oddValue}/>,
@@ -779,7 +799,7 @@ const MarketRow = React.memo((props) => {
     const [isExpanded, setIsExpanded] = useState(false);
     const {state, dispatch} = useContext(StoreContext);
     const dispatchRedux = useDispatch()
-    const moreMatches=useSelector((state)=>state.matchesData.more_matches)
+    const moreMatches = useSelector((state) => state.matchesData.more_matches)
     const favoriteMarketValue = useSelector((state) => state.matchesData.favorites_data) || getFromLocalStorage('favorite_markets') || []
     const [userFavoriteMarkets, setUserFavoriteMarkets] = useState(() => {
         return favoriteMarketValue
@@ -1006,7 +1026,7 @@ const MatchRow = React.memo(
 
             let url = new URL(window.location)
 
-            let sub_types = (url.searchParams.get('sub_type_id') ||"1,18,29")?.split(",")
+            let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29")?.split(",")
 
             sub_types = [sub_types[0]]
 
@@ -1048,7 +1068,7 @@ const MatchRow = React.memo(
         //     match.market_active = 1
         //     match.odds.home_odd_active = 1
         // }
-        let sub_types = (url.searchParams.get('sub_type_id') ||"1")?.split(",")
+        let sub_types = (url.searchParams.get('sub_type_id') || "1")?.split(",")
         const [totalMarkets] = useState(sub_types.length)
         let append = totalMarkets - Object.keys(match?.extra_odds || {}).length - 1
         let loops = []
@@ -1148,11 +1168,12 @@ const MatchRow = React.memo(
                     <div
                         className={`col d-flex  space-bets justify-content-lg-between  justify-spacing-ipad card-small`}>
 
-                        <div className={`d-flex to-flex-1 ${jackpot ? 'w-100':" "}`}>
+                        <div className={`d-flex to-flex-1 ${jackpot ? 'w-100' : " "}`}>
                             <div className="c-btn-group align-self-center to-flex-1 to-tabview">
                                 {threeWay &&
                                     <div className="d-flex flex-row ">
-                                        <div className="d-flex flex-column text-center text-white fit-ipad w-100 align-items-end">
+                                        <div
+                                            className="d-flex flex-column text-center text-white fit-ipad w-100 align-items-end">
 
                                             <div
                                                 className="d-flex flex-row px-1 justify-content-end change-date1 mobile-only display-ipad-dates">
@@ -1200,7 +1221,7 @@ const MatchRow = React.memo(
                             <div className={`c-btn-group align-self-center checking ${jackpot ? 'w-100' : ''}`}>
                                 {match?.odds?.home_odd
                                     ? (match?.odds?.home_odd && (!pdown && match?.odds?.home_odd && match.odds.home_odd !== 'NaN' &&
-                                        match.market_active == 1 && match.odds.home_odd_active == 1||jackpot)
+                                        match.market_active == 1 && match.odds.home_odd_active == 1 || jackpot)
                                         ? <OddButton match={match} mkt="home_team" live={live} jackpot={jackpot}/>
                                         : <EmptyTextRow odd_key={match?.odd_key} live={live}/>) :
                                     match?.odds?.home_odd ? <EmptyTextRow odd_key={match?.odd_key} live={live}/> : ''
@@ -1335,8 +1356,8 @@ export const MarketList = React.memo(
         const [perPage,] = useState(1000);
         const [currentPage,] = useState(1);
         const [groupMarketsAvailable, setGroupMarketsAvailable] = useState(null)
-        const moreMatches=useSelector((state)=>state.matchesData.more_matches)
-
+        const moreMatches = useSelector((state) => state.matchesData.more_matches)
+        const dispatchRedux=useDispatch()
         //  fetching More Markets from redux state
         const matchwithmarkets = moreMatches
 
@@ -1381,7 +1402,30 @@ export const MarketList = React.memo(
 
         }, [matchwithmarkets]);
 
-        const market_groups=useSelector((state)=>state.matchesData.market_groups)
+        const market_groups = useSelector((state) => state.matchesData.market_groups)
+
+        // useEffect(() => {
+        //     const betslip = getBetslip()
+        //     const betslip_data = {
+        //         betslip_type: 'betslip',
+        //         data: betslip
+        //     }
+        //     Object.entries(betslip || {}).map(([matchId, match]) => {
+        //         let uc = clean(
+        //             match.match_id +
+        //             "" +
+        //             match.sub_type_id +
+        //             (match?.bet_pick || "draw")
+        //         );
+        //         const reference = matchId + "_selected";
+        //         console.log("reference:", reference, "uc:", uc);
+        //         dispatchRedux(setSelected(reference, uc));
+        //     });
+        //
+        //     dispatchRedux(setMatchBetslip(betslip_data))
+        //
+        // }, []);
+
 
         const startIndex = (currentPage - 1) * perPage;
         // const endIndex = startIndex + perPage;
@@ -1429,7 +1473,7 @@ export const MarketList = React.memo(
                                                               className={'market-group-pill text-white badge badge-pill badge-primary bg-transparent p-2'}>
                             All Markets
                         </button>}
-                        {market_groups?.map((group,index) => (
+                        {market_groups?.map((group, index) => (
                             <button
                                 key={index}
                                 className={'market-group-pill text-white badge badge-pill badge-primary bg-transparent p-2'}
@@ -1488,27 +1532,29 @@ export const JackpotHeader = React.memo(
         )
 
     })
+const clear_rep = (str) => {
+    return str.replace(/\s/g, "");
+};
+
 
 export const JackpotMatchList = React.memo(
     (props) => {
         const {matches} = props;
-        const dispatchRedux=useDispatch()
+        const dispatchRedux = useDispatch()
         useEffect(() => {
-            const betslip=getJackpotBetslip()
-            const betslip_data={
-                betslip_type:"jackpotbetslip",
-                data:betslip
+            const betslip = getJackpotBetslip()
+            const betslip_data = {
+                betslip_type: "jackpotbetslip",
+                data: betslip
             }
-            Object.entries(betslip || {})?.map((match)=>{
-                let uc = clean(
-                    match.match_id +
-                    "" +
-                    match.sub_type_id +
-                    (match?.odd_key || "draw")
-                );
-                const reference=match.match_id+"_selected"
-                console.log("reference_jp: ",reference+" uc: "+uc)
-                dispatchRedux(setSelected(reference, uc))})
+            Object.entries(betslip || {}).map(([matchId, match]) => {
+
+                let uc = clear_rep("jp_" + match?.match_id.toString() + match?.sub_type_id.toString() + (match?.bet_pick || "draw"));
+                const reference = "jp_" + matchId + "_selected";
+                console.log("reference:", reference, "uc:", uc);
+                dispatchRedux(setSelected(reference, uc));
+            });
+
             dispatchRedux(setMatchBetslip(betslip_data))
 
         }, []);
@@ -1527,7 +1573,7 @@ export const JackpotMatchList = React.memo(
                     {matches ?
                         Object.entries(matches?.data).map(([key, match], index) => (
                             <MatchRow match={match} jackpot key={index}/>
-                        )):<></>
+                        )) : <></>
                     }
                     {(matches !== null && matches?.length === 0) &&
                         <div className="top-matches row  mx-2">
@@ -1544,7 +1590,7 @@ const MatchList = React.memo(
         const {live, matches, pdown, fetching, three_way, onEndReached} = props;
         // console.log("matches_data_match_list", matches);
         const listRef = useRef();
-        const dispatchRedux=useDispatch()
+        const dispatchRedux = useDispatch()
 
         const observerRef = useRef(); // Ref to hold the observer
 
@@ -1567,7 +1613,7 @@ const MatchList = React.memo(
                     observerRef.current.disconnect(); // Disconnect the observer when the component unmounts
                 }
             };
-        }, [onEndReached,fetching]);
+        }, [onEndReached, fetching]);
 
         useEffect(() => {
             if (!fetching) {
@@ -1579,17 +1625,17 @@ const MatchList = React.memo(
         }, [matches, fetching, observerRef]);
 
         useEffect(() => {
-            const betslip=getBetslip()
-            const betslip_data={
-                betslip_type:'betslip',
-                data:betslip
+            const betslip = getBetslip()
+            const betslip_data = {
+                betslip_type: 'betslip',
+                data: betslip
             }
             Object.entries(betslip || {}).map(([matchId, match]) => {
                 let uc = clean(
                     match.match_id +
                     "" +
                     match.sub_type_id +
-                    (match?.odd_key || "draw")
+                    (match?.bet_pick || "draw")
                 );
                 const reference = matchId + "_selected";
                 console.log("reference:", reference, "uc:", uc);

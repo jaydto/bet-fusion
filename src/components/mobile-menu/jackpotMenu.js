@@ -20,7 +20,13 @@ import {publicIpv4 as publicIp} from "public-ip";
 import Notify from "../utils/Notify";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {useDispatch, useSelector} from "react-redux";
-import {bettingMatchesGames, removeSlipSelection, resetStateBetslip, setMatchBetslip} from "../../redux/bettingSlice";
+import {
+    bettingMatchesGames,
+    removeSelected,
+    removeSlipSelection,
+    resetStateBetslip,
+    setMatchBetslip
+} from "../../redux/bettingSlice";
 
 const JackpotMenu = React.memo(
     (props) => {
@@ -37,8 +43,8 @@ const JackpotMenu = React.memo(
                     team = teams[Math.floor(Math.random() * teams.length)].replaceAll(" ", "")
                 }
                 selections[index] = team
-                let selection = match?.match_id.toString() + match?.sub_type_id.toString() +
-                    team.toString()
+                let selection = "jp_" + match?.match_id.toString() + match?.sub_type_id.toString() + team.toString();
+
                 document.querySelectorAll('button[custom="' + selection + '"]')?.forEach((el) => {
                     if (!el.classList.contains('picked')) {
                         el.click()
@@ -93,17 +99,9 @@ const JackpotMenu = React.memo(
                 // let slip=
                 removeFromJackpotSlip(match_id)
 
-                let match_selector = match.match_id + "_selected";
-                let ucn = clean_rep(
-                    match.match_id
-                    + "" + match.sub_type_id
-                    + (match.bet_pick)
-                );
-                const match_items = {
-                    match_selector: match_selector,
-                    ucn: "remove." + ucn
-                }
-                dispatchRedux(removeSlipSelection(match_items));
+                let match_selector = "jp_"+match.match_id + "_selected";
+
+                dispatchRedux(removeSelected(match_selector))
 
             });
             const betslip_data = {
@@ -172,18 +170,12 @@ const JackpotMenu = React.memo(
                             removeFromJackpotSlip(match_id)
 
                             let match_selector = match.match_id + "_selected";
-                            let ucn = clean_rep(
-                                match.match_id
-                                + "" + match.sub_type_id
-                                + (match.bet_pick)
-                            );
-                            // dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
-                            const match_items = {
-                                match_selector: match_selector,
-                                ucn: "remove." + ucn
-                            }
+
+
                             dispatchRedux(resetStateBetslip("jackpotbetslip"))
-                            dispatchRedux(removeSlipSelection(match_items));
+                            dispatchRedux(removeSelected(match_selector))
+
+                            // dispatchRedux(removeSlipSelection(match_items));
 
                         });
 

@@ -95,6 +95,12 @@ export const marketChoiceOptions = () => {
                     name: 'BTS',
                     market_name: 'Both Teams To Score',
                 },
+                {
+                    id: '10',
+                    name: 'DC',
+                    market_name: 'Double Chance',
+                },
+
             ],
         },
     ];

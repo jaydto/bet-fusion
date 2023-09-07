@@ -20,6 +20,7 @@ import {
 } from "../redux/matchesSlice";
 import {userBalance} from "../redux/authSlice";
 import {setMatchBetslip} from "../redux/bettingSlice";
+import {Button} from "react-bootstrap";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -328,7 +329,7 @@ const Index = React.memo(
                 <div className="flex-container">
                     <div className="item1" style={state?.sidebarToggled ? {width: '12%'} : {}}><SideBar
                         loadCompetitions/></div>
-                    <div className="item2">
+                    <div className={`item2 `} style={state?.bottomSheet?{background:'#13171c'}:{}}>
                         <div className="gz home match-overflow ">
                             <div className="homepage mobile-full-height" ref={homePageRef}
                                  style={width < 991 ? {height: `${height}px`, overflowY: 'auto'} : {}}>
@@ -369,10 +370,12 @@ const Index = React.memo(
                             </div>
                         </div>
                     </div>
-                    <div className="item3">
-                        <Right betslipValidationData={user_slip_validation}
-                               jackpotData={newMatches?.meta}
-                               test={true}/>
+                    <div className={"item3"}>
+                        <div className={`${state?.bottomSheet?'d-none':''}`}>
+                            <Right betslipValidationData={user_slip_validation}
+                                   jackpotData={newMatches?.meta}
+                                   test={true}/>
+                        </div>
                         <div className={`${state?.bottomSheet ? 'bottom-sheet show ' : 'd-none'}`} ref={bottomSheetRef}>
                             <div className="sheet-overlay"></div>
                             <div className="content">
@@ -389,6 +392,7 @@ const Index = React.memo(
                                             {market?.market_name}
                                         </Link>
                                     ))}
+                                    <Button onClick={()=>{collapseBottomSheet()}} className={"text-light bold color-inherit btn border-0"}>Cancel</Button>
 
                                 </div>
                             </div>

@@ -58,7 +58,6 @@ const CompetitionMatches = React.memo(
                 let url = new URL(window.location.href)
                 let sub_types = (url.searchParams.get('sub_type_id') || "1")
 
-
                 endpoint += `&sub_type_id=` + (sub_types || "1")
                 dispatchRedux(matchesCompetition({endpoint,method:"POST",data:betslip})); // Dispatch matchesCompetition with the updated fetchParams
 

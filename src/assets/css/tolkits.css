@@ -7172,7 +7172,10 @@ ul.sport {
         padding-bottom: 4px !important;
     }
 }
-
+.color-inherit{
+    background-color: inherit!important;
+    font-size:12px;
+}
 .change-display {
     display: flex !important;
     white-space: nowrap;

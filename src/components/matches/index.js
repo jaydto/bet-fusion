@@ -284,21 +284,25 @@ const MoreMarketsHeaderRow = React.memo(
         const switchLmt = (value) => {
             setSwitches(value)
         }
-        useEffect(() => {
-            window?.SIR && window?.SIR("addWidget", "#sr-widget", "match.lmtPlus", {
-                branding: {tabs: {option: "icon", variant: "fullWidth"}},
-                goalBannerImage:
-                    "https://storage.googleapis.com/nareimages/logo-white.webp",
-                logo: ["https://storage.googleapis.com/nareimages/logo-dark.webp"],
-                momentum: "disable",
-                matchId: parent_match_id,
-                collapseTo: switches,
-                layout: "single",
-                scoreboard: "extended",
-                detailedScoreboard: "disable",
-            });
 
-        });
+        const LMT = ({parent_match_id}) => {
+            useEffect(() => {
+                window?.SIR("addWidget", "#sr-widget-" + parent_match_id, "match.lmtPlus", {
+                    branding: {tabs: {option: "icon", variant: "fullWidth"}},
+                    goalBannerImage:
+                        "https://storage.googleapis.com/nareimages/logo-white.webp",
+                    logo: ["https://storage.googleapis.com/nareimages/logo-dark.webp"],
+                    momentum: "disable",
+                    matchId: parent_match_id,
+                    collapseTo: switches,
+                    layout: "single",
+                    scoreboard: "extended",
+                    detailedScoreboard: "disable",
+                });
+            })
+
+            return <div id={`sr-widget-${parent_match_id}`}></div>
+        }
 
         useEffect(() => {
             if (sport_id !== undefined && sport_id !== "") {
@@ -405,7 +409,7 @@ const MoreMarketsHeaderRow = React.memo(
 
 
                         </Row>
-                        <div id="sr-widget" className=""></div>
+                        <LMT parent_match_id={parent_match_id}/>
                         <ButtonGroup aria-label="stats button actions" className='w-100 d-flex justify-content-start'>
                             <Button className="place-bet-btn w-25 btn link" title="scoreboard" type="button"
                                     style={{background: "transparent", fontSize: "14px", border:"none"}} onClick={() => {
@@ -1599,7 +1603,7 @@ export const MarketList = React.memo(
             if (group_id === "favorite") {
                 filteredMarkets = elements.filter((market) => Number(market?.is_favorite) === 1)
             } else {
-                filteredMarkets = elements.filter((market) => Number(market?.group_id) === Number(group_id) || group_id === 'all')
+                filteredMarkets = elements.filter((market) => Number(market?.group_id) === Number(group_id) || group_id === 'main')
             }
             const match = filters?.data?.match;
 

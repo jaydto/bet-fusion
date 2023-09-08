@@ -1,4 +1,4 @@
-import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
+import React, {useCallback, useContext, useEffect, useLayoutEffect, useRef, useState} from 'react';
 import {StoreContext} from "../../context/store";
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
@@ -47,7 +47,13 @@ import {
 } from "../../redux/bettingSlice";
 
 const clean = (_str) => {
+    let t1 = performance.now();
     _str = _str.replace(/[^A-Za-z0-9\-]/g, '');
+    let t2 = performance.now();
+    let t3=t2-t1
+    console.log("cleanup_time_taken", t3)
+
+
     return _str.replace(/-+/g, '-');
 }
 
@@ -594,7 +600,6 @@ const MktBtn = React.memo(
         const updatePickedLoad = () => {
             // dispatchRedux(removePickedData(" "));
             const referencedState = dispatchRedux(getSelected(reference));
-            console.log("referencedState", referencedState);
             if (typeof referencedState === "string") {
                 dispatchRedux(setPickedData(referencedState));
             }
@@ -618,6 +623,8 @@ const MktBtn = React.memo(
 
         const handleButtonOnClick = useCallback(
             (event) => {
+                let t1 = performance.now();
+// Get the end time and the compute elapsed milliseconds.
                 const attributes = {
                     parent_match_id: event.currentTarget.getAttribute("parent_match_id"),
                     match_id: event.currentTarget.getAttribute("match_id"),
@@ -643,7 +650,13 @@ const MktBtn = React.memo(
                 if (jackpot) {
                     cstm = "jp_" + cstm;
                 }
+                let t4= performance.now();
                 const betItems = getBetslip();
+                let t5= performance.now();
+                let t6= t5-t4
+                console.log("time_to_read_from_local_storage", t6)
+
+                let t7= performance.now();
                 const slip = {
                     match_id: attributes.match_id,
                     parent_match_id: attributes.parent_match_id,
@@ -666,47 +679,51 @@ const MktBtn = React.memo(
                     market_active: attributes.market_active,
                     position: match?.pos || 0,
                 };
+                let t8= performance.now();
+                let t9= t8-t7
+                console.log("time_to_populate_slip", t9)
 
                 if (jackpot) {
                     slip.ucn = "jp_" + slip.ucn;
                 }
-
+                let t10= performance.now();
                 if (cstm === ucn) {
                     let betslip;
                     if (picked === ucn) {
-                        betslip =
-                            jackpot !== true
-                                ? removeFromSlip(attributes.match_id)
-                                : removeFromJackpotSlip(attributes.match_id);
+                        betslip = removeFromSlip(attributes.match_id)
 
                         dispatchRedux(removePickedData(""))
                         dispatchRedux(removeSelected(reference))
-                    } else {
+                    }
+                    else {
 
-                        if (!jackpot && Object.keys(betItems || {}).length === Number(settings?.sportsBookLimits?.multiBetMaxSelections)) {
+                        if (Object.keys(betItems || {}).length === Number(settings?.sportsBookLimits?.multiBetMaxSelections)) {
                             maxPickReached()
                         } else {
-                            betslip =
-                                jackpot !== true
-                                    ? addToSlip(slip)
-                                    : addToJackpotSlip(slip);
+                            betslip = addToSlip(slip)
+
                             dispatchRedux(setSelected(reference, cstm))
                             dispatchRedux(setPickedData(cstm))
-
-
-                            // dispatch({type: "SET", key: reference, payload: cstm});
                         }
 
                     }
                     const betslip_data = {
-                        betslip_type: jackpot ? "jackpotbetslip" : "betslip",
+                        betslip_type:  "betslip",
                         data: betslip
                     }
                     dispatchRedux(setMatchBetslip(betslip_data))
 
                 }
+                let t11= performance.now();
+                let t12=t11-t10
+                console.log("time_to_evaluate_action_to_be_taken", t12)
+
+                let t2 = performance.now();
+                let elapsed = t2 - t1;
+// Write the elapsed time to the browser title bar.
+                let time = elapsed + " ms";
+                console.log("timeTaken",time);
             }, [ucn, picked, jackpot, settings, allMarkets]);
-                console.log("picked_value", picked)
 
         return (
             <button
@@ -1563,6 +1580,9 @@ export const MarketList = React.memo(
         const [groupMarketsAvailable, setGroupMarketsAvailable] = useState(null)
         //  fetching More Markets from redux state
         const matchwithmarkets = useSelector((state) => state.matchesData.more_matches)
+        useLayoutEffect(() => {
+            window.scrollTo(0, 0);
+        }, []);
 
         const filterMarkets = (value, group) => {
             const elements = matchwithmarkets?.data?.odds;
@@ -1778,13 +1798,6 @@ const MatchList = React.memo(
 
         const observerRef = useRef(); // Ref to hold the observer
 
-        // useLayoutEffect(() => {
-        //     // Prevent the initial scroll to the listRef element
-        //     window.scrollTo(0, 0);
-        //     listRef.current.focus();
-        //
-        //     // listRef.current.style.scrollMarginTop = '0';
-        // }, []);
         useEffect(() => {
             const handleInitialScroll = () => {
                 if (listRef.current) {

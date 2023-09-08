@@ -326,7 +326,7 @@ const Index = React.memo(
                 <div className="flex-container">
                     <div className="item1" style={state?.sidebarToggled ? {width: '12%'} : {}}><SideBar
                         loadCompetitions/></div>
-                    <div className={`item2 `} style={state?.bottomSheet?{background:'#13171c'}:{}}>
+                    <div className={`item2 `} style={state?.bottomSheet?{opacity:'0.5',background:'#13171c'}:{}}>
                         <div className="gz home match-overflow ">
                             <div className="homepage mobile-full-height" ref={homePageRef}
                                  style={width < 991 ? {height: `${height}px`, overflowY: 'auto'} : {}}>

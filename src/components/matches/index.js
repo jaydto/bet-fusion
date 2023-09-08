@@ -1015,8 +1015,8 @@ const MktOddsButton = React.memo(
 
 const MarketRow = React.memo((props) => {
     const {markets, match, width, live, pdown, allMarkets} = props;
-    const [isExpanded, setIsExpanded] = useState(false);
-    const {state, dispatch} = useContext(StoreContext);
+    const [isExpanded, ] = useState(false);
+    const {state} = useContext(StoreContext);
     const dispatchRedux = useDispatch()
     const moreMatches = useSelector((state) => state.matchesData.more_matches)
     const favoriteMarketValue = useSelector((state) => state.matchesData.favorites_data) || getFromLocalStorage('favorite_markets') || []
@@ -1097,30 +1097,9 @@ const MarketRow = React.memo((props) => {
 
     const valuesforPreexpanding = () => {
         const allMarketNames = [...new Set(moreMatches?.data?.odds?.flatMap(item => item?.sub_type_id))];
-        const preExpandedMarkets = allMarketNames.slice(0, 5);
-        return preExpandedMarkets;
+        return allMarketNames.slice(0, 5);
     };
 
-    useEffect(() => {
-        const betslip = getBetslip()
-        const betslip_data = {
-            betslip_type: 'betslip',
-            data: betslip
-        }
-        Object.entries(betslip || {}).map(([matchId, match]) => {
-            let uc = clean(
-                match.match_id +
-                "" +
-                match.sub_type_id +
-                (match?.bet_pick || "draw")
-            );
-            const reference = matchId + "_selected";
-            dispatchRedux(setSelected(reference, uc));
-        });
-
-        dispatchRedux(setMatchBetslip(betslip_data))
-
-    }, []);
 
     return (
         <div className="top-matches match more-markets">
@@ -1212,8 +1191,7 @@ export const FormatDate2 = (props) => {
         const [hour, minute] = timeString.split(':');
 
         // Format the date and time
-        const formattedDateTime = `${month}/${day} ${hour}:${minute}`;
-        return formattedDateTime;
+        return `${month}/${day} ${hour}:${minute}`;
     }
 
 };
@@ -1595,8 +1573,6 @@ export const MarketList = React.memo(
     (props) => {
         const {live, allMarkets, pdown} = props;
         const [filters, setFilters] = useState({});
-        const [perPage,] = useState(1000);
-        const [currentPage,] = useState(1);
         const [groupMarketsAvailable, setGroupMarketsAvailable] = useState(null)
         //  fetching More Markets from redux state
         const matchwithmarkets = useSelector((state) => state.matchesData.more_matches)

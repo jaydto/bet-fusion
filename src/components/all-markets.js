@@ -9,11 +9,16 @@ import LiveSideBar from "./sidebar/live-sidebar";
 import {ToastContainer} from "react-toastify";
 import Skeleton1 from "./skeleton/skeleton";
 import {
-    favoriteMarkets, matchesMoreLiveMarkets,
-    matchesMorePrematchMarkets, setFetching, setInitialLoadingState,
-    startFetchingMoreMatches, stopFetchingMoreMatches
+    favoriteMarkets,
+    matchesMoreLiveMarkets,
+    matchesMorePrematchMarkets,
+    setFetching,
+    setInitialLoadingState,
+    startFetchingMoreMatches,
+    stopFetchingMoreMatches
 } from "../redux/matchesSlice";
 import {useDispatch, useSelector} from "react-redux";
+import {setMatchBetslip, setSelected} from "../redux/bettingSlice";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -40,11 +45,34 @@ const AllMarkets = React.memo(
 
         const findPostableSlip = () => {
             let betslips = getBetslip() || {};
-            var values = Object.keys(betslips).map(function (key) {
+            return Object.keys(betslips).map(function (key) {
                 return betslips[key];
             });
-            return values;
         };
+        const clean = (_str) => {
+            _str = _str.replace(/[^A-Za-z0-9\-]/g, '');
+            return _str.replace(/-+/g, '-');
+        }
+
+        const setInitialData=()=>{
+            const betslip = getBetslip()
+            const betslip_data = {
+                betslip_type: 'betslip',
+                data: betslip
+            }
+            Object.entries(betslip || {}).map(([matchId, match]) => {
+                let uc = clean(
+                    match.match_id +
+                    "" +
+                    match.sub_type_id +
+                    (match?.bet_pick || "draw")
+                );
+                const reference = matchId + "_selected";
+                dispatchRedux(setSelected(reference, uc));
+            });
+
+            dispatchRedux(setMatchBetslip(betslip_data))
+        }
 
 
         const fetchPagedData = async () => {
@@ -79,9 +107,11 @@ const AllMarkets = React.memo(
             }
             dispatchRedux(setInitialLoadingState(data))
             dispatchRedux(setFetching("fetching",true))
+            setInitialData()
             fetchPagedData();
-
             getFavoriteMarkets()
+
+
             return () => {
                 dispatchRedux(stopFetchingMoreMatches())
                 abortController.abort();

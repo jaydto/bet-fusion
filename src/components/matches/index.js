@@ -1,4 +1,4 @@
-import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
+import React, {useCallback, useContext, useEffect, useLayoutEffect, useRef, useState} from 'react';
 import {StoreContext} from "../../context/store";
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
@@ -39,7 +39,14 @@ import {
 import "react-accessible-accordion/dist/fancy-example.css";
 import {useDispatch, useSelector} from "react-redux";
 import {favoriteMarkets, favoriteMarketsData, marketGroups} from "../../redux/matchesSlice";
-import {getSelected, removeSelected, setMatchBetslip, setSelected} from "../../redux/bettingSlice";
+import {
+    getSelected,
+    removePickedData,
+    removeSelected,
+    setMatchBetslip,
+    setPickedData,
+    setSelected
+} from "../../redux/bettingSlice";
 
 const clean = (_str) => {
     _str = _str.replace(/[^A-Za-z0-9\-]/g, '');
@@ -175,7 +182,6 @@ export const MatchHeaderRow = React.memo(
         const [sportName, setSportName] = useState(sport != null ? sport?.[0]?.sport_name || 'Soccer' : "");
         const [showX, setShowX] = useState(true);
         const [market, setMarket] = useState('1x2');
-        const {state, dispatch} = useContext(StoreContext);
         const [extraMarketDisplays, setExtraMarketDisplays] = useState([])
         const [threeWay, setThreeWay] = useState(false)
         const userData = useSelector((state) => state.data.user)
@@ -559,6 +565,213 @@ const OddValueDisplay = React.memo(({match, detail, oddValue}) => (
     </>
 ));
 
+
+const MktBtn = React.memo(
+    (props) => {
+        const {match, mkt, detail, live, jackpot, marketKey, allMarkets} = props;
+        const [ucn, setUcn] = useState("");
+        const [oddValue, setOddValue] = useState(null);
+        const dispatchRedux = useDispatch()
+        const settings = getFromLocalStorage("settings");
+        let reference = match.match_id + "_selected";
+        const ref = useRef();
+        const picked=useSelector((state)=>state.betting.picked)
+
+        const updateOddValue = async () => {
+            return new Promise((resolve) => {
+                if (match) {
+                    const { match_id, sub_type_id, odds, odd_key } = match;
+
+                    let uc = clean(
+                        match_id + "" + sub_type_id + (match?.[mkt] || odd_key || "draw")
+                    );
+
+                    setUcn(uc);
+                    switch (mkt) {
+                        case "home_team":
+                            setOddValue(odds.home_odd);
+                            break;
+                        case "away_team":
+                            setOddValue(odds.away_odd);
+                            break;
+                        case "draw":
+                            setOddValue(odds.neutral_odd || odd_key);
+                            break;
+                        default:
+                            setOddValue(match.odd_value);
+                    }
+
+                    // Simulate an asynchronous operation using setTimeout
+                    setTimeout(() => {
+                        resolve(); // Resolve the promise after the update is done
+                    }, 0);
+                } else {
+                    resolve(); // Resolve immediately if there's no match
+                }
+            });
+        };
+
+        const updatePickedLoad = () => {
+            dispatchRedux(removePickedData(" "));
+            const referencedState = dispatchRedux(getSelected(reference));
+            console.log("referencedState", referencedState);
+            if (typeof referencedState === "string") {
+                dispatchRedux(setPickedData(referencedState));
+            }
+        };
+
+        useEffect(() => {
+            updateOddValue()
+            updatePickedLoad();
+        }, []);
+
+
+        const maxPickReached = () => {
+            // console.log("max_pick_reached")
+            dispatchRedux(removePickedData(" "))
+            // dispatchRedux(removePickedData(""));
+            Notify({
+                status: 401,
+                message: "Maximum selections reached",
+                token: "",
+            });
+        };
+
+        const handleButtonOnClick = useCallback(
+            (event) => {
+                const attributes = {
+                    parent_match_id: event.currentTarget.getAttribute("parent_match_id"),
+                    match_id: event.currentTarget.getAttribute("match_id"),
+                    sub_type_id: event.currentTarget.getAttribute("sub_type_id"),
+                    special_bet_value: event.currentTarget.getAttribute("special_bet_value"),
+                    odd_key: event.currentTarget.getAttribute("odd_key"),
+                    odd_value: event.currentTarget.getAttribute("odd_value"),
+                    bet_type: event.currentTarget.getAttribute("bet_type"),
+                    odd_type: event.currentTarget.getAttribute("odd_type"),
+                    start_time: event.currentTarget.getAttribute("start_time"),
+                    home_team: event.currentTarget.getAttribute("home_team"),
+                    away_team: event.currentTarget.getAttribute("away_team"),
+                    sport_name: event.currentTarget.getAttribute("sport_name"),
+                    market_active: event.currentTarget.getAttribute("market_active"),
+                };
+                let cstm = clean(
+                    attributes.match_id +
+                    "" +
+                    attributes.sub_type_id +
+                    attributes.odd_key +
+                    (marketKey !== undefined ? marketKey : "")
+                );
+                if (jackpot) {
+                    cstm = "jp_" + cstm;
+                }
+                const betItems = getBetslip();
+                const slip = {
+                    match_id: attributes.match_id,
+                    parent_match_id: attributes.parent_match_id,
+                    special_bet_value: attributes.special_bet_value,
+                    sub_type_id: attributes.sub_type_id,
+                    bet_pick: attributes.odd_key,
+                    start_time: attributes.start_time,
+                    odd_value: attributes.odd_value,
+                    home_team: attributes.home_team,
+                    away_team: attributes.away_team,
+                    bet_type: attributes.bet_type,
+                    odd_type: attributes.odd_type,
+                    sport_name: attributes.sport_name,
+                    live: live,
+                    ucn: clean(
+                        `${attributes.match_id}${attributes.sub_type_id}${attributes.odd_key}${
+                            marketKey !== undefined ? marketKey : ""
+                        }`
+                    ),
+                    market_active: attributes.market_active,
+                    position: match?.pos || 0,
+                };
+
+                if (jackpot) {
+                    slip.ucn = "jp_" + slip.ucn;
+                }
+
+                if (cstm === ucn) {
+                    let betslip;
+                    if (picked === ucn) {
+                        betslip =
+                            jackpot !== true
+                                ? removeFromSlip(attributes.match_id)
+                                : removeFromJackpotSlip(attributes.match_id);
+
+                        dispatchRedux(removePickedData(""))
+                        dispatchRedux(removeSelected(reference))
+                    } else {
+
+                        if (!jackpot && Object.keys(betItems || {}).length === Number(settings?.sportsBookLimits?.multiBetMaxSelections)) {
+                            maxPickReached()
+                        } else {
+                            betslip =
+                                jackpot !== true
+                                    ? addToSlip(slip)
+                                    : addToJackpotSlip(slip);
+                            dispatchRedux(setSelected(reference, cstm))
+                            dispatchRedux(setPickedData(cstm))
+
+
+                            // dispatch({type: "SET", key: reference, payload: cstm});
+                        }
+
+                    }
+                    const betslip_data = {
+                        betslip_type: jackpot ? "jackpotbetslip" : "betslip",
+                        data: betslip
+                    }
+                    dispatchRedux(setMatchBetslip(betslip_data))
+
+                }
+            }, [ucn, picked, jackpot, settings, allMarkets]);
+
+
+
+
+        return (
+            <button
+                ref={ref}
+                className={`home-team ${allMarkets ? "all-markets" : jackpot ? " jackpot-buttons-size" : ""} ${
+                    match.match_id
+                } ${ucn} ${oddValue&&picked===ucn?'picked':''} c-btn`}
+                home_team={match.home_team}
+                odd_type={match?.name || match?.market_name || "1X2"}
+                bet_type={live ? 1 : 0}
+                start_time={match?.start_time}
+                away_team={match.away_team}
+                market_active={match.market_active}
+                odd_value= {mkt=="home_team"?match?.odds?.home_odd:mkt=="away_team"?match?.odds?.away_odd:mkt=="draw"?match?.odds?.neutral_odd || match?.odd_key:match?.odd_value}
+                odd_key={match?.[mkt] || match?.odd_key || "draw"}
+                parent_match_id={match.parent_match_id}
+                match_id={match.match_id}
+                custom={ucn}
+                id={ucn}
+                sport_name={match?.sport_name}
+                sport_id={match.sport_id}
+                sub_type_id={match.sub_type_id}
+                special_bet_value={match?.special_bet_value || ""}
+                onClick={(e)=>handleButtonOnClick(e)}
+            >
+                <>
+                    {!detail && <span className="theodds odd-fix">{oddValue}</span>}
+                    {detail && (
+                        <>
+        <span className="label label-inverse blueish">
+          {match.display_name}
+        </span>
+                            <span className="label label-inverse blueish odd-value">
+          {mkt=="home_team"?match?.odds?.home_odd:mkt=="away_team"?match?.odds?.away_odd:mkt=="draw"?match?.odds?.neutral_odd || match?.odd_key:match?.odd_value}
+        </span>
+                        </>
+                    )}
+                </>
+            </button>
+        );
+    });
+
 const OddButton = React.memo(
     (props) => {
         const {match, mkt, detail, live, jackpot, marketKey, allMarkets} = props;
@@ -754,10 +967,6 @@ const OddButton = React.memo(
                 }
             }, [ucn, picked, jackpot, settings, allMarkets]);
 
-        const OddValueDisplayMemoized = React.useCallback(
-            () => <OddValueDisplay match={match} detail={detail} oddValue={oddValue}/>,
-            [match, detail, oddValue]
-        );
 
         return (
             <button
@@ -771,7 +980,7 @@ const OddButton = React.memo(
                 start_time={match?.start_time}
                 away_team={match.away_team}
                 market_active={match.market_active}
-                odd_value={oddValue}
+                odd_value= {mkt=="home_team"?match?.odds?.home_odd:mkt=="away_team"?match?.odds?.away_odd:mkt=="draw"?match?.odds?.neutral_odd || match?.odd_key:match?.odd_value}
                 odd_key={match?.[mkt] || match?.odd_key || "draw"}
                 parent_match_id={match.parent_match_id}
                 match_id={match.match_id}
@@ -783,7 +992,19 @@ const OddButton = React.memo(
                 special_bet_value={match?.special_bet_value || ""}
                 onClick={handleButtonOnClick}
             >
-                <OddValueDisplayMemoized/>
+                <>
+                    {!detail && <span className="theodds odd-fix">{oddValue}</span>}
+                    {detail && (
+                        <>
+        <span className="label label-inverse blueish">
+          {match.display_name}
+        </span>
+                            <span className="label label-inverse blueish odd-value">
+          {mkt=="home_team"?match?.odds?.home_odd:mkt=="away_team"?match?.odds?.away_odd:mkt=="draw"?match?.odds?.neutral_odd || match?.odd_key:match?.odd_value}
+        </span>
+                        </>
+                    )}
+                </>
             </button>
         );
     });
@@ -793,8 +1014,9 @@ const MktOddsButton = React.memo(
         const {match, mktodds, live, pdown, allMarkets} = props;
         const fullmatch = {...match, ...mktodds};
 
+
         return !pdown && fullmatch?.odd_value !== 'NaN' && fullmatch.market_active === 1 && fullmatch.odd_active === 1 ? (
-            <OddButton match={fullmatch} detail mkt={'detail'} live={live} allMarkets={allMarkets}/>
+            < MktBtn match={fullmatch} detail mkt={'detail'} live={live} allMarkets={allMarkets} />
         ) : (
             <EmptyTextRow odd_key={fullmatch?.display_name} allMarkets={allMarkets}/>
         );
@@ -888,6 +1110,27 @@ const MarketRow = React.memo((props) => {
         const preExpandedMarkets = allMarketNames.slice(0, 5);
         return preExpandedMarkets;
     };
+
+    useEffect(() => {
+        const betslip = getBetslip()
+        const betslip_data = {
+            betslip_type: 'betslip',
+            data: betslip
+        }
+        Object.entries(betslip || {}).map(([matchId, match]) => {
+            let uc = clean(
+                match.match_id +
+                "" +
+                match.sub_type_id +
+                (match?.bet_pick || "draw")
+            );
+            const reference = matchId + "_selected";
+            dispatchRedux(setSelected(reference, uc));
+        });
+
+        dispatchRedux(setMatchBetslip(betslip_data))
+
+    }, []);
 
     return (
         <div className="top-matches match more-markets">
@@ -1574,13 +1817,35 @@ export const JackpotMatchList = React.memo(
 const MatchList = React.memo(
     (props) => {
         const {live, matches, pdown, fetching, three_way, onEndReached} = props;
+        const loading=useSelector((state)=>state.matchesData.loading)
         // console.log("matches_data_match_list", matches);
         const listRef = useRef();
         const dispatchRedux = useDispatch()
 
         const observerRef = useRef(); // Ref to hold the observer
 
+        // useLayoutEffect(() => {
+        //     // Prevent the initial scroll to the listRef element
+        //     window.scrollTo(0, 0);
+        //     listRef.current.focus();
+        //
+        //     // listRef.current.style.scrollMarginTop = '0';
+        // }, []);
         useEffect(() => {
+            const handleInitialScroll = () => {
+                if (listRef.current) {
+                    listRef.current.style.display = 'none';
+                    window.scrollTo(0, 0);
+                    listRef.current.style.display = 'block';
+                }
+            };
+
+            // Delay the initial scroll behavior
+            setTimeout(handleInitialScroll, 0);
+        }, []);
+
+        useEffect(() => {
+
             observerRef.current = new IntersectionObserver(entries => {
                 if (entries[0].isIntersecting && !fetching) {
                     // Call the onEndReached function to fetch more data
@@ -1602,12 +1867,14 @@ const MatchList = React.memo(
         }, [onEndReached, fetching]);
 
         useEffect(() => {
+
             if (!fetching) {
                 // After fetching and updating the data, set up the observer again
                 if (listRef.current && observerRef.current) {
                     observerRef.current.observe(listRef.current);
                 }
             }
+
         }, [matches, fetching, observerRef]);
 
         useEffect(() => {
@@ -1645,7 +1912,7 @@ const MatchList = React.memo(
                             No events found.
                         </div>
                     }
-                    <div ref={listRef}></div>
+                    <div tabIndex="-1" ref={listRef}></div>
                 </div>
             </div>
         )

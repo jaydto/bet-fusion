@@ -580,24 +580,7 @@ const MktBtn = React.memo(
                 let uc = clean(
                     match_id + "" + sub_type_id + (match?.[mkt] || odd_key || "draw")
                 );
-                if (jackpot) {
-                    uc = "jp_" + uc;
-                }
-
                 setUcn(uc);
-                switch (mkt) {
-                    case "home_team":
-                        setOddValue(odds.home_odd);
-                        break;
-                    case "away_team":
-                        setOddValue(odds.away_odd);
-                        break;
-                    case "draw":
-                        setOddValue(odds.neutral_odd || odd_key);
-                        break;
-                    default:
-                        setOddValue(match.odd_value);
-                }
             }
         }, [match, mkt]);
 
@@ -607,7 +590,7 @@ const MktBtn = React.memo(
 
 
         const updatePickedLoad = () => {
-            dispatchRedux(removePickedData(" "));
+            // dispatchRedux(removePickedData(" "));
             const referencedState = dispatchRedux(getSelected(reference));
             console.log("referencedState", referencedState);
             if (typeof referencedState === "string") {
@@ -721,16 +704,14 @@ const MktBtn = React.memo(
 
                 }
             }, [ucn, picked, jackpot, settings, allMarkets]);
-
-
-
+                console.log("picked_value", picked)
 
         return (
             <button
                 ref={ref}
                 className={`home-team ${allMarkets ? "all-markets" : jackpot ? " jackpot-buttons-size" : ""} ${
                     match.match_id
-                } ${ucn} ${oddValue&&picked===ucn?'picked':''} c-btn`}
+                } ${clean(match.match_id+""+match.sub_type_id+""+(match?.[mkt] || match?.odd_key || "draw"))} ${picked.length>0&&picked===clean(match.match_id+""+match.sub_type_id+""+(match?.[mkt] || match?.odd_key || "draw"))?'picked':''} c-btn`}
                 home_team={match.home_team}
                 odd_type={match?.name || match?.market_name || "1X2"}
                 bet_type={live ? 1 : 0}
@@ -750,7 +731,7 @@ const MktBtn = React.memo(
                 onClick={(e)=>handleButtonOnClick(e)}
             >
                 <>
-                    {!detail && <span className="theodds odd-fix">{oddValue}</span>}
+                    {!detail && <span className="theodds odd-fix">{mkt==="home_team"?match?.odds?.home_odd:mkt==="away_team"?match?.odds?.away_odd:mkt==="draw"?match?.odds?.neutral_odd || match?.odd_key:match?.odd_value}</span>}
                     {detail && (
                         <>
         <span className="label label-inverse blueish">

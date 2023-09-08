@@ -408,7 +408,7 @@ const MoreMarketsHeaderRow = React.memo(
                         <div id="sr-widget" className=""></div>
                         <ButtonGroup aria-label="stats button actions" className='w-100 d-flex justify-content-start'>
                             <Button className="place-bet-btn w-25 btn link" title="scoreboard" type="button"
-                                    style={{background: "transparent", fontSize: "14px"}} onClick={() => {
+                                    style={{background: "transparent", fontSize: "14px", border:"none"}} onClick={() => {
                                 switchLmt("scoreboard");
                                 handleLinkClick()
                             }}>{score ? score : "0:0"}&nbsp;scoreboard</Button>

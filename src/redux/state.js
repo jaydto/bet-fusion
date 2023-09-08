@@ -32,6 +32,7 @@ const initialState = {
         error: null,
         jackpot: null,
         kiron: null,
+        picked:"",
         slip:null,
         betslip:null,
         jackpotbestlip:null,

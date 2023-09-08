@@ -48,9 +48,6 @@ const Index = React.memo(
             }
         }, [userData])
 
-
-
-
         const markets = marketChoiceOptions();
         let sportValue = new URL(window.location).searchParams.get('sport_id')
         let url = new URL(window.location.href)
@@ -371,7 +368,7 @@ const Index = React.memo(
                         </div>
                     </div>
                     <div className={"item3"}>
-                        <div className={`${state?.bottomSheet?'d-none':''}`}>
+                        <div className={`${(state?.bottomSheet&&width<991)?'d-none':''}`}>
                             <Right betslipValidationData={user_slip_validation}
                                    jackpotData={newMatches?.meta}
                                    test={true}/>

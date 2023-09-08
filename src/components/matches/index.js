@@ -1,4 +1,4 @@
-import React, {useCallback, useContext, useEffect, useLayoutEffect, useRef, useState} from 'react';
+import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
 import {StoreContext} from "../../context/store";
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
@@ -22,13 +22,11 @@ import {faAngleLeft, faCaretDown, faCaretRight, faChartLine, faShield, faStar} f
 import {getFromLocalStorage} from "../utils/local-storage";
 
 import {Input} from "@mui/material";
-import useWindowDimensions from "../header/Dimensions";
 import {Link, useNavigate} from "react-router-dom";
 
 import Notify from "../utils/Notify";
 
 import {Button, ButtonGroup} from "react-bootstrap";
-import makeRequest from "../utils/fetch-request";
 import {
     Accordion,
     AccordionItem,
@@ -82,7 +80,7 @@ const EmptyTextRow = React.memo(
     });
 
 export const marketChoiceOptions = () => {
-    const markets = [
+    return [
         {
             sport_id: '79',
             sport_name: 'Soccer',
@@ -111,14 +109,11 @@ export const marketChoiceOptions = () => {
             ],
         },
     ];
-
-    return markets;
 };
 
 export const marketChoice = () => {
 
-
-    const markets = [
+    return [
         {
             id: "1",
             name: "1X2",
@@ -168,8 +163,6 @@ export const marketChoice = () => {
         }
     ]
 
-    return markets
-
 }
 
 
@@ -178,12 +171,12 @@ export const MatchHeaderRow = React.memo(
         const {live, first_match, jackpot, loading} = props;
         const categories = getFromLocalStorage('sport_categories')
         const sport_id = new URL(window.location).searchParams.get('sport_id') || 79
-        let sport = categories?.all_sports?.filter((category) => category.sport_id == sport_id)
+        let sport = categories?.all_sports?.filter((category) => Number(category.sport_id) === Number(sport_id))
         const [sportName, setSportName] = useState(sport != null ? sport?.[0]?.sport_name || 'Soccer' : "");
-        const [showX, setShowX] = useState(true);
+        const [, setShowX] = useState(true);
         const [market, setMarket] = useState('1x2');
         const [extraMarketDisplays, setExtraMarketDisplays] = useState([])
-        const [threeWay, setThreeWay] = useState(false)
+        const [, setThreeWay] = useState(false)
         const userData = useSelector((state) => state.data.user)
         const [user, setUser] = useState(getFromLocalStorage("user"))
 
@@ -287,7 +280,6 @@ const MoreMarketsHeaderRow = React.memo(
             tags,
         } = props;
         const [switches, setSwitches] = useState("scoreboard")
-        const {state, dispatch} = useContext(StoreContext);
         const dispatchRedux = useDispatch()
         const switchLmt = (value) => {
             setSwitches(value)
@@ -548,22 +540,22 @@ const SideBets = React.memo(
             </div>
         );
     });
-
-const OddValueDisplay = React.memo(({match, detail, oddValue}) => (
-    <>
-        {!detail && <span className="theodds odd-fix">{oddValue}</span>}
-        {detail && (
-            <>
-        <span className="label label-inverse blueish">
-          {match.display_name}
-        </span>
-                <span className="label label-inverse blueish odd-value">
-          {oddValue}
-        </span>
-            </>
-        )}
-    </>
-));
+//
+// const OddValueDisplay = React.memo(({match, detail, oddValue}) => (
+//     <>
+//         {!detail && <span className="theodds odd-fix">{oddValue}</span>}
+//         {detail && (
+//             <>
+//         <span className="label label-inverse blueish">
+//           {match.display_name}
+//         </span>
+//                 <span className="label label-inverse blueish odd-value">
+//           {oddValue}
+//         </span>
+//             </>
+//         )}
+//     </>
+// ));
 
 
 const MktBtn = React.memo(
@@ -577,39 +569,38 @@ const MktBtn = React.memo(
         const ref = useRef();
         const picked=useSelector((state)=>state.betting.picked)
 
-        const updateOddValue = async () => {
-            return new Promise((resolve) => {
-                if (match) {
-                    const { match_id, sub_type_id, odds, odd_key } = match;
+        const updateOddValue = useCallback(() => {
+            if (match) {
+                const {match_id, sub_type_id, odds, odd_key} = match;
 
-                    let uc = clean(
-                        match_id + "" + sub_type_id + (match?.[mkt] || odd_key || "draw")
-                    );
-
-                    setUcn(uc);
-                    switch (mkt) {
-                        case "home_team":
-                            setOddValue(odds.home_odd);
-                            break;
-                        case "away_team":
-                            setOddValue(odds.away_odd);
-                            break;
-                        case "draw":
-                            setOddValue(odds.neutral_odd || odd_key);
-                            break;
-                        default:
-                            setOddValue(match.odd_value);
-                    }
-
-                    // Simulate an asynchronous operation using setTimeout
-                    setTimeout(() => {
-                        resolve(); // Resolve the promise after the update is done
-                    }, 0);
-                } else {
-                    resolve(); // Resolve immediately if there's no match
+                let uc = clean(
+                    match_id + "" + sub_type_id + (match?.[mkt] || odd_key || "draw")
+                );
+                if (jackpot) {
+                    uc = "jp_" + uc;
                 }
-            });
-        };
+
+                setUcn(uc);
+                switch (mkt) {
+                    case "home_team":
+                        setOddValue(odds.home_odd);
+                        break;
+                    case "away_team":
+                        setOddValue(odds.away_odd);
+                        break;
+                    case "draw":
+                        setOddValue(odds.neutral_odd || odd_key);
+                        break;
+                    default:
+                        setOddValue(match.odd_value);
+                }
+            }
+        }, [match, mkt]);
+
+        useEffect(() => {
+            updateOddValue();
+        }, [updateOddValue]);
+
 
         const updatePickedLoad = () => {
             dispatchRedux(removePickedData(" "));
@@ -621,7 +612,6 @@ const MktBtn = React.memo(
         };
 
         useEffect(() => {
-            updateOddValue()
             updatePickedLoad();
         }, []);
 
@@ -743,7 +733,7 @@ const MktBtn = React.memo(
                 start_time={match?.start_time}
                 away_team={match.away_team}
                 market_active={match.market_active}
-                odd_value= {mkt=="home_team"?match?.odds?.home_odd:mkt=="away_team"?match?.odds?.away_odd:mkt=="draw"?match?.odds?.neutral_odd || match?.odd_key:match?.odd_value}
+                odd_value= {mkt==="home_team"?match?.odds?.home_odd:mkt==="away_team"?match?.odds?.away_odd:mkt==="draw"?match?.odds?.neutral_odd || match?.odd_key:match?.odd_value}
                 odd_key={match?.[mkt] || match?.odd_key || "draw"}
                 parent_match_id={match.parent_match_id}
                 match_id={match.match_id}
@@ -763,7 +753,7 @@ const MktBtn = React.memo(
           {match.display_name}
         </span>
                             <span className="label label-inverse blueish odd-value">
-          {mkt=="home_team"?match?.odds?.home_odd:mkt=="away_team"?match?.odds?.away_odd:mkt=="draw"?match?.odds?.neutral_odd || match?.odd_key:match?.odd_value}
+          {mkt==="home_team"?match?.odds?.home_odd:mkt==="away_team"?match?.odds?.away_odd:mkt==="draw"?match?.odds?.neutral_odd || match?.odd_key:match?.odd_value}
         </span>
                         </>
                     )}
@@ -980,7 +970,7 @@ const OddButton = React.memo(
                 start_time={match?.start_time}
                 away_team={match.away_team}
                 market_active={match.market_active}
-                odd_value= {mkt=="home_team"?match?.odds?.home_odd:mkt=="away_team"?match?.odds?.away_odd:mkt=="draw"?match?.odds?.neutral_odd || match?.odd_key:match?.odd_value}
+                odd_value= {mkt==="home_team"?match?.odds?.home_odd:mkt==="away_team"?match?.odds?.away_odd:mkt==="draw"?match?.odds?.neutral_odd || match?.odd_key:match?.odd_value}
                 odd_key={match?.[mkt] || match?.odd_key || "draw"}
                 parent_match_id={match.parent_match_id}
                 match_id={match.match_id}
@@ -1264,7 +1254,7 @@ const MatchRow = React.memo(
         const [, setExtraMarketDisplays] = useState([])
         const categories = getFromLocalStorage('sport_categories')
         const sport_id = new URL(window.location).searchParams.get('sport_id') || 79
-        let sport = categories?.all_sports?.filter((category) => category?.sport_id == sport_id)
+        let sport = categories?.all_sports?.filter((category) =>Number(category?.sport_id) === Number(sport_id))
         const [, setSportName] = useState(sport?.[0]?.sport_name || 'Soccer');
         const [, setShowX] = useState(true);
         const [, setMarket] = useState('1x2');
@@ -1429,7 +1419,7 @@ const MatchRow = React.memo(
                                                 className="d-flex flex-row px-1 justify-content-end change-date1 mobile-only display-ipad-dates">
                                             <span className={'date-size wrapping px-3'}>
 
-                                            {live == 1 && match?.match_time ? (
+                                            {live === 1 && match?.match_time ? (
                                                 <div className={'d-flex gap-3 align-items-center'}>
                                                     <div className={'live-status'}>
                                                         {`${match.event_status}'`}
@@ -1440,7 +1430,7 @@ const MatchRow = React.memo(
                                                 <>
 
                                                     <>
-                                                        {match?.event_status == undefined ? "" :
+                                                        {match?.event_status === undefined ? "" :
                                                             <div className={'d-flex align-items-center gap-4'}>
                                    <span className={'match-status'}>
                                         {match?.match_status}'
@@ -1608,10 +1598,8 @@ export const MarketList = React.memo(
         const [perPage,] = useState(1000);
         const [currentPage,] = useState(1);
         const [groupMarketsAvailable, setGroupMarketsAvailable] = useState(null)
-        const moreMatches = useSelector((state) => state.matchesData.more_matches)
-        const dispatchRedux=useDispatch()
         //  fetching More Markets from redux state
-        const matchwithmarkets = moreMatches
+        const matchwithmarkets = useSelector((state) => state.matchesData.more_matches)
 
         const filterMarkets = (value, group) => {
             const elements = matchwithmarkets?.data?.odds;
@@ -1657,7 +1645,6 @@ export const MarketList = React.memo(
         const market_groups = useSelector((state) => state.matchesData.market_groups)
 
 
-        const startIndex = (currentPage - 1) * perPage;
         // const endIndex = startIndex + perPage;
         const marketsToShow = Object.entries(filters?.data?.odds || {});
         return (
@@ -1817,7 +1804,6 @@ export const JackpotMatchList = React.memo(
 const MatchList = React.memo(
     (props) => {
         const {live, matches, pdown, fetching, three_way, onEndReached} = props;
-        const loading=useSelector((state)=>state.matchesData.loading)
         // console.log("matches_data_match_list", matches);
         const listRef = useRef();
         const dispatchRedux = useDispatch()
@@ -1843,7 +1829,6 @@ const MatchList = React.memo(
             // Delay the initial scroll behavior
             setTimeout(handleInitialScroll, 0);
         }, []);
-
         useEffect(() => {
 
             observerRef.current = new IntersectionObserver(entries => {

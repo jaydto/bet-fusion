@@ -642,6 +642,7 @@ const matchesSlice = createSlice({
             })
             .addCase(marketGroups.fulfilled, (state, action) => {
                 state.market_groups = action.payload.data;
+                setLocalStorage("market_groups",action.payload.data, 1800000 )
                 state.loading = false;
                 state.error = null;
             })

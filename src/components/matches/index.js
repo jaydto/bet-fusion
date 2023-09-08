@@ -306,12 +306,15 @@ const MoreMarketsHeaderRow = React.memo(
 
         useEffect(() => {
             if (sport_id !== undefined && sport_id !== "") {
-                dispatchRedux(marketGroups({
-                    "sport_id": sport_id
-                }))
+                const cache=getFromLocalStorage("market_groups")
+                if(!cache){
+                    dispatchRedux(marketGroups({
+                        "sport_id": sport_id
+                    }))
+                }
 
             }
-        }, [sport_id])
+        }, [sport_id],getFromLocalStorage("market_groups") )
         const navigate = useNavigate()
 
         let lmtIncludes = [79, 85, 82, 80, 107];
@@ -566,7 +569,6 @@ const MktBtn = React.memo(
     (props) => {
         const {match, mkt, detail, live, jackpot, marketKey, allMarkets} = props;
         const [ucn, setUcn] = useState("");
-        const [oddValue, setOddValue] = useState(null);
         const dispatchRedux = useDispatch()
         const settings = getFromLocalStorage("settings");
         let reference = match.match_id + "_selected";
@@ -582,7 +584,7 @@ const MktBtn = React.memo(
                 );
                 setUcn(uc);
             }
-        }, [match, mkt]);
+        }, [match]);
 
         useEffect(() => {
             updateOddValue();
@@ -711,7 +713,7 @@ const MktBtn = React.memo(
                 ref={ref}
                 className={`home-team ${allMarkets ? "all-markets" : jackpot ? " jackpot-buttons-size" : ""} ${
                     match.match_id
-                } ${clean(match.match_id+""+match.sub_type_id+""+(match?.[mkt] || match?.odd_key || "draw"))} ${picked.length>0&&picked===clean(match.match_id+""+match.sub_type_id+""+(match?.[mkt] || match?.odd_key || "draw"))?'picked':''} c-btn`}
+                } ${ucn} ${picked.length>0&&picked===ucn?'picked':''} c-btn`}
                 home_team={match.home_team}
                 odd_type={match?.name || match?.market_name || "1X2"}
                 bet_type={live ? 1 : 0}
@@ -1603,9 +1605,14 @@ export const MarketList = React.memo(
 
         }, [matchwithmarkets]);
 
-        const market_groups = useSelector((state) => state.matchesData.market_groups)
+        const mkGroup=useSelector((state)=>state.matchesData.market_groups)
 
-
+        const [market_groups, setMarketGroups]=useState(getFromLocalStorage("market_groups"))
+        const [matches, setMatches]=useState()
+        useEffect(()=>{
+            const cache=getFromLocalStorage("market_groups")
+            setMarketGroups(mkGroup||cache)
+        },[mkGroup])
         // const endIndex = startIndex + perPage;
         const marketsToShow = Object.entries(filters?.data?.odds || {});
         return (

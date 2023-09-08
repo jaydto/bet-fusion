@@ -19,6 +19,7 @@ import {
 } from "../redux/matchesSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {setMatchBetslip, setSelected} from "../redux/bettingSlice";
+import {getFromLocalStorage} from "./utils/local-storage";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -32,13 +33,17 @@ const AllMarkets = React.memo(
         const {live} = props
         const id = params.id
         // const [userSlipsValidation, setUserSlipsValidation] = useState();
-        const market_groups=useSelector((state)=>state.matchesData.market_groups)
+        const mkGroup=useSelector((state)=>state.matchesData.market_groups)
         const fetching=useSelector((state)=>state.matchesData.live_fetching)
         const moreMatches=useSelector((state)=>state.matchesData.more_matches)
         const producer_down=useSelector((state)=>state.matchesData.producer_down)
         const user_slip_validation=useSelector((state)=>state.matchesData.user_slip_validation)
-
+        const [market_groups, setMarketGroups]=useState(getFromLocalStorage("market_groups"))
         const [matches, setMatches]=useState()
+        useEffect(()=>{
+            const cache=getFromLocalStorage("market_groups")
+            setMarketGroups(mkGroup||cache)
+        },[mkGroup])
         useEffect(()=>{
             setMatches(moreMatches)
         },[moreMatches])

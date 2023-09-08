@@ -90,7 +90,7 @@ export const removeSelected = createAction("betting/removeSelected", (reference)
 });
 
 export const setPickedData = createAction("betting/setPickedData", (picked) => {
-    return { payload: picked };
+    return { payload: {picked} };
 });
 
 export const removePickedData = createAction("betting/removePickedData", (picked) => {
@@ -254,6 +254,7 @@ const bettingSlice = createSlice({
                 delete state[dynamicKey]
             })
             .addCase(setPickedData, (state, action) => {
+                console.log("picked_slice", action.payload.picked)
                 state.picked = action.payload.picked;
             })
             .addCase(removePickedData, (state, action) => {

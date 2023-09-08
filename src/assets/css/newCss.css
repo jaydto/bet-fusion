@@ -3708,6 +3708,9 @@ img.nare-league {
 }
 
 @media (min-width: 200px) and (max-width: 420px) {
+    .bloc-icon p {
+        margin: 0px!important;
+    }
     .app-navbar .e img {
         max-width: 100px !important;
         background: var(--betnare-header-bg);

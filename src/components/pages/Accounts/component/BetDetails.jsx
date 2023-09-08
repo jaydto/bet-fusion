@@ -471,6 +471,7 @@ const BetDetails = (props) => {
                                                                              title="Status of match when bet was placed"
                                                                              type="button"
                                                                              style={{
+                                                                                 border:'none',
                                                                                  background: "transparent",
                                                                                  fontSize: "14px",
                                                                                  color: item?.live === 1 ? "var(--red)" : "var(--light)"
@@ -478,7 +479,7 @@ const BetDetails = (props) => {
                                                 {item?.live === 1 ? "'LIVE" : "'Not Live"}
                                             </Button> : ""}
                                             <Button className="place-bet-btn w-25 btn link" title="Scoreboard"
-                                                    type="button" style={{background: "transparent", fontSize: "14px"}}
+                                                    type="button" style={{background: "transparent", fontSize: "14px", border:'none'}}
                                                     onClick={(event) => {
                                                         switchLmt("scoreboard");
                                                         handleLinkClick(event)

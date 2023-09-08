@@ -101,28 +101,6 @@ const BetDetails = (props) => {
     }
 
 
-    useEffect(() => {
-
-        mybets_details?.map((item, index) => {
-            return
-            (
-                window?.SIR("addWidget", "#sr-widget-" + item?.parent_match_id, "match.lmtPlus", {
-                    branding: {tabs: {option: "icon", variant: "fullWidth"}},
-                    goalBannerImage:
-                        "https://storage.googleapis.com/nareimages/logo-white.webp",
-                    logo: ["https://storage.googleapis.com/nareimages/logo-dark.webp"],
-                    momentum: "disable",
-                    matchId: item?.parent_match_,
-                    collapseTo: switches,
-                    layout: "single",
-                    scoreboard: "extended",
-                    detailedScoreboard: "disable",
-                }))
-        })
-
-
-    }, []);
-
     const toggleCollapse = (index, parent_match_id) => {
         setActiveParentMatchId(parent_match_id)
         const updatedCollapsed = [...collapsed];

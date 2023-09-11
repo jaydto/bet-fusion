@@ -1020,11 +1020,9 @@ const MarketRow = React.memo((props) => {
 
         // Toggle the favorite status
         if (isFavorite) {
-            // console.log("removing");
             // If already favorite, remove from favorites
             setUserFavoriteMarkets(prevFavorites => prevFavorites.filter(fav => fav.sub_type_id !== marketId));
         } else {
-            // console.log("adding");
             // If not favorite, add to favorites
             setUserFavoriteMarkets(prevFavorites => [...prevFavorites, {sub_type_id: marketId}]);
         }
@@ -1566,7 +1564,7 @@ export const MarketList = React.memo(
             if (group_id === "favorite") {
                 filteredMarkets = elements.filter((market) => Number(market?.is_favorite) === 1)
             } else {
-                filteredMarkets = elements.filter((market) => Number(market?.group_id) === Number(group_id) || group_id === 'main')
+                filteredMarkets = elements.filter((market) => Number(market?.group_id) === Number(group_id) || group_id === 'all')
             }
             const match = filters?.data?.match;
 

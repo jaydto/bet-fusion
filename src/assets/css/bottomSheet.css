@@ -82,11 +82,20 @@
     background: #C7D0E1;
     border-radius: 50px;
 }
+.filter-close-icon {
+    color: var(--light);
+    position: absolute;
+    right: 19px;
+    top: 16px;
+    font-weight: 700;
+}
 .bottom-sheet .body {
     height: 100%;
     overflow-y: auto;
     padding: 15px 0 40px;
     scrollbar-width: none;
+    position: relative;
+
 }
 .bottom-sheet .body::-webkit-scrollbar {
     width: 0;
@@ -100,6 +109,9 @@
 }
 
 @media( min-width:992px){
+    .filter-close-icon{
+        font-size:22px;
+    }
     .bottom-sheet .content {
         overflow: auto;
         background: var(--betnare-body-bg);
@@ -121,6 +133,14 @@
     }
 }
 @media (max-width:991px){
+    .bottom-sheet .body {
+        justify-content: flex-start;
+        width: 100%;
+        align-items: baseline;
+    }
+    .filter-close-icon{
+      display: none;
+    }
     .bottom-sheet .content {
         overflow: auto;
         width: 100%;

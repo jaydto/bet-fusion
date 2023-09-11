@@ -910,7 +910,6 @@ const OddButton = React.memo(
 const MktOddsButton = React.memo(
     (props) => {
         const {match, mktodds, live, pdown, allMarkets} = props;
-        console.log("producer_down", pdown)
         let reference = match.match_id + "_selected";
         const dispatchRedux = useDispatch();
 
@@ -923,7 +922,6 @@ const MktOddsButton = React.memo(
             )
         }; // Append ucn to fullmatch
 
-        console.log("fullMatch", fullmatch)
 
         const updatePicked = () => {
             const referencedState = dispatchRedux(getSelected(reference));

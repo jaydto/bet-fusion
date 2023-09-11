@@ -21,6 +21,8 @@ import {
 import {userBalance} from "../redux/authSlice";
 import {setMatchBetslip} from "../redux/bettingSlice";
 import {Button} from "react-bootstrap";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faXmark} from "@fortawesome/free-solid-svg-icons";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -242,18 +244,42 @@ const Index = React.memo(
              * Alert if clicked on outside of element
              */
             function handleClickOutside(event) {
-                if (bottomSheetRef.current && !bottomSheetRef.current.contains(event.target)) {
-                    dispatch({type: "SET", key: "bottomSheet", payload: false});
+                if (
+                    bottomSheetRef.current &&
+                    !bottomSheetRef.current.contains(event.target)
+                ) {
+                    // const clickableItem = homePageRef.current.querySelector('a, button'); // You can customize this selector
+                    console.log("clickable4")
+
+                    event.preventDefault();
+                    event.stopPropagation()
+                    event.stopImmediatePropagation()
+                    dispatch({ type: "SET", key: "bottomSheet", payload: false });
+                }
+                if (
+                    homePageRef.current &&
+                    !homePageRef.current.contains(event.target) &&
+                    !bottomSheetRef.current
+                ) {
+                    // Check if the clicked element is a clickable item within homePageRef
+                    // const clickableItem = homePageRef.current.querySelector('.odds-container-size'); // You can customize this selector
+                    console.log("clickable5")
+                    event.preventDefault();
+                    event.stopPropagation();
+                    event.stopImmediatePropagation();
+                    dispatch({ type: "SET", key: "bottomSheet", payload: false });
+
                 }
             }
 
             // Bind the event listener
             document.addEventListener("mousedown", handleClickOutside);
+
             return () => {
                 // Unbind the event listener on clean up
                 document.removeEventListener("mousedown", handleClickOutside);
             };
-        }, [bottomSheetRef]);
+        }, [bottomSheetRef, homePageRef]);
 
         const showBottomSheet = () => {
             dispatch({type: "SET", key: "bottomSheet", payload: true});
@@ -326,8 +352,8 @@ const Index = React.memo(
                 <div className="flex-container">
                     <div className="item1" style={state?.sidebarToggled ? {width: '12%'} : {}}><SideBar
                         loadCompetitions/></div>
-                    <div className={`item2 `} style={state?.bottomSheet?{opacity:'0.5',background:'#13171c'}:{}}>
-                        <div className="gz home match-overflow ">
+                    <div className={`item2 `} style={state?.bottomSheet?{opacity:'0.5',background:'#13171c'}:{}} >
+                        <div className="gz home match-overflow " >
                             <div className="homepage mobile-full-height" ref={homePageRef}
                                  style={width < 991 ? {height: `${height}px`, overflowY: 'auto'} : {}}>
                                 <div
@@ -373,11 +399,13 @@ const Index = React.memo(
                                    jackpotData={newMatches?.meta}
                                    test={true}/>
                         </div>
-                        <div className={`${state?.bottomSheet ? 'bottom-sheet show ' : 'd-none'}`} ref={bottomSheetRef}>
+                        <div className={`${state?.bottomSheet ? 'bottom-sheet show ' : 'd-none'}`}>
                             <div className="sheet-overlay"></div>
-                            <div className="content">
-                                <div className="header">
+                            <div  ref={bottomSheetRef} className="content">
+                                <div className="header d-flex justify-content-between">
                                     <div className="drag-icon"><span></span></div>
+                                    <FontAwesomeIcon  icon={faXmark} onClick={()=>{collapseBottomSheet()}} className={'filter-close-icon'}/>
+
                                 </div>
                                 <div className="body d-flex flex-column gap-4">
                                     {filteredMarkets?.default_markets?.map((market,index) => (
@@ -389,10 +417,10 @@ const Index = React.memo(
                                             {market?.market_name}
                                         </Link>
                                     ))}
-                                    <Button onClick={()=>{collapseBottomSheet()}} className={"text-light bold color-inherit btn border-0"}>Cancel</Button>
+                                    <Button onClick={()=>{collapseBottomSheet()}} className={"text-light bold color-inherit btn border-0 cancel-filter-markets"}>Cancel</Button>
 
                                 </div>
-                            </div>
+                            </div >
                         </div>
                     </div>
 

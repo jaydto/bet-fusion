@@ -702,7 +702,11 @@ const matchesSlice = createSlice({
                 state.fetching = false
                 state.initialLoading = false
                 state.loading = false;
-                state.more_matches = action.payload.data
+                const more_matches = action.payload?.data;
+
+                const mergedMatches = more_matches.length > 0 ? {...state.more_matches , ...more_matches } : more_matches ;
+
+                state.more_matches = mergedMatches
                 state.user_slip_validation = action.payload.slip_data
                 state.producer_down = action.payload.producer_status === 1
                 state.error = null;
@@ -725,7 +729,9 @@ const matchesSlice = createSlice({
                 state.user_slip_validation = action.payload.slip_data
                 state.producer_down = action.payload.producer_status === 1
                 state.error = null;
-                state.more_matches = action.payload.data
+                const more_matches = action.payload?.data;
+                const mergedMatches = more_matches .length > 0 ? {...state.more_matches , ...more_matches } : more_matches ;
+                state.more_matches = mergedMatches
             })
             .addCase(matchesMoreLiveMarkets.rejected, (state, action) => {
                 state.fetching = false;

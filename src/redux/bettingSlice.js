@@ -254,7 +254,6 @@ const bettingSlice = createSlice({
                 delete state[dynamicKey]
             })
             .addCase(setPickedData, (state, action) => {
-                console.log("picked_slice", action.payload.picked)
                 state.picked = action.payload.picked;
             })
             .addCase(removePickedData, (state, action) => {

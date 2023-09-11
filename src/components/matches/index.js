@@ -910,6 +910,7 @@ const OddButton = React.memo(
 const MktOddsButton = React.memo(
     (props) => {
         const {match, mktodds, live, pdown, allMarkets} = props;
+        console.log("producer_down", pdown)
         let reference = match.match_id + "_selected";
         const dispatchRedux = useDispatch();
 
@@ -922,6 +923,8 @@ const MktOddsButton = React.memo(
             )
         }; // Append ucn to fullmatch
 
+        console.log("fullMatch", fullmatch)
+
         const updatePicked = () => {
             const referencedState = dispatchRedux(getSelected(reference));
             if (typeof referencedState === "string") {
@@ -932,12 +935,10 @@ const MktOddsButton = React.memo(
         useEffect(() => {
             updatePicked();
         }, [reference, dispatchRedux]);
+        
 
-
-
-
-        return !pdown && fullmatch?.odd_value !== 'NaN' && match?.market_active === 1 && match?.odd_active === 1 ? (
-            < MktBtn match={fullmatch} detail mkt={'detail'} live={live} allMarkets={allMarkets}  reference={reference}/>
+        return (!pdown && fullmatch?.odd_value !== 'NaN' && fullmatch?.market_active === 1 && fullmatch?.odd_active === 1 )? (
+            <MktBtn match={fullmatch} detail mkt={'detail'} live={live} allMarkets={allMarkets}  reference={reference}/>
         ) : (
             <EmptyTextRow odd_key={fullmatch?.display_name} allMarkets={allMarkets}/>
         );

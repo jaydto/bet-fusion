@@ -30,7 +30,7 @@ import {
     removeSlipSelection,
     setMatchBetslip,
     resetStateBetslip,
-    removeSelected
+    removeSelected, removePickedData
 } from "../../redux/bettingSlice";
 
 const BetslipShareModal = React.lazy(() =>
@@ -420,6 +420,7 @@ const BetslipSubmitForm = React.memo(
                     ucn:"remove." + ucn
                 }
                 dispatchRedux(removeSlipSelection(match_items));
+                dispatchRedux(removePickedData(""));
 
             });
 

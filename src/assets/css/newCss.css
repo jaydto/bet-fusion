@@ -2104,6 +2104,10 @@ img.nare-league {
 }
 
 @media (max-width: 991px) {
+   .alert-message-line-height{
+        position:absolute!important;
+       top:9rem;
+    }
     .filters-modal.share-modal .modal-content{
         bottom:40% !important;
     }
@@ -3336,7 +3340,7 @@ img.nare-league {
 
     .slip-top {
         top: 9rem;
-        height: 70vh;
+        height: 75vh;
         overflow: auto;
         position: absolute;
         width: 100vw;
@@ -3350,7 +3354,7 @@ img.nare-league {
         align-items: center;
         border-radius: 5px;
         flex-direction: column;
-        height: 65px;
+        height: 57px;
     }
 
     .more-options-font {

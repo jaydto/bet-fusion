@@ -211,7 +211,7 @@ const BetSlip = React.memo(
             }
 
             if (!bonusBetEligible && (maxBonusGames > 1)) {
-                message = `To qualify for bonus bet, please select ${maxBonusGames} game each with odds ${
+                message = `To qualify for bonus bet, please select ${maxBonusGames} games each with odds ${
                     Number(fixedOdd) === 1
                         ? " of " + perSlipBonusOdd
                         : " between " + perSlipBonusOdd + " and " + perSlipMaxOdd

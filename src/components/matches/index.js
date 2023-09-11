@@ -706,7 +706,7 @@ const MktBtn =React.memo(
 const OddButton = React.memo(
     (props) => {
         const {match, mkt, detail, live, jackpot, marketKey, allMarkets} = props;
-        const [ucn, setUcn] = useState("");
+        // const {ucn}=match
         const [picked, setPicked] = useState("");
         const [oddValue, setOddValue] = useState(null);
         const {state, dispatch} = useContext(StoreContext);
@@ -714,7 +714,6 @@ const OddButton = React.memo(
         const settings = getFromLocalStorage("settings");
         const ref = useRef();
         let reference = jackpot ? "jp_" + match.match_id + "_selected" : match.match_id + "_selected";
-
 
         const [slipType, setSlipType] = useState(jackpot ? getJackpotBetslip() : getBetslip())
         const betslip_data_item = useSelector((state) => state.betting.betslip)
@@ -764,38 +763,6 @@ const OddButton = React.memo(
         useEffect(() => {
             updatePicked()
         }, [jackpot, slipType, betslip_data_item, jackpot_slip_data_item]);
-
-        const updateOddValue = useCallback(() => {
-            if (match) {
-                const {match_id, sub_type_id, odds, odd_key} = match;
-
-                let uc = clean(
-                    match_id + "" + sub_type_id + (match?.[mkt] || odd_key || "draw")
-                );
-                if (jackpot) {
-                    uc = "jp_" + uc;
-                }
-
-                setUcn(uc);
-                switch (mkt) {
-                    case "home_team":
-                        setOddValue(odds.home_odd);
-                        break;
-                    case "away_team":
-                        setOddValue(odds.away_odd);
-                        break;
-                    case "draw":
-                        setOddValue(odds.neutral_odd || odd_key);
-                        break;
-                    default:
-                        setOddValue(match.odd_value);
-                }
-            }
-        }, [match, mkt]);
-
-        useEffect(() => {
-            updateOddValue();
-        }, [updateOddValue]);
 
 
         const maxPickReached = () => {
@@ -864,7 +831,7 @@ const OddButton = React.memo(
                     slip.ucn = "jp_" + slip.ucn;
                 }
 
-                if (cstm === ucn) {
+                if (cstm === match?.ucn) {
                     let betslip;
                     if (picked === "picked") {
                         betslip =
@@ -896,10 +863,10 @@ const OddButton = React.memo(
                     dispatchRedux(setMatchBetslip(betslip_data))
                     // dispatch({type: "SET", key: betslip_key, payload: betslip});
                 }
-            }, [ucn, picked, jackpot, settings, allMarkets]);
+            }, [match?.ucn, picked, jackpot, settings, allMarkets]);
         const buttonClass=`home-team ${allMarkets ? "all-markets" : jackpot ? " jackpot-buttons-size" : ""} ${
             match.match_id
-        } ${ucn} ${picked} c-btn`
+        } ${match?.ucn} ${picked} c-btn`
 
         return (
             <button
@@ -915,8 +882,8 @@ const OddButton = React.memo(
                 odd_key={match?.[mkt] || match?.odd_key || "draw"}
                 parent_match_id={match.parent_match_id}
                 match_id={match.match_id}
-                custom={ucn}
-                id={ucn}
+                custom={match?.ucn}
+                id={match?.ucn}
                 sport_name={match?.sport_name}
                 sport_id={match.sport_id}
                 sub_type_id={match.sub_type_id}
@@ -924,7 +891,7 @@ const OddButton = React.memo(
                 onClick={handleButtonOnClick}
             >
                 <>
-                    {!detail && <span className="theodds odd-fix">{oddValue}</span>}
+                    {!detail && <span className="theodds odd-fix">{mkt==="home_team"?match?.odds?.home_odd:mkt==="away_team"?match?.odds?.away_odd:mkt==="draw"?match?.odds?.neutral_odd || match?.odd_key:match?.odd_value}</span>}
                     {detail && (
                         <>
         <span className="label label-inverse blueish">
@@ -969,7 +936,7 @@ const MktOddsButton = React.memo(
 
 
 
-        return !pdown && fullmatch?.odd_value !== 'NaN' && fullmatch.market_active === 1 && fullmatch.odd_active === 1 ? (
+        return !pdown && fullmatch?.odd_value !== 'NaN' && match?.market_active === 1 && match?.odd_active === 1 ? (
             < MktBtn match={fullmatch} detail mkt={'detail'} live={live} allMarkets={allMarkets}  reference={reference}/>
         ) : (
             <EmptyTextRow odd_key={fullmatch?.display_name} allMarkets={allMarkets}/>
@@ -1129,18 +1096,37 @@ const ColoredCircle = React.memo(
     });
 
 const getUpdatedMatchFromOdds = (props) => {
-    const {match, marketName, odd_key, odd_data} = props;
-    let newMatch = {...match, ...odd_data};
-    newMatch.name = marketName;
-    newMatch.odd_key = odd_key;
-    newMatch.odd_value = odd_data.odd_value;
-    newMatch.odd_active = odd_data.odd_active;
-    newMatch.special_bet_value = odd_data.special_bet_value;
-    delete newMatch['odds']
-    delete newMatch['extra_odds']
-    return newMatch;
+    const { match, marketName, odd_key, odd_data } = props;
 
-}
+    // Create a newMatch object by spreading the properties of match and odd_data
+    let newMatch = { ...match, ...odd_data };
+
+
+    // Calculate the ucn property based on the conditions
+    const ucn = clean(
+        newMatch.match_id + "" + newMatch.sub_type_id + (
+            odd_key
+        )
+    );
+
+    // Update the newMatch object with the ucn property
+    newMatch = {
+        ...newMatch,
+        ucn: ucn,
+        name: marketName,
+        odd_key: odd_key,
+        odd_value: odd_data.odd_value,
+        odd_active: odd_data.odd_active,
+        special_bet_value: odd_data.special_bet_value,
+    };
+
+    // Remove unnecessary properties
+    delete newMatch['odds'];
+    delete newMatch['extra_odds'];
+
+    return newMatch;
+};
+
 export const FormatDate2 = (props) => {
     const {start_time, match_time, live} = props;
 
@@ -1200,13 +1186,7 @@ const MatchRow = React.memo(
         const [, setMarket] = useState('1x2');
         const [threeWay, setThreeWay] = useState(false)
 
-        const fullmatch = {
-            ...match,
-            ucn: clean(
-                match.match_id + "" + match.sub_type_id + (match?.odds.home_odd ? match?.home_team:match?.odds.away_odd ? match?.away_team:match?.neutral_odd?'draw':'')
-            )
-        };
-        console.log("full_match", fullmatch)
+
 
         const getSelectedMarkets = () => {
 
@@ -1273,35 +1253,35 @@ const MatchRow = React.memo(
                             className={`d-flex flex-column px-1 justify-content-sm-center justify-content-md-start change-date1 mobile-remove display-ipad-remove-id ${jackpot ? "jackpot-width" : ""}`}>
                             {live &&
                                 <>
-                                    <small style={{color: "green"}}> {fullmatch?.match_status} </small>
+                                    <small style={{color: "green"}}> {match?.match_status} </small>
 
                                 </>
                             }
 
                             <span className={'date-size wrapping px-sm-3 px-md-0 date-remove display-ipad-remove-id'}>
-                                           {live === 1 && fullmatch?.match_time ? (
+                                           {live === 1 && match?.match_time ? (
                                                <div className={'d-flex gap-3 align-items-center'}>
                                                    <div className={'live-status'}>
-                                                       {`${fullmatch.event_status}'`}
+                                                       {`${match?.event_status}'`}
                                                    </div>
-                                                   <>{`${fullmatch.match_time}'`}</>
+                                                   <>{`${match?.match_time}'`}</>
                                                </div>
                                            ) : (
                                                <>
 
                                                    <>
-                                                       {fullmatch?.event_status == undefined ? "" :
+                                                       {match?.event_status == undefined ? "" :
                                                            <div className={'d-flex align-items-center gap-4'}>
                                    <span className={'match-status'}>
-                                        {fullmatch?.match_status}'
+                                        {match?.match_status}'
                                   </span>
                                                                <span className={'live-status'}>
-                                        {fullmatch?.event_status}'
+                                        {match?.event_status}'
                                   </span>
                                                            </div>
                                                        }
-                                                       <FormatDate2 live={live} start_time={fullmatch?.start_time}
-                                                                    match_time={fullmatch?.match_time}/>
+                                                       <FormatDate2 live={live} start_time={match?.start_time}
+                                                                    match_time={match?.match_time}/>
 
                                                    </>
 
@@ -1309,35 +1289,35 @@ const MatchRow = React.memo(
                                                </>
 
                                            )}</span>
-                            <>ID: {fullmatch?.game_id}</>
+                            <>ID: {match?.game_id}</>
                         </div>
                         <div
                             className={`col align-items-center col-xs-12 match-detail-container px-2 change-match only-mobile ${jackpot ? "align-self-center" : ""}`}>
                             <Link className={'odds-container-size'}
-                                  to={jackpot ? '#' : `/match/${live ? 'live/' + fullmatch.parent_match_id : fullmatch.match_id}`}>
+                                  to={jackpot ? '#' : `/match/${live ? 'live/' + match?.parent_match_id : match?.match_id}`}>
                                 <div className="d-flex flex-column">
                                     <div className="compt-detail overflow-ellipsis team_category_game">
-                                        <small>{fullmatch.category} | {fullmatch.competition_name}</small>
+                                        <small>{match?.category} | {match?.competition_name}</small>
                                     </div>
                                     <div className="compt-teams d-flex flex-xl-column flex-column flex-md-row">
                                         <div className={'bold compt-teams-item'}>
-                                            {live && (fullmatch?.match_status !== 'ended') && <ColoredCircle color="red"/>}
-                                            {fullmatch.home_team}
+                                            {live && (match?.match_status !== 'ended') && <ColoredCircle color="red"/>}
+                                            {match?.home_team}
                                             <span className="opacity-reduce-txt vs-styling">
-                                {live && fullmatch?.score}
+                                {live && match?.score}
                                                 {!live && ''}
                             </span>
                                         </div>
                                         <div className={'bold compt-teams-item'}>
-                                            {fullmatch?.away_team}
+                                            {match?.away_team}
                                         </div>
 
                                     </div>
                                 </div>
                             </Link>
                             <div className={"tag_container"}>
-                                {fullmatch.tags?.length ?
-                                    fullmatch.tags.map((tag, index) => (
+                                {match?.tags?.length ?
+                                    match?.tags.map((tag, index) => (
                                         <span className="tag" key={index}
                                               style={{
                                                   backgroundColor: `${tag.background_color}`,
@@ -1367,29 +1347,29 @@ const MatchRow = React.memo(
                                                 className="d-flex flex-row px-1 justify-content-end change-date1 mobile-only display-ipad-dates">
                                             <span className={'date-size wrapping px-3'}>
 
-                                            {live === 1 && fullmatch?.match_time ? (
+                                            {live === 1 && match?.match_time ? (
                                                 <div className={'d-flex gap-3 align-items-center'}>
                                                     <div className={'live-status'}>
-                                                        {`${fullmatch?.event_status}'`}
+                                                        {`${match?.event_status}'`}
                                                     </div>
-                                                    <>{`${fullmatch?.match_time}'`}</>
+                                                    <>{`${match?.match_time}'`}</>
                                                 </div>
                                             ) : (
                                                 <>
 
                                                     <>
-                                                        {fullmatch?.event_status === undefined ? "" :
+                                                        {match?.event_status === undefined ? "" :
                                                             <div className={'d-flex align-items-center gap-4'}>
                                    <span className={'match-status'}>
-                                        {fullmatch?.match_status}'
+                                        {match?.match_status}'
                                   </span>
                                                                 <span className={'live-status'}>
-                                        {fullmatch?.event_status}'
+                                        {match?.event_status}'
                                   </span>
                                                             </div>
                                                         }
-                                                        <FormatDate2 live={live} start_time={fullmatch?.start_time}
-                                                                     match_time={fullmatch?.match_time}/>
+                                                        <FormatDate2 live={live} start_time={match?.start_time}
+                                                                     match_time={match?.match_time}/>
 
                                                     </>
 
@@ -1399,7 +1379,7 @@ const MatchRow = React.memo(
                                             )}
                                             </span>
                                                 <div
-                                                    className={"px-1 wrapping mobile-display-game-id"}>ID: {fullmatch?.game_id}</div>
+                                                    className={"px-1 wrapping mobile-display-game-id"}>ID: {match?.game_id}</div>
 
                                             </div>
 
@@ -1407,25 +1387,49 @@ const MatchRow = React.memo(
                                     </div>}
                             </div>
                             <div className={`c-btn-group align-self-center checking ${jackpot ? 'w-100' : ''}`}>
-                                {fullmatch?.odds?.home_odd
-                                    ? (fullmatch?.odds?.home_odd && (!pdown && fullmatch?.odds?.home_odd && fullmatch?.odds.home_odd !== 'NaN' &&
-                                        fullmatch?.market_active == 1 && fullmatch.odds.home_odd_active == 1 || jackpot)
-                                        ? <OddButton match={fullmatch} mkt="home_team" live={live} jackpot={jackpot}/>
-                                        : <EmptyTextRow odd_key={fullmatch?.odd_key} live={live}/>) :
-                                    fullmatch?.odds?.home_odd ? <EmptyTextRow odd_key={fullmatch?.odd_key} live={live}/> : ''
+                                {match?.odds?.home_odd
+                                    ? (match?.odds?.home_odd && (!pdown && match?.odds?.home_odd && match?.odds.home_odd !== 'NaN' &&
+                                        match?.market_active == 1 && match?.odds.home_odd_active == 1 || jackpot)
+                                        ? <OddButton  match={{
+                                            ...match,
+                                            ucn: clear_rep(
+                                                jackpot?("jp_"+match.match_id + "" + match.sub_type_id +
+                                                     match?.home_team):
+                                                     (match.match_id + "" + match.sub_type_id +
+                                                    match?.home_team)
+                                            )
+                                        }} mkt="home_team" live={live} jackpot={jackpot}/>
+                                        : <EmptyTextRow odd_key={match?.odd_key} live={live}/>) :
+                                    match?.odds?.home_odd ? <EmptyTextRow odd_key={match?.odd_key} live={live}/> : ''
                                 }
-                                {fullmatch?.odds?.neutral_odd ?
-                                    ((!pdown && fullmatch?.odds?.neutral_odd && fullmatch.odds.neutral_odd !== 'NaN' &&
-                                    fullmatch.market_active == 1 && fullmatch.odds.neutral_odd_active == 1 || jackpot)
-                                    ? <OddButton match={fullmatch} mkt="draw" live={live} jackpot={jackpot}/>
-                                    : <EmptyTextRow odd_key={fullmatch?.odd_key} live={live}/>) : ''
+                                {match?.odds?.neutral_odd ?
+                                    ((!pdown && match?.odds?.neutral_odd && match.odds.neutral_odd !== 'NaN' &&
+                                    match?.market_active == 1 && match.odds.neutral_odd_active == 1 || jackpot)
+                                    ? <OddButton match={{
+                                            ...match,
+                                            ucn: clear_rep(
+                                                jackpot?("jp_"+match.match_id + "" + match.sub_type_id +
+                                                        'draw'):
+                                                    (match.match_id + "" + match.sub_type_id +
+                                                        'draw')
+                                            )
+                                        }} mkt="draw" live={live} jackpot={jackpot}/>
+                                    : <EmptyTextRow odd_key={match?.odd_key} live={live}/>) : ''
                                 }
-                                {fullmatch?.odds?.away_odd ?
-                                    (fullmatch?.odds?.away_odd && (!pdown && fullmatch?.odds?.away_odd && fullmatch.odds.away_odd !== 'NaN' &&
-                                        fullmatch.market_active == 1 && fullmatch.odds.away_odd_active == 1 || jackpot)
-                                        ? <OddButton match={fullmatch} mkt="away_team" live={live} jackpot={jackpot}/>
-                                        : <EmptyTextRow odd_key={fullmatch?.odd_key} live={live}/>) :
-                                    fullmatch?.odds?.away_odd ? <EmptyTextRow odd_key={fullmatch?.odd_key} live={live}/> : ''
+                                {match?.odds?.away_odd ?
+                                    (match?.odds?.away_odd && (!pdown && match?.odds?.away_odd && match?.odds.away_odd !== 'NaN' &&
+                                        match.market_active == 1 && match?.odds.away_odd_active == 1 || jackpot)
+                                        ? <OddButton match={{
+                                            ...match,
+                                            ucn: clear_rep(
+                                                jackpot?("jp_"+match.match_id + "" + match.sub_type_id +
+                                                        match?.away_team):
+                                                    (match.match_id + "" + match.sub_type_id +
+                                                        match?.away_team)
+                                            )
+                                        }} mkt="away_team" live={live} jackpot={jackpot}/>
+                                        : <EmptyTextRow odd_key={match?.odd_key} live={live}/>) :
+                                    match?.odds?.away_odd ? <EmptyTextRow odd_key={match?.odd_key} live={live}/> : ''
                                 }
                             </div>
 
@@ -1434,7 +1438,7 @@ const MatchRow = React.memo(
                         {/*mobile  display and odds*/}
                         <div className={"to-profile-check separations to-flex-2"}>
                             {!jackpot && <>
-                                {Object.entries(fullmatch?.extra_odds || {}).map(([marketName, odds], index) => (
+                                {Object.entries(match?.extra_odds || {}).map(([marketName, odds], index) => (
                                     marketName !== '' && (
                                         <div key={index}
                                              className={'d-flex to-flex-1 my-lg-0  w-100'}>
@@ -1442,11 +1446,11 @@ const MatchRow = React.memo(
                                             <div
                                                 className=" flex-row px-1 justify-content-end change-date1 extra-markets-mobile-date">
                                   <span className={'date-size px-1 wrapping'}>
-                                      {(live && fullmatch?.match_time) ?
-                                          <>{`${fullmatch.match_time}'`}</> : fullmatch?.start_time}
+                                      {(live && match?.match_time) ?
+                                          <>{`${match?.match_time}'`}</> : match?.start_time}
                                   </span>
                                                 <div
-                                                    className={"px-1 wrapping mobile-display-game-id"}>ID: {fullmatch?.game_id}</div>
+                                                    className={"px-1 wrapping mobile-display-game-id"}>ID: {match?.game_id}</div>
 
                                             </div>
 
@@ -1459,18 +1463,19 @@ const MatchRow = React.memo(
                                                             <div key={index}
                                                                  className={"d-flex flex-column w-100 margin-l-mobile px-sm-1 px-md-1 px-lg-1 "}>
                                                                 <div className=" c-btn-group  align-self-center">
+
                                                                     {odd_data?.odd_active == 1 && odd_data.market_active == 1 ?
                                                                         (
                                                                             <OddButton
                                                                                 match={getUpdatedMatchFromOdds({
-                                                                                    fullmatch,
+                                                                                    match,
                                                                                     marketName,
                                                                                     odd_key,
                                                                                     odd_data
                                                                                 })}
                                                                                 key={index} live={live}/>) : (
                                                                             <EmptyTextRow key={index}
-                                                                                          odd_key={fullmatch?.odd_key}
+                                                                                          odd_key={match?.odd_key}
                                                                                           live={live}/>
                                                                         )
                                                                     }
@@ -1493,7 +1498,7 @@ const MatchRow = React.memo(
 
                         {/*desktop display of odds*/}
                         {!jackpot && <>
-                            {Object.entries(fullmatch?.extra_odds || {}).map(([marketName, odds], index) => (
+                            {Object.entries(match?.extra_odds || {}).map(([marketName, odds], index) => (
                                 marketName !== '' && (
                                     <div className={`c-btn-group  align-self-center to-deskview`} key={index}>
                                         {
@@ -1501,13 +1506,13 @@ const MatchRow = React.memo(
                                                 return odd_data?.odd_active == 1 && odd_data.market_active == 1 ? (
                                                     <OddButton
                                                         match={getUpdatedMatchFromOdds({
-                                                            fullmatch,
+                                                            match,
                                                             marketName,
                                                             odd_key,
                                                             odd_data
                                                         })}
                                                         key={index} live={live}/>) : (
-                                                    <EmptyTextRow odd_key={fullmatch?.odd_key} live={live}/>)
+                                                    <EmptyTextRow odd_key={match?.odd_key} live={live}/>)
                                             })
                                         }
                                     </div>
@@ -1517,8 +1522,8 @@ const MatchRow = React.memo(
 
                             {!live && loops?.map((value, index) => (
                                 <div className={`c-btn-group align-self-center to-deskview`} key={index}>
-                                    <EmptyTextRow odd_key={fullmatch?.odd_key} live={live}/>
-                                    <EmptyTextRow odd_key={fullmatch?.odd_key} live={live}/>
+                                    <EmptyTextRow odd_key={match?.odd_key} live={live}/>
+                                    <EmptyTextRow odd_key={match?.odd_key} live={live}/>
                                 </div>
                             ))}
 
@@ -1527,7 +1532,7 @@ const MatchRow = React.memo(
                         <div className={'display-ipad-more-options justify-content-end'}>
 
                             {!pdown && !jackpot &&
-                                <SideBets match={fullmatch} live={live} style={{d: "inline"}}/>}
+                                <SideBets match={match} live={live} style={{d: "inline"}}/>}
                         </div>
                     </div>
 
@@ -1706,7 +1711,10 @@ export const JackpotHeader = React.memo(
 const clear_rep = (str) => {
     return str.replace(/\s/g, "");
 };
-
+// const clean_rep = (str) => {
+//     str = str.replace(/[^A-Za-z0-9\-]/g, "");
+//     return str.replace(/-+/g, "-");
+// };
 
 export const JackpotMatchList = React.memo(
     (props) => {

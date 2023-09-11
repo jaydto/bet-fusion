@@ -554,22 +554,6 @@ const SideBets = React.memo(
         );
     });
 
-// const OddValueDisplay = React.memo(({match, detail, oddValue}) => (
-//     <>
-//         {!detail && <span className="theodds odd-fix">{oddValue}</span>}
-//         {detail && (
-//             <>
-//         <span className="label label-inverse blueish">
-//           {match.display_name}
-//         </span>
-//                 <span className="label label-inverse blueish odd-value">
-//           {oddValue}
-//         </span>
-//             </>
-//         )}
-//     </>
-// ));
-
 
 const MktBtn =React.memo(
     (props) => {
@@ -578,7 +562,6 @@ const MktBtn =React.memo(
         const settings = getFromLocalStorage("settings");
         const ref = useRef();
         const picked = useSelector((state) => state.betting.picked);
-
 
         const maxPickReached = () => {
             // console.log("max_pick_reached")

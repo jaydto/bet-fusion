@@ -6,6 +6,7 @@ import {BrowserRouter, Navigate, Route, Routes, useNavigate,} from 'react-router
 import {setLocalStorage} from "./components/utils/local-storage";
 import reportWebVitals from './reportWebVitals';
 import './assets/css/application.css';
+import '/bootstrap/dist/css/bootstrap.min.css';
 import './assets/css/tolkits.css';
 import './assets/css/sidebar-menu.css';
 import './index.css';

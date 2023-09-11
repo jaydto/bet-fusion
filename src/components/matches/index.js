@@ -935,7 +935,7 @@ const MktOddsButton = React.memo(
         useEffect(() => {
             updatePicked();
         }, [reference, dispatchRedux]);
-        
+
 
         return (!pdown && fullmatch?.odd_value !== 'NaN' && fullmatch?.market_active === 1 && fullmatch?.odd_active === 1 )? (
             <MktBtn match={fullmatch} detail mkt={'detail'} live={live} allMarkets={allMarkets}  reference={reference}/>

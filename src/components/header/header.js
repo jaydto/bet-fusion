@@ -221,8 +221,8 @@ const Header = React.memo(
                                   }}>
                                 <div className={"app-download-link  d-flex flex-column"}>
                                    <span className={"color-app-text flashy"}>Deposit
-                                       <strong style={{color: 'var(--gold'}}> 650/=</strong>  get
-                                       <strong style={{color: 'var(--gold'}}> 650/= </strong>Free Bonus!
+                                       <strong style={{color: 'var(--gold'}}> 250/=</strong>  get
+                                       <strong style={{color: 'var(--gold'}}> 250/= </strong>Free Bonus!
                                    </span>
                                 </div>
                             </Link>

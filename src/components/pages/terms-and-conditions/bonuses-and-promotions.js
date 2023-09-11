@@ -115,15 +115,15 @@ const BonusesAndPromotions = () => {
                 <p><strong><strong>NB;</strong> APART FROM JACKPOT BONUSES , THE REST CANNOT BE WITHDRAWN</strong></p>
 
 
-                <strong className="text-decoration-underline">650 FOR 650 PROMOTION TERMS AND CONDITIONS</strong>
+                <strong className="text-decoration-underline">250 FOR 250 PROMOTION TERMS AND CONDITIONS</strong>
                 <br/>
-                <p>Within the next 14 days, ONCE you DEPOSIT 650/=, BetNare Rewards you 650/= BONUS INSTANTLY.</p>
+                <p>Within the next 14 days, ONCE you DEPOSIT 250/=, BetNare Rewards you 250/= BONUS INSTANTLY.</p>
                 <ol>
                     <li>The bonus must be used within 13 days of registration. After 14 days the bonus and all winnings made on the bonus will be revoked.
                     </li>
-                    <li>
-                    A customer is entitled to only TWO bonus per day. The required Deposit to activate the bonus is Ksh650.
-                    </li>
+                    {/*<li>*/}
+                    {/*A customer is entitled to only TWO bonus per day. The required Deposit to activate the bonus is Ksh 250.*/}
+                    {/*</li>*/}
                     <li>
                     The bonus will be credited to the customer's account automatically once they have made their 1st and 2nd deposit.
                     </li>

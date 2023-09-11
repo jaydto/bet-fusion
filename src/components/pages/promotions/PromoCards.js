@@ -62,7 +62,7 @@ const PromoCards = () => {
                                     style={{background: "#ea5d0b"}} onClick={() => {
                                 gaEventTracker('proo Mia Sita Hamsini');
                                 navigate(`/deposit`);
-                                setUtmSouceCampaignOnPromotions('mia-sita-hamusini')
+                                setUtmSouceCampaignOnPromotions('booster-midmonth')
                             }}>Deposit now
                             </button>
                             <div

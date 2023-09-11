@@ -123,11 +123,13 @@ const Sidebar = React.memo(
                                                                     "leagues",
                                                                     true
                                                                 )}
+                                                                className={'sidebar-league-icon-small'}
                                                                 style={{borderRadius: "50%", height: "20px", width: "20px"}}
                                                             />
                                                         }
                                                     >
                                                         <Link
+                                                            className={'text-small-sidebar'}
                                                             onClick={() =>
                                                                 gaEventTracker(
                                                                     `Top Leagues ${top_league?.competition_name}`

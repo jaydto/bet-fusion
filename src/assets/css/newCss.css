@@ -1552,6 +1552,19 @@ img.nare-league {
 }
 
 @media (max-width: 1259px) {
+    .sidebar-league-icon-small{
+        width:16px!important;
+        height:16px!important;
+
+    }
+    .text-small-sidebar {
+        width: 95px;
+        font-size:13px!important;
+        display: block!important;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
     .carousel-item img {
         min-height: 100px!important;
         border-radius: 4px;

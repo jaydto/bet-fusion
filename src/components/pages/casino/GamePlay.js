@@ -18,7 +18,6 @@ const GamePlay = React.memo(
         const gaEventTracker = useAnalyticsEventTracker("Casino Game")
 
         const {game_id, live} = useParams()
-        console.log("game_id", game_id)
 
         const [user, ] = useState(getFromLocalStorage("user"));
 

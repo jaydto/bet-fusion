@@ -183,7 +183,7 @@ export const MatchHeaderRow = React.memo(
         const [market, setMarket] = useState('1x2');
         const [extraMarketDisplays, setExtraMarketDisplays] = useState([])
         const [, setThreeWay] = useState(false)
-        const userData = useSelector((state) => state.data.user)
+        const userData = useSelector((state) => state.auth.user)
         const [user, setUser] = useState(getFromLocalStorage("user"))
 
         useEffect(() => {

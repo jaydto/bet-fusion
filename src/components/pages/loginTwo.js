@@ -32,7 +32,7 @@ const LoginTwo = React.memo(
         const expand = "md"
         const {width} = useWindowDimensions();
         const navigate = useNavigate();
-        const userData = useSelector((state) => state.data.user)
+        const userData = useSelector((state) => state.auth.user)
         const [user, setUser] = useState(getFromLocalStorage("user"))
 
         useEffect(() => {

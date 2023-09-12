@@ -12,7 +12,7 @@ const Header=React.lazy(()=>import('../../header/header'))
 
 const NewProfile = React.memo(
     () => {
-        const userData=useSelector((state)=>state.data.user)
+        const userData=useSelector((state)=>state.auth.user)
         const [user, setUser]=useState(getFromLocalStorage("user"))
 
         useEffect(()=>{

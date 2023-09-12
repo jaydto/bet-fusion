@@ -13,7 +13,7 @@ const SelfExclusion = () => {
     const navigate=useNavigate();
     const [showModal, setShowModal] = useState(false);
     const [loading, setLoading] = useState(false);
-    const userData=useSelector((state)=>state.data.user)
+    const userData=useSelector((state)=>state.auth.user)
     const show_modal=useSelector((state)=>state.data.show_modal)
     const exclusion_time=useSelector((state)=>state.data.self_exclsuion_time)
     const exclusion_message=useSelector((state)=>state.data.self_exclsuion_message)

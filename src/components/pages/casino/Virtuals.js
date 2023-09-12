@@ -27,7 +27,7 @@ const Virtuals = React.memo(
         const [location, setLocation] = useState(null)
 
         const locationH = useLocation();
-        const userData=useSelector((state)=>state.data.user)
+        const userData=useSelector((state)=>state.auth.user)
         const [user, setUser]=useState(getFromLocalStorage("user"))
 
         useEffect(()=>{

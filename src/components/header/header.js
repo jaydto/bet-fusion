@@ -44,7 +44,7 @@ const Header = React.memo(
         const appConfigs=useSelector((state)=>state.data.app_config)
 
         const [settings,setSettings] = useState(getFromLocalStorage('settings'));
-        const userData=useSelector((state)=>state.data.user)
+        const userData=useSelector((state)=>state.auth.user)
         const matchesData=useSelector((state)=>state.matchesData.searched_matches)
         const [user, setUser]=useState(getFromLocalStorage("user"))
         const [matches, setMatches] = useState([])
@@ -57,7 +57,7 @@ const Header = React.memo(
             if(userData){
                 setUser(userData||getFromLocalStorage("user"))
             }
-        }, [userData])
+        }, [userData,getFromLocalStorage("user") ])
 
         useEffect(()=>{
             setSettings(appConfigs||getFromLocalStorage('settings'))

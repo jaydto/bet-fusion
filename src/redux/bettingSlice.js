@@ -13,7 +13,7 @@ export const bettingMatchesGames =
                 data: data,
                 use_jwt:use_jwt
             });
-            if (status === 201) {
+            if (status === 201||status===200||response.status===201) {
                 return response;
             } else {
                 throw new Error(jackpot?response?.error:response?.message || `${jackpot?"jackpot ":""} Bet placement failed`);

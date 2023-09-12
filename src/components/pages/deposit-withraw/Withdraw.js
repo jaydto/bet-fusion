@@ -33,7 +33,7 @@ const Withdraw = React.memo(
         const successMessage=useSelector((state)=>state.data.withdrawal_message)
         const errorMessage=useSelector((state)=>state.data.error)
         const dispatchRedux=useDispatch()
-        const userData=useSelector((state)=>state.data.user)
+        const userData=useSelector((state)=>state.auth.user)
 
         const [user, setUser] = useState(getFromLocalStorage("user"));
         useEffect(()=>{
@@ -335,7 +335,7 @@ const WithdrawForm = (props) => {
     const [settings, setSettings] = useState(getFromLocalStorage('settings'))
     const [currentWithdrawValue, setCurrentWithdrawValue] = useState(0); // New state for current deposit value
     const withdrawalLimits = settings?.withdrawalLimits
-    const userData=useSelector((state)=>state.data.user)
+    const userData=useSelector((state)=>state.auth.user)
     const [user, setUser]=useState(getFromLocalStorage("user"))
 
     useEffect(()=>{

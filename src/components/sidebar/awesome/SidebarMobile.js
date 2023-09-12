@@ -25,7 +25,7 @@ import {useSelector} from "react-redux";
 const SidebarMobile = React.memo(
     (props) => {
         // const [competitions, setCompetitions] = useState(getFromLocalStorage('sport_categories'));
-        const userData=useSelector((state)=>state.data.user)
+        const userData=useSelector((state)=>state.auth.user)
         const [user, setUser]=useState(getFromLocalStorage("user"))
 
         useEffect(()=>{

@@ -31,7 +31,7 @@ const GamePlay = React.memo(
         const [gameUrlLoaded, setGameUrlLoaded] = useState(false)
         const gaEventTracker = useAnalyticsEventTracker("Spribe Games")
         const [isCustomFullscreen, setCustomFullscreen] = useState(false);
-        const userData=useSelector((state)=>state.data.user)
+        const userData=useSelector((state)=>state.auth.user)
         const [user, setUser]=useState(getFromLocalStorage("user"))
 
         useEffect(()=>{

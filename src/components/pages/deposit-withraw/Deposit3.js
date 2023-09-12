@@ -31,7 +31,7 @@ const Deposit3 = React.memo(
         // const [message, setMessage] = useState(null);
         const [activeTab, setActiveTab] = useState('online'); // Set the initially active tab here
         const dispatchRedux=useDispatch()
-        const userData=useSelector((state)=>state.data.user)
+        const userData=useSelector((state)=>state.auth.user)
         const [user, setUser] = useState(getFromLocalStorage("user"));
         const appConfigs=useSelector((state)=>state.data.app_config)
         const [settings,setSettings] = useState(getFromLocalStorage('settings'));
@@ -408,7 +408,7 @@ const ConfirmationInstructions = (props) => {
 const DepositConfirmFormFields = (props) => {
     const {values, errors, onFieldChanged} = props;
     const loadingConfirmDeposit=useSelector((state)=>state.data.deposit_confirm_loading)
-    const userData=useSelector((state)=>state.data.user)
+    const userData=useSelector((state)=>state.auth.user)
 
     const [user, setUser] = useState(getFromLocalStorage("user"));
     useEffect(()=>{
@@ -462,7 +462,7 @@ const DepositConfirmFormFields = (props) => {
 const DepositFormFields = (props) => {
     const {values, errors, onFieldChanged, setCurrentDepositValue, currentDepositValue} = props;
     const {state, dispatch} = useContext(StoreContext)
-    const userData=useSelector((state)=>state.data.user)
+    const userData=useSelector((state)=>state.auth.user)
     const appConfigs=useSelector((state)=>state.data.app_config)
     const loadingDeposit=useSelector((state)=>state.data.deposit_loading)
     const [settings,setSettings] = useState(getFromLocalStorage('settings'));
@@ -632,7 +632,7 @@ const DepositForm = (props) => {
     const [currentDepositValue, setCurrentDepositValue] = useState(0); // New state for current deposit value
     const depositValues = state?.depositValue || ''; // Initialize depositValues as an empty array if it's not available in the state
     const dispatchRedux=useDispatch()
-    const userData=useSelector((state)=>state.data.user)
+    const userData=useSelector((state)=>state.auth.user)
 
     const [user, setUser] = useState(getFromLocalStorage("user"));
     useEffect(()=>{

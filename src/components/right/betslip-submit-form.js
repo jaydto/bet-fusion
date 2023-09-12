@@ -53,18 +53,8 @@ export const SubmitButton = (props) => {
                 padding: "10px",
                 borderRadius: "0.7rem",
                 fontSize: "14px",
-                background: "var(--betnare-button-login",
-                whiteSpace: 'nowrap'
-            } : {
-                padding: "10px",
-                width: "100%",
-                borderRadius: "0.7rem",
-                whiteSpace: 'nowrap',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '5px'
-            }}
+                background: "var(--betnare-button-login"
+            } : {padding: "10px", width: "100%", borderRadius: "0.7rem"}}
             className={`${disabled ? "disabled" : ""} ${button_size ? " jackpot-button-placebet " : " "} 'bg-warning bold rounded-2 text-dark cursor-pointer'`}
             disabled={isSubmitting || disabled}
             title="Place Bet"
@@ -74,7 +64,6 @@ export const SubmitButton = (props) => {
         </button>
     );
 };
-
 const BetslipSubmitForm = React.memo(
     (props) => {
         const {
@@ -120,7 +109,7 @@ const BetslipSubmitForm = React.memo(
 
         const scrollToRef = useRef(null);
         const {width} = useWindowDimensions();
-        const userData=useSelector((state)=>state.data.user)
+        const userData=useSelector((state)=>state.auth.user)
         const [user, setUser]=useState(getFromLocalStorage("user"))
 
         useEffect(()=>{

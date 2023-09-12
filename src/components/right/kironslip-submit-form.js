@@ -63,7 +63,7 @@ const KironslipSubmitForm = React.memo(
 
         const [betslipKey, setBetslipKey] = useState("kironbetslip");
         const dispatchRedux=useDispatch()
-        const userData=useSelector((state)=>state.data.user)
+        const userData=useSelector((state)=>state.auth.user)
 
         const [user, setUser] = useState(getFromLocalStorage("user"));
         useEffect(()=>{

@@ -27,6 +27,7 @@ import {
     resetStateBetslip,
     setMatchBetslip
 } from "../../redux/bettingSlice";
+import {userBalance} from "../../redux/authSlice";
 
 const JackpotMenu = React.memo(
     (props) => {
@@ -58,7 +59,7 @@ const JackpotMenu = React.memo(
             return str.replace(/-+/g, "-");
         };
 
-        const userData = useSelector((state) => state.data.user)
+        const userData = useSelector((state) => state.auth.user)
         const jackpot_data = useSelector((state) => state.betting.jackpotbestlip)
         const [user, setUser] = useState(getFromLocalStorage("user"))
 
@@ -160,13 +161,14 @@ const JackpotMenu = React.memo(
                 .then((response) => {
                     // Check if the action was fulfilled successfully
                     if (bettingMatchesGames.fulfilled.match(response)) {
+                        console.log("response", response)
 
                         let betslips = getJackpotBetslip()
                         Object.entries(betslips).map(([match_id, match]) => {
                             // let slip=
                             removeFromJackpotSlip(match_id)
 
-                            let match_selector = match.match_id + "_selected";
+                            let match_selector = "jp_"+match.match_id + "_selected";
 
 
                             dispatchRedux(resetStateBetslip("jackpotbetslip"))
@@ -178,7 +180,7 @@ const JackpotMenu = React.memo(
 
                         let message = {
                             status: 201,
-                            message: response?.message,
+                            message: response?.payload.message,
                         };
 
                         Notify(message)
@@ -188,6 +190,15 @@ const JackpotMenu = React.memo(
                             betslip_type: "jackpotbetslip",
                             data: {}
                         }
+                        let udata = {
+                            token: user.token
+                        }
+                        const userValues={
+                            udata:udata,
+                            user:user
+                        }
+
+                        dispatchRedux(userBalance(userValues))
                         dispatchRedux(setMatchBetslip(betslip_data))
                     } else if (bettingMatchesGames.rejected.match(response)) {
                         // const data = {
@@ -279,17 +290,11 @@ const JackpotMenu = React.memo(
                                         <div className={"d-flex bet-select-values w-100 mt-2 p-lg-2 p-md-2 py-sm-0"}
                                              style={{whiteSpace: "nowrap"}}>
                                             <Formik>
-                                                {({ isSubmitting }) => (
-                                                    <Form>
-                                                        {/* Your form fields */}
-                                                        <SubmitButton
-                                                            title="PLACE BET"
-                                                            className="place-bet-btn jp-button bold"
-                                                            button_size={true}
-                                                            isSubmitting={isSubmitting} // Pass isSubmitting as a prop
-                                                        />
-                                                    </Form>
-                                                )}
+                                                <Form>
+                                                    {/* Your form fields */}
+                                                    <SubmitButton title="PLACE BET" className="place-bet-btn jp-button bold "
+                                                                  button_size={true} />
+                                                </Form>
                                             </Formik>
                                         </div>
 

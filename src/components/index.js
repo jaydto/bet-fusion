@@ -33,7 +33,7 @@ const SideBar = React.lazy(() => import('./sidebar/awesome/Sidebar'))
 const Index = React.memo(
     () => {
         const location = useLocation();
-        const userData=useSelector((state)=>state.data.user)
+        const userData=useSelector((state)=>state.auth.user)
         const [user, setUser]=useState(getFromLocalStorage("user"))
         const [tab, setTab] = useState('highlights');
         const [sportID, setSportID] = useState(79);
@@ -249,26 +249,8 @@ const Index = React.memo(
                     !bottomSheetRef.current.contains(event.target)
                 ) {
                     // const clickableItem = homePageRef.current.querySelector('a, button'); // You can customize this selector
-                    console.log("clickable4")
 
-                    event.preventDefault();
-                    event.stopPropagation()
-                    event.stopImmediatePropagation()
                     dispatch({ type: "SET", key: "bottomSheet", payload: false });
-                }
-                if (
-                    homePageRef.current &&
-                    !homePageRef.current.contains(event.target) &&
-                    !bottomSheetRef.current
-                ) {
-                    // Check if the clicked element is a clickable item within homePageRef
-                    // const clickableItem = homePageRef.current.querySelector('.odds-container-size'); // You can customize this selector
-                    console.log("clickable5")
-                    event.preventDefault();
-                    event.stopPropagation();
-                    event.stopImmediatePropagation();
-                    dispatch({ type: "SET", key: "bottomSheet", payload: false });
-
                 }
             }
 

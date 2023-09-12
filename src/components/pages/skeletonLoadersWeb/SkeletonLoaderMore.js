@@ -12,7 +12,7 @@ const SkeletonLoaderMobile = React.memo(
         const RenderSkeletonLoaders = () => {
             return Array.from({ length: skeletonCount }, (_, index) => (
                 <div className="col-sm-12 col-md-12" key={index}>
-                    <div className="movie--isloading mobile-web">
+                    <div className="movie--isloading mobile-web more-markets-web">
                         <div className="loading-content mobile-web flex-column">
                                 <div className="loading-btn mobile-web more-header-skeleton more-shape-skeleton2" style={backgroundLoaderbtn}></div>
                             <div className={'d-flex w-100 justify-content-end align-items-end flex-column'}>

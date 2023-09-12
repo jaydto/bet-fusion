@@ -7,7 +7,6 @@ import {getBetslip} from "./utils/betslip";
 import {MarketList} from "./matches";
 import LiveSideBar from "./sidebar/live-sidebar";
 import {ToastContainer} from "react-toastify";
-import Skeleton1 from "./skeleton/skeleton";
 import {
     favoriteMarkets,
     matchesMoreLiveMarkets,
@@ -20,6 +19,7 @@ import {
 import {useDispatch, useSelector} from "react-redux";
 import {setMatchBetslip, setSelected} from "../redux/bettingSlice";
 import {getFromLocalStorage} from "./utils/local-storage";
+import SkeletonLoaderMore from "./pages/skeletonLoadersWeb/SkeletonLoaderMore";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -148,7 +148,7 @@ const AllMarkets = React.memo(
                                     groups={market_groups}
                                 />:
                                     <div>
-                                        <Skeleton1/>
+                                        <SkeletonLoaderMore/>
                                     </div>
                                 }
 

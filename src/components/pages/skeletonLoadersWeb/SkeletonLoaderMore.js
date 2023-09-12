@@ -16,7 +16,7 @@ const SkeletonLoaderMobile = React.memo(
             return Array.from({ length: skeletonCount }, (_, index) => (
                 <div className="col-sm-12 col-md-12" key={index}>
                     <div className="movie--isloading mobile-web">
-                        <div className="loading-content mobile-web">
+                        <div className="loading-content mobile-web flex-column">
 
                             <div className={'d-flex w-100 justify-content-end align-items-end flex-column'}>
                                 <div className={'d-flex w-100 my-3 align-items-end justify-content-end'}>

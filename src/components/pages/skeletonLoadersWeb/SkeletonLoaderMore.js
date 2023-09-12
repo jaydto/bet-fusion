@@ -8,7 +8,7 @@ const SkeletonLoaderMobile = React.memo(
     const backgroundLoaderbtn={
         backgroundImage: "-webkit-linear-gradient(left, #2D4352 0px, #ddd 40px, #2D4352 80px)"
     }
-        const skeletonCount = 5; // Number of SkeletonLoaderMobile components to render
+        const skeletonCount = 10; // Number of SkeletonLoaderMobile components to render
         const RenderSkeletonLoaders = () => {
             return Array.from({ length: skeletonCount }, (_, index) => (
                 <div className="col-sm-12 col-md-12" key={index}>

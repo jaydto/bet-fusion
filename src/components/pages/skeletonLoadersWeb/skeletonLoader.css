@@ -9,19 +9,19 @@
 }
 .movie--isloading .loading-content .loading-btn.more-header-skeleton{
     border-radius:2px!important;
-    height:5.5rem!important;
+    height:3.5rem!important;
 
 }
 .skeleton-loader.more-markets{
         line-height: 50;
-        gap: 27px;
+        gap: 15px;
         display: flex;
         flex-direction: column;
 
 }
 .movie--isloading .loading-content .loading-btn.more-header-skeleton.more-shape-skeleton2{
     border-radius:2px!important;
-    height:2.5rem!important;
+    height:1rem!important;
     width: calc(100% * (0.25)) !important;
     text-align:start!important;
     align-items:baseline!important;

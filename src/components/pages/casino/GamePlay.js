@@ -10,7 +10,7 @@ import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 import FullscreenButton from "../../shared/FullScreenButton";
 import useWindowDimensions from "../../header/Dimensions";
 import {useDispatch, useSelector} from "react-redux";
-import {casinoGamePlay} from "../../../redux/virtualsSlice";
+import {casinoCreatePlayer, casinoGamePlay} from "../../../redux/virtualsSlice";
 
 
 const GamePlay = React.memo(
@@ -18,6 +18,7 @@ const GamePlay = React.memo(
         const gaEventTracker = useAnalyticsEventTracker("Casino Game")
 
         const {game_id, live} = useParams()
+        console.log("game_id", game_id)
 
         const [user, ] = useState(getFromLocalStorage("user"));
 
@@ -32,7 +33,7 @@ const GamePlay = React.memo(
         const gameUrl=useSelector((state)=>state.virtuals.casino_game_url)
 
         const createPlayer = async () => {
-            dispatchRedux(createPlayer())
+            dispatchRedux(casinoCreatePlayer())
 
         }
 

@@ -8,13 +8,25 @@
     height: 93px;
 }
 .movie--isloading .loading-content .loading-btn.more-header-skeleton{
-    width:98vw!important;
     border-radius:2px!important;
+    height:5.5rem!important;
 
 }
-.movie--isloading .loading-content .loading-btn.more-header-skeleton.more-shape-skeleton1 {
-    height: 12rem!important;
+.skeleton-loader.more-markets{
+        line-height: 50;
+        gap: 60px;
+        display: flex;
+        flex-direction: column;
+
 }
+.movie--isloading .loading-content .loading-btn.more-header-skeleton.more-shape-skeleton2{
+    border-radius:2px!important;
+    height:2.5rem!important;
+    width: calc(100% * (0.25)) !important;
+    text-align:start!important;
+    align-items:baseline!important;
+}
+
 
 .movie--isloading .loading-content .loading-text-container.mobile-web. {
     flex-basis: 100%;
@@ -68,7 +80,7 @@
 .movie--isloading .loading-content.mobile-web {
     padding: 5px;
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: center;
     padding-bottom: 0px;
 }

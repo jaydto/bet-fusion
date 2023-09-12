@@ -261,6 +261,15 @@ const BetslipSubmitForm = React.memo(
                             betslip_type:"betslip",
                             data:{}
                         }
+                        let udata = {
+                            token: user.token
+                        }
+                        const userValues={
+                            udata:udata,
+                            user:user
+                        }
+
+                        dispatchRedux(userBalance(userValues))
                         dispatchRedux(setMatchBetslip(betslip_data))
 
                     setLocalStorage('betslip_share_code', null)

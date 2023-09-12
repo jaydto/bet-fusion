@@ -1550,9 +1550,6 @@ export const MarketList = React.memo(
         const [groupMarketsAvailable, setGroupMarketsAvailable] = useState(null)
         //  fetching More Markets from redux state
         const matchwithmarkets = useSelector((state) => state.matchesData.more_matches)
-        useLayoutEffect(() => {
-            window.scrollTo(0, 0);
-        }, []);
 
         const filterMarkets = (value, group) => {
             const elements = matchwithmarkets?.data?.odds;
@@ -1772,18 +1769,6 @@ const MatchList = React.memo(
         const observerRef = useRef(); // Ref to hold the observer
 
         useEffect(() => {
-            const handleInitialScroll = () => {
-                if (listRef.current) {
-                    listRef.current.style.display = 'none';
-                    window.scrollTo(0, 0);
-                    listRef.current.style.display = 'block';
-                }
-            };
-
-            // Delay the initial scroll behavior
-            setTimeout(handleInitialScroll, 0);
-        }, []);
-        useEffect(() => {
 
             observerRef.current = new IntersectionObserver(entries => {
                 if (entries[0].isIntersecting && !fetching) {
@@ -1851,7 +1836,7 @@ const MatchList = React.memo(
                             No events found.
                         </div>
                     }
-                    <div tabIndex="-1" ref={listRef}></div>
+                    <div ref={listRef} style={{ overflow: 'hidden' }}></div>
                 </div>
             </div>
         )

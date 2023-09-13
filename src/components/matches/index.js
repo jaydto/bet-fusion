@@ -284,28 +284,25 @@ const MoreMarketsHeaderRow = React.memo(
         } = props;
         const [switches, setSwitches] = useState("scoreboard")
         const dispatchRedux = useDispatch()
+
         const switchLmt = (value) => {
             setSwitches(value)
         }
 
-        const LMT = ({parent_match_id}) => {
-            useEffect(() => {
-                window?.SIR("addWidget", "#sr-widget-" + parent_match_id, "match.lmtPlus", {
-                    branding: {tabs: {option: "icon", variant: "fullWidth"}},
-                    goalBannerImage:
-                        "https://storage.googleapis.com/nareimages/logo-white.webp",
-                    logo: ["https://storage.googleapis.com/nareimages/logo-dark.webp"],
-                    momentum: "disable",
-                    matchId: parent_match_id,
-                    collapseTo: switches,
-                    layout: "single",
-                    scoreboard: "extended",
-                    detailedScoreboard: "disable",
-                });
-            })
-
-            return <div id={`sr-widget-${parent_match_id}`}></div>
-        }
+        useEffect(() => {
+            window?.SIR("addWidget", "#sr-widget-" + parent_match_id, "match.lmtPlus", {
+                branding: {tabs: {option: "icon", variant: "fullWidth"}},
+                goalBannerImage:
+                    "https://storage.googleapis.com/nareimages/logo-white.webp",
+                logo: ["https://storage.googleapis.com/nareimages/logo-dark.webp"],
+                momentum: "disable",
+                matchId: parent_match_id,
+                collapseTo: switches,
+                layout: "single",
+                scoreboard: "extended",
+                detailedScoreboard: "disable",
+            });
+        })
 
         useEffect(() => {
             if (sport_id !== undefined && sport_id !== "") {
@@ -415,7 +412,7 @@ const MoreMarketsHeaderRow = React.memo(
 
 
                         </Row>
-                        <LMT parent_match_id={parent_match_id}/>
+                        <div id={`sr-widget-${parent_match_id}`}></div>
                         <ButtonGroup aria-label="stats button actions" className='w-100 d-flex justify-content-start'>
                             <Button className="place-bet-btn w-25 btn link" title="scoreboard" type="button"
                                     style={{background: "transparent", fontSize: "14px", border:"none"}} onClick={() => {
@@ -693,9 +690,6 @@ const MktBtn =React.memo(
                 </>
             </button>
         );
-    }, (prevProps, nextProps) => {
-        // Compare only the 'picked' prop
-        return prevProps.picked === nextProps.picked;
     });
 
 const OddButton = React.memo(
@@ -905,7 +899,6 @@ const MktOddsButton = React.memo(
             )
         }; // Append ucn to fullmatch
 
-
         const updatePicked = () => {
             const referencedState = dispatchRedux(getSelected(reference));
             if (typeof referencedState === "string") {
@@ -936,7 +929,6 @@ const MarketRow = React.memo((props) => {
     const [userFavoriteMarkets, setUserFavoriteMarkets] = useState(() => {
         return favoriteMarketValue
     });
-
     // Get favorite items from the API
     const getFavoriteMarkets = useCallback(async () => {
         dispatchRedux(favoriteMarkets())
@@ -1533,6 +1525,7 @@ export const MarketList = React.memo(
         const [groupMarketsAvailable, setGroupMarketsAvailable] = useState(null)
         //  fetching More Markets from redux state
         const matchwithmarkets = useSelector((state) => state.matchesData.more_matches)
+        const [selectedMarketGroup, setSelectedMarketGroup] = useState('all'); // Initialize with 'all' or your default group
 
         const filterMarkets = (value, group) => {
             const elements = matchwithmarkets?.data?.odds;
@@ -1553,6 +1546,7 @@ export const MarketList = React.memo(
         const filterMarketGroups = (group_id) => {
             const elements = matchwithmarkets?.data?.odds;
             let filteredMarkets;
+            setSelectedMarketGroup(group_id)
             if (group_id === "favorite") {
                 filteredMarkets = elements.filter((market) => Number(market?.is_favorite) === 1)
             } else {
@@ -1571,14 +1565,27 @@ export const MarketList = React.memo(
         };
 
         useEffect(() => {
-            setFilters(matchwithmarkets);
+            const elements = matchwithmarkets?.data?.odds;
+
+            // Filter the markets based on the selectedMarketGroup
+            let filteredMarkets = elements.filter((market) => Number(market?.group_id) === Number(selectedMarketGroup) || selectedMarketGroup === 'all');
+            const match=matchwithmarkets?.data?.match
+
+            const ob = {
+                data: {
+                    match: match,
+                    odds: filteredMarkets,
+                },
+            };
+            setFilters(ob)
+            setGroupMarketsAvailable(Object.keys(ob?.data?.odds).length !== 0);
+
 
         }, [matchwithmarkets]);
 
         const mkGroup=useSelector((state)=>state.matchesData.market_groups)
 
         const [market_groups, setMarketGroups]=useState(getFromLocalStorage("market_groups"))
-        const [matches, setMatches]=useState()
         useEffect(()=>{
             const cache=getFromLocalStorage("market_groups")
             setMarketGroups(mkGroup||cache)

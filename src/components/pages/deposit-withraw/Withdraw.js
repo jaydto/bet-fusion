@@ -1,7 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react'
 import {Col, Row} from "antd";
 import authImg from '../../../assets/img/Logo.webp'
-import betNiMoto from '../../../assets/img/BetniMoto.webp'
 
 import {Link, useNavigate} from "react-router-dom";
 
@@ -116,10 +115,7 @@ const Withdraw = React.memo(
 
                                     <h1 className="text-white text-center" style={{fontSize: "30px"}}>Withdraw Cash From
                                         Your Account</h1>
-                                    <p className="text-white px-3 d-flex align-items-center justify-content-center mt-3"
-                                       style={{fontSize: "16px", opacity: '0.5px'}}><LazyLoadImage src={betNiMoto}
-                                                                                                   style={{width: "150px"}}
-                                                                                                   alt={'betnare'}/></p>
+
                                 </Col>
                             </Row>
                             <div className="d-flex justify-content-end pb-4 mb-3">

@@ -16,7 +16,6 @@ import {
     faEye, faEyeSlash,
 } from "@fortawesome/free-solid-svg-icons";
 import SidebarMobile from "../../sidebar/awesome/SidebarMobile";
-import betNiMoto from '../../../assets/img/BetniMoto.webp'
 import {Form, Formik} from "formik";
 import {StoreContext} from "../../../context/store"
 import SliderPromos from "./SliderPromos";
@@ -121,10 +120,7 @@ const RegisterTwo = () => {
 
                                     <h1 className="text-white text-center" style={{fontSize: "30px"}}>Welcome to
                                         betnare</h1>
-                                    <p className="text-white px-3 d-flex align-items-center justify-content-center mt-3"
-                                       style={{fontSize: "16px", opacity: '0.5px'}}><LazyLoadImage src={betNiMoto}
-                                                                                                   style={{width: "150px"}}
-                                                                                                   alt={'betnare'}/></p>
+
                                 </Col>
                             </Row>
                             <div className="d-flex justify-content-end pb-4">

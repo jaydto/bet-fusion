@@ -307,14 +307,14 @@ const MoreMarketsHeaderRow = React.memo(
         useEffect(() => {
             if (sport_id !== undefined && sport_id !== "") {
                 const cache=getFromLocalStorage("market_groups")
-                if(!cache){
+                if(!cache||live){
                     dispatchRedux(marketGroups({
                         "sport_id": sport_id
                     }))
                 }
 
             }
-        }, [sport_id],getFromLocalStorage("market_groups") )
+        }, [sport_id,getFromLocalStorage("market_groups"),live] )
         const navigate = useNavigate()
 
         let lmtIncludes = [79, 85, 82, 80, 107];

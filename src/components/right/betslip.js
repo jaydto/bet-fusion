@@ -315,15 +315,15 @@ const BetSlip = React.memo(
                                                                          className={"slip-team text-ellipsis"}>{slip.home_team} &nbsp; Vs.&nbsp; {slip.away_team}</span>
                                                                         </span>
                                                                 }
-                                                                {slip.bet_type === 0 && " Pre-match"}
-                                                                {slip.bet_type === 1 && " Live"}
                                                             </b>
                                                         </div>
                                                         <div className={"d-flex w-100 slip-dim-color-selections"}>
                                                             <div className="row d-flex flex-column">
                                                                 <div
-                                                                    className="bet-value picks-user-slip"> {slip.odd_type} - <span
-                                                                    className={"pick-user-match"}>{slip.bet_pick}</span>
+                                                                    className="bet-value picks-user-slip"> {slip.odd_type} -
+                                                                    <span className={"pick-user-match"}>{slip.bet_pick}</span>&nbsp;
+                                                                    <span style={{color:"var(--red)"}}>{Number(slip.bet_type) === 1 ? " Live'":""}</span>
+
                                                                 </div>
                                                                 <div
                                                                     className="bet-value time-slip-value"> {slip?.start_time}</div>

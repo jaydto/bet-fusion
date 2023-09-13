@@ -303,7 +303,6 @@ export const matchesMorePrematchMarkets =
             });
             const state = getState();
             const more_matches=state.matchesData.more_matches
-            console.log("more_matches", more_matches)
 
             if (status === 200) {
                 return {response, more_matches};
@@ -424,8 +423,7 @@ const matchesSlice = createSlice({
                 const newMatches = action.payload?.response.data;
                 const search=action.payload?.search
                 const search_data=action.payload.searched_matches
-                console.log("searched_data", search_data)
-                console.log("matches_data", action.payload.matches_data)
+
 
                 const mergedMatches = newMatches.length > 0 ? {...action.payload.matches_data, ...newMatches} : newMatches;
                 if(search){

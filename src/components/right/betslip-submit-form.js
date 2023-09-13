@@ -439,7 +439,7 @@ const BetslipSubmitForm = React.memo(
             updateWinnings();
         }, [updateWinnings]);
 
-        const value_for_odds_change = getFromLocalStorage("accept_all_odds_change") === undefined ? true : getFromLocalStorage("accept_all_odds_change")
+        const value_for_odds_change = getFromLocalStorage("accept_all_odds_change") === undefined ? true :getFromLocalStorage("accept_all_odds_change") === null?true: getFromLocalStorage("accept_all_odds_change")
         const initialValues = {
             bet_amount: (jackpot && jackpotData?.bet_amount) || (bonusBet ? Number(settings?.betnareBonus?.defaultBonusBetAmount) : stake),
             accept_all_odds_change: value_for_odds_change,

@@ -52,14 +52,12 @@ const Countries = React.memo(
             topLeagues = false,
             flag=false
         ) => {
-
-
-
+                console.log("cat_flag",sport_name )
             let sport_image;
             try {
                 sport_image = topLeagues
-                    ? require(`../../assets/img/${folder}/${sport_name}.svg`)
-                    : require(`../../assets/img/${folder}/${sport_name}.svg`);
+                    ?`https://storage.googleapis.com/nareimages/flags/${sport_name}.svg`
+                    :`https://storage.googleapis.com/nareimages/flags/${sport_name}.svg`;
             } catch (error) {
             }
             return sport_image;

@@ -52,7 +52,6 @@ const Countries = React.memo(
             topLeagues = false,
             flag=false
         ) => {
-                console.log("cat_flag",sport_name )
             let sport_image;
             try {
                 sport_image = topLeagues

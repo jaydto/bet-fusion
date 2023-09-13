@@ -161,7 +161,6 @@ const JackpotMenu = React.memo(
                 .then((response) => {
                     // Check if the action was fulfilled successfully
                     if (bettingMatchesGames.fulfilled.match(response)) {
-                        console.log("response", response)
 
                         let betslips = getJackpotBetslip()
                         Object.entries(betslips).map(([match_id, match]) => {

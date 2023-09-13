@@ -153,13 +153,14 @@ const Index = React.memo(
             }
             //splitting before api call
             let sub_types = (url.searchParams.get('sub_type_id') || "1")
+            let search = (url.searchParams.get('search') ||false)
 
             endpoint += `&sub_type_id=` + (sub_types || "1")
 
-            dispatchRedux(matchesPrematch({endpoint,method:"POST",data:betslip})); // Dispatch matchesPrematch with the updated fetchParams
+            dispatchRedux(matchesPrematch({endpoint,method:"POST",data:betslip, search:search})); // Dispatch matchesPrematch with the updated fetchParams
 
             // Clear the interval when fetchParams change
-            dispatchRedux(startFetchingMatches({endpoint,method:"POST",data:betslip, interval:20000, prematch:true}));
+            dispatchRedux(startFetchingMatches({endpoint,method:"POST",data:betslip, interval:20000, prematch:true, search:search}));
 
         };
 
@@ -381,6 +382,9 @@ const Index = React.memo(
                                                                     jackpotData={newMatches?.meta}
                                                                     test={true}/>
                         }
+                        <div className={`${(state?.bottomSheet&&width<991)?'d-none':''}`}>
+
+                        </div>
                         <div className={`${state?.bottomSheet ? 'bottom-sheet show ' : 'd-none'}`}>
                             <div className="sheet-overlay"></div>
                             <div  ref={bottomSheetRef} className="content">

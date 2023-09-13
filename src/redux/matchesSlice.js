@@ -7,14 +7,14 @@ import {addToSlip} from "../components/utils/betslip";
 // Async thunk for matches
 export const matchesPrematch =
     createAsyncThunk("matches/prematch",
-        async ({endpoint, method, data}) => {
+        async ({endpoint, method, data, search=false}) => {
             const [status, response] = await makeRequest({
                 url: endpoint,
                 method: method,
                 data: data,
             });
             if (status === 200) {
-                return response;
+                return {response, search};
             } else {
                 throw new Error(response?.error || "Fetching Prematch failed");
             }
@@ -323,10 +323,10 @@ export const resetState =
 
 let fetchInterval; // Declare the interval variable outside the action creator
 
-export const startFetchingMatches = ({endpoint, method, data, interval, prematch = false, live = false, competition = false
+export const startFetchingMatches = ({endpoint, method, data, interval, prematch = false, live = false, competition = false, search=false
 }) => async (dispatch) => {
         // Dispatch the initial fetch
-        const matchesData = {endpoint, method, data}
+        const matchesData = {endpoint, method, data, search}
 
         // Set up the interval to fetch matches every 20 seconds
         fetchInterval = setInterval(() => {
@@ -410,16 +410,27 @@ const matchesSlice = createSlice({
             })
             .addCase(matchesPrematch.fulfilled, (state, action) => {
                 state.isLoggedIn = true;
-                const newMatches = action.payload?.data;
+                const newMatches = action.payload?.response.data;
+                const search=action.payload?.search
+
 
                 const mergedMatches = newMatches.length > 0 ? {...state.matches, ...newMatches} : newMatches;
+                if(action.payload?.search){
+                    state.matches=newMatches
+                }else{
+                    if(state.searched_matches){
+                        state.matches=newMatches
+                        state.searched_matches=null
+                    }else{
+                        state.matches = mergedMatches;
 
-                state.matches = mergedMatches;
+                    }
+                }
 
                 if (newMatches.slip_data) {
                     state.user_slip_validation = newMatches.slip_data
                 }
-                state.producer_down = action.payload.producer_status === 1
+                state.producer_down = action.payload.response.producer_status === 1
                 // Reset initialLoading flag after initial fetch
                 if (state.initialLoading) {
                     state.initialLoading = false;
@@ -452,8 +463,6 @@ const matchesSlice = createSlice({
 
                 const newMatches = action.payload?.data;
                 state.searched_matches = newMatches;
-                state.matches = newMatches;
-
                 if (newMatches.slip_data) {
                     state.user_slip_validation = newMatches.slip_data
                 }
@@ -466,6 +475,7 @@ const matchesSlice = createSlice({
                 state.fetching = false
                 // state.prev_match_size = state.match_size || 10// prev_match_size
                 state.match_size = newMatches?.length;
+                state.matches = newMatches;
 
             })
             .addCase(matchesSearch.rejected, (state, action) => {

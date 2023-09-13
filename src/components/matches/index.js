@@ -703,16 +703,15 @@ const OddButton = React.memo(
         const {match, mkt, detail, live, jackpot, marketKey, allMarkets} = props;
         // const {ucn}=match
         const [picked, setPicked] = useState("");
-        const [oddValue, setOddValue] = useState(null);
-        const {state, dispatch} = useContext(StoreContext);
+
         const dispatchRedux = useDispatch()
         const settings = getFromLocalStorage("settings");
         const ref = useRef();
-        let reference = jackpot ? "jp_" + match.match_id + "_selected" : match.match_id + "_selected";
-
         const [slipType, setSlipType] = useState(jackpot ? getJackpotBetslip() : getBetslip())
         const betslip_data_item = useSelector((state) => state.betting.betslip)
         const jackpot_slip_data_item = useSelector((state) => state.betting.jackpotbestlip)
+        const search = useSelector((state) => state.matchesData.searched_matches)
+        let reference = jackpot ? "jp_" + match.match_id + "_selected" : match.match_id + "_selected";
 
         useEffect(() => {
             if (jackpot) {
@@ -725,16 +724,32 @@ const OddButton = React.memo(
 
 
         const updatePicked = () => {
+
+            const betslip = slipType
+            let referenced;
+            let uc;
+            Object.entries(betslip || {}).map(([matchId, match]) => {
+                 uc = clear_rep(
+                    match.match_id +
+                    "" +
+                    match.sub_type_id +
+                    (match?.bet_pick || "draw")
+                );
+                referenced = jackpot?"jp_"+matchId + "_selected":matchId + "_selected";
+
+            });
             const referencedState = dispatchRedux(getSelected(reference));
 
+
             if (typeof referencedState === 'string') { // Check if referencedState is a string
+
                 let uc = clear_rep(
                     match.match_id +
                     "" +
                     match.sub_type_id +
                     (match?.[mkt] || match?.odd_key || "draw")
                 );
-
+                console.log("uc", uc)
                 if (jackpot) {
                     uc = "jp_" + uc;
                 }
@@ -757,7 +772,7 @@ const OddButton = React.memo(
 
         useEffect(() => {
             updatePicked()
-        }, [jackpot, slipType, betslip_data_item, jackpot_slip_data_item]);
+        }, [betslip_data_item, jackpot_slip_data_item,search]);
 
 
         const maxPickReached = () => {
@@ -798,7 +813,6 @@ const OddButton = React.memo(
                 if (jackpot) {
                     cstm = "jp_" + cstm;
                 }
-                console.log("match_pick", cstm)
                 const betItems = getBetslip();
                 const slip = {
                     match_id: attributes.match_id,
@@ -860,14 +874,13 @@ const OddButton = React.memo(
                     // dispatch({type: "SET", key: betslip_key, payload: betslip});
                 }
             }, [match?.ucn, picked, jackpot, settings, allMarkets]);
-        const buttonClass=`home-team ${allMarkets ? "all-markets" : jackpot ? " jackpot-buttons-size" : ""} ${
-            match.match_id
-        } ${match?.ucn} ${picked} c-btn`
 
         return (
             <button
                 ref={ref}
-                className={buttonClass}
+                className={`home-team ${allMarkets ? "all-markets" : jackpot ? " jackpot-buttons-size" : ""} ${
+                    match.match_id
+                } ${match?.ucn} ${picked} c-btn`}
                 home_team={match.home_team}
                 odd_type={match?.name || match?.market_name || "1X2"}
                 bet_type={live ? 1 : 0}

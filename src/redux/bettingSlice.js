@@ -78,8 +78,10 @@ export const resetStateBetslip =
 
 export const getSelected = (reference) => {
     return (dispatch, getState) => {
+        console.log("refere_state_now", reference)
         const state = getState();
         const referencedState = state.betting[reference]; // Assuming 'betting' is your slice name
+        console.log("reference_stored", referencedState)
         return referencedState;
     };
 };

@@ -376,11 +376,11 @@ const Index = React.memo(
                         </div>
                     </div>
                     <div className={"item3"}>
-                        <div className={`${(state?.bottomSheet&&width<991)?'d-none':''}`}>
-                            <Right betslipValidationData={user_slip_validation}
-                                   jackpotData={newMatches?.meta}
-                                   test={true}/>
-                        </div>
+                        {
+                            state?.bottomSheet&&width<991?"":<Right betslipValidationData={user_slip_validation}
+                                                                    jackpotData={newMatches?.meta}
+                                                                    test={true}/>
+                        }
                         <div className={`${state?.bottomSheet ? 'bottom-sheet show ' : 'd-none'}`}>
                             <div className="sheet-overlay"></div>
                             <div  ref={bottomSheetRef} className="content">

@@ -30,7 +30,6 @@ const Header = React.memo(
         const {slip, scrollPosition, jackpot, profile} = props
         const gaEventTracker = useAnalyticsEventTracker('Navigation');
         const {state, dispatch} = useContext(StoreContext);
-        // const [searching, setSearching] = useState(false)
         const containerRef = useRef();
         const searchInputRef = useRef(null)
         const navigate = useNavigate()

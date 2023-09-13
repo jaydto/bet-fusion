@@ -707,39 +707,14 @@ const OddButton = React.memo(
         const dispatchRedux = useDispatch()
         const settings = getFromLocalStorage("settings");
         const ref = useRef();
-        const [slipType, setSlipType] = useState(jackpot ? getJackpotBetslip() : getBetslip())
         const betslip_data_item = useSelector((state) => state.betting.betslip)
         const jackpot_slip_data_item = useSelector((state) => state.betting.jackpotbestlip)
-        const search = useSelector((state) => state.matchesData.searched_matches)
         let reference = jackpot ? "jp_" + match.match_id + "_selected" : match.match_id + "_selected";
-
-        useEffect(() => {
-            if (jackpot) {
-                setSlipType(getJackpotBetslip())
-            } else {
-                setSlipType(getBetslip())
-            }
-
-        }, [betslip_data_item, jackpot_slip_data_item]);
 
 
         const updatePicked = () => {
 
-            const betslip = slipType
-            let referenced;
-            let uc;
-            Object.entries(betslip || {}).map(([matchId, match]) => {
-                 uc = clear_rep(
-                    match.match_id +
-                    "" +
-                    match.sub_type_id +
-                    (match?.bet_pick || "draw")
-                );
-                referenced = jackpot?"jp_"+matchId + "_selected":matchId + "_selected";
-
-            });
             const referencedState = dispatchRedux(getSelected(reference));
-
 
             if (typeof referencedState === 'string') { // Check if referencedState is a string
 
@@ -749,7 +724,6 @@ const OddButton = React.memo(
                     match.sub_type_id +
                     (match?.[mkt] || match?.odd_key || "draw")
                 );
-                console.log("uc", uc)
                 if (jackpot) {
                     uc = "jp_" + uc;
                 }
@@ -772,7 +746,7 @@ const OddButton = React.memo(
 
         useEffect(() => {
             updatePicked()
-        }, [betslip_data_item, jackpot_slip_data_item,search]);
+        }, [betslip_data_item, jackpot_slip_data_item,match]);
 
 
         const maxPickReached = () => {

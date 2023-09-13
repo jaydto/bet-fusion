@@ -7,14 +7,20 @@ import {addToSlip} from "../components/utils/betslip";
 // Async thunk for matches
 export const matchesPrematch =
     createAsyncThunk("matches/prematch",
-        async ({endpoint, method, data, search=false}) => {
+        async ({endpoint, method, data, search=false}, {getState}) => {
             const [status, response] = await makeRequest({
                 url: endpoint,
                 method: method,
                 data: data,
             });
+            const state = getState();
+            const searched_data = state.matchesData.searched_matches;
+            const matches_data = state.matchesData.matches;
+
+            console.log("search_items", searched_data)
+
             if (status === 200) {
-                return {response, search};
+                return {response, search, searched_data, matches_data};
             } else {
                 throw new Error(response?.error || "Fetching Prematch failed");
             }
@@ -412,13 +418,15 @@ const matchesSlice = createSlice({
                 state.isLoggedIn = true;
                 const newMatches = action.payload?.response.data;
                 const search=action.payload?.search
+                const search_data=action.payload.searched_matches
+                console.log("searched_data", search_data)
+                console.log("matches_data", action.payload.matches_data)
 
-
-                const mergedMatches = newMatches.length > 0 ? {...state.matches, ...newMatches} : newMatches;
-                if(action.payload?.search){
+                const mergedMatches = newMatches.length > 0 ? {...action.payload.matches_data, ...newMatches} : newMatches;
+                if(search){
                     state.matches=newMatches
                 }else{
-                    if(state.searched_matches){
+                    if(search_data){
                         state.matches=newMatches
                         state.searched_matches=null
                     }else{

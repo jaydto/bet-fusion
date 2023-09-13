@@ -443,6 +443,8 @@ const matchesSlice = createSlice({
                 if (state.initialLoading) {
                     state.loading = true; // Set loading to true only during the initial fetch
                 }
+                state.searched_matches = null;
+
             })
             .addCase(matchesSearch.fulfilled, (state, action) => {
                 state.isLoggedIn = true;

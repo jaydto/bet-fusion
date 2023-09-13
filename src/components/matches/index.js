@@ -48,10 +48,7 @@ import {
 
 const clean =
     (_str) => {
-    let t1 = performance.now();
     _str = _str.replace(/[^A-Za-z0-9\-]/g, '');
-    let t2 = performance.now();
-    let t3=t2-t1
     // console.log("cleanup_time_taken", t3)
 
     return _str.replace(/-+/g, '-');
@@ -576,7 +573,6 @@ const MktBtn =React.memo(
 
         const handleButtonOnClick = useCallback(
             (event) => {
-// Get the end time and the compute elapsed milliseconds.
                 const attributes = {
                     parent_match_id: event.currentTarget.getAttribute("parent_match_id"),
                     match_id: event.currentTarget.getAttribute("match_id"),
@@ -592,14 +588,13 @@ const MktBtn =React.memo(
                     sport_name: event.currentTarget.getAttribute("sport_name"),
                     market_active: event.currentTarget.getAttribute("market_active"),
                 };
-                let cstm = clean(
+                let cstm = clear_rep(
                     attributes.match_id +
                     "" +
                     attributes.sub_type_id +
                     attributes.odd_key +
                     (marketKey !== undefined ? marketKey : "")
                 );
-
 
                 const betItems = getBetslip();
 
@@ -617,7 +612,7 @@ const MktBtn =React.memo(
                     odd_type: attributes.odd_type,
                     sport_name: attributes.sport_name,
                     live: live,
-                    ucn: clean(
+                    ucn: clear_rep(
                         `${attributes.match_id}${attributes.sub_type_id}${attributes.odd_key}${
                             marketKey !== undefined ? marketKey : ""
                         }`
@@ -628,7 +623,7 @@ const MktBtn =React.memo(
 
 
 
-                let t10= performance.now();
+
                 if (cstm === match?.ucn) {
                     let betslip;
                     const updateRedux = () => {
@@ -733,7 +728,7 @@ const OddButton = React.memo(
             const referencedState = dispatchRedux(getSelected(reference));
 
             if (typeof referencedState === 'string') { // Check if referencedState is a string
-                let uc = clean(
+                let uc = clear_rep(
                     match.match_id +
                     "" +
                     match.sub_type_id +
@@ -793,7 +788,7 @@ const OddButton = React.memo(
                     sport_name: event.currentTarget.getAttribute("sport_name"),
                     market_active: event.currentTarget.getAttribute("market_active"),
                 };
-                let cstm = clean(
+                let cstm = clear_rep(
                     attributes.match_id +
                     "" +
                     attributes.sub_type_id +
@@ -803,6 +798,7 @@ const OddButton = React.memo(
                 if (jackpot) {
                     cstm = "jp_" + cstm;
                 }
+                console.log("match_pick", cstm)
                 const betItems = getBetslip();
                 const slip = {
                     match_id: attributes.match_id,
@@ -818,7 +814,7 @@ const OddButton = React.memo(
                     odd_type: attributes.odd_type,
                     sport_name: attributes.sport_name,
                     live: live,
-                    ucn: clean(
+                    ucn: clear_rep(
                         `${attributes.match_id}${attributes.sub_type_id}${attributes.odd_key}${
                             marketKey !== undefined ? marketKey : ""
                         }`
@@ -917,7 +913,7 @@ const MktOddsButton = React.memo(
         const fullmatch = {
             ...match,
             ...mktodds,
-            ucn: clean(
+            ucn: clear_rep(
                 match.match_id + "" + mktodds.sub_type_id + (match?.['detail'] || mktodds.odd_key || "draw")
             )
         }; // Append ucn to fullmatch
@@ -1102,7 +1098,7 @@ const getUpdatedMatchFromOdds = (props) => {
 
 
     // Calculate the ucn property based on the conditions
-    const ucn = clean(
+    const ucn = clear_rep(
         newMatch.match_id + "" + newMatch.sub_type_id + (
             odd_key
         )
@@ -1808,7 +1804,7 @@ const MatchList = React.memo(
                 data: betslip
             }
             Object.entries(betslip || {}).map(([matchId, match]) => {
-                let uc = clean(
+                let uc = clear_rep(
                     match.match_id +
                     "" +
                     match.sub_type_id +

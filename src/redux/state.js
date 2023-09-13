@@ -108,7 +108,7 @@ const initialState = {
         jackpot_history:[],
         jackpot_by_id:null,
         market_groups:null,
-        more_matches:null,
+        more_matches:[],
         matches:null,
         limit: 10,
         bet_cancel:null,

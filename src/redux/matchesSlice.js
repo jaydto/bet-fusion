@@ -17,7 +17,6 @@ export const matchesPrematch =
             const searched_data = state.matchesData.searched_matches;
             const matches_data = state.matchesData.matches;
 
-            console.log("search_items", searched_data)
 
             if (status === 200) {
                 return {response, search, searched_data, matches_data};
@@ -278,14 +277,16 @@ export const matchesCompetition =
 // Async thunk for matches
 export const matchesMoreLiveMarkets =
     createAsyncThunk("matches/moreLiveMatches",
-        async ({endpoint, method, data}) => {
+        async ({endpoint, method, data}, {getState}) => {
             const [status, response] = await makeRequest({
                 url: endpoint,
                 method: method,
                 data: data,
             });
+            const state=getState()
+            const more_matches=state.matchesData.more_matches
             if (status === 200) {
-                return response;
+                return {response, more_matches};
             } else {
                 throw new Error(response?.error || "Fetching More Live Matches failed");
             }
@@ -294,14 +295,18 @@ export const matchesMoreLiveMarkets =
 export const matchesMorePrematchMarkets =
     createAsyncThunk(
         "matches/morePrematchMatches",
-        async ({endpoint, method, data}) => {
+        async ({endpoint, method, data},{getState}) => {
             const [status, response] = await makeRequest({
                 url: endpoint,
                 method: method,
                 data: data,
             });
+            const state = getState();
+            const more_matches=state.matchesData.more_matches
+            console.log("more_matches", more_matches)
+
             if (status === 200) {
-                return response;
+                return {response, more_matches};
             } else {
                 throw new Error(response?.error || "Fetching More Prematch markets Failed");
             }
@@ -722,13 +727,14 @@ const matchesSlice = createSlice({
                 state.fetching = false
                 state.initialLoading = false
                 state.loading = false;
-                const more_matches = action.payload?.data;
+                const more_matches = action.payload?.response.data;
+                const more_matches_data=action.payload?.more_matches;
 
-                const mergedMatches = more_matches.length > 0 ? {...state.more_matches , ...more_matches } : more_matches ;
+                const mergedMatches = more_matches.length > 0 ? {...more_matches_data , ...more_matches } : more_matches ;
 
                 state.more_matches = mergedMatches
-                state.user_slip_validation = action.payload.slip_data
-                state.producer_down = action.payload.producer_status === 1
+                state.user_slip_validation = action.payload?.response.slip_data
+                state.producer_down = action.payload?.response.producer_status === 1
                 state.error = null;
             })
             .addCase(matchesMorePrematchMarkets.rejected, (state, action) => {
@@ -746,11 +752,12 @@ const matchesSlice = createSlice({
                 state.fetching = false;
                 state.initialLoading = false
                 state.loading = false;
-                state.user_slip_validation = action.payload.slip_data
-                state.producer_down = action.payload.producer_status === 1
+                state.user_slip_validation = action.payload.response.slip_data
+                state.producer_down = action.payload.response.producer_status === 1
                 state.error = null;
-                const more_matches = action.payload?.data;
-                const mergedMatches = more_matches .length > 0 ? {...state.more_matches , ...more_matches } : more_matches ;
+                const more_matches_data=action.payload.more_matches
+                const more_matches = action.payload?.response.data;
+                const mergedMatches = more_matches .length > 0 ? {...more_matches_data , ...more_matches } : more_matches ;
                 state.more_matches = mergedMatches
             })
             .addCase(matchesMoreLiveMarkets.rejected, (state, action) => {

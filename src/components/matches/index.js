@@ -127,7 +127,7 @@ export const marketChoice = () => {
     return [
         {
             id: "1",
-            name: "1X2",
+            name: "1x2",
             extra_market_cols: 3,
             extra_markets_display: ["1", "X", "2"],
         },
@@ -179,9 +179,11 @@ export const marketChoice = () => {
 
 export const MatchHeaderRow = React.memo(
     (props) => {
-        const {live, first_match, jackpot, loading} = props;
+        const {live, first_match, jackpot, loading,spid} = props;
         const categories = getFromLocalStorage('sport_categories')
-        const sport_id = new URL(window.location).searchParams.get('sport_id') || 79
+        let sport = categories?.all_sports?.filter((category) => category.sport_id == spid)
+        const [sportName, setSportName] = useState(sport != null ? sport?.[0]?.sport_name || 'Soccer' : "");
+
         const [, setShowX] = useState(true);
         const [market, setMarket] = useState('1x2');
         const [extraMarketDisplays, setExtraMarketDisplays] = useState([])
@@ -201,23 +203,35 @@ export const MatchHeaderRow = React.memo(
         const getSelectedMarkets = () => {
             const markets = marketChoice();
 
+            let live_sub_type=first_match?.sub_type_id
+
+
             let url = new URL(window.location)
 
-            let sub_types = (url.searchParams.get('sub_type_id') || "1,18,29")?.split(",")
+            let sub_types = live?live_sub_type:(url.searchParams.get('sub_type_id') || "1,18,29")?.split(",")
 
-            if (sub_types.includes("1")) {
+            if (!live&&sub_types.includes("1")) {
                 setThreeWay(true)
             }
 
             let extraMarkets = []
-
-            sub_types?.forEach((sub_type) => {
-                let selectedMarket = markets.filter((market) => Number(market.id) === Number(sub_type))
-
+            if(live){
+                let selectedMarket = markets.filter((market) => Number(market.id) === Number(sub_types))
                 if (selectedMarket.length > 0) {
                     extraMarkets.push(selectedMarket[0])
                 }
-            })
+
+            }else{
+                sub_types?.forEach((sub_type) => {
+                    let selectedMarket = markets.filter((market) => Number(market.id) === Number(sub_type))
+
+                    if (selectedMarket.length > 0) {
+                        extraMarkets.push(selectedMarket[0])
+                    }
+                })
+            }
+
+
 
             setExtraMarketDisplays(extraMarkets)
 
@@ -226,11 +240,13 @@ export const MatchHeaderRow = React.memo(
         useEffect(() => {
             getSelectedMarkets()
             if (first_match) {
-                setMarket(first_match.market_name);
+                setMarket(first_match?.market_name);
                 /**
                  * I blew the shiet here someone help recoil this to API call results
                  */
-                setShowX(!["186", "340"].includes(first_match.sub_type_id));
+                // setShowX(!["186", "340"]?.includes(first_match.sub_type_id));
+                setShowX((["186", "340"] && ["186", "340"].includes(first_match?.sub_type_id)) || false);
+
 
             }
         }, [first_match])
@@ -261,12 +277,13 @@ export const MatchHeaderRow = React.memo(
                         <div className="col pad left-text d-flex">
                             <div className="align-self-center col">
                                 <h3 className="mx-2 main-heading-1 text-white">
-                                    {live && <span className="live-header">LIVE </span>}
+
                                     <div className={'d-flex align-items-center gap-2'}>
-                                        {active_sport==='Soccer'&&<span className={'sport-styling'}>{active_sport} {market && <></>}</span>}
-                                        {search&&<span className={'selected-filters__item d-flex gap-2 align-items-center'}> <FontAwesomeIcon icon={faXmark} className={'close-filter'} onClick={()=>closeFilter("search")}/> {search}</span>}
-                                        {(active_sport&&active_sport!=='Soccer')&&<span className={'selected-filters__item d-flex gap-2 align-items-center'}> <FontAwesomeIcon icon={faXmark} className={'close-filter'} onClick={()=>closeFilter('sport')}/>{active_sport}</span>}
-                                        {(active_sub_type&&active_sub_type!=='1X2')&&<span className={'selected-filters__item d-flex gap-2 align-items-center'}> <FontAwesomeIcon icon={faXmark} className={'close-filter'} onClick={()=>closeFilter('sub_type')}/> {active_sub_type}</span>}
+                                        {live && <span className="live-header">LIVE </span>}
+                                        {active_sport==='Soccer'&&<span className={'sport-styling'}>{live?sportName:active_sport} {market && <></>}</span>}
+                                        {(search&&!live)&&<span className={'selected-filters__item d-flex gap-2 align-items-center'}> <FontAwesomeIcon icon={faXmark} className={'close-filter'} onClick={()=>closeFilter("search")}/> {search}</span>}
+                                        {(active_sport&&active_sport!=='Soccer'&&!live)&&<span className={'selected-filters__item d-flex gap-2 align-items-center'}> <FontAwesomeIcon icon={faXmark} className={'close-filter'} onClick={()=>closeFilter('sport')}/>{active_sport}</span>}
+                                        {(active_sub_type&&active_sub_type!=='1x2'&&!live)&&<span className={'selected-filters__item d-flex gap-2 align-items-center'}> <FontAwesomeIcon icon={faXmark} className={'close-filter'} onClick={()=>closeFilter('sub_type')}/> {active_sub_type}</span>}
                                     </div>
                                 </h3>
                             </div>
@@ -1189,7 +1206,7 @@ const MatchRow = React.memo(
         const [, setSportName] = useState(sport?.[0]?.sport_name || 'Soccer');
         const [, setShowX] = useState(true);
         const [, setMarket] = useState('1x2');
-        const [threeWay, setThreeWay] = useState(false)
+        const [, setThreeWay] = useState(false)
 
 
 
@@ -1236,11 +1253,7 @@ const MatchRow = React.memo(
         }, [first_match?.parent_match_id])
 
         let url = new URL(window.location)
-        // if (!jackpot) {
-        //     console.log("matches_match_checking_activity", match)
-        //     match.market_active = 1
-        //     match.odds.home_odd_active = 1
-        // }
+
         let sub_types = (url.searchParams.get('sub_type_id') || "1")?.split(",")
         const [totalMarkets] = useState(sub_types.length)
         let append = totalMarkets - Object.keys(match?.extra_odds || {}).length - 1
@@ -1343,13 +1356,12 @@ const MatchRow = React.memo(
 
                         <div className={`d-flex to-flex-1 ${jackpot ? 'w-100' : " "}`}>
                             <div className="c-btn-group align-self-center to-flex-1 to-tabview">
-                                {threeWay &&
-                                    <div className="d-flex flex-row ">
-                                        <div
-                                            className="d-flex flex-column text-center text-white fit-ipad w-100 align-items-end">
+                                <div className="d-flex flex-row ">
+                                    <div
+                                        className="d-flex flex-column text-center text-white fit-ipad w-100 align-items-end">
 
-                                            <div
-                                                className="d-flex flex-row px-1 justify-content-end change-date1 mobile-only display-ipad-dates">
+                                        <div
+                                            className="d-flex flex-row px-1 justify-content-end change-date1 mobile-only display-ipad-dates">
                                             <span className={'date-size wrapping px-3'}>
 
                                             {live === 1 && match?.match_time ? (
@@ -1383,13 +1395,14 @@ const MatchRow = React.memo(
 
                                             )}
                                             </span>
-                                                <div
-                                                    className={"px-1 wrapping mobile-display-game-id"}>ID: {match?.game_id}</div>
-
-                                            </div>
+                                            <div
+                                                className={"px-1 wrapping mobile-display-game-id"}>ID: {match?.game_id}</div>
 
                                         </div>
-                                    </div>}
+
+                                    </div>
+                                </div>
+
                             </div>
                             <div className={`c-btn-group align-self-center checking ${jackpot ? 'w-100' : ''}`}>
                                 {match?.odds?.home_odd
@@ -1560,7 +1573,6 @@ export const MarketList = React.memo(
         const userData = useSelector((state) => state.auth.user)
         const [user, setUser] = useState(getFromLocalStorage("user"))
 
-        console.log("market_group",selectedMarketGroup )
 
         useEffect(() => {
             if (userData) {

@@ -551,8 +551,8 @@ const MyReferalCodeForm = (props) => {
             <div className="pt-0">
                 <div className="row">
                     <div className="col-md-12">
-                        <div className="col-md-12 px-2">
-                            <div className="form-group row d-flex justify-content-center mt-1">
+                        <div className="col-md-12 ">
+                            <div className="form-group W-100 d-flex justify-content-center mt-1">
                                 <>
                                     <input
                                         value={values.promo_code || ""}

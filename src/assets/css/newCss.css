@@ -1332,6 +1332,12 @@ img.nare-league {
         position: sticky;
         top: 25px
     }
+    .to-tabview:empty{
+        display:none;
+    }
+    .checking:empty{
+        display:none;
+    }
 
     .sticky-responsive-logged {
         position: sticky;

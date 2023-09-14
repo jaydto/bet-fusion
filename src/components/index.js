@@ -153,14 +153,19 @@ const Index = React.memo(
             }
             //splitting before api call
             let sub_types = (url.searchParams.get('sub_type_id') || "1")
+            let market_name = (url.searchParams.get('market_name') || "1X2")
             let search = (url.searchParams.get('search') ||false)
+            const categories = getFromLocalStorage('sport_categories')
+            let sport = categories?.all_sports?.filter((category) => Number(category.sport_id) === Number(sport_id))
+            const sport_type=sport != null ? sport?.[0]?.sport_name || 'Soccer' : "";
+
 
             endpoint += `&sub_type_id=` + (sub_types || "1")
 
-            dispatchRedux(matchesPrematch({endpoint,method:"POST",data:betslip, search:search})); // Dispatch matchesPrematch with the updated fetchParams
+            dispatchRedux(matchesPrematch({endpoint,method:"POST",data:betslip, search:search, active_sport:sport_type, active_sub_type:market_name})); // Dispatch matchesPrematch with the updated fetchParams
 
             // Clear the interval when fetchParams change
-            dispatchRedux(startFetchingMatches({endpoint,method:"POST",data:betslip, interval:20000, prematch:true, search:search}));
+            dispatchRedux(startFetchingMatches({endpoint,method:"POST",data:betslip, interval:20000, prematch:true, search:search, active_sport:sport_type, active_sub_type:market_name}));
 
         };
 

@@ -419,30 +419,6 @@ input.text-white {
     line-height: 2;
 }
 
-.custom-loader {
-    --d: 25px;
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    color: var(--aqua-text);
-    box-shadow: calc(1 * var(--d)) calc(0 * var(--d)) 0 0,
-    calc(0.707 * var(--d)) calc(0.707 * var(--d)) 0 1px,
-    calc(0 * var(--d)) calc(1 * var(--d)) 0 2px,
-    calc(-0.707 * var(--d)) calc(0.707 * var(--d)) 0 3px,
-    calc(-1 * var(--d)) calc(0 * var(--d)) 0 4px,
-    calc(-0.707 * var(--d)) calc(-0.707 * var(--d)) 0 5px,
-    calc(0 * var(--d)) calc(-1 * var(--d)) 0 6px;
-    animation: s7 1s infinite steps(8);
-    /* margin-left: 2rem; */
-    position: absolute;
-}
-
-@keyframes s7 {
-    100% {
-        transform: rotate(1turn)
-    }
-}
-
 .sport_dropdowns {
     display: flex;
     width: 100%;
@@ -3841,6 +3817,39 @@ img.nare-league {
         max-width: 87px !important;
         margin-bottom: 4px !important;
         height: 23px;
+    }
+}
+.loader {
+    width: 48px;
+    height: 48px;
+    display: inline-block;
+    position: absolute;
+}
+.loader::after,
+.loader::before {
+    content: '';
+    box-sizing: border-box;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid #e5e4e4;
+    position: absolute;
+    left: 0;
+    top: 0;
+    animation: animloader 2s linear infinite;
+}
+.loader::after {
+    animation-delay: 1s;
+}
+
+@keyframes animloader {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
     }
 }
 

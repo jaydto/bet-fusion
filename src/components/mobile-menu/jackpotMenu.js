@@ -2,7 +2,7 @@ import React, {useCallback, useContext, useEffect, useState} from "react";
 
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
-    faExclamationCircle,
+    faExclamationCircle, faFireAlt,
     faShuffle,
     faTimes,
     faTrash,
@@ -23,7 +23,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {
     bettingMatchesGames,
     removeSelected,
-    removeSlipSelection,
     resetStateBetslip,
     setMatchBetslip
 } from "../../redux/bettingSlice";
@@ -36,6 +35,8 @@ const JackpotMenu = React.memo(
         const [ipv4, setIpv4] = useState(null);
         const [selections, setSelections] = useState([])
         const dispatchRedux = useDispatch()
+        const loading=useSelector((state)=>state.betting.loading)
+
         const randomize = async () => {
             matches?.data?.forEach((match, index) => {
                 let teams = [match?.home_team, 'draw', match?.away_team]
@@ -291,8 +292,23 @@ const JackpotMenu = React.memo(
                                             <Formik>
                                                 <Form>
                                                     {/* Your form fields */}
-                                                    <SubmitButton title="PLACE BET" className="place-bet-btn jp-button bold "
-                                                                  button_size={true} />
+                                                    <SubmitButton
+                                                                  className="place-bet-btn jp-button bold "
+                                                                  button_size={true}
+                                                                  title={
+                                                                      loading ? (
+                                                                          <div
+                                                                              className={'d-flex align-items-center justify-content-center'}
+                                                                              style={{whiteSpace: 'nowrap'}}>
+                                                                              <span className="loader"></span>
+                                                                              PLEASE WAIT             <FontAwesomeIcon icon={faFireAlt}/>
+
+                                                                          </div>
+                                                                      ) : (
+                                                                          <div>PLACE BET <FontAwesomeIcon icon={faFireAlt}/></div>
+                                                                      )
+                                                                  }
+                                                    />
                                                 </Form>
                                             </Formik>
                                         </div>

@@ -737,6 +737,7 @@ background: var(--betnare-body-bg)!important;
 .jackpot #place_bet_button {
     background: #FFC428;
     color: #333;
+    white-space:nowrap;
     padding: 10px 15px;
     font-weight: bold;
     font-size: 14px;

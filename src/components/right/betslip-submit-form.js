@@ -53,14 +53,14 @@ export const SubmitButton = (props) => {
                 padding: "10px",
                 borderRadius: "0.7rem",
                 fontSize: "14px",
-                background: "var(--betnare-button-login"
-            } : {padding: "10px", width: "100%", borderRadius: "0.7rem"}}
+                background: "var(--betnare-button-login",
+                whiteSpace: 'nowrap'
+            } : {padding: "10px", width: "100%", borderRadius: "0.7rem",whiteSpace: 'nowrap'}}
             className={`${disabled ? "disabled" : ""} ${button_size ? " jackpot-button-placebet " : " "} 'bg-warning bold rounded-2 text-dark cursor-pointer'`}
             disabled={isSubmitting || disabled}
             title="Place Bet"
         >
             {isSubmitting ? "Please Wait " : title}{" "}
-            <FontAwesomeIcon icon={faFireAlt}/>
         </button>
     );
 };
@@ -880,11 +880,14 @@ const BetslipSubmitForm = React.memo(
                                                             <div
                                                                 className={'d-flex align-items-center justify-content-center'}
                                                                 style={{whiteSpace: 'nowrap'}}>
-                                                                <div className="custom-loader"></div>
-                                                                PLEASE WAIT
+                                                                <span className="loader"></span>
+
+                                                                PLEASE WAIT             <FontAwesomeIcon icon={faFireAlt}/>
+
                                                             </div>
                                                         ) : (
-                                                            'PLACE BET'
+                                                            <span>PLACE BET <FontAwesomeIcon icon={faFireAlt}/>
+</span>
                                                         )
                                                     }
                                                 ></SubmitButton>

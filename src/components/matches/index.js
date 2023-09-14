@@ -18,7 +18,15 @@ import {LazyLoadImage} from 'react-lazy-load-image-component';
 
 import padlock from '../../assets/img/padlock.svg';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faAngleLeft, faCaretDown, faCaretRight, faChartLine, faShield, faStar} from "@fortawesome/free-solid-svg-icons";
+import {
+    faAngleLeft,
+    faCaretDown,
+    faCaretRight,
+    faChartLine,
+    faShield,
+    faStar,
+    faXmark
+} from "@fortawesome/free-solid-svg-icons";
 import {getFromLocalStorage} from "../utils/local-storage";
 
 import {Input} from "@mui/material";
@@ -36,7 +44,7 @@ import {
 } from "react-accessible-accordion";
 import "react-accessible-accordion/dist/fancy-example.css";
 import {shallowEqual, useDispatch, useSelector} from "react-redux";
-import {favoriteMarkets, favoriteMarketsData, marketGroups} from "../../redux/matchesSlice";
+import {favoriteMarkets, favoriteMarketsData, marketGroups, resetState} from "../../redux/matchesSlice";
 import {
     getSelected,
     removePickedData,
@@ -174,13 +182,15 @@ export const MatchHeaderRow = React.memo(
         const {live, first_match, jackpot, loading} = props;
         const categories = getFromLocalStorage('sport_categories')
         const sport_id = new URL(window.location).searchParams.get('sport_id') || 79
-        let sport = categories?.all_sports?.filter((category) => Number(category.sport_id) === Number(sport_id))
-        const [sportName, setSportName] = useState(sport != null ? sport?.[0]?.sport_name || 'Soccer' : "");
         const [, setShowX] = useState(true);
         const [market, setMarket] = useState('1x2');
         const [extraMarketDisplays, setExtraMarketDisplays] = useState([])
         const [, setThreeWay] = useState(false)
+        const dispatchRedux=useDispatch()
         const userData = useSelector((state) => state.auth.user)
+        const search = useSelector((state) => state.matchesData.search)
+        const active_sport = useSelector((state) => state.matchesData.active_sport)
+        const active_sub_type = useSelector((state) => state.matchesData.active_sub_type)
         const [user, setUser] = useState(getFromLocalStorage("user"))
 
         useEffect(() => {
@@ -216,7 +226,6 @@ export const MatchHeaderRow = React.memo(
         useEffect(() => {
             getSelectedMarkets()
             if (first_match) {
-                setSportName(first_match.sport_name);
                 setMarket(first_match.market_name);
                 /**
                  * I blew the shiet here someone help recoil this to API call results
@@ -225,6 +234,23 @@ export const MatchHeaderRow = React.memo(
 
             }
         }, [first_match])
+
+        const navigate=useNavigate()
+
+        const closeFilter=(option)=>{
+            // reset filters
+            // navigate to the right condition
+            if(option==='sport'){
+                dispatchRedux(resetState("active_sport"))
+            }else if(option==='search'){
+                dispatchRedux(resetState("search"))
+            }else if(option==='sub_type'){
+                dispatchRedux(resetState("active_sub_type"))
+            }
+            navigate('/')
+
+
+        }
 
         return (
 
@@ -236,7 +262,12 @@ export const MatchHeaderRow = React.memo(
                             <div className="align-self-center col">
                                 <h3 className="mx-2 main-heading-1 text-white">
                                     {live && <span className="live-header">LIVE </span>}
-                                    {sportName} {market && <></>}
+                                    <div className={'d-flex align-items-center gap-2'}>
+                                        {active_sport==='Soccer'&&<span className={'sport-styling'}>{active_sport} {market && <></>}</span>}
+                                        {search&&<span className={'selected-filters__item d-flex gap-2 align-items-center'}> <FontAwesomeIcon icon={faXmark} className={'close-filter'} onClick={()=>closeFilter("search")}/> {search}</span>}
+                                        {(active_sport&&active_sport!=='Soccer')&&<span className={'selected-filters__item d-flex gap-2 align-items-center'}> <FontAwesomeIcon icon={faXmark} className={'close-filter'} onClick={()=>closeFilter('sport')}/>{active_sport}</span>}
+                                        {(active_sub_type&&active_sub_type!=='1X2')&&<span className={'selected-filters__item d-flex gap-2 align-items-center'}> <FontAwesomeIcon icon={faXmark} className={'close-filter'} onClick={()=>closeFilter('sub_type')}/> {active_sub_type}</span>}
+                                    </div>
                                 </h3>
                             </div>
                         </div>
@@ -244,7 +275,7 @@ export const MatchHeaderRow = React.memo(
                         <div className={'col match-detail-container'}></div>
                     </div>
                     {/*match heading*/}
-                    <div className={"col flex-row justify-content-between space-bets"} style={{minWidth: "45%"}}>
+                    <div className={"col flex-row justify-content-between space-bets d-flex align-self-center"} style={{minWidth: "45%"}}>
                         {extraMarketDisplays && !jackpot && (
                             <div className={`${loading && first_match ? 'd-none' : 'd-flex flex-row'}`}>
                                 <div className="d-flex flex-column text-center text-white mt-0 fit-ipad w-100">
@@ -1529,6 +1560,8 @@ export const MarketList = React.memo(
         const userData = useSelector((state) => state.auth.user)
         const [user, setUser] = useState(getFromLocalStorage("user"))
 
+        console.log("market_group",selectedMarketGroup )
+
         useEffect(() => {
             if (userData) {
                 setUser(userData || getFromLocalStorage("user"))
@@ -1576,7 +1609,12 @@ export const MarketList = React.memo(
             const elements = matchwithmarkets?.data?.odds;
 
             // Filter the markets based on the selectedMarketGroup
-            let filteredMarkets = elements.filter((market) => Number(market?.group_id) === Number(selectedMarketGroup) || selectedMarketGroup === 'all');
+            let filteredMarkets;
+            if (selectedMarketGroup === "favorite") {
+                filteredMarkets = elements.filter((market) => Number(market?.is_favorite) === 1)
+            } else {
+                filteredMarkets= elements.filter((market) => Number(market?.group_id) === Number(selectedMarketGroup) || selectedMarketGroup === 'all');
+            }
             const match=matchwithmarkets?.data?.match
 
             const ob = {
@@ -1635,18 +1673,18 @@ export const MarketList = React.memo(
                     </div>
                     <div className="text-white market-groups-container">
                         {market_groups?.length > 0 && user &&<button onClick={() => filterMarketGroups('favorite')}
-                                                              className={'market-group-pill text-white badge badge-pill badge-primary bg-transparent p-2'}>
+                                                              className={`market-group-pill text-white badge badge-pill badge-primary bg-transparent p-2 ${selectedMarketGroup==='favorite'?'active-group':''}`}>
                             Favorite Markets
                         </button>}
                         {market_groups?.length > 0 && <button onClick={() => filterMarketGroups('all')}
                                                               autoFocus
-                                                              className={'market-group-pill text-white badge badge-pill badge-primary bg-transparent p-2'}>
+                                                              className={`market-group-pill text-white badge badge-pill badge-primary bg-transparent p-2 ${selectedMarketGroup==='all'?'active-group':''}`}>
                             All Markets
                         </button>}
                         {market_groups?.map((group, index) => (
                             <button
                                 key={index}
-                                className={'market-group-pill text-white badge badge-pill badge-primary bg-transparent p-2'}
+                                className={`market-group-pill text-white badge badge-pill badge-primary bg-transparent p-2 ${(Number(selectedMarketGroup)===Number(group?.id))?'active-group':''}`}
                                 onClick={() => filterMarketGroups(group?.id)}>
                                 {group?.name}
                             </button>

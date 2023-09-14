@@ -53,6 +53,7 @@ const Index = React.memo(
         const markets = marketChoiceOptions();
         let sportValue = new URL(window.location).searchParams.get('sport_id')
         let url = new URL(window.location.href)
+        let c_pathname = url.pathname;
         let sub_type = (url.searchParams.get("sub_type_id") || "1")
         const dispatchRedux=useDispatch()
         const newMatches=useSelector((state)=>state.matchesData.matches)
@@ -153,7 +154,7 @@ const Index = React.memo(
             }
             //splitting before api call
             let sub_types = (url.searchParams.get('sub_type_id') || "1")
-            let market_name = (url.searchParams.get('market_name') || "1X2")
+            let market_name = (url.searchParams.get('market_name') || "1x2")
             let search = (url.searchParams.get('search') ||false)
             const categories = getFromLocalStorage('sport_categories')
             let sport = categories?.all_sports?.filter((category) => Number(category.sport_id) === Number(sport_id))
@@ -353,7 +354,7 @@ const Index = React.memo(
                                  style={width < 991 ? {height: `${height}px`, overflowY: 'auto'} : {}}>
                                 <div
                                     className={'filters-navigation gap-3 d-flex justify-content-between align-items-center'}>
-                                    <MainTabs tab={location.pathname.replace("/", "")} />
+                                    <MainTabs tab={location.pathname.replace("/", "")} competition={null}/>
                                     <div className={'d-flex justify-content-between my-3 my-filter-button'}>
                                         {filteredMarkets?.default_markets.length > 0 &&
                                             <div className="myButton markets-button"
@@ -394,9 +395,7 @@ const Index = React.memo(
                                                                     jackpotData={newMatches?.meta}
                                                                     test={true}/>
                         }
-                        <div className={`${(state?.bottomSheet&&width<991)?'d-none':''}`}>
 
-                        </div>
                         <div className={`${state?.bottomSheet ? 'bottom-sheet show ' : 'd-none'}`}>
                             <div className="sheet-overlay"></div>
                             <div  ref={bottomSheetRef} className="content">
@@ -406,15 +405,24 @@ const Index = React.memo(
 
                                 </div>
                                 <div className="body d-flex flex-column gap-4">
-                                    {filteredMarkets?.default_markets?.map((market,index) => (
-                                        <Link
+                                    {filteredMarkets?.default_markets?.map((market,index) => {
+
+                                        const tab_start='highlights'
+
+                                        const pathnameWithLeadingSlash = c_pathname.startsWith('/') ?c_pathname.length==1?tab_start: c_pathname : `/${tab_start}`;
+
+
+                                        return( <Link
                                             key={index}
-                                            to={`/highlights?sport_id=79&sub_type_id=${market?.id}&market_name=${market?.name}`}
+                                            to={`${pathnameWithLeadingSlash}?sport_id=79&sub_type_id=${market?.id}&market_name=${market?.name}`}
                                             className={`markets-default ${sub_type === market?.id && 'active-market-display'}`}
-                                            onClick={()=>{collapseBottomSheet();setFilterPicked(market?.market_name)}}>
+                                            onClick={() => {
+                                                collapseBottomSheet();
+                                                setFilterPicked(market?.market_name)
+                                            }}>
                                             {market?.market_name}
-                                        </Link>
-                                    ))}
+                                        </Link>)
+                                    })}
                                     <Button onClick={()=>{collapseBottomSheet()}} className={"text-light bold color-inherit btn border-0 cancel-filter-markets"}>Cancel</Button>
 
                                 </div>

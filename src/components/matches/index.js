@@ -1526,6 +1526,14 @@ export const MarketList = React.memo(
         //  fetching More Markets from redux state
         const matchwithmarkets = useSelector((state) => state.matchesData.more_matches)
         const [selectedMarketGroup, setSelectedMarketGroup] = useState('all'); // Initialize with 'all' or your default group
+        const userData = useSelector((state) => state.auth.user)
+        const [user, setUser] = useState(getFromLocalStorage("user"))
+
+        useEffect(() => {
+            if (userData) {
+                setUser(userData || getFromLocalStorage("user"))
+            }
+        }, [userData])
 
         const filterMarkets = (value, group) => {
             const elements = matchwithmarkets?.data?.odds;
@@ -1626,7 +1634,7 @@ export const MarketList = React.memo(
                         />
                     </div>
                     <div className="text-white market-groups-container">
-                        {market_groups?.length > 0 && <button onClick={() => filterMarketGroups('favorite')}
+                        {market_groups?.length > 0 && user &&<button onClick={() => filterMarketGroups('favorite')}
                                                               className={'market-group-pill text-white badge badge-pill badge-primary bg-transparent p-2'}>
                             Favorite Markets
                         </button>}

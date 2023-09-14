@@ -6,6 +6,7 @@ import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import { useSelector} from "react-redux";
+import {Link} from "react-router-dom";
 
 const Countries = React.memo(
     () => {
@@ -142,8 +143,8 @@ const Countries = React.memo(
                                                             key={`${leagueKey}_league`}
                                                             className="100vw"
                                                         >
-                                                            <a
-                                                                href={`/competition/${competition.sport_id}/${
+                                                            <Link
+                                                                to={`/competition/${competition.sport_id}/${
                                                                     country.category_id
                                                                 }/${league.competition_id}?sport_id=${
                                                                     competition.sport_id
@@ -159,7 +160,7 @@ const Countries = React.memo(
                                                                 }}
                                                             >
                                                                 {league.competition_name}
-                                                            </a>
+                                                            </Link>
                                                         </MenuItem>
                                                     ))}
                                                 </SubMenu>

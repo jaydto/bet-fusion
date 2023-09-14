@@ -8,6 +8,29 @@
     width: 36px !important;
 
 }
+.selected-filters__item {
+    margin-right: 5px;
+    margin-bottom: 0px;
+    font-size: var(--font-small);
+    border: none;
+    background: var(--light-gray);
+    color: var(--light);
+    border-radius: 25px;
+    padding: 3px 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    white-space: nowrap;
+    opacity:0.8;
+    position: relative;
+}
+.close-filter{
+    font-size:9px;
+}
+.sport-styling{
+    opacity:0.7;
+    font-size:12px;
+}
 
 #reason_for_self_exclusion {
     min-height: 8rem;
@@ -828,11 +851,11 @@ li.bet-option {
     border: 0.5px solid var(--betnare-odds-body);
 }
 
-.market-group-pill:focus {
+
+.market-group-pill.active-group {
     background: var(--picked) !important;
     color: var(--black) !important;
 }
-
 .promo-inactive {
     opacity: 0.4 !important;
 }

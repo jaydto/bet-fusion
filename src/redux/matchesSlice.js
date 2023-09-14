@@ -341,6 +341,7 @@ export const startFetchingMatches = ({endpoint, method, data, interval,
                                          active_sport=null,
                                          active_sub_type=null
 
+
 }) => async (dispatch) => {
         // Dispatch the initial fetch
         const matchesData = {endpoint, method, data, search, active_sport, active_sub_type}
@@ -704,9 +705,7 @@ const matchesSlice = createSlice({
 
                 const newMatches = action.payload?.data;
 
-                const mergedMatches = newMatches.length > 0 ? {...state.matches, ...newMatches} : newMatches;
-
-                state.matches = mergedMatches;
+                state.matches = newMatches;
 
                 if (newMatches.slip_data) {
                     state.user_slip_validation = newMatches.slip_data

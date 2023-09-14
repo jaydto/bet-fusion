@@ -7,7 +7,7 @@ import {addToSlip} from "../components/utils/betslip";
 // Async thunk for matches
 export const matchesPrematch =
     createAsyncThunk("matches/prematch",
-        async ({endpoint, method, data, search=false}, {getState}) => {
+        async ({endpoint, method, data, search=false, active_sport=null, active_sub_type=null}, {getState}) => {
             const [status, response] = await makeRequest({
                 url: endpoint,
                 method: method,
@@ -19,7 +19,7 @@ export const matchesPrematch =
 
 
             if (status === 200) {
-                return {response, search, searched_data, matches_data};
+                return {response, search, searched_data, matches_data, active_sport, active_sub_type};
             } else {
                 throw new Error(response?.error || "Fetching Prematch failed");
             }
@@ -333,10 +333,17 @@ export const resetState =
 
 let fetchInterval; // Declare the interval variable outside the action creator
 
-export const startFetchingMatches = ({endpoint, method, data, interval, prematch = false, live = false, competition = false, search=false
+export const startFetchingMatches = ({endpoint, method, data, interval,
+                                         prematch = false,
+                                         live = false,
+                                         competition = false,
+                                         search=false,
+                                         active_sport=null,
+                                         active_sub_type=null
+
 }) => async (dispatch) => {
         // Dispatch the initial fetch
-        const matchesData = {endpoint, method, data, search}
+        const matchesData = {endpoint, method, data, search, active_sport, active_sub_type}
 
         // Set up the interval to fetch matches every 20 seconds
         fetchInterval = setInterval(() => {
@@ -423,6 +430,9 @@ const matchesSlice = createSlice({
                 const newMatches = action.payload?.response.data;
                 const search=action.payload?.search
                 const search_data=action.payload.searched_matches
+                state.search=search
+                state.active_sport=action.payload.active_sport
+                state.active_sub_type=action.payload.active_sub_type
 
 
                 const mergedMatches = newMatches.length > 0 ? {...action.payload.matches_data, ...newMatches} : newMatches;

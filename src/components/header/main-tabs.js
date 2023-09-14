@@ -1,10 +1,8 @@
-import React, {useState} from "react";
+import React from "react";
 import {Link} from "react-router-dom";
-import useWindowDimensions from "./Dimensions";
 
 const MainTabs = (props) => {
     const {tab} = props;
-    const {width}=useWindowDimensions()
 
     const u_class = tab === 'upcoming' ? "home-tabs-filters-active myButton" : "home-tabs-filters myButton";
     const c_class = tab === "countries" ? "home-tabs-filters-active myButton" : "home-tabs-filters myButton";
@@ -29,7 +27,7 @@ const MainTabs = (props) => {
 
     return (
         // + `${user ? "highlight-logged-in-menu" : "highlight-menu"}`
-        <div className={"full-mobile main-navigations"}>
+        <div className={"full-mobile main-navigations"} >
             <div className=" d-flex flex-row ">
                 <div className="col  px-1  ">
                     <Link className={`cursor-pointer w-100 ${h_class}`} to={'/highlights?' + getLink()}>

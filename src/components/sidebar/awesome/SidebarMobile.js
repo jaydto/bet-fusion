@@ -148,7 +148,7 @@ const SidebarMobile = React.memo(
             </SidebarContent>
             <SidebarFooter className={"background-primary"}>
                 {user ? <Menu className={"w-100 "}>
-                    <MenuItem className={"w-100 sidebar-mobile"}> <Link className={"logout-btn mt-2"} to={"/logout"}>Logout</Link> </MenuItem>
+                    <MenuItem className={"w-100 sidebar-mobile"}> <a className={"logout-btn mt-2"} href={"/logout"}>Logout</a> </MenuItem>
                 </Menu> : ""}
                 <Footer/>
             </SidebarFooter>

@@ -142,7 +142,7 @@ const Live = React.memo(
                             <div className="homepage mobile-full-height" ref={homePageRef}
                                  style={width < 991 ? {height: `${height}px`, overflowY: 'auto'} : {}}>
                                 <CarouselLoader/>
-                                {matches&&<MatchHeaderRow live={false} first_match={matches ? matches[0] : {}} loading={fetching}/>}
+                                {matches&&<MatchHeaderRow live={true} first_match={matches ? matches[0] : {}} loading={fetching} spid={spid}/>}
                                 <div className={`${width <= 991 ? "d-block" : "d-none"}`}>
                                     <LiveSideBar/>
                                 </div>

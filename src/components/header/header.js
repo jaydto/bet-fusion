@@ -76,9 +76,9 @@ const Header = React.memo(
             setMatches([])
         }
 
-        useEffect(() => {
-            fetchMatches()
-        }, [state?.searching])
+        // useEffect(() => {
+        //     fetchMatches()
+        // }, [state?.searching])
 
 
         const fetchMatches = async (search) => {

@@ -1529,7 +1529,7 @@ export const MarketList = React.memo(
 
         const filterMarkets = (value, group) => {
             const elements = matchwithmarkets?.data?.odds;
-            const filtered = elements.filter((market) => {
+            const filtered = elements?.filter((market) => {
                 return market?.market_name?.toLowerCase().includes(value);
             });
 
@@ -1790,6 +1790,10 @@ const MatchList = React.memo(
             }
 
         }, [matches, fetching, observerRef]);
+
+        // useEffect(() => {
+        //     window.scrollTo(0,0)
+        // }, []);
 
         useEffect(() => {
             const betslip = getBetslip()

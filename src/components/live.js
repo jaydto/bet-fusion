@@ -48,6 +48,12 @@ const Live = React.memo(
             return values;
         };
 
+        useEffect(() => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }, []);
 
         const fetchData = async () => {
             let endpoint = "/v1/matches/live";

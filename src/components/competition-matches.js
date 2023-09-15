@@ -108,7 +108,7 @@ const CompetitionMatches = React.memo(
         }, [ tab, window.location.href,tab_data])
 
         const fetchAdditionalData=()=>{
-            console.log("fetching live")
+            return
         }
 
 

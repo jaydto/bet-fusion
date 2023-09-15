@@ -17,6 +17,19 @@ export const configSettings =
                 throw new Error(response?.error || "Fetching Prematch failed");
             }
         });
+export const leaderBoardData =
+    createAsyncThunk("data/leaderBoard",
+        async () => {
+            const [status, response] = await makeRequest({
+                url: "/v1/leaderboard",
+                method: "POST"
+            });
+            if (status === 200) {
+                return response;
+            } else {
+                throw new Error(response?.error || "Fetching Leader Board failed");
+            }
+        });
 export const carouselImages =
     createAsyncThunk("data/carouselImages",
         async () => {
@@ -130,6 +143,21 @@ const dataSlice = createSlice({
 
             })
             .addCase(userPoints.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
+            .addCase(leaderBoardData.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+                state.leader_board=null;
+            })
+            .addCase(leaderBoardData.fulfilled, (state, action) => {
+                state.loading = false;
+                state.error = null;
+                state.leader_board=action.payload;
+
+            })
+            .addCase(leaderBoardData.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
             })

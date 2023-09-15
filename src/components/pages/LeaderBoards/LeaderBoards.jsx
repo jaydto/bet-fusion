@@ -4,11 +4,13 @@ import './leader-boards.css'
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import makeRequest from "../../utils/fetch-request";
+import {useDispatch, useSelector} from "react-redux";
+import {leaderBoardData} from "../../../redux/dataSlice";
 
 const LeaderBoards = () => {
-    const endpoint = '/v1/leaderboard'
-    const [leaders, setLeaders] = useState([])
     const [activeTab, setActiveTab] = useState('leaders_board');
+    const dispatchRedux=useDispatch()
+    const leaders=useSelector((state)=>state.data.leader_board)
     const handleTabSelect = (eventKey) => {
         setActiveTab(eventKey);
     }
@@ -16,15 +18,7 @@ const LeaderBoards = () => {
 
 
     const fetchData = async () => {
-        const [leader_boards_data] = await Promise.all([
-            makeRequest({url: endpoint, method: "POST"})
-        ]);
-        let [status, response] = leader_boards_data;
-        if (status === 200) {
-            setLeaders(response)
-        } else {
-            console.error("No response returned")
-        }
+       dispatchRedux(leaderBoardData())
     }
 
 
@@ -44,7 +38,7 @@ const LeaderBoards = () => {
                 <div className="top">
                     <div className={'d-flex w-100 gap-3 justify-content-center'}>
                         <strong className={'aniversary-text text1'}>
-                            Aniversary
+                            LeaderBoard
                         </strong>
                         <strong className={'aniversary-text text2'}>
                             Week

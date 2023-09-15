@@ -1,5 +1,6 @@
 const initialState = {
     data: {
+        leader_board:null,
         loading:false,
         withdraw_loading:false,
         deposit_loading:false,

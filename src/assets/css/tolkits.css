@@ -336,6 +336,7 @@ video {
 .accordion-button:not(.collapsed) {
     color: var(--light);
     border: none;
+    box-shadow: inset 0 calc(-1 * var(--bs-accordion-border-width)) 0 var(--bet-history) !important;
 }
 
 .accordion-button {
@@ -345,8 +346,9 @@ video {
     padding: 20px;
     font-size: 16px;
     color: whitesmoke;
-    border-bottom: thin solid white;
+    border-bottom: thin solid var(--bet-history);
 }
+
 .accordion-button.jackpot {
 background: var(--betnare-body-bg)!important;
 }
@@ -7883,7 +7885,7 @@ ul.sport {
 
     .font-btn {
         font-weight: 200;
-        font-size: 15px;
+        font-size: 14px;
         display: flex;
         justify-content: flex-start;
         letter-spacing: 1px;
@@ -12164,7 +12166,8 @@ fieldset[disabled] .tw.active {
 }
 
 .cg {
-    font-size: 13px;
+    font-size: 14px;
+    opacity:0.8;
     /*text-transform: default;*/
     /*letter-spacing: none;*/
 }

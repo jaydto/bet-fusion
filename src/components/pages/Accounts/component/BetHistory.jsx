@@ -366,7 +366,7 @@ const BetHistory = () => {
                                                     </div>
                                                 </div>}
                                             </div>}
-                                        {state?.bet_history_details || getFromLocalStorage("bet_history_details") ?
+                                        {state?.bet_history_details ?
                                             <BetDetails
                                                 bet_id={state?.bet_history_details || getFromLocalStorage("bet_history_details")}/> :
                                             <PageBody/>

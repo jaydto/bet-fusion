@@ -244,9 +244,6 @@ const Deposit3 = React.memo(
                                                                      data-backdrop="static">
                                                                     <div
                                                                         className={'paybill-component justify-content-center d-flex flex-column align-items-center'}>
-                                                                        <h3 className={'header-paybill'}>
-                                                                            paybill Number
-                                                                        </h3>
                                                                         <LazyLoadImage
                                                                             src={'https://storage.googleapis.com/nareimages/icons/mpesa.png'}
                                                                             className={'paybill-image'} width="50px"

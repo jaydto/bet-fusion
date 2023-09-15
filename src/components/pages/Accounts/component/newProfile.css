@@ -264,8 +264,12 @@ a.text-logout{
     box-shadow: 0 1px 5px -1px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(0, 0, 0, 0.15);
 }
 @media (min-width:992px){
-    .content{
-        margin-top:8rem!important;
+    .content {
+        margin-top: 4rem!important;
+        top: 12rem;
+        position: sticky;
+        width: 100%;
+        height: 100%;
     }
     .user-profile{
         margin-left:3rem;
@@ -303,7 +307,12 @@ a.text-logout{
 }
 @media (max-width:991px){
     .content{
-        margin-top:6rem!important;
+        margin-top:3rem!important;
+        top: 10rem;
+        position: sticky;
+        width: 100%;
+        height: 100%;
+
     }
     .user-profile {
         height: 42px!important;
@@ -330,10 +339,5 @@ a.text-logout{
     .summary-text-2 {
         font-size: 0.8rem;
         letter-spacing: 1px;
-    }
-}
-@media (max-width: 767px){
-    .content {
-        margin-top: 6rem!important;
     }
 }

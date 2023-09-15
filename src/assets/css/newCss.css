@@ -2137,9 +2137,12 @@ img.nare-league {
         text-shadow: 2px 2px 2px black;
         font-size: 16px;
     }
+    .alert-warning.alert-message-line-height{
+        position: absolute!important;
+
+    }
 
     .alert-message-line-height {
-        /*position: absolute!important;*/
         top: 9rem;
         line-height: 1.3;
         border-radius: 5px;

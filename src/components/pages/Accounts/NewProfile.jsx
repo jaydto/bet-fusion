@@ -136,7 +136,7 @@ const NewProfile = React.memo(
                                         </div>
                                     </Link>
                                     <Link to={"#"} style={{textDecoration: "none", color: "black"}}
-                                          onClick={() => clearHistory()}>
+                                          onClick={() => clearHistory()} className={'mb-5'}>
                                         <div className="transaction">
                                             <div className="t-details">
                                                 <div className="t-title">Log Out</div>

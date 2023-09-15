@@ -539,11 +539,15 @@ const BetslipSubmitForm = React.memo(
             }
             else if (Number(giftQualificationOdds) >= Number(giftMinGames)) {
                 boost = Math.round(((Number(settings?.betnareGifts?.giftBoostPercentage)||20)/ 100) * stake);
+                if(isNaN(boost)){
+                    boost=0
+                }
+                console.log("boost", boost)
 
                 if (boost > Number(settings?.betnareGifts?.maxGiftBoostAmount)) {
                     boost = Number(settings?.betnareGifts?.maxGiftBoostAmount);
                 }
-                if (boost > 1) {
+                if (boost >= 1) {
                     setMultiBoostAmount(boost);
                     setHasMultiBetBoost(true);
                     dispatch({type: "SET", key: "hasBoost", payload: true});
@@ -555,6 +559,8 @@ const BetslipSubmitForm = React.memo(
                         " to " +
                         boostedStake
                     );
+                    dispatch({type:"SET", ket:"alert_boost_color", payload:"valid"})
+
                     dispatch({type: "SET", key: "remaining_games", payload: 0});
 
 
@@ -565,6 +571,25 @@ const BetslipSubmitForm = React.memo(
                             boostedStake
                     })
 
+                }
+                else{
+                    setMultiBoostAmount(boost);
+                    setHasMultiBetBoost(true);
+                    dispatch({type: "SET", key: "hasBoost", payload: true});
+                    setMultiBoostMessage(
+                        "You Qualify for a Nare Boost Minimum stake is " +
+                        3 +
+                        " KES "
+                    );
+                    dispatch({type: "SET", key: "remaining_games", payload: 0});
+                    dispatch({type:"SET", ket:"alert_boost_color", payload:"invalid"})
+
+
+                    dispatch({
+                        type: "SET", key: "multiboostmessage", payload: "You Qualify for Nare Boost Minimum Stake is " +
+                            3 +
+                            " KES "
+                    })
                 }
             }
             else{
@@ -751,7 +776,7 @@ const BetslipSubmitForm = React.memo(
                                 awardMultiGift &&
                                 Number(totalGames) > settings?.betnareBonus?.bonusBetLegs && (
                                     multiBoostMessage &&
-                                    <div className={" slip-message-alert "}>
+                                    <div className={` slip-message-alert`}>
                                         <div colSpan="2" className={'d-flex col-2'} style={{width: '100%'}}>
                                             <FontAwesomeIcon icon={faGift}/> {multiBoostMessage}
                                         </div>

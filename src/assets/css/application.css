@@ -231,11 +231,17 @@
     padding: 0 21px;
     border-radius: 6px;
     margin-bottom: 5px;
-
-
+    z-index:100;
 }
 
-
+.slip-message-alert.valid{
+    background: var(--alert-slip-color);
+    color: var(--green);
+}
+.slip-message-alert.invalid{
+    background: var(--validation-fail-color) !important;
+    color: var(--green);
+}
 .slip-message-alert:empty {
     display: none;
 }

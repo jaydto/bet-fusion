@@ -542,7 +542,6 @@ const BetslipSubmitForm = React.memo(
                 if(isNaN(boost)){
                     boost=0
                 }
-                console.log("boost", boost)
 
                 if (boost > Number(settings?.betnareGifts?.maxGiftBoostAmount)) {
                     boost = Number(settings?.betnareGifts?.maxGiftBoostAmount);

@@ -252,7 +252,7 @@ const WithdrawFormFields = (props) => {
                             className='btn btn-lg w-100 deposit-button button-radius input-field btn-font cg login-button2 btn bold d-flex justify-content-center align-items-center'
                             style={{marginTop: "30px"}} disabled={values?.amount == ''}>
                         {loading &&
-                            <div className="custom-loader"></div>} WITHDRAW &nbsp;{values?.amount}
+                            <div className="loader"></div>} WITHDRAW &nbsp;{values?.amount}
                     </button>
                 </div>
             </div>

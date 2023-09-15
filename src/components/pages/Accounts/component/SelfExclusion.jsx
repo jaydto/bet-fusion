@@ -161,7 +161,7 @@ const SelfExclusion = () => {
                 </div>
                 <div className={'update_self_exclusion'}>
                 <button type="submit" className="update_button">
-                    {loading && <div className="custom-loader"></div>}
+                    {loading && <div className="loader"></div>}
                     Self Exclude
                 </button>
                 </div>

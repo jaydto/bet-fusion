@@ -505,12 +505,13 @@ const BetslipSubmitForm = React.memo(
 
             let giftQualificationOdds = odds.length;
 
+
             let awardGifts =
                 Number(settings?.betnareGifts?.awardGiftBoost) === 1 &&
                 Number(user?.gift_balance || 0) > 0;
 
             setAwardMultiGift(awardGifts);
-            if (giftQualificationOdds < giftMinGames) {
+            if (Number(giftQualificationOdds) < Number(giftMinGames)) {
                 let remainingGames = Number(giftMinGames) - Number(giftQualificationOdds);
                 dispatch({type: "SET", key: "remaining_games", payload: remainingGames});
                 setMultiBoostMessage(
@@ -520,6 +521,9 @@ const BetslipSubmitForm = React.memo(
                         settings?.betnareGifts?.giftBoostMinOdds
                     } or above to redeem your gift.`
                 );
+
+                setMultiBoostAmount(0)
+                dispatch({type: "SET", key: "hasBoost", payload: false});
 
 
                 dispatch({
@@ -532,8 +536,10 @@ const BetslipSubmitForm = React.memo(
                     } or above to boost your winnings.`
                 });
 
-            } else if (giftQualificationOdds >= giftMinGames) {
-                boost = Math.round((20 / 100) * stake);
+            }
+            else if (Number(giftQualificationOdds) >= Number(giftMinGames)) {
+                boost = Math.round(((Number(settings?.betnareGifts?.giftBoostPercentage)||20)/ 100) * stake);
+
                 if (boost > Number(settings?.betnareGifts?.maxGiftBoostAmount)) {
                     boost = Number(settings?.betnareGifts?.maxGiftBoostAmount);
                 }
@@ -560,6 +566,12 @@ const BetslipSubmitForm = React.memo(
                     })
 
                 }
+            }
+            else{
+                setMultiBoostAmount(0)
+                dispatch({type: "SET", key: "hasBoost", payload: false});
+                setMultiBoostMessage("")
+
             }
         };
 

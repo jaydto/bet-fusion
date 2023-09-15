@@ -6,7 +6,7 @@ import {
     AccordionItemPanel,
 } from 'react-accessible-accordion';
 import 'react-accessible-accordion/dist/fancy-example.css';
-import React from "react";
+import React, {useEffect} from "react";
 import Footer from '../../footer/footer'
 import Header from '../../header/header'
 import Right from '../../right/index'
@@ -15,6 +15,12 @@ import '../../test.css'
 
 const PrivacyPolicy = React.memo(
     () => {
+        useEffect(() => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }, []);
 
     return (
         <div className={'flex-item'}>

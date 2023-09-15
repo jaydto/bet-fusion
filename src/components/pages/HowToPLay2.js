@@ -19,14 +19,13 @@ const Right = React.lazy(() => import("../right/index"));
 const  HowToPlay= React.memo(
     (props) => {
 
-    const { dispatch } = useContext(StoreContext);
-    //
-    // useEffect(() => {
-    //     let betslip = getBetslip();
-    //     if (betslip) {
-    //         dispatch({type: "SET", key: "betslip", payload: betslip});
-    //     }
-    // }, []);
+        useEffect(() => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }, []);
+
 
     return (
         <div className={'flex-item'}>
@@ -39,7 +38,7 @@ const  HowToPlay= React.memo(
                             <div className='col-md-12 primary-bg p-4 text-center'>
                                 <h4 className="inline-block"> HOW TO PLAY </h4>
                             </div>
-                            <div className="col-md-12 card mt-2"></div>
+                            <div className="col-md-12 mt-2 card" style={{background:"var(--bet-history)"}}></div>
                             <div className="col-md-12 py-2 px-1 w-100 text-white accordion-container">
                                 <Accordion preExpanded={['1']} allowZeroExpanded className="size-accordion">
                                     <AccordionItem uuid="1" className={' pb-2'}>

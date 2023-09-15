@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {
     Accordion,
     AccordionItem,
@@ -16,6 +16,12 @@ const Right = React.lazy(()=>import('../../right/index'));
 const SideBar = React.lazy(()=>import('../../sidebar/awesome/Sidebar'));
 
 const AntiMoneyLaundering = () => {
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }, []);
     return (
         <div className={'flex-item'}>
             <div className="item4"><Header/></div>

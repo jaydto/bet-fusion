@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {
     Accordion,
     AccordionItem,
@@ -30,6 +30,12 @@ const ResponsibleGambling = React.memo(
         const handleTabSelect = (eventKey) => {
             setActiveTab(eventKey);
         }
+        useEffect(() => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }, []);
         return (
             <>
                 <Header/>

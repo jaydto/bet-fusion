@@ -7,13 +7,19 @@ import {
 } from 'react-accessible-accordion';
 import '../../test.css'
 import 'react-accessible-accordion/dist/fancy-example.css';
-import React from "react";
+import React, {useEffect} from "react";
 import Header from '../../header/header'
 import SideBar from '../../sidebar/awesome/Sidebar'
 import Footer from '../../footer/footer'
 import Right from '../../right/index'
 
 const DisputeResolution = () => {
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }, []);
 
     return (
         <div className={'flex-item'}>

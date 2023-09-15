@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {
     Accordion,
     AccordionItem,
@@ -17,6 +17,12 @@ const Right = React.lazy(()=>import('../../right/index'));
 
 
 const CookiePolicy = () => {
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }, []);
 
     return (
         <div className={'flex-item'}>

@@ -1337,7 +1337,7 @@ const MatchRow = React.memo(
                                   to={jackpot ? '#' : `/match/${live ? 'live/' + match?.parent_match_id : match?.match_id}`}>
                                 <div className="d-flex flex-column">
                                     <div className="compt-detail overflow-ellipsis team_category_game d-flex gap-2 align-items-center">
-                                        <LazyLoadImage src={getSportImageIcon(match.sport_name)} effect={'blur'} style={{maxWidth:'var(--icon-size)', display:'flex', alignItems:'center'}}/>
+                                        <LazyLoadImage src={getSportImageIcon(match.sport_name||'Soccer')} effect={'blur'} style={{maxWidth:'var(--icon-size)', display:'flex', alignItems:'center'}}/>
                                         <small className={'d-flex align-items-center'}>{match?.category} | {match?.competition_name}</small>
                                     </div>
                                     <div className="compt-teams d-flex flex-xl-column flex-column flex-md-row">

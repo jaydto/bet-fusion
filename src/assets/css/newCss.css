@@ -2656,6 +2656,7 @@ img.nare-league {
 
     .mobile-full-height {
         height: 100vh;
+        overflow-x:hidden;
     }
 
     .container-size-match {

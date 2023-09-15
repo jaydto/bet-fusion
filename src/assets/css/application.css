@@ -40,7 +40,7 @@
 
 .error-message {
     color: red;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 #reason_for_self_exclusion::placeholder {
@@ -208,6 +208,7 @@
     padding: 5px;
     border-radius: 10px;
     border: thin solid var(--betnare-input);
+    opacity:0.9;
 }
 
 .pick-user-match {
@@ -389,7 +390,7 @@ h4.inline-block {
 }
 
 .theodds {
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 400;
 }
 

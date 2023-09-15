@@ -16166,7 +16166,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     text-transform: uppercase;
     /*border-right: 1px solid gray;*/
     font-weight: bold;
-    font-size:11px;
+    font-size:var(--font-size-small);
     opacity:0.7;
 }
 

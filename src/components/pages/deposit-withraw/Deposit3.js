@@ -183,7 +183,7 @@ const Deposit3 = React.memo(
                                             borderRadius: '16px'
                                         }}/></div>
                                     <span className="mx-2 text-white"> | </span>
-                                    <a className="text-white" href="/terms-and-conditions">Term & Conditions</a>
+                                    <a className="text-white" href="/terms-and-conditions">Terms & Conditions</a>
                                     <span className="mx-2 text-white"> | </span>
                                     <a className="text-white" href="/privacy-policy">Privacy & Policy</a>
                                 </div>

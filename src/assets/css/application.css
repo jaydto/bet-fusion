@@ -29,7 +29,7 @@
 }
 .sport-styling{
     opacity:0.7;
-    font-size:12px;
+    font-size:var(--fon-size-large-variation1);
 }
 
 #reason_for_self_exclusion {

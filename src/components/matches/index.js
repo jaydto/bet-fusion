@@ -1195,6 +1195,28 @@ export const FormatDate = (props) => {
         return formattedDateTime;
     }
 };
+const getSportImageIcon = (
+    sport_name,
+    folder = "sports",
+    topLeagues = false,
+    flag = false
+) => {
+    if (flag) {
+        let splitString = sport_name.split(" ");
+        sport_name = splitString[0].substr(0, 2).toString().toLowerCase();
+    }
+
+    let default_img = "default_sport";
+    let sport_image;
+    try {
+        sport_image = topLeagues
+            ? require(`../../assets/img/${folder}/${sport_name}.svg`)
+            : require(`../../assets/svg/${folder}/${sport_name}.svg`);
+    } catch (error) {
+        sport_image = require(`../../assets/img/${default_img}.svg`);
+    }
+    return sport_image;
+};
 const MatchRow = React.memo(
     (props) => {
 
@@ -1314,8 +1336,9 @@ const MatchRow = React.memo(
                             <Link className={'odds-container-size'}
                                   to={jackpot ? '#' : `/match/${live ? 'live/' + match?.parent_match_id : match?.match_id}`}>
                                 <div className="d-flex flex-column">
-                                    <div className="compt-detail overflow-ellipsis team_category_game">
-                                        <small>{match?.category} | {match?.competition_name}</small>
+                                    <div className="compt-detail overflow-ellipsis team_category_game d-flex gap-2 align-items-center">
+                                        <LazyLoadImage src={getSportImageIcon(match.sport_name)} effect={'blur'} style={{maxWidth:'var(--icon-size)', display:'flex', alignItems:'center'}}/>
+                                        <small className={'d-flex align-items-center'}>{match?.category} | {match?.competition_name}</small>
                                     </div>
                                     <div className="compt-teams d-flex flex-xl-column flex-column flex-md-row">
                                         <div className={'bold compt-teams-item'}>

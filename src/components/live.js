@@ -137,7 +137,7 @@ const Live = React.memo(
                             <LiveSideBar/>
                         </div>
                     </div>
-                    <div className="item2">
+                    <div className="item2 live-top">
                         <div className="gz home match-overflow ">
                             <div className="homepage mobile-full-height" ref={homePageRef}
                                  style={width < 991 ? {height: `${height}px`, overflowY: 'auto'} : {}}>

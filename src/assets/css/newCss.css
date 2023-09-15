@@ -1437,7 +1437,7 @@ img.nare-league {
 
     .pro-sidebar .pro-menu .pro-menu-item {
         font-size: var(--font-size-side) !important;
-        font-weight: 500;
+        font-weight: 400;
     }
 
     .live-side-badge {
@@ -1849,12 +1849,15 @@ img.nare-league {
         width: 140px;
         white-space: nowrap;
         text-overflow: ellipsis;
+        font-weight:600;
     }
     .team_category_game small {
         overflow-x: hidden;
         width: 120px;
         white-space: nowrap;
         text-overflow: ellipsis;
+        font-size: smaller;
+        font-weight: 400;
     }
     .matches .top-matches {
         padding-left:0px;
@@ -3650,7 +3653,7 @@ img.nare-league {
     }
 
     .ipad-show {
-        margin-right: 6px;
+        margin-right: 2px;
     }
 
     .search-icon-size {

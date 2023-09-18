@@ -3797,7 +3797,10 @@ img.nare-league {
     .user_logged {
         margin-top: 7.7rem !important;
     }
+    .user_logged.casino{
+        margin-top: 5.7rem !important;
 
+    }
     .highlight-logged-in-menu {
         top: 0px;
     }
@@ -3865,7 +3868,7 @@ img.nare-league {
     animation: rotation 1s linear infinite;
 }
 .loader.position-top-buttons{
-    top:8px;
+    top:7px;
 
 }
 

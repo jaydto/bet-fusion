@@ -122,7 +122,7 @@ const Casino = React.memo(
                                                     <div className="overlay shadow-sm w-100">
 
 
-                                                        <ButtonGroup aria-label="Casino Games">
+                                                        <ButtonGroup aria-label="Casino Games" className={'w-100'}>
                                                                         <Button variant="warning"
                                                                    
                                                                                 onClick={() => launchAviator("demo")}

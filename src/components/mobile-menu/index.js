@@ -124,7 +124,7 @@ const MobileMenu = React.memo((props) => {
             </div>
 
             <table className={`${slip_condition ? "prematch-menu mobile-menu" : "mobile-menu"}`}
-                   style={!pathSlipSummary.includes(pathname) ? sumOfOdds === 1 ? {height: "70px"} : countInfo ? {height: "92px"} : {height: "70px"} : {height: "53px"}}>
+                   style={!pathSlipSummary.includes(pathname) ? sumOfOdds === 1 ? {height: "70px"} : countInfo ? {height: "92px"} : {height: "70px"} : {height: "55px"}}>
                 <tbody>
                 {slip_condition ?
                     <tr className={"mobile-menu-container"} onClick={()=>navigate("/betslip-slip")}>

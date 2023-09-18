@@ -13,7 +13,7 @@ import {ToastContainer} from "react-toastify";
 import {faXbox} from "@fortawesome/free-brands-svg-icons";
 import {useDispatch, useSelector} from "react-redux";
 import {betHistoryDetails, fullBetDetails, setFetching} from "../../../../redux/matchesSlice";
-import SkeletonMoreMarkets from "../../skeletonLoadersWeb/SkeletonMoreMarkets";
+import SkeletonLoaderMore from "../../skeletonLoadersWeb/SkeletonLoaderMore";
 
 const BetHistory = () => {
     const { state, dispatch } = useContext(StoreContext);
@@ -342,7 +342,7 @@ const BetHistory = () => {
                                                                         setShowGameFilter={setShowGameFilter}/>}
                                     <PageTitle/>
                                     {fetching?<div className={`text-center mt-2 text-white d-block`}>
-                                        <SkeletonMoreMarkets/>
+                                        <SkeletonLoaderMore/>
                                     </div>:<>
                                         {!state?.bet_history_details == false || getFromLocalStorage("bet_history_details") == null &&
                                             <div

@@ -22,7 +22,7 @@ import {setMatchBetslip} from "../redux/bettingSlice";
 import {Button} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faXmark} from "@fortawesome/free-solid-svg-icons";
-import SkeletonMoreMarkets from "./pages/skeletonLoadersWeb/SkeletonMoreMarkets";
+import SkeletonLoaderMore from "./pages/skeletonLoadersWeb/SkeletonLoaderMore";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -366,7 +366,7 @@ const Index = React.memo(
                                 {(newMatches&&tab!=="countries")&&<MatchHeaderRow live={false} first_match={newMatches ? newMatches[0] : {}} loading={loading}/>}
                                 {loading ?
                                     <div className={`text-center mt-2 text-white d-block`}>
-                                        {tab === 'countries' ? <SkeletonMoreMarkets/> : <SkeletonLoaderMobile/>}
+                                        {tab === 'countries' ? <SkeletonLoaderMore/> : <SkeletonLoaderMobile/>}
                                     </div> : tab === 'countries' ? <Countries/> :
                                         <div>
                                             <MatchList
@@ -380,7 +380,7 @@ const Index = React.memo(
                                             />
                                             <div
                                                 className={`text-center mt-2 text-white ${fetching ? 'd-block' : 'd-none'}`}>
-                                                {tab === 'countries' ? <SkeletonMoreMarkets/> :<SkeletonLoaderMobile/>}
+                                                {tab === 'countries' ? <SkeletonLoaderMore/> :<SkeletonLoaderMobile/>}
                                             </div>
                                         </div>
 
@@ -415,7 +415,7 @@ const Index = React.memo(
                                         return( <Link
                                             key={index}
                                             to={`${pathnameWithLeadingSlash}?sport_id=79&sub_type_id=${market?.id}&market_name=${market?.name}`}
-                                            className={`markets-default ${sub_type === market?.id && 'active-market-display'}`}
+                                            className={`w-100 markets-default bottom-align ${sub_type === market?.id && 'active-market-display'}`}
                                             onClick={() => {
                                                 collapseBottomSheet();
                                                 setFilterPicked(market?.market_name)
@@ -423,8 +423,10 @@ const Index = React.memo(
                                             {market?.market_name}
                                         </Link>)
                                     })}
-                                    <Button onClick={()=>{collapseBottomSheet()}} className={"text-light bold color-inherit btn border-0 cancel-filter-markets"}>Cancel</Button>
 
+                                </div>
+                                <div style={{position:'relative'}}>
+                                    <Button onClick={()=>{collapseBottomSheet()}} className={"text-light bold color-inherit btn border-0 cancel-filter-markets"}>Cancel</Button>
                                 </div>
                             </div >
                         </div>

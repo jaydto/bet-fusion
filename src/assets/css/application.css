@@ -48,6 +48,11 @@
 }
 #place_bet_button{
     min-height:3.7rem;
+
+}
+#place_bet_button_nare{
+    min-height:3.7rem;
+
 }
 .hot-alert-badge {
     right: -16px;

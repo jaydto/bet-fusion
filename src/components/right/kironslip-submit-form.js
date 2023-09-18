@@ -466,10 +466,16 @@ const KironslipSubmitForm = React.memo(
                         disabled ? "disabled" : ""
                     }'bg-warning bold text-dark cursor-pointer'`}
                     disabled={isSubmitting || disabled}
-                    title="Place Bet"
-                >
-                    {isSubmitting ? "Please Wait " : title}{" "}
-                    <FontAwesomeIcon icon={faFireAlt}/>
+                    title={(
+                        <span>PLACE BET <FontAwesomeIcon icon={faFireAlt}/></span>
+
+                    )}>
+                    {isSubmitting ? <div
+                            className={'d-flex align-items-center justify-content-center'}
+                            style={{whiteSpace: 'nowrap'}}>
+                            <span className="loader"></span>
+                        </div>
+                        : title}{" "}
                 </button>
             );
         };

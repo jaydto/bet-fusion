@@ -53,6 +53,7 @@ import {
     setPickedData,
     setSelected
 } from "../../redux/bettingSlice";
+import {setState} from "../../redux/dataSlice";
 
 const clean =
     (_str) => {
@@ -264,6 +265,7 @@ export const MatchHeaderRow = React.memo(
                 dispatchRedux(resetState("active_sub_type"))
             }
             navigate('/')
+            dispatchRedux(setState('active_link', 79))
 
 
         }

@@ -16,7 +16,6 @@ import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 import {faBolt, faFireAlt, faGift, faInfoCircle, faShare, faTrash,} from "@fortawesome/free-solid-svg-icons";
-import {Spinner} from "react-bootstrap";
 import {Switch} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import useWindowDimensions from "../header/Dimensions";
@@ -878,7 +877,7 @@ const BetslipSubmitForm = React.memo(
                                     </div>
                                     <br className={"ipad-show"}/>
                                     <div className={"d-flex gap-2 align-items-center"}>
-                                        <div className="bet-win-tr hide-on-affix col-4">
+                                        <div className="bet-win-tr hide-on-affix col-4" style={{position:'relative'}}>
                                             <div className={"d-flex w-100 align-items-center"} style={{whiteSpace: "nowrap"}}>
                                                 <button
                                                     id=""
@@ -889,14 +888,16 @@ const BetslipSubmitForm = React.memo(
                                                         whiteSpace: "nowrap",
                                                         fontSize: "14px",
                                                         borderRadius: "4px",
+
                                                     }}
                                                     type={"button"}
                                                     className="bold btn-secondary  flex-nowrap w-100 d-flex justify-content-center share-button-styling"
                                                     title="SHARE BET"
+                                                    disabled={loadingShare}
                                                 >
                                                     Share&nbsp; <FontAwesomeIcon icon={faShare}/>
                                                     {loadingShare && (
-                                                        <span className="loader"></span>
+                                                        <span className="loader position-top-buttons"></span>
                                                     )}
                                                 </button>
                                             </div>

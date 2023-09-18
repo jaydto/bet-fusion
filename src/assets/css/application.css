@@ -46,7 +46,9 @@
 #reason_for_self_exclusion::placeholder {
     color: var(--light);
 }
-
+#place_bet_button{
+    min-height:3.7rem;
+}
 .hot-alert-badge {
     right: -16px;
     margin-top: 5px !important;

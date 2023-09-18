@@ -95,15 +95,18 @@ body {
 
 .active_link a .cg{
     opacity:1!important;
-    color:var(--light);
+    color:var(--light) !important;
     font-weight:var(--font-weight3) !important;
     filter:brightness(2.5);
 }
 .active_link div .cg{
     opacity:1!important;
-    color:var(--light);
+    color:var(--light) !important;
     font-weight:var(--font-weight3) !important;
     filter:brightness(2.5);
+}
+.cg.hot-alert{
+    opacity:1!important;
 }
 
 .casino-scroll {
@@ -2146,10 +2149,12 @@ img.nare-league {
 
 @media (max-width: 991px) {
     a .cg {
-        opacity:0.85;
+         opacity: 0.85;
+        color: #918e8e!important;
     }
     div .cg {
-        opacity:0.85;
+         opacity: 0.85;
+        color: #918e8e!important;
     }
     .markets-default.bottom-align {
         text-align:start!important;

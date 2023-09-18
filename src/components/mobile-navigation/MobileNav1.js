@@ -105,7 +105,7 @@ const MobileNav1 = React.memo(
                                 gaEventTracker('Visit Nare League Page');
                                 setActiveLink('/nare-league')
                             }} to={`/nare-league`}>
-                            <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center  `}>
+                            <div className={`inner-div  cg hot-alert ox anl url-link d-flex flex-column align-items-center  `}>
 
                                 <div className="menu-img  ">
                                     <LazyLoadImage

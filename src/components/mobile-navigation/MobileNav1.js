@@ -77,7 +77,7 @@ const MobileNav1 = React.memo(
             <table className="menu-table" style={{width: "100%", textAlign: "center", marginLeft: "-9px"}}>
                 <tbody>
                 <tr className={"tr-style mobile-nav-top"} ref={scrollContainerRef}>
-                    <td className={`menu-t m-auto   sport-check  ${pathname === "/" || Number(active_link) === 79 ? "active_link" : ""}`}>
+                    <td className={`menu-t m-auto   sport-check  ${pathname === "/" || Number(active_link) === 79 ? "active_link" : "link-inactive"}`}>
                         <Link
                             className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center  `}
                             onClick={() => {
@@ -100,7 +100,7 @@ const MobileNav1 = React.memo(
                             </div>
                         </Link>
                     </td>
-                    <td className={`menu-t m-auto sport-check nare-league ${'/nare-league'===active_link ? "active_link" : ""}`}>
+                    <td className={`menu-t m-auto sport-check nare-league ${'/nare-league'===active_link ? "active_link" : "link-inactive"}`}>
                         <Link
                             className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `}
                             onClick={() => {
@@ -126,7 +126,7 @@ const MobileNav1 = React.memo(
                             </div>
                         </Link>
                     </td>
-                    <td className={`menu-t m-auto sport-check ${'/jackpot'===active_link ? "active_link" : ""} `}>
+                    <td className={`menu-t m-auto sport-check ${'/jackpot'===active_link ? "active_link" : "link-inactive"} `}>
                         <div
                             className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center  `}
                             onClick={() => {
@@ -154,7 +154,7 @@ const MobileNav1 = React.memo(
                     </td>
 
 
-                    <td className={`menu-t m-auto sport-check ${'/casino' ===active_link ? " active_link" : ""} `}>
+                    <td className={`menu-t m-auto sport-check ${'/casino' ===active_link ? " active_link" : "link-inactive"} `}>
                         <div
                             className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center `}
                             onClick={() => {
@@ -186,7 +186,7 @@ const MobileNav1 = React.memo(
 
                         return allsports?.sport_id !== 79 && (
                             <td key={index}
-                                className={`menu-t m-auto sport-check ${Number(active_link) === Number(allsports?.sport_id) ? 'active_link' : ''}`}>
+                                className={`menu-t m-auto sport-check ${Number(active_link) === Number(allsports?.sport_id) ? 'active_link' : "link-inactive"}`}>
                                 <Link
                                     className={`inner-div more-sports cg ox anl url-link d-flex flex-column align-items-center `}
                                     onClick={() => {
@@ -212,7 +212,7 @@ const MobileNav1 = React.memo(
                             </td>
                         );
                     })}
-                    <td className={`menu-t m-auto sport-check ${'/promotions' === active_link ? "active_link" : ""} `}>
+                    <td className={`menu-t m-auto sport-check ${'/promotions' === active_link ? "active_link" : "link-inactive"} `}>
                         <Link
                             className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `}
                             onClick={() => {

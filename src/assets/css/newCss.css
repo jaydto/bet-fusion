@@ -92,6 +92,15 @@ body {
     color: yellow !important;
     opacity: 1 !important;
 }
+.link-inactive a .cg{
+    opacity:0.8!important;
+}
+.link-inactive a .cg div .hot-alert-badge{
+    opacity:1!important;
+}
+.link-inactive div .cg{
+    opacity:0.8!important;
+}
 
 .active_link a .cg{
     opacity:1!important;
@@ -108,9 +117,7 @@ body {
 .pointer-event-handler{
     pointer-events: none;
 }
-.cg.hot-alert{
-    opacity:1!important;
-}
+
 
 .casino-scroll {
     overflow-x: auto;

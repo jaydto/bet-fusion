@@ -22,7 +22,7 @@ import {setState} from "../../redux/dataSlice";
 const MobileNav1 = React.memo(
     () => {
 
-        const {state, dispatch} = useContext(StoreContext);
+        const {state} = useContext(StoreContext);
 
         const scrollContainerRef = useRef(null);
 

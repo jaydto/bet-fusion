@@ -105,6 +105,9 @@ body {
     font-weight:var(--font-weight3) !important;
     filter:brightness(2.5);
 }
+.pointer-event-handler{
+    pointer-events: none;
+}
 .cg.hot-alert{
     opacity:1!important;
 }

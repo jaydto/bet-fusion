@@ -3,6 +3,7 @@ const initialState = {
         print_title:'highlights',
         leader_board:null,
         active_link:'79',
+        bottom_sheet:false,
         loading:false,
         withdraw_loading:false,
         deposit_loading:false,

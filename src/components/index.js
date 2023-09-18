@@ -23,6 +23,7 @@ import {Button} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faXmark} from "@fortawesome/free-solid-svg-icons";
 import SkeletonLoaderMore from "./pages/skeletonLoadersWeb/SkeletonLoaderMore";
+import {setState} from "../redux/dataSlice";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -64,6 +65,7 @@ const Index = React.memo(
         const loading=useSelector((state)=>state.matchesData.loading)
         const fetching=useSelector((state)=>state.matchesData.fetching)
         const limit=useSelector((state)=>state.matchesData.limit)
+        const bottom_sheet=useSelector((state)=>state.data.bottom_sheet)
         const [newLimit, setNewLimit]=useState(10)
         // const [newMatches, setNewMatches]=useState()
         useEffect(()=>{
@@ -255,26 +257,28 @@ const Index = React.memo(
                     bottomSheetRef.current &&
                     !bottomSheetRef.current.contains(event.target)
                 ) {
-                    // const clickableItem = homePageRef.current.querySelector('a, button'); // You can customize this selector
+                    dispatchRedux(setState('bottom_sheet', false))
 
-                    dispatch({ type: "SET", key: "bottomSheet", payload: false });
                 }
+
             }
 
             // Bind the event listener
             document.addEventListener("mousedown", handleClickOutside);
-
+            // document.addEventListener("click", handleClickOutside);
             return () => {
                 // Unbind the event listener on clean up
                 document.removeEventListener("mousedown", handleClickOutside);
+
             };
-        }, [bottomSheetRef, homePageRef]);
+        }, [bottomSheetRef, bottom_sheet]);
 
         const showBottomSheet = () => {
-            dispatch({type: "SET", key: "bottomSheet", payload: true});
+            dispatchRedux(setState('bottom_sheet', true))
         }
         const collapseBottomSheet = () => {
-            dispatch({type: "SET", key: "bottomSheet", payload: false});
+            dispatchRedux(setState('bottom_sheet', false))
+
         }
 
         const [scrolledPast, setScrolledPast] = useState(false);
@@ -341,17 +345,17 @@ const Index = React.memo(
         return (
             <div className={'flex-item'}>
 
-                <div className="item4">
+                <div className={bottom_sheet?'pointer-event-handler item4':"item4"}>
                     <Header scrollPosition={scrollPosition}/>
                     <ToastContainer/>
                 </div>
                 <div className="flex-container">
-                    <div className="item1" style={state?.sidebarToggled ? {width: '12%'} : {}}><SideBar
+                    <div className={bottom_sheet?'pointer-event-handler item1':"item1"} style={state?.sidebarToggled ? {width: '12%'} : {}}><SideBar
                         loadCompetitions/></div>
-                    <div className={`item2 `} style={state?.bottomSheet?{opacity:'0.5',background:'#13171c'}:{}} >
+                    <div className={bottom_sheet?'pointer-event-handler item2':`item2`} style={bottom_sheet?{opacity:'0.5',background:'#13171c'}:{}} >
                         <div className="gz home match-overflow " >
                             <div className="homepage mobile-full-height" ref={homePageRef}
-                                 style={width < 991 ? {height: `${height}px`, overflowY: 'auto'} : {}}>
+                                 >
                                 <div
                                     className={'filters-navigation gap-3 d-flex justify-content-between align-items-center'}>
                                     <MainTabs tab={location.pathname.replace("/", "")} competition={null}/>
@@ -391,12 +395,12 @@ const Index = React.memo(
                     </div>
                     <div className={"item3"}>
                         {
-                            state?.bottomSheet&&width<991?"":<Right betslipValidationData={user_slip_validation}
+                            bottom_sheet&&width<991?"":<Right betslipValidationData={user_slip_validation}
                                                                     jackpotData={newMatches?.meta}
                                                                     test={true}/>
                         }
 
-                        <div className={`${state?.bottomSheet ? 'bottom-sheet show ' : 'd-none'}`}>
+                        <div className={`${bottom_sheet ? 'bottom-sheet show ' : 'd-none'}`} >
                             <div className="sheet-overlay"></div>
                             <div  ref={bottomSheetRef} className="content">
                                 <div className="header d-flex justify-content-between">

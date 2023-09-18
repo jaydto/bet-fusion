@@ -2,6 +2,7 @@ const initialState = {
     data: {
         print_title:'highlights',
         leader_board:null,
+        active_link:'79',
         loading:false,
         withdraw_loading:false,
         deposit_loading:false,

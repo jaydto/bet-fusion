@@ -16,7 +16,8 @@ import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {StoreContext} from "../../context/store";
 
 import {LazyLoadImage} from "react-lazy-load-image-component";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {setState} from "../../redux/dataSlice";
 
 const MobileNav1 = React.memo(
     () => {
@@ -27,11 +28,18 @@ const MobileNav1 = React.memo(
 
         const gaEventTracker = useAnalyticsEventTracker('Navigation');
 
+        const dispatchRedux=useDispatch()
+
         const pathname = window.location.pathname;
 
         const availableCategories = useSelector((state) => state.matchesData.sport_categories)
 
+        const active_link=useSelector((state)=>state.data.active_link)
+
         const [competitions, setCompetitions] = useState(getFromLocalStorage("sport_categories"));
+        const setActiveLink=(link)=>{
+            dispatchRedux(setState('active_link',link ))
+        }
 
         useEffect(() => {
             setCompetitions(availableCategories||getFromLocalStorage("sport_categories"))
@@ -54,16 +62,25 @@ const MobileNav1 = React.memo(
             return sport_image
         }
         const navigate = useNavigate()
+        let url = new URL(window.location.href)
+        let sport_id = url.searchParams.get('sport_id')
+
+        useEffect(()=>{
+            setActiveLink(sport_id||79)
+
+        },[])
 
         return (<div className="menu-wrapper mobile-nav-remove ">
 
             <table className="menu-table" style={{width: "100%", textAlign: "center", marginLeft: "-9px"}}>
                 <tbody>
                 <tr className={"tr-style mobile-nav-top"} ref={scrollContainerRef}>
-                    <td className={`menu-t m-auto   sport-check  ${pathname === "/" || Number(state?.active_sport) === 79 ? "active_link" : ""}`}>
+                    <td className={`menu-t m-auto   sport-check  ${pathname === "/" || Number(active_link) === 79 ? "active_link" : ""}`}>
                         <Link
                             className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center  `}
-                            onClick={() => gaEventTracker('Visit Home Page')} to={`/`}>
+                            onClick={() => {
+                                gaEventTracker('Visit Home Page');setActiveLink(79)
+                            }} to={`/`}>
                             <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center`}>
 
                                 <div className="menu-img ">
@@ -80,12 +97,14 @@ const MobileNav1 = React.memo(
                                 </p>
                             </div>
                         </Link>
-
                     </td>
-                    <td className={`menu-t m-auto sport-check nare-league ${pathname.includes('/nare-league') ? "active_link" : ""}`}>
+                    <td className={`menu-t m-auto sport-check nare-league ${pathname.includes(active_link) ? "active_link" : ""}`}>
                         <Link
                             className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `}
-                            onClick={() => gaEventTracker('Visit Nare League Page')} to={`/nare-league`}>
+                            onClick={() => {
+                                gaEventTracker('Visit Nare League Page');
+                                setActiveLink('/nare-league')
+                            }} to={`/nare-league`}>
                             <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center  `}>
 
                                 <div className="menu-img  ">
@@ -105,37 +124,13 @@ const MobileNav1 = React.memo(
                             </div>
                         </Link>
                     </td>
-
-                    {/* <td className={`menu-t m-auto sport-check  ${pathname.includes('aviator') ? "active_link" : ""}`}>
-                        <Link to={"/nare-games/aviator"}
-                              className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `}
-                              onClick={() => {
-                                  gaEventTracker('Visit Aviator Page')
-                              }}>
-                            <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
-
-                                <div className="menu-img ">
-                                    <LazyLoadImage
-                                        className="side-icon aviator"
-                                        src={aviator}
-                                        alt=""
-                                        effect='blur'
-                                        style={{height: "23px", marginTop: "-6px", width: '30px'}}
-                                    />
-                                </div>
-                                <p style={{textAlign: "center", marginBottom: "unset"}}>
-                                    Aviator
-                                </p>
-                            </div>
-                        </Link>
-
-                    </td> */}
-                    <td className={`menu-t m-auto sport-check ${window.location.search.includes('FootballX') ? "active_link" : ""} `}>
+                    <td className={`menu-t m-auto sport-check ${pathname.includes(active_link) ? "active_link" : ""} `}>
                         <div
                             className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center  `}
                             onClick={() => {
                                 navigate('/jackpot')
-                                gaEventTracker('Visit Jackpot Page')
+                                gaEventTracker('Visit Jackpot Page');
+                                setActiveLink('/jackpot')
                             }}>
                             <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center`}>
 
@@ -157,12 +152,13 @@ const MobileNav1 = React.memo(
                     </td>
 
 
-                    <td className={`menu-t m-auto sport-check ${pathname === `/casino` ? " active_link" : ""} `}>
+                    <td className={`menu-t m-auto sport-check ${pathname === active_link ? " active_link" : ""} `}>
                         <div
                             className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center `}
                             onClick={() => {
                                 gaEventTracker('Visit Casino Page')
                                 navigate('/casino');
+                                setActiveLink('/casino')
                             }}>
                             <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
 
@@ -188,10 +184,13 @@ const MobileNav1 = React.memo(
 
                         return allsports?.sport_id !== 79 && (
                             <td key={index}
-                                className={`menu-t m-auto sport-check ${Number(state?.active_sport) === Number(allsports?.sport_id) ? 'active_link' : ''}`}>
+                                className={`menu-t m-auto sport-check ${Number(active_link) === Number(allsports?.sport_id) ? 'active_link' : ''}`}>
                                 <Link
                                     className={`inner-div more-sports cg ox anl url-link d-flex flex-column align-items-center `}
-                                    onClick={() => gaEventTracker(`Visit ${state?.active_sport}/${state?.active_sport_name}  Page`)}
+                                    onClick={() => {
+                                        gaEventTracker(`Visit ${state?.active_sport}/${state?.active_sport_name}  Page`);
+                                        setActiveLink(allsports?.sport_id)
+                                    }}
                                     to={`/highlights?sport_id=${allsports.sport_id}&sub_type_id=${getDefaultMarketsForSport(allsports)}&sport_name=${allsports.sport_name}`}>
                                     <div className="inner-div cg ox anl url-link d-flex flex-column align-items-center">
                                         <div className="menu-img">
@@ -215,7 +214,10 @@ const MobileNav1 = React.memo(
                     <td className={`menu-t m-auto sport-check ${pathname === `/promotions` ? "active_link" : ""} `}>
                         <Link
                             className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `}
-                            onClick={() => gaEventTracker('Visit Promotion Page')} to={`/promotions`}>
+                            onClick={() => {
+                                gaEventTracker('Visit Promotion Page');
+                                setActiveLink('/promotions')
+                            }} to={`/promotions`}>
                             <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
                                 <div className="menu-img ">
                                     <LazyLoadImage

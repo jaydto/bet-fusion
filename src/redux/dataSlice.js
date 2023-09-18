@@ -149,7 +149,10 @@ export const userDepositsConfirm =
                 throw new Error(response?.error || "Fetching Deposit failed");
             }
         });
-
+export const setState =
+    createAction("data/set", (stateToSet,data) => {
+        return {payload:{stateToSet, data} };
+    });
 
 const dataSlice = createSlice({
     name: "data",
@@ -157,6 +160,13 @@ const dataSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
+            .addCase(setState, (state, action) => {
+                const { stateToSet, data } = action.payload;
+                if (state.hasOwnProperty(stateToSet)) {
+                    state[stateToSet] = data;
+                }
+                state.error = null;
+            })
             .addCase(userPoints.pending, (state) => {
                 state.loading = true;
                 state.error = null;

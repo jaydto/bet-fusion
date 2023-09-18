@@ -50,9 +50,12 @@
     min-height:3.7rem;
 
 }
-#place_bet_button_nare{
-    min-height:3.7rem;
+#place_bet_button_nare {
+    min-height: 3.7rem;
+}
 
+#share-btn{
+    min-height:3.5rem;
 }
 .css-13cymwt-control{
     background: var(--bet-history) !important;

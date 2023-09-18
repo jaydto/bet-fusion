@@ -880,7 +880,7 @@ const BetslipSubmitForm = React.memo(
                                         <div className="bet-win-tr hide-on-affix col-4" style={{position:'relative'}}>
                                             <div className={"d-flex w-100 align-items-center"} style={{whiteSpace: "nowrap"}}>
                                                 <button
-                                                    id=""
+                                                    id="share-btn"
                                                     onClick={() => encodeBetSlip()}
                                                     style={{
                                                         padding: "6px",
@@ -895,10 +895,9 @@ const BetslipSubmitForm = React.memo(
                                                     title="SHARE BET"
                                                     disabled={loadingShare}
                                                 >
-                                                    Share&nbsp; <FontAwesomeIcon icon={faShare}/>
-                                                    {loadingShare && (
-                                                        <span className="loader position-top-buttons"></span>
-                                                    )}
+                                                    {loadingShare ?
+                                                        <span className="loader position-top-buttons"></span>:<span>Share <FontAwesomeIcon icon={faShare}/></span>
+                                                    }
                                                 </button>
                                             </div>
                                         </div>

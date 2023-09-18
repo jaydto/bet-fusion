@@ -355,7 +355,8 @@ const Index = React.memo(
                     <div className={bottom_sheet?'pointer-event-handler item2':`item2`} style={bottom_sheet?{opacity:'0.5',background:'#13171c'}:{}} >
                         <div className="gz home match-overflow " >
                             <div className="homepage mobile-full-height" ref={homePageRef}
-                                 >
+                                 style={width < 991 ? {height: `${height}px`, overflowY: 'auto'} : {}}>
+
                                 <div
                                     className={'filters-navigation gap-3 d-flex justify-content-between align-items-center'}>
                                     <MainTabs tab={location.pathname.replace("/", "")} competition={null}/>

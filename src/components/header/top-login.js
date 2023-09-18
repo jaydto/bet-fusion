@@ -218,6 +218,7 @@ const HeaderLogin = React.memo(
                                 <button
                                     className={`w-100 button-radius input-field btn-font cg  login-button2 mt-4 btn bold`}
                                     style={{position:'relative'}}
+                                    disabled={loading}
                                     type="submit">
                                     {loading ? <div className="loader  position-top-buttons"></div> : <span>LOGIN</span>}
                                 </button>

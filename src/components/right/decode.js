@@ -68,6 +68,7 @@ const DecodeCode = React.memo(
                                                  style={{whiteSpace: "nowrap"}}>
                                                 <div className=" d-flex align-items-start">
                                                     <button type={"button"} onClick={() => handleslip(code)}
+                                                            disabled={loading}
                                                             className='btn btn-lg  w-100 deposit-withdraw-button  d-flex align-items-center justify-content-center'
                                                             style={{
                                                                 backgroundColor: "#FFC107",

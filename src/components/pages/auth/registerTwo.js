@@ -579,6 +579,7 @@ const MyReferalCodeForm = (props) => {
                         <div className="col">
                             <button type="submit"
                                     style={{position:'relative'}}
+                                    disabled={loading}
                                     className='w-100 btn btn-lg btn-primary mt-5 col-md-12 deposit-withdraw-button button-page'>
                                 {loading?<div className="loader  position-top-buttons"></div>:'COMPLETE'}
                             </button>

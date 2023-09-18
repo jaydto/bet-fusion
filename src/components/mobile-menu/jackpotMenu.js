@@ -295,6 +295,7 @@ const JackpotMenu = React.memo(
                                                     <SubmitButton
                                                                   className="place-bet-btn jp-button bold "
                                                                   button_size={true}
+                                                                  disabled={loading}
                                                                   title={
                                                                       loading ? (
                                                                           <div

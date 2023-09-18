@@ -102,6 +102,7 @@ const RedeemPoints = React.memo(
                     <div className="form-group row d-flex justify-content-left my-5">
                         <div className="col">
                             <button type={'submit'}
+                                    disabled={loading}
                                     style={{position:'relative'}}
                                 className='btn btn-lg w-100 deposit-button button-radius input-field btn-font cg login-button2 btn bold d-flex justify-content-center align-items-center'>
                                 {loading?                                                                              <span className="loader"></span>

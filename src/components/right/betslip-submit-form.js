@@ -908,6 +908,7 @@ const BetslipSubmitForm = React.memo(
                                                     style={{whiteSpace: 'nowrap'}}
                                                     id="place_bet_button_submit"
                                                     className="place-bet-btn bold "
+                                                    disabled={loading}
                                                     title={
                                                         loading ? (
                                                             <div

@@ -19,6 +19,7 @@ import useWindowDimensions from "./header/Dimensions";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faXmark} from "@fortawesome/free-solid-svg-icons";
 import {Button} from "react-bootstrap";
+import {getFromLocalStorage} from "./utils/local-storage";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -33,14 +34,14 @@ const CompetitionMatches = React.memo(
         const [tab, setTab] = useState('highlights');
 
         const {competitionid} = useParams();
-        const {state,dispatch}=useContext(StoreContext)
+        const {state, dispatch} = useContext(StoreContext)
 
-        const dispatchRedux=useDispatch()
-        const producer_down=useSelector((state)=>state.matchesData.producer_down)
-        const user_slip_validation=useSelector((state)=>state.matchesData.user_slip_validation)
-        const fetching=useSelector((state)=>state.matchesData.fetching)
-        const competitonMatches=useSelector((state)=>state.matchesData.matches)
-        const { width} = useWindowDimensions();
+        const dispatchRedux = useDispatch()
+        const producer_down = useSelector((state) => state.matchesData.producer_down)
+        const user_slip_validation = useSelector((state) => state.matchesData.user_slip_validation)
+        const fetching = useSelector((state) => state.matchesData.fetching)
+        const competitonMatches = useSelector((state) => state.matchesData.matches)
+        const {width} = useWindowDimensions();
         const bottomSheetRef = useRef()
         const competitionPageRef = useRef()
 
@@ -50,10 +51,10 @@ const CompetitionMatches = React.memo(
         let sub_type = (url.searchParams.get("sub_type_id") || "1")
         let sportId = new URLSearchParams(window.location.search).get('sport_id') || '79'
         let tab_data = new URLSearchParams(window.location.search).get('tab') || 'highlights'
-        const setFilterPicked=(filters)=>{
-            const data={
-                param_fetch_type:"filters",
-                filters:filters
+        const setFilterPicked = (filters) => {
+            const data = {
+                param_fetch_type: "filters",
+                filters: filters
             }
             dispatchRedux(setInitialLoadingState(data))
         }
@@ -70,44 +71,44 @@ const CompetitionMatches = React.memo(
         const collapseBottomSheet = () => {
             dispatch({type: "SET", key: "bottomSheet", payload: false});
         }
-        const [matches, setMatches]=useState()
-        useEffect(()=>{
+        const [matches, setMatches] = useState()
+        useEffect(() => {
             setMatches(competitonMatches)
-        },[competitonMatches])
+        }, [competitonMatches])
 
         useEffect(() => {
             let new_tab = ""
             let url = new URL(window.location.href)
 
-            if (url.searchParams.get("tab")=="highlights") {
+            if (url.searchParams.get("tab") == "highlights") {
                 new_tab = ("highlights")
             }
 
-            if (url.searchParams.get("tab")=="upcoming") {
+            if (url.searchParams.get("tab") == "upcoming") {
                 new_tab = ("upcoming")
 
             }
-            if (url.searchParams.get("tab")=="tomorrow") {
+            if (url.searchParams.get("tab") == "tomorrow") {
                 new_tab = ('tomorrow')
             }
             if (window.location.href.includes("countries")) {
                 new_tab = ('countries')
             }
 
-            if (new_tab !== tab && new_tab !=='countries') {
+            if (new_tab !== tab && new_tab !== 'countries') {
                 setTab(new_tab)
-                const data={
-                    param_fetch_type:"tabs",
-                    tab:new_tab
+                const data = {
+                    param_fetch_type: "tabs",
+                    tab: new_tab
                 }
                 dispatchRedux(setInitialLoadingState(data))
-            }else{
+            } else {
                 setTab(new_tab)
             }
 
-        }, [ tab, window.location.href,tab_data])
+        }, [tab, window.location.href, tab_data])
 
-        const fetchAdditionalData=()=>{
+        const fetchAdditionalData = () => {
             return
         }
 
@@ -122,12 +123,11 @@ const CompetitionMatches = React.memo(
         let competition_filter;
 // If there are parts after "/competition/", reconstruct the modified URL
         if (parts.length > 1) {
-            competitionpath ="/competition/" + parts[1];
-            competition_filter=parts[0]
+            competitionpath = "/competition/" + parts[1];
+            competition_filter = parts[0]
 
 
         }
-
 
 
         const findPostableSlip = () => {
@@ -149,7 +149,7 @@ const CompetitionMatches = React.memo(
                 ) {
                     // const clickableItem = homePageRef.current.querySelector('a, button'); // You can customize this selector
 
-                    dispatch({ type: "SET", key: "bottomSheet", payload: false });
+                    dispatch({type: "SET", key: "bottomSheet", payload: false});
                 }
             }
 
@@ -163,24 +163,46 @@ const CompetitionMatches = React.memo(
         }, [bottomSheetRef, competitionPageRef]);
 
 
-
         const fetchPagedData = () => {
             // console.log("called here")
 
-                let betslip = findPostableSlip();
-                let endpoint = "/v1/sports/competition?id=" + competitionid + "&page=" + (page || 1);
-                let url = new URL(window.location.href)
-                let sub_types = (url.searchParams.get('sub_type_id') || "1")
-                let tab_info = competition_filter==='/upcoming-competition'?'upcoming':competition_filter==='/tomorrow-competition'?'tomorrow':competition_filter==='/highlights-competition'?'highlights':'highlights'
+            let betslip = findPostableSlip();
+            let endpoint = "/v1/sports/competition?id=" + competitionid + "&page=" + (page || 1);
+            let url = new URL(window.location.href)
+            let sub_types = (url.searchParams.get('sub_type_id') || "1")
+            let tab_info = competition_filter === '/upcoming-competition' ? 'upcoming' : competition_filter === '/tomorrow-competition' ? 'tomorrow' : competition_filter === '/highlights-competition' ? 'highlights' : 'highlights'
 
 
-                endpoint += `&sub_type_id=` + (sub_types || "1")
-                endpoint+="&tab="+(tab_info)
-                dispatchRedux(matchesCompetition({endpoint,method:"POST",data:betslip})); // Dispatch matchesCompetition with the updated fetchParams
+            endpoint += `&sub_type_id=` + (sub_types || "1")
+            endpoint += "&tab=" + (tab_info)
+            let sport_id = url.searchParams.get('sport_id')
+            let market_name = (url.searchParams.get('market_name') || "1x2")
+            let search = (url.searchParams.get('search') || false)
+            const categories = getFromLocalStorage('sport_categories')
+            let sport = categories?.all_sports?.filter((category) => Number(category.sport_id) === Number(sport_id))
+            const sport_type = sport != null ? sport?.[0]?.sport_name || 'Soccer' : "";
 
-                // Clear the interval when fetchParams change
-                dispatchRedux(startFetchingMatches({endpoint,method:"POST",data:betslip, interval:20000, competition:true}));
 
+            dispatchRedux(matchesCompetition({
+                endpoint,
+                method: "POST",
+                data: betslip,
+                search: search,
+                active_sport: sport_type,
+                active_sub_type: market_name
+            })); // Dispatch matchesCompetition with the updated fetchParams
+
+            // Clear the interval when fetchParams change
+            dispatchRedux(startFetchingMatches({
+                endpoint,
+                method: "POST",
+                data: betslip,
+                interval: 20000,
+                competition: true,
+                search: search,
+                active_sport: sport_type,
+                active_sub_type: market_name
+            }));
 
 
         };
@@ -189,7 +211,7 @@ const CompetitionMatches = React.memo(
             // console.log("called this")
             dispatchRedux(stopFetchingMatches())
             fetchPagedData()
-            dispatchRedux(setFetching("fetching",true))
+            dispatchRedux(setFetching("fetching", true))
 
 
         }, [window.location.pathname, window.location.search]);
@@ -207,43 +229,47 @@ const CompetitionMatches = React.memo(
                     <div className="item1"><SideBar loadCompetitions/></div>
                     <div className="item2">
 
-                            <div className="gz home match-overflow" >
-                                <div className="homepage mobile-full-height" ref={competitionPageRef}>
-                                    <div
-                                        className={'filters-navigation gap-3 d-flex justify-content-between align-items-center mt-2 pt-2'}>
-                                        <MainTabs tab={location.pathname.replace("/", "")} competition={competitionpath}/>
-                                        <div className={'d-flex justify-content-between my-3 my-filter-button'}>
-                                            {filteredMarkets?.default_markets.length > 0 &&
-                                                <div className="myButton markets-button"
-                                                     onClick={() => showBottomSheet()}> {marketName || '1x2'}</div>
-                                            }
-                                        </div>
+                        <div className="gz home match-overflow">
+                            <div className="homepage mobile-full-height" ref={competitionPageRef}>
+                                <div
+                                    className={'filters-navigation gap-3 d-flex justify-content-between align-items-center mt-2 pt-2'}>
+                                    <MainTabs tab={location.pathname.replace("/", "")} competition={competitionpath}/>
+                                    <div className={'d-flex justify-content-between my-3 my-filter-button'}>
+                                        {filteredMarkets?.default_markets.length > 0 &&
+                                            <div className="myButton markets-button"
+                                                 onClick={() => showBottomSheet()}> {marketName || '1x2'}</div>
+                                        }
                                     </div>
-                                    <CarouselLoader/>
-                                    {matches&&<MatchHeaderRow live={false} first_match={matches ? matches[0] : {}} loading={fetching}/>}
-                                    {fetching?
-                                        <SkeletonLoaderMobile/>:
-                                        matches && <MatchList
+                                </div>
+                                <CarouselLoader/>
+                                {matches && <MatchHeaderRow live={false} first_match={matches ? matches[0] : {}}
+                                                            loading={fetching}/>}
+                                {fetching ?
+                                    <SkeletonLoaderMobile/> :
+                                    matches && <MatchList
                                         live={false}
                                         matches={matches}
                                         pdown={producer_down}
                                         onEndReached={fetchAdditionalData}
                                     />}
-                                </div>
-                                <div className={`text-center mt-2 text-white ${fetching ? 'd-block' : 'd-none'}`}>
-                                    <SkeletonLoaderMobile/>
-                                </div>
                             </div>
+                            <div className={`text-center mt-2 text-white ${fetching ? 'd-block' : 'd-none'}`}>
+                                <SkeletonLoaderMobile/>
+                            </div>
+                        </div>
 
                     </div>
                     <div className="item3">
-                        {state?.bottomSheet&&width<991?"":<Right betslipValidationData={user_slip_validation} test={true}/>}
+                        {state?.bottomSheet && width < 991 ? "" :
+                            <Right betslipValidationData={user_slip_validation} test={true}/>}
                         <div className={`${state?.bottomSheet ? 'bottom-sheet show ' : 'd-none'}`}>
                             <div className="sheet-overlay"></div>
-                            <div  ref={bottomSheetRef} className="content">
+                            <div ref={bottomSheetRef} className="content">
                                 <div className="header d-flex justify-content-between">
                                     <div className="drag-icon"><span></span></div>
-                                    <FontAwesomeIcon  icon={faXmark} onClick={()=>{collapseBottomSheet()}} className={'filter-close-icon'}/>
+                                    <FontAwesomeIcon icon={faXmark} onClick={() => {
+                                        collapseBottomSheet()
+                                    }} className={'filter-close-icon'}/>
 
                                 </div>
                                 <div className="body d-flex flex-column gap-4">
@@ -266,10 +292,13 @@ const CompetitionMatches = React.memo(
                                         );
                                     })}
 
-                                    <Button onClick={()=>{collapseBottomSheet()}} className={"text-light bold color-inherit btn border-0 cancel-filter-markets"}>Cancel</Button>
+                                    <Button onClick={() => {
+                                        collapseBottomSheet()
+                                    }}
+                                            className={"text-light bold color-inherit btn border-0 cancel-filter-markets"}>Cancel</Button>
 
                                 </div>
-                            </div >
+                            </div>
                         </div>
 
                     </div>

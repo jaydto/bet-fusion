@@ -24,6 +24,20 @@ export const matchesPrematch =
                 throw new Error(response?.error || "Fetching Prematch failed");
             }
         });
+export const matchesCompetition =
+    createAsyncThunk("matches/competition",
+        async ({endpoint, method, data,search=false, active_sport=null, active_sub_type=null}) => {
+            const [status, response] = await makeRequest({
+                url: endpoint,
+                method: method,
+                data: data,
+            });
+            if (status === 200) {
+                return {response, search, active_sport, active_sub_type};
+            } else {
+                throw new Error(response?.error || "Fetching Markets failed");
+            }
+        });
 export const matchesSearch =
     createAsyncThunk("matches/matchesSearch",
         async ({endpoint, method}) => {
@@ -260,20 +274,7 @@ export const matchesDecodeBet =
                 throw new Error(response?.error || "Bet Decode Request failed");
             }
         });
-export const matchesCompetition =
-    createAsyncThunk("matches/competition",
-        async ({endpoint, method, data}) => {
-            const [status, response] = await makeRequest({
-                url: endpoint,
-                method: method,
-                data: data,
-            });
-            if (status === 200) {
-                return response;
-            } else {
-                throw new Error(response?.error || "Fetching Markets failed");
-            }
-        });
+
 // Async thunk for matches
 export const matchesMoreLiveMarkets =
     createAsyncThunk("matches/moreLiveMatches",
@@ -429,8 +430,9 @@ const matchesSlice = createSlice({
             .addCase(matchesPrematch.fulfilled, (state, action) => {
                 state.isLoggedIn = true;
                 const newMatches = action.payload?.response.data;
-                const search=action.payload?.search
                 const search_data=action.payload.searched_matches
+
+                const search=action.payload?.search
                 state.search=search
                 state.active_sport=action.payload.active_sport
                 state.active_sub_type=action.payload.active_sub_type
@@ -702,8 +704,12 @@ const matchesSlice = createSlice({
             .addCase(matchesCompetition.fulfilled, (state, action) => {
                 state.isLoggedIn = true;
                 state.loading = false;
+                const search=action.payload?.search
+                state.search=search
+                state.active_sport=action.payload.active_sport
+                state.active_sub_type=action.payload.active_sub_type
 
-                const newMatches = action.payload?.data;
+                const newMatches = action.payload?.response.data;
 
                 state.matches = newMatches;
 

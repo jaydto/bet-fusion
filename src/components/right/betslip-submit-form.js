@@ -884,7 +884,7 @@ const BetslipSubmitForm = React.memo(
                                                     id=""
                                                     onClick={() => encodeBetSlip()}
                                                     style={{
-                                                        padding: "9px",
+                                                        padding: "6px",
                                                         backgroundColor: "var(--odds-button)",
                                                         whiteSpace: "nowrap",
                                                         fontSize: "14px",
@@ -894,13 +894,9 @@ const BetslipSubmitForm = React.memo(
                                                     className="bold btn-secondary  flex-nowrap w-100 d-flex justify-content-center share-button-styling"
                                                     title="SHARE BET"
                                                 >
-                                                    Share&nbsp;
-                                                    {loadingShare ? (
-                                                        <div className={`text-center  text-white d-block`}>
-                                                            <Spinner animation={"grow"} size={"sm"}/>
-                                                        </div>
-                                                    ) : (
-                                                        <FontAwesomeIcon icon={faShare}/>
+                                                    Share&nbsp; <FontAwesomeIcon icon={faShare}/>
+                                                    {loadingShare && (
+                                                        <span className="loader"></span>
                                                     )}
                                                 </button>
                                             </div>
@@ -918,9 +914,6 @@ const BetslipSubmitForm = React.memo(
                                                                 className={'d-flex align-items-center justify-content-center'}
                                                                 style={{whiteSpace: 'nowrap'}}>
                                                                 <span className="loader"></span>
-
-                                                                PLEASE WAIT             <FontAwesomeIcon icon={faFireAlt}/>
-
                                                             </div>
                                                         ) : (
                                                             <span>PLACE BET <FontAwesomeIcon icon={faFireAlt}/>

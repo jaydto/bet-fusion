@@ -217,8 +217,9 @@ const HeaderLogin = React.memo(
                             <div className={`w-100`}>
                                 <button
                                     className={`w-100 button-radius input-field btn-font cg  login-button2 mt-4 btn bold`}
+                                    style={{position:'relative'}}
                                     type="submit">
-                                    {loading ? <span>Logging In ...</span> : <span>LOGIN</span>}
+                                    {loading ? <div className="loader  position-top-buttons"></div> : <span>LOGIN</span>}
                                 </button>
                                 <Link className="cg register-button btn btn-warning" to={"/signup"} title="Join now"
                                       onClick={() => gaEventTracker('Register')} style={login && {display: 'none'}}>

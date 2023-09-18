@@ -119,7 +119,7 @@ const RegisterTwo = () => {
                                     </Link>
 
                                     <h1 className="text-white text-center" style={{fontSize: "30px"}}>Welcome to
-                                        betnare</h1>
+                                        betNare</h1>
 
                                 </Col>
                             </Row>
@@ -462,7 +462,7 @@ const ReferalForm = React.memo(
         const navigate = useNavigate()
         const successMessage=useSelector((state)=>state.auth.user_sign_up)
         const appConfig=useSelector((state)=>state.data.app_config)
-        const errorMessage=useSelector((state)=>state.auth.error)
+        const errorMessage=useSelector((state)=>state.data.error)
         const handleSubmit = (values) => {
             setTrackingData(values);
 
@@ -541,6 +541,7 @@ const ReferalForm = React.memo(
     })
 const MyReferalCodeForm = (props) => {
     const {errors, values, setFieldValue} = props;
+    const loading=useSelector((state)=>state.auth.loading)
     const onFieldChanged = (ev) => {
         let field = ev.target.name;
         let value = ev.target.value;
@@ -577,8 +578,9 @@ const MyReferalCodeForm = (props) => {
                     <div className="form-group w-100 d-flex justify-content-left mb-4">
                         <div className="col">
                             <button type="submit"
+                                    style={{position:'relative'}}
                                     className='w-100 btn btn-lg btn-primary mt-5 col-md-12 deposit-withdraw-button button-page'>
-                                COMPLETE
+                                {loading?<div className="loader  position-top-buttons"></div>:'COMPLETE'}
                             </button>
                         </div>
                     </div>

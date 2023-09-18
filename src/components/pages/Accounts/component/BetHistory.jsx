@@ -9,11 +9,11 @@ import {getFromLocalStorage, setLocalStorage} from "../../../utils/local-storage
 import {Switch} from "@mui/material";
 import GameHistoryList from "../../../modals/FilterBetHistory";
 import moment from "moment";
-import Skeleton1 from "../../../skeleton/skeleton";
 import {ToastContainer} from "react-toastify";
 import {faXbox} from "@fortawesome/free-brands-svg-icons";
 import {useDispatch, useSelector} from "react-redux";
 import {betHistoryDetails, fullBetDetails, setFetching} from "../../../../redux/matchesSlice";
+import SkeletonMoreMarkets from "../../skeletonLoadersWeb/SkeletonMoreMarkets";
 
 const BetHistory = () => {
     const { state, dispatch } = useContext(StoreContext);
@@ -342,7 +342,7 @@ const BetHistory = () => {
                                                                         setShowGameFilter={setShowGameFilter}/>}
                                     <PageTitle/>
                                     {fetching?<div className={`text-center mt-2 text-white d-block`}>
-                                        <Skeleton1/>
+                                        <SkeletonMoreMarkets/>
                                     </div>:<>
                                         {!state?.bet_history_details == false || getFromLocalStorage("bet_history_details") == null &&
                                             <div

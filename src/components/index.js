@@ -8,7 +8,6 @@ import {getBetslip, getJackpotBetslip} from "./utils/betslip";
 import {ToastContainer} from "react-toastify";
 import MatchList, {marketChoiceOptions, MatchHeaderRow} from "./matches";
 import SkeletonLoaderMobile from "./pages/skeletonLoadersWeb/SkeletonLoaderMobile";
-import Skeleton1 from "./skeleton/skeleton";
 import Countries from "./countries/Countries";
 import {getFromLocalStorage} from "./utils/local-storage";
 import {useDispatch, useSelector} from "react-redux";
@@ -23,6 +22,7 @@ import {setMatchBetslip} from "../redux/bettingSlice";
 import {Button} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faXmark} from "@fortawesome/free-solid-svg-icons";
+import SkeletonMoreMarkets from "./pages/skeletonLoadersWeb/SkeletonMoreMarkets";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -366,8 +366,8 @@ const Index = React.memo(
                                 {(newMatches&&tab!=="countries")&&<MatchHeaderRow live={false} first_match={newMatches ? newMatches[0] : {}} loading={loading}/>}
                                 {loading ?
                                     <div className={`text-center mt-2 text-white d-block`}>
-                                        {tab === 'countries' ? <Skeleton1/> : <SkeletonLoaderMobile/>}
-                                    </div> : tab == 'countries' ? <Countries/> :
+                                        {tab === 'countries' ? <SkeletonMoreMarkets/> : <SkeletonLoaderMobile/>}
+                                    </div> : tab === 'countries' ? <Countries/> :
                                         <div>
                                             <MatchList
                                                 live={false}
@@ -380,7 +380,7 @@ const Index = React.memo(
                                             />
                                             <div
                                                 className={`text-center mt-2 text-white ${fetching ? 'd-block' : 'd-none'}`}>
-                                                {tab == 'countries' ? <Skeleton1/> :<SkeletonLoaderMobile/>}
+                                                {tab === 'countries' ? <SkeletonMoreMarkets/> :<SkeletonLoaderMobile/>}
                                             </div>
                                         </div>
 

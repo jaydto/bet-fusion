@@ -24,7 +24,7 @@ const KironTabs = React.memo(
             url.pathname = `/${tab}`
             const param_length=Object.keys(params).length
             if(param_length===0){
-                url.searchParams.set('competition_id=',active_competition )
+                url.searchParams.set('competition_id',active_competition )
 
             }else{
                 Object.keys(params)?.forEach((param, val) => {

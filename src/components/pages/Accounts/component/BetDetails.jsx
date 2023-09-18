@@ -8,7 +8,6 @@ import {
     faQuestionCircle,
     faXmarkCircle
 } from "@fortawesome/free-solid-svg-icons";
-import Skeleton1 from "../../../skeleton/skeleton";
 import moment from "moment/moment";
 import {Button, ButtonGroup} from "react-bootstrap";
 import Notify from "../../../utils/Notify";
@@ -20,6 +19,7 @@ import useWindowDimensions from "../../../header/Dimensions";
 import {useDispatch, useSelector} from "react-redux";
 import {betCancel, matchesRebet, matchesShareBet} from "../../../../redux/matchesSlice";
 import {ToastContainer} from "react-toastify";
+import SkeletonMoreMarkets from "../../skeletonLoadersWeb/SkeletonMoreMarkets";
 
 const BetDetails = (props) => {
     const {bet_id} = props
@@ -512,7 +512,7 @@ const BetDetails = (props) => {
                     ))}
                 </div> :
                 <div className={`text-center mt-2 text-white d-block`}>
-                    <Skeleton1/>
+                   <SkeletonMoreMarkets/>
                 </div>
             }
 

@@ -1,6 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
 import Notify from "../utils/Notify";
-import {Spinner} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
 import {matchesDecodeBet} from "../../redux/matchesSlice";
 
@@ -72,14 +71,13 @@ const DecodeCode = React.memo(
                                                             className='btn btn-lg  w-100 deposit-withdraw-button  d-flex align-items-center justify-content-center'
                                                             style={{
                                                                 backgroundColor: "#FFC107",
-                                                                borderRadius: "0.3rem"
+                                                                borderRadius: "0.3rem",
+                                                                position:'relative'
                                                             }}>
                                                         <strong>
-                                                            LOAD SLIP
-                                                        </strong>&nbsp;
-                                                        {loading && <div className={` text-white d-block`}>
-                                                            <Spinner animation={'grow'} size={'sm'}/>
-                                                        </div>}
+                                                            {loading ? <span className="loader position-top-buttons"></span>:' LOAD SLIP'}
+                                                        </strong>
+
                                                     </button>
                                                 </div>
                                             </div>

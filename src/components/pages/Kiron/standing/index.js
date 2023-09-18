@@ -4,6 +4,7 @@ import {Spinner} from "react-bootstrap";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import { useDispatch,useSelector } from 'react-redux'; // Import useDispatch hook
 import {nareLeagueStandings, resetState} from '../../../../redux/nareLeague';
+import SkeletonLoader from "../skeletonLoader/SkeletonLoader";
 const Standing = () => {
     const competition_id=useSelector((state)=>state.nareLeague.competition_id)
     const newCompetition = new URL(window.location).searchParams.get('competition_id') ||competition_id
@@ -82,9 +83,7 @@ const Standing = () => {
                         }
 
                         </tbody>
-                    </table> : <div className={`text-center mt-2 text-white d-block w-100`}>
-                        <Spinner animation={'grow'} size={'lg'}/>
-                    </div>}
+                    </table> : <SkeletonLoader/>}
                 </div>
             </div>
         </div>

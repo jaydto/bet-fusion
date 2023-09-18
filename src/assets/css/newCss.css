@@ -1889,7 +1889,7 @@ img.nare-league {
 
     .market-groups-container {
         max-width: 61.2vw;
-        z-index: 2001;
+        z-index: 1000;
         background: var(--betnare-header-bg);
     }
 
@@ -2127,7 +2127,7 @@ img.nare-league {
 
 @media (max-width: 991px) {
     .cancel-filter-markets {
-        position: absolute;
+        position: fixed;
         bottom: -9px;
         display: flex;
         justify-content: center;
@@ -3573,7 +3573,7 @@ img.nare-league {
 
 @media (max-width: 380px) {
     .home-tabs-filters-active {
-        font-size: 12px!important;
+        font-size: 13px!important;
     }
     .home-tabs-filters {
         font-size: 11px;
@@ -3854,27 +3854,40 @@ img.nare-league {
     }
 }
 .loader {
-    width: 48px;
-    height: 48px;
-    display: inline-block;
-    position: absolute;
-}
-.loader::after,
-.loader::before {
-    content: '';
-    box-sizing: border-box;
-    width: 48px;
-    height: 48px;
+    width: 35px;
+    height: 35px;
+    border: 5px solid var(--lite-top-color);
+    border-bottom-color: transparent;
     border-radius: 50%;
-    border: 2px solid #e5e4e4;
+    display: inline-block;
+    box-sizing: border-box;
     position: absolute;
-    left: 0;
-    top: 0;
-    animation: animloader 2s linear infinite;
+    animation: rotation 1s linear infinite;
 }
-.loader::after {
-    animation-delay: 1s;
+.loader.position-top-buttons{
+    top:2px;
+
 }
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+@keyframes animloader {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
 
 @keyframes animloader {
     0% {

@@ -301,7 +301,6 @@ const JackpotMenu = React.memo(
                                                                               className={'d-flex align-items-center justify-content-center'}
                                                                               style={{whiteSpace: 'nowrap'}}>
                                                                               <span className="loader"></span>
-                                                                              PLEASE WAIT             <FontAwesomeIcon icon={faFireAlt}/>
 
                                                                           </div>
                                                                       ) : (

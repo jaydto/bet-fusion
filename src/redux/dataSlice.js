@@ -17,6 +17,32 @@ export const configSettings =
                 throw new Error(response?.error || "Fetching Prematch failed");
             }
         });
+export const printMatchesData =
+    createAsyncThunk("data/printMatchesData",
+        async ({method, endpoint}) => {
+            const [status, response] = await makeRequest({
+                url: endpoint,
+                method: method
+            });
+            if (status === 200) {
+                return response;
+            } else {
+                throw new Error(response?.error || "Print matches Failed");
+            }
+        });
+export const printJackpotData =
+    createAsyncThunk("data/printJackpotData",
+        async ({method, endpoint}) => {
+            const [status, response] = await makeRequest({
+                url: endpoint,
+                method: method
+            });
+            if (status === 200) {
+                return response;
+            } else {
+                throw new Error(response?.error || "Print matches Failed");
+            }
+        });
 export const leaderBoardData =
     createAsyncThunk("data/leaderBoard",
         async () => {
@@ -143,6 +169,44 @@ const dataSlice = createSlice({
 
             })
             .addCase(userPoints.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
+            .addCase(printMatchesData.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+                state.printed_data=null;
+                state.loaded=false
+            })
+            .addCase(printMatchesData.fulfilled, (state, action) => {
+                state.loading = false;
+                state.error = null;
+                const matches=action.payload.data
+                state.printed_data=matches;
+                state.loaded=matches?.length>0
+
+            })
+            .addCase(printMatchesData.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
+            .addCase(printJackpotData.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+                state.printed_data=null;
+                state.loaded=false
+                state.print_jackpot_data=null
+            })
+            .addCase(printJackpotData.fulfilled, (state, action) => {
+                state.loading = false;
+                state.error = null;
+                state.printed_data=action.payload?.data;
+                state.loaded=action.payload.data?.length>0
+                state.print_title=action.payload.meta.name
+                state.print_jackpot_data=action.payload.meta
+
+            })
+            .addCase(printJackpotData.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
             })

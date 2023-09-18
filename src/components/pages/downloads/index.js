@@ -1,12 +1,13 @@
 import React, {useCallback, useContext, useEffect, useState} from "react";
 import {PDFDownloadLink} from "@react-pdf/renderer";
 import {PdfDocument} from "./Matches";
-import makeRequest from "../../utils/fetch-request";
 import Select from 'react-select'
 import {Card, Tab, Tabs} from "react-bootstrap";
 import {formatNumber} from "../../utils/betslip";
 import {StoreContext } from "../../../context/store"
 import useWindowDimensions from "../../header/Dimensions";
+import {useDispatch, useSelector} from "react-redux";
+import {printJackpotData, printMatchesData} from "../../../redux/dataSlice";
 
 const Header = React.lazy(() => import('../../header/header'));
 const SideBar = React.lazy(() => import('../../sidebar/awesome/Sidebar'));
@@ -14,32 +15,41 @@ const Footer = React.lazy(() => import('../../footer/footer'));
 const Right = React.lazy(() => import('../../right/index'));
 
 export default function MatchesList() {
-    const [matches, setMatches] = useState([]);
     const [section, setSection] = useState('highlights');
-    const [title, setTitle] = useState('highlights');
     const [events, setEvents] = useState(10);
-    const [loaded, setLoaded] = useState(false)
-    const [jackpotData, setJackpotData] = useState([])
     const [key, setKey] = useState('home');
-    const {height, width} = useWindowDimensions();
+    const { width} = useWindowDimensions();
     const { state, dispatch } = useContext(StoreContext);
     const [isJackpot, setIsJackpot] = useState(false);
+    const dispatchRedux=useDispatch()
+    const loaded=useSelector((state)=>state.data.loaded)
+    const title_jp=useSelector((state)=>state.data.print_title)
+    const [title, setTitle] = useState('highlights');
+
+    const matches_data=useSelector((state)=>state.data?.printed_data)
+    const [matches, setMatches] = useState([]);
+
+    const jackpotData=useSelector((state)=>state.data?.print_jackpot_data)
+
+    useEffect(() => {
+        setTitle(title_jp)
+    }, [title_jp]);
+    useEffect(() => {
+        setMatches(matches_data)
+    }, [matches_data]);
+
     useEffect(() => {
         fetchMatches()
     }, [section, events])
 
     const fetchMatches = async () => {
-        setLoaded(false)
         let method = 'POST'
         let endpoint = "/v1/matches?page=" + (1) + `&limit=${events}&tab=` + section + '&sub_type_id=1,10,29,18';
-        await makeRequest({url: endpoint, method: method, data: []}).then(([status, result]) => {
-            if (status == 200) {
-                setMatches(result?.data || result)
-                if (result?.data?.length > 0) {
-                    setLoaded(true)
-                }
-            }
-        });
+        const data={
+            method:method,
+            endpoint:endpoint
+        }
+        dispatchRedux(printMatchesData(data))
     }
 
     const sectionOptions = [
@@ -66,22 +76,15 @@ export default function MatchesList() {
         setTitle(e.value)
     }
 
-    const fetchJackpotData = useCallback(async () => {
-        setLoaded(false)
+    const fetchJackpotData = async () => {
         let match_endpoint = "/v1/matches/jackpot";
-        const [match_result] = await Promise.all([
-            makeRequest({url: match_endpoint, method: "get", data: null})
-        ]);
-        let [m_status, m_result] = match_result;
-        if (m_status === 200) {
-            setTitle(m_result?.meta?.name)
-            setMatches(m_result?.data || m_result)
-            setJackpotData(m_result?.meta)
-            if (m_result?.data?.length > 0) {
-                setLoaded(true)
-            }
+        let method='get';
+        const data={
+            method:method,
+            endpoint:match_endpoint
         }
-    }, []);
+        dispatchRedux(printJackpotData(data))
+    };
 
     const fetchActiveTabMatches = async (key) => {
         setKey(key)
@@ -89,7 +92,7 @@ export default function MatchesList() {
             fetchJackpotData()
             setIsJackpot(true)
         } else {
-            setMatches([])
+            fetchMatches()
             setIsJackpot(false)
             setTitle(section)
         }
@@ -134,12 +137,12 @@ export default function MatchesList() {
                                         <div className="col-md-12 mt-5 text-center">
                                             
                                             <PDFDownloadLink
-                                                className={`btn btn-primary text-white btn-lg p-4 col-md-4 ${loaded ? '' : 'disabled'}`}
+                                                className={`btn btn-warning betnare-button-bg text-dark btn-lg p-4 col-md-4 ${loaded ? '' : 'disabled'}`}
                                                 document={<PdfDocument matches={matches} jackpot={isJackpot}
                                                                        title={title}/>}
                                                 fileName="matches.pdf">
                                                 {({blob, url, loading, error}) =>
-                                                    loading ? "Preparing Document..." : "Download Matches"
+                                                    loading ? "PREPARING DOCUMENT..." : "DOWNLOAD MATCHES"
                                                 }
                                             </PDFDownloadLink>
                                         </div>
@@ -156,14 +159,14 @@ export default function MatchesList() {
                                                     <Card.Title>
                                                         {jackpotData?.type}
                                                     </Card.Title>
-                                                    <Card.Text>
+                                                    <Card.Body>
                                                         Download Jackpot Games and play in through sms in the format
-                                                        <div className={'bold mt-2'}>
+                                                        <p className={'bold mt-2'}>
                                                             JP#PICK#PICK#.....
-                                                        </div>
-                                                    </Card.Text>
+                                                        </p>
+                                                    </Card.Body>
                                                     <PDFDownloadLink
-                                                        className={`btn btn-primary text-white btn-lg p-4 col-md-4 ${loaded ? '' : 'disabled'}`}
+                                                        className={`btn btn-warning betnare-button-bg text-white btn-lg p-4 col-md-4 ${loaded ? '' : 'disabled'}`}
                                                         document={<PdfDocument matches={matches} jackpot={isJackpot}
                                                                                title={title}/>}
                                                         fileName="matches.pdf">

@@ -119,10 +119,10 @@ const Casino = React.memo(
                                                         <LazyLoadImage effect={'blur'} src={aviator} 
                                                         className={'virtual-game-image vw-100'}/>
                                                     </div>
-                                                    <div className="overlay shadow-sm row">                                      
+                                                    <div className="overlay shadow-sm w-100">
 
 
-                                                        <ButtonGroup aria-label="Basic example">
+                                                        <ButtonGroup aria-label="Casino Games">
                                                                         <Button variant="warning"
                                                                    
                                                                                 onClick={() => launchAviator("demo")}

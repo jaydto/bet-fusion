@@ -1,5 +1,6 @@
 const initialState = {
     data: {
+        print_title:'highlights',
         leader_board:null,
         loading:false,
         withdraw_loading:false,
@@ -15,6 +16,9 @@ const initialState = {
         self_exclsuion_message:null,
         self_exclsuion_time:null,
         show_modal:null,
+        loaded:false,
+        printed_data:null,
+        print_jackpot_data:null,
 
     }, // Initial state for the data reducer
     virtuals: {

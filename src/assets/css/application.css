@@ -54,6 +54,35 @@
     min-height:3.7rem;
 
 }
+.css-13cymwt-control{
+    background: var(--bet-history) !important;
+    color: var(--light) !important;
+    border: thin solid var(--bet-history) !important;
+}
+.css-13cymwt-control::placeholder{
+    color:var(--light) !important
+}
+.css-13cymwt-control input{
+    background: inherit!important;
+    min-width:inherit!important;
+}
+.css-1dimb5e-singleValue{
+    color:var(--light) !important
+}
+.css-qbdosj-Input input{
+    background: inherit!important;
+    min-width:inherit!important;
+    border:none!important;
+    color:var(--light) !important;
+}
+.betnare-button-bg{
+    background: var(--betnare-button-login) !important;
+    font-weight:700!important;
+}
+.css-qbdosj-Input input::placeholder{
+    color:var(--light) !important;
+}
+
 .hot-alert-badge {
     right: -16px;
     margin-top: 5px !important;

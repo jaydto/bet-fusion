@@ -141,7 +141,7 @@ const Countries = React.memo(
                                                     {country?.competitions.map((league, leagueKey) => (
                                                         <MenuItem
                                                             key={`${leagueKey}_league`}
-                                                            className="100vw"
+                                                            className="100vw league-left-spacing"
                                                         >
                                                             <Link
                                                                 to={`/competition/${competition.sport_id}/${

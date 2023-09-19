@@ -103,6 +103,7 @@ const PrintMatches = React.lazy(() => import('./components/pages/downloads'))
 const Casino = React.lazy(() => import('./components/pages/casino/Casino'))
 
 const LiveCasino = React.lazy(() => import('./components/pages/casino/LiveCasino'))
+const FPL = React.lazy(() => import('./components/FPL'))
 const LeaderBoard = React.lazy(() => import('././components/pages/LeaderBoards/LeaderBoards'))
 
 const Virtuals = React.lazy(() => import('./components/pages/casino/Virtuals'))
@@ -171,6 +172,7 @@ createRoot(container).render(
                     <Route exact path="/live" element={<Live/>}/>
                     <Route exact path="/live/:spid" element={<Live/>}/>
                     <Route exact path="/login" element={<Login/>}/>
+                    <Route exact path="/fpl" element={<FPL/>}/>
                     <Route exact path="/share" element={<BetslipShareDecode/>}/>
                     <Route exact path="/virtuals" element={<Virtuals/>}/>
                     <Route exact path="/livescore" element={<LiveScore/>}/>
@@ -229,7 +231,7 @@ createRoot(container).render(
                     <Route exact path="/promo" element={<Promo/>}/>
                     <Route exact path="/deposit"
                            element={<ProtectedRoute><Deposit3/> </ProtectedRoute>}/>
-                 
+
                     <Route exact path="/withdraw"
                            element={<ProtectedRoute><Withdraw/></ProtectedRoute>}/>
                     <Route exact path="/redeem-points"

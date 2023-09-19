@@ -4,6 +4,7 @@ const initialState = {
         leader_board:null,
         active_link:'79',
         stake_value:0,
+        active_live_link:'79',
         bottom_sheet:false,
         loading:false,
         withdraw_loading:false,

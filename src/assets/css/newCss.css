@@ -92,6 +92,21 @@ body {
     color: yellow !important;
     opacity: 1 !important;
 }
+.pro-sidebar .pro-menu a.active_link{
+    color:var(--light) !important;
+    opacity:1;
+    font-weight:var(--font-weight3) !important
+}
+.active_link img{
+    opacity:1;
+}
+.link-inactive img{
+    opacity:0.5;
+}
+.pro-sidebar .pro-menu a.link-inactive{
+    color:var(--light-inactive) !important;
+    opacity:0.7;
+}
 .link-inactive a .cg{
     opacity:0.8!important;
 }
@@ -873,8 +888,8 @@ input:placeholder-shown {
     color: rgb(255, 255, 255);
     background-color: red;
     border-radius: 12px;
-    height: 17px;
-    width: 17px;
+    height: 15px;
+    width: 15px;
     display: flex !important;
     align-items: center !important;
     justify-content: center;
@@ -1485,8 +1500,8 @@ img.nare-league {
         color: rgb(255, 255, 255);
         background-color: red;
         border-radius: 12px;
-        height: 17px;
-        width: 17px;
+        height: 15px;
+        width: 15px;
         display: flex !important;
         align-items: center !important;
         justify-content: center;
@@ -3024,8 +3039,8 @@ img.nare-league {
         color: rgb(255, 255, 255);
         background-color: red;
         border-radius: 12px;
-        height: 17px;
-        width: 17px;
+        height: 15px;
+        width: 15px;
         display: flex !important;
         align-items: center !important;
         justify-content: center;

@@ -6,8 +6,9 @@ import 'react-perfect-scrollbar/dist/css/styles.css';
 import {Menu, MenuItem, ProSidebar, SidebarContent, SidebarHeader} from "react-pro-sidebar";
 import {Link} from "react-router-dom";
 import useWindowDimensions from "../header/Dimensions";
-import { useSelector} from "react-redux";
-
+import {useDispatch, useSelector} from "react-redux";
+import {LazyLoadImage} from "react-lazy-load-image-component";
+import {setState} from "../../redux/dataSlice";
 
 
 const LiveSideBar = React.memo(
@@ -16,6 +17,30 @@ const LiveSideBar = React.memo(
 
         const {width} = useWindowDimensions();
         const liveCount=useSelector((state)=>state.matchesData.sport_live_count)
+        const dispatchRedux=useDispatch()
+        const active_link=useSelector((state)=>state.data.active_live_link)
+        const getSportImageIcon = (
+            sport_name,
+            folder = "sports",
+            topLeagues = false,
+            flag = false
+        ) => {
+            if (flag) {
+                let splitString = sport_name.split(" ");
+                sport_name = splitString[0].substr(0, 2).toString().toLowerCase();
+            }
+
+            let default_img = "default_sport";
+            let sport_image;
+            try {
+                sport_image = topLeagues
+                    ? require(`../../assets/img/${folder}/${sport_name}.svg`)
+                    : require(`../../assets/svg/${folder}/${sport_name}.svg`);
+            } catch (error) {
+                sport_image = require(`../../assets/img/${default_img}.svg`);
+            }
+            return sport_image;
+        };
 
         const [liveSports, setLiveSports] = useState()
         useEffect(()=>{
@@ -23,7 +48,9 @@ const LiveSideBar = React.memo(
 
         },[liveCount])
 
-
+        const setActiveLink=(link)=>{
+            dispatchRedux(setState('active_live_link',link ))
+        }
 
         return (
             <div className={`${width<=991?"":"d-md-block  h-100"}`} >
@@ -74,16 +101,21 @@ const LiveSideBar = React.memo(
                             <Menu iconShape="circle live-inner"  >
                                 {liveSports && Object.entries(liveSports).map(([index, livesport],live_index) => (
                                         <Menu iconShape="circle inner-live live-items" key={live_index} >
-                                            <MenuItem className={"live-items"}>
-                                                <Link className="col-12"
-                                                      to={`/live/${livesport.sport_id}`}>
+                                            <MenuItem className={`live-items `}>
+                                                <Link className={`col-12  ${ Number(active_link) === livesport.sport_id ? "active_link" : "link-inactive"}`}
+                                                      to={`/live/${livesport.sport_id}`} onClick={()=>setActiveLink(livesport?.sport_id)}>
                                                     <Row>
                                                         <Col className="topl">
                                                             <Row className={'gap-2'} style={{color: "#69819a"}}>
-                                                                <div className={'text-white d-flex align-items-center'}>
-                                                                    <span>{livesport.sport_name}</span>&nbsp;
+                                                                <div className={`text-white d-flex align-items-center align-self-center ${ Number(active_link) === livesport.sport_id ? "active_link" : "link-inactive"}`}>
+                                                                    <LazyLoadImage
+                                                                        style={{borderRadius: "50%", height: "15px"}}
+                                                                        src={getSportImageIcon(livesport?.sport_name)}
+                                                                    />
+                                                                    &nbsp;
+                                                                    <span>{livesport?.sport_name}</span>&nbsp;
                                                                     <span className={`badge  live-slide  live-side-badge d-flex align-items-center`}>
-                                                                        {livesport.count}
+                                                                        {livesport?.count}
                                                                 </span>
                                                                 </div>
 

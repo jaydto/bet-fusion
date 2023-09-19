@@ -278,7 +278,7 @@ const Deposit3 = React.memo(
                                                                     </span>
                                                                         <ul className={'paybill-list-instructions'}>
                                                                             <li>1. Go to Mpesa menu</li>
-                                                                            <li>2. Select Payment services</li>
+                                                                            <li>2. Select Lipa na Mpesa</li>
                                                                             <li>3. Click on Paybill</li>
                                                                             <li>4. Enter business number as 4087777</li>
                                                                             <li>5. Enter the account number as phone

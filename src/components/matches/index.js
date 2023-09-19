@@ -183,8 +183,6 @@ export const MatchHeaderRow = React.memo(
     (props) => {
         const {live, first_match, jackpot, loading,spid} = props;
         const categories = getFromLocalStorage('sport_categories')
-        let sport = categories?.all_sports?.filter((category) => category.sport_id == spid)
-        const [sportName, setSportName] = useState(sport != null ? sport?.[0]?.sport_name || 'Soccer' : "");
 
         const [, setShowX] = useState(true);
         const [market, setMarket] = useState('1x2');

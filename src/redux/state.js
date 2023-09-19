@@ -3,6 +3,7 @@ const initialState = {
         print_title:'highlights',
         leader_board:null,
         active_link:'79',
+        stake_value:0,
         bottom_sheet:false,
         loading:false,
         withdraw_loading:false,
@@ -137,7 +138,7 @@ const initialState = {
         match_size:10,
         live_match_size:0
     },// Initial state for the matches Slice reducer
-   
+
 };
 
 export default initialState;

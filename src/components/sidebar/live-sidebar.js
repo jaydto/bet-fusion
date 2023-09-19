@@ -62,7 +62,7 @@ const LiveSideBar = React.memo(
                     top: "100px",
                     // marginTop: "10px"
                 }}
-                     className={`${width<=991?"":"vh-100 text-white sticky-top  d-md-block up"}`}>
+                     className={`${width<=991?"":"vh-100  sticky-top  d-md-block up"}`}>
                     <ProSidebar className={`${width<=991?"w-100":"live-pro-sidebar"}`}
                                 style={{backgroundColor: '#16202c !important'}}
                                 image={false}>
@@ -107,7 +107,7 @@ const LiveSideBar = React.memo(
                                                     <Row>
                                                         <Col className="topl">
                                                             <Row className={'gap-2'} style={{color: "#69819a"}}>
-                                                                <div className={`text-white d-flex align-items-center align-self-center ${ Number(active_link) === livesport.sport_id ? "active_link" : "link-inactive"}`}>
+                                                                <div className={` d-flex align-items-center align-self-center live_sidebar ${ Number(active_link) === livesport.sport_id ? "active_link" : "link-inactive"}`}>
                                                                     <LazyLoadImage
                                                                         style={{borderRadius: "50%", height: "15px"}}
                                                                         src={getSportImageIcon(livesport?.sport_name)}

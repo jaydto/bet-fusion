@@ -17,7 +17,9 @@ const navigationConfig = {
 		'responsible-gambling',
 		'promo',
 		'smart-play',
-		'gameplay'
+		'gameplay',
+		'fpl',
+		'FPL'
 	],
 	showDownload: [
 		'nare-games',
@@ -46,6 +48,8 @@ const navigationConfig = {
 		'smart-soft',
 		'casino',
 		'gameplay',
+		'fpl',
+		'FPL'
 	]
 };
 

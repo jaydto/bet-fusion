@@ -270,6 +270,112 @@
     opacity: 1;
 }
 
+/*fpl*/
+.fpl-banner-image {
+    /*background:*/
+    /*        radial-gradient(circle, transparent, #151e2a, #141d28), !* Radial gradient for edges *!*/
+    /*        url("../../assets/img/mobile/patternfpl1.png"), !* First image *!*/
+    /*        url("../../assets/img/mobile/patternfpl1.png"), !* Second image *!*/
+    /*        linear-gradient(to right, rgb(2, 239, 255), rgb(98, 123, 255)); !* Linear gradient for center *!*/
+    /*background-size: cover, cover, cover;*/
+    /*background-position: center center, center center, center left;*/
+    /*background-repeat: no-repeat, no-repeat, no-repeat;*/
+
+
+
+    max-height: 308px;
+    height: 308px;
+    background: url("../../assets/img/banner/products/FPL.webp"), url("../../assets/img/banner/products/FPL.webp"), linear-gradient(to right, rgb(2, 239, 255), rgb(98, 123, 255));
+}
+.fpl-code{
+    font-size:var(--font-size-large);
+    font-weight: var(--font-weight2);
+}
+.fpl-code-link{
+
+    font-size:var(--font-size-large1);
+    font-weight: var(--font-weight1);
+}
+.fpl-code-link-help{
+    font-size:var(--font-size-large1);
+    font-weight: var(--font-weight2);
+}
+.fpl-text{
+    color: rgb(55, 0, 60) !important;
+}
+.article-container {
+    padding: 40px 100px 10px 100px;
+    background-color: var(--betnare-body-bg);
+    margin-top: 20px;
+    border: 1px solid var(--aqua-text);
+    border-radius: 4px;
+    color: var(--light);
+    line-height: 2;
+    font-size: 14px;
+}
+.article-meta {
+    padding-bottom: 30px;
+}
+.article-meta h4 {
+    font-size: 22px !important;
+}
+.article-meta span {
+    display: block;
+    font-size: 12px;
+}
+.article-meta h6 {
+    color: var(--light);
+    font-size: 13px;
+    opacity: 0.9;
+    line-height: 1.5;
+    font-weight: 400;
+}
+.body_text p {
+    font-size: 13px;
+}
+@media (min-width: 992px){
+
+    .fpl-banner-image {
+        /* background: radial-gradient(circle, transparent, #151e2a, #141d28),url('../../assets/img/banner/products/fpl-banner.jpeg'); */
+        max-height: 232px!important;
+        height: 113%!important;
+        width: 100%;
+        background-position: initial;
+        background-size: contain;
+        background-repeat: round;
+        margin-top:2rem;
+    }
+
+}
+
+@media (max-width: 991px){
+    .article-container {
+        padding: 21px 15px 10px 15px!important;
+    }
+    .fpl-text {
+        color: var(--app-download-link-color) !important;
+        font-size: 21px;
+        text-shadow: 0 0 black;
+    }
+    .fpl-text-top{
+        justify-content:start!important;
+    }
+    .fpl-banner-image {
+        width: 100%;
+        margin: 0 auto;
+        height: 22.16666667rem;
+        color: white;
+        background-position: top left;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        width: 100%;
+        background-position: inherit;
+        background-size: cover;
+        background-repeat: round;
+        /* background: linear-gradient(0deg, rgba(20, 29, 40, 0.94), rgba(20, 29, 40, 0.84)),url(http://localhost:3000/static/media/jackpot-bg.32ade9e2e4e1081ebf7e.jpg); */
+    }
+}
+
 @keyframes moveUp {
     0% {
         transform: translateY(0);

@@ -92,7 +92,6 @@ const VerifyAccount = React.lazy(
 )
 
 // const MobileApp = React.lazy(() => import('./components/pages/app'))
-const MobileApp = React.lazy(() => import('./components/pages/app'))
 
 const ProtectedRoute = React.lazy(
     () => import('./components/utils/protected-route')

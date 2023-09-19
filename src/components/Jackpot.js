@@ -218,7 +218,7 @@ const Jackpot = React.memo(
                                     variant={'tabs'}
                                     defaultActiveKey={activeTab}
                                     id=""
-                                    className="background-primary "
+                                    className="background-primary jp-tabs"
                                     justify
                                     onSelect={handleTabSelect}>
                                     <Tab eventKey="home" title="Jackpot" className={'background-primary'}>

@@ -2168,6 +2168,9 @@ img.nare-league {
 .app-navbar{
     transition: position linear 0.7s;
 }
+.jp-tabs li button{
+    color:var(--light) !important
+}
 
 @media (max-width: 991px) {
     .remove-betslip{

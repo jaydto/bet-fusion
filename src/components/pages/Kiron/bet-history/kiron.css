@@ -83,6 +83,9 @@
     font-size: .7em;
     color: rgb(155, 152, 152);
 }
+.kiron-bet-history-tabs li button{
+    color:var(--light) !important
+}
 
 #status {
     color: var(--dark);

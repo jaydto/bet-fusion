@@ -298,14 +298,14 @@ const KironBetHistory = React.memo(
                         className="background-primary kiron-bet-history-tabs"
                         justify
                         onSelect={handleTabSelect}>
-                        <Tab eventKey="active" title="ACTIVE BETS" className={'background-primary'}>
+                        <Tab eventKey="active" title="ACTIVE BETS" className={'background-primary text-light'}>
                             {loading ?
                                 <div className={`text-center mt-2 text-white d-block`}>
                                     <SkeletonLoaderMore/>
                                 </div> :
                                 <ActiveBets/>}
                         </Tab>
-                        <Tab eventKey="older" title="OLDER BETS" className={'background-primary'}>
+                        <Tab eventKey="older" title="OLDER BETS" className={'background-primary text-light'}>
                             {loading ?
                                 <div className={`text-center mt-2 text-white d-block`}>
                                     <SkeletonLoaderMore/>

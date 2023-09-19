@@ -84,8 +84,11 @@
     color: rgb(155, 152, 152);
 }
 
-#status{
-    color: rgb(255, 255, 255);
+#status {
+    color: var(--dark);
+    font-size: var(--font-size-small-variation1);
+    font-weight: var(--font-weight4);
+    max-height: 18px;
 }
 
 

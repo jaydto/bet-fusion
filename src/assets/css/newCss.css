@@ -136,6 +136,15 @@ input.text-white {
     -moz-box-shadow: 0px 4px 5px 0px rgba(40, 55, 78, 1);
     box-shadow: 0px 4px 5px 0px rgba(40, 55, 78, 1);
 }
+.cg.login-button2{
+    color:var(--dark) !important
+}
+.login-button2:active{
+    background:var(--betnare-button-login) !important ;
+}
+.login-button2:disabled{
+    background:var(--betnare-button-login) !important ;
+}
 
 .shadow-testimonials {
     box-shadow: 3px 4px 5px -1px rgba(44, 60, 68, 0.71);
@@ -699,7 +708,10 @@ select::after {
     color: #fff !important;
 }
 
-
+.league-left-spacing{
+   padding-left:35px!important;
+    line-height:1.7!important;
+}
 .width-page-centric {
     box-shadow: 5px 7px 30px 8px #2c3c44;
     width: 60%;
@@ -1397,13 +1409,13 @@ img.nare-league {
     }
 
     .share-button-styling {
-        
+
         white-space: nowrap;
         font-size: 14px;
         z-index: 2000;
         right: 30%;
         padding: 8px !important;
-        
+
     }
 
     .live-status {
@@ -1589,11 +1601,11 @@ img.nare-league {
         border-radius: 4px;
     }
     .share-button-styling {
-        
+
         white-space: nowrap;
         font-size: 14px;
         /*border-radius: 2.3rem !important;*/
-        
+
         /*top: 0.3rem;*/
         right: 49px;
         /*width: 40% !important;*/
@@ -2158,6 +2170,12 @@ img.nare-league {
 }
 
 @media (max-width: 991px) {
+    .remove-betslip{
+        display:none!important;
+    }
+    .play-help{
+        flex-grow:100!important;
+    }
     a .cg {
         color: #918e8e!important;
     }
@@ -2652,6 +2670,7 @@ img.nare-league {
         align-items: center;
         justify-content: center;
         padding: 0 21px;
+        width:100%;
     }
 
     .bet-align-right-slip {
@@ -2954,13 +2973,17 @@ img.nare-league {
         margin: auto;
         background: var(--betnare-secondary);
     }
+    .svg-mobile{
+        min-width:16px!important;
+        max-width:16px!important;
+    }
 
     .line-on-slip-items:nth-child(2) {
         background: var(--transparent);
     }
 
     .share-button-styling {
-        
+
         white-space: nowrap;
         font-size: 14px;
         /*border-radius: 2.3rem !important;*/
@@ -2970,7 +2993,7 @@ img.nare-league {
         width: 142px !important;
         right: 0px;
         padding: 8px !important;
-        
+
     }
 
     .top-spacing-betslip {
@@ -3046,7 +3069,7 @@ img.nare-league {
     }
 
     .pro-sidebar .pro-menu .pro-menu-item {
-        font-size: var(--font-size-side-sm) !important;
+        font-size: var(--font-size-large) !important;
     }
 
     body {
@@ -3225,7 +3248,7 @@ img.nare-league {
         width: 142px !important;
         right: 0px;
         padding: 8px !important;
-        
+
     }
 
     .size-info {
@@ -3470,7 +3493,7 @@ img.nare-league {
     }
 
     .share-button-styling {
-        
+
         white-space: nowrap;
         font-size: 14px;
         /*border-radius: 2.3rem !important;*/
@@ -3480,7 +3503,7 @@ img.nare-league {
         width: 142px !important;
         right: 0px;
         padding: 8px !important;
-        
+
     }
 
     .mybets-details {

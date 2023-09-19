@@ -11,6 +11,7 @@ import {StoreContext} from "../../context/store";
 import {getFromLocalStorage} from "../utils/local-storage";
 import {useDispatch, useSelector} from "react-redux";
 import {sportLiveCount, startFetchingLiveCount, stopFetchingLiveCount} from "../../redux/matchesSlice";
+import {setState} from "../../redux/dataSlice";
 
 const AlertMessage = React.memo(
     (props) => {
@@ -35,6 +36,7 @@ const Right = React.memo(
         const appConfigs=useSelector((state)=>state.data.app_config)
         const [settings,setSettings] = useState(getFromLocalStorage('settings'));
         const dispatchRedux=useDispatch()
+        const stake_value=useSelector((state)=>state.data.stake_value)
 
 
         useEffect(()=>{
@@ -57,11 +59,14 @@ const Right = React.memo(
             };
         }, []);
         useEffect(() => {
-            let value=state?.userStake || getFromLocalStorage("userStake") || Number(settings?.sportsBookLimits?.defaultBetAmount)
+            let value=stake_value || getFromLocalStorage("userStake") || Number(settings?.sportsBookLimits?.defaultBetAmount)
             if(isNaN(value)){
-                dispatch({type: "SET", key: "stakeValue", payload: 0});
+                dispatchRedux(setState('stake_value', 0))
+                // dispatch({type: "SET", key: "stakeValue", payload: 0});
             }else{
-                dispatch({type: "SET", key: "stakeValue", payload: value});
+                dispatchRedux(setState('stake_value', value))
+
+                // dispatch({type: "SET", key: "stakeValue", payload: value});
             }
 
         }, [settings])

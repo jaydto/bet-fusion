@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState} from "react";
 import {StoreContext } from "../../../../context/store"
 import Header from "../../../header/header";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faArrowLeft, faCaretDown} from "@fortawesome/free-solid-svg-icons";
+import {faAngleLeft, faCaretDown} from "@fortawesome/free-solid-svg-icons";
 import BetDetails from "./BetDetails";
 import {getFromLocalStorage, setLocalStorage} from "../../../utils/local-storage";
 import {Switch} from "@mui/material";
@@ -329,7 +329,7 @@ const BetHistory = () => {
                     <ToastContainer/>
                     <Header/>
                     <div className={'back-navigation original-button top-spacing'} onClick={() => navigateBack()}>
-                        <FontAwesomeIcon icon={faArrowLeft} className={'back-navigation-icon'}/> Back
+                        <FontAwesomeIcon icon={faAngleLeft} className={'back-navigation-icon'}/> Back
                     </div>
                     <div className="container-history top-spacing">
                         <div className="iphone background-profile">

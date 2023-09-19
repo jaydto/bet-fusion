@@ -170,7 +170,7 @@ input.text-white {
 
 .back-navigation-icon {
     color: var(--betnare-button-login) !important;
-    font-size: 27px;
+    font-size: 20px;
 
 }
 
@@ -1279,7 +1279,7 @@ img.nare-league {
     border-radius: 5px;
     width: 200px;
     height: 40px;
-    border: 1px solid #333333;
+    border: 1px solid rgb(59 55 55 / 20%);
     position: relative;
     transition: 0.3s;
     background: var(--betnare-header-bg);
@@ -1613,7 +1613,7 @@ img.nare-league {
     }
 
     .back-navigation {
-        font-size: 18px;
+        font-size: 16px;
         color: var(--betnare-button-login) !important;
         position: absolute;
         top: 9px;

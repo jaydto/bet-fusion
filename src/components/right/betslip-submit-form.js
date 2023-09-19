@@ -31,6 +31,7 @@ import {
     resetStateBetslip,
     removeSelected, removePickedData
 } from "../../redux/bettingSlice";
+import {setState} from "../../redux/dataSlice";
 
 const BetslipShareModal = React.lazy(() =>
     import("../modals/BetslipShareModal")
@@ -83,7 +84,8 @@ const BetslipSubmitForm = React.memo(
         const {state, dispatch} = useContext(StoreContext);
         const loading=useSelector((state)=>state.betting.loading)
         const [settings,] = useState(getFromLocalStorage("settings"));
-        const [stake, setStake] = useState(jackpot ? parseInt(jackpotData?.bet_amount) : state?.stakeValue);
+        const stake_value=useSelector((state)=>state.data.stake_value)
+        const [stake, setStake] = useState(jackpot ? parseInt(jackpotData?.bet_amount) : stake_value||getFromLocalStorage('userStake'));
 
         const [stakeBoosted, setStakeBoosted] = useState(100);
 
@@ -118,8 +120,8 @@ const BetslipSubmitForm = React.memo(
         }, [userData])
 
         useEffect(()=>{
-                setStake(state?.stakeValue)
-        }, [state?.stakeValue])
+                setStake(stake_value)
+        }, [stake_value])
 
 
         const updateUserOnHistory = () => {
@@ -272,8 +274,9 @@ const BetslipSubmitForm = React.memo(
                         dispatchRedux(setMatchBetslip(betslip_data))
 
                     setLocalStorage('betslip_share_code', null)
+                    dispatchRedux(setState('stake_value',0))
                     setLocalStorage('userStake', null)
-                    dispatch({type: 'SET', key: 'userStake', data: null})
+
                     updateUserOnHistory()
                     return width < 991 ? setTimeout(() => {
                         navigate("/")
@@ -429,7 +432,7 @@ const BetslipSubmitForm = React.memo(
             setMessage(null);
             // setLocalStorage("winnings",null)
             setLocalStorage('userStake', null)
-            dispatch({type: 'SET', key: 'userStake', data: null})
+            dispatchRedux(setState('stake_value',0) )
             setLocalStorage('betslip_share_code', null)
             return width < 991 ? navigate(-1) : ""
         }, []);
@@ -703,8 +706,8 @@ const BetslipSubmitForm = React.memo(
                                 dispatch({type: "SET", key: "minStake", payload: null});
                             }
 
-                            dispatch({type: "SET", key: "userStake", payload: newValue});
                             setFieldValue(field, newValue);
+                            dispatchRedux(setState('stake_value', newValue))
                             setLocalStorage('userStake', newValue);
                             setStake(newValue);
                         } else {

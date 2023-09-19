@@ -354,7 +354,7 @@ const BetDetails = (props) => {
                                             <div className={"main-details-info-title"}>
                                                 Amount
                                             </div>
-                                            <div className="amount-value">{item?.bet_amount}</div>
+                                            <div className="amount-value">{parseFloat(item?.bet_amount).toLocaleString()}</div>
                                         </div>
                                         <div className="d-flex col-8 flex-column details-history-main">
                                             <div className={"main-details-info-title"}>

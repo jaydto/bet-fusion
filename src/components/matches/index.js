@@ -54,6 +54,7 @@ import {
     setSelected
 } from "../../redux/bettingSlice";
 import {setState} from "../../redux/dataSlice";
+import useWindowDimensions from "../header/Dimensions";
 
 const clean =
     (_str) => {
@@ -334,6 +335,7 @@ const MoreMarketsHeaderRow = React.memo(
         } = props;
         const [switches, setSwitches] = useState("scoreboard")
         const dispatchRedux = useDispatch()
+        const {width}=useWindowDimensions()
 
         const switchLmt = (value) => {
             setSwitches(value)
@@ -348,7 +350,7 @@ const MoreMarketsHeaderRow = React.memo(
                 momentum: "disable",
                 matchId: parent_match_id,
                 collapseTo: switches,
-                layout: "single",
+                layout: width<991?"single":'double',
                 scoreboard: "extended",
                 detailedScoreboard: "disable",
             });
@@ -1290,7 +1292,7 @@ const MatchRow = React.memo(
             <div className="top-matches d-flex flex-sm-column flex-lg-row  styling-matches px-lg-2">
                 <div
                     className="to-deskview to-block to-tabview  mx-lg-0 px-sm-4 px-md-2 px-lg-0 py-md-4 py-lg-0 mt-2 container-size-match ">
-                    <div className="size-info mobile-for-desktop d-flex col-xs-12 pad left-text flex-row live-col">
+                    <div className="size-info mobile-for-desktop d-flex col-xs-12 pad left-text flex-row live-col border-0">
                         <div
                             className={`d-flex flex-column px-1 justify-content-sm-center justify-content-md-start change-date1 mobile-remove display-ipad-remove-id ${jackpot ? "jackpot-width" : ""}`}>
                             {live &&

@@ -12,7 +12,8 @@ import {setState} from "../../redux/dataSlice";
 
 
 const LiveSideBar = React.memo(
-    () => {
+    (props) => {
+        const {spid}=props
 
 
         const {width} = useWindowDimensions();
@@ -42,6 +43,8 @@ const LiveSideBar = React.memo(
             return sport_image;
         };
 
+
+
         const [liveSports, setLiveSports] = useState()
         useEffect(()=>{
             setLiveSports(liveCount)
@@ -51,6 +54,10 @@ const LiveSideBar = React.memo(
         const setActiveLink=(link)=>{
             dispatchRedux(setState('active_live_link',link ))
         }
+        useEffect(()=>{
+            setActiveLink(spid||79)
+
+        },[spid])
 
         return (
             <div className={`${width<=991?"":"d-md-block  h-100"}`} >
@@ -81,7 +88,7 @@ const LiveSideBar = React.memo(
                             </div>
                         </SidebarHeader>
                         <SidebarHeader>
-                            <div
+                            <div className={'mobile-remove'}
                                 style={{
                                     padding: '5px',
                                     textTransform: 'uppercase',
@@ -92,7 +99,7 @@ const LiveSideBar = React.memo(
                                     textOverflow: 'ellipsis',
                                     whiteSpace: 'nowrap',
                                 }}>
-                                <div className="d-flex justify-content-sm-center">
+                                <div className="d-flex justify-content-sm-center ">
                                     LIVE SPORTS
                                 </div>
                             </div>
@@ -103,7 +110,7 @@ const LiveSideBar = React.memo(
                                         <Menu iconShape="circle inner-live live-items" key={live_index} >
                                             <MenuItem className={`live-items `}>
                                                 <Link className={`col-12  ${ Number(active_link) === livesport.sport_id ? "active_link" : "link-inactive"}`}
-                                                      to={`/live/${livesport.sport_id}`} onClick={()=>setActiveLink(livesport?.sport_id)}>
+                                                      to={`/live/${livesport.sport_id}`} >
                                                     <Row>
                                                         <Col className="topl">
                                                             <Row className={'gap-2'} style={{color: "#69819a"}}>

@@ -150,10 +150,10 @@ const Live = React.memo(
                             <div className="homepage mobile-full-height" ref={homePageRef}
                                  style={width < 991 ? {height: `${height}px`, overflowY: 'auto'} : {}}>
                                 <CarouselLoader/>
-                                {matches&&<MatchHeaderRow live={true} first_match={matches ? matches[0] : {}} loading={fetching} spid={spid}/>}
                                 <div className={`${width <= 991 ? "d-block" : "d-none"}`}>
-                                    <LiveSideBar/>
+                                    <LiveSideBar spid={spid}/>
                                 </div>
+                                {matches&&<MatchHeaderRow live={true} first_match={matches ? matches[0] : {}} loading={fetching} spid={spid}/>}
                                 {fetching ? <SkeletonMobileLive/> : matches &&
                                     <MatchList live={1}  fetching={true} matches={matches} pdown={producer_down} onEndReached={fetchAdditionalData}/>}
                             </div>

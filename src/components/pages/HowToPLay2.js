@@ -30,7 +30,7 @@ const  HowToPlay= React.memo(
     return (
         <div className={'flex-item'}>
             <div className="item4"><Header/></div>
-            <div className="flex-container">
+            <div className="flex-container play-help" >
                 <div className="item1"> <SideBar loadCompetitions/></div>
                 <div className="item2" style={{width:'100%'}}>
                     <div className=" home" >
@@ -43,7 +43,7 @@ const  HowToPlay= React.memo(
                                 <Accordion preExpanded={['1']} allowZeroExpanded className="size-accordion">
                                     <AccordionItem uuid="1" className={' pb-2'}>
                                         <AccordionItemHeading>
-                                            <AccordionItemButton className='accordion-button'>
+                                            <AccordionItemButton className='accordion-button px-2 pt-1'>
                                                 Play via SMS
                                             </AccordionItemButton>
                                         </AccordionItemHeading>
@@ -455,7 +455,7 @@ const  HowToPlay= React.memo(
 
                                     <AccordionItem uuid="2">
                                         <AccordionItemHeading>
-                                            <AccordionItemButton className="accordion-button">
+                                            <AccordionItemButton className="accordion-button px-2 pt-1">
                                                 Play via Web
                                             </AccordionItemButton>
                                         </AccordionItemHeading>
@@ -888,7 +888,7 @@ const  HowToPlay= React.memo(
                         </div>
                     </div>
                 </div>
-                <div className="item3"><Right test={true}/></div>
+                <div className="item3 remove-betslip"><Right test={true}/></div>
 
             </div>
             <div className="item6"><div className={"footer-mobile-none"}>

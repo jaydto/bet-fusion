@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from "react"
+import React, {useEffect, useState} from "react"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
     faCaretDown,
@@ -13,7 +13,6 @@ import {Button, ButtonGroup} from "react-bootstrap";
 import Notify from "../../../utils/Notify";
 import BetslipShareModal from "../../../modals/BetslipShareModal";
 import {getFromLocalStorage, setLocalStorage} from "../../../utils/local-storage";
-import {addToSlip} from "../../../utils/betslip";
 import {useNavigate} from "react-router-dom";
 import useWindowDimensions from "../../../header/Dimensions";
 import {useDispatch, useSelector} from "react-redux";
@@ -75,7 +74,7 @@ const BetDetails = (props) => {
                 momentum: "disable",
                 matchId: parent_match_id,
                 collapseTo: switches,
-                layout: "single",
+                layout: width<991?"single":'double',
                 scoreboard: "extended",
                 detailedScoreboard: "disable",
             });
@@ -134,8 +133,7 @@ const BetDetails = (props) => {
         )?.length;
         const total = filteredData?.length;
 
-        const result = `${won}/${lost}/${total}`;
-        return result
+        return `${won}/${lost}/${total}`
     }
 
     const [betStatus, setBetStatus] = useState(getFromLocalStorage("bet_history_status") || null);
@@ -330,7 +328,8 @@ const BetDetails = (props) => {
                     <ToastContainer/>
                     {mybets_details?.map((item, index) => (
                         <div key={index}>
-                            {index === 0 && <div className="d-flex history-details flex-column bet-summary-info">
+                            {index === 0 &&
+                                <div className="d-flex history-details flex-column bet-summary-info">
                                 <div className="id">
                                     #{item?.bet_id}
                                 </div>
@@ -408,12 +407,12 @@ const BetDetails = (props) => {
                             <div className="d-flex details-history flex-column w-100 mt-3">
                                 <div className="d-flex w-100 justify-content-between px-2 details-items">
                                     <div className="team">
-                                        {item?.win === 1 ? <FontAwesomeIcon icon={faCheckCircle}
-                                                                            className={"text-success"}/> : item?.status === 1 ?
-                                            <FontAwesomeIcon icon={faQuestionCircle}
-                                                             className={"text-warning"}/> :
-                                            <FontAwesomeIcon icon={faXmarkCircle}
-                                                             className={"text-danger"}/>}&nbsp;<span
+                                        {item?.win === 1 ?
+                                            <FontAwesomeIcon icon={faCheckCircle} className={"text-success"}/> :
+                                            item?.status === 1 ?
+                                            <FontAwesomeIcon icon={faQuestionCircle} className={"text-warning"}/> :
+                                            <FontAwesomeIcon icon={faXmarkCircle} className={"text-danger"}/>}
+                                        &nbsp;<span
                                         className={"team-info"}>{item?.home_team}</span></div>
                                     <div className="outcome">vs</div>
                                     <div className="team" onClick={() => toggleCollapse(index, item?.parent_match_id)}>

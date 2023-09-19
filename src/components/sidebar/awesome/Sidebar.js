@@ -101,7 +101,8 @@ const Sidebar = React.memo(
                     <SidebarContent>
                         <Menu iconShape="circle">
                             {competitions?.all_sports.map((competition, index) => (
-                                index === 0 ? <SubMenu
+                                index === 0 ?
+                                    <SubMenu
                                         title={competition.sport_name}
                                         defaultOpen={getActiveSport(competition.sport_id)}
                                         onClick={() => gaEventTracker(`${competition?.sport_name}`)}
@@ -112,42 +113,48 @@ const Sidebar = React.memo(
                                             />}
                                         key={index}>
                                         {index === 0 && (
-                                            <SubMenu title={"Top Leagues"} defaultOpen={true} key={index}>
-                                                {competitions?.top_soccer?.map((top_league, index) => (
-                                                    <MenuItem
-                                                        key={`l_${index}`}
-                                                        icon={
-                                                            <LazyLoadImage
-                                                                src={getSportImageIcon(
-                                                                    top_league?.competition_name,
-                                                                    "leagues",
-                                                                    true
-                                                                )}
-                                                                className={'sidebar-league-icon-small'}
-                                                                style={{borderRadius: "50%", height: "20px", width: "20px"}}
-                                                            />
-                                                        }
-                                                    >
-                                                        <Link
-                                                            className={'text-small-sidebar'}
-                                                            onClick={() =>
-                                                                gaEventTracker(
-                                                                    `Top Leagues ${top_league?.competition_name}`
-                                                                )
+                                            <div >
+                                                <p className={'text-light'} style={{opacity:'0.8', fontWeight:'var(--font-weight3'}}>
+                                                    Top Leagues
+                                                </p>
+                                                <MenuItem title={"Top Leagues"} defaultOpen={true} key={index}>
+                                                    {competitions?.top_soccer?.map((top_league, index) => (
+                                                        <MenuItem
+                                                            key={`l_${index}`}
+                                                            icon={
+                                                                <LazyLoadImage
+                                                                    src={getSportImageIcon(
+                                                                        top_league?.competition_name,
+                                                                        "leagues",
+                                                                        true
+                                                                    )}
+                                                                    className={'sidebar-league-icon-small'}
+                                                                    style={{borderRadius: "50%", height: "20px", width: "20px"}}
+                                                                />
                                                             }
-                                                            to={`/competition/${top_league.sport_id}/${
-                                                                top_league.category_id
-                                                            }/${top_league.competition_id}?sport_id=${
-                                                                competition.sport_id
-                                                            }&sub_type_id=${getDefaultMarketsForSport(
-                                                                competition
-                                                            )}`}
                                                         >
-                                                            {top_league?.competition_name}
-                                                        </Link>
-                                                    </MenuItem>
-                                                ))}
-                                            </SubMenu>
+                                                            <Link
+                                                                className={'text-small-sidebar'}
+                                                                onClick={() =>
+                                                                    gaEventTracker(
+                                                                        `Top Leagues ${top_league?.competition_name}`
+                                                                    )
+                                                                }
+                                                                to={`/competition/${top_league.sport_id}/${
+                                                                    top_league.category_id
+                                                                }/${top_league.competition_id}?sport_id=${
+                                                                    competition.sport_id
+                                                                }&sub_type_id=${getDefaultMarketsForSport(
+                                                                    competition
+                                                                )}`}
+                                                            >
+                                                                {top_league?.competition_name}
+                                                            </Link>
+                                                        </MenuItem>
+                                                    ))}
+                                                </MenuItem>
+                                            </div>
+
                                         )}
                                     </SubMenu>
                                     : <div key={`b_${index}`}>

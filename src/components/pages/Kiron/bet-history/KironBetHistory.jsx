@@ -274,7 +274,7 @@ const KironBetHistory = React.memo(
                 return (
                     <div className="contain">
                         {betID ? (
-                            <ActiveBetDetails betID={betID}/>
+                            <ActiveBetDetails betID={betID} />
                         ) : (
                             <ActiveBet/>
                         )}
@@ -303,7 +303,7 @@ const KironBetHistory = React.memo(
                                 <div className={`text-center mt-2 text-white d-block`}>
                                     <SkeletonLoaderMore/>
                                 </div> :
-                                <ActiveBets/>}
+                                <ActiveBets />}
                         </Tab>
                         <Tab eventKey="older" title="OLDER BETS" className={'background-primary text-light'}>
                             {loading ?

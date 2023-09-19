@@ -360,7 +360,7 @@ const BetDetails = (props) => {
                                             <div className={"main-details-info-title"}>
                                                 Possible Winnings
                                             </div>
-                                            <div className="amount-value">{item?.possible_win}</div>
+                                            <div className="amount-value">{parseFloat(item?.possible_win).toLocaleString()}</div>
                                         </div>
 
                                     </div>

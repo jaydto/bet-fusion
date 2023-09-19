@@ -21,6 +21,8 @@ const BetDetails = React.memo(
         const [collapsed, setCollapsed] = useState([]);
         const [collapsedAll, setCollapsedAll] = useState(false);
         const betDetails = useSelector((state) => state.nareLeague.bet_details_data)
+        const activeBetHistory = useSelector((state) => state.nareLeague.bet_history_data)
+
 
         // Empty dependency array to run the effect only once when the component mounts
         const toggleCollapse = (index, parent_match_id) => {
@@ -75,6 +77,12 @@ const BetDetails = React.memo(
         }, [])
 
         const navigate = useNavigate()
+
+        function getActivePossibleWin() {
+            const possible_win=activeBetHistory?.filter((bet)=>Number(bet?.bet_id)===Number(betID))
+            return isNaN(parseFloat(possible_win?.[0]?.possible_win)?.toLocaleString())?'':possible_win?.[0]?.possible_win?.toLocaleString()
+        }
+
         return (
             <div className="d-flex details flex-column bet-details">
                 <div className="top px-2">
@@ -102,9 +110,9 @@ const BetDetails = React.memo(
                                         </div>
                                         <div className="d-flex col-8 flex-column details-history-main">
                                             <div className={"main-details-info-title"}>
-                                                total Odds
+                                                Possible Win
                                             </div>
-                                            <div className="amount-value">{totalOdds()}</div>
+                                            <div className="amount-value">{getActivePossibleWin()}</div>
                                         </div>
 
                                     </div>

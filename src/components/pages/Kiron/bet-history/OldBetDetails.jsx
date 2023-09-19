@@ -83,9 +83,9 @@ const OldBetDetails = React.memo(
                                         </div>
                                         <div className="d-flex col-8 flex-column details-history-main">
                                             <div className={"main-details-info-title"}>
-                                                total Odds
+                                                Possible Win
                                             </div>
-                                            <div className="amount-value">{bet.total_odds}</div>
+                                            <div className="amount-value">{parseFloat(bet.possible_win).toLocaleString()}</div>
                                         </div>
 
                                     </div>

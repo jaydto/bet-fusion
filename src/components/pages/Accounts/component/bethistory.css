@@ -9,6 +9,18 @@
 .my-bets-bet-history{
     position:relative;
 }
+.type{
+    font-weight: var(--font-weight3);
+}
+.pick-ft{
+    font-weight: var(--font-weight3);
+}
+.result-ft{
+    font-weight: var(--font-weight3);
+}
+.outcome-t{
+    font-weight: var(--font-weight3);
+}
 .bet-history-items{
     color:var(--light);
 }
@@ -17,6 +29,30 @@
 }
 .bet-history-items.amount{
     opacity:0.8;
+}
+.market-h{
+    opacity:0.5;
+    align-items: initial;
+    display: flex;
+    justify-content: end;
+}
+.pick-h {
+    opacity: 0.5;
+    align-items: initial;
+    display: flex;
+    justify-content: end;
+}
+.result-h{
+    opacity:0.5;
+    align-items: initial;
+    display: flex;
+    justify-content: end;
+}
+.outcome-h{
+    opacity:0.5;
+    align-items: initial;
+    display: flex;
+    justify-content: end;
 }
 .bet-history-items.date{
     opacity:0.6;
@@ -54,7 +90,6 @@
 /*    text-align: end;*/
 /*}*/
 .pick-h {
-    width: 70px;
     white-space: normal;
     word-break: break-all;
     /*white-space: nowrap;*/
@@ -221,6 +256,29 @@ font-weight: 900;
     }
 }
 @media (max-width:991px){
+    .outcome {
+        max-height: 18px;
+        display: flex;
+        align-items: center;
+    }
+    .details-history-main-container {
+        font-size:var(--font-size-small-variation1) !important;
+
+    }
+    .details-items .outcome{
+        margin-left:-2px!important;
+    }
+    .bet-details.details{
+        line-height: 1.5!important;
+    }
+
+    .bet-details.details{
+        font-size:var(--font-size-small-variation1) !important;
+
+    }
+    .pick-h{
+        width: 250px;
+    }
     .details-items .team .team-info{
         text-overflow: ellipsis;
         width: 100px;
@@ -261,6 +319,9 @@ font-weight: 900;
 }
 
 @media (max-width:575px){
+    .pick-h{
+        width: 70px;
+    }
     .text-align-on-mobile-bet-history{
         /*text-align:end!important;*/
     }

@@ -74,7 +74,7 @@ const LiveSideBar = React.memo(
                                 style={{backgroundColor: '#16202c !important'}}
                                 image={false}>
                         <SidebarHeader>
-                            <div
+                            <div className={'mobile-remove padding-remove'}
                                 style={{
                                     padding: '5px',
                                     textTransform: 'uppercase',
@@ -87,8 +87,8 @@ const LiveSideBar = React.memo(
                                 }}>
                             </div>
                         </SidebarHeader>
-                        <SidebarHeader>
-                            <div className={'mobile-remove'}
+                        <SidebarHeader >
+                            <div className={'mobile-remove padding-remove'}
                                 style={{
                                     padding: '5px',
                                     textTransform: 'uppercase',

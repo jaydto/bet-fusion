@@ -2196,6 +2196,12 @@ img.nare-league {
     .live_sidebar.active_link {
         color:var(--light) !important;
     }
+    .mobile-remove.padding-remove{
+        padding:0px!important;
+    }
+    .live-mobile-top{
+        margin-top:1.1rem!important;
+    }
     .pro-sidebar .pro-menu a.active_link{
         color:var(--light) !important;
         opacity:1;

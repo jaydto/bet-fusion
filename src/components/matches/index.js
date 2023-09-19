@@ -273,7 +273,7 @@ export const MatchHeaderRow = React.memo(
 
             <Row
                 className={`full-mobile sticky-top ${jackpot ? 'd-none ' : user ? "sticky-user d-flex align-items-center " : 'sticky-responsive no-sticky d-flex align-items-center'}`}>
-                <div className="top-matches d-flex position-sticky sticky-top shadow-sports-header header-sports">
+                <div className="top-matches d-flex position-sticky sticky-top shadow-sports-header header-sports live-mobile-top">
                     <div className={"size-info  d-flex col-xs-12 pad left-text px-2"}>
                         <div className="col pad left-text d-flex">
                             <div className="align-self-center col">

@@ -245,7 +245,8 @@ font-weight: 900;
     }
     .back-navigation {
         font-size: 16px;
-        color: var(--betnare-button-login) !important;
+        color: var(--light) !important;
+        opacity:0.5;
         position: fixed;
         top: 18px;
         display: flex;

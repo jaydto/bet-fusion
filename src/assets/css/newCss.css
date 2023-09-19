@@ -169,9 +169,9 @@ input.text-white {
 }
 
 .back-navigation-icon {
-    color: var(--betnare-button-login) !important;
+    color: var(--light)!important;
     font-size: 20px;
-
+    opacity: 0.5;
 }
 
 .betslip-links {
@@ -1614,7 +1614,8 @@ img.nare-league {
 
     .back-navigation {
         font-size: 16px;
-        color: var(--betnare-button-login) !important;
+        color: var(--light) !important;
+        opacity:0.5;
         position: absolute;
         top: 9px;
         display: flex;

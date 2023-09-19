@@ -10,6 +10,8 @@ import Header from "../../header/header";
 import {ToastContainer} from "react-toastify";
 import {StoreContext} from "../../../context/store";
 import {getFromLocalStorage} from "../../utils/local-storage";
+import {useDispatch, useSelector} from "react-redux";
+import {setState} from "../../../redux/dataSlice";
 
 const BetslipPage = React.memo(
     () => {
@@ -25,17 +27,21 @@ const BetslipPage = React.memo(
         const jackpotParam = url.searchParams.get("jackpotData");
         const nareParams = url.searchParams.get('nare-league')
         const pathname = window.location.pathname;
+        const stake_value=useSelector((state)=>state.data.stake_value)
+        const dispatchRedux=useDispatch()
 
-        const {state, dispatch}=useContext((StoreContext))
         const [settings,] = useState(getFromLocalStorage("settings"));
 
 
         useEffect(() => {
-            let value=state?.userStake || getFromLocalStorage("userStake") || Number(settings?.sportsBookLimits?.defaultBetAmount)
+            let value=stake_value || getFromLocalStorage("userStake") || Number(settings?.sportsBookLimits?.defaultBetAmount)
             if(isNaN(value)){
-                dispatch({type: "SET", key: "stakeValue", payload: 0});
+                dispatchRedux(setState('stake_value', 0))
+                // dispatch({type: "SET", key: "stakeValue", payload: 0});
             }else{
-                dispatch({type: "SET", key: "stakeValue", payload: value});
+                dispatchRedux(setState('stake_value', value))
+
+                // dispatch({type: "SET", key: "stakeValue", payload: value});
             }
         }, [settings])
 

@@ -16,6 +16,7 @@ import {
 import {useDispatch, useSelector} from "react-redux";
 import {setMatchBetslip} from "../redux/bettingSlice";
 import {MatchHeaderRow} from "./matches";
+import {getFromLocalStorage} from "./utils/local-storage";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -60,10 +61,17 @@ const Live = React.memo(
             if (spid) {
                 endpoint += "?spid=" + spid;
             }
+            let url = new URL(window.location.href)
+
+            let search = (url.searchParams.get('search') ||false)
+
             let betslip = findPostableSlip();
             let method_type = betslip ? "POST" : "GET";
-            dispatchRedux(matchesLive({endpoint,method:method_type,data:betslip}))
-            dispatchRedux(startFetchingMatches({endpoint,method:method_type,data:betslip, interval:6000, live:true}));
+            const categories = getFromLocalStorage('sport_categories')
+            let sport = categories?.all_sports?.filter((category) => Number(category.sport_id) === Number(spid||79))
+            const sport_type=sport != null ? sport?.[0]?.sport_name || 'Soccer' : "";
+            dispatchRedux(matchesLive({endpoint,method:method_type,data:betslip,search:search, active_sport:sport_type}))
+            dispatchRedux(startFetchingMatches({endpoint,method:method_type,data:betslip, interval:6000, live:true,search:search, active_sport:sport_type}));
 
         };
 

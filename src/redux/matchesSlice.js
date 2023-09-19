@@ -24,6 +24,20 @@ export const matchesPrematch =
                 throw new Error(response?.error || "Fetching Prematch failed");
             }
         });
+export const matchesLive =
+    createAsyncThunk("matches/live",
+        async ({endpoint, method, data, search=false, active_sport=null}) => {
+            const [status, response] = await makeRequest({
+                url: endpoint,
+                method: method,
+                data: data,
+            });
+            if (status === 200) {
+                return {search,  active_sport, response}
+            } else {
+                throw new Error(response?.error || "Fetching Live Matches failed");
+            }
+        });
 export const matchesCompetition =
     createAsyncThunk("matches/competition",
         async ({endpoint, method, data,search=false, active_sport=null, active_sub_type=null}) => {
@@ -165,20 +179,7 @@ export const marketGroups =
                 throw new Error(response?.error || "Fetching Market Groups failed");
             }
         });
-export const matchesLive =
-    createAsyncThunk("matches/live",
-        async ({endpoint, method, data}) => {
-            const [status, response] = await makeRequest({
-                url: endpoint,
-                method: method,
-                data: data,
-            });
-            if (status === 200) {
-                return response;
-            } else {
-                throw new Error(response?.error || "Fetching Live Matches failed");
-            }
-        });
+
 export const matchesJackpot =
     createAsyncThunk("matches/jackpot",
         async () => {
@@ -516,15 +517,16 @@ const matchesSlice = createSlice({
             .addCase(matchesLive.fulfilled, (state, action) => {
                 state.isLoggedIn = true;
                 state.loading = false;
-
-                const newMatches = action.payload?.data;
+                state.search=action.payload?.search
+                state.active_sport=action.payload.active_sport
+                const newMatches = action.payload?.response?.data;
 
                 state.live_matches = newMatches;
 
                 if (newMatches.slip_data) {
                     state.live_user_slip_validation = newMatches.slip_data
                 }
-                state.live_producer_down = action.payload.producer_status === 1
+                state.live_producer_down = action.payload.response?.producer_status === 1
                 // Reset initialLoading flag after initial fetch
                 state.error = null;
                 state.live_fetching = false

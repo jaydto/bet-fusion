@@ -265,7 +265,7 @@ export const MatchHeaderRow = React.memo(
             }else if(option==='sub_type'){
                 dispatchRedux(resetState("active_sub_type"))
             }
-            navigate('/')
+            live?navigate('/live'):navigate('/')
             dispatchRedux(setState('active_link', 79))
 
 
@@ -283,9 +283,9 @@ export const MatchHeaderRow = React.memo(
 
                                     <div className={'d-flex align-items-center gap-2'}>
                                         {live && <span className="live-header">LIVE </span>}
-                                        {active_sport==='Soccer'&&<span className={'sport-styling'}>{live?sportName:active_sport} {market && <></>}</span>}
+                                        {active_sport==='Soccer'&&<span className={'sport-styling'}>{active_sport} {market && <></>}</span>}
                                         {(search&&!live)&&<span className={'selected-filters__item d-flex gap-2 align-items-center'}> <FontAwesomeIcon icon={faXmark} className={'close-filter'} onClick={()=>closeFilter("search")}/> {search}</span>}
-                                        {(active_sport&&active_sport!=='Soccer'&&!live)&&<span className={'selected-filters__item d-flex gap-2 align-items-center'}> <FontAwesomeIcon icon={faXmark} className={'close-filter'} onClick={()=>closeFilter('sport')}/>{active_sport}</span>}
+                                        {(active_sport&&active_sport!=='Soccer')&&<span className={'selected-filters__item d-flex gap-2 align-items-center'}> <FontAwesomeIcon icon={faXmark} className={'close-filter'} onClick={()=>closeFilter('sport')}/>{active_sport}</span>}
                                         {(active_sub_type&&active_sub_type!=='1x2'&&!live)&&<span className={'selected-filters__item d-flex gap-2 align-items-center'}> <FontAwesomeIcon icon={faXmark} className={'close-filter'} onClick={()=>closeFilter('sub_type')}/> {active_sub_type}</span>}
                                     </div>
                                 </h3>

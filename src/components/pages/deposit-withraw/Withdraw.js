@@ -184,18 +184,13 @@ const PaymentInstructions = (props) => {
             <label className='header text-info'>Withdrawal Instructions</label>
             <div className="container d-flex flex-column">
                 <div className="row">
-                    <div className="col betnare-text-light"> 1. Enter the phone M-Pesa phone number to receive
-                        the funds.
-                    </div>
+                    <div className="col betnare-text-light"> 1. Enter the amount you wish to withdraw.</div>
                 </div>
                 <div className="row">
-                    <div className="col betnare-text-light"> 2. Enter the amount you wish to withdraw.</div>
+                    <div className="col betnare-text-light"> 2. Click on the withdraw funds button.</div>
                 </div>
                 <div className="row">
-                    <div className="col betnare-text-light"> 3. Click on the withdraw funds button.</div>
-                </div>
-                <div className="row">
-                    <div className="col betnare-text-light"> 4. Check your phone for an M-Pesa Confirmation.
+                    <div className="col betnare-text-light"> 3. Check your phone for an M-Pesa Confirmation.
                     </div>
                 </div>
             </div>

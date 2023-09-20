@@ -17,7 +17,6 @@
 }
 
 .contain {
-    height: 550px; /* Set the desired height for the container */
     overflow: auto; /* Enable scrolling when content exceeds container height */
     overflow: overlay;
     width: 100%;

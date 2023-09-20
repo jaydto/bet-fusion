@@ -17,6 +17,8 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {StoreContext } from "../../context/store";
 import {faWhatsapp} from "@fortawesome/free-brands-svg-icons";
+import {LazyLoadImage} from "react-lazy-load-image-component";
+import fpl from "../../assets/img/mobile/fpl.png";
 
 const SidebarProfile = React.memo(
     (props) => {
@@ -54,6 +56,14 @@ const SidebarProfile = React.memo(
                         <Link  className={"d-flex gap-4 align-items-center px-3"} to={"/my-bets"}>
                             <FontAwesomeIcon icon={faQuestionCircle} style={{fontSize:'24px'}}/>
                             <div className={'text-profile'} >My Bets</div>
+                        </Link>
+                    </MenuItem>
+                </Menu>
+                <Menu>
+                    <MenuItem className={"d-flex justify-content-between"}>
+                        <Link  className={"d-flex gap-4 align-items-center px-3"} to={"/fpl"}>
+                            <LazyLoadImage src={fpl} effect={"blur"}  style={{width:'24px'}} className={''} />
+                            <div className={'text-profile'} >FPL</div>
                         </Link>
                     </MenuItem>
                 </Menu>

@@ -3,6 +3,7 @@ import {getFromLocalStorage,} from "../../utils/local-storage";
 import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import whatsapp from "../../../assets/img/mobile/whatsapp.svg"
+import fpl from "../../../assets/img/mobile/fpl.png"
 import Footer from "../../footer/footer";
 import 'react-pro-sidebar/dist/css/styles.css';
 import {
@@ -66,6 +67,15 @@ const SidebarMobile = React.memo(
                         <div className={"d-flex gap-4 align-items-center"}>
                             <FontAwesomeIcon icon={faQuestionCircle} className={'svg-mobile'} />
                             <Link to={"/how-to-play"}>How to play</Link>
+                        </div>
+                    </MenuItem>
+                </Menu>
+                <Menu>
+                    <MenuItem className={"d-flex justify-content-between"}>
+                        <div className={"d-flex gap-4 align-items-center"}>
+                            <LazyLoadImage src={fpl} effect={"blur"}  style={{width:'15px'}} className={'svg-mobile'} />
+
+                            <Link to={"/fpl"}>FPL</Link>
                         </div>
                     </MenuItem>
                 </Menu>

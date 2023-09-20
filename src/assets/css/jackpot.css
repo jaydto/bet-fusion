@@ -304,7 +304,7 @@
     color: rgb(55, 0, 60) !important;
 }
 .article-container {
-    padding: 40px 100px 10px 100px;
+    padding: 36px 30px 10px 30px;
     background-color: var(--betnare-body-bg);
     margin-top: 20px;
     border: 1px solid var(--aqua-text);

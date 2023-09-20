@@ -131,7 +131,7 @@ const BetDetails = React.memo(
                                 <div className="status d-flex justify-content-between px-2 mb-3">
                                     <div className="">
                                         <p id="status" className={'kiron-bet-history-badge'} style={{
-                                            backgroundColor: finalOutCome()==='Won' ? '#00ff00' : finalOutCome()==='Not Won' ? '#ff9900' : 'var(--alert-slip-color)',
+                                            backgroundColor: finalOutCome()==='Won' ? 'rgb(40 132 40)' : finalOutCome()==='Not Won' ? '#ff9900' : 'var(--alert-slip-color)',
                                         }}
                                         >
                                             {finalOutCome()}
@@ -218,7 +218,7 @@ const BetDetails = React.memo(
                                                                 style={{
                                                                     backgroundColor:
                                                                         parseInt(bet.status) === 5
-                                                                            ? 'hsl(120, 70%, 50%)'
+                                                                            ? 'rgb(40 132 40)'
                                                                             : parseInt(bet.status) === 3
                                                                                 ? '#ff9900'
                                                                                 : 'var(--alert-slip-color)'

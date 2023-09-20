@@ -104,7 +104,7 @@ const OldBetDetails = React.memo(
                                 <div className="status d-flex justify-content-between px-2 mb-3">
                                     <div className="">
                                         <p id="status" className={'kiron-bet-history-badge'} style={{
-                                            backgroundColor: parseInt(bet.bet_status) === 5 ? '#00ff00' : parseInt(bet.bet_status) === 3 ? '#ff9900' : 'inherit',
+                                            backgroundColor: parseInt(bet.bet_status) === 5 ? 'rgb(40 132 40)' : parseInt(bet.bet_status) === 3 ? '#ff9900' : 'inherit',
                                         }}>
                                             {parseInt(bet.bet_status) === 1
                                                 ? 'placed'
@@ -205,7 +205,7 @@ const OldBetDetails = React.memo(
                                                                         style={{
                                                                             backgroundColor:
                                                                                 parseInt(betSlip.status) === 5
-                                                                                    ? 'hsl(120, 70%, 50%)'
+                                                                                    ? 'rgb(40 132 40)'
                                                                                     : parseInt(betSlip.status) === 3
                                                                                         ? '#ff9900'
                                                                                         : 'inherit'

@@ -11454,11 +11454,7 @@ button.close {
 }
 
 @media (max-width: 767px) {
-    .mobile-remove{
-        display: none!important;
-        padding:0;
 
-    }
     .sg {
         display: block !important;
     }

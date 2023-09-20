@@ -2193,6 +2193,11 @@ img.nare-league {
 }
 
 @media (max-width: 991px) {
+    .mobile-remove{
+        display: none!important;
+        padding:0;
+
+    }
     .user_logged.responsible-gambling{
         margin-top:6rem;
     }

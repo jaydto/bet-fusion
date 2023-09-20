@@ -2193,6 +2193,9 @@ img.nare-league {
 }
 
 @media (max-width: 991px) {
+    .footer-custom .row{
+        display:block!important;
+    }
     .mobile-remove{
         display: none!important;
         padding:0;

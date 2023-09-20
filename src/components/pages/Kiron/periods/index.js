@@ -29,10 +29,7 @@ export const getTime = (dateTime) => {
     const formattedHour = String(start.getHours()).padStart(2, '0');
     const formattedMinute = String(start.getMinutes()).padStart(2, '0');
 
-    const startTimeString = `${formattedHour}:${formattedMinute}`;
-
-
-    return startTimeString;
+    return `${formattedHour}:${formattedMinute}`;
 }
 
 

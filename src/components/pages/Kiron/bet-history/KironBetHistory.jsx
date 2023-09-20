@@ -17,7 +17,8 @@ import {
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faXbox} from "@fortawesome/free-brands-svg-icons";
 import SkeletonLoaderMore from "../../skeletonLoadersWeb/SkeletonLoaderMore";
-
+import OldBetDetails from './OldBetDetails'
+import ActiveBetDetails from './ActiveBetDetails'
 export const FormatDate = (props) => {
     const {date} = props;
 
@@ -49,8 +50,7 @@ export const FormatDate = (props) => {
     return "Placed bet on " + formattedDateTime;
 };
 
-const OldBetDetails = React.lazy(() => import('./OldBetDetails'))
-const ActiveBetDetails = React.lazy(() => import('./ActiveBetDetails'))
+
 
 const Styles = {
     contain: {

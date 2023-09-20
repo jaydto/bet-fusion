@@ -2,32 +2,41 @@ import React, {useCallback, useContext, useEffect, useState} from "react";
 
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
-    faExclamationCircle,
+    faExclamationCircle, faFireAlt,
     faShuffle,
     faTimes,
     faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 
 import {
-    clearJackpotSlip,
     getJackpotBetslip,
     removeFromJackpotSlip,
 } from "../utils/betslip";
-import {StoreContext } from "../../context/store";
+import {StoreContext} from "../../context/store";
 import {SubmitButton} from "../right/betslip-submit-form";
 import {Form, Formik} from "formik";
 import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
-import makeRequest from "../utils/fetch-request";
 import {publicIpv4 as publicIp} from "public-ip";
 import Notify from "../utils/Notify";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
+import {useDispatch, useSelector} from "react-redux";
+import {
+    bettingMatchesGames,
+    removeSelected,
+    resetStateBetslip,
+    setMatchBetslip
+} from "../../redux/bettingSlice";
+import {userBalance} from "../../redux/authSlice";
 
-const MobileMenu = React.memo(
+const JackpotMenu = React.memo(
     (props) => {
         const {jackpotData, matches} = props
-        const { state, dispatch } = useContext(StoreContext);
+        const {state, dispatch} = useContext(StoreContext);
         const [ipv4, setIpv4] = useState(null);
         const [selections, setSelections] = useState([])
+        const dispatchRedux = useDispatch()
+        const loading=useSelector((state)=>state.betting.loading)
+
         const randomize = async () => {
             matches?.data?.forEach((match, index) => {
                 let teams = [match?.home_team, 'draw', match?.away_team]
@@ -36,8 +45,7 @@ const MobileMenu = React.memo(
                     team = teams[Math.floor(Math.random() * teams.length)].replaceAll(" ", "")
                 }
                 selections[index] = team
-                let selection = match?.match_id.toString() + match?.sub_type_id.toString() +
-                    team.toString()
+                let selection = "jp_" + match?.match_id.toString() + match?.sub_type_id.toString() + team.toString();
                 document.querySelectorAll('button[custom="' + selection + '"]')?.forEach((el) => {
                     if (!el.classList.contains('picked')) {
                         el.click()
@@ -51,24 +59,34 @@ const MobileMenu = React.memo(
             str = str.replace(/[^A-Za-z0-9\-]/g, "");
             return str.replace(/-+/g, "-");
         };
-        // const ipAddress = useCallback(async () => {
-        //     try {
-        //         let ip = await publicIp({
-        //             fallbackUrls: ["https://ifconfig.co/ip"],
-        //         });
-        //
-        //         setIpv4(ip);
-        //     } catch (error) {
-        //         console.error("Error getting IPv4 address:", error);
-        //     }
-        //
-        //
-        // }, [ipv4]);
+
+        const userData = useSelector((state) => state.auth.user)
+        const jackpot_data = useSelector((state) => state.betting.jackpotbestlip)
+        const [user, setUser] = useState(getFromLocalStorage("user"))
+
+        useEffect(() => {
+            if (userData) {
+                setUser(userData || getFromLocalStorage("user"))
+            }
+        }, [userData])
+        const ipAddress = useCallback(async () => {
+            try {
+                let ip = await publicIp({
+                    fallbackUrls: ["https://ifconfig.co/ip"],
+                });
+
+                setIpv4(ip);
+            } catch (error) {
+                console.error("Error getting IPv4 address:", error);
+            }
 
 
-        // useEffect(() => {
-        //     ipAddress();
-        // }, [ipAddress])
+        }, [ipv4]);
+
+
+        useEffect(() => {
+            ipAddress();
+        }, [ipAddress])
 
 
         let winnings = jackpotData?.jackpot_amount;
@@ -77,30 +95,25 @@ const MobileMenu = React.memo(
 
         const handleRemoveAll = useCallback(() => {
             let betslips = getJackpotBetslip()
-            Object.entries(betslips).map(([match_id, match]) => {
+            Object.entries(betslips||{}).map(([match_id, match]) => {
                 // let slip=
                 removeFromJackpotSlip(match_id)
 
-                let match_selector = match.match_id + "_selected";
-                let ucn = clean_rep(
-                    match.match_id
-                    + "" + match.sub_type_id
-                    + (match.bet_pick)
-                );
+                let match_selector = "jp_"+match.match_id + "_selected";
 
-                dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
-            });
-            dispatch({
-                type: "SET",
-                key: "jackpotbetslip" ,
-                payload: {},
-            });
+                dispatchRedux(removeSelected(match_selector))
 
+            });
+            const betslip_data = {
+                betslip_type: "jackpotbetslip",
+                data: {}
+            }
+            dispatchRedux(setMatchBetslip(betslip_data))
             // setLocalStorage("winnings",null)
             setLocalStorage('betslip_share_code', null)
         }, []);
 
-        const gaEventTracker=useAnalyticsEventTracker('Place Jackpot Bet')
+        const gaEventTracker = useAnalyticsEventTracker('Place Jackpot Bet')
 
         const handlePlaceBet = useCallback(() => {
             let betslips = getJackpotBetslip()
@@ -121,105 +134,105 @@ const MobileMenu = React.memo(
                 bet_string: 'web',
                 app_name: 'desktop',
                 possible_win: winnings,
-                profile_id: state?.user?.profile_id||getFromLocalStorage("user")?.profile_id,
+                profile_id: user?.profile_id,
                 stake_amount: jackpotData?.bet_amount,
                 amount: jackpotData?.bet_amount,
                 bet_total_odds: "",
                 endCustomerIP: ipv4,
                 channelID: 'web',
                 slip: '',
-                message:jackpotMessage,
-                jackpot_id:jackpotData?.jackpot_event_id,
+                message: jackpotMessage,
+                jackpot_id: jackpotData?.jackpot_event_id,
                 account: 1,
-                msisdn: state?.user?.msisdn||getFromLocalStorage("user")?.msisdn,
+                msisdn: user?.msisdn,
             };
 
 
-            let endpoint="/jp/bet" ;
+            let endpoint = "/jp/bet";
             let use_jwt = false
             let method = "POST"
 
+            dispatchRedux(bettingMatchesGames({
+                endpoint: endpoint,
+                method: method,
+                data: payload,
+                jackpot: true,
+                use_jwt: use_jwt
+            }))
+                .then((response) => {
+                    // Check if the action was fulfilled successfully
+                    if (bettingMatchesGames.fulfilled.match(response)) {
 
-            makeRequest({url: endpoint, method: method, data: payload, use_jwt: use_jwt})
-                .then(([status, response]) => {
-
-
-                    if (status === 200 || status == 201 || status == 204)
-                    {
-                        // setMessage(response);
-                        const data={
-                            event:'place_jackpot_bet',
-                            data:payload
-                        }
-                        gaEventTracker("Jackpot Bet Placed",data)
                         let betslips = getJackpotBetslip()
                         Object.entries(betslips).map(([match_id, match]) => {
                             // let slip=
                             removeFromJackpotSlip(match_id)
 
-                            let match_selector = match.match_id + "_selected";
-                            let ucn = clean_rep(
-                                match.match_id
-                                + "" + match.sub_type_id
-                                + (match.bet_pick)
-                            );
+                            let match_selector = "jp_"+match.match_id + "_selected";
 
-                            dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
+
+                            dispatchRedux(resetStateBetslip("jackpotbetslip"))
+                            dispatchRedux(removeSelected(match_selector))
+
+                            // dispatchRedux(removeSlipSelection(match_items));
+
                         });
-                        dispatch({
-                            type: "SET",
-                            key: "jackpotbetslip" ,
-                            payload: {},
-                        });
-                            // clearJackpotSlip();
+
                         let message = {
                             status: 201,
-                            message: response?.message,
+                            message: response?.payload.message,
                         };
 
                         Notify(message)
 
-                        // setBetslipsData(null);
-                        dispatch({
-                            type: "SET",
-                            key:  "jackpotbetslip" ,
-                            payload: {},
-                        });
 
-                    } else {
-                        const data={
-                            event:'place_jackpot_bet',
-                            message:response?.message
+                        const betslip_data = {
+                            betslip_type: "jackpotbetslip",
+                            data: {}
                         }
-                        gaEventTracker("Bet Failed",data)
-                        let response_message = response?.message;
+                        let udata = {
+                            token: user.token
+                        }
+                        const userValues={
+                            udata:udata,
+                            user:user
+                        }
+
+                        dispatchRedux(userBalance(userValues))
+                        dispatchRedux(setMatchBetslip(betslip_data))
+                    } else if (bettingMatchesGames.rejected.match(response)) {
+                        // const data = {
+                        //     event: jackpot ? 'place_jackpot_bet' : live ? 'place_live_bet' : 'place_prematch_bet',
+                        //     message: response?.message
+                        // }
+                        // gaEventTracker("Bet Placement Failed " + response?.message, data)
+
+                        let response_message = response?.error?.message;
                         if (response_message === "" || response_message === undefined) {
-                            response_message = response?.error;
+                            response_message = response?.error?.message;
                             if (response_message === "" || response_message === undefined) {
-                                response_message =
-                                    "Something went wrong. Please try again later or contact support. 0701 087 777";
+                                response_message = "Something went wrong. Please try again later or contact support. 0701 087 777";
                             }
                         }
                         let qmessage = {
-                            status: status,
+                            status: 404,
                             message: response_message,
                         };
                         Notify(qmessage)
-
                     }
-                    // setSubmitting(false);
+                })
+                .catch((error) => {
+                    // Handle errors if needed
                 });
         });
 
+
         const [betSlipMobile, setBetSlipMobile] = useState(false);
-
-
-
-
 
         return (
             <div className={'jp-placebet-container'}>
-                <div className={`fixed-bottom text-white d-block  shadow-lg betslip-container-mobile jackpot-page-structure ${
+                <div
+                    className={`fixed-bottom text-white d-block  shadow-lg betslip-container-mobile jackpot-page-structure ${
                         betSlipMobile ? "d-flex" : "d-none"
                     }`}
                     style={{margin: "auto", marginBottom: "6.5rem"}}
@@ -257,17 +270,18 @@ const MobileMenu = React.memo(
                     <tbody>
                     <tr className={"info-slip-bets d-flex w-100 justify-content-between px-3"}>
 
-                        <td className={"bet-align-left-jackpot bold"} style={{fontSize:"15px"}}>
+                        <td className={"bet-align-left-jackpot bold"} style={{fontSize: "15px"}}>
                             Bet Amount
                         </td>
-                        <td className={"bet-align-left-jackpot bold"} style={{color:"var(--gold)",fontSize:"15px"}}>
+                        <td className={"bet-align-left-jackpot bold"} style={{color: "var(--gold)", fontSize: "15px"}}>
                             {jackpot_stake}/=
                         </td>
                     </tr>
                     <tr className={"d-flex w-100 justify-content-between px-4"}>
                         <td className={`d-flex align-items-center bet-align-left w-100`}>
                             <div className="d-flex align-items-center w-100 justify-content-between ">
-                                <div className={"d-flex align-items-center flex-column bold jackpot-autopick"} onClick={randomize} style={{fontSize:"15px"}}>
+                                <div className={"d-flex align-items-center flex-column bold jackpot-autopick"}
+                                     onClick={randomize} style={{fontSize: "15px"}}>
                                     <FontAwesomeIcon icon={faShuffle} style={{fontSize: "18px", color: "var(--light)"}}
                                                      title={"Auto Pick"}/> Auto Pick
                                 </div>
@@ -278,8 +292,23 @@ const MobileMenu = React.memo(
                                             <Formik>
                                                 <Form>
                                                     {/* Your form fields */}
-                                                    <SubmitButton title="PLACE BET" className="place-bet-btn jp-button bold "
-                                                                  button_size={true} />
+                                                    <SubmitButton
+                                                                  className="place-bet-btn jp-button bold "
+                                                                  button_size={true}
+                                                                  disabled={loading}
+                                                                  title={
+                                                                      loading ? (
+                                                                          <div
+                                                                              className={'d-flex align-items-center justify-content-center'}
+                                                                              style={{whiteSpace: 'nowrap'}}>
+                                                                              <span className="loader"></span>
+
+                                                                          </div>
+                                                                      ) : (
+                                                                          <div>PLACE BET <FontAwesomeIcon icon={faFireAlt}/></div>
+                                                                      )
+                                                                  }
+                                                    />
                                                 </Form>
                                             </Formik>
                                         </div>
@@ -302,15 +331,15 @@ const MobileMenu = React.memo(
                                     icon={faExclamationCircle}
                                     style={{color: "var(--betnare-login-button)", fontSize: "12px"}}/> Picked
                                     &nbsp;{getJackpotBetslip() != null
-                                        ? <strong>{Object.keys(getJackpotBetslip())?.length}</strong>
+                                        ? <strong>{Object.keys(jackpot_data||getJackpotBetslip())?.length}</strong>
                                         : <strong className={'slip-count-color'}>0</strong>
                                     } /{jackpot_games} Matches
                                 </span>
 
                                 </div>
-                                <div className={"bold"} style={{color: "var(--gold", fontSize:"15px"}}>
+                                <div className={"bold"} style={{color: "var(--gold", fontSize: "15px"}}>
                                     KES&nbsp;
-                                    {winnings&&Number(winnings).toLocaleString()
+                                    {winnings && Number(winnings).toLocaleString()
                                     }
                                 </div>
                             </div>
@@ -323,4 +352,4 @@ const MobileMenu = React.memo(
             </div>
         );
     });
-export default React.memo(MobileMenu);
+export default React.memo(JackpotMenu);

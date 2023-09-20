@@ -1,15 +1,13 @@
 import React, {useContext, useEffect, useState} from 'react'
 import {Col, Row} from "antd";
 import authImg from '../../../assets/img/Logo.webp'
-import betNiMoto from '../../../assets/img/BetniMoto.webp'
 
 import {Link, useNavigate} from "react-router-dom";
 
-import {clearTrackingData, getFromLocalStorage, setLocalStorage, setTrackingData} from "../../utils/local-storage";
+import { getFromLocalStorage, setTrackingData} from "../../utils/local-storage";
 import only18 from '../../../assets/img/auth/18only.png'
 import backgroundURL from '../../../assets/img/auth/img-17.webp'
 import {LazyLoadImage} from "react-lazy-load-image-component";
-import makeRequest from "../../utils/fetch-request";
 import {Form, Formik} from "formik";
 import {StoreContext} from "../../../context/store"
 import mpesa from "../../../assets/img/mpesa.png";
@@ -18,7 +16,9 @@ import './deposit.css'
 import Header2 from "../../header/Header2";
 import Notify from "../../utils/Notify";
 import {ToastContainer} from "react-toastify";
-
+import {useDispatch, useSelector} from "react-redux";
+import { userWithdrawal} from "../../../redux/dataSlice";
+import {userBalance} from "../../../redux/authSlice";
 const backgroundStyle = {
     backgroundImage: `url(${backgroundURL})`,
     backgroundRepeat: 'no-repeat',
@@ -28,36 +28,50 @@ const backgroundStyle = {
 
 const Withdraw = React.memo(
     props => {
-        // const [message, setMessage] = useState(null);
         const navigate = useNavigate();
+        const successMessage=useSelector((state)=>state.data.withdrawal_message)
+        const errorMessage=useSelector((state)=>state.data.error)
+        const dispatchRedux=useDispatch()
+        const userData=useSelector((state)=>state.auth.user)
 
-        const {state, dispatch} = useContext(StoreContext);
         const [user, setUser] = useState(getFromLocalStorage("user"));
+        useEffect(()=>{
+            setUser(userData||getFromLocalStorage("user"))
+        },[userData])
+
+        const [message, setMessage]=useState()
+
+        useEffect(()=>{
+            if(successMessage){
+                setMessage(successMessage)
+            }else if(errorMessage){
+                setMessage(errorMessage)
+            }
+
+        },[successMessage, errorMessage])
 
 
         const updateUserOnHistory = () => {
             if (!user) {
                 return false;
             }
-            let endpoint = "/v1/balance";
             let udata = {
                 token: user.token
             }
-            makeRequest({url: endpoint, method: "post", data: udata}).then(([_status, response]) => {
-                if (_status == 200) {
-                    let u = {...user, ...response.user};
-                    setLocalStorage('user', u);
-                    setUser(u)
-                    dispatch({type: "SET", key: "user", payload: u});
-                }
-            });
+            const userValues={
+                udata:udata,
+                user:user
+            }
+
+            dispatchRedux(userBalance(userValues))
 
         };
 
 
+
         useEffect(() => {
             updateUserOnHistory()
-        }, [state?.withdrawMessage])
+        }, [successMessage])
 
 
         const FormTitle = () => {
@@ -72,12 +86,12 @@ const Withdraw = React.memo(
 
 
         const Alert = (props) => {
-            let c = state?.withdrawSuccess ? 'success' : 'danger';
-            state?.withdrawMessage && setTimeout(() => {
-                dispatch({type: "SET", key: "depositMessage", payload: null})
+            let c = successMessage ? 'success' : 'danger';
+            message && setTimeout(() => {
+                setMessage(null)
             }, 5500)
-            return (<>{state?.withdrawMessage &&
-                <div role="alert" className={`fade alert alert-${c} show`}>{state?.withdrawMessage}</div>} </>);
+            return (<>{message &&
+                <div role="alert" className={`fade alert alert-${c} show`}>{message}</div>} </>);
 
         };
 
@@ -101,10 +115,7 @@ const Withdraw = React.memo(
 
                                     <h1 className="text-white text-center" style={{fontSize: "30px"}}>Withdraw Cash From
                                         Your Account</h1>
-                                    <p className="text-white px-3 d-flex align-items-center justify-content-center mt-3"
-                                       style={{fontSize: "16px", opacity: '0.5px'}}><LazyLoadImage src={betNiMoto}
-                                                                                                   style={{width: "150px"}}
-                                                                                                   alt={'betnare'}/></p>
+
                                 </Col>
                             </Row>
                             <div className="d-flex justify-content-end pb-4 mb-3">
@@ -117,7 +128,7 @@ const Withdraw = React.memo(
                                             borderRadius: '16px'
                                         }}/></div>
                                     <span className="mx-2 text-white"> | </span>
-                                    <a className="text-white" href="/terms-and-conditions">Term & Conditions</a>
+                                    <a className="text-white" href="/terms-and-conditions">Terms & Conditions</a>
                                     <span className="mx-2 text-white"> | </span>
                                     <a className="text-white" href="/privacy-policy">Privacy & Policy</a>
                                 </div>
@@ -173,18 +184,13 @@ const PaymentInstructions = (props) => {
             <label className='header text-info'>Withdrawal Instructions</label>
             <div className="container d-flex flex-column">
                 <div className="row">
-                    <div className="col betnare-text-light"> 1. Enter the phone M-Pesa phone number to receive
-                        the funds.
-                    </div>
+                    <div className="col betnare-text-light"> 1. Enter the amount you wish to withdraw.</div>
                 </div>
                 <div className="row">
-                    <div className="col betnare-text-light"> 2. Enter the amount you wish to withdraw.</div>
+                    <div className="col betnare-text-light"> 2. Click on the withdraw funds button.</div>
                 </div>
                 <div className="row">
-                    <div className="col betnare-text-light"> 3. Click on the withdraw funds button.</div>
-                </div>
-                <div className="row">
-                    <div className="col betnare-text-light"> 4. Check your phone for an M-Pesa Confirmation.
+                    <div className="col betnare-text-light"> 3. Check your phone for an M-Pesa Confirmation.
                     </div>
                 </div>
             </div>
@@ -195,6 +201,7 @@ const PaymentInstructions = (props) => {
 const WithdrawFormFields = (props) => {
     const {values, errors, onFieldChanged} = props;
     const {state, dispatch} = useContext(StoreContext)
+    const loading=useSelector((state)=>state.data.withdraw_loading)
 
 
     return (
@@ -239,8 +246,8 @@ const WithdrawFormFields = (props) => {
                     <button type={"submit"}
                             className='btn btn-lg w-100 deposit-button button-radius input-field btn-font cg login-button2 btn bold d-flex justify-content-center align-items-center'
                             style={{marginTop: "30px"}} disabled={values?.amount == ''}>
-                        {state?.withdrawLoading &&
-                            <div className="custom-loader"></div>} WITHDRAW &nbsp;{values?.amount}
+                        {loading ?
+                            <div className="loader"></div>:`WITHDRAW ${values?.amount}` }
                     </button>
                 </div>
             </div>
@@ -250,7 +257,13 @@ const WithdrawFormFields = (props) => {
 
 const MyWithdrawForm = (props) => {
     const {errors, values, setFieldValue} = props;
-    const settings = getFromLocalStorage('settings')
+    const appConfigs=useSelector((state)=>state.data.app_config)
+    const [settings,setSettings] = useState(getFromLocalStorage('settings'));
+
+    useEffect(()=>{
+        setSettings(appConfigs||getFromLocalStorage('settings'))
+    },[appConfigs ])
+
     const withdrawalLimits = settings?.withdrawalLimits
 
 
@@ -265,8 +278,8 @@ const MyWithdrawForm = (props) => {
             let minWithdrawalAmount = {  message: `Minimum allowed withdrawal amount is ${withdrawalLimits?.minimumAmount} KSH` };
             let maxWithdrawalAmount = {  message: `Maximum allowed withdrawal amount is ${withdrawalLimits?.maximumAmount} KSH` };
 
-            const minWithdrawal = withdrawalLimits.minimumAmount ;
-            const maxWithdrawal = withdrawalLimits.maximumAmount ;
+            const minWithdrawal = withdrawalLimits?.minimumAmount ;
+            const maxWithdrawal = withdrawalLimits?.maximumAmount ;
             if (Number(value) < Number(minWithdrawal)) {
                 Notify(minWithdrawalAmount);
                 newValue = value;
@@ -286,7 +299,7 @@ const MyWithdrawForm = (props) => {
         <Form className="shadow-sm rounded border-0">
             <div className="pt-0">
 
-                <div className="row">
+                <div className="row d-flex align-items-center justify-content-center">
                     <div className='col-md-7 text-center'>
                         <div className={`col-md-7 text-center`}>
                             <LazyLoadImage src={mpesa} alt=""/>
@@ -308,52 +321,42 @@ const MyWithdrawForm = (props) => {
     );
 }
 const WithdrawForm = (props) => {
-    const {state, dispatch} = useContext(StoreContext);
+    const dispatchRedux=useDispatch()
+    const app_config=useSelector((state)=>state.data.app_config)
+    const [settings, setSettings] = useState(getFromLocalStorage('settings'))
     const [currentWithdrawValue, setCurrentWithdrawValue] = useState(0); // New state for current deposit value
-    const user = getFromLocalStorage('user')
-    const settings = getFromLocalStorage('settings')
     const withdrawalLimits = settings?.withdrawalLimits
+    const userData=useSelector((state)=>state.auth.user)
+    const [user, setUser]=useState(getFromLocalStorage("user"))
+
+    useEffect(()=>{
+        if(userData){
+            setUser(userData||getFromLocalStorage("user"))
+        }
+    }, [userData])
+    useEffect(()=>{
+        if(app_config){
+            setSettings(app_config||getFromLocalStorage('settings'))
+        }
+    },[app_config])
+
 
     const initialValues = {
         amount: 100,
-        msisdn: state?.user?.msisdn || user?.msisdn
+        msisdn:  user?.msisdn
     }
-    const gaEventTracker = useAnalyticsEventTracker('Withdraw')
+    // const gaEventTracker = useAnalyticsEventTracker('Withdraw')
 
     const handleSubmit = values => {
-
-        dispatch({type: "SET", key: "withdrawLoading", payload: true});
-        let endpoint = '/withdraw';
         setTrackingData(values)
-        makeRequest({
-            url: endpoint,
-            method: 'POST',
-            data: {user: values},
-            use_jwt: true
-        }).then(([status, response]) => {
-            // setSuccess(status === 200 || status === 201);
-            // setMessage(response);
-            dispatch({type: "SET", key: "withdrawSuccess", payload: status === 200 || status === 201})
-            dispatch({type: "SET", key: "withdrawMessage", payload: response})
-            clearTrackingData()
-            if (status === 200 || status === 201)
-            {
-                const data = {
-                    msisdn: state?.user?.msisdn,
-                    amount: values?.amount
-                }
-                gaEventTracker('Withdraw', data)
-            }
-            else {
-                const data = {
-                    msisdn: state?.user?.msisdn,
-                    amount: values?.amount,
-                    message: response?.message
-                }
-                gaEventTracker('Withdraw Failed', data)
-            }
-            dispatch({type: "SET", key: "withdrawLoading", payload: false});
-        })
+        const data={user: values}
+        dispatchRedux(userWithdrawal(data))
+        // const data = {
+        //     msisdn: state?.user?.msisdn,
+        //     amount: values?.amount
+        // }
+        // gaEventTracker('Withdraw', data)
+
     }
 
     const validate = values => {

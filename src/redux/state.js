@@ -1,20 +1,58 @@
 const initialState = {
-    data: [], // Initial state for the data reducer
+    data: {
+        print_title:'highlights',
+        leader_board:null,
+        active_link:'79',
+        stake_value:0,
+        active_live_link:'79',
+        bottom_sheet:false,
+        loading:false,
+        withdraw_loading:false,
+        deposit_loading:false,
+        deposit_confirm_loading:false,
+        error:null,
+        app_config:null,
+        carousel_banners:null,
+        points_message:null,
+        withdrawal_message:null,
+        deposits_message:null,
+        deposits_confirm_message:null,
+        self_exclsuion_message:null,
+        self_exclsuion_time:null,
+        show_modal:null,
+        loaded:false,
+        printed_data:null,
+        print_jackpot_data:null,
+
+    }, // Initial state for the data reducer
+    virtuals: {
+        loading:false,
+        error:null,
+        casino_games:null,
+        show_modal:null,
+        casino_categories:null,
+        casino_game_url:null,
+        fetching:null
+
+    }, // Initial state for the virtuals reducer
     betting: {
+        bet_placement_message:null,
         loading: false,
         error: null,
-        matchesGames: null,
         jackpot: null,
         kiron: null,
+        picked:"",
         slip:null,
-        picked:'',
-    },
+        betslip:null,
+        jackpotbestlip:null,
+    },// Initial state for the betting Slice reducer
     auth: {
         isLoading: false,
         error: null,
         isLoggedIn: false,
         user: null,
         loading: false,
+        user_sign_up:null,
     }, // Initial state for the auth reducer
     nareLeague: {
             isLoading: false,
@@ -51,20 +89,57 @@ const initialState = {
             close_spinner:null,
             start_playouts:null,
             game_week:null,
-            ended:null
+            ended:null,
 
         }, // Initial state for the nareLeague reducer
     matchesData:{
+        search:null,
+        active_sub_type:'1x2',
+        active_sport:'Soccer',
+        initialLoading:true,
         isLoading: false,
+        searched_matches:null,
+        visited_tabs:[],
+        visited_sport_id:[],
         jackpot_loading: false,
         error: null,
         user: null,
-        loading: false,
+        visited_filters:[],
+        visited_more_markets:[],
+        user_slip_validation:null,
+        live_user_slip_validation:null,
+        producer_down:null,
+        live_producer_down:null,
+        fetching:null,
+        live_fetching:null,
+        loading: true,
+        sport_categories:null,
+        sport_live_count:null,
         favorites_data:[],
         jackpot_data:null,
         jackpot_history:[],
         jackpot_by_id:null,
-    }
+        market_groups:null,
+        more_matches:[],
+        matches:null,
+        limit: 10,
+        bet_cancel:null,
+        bet_cancel_status:null,
+        bet_can_cancel_status:null,
+        full_bet_details:null,
+        bet_details:null,
+        bet_details_meta:null,
+        back_navigation:false,
+        live_matches:null,
+        bet_cancel_end_time:null,
+        share_bet:null,
+        rebet_match:null,
+        loading_bet_history:null,
+        // prev_match_size:0,
+        match_size:10,
+        live_match_size:0
+    },// Initial state for the matches Slice reducer
+
 };
 
 export default initialState;

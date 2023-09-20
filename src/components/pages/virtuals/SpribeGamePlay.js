@@ -11,6 +11,7 @@ import {faFire} from "@fortawesome/free-solid-svg-icons";
 import useWindowDimensions from "../../header/Dimensions";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 import FullscreenButton from "../../shared/FullScreenButton";
+import {useSelector} from "react-redux";
 
 const GamePlay = React.memo(
     (props) => {
@@ -23,7 +24,6 @@ const GamePlay = React.memo(
         const [, setUserToken] = useState('')
         const [, setUserID] = useState('')
         const [demo, setDemo] = useState(false)
-        const [user,] = useState(getFromLocalStorage("user"));
         const {width} = useWindowDimensions();
 
         const [isLoggedIn] = useState(getFromLocalStorage('user'))
@@ -31,7 +31,14 @@ const GamePlay = React.memo(
         const [gameUrlLoaded, setGameUrlLoaded] = useState(false)
         const gaEventTracker = useAnalyticsEventTracker("Spribe Games")
         const [isCustomFullscreen, setCustomFullscreen] = useState(false);
+        const userData=useSelector((state)=>state.auth.user)
+        const [user, setUser]=useState(getFromLocalStorage("user"))
 
+        useEffect(()=>{
+            if(userData){
+                setUser(userData||getFromLocalStorage("user"))
+            }
+        }, [userData])
 
         const createToken = async () => {
 

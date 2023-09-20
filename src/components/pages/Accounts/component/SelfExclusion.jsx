@@ -2,19 +2,29 @@ import React, {useEffect, useState} from 'react';
 import {DateRangePicker} from 'react-date-range';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
-import makeRequest from "../../../utils/fetch-request";
 import {getFromLocalStorage} from "../../../utils/local-storage";
 import {useNavigate} from "react-router-dom";
 import * as Yup from 'yup';
 import ExclusionModal from "../../../modals/ExclusionModal";
 import {useFormik} from "formik";
+import {useDispatch, useSelector} from "react-redux";
+import {resetState, userSelfExclusion} from "../../../../redux/dataSlice";
 const SelfExclusion = () => {
-    const [user,] = useState(getFromLocalStorage("user"));
     const navigate=useNavigate();
     const [showModal, setShowModal] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [apiResponseMessage, setApiResponseMessage] = useState(null);
-    const [apiResponseTime, setApiResponseTime] = useState(null);
+    const userData=useSelector((state)=>state.auth.user)
+    const show_modal=useSelector((state)=>state.data.show_modal)
+    const exclusion_time=useSelector((state)=>state.data.self_exclsuion_time)
+    const exclusion_message=useSelector((state)=>state.data.self_exclsuion_message)
+    const dispatchRedux=useDispatch()
+    const [user, setUser]=useState(getFromLocalStorage("user"))
+
+    useEffect(()=>{
+        if(userData){
+            setUser(userData||getFromLocalStorage("user"))
+        }
+    }, [userData])
 
     const [dateRange, setDateRange] = useState({
         startDate: new Date(),
@@ -45,21 +55,21 @@ const SelfExclusion = () => {
         }
 
         if(user){
-            let endpoint = "/v1/self-exclude"
-            const [self_exclusion_results] = await Promise.all([
-                makeRequest({url: endpoint, method: "POST", data: data})
-            ]);
-            let [status, exclusion] = self_exclusion_results;
-            if (status === 200) {
-                setApiResponseMessage(exclusion?.success);
-                setApiResponseTime(exclusion?.time_duration);
-                setShowModal(true);
-                setLoading(false)
-            }
+            dispatchRedux(userSelfExclusion(data))
+
         }else{
             navigate('/login')
         }
     }
+    useEffect(() => {
+        const abort=new AbortController()
+        return()=>{
+            dispatchRedux(resetState("show_modal"))
+            dispatchRedux(resetState("self_exclsuion_message"))
+            dispatchRedux(resetState("self_exclsuion_time"))
+            abort.abort()
+        }
+    }, []);
     // Calculate today's date
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -150,8 +160,8 @@ const SelfExclusion = () => {
                     ) : null}
                 </div>
                 <div className={'update_self_exclusion'}>
-                <button type="submit" className="update_button">
-                    {loading && <div className="custom-loader"></div>}
+                <button type="submit" className="update_button" disabled={loading}>
+                    {loading && <div className="loader"></div>}
                     Self Exclude
                 </button>
                 </div>
@@ -162,7 +172,7 @@ const SelfExclusion = () => {
 
             {/* Render the ExclusionModal based on the showModal state */}
             {showModal && (
-                <ExclusionModal visible={true} setShowLoadingModal={setShowModal} message={apiResponseMessage} timeDuration={apiResponseTime}/>
+                <ExclusionModal visible={true} setShowLoadingModal={show_modal} message={exclusion_message} timeDuration={exclusion_time}/>
             )}
         </div>
     );

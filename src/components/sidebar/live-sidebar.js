@@ -1,37 +1,63 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import makeRequest from "../utils/fetch-request";
+
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import {Menu, MenuItem, ProSidebar, SidebarContent, SidebarHeader} from "react-pro-sidebar";
-import {Link, useParams} from "react-router-dom";
+import {Link} from "react-router-dom";
 import useWindowDimensions from "../header/Dimensions";
+import {useDispatch, useSelector} from "react-redux";
+import {LazyLoadImage} from "react-lazy-load-image-component";
+import {setState} from "../../redux/dataSlice";
 
 
 const LiveSideBar = React.memo(
     (props) => {
+        const {spid}=props
+
+
+        const {width} = useWindowDimensions();
+        const liveCount=useSelector((state)=>state.matchesData.sport_live_count)
+        const dispatchRedux=useDispatch()
+        const active_link=useSelector((state)=>state.data.active_live_link)
+        const getSportImageIcon = (
+            sport_name,
+            folder = "sports",
+            topLeagues = false,
+            flag = false
+        ) => {
+            if (flag) {
+                let splitString = sport_name.split(" ");
+                sport_name = splitString[0].substr(0, 2).toString().toLowerCase();
+            }
+
+            let default_img = "default_sport";
+            let sport_image;
+            try {
+                sport_image = topLeagues
+                    ? require(`../../assets/img/${folder}/${sport_name}.svg`)
+                    : require(`../../assets/svg/${folder}/${sport_name}.svg`);
+            } catch (error) {
+                sport_image = require(`../../assets/img/${default_img}.svg`);
+            }
+            return sport_image;
+        };
+
+
 
         const [liveSports, setLiveSports] = useState()
-        const {width} = useWindowDimensions();
+        useEffect(()=>{
+            setLiveSports(liveCount)
 
-        const fetchData = useCallback(() => {
-            let endpoint = "/v1/sports?live=1";
-            makeRequest({url: endpoint, method: "get", data: null})
-                .then(([c_status, c_result]) => {
-                    if (c_status === 200) {
-                        setLiveSports(c_result?.data)
-                    }
-                });
-        }, []);
+        },[liveCount])
 
-        useEffect(() => {
-            const abortController = new AbortController();
-            fetchData();
+        const setActiveLink=(link)=>{
+            dispatchRedux(setState('active_live_link',link ))
+        }
+        useEffect(()=>{
+            setActiveLink(spid||79)
 
-            return () => {
-                abortController.abort();
-            };
-        }, []);
+        },[spid])
 
         return (
             <div className={`${width<=991?"":"d-md-block  h-100"}`} >
@@ -43,12 +69,12 @@ const LiveSideBar = React.memo(
                     top: "100px",
                     // marginTop: "10px"
                 }}
-                     className={`${width<=991?"":"vh-100 text-white sticky-top  d-md-block up"}`}>
+                     className={`${width<=991?"":"vh-100  sticky-top  d-md-block up"}`}>
                     <ProSidebar className={`${width<=991?"w-100":"live-pro-sidebar"}`}
                                 style={{backgroundColor: '#16202c !important'}}
                                 image={false}>
                         <SidebarHeader>
-                            <div
+                            <div className={'mobile-remove padding-remove'}
                                 style={{
                                     padding: '5px',
                                     textTransform: 'uppercase',
@@ -61,8 +87,8 @@ const LiveSideBar = React.memo(
                                 }}>
                             </div>
                         </SidebarHeader>
-                        <SidebarHeader>
-                            <div
+                        <SidebarHeader >
+                            <div className={'mobile-remove padding-remove'}
                                 style={{
                                     padding: '5px',
                                     textTransform: 'uppercase',
@@ -73,7 +99,7 @@ const LiveSideBar = React.memo(
                                     textOverflow: 'ellipsis',
                                     whiteSpace: 'nowrap',
                                 }}>
-                                <div className="d-flex justify-content-sm-center">
+                                <div className="d-flex justify-content-sm-center ">
                                     LIVE SPORTS
                                 </div>
                             </div>
@@ -82,16 +108,21 @@ const LiveSideBar = React.memo(
                             <Menu iconShape="circle live-inner"  >
                                 {liveSports && Object.entries(liveSports).map(([index, livesport],live_index) => (
                                         <Menu iconShape="circle inner-live live-items" key={live_index} >
-                                            <MenuItem className={"live-items"}>
-                                                <Link className="col-12"
-                                                      to={`/live/${livesport.sport_id}`}>
+                                            <MenuItem className={`live-items `}>
+                                                <Link className={`col-12  ${ Number(active_link) === livesport.sport_id ? "active_link" : "link-inactive"}`}
+                                                      to={`/live/${livesport.sport_id}`} >
                                                     <Row>
                                                         <Col className="topl">
                                                             <Row className={'gap-2'} style={{color: "#69819a"}}>
-                                                                <div className={'text-white d-flex align-items-center'}>
-                                                                    <span>{livesport.sport_name}</span>&nbsp;
+                                                                <div className={` d-flex align-items-center align-self-center live_sidebar ${ Number(active_link) === livesport.sport_id ? "active_link" : "link-inactive"}`}>
+                                                                    <LazyLoadImage
+                                                                        style={{borderRadius: "50%", height: "15px"}}
+                                                                        src={getSportImageIcon(livesport?.sport_name)}
+                                                                    />
+                                                                    &nbsp;
+                                                                    <span>{livesport?.sport_name}</span>&nbsp;
                                                                     <span className={`badge  live-slide  live-side-badge d-flex align-items-center`}>
-                                                                        {livesport.count}
+                                                                        {livesport?.count}
                                                                 </span>
                                                                 </div>
 

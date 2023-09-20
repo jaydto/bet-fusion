@@ -21,6 +21,7 @@ body {
     background: var(--slip-separator-color);
 }
 
+
 .carousel-item{
     border-bottom: unset !important;
 }
@@ -92,6 +93,33 @@ body {
     opacity: 1 !important;
 }
 
+.link-inactive a .cg{
+    opacity:0.8!important;
+}
+.link-inactive a .cg div .hot-alert-badge{
+    opacity:1!important;
+}
+.link-inactive div .cg{
+    opacity:0.8!important;
+}
+
+.active_link a .cg{
+    opacity:1!important;
+    color:var(--light) !important;
+    font-weight:var(--font-weight3) !important;
+    filter:brightness(2.5);
+}
+.active_link div .cg{
+    opacity:1!important;
+    color:var(--light) !important;
+    font-weight:var(--font-weight3) !important;
+    filter:brightness(2.5);
+}
+.pointer-event-handler{
+    pointer-events: none;
+}
+
+
 .casino-scroll {
     overflow-x: auto;
 }
@@ -108,6 +136,15 @@ input.text-white {
     -webkit-box-shadow: 0px 4px 5px 0px rgba(40, 55, 78, 1);
     -moz-box-shadow: 0px 4px 5px 0px rgba(40, 55, 78, 1);
     box-shadow: 0px 4px 5px 0px rgba(40, 55, 78, 1);
+}
+.cg.login-button2{
+    color:var(--dark) !important
+}
+.login-button2:active{
+    background:var(--betnare-button-login) !important ;
+}
+.login-button2:disabled{
+    background:var(--betnare-button-login) !important ;
 }
 
 .shadow-testimonials {
@@ -133,9 +170,9 @@ input.text-white {
 }
 
 .back-navigation-icon {
-    color: var(--betnare-button-login) !important;
-    font-size: 27px;
-
+    color: var(--light)!important;
+    font-size: 20px;
+    opacity: 0.5;
 }
 
 .betslip-links {
@@ -337,6 +374,7 @@ input.text-white {
 
 .match-status {
     color: var(--betnare-button-login) !important;
+    white-space:nowrap;
 }
 
 .live-status {
@@ -417,30 +455,6 @@ input.text-white {
     line-height: 2;
 }
 
-.custom-loader {
-    --d: 25px;
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    color: var(--aqua-text);
-    box-shadow: calc(1 * var(--d)) calc(0 * var(--d)) 0 0,
-    calc(0.707 * var(--d)) calc(0.707 * var(--d)) 0 1px,
-    calc(0 * var(--d)) calc(1 * var(--d)) 0 2px,
-    calc(-0.707 * var(--d)) calc(0.707 * var(--d)) 0 3px,
-    calc(-1 * var(--d)) calc(0 * var(--d)) 0 4px,
-    calc(-0.707 * var(--d)) calc(-0.707 * var(--d)) 0 5px,
-    calc(0 * var(--d)) calc(-1 * var(--d)) 0 6px;
-    animation: s7 1s infinite steps(8);
-    /* margin-left: 2rem; */
-    position: absolute;
-}
-
-@keyframes s7 {
-    100% {
-        transform: rotate(1turn)
-    }
-}
-
 .sport_dropdowns {
     display: flex;
     width: 100%;
@@ -519,13 +533,13 @@ b, strong {
 
 .home-tabs-filters-active {
     color: var(--light) !important;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 700;
     top: 5rem;
 }
 
 .home-tabs-filters {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
     opacity: .8;
 
@@ -565,6 +579,7 @@ b, strong {
     position: sticky;
     z-index: 2000;
     background: var(--betnare-body-bg);
+    max-height:40.5px;
 }
 
 
@@ -694,7 +709,10 @@ select::after {
     color: #fff !important;
 }
 
-
+.league-left-spacing{
+   padding-left:35px!important;
+    line-height:1.7!important;
+}
 .width-page-centric {
     box-shadow: 5px 7px 30px 8px #2c3c44;
     width: 60%;
@@ -856,8 +874,8 @@ input:placeholder-shown {
     color: rgb(255, 255, 255);
     background-color: red;
     border-radius: 12px;
-    height: 17px;
-    width: 17px;
+    height: 15px;
+    width: 15px;
     display: flex !important;
     align-items: center !important;
     justify-content: center;
@@ -1262,7 +1280,7 @@ img.nare-league {
     border-radius: 5px;
     width: 200px;
     height: 40px;
-    border: 1px solid #333333;
+    border: 1px solid rgb(59 55 55 / 20%);
     position: relative;
     transition: 0.3s;
     background: var(--betnare-header-bg);
@@ -1310,6 +1328,16 @@ img.nare-league {
 }
 
 @media (min-width: 1260px) {
+    .cancel-filter-markets{
+        font-size: 18px;
+        text-shadow: 2px 2px 2px black;
+        width:100%;
+        position:absolute;
+        bottom:-5px;
+        right:0px;
+        margin-right:20px;
+    }
+
     .carousel-item img {
         min-height: 164px;
         border-radius: 4px;
@@ -1348,6 +1376,12 @@ img.nare-league {
         position: sticky;
         top: 25px
     }
+    .to-tabview:empty{
+        display:none;
+    }
+    .checking:empty{
+        display:none;
+    }
 
     .sticky-responsive-logged {
         position: sticky;
@@ -1376,13 +1410,13 @@ img.nare-league {
     }
 
     .share-button-styling {
-        
+
         white-space: nowrap;
         font-size: 14px;
         z-index: 2000;
         right: 30%;
         padding: 8px !important;
-        
+
     }
 
     .live-status {
@@ -1444,7 +1478,7 @@ img.nare-league {
 
     .pro-sidebar .pro-menu .pro-menu-item {
         font-size: var(--font-size-side) !important;
-        font-weight: 500;
+        font-weight: 400;
     }
 
     .live-side-badge {
@@ -1452,8 +1486,8 @@ img.nare-league {
         color: rgb(255, 255, 255);
         background-color: red;
         border-radius: 12px;
-        height: 17px;
-        width: 17px;
+        height: 15px;
+        width: 15px;
         display: flex !important;
         align-items: center !important;
         justify-content: center;
@@ -1508,9 +1542,9 @@ img.nare-league {
 
     .deposit-withdraw-button-desktop {
         margin: auto;
-        width: 98.5%;
+        width: 97.5%;
         padding: 0px;
-        margin-left: 16px;
+        margin-left: 9px;
         margin-top: 16px;
     }
 
@@ -1550,25 +1584,39 @@ img.nare-league {
 }
 
 @media (max-width: 1259px) {
+    .sidebar-league-icon-small{
+        width:16px!important;
+        height:16px!important;
+
+    }
+    .text-small-sidebar {
+        width: 95px;
+        font-size:13px!important;
+        display: block!important;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
     .carousel-item img {
         min-height: 100px!important;
         border-radius: 4px;
     }
     .share-button-styling {
-        
+
         white-space: nowrap;
         font-size: 14px;
         /*border-radius: 2.3rem !important;*/
-        
+
         /*top: 0.3rem;*/
         right: 49px;
-        width: 40% !important;
+        /*width: 40% !important;*/
         padding: 8px !important;
     }
 
     .back-navigation {
-        font-size: 18px;
-        color: var(--betnare-button-login) !important;
+        font-size: 16px;
+        color: var(--light) !important;
+        opacity:0.5;
         position: absolute;
         top: 9px;
         display: flex;
@@ -1677,6 +1725,17 @@ img.nare-league {
 }
 
 @media (max-width: 1259px) and (min-width: 992px) {
+    .cancel-filter-markets{
+        font-size:15px;
+        text-shadow: 2px 2px 2px black;
+        width:100%;
+        right:0px;
+    }
+
+    .markets-default{
+        font-size:12px!important;
+        line-height:1.7;
+    }
 
     .more-markets-header-text {
         width: 57vw !important;
@@ -1691,6 +1750,7 @@ img.nare-league {
         overflow-y: auto;
         max-height: 40vh;
     }
+
 
     .mybets-styling-mobile {
         overflow: hidden;
@@ -1809,6 +1869,27 @@ img.nare-league {
     width:100vw;
 }
 @media (min-width: 992px) {
+    .pro-sidebar .pro-menu a.active_link{
+        color:var(--light) !important;
+        opacity:1;
+        font-size:var(--font-size-large)!important;
+    }
+    .live_sidebar.active_link {
+        color:var(--light) !important;
+    }
+    .active_link img{
+        opacity:1;
+    }
+    .link-inactive img{
+        opacity:0.5;
+    }
+    .pro-sidebar .pro-menu a.link-inactive{
+        color:var(--light-inactive) !important;
+        font-size:var(--font-size-large)!important;
+    }
+    .cg {
+        opacity:0.7;
+    }
     .pro-sidebar.countries-container-desktop{
         width: 100%!important;
     }
@@ -1832,12 +1913,15 @@ img.nare-league {
         width: 140px;
         white-space: nowrap;
         text-overflow: ellipsis;
+        font-weight:600;
     }
     .team_category_game small {
         overflow-x: hidden;
         width: 120px;
         white-space: nowrap;
         text-overflow: ellipsis;
+        font-size: smaller;
+        font-weight: 400;
     }
     .matches .top-matches {
         padding-left:0px;
@@ -1869,7 +1953,7 @@ img.nare-league {
 
     .market-groups-container {
         max-width: 61.2vw;
-        z-index: 2001;
+        z-index: 1000;
         background: var(--betnare-header-bg);
     }
 
@@ -1946,7 +2030,8 @@ img.nare-league {
     }
 
     .casino-category-button {
-        min-width: 150px;
+        min-width: 125px;
+        font-size:14px;
 
     }
 
@@ -1983,10 +2068,13 @@ img.nare-league {
 
     .alert-message-line-height {
         line-height: 1.3;
-        border-radius: 3px;
-        padding: 2px 5px !important;
+        border-radius: 5px;
+        padding: 5px 12px !important;
         text-align: justify;
-        font-weight: 500;
+        font-weight: 400;
+        box-shadow: 2px 2px 4px 0px var(--bet-history)!important;
+        margin-bottom: 4px;
+        border:thin solid var(--bet-history);
     }
 
     .jackpot-text-inactive {
@@ -2075,7 +2163,7 @@ img.nare-league {
     border: 1px solid #4e6096;
     border-radius: 21px;
     padding: 0px 13px;
-    line-height: 2.4 !important;
+    line-height: 2.1 !important;
     font-size: 9px;
     white-space: nowrap;
 }
@@ -2100,8 +2188,100 @@ img.nare-league {
 .app-navbar{
     transition: position linear 0.7s;
 }
+.jp-tabs li button{
+    color:var(--light) !important
+}
 
 @media (max-width: 991px) {
+    .footer-custom .row{
+        display:block!important;
+    }
+    .mobile-remove{
+        display: none!important;
+        padding:0;
+
+    }
+    .user_logged.responsible-gambling{
+        margin-top:6rem;
+    }
+    .height-default-body{
+        height:62vh!important;
+    }
+    .live_sidebar.active_link {
+        color:var(--light) !important;
+    }
+    .mobile-remove.padding-remove{
+        padding:0px!important;
+    }
+    .live-mobile-top{
+        margin-top:1.1rem!important;
+    }
+    .pro-sidebar .pro-menu a.active_link{
+        color:var(--light) !important;
+        opacity:1;
+        font-weight:var(--font-weight3) !important
+    }
+    .active_link img{
+        opacity:1;
+    }
+    .link-inactive img{
+        opacity:0.5;
+    }
+    .pro-sidebar .pro-menu a.link-inactive{
+        color:var(--light-inactive) !important;
+        opacity:0.7;
+    }
+    .remove-betslip{
+        display:none!important;
+    }
+    .play-help{
+        flex-grow:100!important;
+    }
+    a .cg {
+        color: #918e8e!important;
+    }
+    div .cg {
+        color: #918e8e!important;
+    }
+    .markets-default.bottom-align {
+        text-align:start!important;
+    }
+    .cancel-filter-markets {
+        position: fixed;
+        bottom: 10px;
+        right:0px;
+        width:100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-basis: 100%;
+        width: 100%;
+        text-shadow: 2px 2px 2px black;
+        font-size: 16px;
+    }
+    .alert-warning.alert-message-line-height{
+        position: absolute!important;
+
+    }
+
+    .alert-message-line-height {
+        top: 9rem;
+        line-height: 1.3;
+        border-radius: 5px;
+        padding: 5px 12px !important;
+        text-align: justify;
+        font-weight: 400;
+        box-shadow: 2px 2px 4px 0px var(--bet-history)!important;
+        margin-bottom: 4px;
+        border: thin solid var(--bet-history);
+        width: 100%;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
+    .filters-modal.share-modal .modal-content{
+        bottom:40% !important;
+    }
     .close-icon-alert {
         height: 27px;
     }
@@ -2411,7 +2591,7 @@ img.nare-league {
     }
 
     .close-prompt {
-        margin-bottom: -2px;
+        margin-bottom: -6px!important;
         /* background: var(--betnare-button-login); */
         border-radius: 10px;
         margin-right: -17px;
@@ -2551,6 +2731,7 @@ img.nare-league {
         align-items: center;
         justify-content: center;
         padding: 0 21px;
+        width:100%;
     }
 
     .bet-align-right-slip {
@@ -2620,6 +2801,7 @@ img.nare-league {
 
     .mobile-full-height {
         height: 100vh;
+        overflow-x:hidden;
     }
 
     .container-size-match {
@@ -2852,13 +3034,17 @@ img.nare-league {
         margin: auto;
         background: var(--betnare-secondary);
     }
+    .svg-mobile{
+        min-width:16px!important;
+        max-width:16px!important;
+    }
 
     .line-on-slip-items:nth-child(2) {
         background: var(--transparent);
     }
 
     .share-button-styling {
-        
+
         white-space: nowrap;
         font-size: 14px;
         /*border-radius: 2.3rem !important;*/
@@ -2868,7 +3054,7 @@ img.nare-league {
         width: 142px !important;
         right: 0px;
         padding: 8px !important;
-        
+
     }
 
     .top-spacing-betslip {
@@ -2895,8 +3081,8 @@ img.nare-league {
         color: rgb(255, 255, 255);
         background-color: red;
         border-radius: 12px;
-        height: 17px;
-        width: 17px;
+        height: 15px;
+        width: 15px;
         display: flex !important;
         align-items: center !important;
         justify-content: center;
@@ -2944,7 +3130,7 @@ img.nare-league {
     }
 
     .pro-sidebar .pro-menu .pro-menu-item {
-        font-size: var(--font-size-side-sm) !important;
+        font-size: var(--font-size-large) !important;
     }
 
     body {
@@ -3123,7 +3309,7 @@ img.nare-league {
         width: 142px !important;
         right: 0px;
         padding: 8px !important;
-        
+
     }
 
     .size-info {
@@ -3331,7 +3517,7 @@ img.nare-league {
 
     .slip-top {
         top: 9rem;
-        height: 70vh;
+        height: 75vh;
         overflow: auto;
         position: absolute;
         width: 100vw;
@@ -3345,7 +3531,7 @@ img.nare-league {
         align-items: center;
         border-radius: 5px;
         flex-direction: column;
-        height: 65px;
+        height: 57px;
     }
 
     .more-options-font {
@@ -3368,7 +3554,7 @@ img.nare-league {
     }
 
     .share-button-styling {
-        
+
         white-space: nowrap;
         font-size: 14px;
         /*border-radius: 2.3rem !important;*/
@@ -3378,7 +3564,7 @@ img.nare-league {
         width: 142px !important;
         right: 0px;
         padding: 8px !important;
-        
+
     }
 
     .mybets-details {
@@ -3514,7 +3700,7 @@ img.nare-league {
 
 @media (max-width: 380px) {
     .home-tabs-filters-active {
-        font-size: 12px!important;
+        font-size: 13px!important;
     }
     .home-tabs-filters {
         font-size: 11px;
@@ -3613,7 +3799,7 @@ img.nare-league {
     }
 
     .ipad-show {
-        margin-right: 6px;
+        margin-right: 2px;
     }
 
     .search-icon-size {
@@ -3703,6 +3889,9 @@ img.nare-league {
 }
 
 @media (min-width: 200px) and (max-width: 420px) {
+    .bloc-icon p {
+        margin: 0px!important;
+    }
     .app-navbar .e img {
         max-width: 100px !important;
         background: var(--betnare-header-bg);
@@ -3735,7 +3924,10 @@ img.nare-league {
     .user_logged {
         margin-top: 7.7rem !important;
     }
+    .user_logged.casino{
+        margin-top: 5.7rem !important;
 
+    }
     .highlight-logged-in-menu {
         top: 0px;
     }
@@ -3789,6 +3981,52 @@ img.nare-league {
         max-width: 87px !important;
         margin-bottom: 4px !important;
         height: 23px;
+    }
+}
+.loader {
+    width: 25px;
+    height: 25px;
+    border: 5px solid var(--lite-top-color);
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    position: absolute;
+    animation: rotation 1s linear infinite;
+}
+.loader.position-top-buttons{
+    top:7px;
+
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+@keyframes animloader {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+
+@keyframes animloader {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
     }
 }
 

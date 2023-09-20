@@ -11,11 +11,10 @@ import {StoreContext } from "../../../context/store"
 import SideBar from "../../sidebar/awesome/Sidebar";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
+import {useSelector} from "react-redux";
 
 const Virtuals = React.memo(
     (props) => {
-
-        const [user] = useState(getFromLocalStorage("user"));
 
         const [categories, setCategories] = useState([])
 
@@ -28,6 +27,14 @@ const Virtuals = React.memo(
         const [location, setLocation] = useState(null)
 
         const locationH = useLocation();
+        const userData=useSelector((state)=>state.auth.user)
+        const [user, setUser]=useState(getFromLocalStorage("user"))
+
+        useEffect(()=>{
+            if(userData){
+                setUser(userData||getFromLocalStorage("user"))
+            }
+        }, [userData])
 
         useEffect(() => {
             setLocation(locationH.pathname)

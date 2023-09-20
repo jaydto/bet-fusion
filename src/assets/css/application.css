@@ -8,6 +8,29 @@
     width: 36px !important;
 
 }
+.selected-filters__item {
+    margin-right: 5px;
+    margin-bottom: 0px;
+    font-size: var(--font-small);
+    border: none;
+    background: var(--light-gray);
+    color: var(--light);
+    border-radius: 25px;
+    padding: 3px 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    white-space: nowrap;
+    opacity:0.8;
+    position: relative;
+}
+.close-filter{
+    font-size:9px;
+}
+.sport-styling{
+    opacity:0.7;
+    font-size:var(--fon-size-large-variation1);
+}
 
 #reason_for_self_exclusion {
     min-height: 8rem;
@@ -17,11 +40,50 @@
 
 .error-message {
     color: red;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 #reason_for_self_exclusion::placeholder {
     color: var(--light);
+}
+#place_bet_button{
+    min-height:3.7rem;
+
+}
+#place_bet_button_nare {
+    min-height: 3.7rem;
+}
+
+#share-btn{
+    min-height:3.5rem;
+}
+.css-13cymwt-control{
+    background: var(--bet-history) !important;
+    color: var(--light) !important;
+    border: thin solid var(--bet-history) !important;
+}
+.css-13cymwt-control::placeholder{
+    color:var(--light) !important
+}
+.css-13cymwt-control input{
+    background: inherit!important;
+    min-width:inherit!important;
+}
+.css-1dimb5e-singleValue{
+    color:var(--light) !important
+}
+.css-qbdosj-Input input{
+    background: inherit!important;
+    min-width:inherit!important;
+    border:none!important;
+    color:var(--light) !important;
+}
+.betnare-button-bg{
+    background: var(--betnare-button-login) !important;
+    font-weight:700!important;
+}
+.css-qbdosj-Input input::placeholder{
+    color:var(--light) !important;
 }
 
 .hot-alert-badge {
@@ -185,6 +247,7 @@
     padding: 5px;
     border-radius: 10px;
     border: thin solid var(--betnare-input);
+    opacity:0.9;
 }
 
 .pick-user-match {
@@ -193,34 +256,31 @@
 }
 
 .slip-message-alert {
-    height: 5rem;
-    /* width: 100vw; */
+    height: 4rem;
     display: inline-table;
-    /* word-wrap: break-word; */
     white-space: normal !important;
     line-height: 15px !important;
-    color: green;
-    border: thin solid var(--betnare-input);
-    border-radius: 6px;
-    align-items: center;
+    position: fixed !important;
+    top: var(--slip-message-alert);
+    background: var(--alert-slip-color);
+    color: var(--green);
     display: flex;
-}
-
-.slip-message-alert {
-    height: 5rem;
-    /* width: 100vw; */
-    display: inline-table;
-    /* word-wrap: break-word; */
-    white-space: normal !important;
-    line-height: 15px !important;
-    color: green;
-    border: thin solid var(--betnare-input);
-    border-radius: 6px;
     align-items: center;
-    display: flex;
+    justify-content: center;
+    padding: 0 21px;
+    border-radius: 6px;
     margin-bottom: 5px;
+    z-index:100;
 }
 
+.slip-message-alert.valid{
+    background: var(--alert-slip-color);
+    color: var(--green);
+}
+.slip-message-alert.invalid{
+    background: var(--validation-fail-color) !important;
+    color: var(--green);
+}
 .slip-message-alert:empty {
     display: none;
 }
@@ -366,7 +426,7 @@ h4.inline-block {
 }
 
 .theodds {
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 400;
 }
 
@@ -828,11 +888,11 @@ li.bet-option {
     border: 0.5px solid var(--betnare-odds-body);
 }
 
-.market-group-pill:focus {
+
+.market-group-pill.active-group {
     background: var(--picked) !important;
     color: var(--black) !important;
 }
-
 .promo-inactive {
     opacity: 0.4 !important;
 }

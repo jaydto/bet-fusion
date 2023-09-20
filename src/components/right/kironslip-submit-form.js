@@ -1,7 +1,6 @@
 import React, {useCallback, useContext, useEffect, useRef, useState,} from "react";
 import {StoreContext} from "../../context/store";
 import {clearKironSlip, formatNumber, getKironSlip, removeFromKironSlip,} from "../utils/betslip";
-import {publicIpv4 as publicIp} from "public-ip";
 import makeRequest from "../utils/fetch-request";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -14,6 +13,8 @@ import {getTime} from "../pages/Kiron/periods";
 import {useNavigate} from "react-router-dom";
 import useWindowDimensions from "../header/Dimensions";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
+import {userBalance} from "../../redux/authSlice";
+import {useDispatch, useSelector} from "react-redux";
 
 const Float = (equation, precision = 4) => {
     return Math.round(equation * 10 ** precision) / 10 ** precision;
@@ -61,28 +62,27 @@ const KironslipSubmitForm = React.memo(
         const [awardMultiGift, setAwardMultiGift] = useState(false);
 
         const [betslipKey, setBetslipKey] = useState("kironbetslip");
+        const dispatchRedux=useDispatch()
+        const userData=useSelector((state)=>state.auth.user)
+
         const [user, setUser] = useState(getFromLocalStorage("user"));
+        useEffect(()=>{
+            setUser(userData||getFromLocalStorage("user"))
+        },[userData])
 
         const updateUserOnHistory = () => {
             if (!user) {
                 return false;
             }
-            let endpoint = "/v1/balance";
             let udata = {
                 token: user.token
             }
-            makeRequest({url: endpoint, method: "post", data: udata}).then(([_status, response]) => {
-                if (_status == 200) {
-                    let u = {...user, ...response.user};
-                    setLocalStorage('user', u);
-                    setUser(u)
-                    dispatch({type: "SET", key: "user", payload: u});
-                    setTimeout(() => {
-                        setMessage(null)
-                    }, 6000)
-                    dispatch({type: "SET", key: "placebet", payload: true});
-                }
-            });
+            const userValues={
+                udata:udata,
+                user:user
+            }
+
+            dispatchRedux(userBalance(userValues))
 
         };
 
@@ -197,7 +197,6 @@ const KironslipSubmitForm = React.memo(
                 let endpoint = "/v1/nare-league/bet"
                 let method = "POST";
                 let use_jwt = false;
-
 
                 makeRequest({
                     url: endpoint,
@@ -467,10 +466,16 @@ const KironslipSubmitForm = React.memo(
                         disabled ? "disabled" : ""
                     }'bg-warning bold text-dark cursor-pointer'`}
                     disabled={isSubmitting || disabled}
-                    title="Place Bet"
-                >
-                    {isSubmitting ? "Please Wait " : title}{" "}
-                    <FontAwesomeIcon icon={faFireAlt}/>
+                    title={(
+                        <span>PLACE BET <FontAwesomeIcon icon={faFireAlt}/></span>
+
+                    )}>
+                    {isSubmitting ? <div
+                            className={'d-flex align-items-center justify-content-center'}
+                            style={{whiteSpace: 'nowrap'}}>
+                            <span className="loader"></span>
+                        </div>
+                        : title}{" "}
                 </button>
             );
         };

@@ -5,7 +5,6 @@ import ProfileSvg from "../../assets/img/mobile/Profile.svg"
 import CloseIcon from "../../assets/img/mobile/close_icon.png"
 import Mybets from "../../assets/img/mobile/MyBets.svg"
 
-import makeRequest from "../utils/fetch-request";
 import {Badge} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faReceipt, faTimes} from "@fortawesome/free-solid-svg-icons";
@@ -15,39 +14,28 @@ import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {getBetslip, getJackpotBetslip, getKironSlip} from "../utils/betslip";
 import {StoreContext } from "../../context/store";
 import {LazyLoadImage} from "react-lazy-load-image-component";
+import {useSelector} from "react-redux";
 
 const MobileMenu = React.memo((props) => {
 
     const betItems = getBetslip();
-    const [liveSports, setLiveSports] = useState();
     const {jackpot, kiron, jackpotData} = props;
     const [betSlipMobile, setBetSlipMobile] = useState(false);
     const gaEventTracker = useAnalyticsEventTracker("Navigation");
     const pathname = window.location.pathname;
     const { state, dispatch } = useContext(StoreContext);
     const navigate = useNavigate();
+    const liveCount=useSelector((state)=>state.matchesData.sport_live_count)
 
-    const fetchData = useCallback(() => {
-        let endpoint = "/v1/sports?live=1";
-        makeRequest({url: endpoint, method: "get", data: null}).then(([c_status, c_result]) => {
-            if (c_status === 200) {
-                setLiveSports(c_result?.data);
+    const [liveSports, setLiveSports] = useState()
+    useEffect(()=>{
+        setLiveSports(liveCount)
 
-            }
-        });
-    }, []);
+    },[liveCount])
 
     let totalCount = 0;
+
     const [progress, setProgress] = useState()
-
-    useEffect(() => {
-        const abortController = new AbortController();
-        fetchData();
-
-        return () => {
-            abortController.abort();
-        };
-    }, [fetchData]);
 
     let sumOfOdds = 1;
 
@@ -136,7 +124,7 @@ const MobileMenu = React.memo((props) => {
             </div>
 
             <table className={`${slip_condition ? "prematch-menu mobile-menu" : "mobile-menu"}`}
-                   style={!pathSlipSummary.includes(pathname) ? sumOfOdds === 1 ? {height: "70px"} : countInfo ? {height: "92px"} : {height: "70px"} : {height: "53px"}}>
+                   style={!pathSlipSummary.includes(pathname) ? sumOfOdds === 1 ? {height: "70px"} : countInfo ? {height: "92px"} : {height: "70px"} : {height: "55px"}}>
                 <tbody>
                 {slip_condition ?
                     <tr className={"mobile-menu-container"} onClick={()=>navigate("/betslip-slip")}>
@@ -162,10 +150,9 @@ const MobileMenu = React.memo((props) => {
                                     </div>
 
                                 </td>
-
-                        </tr>
+                             </tr>
                         {!pathSlipSummary.includes(pathname) &&
-                            <tr className={`${slip_condition ? "info_bet_alert" : "info-slip-bets"} d-flex w-100 justify-content-between px-3`} onClick={()=>navigate("/betslip-slip")}>
+                             <tr className={`${slip_condition ? "info_bet_alert" : "info-slip-bets"} d-flex w-100 justify-content-between px-3`} onClick={()=>navigate("/betslip-slip")}>
                                 <td className={"bet-align-left-slip"}>
                                     <div className={"d-flex justify-content-start align-items-center gap-2"}>
                                         <Badge
@@ -191,7 +178,7 @@ const MobileMenu = React.memo((props) => {
 
                                 </td>
                             </tr>}
-                        <tr className={"mt-3"} onClick={() => navigate("/betslip-slip")}>
+                             <tr className={"mt-3"} onClick={() => navigate("/betslip-slip")}>
                             <td className={"bet-align-left w-100"}>
                                 <div className="progress mx-3 my-3 prematch-slip">
                                     <div className="progress-bar prematch" role="progressbar"

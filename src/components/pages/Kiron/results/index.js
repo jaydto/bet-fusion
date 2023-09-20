@@ -4,6 +4,7 @@ import {Spinner} from "react-bootstrap";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import { useDispatch,useSelector } from 'react-redux'; // Import useDispatch hook
 import {nareLeagueResults, resetState} from '../../../../redux/nareLeague';
+import SkeletonLoader from "../skeletonLoader/SkeletonLoader";
 
 const KironResults =
     () => {
@@ -108,9 +109,7 @@ const KironResults =
                                 </div>
                             ))}
                         </>
-                    )) : <div className={`text-center mt-2 text-white d-block`}>
-                        <Spinner animation={'grow'} size={'lg'}/>
-                    </div>
+                    )) : <SkeletonLoader/>
                 }
 
             </>

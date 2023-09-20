@@ -2,9 +2,8 @@ import React, {useCallback, useContext, useEffect, useRef, useState} from 'react
 import {Link, useNavigate} from "react-router-dom"
 import Row from 'react-bootstrap/Row';
 import {StoreContext} from "../../context/store";
-import {getFromLocalStorage, setLocalStorage} from '../utils/local-storage';
+import {getFromLocalStorage} from '../utils/local-storage';
 import 'react-toastify/dist/ReactToastify.css';
-import makeRequest from '../utils/fetch-request';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import logo from '../../assets/img/Logo.webp';
 import {Navbar, Offcanvas} from "react-bootstrap";
@@ -17,6 +16,10 @@ import ListGroup from "react-bootstrap/ListGroup";
 import LoginSection from "./LoginSection";
 import {UserInfo} from "./UserInfo";
 import {shouldShowDownload, shouldShowMobileNav} from './NavigationsHelper';
+import {useDispatch, useSelector} from "react-redux";
+import {configSettings} from "../../redux/dataSlice";
+import { userBalance} from "../../redux/authSlice";
+import {matchCategories, matchesSearch} from "../../redux/matchesSlice";
 
 const ProfileMenu = React.lazy(() => import('./profile-menu'));
 const HeaderNav = React.lazy(() => import('./header-nav'));
@@ -26,21 +29,38 @@ const Header = React.memo(
     (props) => {
         const {slip, scrollPosition, jackpot, profile} = props
         const gaEventTracker = useAnalyticsEventTracker('Navigation');
-        const [user, setUser] = useState(getFromLocalStorage("user"));
         const {state, dispatch} = useContext(StoreContext);
-        // const [searching, setSearching] = useState(false)
         const containerRef = useRef();
         const searchInputRef = useRef(null)
-        const [matches, setMatches] = useState([])
         const navigate = useNavigate()
         // Import the navigationConfig object
-        const {current} = containerRef;
-        const [, setCompetitions] = useState({});
         const [isOpen, setIsOpen] = useState(false);
         const pathname = window.location.pathname;
         const notShowMobileNav = shouldShowMobileNav(pathname);
         const showDownload = shouldShowDownload(pathname);
-        const [settings,] = useState(getFromLocalStorage('settings'));
+
+        const dispatchRedux = useDispatch()
+        const appConfigs=useSelector((state)=>state.data.app_config)
+
+        const [settings,setSettings] = useState(getFromLocalStorage('settings'));
+        const userData=useSelector((state)=>state.auth.user)
+        const matchesData=useSelector((state)=>state.matchesData.searched_matches)
+        const [user, setUser]=useState(getFromLocalStorage("user"))
+        const [matches, setMatches] = useState([])
+
+        useEffect(()=>{
+            setMatches(matchesData)
+        },[matchesData])
+
+        useEffect(()=>{
+            if(userData){
+                setUser(userData||getFromLocalStorage("user"))
+            }
+        }, [userData,getFromLocalStorage("user") ])
+
+        useEffect(()=>{
+            setSettings(appConfigs||getFromLocalStorage('settings'))
+        },[appConfigs ])
 
         useEffect(() => {
             if (pathname !== "/login") {
@@ -56,40 +76,29 @@ const Header = React.memo(
             setMatches([])
         }
 
-        useEffect(() => {
-            fetchMatches()
-        }, [state?.searching])
+        // useEffect(() => {
+        //     fetchMatches()
+        // }, [state?.searching])
+
+
         const fetchMatches = async (search) => {
 
             if (search && search.length >= 3) {
                 gaEventTracker('Searching')
                 let method = "POST"
                 let endpoint = "/v1/matches?page=" + (1) + `&limit=${10}&search=${search}`;
-                await makeRequest({url: endpoint, method: method, data: []}).then(([status, result]) => {
-                    if (status === 200) {
-                        setMatches(result?.data || result)
-                    }
-                });
+                endpoint+="&tab="
+
+                dispatchRedux(matchesSearch({endpoint:endpoint, method:method}))
             }
 
         };
 
         const fetchData = useCallback(async () => {
             let cached_categories = getFromLocalStorage('sport_categories');
-            let endpoint = "/v1/categories";
 
             if (!cached_categories) {
-                const [competition_result] = await Promise.all([
-                    makeRequest({url: endpoint, method: "get", data: null}),
-                ]);
-                let [c_status, c_result] = competition_result
-
-                if (c_status === 200) {
-                    setCompetitions(c_result);
-                    setLocalStorage('sport_categories', c_result);
-                }
-            } else {
-                setCompetitions(cached_categories);
+               dispatchRedux(matchCategories())
             }
 
         }, []);
@@ -98,93 +107,80 @@ const Header = React.memo(
 
             let cached_settings = getFromLocalStorage('settings');
 
-            let endpoint = "/v1/bet/settings";
-
             if (!cached_settings) {
-
-                const [result] = await Promise.all([
-                    makeRequest({url: endpoint, method: "POST", data: null}),
-                ]);
-
-                let [c_status, c_result] = result
-
-
-                if (c_status === 200) {
-                    dispatch({type: "SET", key: "settings", payload: c_result?.message})
-                    setLocalStorage('settings', c_result?.message, 1800000);
-                }
-
-            } else {
-
+                dispatchRedux(configSettings())
             }
         })
 
-        useEffect(() => {
-            const cleanUpFuction = async () => {
-                const abort = new AbortController();
-                await fetchAppConfigurations();
-                await fetchData();
+        const cleanUpFuction = async () => {
+            await fetchAppConfigurations();
+            await fetchData();
 
-                // Custom function to clear settings from localStorage
-                const clearLocalStorageSettings = () => {
-                    localStorage.removeItem('settings');
-                    // Manually call fetchAppConfigurations to update the settings
+            // Custom function to clear settings from localStorage
+            // const clearLocalStorageSettings = () => {
+            //     localStorage.removeItem('settings');
+            //     // Manually call fetchAppConfigurations to update the settings
+            //     fetchAppConfigurations();
+            // };
+
+            // Listen for the "storage" event to detect changes in "settings" localStorage
+            const handleStorageChange = (event) => {
+                if (event.key === 'settings') {
                     fetchAppConfigurations();
-                };
+                }
+            };
 
-                // Listen for the "storage" event to detect changes in "settings" localStorage
-                const handleStorageChange = (event) => {
-                    if (event.key === 'settings') {
-                        fetchAppConfigurations();
-                    }
-                };
+            // Listen for "beforeunload" event to handle clearing localStorage in the same tab
+            // const handleBeforeUnload = () => {
+            //     clearLocalStorageSettings();
+            // };
 
-                // Listen for "beforeunload" event to handle clearing localStorage in the same tab
-                const handleBeforeUnload = () => {
-                    clearLocalStorageSettings();
-                };
+            window?.addEventListener('storage', handleStorageChange);
+            // window?.addEventListener('beforeunload', handleBeforeUnload);
 
-                window?.addEventListener('storage', handleStorageChange);
-                window?.addEventListener('beforeunload', handleBeforeUnload);
+            return () => {
+                // Clean up the event listeners when the component unmounts
+                window?.removeEventListener('storage', handleStorageChange);
+                // window?.removeEventListener('beforeunload', handleBeforeUnload);
 
-                return () => {
-                    // Clean up the event listeners when the component unmounts
-                    window?.removeEventListener('storage', handleStorageChange);
-                    window?.removeEventListener('beforeunload', handleBeforeUnload);
-                    abort.abort();
-                };
-            }
-            cleanUpFuction()
+            };
+        }
+
+        useEffect(() => {
+                if(settings==undefined){
+                    cleanUpFuction()
+                }
+
         }, [settings]);
 
-
-        const updateUserOnHistory = useCallback(() => {
+        const updateUserOnHistory = () => {
             if (!user) {
                 return false;
             }
-            let endpoint = "/v1/balance";
             let udata = {
                 token: user.token
             }
-            makeRequest({url: endpoint, method: "post", data: udata}).then(([_status, response]) => {
-                if (_status == 200) {
-                    let u = {...user, ...response.user};
-                    setLocalStorage('user', u);
-                    setUser(u)
-                    dispatch({type: "SET", key: "user", payload: u});
-                }
-            });
+            const userValues={
+                udata:udata,
+                user:user
+            }
 
-        }, [current]);
+            dispatchRedux(userBalance(userValues))
+
+        };
+
+        useEffect(()=>{
+            const abort=new AbortController()
+            updateUserOnHistory()
+            return ()=>{
+                abort.abort()
+            }
+        },[])
 
         const updateUserOnLogin = useCallback(() => {
             dispatch({type: "SET", key: "user", payload: user});
         }, [user?.msisdn, user?.balance]);
 
-
-        useEffect(() => {
-            updateUserOnHistory()
-        }, [updateUserOnHistory])
 
 
         useEffect(() => {
@@ -253,7 +249,7 @@ const Header = React.memo(
                                         />
                                     </div>
 
-                                    <UserInfo profile={profile}/>
+                                    <UserInfo profile={profile} user={user}/>
                                 </Navbar.Brand>
 
                                 {/*todo check information provided for a user*/}
@@ -285,7 +281,7 @@ const Header = React.memo(
                                                 <div style={{overflowY: 'auto', borderRadius: '2px'}}
                                                      className={`col-10 autocomplete-box  rounded position-fixed  search-results-box border-dark col-md-5 shadow-lg text-start`}
                                                      onClick={() => gaEventTracker('View Search Results')}>
-                                                    {matches.map((match, index) => (
+                                                    {matches?.map((match, index) => (
                                                         <Link to={`/?search=${match.home_team}&sub_type_id=1`}
                                                               key={index}
                                                               onClick={() => dismissSearch()}>

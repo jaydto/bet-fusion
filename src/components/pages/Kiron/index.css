@@ -52,17 +52,18 @@
     color:var(--dark);
     font-size:13px;
 }
+
 .kiron-tabs-active {
-    /* background: #28374e; */
+     background: var(--dark);
     border-right: 3px solid #a7164600;
     border-top: 3px solid #a7164600;
-    padding: 5px;
+    padding: 6px 5px;
     width: 33.33333333%;
     float: left;
     text-align: center;
     /* border-bottom: 1px solid #FFC428; */
 }
-.kiron-tabs-active .main-header{
+.kiron-tabs-active .main-header.kiron-tabs-link{
     color: var(--orange)!important;
 }
 /*spinner */
@@ -228,11 +229,9 @@
 .kiron-tabs-padding{
     padding:3px!important;
     white-space: nowrap;
-    border-right: thin solid!important;
+    /*border-right: thin solid!important;*/
 }
-.kiron-tabs-padding:nth-child(3){
-    border-right:none!important;
-}
+
 
 .kiron-match-playout{
     display: flex;
@@ -518,7 +517,22 @@
 .kiron-tabs-padding{
     overflow:hidden!important;
 }
+
+@media (min-width:768px) and (max-width:991px){
+    .skeleton-loader{
+        margin-top:1rem!important;
+    }
+    .kiron-tabs-active{
+        padding:15px;
+    }
+    .matches .top-matches .kiron-btn{
+        width:100% !important
+    }
+}
 @media (max-width:991px){
+    .kiron-tabs-padding:nth-child(3){
+        border-right:none!important;
+    }
     .kiron-tabs-active .main-header {
         font-size: 13px;
     }

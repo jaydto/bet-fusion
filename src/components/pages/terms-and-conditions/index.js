@@ -1,10 +1,15 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect} from "react";
 
 import {Accordion,} from 'react-accessible-accordion';
 import 'react-accessible-accordion/dist/fancy-example.css';
 import useWindowDimensions from "../../header/Dimensions";
 import {StoreContext} from "../../../context/store"
 import GiftWallet from "./GiftWallet";
+import {ToastContainer} from "react-toastify";
+import '../../test.css'
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
+import {useNavigate} from "react-router-dom";
 
 const Header = React.lazy(() => import('../../header/header'));
 const Footer = React.lazy(() => import('../../footer/footer'));
@@ -36,18 +41,42 @@ const TermsAndConditions = React.memo(
     (props) => {
         const {width} = useWindowDimensions();
         const {state} = useContext(StoreContext);
+        useEffect(() => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }, []);
+        const navigate=useNavigate()
         return (
-            <>
-                <Header/>
-                <div className={(width <= 575 ? state?.user ? "user_logged" : "amt" : "amt")}>
-                    <div className="d-flex flex-row justify-content-between">
-                        <SideBar loadCompetitions/>
-                        <div className="gz home mobile-width-full">
-                            <div className="homepage">
+            <div className={'flex-item '}>
+                <div className="item4">
+                    <Header />
+                    <ToastContainer/>
+                </div>
+                <div className="flex-container height-default-body">
+                    <div className="item1" ><SideBar
+                        loadCompetitions/></div>
+                    <div className={`item2 `} >
+                        <div className="gz home match-overflow">
+                            <div className="homepage mobile-full-height">
                                 <div className='col-md-12 primary-bg p-4 text-center'>
-                                    <h4 className="inline-block">
+                                    <div className={'d-flex align-items-center'}>
+                                            <span className={'spacing-backbutton remove-backbutton-on-desktop'}
+                                                  onClick={() => navigate('/')}>
+                                             <FontAwesomeIcon icon={faAngleLeft} style={{
+                                                 fontSize: "24px",
+                                                 color: 'var(--light)',
+                                                 fontWeight: '700',
+                                                 opacity: '0.7'
+                                             }}/>
+                                            </span>
+                                        <h4 className="inline-block">
                                         TERMS AND CONDITIONS
                                     </h4>
+                                    </div>
+
+
                                 </div>
                                 <div className="col-md-12 mt-2 text-white p-2">
                                     These General Terms and Conditions are effective from 01.12.2021
@@ -80,13 +109,19 @@ const TermsAndConditions = React.memo(
                                 </div>
                             </div>
                         </div>
-                        <Right/>
+                    </div>
+                    <div className={"item3 mobile-remove"}>
+                        <Right test={true}/>
+
                     </div>
                 </div>
-                <div className={"footer-mobile-none"}>
-                    <Footer/>
+                <div className="item6">
+                    <div className={"footer-mobile-none"}>
+                        <Footer/>
+                    </div>
                 </div>
-            </>
+
+            </div>
         )
     })
 

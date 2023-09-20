@@ -73,7 +73,7 @@ const Promo = () => {
                         <div className="homepage desktop-promotions-info">
                             <div className="col-md-12 d-flex flex-column">
                                 <div className="col-md-12 d-flex align-items-center my-3">
-                                    <span className={'px-3 col-2'} onClick={() => navigate(-1)}>
+                                    <span className={'px-5 col-2'} onClick={() => navigate(-1)}>
                                              <FontAwesomeIcon icon={faAngleLeft} style={{
                                                  fontSize: "24px",
                                                  color: 'var(--light)',

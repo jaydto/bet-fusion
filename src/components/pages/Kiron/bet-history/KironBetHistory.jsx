@@ -1,11 +1,11 @@
-import React, {useCallback, useContext, useEffect, useState} from "react";
-import {StoreContext} from '../../../../context/store';
+import React, {useCallback, useEffect, useState} from "react";
 import {getFromLocalStorage, setLocalStorage} from "../../../utils/local-storage";
-import {Spinner} from "react-bootstrap";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import './kiron.css';
-import {Link, useNavigate, useParams} from 'react-router-dom';
+import "../../Accounts/component/bethistory.css"
+
+import { useNavigate, useParams} from 'react-router-dom';
 
 import {useDispatch, useSelector} from 'react-redux'; // Import useDispatch hook
 import {
@@ -14,9 +14,43 @@ import {
     nareLeagueOldBetDetails,
     nareLeagueOldBets, resetState
 } from '../../../../redux/nareLeague';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faXbox} from "@fortawesome/free-brands-svg-icons";
+import SkeletonLoaderMore from "../../skeletonLoadersWeb/SkeletonLoaderMore";
+import OldBetDetails from './OldBetDetails'
+import ActiveBetDetails from './ActiveBetDetails'
+export const FormatDate = (props) => {
+    const {date} = props;
 
-const OldBetDetails = React.lazy(() => import('./OldBetDetails'))
-const ActiveBetDetails = React.lazy(() => import('./ActiveBetDetails'))
+    // Extract the date and time components
+    const [dateString, timeString] = date.split(' ');
+    const [year, month, day] = dateString.split('-');
+    let hour, minute;
+
+    // Check if the timeString contains a colon (":")
+    if (timeString.includes(':')) {
+        [hour, minute] = timeString.split(':');
+    } else {
+        // Handle the case where timeString does not contain a colon
+        [hour, minute] = timeString.split('-');
+    }
+
+    // Create a new Date object
+    const dateTime = new Date(year, month - 1, day, hour, minute);
+
+    // Format the date and time
+    const formattedDateTime = dateTime.toLocaleString('en-US', {
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: true
+    });
+
+    return "Placed bet on " + formattedDateTime;
+};
+
+
 
 const Styles = {
     contain: {
@@ -108,18 +142,22 @@ const KironBetHistory = React.memo(
                     <>  {
                         oldBetHistory && oldBetHistory?.map((bets, index) => (
                             <div onClick={() => handleOldBetClick(bets?.bet_id)}  key={index}>
-                                <div key={bets?.bet_id} className="bet_item">
-                                    <>
-                                        <div className="left mt-0 d-flex justify-content-center flex-column align-items-start">
-                                            <p><span className="bold">Bet Id</span> : {bets?.bet_id}</p>
-                                            <p><span className="bold">Date</span> : {bets?.created}</p>
+                                <div key={bets?.bet_id} className="my-bets-bet-history">
+                                        <div className={"d-flex justify-content-between w-100 px-3"}>
+                                            <div className={"bet-history-items id"}>
+                                                #{bets?.bet_id}
+                                            </div>
+                                            <div className={"bet-history-items games badge "}>
+                                                <FontAwesomeIcon icon={faXbox}/>&nbsp;{bets?.total_matches}
+                                            </div>
+                                            <div className={"bet-history-items amount"}>
+                                                KES {bets?.bet_amount}
+                                            </div>
                                         </div>
-                                        <div className=" mt-0 kiron-right">
-                                            <p><span className="bold">Bet Amount</span> : {bets?.bet_amount}
-                                                <span style={{position: "relative"}}>
-
-                                                    </span>
-                                            </p>
+                                    <div className={"d-flex justify-content-between w-100 px-3"}>
+                                        <div className={"bet-history-items date"}>
+                                            {bets?.created}
+                                        </div>
                                             <p className="ban  ban-value-data mt-1"
                                                style={{
                                                    backgroundColor: parseInt(bets?.status) === 5 ? 'hsl(120, 70%, 50%)' : parseInt(bets?.status) === 3 ? '#ff9900' : 'inherit',
@@ -148,7 +186,7 @@ const KironBetHistory = React.memo(
                                                                         : 'Unknown Status'}
                                             </p>
                                         </div>
-                                    </>
+
                                 </div>
 
                             </div>
@@ -180,17 +218,22 @@ const KironBetHistory = React.memo(
                 <>  {
                     activeBetHistory && activeBetHistory?.map((bets, index) => (
                         <div onClick={() => handleOldBetClick(bets?.bet_id)}  key={index}>
-                            <div key={bets?.bet_id} className="bet_item">
-                                <>
-                                    <div className="left mt-0 d-flex justify-content-center flex-column align-items-start">
-                                        <p><span className="bold">Bet Id</span> : {bets?.bet_id}</p>
-                                        <p><span className="bold">Date</span> : {bets?.bet_date}</p>
-                                    </div>
-                                    <div className=" kiron-right mt-0">
-                                        <p><span className="bold">Bet Amount </span>: {bets?.bet_amount}
-                                            <span
-                                                style={{position: "relative"}}>
-                                                    </span></p>
+                            <div key={bets?.bet_id} className="my-bets-bet-history">
+
+                                    <div className="d-flex justify-content-between w-100 px-3">
+                                        <div className={"bet-history-items id"}>
+                                            #{bets?.bet_id}
+                                        </div>
+                                        <div className={"bet-history-items games badge "}>
+                                            <FontAwesomeIcon icon={faXbox}/>&nbsp;{bets?.total_matches}
+                                        </div>
+                                        <div className={"bet-history-items amount"}>
+                                            KES {bets?.bet_amount}
+                                        </div>                                    </div>
+                                    <div className=" d-flex justify-content-between w-100 px-3">
+                                        <div className={"bet-history-items date"}>
+                                            {bets?.bet_date}
+                                        </div>
                                         <p className="ban ban-value-data mt-1"
                                            style={{
                                                backgroundColor: parseInt(bets?.bet_status) === 5 ? 'hsl(120, 70%, 50%)' : parseInt(bets?.bet_status) === 3 ? '#ff9900' : 'inherit',
@@ -216,7 +259,7 @@ const KironBetHistory = React.memo(
                                                                     : 'Unknown Status'}
                                         </p>
                                     </div>
-                                </>
+
                             </div>
                         </div>
                     ))
@@ -231,7 +274,7 @@ const KironBetHistory = React.memo(
                 return (
                     <div className="contain">
                         {betID ? (
-                            <ActiveBetDetails betID={betID}/>
+                            <ActiveBetDetails betID={betID} />
                         ) : (
                             <ActiveBet/>
                         )}
@@ -252,20 +295,20 @@ const KironBetHistory = React.memo(
                         variant={'tabs'}
                         defaultActiveKey={activeTab || getFromLocalStorage("tab_history_kiron")}
                         id=""
-                        className="background-primary kiron-bet-history-tabs"
+                        className="background-primary kiron-bet-history-tabs px-3"
                         justify
                         onSelect={handleTabSelect}>
-                        <Tab eventKey="active" title="ACTIVE BETS" className={'background-primary'}>
+                        <Tab eventKey="active" title="ACTIVE BETS" className={'background-primary text-light'}>
                             {loading ?
                                 <div className={`text-center mt-2 text-white d-block`}>
-                                    <Spinner animation={'grow'} size={'lg'}/>
+                                    <SkeletonLoaderMore/>
                                 </div> :
-                                <ActiveBets/>}
+                                <ActiveBets />}
                         </Tab>
-                        <Tab eventKey="older" title="OLDER BETS" className={'background-primary'}>
+                        <Tab eventKey="older" title="OLDER BETS" className={'background-primary text-light'}>
                             {loading ?
                                 <div className={`text-center mt-2 text-white d-block`}>
-                                    <Spinner animation={'grow'} size={'lg'}/>
+                                    <SkeletonLoaderMore/>
                                 </div>
                                 : <BetArchive/>
                             }

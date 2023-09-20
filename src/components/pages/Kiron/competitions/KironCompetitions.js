@@ -10,6 +10,7 @@ import {nareLeagueCompetitions, setState} from '../../../../redux/nareLeague';
 const KironCompetitions = React.memo(
     () => {
         const dispatchRedux = useDispatch()
+        const active_competition = useSelector((state) => state.nareLeague.competition_id)
         const pathLocation = window.location.pathname
         const [pathname, setPathname] = useState(() => {
             const searchParams = new URLSearchParams(window.location.search);
@@ -78,7 +79,7 @@ const KironCompetitions = React.memo(
                                     <div
                                         className={`country-flag-icon ${(pathname.includes(`competition_id=${kiron_options?.competition_id}`)) ? ' active-league ' : " "} justify-content-center`}>
                                         <Link
-                                            to={`${pathLocation.includes('bet-history') ? '/nare-league' : pathLocation}?competition_id=${kiron_options?.competition_id}`}
+                                            to={`${pathLocation.includes('bet-history') ? '/nare-league' : pathLocation}?competition_id=${kiron_options?.competition_id||active_competition}`}
                                             onClick={() => setActiveCompetition(kiron_options?.competition_id)}>
                                 <span className="icon">
                                    <LazyLoadImage

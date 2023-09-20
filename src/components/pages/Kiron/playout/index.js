@@ -162,9 +162,9 @@ const KironPlayouts = React.memo(
                                                          className={'text-success kiron_choice'}>{results?.bet_pick}</span>&nbsp;
                                                  </span>
 
-                                                 <span className={'text-secondary'}>Market :&nbsp;
+                                                 <span className={'text-dark kiron_choice'}>Market :&nbsp;
                                                      <span
-                                                         className={'text-dark kiron_choice'}>{results?.market}</span></span>
+                                                         className={' text-secondary'}>{results?.market}</span></span>
 
 
                                              </span>

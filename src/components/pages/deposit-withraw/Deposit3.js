@@ -1,13 +1,11 @@
 import React, {useContext, useEffect, useState} from 'react'
 import {Col, Row} from "antd";
 import authImg from '../../../assets/img/Logo.webp'
-import betNiMoto from '../../../assets/img/BetniMoto.webp'
-import {Link, useNavigate} from "react-router-dom";
-import {clearTrackingData, getFromLocalStorage, setLocalStorage, setTrackingData} from "../../utils/local-storage";
+import {Link} from "react-router-dom";
+import { getFromLocalStorage, setLocalStorage, setTrackingData} from "../../utils/local-storage";
 import only18 from '../../../assets/img/auth/18only.png'
 import backgroundURL from '../../../assets/img/auth/img-17.webp'
 import {LazyLoadImage} from "react-lazy-load-image-component";
-import makeRequest from "../../utils/fetch-request";
 import {Form, Formik} from "formik";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
@@ -16,6 +14,10 @@ import mpesa from "../../../assets/img/mpesa.png";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 import './deposit.css'
 import Header2 from "../../header/Header2";
+import { userDeposits, userDepositsConfirm} from "../../../redux/dataSlice";
+import {userBalance} from "../../../redux/authSlice";
+
+import {useDispatch, useSelector} from "react-redux";
 
 const backgroundStyle = {
     backgroundImage: `url(${backgroundURL})`,
@@ -26,11 +28,41 @@ const backgroundStyle = {
 const Deposit3 = React.memo(
     props => {
         // const [message, setMessage] = useState(null);
-        const navigate = useNavigate();
         const [activeTab, setActiveTab] = useState('online'); // Set the initially active tab here
-        const {state, dispatch} = useContext(StoreContext);
+        const dispatchRedux=useDispatch()
+        const userData=useSelector((state)=>state.auth.user)
         const [user, setUser] = useState(getFromLocalStorage("user"));
-        const settings = getFromLocalStorage("settings")
+        const appConfigs=useSelector((state)=>state.data.app_config)
+        const [settings,setSettings] = useState(getFromLocalStorage('settings'));
+        const successMessage=useSelector((state)=>state.data.deposits_message)
+        const errorMessage=useSelector((state)=>state.data.error)
+        const successMessageConfirmation=useSelector((state)=>state.data.deposits_confirm_message)
+        const [message, setMessage]=useState()
+        const [messageConfirmation, setMessageConfirmation]=useState()
+
+        useEffect(()=>{
+            if(successMessageConfirmation){
+                setMessageConfirmation(successMessageConfirmation)
+            }else if(errorMessage){
+                setMessageConfirmation(errorMessage)
+            }
+        },[successMessageConfirmation,errorMessage ])
+
+        useEffect(()=>{
+            if(successMessage){
+                setMessage(successMessage)
+            }else if(errorMessage){
+                setMessage(errorMessage)
+            }
+
+        },[successMessage, errorMessage])
+        useEffect(()=>{
+            setSettings(appConfigs||getFromLocalStorage('settings'))
+        },[appConfigs ])
+
+        useEffect(()=>{
+            setUser(userData||getFromLocalStorage("user"))
+        },[userData])
         const handleTabSelect = (eventKey) => {
             setActiveTab(eventKey);
         }
@@ -39,6 +71,8 @@ const Deposit3 = React.memo(
             const utm_source = new URL(window.location).searchParams.get('utm_source')
             const utm_campaign = new URL(window.location).searchParams.get('utm_campaign')
             const btag = new URL(window.location).searchParams.get('btag')
+
+
             if (utm_source) {
                 setLocalStorage("utm_source", utm_source)
             }
@@ -65,25 +99,23 @@ const Deposit3 = React.memo(
             if (!user) {
                 return false;
             }
-            let endpoint = "/v1/balance";
             let udata = {
                 token: user.token
             }
-            makeRequest({url: endpoint, method: "post", data: udata}).then(([_status, response]) => {
-                if (_status == 200) {
-                    let u = {...user, ...response.user};
-                    setLocalStorage('user', u);
-                    setUser(u)
-                    dispatch({type: "SET", key: "user", payload: u});
-                }
-            });
+            const userValues={
+                udata:udata,
+                user:user
+            }
+
+            dispatchRedux(userBalance(userValues))
 
         };
 
-
         useEffect(() => {
-            updateUserOnHistory()
-        }, [state?.depositMessage])
+            if(successMessage){
+                updateUserOnHistory()
+            }
+        }, [successMessage])
 
         const FormTitle = () => {
             return (
@@ -96,24 +128,24 @@ const Deposit3 = React.memo(
         }
 
 
-        const Alert = (props) => {
-            let c = state?.depositSuccess ? 'success' : 'danger';
-            state?.depositMessage && setTimeout(() => {
-                dispatch({type: "SET", key: "depositMessage", payload: null})
+        const Alert = () => {
+            let c = successMessage ? 'success' : 'danger';
+           message && setTimeout(() => {
+                setMessage(null)
             }, 5500)
-            return (<>{state?.depositMessage &&
-                <div role="alert" className={`fade alert alert-${c} show`}>{state?.depositMessage}</div>} </>);
+            return (<>{message &&
+                <div role="alert" className={`fade alert alert-${c} show`}>{message}</div>} </>);
 
         };
 
 
         const ConfirmationAlert = (props) => {
-            let c = state?.confirmdepositSuccess ? 'success' : 'danger';
-            state?.confirmdepositMessage && setTimeout(() => {
-                dispatch({type: "SET", key: "confirmdepositMessage", payload: null})
+            let c =successMessageConfirmation ? 'success' : 'danger';
+            messageConfirmation && setTimeout(() => {
+                setMessageConfirmation(null)
             }, 5500)
-            return (<>{state?.confirmdepositMessage &&
-                <div role="alert" className={`fade alert alert-${c} show`}>{state?.confirmdepositMessage}</div>} </>);
+            return (<>{messageConfirmation &&
+                <div role="alert" className={`fade alert alert-${c} show`}>{messageConfirmation}</div>} </>);
 
         };
 
@@ -138,10 +170,7 @@ const Deposit3 = React.memo(
 
                                     <h1 className="text-white text-center" style={{fontSize: "30px"}}>Deposit Cash Into
                                         Your Account</h1>
-                                    <p className="text-white px-3 d-flex align-items-center justify-content-center mt-3"
-                                       style={{fontSize: "16px", opacity: '0.5px'}}><LazyLoadImage src={betNiMoto}
-                                                                                                   style={{width: "150px"}}
-                                                                                                   alt={'betnare'}/></p>
+
                                 </Col>
                             </Row>
                             <div className="d-flex justify-content-end pb-4 mb-3">
@@ -154,7 +183,7 @@ const Deposit3 = React.memo(
                                             borderRadius: '16px'
                                         }}/></div>
                                     <span className="mx-2 text-white"> | </span>
-                                    <a className="text-white" href="/terms-and-conditions">Term & Conditions</a>
+                                    <a className="text-white" href="/terms-and-conditions">Terms & Conditions</a>
                                     <span className="mx-2 text-white"> | </span>
                                     <a className="text-white" href="/privacy-policy">Privacy & Policy</a>
                                 </div>
@@ -180,7 +209,6 @@ const Deposit3 = React.memo(
                                             <div className={'d-flex'}>
                                                 {/**/}
                                                 <div className={'size-deposit'}>
-                                                    {!user ? setTimeout(navigate("/"), 500) : ""}
                                                     <div className={"d-flex flex-row justify-content-between"}>
                                                         <div className=" w-100">
                                                             <div
@@ -208,7 +236,6 @@ const Deposit3 = React.memo(
                                         <div className={'w-100 overflow-auto'}>
                                             <div className={'d-flex'}>
                                                 <div className={'size-deposit'}>
-                                                    {!user ? setTimeout(navigate("/"), 500) : ""}
                                                     <div className={"d-flex flex-row justify-content-between"}>
                                                         <div className=" w-100">
                                                             <div
@@ -217,9 +244,6 @@ const Deposit3 = React.memo(
                                                                      data-backdrop="static">
                                                                     <div
                                                                         className={'paybill-component justify-content-center d-flex flex-column align-items-center'}>
-                                                                        <h3 className={'header-paybill'}>
-                                                                            paybill Number
-                                                                        </h3>
                                                                         <LazyLoadImage
                                                                             src={'https://storage.googleapis.com/nareimages/icons/mpesa.png'}
                                                                             className={'paybill-image'} width="50px"
@@ -254,7 +278,7 @@ const Deposit3 = React.memo(
                                                                     </span>
                                                                         <ul className={'paybill-list-instructions'}>
                                                                             <li>1. Go to Mpesa menu</li>
-                                                                            <li>2. Select Payment services</li>
+                                                                            <li>2. Select Lipa na Mpesa</li>
                                                                             <li>3. Click on Paybill</li>
                                                                             <li>4. Enter business number as 4087777</li>
                                                                             <li>5. Enter the account number as phone
@@ -291,7 +315,6 @@ const Deposit3 = React.memo(
                                             <div className={'d-flex'}>
                                                 {/**/}
                                                 <div className={'size-deposit'}>
-                                                    {!user ? setTimeout(navigate("/"), 500) : ""}
                                                     <div className={"d-flex flex-row justify-content-between"}>
                                                         <div className=" w-100">
                                                             <div
@@ -377,7 +400,15 @@ const ConfirmationInstructions = (props) => {
 
 const DepositConfirmFormFields = (props) => {
     const {values, errors, onFieldChanged} = props;
-    const {state, dispatch} = useContext(StoreContext)
+    const loadingConfirmDeposit=useSelector((state)=>state.data.deposit_confirm_loading)
+    const userData=useSelector((state)=>state.auth.user)
+
+    const [user, setUser] = useState(getFromLocalStorage("user"));
+    useEffect(()=>{
+        setUser(userData||getFromLocalStorage("user"))
+    },[userData])
+
+
 
 
     return (
@@ -389,9 +420,9 @@ const DepositConfirmFormFields = (props) => {
                     </div>
                 </div>
             </div>
-            {state?.user && <hr/>}
-            <div className="form-group row d-flex justify-content-center mt-3 deposit-widthdraw-input-desktop">
-                <div className="col-md-12">
+            {user && <hr/>}
+            <div className="form-group w-100 d-flex flex-column justify-content-center mt-3 deposit-widthdraw-input-desktop">
+                <div className="col-md-12 px-2 w-100">
                     <label className={'text-light deposit'}>Mpesa Transaction Code</label>
                     <input
                         onChange={ev => {
@@ -407,12 +438,12 @@ const DepositConfirmFormFields = (props) => {
                     {errors.confirmation_code && <div className='text-danger'> {errors.confirmation_code} </div>}
                 </div>
             </div>
-            <div className="form-group row d-flex justify-content-left mb-4">
-                <div className=" d-flex align-items-start deposit-withdraw-button-desktop">
+            <div className="form-group w-100 d-flex justify-content-left mb-4 ">
+                <div className=" d-flex align-items-start deposit-withdraw-button-desktop w-100 px-2">
                     <button type={"submit"}
                             className='btn btn-lg w-100 deposit-button button-radius input-field btn-font cg login-button2 btn bold d-flex justify-content-center align-items-center'
-                            style={{marginTop: "30px"}} disabled={values?.amount == ''}>
-                        {state?.confirmdepositLoading && <div className="custom-loader"></div>} CONFIRM DEPOSIT &nbsp;
+                            style={{marginTop: "30px"}} disabled={values?.amount == ''||loadingConfirmDeposit}>
+                        {loadingConfirmDeposit ? <div className="loader"></div>:'CONFIRM DEPOSIT ' }
                     </button>
                 </div>
             </div>
@@ -424,17 +455,18 @@ const DepositConfirmFormFields = (props) => {
 const DepositFormFields = (props) => {
     const {values, errors, onFieldChanged, setCurrentDepositValue, currentDepositValue} = props;
     const {state, dispatch} = useContext(StoreContext)
-    const settings = getFromLocalStorage("settings")
+    const userData=useSelector((state)=>state.auth.user)
+    const appConfigs=useSelector((state)=>state.data.app_config)
+    const loadingDeposit=useSelector((state)=>state.data.deposit_loading)
+    const [settings,setSettings] = useState(getFromLocalStorage('settings'));
+    const [user, setUser] = useState(getFromLocalStorage("user"));
+    useEffect(()=>{
+        setSettings(appConfigs||getFromLocalStorage('settings'))
+    },[appConfigs ])
+    useEffect(()=>{
+        setUser(userData||getFromLocalStorage("user"))
+    },[userData])
 
-    // console.log("depositPromos", settings?.betnareDeposit)
-    state?.depositValidateError?.amount && setTimeout(() => {
-        dispatch({
-            type: "SET", key: "depositValidateError", payload: {
-                msisdn: '',
-                amount: ''
-            }
-        });
-    }, 5000)
 
 
     const incrementDepositValue = (value) => {
@@ -454,7 +486,7 @@ const DepositFormFields = (props) => {
                             +{values.msisdn}
                         </div>
                     </div>
-                    {!state?.user && <input
+                    {!user && <input
                         onChange={ev => {
                             onFieldChanged(ev);
                         }}
@@ -468,8 +500,8 @@ const DepositFormFields = (props) => {
                     {errors.msisdn && <div className='text-danger'> {errors.msisdn} </div>}
                 </div>
             </div>
-            {state?.user && <hr/>}
-            <div className="form-group row d-flex justify-content-center mt-3 deposit-widthdraw-input-desktop">
+            {user && <hr/>}
+            <div className="form-group  d-flex flex-column justify-content-center mt-3 deposit-widthdraw-input-desktop">
                 <div className="btn-group w-100 gap-3 justify-content-around" role="group" aria-label="Basic example">
                     <div className={'d-flex flex-wrap col-12 justify-content-between'}>
                         {settings?.betnareDeposit && settings?.betnareDeposit?.map((deposit, index) => {
@@ -486,7 +518,7 @@ const DepositFormFields = (props) => {
                     </div>
 
                 </div>
-                <div className="col-md-12">
+                <div className="col-md-12 w-100 px-2">
                     <label className={'text-light deposit'}>Amount to Deposit</label>
                     <input
                         onChange={ev => {
@@ -502,12 +534,12 @@ const DepositFormFields = (props) => {
                     {errors.amount && <div className='text-danger'> {errors.amount} </div>}
                 </div>
             </div>
-            <div className="form-group row d-flex justify-content-left mb-4">
-                <div className=" d-flex align-items-start deposit-withdraw-button-desktop">
+            <div className="form-group W-100 d-flex justify-content-left mb-4">
+                <div className=" d-flex align-items-start deposit-withdraw-button-desktop w-100 px-2">
                     <button type={"submit"}
                             className='btn btn-lg w-100 deposit-button button-radius input-field btn-font cg login-button2 btn bold d-flex justify-content-center align-items-center'
-                            style={{marginTop: "30px"}} disabled={values?.amount == ''}>
-                        {state?.depositLoading && <div className="custom-loader"></div>} PAY &nbsp;{values?.amount}
+                            style={{marginTop: "30px"}} disabled={values?.amount == ''||loadingDeposit}>
+                        {loadingDeposit? <div className="loader"></div>: `PAY ${values?.amount}`}
                     </button>
                 </div>
             </div>
@@ -589,44 +621,32 @@ const MyDepositConfirmationForm = (props) => {
     );
 }
 const DepositForm = (props) => {
-    const {state, dispatch} = useContext(StoreContext);
+    const {state} = useContext(StoreContext);
     const [currentDepositValue, setCurrentDepositValue] = useState(0); // New state for current deposit value
-    const user = getFromLocalStorage('user')
     const depositValues = state?.depositValue || ''; // Initialize depositValues as an empty array if it's not available in the state
+    const dispatchRedux=useDispatch()
+    const userData=useSelector((state)=>state.auth.user)
 
+    const [user, setUser] = useState(getFromLocalStorage("user"));
+    useEffect(()=>{
+        setUser(userData||getFromLocalStorage("user"))
+    },[userData])
     const initialValues = {
         amount: depositValues || 100,
-        msisdn: state?.user?.msisdn || user?.msisdn
+        msisdn: user?.msisdn
     }
-    const gaEventTracker = useAnalyticsEventTracker('Deposit')
+    // const gaEventTracker = useAnalyticsEventTracker('Deposit')
 
     const handleSubmit = values => {
 
-        dispatch({type: "SET", key: "depositLoading", payload: true});
-        let endpoint = '/stk/deposit';
         setTrackingData(values)
-        makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
-            // setSuccess(status === 200 || status === 201);
-            // setMessage(response);
-            dispatch({type: "SET", key: "depositSuccess", payload: status === 200 || status === 201})
-            dispatch({type: "SET", key: "depositMessage", payload: response})
-            clearTrackingData()
-            if (status === 200 || status === 201) {
-                dispatch({type: "SET", key: "depositLoading", payload: false});
-                const data = {
-                    msisdn: state?.user?.msisdn,
-                    amount: values?.amount
-                }
-                gaEventTracker('Deposit', data)
-            } else {
-                const data = {
-                    msisdn: state?.user?.msisdn,
-                    amount: values?.amount,
-                    message: response?.message
-                }
-                gaEventTracker('Deposit Failed', data)
-            }
-        })
+        // const data = {
+        //     msisdn: state?.user?.msisdn,
+        //     amount: values?.amount
+        // }
+        // gaEventTracker('Deposit', data)
+        dispatchRedux(userDeposits(values))
+
     }
 
     const validate = values => {
@@ -656,7 +676,7 @@ const DepositForm = (props) => {
 }
 
 const DepositConfirmForm = (props) => {
-    const {state, dispatch} = useContext(StoreContext);
+    const dispatchRedux=useDispatch()
 
     const initialValues = {
         confirmation_code: '',
@@ -665,30 +685,12 @@ const DepositConfirmForm = (props) => {
 
     const handleSubmit = values => {
 
-        dispatch({type: "SET", key: "confirmdepositLoading", payload: true});
-        let endpoint = '/v1/deposit-confirmation';
         setTrackingData(values)
-        makeRequest({url: endpoint, method: 'POST', data: values}).then(([status, response]) => {
-            // setSuccess(status === 200 || status === 201);
-            // setMessage(response);
-            dispatch({type: "SET", key: "confirmdepositSuccess", payload: status === 200 || status === 201})
-            dispatch({type: "SET", key: "confirmdepositMessage", payload: response?.success})
-            clearTrackingData()
-            if (status === 200 || status === 201) {
-                dispatch({type: "SET", key: "confirmdepositLoading", payload: false});
-                const data = {
-                    confirmation_code: values?.confirmation_code
-                }
-                gaEventTracker('Deposit Confirmation', data)
-            } else {
-                const data = {
-                    msisdn: state?.user?.msisdn,
-                    confirmation: values?.confirmation_code,
-                    message: response?.message
-                }
-                gaEventTracker('Deposit Confirmation Failed', data)
-            }
-        })
+        dispatchRedux(userDepositsConfirm(values))
+        // const data = {
+        //     confirmation_code: values?.confirmation_code
+        // }
+        // gaEventTracker('Deposit Confirmation', data)
     }
 
     const validate = values => {

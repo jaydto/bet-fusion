@@ -17,7 +17,15 @@ const navigationConfig = {
 		'responsible-gambling',
 		'promo',
 		'smart-play',
-		'gameplay'
+		'gameplay',
+		'fpl',
+		'FPL',
+		'how-to-play',
+		'cookie-policy',
+		'privacy-policy',
+		'dispute-resolution',
+		'anti-money-laundering',
+		'terms-and-conditions'
 	],
 	showDownload: [
 		'nare-games',
@@ -46,6 +54,13 @@ const navigationConfig = {
 		'smart-soft',
 		'casino',
 		'gameplay',
+		'fpl',
+		'FPL',
+		'how-to-play',
+		'privacy-policy',
+		'cookie-policy',
+		'dispute-resolution',
+		'anti-money-laundering'
 	]
 };
 

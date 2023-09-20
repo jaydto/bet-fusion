@@ -1,12 +1,10 @@
 import React, {useCallback, useContext, useEffect, useState} from 'react';
 import "./standing.css"
-import makeRequest from "../../../utils/fetch-request";
-import {getFromLocalStorage} from "../../../utils/local-storage";
 import {Spinner} from "react-bootstrap";
 import {LazyLoadImage} from "react-lazy-load-image-component";
-import {StoreContext} from "../../../../context/store";
 import { useDispatch,useSelector } from 'react-redux'; // Import useDispatch hook
 import {nareLeagueStandings, resetState} from '../../../../redux/nareLeague';
+import SkeletonLoader from "../skeletonLoader/SkeletonLoader";
 const Standing = () => {
     const competition_id=useSelector((state)=>state.nareLeague.competition_id)
     const newCompetition = new URL(window.location).searchParams.get('competition_id') ||competition_id
@@ -52,9 +50,10 @@ const Standing = () => {
                         <tr className="table-header">
                             <th className={'standings-menu'}>Position</th>
                             <th className={'standings-menu'}>Team</th>
-                            <th className={'standings-menu'} style={{textAlign: 'center'}}>Points</th>
-                            <th className={'standings-menu'}>Form</th>
                             <th className={'standings-menu'}>Played</th>
+                            <th className={'standings-menu'}>Form</th>
+                            <th className={'standings-menu'} style={{textAlign: 'center'}}>Points</th>
+
                         </tr>
                         {standingsData &&
                             Object.entries(standingsData).map(([key, standing],index) => (
@@ -68,7 +67,7 @@ const Standing = () => {
                                             <span>{standing?.team_name}</span>
                                       </span>
                                     </td>
-                                    <td className={'standings-menu'}>{standing?.points}</td>
+                                    <td className={'standings-menu'}>{standing?.games_played}</td>
                                     <td className={'standings-menu'}>
                                         <span className="team-form">
                                        {Array.from(standing?.form)?.map((item, index) => (
@@ -79,15 +78,14 @@ const Standing = () => {
                                        ))}
                                          </span>
                                     </td>
-                                    <td className={'standings-menu'}>{standing?.games_played}</td>
+                                    <td className={'standings-menu'}>{standing?.points}</td>
+
                                 </tr>)
                             )
                         }
 
                         </tbody>
-                    </table> : <div className={`text-center mt-2 text-white d-block w-100`}>
-                        <Spinner animation={'grow'} size={'lg'}/>
-                    </div>}
+                    </table> : <SkeletonLoader/>}
                 </div>
             </div>
         </div>

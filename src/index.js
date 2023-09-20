@@ -1,13 +1,12 @@
 import React, {Suspense, useCallback, useContext, useEffect} from "react";
-import { Provider } from "react-redux";
+import {Provider, useDispatch} from "react-redux";
 import store from "./redux/store";
 
 import {BrowserRouter, Navigate, Route, Routes, useNavigate,} from 'react-router-dom'
 import {setLocalStorage} from "./components/utils/local-storage";
 import reportWebVitals from './reportWebVitals';
-// Correct import inside src/
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/css/application.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/css/tolkits.css';
 import './assets/css/sidebar-menu.css';
 import './index.css';
@@ -16,6 +15,7 @@ import './assets/css/Themes.css'
 import {StoreContext, StoreProvider} from "./context/store";
 import Loading from "./components/loading/LoadingSuspense";
 import { createRoot } from 'react-dom/client';
+import {resetState} from "./redux/authSlice";
 
 // import ReactPixel from 'react-facebook-pixel';
 // import "firebase/messaging"; // Import the FCM module
@@ -37,15 +37,10 @@ const BetslipShareDecode = React.lazy(() => import('./components/betslip/Betslip
 
 const MatchAllMarkets = React.lazy(() => import('./components/all-markets'));
 
-
 const Jackpot = React.lazy(() => import('./components/Jackpot'));
 
 const Live = React.lazy(
     () => import('./components/live')
-);
-
-const MyBets = React.lazy(
-    () => import('./components/pages/Accounts/component/my-bets2')
 );
 
 const HowToPlay = React.lazy(
@@ -97,8 +92,6 @@ const VerifyAccount = React.lazy(
 )
 
 // const MobileApp = React.lazy(() => import('./components/pages/app'))
-const MobileApp = React.lazy(() => import('./components/pages/app'))
-
 
 const ProtectedRoute = React.lazy(
     () => import('./components/utils/protected-route')
@@ -109,6 +102,7 @@ const PrintMatches = React.lazy(() => import('./components/pages/downloads'))
 const Casino = React.lazy(() => import('./components/pages/casino/Casino'))
 
 const LiveCasino = React.lazy(() => import('./components/pages/casino/LiveCasino'))
+const FPL = React.lazy(() => import('./components/FPL'))
 const LeaderBoard = React.lazy(() => import('././components/pages/LeaderBoards/LeaderBoards'))
 
 const Virtuals = React.lazy(() => import('./components/pages/casino/Virtuals'))
@@ -139,14 +133,15 @@ const Login=React.lazy(()=>import('./components/pages/loginTwo'));
 
 const NewProfile =React.lazy(()=>import( "./components/pages/Accounts/NewProfile"));
 
-
 const Promo = React.lazy(() => import('./components/pages/promotions/Promo'))
 const BetHistory =React.lazy(()=>import( "./components/pages/Accounts/component/BetHistory"));
 
 const Logout = () => {
     const { state, dispatch } = useContext(StoreContext);
+    const dispatchRedux = useDispatch();
     let navigate = useNavigate();
     setLocalStorage('user', null)
+    dispatchRedux(resetState("user"))
     const out = useCallback(() => {
         localStorage.clear();
         dispatch({ type: 'CLEAR_ALL_ITEMS' }); // Dispatch the action to clear all items
@@ -176,6 +171,7 @@ createRoot(container).render(
                     <Route exact path="/live" element={<Live/>}/>
                     <Route exact path="/live/:spid" element={<Live/>}/>
                     <Route exact path="/login" element={<Login/>}/>
+                    <Route exact path="/fpl" element={<FPL/>}/>
                     <Route exact path="/share" element={<BetslipShareDecode/>}/>
                     <Route exact path="/virtuals" element={<Virtuals/>}/>
                     <Route exact path="/livescore" element={<LiveScore/>}/>
@@ -201,6 +197,12 @@ createRoot(container).render(
                     <Route exact path="/betslip-jackpot" element={<BetslipPage/>}/>
                     <Route exact path="/competition/:id" element={<CompetitionsMatches/>}/>
                     <Route exact path="/competition/:sportid/:categoryid/:competitionid"
+                           element={<CompetitionsMatches/>}/>
+                    <Route exact path="/highlights-competition/competition/:sportid/:categoryid/:competitionid"
+                           element={<CompetitionsMatches/>}/>
+                    <Route exact path="/upcoming-competition/competition/:sportid/:categoryid/:competitionid"
+                           element={<CompetitionsMatches/>}/>
+                    <Route exact path="/tomorrow-competition/competition/:sportid/:categoryid/:competitionid"
                            element={<CompetitionsMatches/>}/>
                     <Route exact path="/match/:id" element={<MatchAllMarkets/>}/>
                     <Route exact path="/match/live/:id" element={<MatchAllMarkets live/>}/>
@@ -228,13 +230,11 @@ createRoot(container).render(
                     <Route exact path="/promo" element={<Promo/>}/>
                     <Route exact path="/deposit"
                            element={<ProtectedRoute><Deposit3/> </ProtectedRoute>}/>
-                 
+
                     <Route exact path="/withdraw"
                            element={<ProtectedRoute><Withdraw/></ProtectedRoute>}/>
                     <Route exact path="/redeem-points"
                            element={<ProtectedRoute><RedeemPoints/></ProtectedRoute>}/>
-                    <Route exact path="/bethistory"
-                           element={<ProtectedRoute><MyBets/> </ProtectedRoute>}/>
                 </Routes>
             </Suspense>
         </BrowserRouter>

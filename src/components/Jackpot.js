@@ -16,6 +16,7 @@ import caution from '../assets/img/mobile/caution.png'
 import {useDispatch, useSelector} from "react-redux";
 import {jackpotById, jackpotHistoryData, matchesJackpot} from "../redux/matchesSlice";
 
+
 const Header = React.lazy(() => import('./header/header'));
 const Right = React.lazy(() => import('./right'));
 const Jackpot = React.memo(
@@ -217,7 +218,7 @@ const Jackpot = React.memo(
                                     variant={'tabs'}
                                     defaultActiveKey={activeTab}
                                     id=""
-                                    className="background-primary "
+                                    className="background-primary jp-tabs"
                                     justify
                                     onSelect={handleTabSelect}>
                                     <Tab eventKey="home" title="Jackpot" className={'background-primary'}>
@@ -264,9 +265,9 @@ const Jackpot = React.memo(
 
                                         {/*<JackpotHeader jackpot={matches?.meta}/>*/}
 
-                                        <div className="matches full-mobile sticky-top container">
+                                        <div className="matches full-mobile sticky-top container w-00">
                                             <div
-                                                className="top-matches d-flex position-sticky shadow-lg p-4 mt-5 text-white ">
+                                                className="top-matches d-flex position-sticky shadow-lg p-4 mt-5 text-white w-100">
                                                 <div className="col-md-3 col-sm-3 bold">
                                                     TIME
                                                 </div>

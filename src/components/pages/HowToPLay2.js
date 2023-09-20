@@ -10,6 +10,9 @@ import {
 import "react-accessible-accordion/dist/fancy-example.css";
 import '../test.css'
 import {StoreContext } from "../../context/store";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
+import {useNavigate} from "react-router-dom";
 
 const Header = React.lazy(() => import("../header/header"));
 const Footer = React.lazy(() => import("../footer/footer"));
@@ -19,32 +22,42 @@ const Right = React.lazy(() => import("../right/index"));
 const  HowToPlay= React.memo(
     (props) => {
 
-    const { dispatch } = useContext(StoreContext);
-    //
-    // useEffect(() => {
-    //     let betslip = getBetslip();
-    //     if (betslip) {
-    //         dispatch({type: "SET", key: "betslip", payload: betslip});
-    //     }
-    // }, []);
+        useEffect(() => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }, []);
 
+        const navigate=useNavigate()
     return (
         <div className={'flex-item'}>
             <div className="item4"><Header/></div>
-            <div className="flex-container">
+            <div className="flex-container height-default-body" >
                 <div className="item1"> <SideBar loadCompetitions/></div>
                 <div className="item2" style={{width:'100%'}}>
                     <div className=" home" >
                         <div className="homepage">
                             <div className='col-md-12 primary-bg p-4 text-center'>
-                                <h4 className="inline-block"> HOW TO PLAY </h4>
+                                <div className={'d-flex align-items-center'}>
+                                            <span className={'spacing-backbutton remove-backbutton-on-desktop'}
+                                                  onClick={() => navigate('/')}>
+                                             <FontAwesomeIcon icon={faAngleLeft} style={{
+                                                 fontSize: "24px",
+                                                 color: 'var(--light)',
+                                                 fontWeight: '700',
+                                                 opacity: '0.7'
+                                             }}/>
+                                            </span>
+                                    <h4 className="inline-block"> HOW TO PLAY </h4>
+                                </div>
                             </div>
-                            <div className="col-md-12 card mt-2"></div>
+                            <div className="col-md-12 mt-2 card" style={{background:"var(--bet-history)"}}></div>
                             <div className="col-md-12 py-2 px-1 w-100 text-white accordion-container">
                                 <Accordion preExpanded={['1']} allowZeroExpanded className="size-accordion">
                                     <AccordionItem uuid="1" className={' pb-2'}>
                                         <AccordionItemHeading>
-                                            <AccordionItemButton className='accordion-button'>
+                                            <AccordionItemButton className='accordion-button px-2 pt-1'>
                                                 Play via SMS
                                             </AccordionItemButton>
                                         </AccordionItemHeading>
@@ -456,7 +469,7 @@ const  HowToPlay= React.memo(
 
                                     <AccordionItem uuid="2">
                                         <AccordionItemHeading>
-                                            <AccordionItemButton className="accordion-button">
+                                            <AccordionItemButton className="accordion-button px-2 pt-1">
                                                 Play via Web
                                             </AccordionItemButton>
                                         </AccordionItemHeading>
@@ -889,7 +902,7 @@ const  HowToPlay= React.memo(
                         </div>
                     </div>
                 </div>
-                <div className="item3"><Right test={true}/></div>
+                <div className="item3 remove-betslip"><Right test={true}/></div>
 
             </div>
             <div className="item6"><div className={"footer-mobile-none"}>

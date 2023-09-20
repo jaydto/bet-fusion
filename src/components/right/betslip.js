@@ -6,6 +6,8 @@ import useWindowDimensions from "../header/Dimensions";
 import {getFromLocalStorage} from "../utils/local-storage";
 import DecodeCode from "./decode";
 import {Link, useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {removeSlipSelection, setMatchBetslip} from "../../redux/bettingSlice";
 
 const clean_rep = (str) => {
     str = str.replace(/[^A-Za-z0-9\-]/g, "");
@@ -15,37 +17,33 @@ const clean_rep = (str) => {
 const BetSlip = React.memo(
     (props) => {
         const {jackpot, betslipValidationData, jackpotData,live} = props;
-        const [betslipKey, setBetslipKey] = useState(jackpot ? "jackpotbetslip" : "betslip");
-        const [betslipsData, setBetslipsData] = useState(null);
         const { state, dispatch } = useContext(StoreContext);
-        const totalGames = betslipsData ? Object.keys(betslipsData).length : 0;
         const [message, setMessage] = useState(null);
         const [qualifiesBonus, setQualifiesBonus] = useState(false);
         const [settings,] = useState(getFromLocalStorage("settings"));
         const {height} = useWindowDimensions();
+        const dispatchRedux=useDispatch()
 
         const [, setPopUpHeight] = useState(0);
         const [totalOdds, setTotalOdds] = useState(1);
-        //initial betslip loading
-        const loadBetslip = useCallback(() => {
-            if (!betslipsData) {
-                let b = jackpot === true ? getJackpotBetslip() : getBetslip();
-                setBetslipsData(b);
-            }
-        }, []);
+
+        const [betslipsData, setBetslipsData] = useState(getBetslip());
+
+        const slip_data=useSelector((state)=>state.betting.betslip)
+
+        useEffect(()=>{
+            setBetslipsData(slip_data||getBetslip())
+        },[slip_data])
+
+        const totalGames = betslipsData ? Object.keys(betslipsData).length : 0;
 
         useEffect(() => {
-            loadBetslip();
-        }, [loadBetslip]);
-
-        useEffect(() => {
-            if (state[betslipKey]) {
+            if (slip_data) {
                 jackpot && Object.keys(getJackpotBetslip() || {}).length == 0
                     ? setBetslipsData(null)
-                    : setBetslipsData(state[betslipKey]);
-                // console.log("size of slip",Object.keys(getJackpotBetslip).length )
+                    : setBetslipsData(slip_data);
             }
-        }, [state[betslipKey]]);
+        }, [slip_data]);
 
         //Handle db validation of betslip
         const validateBetslipwithDbData = useCallback(() => {
@@ -95,7 +93,11 @@ const BetSlip = React.memo(
                         clone_slip[match_id] = slip;
                     }
                 });
-                dispatch({type: "SET", key: betslipKey, payload: clone_slip});
+                const betslip_data={
+                    betslip_type:"betslip",
+                    data:clone_slip
+                }
+                dispatchRedux(setMatchBetslip(betslip_data))
             }
         }, []);
 
@@ -120,16 +122,6 @@ const BetSlip = React.memo(
             updateBetslip();
         }, [updateBetslip]);
 
-        // betslip key watch
-        const setJackpotSlipkey = useCallback(() => {
-            if (jackpot === true) {
-                setBetslipKey("jackpotbetslip");
-            }
-        }, [jackpot]);
-
-        useEffect(() => {
-            setJackpotSlipkey();
-        }, [setJackpotSlipkey]);
 
         const navigate=useNavigate();
 
@@ -145,9 +137,17 @@ const BetSlip = React.memo(
             );
 
             setBetslipsData(betslip);
+            const betslip_data={
+                betslip_type:"betslip",
+                data:betslip
+            }
+            dispatchRedux(setMatchBetslip(betslip_data))
+            const match_items={
+                match_selector:match_selector,
+                ucn:"remove." + ucn
+            }
 
-            dispatch({type: "SET", key: betslipKey, payload: betslip});
-            dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
+            dispatchRedux(removeSlipSelection(match_items));
 
             if(Object.keys(betslip).length === 0){
                 navigate("/")
@@ -211,7 +211,7 @@ const BetSlip = React.memo(
             }
 
             if (!bonusBetEligible && (maxBonusGames > 1)) {
-                message = `To qualify for bonus bet, please select ${maxBonusGames} game each with odds ${
+                message = `To qualify for bonus bet, please select ${maxBonusGames} games each with odds ${
                     Number(fixedOdd) === 1
                         ? " of " + perSlipBonusOdd
                         : " between " + perSlipBonusOdd + " and " + perSlipMaxOdd
@@ -315,15 +315,15 @@ const BetSlip = React.memo(
                                                                          className={"slip-team text-ellipsis"}>{slip.home_team} &nbsp; Vs.&nbsp; {slip.away_team}</span>
                                                                         </span>
                                                                 }
-                                                                {slip.bet_type === 0 && " Pre-match"}
-                                                                {slip.bet_type === 1 && " Live"}
                                                             </b>
                                                         </div>
                                                         <div className={"d-flex w-100 slip-dim-color-selections"}>
                                                             <div className="row d-flex flex-column">
                                                                 <div
-                                                                    className="bet-value picks-user-slip"> {slip.odd_type} - <span
-                                                                    className={"pick-user-match"}>{slip.bet_pick}</span>
+                                                                    className="bet-value picks-user-slip"> {slip.odd_type} -
+                                                                    <span className={"pick-user-match"}>{slip.bet_pick}</span>&nbsp;
+                                                                    <span style={{color:"var(--red)"}}>{Number(slip.bet_type) === 1 ? " Live'":""}</span>
+
                                                                 </div>
                                                                 <div
                                                                     className="bet-value time-slip-value"> {slip?.start_time}</div>
@@ -369,7 +369,6 @@ const BetSlip = React.memo(
                         live={live}
                         totalOdds={totalOdds}
                         betslip={betslipsData}
-                        setBetslipsData={setBetslipsData}
                         totalGames={betslipsData ? Object.keys(betslipsData).length : 0}
                         jackpot={jackpot}
                         bonusBet={qualifiesBonus}

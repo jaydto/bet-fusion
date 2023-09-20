@@ -1,4 +1,4 @@
-import React, {useCallback, useContext, useEffect, useRef, useState,} from "react";
+import React,{useCallback, useContext, useEffect, useRef, useState} from "react";
 import {StoreContext} from "../../context/store";
 import {
     clearJackpotSlip,
@@ -10,19 +10,28 @@ import {
     removeFromSlip,
 } from "../utils/betslip";
 import {publicIpv4 as publicIp} from "public-ip";
-import makeRequest from "../utils/fetch-request";
 import "react-toastify/dist/ReactToastify.css";
 import {Form as FormikForm, Formik, useFormikContext} from "formik";
 import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 import {faBolt, faFireAlt, faGift, faInfoCircle, faShare, faTrash,} from "@fortawesome/free-solid-svg-icons";
-import {Spinner} from "react-bootstrap";
 import {Switch} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import useWindowDimensions from "../header/Dimensions";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import Notify from "../utils/Notify";
+import {useDispatch, useSelector} from "react-redux";
+import {matchesShareBet, resetState} from "../../redux/matchesSlice";
+import {userBalance} from "../../redux/authSlice";
+import {
+    bettingMatchesGames,
+    removeSlipSelection,
+    setMatchBetslip,
+    resetStateBetslip,
+    removeSelected, removePickedData
+} from "../../redux/bettingSlice";
+import {setState} from "../../redux/dataSlice";
 
 const BetslipShareModal = React.lazy(() =>
     import("../modals/BetslipShareModal")
@@ -46,26 +55,15 @@ export const SubmitButton = (props) => {
                 fontSize: "14px",
                 background: "var(--betnare-button-login",
                 whiteSpace: 'nowrap'
-            } : {
-                padding: "10px",
-                width: "100%",
-                borderRadius: "0.7rem",
-                whiteSpace: 'nowrap',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '5px'
-            }}
+            } : {padding: "10px", width: "100%", borderRadius: "0.7rem",whiteSpace: 'nowrap'}}
             className={`${disabled ? "disabled" : ""} ${button_size ? " jackpot-button-placebet " : " "} 'bg-warning bold rounded-2 text-dark cursor-pointer'`}
             disabled={isSubmitting || disabled}
             title="Place Bet"
         >
             {isSubmitting ? "Please Wait " : title}{" "}
-            <FontAwesomeIcon icon={faFireAlt}/>
         </button>
     );
 };
-
 const BetslipSubmitForm = React.memo(
     (props) => {
         const {
@@ -74,7 +72,6 @@ const BetslipSubmitForm = React.memo(
             totalGames,
             totalOdds,
             betslip,
-            setBetslipsData,
             jackpotData,
             bonusBet,
 
@@ -82,15 +79,13 @@ const BetslipSubmitForm = React.memo(
 
         const [hasMultiBetBoost, setHasMultiBetBoost] = useState(true);
         const [multiBoostAmount, setMultiBoostAmount] = useState(0);
-        const [showShareModal, setShowShareModal] = useState(false);
-        const [betSharePayload, setBetSharePayload] = useState({});
         const [ipv4, setIpv4] = useState(null);
         const [message, setMessage] = useState(null);
         const {state, dispatch} = useContext(StoreContext);
-        const [loadingShare, setLoadingShare] = useState(false);
-        const [loading, setLoading] = useState(false);
+        const loading=useSelector((state)=>state.betting.loading)
         const [settings,] = useState(getFromLocalStorage("settings"));
-        const [stake, setStake] = useState(jackpot ? parseInt(jackpotData?.bet_amount) : state?.stakeValue);
+        const stake_value=useSelector((state)=>state.data.stake_value)
+        const [stake, setStake] = useState(jackpot ? parseInt(jackpotData?.bet_amount) : stake_value||getFromLocalStorage('userStake'));
 
         const [stakeBoosted, setStakeBoosted] = useState(100);
 
@@ -115,34 +110,35 @@ const BetslipSubmitForm = React.memo(
 
         const scrollToRef = useRef(null);
         const {width} = useWindowDimensions();
-        const [user, setUser] = useState(getFromLocalStorage("user"));
+        const userData=useSelector((state)=>state.auth.user)
+        const [user, setUser]=useState(getFromLocalStorage("user"))
 
         useEffect(()=>{
-                setStake(state?.stakeValue)
-        }, [state?.stakeValue])
+            if(userData){
+                setUser(userData||getFromLocalStorage("user"))
+            }
+        }, [userData])
+
+        useEffect(()=>{
+                setStake(stake_value)
+        }, [stake_value])
 
 
         const updateUserOnHistory = () => {
             if (!user) {
                 return false;
             }
-            let endpoint = "/v1/balance";
             let udata = {
                 token: user.token
             }
-            makeRequest({url: endpoint, method: "post", data: udata}).then(([_status, response]) => {
-                if (_status == 200) {
-                    let u = {...user, ...response.user};
-                    setLocalStorage('user', u);
-                    setUser(u)
-                    dispatch({type: "SET", key: "user", payload: u});
-                    dispatch({type: "SET", key: "placebet", payload: true});
+            const userValues={
+                udata:udata,
+                user:user
+            }
 
-                }
-            });
+            dispatchRedux(userBalance(userValues))
 
         };
-
         useEffect(() => {
             if (scrollToRef.current) {
                 scrollToRef.current.scrollIntoView({behavior: 'auto'});
@@ -190,8 +186,6 @@ const BetslipSubmitForm = React.memo(
         }, [])
 
         const betItem = getBetslip()
-
-
         const sportBookLimits = settings?.sportsBookLimits
         const betslipLength = Object.keys(betItem || {}).length;
         useEffect(() => {
@@ -199,26 +193,13 @@ const BetslipSubmitForm = React.memo(
         }, [betslipLength])
         const gaEventTracker = useAnalyticsEventTracker(live ? 'PlaceLiveBet' : 'PlacePrematchBet')
 
-        const handlePlaceBet = useCallback((values,
+        const handlePlaceBet = (values,
                                             {setSubmitting, resetForm, setStatus, setErrors}) => {
             let bs = Object.values(betslip || []);
 
             let slipHasOddsChange = false;
 
-            let jackpotMessage = 'jp'
-
-            if (jackpot) {
-
-                bs = bs.sort(function (a, b) {
-                    return Number(a.position) - Number(b.position);
-                });
-
-            }
-
             for (let slip of bs) {
-                if (jackpot) {
-                    jackpotMessage += "#" + slip.bet_pick
-                }
                 if (slip.prev_odds
                     && slip.prev_odds != slip.odd_value
                     && values.accept_all_odds_change === false) {
@@ -249,92 +230,89 @@ const BetslipSubmitForm = React.memo(
                 channelID: 'web',
                 slip: bs,
                 account: 1,
-                msisdn: state?.user?.msisdn,
+                msisdn: user?.msisdn,
                 accept_all_odds_change: values.accept_all_odds_change
             };
             let endpoint = '/bet';
             let method = "GET"
-            let use_jwt = !jackpot
-            if (jackpot) {
-                payload.message = jackpotMessage
-                payload.jackpot_id = jackpotData?.jackpot_event_id
-                payload.slip = ''
-                endpoint = "/jp/bet"
-                method = "POST"
-            }
-            setLoading(true)
-            makeRequest({url: endpoint, method: method, data: payload, use_jwt: use_jwt})
-                .then(([status, response]) => {
-                    if (status === 200 || status == 201 || status == 204) {
-                        setLoading(false)
-                        setMessage(response);
-                        const data = {
-                            event: jackpot ? 'place_jackpot_bet' : live ? 'place_live_bet' : 'place_prematch_bet',
-                            data: payload
-                        }
-                        gaEventTracker("Bet Placed", data)
-                        // setLocalStorage("winnings",null)
-                        if (jackpot) {
-                            clearJackpotSlip();
-                            setMessage({
-                                status: 201,
-                                message: response?.message,
-                            });
-                        } else {
-                            let betslips = getBetslip();
-                            Object.entries(betslips).map(([match_id, match]) => {
-                                let match_selector = match.match_id + "_selected";
-                                let ucn = clean_rep(
-                                    match.match_id
-                                    + "" + match.sub_type_id
-                                    + (match.bet_pick)
-                                );
+            let use_jwt = true
 
-                                dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
-                            });
-                            clearSlip();
 
-                        }
-                        setBetslipsData(null);
-                        dispatch({
-                            type: "SET",
-                            key: jackpot ? "jackpotbetslip" : "betslip",
-                            payload: {},
+            // const data = {
+            //     event: jackpot ? 'place_jackpot_bet' : live ? 'place_live_bet' : 'place_prematch_bet',
+            //     data: payload
+            // }
+            // gaEventTracker("Bet Placed", data)
+            dispatchRedux(bettingMatchesGames({endpoint:endpoint, method:method, data:payload, jackpot:jackpot, use_jwt:use_jwt})).then((response) => {
+                // Check if the action was fulfilled successfully
+                if (bettingMatchesGames.fulfilled.match(response)) {
+
+                        // Dispatch the clearUcn action when fulfilled
+                        setMessage(response?.payload)
+                        let betslips = getBetslip();
+                        Object.entries(betslips).map(([match_id, match]) => {
+                            let match_selector = match.match_id + "_selected";
+
+                            dispatchRedux(resetStateBetslip("betslip"))
+                            dispatchRedux(removeSelected(match_selector))
+
                         });
-                        setLocalStorage('betslip_share_code', null)
-                        setLocalStorage('userStake', null)
-                        dispatch({type: 'SET', key: 'userStake', data: null})
-                        updateUserOnHistory()
-                        return width < 991 ? setTimeout(() => {
-                            navigate(-1)
-                        }, 5000) : "";
-                    } else {
-                        setLoading(false)
-                        const data = {
-                            event: jackpot ? 'place_jackpot_bet' : live ? 'place_live_bet' : 'place_prematch_bet',
-                            message: response?.message
+                        clearSlip();
+                        const betslip_data={
+                            betslip_type:"betslip",
+                            data:{}
                         }
-                        // gaEventTracker("Bet Placement Failed " + response?.message, data)
-                        let response_message = response?.message;
+                        let udata = {
+                            token: user.token
+                        }
+                        const userValues={
+                            udata:udata,
+                            user:user
+                        }
+
+                        dispatchRedux(userBalance(userValues))
+                        dispatchRedux(setMatchBetslip(betslip_data))
+
+                    setLocalStorage('betslip_share_code', null)
+                    dispatchRedux(setState('stake_value',0))
+                    setLocalStorage('userStake', null)
+
+                    updateUserOnHistory()
+                    return width < 991 ? setTimeout(() => {
+                        navigate("/")
+                    }, 4500) : "";
+
+                }
+                else if(bettingMatchesGames.rejected.match(response)){
+                    // const data = {
+                    //     event: jackpot ? 'place_jackpot_bet' : live ? 'place_live_bet' : 'place_prematch_bet',
+                    //     message: response?.message
+                    // }
+                    // gaEventTracker("Bet Placement Failed " + response?.message, data)
+
+                    let response_message = response?.error?.message;
+                    if (response_message === "" || response_message === undefined) {
+                        response_message = response?.error?.message;
                         if (response_message === "" || response_message === undefined) {
-                            response_message = response?.error;
-                            if (response_message === "" || response_message === undefined) {
-                                response_message = "Something went wrong. Please try again later or contact support. 0701 087 777";
-                            }
+                            response_message = "Something went wrong. Please try again later or contact support. 0701 087 777";
                         }
-                        let qmessage = {
-                            status: status,
-                            message: response_message,
-                        };
-                        setMessage(qmessage);
                     }
+                    let qmessage = {
+                        status: 404,
+                        message: response_message,
+                    };
+                    setMessage(qmessage)
+                }
+            })
+                .catch((error) => {
+                    // Handle errors if needed
                 });
             let timer = setTimeout(() => {
                 setMessage(null)
                 clearTimeout(timer)
             }, 10000)
             setSubmitting(false);
-        });
+        };
 
         const updateWinnings = useCallback(() => {
             if (betslip) {
@@ -436,17 +414,25 @@ const BetslipSubmitForm = React.memo(
                     + (match.bet_pick)
                 );
 
-                dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
+                // dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
+                const match_items={
+                    match_selector:match_selector,
+                    ucn:"remove." + ucn
+                }
+                dispatchRedux(removeSlipSelection(match_items));
+                dispatchRedux(removePickedData(""));
+
             });
-            dispatch({
-                type: "SET",
-                key: jackpot ? "jackpotbetslip" : "betslip",
-                payload: {},
-            });
+
+            const betslip_data={
+                betslip_type:"betslip",
+                data:{}
+            }
+            dispatchRedux(setMatchBetslip(betslip_data))
             setMessage(null);
             // setLocalStorage("winnings",null)
             setLocalStorage('userStake', null)
-            dispatch({type: 'SET', key: 'userStake', data: null})
+            dispatchRedux(setState('stake_value',0) )
             setLocalStorage('betslip_share_code', null)
             return width < 991 ? navigate(-1) : ""
         }, []);
@@ -455,11 +441,11 @@ const BetslipSubmitForm = React.memo(
             updateWinnings();
         }, [updateWinnings]);
 
-        const value_for_odds_change = getFromLocalStorage("accept_all_odds_change") === undefined ? true : getFromLocalStorage("accept_all_odds_change")
+        const value_for_odds_change = getFromLocalStorage("accept_all_odds_change") === undefined ? true :getFromLocalStorage("accept_all_odds_change") === null?true: getFromLocalStorage("accept_all_odds_change")
         const initialValues = {
             bet_amount: (jackpot && jackpotData?.bet_amount) || (bonusBet ? Number(settings?.betnareBonus?.defaultBonusBetAmount) : stake),
             accept_all_odds_change: value_for_odds_change,
-            user_id: state?.user?.profile_id,
+            user_id: user?.profile_id,
             total_games: totalGames,
             total_odd: totalOdds,
         };
@@ -468,9 +454,10 @@ const BetslipSubmitForm = React.memo(
             let errors = {};
 
             if (!values.user_id) {
-                errors.user_id = "Kindly login to proceed";
-                setMessage({status: 400, message: errors.user_id});
-                return errors;
+                // errors.user_id = "Kindly login to proceed";
+                // setMessage({status: 400, message: errors.user_id});
+                // return errors;
+                navigate('/login')
             }
 
             if (!values.bet_amount || values.bet_amount < 1) {
@@ -521,12 +508,13 @@ const BetslipSubmitForm = React.memo(
 
             let giftQualificationOdds = odds.length;
 
+
             let awardGifts =
                 Number(settings?.betnareGifts?.awardGiftBoost) === 1 &&
-                Number(state?.user?.gift_balance || 0) > 0;
+                Number(user?.gift_balance || 0) > 0;
 
             setAwardMultiGift(awardGifts);
-            if (giftQualificationOdds < giftMinGames) {
+            if (Number(giftQualificationOdds) < Number(giftMinGames)) {
                 let remainingGames = Number(giftMinGames) - Number(giftQualificationOdds);
                 dispatch({type: "SET", key: "remaining_games", payload: remainingGames});
                 setMultiBoostMessage(
@@ -536,6 +524,9 @@ const BetslipSubmitForm = React.memo(
                         settings?.betnareGifts?.giftBoostMinOdds
                     } or above to redeem your gift.`
                 );
+
+                setMultiBoostAmount(0)
+                dispatch({type: "SET", key: "hasBoost", payload: false});
 
 
                 dispatch({
@@ -548,12 +539,17 @@ const BetslipSubmitForm = React.memo(
                     } or above to boost your winnings.`
                 });
 
-            } else if (giftQualificationOdds >= giftMinGames) {
-                boost = Math.round((20 / 100) * stake);
+            }
+            else if (Number(giftQualificationOdds) >= Number(giftMinGames)) {
+                boost = Math.round(((Number(settings?.betnareGifts?.giftBoostPercentage)||20)/ 100) * stake);
+                if(isNaN(boost)){
+                    boost=0
+                }
+
                 if (boost > Number(settings?.betnareGifts?.maxGiftBoostAmount)) {
                     boost = Number(settings?.betnareGifts?.maxGiftBoostAmount);
                 }
-                if (boost > 1) {
+                if (boost >= 1) {
                     setMultiBoostAmount(boost);
                     setHasMultiBetBoost(true);
                     dispatch({type: "SET", key: "hasBoost", payload: true});
@@ -565,6 +561,8 @@ const BetslipSubmitForm = React.memo(
                         " to " +
                         boostedStake
                     );
+                    dispatch({type:"SET", ket:"alert_boost_color", payload:"valid"})
+
                     dispatch({type: "SET", key: "remaining_games", payload: 0});
 
 
@@ -576,28 +574,68 @@ const BetslipSubmitForm = React.memo(
                     })
 
                 }
+                else{
+                    setMultiBoostAmount(boost);
+                    setHasMultiBetBoost(true);
+                    dispatch({type: "SET", key: "hasBoost", payload: true});
+                    setMultiBoostMessage(
+                        "You Qualify for a Nare Boost Minimum stake is " +
+                        3 +
+                        " KES "
+                    );
+                    dispatch({type: "SET", key: "remaining_games", payload: 0});
+                    dispatch({type:"SET", ket:"alert_boost_color", payload:"invalid"})
+
+
+                    dispatch({
+                        type: "SET", key: "multiboostmessage", payload: "You Qualify for Nare Boost Minimum Stake is " +
+                            3 +
+                            " KES "
+                    })
+                }
+            }
+            else{
+                setMultiBoostAmount(0)
+                dispatch({type: "SET", key: "hasBoost", payload: false});
+                setMultiBoostMessage("")
+
             }
         };
 
         useEffect(() => {
             calculateMultiBetBoostAmount();
         }, [betslip, stake]);
+        const show_share_modal=useSelector((state)=>state.matchesData.show_share_modal)
+        const share_bet=useSelector((state)=>state.matchesData.share_bet)
+        const loadingShare=useSelector((state)=>state.matchesData.loading_bet_history)
+        const [showShareModal, setShowShareModal] = useState(false);
+        const [betSharePayload, setBetSharePayload] = useState({});
+        const dispatchRedux=useDispatch()
+
+        useEffect(()=>{
+            if(show_share_modal){
+                setShowShareModal(show_share_modal)
+            }
+            return ()=>{
+                dispatchRedux(resetState("show_share_modal"))
+            }
+
+        },[show_share_modal])
+
+        useEffect(()=>{
+            if(share_bet){
+                setBetSharePayload(share_bet)
+            }
+            return ()=>{
+                dispatchRedux(resetState("share_bet"))
+            }
+
+        },[share_bet])
+
 
         const encodeBetSlip = () => {
-            setLoadingShare(true);
+            dispatchRedux(matchesShareBet(betslip))
 
-            let endpoint = "/v1/bs-encode";
-            makeRequest({url: endpoint, method: "POST", data: betslip}).then(
-                ([status, response]) => {
-                    if (status === 200) {
-                        setShowShareModal(true);
-                        setBetSharePayload(response);
-                        setLoadingShare(false);
-                    } else {
-                        setLoadingShare(false);
-                    }
-                }
-            );
         };
         const [showInfo, setShowInfo] = useState()
         const label = {
@@ -668,8 +706,8 @@ const BetslipSubmitForm = React.memo(
                                 dispatch({type: "SET", key: "minStake", payload: null});
                             }
 
-                            dispatch({type: "SET", key: "userStake", payload: newValue});
                             setFieldValue(field, newValue);
+                            dispatchRedux(setState('stake_value', newValue))
                             setLocalStorage('userStake', newValue);
                             setStake(newValue);
                         } else {
@@ -740,7 +778,7 @@ const BetslipSubmitForm = React.memo(
                                 awardMultiGift &&
                                 Number(totalGames) > settings?.betnareBonus?.bonusBetLegs && (
                                     multiBoostMessage &&
-                                    <div className={" slip-message-alert "}>
+                                    <div className={` slip-message-alert`}>
                                         <div colSpan="2" className={'d-flex col-2'} style={{width: '100%'}}>
                                             <FontAwesomeIcon icon={faGift}/> {multiBoostMessage}
                                         </div>
@@ -803,7 +841,7 @@ const BetslipSubmitForm = React.memo(
                                             id="net-amount">{formatNumber(jackpot ? jackpotData?.jackpot_amount : (hasMultiBetBoost ? netWinBoosted : netWin))}</strong>
                                         </div>
                                     </div>
-                                    {state?.user && !jackpot && <div
+                                    {user && !jackpot && <div
                                         className="hide-on-affix d-flex justify-content-between p-lg-2 p-md-2 py-sm-0">
                                         <div
                                             className={"bet-align-left nare-boost-color d-flex align-items-center"}>Nare
@@ -842,30 +880,27 @@ const BetslipSubmitForm = React.memo(
                                     </div>
                                     <br className={"ipad-show"}/>
                                     <div className={"d-flex gap-2 align-items-center"}>
-                                        <div className="bet-win-tr hide-on-affix col-4">
+                                        <div className="bet-win-tr hide-on-affix col-4" style={{position:'relative'}}>
                                             <div className={"d-flex w-100 align-items-center"} style={{whiteSpace: "nowrap"}}>
                                                 <button
-                                                    id=""
+                                                    id="share-btn"
                                                     onClick={() => encodeBetSlip()}
                                                     style={{
-                                                        padding: "9px",
+                                                        padding: "6px",
                                                         backgroundColor: "var(--odds-button)",
                                                         whiteSpace: "nowrap",
                                                         fontSize: "14px",
                                                         borderRadius: "4px",
+
                                                     }}
                                                     type={"button"}
                                                     className="bold btn-secondary  flex-nowrap w-100 d-flex justify-content-center share-button-styling"
                                                     title="SHARE BET"
+                                                    disabled={loadingShare}
                                                 >
-                                                    Share&nbsp;
-                                                    {loadingShare ? (
-                                                        <div className={`text-center  text-white d-block`}>
-                                                            <Spinner animation={"grow"} size={"sm"}/>
-                                                        </div>
-                                                    ) : (
-                                                        <FontAwesomeIcon icon={faShare}/>
-                                                    )}
+                                                    {loadingShare ?
+                                                        <span className="loader position-top-buttons"></span>:<span>Share <FontAwesomeIcon icon={faShare}/></span>
+                                                    }
                                                 </button>
                                             </div>
                                         </div>
@@ -876,16 +911,17 @@ const BetslipSubmitForm = React.memo(
                                                     style={{whiteSpace: 'nowrap'}}
                                                     id="place_bet_button_submit"
                                                     className="place-bet-btn bold "
+                                                    disabled={loading}
                                                     title={
                                                         loading ? (
                                                             <div
                                                                 className={'d-flex align-items-center justify-content-center'}
                                                                 style={{whiteSpace: 'nowrap'}}>
-                                                                <div className="custom-loader"></div>
-                                                                PLEASE WAIT
+                                                                <span className="loader"></span>
                                                             </div>
                                                         ) : (
-                                                            'PLACE BET'
+                                                            <span>PLACE BET <FontAwesomeIcon icon={faFireAlt}/>
+</span>
                                                         )
                                                     }
                                                 ></SubmitButton>
@@ -900,7 +936,7 @@ const BetslipSubmitForm = React.memo(
                             type="hidden"
                             name={"user_id"}
                             id={"user_id"}
-                            value={state?.user?.profile_id || ""}
+                            value={user?.profile_id || ""}
                         />
                         <input
                             type="hidden"

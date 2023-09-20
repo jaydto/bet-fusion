@@ -29,6 +29,7 @@
     overflow: hidden;
     width: 95%;
     text-overflow: ellipsis;
+    opacity:0.8;
 }
 .promo-inner-promo-item{
     box-shadow: none !important;
@@ -53,6 +54,7 @@
 .promo-button{
     background: rgb(234, 93, 11);
     min-height: 3rem;
+    opacity:0.9;
 }
 .button-promotions{
     background: var(--gold) !important;
@@ -75,7 +77,9 @@ hr {
     max-width:991px;
     margin:auto;
 }
-
+.promo-image{
+    opacity:0.99;
+}
 @media (max-width: 991px){
     .container.text-data-promotions {
     white-space: normal !important;

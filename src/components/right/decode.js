@@ -1,114 +1,99 @@
 import React, {useEffect, useRef, useState} from 'react';
-import makeRequest from "../utils/fetch-request";
-import {addToSlip} from "../utils/betslip";
 import Notify from "../utils/Notify";
-import {Spinner} from "react-bootstrap";
-import {setLocalStorage} from "../utils/local-storage";
+import {useDispatch, useSelector} from "react-redux";
+import {matchesDecodeBet} from "../../redux/matchesSlice";
 
 
 const DecodeCode = React.memo(
     () => {
-    // const [betslipData, setBetslipShare] = useState({})
-    const inputRef = useRef(null);
-    useEffect(() => {
-        inputRef.current = document.getElementById("code");
-    }, []);
-    const [loading, setLoading] = useState(false)
-    const [code, setCode] = useState("")
-    const handleChanges = (e) => {
-        e.preventDefault()
-        setCode(e.target.value);
-    }
-
-    const handleslip = async (share_code) => {
-        let message = {status: 401, message: 'Betslip share code is required', token: ''}
-
-        if(share_code===""){
-            return  Notify(message)
+        const inputRef = useRef(null);
+        useEffect(() => {
+            inputRef.current = document.getElementById("code");
+        }, []);
+        const [code, setCode] = useState("")
+        const dispatchRedux = useDispatch()
+        const handleChanges = (e) => {
+            e.preventDefault()
+            setCode(e.target.value);
         }
+        const share_bet=useSelector((state)=>state.matchesData.share_bet)
+        const loading=useSelector((state)=>state.matchesData.loading_bet_history)
 
-        let endpoint = "/v1/bs-decode"
+        const handleslip = async (share_code) => {
+            let message = {status: 401, message: 'Betslip share code is required', token: ''}
 
-        let data = {
-            "betslip_share_code": share_code
-        }
-        setLoading(true)
-        await makeRequest({url: endpoint, method: "POST", data: data}).then(([status, result]) => {
-
-
-            if (status === 200) {
-                Object.entries(result?.success).map(([match_id, match]) => {
-                    match.live = Number(match?.live) !== 0
-                    match.bet_type = String(match?.bet_type)
-                    addToSlip(match)
-                })
-
-                setLocalStorage('betslip_share_code', share_code)
-                window.location.href = "/"
-
-            } else {
-                Notify(
-                    {status: 400, message: result?.error, token: ""}
-                )
-
+            if (share_code === "") {
+                return Notify(message)
             }
-            setLoading(false)
 
-        })
+            let data = {
+                "betslip_share_code": share_code
+            }
+            dispatchRedux(matchesDecodeBet(data))
 
-    }
+        }
+        useEffect(()=>{
+            if(share_bet){
+                window.location.reload()
+            }
+
+        },[share_bet])
 
 
-    return (
+        return (
 
-        <React.Fragment>
-            <div className=" ">
-                <div className="card card-radius decode-bg text-light p-0 mt-2">
-                    <div className="card-body p-3" style={{overflow: "hidden"}}>
-                        <form>
-                            <div className="form-group row d-flex justify-content-center ">
-                                <div className="col-md-12">
-                                    <label className={"text-bold h4 text-center mb-4"}> Enter betslip share code to load
-                                        betslip </label>
-                                    <div className={"d-flex flex-column"}>
-                                        <input
-                                            className="text-dark deposit-input form-control col input-field-decode"
-                                            id="code"
-                                            ref={inputRef}
-                                            onChange={(e) => handleChanges(e)}
-                                            name="code"
-                                            type="text"
-                                            value={code}
-                                            style={{borderRadius: "0.3rem"}}
-                                            placeholder='eg. PWXfsxR'
-                                        />
-                                        <div className="form-group row d-flex justify-content-left col mt-4"
-                                             style={{whiteSpace: "nowrap"}}>
-                                            <div className=" d-flex align-items-start">
-                                                <button type={"button"} onClick={() => handleslip(code)}
-                                                        className='btn btn-lg  w-100 deposit-withdraw-button  d-flex align-items-center justify-content-center'
-                                                        style={{backgroundColor: "#FFC107", borderRadius: "0.3rem"}}>
-                                                    <strong>
-                                                        LOAD SLIP
-                                                    </strong>&nbsp;
-                                                    {loading && <div className={` text-white d-block`}>
-                                                        <Spinner animation={'grow'} size={'sm'}/>
-                                                    </div>}
-                                                </button>
+            <React.Fragment>
+                <div className=" ">
+                    <div className="card card-radius decode-bg text-light p-0 mt-2">
+                        <div className="card-body p-3" style={{overflow: "hidden"}}>
+                            <form>
+                                <div className="form-group row d-flex justify-content-center ">
+                                    <div className="col-md-12">
+                                        <label className={"text-bold h4 text-center mb-4"}> Enter betslip share code to
+                                            load
+                                            betslip </label>
+                                        <div className={"d-flex flex-column"}>
+                                            <input
+                                                className="text-dark deposit-input form-control col input-field-decode"
+                                                id="code"
+                                                ref={inputRef}
+                                                onChange={(e) => handleChanges(e)}
+                                                name="code"
+                                                type="text"
+                                                value={code}
+                                                style={{borderRadius: "0.3rem"}}
+                                                placeholder='eg. PWXfsxR'
+                                            />
+                                            <div className="form-group row d-flex justify-content-left col mt-4"
+                                                 style={{whiteSpace: "nowrap"}}>
+                                                <div className=" d-flex align-items-start">
+                                                    <button type={"button"} onClick={() => handleslip(code)}
+                                                            disabled={loading}
+                                                            className='btn btn-lg  w-100 deposit-withdraw-button  d-flex align-items-center justify-content-center'
+                                                            style={{
+                                                                backgroundColor: "#FFC107",
+                                                                borderRadius: "0.3rem",
+                                                                position:'relative'
+                                                            }}>
+                                                        <strong>
+                                                            {loading ? <span className="loader position-top-buttons"></span>:' LOAD SLIP'}
+                                                        </strong>
+
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
+
                                     </div>
 
                                 </div>
+                            </form>
 
-                            </div>
-                        </form>
-
+                        </div>
                     </div>
                 </div>
-            </div>
-        </React.Fragment>
-    );
-});
+            </React.Fragment>
+        );
+    });
 
 export default React.memo(DecodeCode);

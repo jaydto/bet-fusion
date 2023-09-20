@@ -7,75 +7,69 @@ import {LazyLoadImage} from "react-lazy-load-image-component";
 import logo from "../../assets/img/Logo.webp";
 import SidebarMobile from "../sidebar/awesome/SidebarMobile";
 import React, {useCallback, useEffect, useState} from "react";
-import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
-import makeRequest from "../utils/fetch-request";
+import {getFromLocalStorage} from "../utils/local-storage";
+import {configSettings} from "../../redux/dataSlice";
+import {useDispatch, useSelector} from "react-redux";
 
 const Header2 = React.memo(
 	() => {
 		const expand = "md"
-		const [settings,] = useState(getFromLocalStorage('settings'));
+		const dispatchRedux = useDispatch()
+		const appConfigs=useSelector((state)=>state.data.app_config)
+		const [	settings,setSettings] = useState(getFromLocalStorage('settings'));
+
+		useEffect(()=>{
+			setSettings(appConfigs||getFromLocalStorage('settings'))
+		},[appConfigs ])
+
 		const fetchAppConfigurations = useCallback(async () => {
 
 			let cached_settings = getFromLocalStorage('settings');
 
-			let endpoint = "/v1/bet/settings";
-
 			if (!cached_settings) {
-
-				const [result] = await Promise.all([
-					makeRequest({url: endpoint, method: "POST", data: null}),
-				]);
-
-				let [c_status, c_result] = result
-
-
-				if (c_status === 200) {
-					setLocalStorage('settings', c_result?.message, 1800000);
-				}
-
-			} else {
-
+				dispatchRedux(configSettings())
 			}
 		})
 
-		useEffect(() => {
-			const cleanUpFuction = async () => {
-				const abort = new AbortController();
-				await fetchAppConfigurations();
+		const cleanUpFuction = async () => {
+			await fetchAppConfigurations();
 
+			// Custom function to clear settings from localStorage
+			// const clearLocalStorageSettings = () => {
+			//     localStorage.removeItem('settings');
+			//     // Manually call fetchAppConfigurations to update the settings
+			//     fetchAppConfigurations();
+			// };
 
-				// Custom function to clear settings from localStorage
-				const clearLocalStorageSettings = () => {
-					localStorage.removeItem('settings');
-					// Manually call fetchAppConfigurations to update the settings
+			// Listen for the "storage" event to detect changes in "settings" localStorage
+			const handleStorageChange = (event) => {
+				if (event.key === 'settings') {
 					fetchAppConfigurations();
-				};
+				}
+			};
 
-				// Listen for the "storage" event to detect changes in "settings" localStorage
-				const handleStorageChange = (event) => {
-					if (event.key === 'settings') {
-						fetchAppConfigurations();
-					}
-				};
+			// Listen for "beforeunload" event to handle clearing localStorage in the same tab
+			// const handleBeforeUnload = () => {
+			//     clearLocalStorageSettings();
+			// };
 
-				// Listen for "beforeunload" event to handle clearing localStorage in the same tab
-				const handleBeforeUnload = () => {
-					clearLocalStorageSettings();
-				};
+			window?.addEventListener('storage', handleStorageChange);
+			// window?.addEventListener('beforeunload', handleBeforeUnload);
 
-				window?.addEventListener('storage', handleStorageChange);
-				window?.addEventListener('beforeunload', handleBeforeUnload);
+			return () => {
+				// Clean up the event listeners when the component unmounts
+				window?.removeEventListener('storage', handleStorageChange);
+				// window?.removeEventListener('beforeunload', handleBeforeUnload);
 
-				return () => {
-					// Clean up the event listeners when the component unmounts
-					window?.removeEventListener('storage', handleStorageChange);
-					window?.removeEventListener('beforeunload', handleBeforeUnload);
-					abort.abort();
-				};
+			};
+		}
+
+		useEffect(() => {
+			if(settings==undefined){
+				cleanUpFuction()
 			}
-			cleanUpFuction()
-		}, [settings]);
 
+		}, [settings]);
 		return (
 			<div className={''}>
 				<Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav top-section-page" fixed="top"

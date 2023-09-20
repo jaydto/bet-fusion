@@ -1,53 +1,84 @@
-import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import './test.css'
 import "../assets/css/bottomSheet.css"
 import {Link, useLocation} from "react-router-dom";
 import useWindowDimensions from "./header/Dimensions";
 import {StoreContext} from "../context/store"
-import {getBetslip} from "./utils/betslip";
-import useInterval from "../hooks/set-interval.hook";
-import makeRequest from "./utils/fetch-request";
-import Countries from "./countries/Countries";
+import {getBetslip, getJackpotBetslip} from "./utils/betslip";
 import {ToastContainer} from "react-toastify";
-import {marketChoiceOptions} from "./matches";
-import throttle from 'lodash/throttle';
+import MatchList, {marketChoiceOptions, MatchHeaderRow} from "./matches";
 import SkeletonLoaderMobile from "./pages/skeletonLoadersWeb/SkeletonLoaderMobile";
-import Skeleton1 from "./skeleton/skeleton";
-import {getFromLocalStorage, setLocalStorage} from "./utils/local-storage";
+import Countries from "./countries/Countries";
+import {getFromLocalStorage} from "./utils/local-storage";
+import {useDispatch, useSelector} from "react-redux";
+import {
+    matchesPrematch, resetState, setFetching,
+    setInitialLoadingState, setLimit,
+    startFetchingMatches,
+    stopFetchingMatches
+} from "../redux/matchesSlice";
+import {userBalance} from "../redux/authSlice";
+import {setMatchBetslip} from "../redux/bettingSlice";
+import {Button} from "react-bootstrap";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faXmark} from "@fortawesome/free-solid-svg-icons";
+import SkeletonLoaderMore from "./pages/skeletonLoadersWeb/SkeletonLoaderMore";
+import {setState} from "../redux/dataSlice";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
 const CarouselLoader = React.lazy(() => import('./carousel'));
 const MainTabs = React.lazy(() => import('./header/main-tabs'));
-const MatchList = React.lazy(() => import('./matches'));
 const Right = React.lazy(() => import('./right'));
 const SideBar = React.lazy(() => import('./sidebar/awesome/Sidebar'))
 const Index = React.memo(
     () => {
         const location = useLocation();
-        const [user,] = useState(getFromLocalStorage("user"));
+        const userData=useSelector((state)=>state.auth.user)
+        const [user, setUser]=useState(getFromLocalStorage("user"))
         const [tab, setTab] = useState('highlights');
         const [sportID, setSportID] = useState(79);
-        const [loading, setLoading] = useState(true);
         const {height, width} = useWindowDimensions();
-        const [matches, setMatches] = useState([]);
-        const matchSizeRef = useRef(0)
-        const [limit, setLimit] = useState(20);
-        const [producerDown, setProducerDown] = useState(false);
         const [threeWay, setThreeWay] = useState(false);
         const [page,] = useState(1);
-        const [userSlipsValidation, setUserSlipsValidation] = useState();
         const {state, dispatch} = useContext(StoreContext);
-        const [fetching, setFetching] = useState(false)
         const homePageRef = useRef()
         const bottomSheetRef = useRef()
-        const prevLimit = useRef(limit);
-        const [reset, setReset] = useState(0);
+
+        useEffect(()=>{
+            if(userData){
+                setUser(userData||getFromLocalStorage("user"))
+            }
+        }, [userData])
 
         const markets = marketChoiceOptions();
         let sportValue = new URL(window.location).searchParams.get('sport_id')
         let url = new URL(window.location.href)
+        let c_pathname = url.pathname;
         let sub_type = (url.searchParams.get("sub_type_id") || "1")
+        const dispatchRedux=useDispatch()
+        const newMatches=useSelector((state)=>state.matchesData.matches)
+        // const prev_match_size=useSelector((state)=>state.matchesData.prev_match_size)
+        const match_size=useSelector((state)=>state.matchesData.match_size)
+        const producer_down=useSelector((state)=>state.matchesData.producer_down)
+        const user_slip_validation=useSelector((state)=>state.matchesData.user_slip_validation)
+        const loading=useSelector((state)=>state.matchesData.loading)
+        const fetching=useSelector((state)=>state.matchesData.fetching)
+        const limit=useSelector((state)=>state.matchesData.limit)
+        const bottom_sheet=useSelector((state)=>state.data.bottom_sheet)
+        const [newLimit, setNewLimit]=useState(10)
+        // const [newMatches, setNewMatches]=useState()
+        useEffect(()=>{
+            setNewLimit(limit)
+        },[limit])
+
+
+        useEffect(()=>{
+            if(limit!==10){
+                dispatchRedux(stopFetchingMatches())
+                fetchData()
+            }
+        },[newLimit])
         const updateSearchTerm = () => {
             const params = new URL(window.location).searchParams;
             const sportId = params.get('sport_id');
@@ -76,18 +107,15 @@ const Index = React.memo(
             if (!user) {
                 return false;
             }
-            let endpoint = "/v1/balance";
             let udata = {
                 token: user.token
             }
-            makeRequest({url: endpoint, method: "post", data: udata}).then(([_status, response]) => {
-                if (_status == 200) {
-                    let u = {...user, ...response.user};
-                    setLocalStorage('user', u);
-                    dispatch({type: "SET", key: "user", payload: u});
-                    dispatch({type: "SET", key: "placebet", payload: true});
-                }
-            });
+            const userValues={
+                udata:udata,
+                user:user
+            }
+
+            dispatchRedux(userBalance(userValues))
 
         };
 
@@ -96,64 +124,22 @@ const Index = React.memo(
             const abort = new AbortController()
             updateUserOnHistory()
             return () => {
+                dispatchRedux(stopFetchingMatches())
                 abort.abort()
             }
         }, [])
 
 
-        useInterval(() => {
 
-            let endpoint = "/v1/matches";
+        const fetchData = async () => {
 
-            let betslip = findPostableSlip();
-
-            let method = betslip ? "POST" : "GET";
-
-            let tab = location.pathname.replace("/", "") || 'highlights';
-
-            endpoint += "?page=" + (page || 1) + `&limit=${prevLimit.current}&tab=` + tab
-
-            let url = new URL(window.location.href)
-
-            let sport_id = url.searchParams.get('sport_id')
-
-            if (sport_id !== null) {
-                endpoint += " &sport_id=" + sport_id
-            }
-            let sub_types = (url.searchParams.get('sub_type_id') || "1")
-
-            endpoint = endpoint.replaceAll(" ", '')
-            endpoint += `&sub_type_id=` + (sub_types || "1")
-
-            let search_term = url.searchParams.get('search')
-
-            if (search_term !== null) {
-                return
-            }
-            makeRequest({url: endpoint, method: method, data: betslip}).then(([status, result]) => {
-                if (status === 200) {
-                    setMatches(matches?.length > 0 ? {...matches, ...result?.data} : result?.data || result)
-                    matchSizeRef.current = result?.data?.length
-                    if (result?.slip_data) {
-                        setUserSlipsValidation(result?.slip_data)
-                    }
-                    setProducerDown(result?.producer_status === 1);
-                }
-                setFetching(false)
-                setLoading(false)
-            });
-        }, 20000, reset);
-
-        const fetchData = useCallback(async () => {
-            // setFetching(true)
-            // setLoading(true)
             let tab = location.pathname.replace("/", "") || 'highlights';
             let tabInfo = window.location.pathname
             tabInfo = tabInfo.substring(tabInfo.lastIndexOf('/') + 1)
 
             let betslip = findPostableSlip();
 
-            let endpoint = "/v1/matches?page=" + (page || 1) + `&limit=${prevLimit.current}&tab=` + tabInfo || tab;
+            let endpoint = "/v1/matches?page=" + (page || 1) + `&limit=${newLimit}&tab=` + tabInfo || tab;
             let url = new URL(window.location.href)
             let sport_id = url.searchParams.get('sport_id')
 
@@ -170,24 +156,21 @@ const Index = React.memo(
             }
             //splitting before api call
             let sub_types = (url.searchParams.get('sub_type_id') || "1")
+            let market_name = (url.searchParams.get('market_name') || "1x2")
+            let search = (url.searchParams.get('search') ||false)
+            const categories = getFromLocalStorage('sport_categories')
+            let sport = categories?.all_sports?.filter((category) => Number(category.sport_id) === Number(sport_id))
+            const sport_type=sport != null ? sport?.[0]?.sport_name || 'Soccer' : "";
+
 
             endpoint += `&sub_type_id=` + (sub_types || "1")
 
+            dispatchRedux(matchesPrematch({endpoint,method:"POST",data:betslip, search:search, active_sport:sport_type, active_sub_type:market_name})); // Dispatch matchesPrematch with the updated fetchParams
 
-            await makeRequest({url: endpoint, method: "POST", data: betslip}).then(([status, result]) => {
-                if (status == 200) {
-                    setMatches(matches?.length > 0 ? {...matches, ...result?.data} : result?.data || result)
-                    matchSizeRef.current = result?.data?.length
-                    if (result?.slip_data) {
-                        setUserSlipsValidation(result?.slip_data)
-                    }
-                    setProducerDown(result?.producer_status === 1);
-                }
-                setFetching(false)
-                setLoading(false)
-            });
+            // Clear the interval when fetchParams change
+            dispatchRedux(startFetchingMatches({endpoint,method:"POST",data:betslip, interval:20000, prematch:true, search:search, active_sport:sport_type, active_sub_type:market_name}));
 
-        }, []);
+        };
 
         const checkThreeWay = () => {
             let url = new URL(window.location)
@@ -218,109 +201,84 @@ const Index = React.memo(
 
             if (new_tab !== tab && new_tab !=='countries') {
                 setTab(new_tab)
-                setLimit(20)
-                prevLimit.current = 20
-                setLoading(true)
+                const data={
+                    param_fetch_type:"tabs",
+                    tab:new_tab
+                }
+                dispatchRedux(setInitialLoadingState(data))
             }else{
                 setTab(new_tab)
             }
 
 
             if (sportID !== new_sport_id) {
-                setLimit(20)
-                prevLimit.current = 20
                 setSportID(new_sport_id)
-                setLoading(true)
-                setMatches([])
+                const data={
+                    param_fetch_type:"sport_id",
+                    sport_id:new_sport_id
+                }
+                dispatchRedux(setInitialLoadingState(data))
 
             } else {
                 setSportID(new_sport_id)
             }
 
-        })
+        }, [sportID, tab, window.location.href])
+
 
 
         useEffect(() => {
-            setReset(c => c + 1);
+            // stop the fetchInterva;
+            dispatchRedux(stopFetchingMatches())
+            dispatchRedux(resetState("limit"))
+            // Start fetching matches with the new fetchParams
             fetchData();
-
             checkThreeWay()
             let cachedSlips = getBetslip("betslip");
             if (cachedSlips) {
-                dispatch({type: "SET", key: "betslip", payload: cachedSlips});
+                const betslip_data={
+                    betslip_type:"betslip",
+                    data:cachedSlips
+                }
+                dispatchRedux(setMatchBetslip(betslip_data))
             }
-            return () => {
-                setMatches(null);
-            };
+
         }, [window.location.pathname, window.location.search]);
 
 
-        useEffect(() => {
 
-            if (prevLimit.current !== limit && limit > prevLimit.current) {
-                setReset(c => c + 1);
-                prevLimit.current = limit
-            }
-
-        }, [limit])
-
-        useEffect(() => {
-
-            if (prevLimit.current !== 20) {
-                fetchData()
-            }
-
-        }, [prevLimit.current])
-
-
-        // Define throttledHandleScroll outside of useEffect to create it only once
-        const throttledHandleScroll = throttle(() => {
-            const scrollPosition = window.scrollY;
-            const windowHeight = window.innerHeight;
-            const documentHeight = document.documentElement.scrollHeight;
-            const distanceToBottom = documentHeight - (scrollPosition + windowHeight);
-
-            if (!fetching && distanceToBottom <= 500 && matchSizeRef.current >= limit) {
-                // Update the state when the user is close to the bottom
-                setFetching(true);
-                setLimit(prevLimit => prevLimit + 20);
-                setReset(prevReset => prevReset + 1);
-            }
-        }, 100);
-
-        useEffect(() => {
-            // Add the throttled event listener
-            window?.addEventListener('scroll', throttledHandleScroll);
-
-            // Clean up the event listener when the component unmounts
-            return () => {
-                window?.removeEventListener('scroll', throttledHandleScroll);
-            };
-        }, [throttledHandleScroll, fetching, limit, reset, matchSizeRef]);
 
         useEffect(() => {
             /**
              * Alert if clicked on outside of element
              */
             function handleClickOutside(event) {
-                if (bottomSheetRef.current && !bottomSheetRef.current.contains(event.target)) {
-                    dispatch({type: "SET", key: "bottomSheet", payload: false});
+                if (
+                    bottomSheetRef.current &&
+                    !bottomSheetRef.current.contains(event.target)
+                ) {
+                    dispatchRedux(setState('bottom_sheet', false))
+
                 }
+
             }
 
             // Bind the event listener
             document.addEventListener("mousedown", handleClickOutside);
+            // document.addEventListener("click", handleClickOutside);
             return () => {
                 // Unbind the event listener on clean up
                 document.removeEventListener("mousedown", handleClickOutside);
+
             };
-        }, [bottomSheetRef]);
+        }, [bottomSheetRef, bottom_sheet]);
 
         const showBottomSheet = () => {
-            dispatch({type: "SET", key: "bottomSheet", payload: true});
+            dispatchRedux(setState('bottom_sheet', true))
         }
         const collapseBottomSheet = () => {
-            dispatch({type: "SET", key: "bottomSheet", payload: false});
+            dispatchRedux(setState('bottom_sheet', false))
+
         }
 
         const [scrolledPast, setScrolledPast] = useState(false);
@@ -359,23 +317,49 @@ const Index = React.memo(
         let sportId = new URLSearchParams(window.location.search).get('sport_id') || '79'
         const filteredMarkets = markets.find((market) => market.sport_id === sportId);
 
+        const fetchAdditionalData=()=>{
+            if (limit>match_size){
+                console.log("we have reached end of match List")
+            }else{
+                dispatchRedux(setLimit(10))
+                dispatchRedux(setFetching("fetching",true))
+            }
+
+        }
+        const setFilterPicked=(filters)=>{
+            const data={
+                param_fetch_type:"filters",
+                filters:filters
+            }
+            dispatchRedux(setInitialLoadingState(data))
+        }
+
+        useEffect(() => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }, []);
+
+
         return (
             <div className={'flex-item'}>
 
-                <div className="item4">
+                <div className={bottom_sheet?'pointer-event-handler item4':"item4"}>
                     <Header scrollPosition={scrollPosition}/>
                     <ToastContainer/>
                 </div>
                 <div className="flex-container">
-                    <div className="item1" style={state?.sidebarToggled ? {width: '12%'} : {}}><SideBar
+                    <div className={bottom_sheet?'pointer-event-handler item1':"item1"} style={state?.sidebarToggled ? {width: '12%'} : {}}><SideBar
                         loadCompetitions/></div>
-                    <div className="item2">
-                        <div className="gz home match-overflow ">
+                    <div className={bottom_sheet?'pointer-event-handler item2':`item2`} style={bottom_sheet?{opacity:'0.5',background:'#13171c'}:{}} >
+                        <div className="gz home match-overflow " >
                             <div className="homepage mobile-full-height" ref={homePageRef}
                                  style={width < 991 ? {height: `${height}px`, overflowY: 'auto'} : {}}>
+
                                 <div
                                     className={'filters-navigation gap-3 d-flex justify-content-between align-items-center'}>
-                                    <MainTabs tab={location.pathname.replace("/", "")}/>
+                                    <MainTabs tab={location.pathname.replace("/", "")} competition={null}/>
                                     <div className={'d-flex justify-content-between my-3 my-filter-button'}>
                                         {filteredMarkets?.default_markets.length > 0 &&
                                             <div className="myButton markets-button"
@@ -384,22 +368,24 @@ const Index = React.memo(
                                     </div>
                                 </div>
                                 <CarouselLoader/>
+                                {(newMatches&&tab!=="countries")&&<MatchHeaderRow live={false} first_match={newMatches ? newMatches[0] : {}} loading={loading}/>}
                                 {loading ?
                                     <div className={`text-center mt-2 text-white d-block`}>
-                                        {tab == 'countries' ? <Skeleton1/> : <SkeletonLoaderMobile/>}
-                                    </div> : tab == 'countries' ? <Countries/> :
+                                        {tab === 'countries' ? <SkeletonLoaderMore/> : <SkeletonLoaderMobile/>}
+                                    </div> : tab === 'countries' ? <Countries/> :
                                         <div>
                                             <MatchList
                                                 live={false}
                                                 fetching={fetching}
-                                                matches={matches}
-                                                pdown={producerDown}
+                                                matches={newMatches}
+                                                pdown={producer_down}
                                                 three_way={threeWay}
+                                                onEndReached={fetchAdditionalData}
 
                                             />
                                             <div
                                                 className={`text-center mt-2 text-white ${fetching ? 'd-block' : 'd-none'}`}>
-                                                {tab == 'countries' ? <Skeleton1/> :<SkeletonLoaderMobile/>}
+                                                {tab === 'countries' ? <SkeletonLoaderMore/> :<SkeletonLoaderMobile/>}
                                             </div>
                                         </div>
 
@@ -408,29 +394,46 @@ const Index = React.memo(
                             </div>
                         </div>
                     </div>
-                    <div className="item3">
-                        <Right betslipValidationData={userSlipsValidation}
-                               jackpotData={matches?.meta}
-                               test={true}/>
-                        <div className={`${state?.bottomSheet ? 'bottom-sheet show ' : 'd-none'}`} ref={bottomSheetRef}>
+                    <div className={"item3"}>
+                        {
+                            bottom_sheet&&width<991?"":<Right betslipValidationData={user_slip_validation}
+                                                                    jackpotData={newMatches?.meta}
+                                                                    test={true}/>
+                        }
+
+                        <div className={`${bottom_sheet ? 'bottom-sheet show ' : 'd-none'}`} >
                             <div className="sheet-overlay"></div>
-                            <div className="content">
-                                <div className="header">
+                            <div  ref={bottomSheetRef} className="content">
+                                <div className="header d-flex justify-content-between">
                                     <div className="drag-icon"><span></span></div>
-                                </div>
-                                <div className="body d-flex flex-column gap-4">
-                                    {filteredMarkets?.default_markets?.map((market) => (
-                                        <Link
-                                            key={market?.id}
-                                            to={`/highlights?sport_id=79&sub_type_id=${market?.id}&market_name=${market?.name}`}
-                                            className={`markets-default ${sub_type === market?.id && 'active-market-display'}`}
-                                            onClick={collapseBottomSheet}>
-                                            {market?.market_name}
-                                        </Link>
-                                    ))}
+                                    <FontAwesomeIcon  icon={faXmark} onClick={()=>{collapseBottomSheet()}} className={'filter-close-icon'}/>
 
                                 </div>
-                            </div>
+                                <div className="body d-flex flex-column gap-4">
+                                    {filteredMarkets?.default_markets?.map((market,index) => {
+
+                                        const tab_start='highlights'
+
+                                        const pathnameWithLeadingSlash = c_pathname.startsWith('/') ?c_pathname.length==1?tab_start: c_pathname : `/${tab_start}`;
+
+
+                                        return( <Link
+                                            key={index}
+                                            to={`${pathnameWithLeadingSlash}?sport_id=79&sub_type_id=${market?.id}&market_name=${market?.name}`}
+                                            className={`w-100 markets-default bottom-align ${sub_type === market?.id && 'active-market-display'}`}
+                                            onClick={() => {
+                                                collapseBottomSheet();
+                                                setFilterPicked(market?.market_name)
+                                            }}>
+                                            {market?.market_name}
+                                        </Link>)
+                                    })}
+
+                                </div>
+                                <div style={{position:'relative'}}>
+                                    <Button onClick={()=>{collapseBottomSheet()}} className={"text-light bold color-inherit btn border-0 cancel-filter-markets"}>Cancel</Button>
+                                </div>
+                            </div >
                         </div>
                     </div>
 

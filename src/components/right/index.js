@@ -2,8 +2,6 @@ import React, {useContext, useEffect, useState} from 'react';
 import QuickLogin from './quick-login';
 import CompanyInfo from './company-info';
 import BetSlip from './betslip';
-import {faTimes} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {Badge} from "react-bootstrap";
 import Kironslip from "./kironslip";
 import MobileMenu from "../mobile-menu";
@@ -11,6 +9,9 @@ import useWindowDimensions from "../header/Dimensions";
 import JackpotMenu from "../mobile-menu/jackpotMenu";
 import {StoreContext} from "../../context/store";
 import {getFromLocalStorage} from "../utils/local-storage";
+import {useDispatch, useSelector} from "react-redux";
+import {sportLiveCount, startFetchingLiveCount, stopFetchingLiveCount} from "../../redux/matchesSlice";
+import {setState} from "../../redux/dataSlice";
 
 const AlertMessage = React.memo(
     (props) => {
@@ -32,17 +33,43 @@ const Right = React.memo(
         const [betSlipMobile, ] = useState(false)
         const pathname = window.location.pathname
         const {state, dispatch}=useContext((StoreContext))
-        const [settings,] = useState(getFromLocalStorage("settings"));
+        const appConfigs=useSelector((state)=>state.data.app_config)
+        const [settings,setSettings] = useState(getFromLocalStorage('settings'));
+        const dispatchRedux=useDispatch()
+        const stake_value=useSelector((state)=>state.data.stake_value)
+
+
+        useEffect(()=>{
+            setSettings(appConfigs||getFromLocalStorage('settings'))
+        },[appConfigs ])
+
+        const fetchLiveData = () => {
+            dispatchRedux(sportLiveCount())
+            dispatchRedux(startFetchingLiveCount({interval:30000}) )
+
+        };
 
         useEffect(() => {
-            let value=state?.userStake || getFromLocalStorage("userStake") || Number(settings?.sportsBookLimits?.defaultBetAmount)
+            const abortController = new AbortController();
+            dispatchRedux(stopFetchingLiveCount())
+            fetchLiveData();
+
+            return () => {
+                abortController.abort();
+            };
+        }, []);
+        useEffect(() => {
+            let value=stake_value || getFromLocalStorage("userStake") || Number(settings?.sportsBookLimits?.defaultBetAmount)
             if(isNaN(value)){
-                dispatch({type: "SET", key: "stakeValue", payload: 0});
+                dispatchRedux(setState('stake_value', 0))
+                // dispatch({type: "SET", key: "stakeValue", payload: 0});
             }else{
-                dispatch({type: "SET", key: "stakeValue", payload: value});
+                dispatchRedux(setState('stake_value', value))
+
+                // dispatch({type: "SET", key: "stakeValue", payload: value});
             }
 
-        }, [state?.settings])
+        }, [settings])
 
         const CountBadge=React.memo(
             ()=>{

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {
     Accordion,
     AccordionItem,
@@ -8,6 +8,9 @@ import {
 } from 'react-accessible-accordion';
 import '../../test.css'
 import 'react-accessible-accordion/dist/fancy-example.css';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
+import {useNavigate} from "react-router-dom";
 
 const Header = React.lazy(()=>import('../../header/header'));
 const SideBar = React.lazy(()=>import('../../sidebar/awesome/Sidebar'));
@@ -17,19 +20,39 @@ const Right = React.lazy(()=>import('../../right/index'));
 
 
 const CookiePolicy = () => {
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }, []);
+    const navigate=useNavigate()
 
     return (
         <div className={'flex-item'}>
             <div className="item4"><Header/></div>
-            <div className="flex-container">
+            <div className="flex-container height-default-body">
                 <div className="item1"> <SideBar loadCompetitions/></div>
                 <div className="item2" style={{width:'100%'}}>
                     <div className="gz home w-100">
                         <div className="homepage">
                             <div className='col-md-12 primary-bg p-4 text-center'>
-                                <h4 className="inline-block">
+                                <div className={'d-flex align-items-center'}>
+                                            <span className={'spacing-backbutton remove-backbutton-on-desktop'}
+                                                  onClick={() => navigate('/')}>
+                                             <FontAwesomeIcon icon={faAngleLeft} style={{
+                                                 fontSize: "24px",
+                                                 color: 'var(--light)',
+                                                 fontWeight: '700',
+                                                 opacity: '0.7'
+                                             }}/>
+                                            </span>
+                                    <h4 className="inline-block">
                                     COOKIE POLICY
                                 </h4>
+                                </div>
+
+
                             </div>
                             <div className="col-md-12 mt-2 text-white p-2 ">
                                 <p>
@@ -108,7 +131,7 @@ const CookiePolicy = () => {
                         </div>
                     </div>
                 </div>
-                <div className="item3"><Right  test={true}/></div>
+                <div className="item3 mobile-remove"><Right  test={true}/></div>
 
             </div>
             <div className="item6"><div className={"footer-mobile-none"}>

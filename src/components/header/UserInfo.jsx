@@ -7,27 +7,34 @@ import React, {useContext, useEffect, useState} from "react";
 import {getFromLocalStorage} from "../utils/local-storage";
 import {StoreContext} from "../../context/store";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
+import {useSelector} from "react-redux";
 
 export const UserInfo = React.memo(
     (props) => {
         const {profile} = props
-        const user = getFromLocalStorage('user')
         const pathname = window.location.pathname;
         const {state, dispatch} = useContext(StoreContext);
         const gaEventTracker = useAnalyticsEventTracker('Navigation');
         const [isOpen, setIsOpen] = useState(false);
-        const [balance, setBalance] = useState(state?.user?.balance || user?.balance)
+        const userData = useSelector((state) => state.auth.user)
 
-        useEffect(() => {
-            setBalance(state?.user?.balance || user?.balance)
-            dispatch({type: "SET", key: "placebet", payload: false})
-        }, [user?.balance, state?.placebet])
+        const [user, setUser] = useState(getFromLocalStorage("user"))
+
+        useEffect(()=>{
+            if(userData){
+                setUser(userData||getFromLocalStorage("user"))
+
+            }
+        }, [userData,getFromLocalStorage("user") ])
+
+
+
+
 
         const toggle = () => {
             setIsOpen(!isOpen);
         };
         const urlPath = window.location.pathname
-        const searchParam = window.location.search
         const showBalance = (!urlPath.includes("nare-games") && !urlPath.includes("gameplay") && !urlPath.includes("smart-play"))
 
         const showSearchBar = () => {
@@ -63,7 +70,7 @@ export const UserInfo = React.memo(
                                                                                 className={"text-warning"}/>
                                                </span>&nbsp;
                                               {/*todo here user balance*/}
-                                              KSH {formatNumber(balance) || 0.0}
+                                              KSH {formatNumber(user?.balance) || 0.0}
                                           </span>
                             </div>
                         </div>}

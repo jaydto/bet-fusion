@@ -18,19 +18,20 @@ const SkeletonLoaderMobile = React.memo(
                     <div className="movie--isloading mobile-web">
                         <div className="loading-content mobile-web">
                             <div className={'loading-text-container d-flex flex-column justify-content-between mobile-web'}>
-                                <div className="loading-sub-text mobile-web" style={backgroundLoader}></div>
                                 <div className="loading-main-text mobile-web" style={backgroundLoader}></div>
+                                <div className="loading-sub-text mobile-web" style={backgroundLoader}></div>
                                 <div className="loading-sub-text mobile-web" style={backgroundLoader}></div>
                             </div>
 
                             <div className={'d-flex w-100 justify-content-end align-items-end flex-column'}>
-                                <div className="loading-main-text mobile-web" style={backgroundLoader}></div>
+                                <div className="loading-sub-text mb-3 mobile-web" style={backgroundLoader}></div>
                                 <div className={'d-flex w-100 my-3 align-items-end justify-content-end'}>
                                     <div className="loading-btn mobile-web" style={backgroundLoaderbtn}></div>
                                     <div className="loading-btn mobile-web" style={backgroundLoaderbtn}></div>
                                     <div className="loading-btn mobile-web" style={backgroundLoaderbtn}></div>
                                 </div>
-                                <div className="loading-sub-text mb-3 mobile-web" style={backgroundLoader}></div>
+                                <div className="loading-main-text mobile-web" style={backgroundLoader}></div>
+
                             </div>
 
 

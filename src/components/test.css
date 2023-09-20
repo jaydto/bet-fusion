@@ -17,7 +17,7 @@
     background: var(--betnare-primary);
     /* border: 3px solid #ffcc80; */
     border-radius: 5px;
-    padding: 6px 0px ;
+    padding: 3px 0px ;
     height: max-content;
     /* overflow-y: scroll; */
 }
@@ -56,6 +56,7 @@
     flex-grow:0;
     align-self:auto;
     max-width:25%;
+    opacity:0.9;
 }
 .item1.live{
     min-width:18%;
@@ -122,6 +123,9 @@
     }
 }
 @media (min-width:992px){
+    .item2.live-top{
+        margin-top:1rem;
+    }
     .item3 {
         min-width: 25%;
         max-width: 25%;

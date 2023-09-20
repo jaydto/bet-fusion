@@ -3,48 +3,27 @@ import {Menu, MenuItem, ProSidebar, SidebarContent, SubMenu,} from "react-pro-si
 import "react-pro-sidebar/dist/css/styles.css";
 import "./countries.css";
 import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
-import makeRequest from "../utils/fetch-request";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {LazyLoadImage} from "react-lazy-load-image-component";
+import { useSelector} from "react-redux";
+import {Link} from "react-router-dom";
 
 const Countries = React.memo(
-    (props) => {
+    () => {
         const gaEventTracker = useAnalyticsEventTracker("Counties Page");
         const [, setCollapsed] = useState(false);
 
-        const [sport, setSport] = useState(79);
+        const [sport, ] = useState(79);
 
-        const [competitions, setCompetitions] = useState(props?.competitions);
+        const availableCategories=useSelector((state)=>state.matchesData.sport_categories)
 
-        const fetchData = useCallback(async () => {
-            let cached_competitions = getFromLocalStorage("sport_categories");
-            let endpoint = "/v1/categories";
+        const [competitions, setCompetitions] = useState(getFromLocalStorage("sport_categories"));
 
-            if (!cached_competitions) {
-                const [competition_result] = await Promise.all([
-                    makeRequest({ url: endpoint, method: "get", data: null }),
-                ]);
-                let [c_status, c_result] = competition_result;
+        useEffect(()=>{
+            setCompetitions(availableCategories||getFromLocalStorage("sport_categories"))
 
-                if (c_status === 200) {
-                    setCompetitions(c_result);
-                    setLocalStorage("sport_categories", c_result);
-                } else {
-                    fetchData();
-                }
-            } else {
-                setCompetitions(cached_competitions);
-            }
-        }, []);
+        },[availableCategories])
 
-        useEffect(() => {
-            const abortController = new AbortController();
-            fetchData();
-
-            return () => {
-                abortController.abort();
-            };
-        }, []);
 
         const [width, setWidth] = useState(window.innerWidth);
 
@@ -58,7 +37,7 @@ const Countries = React.memo(
         };
         let sport_id = new URL(window.location.href).searchParams.get("sport_id");
 
-
+        // this implementtion will be done for showing which is the current active match selection
         const getActiveSport = (matchId) => {
             return Number(sport || 79) === Number(matchId);
         };
@@ -74,20 +53,12 @@ const Countries = React.memo(
             topLeagues = false,
             flag=false
         ) => {
-
-            // if (flag){
-            //     let splitString = sport_name.split(" ");
-            //     sport_name = (splitString[0].substr(0, 2)).toString().toLowerCase();
-            //
-            // }
-
             let sport_image;
             try {
                 sport_image = topLeagues
-                    ? require(`../../assets/img/${folder}/${sport_name}.svg`)
-                    : require(`../../assets/img/${folder}/${sport_name}.svg`);
+                    ?`https://storage.googleapis.com/nareimages/flags/${sport_name}.svg`
+                    :`https://storage.googleapis.com/nareimages/flags/${sport_name}.svg`;
             } catch (error) {
-                // sport_image = require(`../../assets/img/${folder}/${default_img}.svg`);
             }
             return sport_image;
         };
@@ -170,10 +141,10 @@ const Countries = React.memo(
                                                     {country?.competitions.map((league, leagueKey) => (
                                                         <MenuItem
                                                             key={`${leagueKey}_league`}
-                                                            className="100vw"
+                                                            className="100vw league-left-spacing"
                                                         >
-                                                            <a
-                                                                href={`/competition/${competition.sport_id}/${
+                                                            <Link
+                                                                to={`/competition/${competition.sport_id}/${
                                                                     country.category_id
                                                                 }/${league.competition_id}?sport_id=${
                                                                     competition.sport_id
@@ -189,7 +160,7 @@ const Countries = React.memo(
                                                                 }}
                                                             >
                                                                 {league.competition_name}
-                                                            </a>
+                                                            </Link>
                                                         </MenuItem>
                                                     ))}
                                                 </SubMenu>

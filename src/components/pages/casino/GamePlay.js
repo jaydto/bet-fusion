@@ -9,6 +9,8 @@ import {getFromLocalStorage} from "../../utils/local-storage";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 import FullscreenButton from "../../shared/FullScreenButton";
 import useWindowDimensions from "../../header/Dimensions";
+import {useDispatch, useSelector} from "react-redux";
+import {casinoCreatePlayer, casinoGamePlay} from "../../../redux/virtualsSlice";
 
 
 const GamePlay = React.memo(
@@ -19,22 +21,19 @@ const GamePlay = React.memo(
 
         const [user, ] = useState(getFromLocalStorage("user"));
 
-        const [gameUrl, setGameUrl] = useState('')
 
         const [isLoggedIn] = useState(getFromLocalStorage('user'))
 
-        const [gameUrlLoaded, setGameUrlLoaded] = useState(false)
 
         const pathname = window.location.pathname
+        const dispatchRedux=useDispatch()
+        // const loading=useSelector((state)=>state.virtuals.loading)
+        const gameUrlLoaded=useSelector((state)=>state.virtuals.fetching)
+        const gameUrl=useSelector((state)=>state.virtuals.casino_game_url)
 
         const createPlayer = async () => {
+            dispatchRedux(casinoCreatePlayer())
 
-            let endpoint = '/v1/casino/create/player'
-
-            let method = "GET"
-
-            await makeRequest({url: endpoint, method: method}).then(([status, result]) => {
-            });
         }
 
         const { width} = useWindowDimensions();
@@ -139,29 +138,17 @@ const GamePlay = React.memo(
             let endpoint = live === '0' ? `/v1/casino/game/demo-url?game-id=${game_id}` : `/v1/casino/game/url?game-id=${game_id}`
 
             let method = "GET"
-
-            await makeRequest({url: endpoint, method: method}).then(([status, result]) => {
-                if (status === 200) {
-                    const data = {
-                        user_id: user?.profile_id,
-                        event:'Casino Game',
-                        game_id: game_id,
-                    }
-                    gaEventTracker("Playing Casino Game", data)
-                    setGameUrl(result?.result.gameURL)
-                    setGameUrlLoaded(true)
-
-                }else{
-                    const data={
-                        user_id:user?.profile_id,
-                        event:'Casino Game Launch Failed',
-                        game_id:game_id,
-                        message:"Game Launch Failed"
-                    }
-                    gaEventTracker("Playing Casino Game Failed",data)
-
-                }
-            });
+            const data={
+                endpoint:endpoint,
+                method:method
+            }
+            dispatchRedux(casinoGamePlay(data))
+            // const data = {
+            //     user_id: user?.profile_id,
+            //     event:'Casino Game',
+            //     game_id: game_id,
+            // }
+            // gaEventTracker("Playing Casino Game", data)
         }
 
         useEffect(() => {
@@ -172,7 +159,6 @@ const GamePlay = React.memo(
                 window.location.href = "/casino"
 
         }, [])
-        const navigate=useNavigate()
         return (
             <>
                 <Header/>

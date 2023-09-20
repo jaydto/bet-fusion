@@ -1,4 +1,4 @@
-// reducers.js (or reducers.ts for TypeScript)
+// reducers.js
 import { combineReducers } from "redux";
 import initialState from './state'
 
@@ -8,6 +8,8 @@ import authReducer from "./authSlice"
 import nareLeagueReducer from "./nareLeague"
 import bettingReducer from "./bettingSlice"
 import matchesReducer from "./matchesSlice"
+import virtualsReducer from './virtualsSlice';
+
 
 const rootReducer = combineReducers({
     // Add your individual reducers here
@@ -15,7 +17,9 @@ const rootReducer = combineReducers({
     auth: authReducer,
     nareLeague: nareLeagueReducer,
     betting: bettingReducer,
-    matchesData:matchesReducer
+    matchesData:matchesReducer,
+    virtuals: virtualsReducer,
+
 });
 
 export default (state = initialState, action) => rootReducer(state, action);

@@ -17,7 +17,6 @@
 }
 
 .contain {
-    height: 550px; /* Set the desired height for the container */
     overflow: auto; /* Enable scrolling when content exceeds container height */
     overflow: overlay;
     width: 100%;
@@ -83,9 +82,15 @@
     font-size: .7em;
     color: rgb(155, 152, 152);
 }
+.kiron-bet-history-tabs li button{
+    color:var(--light) !important
+}
 
-#status{
-    color: rgb(255, 255, 255);
+#status {
+    color: var(--dark);
+    font-size: var(--font-size-small-variation1);
+    font-weight: var(--font-weight4);
+    max-height: 18px;
 }
 
 
@@ -208,6 +213,9 @@
 }
 .kiron-tab-container{
     background:var(--dark);
+}
+.kiron-tabs-padding{
+    border-right:thin solid var(--bet-history);
 }
 @media (max-width: 991px) and (min-width: 768px){
     .kiron-bet-history-tabs{

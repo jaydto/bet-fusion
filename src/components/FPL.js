@@ -57,15 +57,15 @@ const FPL = React.memo(() => {
                                     </div>
 
                                     <p><strong className={'fpl-code-link-help'}>How It Works</strong></p>
-                                    <p>1. stadium: Join the League: Create your Fantasy Premier League team on the
+                                    <p>1. Join the League: Create your Fantasy Premier League team on the
                                         official FPL website.</p>
-                                    <p>2. scroll: Enter the BetNare League: Use the private code [XXXXXX] to join
+                                    <p>2. Enter the BetNare League: Use the private code [cwo7vw] to join
                                         the exclusive BetNare league.</p>
-                                    <p>3. soccer: Build Your Squad: Select your dream team of football stars while
+                                    <p>3. Build Your Squad: Select your dream team of football stars while
                                         staying within the budget.</p>
-                                    <p>4. Score Points: Earn points based on your players' real-life performance in
+                                    <p>4. Earn points based on your players' real-life performance in
                                         Premier League matches.</p>
-                                    <p>5. Win Big: Climb the leaderboard and secure your spot among the top 3 to win
+                                    <p>5. Climb the leaderboard and secure your spot among the top 3 to win
                                         cash prizes every game week. Plus, aim for the highest monthly points to
                                         seize the grand monthly prize!.</p>
                                     <p><strong className={'fpl-code-link-help'}>WEEKLY CASH PRIZES</strong></p>
@@ -88,7 +88,7 @@ const FPL = React.memo(() => {
                                             2. Create your fantasy football squad within the budget.
                                         </li>
                                         <li>
-                                            3. Join the BetNare League using the private code [XXXXXX].
+                                            3. Join the BetNare League using the private code [cwo7vw].
                                         </li>
                                         <li>
                                             4. Stay updated with real-time scores and player performances.
@@ -100,7 +100,7 @@ const FPL = React.memo(() => {
                                             <p>1. Participants must be registered users of BetNare and over 18 years of age.</p>
                                         </li>
                                         <li>
-                                            <p> 2. Only participants who have joined the official BetNare league with the private code CWO7VW will be eligible for prizes.</p>
+                                            <p> 2. Only participants who have joined the official BetNare league with the private code [CWO7VW] will be eligible for prizes.</p>
                                         </li>
                                         <li>
                                             <p>3.Only participants who are active on our platform will be eligible for the prizes</p>
@@ -109,7 +109,7 @@ const FPL = React.memo(() => {
                                             <p>4. Weekly prizes will be awarded to the top participant with the highest points for that game week </p>
                                         </li>
                                         <li>
-                                            <p> 5.  In the event of a tie, the participant who registered for the league earlier will be given preference.</p>
+                                            <p> 5. In the event of a tie, the participant who registered for the league earlier will be given preference.</p>
                                         </li>
                                         <li>
                                             <p> 6. Cash prizes will be credited to the winners' BetNare accounts and can be withdrawn or used for betting activities.</p>
@@ -118,14 +118,14 @@ const FPL = React.memo(() => {
                                             <p>7. BetNare reserves the right to modify, suspend, or cancel the competition or any part of it at any time.</p>
                                         </li>
                                         <li>
-                                            <p> 8.  By participating, participants agree to allow BetNare to use their usernames and images for promotional purposes.</p>
+                                            <p> 8. By participating, participants agree to allow BetNare to use their usernames and images for promotional purposes.</p>
                                         </li>
                                         <li>
                                             <p> 9. This promotion is subject to the terms and conditions of BetNare.</p>
                                         </li>
                                     </ol>
                                     <p><strong className={'fpl-code-link-help'}>NOTE:</strong>Don't miss your chance to play, compete, and win with the BetNare Fantasy Premier League Challenge.
-                                        Join the league now and make every Premier League match even more exhilarating! :</p>
+                                        Join the league now and make every Premier League match even more exhilarating! </p>
                                 </div>
                             </div>
 

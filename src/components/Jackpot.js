@@ -265,9 +265,9 @@ const Jackpot = React.memo(
 
                                         {/*<JackpotHeader jackpot={matches?.meta}/>*/}
 
-                                        <div className="matches full-mobile sticky-top container">
+                                        <div className="matches full-mobile sticky-top container w-00">
                                             <div
-                                                className="top-matches d-flex position-sticky shadow-lg p-4 mt-5 text-white ">
+                                                className="top-matches d-flex position-sticky shadow-lg p-4 mt-5 text-white w-100">
                                                 <div className="col-md-3 col-sm-3 bold">
                                                     TIME
                                                 </div>

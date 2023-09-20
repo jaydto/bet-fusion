@@ -26,10 +26,11 @@ const OldBetDetails = React.memo(
         // Empty dependency array to run the effect only once when the component mounts
         const WinLostTotal = () => {
             const data = OldBetDetails
-            const won = data?.filter(bet => bet.bet_status === '5')?.length;
-            const lost = data?.filter(bet =>
-                bet.bet_status === '3'
+            const won = data[0]?.betslips?.filter(bet => bet.win === '1')?.length;
+            const lost = data[0]?.betslips?.filter(bet =>
+                bet.win === '0'
             )?.length;
+
 
             const total = data[0].betslips?.length;
 

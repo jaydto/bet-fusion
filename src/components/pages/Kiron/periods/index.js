@@ -13,7 +13,6 @@ import {
 } from '../../../../redux/nareLeague';
 
 export const getTime = (dateTime) => {
-    console.log("dateTime", dateTime);
 
     // Split the input date-time string into date and time parts
     const [datePart, timePart] = dateTime.split(' ');
@@ -25,7 +24,6 @@ export const getTime = (dateTime) => {
     const [year, month, day] = datePart.split('-').map(Number);
     const start = new Date(year, month - 1, day, hours, minutes); // Note: Months are 0-indexed
 
-    console.log("start", start);
 
     // Format the time string with just hours and minutes
     const formattedHour = String(start.getHours()).padStart(2, '0');
@@ -33,7 +31,6 @@ export const getTime = (dateTime) => {
 
     const startTimeString = `${formattedHour}:${formattedMinute}`;
 
-    console.log("startTimeString", startTimeString);
 
     return startTimeString;
 }

@@ -108,22 +108,6 @@ const Promo = () => {
                                                         className={"rounded  "}
                                                     />
                                                 )}
-                                                {item?.heading && <span>
-                          <u
-                              className="bold border-bottom d-flex justify-content-center"
-                              style={{color: "#ea5d0b"}}
-                          >
-                            {item?.heading}
-                          </u>
-                        </span>}
-                                                {item?.intro && <p>
-                                                    {item?.intro.split("\n").map((line, index) => (
-                                                        <React.Fragment key={index}>
-                                                            {line}
-                                                            <br/>
-                                                        </React.Fragment>
-                                                    ))}
-                                                </p>}
                                                 <ul>
                                                     {item?.instructions &&
                                                         <p
@@ -139,14 +123,30 @@ const Promo = () => {
                                                         </React.Fragment>
                                                     ))}</>}
                                                 </ul>
+                                                {item?.heading && <span>
+                                              <u
+                                                  className="bold border-bottom d-flex justify-content-center"
+                                                  style={{color: "#ea5d0b"}}
+                                              >
+                                                {item?.heading}
+                                              </u>
+                                            </span>}
+                                                {item?.intro && <p>
+                                                    {item?.intro.split("\n").map((line, index) => (
+                                                        <React.Fragment key={index}>
+                                                            {line}
+                                                            <br/>
+                                                        </React.Fragment>
+                                                    ))}
+                                                </p>}
                                                 {item?.headingBooster && <span>
-                          <u
-                              className="bold border-bottom d-flex justify-content-center"
-                              style={{color: "#ea5d0b"}}
-                          >
-                            {item?.headingBooster}
-                          </u>
-                        </span>}
+                                                      <u
+                                                          className="bold border-bottom d-flex justify-content-center"
+                                                          style={{color: "#ea5d0b"}}
+                                                      >
+                                                        {item?.headingBooster}
+                                                      </u>
+                                                 </span>}
                                                 <ul>
                                                     {item?.boosterDescription && (
                                                         <>

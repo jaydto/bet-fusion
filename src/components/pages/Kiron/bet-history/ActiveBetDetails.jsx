@@ -140,9 +140,9 @@ const BetDetails = React.memo(
                                 </div>
                             </div>}
                             <div className="d-flex options-details-history w-100 justify-content-between">
-                                <div className="d-flex">
+                                {index === 0 && ( <div className="d-flex">
                                     Events (Odds {totalOdds()})
-                                </div>
+                                </div>)}
                                 {index === 0 && (
                                     <div className="d-flex text-warning bold d-flex gap-2 align-items-center"
                                          onClick={() => toggleCollapseAll(betDetails)}>

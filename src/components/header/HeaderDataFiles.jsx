@@ -19,7 +19,13 @@ const navigationConfig = {
 		'smart-play',
 		'gameplay',
 		'fpl',
-		'FPL'
+		'FPL',
+		'how-to-play',
+		'cookie-policy',
+		'privacy-policy',
+		'dispute-resolution',
+		'anti-money-laundering',
+		'terms-and-conditions'
 	],
 	showDownload: [
 		'nare-games',
@@ -49,7 +55,12 @@ const navigationConfig = {
 		'casino',
 		'gameplay',
 		'fpl',
-		'FPL'
+		'FPL',
+		'how-to-play',
+		'privacy-policy',
+		'cookie-policy',
+		'dispute-resolution',
+		'anti-money-laundering'
 	]
 };
 

@@ -39,7 +39,7 @@ const ResponsibleGambling = React.memo(
         return (
             <>
                 <Header/>
-                <div className={(width <= 575 ? state?.user ? "user_logged" : "amt" : "amt")}>
+                <div className={(width <= 575 ? state?.user ? "user_logged responsible-gambling" : "amt" : "amt")}>
                     <div className="d-flex flex-row justify-content-between">
                         <SideBar loadCompetitions/>
                         <div className="gz home">

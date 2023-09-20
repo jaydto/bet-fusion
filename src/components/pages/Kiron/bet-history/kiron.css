@@ -213,7 +213,10 @@
     }
 }
 .kiron-tab-container{
-    background:var(--betnare-body-bg);
+    background:var(--dark);
+}
+.kiron-tabs-padding{
+    border-right:thin solid var(--bet-history);
 }
 @media (max-width: 991px) and (min-width: 768px){
     .kiron-bet-history-tabs{

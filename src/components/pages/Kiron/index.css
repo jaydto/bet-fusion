@@ -231,9 +231,7 @@
     white-space: nowrap;
     /*border-right: thin solid!important;*/
 }
-.kiron-tabs-padding:nth-child(3){
-    border-right:none!important;
-}
+
 
 .kiron-match-playout{
     display: flex;
@@ -532,6 +530,9 @@
     }
 }
 @media (max-width:991px){
+    .kiron-tabs-padding:nth-child(3){
+        border-right:none!important;
+    }
     .kiron-tabs-active .main-header {
         font-size: 13px;
     }

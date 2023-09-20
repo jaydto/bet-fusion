@@ -349,7 +349,13 @@
 }
 
 @media (max-width: 991px){
-    .article-container {
+    .fpl-banner-image {
+        background: url(http://localhost:3000/static/media/fplmobile.76d4bb890d3a901c43f0.webp), url(http://localhost:3000/static/media/fplmobile.76d4bb890d3a901c43f0.webp), linear-gradient(to right, rgb(2, 239, 255), rgb(98, 123, 255)) !important;
+        background-position: center!important;
+        background-repeat: no-repeat!important;
+        background-size: cover!important;
+    }
+        .article-container {
         padding: 21px 15px 10px 15px!important;
     }
     .fpl-text {

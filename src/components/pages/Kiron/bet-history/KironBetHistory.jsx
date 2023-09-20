@@ -295,7 +295,7 @@ const KironBetHistory = React.memo(
                         variant={'tabs'}
                         defaultActiveKey={activeTab || getFromLocalStorage("tab_history_kiron")}
                         id=""
-                        className="background-primary kiron-bet-history-tabs"
+                        className="background-primary kiron-bet-history-tabs px-3"
                         justify
                         onSelect={handleTabSelect}>
                         <Tab eventKey="active" title="ACTIVE BETS" className={'background-primary text-light'}>

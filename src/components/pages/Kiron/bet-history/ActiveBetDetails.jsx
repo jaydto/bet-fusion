@@ -59,7 +59,8 @@ const BetDetails = React.memo(
             betDetails?.map((bet) => (
                total_odds+= parseFloat(bet.odd_value)
             ))
-            return total_odds
+            // Round the total odds to two decimal places
+            return total_odds.toFixed(2)
         }
         const finalOutCome=()=>{
             const data = betDetails

@@ -125,7 +125,7 @@ const FPL = React.memo(() => {
                                         </li>
                                     </ol>
                                     <p><strong className={'fpl-code-link-help'}>NOTE:</strong>Don't miss your chance to play, compete, and win with the BetNare Fantasy Premier League Challenge.
-                                        Join the league now and make every Premier League match even more exhilarating! :</p>
+                                        Join the league now and make every Premier League match even more exhilarating! </p>
                                 </div>
                             </div>
 

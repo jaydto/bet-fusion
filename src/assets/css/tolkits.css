@@ -525,7 +525,7 @@ background: var(--betnare-body-bg)!important;
 
 
 .home-tabs {
-    background: var(--tab-color);
+    background: var(--dark);
     border-right: 3px solid transparent;
     border-top: 3px solid transparent;
     padding: 6px 5px;

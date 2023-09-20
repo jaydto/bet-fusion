@@ -232,7 +232,7 @@
 .kiron-tabs-padding{
     padding:3px!important;
     white-space: nowrap;
-    border-right: thin solid!important;
+    /*border-right: thin solid!important;*/
 }
 .kiron-tabs-padding:nth-child(3){
     border-right:none!important;

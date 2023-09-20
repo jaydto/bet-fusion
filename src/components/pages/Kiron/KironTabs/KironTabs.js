@@ -41,25 +41,25 @@ const KironTabs = React.memo(
         return (
             <div className={"full-mobile   kiron-tab-container"}>
                 <div className="top-matches d-flex flex-row w-100">
-                    <div className="col  text-center kiron-tabs-padding">
+                    <div className="col  text-center kiron-tabs-padding border-0 ">
                         <Link className={`cursor-pointer w-100 ${h_class}`} to={'/nare-league?' + getLink()}>
                             <span className="col-sm-11 main-header kiron-tabs-link">Matches</span>
                         </Link>
                     </div>
-                    <div className="col  text-center kiron-tabs-padding">
+                    <div className="col  text-center kiron-tabs-padding border-0 ">
                         <Link className={`cursor-pointer w-100 ${u_class}`} to={'/results?' + getLink()}>
                             <span className="col-sm-11 main-header kiron-tabs-link">Results</span>
                         </Link>
                     </div>
 
-                    <div className="col  text-center kiron-tabs-padding">
+                    <div className="col  text-center kiron-tabs-padding  border-0 ">
                         <Link className={`cursor-pointer w-100 ${t_class}`} to={'/standing?' + getLink()}>
                             <span className="col-sm-11 main-header kiron-tabs-link">Standings</span>
                         </Link>
                     </div>
                     {user &&
                         <div
-                            className="col  text-center kiron-tabs-padding mobile-remove-kiron-bet-history-tab">
+                            className="col  text-center kiron-tabs-padding  border-0 mobile-remove-kiron-bet-history-tab">
                             <Link className={`cursor-pointer w-100 ${b_class}`} to={'/bet-history?' + getLink()}>
                                 <span className="col-sm-11 main-header kiron-tabs-link"><FontAwesomeIcon icon={faReceipt}/>&nbsp; Bet History</span>
                             </Link>

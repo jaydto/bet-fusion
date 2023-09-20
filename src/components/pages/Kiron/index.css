@@ -522,6 +522,15 @@
 .kiron-tabs-padding{
     overflow:hidden!important;
 }
+
+@media (min-width:768px) and (max-width:991px){
+    .kiron-tabs-active{
+        padding:15px;
+    }
+    .matches .top-matches .kiron-btn{
+        width:100% !important
+    }
+}
 @media (max-width:991px){
     .kiron-tabs-active .main-header {
         font-size: 13px;

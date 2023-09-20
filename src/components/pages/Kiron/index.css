@@ -524,6 +524,9 @@
 }
 
 @media (min-width:768px) and (max-width:991px){
+    .skeleton-loader{
+        margin-top:1rem!important;
+    }
     .kiron-tabs-active{
         padding:15px;
     }

@@ -11,11 +11,33 @@ import {
     setState,
     setTimerData
 } from '../../../../redux/nareLeague';
-export const getTime = (time) => {
-    const start = new Date(time);
-    const startTimeString = start.toLocaleTimeString('en-Us', {hour12: false, hour: '2-digit', minute: '2-digit'});
-    return (startTimeString)
+
+export const getTime = (dateTime) => {
+    console.log("dateTime", dateTime);
+
+    // Split the input date-time string into date and time parts
+    const [datePart, timePart] = dateTime.split(' ');
+
+    // Split the time part into hours and minutes
+    const [hours, minutes] = timePart.split(':').map(Number);
+
+    // Create a new Date object with the extracted date and time
+    const [year, month, day] = datePart.split('-').map(Number);
+    const start = new Date(year, month - 1, day, hours, minutes); // Note: Months are 0-indexed
+
+    console.log("start", start);
+
+    // Format the time string with just hours and minutes
+    const formattedHour = String(start.getHours()).padStart(2, '0');
+    const formattedMinute = String(start.getMinutes()).padStart(2, '0');
+
+    const startTimeString = `${formattedHour}:${formattedMinute}`;
+
+    console.log("startTimeString", startTimeString);
+
+    return startTimeString;
 }
+
 
 let timerInterval;
 let timerVar;

@@ -31,6 +31,7 @@ const Promo = () => {
         {src: karibuGiftWallet, id: 1},
         {src: DepositBonus, id: 9},
         {src: mia_sita_hamsini, id: 10},
+        {src: 'https://cdn.betnare.com/carousel/Mega%20Match%20Bonus%20Web.webp', id: 11},
     ];
 
     useEffect(() => {
@@ -107,22 +108,6 @@ const Promo = () => {
                                                         className={"rounded  "}
                                                     />
                                                 )}
-                                                {item?.heading && <span>
-                          <u
-                              className="bold border-bottom d-flex justify-content-center"
-                              style={{color: "#ea5d0b"}}
-                          >
-                            {item?.heading}
-                          </u>
-                        </span>}
-                                                {item?.intro && <p>
-                                                    {item?.intro.split("\n").map((line, index) => (
-                                                        <React.Fragment key={index}>
-                                                            {line}
-                                                            <br/>
-                                                        </React.Fragment>
-                                                    ))}
-                                                </p>}
                                                 <ul>
                                                     {item?.instructions &&
                                                         <p
@@ -138,14 +123,30 @@ const Promo = () => {
                                                         </React.Fragment>
                                                     ))}</>}
                                                 </ul>
+                                                {item?.heading && <span>
+                                              <u
+                                                  className="bold border-bottom d-flex justify-content-center"
+                                                  style={{color: "#ea5d0b"}}
+                                              >
+                                                {item?.heading}
+                                              </u>
+                                            </span>}
+                                                {item?.intro && <p>
+                                                    {item?.intro.split("\n").map((line, index) => (
+                                                        <React.Fragment key={index}>
+                                                            {line}
+                                                            <br/>
+                                                        </React.Fragment>
+                                                    ))}
+                                                </p>}
                                                 {item?.headingBooster && <span>
-                          <u
-                              className="bold border-bottom d-flex justify-content-center"
-                              style={{color: "#ea5d0b"}}
-                          >
-                            {item?.headingBooster}
-                          </u>
-                        </span>}
+                                                      <u
+                                                          className="bold border-bottom d-flex justify-content-center"
+                                                          style={{color: "#ea5d0b"}}
+                                                      >
+                                                        {item?.headingBooster}
+                                                      </u>
+                                                 </span>}
                                                 <ul>
                                                     {item?.boosterDescription && (
                                                         <>

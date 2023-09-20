@@ -5,8 +5,7 @@
     /* text-align: center; */
     padding: 10px 0px;
     letter-spacing: 2px;
-    font-size: 15px;
-    font-style: oblique;
+    font-size: var(--font-size-large);
 }
 .modal-backdrop.fade {
     opacity: 0.5!important;

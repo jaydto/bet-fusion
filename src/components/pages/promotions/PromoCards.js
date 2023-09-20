@@ -17,7 +17,7 @@ const PromoCards = () => {
     const gaEventTracker = useAnalyticsEventTracker('Promotions');
     const user = getFromLocalStorage('user')
 
-    let ids = [1, 2, 3, 4, 5, 6, 7, 8, 9,10];
+    let ids = [1, 2, 3, 4, 5, 6, 7, 8, 9,10,11];
     const navigate = useNavigate()
 
     let message = {status: 401, message: 'This Promotion is for new Users', token: ''};
@@ -42,17 +42,17 @@ const PromoCards = () => {
                     "row text-white pt-2 border-0 d-flex promo-container d-flex align-self-start align-items-start"
                 }
             >
-<div className="col-md-2 promo-styling shadow-lg promotion">
+                <div className="col-md-2 promo-styling shadow-lg promotion">
                     <div className="d-flex flex-column promo-inner">
-                        <img src={mia_sita_ham_sini} className={"rounded promo-image "}/>
+                        <img src={'https://cdn.betnare.com/carousel/MegaMatchBonusWeb.webp'} className={"rounded promo-image "}/>
                         <h5
                             className="bold d-flex justify-content-center h4 pt-2"
                             style={{color: "#ea5d0b"}}
                         >
-                            650 FOR 650 PROMOTION TERMS AND CONDITIONS
+                            500 FOR 500 PROMOTION TERMS AND CONDITIONS
                         </h5>
-                        <p className="container mx-1 px-2 text-data-promotions">                            
-                        Deposit 650 and Get 650 free bonus for your first and second deposit of the day
+                        <p className="container mx-1 px-2 text-data-promotions">
+                        Deposit 500 and Get 500 free bonus for your first and second deposit of the day
                         </p>
                         <hr/>
 
@@ -60,7 +60,7 @@ const PromoCards = () => {
 
                             <button className={"profile-button border-0 h-25 rounded promo-button"}
                                     style={{background: "#ea5d0b"}} onClick={() => {
-                                gaEventTracker('proo Mia Sita Hamsini');
+                                gaEventTracker('promo Mia tano Hamsini');
                                 navigate(`/deposit`);
                                 setUtmSouceCampaignOnPromotions('booster-midmonth')
                             }}>Deposit now
@@ -69,7 +69,7 @@ const PromoCards = () => {
                                 className={"d-flex  align-self-center   h-25 border-0 bg-transparent"}
                                 style={{color: "#ea5d0b"}}
                                 onClick={() => {
-                                    navigate(`/promo?id=${ids[9]}`);
+                                    navigate(`/promo?id=${ids[10]}`);
                                     window.scrollTo(0, 0); // Scroll to the top of the page
                                 }}
                             >
@@ -85,7 +85,7 @@ const PromoCards = () => {
                             className="bold d-flex justify-content-center h4 pt-2"
                             style={{color: "#ea5d0b"}}
                         >
-                            KARIBU 
+                            KARIBU
                         </h5>
                         <p className="container mx-1 px-2 text-data-promotions">
                             Get Up to 3,000/= FREE Bet Booster once you register as a Free Nare Booster...
@@ -154,6 +154,44 @@ const PromoCards = () => {
                         </div>
                     </div>
                 </div>
+                <div className="col-md-2 promo-styling shadow-lg promotion">
+                    <div className="d-flex flex-column promo-inner promo-inactive">
+                        <img src={mia_sita_ham_sini} className={"rounded promo-image "}/>
+                        <h5
+                            className="bold d-flex justify-content-center h4 pt-2"
+                            style={{color: "#ea5d0b"}}
+                        >
+                            650 FOR 650 PROMOTION TERMS AND CONDITIONS
+                        </h5>
+                        <p className="container mx-1 px-2 text-data-promotions">
+                            Deposit 650 and Get 650 free bonus for your first and second deposit of the day
+                        </p>
+                        <hr/>
+
+                        <div className="d-flex justify-content-between my-2 mx-2">
+
+                            <button className={"profile-button border-0 h-25 rounded promo-button"}
+                                    disabled={true}
+                                    style={{background: "#ea5d0b"}} onClick={() => {
+                                gaEventTracker('proo Mia Sita Hamsini');
+                                navigate(`/deposit`);
+                                setUtmSouceCampaignOnPromotions('mia-sita-hamusini')
+                            }}>Deposit now
+                            </button>
+                            <div
+                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent"}
+                                style={{color: "#ea5d0b"}}
+                                onClick={() => {
+                                    navigate(`/promo?id=${ids[9]}`);
+                                    window.scrollTo(0, 0); // Scroll to the top of the page
+                                }}
+                            >
+                                Read More
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div className="col-md-2 promo-styling card shadow-lg promotion">
                     <div className="d-flex flex-column  promo-inner promo-inactive">
                         <div className="d-flex flex-column">
@@ -216,7 +254,7 @@ const PromoCards = () => {
                                 setUtmSouceCampaignOnPromotions('promo_FIRST_DEPOSIT_BOOSTER')
                             }}>Deposit
                             </button>
-                            {/*onClick={() => navigate(`/promo?id=${ids[1]}`)}*/}
+                            onClick={() => navigate(`/promo?id=${ids[1]}`)}
                             <div
                                 className={"d-flex  align-self-center   h-25 border-0 bg-transparent"}
                                 style={{color: "#ea5d0b"}}
@@ -252,7 +290,7 @@ const PromoCards = () => {
                                 setUtmSouceCampaignOnPromotions('promo_20_deposit_Boost')
                             }}>Deposit
                             </button>
-                            {/*onClick={() => navigate(`/promo?id=${ids[2]}`)}*/}
+                            onClick={() => navigate(`/promo?id=${ids[2]}`)}
                             <div
                                 className={"d-flex  align-self-center   h-25 border-0 bg-transparent"}
                                 style={{color: "#ea5d0b"}}

@@ -421,8 +421,8 @@ const DepositConfirmFormFields = (props) => {
                 </div>
             </div>
             {user && <hr/>}
-            <div className="form-group row d-flex justify-content-center mt-3 deposit-widthdraw-input-desktop">
-                <div className="col-md-12">
+            <div className="form-group w-100 d-flex flex-column justify-content-center mt-3 deposit-widthdraw-input-desktop">
+                <div className="col-md-12 px-2 w-100">
                     <label className={'text-light deposit'}>Mpesa Transaction Code</label>
                     <input
                         onChange={ev => {
@@ -438,8 +438,8 @@ const DepositConfirmFormFields = (props) => {
                     {errors.confirmation_code && <div className='text-danger'> {errors.confirmation_code} </div>}
                 </div>
             </div>
-            <div className="form-group row d-flex justify-content-left mb-4">
-                <div className=" d-flex align-items-start deposit-withdraw-button-desktop">
+            <div className="form-group w-100 d-flex justify-content-left mb-4 ">
+                <div className=" d-flex align-items-start deposit-withdraw-button-desktop w-100 px-2">
                     <button type={"submit"}
                             className='btn btn-lg w-100 deposit-button button-radius input-field btn-font cg login-button2 btn bold d-flex justify-content-center align-items-center'
                             style={{marginTop: "30px"}} disabled={values?.amount == ''||loadingConfirmDeposit}>
@@ -501,7 +501,7 @@ const DepositFormFields = (props) => {
                 </div>
             </div>
             {user && <hr/>}
-            <div className="form-group row d-flex justify-content-center mt-3 deposit-widthdraw-input-desktop">
+            <div className="form-group  d-flex flex-column justify-content-center mt-3 deposit-widthdraw-input-desktop">
                 <div className="btn-group w-100 gap-3 justify-content-around" role="group" aria-label="Basic example">
                     <div className={'d-flex flex-wrap col-12 justify-content-between'}>
                         {settings?.betnareDeposit && settings?.betnareDeposit?.map((deposit, index) => {
@@ -518,7 +518,7 @@ const DepositFormFields = (props) => {
                     </div>
 
                 </div>
-                <div className="col-md-12">
+                <div className="col-md-12 w-100 px-2">
                     <label className={'text-light deposit'}>Amount to Deposit</label>
                     <input
                         onChange={ev => {
@@ -534,8 +534,8 @@ const DepositFormFields = (props) => {
                     {errors.amount && <div className='text-danger'> {errors.amount} </div>}
                 </div>
             </div>
-            <div className="form-group row d-flex justify-content-left mb-4">
-                <div className=" d-flex align-items-start deposit-withdraw-button-desktop">
+            <div className="form-group W-100 d-flex justify-content-left mb-4">
+                <div className=" d-flex align-items-start deposit-withdraw-button-desktop w-100 px-2">
                     <button type={"submit"}
                             className='btn btn-lg w-100 deposit-button button-radius input-field btn-font cg login-button2 btn bold d-flex justify-content-center align-items-center'
                             style={{marginTop: "30px"}} disabled={values?.amount == ''||loadingDeposit}>

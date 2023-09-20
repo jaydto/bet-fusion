@@ -31,6 +31,7 @@ const Promo = () => {
         {src: karibuGiftWallet, id: 1},
         {src: DepositBonus, id: 9},
         {src: mia_sita_hamsini, id: 10},
+        {src: 'https://cdn.betnare.com/carousel/Mega%20Match%20Bonus%20Web.webp', id: 11},
     ];
 
     useEffect(() => {

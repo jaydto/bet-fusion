@@ -2193,6 +2193,10 @@ img.nare-league {
 }
 
 @media (max-width: 991px) {
+    .top-nav.specific-nav {
+        min-height: 53px;
+        padding-left: 0px!important;
+    }
     .footer-custom .row{
         display:block!important;
     }
@@ -2408,8 +2412,7 @@ img.nare-league {
 
     .width-page-centric.register-page {
         box-shadow: none !important;
-        height: 84vh !important;
-
+        height: 78vh !important;
     }
 
     .logo-betnare {

@@ -5,7 +5,6 @@ import {StoreContext} from "../../context/store";
 import {getFromLocalStorage} from '../utils/local-storage';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import logo from '../../assets/img/Logo.webp';
 import {Navbar, Offcanvas} from "react-bootstrap";
 import SidebarMobile from "../sidebar/awesome/SidebarMobile";
 import MobileNav1 from "../mobile-navigation/MobileNav1";
@@ -15,11 +14,17 @@ import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import ListGroup from "react-bootstrap/ListGroup";
 import LoginSection from "./LoginSection";
 import {UserInfo} from "./UserInfo";
-import {shouldShowDownload, shouldShowMobileNav} from './NavigationsHelper';
 import {useDispatch, useSelector} from "react-redux";
 import {configSettings} from "../../redux/dataSlice";
 import { userBalance} from "../../redux/authSlice";
 import {matchCategories, matchesSearch} from "../../redux/matchesSlice";
+import {
+    checkDesktopTopNavigation,
+    checkNavigation,
+    shouldShowDownload,
+    shouldShowMobileNav
+} from "../../redux/navigationAction";
+import Header2 from "./Header2";
 
 const ProfileMenu = React.lazy(() => import('./profile-menu'));
 const HeaderNav = React.lazy(() => import('./header-nav'));
@@ -27,7 +32,7 @@ const HeaderNav = React.lazy(() => import('./header-nav'));
 
 const Header = React.memo(
     (props) => {
-        const {slip, scrollPosition, jackpot, profile} = props
+        const {slip, scrollPosition, jackpot} = props
         const gaEventTracker = useAnalyticsEventTracker('Navigation');
         const {state, dispatch} = useContext(StoreContext);
         const containerRef = useRef();
@@ -36,10 +41,13 @@ const Header = React.memo(
         // Import the navigationConfig object
         const [isOpen, setIsOpen] = useState(false);
         const pathname = window.location.pathname;
-        const notShowMobileNav = shouldShowMobileNav(pathname);
-        const showDownload = shouldShowDownload(pathname);
-
         const dispatchRedux = useDispatch()
+
+        const notShowMobileNav = dispatchRedux(shouldShowMobileNav(pathname));
+        const showDownload = dispatchRedux(shouldShowDownload(pathname));
+        const changeNav = dispatchRedux(checkNavigation(pathname));
+        const checkDesktop = dispatchRedux(checkDesktopTopNavigation (pathname));
+
         const appConfigs=useSelector((state)=>state.data.app_config)
 
         const [settings,setSettings] = useState(getFromLocalStorage('settings'));
@@ -71,7 +79,6 @@ const Header = React.memo(
 
 
         const dismissSearch = () => {
-            // setSearching(false)
             dispatch({type: "SET", key: "searching", payload: false})
             setMatches([])
         }
@@ -205,25 +212,25 @@ const Header = React.memo(
 
         return (
             <>
-
-                <div className={'d-flex flex-column'}>
-                    <div className={` optional-action ${showDownload?'d-none':'d-flex'}`}>
-                            <Link to={'/deposit?utm_source=mega-match-bonus'}
-                                  target={"_self"}
-                                  title={''}
-                                  className={"lite-top d-flex flex-column"}
-                                  onClick={() => {
-                                      gaEventTracker('Mia Sita Hamusini Promotion');
-                                  }}>
-                                <div className={"app-download-link  d-flex flex-column"}>
+                {changeNav?<Header2/>:
+                    <div className={'d-flex flex-column'}>
+                    <div className={` optional-action ${showDownload ? 'd-none' : 'd-flex'}`}>
+                        <Link to={'/deposit?utm_source=mega-match-bonus'}
+                              target={"_self"}
+                              title={''}
+                              className={"lite-top d-flex flex-column"}
+                              onClick={() => {
+                                  gaEventTracker('Mia Sita Hamusini Promotion');
+                              }}>
+                            <div className={"app-download-link  d-flex flex-column"}>
                                    <span className={"color-app-text flashy"}>Deposit
                                        <strong style={{color: 'var(--gold'}}> 500/=</strong>  get
                                        <strong style={{color: 'var(--gold'}}> 500/= </strong>Free Bonus!
                                    </span>
-                                </div>
-                            </Link>
+                            </div>
+                        </Link>
 
-                        </div>
+                    </div>
                     <Navbar expand="md"
                             className={`${(scrollPosition || (showDownload)) && 'fixed-top-nav'} mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${(slip || showDownload) && "top-betslip-page-fix"} ${user ? 'top-nav-login' : 'top-nav-login'}`}
                             fixed="top" variant="dark">
@@ -237,7 +244,7 @@ const Header = React.memo(
                                          className="col-4 logo-betnare resize-mobile"
                                          style={{marginLeft: "2px"}}>
                                         <img
-                                            src={logo}
+                                            src={'https://cdn.betnare.com/logo-white.webp'}
                                             alt="Betnare"
                                             title="Betnare"
                                             effects="blur"
@@ -249,22 +256,22 @@ const Header = React.memo(
                                         />
                                     </div>
 
-                                    <UserInfo profile={profile} user={user}/>
+                                    <UserInfo profile={checkDesktop} user={user}/>
                                 </Navbar.Brand>
 
                                 {/*todo check information provided for a user*/}
                                 <div className={` col-10 change-size desk-top`} id="navbar-collapse-main ">
                                     <div
                                         className="col-md-11 col-sm-12 col-lg-7 right fix-view-2 disable-ipad to-navcheck justify-content-end pt-lg-0 pt-md-3">
-                                        {user ? <ProfileMenu user={user} profile={profile}/> : <LoginSection/>}
+                                        {user ? <ProfileMenu user={user} profile={checkDesktop}/> : <LoginSection/>}
                                     </div>
 
                                 </div>
                             </div>
 
-                            {!profile && <Row
+                            {!checkDesktop && <Row
                                 className={`second-nav ck pc os app-navbar ${user ? ' app-header-nav-login ' : ' app-header-nav '} to-navcheck `}>
-                                 <HeaderNav/>
+                                <HeaderNav/>
                             </Row>}
                             {state?.searching ?
                                 <div id="navbar-collapse-main"
@@ -301,7 +308,7 @@ const Header = React.memo(
 
                                     </ListGroup>
                                 </div>
-                                : (notShowMobileNav && !slip && !jackpot && !profile && !pathname.includes('match')) &&
+                                : (notShowMobileNav && !slip && !jackpot && !checkDesktop && !pathname.includes('match')) &&
                                 <MobileNav1/>}
 
 
@@ -322,7 +329,8 @@ const Header = React.memo(
                                     <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
                                         <div className="col-5">
                                             <div>
-                                                <img src={logo} alt="Betnare" title="Betnare" effects="blur"/>
+                                                <img src={'https://cdn.betnare.com/logo-white.webp'} alt="Betnare"
+                                                     title="Betnare" effects="blur"/>
                                             </div>
                                         </div>
                                     </Offcanvas.Title>
@@ -334,7 +342,7 @@ const Header = React.memo(
 
                         </div>
                     </Navbar>
-                </div>
+                </div>}
             </>
 
         )

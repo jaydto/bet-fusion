@@ -1,11 +1,7 @@
 
 export const shouldShowMobileNav = (pathname) => (dispatch, getState)=>{
     const state=getState()
-    console.log("state", state)
     const navigationConfig=state.navigations.notShowMobileNav
-    console.log("navigationMobilew",navigationConfig )
-    console.log("mobilepathname",pathname)
-    console.log("!navigationConfig?.some(path => pathname.includes(path));",!navigationConfig?.some(path => pathname.includes(path)))
 
     return !navigationConfig?.some(path => pathname.includes(path));
 };

@@ -162,7 +162,6 @@ const Index = React.memo(
             let sport = categories?.all_sports?.filter((category) => Number(category.sport_id) === Number(sport_id))
             const sport_type=sport != null ? sport?.[0]?.sport_name || 'Soccer' : "";
 
-
             endpoint += `&sub_type_id=` + (sub_types || "1")
 
             dispatchRedux(matchesPrematch({endpoint,method:"POST",data:betslip, search:search, active_sport:sport_type, active_sub_type:market_name})); // Dispatch matchesPrematch with the updated fetchParams

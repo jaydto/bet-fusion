@@ -181,8 +181,7 @@ export const marketChoice = () => {
 
 export const MatchHeaderRow = React.memo(
     (props) => {
-        const {live, first_match, jackpot, loading,spid} = props;
-        const categories = getFromLocalStorage('sport_categories')
+        const {live, first_match, jackpot, loading} = props;
 
         const [, setShowX] = useState(true);
         const [market, setMarket] = useState('1x2');
@@ -281,10 +280,25 @@ export const MatchHeaderRow = React.memo(
 
                                     <div className={'d-flex align-items-center gap-2'}>
                                         {live && <span className="live-header">LIVE </span>}
-                                        {active_sport==='Soccer'&&<span className={'sport-styling'}>{active_sport} {market && <></>}</span>}
-                                        {(search&&!live)&&<span className={'selected-filters__item d-flex gap-2 align-items-center'}> <FontAwesomeIcon icon={faXmark} className={'close-filter'} onClick={()=>closeFilter("search")}/> {search}</span>}
-                                        {(active_sport&&active_sport!=='Soccer')&&<span className={'selected-filters__item d-flex gap-2 align-items-center'}> <FontAwesomeIcon icon={faXmark} className={'close-filter'} onClick={()=>closeFilter('sport')}/>{active_sport}</span>}
-                                        {(active_sub_type&&active_sub_type!=='1x2'&&!live)&&<span className={'selected-filters__item d-flex gap-2 align-items-center'}> <FontAwesomeIcon icon={faXmark} className={'close-filter'} onClick={()=>closeFilter('sub_type')}/> {active_sub_type}</span>}
+                                        {active_sport==='Soccer'&&<span className={'sport-styling'}>
+                                            {active_sport} {market && <></>}
+                                        </span>}
+                                        {(search&&!live)&&
+                                            <span className={'selected-filters__item d-flex gap-2 align-items-center'}>
+                                                <FontAwesomeIcon icon={faXmark} className={'close-filter'} onClick={()=>closeFilter("search")}/>
+                                                {search}
+                                            </span>}
+                                        {/*{active_sport!=='Soccer'&&*/}
+                                        {/*    <span className={'selected-filters__item d-flex gap-2 align-items-center'}>*/}
+                                        {/*        <FontAwesomeIcon icon={faXmark} className={'close-filter'} onClick={()=>closeFilter('sport')}/>*/}
+                                        {/*        {active_sport}*/}
+                                        {/*    </span>}*/}
+
+                                        {(active_sub_type&&active_sub_type!=='1x2'&&!live)&&
+                                            <span className={'selected-filters__item d-flex gap-2 align-items-center'}>
+                                                <FontAwesomeIcon icon={faXmark} className={'close-filter'} onClick={()=>closeFilter('sub_type')}/>
+                                                {active_sub_type}
+                                            </span>}
                                     </div>
                                 </h3>
                             </div>

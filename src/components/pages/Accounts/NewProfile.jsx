@@ -28,7 +28,6 @@ const NewProfile = React.memo(
         const navigate = useNavigate()
         return (
             <>
-                <Header profile={true}/>
                 <div>
                     <div className="profile-container-desktop d-flex">
                         <div className={' mobile-ipad-remove-profile stats-desktop'}>

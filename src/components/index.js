@@ -24,8 +24,8 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faXmark} from "@fortawesome/free-solid-svg-icons";
 import SkeletonLoaderMore from "./pages/skeletonLoadersWeb/SkeletonLoaderMore";
 import {setState} from "../redux/dataSlice";
+import {removeScrollPosition, setScrollPast, setScrollPosition, setScrollToTop} from "../redux/ScrollBehavior";
 
-const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
 const CarouselLoader = React.lazy(() => import('./carousel'));
 const MainTabs = React.lazy(() => import('./header/main-tabs'));
@@ -280,25 +280,24 @@ const Index = React.memo(
             dispatchRedux(setState('bottom_sheet', false))
 
         }
+        const scrolledPast=useSelector((state)=>state.scroll.scroll_past)
+        const scrolledToTop=useSelector((state)=>state.scroll.scroll_top)
 
-        const [scrolledPast, setScrolledPast] = useState(false);
-        const [scrolledToTop, setScrolledToTop] = useState(false);
-        const [scrollPosition, setScrollPosition] = useState(false);
 
         useEffect(() => {
             const handleScroll = () => {
                 if (homePageRef.current) {
                     const scrollPosition = homePageRef.current.scrollTop;
                     if (!scrolledPast && scrollPosition > 10) {
+                        dispatchRedux(setScrollPosition())
+                        dispatchRedux(setScrollPast({scroll_past:true}))
+                        dispatchRedux(setScrollToTop({scroll_top:false}))
 
-                        setScrollPosition(true)
-                        setScrolledPast(true);
-                        setScrolledToTop(false); // Reset the other variable
                     } else if (!scrolledToTop && scrollPosition <= 10) {
+                        dispatchRedux(removeScrollPosition())
+                        dispatchRedux(setScrollPast({scroll_past:false}))
+                        dispatchRedux(setScrollToTop({scroll_top:true}))
 
-                        setScrollPosition(false)
-                        setScrolledToTop(true);
-                        setScrolledPast(false); // Reset the other variable
                     }
                 }
             };
@@ -346,7 +345,6 @@ const Index = React.memo(
             <div className={'flex-item'}>
 
                 <div className={bottom_sheet?'pointer-event-handler item4':"item4"}>
-                    <Header scrollPosition={scrollPosition}/>
                     <ToastContainer/>
                 </div>
                 <div className="flex-container">

@@ -17,6 +17,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {setMatchBetslip} from "../redux/bettingSlice";
 import {MatchHeaderRow} from "./matches";
 import {getFromLocalStorage} from "./utils/local-storage";
+import {removeScrollPosition, setScrollPast, setScrollPosition, setScrollToTop} from "../redux/ScrollBehavior";
 
 const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
@@ -98,24 +99,24 @@ const Live = React.memo(
         })
 
         const homePageRef = useRef()
-        const [scrolledPast, setScrolledPast] = useState(false);
-        const [scrolledToTop, setScrolledToTop] = useState(false);
-        const [scrollPosition, setScrollPosition] = useState(false);
+        const scrolledPast=useSelector((state)=>state.scroll.scroll_past)
+        const scrolledToTop=useSelector((state)=>state.scroll.scroll_top)
+
 
         useEffect(() => {
             const handleScroll = () => {
                 if (homePageRef.current) {
                     const scrollPosition = homePageRef.current.scrollTop;
                     if (!scrolledPast && scrollPosition > 10) {
+                        dispatchRedux(setScrollPosition())
+                        dispatchRedux(setScrollPast({scroll_past:true}))
+                        dispatchRedux(setScrollToTop({scroll_top:false}))
 
-                        setScrollPosition(true)
-                        setScrolledPast(true);
-                        setScrolledToTop(false); // Reset the other variable
                     } else if (!scrolledToTop && scrollPosition <= 10) {
+                        dispatchRedux(removeScrollPosition())
+                        dispatchRedux(setScrollPast({scroll_past:false}))
+                        dispatchRedux(setScrollToTop({scroll_top:true}))
 
-                        setScrollPosition(false)
-                        setScrolledToTop(true);
-                        setScrolledPast(false); // Reset the other variable
                     }
                 }
             };
@@ -137,7 +138,7 @@ const Live = React.memo(
 
         return (
             <div className={'flex-item'}>
-                <div className="item4"><Header scrollPosition={scrollPosition}/>
+                <div className="item4">
                     <ToastContainer/></div>
                 <div className="flex-container">
                     <div className="item1 live">

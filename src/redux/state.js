@@ -148,6 +148,8 @@ const initialState = {
     },
     navigations:{
         notShowMobileNav: [
+            'betslip-slip',
+            'betslip-nare',
             'signup',
             'leader-board',
             'nare-league',

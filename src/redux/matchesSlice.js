@@ -434,23 +434,28 @@ const matchesSlice = createSlice({
                 const search_data=action.payload.searched_matches
 
                 const search=action.payload?.search
+                const active_sport=action.payload.active_sport
+                const active_sub_type=action.payload.active_sport
+                state.active_sport=active_sport
+                state.active_sub_type=active_sub_type
                 state.search=search
-                state.active_sport=action.payload.active_sport
-                state.active_sub_type=action.payload.active_sub_type
 
 
-                const mergedMatches = newMatches.length > 0 ? {...action.payload.matches_data, ...newMatches} : newMatches;
-                if(search){
-                    state.matches=newMatches
-                }else{
-                    if(search_data){
-                        state.matches=newMatches
-                        state.searched_matches=null
-                    }else{
-                        state.matches = mergedMatches;
-
-                    }
-                }
+                // const mergedMatches = newMatches.length > 0 ? {...action.payload.matches_data, ...newMatches} : newMatches;
+                // if(search){
+                //     state.matches=newMatches
+                // }else if(active_sport!=='Soccer'){
+                // }
+                // else{
+                //     if(search_data){
+                //         state.matches=newMatches
+                //         state.searched_matches=null
+                //     }else{
+                //         state.matches = mergedMatches;
+                //
+                //     }
+                // }
+                state.matches=newMatches
 
                 if (newMatches.slip_data) {
                     state.user_slip_validation = newMatches.slip_data

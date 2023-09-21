@@ -27,3 +27,8 @@
     margin: auto;
     cursor:pointer;
 }
+@media (max-width:991px){
+    .mobile-filter-history{
+        justify-content:space-between!important;
+    }
+}

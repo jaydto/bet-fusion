@@ -4,75 +4,16 @@ import {Link} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBackspace} from "@fortawesome/free-solid-svg-icons";
 import {LazyLoadImage} from "react-lazy-load-image-component";
-import logo from "../../assets/img/Logo.webp";
 import SidebarMobile from "../sidebar/awesome/SidebarMobile";
-import React, {useCallback, useEffect, useState} from "react";
-import {getFromLocalStorage} from "../utils/local-storage";
-import {configSettings} from "../../redux/dataSlice";
-import {useDispatch, useSelector} from "react-redux";
+import React from "react";
 
 const Header2 = React.memo(
 	() => {
 		const expand = "md"
-		const dispatchRedux = useDispatch()
-		const appConfigs=useSelector((state)=>state.data.app_config)
-		const [	settings,setSettings] = useState(getFromLocalStorage('settings'));
 
-		useEffect(()=>{
-			setSettings(appConfigs||getFromLocalStorage('settings'))
-		},[appConfigs ])
-
-		const fetchAppConfigurations = useCallback(async () => {
-
-			let cached_settings = getFromLocalStorage('settings');
-
-			if (!cached_settings) {
-				dispatchRedux(configSettings())
-			}
-		})
-
-		const cleanUpFuction = async () => {
-			await fetchAppConfigurations();
-
-			// Custom function to clear settings from localStorage
-			// const clearLocalStorageSettings = () => {
-			//     localStorage.removeItem('settings');
-			//     // Manually call fetchAppConfigurations to update the settings
-			//     fetchAppConfigurations();
-			// };
-
-			// Listen for the "storage" event to detect changes in "settings" localStorage
-			const handleStorageChange = (event) => {
-				if (event.key === 'settings') {
-					fetchAppConfigurations();
-				}
-			};
-
-			// Listen for "beforeunload" event to handle clearing localStorage in the same tab
-			// const handleBeforeUnload = () => {
-			//     clearLocalStorageSettings();
-			// };
-
-			window?.addEventListener('storage', handleStorageChange);
-			// window?.addEventListener('beforeunload', handleBeforeUnload);
-
-			return () => {
-				// Clean up the event listeners when the component unmounts
-				window?.removeEventListener('storage', handleStorageChange);
-				// window?.removeEventListener('beforeunload', handleBeforeUnload);
-
-			};
-		}
-
-		useEffect(() => {
-			if(settings==undefined){
-				cleanUpFuction()
-			}
-
-		}, [settings]);
 		return (
 			<div className={''}>
-				<Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav top-section-page" fixed="top"
+				<Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav specific-nav top-section-page" fixed="top"
 						variant="dark" style={{paddingLeft: '0px', paddingBottom: '0px'}}>
 					<Container fluid
 							   className={'d-flex justify-content-between mobile-change top-login-background-img'}>
@@ -87,7 +28,7 @@ const Header2 = React.memo(
 								style={{marginLeft: 'auto'}}>
 
 								<Link to={{pathname: "/"}} className=" resize-mobile">
-									<LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"
+									<LazyLoadImage src={'https://cdn.betnare.com/logo-white.webp'} alt="Betnare" title="Betnare" effects="blur"
 												   className={"image-size "}/>
 								</Link>
 							</div>
@@ -104,7 +45,7 @@ const Header2 = React.memo(
 								<Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
 									<div className="col-3">
 										<div>
-											<LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"/>
+											<LazyLoadImage src={'https://cdn.betnare.com/logo-white.webp'} alt="Betnare" title="Betnare" effects="blur"/>
 										</div>
 									</div>
 								</Offcanvas.Title>

@@ -6,15 +6,10 @@ import {setLocalStorage} from "./components/utils/local-storage";
 import {resetState} from "./redux/authSlice";
 import { Navigate, Route, Routes, useNavigate,} from 'react-router-dom'
 import  Header from './components/header/header';
+import Index from './components'
 
-import Loading from "./components/loading/LoadingSuspense";
-import SkeletonLoaderMobile from "./components/pages/skeletonLoadersWeb/SkeletonLoaderMore";
-import SkeletonLoaderMore from "./components/pages/skeletonLoadersWeb/SkeletonLoaderMore";
-import SkeletonLoader from "./components/pages/Kiron/skeletonLoader/SkeletonLoader";
 
 const Deposit3=React.lazy(()=>import("./components/pages/deposit-withraw/Deposit3"));
-
-const Index = React.lazy(() => import('./components'));
 
 const CompetitionsMatches = React.lazy(
     () => import('./components/competition-matches')

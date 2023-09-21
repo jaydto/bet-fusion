@@ -54,9 +54,8 @@ const AllMarkets = React.memo(
                 return betslips[key];
             });
         };
-        const clean = (_str) => {
-            _str = _str.replace(/[^A-Za-z0-9\-]/g, '');
-            return _str.replace(/-+/g, '-');
+        const clean = (str) => {
+            return str.replace(/\s/g, "");
         }
 
         const setInitialData=()=>{

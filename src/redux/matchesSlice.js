@@ -431,11 +431,10 @@ const matchesSlice = createSlice({
             .addCase(matchesPrematch.fulfilled, (state, action) => {
                 state.isLoggedIn = true;
                 const newMatches = action.payload?.response.data;
-                const search_data=action.payload.searched_matches
 
                 const search=action.payload?.search
                 const active_sport=action.payload.active_sport
-                const active_sub_type=action.payload.active_sport
+                const active_sub_type=action.payload.active_sub_type
                 state.active_sport=active_sport
                 state.active_sub_type=active_sub_type
                 state.search=search

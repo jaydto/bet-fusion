@@ -16,7 +16,6 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
 import {useNavigate} from "react-router-dom";
 
-const Header = React.lazy(() => import('../../header/header'));
 const SideBar = React.lazy(() => import('../../sidebar/awesome/Sidebar'));
 const Footer = React.lazy(() => import('../../footer/footer'));
 const Right = React.lazy(() => import('../../right/index'));
@@ -38,7 +37,6 @@ const ResponsibleGambling = React.memo(
         }, []);
         return (
             <>
-                <Header/>
                 <div className={(width <= 575 ? state?.user ? "user_logged responsible-gambling" : "amt" : "amt")}>
                     <div className="d-flex flex-row justify-content-between">
                         <SideBar loadCompetitions/>

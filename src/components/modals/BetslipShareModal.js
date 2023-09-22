@@ -30,23 +30,37 @@ const BetslipShareModal = React.memo(
     }
     return (
         <Modal show={isOpen}
-               className={'shadow-lg filters-modal share-modal'}
-               dialogClassName={'modal-50w'}
+               className={'shadow-lg filters-modal deposit-modal deposit-modal-body'}
+               dialogClassName={'modal-30w'}
                centered={true}
                size={"md"}
                backdrop={"static"}
                style={{zIndex: "9999"}}>
             <Modal.Header closeButton={false} className={"w-100"}>
                 <Modal.Title className={"w-100"}>
-                    <div className={"d-flex justify-content-between align-items-center"}>
-                        <strong style={{width:"90%"}}>Share Link</strong>
-                        <div className="col-1 text-center  ">
-
-                            <a href={"https://wa.me/?text="+payload?.success} className={"bg-warning"} target={"_blank"} rel="noreferrer">
-                                <LazyLoadImage src={whatsap} style={{height:"30px"}}/>
-
-                            </a>
+                    <div className={"d-flex justify-content-between align-items-start flex-column px-4"}>
+                        <div className="close-history-filter deposit-modal">
+                            <input
+                                id={"deposit"}
+                                type="submit"
+                                value="X"
+                                onClick={hideModal}
+                            />
                         </div>
+                        <div className="drag-icon deposit-modal"><span></span></div>
+
+                        <div className={'d-flex justify-content-between w-100 deposit-modal-top-title align-items-center'}>
+                            <strong className={''}
+                                    style={{width:"90%"}}>Share Link</strong>
+                            <div className="col-1 d-flex align-items-center  ">
+
+                                <a href={"https://wa.me/?text="+payload?.success} className={""} target={"_blank"} rel="noreferrer">
+                                    <LazyLoadImage src={whatsap} style={{height:"30px"}}/>
+
+                                </a>
+                            </div>
+                        </div>
+
                     </div>
 
                 </Modal.Title>
@@ -58,8 +72,8 @@ const BetslipShareModal = React.memo(
 
                 </div>
                 <div className={"d-flex"}>
-                    <div className="col-12 text-center mt-4 ">
-                        <button className={'w-100 rounded-2 btn bg-warning btn-lg'} onClick={() => copyText()}>
+                    <div className="col-12 text-center mt-5 ">
+                        <button className={'w-100 rounded-2 btn bg-warning btn-lg py-3 button-text-choice1'} onClick={() => copyText()}>
                             {copy?<strong className="bold ">Link Copied!</strong>:<strong>Copy Link</strong>}
                         </button>
                     </div>
@@ -67,9 +81,9 @@ const BetslipShareModal = React.memo(
                 </div>
 
             </Modal.Body>
-            <Modal.Footer className={'text-center modal-width'}>
-                <Button variant="secondary" onClick={hideModal} className={"w-25"}>
-                    Close
+            <Modal.Footer className={'text-center modal-width deposit-modal-footer'}>
+                <Button className={'cancel-filter-markets bg-deposit-modal-btn'} onClick={hideModal} >
+                    Cancel
                 </Button>
             </Modal.Footer>
         </Modal>

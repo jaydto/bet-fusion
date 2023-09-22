@@ -18,6 +18,7 @@ export const bettingMatchesGames =
             } else {
                 throw new Error(jackpot?response?.error:response?.message || `${jackpot?"jackpot ":""} Bet placement failed`);
             }
+
         });
 export const bettingJackpot =
     createAsyncThunk("betting/jackpot",
@@ -75,7 +76,10 @@ export const resetStateBetslip =
         return {payload: stateToReset};
     });
 
-
+export const setState =
+    createAction("betting/set", (stateToSet,data) => {
+        return {payload:{stateToSet, data} };
+    });
 export const getSelected = (reference) => {
     return (dispatch, getState) => {
         const state = getState();
@@ -114,6 +118,13 @@ const bettingSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
+            .addCase(setState, (state, action) => {
+                const { stateToSet, data } = action.payload;
+                if (state.hasOwnProperty(stateToSet)) {
+                    state[stateToSet] = data;
+                }
+                state.error = null;
+            })
             .addCase(bettingMatchesGames.pending, (state) => {
                 state.loading = true;
                 state.bet_placement_message=null;
@@ -122,10 +133,19 @@ const bettingSlice = createSlice({
                 state.isLoggedIn = true;
                 state.loading = false;
                 state.error = null;
+                const insufficient_balance=action.payload.insufficient_balance
+                if(insufficient_balance){
+                    state.insufficient_balance =insufficient_balance
+                }
                 state.bet_placement_message = action.payload.message;
             })
             .addCase(bettingMatchesGames.rejected, (state, action) => {
                 state.loading = false;
+                console.log("action", action)
+                // const insufficient_balance=action.payload.insufficient_balance
+                // if(insufficient_balance){
+                //     state.insufficient_balance =insufficient_balance
+                // }
                 state.error = action.error.message;
             })
 

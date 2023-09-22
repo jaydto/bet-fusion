@@ -36,6 +36,7 @@ const initialState = {
 
     }, // Initial state for the virtuals reducer
     betting: {
+        insufficient_balance:false,
         bet_placement_message:null,
         loading: false,
         error: null,

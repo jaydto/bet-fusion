@@ -2,7 +2,6 @@ import React, {useContext, useEffect, useState} from "react";
 import {
     faCloudDownloadAlt,
     faCoins,
-    faFileInvoiceDollar,
     faReceipt,
     faUserAlt,
 } from "@fortawesome/free-solid-svg-icons";
@@ -22,27 +21,26 @@ const ProfileMenu = React.memo(
         const userData = useSelector((state) => state.auth.user)
 
         const [user, setUser] = useState(getFromLocalStorage("user"))
+
         useEffect(()=>{
             if(userData){
                 setUser(userData||getFromLocalStorage("user"))
+
             }
-        }, [userData])
+        }, [userData,getFromLocalStorage("user") ])
+
 
         const handleThemeChange = () => {
             setThemeLight(!themeLight)
             document.body.classList.toggle('light-theme');
 
         }
-        const [balance, setBalance] = useState(user?.balance)
 
         const urlPath = window.location.pathname
         const showBalance = (!urlPath.includes("nare-games") && !urlPath.includes("gameplay") && !urlPath.includes("smart-play"))
 
 
-        useEffect(() => {
-            setBalance(state?.user?.balance || user?.balance)
-            dispatch({type: "SET", key: "placebet", payload: false})
-        }, [user?.balance, state?.placebet])
+
 
         return (
             <>
@@ -55,7 +53,7 @@ const ProfileMenu = React.memo(
                                     <div className={"profile-wrap"} style={{color: "#FFB200"}}>
                                         <FontAwesomeIcon
                                             icon={faCoins}/>
-                                        <strong style={{color: "#FFB200"}}> KSH {formatNumber(balance) || 0.0}</strong>
+                                        <strong style={{color: "#FFB200"}}> KSH {formatNumber(user?.balance) || 0.0}</strong>
                                     </div>
 
 

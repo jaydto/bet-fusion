@@ -8,7 +8,7 @@
     font-size: var(--font-size-large);
 }
 .modal-backdrop.fade {
-    opacity: 0.5!important;
+    opacity: 0.4!important;
     filter: alpha(opacity=0);
 }
 

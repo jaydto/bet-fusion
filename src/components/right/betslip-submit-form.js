@@ -1,7 +1,6 @@
 import React,{useCallback, useContext, useEffect, useRef, useState} from "react";
 import {StoreContext} from "../../context/store";
 import {
-    clearJackpotSlip,
     clearSlip,
     formatNumber,
     getBetslip,
@@ -32,6 +31,7 @@ import {
     removeSelected, removePickedData
 } from "../../redux/bettingSlice";
 import {setState} from "../../redux/dataSlice";
+import DepositModal from "../modals/DepositModal";
 
 const BetslipShareModal = React.lazy(() =>
     import("../modals/BetslipShareModal")
@@ -175,11 +175,17 @@ const BetslipSubmitForm = React.memo(
 
         };
         const getIpAddress = async () => {
-            let ip = await publicIp({
-                fallbackUrls: ["https://ifconfig.co/ip"],
-            });
+            try{
+                let ip = await publicIp({
+                    fallbackUrls: ["https://ifconfig.co/ip"],
+                });
+                setIpv4(ip);
+            }catch (e) {
+                console.log("ip error", e)
+            }
 
-            setIpv4(ip);
+
+
         }
         useEffect(() => {
             getIpAddress();
@@ -274,8 +280,8 @@ const BetslipSubmitForm = React.memo(
                         dispatchRedux(setMatchBetslip(betslip_data))
 
                     setLocalStorage('betslip_share_code', null)
-                    dispatchRedux(setState('stake_value',0))
-                    setLocalStorage('userStake', null)
+                    // dispatchRedux(setState('stake_value',0))
+                    // setLocalStorage('userStake', null)
 
                     updateUserOnHistory()
                     return width < 991 ? setTimeout(() => {
@@ -431,8 +437,8 @@ const BetslipSubmitForm = React.memo(
             dispatchRedux(setMatchBetslip(betslip_data))
             setMessage(null);
             // setLocalStorage("winnings",null)
-            setLocalStorage('userStake', null)
-            dispatchRedux(setState('stake_value',0) )
+            // setLocalStorage('userStake', null)
+            // dispatchRedux(setState('stake_value',0) )
             setLocalStorage('betslip_share_code', null)
             return width < 991 ? navigate(-1) : ""
         }, []);
@@ -610,6 +616,9 @@ const BetslipSubmitForm = React.memo(
         const loadingShare=useSelector((state)=>state.matchesData.loading_bet_history)
         const [showShareModal, setShowShareModal] = useState(false);
         const [betSharePayload, setBetSharePayload] = useState({});
+        const show_deposit_modal=useSelector((state)=>state.betting.insufficent_balance)
+        const [showDepositModal, setShowDepositModal] = useState(false);
+
         const dispatchRedux=useDispatch()
 
         useEffect(()=>{
@@ -621,6 +630,16 @@ const BetslipSubmitForm = React.memo(
             }
 
         },[show_share_modal])
+
+        useEffect(()=>{
+            if(show_deposit_modal){
+                setShowDepositModal(show_deposit_modal)
+            }
+            return ()=>{
+                dispatchRedux(resetState("show_deposit_modal"))
+            }
+
+        },[show_deposit_modal])
 
         useEffect(()=>{
             if(share_bet){
@@ -771,6 +790,13 @@ const BetslipSubmitForm = React.memo(
                                 visible={showShareModal}
                                 payload={betSharePayload}
                                 setShowShareModal={setShowShareModal}
+                            />
+                        )}
+                        {showDepositModal && (
+                            <DepositModal
+                                visible={showDepositModal}
+                                payload={message?.message}
+                                setShowShareModal={setShowDepositModal}
                             />
                         )}
                         <div>

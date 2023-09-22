@@ -10699,7 +10699,7 @@ button.close {
 }
 
 .modal-backdrop.fade {
-    opacity: 0.8;
+    opacity: 0.4;
     filter: alpha(opacity=0);
 }
 

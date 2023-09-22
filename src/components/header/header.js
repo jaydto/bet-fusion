@@ -48,9 +48,7 @@ const Header = React.memo(
         const changeNav = dispatchRedux(checkNavigation(pathname));
         const checkDesktop = dispatchRedux(checkDesktopTopNavigation (pathname));
 
-        const appConfigs=useSelector((state)=>state.data.app_config)
 
-        const [settings,setSettings] = useState(getFromLocalStorage('settings'));
         const userData=useSelector((state)=>state.auth.user)
         const matchesData=useSelector((state)=>state.matchesData.searched_matches)
         const [user, setUser]=useState(getFromLocalStorage("user"))
@@ -66,9 +64,7 @@ const Header = React.memo(
             }
         }, [userData,getFromLocalStorage("user") ])
 
-        useEffect(()=>{
-            setSettings(appConfigs||getFromLocalStorage('settings'))
-        },[appConfigs ])
+
 
         useEffect(() => {
             if (pathname !== "/login") {
@@ -101,64 +97,6 @@ const Header = React.memo(
 
         };
 
-        const fetchData = useCallback(async () => {
-            let cached_categories = getFromLocalStorage('sport_categories');
-
-            if (!cached_categories) {
-               dispatchRedux(matchCategories())
-            }
-
-        }, []);
-
-        const fetchAppConfigurations = useCallback(async () => {
-
-            let cached_settings = getFromLocalStorage('settings');
-
-            if (!cached_settings) {
-                dispatchRedux(configSettings())
-            }
-        })
-
-        const cleanUpFuction = async () => {
-            await fetchAppConfigurations();
-            await fetchData();
-
-            // Custom function to clear settings from localStorage
-            // const clearLocalStorageSettings = () => {
-            //     localStorage.removeItem('settings');
-            //     // Manually call fetchAppConfigurations to update the settings
-            //     fetchAppConfigurations();
-            // };
-
-            // Listen for the "storage" event to detect changes in "settings" localStorage
-            const handleStorageChange = (event) => {
-                if (event.key === 'settings') {
-                    fetchAppConfigurations();
-                }
-            };
-
-            // Listen for "beforeunload" event to handle clearing localStorage in the same tab
-            // const handleBeforeUnload = () => {
-            //     clearLocalStorageSettings();
-            // };
-
-            window?.addEventListener('storage', handleStorageChange);
-            // window?.addEventListener('beforeunload', handleBeforeUnload);
-
-            return () => {
-                // Clean up the event listeners when the component unmounts
-                window?.removeEventListener('storage', handleStorageChange);
-                // window?.removeEventListener('beforeunload', handleBeforeUnload);
-
-            };
-        }
-
-        useEffect(() => {
-                if(settings==undefined){
-                    cleanUpFuction()
-                }
-
-        }, [settings]);
 
         const updateUserOnHistory = () => {
             if (!user) {

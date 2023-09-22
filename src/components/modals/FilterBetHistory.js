@@ -106,20 +106,18 @@ const GameHistoryList = (props) => {
             <ToastContainer />
             <Modal
                 show={isOpen}
-                className="shadow-lg filters-modal"
-                dialogClassName="modal-50w"
+                className="shadow-lg filters-modal deposit-modal deposit-modal-body"
+                dialogClassName="modal-30w"
                 centered={true}
                 size="md"
                 backdrop="static"
                 style={{ zIndex: '9999' }}
             >
-                {/* Modal contents */}
-                {/* Filter buttons */}
-                <Modal.Header closeButton={false} className={"w-100"} style={{borderBottom:"0px"}}>
+                <Modal.Header  closeButton={false} className={"w-100"}>
                     <Modal.Title className={"w-100"}>
                         <div className={"d-flex justify-content-between align-items-start flex-column px-4"}>
                             <div className="drag-icon"><span></span></div>
-                            <div className="close-history-filter">
+                            <div className="close-history-filter filter-bets deposit-modal">
                                 <input
                                     id={"history-filter"}
                                     type="submit"
@@ -127,43 +125,48 @@ const GameHistoryList = (props) => {
                                     onClick={hideModal}
                                 />
                             </div>
-                            <strong style={{width:"100%", fontSize:"19px", fontWeight:"bolder", letterSpacing:"2px"}}>Filters</strong>
+                            <strong style={{width:"100%", fontSize:"19px", fontWeight:"bolder", letterSpacing:"2px"}} className={'deposit-modal-top-title filter-bets d-flex w-100 '}>Filters</strong>
                         </div>
 
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body style={{borderBottom:"0px", paddingTop:"4px", paddingBottom:"0px"}}>
                     <div className="d-flex justify-content-around flex-column px-3">
-                        <div className={"d-flex justify-content-center mobile-filter-history gap-2 align-items-center"} onClick={() => handleFilterChange('all')}>
+                        <div className={"d-flex justify-content-between mobile-filter-history gap-2 align-items-center"} onClick={() => handleFilterChange('all')}>
                             <div className={"btn-history-filter cursor-pointer"} >All</div>
                             {(selectedFilter||state?.selected_filter_category)==="all"&&<FontAwesomeIcon icon={faCheckCircle} className={"text-success"}/>}
                         </div>
-                        <div className={"d-flex justify-content-center mobile-filter-history gap-2 align-items-center"} onClick={() => handleFilterChange('open')}>
+                        <div className={"d-flex justify-content-between mobile-filter-history gap-2 align-items-center"} onClick={() => handleFilterChange('open')}>
                             <div className={"btn-history-filter cursor-pointer"} >Open</div>
                             {(selectedFilter||state?.selected_filter_category)==="open"&&<FontAwesomeIcon icon={faCheckCircle} className={"text-success"}/>}
                         </div>
-                        <div className={"d-flex justify-content-center mobile-filter-history gap-2 align-items-center"} onClick={() => handleFilterChange('today')}>
+                        <div className={"d-flex justify-content-between mobile-filter-history gap-2 align-items-center"} onClick={() => handleFilterChange('today')}>
                             <div className={"btn-history-filter cursor-pointer"} >Today</div>
                             {(selectedFilter||state?.selected_filter_category)==="today"&&<FontAwesomeIcon icon={faCheckCircle} className={"text-success"}/>}
                         </div>
-                        <div className="d-flex justify-content-center mobile-filter-history gap-2 align-items-center" onClick={() => handleFilterChange('yesterday')}>
+                        <div className="d-flex justify-content-between mobile-filter-history gap-2 align-items-center" onClick={() => handleFilterChange('yesterday')}>
                             <div className={"btn-history-filter cursor-pointer"} >Yesterday</div>
                             {(selectedFilter||state?.selected_filter_category)==="yesterday"&&<FontAwesomeIcon icon={faCheckCircle} className={"text-success"}/>}
                         </div>
-                        <div className="d-flex justify-content-center mobile-filter-history gap-2 align-items-center" onClick={() => handleFilterChange('week')}>
+                        <div className="d-flex justify-content-between mobile-filter-history gap-2 align-items-center" onClick={() => handleFilterChange('week')}>
                             <div className={"btn-history-filter cursor-pointer"} >Week</div>
                             {(selectedFilter||state?.selected_filter_category)==="week"&&<FontAwesomeIcon icon={faCheckCircle} className={"text-success"}/>}
                         </div>
-                        <div className="d-flex justify-content-center mobile-filter-history gap-2 align-items-center" onClick={() => handleFilterChange('month')}>
+                        <div className="d-flex justify-content-between mobile-filter-history gap-2 align-items-center" onClick={() => handleFilterChange('month')}>
                             <div className={"btn-history-filter cursor-pointer"} >Month</div>
                             {(selectedFilter||state?.selected_filter_category)==="month"&&<FontAwesomeIcon icon={faCheckCircle} className={"text-success"}/>}
                         </div>
-                        <div className="d-flex justify-content-center mobile-filter-history gap-2 align-items-center" onClick={() => handleFilterChange('3month')}>
+                        <div className="d-flex justify-content-between mobile-filter-history gap-2 align-items-center" onClick={() => handleFilterChange('3month')}>
                             <div className={"btn-history-filter cursor-pointer"} >3 Months</div>
                             {(selectedFilter||state?.selected_filter_category)==="3months"&&<FontAwesomeIcon icon={faCheckCircle} className={"text-success"}/>}
                         </div>
                     </div>
                 </Modal.Body>
+                <Modal.Footer className={'text-center modal-width deposit-modal-footer'}>
+                    <Button className={'cancel-filter-markets bg-deposit-modal-btn'} onClick={hideModal} >
+                        Cancel
+                    </Button>
+                </Modal.Footer>
             </Modal>
 
         </>

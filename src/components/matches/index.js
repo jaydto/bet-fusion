@@ -288,11 +288,11 @@ export const MatchHeaderRow = React.memo(
                                                 <FontAwesomeIcon icon={faXmark} className={'close-filter'} onClick={()=>closeFilter("search")}/>
                                                 {search}
                                             </span>}
-                                        {/*{active_sport!=='Soccer'&&*/}
-                                        {/*    <span className={'selected-filters__item d-flex gap-2 align-items-center'}>*/}
-                                        {/*        <FontAwesomeIcon icon={faXmark} className={'close-filter'} onClick={()=>closeFilter('sport')}/>*/}
-                                        {/*        {active_sport}*/}
-                                        {/*    </span>}*/}
+                                        {active_sport!=='Soccer'&&
+                                            <span className={'selected-filters__item d-flex gap-2 align-items-center'}>
+                                                <FontAwesomeIcon icon={faXmark} className={'close-filter'} onClick={()=>closeFilter('sport')}/>
+                                                {active_sport}
+                                            </span>}
 
                                         {(active_sub_type&&active_sub_type!=='1x2'&&!live)&&
                                             <span className={'selected-filters__item d-flex gap-2 align-items-center'}>

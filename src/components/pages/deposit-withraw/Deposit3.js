@@ -27,7 +27,6 @@ const backgroundStyle = {
 
 const Deposit3 = React.memo(
     props => {
-        // const [message, setMessage] = useState(null);
         const [activeTab, setActiveTab] = useState('online'); // Set the initially active tab here
         const dispatchRedux=useDispatch()
         const userData=useSelector((state)=>state.auth.user)
@@ -58,11 +57,11 @@ const Deposit3 = React.memo(
         },[successMessage, errorMessage])
         useEffect(()=>{
             setSettings(appConfigs||getFromLocalStorage('settings'))
-        },[appConfigs ])
+        },[appConfigs, getFromLocalStorage('settings') ])
 
         useEffect(()=>{
             setUser(userData||getFromLocalStorage("user"))
-        },[userData])
+        },[userData, getFromLocalStorage("user")])
         const handleTabSelect = (eventKey) => {
             setActiveTab(eventKey);
         }
@@ -460,9 +459,12 @@ const DepositFormFields = (props) => {
     const loadingDeposit=useSelector((state)=>state.data.deposit_loading)
     const [settings,setSettings] = useState(getFromLocalStorage('settings'));
     const [user, setUser] = useState(getFromLocalStorage("user"));
+
     useEffect(()=>{
-        setSettings(appConfigs||getFromLocalStorage('settings'))
-    },[appConfigs ])
+        setSettings(appConfigs?.message||getFromLocalStorage('settings'))
+    },[appConfigs,getFromLocalStorage('settings') ])
+
+    console.log("settings", settings)
     useEffect(()=>{
         setUser(userData||getFromLocalStorage("user"))
     },[userData])
@@ -539,7 +541,7 @@ const DepositFormFields = (props) => {
                     <button type={"submit"}
                             className='btn btn-lg w-100 deposit-button button-radius input-field btn-font cg login-button2 btn bold d-flex justify-content-center align-items-center'
                             style={{marginTop: "30px"}} disabled={values?.amount == ''||loadingDeposit}>
-                        {loadingDeposit? <div className="loader"></div>: `PAY ${values?.amount}`}
+                        {loadingDeposit? <div className="loader"></div>: `DEPOSIT ${values?.amount}`}
                     </button>
                 </div>
             </div>

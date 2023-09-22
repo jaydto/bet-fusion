@@ -1,12 +1,14 @@
 import './App.css';
-import React, {startTransition, Suspense, useCallback, useContext, useEffect} from "react";
+import React, {startTransition, Suspense, useCallback, useContext, useEffect, useState} from "react";
 import {StoreContext} from "./context/store";
 import {useDispatch, useSelector} from "react-redux";
-import {setLocalStorage} from "./components/utils/local-storage";
+import {getFromLocalStorage, setLocalStorage} from "./components/utils/local-storage";
 import {resetState} from "./redux/authSlice";
 import { Navigate, Route, Routes, useNavigate,} from 'react-router-dom'
 import  Header from './components/header/header';
 import Index from './components'
+import {matchCategories} from "./redux/matchesSlice";
+import {configSettings} from "./redux/dataSlice";
 
 
 const Deposit3=React.lazy(()=>import("./components/pages/deposit-withraw/Deposit3"));
@@ -138,8 +140,73 @@ const Logout = () => {
 
 
 const App = () => {
-
+    const dispatchRedux = useDispatch()
     const scrollPosition=useSelector((state)=>state.scroll.scroll)
+    const appConfigs=useSelector((state)=>state.data.app_config)
+
+    const [settings,setSettings] = useState(getFromLocalStorage('settings'));
+
+    useEffect(()=>{
+        setSettings(appConfigs||getFromLocalStorage('settings'))
+    },[appConfigs,getFromLocalStorage('settings') ])
+    const fetchData = async () => {
+        let cached_categories = getFromLocalStorage('sport_categories');
+
+        if (!cached_categories) {
+            dispatchRedux(matchCategories())
+        }
+
+    };
+
+    const fetchAppConfigurations = async () => {
+
+        let cached_settings = getFromLocalStorage('settings');
+
+        if (!cached_settings) {
+            dispatchRedux(configSettings())
+        }
+    }
+
+    const cleanUpFuction = async () => {
+        await fetchAppConfigurations();
+        await fetchData();
+
+        // Custom function to clear settings from localStorage
+        // const clearLocalStorageSettings = () => {
+        //     localStorage.removeItem('settings');
+        //     // Manually call fetchAppConfigurations to update the settings
+        //     fetchAppConfigurations();
+        // };
+
+        // Listen for the "storage" event to detect changes in "settings" localStorage
+        const handleStorageChange = (event) => {
+            if (event.key === 'settings') {
+                fetchAppConfigurations();
+            }
+        };
+
+        // Listen for "beforeunload" event to handle clearing localStorage in the same tab
+        // const handleBeforeUnload = () => {
+        //     clearLocalStorageSettings();
+        // };
+
+        window?.addEventListener('storage', handleStorageChange);
+        // window?.addEventListener('beforeunload', handleBeforeUnload);
+
+        return () => {
+            // Clean up the event listeners when the component unmounts
+            window?.removeEventListener('storage', handleStorageChange);
+            // window?.removeEventListener('beforeunload', handleBeforeUnload);
+
+        };
+    }
+
+    useEffect(() => {
+        if(settings==undefined||settings==null){
+            cleanUpFuction()
+        }
+
+    }, [settings]);
 
     return (
         <>

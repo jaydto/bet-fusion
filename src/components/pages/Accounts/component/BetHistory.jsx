@@ -1,7 +1,7 @@
 import "./bethistory.css"
 import React, { useContext, useEffect, useState} from "react";
 import {StoreContext } from "../../../../context/store"
-import Header from "../../../header/header";
+
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft, faCaretDown} from "@fortawesome/free-solid-svg-icons";
 import BetDetails from "./BetDetails";
@@ -327,7 +327,7 @@ const BetHistory = () => {
             <>
                 <div>
                     <ToastContainer/>
-                    <Header/>
+
                     <div className={'back-navigation original-button top-spacing'} onClick={() => navigateBack()}>
                         <FontAwesomeIcon icon={faAngleLeft} className={'back-navigation-icon'}/> Back
                     </div>

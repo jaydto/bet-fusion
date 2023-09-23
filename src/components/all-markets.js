@@ -21,7 +21,6 @@ import {setMatchBetslip, setSelected} from "../redux/bettingSlice";
 import {getFromLocalStorage} from "./utils/local-storage";
 import SkeletonLoaderMore from "./pages/skeletonLoadersWeb/SkeletonLoaderMore";
 
-const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
 const Right = React.lazy(() => import('./right'));
 const SideBar = React.lazy(() => import('./sidebar/awesome/Sidebar'))
@@ -132,7 +131,8 @@ const AllMarkets = React.memo(
         const showDownload = (!urlPath.includes("nare-games") && !urlPath.includes("gameplay") && !urlPath.includes("smart-play") && !urlPath.includes("betslip-slip") && !urlPath.includes("nare-league") && !urlPath.includes("bet-history") && !urlPath.includes("standings") && !urlPath.includes("results") && !urlPath.includes("casino") && !urlPath.includes("jackpot") && !urlPath.includes("smart-soft") && !urlPath.includes("virtuals") && !urlPath.includes("match") && !urlPath.includes("competition"))
         return (
             <div className={'flex-item'}>
-                <div className="item4"><Header/>
+                <div className="item4">
+
                 <ToastContainer/>
                 </div>
                 <div className={`flex-container ${!showDownload && 'top-spacing-page-no-download'}`}>

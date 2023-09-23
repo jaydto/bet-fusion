@@ -19,7 +19,6 @@ import {MatchHeaderRow} from "./matches";
 import {getFromLocalStorage} from "./utils/local-storage";
 import {removeScrollPosition, setScrollPast, setScrollPosition, setScrollToTop} from "../redux/ScrollBehavior";
 
-const Header = React.lazy(() => import('./header/header'));
 const Footer = React.lazy(() => import('./footer/footer'));
 const CarouselLoader = React.lazy(() => import('./carousel'));
 const MatchList = React.lazy(() => import('./matches'));
@@ -27,7 +26,6 @@ const Right = React.lazy(() => import('./right'));
 
 const Live = React.memo(
     () => {
-        const { dispatch} = useContext(StoreContext);
         const {height, width} = useWindowDimensions();
         const {spid} = useParams();
         const [sportID, setSportID] = useState(79)

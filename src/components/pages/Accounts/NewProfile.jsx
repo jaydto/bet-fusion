@@ -8,7 +8,6 @@ import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
 import SidebarProfile from "../../sidebar/sidebarProfile";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import {useSelector} from "react-redux";
-const Header=React.lazy(()=>import('../../header/header'))
 
 const NewProfile = React.memo(
     () => {

@@ -5,12 +5,10 @@ import "../assets/css/animationJackpot.css"
 import {ToastContainer} from "react-toastify";
 
 
-const Header = React.lazy(() => import('./header/header'));
 const FPL = React.memo(() => {
 
     return (<div className={'flex-item jackpot-container'}>
             <div className="item4">
-                <Header jackpot={true}/>
                 <ToastContainer/>
             </div>
             <div className={`flex-container jackpot flex-column  top-spacing-page-no-download-jackpot`}>

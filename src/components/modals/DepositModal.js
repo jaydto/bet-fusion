@@ -1,10 +1,9 @@
-import React, {useContext, useEffect, useRef, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import Modal from "react-bootstrap/Modal";
 import {Button} from "react-bootstrap";
-import whatsap from "../../assets/img/mobile/whatsapp.svg"
-import {LazyLoadImage} from 'react-lazy-load-image-component';
 import {useDispatch, useSelector} from "react-redux";
 import {setState} from "../../redux/bettingSlice";
+import {setState as setStateData} from "../../redux/dataSlice";
 import {getFromLocalStorage, setTrackingData} from "../utils/local-storage";
 import {StoreContext} from "../../context/store";
 import {useFormik} from "formik";
@@ -14,12 +13,11 @@ const BetslipShareModal = React.memo(
     (props) => {
         const appConfigs=useSelector((state)=>state.data.app_config)
         const [settings,setSettings] = useState(getFromLocalStorage('settings'));
-        const [currentDepositValue, setCurrentDepositValue] = useState(0); // New state for current deposit value
         const loadingDeposit=useSelector((state)=>state.data.deposit_loading)
+        const successMessage=useSelector((state)=>state.data.deposits_message)
 
-        const {visible, payload, setShowShareModal} = props
+        const {visible, payload, setShowShareModal, setMessage} = props
         const [isOpen, setIsOpen] = useState(visible)
-        const copyLink = useRef()
         const dispatchRedux = useDispatch()
         const {dispatch}=useContext(StoreContext)
         const userData=useSelector((state)=>state.auth.user)
@@ -70,6 +68,8 @@ const BetslipShareModal = React.memo(
         });
 
         const clearMessage=()=>{
+            setMessage(null)
+            dispatchRedux(setStateData('deposits_message', null))
             dispatchRedux(setState('bet_placement_message', null))
 
         }
@@ -85,11 +85,10 @@ const BetslipShareModal = React.memo(
             dispatch({ type: 'SET', key: 'depositValue', payload: value });
 
             // Update the currentDepositValue state if necessary
-            setCurrentDepositValue(value);
         };
 
         const Alert = (props) => {
-            let c =  'danger';
+            let c =  successMessage?'success':'danger';
             let x_style = {
                 float: "right",
                 display: "block",
@@ -101,10 +100,10 @@ const BetslipShareModal = React.memo(
                 top: '0',
                 right: '0'
             }
-            return (<>{payload&&
+            return (<>{(payload||successMessage)&&
                 <div role="alert"
                      className={`fade alert alert-${c} show alert-dismissible d-flex justify-content-between align-items-center alert-message-line-height alert-position-betslip-top`}>
-                    {payload||'This is a test run'}
+                    {payload||successMessage}
                     <span aria-hidden="true" style={x_style} onClick={() => clearMessage()}>&times;</span>
                 </div>
             }
@@ -183,10 +182,10 @@ const BetslipShareModal = React.memo(
                         <div className="col-12 text-center mt-4">
                             <button
                                 type="submit"
-                                className="w-100 rounded-2 btn bg-warning btn-lg py-3 button-text-choice1"
-                                disabled={formik.isSubmitting}
+                                className="btn btn-lg w-100 deposit-button button-radius input-field btn-font cg login-button2 btn bold d-flex justify-content-center align-items-center button-text-choice1"
+                                disabled={loadingDeposit}
                             >
-                                {formik.isSubmitting ? <div className="loader"></div> : `DEPOSIT ${formik.values.amount}`}
+                                {loadingDeposit ? <div className="loader"></div> : `DEPOSIT ${formik.values.amount}`}
                             </button>
                         </div>
                     </form>

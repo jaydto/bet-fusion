@@ -150,6 +150,10 @@ const BetslipSubmitForm = React.memo(
                 setBetslipKey("jackpotbetslip");
             }
         }, [jackpot]);
+        const clearMessage=()=>{
+
+            setMessage(null)
+        }
 
 
         const Alert = (props) => {
@@ -165,11 +169,11 @@ const BetslipSubmitForm = React.memo(
                 top: '0',
                 right: '0'
             }
-            return (<>{message?.status &&
+            return (<>{message &&
                 <div role="alert"
                      className={`fade alert alert-${c} show alert-dismissible d-flex justify-content-between align-items-center alert-message-line-height alert-position-betslip-top`}>
                     {message.message}
-                    <span aria-hidden="true" style={x_style} onClick={() => setMessage(null)}>&times;</span>
+                    <span aria-hidden="true" style={x_style} onClick={clearMessage}>&times;</span>
                 </div>}
             </>);
 
@@ -242,6 +246,7 @@ const BetslipSubmitForm = React.memo(
             let endpoint = '/bet';
             let method = "GET"
             let use_jwt = true
+            dispatchRedux(setState('deposits_message', null))
 
 
             // const data = {
@@ -295,10 +300,11 @@ const BetslipSubmitForm = React.memo(
                     //     message: response?.message
                     // }
                     // gaEventTracker("Bet Placement Failed " + response?.message, data)
+                    const message_error=JSON.parse(response?.error?.message)
 
-                    let response_message = response?.error?.message;
+                    let response_message =message_error[0].message ;
                     if (response_message === "" || response_message === undefined) {
-                        response_message = response?.error?.message;
+                        response_message = message_error[0].message;
                         if (response_message === "" || response_message === undefined) {
                             response_message = "Something went wrong. Please try again later or contact support. 0701 087 777";
                         }
@@ -616,7 +622,7 @@ const BetslipSubmitForm = React.memo(
         const loadingShare=useSelector((state)=>state.matchesData.loading_bet_history)
         const [showShareModal, setShowShareModal] = useState(false);
         const [betSharePayload, setBetSharePayload] = useState({});
-        const show_deposit_modal=useSelector((state)=>state.betting.insufficent_balance)
+        const show_deposit_modal=useSelector((state)=>state.betting.insufficient_balance)
         const [showDepositModal, setShowDepositModal] = useState(false);
 
         const dispatchRedux=useDispatch()
@@ -796,6 +802,7 @@ const BetslipSubmitForm = React.memo(
                             <DepositModal
                                 visible={showDepositModal}
                                 payload={message?.message}
+                                setMessage={clearMessage}
                                 setShowShareModal={setShowDepositModal}
                             />
                         )}

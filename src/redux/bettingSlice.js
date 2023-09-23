@@ -4,22 +4,53 @@ import initialState from "./state"; // Import the initial state from state.js
 import makeRequest from "../components/utils/fetch-request";
 import { getBetslip, getJackpotBetslip} from "../components/utils/betslip"; // Import the makeRequest function
 // Async thunk for matches
-export const bettingMatchesGames =
-    createAsyncThunk("betting/matchesGames",
-        async ({endpoint, method, data, jackpot, use_jwt}) => {
+
+
+export const bettingMatchesGames = createAsyncThunk(
+    "betting/matchesGames",
+    async ({ endpoint, method, data, jackpot, use_jwt }) => {
+        const errors = []; // Collect errors in an array
+
+        try {
             const [status, response] = await makeRequest({
                 url: endpoint,
                 method: method,
                 data: data,
-                use_jwt:use_jwt
+                use_jwt: use_jwt,
             });
-            if (status === 201||status===200||response.status===201) {
+
+            if (status === 201 || status === 200 || response?.status === 201) {
                 return response;
             } else {
-                throw new Error(jackpot?response?.error:response?.message || `${jackpot?"jackpot ":""} Bet placement failed`);
-            }
+                const customError = {};
 
-        });
+                customError.message = jackpot
+                    ? response?.error
+                    : response?.message || `${jackpot ? "jackpot " : ""} Bet placement failed`;
+
+                customError.status_balance = response?.insufficient_balance || false;
+
+                errors.push(customError); // Collect the custom error object in the array
+
+            }
+        } catch (error) {
+            errors.push(error); // Collect the error in the array
+        }
+
+        if (errors.length > 0) {
+            // If there are errors, throw the errors array itself
+
+
+            throw new Error(JSON.stringify(errors))
+            //return thunkAPI.
+        }
+    }
+);
+
+
+
+
+
 export const bettingJackpot =
     createAsyncThunk("betting/jackpot",
         async (jackpotPayload) => {
@@ -141,12 +172,10 @@ const bettingSlice = createSlice({
             })
             .addCase(bettingMatchesGames.rejected, (state, action) => {
                 state.loading = false;
-                console.log("action", action)
-                // const insufficient_balance=action.payload.insufficient_balance
-                // if(insufficient_balance){
-                //     state.insufficient_balance =insufficient_balance
-                // }
-                state.error = action.error.message;
+                const message=JSON.parse(action.error.message)
+                console.log("message", message)
+                state.error = message[0].message;
+                state.insufficient_balance = message[0].status_balance;
             })
 
             .addCase(bettingJackpot.pending, (state) => {

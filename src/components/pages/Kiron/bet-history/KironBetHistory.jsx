@@ -148,7 +148,7 @@ const KironBetHistory = React.memo(
                                                 #{bets?.bet_id}
                                             </div>
                                             <div className={"bet-history-items games badge "}>
-                                                <FontAwesomeIcon icon={faXbox}/>&nbsp;{bets?.total_matches}
+                                                <FontAwesomeIcon icon={faXbox}/>&nbsp;{bets?.total_games}
                                             </div>
                                             <div className={"bet-history-items amount"}>
                                                 KES {bets?.bet_amount}
@@ -225,7 +225,7 @@ const KironBetHistory = React.memo(
                                             #{bets?.bet_id}
                                         </div>
                                         <div className={"bet-history-items games badge "}>
-                                            <FontAwesomeIcon icon={faXbox}/>&nbsp;{bets?.total_matches}
+                                            <FontAwesomeIcon icon={faXbox}/>&nbsp;{bets?.total_games}
                                         </div>
                                         <div className={"bet-history-items amount"}>
                                             KES {bets?.bet_amount}

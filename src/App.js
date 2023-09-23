@@ -143,16 +143,21 @@ const App = () => {
     const dispatchRedux = useDispatch()
     const scrollPosition=useSelector((state)=>state.scroll.scroll)
     const appConfigs=useSelector((state)=>state.data.app_config)
+    const sport_categories=useSelector((state)=>state.matchesData.sport_categories)
 
     const [settings,setSettings] = useState(getFromLocalStorage('settings'));
+    const [sportCategories,setSportCategories] = useState(getFromLocalStorage('sport_categories'));
 
     useEffect(()=>{
         setSettings(appConfigs||getFromLocalStorage('settings'))
     },[appConfigs,getFromLocalStorage('settings') ])
+    useEffect(()=>{
+        setSportCategories(sport_categories||getFromLocalStorage('sport_categories'))
+    },[sport_categories,getFromLocalStorage('sport_categories') ])
     const fetchData = async () => {
         let cached_categories = getFromLocalStorage('sport_categories');
 
-        if (!cached_categories) {
+        if (!cached_categories||cached_categories===undefined||cached_categories===null) {
             dispatchRedux(matchCategories())
         }
 
@@ -182,6 +187,8 @@ const App = () => {
         const handleStorageChange = (event) => {
             if (event.key === 'settings') {
                 fetchAppConfigurations();
+            }else if(event.key==='sport_categories'){
+                fetchData()
             }
         };
 
@@ -202,11 +209,11 @@ const App = () => {
     }
 
     useEffect(() => {
-        if(settings==undefined||settings==null){
+        if(settings==undefined||settings==null||sport_categories==undefined||sportCategories==null){
             cleanUpFuction()
         }
 
-    }, [settings]);
+    }, [settings, sportCategories]);
 
     return (
         <>

@@ -9,34 +9,33 @@ import makeRequest from "../utils/fetch-request";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {Link, useNavigate} from "react-router-dom";
 import {setLocalStorage} from "../utils/local-storage";
+import {matchesSearch} from "../../redux/matchesSlice";
+import {useDispatch, useSelector} from "react-redux";
 
 const HeaderNav = React.memo(
     (props) => {
         const gaEventTracker = useAnalyticsEventTracker('Navigation');
         const [test, setTest] = useState(false)
         const {state, dispatch} = useContext(StoreContext);
-        ;
+        const dispatchRedux=useDispatch();
         const pathname = window.location.pathname;
-        const searchTerm = window.location.search
         const [searching, setSearching] = useState(false)
+        const matchesData=useSelector((state)=>state.matchesData.searched_matches)
+
         const [matches, setMatches] = useState([])
         const searchInputRef = useRef(null)
         let navigate = useNavigate();
 
-        useEffect(() => {
-            fetchMatches()
-        }, [searching])
+
+
 
         const fetchMatches = async (search) => {
             if (search && search.length >= 3) {
                 gaEventTracker('Searching')
                 let method = "POST"
-                let endpoint = "/v1/matches?page=" + (1) + `&limit=${10}&search=${search}`;
-                await makeRequest({url: endpoint, method: method, data: []}).then(([status, result]) => {
-                    if (status === 200) {
-                        setMatches(result?.data || result)
-                    }
-                });
+                let endpoint = "/v1/matches?page="+(1)+`&limit=${10}&search=${search}`;
+
+                dispatchRedux( matchesSearch({endpoint:endpoint, method:method}))
             }
 
         };
@@ -46,6 +45,10 @@ const HeaderNav = React.memo(
             searchInputRef.current.focus()
             gaEventTracker('Clicked on Search')
         }
+
+        useEffect(()=>{
+            setMatches(matchesData)
+        },[matchesData])
 
         const dismissSearch = () => {
             setSearching(false)
@@ -168,7 +171,7 @@ const HeaderNav = React.memo(
                         as="ul" xs="12" horizontal
                         className="nav navbar-nav og d-flex ale ss  col-lg-3 col-md-3 col-sm-3 change-display second-nav-list">
                         <li className={pathname === '/print-matches' ? 'spacing-end' : 'spacing-end'}>
-                            <Link className="url-link fm anl cg ox fix-display" to="#" title="Search"
+                            <div className="url-link fm anl cg ox fix-display cursor-pointer"  title="Search"
                                   onClick={() => {
                                       showSearchBar();
                                       gaEventTracker('Visit Search')
@@ -177,7 +180,7 @@ const HeaderNav = React.memo(
                                 <strong><FontAwesomeIcon icon={faSearch}/> </strong>
                             </span>
                                 <strong><span className={'hide2'}>Search </span></strong>
-                            </Link>
+                            </div>
                         </li>
                         <li className={pathname === '/how-to-play' ? 'active' : ''}
                             onClick={() => gaEventTracker('Visit How To Play Page')}>
@@ -218,7 +221,7 @@ const HeaderNav = React.memo(
                         <div
                             className={`autocomplete-box search-results-box position-fixed  border-dark col-md-5 mt-1 shadow-lg text-start`}
                             onClick={() => gaEventTracker('View Search Results')}>
-                            {matches.map((match, index) => (
+                            {matches?.map((match, index) => (
                                 <Link to={`/?search=${match.home_team}`} key={index} onClick={() => dismissSearch()}>
                                     <li>
                                         {match.home_team}

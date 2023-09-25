@@ -56,6 +56,7 @@ const Index = React.memo(
         let url = new URL(window.location.href)
         let c_pathname = url.pathname;
         let sub_type = (url.searchParams.get("sub_type_id") || "1")
+        let sport_id = (url.searchParams.get("sport_id") )
         const dispatchRedux=useDispatch()
         const newMatches=useSelector((state)=>state.matchesData.matches)
         // const prev_match_size=useSelector((state)=>state.matchesData.prev_match_size)
@@ -132,38 +133,37 @@ const Index = React.memo(
 
 
         const fetchData = async () => {
-
             let tab = location.pathname.replace("/", "") || 'highlights';
             let tabInfo = window.location.pathname
-            tabInfo = tabInfo.substring(tabInfo.lastIndexOf('/') + 1)
+            tabInfo = tabInfo.substring(tabInfo.lastIndexOf('/') + 1).trim()
 
             let betslip = findPostableSlip();
 
-            let endpoint = "/v1/matches?page=" + (page || 1) + `&limit=${newLimit}&tab=`+tabInfo||tab;
+            let endpoint = "/v1/matches?page="+(page || 1) +`&limit=${newLimit}&tab=`+tabInfo.trim()||tab.trim();
             let url = new URL(window.location.href)
             let sport_id = url.searchParams.get('sport_id')
 
             if (sport_id !== null) {
-                endpoint += " &sport_id=" + sport_id
+                endpoint +="&sport_id="+sport_id
             }
 
-            endpoint = endpoint.replaceAll(" ", '')
+            endpoint = endpoint.replaceAll(" ", '').trim()
 
 
             let search_term = url.searchParams.get('search')
             if (search_term !== null) {
-                endpoint += ' &search=' + search_term
+                endpoint +=' &search='+search_term
             }
             //splitting before api call
-            let sub_types = (url.searchParams.get('sub_type_id') || "1")
-            let market_name = (url.searchParams.get('market_name') || "1x2")
+            let sub_types = (url.searchParams.get('sub_type_id')||"1")
+            let market_name = (url.searchParams.get('market_name')||"1x2")
             let search = (url.searchParams.get('search') ||false)
             const categories = getFromLocalStorage('sport_categories')
             let sport = categories?.all_sports?.filter((category) => Number(category.sport_id) === Number(sport_id))
-            const sport_type=sport != null ? sport?.[0]?.sport_name || 'Soccer' : "";
+            const sport_type=sport != null ? sport?.[0]?.sport_name||'Soccer':"";
 
 
-            endpoint += `&sub_type_id=` + (sub_types || "1")
+            endpoint+=`&sub_type_id=`+(sub_types||"1")
 
             dispatchRedux(matchesPrematch({endpoint,method:"POST",data:betslip, search:search, active_sport:sport_type, active_sub_type:market_name})); // Dispatch matchesPrematch with the updated fetchParams
 
@@ -243,7 +243,7 @@ const Index = React.memo(
                 dispatchRedux(setMatchBetslip(betslip_data))
             }
 
-        }, [tab, sportID]);
+        }, [window.location.href, sport_id]);
 
 
 

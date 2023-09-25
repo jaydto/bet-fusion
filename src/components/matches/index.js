@@ -280,7 +280,7 @@ export const MatchHeaderRow = React.memo(
 
                                     <div className={'d-flex align-items-center gap-2'}>
                                         {live && <span className="live-header">LIVE </span>}
-                                        {active_sport==='Soccer'&&<span className={'sport-styling'}>
+                                        {(active_sport==='Soccer'&&!search)&&<span className={'sport-styling'}>
                                             {active_sport} {market && <></>}
                                         </span>}
                                         {(search&&!live)&&
@@ -288,7 +288,7 @@ export const MatchHeaderRow = React.memo(
                                                 <FontAwesomeIcon icon={faXmark} className={'close-filter'} onClick={()=>closeFilter("search")}/>
                                                 {search}
                                             </span>}
-                                        {active_sport!=='Soccer'&&
+                                        {(active_sport!=='Soccer'&&!search)&&
                                             <span className={'selected-filters__item d-flex gap-2 align-items-center'}>
                                                 <FontAwesomeIcon icon={faXmark} className={'close-filter'} onClick={()=>closeFilter('sport')}/>
                                                 {active_sport}

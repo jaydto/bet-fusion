@@ -87,7 +87,7 @@ export const UserInfo = React.memo(
                         </div>
                         {!profile&&<div className='d-flex align-items-baseline'>
                             <div className={` align-items-center  ${state?.searching ? 'd-none' : 'd-flex'}`}>
-                                <Link className="" to={"#"} title="Search"
+                                <div className="cursor-pointer"  title="Search"
                                       onClick={() => {
                                           showSearchBar();
                                           gaEventTracker('Visit Search')
@@ -96,7 +96,7 @@ export const UserInfo = React.memo(
                                                     className="border-radius-search p-2 align-items-center  justify-content-center d-flex"><FontAwesomeIcon
                                                     icon={faSearch}/> </span><span
                                 ></span>
-                                </Link>
+                                </div>
                             </div>
                         </div>}
                         <div className="col-1 button-toggle space-button"
@@ -129,7 +129,7 @@ export const UserInfo = React.memo(
                             </Link>}
                         {pathname !== '/signup' && <div className='d-flex align-items-baseline'>
                             <div className={` align-items-center  ${state?.searching ? 'd-none' : 'd-flex'}`}>
-                                <Link className="" to={"#"} title="Search"
+                                <div className="cursor-pointer"  title="Search"
                                       onClick={() => {
                                           showSearchBar();
                                           gaEventTracker('Visit Search')
@@ -138,7 +138,7 @@ export const UserInfo = React.memo(
                                                         className="border-radius-search p-2  justify-content-center d-flex"><FontAwesomeIcon
                                                         icon={faSearch}/> </span><span
                                 ></span>
-                                </Link>
+                                </div>
                             </div>
                         </div>}
                         <div className="col-1 button-toggle space-button"

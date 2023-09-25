@@ -89,10 +89,9 @@ const Header = React.memo(
             if (search && search.length >= 3) {
                 gaEventTracker('Searching')
                 let method = "POST"
-                let endpoint = "/v1/matches?page=" + (1) + `&limit=${10}&search=${search}`;
+                let endpoint = "/v1/matches?page="+(1)+`&limit=${10}&search=${search}`;
 
-                dispatchRedux( status
-                matchesSearch({endpoint:endpoint, method:method}))
+                dispatchRedux( matchesSearch({endpoint:endpoint, method:method}))
             }
 
         };

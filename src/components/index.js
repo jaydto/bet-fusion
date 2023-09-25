@@ -139,7 +139,7 @@ const Index = React.memo(
 
             let betslip = findPostableSlip();
 
-            let endpoint = "/v1/matches?page=" + (page || 1) + `&limit=${newLimit}&tab=` + tabInfo || tab;
+            let endpoint = "/v1/matches?page=" + (page || 1) + `&limit=${newLimit}&tab=`+tabInfo||tab;
             let url = new URL(window.location.href)
             let sport_id = url.searchParams.get('sport_id')
 
@@ -243,7 +243,7 @@ const Index = React.memo(
                 dispatchRedux(setMatchBetslip(betslip_data))
             }
 
-        }, [window.location.pathname, window.location.search]);
+        }, [tab, sportID]);
 
 
 

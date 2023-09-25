@@ -15,7 +15,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import LoginSection from "./LoginSection";
 import {UserInfo} from "./UserInfo";
 import {useDispatch, useSelector} from "react-redux";
-import {configSettings} from "../../redux/dataSlice";
+import {configSettings, setState} from "../../redux/dataSlice";
 import { userBalance} from "../../redux/authSlice";
 import {matchCategories, matchesSearch} from "../../redux/matchesSlice";
 import {
@@ -83,7 +83,7 @@ const Header = React.memo(
         //     fetchMatches()
         // }, [state?.searching])
 
-
+       const  active_sport_value=useSelector((state)=>state.matchesData.active_sport)
         const fetchMatches = async (search) => {
 
             if (search && search.length >= 3) {
@@ -91,7 +91,7 @@ const Header = React.memo(
                 let method = "POST"
                 let endpoint = "/v1/matches?page="+(1)+`&limit=${10}&search=${search}`;
 
-                dispatchRedux( matchesSearch({endpoint:endpoint, method:method}))
+                dispatchRedux( matchesSearch({endpoint:endpoint, method:method, active_sport:active_sport_value}))
             }
 
         };
@@ -145,6 +145,15 @@ const Header = React.memo(
             }
 
         }, [pathname])
+
+        var currentURL = new URL(window.location.href);
+        var pathAndQuery = currentURL.pathname + currentURL.search;
+
+        useEffect(() => {
+            if(state?.searching){
+                dispatchRedux(setState('navigation_link', pathAndQuery))
+            }
+        }, [state?.searching]);
 
 
         return (
@@ -218,7 +227,8 @@ const Header = React.memo(
                                         <div className="d-flex w-100">
                                             <div className="col-10  px-2" style={{marginLeft: '2vw'}}>
                                                 <input type="text" placeholder={'Start typing to search for team ...'}
-                                                       autoFocus={true} ref={searchInputRef}
+                                                       autoFocus={true}
+                                                       ref={searchInputRef}
                                                        onInput={(event) => fetchMatches(event.target.value)}
                                                        className={'form-control input-field-search border-0  text-default bg-light no-border-radius input-bg-user'}
                                                        style={{background: "#2D4352"}}/>
@@ -226,7 +236,7 @@ const Header = React.memo(
                                                      className={`col-10 autocomplete-box  rounded position-fixed  search-results-box border-dark col-md-5 shadow-lg text-start`}
                                                      onClick={() => gaEventTracker('View Search Results')}>
                                                     {matches?.map((match, index) => (
-                                                        <Link to={`/?search=${match.home_team}&sub_type_id=1`}
+                                                        <Link to={`/?search=${match.home_team}`}
                                                               key={index}
                                                               onClick={() => dismissSearch()}>
                                                             <li>

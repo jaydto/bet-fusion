@@ -54,14 +54,14 @@ export const matchesCompetition =
         });
 export const matchesSearch =
     createAsyncThunk("matches/matchesSearch",
-        async ({endpoint, method}) => {
+        async ({endpoint, method, active_sport}) => {
             const [status, response] = await makeRequest({
                 url: endpoint,
                 method: method,
                 data: [],
             });
             if (status === 200) {
-                return response;
+                return {response, active_sport};
             } else {
                 throw new Error(response?.error || "Search failed");
             }
@@ -340,7 +340,7 @@ export const startFetchingMatches = ({endpoint, method, data, interval,
                                          live = false,
                                          competition = false,
                                          search=false,
-                                         active_sport=null,
+                                         active_sport='Soccer',
                                          active_sub_type=null
 
 
@@ -435,7 +435,10 @@ const matchesSlice = createSlice({
                 const search=action.payload?.search
                 const active_sport=action.payload.active_sport
                 const active_sub_type=action.payload.active_sub_type
+
+
                 state.active_sport=active_sport
+
                 state.active_sub_type=active_sub_type
                 state.search=search
 
@@ -489,13 +492,14 @@ const matchesSlice = createSlice({
             .addCase(matchesSearch.fulfilled, (state, action) => {
                 state.isLoggedIn = true;
                 state.loading = false;
+                state.active_sport=action.payload.active_sport
 
-                const newMatches = action.payload?.data;
+                const newMatches = action.payload?.response.data;
                 state.searched_matches = newMatches;
                 if (newMatches.slip_data) {
                     state.user_slip_validation = newMatches.slip_data
                 }
-                state.producer_down = action.payload.producer_status === 1
+                state.producer_down = action.payload.response.producer_status === 1
                 // Reset initialLoading flag after initial fetch
                 if (state.initialLoading) {
                     state.initialLoading = false;

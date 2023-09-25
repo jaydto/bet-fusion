@@ -117,7 +117,7 @@ const Sidebar = React.memo(
                                                 <p className={'text-light'} style={{opacity:'0.8', fontWeight:'var(--font-weight3'}}>
                                                     Top Leagues
                                                 </p>
-                                                <MenuItem title={"Top Leagues"} defaultOpen={true} key={index}>
+                                                <Menu title={"Top Leagues"} key={index}>
                                                     {competitions?.top_soccer?.map((top_league, index) => (
                                                         <MenuItem
                                                             key={`l_${index}`}
@@ -152,7 +152,7 @@ const Sidebar = React.memo(
                                                             </Link>
                                                         </MenuItem>
                                                     ))}
-                                                </MenuItem>
+                                                </Menu>
                                             </div>
 
                                         )}

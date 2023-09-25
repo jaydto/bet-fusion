@@ -30,7 +30,7 @@ import {
 import {getFromLocalStorage} from "../utils/local-storage";
 
 import {Input} from "@mui/material";
-import {Link, useNavigate} from "react-router-dom";
+import {Link, useNavigate, useLocation} from "react-router-dom";
 
 import Notify from "../utils/Notify";
 
@@ -251,6 +251,8 @@ export const MatchHeaderRow = React.memo(
         }, [first_match])
 
         const navigate=useNavigate()
+        const navigation_link=useSelector((state)=>state.data.navigation_link)
+
 
         const closeFilter=(option)=>{
             // reset filters
@@ -261,8 +263,24 @@ export const MatchHeaderRow = React.memo(
                 dispatchRedux(resetState("search"))
             }else if(option==='sub_type'){
                 dispatchRedux(resetState("active_sub_type"))
+
             }
-            live?navigate('/live'):navigate('/')
+            // Check if there is a previous navigation
+           // live?   navigate('/live'):
+           //  navigate('/')
+
+            if (navigation_link) {
+                if(live){
+                    navigate('/live')
+                }else{
+                    navigate(`${navigation_link}`)
+                }
+            } else {
+                navigate('/')
+                // If there is no previous navigation, go home
+
+            }
+            // live?navigate('/live'):
             dispatchRedux(setState('active_link', 79))
 
 

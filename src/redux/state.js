@@ -1,5 +1,6 @@
 const initialState = {
     data: {
+        navigation_link:null,
         print_title:'highlights',
         leader_board:null,
         active_link:'79',

@@ -239,14 +239,14 @@ const App = () => {
 
 
     useEffect(() => {
-        if (settings == undefined || settings == null) {
+        if (settings === undefined || settings === null) {
             cleanUpFuction()
         }
 
     }, [settings]);
 
     useEffect(() => {
-        if (sport_categories == undefined || sport_categories == null) {
+        if (sport_categories === undefined || sport_categories === null) {
             cleanUpFuctionSportCategories()
         }
 

@@ -4,13 +4,13 @@ import Container from 'react-bootstrap/Container';
 import {StoreContext} from "../../context/store";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faPrint, faQuestionCircle, faSearch, faTimes,} from '@fortawesome/free-solid-svg-icons'
-import makeRequest from "../utils/fetch-request";
 
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {Link, useNavigate} from "react-router-dom";
 import {setLocalStorage} from "../utils/local-storage";
 import {matchesSearch} from "../../redux/matchesSlice";
 import {useDispatch, useSelector} from "react-redux";
+import {setState} from "../../redux/dataSlice";
 
 const HeaderNav = React.memo(
     (props) => {
@@ -27,6 +27,10 @@ const HeaderNav = React.memo(
         let navigate = useNavigate();
 
 
+        const  active_sport_value=useSelector((state)=>state.matchesData.active_sport)
+        var currentURL = new URL(window.location.href);
+        var pathAndQuery = currentURL.pathname + currentURL.search;
+
 
 
         const fetchMatches = async (search) => {
@@ -35,7 +39,7 @@ const HeaderNav = React.memo(
                 let method = "POST"
                 let endpoint = "/v1/matches?page="+(1)+`&limit=${10}&search=${search}`;
 
-                dispatchRedux( matchesSearch({endpoint:endpoint, method:method}))
+                dispatchRedux( matchesSearch({endpoint:endpoint, method:method, active_sport:active_sport_value}))
             }
 
         };
@@ -74,6 +78,12 @@ const HeaderNav = React.memo(
                 }
             }
         }
+
+        useEffect(() => {
+            if(searching){
+                dispatchRedux(setState('navigation_link', pathAndQuery))
+            }
+        }, [searching]);
         return (
             <>
                 <Container fluid id="navbar-collapse-main"
@@ -208,7 +218,8 @@ const HeaderNav = React.memo(
                     <ListGroup as="ul" xs="9" horizontal className="nav navbar-nav og ale ss col-md-6 text-center">
                         <div className="d-flex">
                             <div className="col-md-10">
-                                <input type="text" placeholder={'Start typing to search for team ...'} autoFocus={true}
+                                <input type="text" placeholder={'Start typing to search for team ...'}
+                                       autoFocus={true}
                                        ref={searchInputRef}
                                        onInput={(event) => fetchMatches(event.target.value)}
                                        className={'form-control input-field border-0 bg-dark text-white no-border-radius'}/>

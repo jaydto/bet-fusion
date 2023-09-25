@@ -10,6 +10,9 @@ body {
     background: var(--betslip-list);
 }
 
+.link-color{
+    color:var(--link-color) !important
+}
 .slip-dim-color-selections {
 
 }

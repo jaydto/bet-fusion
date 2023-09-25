@@ -87,7 +87,7 @@ export const UserInfo = React.memo(
                         </div>
                         {!profile&&<div className='d-flex align-items-baseline'>
                             <div className={` align-items-center  ${state?.searching ? 'd-none' : 'd-flex'}`}>
-                                <div className="cursor-pointer"  title="Search"
+                                <div className="cursor-pointer link_color"  title="Search"
                                       onClick={() => {
                                           showSearchBar();
                                           gaEventTracker('Visit Search')

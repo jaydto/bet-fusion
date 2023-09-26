@@ -107,7 +107,7 @@ const Countries = React.memo(
                                             {competitions?.top_soccer?.map((top_league, index) => (
                                                 <MenuItem
                                                     key={`l_${index}`}
-                                                    className={'d-flex '}
+                                                    className={'d-flex align-items-center'}
                                                     style={{maxHeight:'27px'}}
                                                     icon={
                                                         <LazyLoadImage

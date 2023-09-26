@@ -122,7 +122,7 @@ const Sidebar = React.memo(
                                         key={index}>
                                         {index === 0 && (
                                             <div >
-                                                <p className={'text-light'} style={{opacity:'0.8', fontWeight:'var(--font-weight3'}}>
+                                                <p className={'text-light mb-0'} style={{opacity:'0.8', fontWeight:'var(--font-weight3'}}>
                                                     Top Leagues
                                                 </p>
                                                 <Menu title={"Top Leagues"} key={index}>

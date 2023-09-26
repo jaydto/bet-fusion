@@ -1,21 +1,17 @@
 import './App.css';
-import React, {startTransition, Suspense, useCallback, useContext, useEffect, useState} from "react";
+import React, {Suspense, useCallback, useContext, useEffect, useState} from "react";
 import {StoreContext} from "./context/store";
 import {useDispatch, useSelector} from "react-redux";
 import {getFromLocalStorage, setLocalStorage} from "./components/utils/local-storage";
 import {resetState} from "./redux/authSlice";
 import {Navigate, Route, Routes, useNavigate,} from 'react-router-dom'
 import Header from './components/header/header';
-import Index from './components'
 import {matchCategories} from "./redux/matchesSlice";
 import {configSettings} from "./redux/dataSlice";
 
-
 const Deposit3 = React.lazy(() => import("./components/pages/deposit-withraw/Deposit3"));
+const DefaultPage = React.lazy(() => import('./components/defaultPage'));
 
-const CompetitionsMatches = React.lazy(
-    () => import('./components/competition-matches')
-);
 const BetslipShareDecode = React.lazy(() => import('./components/betslip/BetslipShareDecode'))
 
 const MatchAllMarkets = React.lazy(() => import('./components/all-markets'));
@@ -120,7 +116,7 @@ const Promo = React.lazy(() => import('./components/pages/promotions/Promo'))
 const BetHistory = React.lazy(() => import( "./components/pages/Accounts/component/BetHistory"));
 
 const Logout = () => {
-    const {state, dispatch} = useContext(StoreContext);
+    const {dispatch} = useContext(StoreContext);
     const dispatchRedux = useDispatch();
     let navigate = useNavigate();
     setLocalStorage('user', null)
@@ -135,11 +131,13 @@ const Logout = () => {
     useEffect(() => {
         out();
     }, [out]);
-    return null;
+
+    return null
 }
 
 
-const App = () => {
+const App = React.memo(
+    () => {
     const dispatchRedux = useDispatch()
     const scrollPosition = useSelector((state) => state.scroll.scroll)
     const appConfigs = useSelector((state) => state.data.app_config)
@@ -150,14 +148,16 @@ const App = () => {
 
     useEffect(() => {
         setSettings(appConfigs || getFromLocalStorage('settings'))
-    }, [appConfigs, getFromLocalStorage('settings')])
+    }, [appConfigs,getFromLocalStorage('settings')])
+
     useEffect(() => {
         setSportCategories(sport_categories || getFromLocalStorage('sport_categories'))
     }, [sport_categories, getFromLocalStorage('sport_categories')])
+
     const fetchData = async () => {
         let cached_categories = getFromLocalStorage('sport_categories');
 
-        if (!cached_categories) {
+        if (!cached_categories||cached_categories?.all_sports?.length===0) {
             dispatchRedux(matchCategories())
         }
 
@@ -207,34 +207,6 @@ const App = () => {
     const cleanUpFuctionSportCategories = async () => {
         await fetchData();
 
-        // Custom function to clear settings from localStorage
-        // const clearLocalStorageSettings = () => {
-        //     localStorage.removeItem('settings');
-        //     // Manually call fetchAppConfigurations to update the settings
-        //     fetchAppConfigurations();
-        // };
-
-        // Listen for the "storage" event to detect changes in "settings" localStorage
-        const handleStorageChange = (event) => {
-            if (event.key === 'sport_categories') {
-                fetchData();
-            }
-        };
-
-        // Listen for "beforeunload" event to handle clearing localStorage in the same tab
-        // const handleBeforeUnload = () => {
-        //     clearLocalStorageSettings();
-        // };
-
-        window?.addEventListener('storage', handleStorageChange);
-        // window?.addEventListener('beforeunload', handleBeforeUnload);
-
-        return () => {
-            // Clean up the event listeners when the component unmounts
-            window?.removeEventListener('storage', handleStorageChange);
-            // window?.removeEventListener('beforeunload', handleBeforeUnload);
-
-        };
     }
 
 
@@ -246,11 +218,11 @@ const App = () => {
     }, [settings]);
 
     useEffect(() => {
-        if (sport_categories === undefined || sport_categories === null) {
+        if (sportCategories === undefined || sportCategories === null||sportCategories?.all_sports?.length===0) {
             cleanUpFuctionSportCategories()
         }
 
-    }, [sport_categories]);
+    }, [sportCategories]);
 
     return (
         <>
@@ -258,23 +230,20 @@ const App = () => {
             <Suspense fallback={<></>}>
                 <Routes>
                     <Route path="*" element={<Navigate to="/404"/>}/>
-                    <Route exact path="/" element={
-                        <Index/>
-                    }
-                    />
-                    <Route exact path="/highlights" element={
+                    <Route exact path="/" element={<DefaultPage/>}/>
+                    <Route exact path="/highlights" element={<DefaultPage/>}/>
+                    <Route exact path="/upcoming" element={<DefaultPage/>}/>
+                    <Route exact path="/tomorrow" element={<DefaultPage/>}/>
+                    <Route exact path="/countries" element={<DefaultPage/>}/>
+                    <Route exact path="/competition/:id" element={<DefaultPage/>}/>
+                    <Route exact path="/competition/:sportid/:categoryid/:competitionid" element={<DefaultPage/>}/>
+                    <Route exact path="/highlights-competition/competition/:sportid/:categoryid/:competitionid" element={<DefaultPage/>}/>
+                    <Route exact path="/upcoming-competition/competition/:sportid/:categoryid/:competitionid" element={<DefaultPage/>}/>
+                    <Route exact path="/tomorrow-competition/competition/:sportid/:categoryid/:competitionid" element={<DefaultPage/>}/>
 
-                        <Index/>
-                    }/>
-                    <Route exact path="/upcoming" element={
-                        <Index/>
-                    }/>
-                    <Route exact path="/tomorrow" element={
-                        <Index/>
-                    }/>
-                    <Route exact path="/countries" element={<Index/>}/>
                     <Route exact path="/live" element={<Live/>}/>
                     <Route exact path="/live/:spid" element={<Live/>}/>
+
                     <Route exact path="/login" element={<Login/>}/>
                     <Route exact path="/fpl" element={<FPL/>}/>
                     <Route exact path="/share" element={<BetslipShareDecode/>}/>
@@ -289,29 +258,19 @@ const App = () => {
                     <Route exact path="/smart-play" element={<SmartPlay/>}/>
                     <Route exact path="/smart-soft" element={<SmartSoftPlay/>}/>
                     <Route exact path="/shaks/:game" element={<ShaksGamePlay/>}/>
-                    <Route exact path={"/nare-league"} element={
-                        <Kiron/>
-                    }
-                    />
+
+                    <Route exact path={"/nare-league"} element={<Kiron/>}/>
                     <Route exact path={"/results"} element={<Kiron/>}/>
                     <Route exact path={"/standing"} element={<Kiron/>}/>
                     <Route path={"/bet-history/:betID"} element={<ProtectedRoute><Kiron/></ProtectedRoute>}/>
                     <Route exact path={"/bet-history"} element={<ProtectedRoute><Kiron/></ProtectedRoute>}/>
+
                     <Route exact path={"/profile"} element={<ProtectedRoute><NewProfile/></ProtectedRoute>}/>
                     <Route exact path={"/my-bets"} element={<ProtectedRoute><BetHistory/></ProtectedRoute>}/>
                     <Route exact path={"/betslip"} element={<BetslipPage/>}/>
                     <Route exact path="/betslip-slip" element={<BetslipPage/>}/>
                     <Route exact path="/betslip-nare" element={<BetslipPage/>}/>
                     <Route exact path="/betslip-jackpot" element={<BetslipPage/>}/>
-                    <Route exact path="/competition/:id" element={<CompetitionsMatches/>}/>
-                    <Route exact path="/competition/:sportid/:categoryid/:competitionid"
-                           element={<CompetitionsMatches/>}/>
-                    <Route exact path="/highlights-competition/competition/:sportid/:categoryid/:competitionid"
-                           element={<CompetitionsMatches/>}/>
-                    <Route exact path="/upcoming-competition/competition/:sportid/:categoryid/:competitionid"
-                           element={<CompetitionsMatches/>}/>
-                    <Route exact path="/tomorrow-competition/competition/:sportid/:categoryid/:competitionid"
-                           element={<CompetitionsMatches/>}/>
                     <Route exact path="/match/:id" element={<MatchAllMarkets/>}/>
                     <Route exact path="/match/live/:id" element={<MatchAllMarkets live/>}/>
                     <Route exact path="/jackpot" element={<Jackpot/>}/>
@@ -347,6 +306,6 @@ const App = () => {
 
         </>
     )
-}
+})
 
-export default App;
+export default React.memo(App);

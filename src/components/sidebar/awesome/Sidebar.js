@@ -80,7 +80,16 @@ const Sidebar = React.memo(
         const getDefaultMarketsForSport = (competition) => {
             return competition?.default_display_markets;
         };
+        let url = new URL(window.location.href)
+        const [sportId, setSportId]=useState()
 
+        useEffect(()=>{
+            let sport_id = url.searchParams.get('sport_id')
+            setSportId(sport_id)
+        },[window.location.search, window.location.href])
+        console.log('sportid', sportId)
+
+        let sport_active=useSelector((state)=>state.matchesData.active_sport);
         return (
             <div
                 style={{
@@ -171,6 +180,7 @@ const Sidebar = React.memo(
                                             }
                                         >
                                             <Link
+                                                className={`${(sport_active.toLowerCase() === competition?.sport_name?.toLowerCase()) ? 'active_sport_link sport-sidebar' : ''}`}
                                                 to={`/highlights?sport_id=${competition?.sport_id}&sub_type_id=${getDefaultMarketsForSport(competition)}&sport_name=${competition?.sport_name}`}>
                                                 {competition?.sport_name}
                                             </Link>

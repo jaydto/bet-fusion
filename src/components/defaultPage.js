@@ -8,7 +8,7 @@ import CompetitionMatches from "./competition-matches";
 import Index from "./index";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faXmark} from "@fortawesome/free-solid-svg-icons";
-import {Link, useLocation} from "react-router-dom";
+import {Link, useLocation, useParams} from "react-router-dom";
 import {Button} from "react-bootstrap";
 import {setState} from "../redux/dataSlice";
 import {setInitialLoadingState, stopFetchingMatches} from "../redux/matchesSlice";
@@ -19,6 +19,9 @@ import {getFromLocalStorage} from "./utils/local-storage";
 import MainTabs from "./header/main-tabs";
 import CarouselLoader from "./carousel";
 import {removeScrollPosition, setScrollPast, setScrollPosition, setScrollToTop} from "../redux/ScrollBehavior";
+import LiveSideBar from "./sidebar/live-sidebar";
+import Live from "./live";
+import AllMarkets from "./all-markets";
 
 const SideBar = React.lazy(() => import('./sidebar/awesome/Sidebar'))
 
@@ -26,6 +29,7 @@ const SideBar = React.lazy(() => import('./sidebar/awesome/Sidebar'))
 const DefaultPage = React.memo(
     () => {
         let url = new URL(window.location.href)
+        const {spid} = useParams();
         const bottomSheetRef = useRef()
         const bottom_sheet = useSelector((state) => state.data.bottom_sheet)
 
@@ -133,9 +137,6 @@ const DefaultPage = React.memo(
         }, []);
         const scrolledPast=useSelector((state)=>state.scroll.scroll_past)
         const scrolledToTop=useSelector((state)=>state.scroll.scroll_top)
-        const new_sport_id=useRef('')
-        const new_sport_league=useRef('')
-        let new_tab;
 
         useEffect(() => {
             const handleScroll = () => {
@@ -193,24 +194,23 @@ const DefaultPage = React.memo(
 
         }
         const location = useLocation();
-
+        const user_slip_validation_live=useSelector((state)=>state.matchesData.live_user_slip_validation)
 
         return (
             <div className={'flex-item'}>
-
                 <div className={bottom_sheet ? 'pointer-event-handler item4' : "item4"}>
                     <ToastContainer/>
                 </div>
-                <div className="flex-container">
-                    <div className={bottom_sheet ? 'pointer-event-handler item1' : "item1"}
-                         style={state?.sidebarToggled ? {width: '12%'} : {}}><SideBar
-                        loadCompetitions/></div>
-                    <div className={bottom_sheet ? 'pointer-event-handler item2' : `item2`}
+                <div className={`flex-container ${pathname.includes('match')?' top-spacing-page-no-download':''}`}>
+                    <div className={bottom_sheet ? 'pointer-event-handler item1' : "item1"}>
+                        {pathname.includes('live')?<LiveSideBar spid={spid}/>:<SideBar loadCompetitions/>}
+                    </div>
+                    <div className={bottom_sheet ? `pointer-event-handler item2` : `item2 ${pathname.includes('match')?' size-all-markets':pathname.includes('live')?' live-top':''}`}
                          style={bottom_sheet ? {opacity: '0.5', background: '#13171c'} : {}}>
-                        <div className={`gz home match-overflow ${competitionpath&&'competition-mobile-top'}`}>
-                            <div className="homepage mobile-full-height" ref={homePageRef} style={width < 991 ? {height: `${height}px`, overflowY: 'auto'} : {}}>
+                        <div className={`gz home match-overflow ${competitionpath&&'competition-mobile-top'} `}>
+                            <div className={`homepage mobile-full-height ${pathname.includes('match')?' all-markets':''}`} ref={homePageRef} style={width < 991 ? {height: `${height}px`, overflowY: 'auto'} : {}}>
 
-                                <div
+                                {(!pathname.includes('live')&&!pathname.includes('match'))&&<div
                                     className={'filters-navigation gap-3 d-flex justify-content-between align-items-center'}>
                                     <MainTabs tab={
                                         competitionpath?
@@ -227,9 +227,14 @@ const DefaultPage = React.memo(
                                                  onClick={() => showBottomSheet()}> {marketName || '1x2'}</div>
                                         }
                                     </div>
-                                </div>
-                                <CarouselLoader/>
-                                {pathname.includes('competition') ? <CompetitionMatches tab={tab}/> : <Index tab={location.pathname.replace("/", "")}/>}
+                                </div>}
+                                {!pathname.includes('match')&&<CarouselLoader/>}
+                                {pathname.includes('competition') ?
+                                    <CompetitionMatches tab={tab}/> :
+                                    (pathname.includes('match'))?<AllMarkets/>:
+                                    pathname.includes('live')?
+                                        <Live/>:
+                                        <Index tab={location.pathname.replace("/", "")}/>}
 
                             </div>
 
@@ -238,7 +243,8 @@ const DefaultPage = React.memo(
                     </div>
                     <div className={"item3"}>
                         {
-                            bottom_sheet && width < 991 ? "" : <Right betslipValidationData={user_slip_validation}
+                            bottom_sheet && width < 991 ? '' :
+                                <Right betslipValidationData={spid?user_slip_validation_live:user_slip_validation}
                                                                       jackpotData={newMatches?.meta}
                                                                       test={true}/>
                         }

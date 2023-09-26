@@ -2242,6 +2242,9 @@ img.nare-league {
     border-top:none!important;
 }
 @media (max-width: 991px) {
+    .competition-mobile-top{
+        margin-top:11rem;
+    }
     .close-history-filter.deposit-modal {
         margin-left: -6px!important;
         left: 0;

@@ -242,7 +242,7 @@ export const MatchHeaderRow = React.memo(
             if (first_match) {
                 setMarket(first_match?.market_name);
                 /**
-                 * I blew the shiet here someone help recoil this to API call results
+                 * fixed
                  */
                 // setShowX(!["186", "340"]?.includes(first_match.sub_type_id));
                 setShowX((["186", "340"] && ["186", "340"].includes(first_match?.sub_type_id)) || false);
@@ -261,6 +261,7 @@ export const MatchHeaderRow = React.memo(
             // navigate to the right condition
             if (option === 'sport') {
                 dispatchRedux(resetState("active_sport"))
+                dispatchRedux(setState('navigation_link',null))
             } else if (option === 'search') {
                 dispatchRedux(resetState("search"))
             } else if (option === 'sub_type') {
@@ -274,6 +275,7 @@ export const MatchHeaderRow = React.memo(
                     navigate('/live')
                 } else {
                     navigate(`${navigation_link}`)
+                    dispatchRedux(setState('navigation_link',null))
                 }
             } else {
                 // If there is no previous navigation, go home or live home

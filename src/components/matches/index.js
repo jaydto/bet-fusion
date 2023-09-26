@@ -1357,7 +1357,7 @@ const MatchRow = React.memo(
                                                    <div className={'live-status'}>
                                                        {`${match?.event_status}'`}
                                                    </div>
-                                                   <div style={{color: 'var(--red)'}}>{`${match?.match_time}'`}</div>
+                                                   <div className={'d-flex align-items-center'} style={{color: 'var(--red)'}}>{`${match?.match_time}'`}</div>
                                                </div>
                                            ) : (
                                                <>
@@ -1374,7 +1374,7 @@ const MatchRow = React.memo(
                                                            </div>
                                                        }
 
-                                                       <span style={live?{color:'var(--red)'}:{}}><FormatDate2 live={live} start_time={match?.start_time}
+                                                       <span className={'d-flex align-items-center'} style={live?{color:'var(--red)'}:{}}><FormatDate2 live={live} start_time={match?.start_time}
                                                                     match_time={match?.match_time}/>
                                                        </span>
 
@@ -1456,7 +1456,7 @@ const MatchRow = React.memo(
                                                     <div className={'live-status'}>
                                                         {`${match?.event_status}'`}
                                                     </div>
-                                                    <div style={{color:'var(--red)'}}>{`${match?.match_time}'`}</div>
+                                                    <div className={'d-flex align-items-center'} style={{color:'var(--red)'}}>{`${match?.match_time}'`}</div>
                                                 </div>
                                             ) : (
                                                 <>

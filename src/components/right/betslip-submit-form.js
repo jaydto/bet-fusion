@@ -198,9 +198,11 @@ const BetslipSubmitForm = React.memo(
         const betItem = getBetslip()
         const sportBookLimits = settings?.sportsBookLimits
         const betslipLength = Object.keys(betItem || {}).length;
+
         useEffect(() => {
             dispatch({type: "SET", key: "betslipLength", payload: betslipLength});
         }, [betslipLength])
+
         const gaEventTracker = useAnalyticsEventTracker(live ? 'PlaceLiveBet' : 'PlacePrematchBet')
 
         const handlePlaceBet = (values,

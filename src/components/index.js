@@ -1,74 +1,43 @@
-import React, {useContext, useEffect, useRef, useState} from 'react';
+import React, { useEffect,  useState} from 'react';
 import './test.css'
 import "../assets/css/bottomSheet.css"
 import {Link, useLocation} from "react-router-dom";
-import useWindowDimensions from "./header/Dimensions";
-import {StoreContext} from "../context/store"
-import {getBetslip, getJackpotBetslip} from "./utils/betslip";
-import {ToastContainer} from "react-toastify";
-import MatchList, {marketChoiceOptions, MatchHeaderRow} from "./matches";
+import {getBetslip} from "./utils/betslip";
+import MatchList, { MatchHeaderRow} from "./matches";
 import SkeletonLoaderMobile from "./pages/skeletonLoadersWeb/SkeletonLoaderMobile";
 import Countries from "./countries/Countries";
 import {getFromLocalStorage} from "./utils/local-storage";
 import {useDispatch, useSelector} from "react-redux";
 import {
-    matchesPrematch, resetState, setFetching,
-    setInitialLoadingState, setLimit,
+    matchesPrematch, resetState, setFetching, setInitialLoadingState,
+    setLimit,
     startFetchingMatches,
     stopFetchingMatches
 } from "../redux/matchesSlice";
-import {userBalance} from "../redux/authSlice";
 import {setMatchBetslip} from "../redux/bettingSlice";
-import {Button} from "react-bootstrap";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faXmark} from "@fortawesome/free-solid-svg-icons";
+
 import SkeletonLoaderMore from "./pages/skeletonLoadersWeb/SkeletonLoaderMore";
 import {setState} from "../redux/dataSlice";
 import {removeScrollPosition, setScrollPast, setScrollPosition, setScrollToTop} from "../redux/ScrollBehavior";
 
-const Footer = React.lazy(() => import('./footer/footer'));
 const CarouselLoader = React.lazy(() => import('./carousel'));
 const MainTabs = React.lazy(() => import('./header/main-tabs'));
-const Right = React.lazy(() => import('./right'));
-const SideBar = React.lazy(() => import('./sidebar/awesome/Sidebar'))
 const Index = React.memo(
-    () => {
+    (props) => {
+        const {tab}=props
         const location = useLocation();
-        const userData=useSelector((state)=>state.auth.user)
-        const [user, setUser]=useState(getFromLocalStorage("user"))
-        const [tab, setTab] = useState('highlights');
-        const [sportID, setSportID] = useState(79);
-        const {height, width} = useWindowDimensions();
         const [threeWay, setThreeWay] = useState(false);
         const [page,] = useState(1);
-        const {state, dispatch} = useContext(StoreContext);
-        const homePageRef = useRef()
-        const bottomSheetRef = useRef()
-
-        useEffect(()=>{
-            if(userData){
-                setUser(userData||getFromLocalStorage("user"))
-            }
-        }, [userData])
-
-        const markets = marketChoiceOptions();
-        let sportValue = new URL(window.location).searchParams.get('sport_id')
-        let url = new URL(window.location.href)
-        let c_pathname = url.pathname;
-        let sub_type = (url.searchParams.get("sub_type_id") || "1")
-        let sport_id = (url.searchParams.get("sport_id") )
         const dispatchRedux=useDispatch()
         const newMatches=useSelector((state)=>state.matchesData.matches)
         // const prev_match_size=useSelector((state)=>state.matchesData.prev_match_size)
         const match_size=useSelector((state)=>state.matchesData.match_size)
         const producer_down=useSelector((state)=>state.matchesData.producer_down)
-        const user_slip_validation=useSelector((state)=>state.matchesData.user_slip_validation)
         const loading=useSelector((state)=>state.matchesData.loading)
         const fetching=useSelector((state)=>state.matchesData.fetching)
         const limit=useSelector((state)=>state.matchesData.limit)
-        const bottom_sheet=useSelector((state)=>state.data.bottom_sheet)
         const [newLimit, setNewLimit]=useState(10)
-        // const [newMatches, setNewMatches]=useState()
+
         useEffect(()=>{
             setNewLimit(limit)
         },[limit])
@@ -80,21 +49,15 @@ const Index = React.memo(
                 fetchData()
             }
         },[newLimit])
-        const updateSearchTerm = () => {
-            const params = new URL(window.location).searchParams;
-            const sportId = params.get('sport_id');
-            dispatch({type: "SET", key: 'active_sport', payload: sportId});
-        }
-        const updateSearchSport = () => {
-            const params = new URL(window.location).searchParams;
-            const sportName = params.get('sport_name');
-            dispatch({type: "SET", key: 'active_sport_name', payload: sportName});
-        }
 
         useEffect(() => {
-            updateSearchTerm();
-            updateSearchSport();
-        }, [sportValue]);
+            const abort=new AbortController()
+            return ()=>{
+                abort.abort()
+                dispatchRedux(stopFetchingMatches())
+            }
+        }, []);
+
 
         const findPostableSlip = () => {
             let betslips = getBetslip() || {};
@@ -103,32 +66,6 @@ const Index = React.memo(
             });
             return values;
         };
-
-        const updateUserOnHistory = () => {
-            if (!user) {
-                return false;
-            }
-            let udata = {
-                token: user.token
-            }
-            const userValues={
-                udata:udata,
-                user:user
-            }
-
-            dispatchRedux(userBalance(userValues))
-
-        };
-
-
-        useEffect(() => {
-            const abort = new AbortController()
-            updateUserOnHistory()
-            return () => {
-                dispatchRedux(stopFetchingMatches())
-                abort.abort()
-            }
-        }, [])
 
 
 
@@ -181,54 +118,6 @@ const Index = React.memo(
 
 
         useEffect(() => {
-            let new_tab = ""
-            const new_sport_id = Number(new URL(window.location).searchParams.get("sport_id"))
-
-            if (window.location.href.includes("highlights")) {
-                new_tab = ("highlights")
-            }
-
-            if (window.location.href.includes("upcoming")) {
-                new_tab = ("upcoming")
-
-            }
-            if (window.location.href.includes("tomorrow")) {
-                new_tab = ('tomorrow')
-            }
-            if (window.location.href.includes("countries")) {
-                new_tab = ('countries')
-            }
-
-
-            if (new_tab !== tab && new_tab !=='countries') {
-                setTab(new_tab)
-                const data={
-                    param_fetch_type:"tabs",
-                    tab:new_tab
-                }
-                dispatchRedux(setInitialLoadingState(data))
-            }else{
-                setTab(new_tab)
-            }
-
-
-            if (sportID !== new_sport_id) {
-                setSportID(new_sport_id)
-                const data={
-                    param_fetch_type:"sport_id",
-                    sport_id:new_sport_id
-                }
-                dispatchRedux(setInitialLoadingState(data))
-
-            } else {
-                setSportID(new_sport_id)
-            }
-
-        }, [sportID, tab, window.location.href])
-
-
-
-        useEffect(() => {
             // stop the fetchInterva;
             dispatchRedux(stopFetchingMatches())
             dispatchRedux(resetState("limit"))
@@ -247,76 +136,6 @@ const Index = React.memo(
         }, [window.location.href, window.location.search]);
 
 
-
-
-        useEffect(() => {
-            /**
-             * Alert if clicked on outside of element
-             */
-            function handleClickOutside(event) {
-                if (
-                    bottomSheetRef.current &&
-                    !bottomSheetRef.current.contains(event.target)
-                ) {
-                    dispatchRedux(setState('bottom_sheet', false))
-
-                }
-
-            }
-
-            // Bind the event listener
-            document.addEventListener("mousedown", handleClickOutside);
-            // document.addEventListener("click", handleClickOutside);
-            return () => {
-                // Unbind the event listener on clean up
-                document.removeEventListener("mousedown", handleClickOutside);
-
-            };
-        }, [bottomSheetRef, bottom_sheet]);
-
-        const showBottomSheet = () => {
-            dispatchRedux(setState('bottom_sheet', true))
-        }
-        const collapseBottomSheet = () => {
-            dispatchRedux(setState('bottom_sheet', false))
-
-        }
-        const scrolledPast=useSelector((state)=>state.scroll.scroll_past)
-        const scrolledToTop=useSelector((state)=>state.scroll.scroll_top)
-
-
-        useEffect(() => {
-            const handleScroll = () => {
-                if (homePageRef.current) {
-                    const scrollPosition = homePageRef.current.scrollTop;
-                    if (!scrolledPast && scrollPosition > 10) {
-                        dispatchRedux(setScrollPosition())
-                        dispatchRedux(setScrollPast({scroll_past:true}))
-                        dispatchRedux(setScrollToTop({scroll_top:false}))
-
-                    } else if (!scrolledToTop && scrollPosition <= 10) {
-                        dispatchRedux(removeScrollPosition())
-                        dispatchRedux(setScrollPast({scroll_past:false}))
-                        dispatchRedux(setScrollToTop({scroll_top:true}))
-
-                    }
-                }
-            };
-
-            if (homePageRef.current) {
-                homePageRef.current.addEventListener('scroll', handleScroll);
-            }
-
-            return () => {
-                if (homePageRef.current) {
-                    homePageRef.current.removeEventListener('scroll', handleScroll);
-                }
-            };
-        }, [homePageRef, scrolledPast, scrolledToTop]);
-        let marketName = new URLSearchParams(window.location.search).get('market_name')
-        let sportId = new URLSearchParams(window.location.search).get('sport_id') || '79'
-        const filteredMarkets = markets.find((market) => market.sport_id === sportId);
-
         const fetchAdditionalData=()=>{
             if (limit>match_size){
                 console.log("we have reached end of match List")
@@ -326,125 +145,59 @@ const Index = React.memo(
             }
 
         }
-        const setFilterPicked=(filters)=>{
-            const data={
-                param_fetch_type:"filters",
-                filters:filters
+        let sport_id=  Number(new URL(window.location).searchParams.get("sport_id"))
+
+        useEffect(()=>{
+            const data = {
+                param_fetch_type: "tabs",
+                tab: tab
             }
             dispatchRedux(setInitialLoadingState(data))
-        }
+            return()=>{
+                dispatchRedux(stopFetchingMatches)
+            }
+        }, [tab])
 
-        useEffect(() => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }, []);
 
+        useEffect(()=>{
+            const data = {
+                param_fetch_type: "sport_id",
+                sport_id: sport_id
+            }
+            dispatchRedux(setInitialLoadingState(data))
+            return()=>{
+                dispatchRedux(stopFetchingMatches)
+            }
+        },[sport_id])
 
         return (
-            <div className={'flex-item'}>
+            <>
+                {(newMatches&&tab!=="countries")&&<MatchHeaderRow live={false} first_match={newMatches ? newMatches[0] : {}} loading={loading}/>}
+                {loading ?
+                    <div className={`text-center mt-2 text-white d-block`}>
+                    {tab === 'countries' ? <SkeletonLoaderMore/> : <SkeletonLoaderMobile/>}
+                </div> : tab === 'countries' ? <Countries/> :
+                    <div>
+                        <MatchList
+                            live={false}
+                            fetching={fetching}
+                            matches={newMatches}
+                            pdown={producer_down}
+                            three_way={threeWay}
+                            onEndReached={fetchAdditionalData}
 
-                <div className={bottom_sheet?'pointer-event-handler item4':"item4"}>
-                    <ToastContainer/>
-                </div>
-                <div className="flex-container">
-                    <div className={bottom_sheet?'pointer-event-handler item1':"item1"} style={state?.sidebarToggled ? {width: '12%'} : {}}><SideBar
-                        loadCompetitions/></div>
-                    <div className={bottom_sheet?'pointer-event-handler item2':`item2`} style={bottom_sheet?{opacity:'0.5',background:'#13171c'}:{}} >
-                        <div className="gz home match-overflow " >
-                            <div className="homepage mobile-full-height" ref={homePageRef}
-                                 style={width < 991 ? {height: `${height}px`, overflowY: 'auto'} : {}}>
-
-                                <div
-                                    className={'filters-navigation gap-3 d-flex justify-content-between align-items-center'}>
-                                    <MainTabs tab={location.pathname.replace("/", "")} competition={null}/>
-                                    <div className={'d-flex justify-content-between my-3 my-filter-button'}>
-                                        {filteredMarkets?.default_markets.length > 0 &&
-                                            <div className="myButton markets-button"
-                                                 onClick={() => showBottomSheet()}> {marketName || '1x2'}</div>
-                                        }
-                                    </div>
-                                </div>
-                                <CarouselLoader/>
-                                {(newMatches&&tab!=="countries")&&<MatchHeaderRow live={false} first_match={newMatches ? newMatches[0] : {}} loading={loading}/>}
-                                {loading ?
-                                    <div className={`text-center mt-2 text-white d-block`}>
-                                        {tab === 'countries' ? <SkeletonLoaderMore/> : <SkeletonLoaderMobile/>}
-                                    </div> : tab === 'countries' ? <Countries/> :
-                                        <div>
-                                            <MatchList
-                                                live={false}
-                                                fetching={fetching}
-                                                matches={newMatches}
-                                                pdown={producer_down}
-                                                three_way={threeWay}
-                                                onEndReached={fetchAdditionalData}
-
-                                            />
-                                            <div
-                                                className={`text-center mt-2 text-white ${fetching ? 'd-block' : 'd-none'}`}>
-                                                {tab === 'countries' ? <SkeletonLoaderMore/> :<SkeletonLoaderMobile/>}
-                                            </div>
-                                        </div>
-
-                                }
-                                {/*{showNotificationModal && <CustomNotificationModal onClose={handleCloseNotificationModal} />}*/}
-                            </div>
-                        </div>
-                    </div>
-                    <div className={"item3"}>
-                        {
-                            bottom_sheet&&width<991?"":<Right betslipValidationData={user_slip_validation}
-                                                                    jackpotData={newMatches?.meta}
-                                                                    test={true}/>
-                        }
-
-                        <div className={`${bottom_sheet ? 'bottom-sheet show ' : 'd-none'}`} >
-                            <div className="sheet-overlay"></div>
-                            <div  ref={bottomSheetRef} className="content">
-                                <div className="header d-flex justify-content-between">
-                                    <div className="drag-icon"><span></span></div>
-                                    <FontAwesomeIcon  icon={faXmark} onClick={()=>{collapseBottomSheet()}} className={'filter-close-icon'}/>
-
-                                </div>
-                                <div className="body d-flex flex-column gap-4">
-                                    {filteredMarkets?.default_markets?.map((market,index) => {
-
-                                        const tab_start='highlights'
-
-                                        const pathnameWithLeadingSlash = c_pathname.startsWith('/') ?c_pathname.length==1?tab_start: c_pathname : `/${tab_start}`;
-
-
-                                        return( <Link
-                                            key={index}
-                                            to={`${pathnameWithLeadingSlash}?sport_id=79&sub_type_id=${market?.id}&market_name=${market?.name}`}
-                                            className={`w-100 markets-default bottom-align ${sub_type === market?.id && 'active-market-display'}`}
-                                            onClick={() => {
-                                                collapseBottomSheet();
-                                                setFilterPicked(market?.market_name)
-                                            }}>
-                                            {market?.market_name}
-                                        </Link>)
-                                    })}
-
-                                </div>
-                                <div style={{position:'relative'}}>
-                                    <Button onClick={()=>{collapseBottomSheet()}} className={"text-light bold color-inherit btn border-0 cancel-filter-markets"}>Cancel</Button>
-                                </div>
-                            </div >
+                        />
+                        <div
+                            className={`text-center mt-2 text-white ${fetching ? 'd-block' : 'd-none'}`}>
+                            {tab === 'countries' ? <SkeletonLoaderMore/> :<SkeletonLoaderMobile/>}
                         </div>
                     </div>
 
-                </div>
-                <div className="item6">
-                    <div className={"footer-mobile-none"}>
-                        <Footer/>
-                    </div>
-                </div>
-            </div>
+                }
+            </>
 
         );
     });
+
 
 export default React.memo(Index);

@@ -2395,8 +2395,10 @@ img.nare-league {
     }
     .filters-navigation {
         padding-top: 0px;
-        height: 27px;
+        height: 28.5px;
         padding-bottom:0px;
+        min-height: 28.5px!important;
+
     }
     .myButton.markets-button{
         line-height:2.1!important;

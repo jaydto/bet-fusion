@@ -57,11 +57,11 @@ const Deposit3 = React.memo(
         },[successMessage, errorMessage])
         useEffect(()=>{
             setSettings(appConfigs||getFromLocalStorage('settings'))
-        },[appConfigs, getFromLocalStorage('settings') ])
+        },[appConfigs])
 
         useEffect(()=>{
             setUser(userData||getFromLocalStorage("user"))
-        },[userData, getFromLocalStorage("user")])
+        },[userData])
         const handleTabSelect = (eventKey) => {
             setActiveTab(eventKey);
         }
@@ -462,9 +462,8 @@ const DepositFormFields = (props) => {
 
     useEffect(()=>{
         setSettings(appConfigs?.message||getFromLocalStorage('settings'))
-    },[appConfigs,getFromLocalStorage('settings') ])
+    },[appConfigs])
 
-    console.log("settings", settings)
     useEffect(()=>{
         setUser(userData||getFromLocalStorage("user"))
     },[userData])

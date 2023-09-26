@@ -95,6 +95,7 @@ const initialState = {
 
         }, // Initial state for the nareLeague reducer
     matchesData:{
+        loading: true,
         search:null,
         active_sub_type:'1x2',
         active_sport:'Soccer',
@@ -103,6 +104,7 @@ const initialState = {
         searched_matches:null,
         visited_tabs:[],
         visited_sport_id:[],
+        visited_sport_league:[],
         jackpot_loading: false,
         error: null,
         user: null,
@@ -114,7 +116,6 @@ const initialState = {
         live_producer_down:null,
         fetching:null,
         live_fetching:null,
-        loading: true,
         sport_categories:null,
         sport_live_count:null,
         favorites_data:[],

@@ -36,7 +36,6 @@ const AllMarkets = React.memo(
         const fetching=useSelector((state)=>state.matchesData.live_fetching)
         const moreMatches=useSelector((state)=>state.matchesData.more_matches)
         const producer_down=useSelector((state)=>state.matchesData.producer_down)
-        const user_slip_validation=useSelector((state)=>state.matchesData.user_slip_validation)
         const [market_groups, setMarketGroups]=useState(getFromLocalStorage("market_groups"))
         const [matches, setMatches]=useState()
         useEffect(()=>{
@@ -76,12 +75,12 @@ const AllMarkets = React.memo(
 
             dispatchRedux(setMatchBetslip(betslip_data))
         }
-
+        const pathname = window.location.pathname
 
         const fetchPagedData = async () => {
             if (!isNaN(id)) {
                 let betslip = findPostableSlip();
-                let endpoint = live
+                let endpoint = pathname.includes('live')
                     ? "/v2/matches/live?id=" + id
                     : "/v2/matches?id=" + id;
                 setInitialData()
@@ -111,11 +110,8 @@ const AllMarkets = React.memo(
             }
             dispatchRedux(setInitialLoadingState(data))
             dispatchRedux(setFetching("fetching",true))
-
             fetchPagedData();
             getFavoriteMarkets()
-
-
             return () => {
                 dispatchRedux(stopFetchingMoreMatches())
                 abortController.abort();
@@ -127,50 +123,19 @@ const AllMarkets = React.memo(
                 behavior: 'smooth'
             });
         }, []);
-        const urlPath = window.location.pathname
-        const showDownload = (!urlPath.includes("nare-games") && !urlPath.includes("gameplay") && !urlPath.includes("smart-play") && !urlPath.includes("betslip-slip") && !urlPath.includes("nare-league") && !urlPath.includes("bet-history") && !urlPath.includes("standings") && !urlPath.includes("results") && !urlPath.includes("casino") && !urlPath.includes("jackpot") && !urlPath.includes("smart-soft") && !urlPath.includes("virtuals") && !urlPath.includes("match") && !urlPath.includes("competition"))
         return (
-            <div className={'flex-item'}>
-                <div className="item4">
-
-                <ToastContainer/>
-                </div>
-                <div className={`flex-container ${!showDownload && 'top-spacing-page-no-download'}`}>
-                    <div className="item1">
-                        {window.location.pathname.includes('/match/live') ? <LiveSideBar/> :
-                            <SideBar loadCompetitions/>}
-                    </div>
-                    <div className="item2 size-all-markets">
-                        <div className="gz home" style={{width: "100%", marginBottom: "5rem"}}>
-
-                            <div className="homepage mobile-full-height all-markets">
-
-                                {!fetching&&matches? <MarketList
-                                    allMarkets={allMarkets}
-                                    live={live}
-                                    matchwithmarkets={matches}
-                                    pdown={producer_down}
-                                    groups={market_groups}
-                                />:
-                                    <div>
-                                        <SkeletonLoaderMore/>
-                                    </div>
-                                }
-
-                            </div>
-                        </div>
-                    </div>
-                    <div className="item3">
-                        <Right betslipValidationData={user_slip_validation} test={true}/>
-                    </div>
-
-                </div>
-                <div className="item6">
-                    <div className={"footer-mobile-none"}>
-                        <Footer/>
-                    </div>
-                </div>
-            </div>
+          <>
+              {!fetching&&matches? <MarketList
+                      allMarkets={allMarkets}
+                      live={pathname.includes('live')}
+                      matchwithmarkets={matches}
+                      pdown={producer_down}
+                      groups={market_groups}
+                  />:
+                  <div>
+                      <SkeletonLoaderMore/>
+                  </div>
+              }</>
 
         );
     });

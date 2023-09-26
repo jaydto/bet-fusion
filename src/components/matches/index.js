@@ -70,23 +70,25 @@ const EmptyTextRow = React.memo(
 
         return (
             <button
-                className={`${classname} ${allMarkets ? ' all-markets ' : ''} empty-more-markets-button home-team btn btn-disabled match-detail c-btn ${live ? "c-resize" : "width-button-odd"}`}
+                className={`${classname} ${allMarkets ? ' all-markets ' : ''} empty-more-markets-button home-team btn btn-disabled match-detail c-btn justify-content-around d-flex align-items-center ${live ? "c-resize" : "width-button-odd"}`}
                 style={{
                     width: "100%",
                     height: "40px",
-                    padding: "6px",
+                    padding: "8px",
                     color: "#fff",
                     background: "var(--odds-button)",
                     opacity: 1,
+                    display: 'flex',
+                    alignItems: 'center',
                     lineHeight: "3"
                 }}>
-                {odd_key && <span className="et label btn-disabled ">{odd_key}</span>}
+                {odd_key && <span className=" label btn-disabled " style={{opacity: "0.3"}}>{odd_key}</span>}
                 <span className="label label-inverse">
-             <LazyLoadImage
-                 style={{opacity: "0.3", width: "15px"}}
-                 src={padlock}
-                 effect="blur"
-                 alt="--"/>
+                <LazyLoadImage
+                    style={{opacity: "0.3", width: "15px"}}
+                    src={padlock}
+                    effect="blur"
+                    alt="--"/>
          </span>
             </button>
         );
@@ -1353,7 +1355,7 @@ const MatchRow = React.memo(
                                                    <div className={'live-status'}>
                                                        {`${match?.event_status}'`}
                                                    </div>
-                                                   <>{`${match?.match_time}'`}</>
+                                                   <div style={{color: 'var(--red)'}}>{`${match?.match_time}'`}</div>
                                                </div>
                                            ) : (
                                                <>
@@ -1361,16 +1363,18 @@ const MatchRow = React.memo(
                                                    <>
                                                        {match?.event_status == undefined ? "" :
                                                            <div className={'d-flex align-items-center gap-4'}>
-                                   <span className={'match-status'}>
-                                        {match?.match_status}'
-                                  </span>
-                                                               <span className={'live-status'}>
-                                        {match?.event_status}'
-                                  </span>
+                                                               <span className={'match-status'}>
+                                                                    {match?.match_status}'
+                                                              </span>
+                                                                                           <span className={'live-status'}>
+                                                                    {match?.event_status}'
+                                                              </span>
                                                            </div>
                                                        }
-                                                       <FormatDate2 live={live} start_time={match?.start_time}
+
+                                                       <span style={live?{color:'var(--red)'}:{}}><FormatDate2 live={live} start_time={match?.start_time}
                                                                     match_time={match?.match_time}/>
+                                                       </span>
 
                                                    </>
 
@@ -1441,6 +1445,8 @@ const MatchRow = React.memo(
 
                                         <div
                                             className="d-flex flex-row px-1 justify-content-end change-date1 mobile-only display-ipad-dates">
+                                            <div
+                                                className={"px-1 wrapping mobile-display-game-id"}>ID: {match?.game_id}</div>
                                             <span className={'date-size wrapping px-3'}>
 
                                             {live === 1 && match?.match_time ? (
@@ -1448,20 +1454,19 @@ const MatchRow = React.memo(
                                                     <div className={'live-status'}>
                                                         {`${match?.event_status}'`}
                                                     </div>
-                                                    <>{`${match?.match_time}'`}</>
+                                                    <div style={{color:'var(--red)'}}>{`${match?.match_time}'`}</div>
                                                 </div>
                                             ) : (
                                                 <>
-
                                                     <>
                                                         {match?.event_status === undefined ? "" :
                                                             <div className={'d-flex align-items-center gap-4'}>
-                                   <span className={'match-status'}>
-                                        {match?.match_status}'
-                                  </span>
-                                                                <span className={'live-status'}>
-                                        {match?.event_status}'
-                                  </span>
+                                                               <span className={'match-status'}>
+                                                                    {match?.match_status}'
+                                                              </span>
+                                                                                            <span className={'live-status'}>
+                                                                    {match?.event_status}'
+                                                              </span>
                                                             </div>
                                                         }
                                                         <FormatDate2 live={live} start_time={match?.start_time}
@@ -1469,13 +1474,10 @@ const MatchRow = React.memo(
 
                                                     </>
 
-
                                                 </>
 
                                             )}
                                             </span>
-                                            <div
-                                                className={"px-1 wrapping mobile-display-game-id"}>ID: {match?.game_id}</div>
 
                                         </div>
 

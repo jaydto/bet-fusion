@@ -7,7 +7,7 @@ import {getFromLocalStorage} from "../utils/local-storage";
 import DecodeCode from "./decode";
 import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {removeSlipSelection, setMatchBetslip} from "../../redux/bettingSlice";
+import {removePickedData, removeSelected, removeSlipSelection, setMatchBetslip} from "../../redux/bettingSlice";
 
 const clean_rep = (str) => {
     str = str.replace(/[^A-Za-z0-9\-]/g, "");
@@ -149,12 +149,16 @@ const BetSlip = React.memo(
                 data:betslip
             }
             dispatchRedux(setMatchBetslip(betslip_data))
-            const match_items={
-                match_selector:match_selector,
-                ucn:"remove." + ucn
-            }
+            // const match_items={
+            //     match_selector:match_selector,
+            //     ucn:"remove." + ucn
+            // }
+            //
+            // dispatchRedux(removeSlipSelection(match_items));
+            dispatchRedux(removeSelected(match_selector))
 
-            dispatchRedux(removeSlipSelection(match_items));
+            dispatchRedux(removePickedData(""));
+
 
             if(Object.keys(betslip).length === 0){
                 navigate("/")

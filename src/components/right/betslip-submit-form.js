@@ -429,11 +429,12 @@ const BetslipSubmitForm = React.memo(
                 );
 
                 // dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
-                const match_items={
-                    match_selector:match_selector,
-                    ucn:"remove." + ucn
-                }
-                dispatchRedux(removeSlipSelection(match_items));
+                // const match_items={
+                //     match_selector:match_selector,
+                //     ucn:"remove." + ucn
+                // }
+                // dispatchRedux(removeSlipSelection(match_items));
+                dispatchRedux(removeSelected(match_selector))
                 dispatchRedux(removePickedData(""));
 
             });

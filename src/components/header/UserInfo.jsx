@@ -25,7 +25,7 @@ export const UserInfo = React.memo(
                 setUser(userData||getFromLocalStorage("user"))
 
             }
-        }, [userData,getFromLocalStorage("user") ])
+        }, [userData])
 
 
 

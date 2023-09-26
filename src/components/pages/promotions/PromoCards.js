@@ -66,7 +66,7 @@ const PromoCards = () => {
                             }}>Deposit now
                             </button>
                             <div
-                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent"}
+                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"}
                                 style={{color: "#ea5d0b"}}
                                 onClick={() => {
                                     navigate(`/promo?id=${ids[10]}`);
@@ -102,7 +102,7 @@ const PromoCards = () => {
                             }}>Sign Up
                             </button>
                             <div
-                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent"}
+                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"}
                                 style={{color: "#ea5d0b"}}
                                 onClick={() => {
                                     navigate(`/promo?id=${ids[0]}`);
@@ -140,7 +140,7 @@ const PromoCards = () => {
                                 </button>
 
                                 <div
-                                    className={"  d-flex align-self-center h-25 border-0 bg-transparent"}
+                                    className={"  d-flex align-self-center h-25 border-0 bg-transparent cursor-pointer"}
                                     style={{color: "#ea5d0b"}}
                                     onClick={() => {
                                         navigate(`/promo?id=${ids[3]}`);
@@ -179,7 +179,7 @@ const PromoCards = () => {
                             }}>Deposit now
                             </button>
                             <div
-                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent"}
+                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"}
                                 style={{color: "#ea5d0b"}}
                                 onClick={() => {
                                     navigate(`/promo?id=${ids[9]}`);
@@ -219,7 +219,7 @@ const PromoCards = () => {
                                 </button>
 
                                 <div
-                                    className={"  d-flex align-self-center h-25 border-0 bg-transparent"}
+                                    className={"  d-flex align-self-center h-25 border-0 bg-transparent cursor-pointer"}
                                     style={{color: "#ea5d0b"}}
                                     onClick={() => {
                                         navigate(`/promo?id=${ids[8]}`);
@@ -255,7 +255,7 @@ const PromoCards = () => {
                             }}>Deposit
                             </button>
                             <div
-                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent"}
+                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"}
                                 style={{color: "#ea5d0b"}}
                                 onClick={() => navigate(`/promo?id=${ids[1]}`)}
 
@@ -293,7 +293,7 @@ const PromoCards = () => {
                             </button>
 
                             <div
-                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent"}
+                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"}
                                 style={{color: "#ea5d0b"}}
                                 onClick={() => navigate(`/promo?id=${ids[2]}`)}
                             >
@@ -322,16 +322,11 @@ const PromoCards = () => {
                                         style={{background: "#ea5d0b"}}>Bet Now
                                 </button>
                                 <div
-                                    className={"d-flex  align-self-center h-25 border-0 bg-transparent"}
+                                    className={"d-flex  align-self-center h-25 border-0 bg-transparent cursor-pointer"}
                                     style={{color: "#ea5d0b"}}
                                     onClick={() => navigate(`/promo?id=${ids[4]}`)}
                                 >
-                                    {/*<div*/}
-                                    {/*    className={"  h-25   button-promotions"}*/}
-                                    {/*    style={{ color: "#ea5d0b" }}*/}
-                                    {/*    onClick={()=>navigate(`/deposit`)}>*/}
-                                    {/*  Deposit*/}
-                                    {/*</div>*/}
+
                                     Read More
                                 </div>
                             </div>
@@ -391,7 +386,7 @@ const PromoCards = () => {
                                     Bet Now
                                 </button>
                                 <Link
-                                    className={"d-flex  align-self-center   h-25 border-0 bg-transparent"}
+                                    className={"d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"}
                                     style={{color: "#ea5d0b"}}
                                     to={{pathname: `/promo`, search: `id=${ids[6]}`}}
                                 >
@@ -418,7 +413,7 @@ const PromoCards = () => {
                                 <div className="d-flex justify-content-end my-2 mx-2">
                                     {/* <button className={"profile-button border-0 h-25 rounded"} style={{background:"#ea5d0b"}}>Bet Now</button>      */}
                                     <Link
-                                        className={"d-flex  align-self-center   h-25 border-0 bg-transparent"}
+                                        className={"d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"}
                                         style={{color: "#ea5d0b"}}
                                         to={{pathname: `/promo`, search: `id=${ids[7]}`}}
                                     >

@@ -8,6 +8,7 @@ import {StoreContext } from "../../../context/store"
 import useWindowDimensions from "../../header/Dimensions";
 import {useDispatch, useSelector} from "react-redux";
 import {printJackpotData, printMatchesData} from "../../../redux/dataSlice";
+import {getFromLocalStorage} from "../../utils/local-storage";
 
 const Header = React.lazy(() => import('../../header/header'));
 const SideBar = React.lazy(() => import('../../sidebar/awesome/Sidebar'));
@@ -30,6 +31,13 @@ export default function MatchesList() {
     const [matches, setMatches] = useState([]);
 
     const jackpotData=useSelector((state)=>state.data?.print_jackpot_data)
+    const userData = useSelector((state) => state.auth.user)
+    const [user, setUser] = useState(getFromLocalStorage("user"))
+    useEffect(() => {
+        if (userData) {
+            setUser(userData || getFromLocalStorage("user"))
+        }
+    }, [userData,getFromLocalStorage("user")])
 
     useEffect(() => {
         setTitle(title_jp)
@@ -100,7 +108,7 @@ export default function MatchesList() {
     return (
         <>
             <Header/>
-            <div className={`${width<=575?state?.user?"user_logged":"amt":"amt"}`}>
+            <div className={`${width<=575?user?"user_logged":"amt":"amt"}`}>
                 <div className="d-flex flex-row justify-content-between">
                     <SideBar loadCompetitions/>
                     <div className="gz home" style={{width:"100%"}}>

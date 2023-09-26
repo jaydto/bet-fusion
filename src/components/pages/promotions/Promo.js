@@ -25,9 +25,9 @@ const Promo = () => {
     const [loading, setLoading] = useState(false);
 
     const banners = [
-        {src: twentyPercentDepositBonus, id: 4},
-        {src: firstDeposit, id: 3},
-        {src: multibetCashback, id: 2},
+        {src: twentyPercentDepositBonus, id: 3},
+        {src: firstDeposit, id: 2},
+        {src: multibetCashback, id: 4},
         {src: karibuGiftWallet, id: 1},
         {src: DepositBonus, id: 9},
         {src: mia_sita_hamsini, id: 10},

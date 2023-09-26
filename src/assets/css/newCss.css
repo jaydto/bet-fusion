@@ -1888,6 +1888,9 @@ img.nare-league {
     margin-top:3rem!important;
 }
 @media (min-width: 992px) {
+    .flex-container.height-default-body{
+        margin-top:51px;
+    }
     .close-history-filter.deposit-modal {
         right: 89%;
         top: 0px;

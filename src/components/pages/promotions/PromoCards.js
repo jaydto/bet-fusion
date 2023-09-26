@@ -254,10 +254,11 @@ const PromoCards = () => {
                                 setUtmSouceCampaignOnPromotions('promo_FIRST_DEPOSIT_BOOSTER')
                             }}>Deposit
                             </button>
-                            onClick={() => navigate(`/promo?id=${ids[1]}`)}
                             <div
                                 className={"d-flex  align-self-center   h-25 border-0 bg-transparent"}
                                 style={{color: "#ea5d0b"}}
+                                onClick={() => navigate(`/promo?id=${ids[1]}`)}
+
                             >
                                 Read More
                             </div>
@@ -290,11 +291,11 @@ const PromoCards = () => {
                                 setUtmSouceCampaignOnPromotions('promo_20_deposit_Boost')
                             }}>Deposit
                             </button>
-                            onClick={() => navigate(`/promo?id=${ids[2]}`)}
+
                             <div
                                 className={"d-flex  align-self-center   h-25 border-0 bg-transparent"}
                                 style={{color: "#ea5d0b"}}
-
+                                onClick={() => navigate(`/promo?id=${ids[2]}`)}
                             >
                                 Read More
                             </div>

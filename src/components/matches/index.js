@@ -265,9 +265,7 @@ export const MatchHeaderRow = React.memo(
                 dispatchRedux(resetState("active_sub_type"))
 
             }
-            // Check if there is a previous navigation
-           // live?   navigate('/live'):
-           //  navigate('/')
+
 
             if (navigation_link) {
                 if(live){
@@ -280,9 +278,7 @@ export const MatchHeaderRow = React.memo(
                 // If there is no previous navigation, go home
 
             }
-            // live?navigate('/live'):
             dispatchRedux(setState('active_link', 79))
-
 
         }
 
@@ -1011,6 +1007,13 @@ const MarketRow = React.memo((props) => {
     const [userFavoriteMarkets, setUserFavoriteMarkets] = useState(() => {
         return favoriteMarketValue
     });
+    const userData = useSelector((state) => state.auth.user)
+    const [user, setUser] = useState(getFromLocalStorage("user"))
+    useEffect(() => {
+        if (userData) {
+            setUser(userData || getFromLocalStorage("user"))
+        }
+    }, [userData,getFromLocalStorage("user")])
     // Get favorite items from the API
     const getFavoriteMarkets = useCallback(async () => {
         dispatchRedux(favoriteMarkets())
@@ -1112,7 +1115,7 @@ const MarketRow = React.memo((props) => {
                                             color: userFavoriteMarkets?.some(favorite => favorite.sub_type_id === markets?.sub_type_id) ? 'gold' : 'white',
                                         }}
                                         onClick={(event) => favoriteMarket(event, markets?.sub_type_id)}
-                                        className={`${state?.user ? 'favorite' : 'd-none'}`}
+                                        className={`${user ? 'favorite' : 'd-none'}`}
                                     />&nbsp; {markets?.market_name}
                                     {/*{console.log("userFav", userFavoriteMarkets)}*/}
 
@@ -1906,9 +1909,6 @@ const MatchList = React.memo(
 
         }, [matches, fetching, observerRef]);
 
-        // useEffect(() => {
-        //     window.scrollTo(0,0)
-        // }, []);
 
         useEffect(() => {
             const betslip = getBetslip()

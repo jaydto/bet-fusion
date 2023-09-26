@@ -658,8 +658,8 @@ const DepositForm = (props) => {
             errors.msisdn = 'Please enter a valid phone number'
         }
 
-        if (!values.amount || values.amount < 1 || values.amount > 100000) {
-            errors.amount = "Please enter amount between KES 1.00 and KES 100,000.00";
+        if (!values.amount || values.amount < 1 || values.amount > 150000) {
+            errors.amount = "Please enter amount between KES 1.00 and KES 150,000.00";
         }
         return errors
     }

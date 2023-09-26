@@ -241,8 +241,11 @@ const App = React.memo(
                     <Route exact path="/upcoming-competition/competition/:sportid/:categoryid/:competitionid" element={<DefaultPage/>}/>
                     <Route exact path="/tomorrow-competition/competition/:sportid/:categoryid/:competitionid" element={<DefaultPage/>}/>
 
-                    <Route exact path="/live" element={<Live/>}/>
-                    <Route exact path="/live/:spid" element={<Live/>}/>
+                    <Route exact path="/live" element={<DefaultPage/>}/>
+                    <Route exact path="/live/:spid" element={<DefaultPage/>}/>
+
+                    <Route exact path="/match/:id" element={<DefaultPage/>}/>
+                    <Route exact path="/match/live/:id" element={<DefaultPage live/>}/>
 
                     <Route exact path="/login" element={<Login/>}/>
                     <Route exact path="/fpl" element={<FPL/>}/>
@@ -271,8 +274,7 @@ const App = React.memo(
                     <Route exact path="/betslip-slip" element={<BetslipPage/>}/>
                     <Route exact path="/betslip-nare" element={<BetslipPage/>}/>
                     <Route exact path="/betslip-jackpot" element={<BetslipPage/>}/>
-                    <Route exact path="/match/:id" element={<MatchAllMarkets/>}/>
-                    <Route exact path="/match/live/:id" element={<MatchAllMarkets live/>}/>
+
                     <Route exact path="/jackpot" element={<Jackpot/>}/>
                     <Route exact path="/live1" element={<Live/>}/>
                     <Route exact path="/live1/:spid" element={<Live/>}/>

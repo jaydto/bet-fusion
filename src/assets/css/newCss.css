@@ -1247,7 +1247,9 @@ img.nare-league {
 .smart-soft-image-size {
     height: 150px;
 }
-
+.opacity-reduce-txt.vs-styling:empty{
+    display: none!important;
+}
 .new-alert-badge-item {
     background: red;
     background-size: 35px 16px;

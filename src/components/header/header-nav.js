@@ -7,7 +7,7 @@ import {faPrint, faQuestionCircle, faSearch, faTimes,} from '@fortawesome/free-s
 
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {Link, useNavigate} from "react-router-dom";
-import {setLocalStorage} from "../utils/local-storage";
+import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
 import {matchesSearch} from "../../redux/matchesSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {setState} from "../../redux/dataSlice";
@@ -16,7 +16,6 @@ const HeaderNav = React.memo(
     (props) => {
         const gaEventTracker = useAnalyticsEventTracker('Navigation');
         const [test, setTest] = useState(false)
-        const {state, dispatch} = useContext(StoreContext);
         const dispatchRedux=useDispatch();
         const pathname = window.location.pathname;
         const [searching, setSearching] = useState(false)
@@ -31,7 +30,13 @@ const HeaderNav = React.memo(
         var currentURL = new URL(window.location.href);
         var pathAndQuery = currentURL.pathname + currentURL.search;
 
-
+        const userData = useSelector((state) => state.auth.user)
+        const [user, setUser] = useState(getFromLocalStorage("user"))
+        useEffect(() => {
+            if (userData) {
+                setUser(userData || getFromLocalStorage("user"))
+            }
+        }, [userData,getFromLocalStorage("user")])
 
         const fetchMatches = async (search) => {
             if (search && search.length >= 3) {
@@ -69,7 +74,7 @@ const HeaderNav = React.memo(
 
         const LoginCheck = (game) => {
             {
-                if (state?.user !== null) {
+                if (user !== null) {
                     navigate("/casino")
                 } else {
                     setLocalStorage("ActiveLink", '/casino')

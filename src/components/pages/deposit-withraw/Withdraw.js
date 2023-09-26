@@ -262,7 +262,7 @@ const MyWithdrawForm = (props) => {
 
     useEffect(()=>{
         setSettings(appConfigs||getFromLocalStorage('settings'))
-    },[appConfigs ])
+    },[appConfigs])
 
     const withdrawalLimits = settings?.withdrawalLimits
 

@@ -103,11 +103,12 @@ const Countries = React.memo(
                                 </p>
                                 {((index === 0) && (typeof sport_active === 'string') && (sport_active.toLowerCase() === 'soccer')) && (
                                     <div>
-                                        <Menu title={"Top Leagues"} key={index} defaultOpen={true} className={'d-lg-none d-md-block d-sm-block w-100 px-4'}>
+                                        <Menu title={"Top Leagues"} key={index} defaultOpen={true} className={'d-lg-none d-md-block d-sm-block w-100 px-4 top-leagues-mobile'} style={{lineHeight:'1'}}>
                                             {competitions?.top_soccer?.map((top_league, index) => (
                                                 <MenuItem
                                                     key={`l_${index}`}
-                                                    className={''}
+                                                    className={'d-flex '}
+                                                    style={{maxHeight:'27px'}}
                                                     icon={
                                                         <LazyLoadImage
                                                             src={getSportImageIcon(
@@ -116,12 +117,12 @@ const Countries = React.memo(
                                                                 true
                                                             )}
                                                             className={'sidebar-league-icon-small '}
-                                                            style={{borderRadius: "50%", height: "20px", width: "20px"}}
+                                                            style={{borderRadius: "50%", height: "23px", width: "23px"}}
                                                         />
                                                     }
                                                 >
                                                     <Link
-                                                        className={'text-small-sidebar'}
+                                                        className={'text-sidebar-small-size'}
                                                         onClick={() =>
                                                             gaEventTracker(
                                                                 `Top Leagues ${top_league?.competition_name}`

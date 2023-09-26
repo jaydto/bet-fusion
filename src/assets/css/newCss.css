@@ -1609,8 +1609,8 @@ img.nare-league {
 
 @media (max-width: 1259px) {
     .sidebar-league-icon-small{
-        width:16px!important;
-        height:16px!important;
+        width:20px!important;
+        height:21px!important;
 
     }
     .text-small-sidebar {
@@ -2257,6 +2257,16 @@ img.nare-league {
 
 }
 @media (max-width: 991px) {
+    .pro-menu.top-leagues-mobile > ul{
+        display:flex!important;
+        align-items:center;
+    }
+    .pro-menu.top-leagues-mobile > ul::-webkit-scrollbar {
+        display: none;
+    }
+        .text-sidebar-small-size{
+        font-size:var(--font-size-large-variation1)
+    }
     .competition-mobile-top{
         margin-top:11rem;
     }

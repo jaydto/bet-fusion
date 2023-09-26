@@ -17,11 +17,7 @@ import {
 import {setMatchBetslip} from "../redux/bettingSlice";
 
 import SkeletonLoaderMore from "./pages/skeletonLoadersWeb/SkeletonLoaderMore";
-import {setState} from "../redux/dataSlice";
-import {removeScrollPosition, setScrollPast, setScrollPosition, setScrollToTop} from "../redux/ScrollBehavior";
 
-const CarouselLoader = React.lazy(() => import('./carousel'));
-const MainTabs = React.lazy(() => import('./header/main-tabs'));
 const Index = React.memo(
     (props) => {
         const {tab}=props

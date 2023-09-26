@@ -485,6 +485,7 @@ background: var(--betnare-body-bg)!important;
 
 .accordion-item-panel li {
     margin-bottom: 10px;
+    opacity:0.6;
 }
 
 #quick-login p {

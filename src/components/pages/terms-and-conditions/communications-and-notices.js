@@ -16,11 +16,14 @@ const CommunicationAndNotices = () => {
                 </AccordionItemButton>
             </AccordionItemHeading>
             <AccordionItemPanel className='accordion-item-panel'>
-                <p>
-                    Communications and notices to be given by you to us under these Terms
-                    and Conditions should be provided to us as set out in the Contact us
-                    section.
-                </p>
+                <ol>
+                    <li>
+                        Communications and notices to be given by you to us under these Terms
+                        and Conditions should be provided to us as set out in the Contact us
+                        section.
+                    </li>
+                </ol>
+
             </AccordionItemPanel>
         </AccordionItem>
     )

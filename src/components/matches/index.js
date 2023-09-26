@@ -252,6 +252,7 @@ export const MatchHeaderRow = React.memo(
 
         const navigate=useNavigate()
         const navigation_link=useSelector((state)=>state.data.navigation_link)
+        const pathname = window.location.pathname
 
 
         const closeFilter=(option)=>{
@@ -268,14 +269,20 @@ export const MatchHeaderRow = React.memo(
 
 
             if (navigation_link) {
-                if(live){
+                if(pathname.includes('live')){
                     navigate('/live')
                 }else{
                     navigate(`${navigation_link}`)
                 }
             } else {
-                navigate('/')
-                // If there is no previous navigation, go home
+                // If there is no previous navigation, go home or live home
+                if(pathname.includes('live')){
+                    navigate('/live')
+                }else{
+                    navigate('/')
+
+                }
+
 
             }
             dispatchRedux(setState('active_link', 79))
@@ -1661,9 +1668,9 @@ export const MarketList = React.memo(
             let filteredMarkets;
             setSelectedMarketGroup(group_id)
             if (group_id === "favorite") {
-                filteredMarkets = elements.filter((market) => Number(market?.is_favorite) === 1)
+                filteredMarkets = elements?.filter((market) => Number(market?.is_favorite) === 1)
             } else {
-                filteredMarkets = elements.filter((market) => Number(market?.group_id) === Number(group_id) || group_id === 'all')
+                filteredMarkets = elements?.filter((market) => Number(market?.group_id) === Number(group_id) || group_id === 'all')
             }
             const match = filters?.data?.match;
 
@@ -1673,7 +1680,7 @@ export const MarketList = React.memo(
                     odds: filteredMarkets,
                 },
             };
-            setGroupMarketsAvailable(Object.keys(ob?.data?.odds).length !== 0);
+            setGroupMarketsAvailable(Object.keys(ob?.data?.odds||{}).length !== 0);
             setFilters(ob);
         };
 
@@ -1683,9 +1690,9 @@ export const MarketList = React.memo(
             // Filter the markets based on the selectedMarketGroup
             let filteredMarkets;
             if (selectedMarketGroup === "favorite") {
-                filteredMarkets = elements.filter((market) => Number(market?.is_favorite) === 1)
+                filteredMarkets = elements?.filter((market) => Number(market?.is_favorite) === 1)
             } else {
-                filteredMarkets= elements.filter((market) => Number(market?.group_id) === Number(selectedMarketGroup) || selectedMarketGroup === 'all');
+                filteredMarkets= elements?.filter((market) => Number(market?.group_id) === Number(selectedMarketGroup) || selectedMarketGroup === 'all');
             }
             const match=matchwithmarkets?.data?.match
 
@@ -1696,7 +1703,7 @@ export const MarketList = React.memo(
                 },
             };
             setFilters(ob)
-            setGroupMarketsAvailable(Object.keys(ob?.data?.odds).length !== 0);
+            setGroupMarketsAvailable(Object.keys(ob?.data?.odds||{}).length !== 0);
 
 
         }, [matchwithmarkets]);

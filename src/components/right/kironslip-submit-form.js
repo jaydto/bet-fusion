@@ -419,7 +419,7 @@ const KironslipSubmitForm = React.memo(
         const initialValues = {
             bet_amount: 100,
             accept_all_odds_change: true,
-            user_id: state?.user?.profile_id,
+            user_id: user?.profile_id,
             total_games: totalGames,
             total_odd: totalOdds,
         };
@@ -614,7 +614,7 @@ const KironslipSubmitForm = React.memo(
                                 type="hidden"
                                 name={"user_kiron_id"}
                                 id={"user_kiron_id"}
-                                value={state?.user?.profile_id || ""}
+                                value={user?.profile_id || ""}
                             />
                             <input
                                 type="hidden"

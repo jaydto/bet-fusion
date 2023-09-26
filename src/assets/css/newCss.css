@@ -99,8 +99,8 @@ body {
     border-radius: 4px;
     font-weight: 700;
     font-size: var(--font-size-large);
-    color: var(--color-link-sports) !important;
-    opacity: 1 !important;
+    color: var(--light) !important;
+    opacity: 0.9 !important;
 }
 
 .link-inactive a .cg{
@@ -693,7 +693,7 @@ select::after {
 }
 
 .pro-sidebar .pro-menu a:hover {
-    color: #FFC428 !important;
+    color: var(--light) !important;
 }
 
 .profile-btn {

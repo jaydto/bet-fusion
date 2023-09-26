@@ -74,9 +74,9 @@ const EmptyTextRow = React.memo(
                 style={{
                     width: "100%",
                     height: "40px",
-                    padding: "2px",
+                    padding: "6px",
                     color: "#fff",
-                    background: "#334c5c",
+                    background: "var(--odds-button)",
                     opacity: 1,
                     lineHeight: "3"
                 }}>

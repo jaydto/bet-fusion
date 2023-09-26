@@ -2017,9 +2017,9 @@ events-header {
 }
 
 .opacity-reduce-txt.vs-styling {
+
     padding-left: 0px;
     padding-right: 5px;
-    font-size: var(--font-size-small-variation1);
     color: var(--red);
 }
 
@@ -5000,6 +5000,8 @@ input[type="button"].btn-block {
 }
 
 @media (min-width: 992px) {
+    .opacity-reduce-txt.vs-styling {
+        font-size: var(--font-size-large);}
     .container-size{
         width:100%!important
     }
@@ -7653,6 +7655,9 @@ ul.sport {
 
 }
 @media (max-width: 991px) {
+    .opacity-reduce-txt.vs-styling {
+        font-size: var(--font-size-small-variation1);
+    }
 
     .menu-wrapper::-webkit-scrollbar {
         display: none;

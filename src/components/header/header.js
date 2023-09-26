@@ -1,4 +1,4 @@
-import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
+import React, { useContext, useEffect, useRef, useState} from 'react';
 import {Link, useNavigate} from "react-router-dom"
 import Row from 'react-bootstrap/Row';
 import {StoreContext} from "../../context/store";
@@ -15,9 +15,9 @@ import ListGroup from "react-bootstrap/ListGroup";
 import LoginSection from "./LoginSection";
 import {UserInfo} from "./UserInfo";
 import {useDispatch, useSelector} from "react-redux";
-import {configSettings, setState} from "../../redux/dataSlice";
+import { setState} from "../../redux/dataSlice";
 import { userBalance} from "../../redux/authSlice";
-import {matchCategories, matchesSearch} from "../../redux/matchesSlice";
+import { matchesSearch} from "../../redux/matchesSlice";
 import {
     checkDesktopTopNavigation,
     checkNavigation,
@@ -62,8 +62,7 @@ const Header = React.memo(
             if(userData){
                 setUser(userData||getFromLocalStorage("user"))
             }
-        }, [userData,getFromLocalStorage("user") ])
-
+        }, [userData])
 
 
         useEffect(() => {
@@ -79,9 +78,7 @@ const Header = React.memo(
             setMatches([])
         }
 
-        // useEffect(() => {
-        //     fetchMatches()
-        // }, [state?.searching])
+
 
        const  active_sport_value=useSelector((state)=>state.matchesData.active_sport)
         const fetchMatches = async (search) => {
@@ -121,15 +118,6 @@ const Header = React.memo(
             }
         },[])
 
-        const updateUserOnLogin = useCallback(() => {
-            dispatch({type: "SET", key: "user", payload: user});
-        }, [user?.msisdn, user?.balance]);
-
-
-
-        useEffect(() => {
-            updateUserOnLogin()
-        }, [updateUserOnLogin])
 
         const toggle = () => {
             setIsOpen(!isOpen);

@@ -2017,10 +2017,10 @@ events-header {
 }
 
 .opacity-reduce-txt.vs-styling {
-    padding-left: 10px;
-    padding-right: 10px;
-    font-size: 10px;
-    color: rgb(105, 129, 154);
+    padding-left: 0px;
+    padding-right: 5px;
+    font-size: var(--font-size-small-variation1);
+    color: var(--red);
 }
 
 .std-side-pads {

@@ -58,11 +58,11 @@ import useWindowDimensions from "../header/Dimensions";
 
 const clean =
     (_str) => {
-    _str = _str.replace(/[^A-Za-z0-9\-]/g, '');
-    // console.log("cleanup_time_taken", t3)
+        _str = _str.replace(/[^A-Za-z0-9\-]/g, '');
+        // console.log("cleanup_time_taken", t3)
 
-    return _str.replace(/-+/g, '-');
-}
+        return _str.replace(/-+/g, '-');
+    }
 
 const EmptyTextRow = React.memo(
     (props) => {
@@ -187,7 +187,7 @@ export const MatchHeaderRow = React.memo(
         const [market, setMarket] = useState('1x2');
         const [extraMarketDisplays, setExtraMarketDisplays] = useState([])
         const [, setThreeWay] = useState(false)
-        const dispatchRedux=useDispatch()
+        const dispatchRedux = useDispatch()
         const userData = useSelector((state) => state.auth.user)
         const search = useSelector((state) => state.matchesData.search)
         const active_sport = useSelector((state) => state.matchesData.active_sport)
@@ -202,25 +202,25 @@ export const MatchHeaderRow = React.memo(
         const getSelectedMarkets = () => {
             const markets = marketChoice();
 
-            let live_sub_type=first_match?.sub_type_id
+            let live_sub_type = first_match?.sub_type_id
 
 
             let url = new URL(window.location)
 
-            let sub_types = live?live_sub_type:(url.searchParams.get('sub_type_id') || "1,18,29")?.split(",")
+            let sub_types = live ? live_sub_type : (url.searchParams.get('sub_type_id') || "1,18,29")?.split(",")
 
-            if (!live&&sub_types.includes("1")) {
+            if (!live && sub_types.includes("1")) {
                 setThreeWay(true)
             }
 
             let extraMarkets = []
-            if(live){
+            if (live) {
                 let selectedMarket = markets.filter((market) => Number(market.id) === Number(sub_types))
                 if (selectedMarket.length > 0) {
                     extraMarkets.push(selectedMarket[0])
                 }
 
-            }else{
+            } else {
                 sub_types?.forEach((sub_type) => {
                     let selectedMarket = markets.filter((market) => Number(market.id) === Number(sub_type))
 
@@ -229,7 +229,6 @@ export const MatchHeaderRow = React.memo(
                     }
                 })
             }
-
 
 
             setExtraMarketDisplays(extraMarkets)
@@ -250,35 +249,35 @@ export const MatchHeaderRow = React.memo(
             }
         }, [first_match])
 
-        const navigate=useNavigate()
-        const navigation_link=useSelector((state)=>state.data.navigation_link)
+        const navigate = useNavigate()
+        const navigation_link = useSelector((state) => state.data.navigation_link)
         const pathname = window.location.pathname
 
 
-        const closeFilter=(option)=>{
+        const closeFilter = (option) => {
             // reset filters
             // navigate to the right condition
-            if(option==='sport'){
+            if (option === 'sport') {
                 dispatchRedux(resetState("active_sport"))
-            }else if(option==='search'){
+            } else if (option === 'search') {
                 dispatchRedux(resetState("search"))
-            }else if(option==='sub_type'){
+            } else if (option === 'sub_type') {
                 dispatchRedux(resetState("active_sub_type"))
 
             }
 
 
             if (navigation_link) {
-                if(pathname.includes('live')){
+                if (pathname.includes('live')) {
                     navigate('/live')
-                }else{
+                } else {
                     navigate(`${navigation_link}`)
                 }
             } else {
                 // If there is no previous navigation, go home or live home
-                if(pathname.includes('live')){
+                if (pathname.includes('live')) {
                     navigate('/live')
-                }else{
+                } else {
                     navigate('/')
 
                 }
@@ -293,7 +292,8 @@ export const MatchHeaderRow = React.memo(
 
             <Row
                 className={`full-mobile sticky-top ${jackpot ? 'd-none ' : user ? "sticky-user d-flex align-items-center " : 'sticky-responsive no-sticky d-flex align-items-center'}`}>
-                <div className="top-matches d-flex position-sticky sticky-top shadow-sports-header header-sports live-mobile-top">
+                <div
+                    className="top-matches d-flex position-sticky sticky-top shadow-sports-header header-sports live-mobile-top">
                     <div className={"size-info  d-flex col-xs-12 pad left-text px-2"}>
                         <div className="col pad left-text d-flex">
                             <div className="align-self-center col">
@@ -301,23 +301,26 @@ export const MatchHeaderRow = React.memo(
 
                                     <div className={'d-flex align-items-center gap-2'}>
                                         {live && <span className="live-header">LIVE </span>}
-                                        {(active_sport==='Soccer'&&!search)&&<span className={'sport-styling'}>
+                                        {(active_sport === 'Soccer' && !search) && <span className={'sport-styling'}>
                                             {active_sport} {market && <></>}
                                         </span>}
-                                        {(search&&!live)&&
+                                        {(search && !live) &&
                                             <span className={'selected-filters__item d-flex gap-2 align-items-center'}>
-                                                <FontAwesomeIcon icon={faXmark} className={'close-filter'} onClick={()=>closeFilter("search")}/>
+                                                <FontAwesomeIcon icon={faXmark} className={'close-filter'}
+                                                                 onClick={() => closeFilter("search")}/>
                                                 {search}
                                             </span>}
-                                        {(active_sport!=='Soccer'&&!search)&&
+                                        {(active_sport !== 'Soccer' && !search) &&
                                             <span className={'selected-filters__item d-flex gap-2 align-items-center'}>
-                                                <FontAwesomeIcon icon={faXmark} className={'close-filter'} onClick={()=>closeFilter('sport')}/>
+                                                <FontAwesomeIcon icon={faXmark} className={'close-filter'}
+                                                                 onClick={() => closeFilter('sport')}/>
                                                 {active_sport}
                                             </span>}
 
-                                        {(active_sub_type&&active_sub_type!=='1x2'&&!live)&&
+                                        {(active_sub_type && active_sub_type !== '1x2' && !live) &&
                                             <span className={'selected-filters__item d-flex gap-2 align-items-center'}>
-                                                <FontAwesomeIcon icon={faXmark} className={'close-filter'} onClick={()=>closeFilter('sub_type')}/>
+                                                <FontAwesomeIcon icon={faXmark} className={'close-filter'}
+                                                                 onClick={() => closeFilter('sub_type')}/>
                                                 {active_sub_type}
                                             </span>}
                                     </div>
@@ -328,7 +331,8 @@ export const MatchHeaderRow = React.memo(
                         <div className={'col match-detail-container'}></div>
                     </div>
                     {/*match heading*/}
-                    <div className={"col flex-row justify-content-between space-bets d-flex align-self-center"} style={{minWidth: "45%"}}>
+                    <div className={"col flex-row justify-content-between space-bets d-flex align-self-center"}
+                         style={{minWidth: "45%"}}>
                         {extraMarketDisplays && !jackpot && (
                             <div className={`${loading && first_match ? 'd-none' : 'd-flex flex-row'}`}>
                                 <div className="d-flex flex-column text-center text-white mt-0 fit-ipad w-100">
@@ -368,7 +372,7 @@ const MoreMarketsHeaderRow = React.memo(
         } = props;
         const [switches, setSwitches] = useState("scoreboard")
         const dispatchRedux = useDispatch()
-        const {width}=useWindowDimensions()
+        const {width} = useWindowDimensions()
 
         const switchLmt = (value) => {
             setSwitches(value)
@@ -383,7 +387,7 @@ const MoreMarketsHeaderRow = React.memo(
                 momentum: "disable",
                 matchId: parent_match_id,
                 collapseTo: switches,
-                layout: width<991?"single":'double',
+                layout: width < 991 ? "single" : 'double',
                 scoreboard: "extended",
                 detailedScoreboard: "disable",
             });
@@ -391,15 +395,15 @@ const MoreMarketsHeaderRow = React.memo(
 
         useEffect(() => {
             if (sport_id !== undefined && sport_id !== "") {
-                const cache=getFromLocalStorage("market_groups")
-                if(!cache||live){
+                const cache = getFromLocalStorage("market_groups")
+                if (!cache || live) {
                     dispatchRedux(marketGroups({
                         "sport_id": sport_id
                     }))
                 }
 
             }
-        }, [sport_id,getFromLocalStorage("market_groups"),live] )
+        }, [sport_id, getFromLocalStorage("market_groups"), live])
         const navigate = useNavigate()
 
         let lmtIncludes = [79, 85, 82, 80, 107];
@@ -500,10 +504,11 @@ const MoreMarketsHeaderRow = React.memo(
                         <div id={`sr-widget-${parent_match_id}`}></div>
                         <ButtonGroup aria-label="stats button actions" className='w-100 d-flex justify-content-start'>
                             <Button className="place-bet-btn w-25 btn link" title="scoreboard" type="button"
-                                    style={{background: "transparent", fontSize: "14px", border:"none"}} onClick={() => {
-                                switchLmt("scoreboard");
-                                handleLinkClick()
-                            }}>{score ? score : "0:0"}&nbsp;scoreboard</Button>
+                                    style={{background: "transparent", fontSize: "14px", border: "none"}}
+                                    onClick={() => {
+                                        switchLmt("scoreboard");
+                                        handleLinkClick()
+                                    }}>{score ? score : "0:0"}&nbsp;scoreboard</Button>
                             <Button
                                 id="lmt_matches_more_markets"
                                 onClick={() => {
@@ -634,9 +639,9 @@ const SideBets = React.memo(
     });
 
 
-const MktBtn =React.memo(
+const MktBtn = React.memo(
     (props) => {
-        const {match, mkt, detail, live, marketKey, allMarkets,  reference} = props;
+        const {match, mkt, detail, live, marketKey, allMarkets, reference} = props;
         const dispatchRedux = useDispatch()
         const settings = getFromLocalStorage("settings");
         const ref = useRef();
@@ -704,8 +709,6 @@ const MktBtn =React.memo(
                 };
 
 
-
-
                 if (cstm === match?.ucn) {
                     let betslip;
                     const updateRedux = () => {
@@ -736,7 +739,7 @@ const MktBtn =React.memo(
             },
             [match?.ucn, picked, settings, allMarkets]);
 
-        const buttonClass=`home-team ${allMarkets ? "all-markets" : ""} ${match.match_id} ${match?.ucn} ${picked.length > 0 && picked === match?.ucn ? 'picked' : ''} c-btn`
+        const buttonClass = `home-team ${allMarkets ? "all-markets" : ""} ${match.match_id} ${match?.ucn} ${picked.length > 0 && picked === match?.ucn ? 'picked' : ''} c-btn`
 
         return (
             <button
@@ -748,7 +751,7 @@ const MktBtn =React.memo(
                 start_time={match?.start_time}
                 away_team={match.away_team}
                 market_active={match.market_active}
-                odd_value= {mkt==="home_team"?match?.odds?.home_odd:mkt==="away_team"?match?.odds?.away_odd:mkt==="draw"?match?.odds?.neutral_odd || match?.odd_key:match?.odd_value}
+                odd_value={mkt === "home_team" ? match?.odds?.home_odd : mkt === "away_team" ? match?.odds?.away_odd : mkt === "draw" ? match?.odds?.neutral_odd || match?.odd_key : match?.odd_value}
                 odd_key={match?.[mkt] || match?.odd_key || "draw"}
                 parent_match_id={match.parent_match_id}
                 match_id={match.match_id}
@@ -758,17 +761,18 @@ const MktBtn =React.memo(
                 sport_id={match.sport_id}
                 sub_type_id={match.sub_type_id}
                 special_bet_value={match?.special_bet_value || ""}
-                onClick={(e)=>handleButtonOnClick(e)}
+                onClick={(e) => handleButtonOnClick(e)}
             >
                 <>
-                    {!detail && <span className="theodds odd-fix">{mkt==="home_team"?match?.odds?.home_odd:mkt==="away_team"?match?.odds?.away_odd:mkt==="draw"?match?.odds?.neutral_odd || match?.odd_key:match?.odd_value}</span>}
+                    {!detail && <span
+                        className="theodds odd-fix">{mkt === "home_team" ? match?.odds?.home_odd : mkt === "away_team" ? match?.odds?.away_odd : mkt === "draw" ? match?.odds?.neutral_odd || match?.odd_key : match?.odd_value}</span>}
                     {detail && (
                         <>
         <span className="label label-inverse blueish">
           {match.display_name}
         </span>
                             <span className="label label-inverse blueish odd-value">
-          {mkt==="home_team"?match?.odds?.home_odd:mkt==="away_team"?match?.odds?.away_odd:mkt==="draw"?match?.odds?.neutral_odd || match?.odd_key:match?.odd_value}
+          {mkt === "home_team" ? match?.odds?.home_odd : mkt === "away_team" ? match?.odds?.away_odd : mkt === "draw" ? match?.odds?.neutral_odd || match?.odd_key : match?.odd_value}
         </span>
                         </>
                     )}
@@ -807,7 +811,7 @@ const OddButton = React.memo(
                     uc = "jp_" + uc;
                 }
 
-                if (referencedState === uc ) {
+                if (referencedState === uc) {
                     setPicked("picked");
                     // dispatchRedux(setPickedData("picked"));
                 } else {
@@ -817,7 +821,7 @@ const OddButton = React.memo(
 
             } else if (typeof referencedState !== "string") {
                 setPicked("")
-            }else{
+            } else {
                 setPicked("")
             }
 
@@ -825,7 +829,7 @@ const OddButton = React.memo(
 
         useEffect(() => {
             updatePicked()
-        }, [betslip_data_item, jackpot_slip_data_item,match]);
+        }, [betslip_data_item, jackpot_slip_data_item, match]);
 
 
         const maxPickReached = () => {
@@ -940,7 +944,7 @@ const OddButton = React.memo(
                 start_time={match?.start_time}
                 away_team={match.away_team}
                 market_active={match.market_active}
-                odd_value= {mkt==="home_team"?match?.odds?.home_odd:mkt==="away_team"?match?.odds?.away_odd:mkt==="draw"?match?.odds?.neutral_odd || match?.odd_key:match?.odd_value}
+                odd_value={mkt === "home_team" ? match?.odds?.home_odd : mkt === "away_team" ? match?.odds?.away_odd : mkt === "draw" ? match?.odds?.neutral_odd || match?.odd_key : match?.odd_value}
                 odd_key={match?.[mkt] || match?.odd_key || "draw"}
                 parent_match_id={match.parent_match_id}
                 match_id={match.match_id}
@@ -953,14 +957,15 @@ const OddButton = React.memo(
                 onClick={handleButtonOnClick}
             >
                 <>
-                    {!detail && <span className="theodds odd-fix">{mkt==="home_team"?match?.odds?.home_odd:mkt==="away_team"?match?.odds?.away_odd:mkt==="draw"?match?.odds?.neutral_odd || match?.odd_key:match?.odd_value}</span>}
+                    {!detail && <span
+                        className="theodds odd-fix">{mkt === "home_team" ? match?.odds?.home_odd : mkt === "away_team" ? match?.odds?.away_odd : mkt === "draw" ? match?.odds?.neutral_odd || match?.odd_key : match?.odd_value}</span>}
                     {detail && (
                         <>
         <span className="label label-inverse blueish">
           {match.display_name}
         </span>
                             <span className="label label-inverse blueish odd-value">
-          {mkt=="home_team"?match?.odds?.home_odd:mkt=="away_team"?match?.odds?.away_odd:mkt=="draw"?match?.odds?.neutral_odd || match?.odd_key:match?.odd_value}
+          {mkt == "home_team" ? match?.odds?.home_odd : mkt == "away_team" ? match?.odds?.away_odd : mkt == "draw" ? match?.odds?.neutral_odd || match?.odd_key : match?.odd_value}
         </span>
                         </>
                     )}
@@ -996,8 +1001,8 @@ const MktOddsButton = React.memo(
         }, [reference, dispatchRedux]);
 
 
-        return (!pdown && fullmatch?.odd_value !== 'NaN' && fullmatch?.market_active === 1 && fullmatch?.odd_active === 1 )? (
-            <MktBtn match={fullmatch} detail mkt={'detail'} live={live} allMarkets={allMarkets}  reference={reference}/>
+        return (!pdown && fullmatch?.odd_value !== 'NaN' && fullmatch?.market_active === 1 && fullmatch?.odd_active === 1) ? (
+            <MktBtn match={fullmatch} detail mkt={'detail'} live={live} allMarkets={allMarkets} reference={reference}/>
         ) : (
             <EmptyTextRow odd_key={fullmatch?.display_name} allMarkets={allMarkets}/>
         );
@@ -1006,7 +1011,7 @@ const MktOddsButton = React.memo(
 
 const MarketRow = React.memo((props) => {
     const {markets, match, width, live, pdown, allMarkets} = props;
-    const [isExpanded, ] = useState(false);
+    const [isExpanded,] = useState(false);
     const {state} = useContext(StoreContext);
     const dispatchRedux = useDispatch()
     const moreMatches = useSelector((state) => state.matchesData.more_matches)
@@ -1020,7 +1025,7 @@ const MarketRow = React.memo((props) => {
         if (userData) {
             setUser(userData || getFromLocalStorage("user"))
         }
-    }, [userData,getFromLocalStorage("user")])
+    }, [userData, getFromLocalStorage("user")])
     // Get favorite items from the API
     const getFavoriteMarkets = useCallback(async () => {
         dispatchRedux(favoriteMarkets())
@@ -1162,10 +1167,10 @@ const ColoredCircle = React.memo(
     });
 
 const getUpdatedMatchFromOdds = (props) => {
-    const { match, marketName, odd_key, odd_data } = props;
+    const {match, marketName, odd_key, odd_data} = props;
 
     // Create a newMatch object by spreading the properties of match and odd_data
-    let newMatch = { ...match, ...odd_data };
+    let newMatch = {...match, ...odd_data};
 
 
     // Calculate the ucn property based on the conditions
@@ -1268,12 +1273,11 @@ const MatchRow = React.memo(
         const [, setExtraMarketDisplays] = useState([])
         const categories = getFromLocalStorage('sport_categories')
         const sport_id = new URL(window.location).searchParams.get('sport_id') || 79
-        let sport = categories?.all_sports?.filter((category) =>Number(category?.sport_id) === Number(sport_id))
+        let sport = categories?.all_sports?.filter((category) => Number(category?.sport_id) === Number(sport_id))
         const [, setSportName] = useState(sport?.[0]?.sport_name || 'Soccer');
         const [, setShowX] = useState(true);
         const [, setMarket] = useState('1x2');
         const [, setThreeWay] = useState(false)
-
 
 
         const getSelectedMarkets = () => {
@@ -1311,7 +1315,7 @@ const MatchRow = React.memo(
                 setSportName(first_match?.sport_name);
                 setMarket(first_match.market_name);
                 /**
-                 * I blew the shiet here someone help recoil this to API call results
+                 * fixed up
                  */
                 setShowX(!["186", "340"].includes(first_match.sub_type_id));
 
@@ -1332,7 +1336,8 @@ const MatchRow = React.memo(
             <div className="top-matches d-flex flex-sm-column flex-lg-row  styling-matches px-lg-2">
                 <div
                     className="to-deskview to-block to-tabview  mx-lg-0 px-sm-4 px-md-2 px-lg-0 py-md-4 py-lg-0 mt-2 container-size-match ">
-                    <div className="size-info mobile-for-desktop d-flex col-xs-12 pad left-text flex-row live-col border-0">
+                    <div
+                        className="size-info mobile-for-desktop d-flex col-xs-12 pad left-text flex-row live-col border-0">
                         <div
                             className={`d-flex flex-column px-1 justify-content-sm-center justify-content-md-start change-date1 mobile-remove display-ipad-remove-id ${jackpot ? "jackpot-width" : ""}`}>
                             {live &&
@@ -1380,23 +1385,30 @@ const MatchRow = React.memo(
                             <Link className={'odds-container-size'}
                                   to={jackpot ? '#' : `/match/${live ? 'live/' + match?.parent_match_id : match?.match_id}`}>
                                 <div className="d-flex flex-column">
-                                    <div className="compt-detail overflow-ellipsis team_category_game d-flex gap-2 align-items-center">
-                                        <LazyLoadImage src={getSportImageIcon(match.sport_name||'Soccer')} effect={'blur'} style={{maxWidth:'var(--icon-size)', display:'flex', alignItems:'center'}}/>
-                                        <small className={'d-flex align-items-center'}>{match?.category} | {match?.competition_name}</small>
+                                    <div
+                                        className="compt-detail overflow-ellipsis team_category_game d-flex gap-2 align-items-center">
+                                        <LazyLoadImage src={getSportImageIcon(match.sport_name || 'Soccer')}
+                                                       effect={'blur'} style={{
+                                            maxWidth: 'var(--icon-size)',
+                                            display: 'flex',
+                                            alignItems: 'center'
+                                        }}/>
+                                        <small
+                                            className={'d-flex align-items-center'}>{match?.category} | {match?.competition_name}</small>
                                     </div>
                                     <div className="compt-teams d-flex flex-xl-column flex-column flex-md-row">
+
                                         <div className={'bold compt-teams-item'}>
-                                            {live && (match?.match_status !== 'ended') && <ColoredCircle color="red"/>}
-                                            {match?.home_team}
                                             <span className="opacity-reduce-txt vs-styling">
-                                {live && match?.score}
-                                                {!live && ''}
-                            </span>
+                                            {live && match?.score.split(':')[0]}{!live && ''}</span>
+                                            {match?.home_team}
                                         </div>
                                         <div className={'bold compt-teams-item'}>
+
+                                            <span className="opacity-reduce-txt vs-styling">
+                                                {live && match?.score.split(':')[1]}{!live && ''}</span>
                                             {match?.away_team}
                                         </div>
-
                                     </div>
                                 </div>
                             </Link>
@@ -1475,13 +1487,13 @@ const MatchRow = React.memo(
                                 {match?.odds?.home_odd
                                     ? (match?.odds?.home_odd && (!pdown && match?.odds?.home_odd && match?.odds.home_odd !== 'NaN' &&
                                         match?.market_active == 1 && match?.odds.home_odd_active == 1 || jackpot)
-                                        ? <OddButton  match={{
+                                        ? <OddButton match={{
                                             ...match,
                                             ucn: clear_rep(
-                                                jackpot?("jp_"+match.match_id + "" + match.sub_type_id +
-                                                     match?.home_team):
-                                                     (match.match_id + "" + match.sub_type_id +
-                                                    match?.home_team)
+                                                jackpot ? ("jp_" + match.match_id + "" + match.sub_type_id +
+                                                        match?.home_team) :
+                                                    (match.match_id + "" + match.sub_type_id +
+                                                        match?.home_team)
                                             )
                                         }} mkt="home_team" live={live} jackpot={jackpot}/>
                                         : <EmptyTextRow odd_key={match?.odd_key} live={live}/>) :
@@ -1489,17 +1501,17 @@ const MatchRow = React.memo(
                                 }
                                 {match?.odds?.neutral_odd ?
                                     ((!pdown && match?.odds?.neutral_odd && match.odds.neutral_odd !== 'NaN' &&
-                                    match?.market_active == 1 && match.odds.neutral_odd_active == 1 || jackpot)
-                                    ? <OddButton match={{
+                                        match?.market_active == 1 && match.odds.neutral_odd_active == 1 || jackpot)
+                                        ? <OddButton match={{
                                             ...match,
                                             ucn: clear_rep(
-                                                jackpot?("jp_"+match.match_id + "" + match.sub_type_id +
-                                                        'draw'):
+                                                jackpot ? ("jp_" + match.match_id + "" + match.sub_type_id +
+                                                        'draw') :
                                                     (match.match_id + "" + match.sub_type_id +
                                                         'draw')
                                             )
                                         }} mkt="draw" live={live} jackpot={jackpot}/>
-                                    : <EmptyTextRow odd_key={match?.odd_key} live={live}/>) : ''
+                                        : <EmptyTextRow odd_key={match?.odd_key} live={live}/>) : ''
                                 }
                                 {match?.odds?.away_odd ?
                                     (match?.odds?.away_odd && (!pdown && match?.odds?.away_odd && match?.odds.away_odd !== 'NaN' &&
@@ -1507,8 +1519,8 @@ const MatchRow = React.memo(
                                         ? <OddButton match={{
                                             ...match,
                                             ucn: clear_rep(
-                                                jackpot?("jp_"+match.match_id + "" + match.sub_type_id +
-                                                        match?.away_team):
+                                                jackpot ? ("jp_" + match.match_id + "" + match.sub_type_id +
+                                                        match?.away_team) :
                                                     (match.match_id + "" + match.sub_type_id +
                                                         match?.away_team)
                                             )
@@ -1680,7 +1692,7 @@ export const MarketList = React.memo(
                     odds: filteredMarkets,
                 },
             };
-            setGroupMarketsAvailable(Object.keys(ob?.data?.odds||{}).length !== 0);
+            setGroupMarketsAvailable(Object.keys(ob?.data?.odds || {}).length !== 0);
             setFilters(ob);
         };
 
@@ -1692,9 +1704,9 @@ export const MarketList = React.memo(
             if (selectedMarketGroup === "favorite") {
                 filteredMarkets = elements?.filter((market) => Number(market?.is_favorite) === 1)
             } else {
-                filteredMarkets= elements?.filter((market) => Number(market?.group_id) === Number(selectedMarketGroup) || selectedMarketGroup === 'all');
+                filteredMarkets = elements?.filter((market) => Number(market?.group_id) === Number(selectedMarketGroup) || selectedMarketGroup === 'all');
             }
-            const match=matchwithmarkets?.data?.match
+            const match = matchwithmarkets?.data?.match
 
             const ob = {
                 data: {
@@ -1703,18 +1715,18 @@ export const MarketList = React.memo(
                 },
             };
             setFilters(ob)
-            setGroupMarketsAvailable(Object.keys(ob?.data?.odds||{}).length !== 0);
+            setGroupMarketsAvailable(Object.keys(ob?.data?.odds || {}).length !== 0);
 
 
         }, [matchwithmarkets]);
 
-        const mkGroup=useSelector((state)=>state.matchesData.market_groups)
+        const mkGroup = useSelector((state) => state.matchesData.market_groups)
 
-        const [market_groups, setMarketGroups]=useState(getFromLocalStorage("market_groups"))
-        useEffect(()=>{
-            const cache=getFromLocalStorage("market_groups")
-            setMarketGroups(mkGroup||cache)
-        },[mkGroup])
+        const [market_groups, setMarketGroups] = useState(getFromLocalStorage("market_groups"))
+        useEffect(() => {
+            const cache = getFromLocalStorage("market_groups")
+            setMarketGroups(mkGroup || cache)
+        }, [mkGroup])
         // const endIndex = startIndex + perPage;
         const marketsToShow = Object.entries(filters?.data?.odds || {});
         return (
@@ -1751,19 +1763,19 @@ export const MarketList = React.memo(
                         />
                     </div>
                     <div className="text-white market-groups-container">
-                        {market_groups?.length > 0 && user &&<button onClick={() => filterMarketGroups('favorite')}
-                                                              className={`market-group-pill text-white badge badge-pill badge-primary bg-transparent p-2 ${selectedMarketGroup==='favorite'?'active-group':''}`}>
+                        {market_groups?.length > 0 && user && <button onClick={() => filterMarketGroups('favorite')}
+                                                                      className={`market-group-pill text-white badge badge-pill badge-primary bg-transparent p-2 ${selectedMarketGroup === 'favorite' ? 'active-group' : ''}`}>
                             Favorite Markets
                         </button>}
                         {market_groups?.length > 0 && <button onClick={() => filterMarketGroups('all')}
                                                               autoFocus
-                                                              className={`market-group-pill text-white badge badge-pill badge-primary bg-transparent p-2 ${selectedMarketGroup==='all'?'active-group':''}`}>
+                                                              className={`market-group-pill text-white badge badge-pill badge-primary bg-transparent p-2 ${selectedMarketGroup === 'all' ? 'active-group' : ''}`}>
                             All Markets
                         </button>}
                         {market_groups?.map((group, index) => (
                             <button
                                 key={index}
-                                className={`market-group-pill text-white badge badge-pill badge-primary bg-transparent p-2 ${(Number(selectedMarketGroup)===Number(group?.id))?'active-group':''}`}
+                                className={`market-group-pill text-white badge badge-pill badge-primary bg-transparent p-2 ${(Number(selectedMarketGroup) === Number(group?.id)) ? 'active-group' : ''}`}
                                 onClick={() => filterMarketGroups(group?.id)}>
                                 {group?.name}
                             </button>
@@ -1952,7 +1964,7 @@ const MatchList = React.memo(
                             No events found.
                         </div>
                     }
-                    <div ref={listRef} style={{ overflow: 'hidden' }}></div>
+                    <div ref={listRef} style={{overflow: 'hidden'}}></div>
                 </div>
             </div>
         )

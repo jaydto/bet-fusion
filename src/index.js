@@ -1,5 +1,5 @@
-import React, {Suspense, useCallback, useContext, useEffect} from "react";
-import {Provider, useDispatch} from "react-redux";
+import React, {Suspense} from "react";
+import {Provider} from "react-redux";
 import store from "./redux/store";
 import {BrowserRouter} from 'react-router-dom'
 import reportWebVitals from './reportWebVitals';

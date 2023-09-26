@@ -75,7 +75,7 @@ const BetslipShareModal = React.memo(
         }
         useEffect(()=>{
             setSettings(appConfigs||getFromLocalStorage('settings'))
-        },[appConfigs,getFromLocalStorage('settings') ])
+        },[appConfigs])
 
         const incrementDepositValue = (value) => {
             // Update the "amount" field in the formik values

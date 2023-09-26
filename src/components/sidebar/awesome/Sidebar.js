@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, { useEffect, useState} from "react";
 import {Menu, MenuItem, ProSidebar, SidebarContent, SidebarHeader, SubMenu,} from "react-pro-sidebar";
 import "react-pro-sidebar/dist/css/styles.css";
 import {getFromLocalStorage} from "../../utils/local-storage";
@@ -27,16 +27,16 @@ const Sidebar = React.memo(
 
         },[availableCategories])
 
-        const [width, setWidth] = useState(window.innerWidth);
+        // const [width, setWidth] = useState(window.innerWidth);
 
-        const updateDimensions = () => {
-            setWidth(window.innerWidth);
-            if (width >= 768 && width <= 991) {
-                setCollapsed(true);
-            } else {
-                setCollapsed(false);
-            }
-        };
+        // const updateDimensions = () => {
+        //     setWidth(window.innerWidth);
+        //     if (width >= 768 && width <= 991) {
+        //         setCollapsed(true);
+        //     } else {
+        //         setCollapsed(false);
+        //     }
+        // };
         const updateSidebarState = () => {
             let sport_id = new URL(window.location.href).searchParams.get("sport_id");
             if (sport_id === null && window.location.pathname === "/") {
@@ -49,11 +49,11 @@ const Sidebar = React.memo(
             return Number(sport || 79) === Number(matchId);
         };
         useEffect(() => {
-            updateDimensions();
+            // updateDimensions();
             updateSidebarState();
-            window.addEventListener("resize", updateDimensions);
-            return () => window.removeEventListener("resize", updateDimensions);
-        }, [width]);
+            // window.addEventListener("resize", updateDimensions);
+            // return () => window.removeEventListener("resize", updateDimensions);
+        }, []);
 
         const getSportImageIcon = (
             sport_name,
@@ -142,11 +142,10 @@ const Sidebar = React.memo(
                                                                 }
                                                                 to={`/competition/${top_league.sport_id}/${
                                                                     top_league.category_id
-                                                                }/${top_league.competition_id}?sport_id=${
+                                                                }/${top_league.competition_id}?competition_league=${top_league?.competition_name}&sub_type_id=${
+                                                                    getDefaultMarketsForSport(competition)}&sport_id=${
                                                                     competition.sport_id
-                                                                }&sub_type_id=${getDefaultMarketsForSport(
-                                                                    competition
-                                                                )}`}
+                                                                }`}
                                                             >
                                                                 {top_league?.competition_name}
                                                             </Link>

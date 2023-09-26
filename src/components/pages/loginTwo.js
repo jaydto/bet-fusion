@@ -3,7 +3,6 @@ import {Col, Row} from "antd";
 import authImg from '../../assets/img/Logo.webp'
 import {Link, useNavigate} from "react-router-dom";
 import HeaderLogin from "../header/top-login";
-import useWindowDimensions from "../header/Dimensions";
 import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
 import {toast} from "react-toastify";
 import only18 from '../../assets/img/auth/18only.png'

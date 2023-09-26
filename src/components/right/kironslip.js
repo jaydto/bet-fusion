@@ -4,6 +4,7 @@ import {getKironSlip, removeFromKironSlip,} from "../utils/betslip";
 import {getFromLocalStorage} from "../utils/local-storage";
 import KironslipSubmitForm from "./kironslip-submit-form";
 import {Link, useNavigate} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 const clean_rep = (str) => {
     str = str.replace(/[^A-Za-z0-9\-]/g, "");
@@ -24,6 +25,13 @@ const KironSlip = React.memo(
         const [expired, setExpired] = useState(false)
 
         const [totalOdds, setTotalOdds] = useState(1);
+        const userData = useSelector((state) => state.auth.user)
+        const [user, setUser] = useState(getFromLocalStorage("user"))
+        useEffect(() => {
+            if (userData) {
+                setUser(userData || getFromLocalStorage("user"))
+            }
+        }, [userData,getFromLocalStorage("user")])
         //initial betslip loading
         const loadBetslip = useCallback(() => {
             if (!betslipsData) {
@@ -117,7 +125,7 @@ const KironSlip = React.memo(
 
             let message = "";
 
-            let userBonus = Number(state?.user?.bonus || 0);
+            let userBonus = Number(user?.bonus || 0);
 
             if (totalGames < maxBonusGames) {
                 let remainingGames = Number(maxBonusGames) - Number(totalGames);
@@ -202,7 +210,7 @@ const KironSlip = React.memo(
             <div className="bet-body text-white">
                 {!kiron && <BonusAlert/>}
                 <div
-                    className={`flow  slip-top ${state?.user ? kiron ? 'slip-max' : 'slip-height slip-log-max' : 'slip-max'} overflow-auto`}>
+                    className={`flow  slip-top ${user ? kiron ? 'slip-max' : 'slip-height slip-log-max' : 'slip-max'} overflow-auto`}>
                     <div className={"slip-bottom-space"}>
                         <ul className={"slip-bottom-space-list"}>
                             {(betslipsData && Object.keys(betslipsData||{})?.length == 0) ||

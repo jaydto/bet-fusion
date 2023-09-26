@@ -87,7 +87,6 @@ const Sidebar = React.memo(
             let sport_id = url.searchParams.get('sport_id')
             setSportId(sport_id)
         },[window.location.search, window.location.href])
-        console.log('sportid', sportId)
 
         let sport_active=useSelector((state)=>state.matchesData.active_sport);
         return (

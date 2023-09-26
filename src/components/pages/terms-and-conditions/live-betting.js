@@ -16,50 +16,53 @@ const LiveBetting = () => {
                 </AccordionItemButton>
             </AccordionItemHeading>
             <AccordionItemPanel className='accordion-item-panel'>
+                <ol>
+                    <li>Live bets are accepted on main markets and additional markets.
+                    </li>
+                    <li>Live bets shall be deemed accepted once they have been registered on the
+                        server and online confirmation has been received. You may not alter the
+                        bet
+                        once it has been accepted.
+                    </li>
+                    <li>Live feeds broadcasted from the TV, Radio and Internet are subject to
+                        delays
+                        and as such a CLIENT may experience events ahead or behind of others.
+                    </li>
+                    <li>As a result of the delay experienced before placing live bets, Clients
+                        will
+                        be given the option of placing their bets at new odds or not placing the
+                        bet
+                        at all.
+                    </li>
 
-                <p>Live bets are accepted on main markets and additional markets.
-                </p>
-                <p>Live bets shall be deemed accepted once they have been registered on the
-                    server and online confirmation has been received. You may not alter the
-                    bet
-                    once it has been accepted.
-                </p>
-                <p>Live feeds broadcasted from the TV, Radio and Internet are subject to
-                    delays
-                    and as such a CLIENT may experience events ahead or behind of others.
-                </p>
-                <p>As a result of the delay experienced before placing live bets, Clients
-                    will
-                    be given the option of placing their bets at new odds or not placing the
-                    bet
-                    at all.
-                </p>
+                    <li>BetNare reiterates that any live scores displayed on its sites during
+                        live
+                        events remain placed for guidance purposes only and that BetNare will
+                        not
+                        take any responsibility for any errors and inaccuracies on the same.
+                    </li>
+                    <li>BetNare reserves the right to void any bets placed after the outcome of
+                        an
+                        event is known. Should a bet be placed with incorrect odds due to
+                        delayed
+                        ‘Live’ coverage of an event and where a team has gained a significant
+                        advantage as stated above bets will be voided.
+                    </li>
 
-                <p>BetNare reiterates that any live scores displayed on its sites during
-                    live
-                    events remain placed for guidance purposes only and that BetNare will
-                    not
-                    take any responsibility for any errors and inaccuracies on the same.
-                </p>
-                <p>BetNare reserves the right to void any bets placed after the outcome of
-                    an
-                    event is known. Should a bet be placed with incorrect odds due to
-                    delayed
-                    ‘Live’ coverage of an event and where a team has gained a significant
-                    advantage as stated above bets will be voided.
-                </p>
+                    <li>Odds on all selections change regularly to reflect fluctuations in the
+                        market or changes in the events themselves. In some cases, the odds may
+                        change between the time you put your bet on the bet slip and the time
+                        you
+                        place the bet.
+                    </li>
 
-                <p>Odds on all selections change regularly to reflect fluctuations in the
-                    market or changes in the events themselves. In some cases, the odds may
-                    change between the time you put your bet on the bet slip and the time
-                    you
-                    place the bet.
-                </p>
+                    <li>If the current odds are different from the odds on the bet slip you will
+                        be
+                        required to confirm whether you wish to place the bet with the new odds.
+                    </li>
+                </ol>
 
-                <p>If the current odds are different from the odds on the bet slip you will
-                    be
-                    required to confirm whether you wish to place the bet with the new odds.
-                </p>
+
             </AccordionItemPanel>
         </AccordionItem>
     )

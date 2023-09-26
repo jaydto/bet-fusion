@@ -16,10 +16,13 @@ const General = () => {
                 </AccordionItemButton>
             </AccordionItemHeading>
             <AccordionItemPanel className='accordion-item-panel'>
-                <h4>
-                    <strong>The following words and terms should be interpreted as follows, unless, the context clearly
-                        implies otherwise</strong>
-                </h4>
+
+                    <p style={{opacity:'0.8'}}>
+                        <strong>The following words and terms should be interpreted as follows, unless, the context clearly
+                            implies otherwise</strong>
+                    </p>
+
+
                 <ol>
                     <li> "Registration Form" means the form to be filled in by the Player to open a User Account.
                     </li>

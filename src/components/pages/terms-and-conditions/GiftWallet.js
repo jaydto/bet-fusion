@@ -16,11 +16,13 @@ const GiftWallet = () => {
                 </AccordionItemButton>
             </AccordionItemHeading>
             <AccordionItemPanel className='accordion-item-panel'>
+<ol>
+    <li>
+        Register and Get the BetNare Bet Booster of UPTO 3,000/= FREE
+    </li>
+    <li>The client is set to receive Up to 3,000/= to Unlock their Gift Wallet once they REGISTER</li>
+</ol>
 
-                <p>
-                    Register and Get the BetNare Bet Booster of UPTO 3,000/= FREE
-                </p>
-                <p>The client is set to receive Up to 3,000/= to Unlock their Gift Wallet once they REGISTER</p>
                 <br/>
                 <strong className="text-decoration-underline">HOW TO GET THE NARE BOOSTER GIFTS</strong>
                 <ol>

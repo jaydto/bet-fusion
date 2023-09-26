@@ -369,7 +369,7 @@ const  HowToPlay= React.memo(
                                                             <AccordionItem>
                                                                 <AccordionItemHeading>
                                                                     <AccordionItemButton className="accordion-button">
-                                                                        How do you play the DAILY HUSTLER Jackpot?
+                                                                        How do you play the Daily Jackpot?
                                                                     </AccordionItemButton>
                                                                 </AccordionItemHeading>
 

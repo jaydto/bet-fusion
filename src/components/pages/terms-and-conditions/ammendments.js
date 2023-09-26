@@ -17,11 +17,14 @@ const Ammendments = React.memo(
                 </AccordionItemButton>
             </AccordionItemHeading>
             <AccordionItemPanel className='accordion-item-panel'>
-                <p>
-                    We reserve the right to make immaterial changes to these Terms and
-                    Conditions at any time and your continued use of the site will be deemed
-                    to be your acceptance of any material changes.
-                </p>
+                <ol>
+                    <li>
+                        We reserve the right to make immaterial changes to these Terms and
+                        Conditions at any time and your continued use of the site will be deemed
+                        to be your acceptance of any material changes.
+                    </li>
+                </ol>
+
             </AccordionItemPanel>
         </AccordionItem>
     )

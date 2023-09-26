@@ -64,30 +64,39 @@ const BonusesAndPromotions = () => {
                     <li>
                         BetNare bonus has no expiry.
                     </li>
-                    {/*<li>*/}
-                    {/*        The Maximum and Minimum stake of the bonuses is 100/=*/}
-                    {/*</li>*/}
-                    {/*<li>*/}
-                    {/*        Total number of games per slip on bonus related bets is 4*/}
-                    {/*</li>*/}
-                    {/*<li>*/}
-                    {/*        Minimum odds per game on bonus related bets is 1.8*/}
-                    {/*</li>*/}
-                    {/*<li>*/}
-                    {/*        Minimum total odds per bonus bet is 10.50*/}
-                    {/*</li>*/}
-                    {/*<li>*/}
-                    {/*        The maximum pays-out from bonus bets – KES300 per betslip.*/}
-                    {/*</li>*/}
-                    {/*<li>*/}
-                    {/*    	All rules on bonus bets will apply.*/}
-                    {/*</li>*/}
-                    {/*<li>*/}
-                    {/*    	Promotions are subject to change. All management decisions are final.*/}
-                    {/*</li>*/}
-                    {/*<li>*/}
-                    {/*   	In the event of an error when attributing a bonus to a customer account, the company reserves the right to correct such errors by removing any funds that were put into the customer’s account erroneously and by avoid*/}
-                    {/*</li>*/}
+
+                </ol>
+                <br/>
+                <strong className="text-decoration-underline">BetNare Bonus Rules</strong>
+                <br/>
+                <ol>
+                    <li>
+                        Minimum Odds per Bonus Leg selection > 2.1
+                    </li>
+                    <li>
+                        Minimum Number of Legs - 4
+                    </li>
+                    <li>
+                        No Maximum Odds.
+                    </li>
+                    <li>
+                        Minimum bonus bet is 1/=
+                    </li>
+                    <li>
+                       Maximum bonus amount is 1,000 /=
+                    </li>
+                    <li>
+                        You can only Use the Bonus when your cash balance is less than 1/=
+                    </li>
+                    <li>
+                        Total Winnings = Total Winnings less the Initial stake.
+                    </li>
+                    <li>
+                        The Deposit Bonus does not have an expiry.
+                    </li>
+                    <li>
+                        The maximum Gross Payout is 10,000 /=
+                    </li>
                 </ol>
                 <p><strong><strong>NB;</strong> APART FROM JACKPOT BONUSES , THE REST CANNOT BE WITHDRAWN</strong></p>
 

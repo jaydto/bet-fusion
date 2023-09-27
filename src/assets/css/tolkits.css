@@ -480,11 +480,12 @@ background: var(--betnare-body-bg)!important;
     background: var(--betnare-primary);
     padding: 10px 35px;
     line-height: 30px;
-    font-size: 16px;
+    font-size: var(--font-size-large);
 }
 
 .accordion-item-panel li {
     margin-bottom: 10px;
+    opacity:0.6;
 }
 
 #quick-login p {
@@ -2017,10 +2018,10 @@ events-header {
 }
 
 .opacity-reduce-txt.vs-styling {
-    padding-left: 10px;
-    padding-right: 10px;
-    font-size: 10px;
-    color: rgb(105, 129, 154);
+
+    padding-left: 0px;
+    padding-right: 5px;
+    color: var(--red);
 }
 
 .std-side-pads {
@@ -5000,6 +5001,8 @@ input[type="button"].btn-block {
 }
 
 @media (min-width: 992px) {
+    .opacity-reduce-txt.vs-styling {
+        font-size: var(--font-size-large);}
     .container-size{
         width:100%!important
     }
@@ -7653,6 +7656,9 @@ ul.sport {
 
 }
 @media (max-width: 991px) {
+    .opacity-reduce-txt.vs-styling {
+        font-size: var(--font-size-small-variation1);
+    }
 
     .menu-wrapper::-webkit-scrollbar {
         display: none;
@@ -10699,7 +10705,7 @@ button.close {
 }
 
 .modal-backdrop.fade {
-    opacity: 0.8;
+    opacity: 0.4;
     filter: alpha(opacity=0);
 }
 

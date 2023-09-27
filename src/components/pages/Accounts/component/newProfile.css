@@ -305,7 +305,29 @@ a.text-logout{
         overflow: hidden;
     }
 }
-@media (max-width:991px){
+.points-promo-card{
+    box-shadow: 1px 0px 2px 1px #f3eded;
+    border-radius: 7px;
+    padding:8px;
+}
+.promo-active-profile-img {
+    border-radius: 10px;
+}
+@media (max-width: 991px){
+    .promo-active-profile-img {
+
+        max-height: 120px;
+        width: 100vw;
+    }
+    .promo-text-size{
+        font-size:var(--font-size-small);
+    }
+    .promo-text-actual{
+        font-size:var(--font-size-small-variation1);
+    }
+    .title-promo{
+        font-weight:var(--font-weight2);
+    }
     .content{
         margin-top:3rem!important;
         top: 10rem;

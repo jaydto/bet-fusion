@@ -17,7 +17,7 @@ const PromoCards = () => {
     const gaEventTracker = useAnalyticsEventTracker('Promotions');
     const user = getFromLocalStorage('user')
 
-    let ids = [1, 2, 3, 4, 5, 6, 7, 8, 9,10,11];
+    let ids = [1, 2, 3, 4, 5, 6, 7, 8, 9,10,11, 12];
     const navigate = useNavigate()
 
     let message = {status: 401, message: 'This Promotion is for new Users', token: ''};
@@ -44,6 +44,42 @@ const PromoCards = () => {
             >
                 <div className="col-md-2 promo-styling shadow-lg promotion">
                     <div className="d-flex flex-column promo-inner">
+                        <img src={'https://cdn.betnare.com/carousel/chomokananduthi.webp'} className={"rounded promo-image "}/>
+                        <h5
+                            className="bold d-flex justify-content-center h4 pt-2"
+                            style={{color: "#ea5d0b"}}
+                        >
+                            CHOMOKA NA NDUTHI
+                        </h5>
+                        <p className="container mx-1 px-2 text-data-promotions">
+                            Place a  cash bet of KES 49/= and above on Sportsbook matches...
+                        </p>
+                        <hr/>
+
+                        <div className="d-flex justify-content-between my-2 mx-2">
+
+                            <button className={"profile-button border-0 h-25 rounded promo-button"}
+                                    style={{background: "#ea5d0b"}} onClick={() => {
+                                gaEventTracker('promo_nduthika');
+                                navigate(`/`);
+                                setUtmSouceCampaignOnPromotions('promo_nduthika')
+                            }}>Bet now
+                            </button>
+                            <div
+                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"}
+                                style={{color: "#ea5d0b"}}
+                                onClick={() => {
+                                    navigate(`/promo?id=${ids[11]}`);
+                                    window.scrollTo(0, 0); // Scroll to the top of the page
+                                }}
+                            >
+                                Read More
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-md-2 promo-styling shadow-lg promotion">
+                    <div className="d-flex flex-column promo-inner">
                         <img src={'https://cdn.betnare.com/carousel/MegaMatchBonusWeb.webp'} className={"rounded promo-image "}/>
                         <h5
                             className="bold d-flex justify-content-center h4 pt-2"
@@ -52,7 +88,7 @@ const PromoCards = () => {
                             500 FOR 500 PROMOTION TERMS AND CONDITIONS
                         </h5>
                         <p className="container mx-1 px-2 text-data-promotions">
-                        Deposit 500 and Get 500 free bonus for your first and second deposit of the day
+                        Deposit 500/= and Get 500/= free bonus instantly!
                         </p>
                         <hr/>
 
@@ -66,7 +102,7 @@ const PromoCards = () => {
                             }}>Deposit now
                             </button>
                             <div
-                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent"}
+                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"}
                                 style={{color: "#ea5d0b"}}
                                 onClick={() => {
                                     navigate(`/promo?id=${ids[10]}`);
@@ -102,7 +138,7 @@ const PromoCards = () => {
                             }}>Sign Up
                             </button>
                             <div
-                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent"}
+                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"}
                                 style={{color: "#ea5d0b"}}
                                 onClick={() => {
                                     navigate(`/promo?id=${ids[0]}`);
@@ -140,7 +176,7 @@ const PromoCards = () => {
                                 </button>
 
                                 <div
-                                    className={"  d-flex align-self-center h-25 border-0 bg-transparent"}
+                                    className={"  d-flex align-self-center h-25 border-0 bg-transparent cursor-pointer"}
                                     style={{color: "#ea5d0b"}}
                                     onClick={() => {
                                         navigate(`/promo?id=${ids[3]}`);
@@ -179,7 +215,7 @@ const PromoCards = () => {
                             }}>Deposit now
                             </button>
                             <div
-                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent"}
+                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"}
                                 style={{color: "#ea5d0b"}}
                                 onClick={() => {
                                     navigate(`/promo?id=${ids[9]}`);
@@ -219,7 +255,7 @@ const PromoCards = () => {
                                 </button>
 
                                 <div
-                                    className={"  d-flex align-self-center h-25 border-0 bg-transparent"}
+                                    className={"  d-flex align-self-center h-25 border-0 bg-transparent cursor-pointer"}
                                     style={{color: "#ea5d0b"}}
                                     onClick={() => {
                                         navigate(`/promo?id=${ids[8]}`);
@@ -254,10 +290,11 @@ const PromoCards = () => {
                                 setUtmSouceCampaignOnPromotions('promo_FIRST_DEPOSIT_BOOSTER')
                             }}>Deposit
                             </button>
-                            onClick={() => navigate(`/promo?id=${ids[1]}`)}
                             <div
-                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent"}
+                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"}
                                 style={{color: "#ea5d0b"}}
+                                onClick={() => navigate(`/promo?id=${ids[1]}`)}
+
                             >
                                 Read More
                             </div>
@@ -290,11 +327,11 @@ const PromoCards = () => {
                                 setUtmSouceCampaignOnPromotions('promo_20_deposit_Boost')
                             }}>Deposit
                             </button>
-                            onClick={() => navigate(`/promo?id=${ids[2]}`)}
-                            <div
-                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent"}
-                                style={{color: "#ea5d0b"}}
 
+                            <div
+                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"}
+                                style={{color: "#ea5d0b"}}
+                                onClick={() => navigate(`/promo?id=${ids[2]}`)}
                             >
                                 Read More
                             </div>
@@ -321,16 +358,11 @@ const PromoCards = () => {
                                         style={{background: "#ea5d0b"}}>Bet Now
                                 </button>
                                 <div
-                                    className={"d-flex  align-self-center h-25 border-0 bg-transparent"}
+                                    className={"d-flex  align-self-center h-25 border-0 bg-transparent cursor-pointer"}
                                     style={{color: "#ea5d0b"}}
                                     onClick={() => navigate(`/promo?id=${ids[4]}`)}
                                 >
-                                    {/*<div*/}
-                                    {/*    className={"  h-25   button-promotions"}*/}
-                                    {/*    style={{ color: "#ea5d0b" }}*/}
-                                    {/*    onClick={()=>navigate(`/deposit`)}>*/}
-                                    {/*  Deposit*/}
-                                    {/*</div>*/}
+
                                     Read More
                                 </div>
                             </div>
@@ -390,7 +422,7 @@ const PromoCards = () => {
                                     Bet Now
                                 </button>
                                 <Link
-                                    className={"d-flex  align-self-center   h-25 border-0 bg-transparent"}
+                                    className={"d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"}
                                     style={{color: "#ea5d0b"}}
                                     to={{pathname: `/promo`, search: `id=${ids[6]}`}}
                                 >
@@ -417,7 +449,7 @@ const PromoCards = () => {
                                 <div className="d-flex justify-content-end my-2 mx-2">
                                     {/* <button className={"profile-button border-0 h-25 rounded"} style={{background:"#ea5d0b"}}>Bet Now</button>      */}
                                     <Link
-                                        className={"d-flex  align-self-center   h-25 border-0 bg-transparent"}
+                                        className={"d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"}
                                         style={{color: "#ea5d0b"}}
                                         to={{pathname: `/promo`, search: `id=${ids[7]}`}}
                                     >

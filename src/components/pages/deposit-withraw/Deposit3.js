@@ -27,7 +27,6 @@ const backgroundStyle = {
 
 const Deposit3 = React.memo(
     props => {
-        // const [message, setMessage] = useState(null);
         const [activeTab, setActiveTab] = useState('online'); // Set the initially active tab here
         const dispatchRedux=useDispatch()
         const userData=useSelector((state)=>state.auth.user)
@@ -58,7 +57,7 @@ const Deposit3 = React.memo(
         },[successMessage, errorMessage])
         useEffect(()=>{
             setSettings(appConfigs||getFromLocalStorage('settings'))
-        },[appConfigs ])
+        },[appConfigs])
 
         useEffect(()=>{
             setUser(userData||getFromLocalStorage("user"))
@@ -460,9 +459,11 @@ const DepositFormFields = (props) => {
     const loadingDeposit=useSelector((state)=>state.data.deposit_loading)
     const [settings,setSettings] = useState(getFromLocalStorage('settings'));
     const [user, setUser] = useState(getFromLocalStorage("user"));
+
     useEffect(()=>{
-        setSettings(appConfigs||getFromLocalStorage('settings'))
-    },[appConfigs ])
+        setSettings(appConfigs?.message||getFromLocalStorage('settings'))
+    },[appConfigs])
+
     useEffect(()=>{
         setUser(userData||getFromLocalStorage("user"))
     },[userData])
@@ -539,7 +540,7 @@ const DepositFormFields = (props) => {
                     <button type={"submit"}
                             className='btn btn-lg w-100 deposit-button button-radius input-field btn-font cg login-button2 btn bold d-flex justify-content-center align-items-center'
                             style={{marginTop: "30px"}} disabled={values?.amount == ''||loadingDeposit}>
-                        {loadingDeposit? <div className="loader"></div>: `PAY ${values?.amount}`}
+                        {loadingDeposit? <div className="loader"></div>: `DEPOSIT ${values?.amount}`}
                     </button>
                 </div>
             </div>
@@ -657,8 +658,8 @@ const DepositForm = (props) => {
             errors.msisdn = 'Please enter a valid phone number'
         }
 
-        if (!values.amount || values.amount < 1 || values.amount > 100000) {
-            errors.amount = "Please enter amount between KES 1.00 and KES 100,000.00";
+        if (!values.amount || values.amount < 1 || values.amount > 150000) {
+            errors.amount = "Please enter amount between KES 1.00 and KES 150,000.00";
         }
         return errors
     }

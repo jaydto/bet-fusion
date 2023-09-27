@@ -126,10 +126,10 @@
         transition: 0.3s ease;
         /* margin-right: auto; */
         position: absolute;
-        width: 45%;
+        width: 33%;
         top: 33%;
-        right: 30%;
-        left: 24%;
+        right: 25%;
+        left: 30%;
         z-index: 3000!important;
     }
 }

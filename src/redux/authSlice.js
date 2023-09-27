@@ -81,9 +81,14 @@ export const userBalance =
                 method: "POST",
                 data:udata
             });
+            const [status1, response1] = await makeRequest({
+                url: "/v1/promopoints",
+                method: "POST",
+                data:udata
+            });
 
             if (status === 200) {
-                return { user: user, data: response }; // Return an object with both user and data properties
+                return { user: user, data: response , promo_points:response1}; // Return an object with both user and data properties
             } else {
                 throw new Error(response?.error || "Fetching User Balance failed");
             }
@@ -105,9 +110,13 @@ const authSlice = createSlice({
             .addCase(userBalance.fulfilled, (state, action) => {
                 state.loading = false;
                 state.error = null;
-                const { user, data } = action.payload;
+                const { user, data, promo_points } = action.payload;
 
-                let u = {...user, ...data.user};
+                let u = {...user, ...data.user,...{ promo_points: {
+                    points:promo_points?.points,
+                    title:promo_points?.title,
+                    end_date:promo_points?.end_date
+                }}, };
 
                 state.user=u
 

@@ -1,16 +1,13 @@
 import React, {useContext, useState} from 'react'
 import {Col, Row} from "antd";
 import authImg from '../../../assets/img/Logo.webp'
-import logo from '../../../assets/img/Logo.webp'
 import {Link, useNavigate} from "react-router-dom";
 import only18 from '../../../assets/img/auth/18only.png'
 import backgroundURL from '../../../assets/img/auth/img-17.webp'
-import {Navbar, Offcanvas} from "react-bootstrap";
-import Container from "react-bootstrap/Container";
+
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faBackspace, faEye, faEyeSlash} from "@fortawesome/free-solid-svg-icons";
-import SidebarMobile from "../../sidebar/awesome/SidebarMobile";
+import { faEye, faEyeSlash} from "@fortawesome/free-solid-svg-icons";
 import makeRequest from "../../utils/fetch-request";
 import {Form, Formik} from "formik";
 import {StoreContext } from "../../../context/store"
@@ -47,53 +44,11 @@ const ResetPassword2 = React.memo(
 
     return (
         <div style={{height:'100vh', background:'#16202C'}}>
-            <div className={''}>
-                <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
-                    <Container fluid className={'d-flex justify-content-between mobile-change top-login-background-img'}>
-                        <Navbar.Brand className="e logo align-self-start menu-control d-flex w-100" title="Betnare" style={{paddingLeft:'0px',paddingBottom:'0px'}}>
-                            <Link to={'/'} className={'text-light'}>
-                                <FontAwesomeIcon icon={faBackspace}/>&nbsp; HOME
-                            </Link>
-                            <div
-                                className="col-md-6  d-flex  right justify-content-end align-items-center w-change3 gap-2 top-login-background-img-bg-page"
-                                style={{marginLeft: 'auto'}}>
-                                <Link to={{pathname: "/"}} className=" resize-mobile">
-                                    <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"
-                                                   className={"image-size "}/>
-                                </Link>
-                            </div>
-
-                        </Navbar.Brand>
-
-                        <Navbar.Offcanvas
-                            style={{width: "80%", height: "100%",zIndex: "9999", marginTop: "0px"}}
-                            className='off-canvas background-primary p-0 user-profile'
-                            id={`offcanvasNavbar-expand-${expand}`}
-                            aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-                            placement="start">
-                            <Offcanvas.Header closeButton className='text-white' closeVariant={"white"}>
-                                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                                    <div className="col-3">
-                                        <div>
-                                            <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"/>
-                                        </div>
-                                    </div>
-                                </Offcanvas.Title>
-                            </Offcanvas.Header>
-                            <Offcanvas.Body className={('')}>
-                                <SidebarMobile/>
-                            </Offcanvas.Body>
-                        </Navbar.Offcanvas>
-                    </Container>
-                </Navbar>
-
-            </div>
             <Row justify="center" className="align-items-stretch h-100">
 
                 <Col xs={0} sm={0} md={0} lg={8}>
                     <div className="d-flex flex-column justify-content-between h-100 px-4" style={backgroundStyle}>
                         <div className="text-right">
-                            {/*<LazyLoadImage src="/img/logo-sm.jpg" style={{height:"35px"}}alt="logo"/>*/}
                         </div>
                         <Row justify="center">
                             <Col xs={0} sm={0} md={0} lg={20}>

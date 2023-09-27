@@ -10,6 +10,9 @@ body {
     background: var(--betslip-list);
 }
 
+.link-color{
+    color:var(--link-color) !important
+}
 .slip-dim-color-selections {
 
 }
@@ -88,9 +91,16 @@ body {
 .active_link {
     border-radius: 4px;
     font-weight: 700;
-    font-size: 13px;
+    font-size: 14px;
     color: yellow !important;
     opacity: 1 !important;
+}
+.pro-sidebar .pro-menu a.active_sport_link{
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: var(--font-size-large);
+    color: var(--light) !important;
+    opacity: 0.9 !important;
 }
 
 .link-inactive a .cg{
@@ -580,6 +590,7 @@ b, strong {
     z-index: 2000;
     background: var(--betnare-body-bg);
     max-height:40.5px;
+    min-height:40.5px;
 }
 
 
@@ -682,7 +693,7 @@ select::after {
 }
 
 .pro-sidebar .pro-menu a:hover {
-    color: #FFC428 !important;
+    color: var(--light) !important;
 }
 
 .profile-btn {
@@ -1236,7 +1247,9 @@ img.nare-league {
 .smart-soft-image-size {
     height: 150px;
 }
-
+.opacity-reduce-txt.vs-styling:empty{
+    display: none!important;
+}
 .new-alert-badge-item {
     background: red;
     background-size: 35px 16px;
@@ -1326,8 +1339,20 @@ img.nare-league {
     overflow: hidden;
     display: inline-block;
 }
+.button-text-choice1{
+    font-size:var(--font-size-large) !important;
+    font-weight:var(--font-weight2) !important;
+    color:var(--dark) !important
+}
 
 @media (min-width: 1260px) {
+    .close-history-filter.filter-bets{
+        right:89%;
+        top:0px;
+    }
+    .deposit-modal-top-title.filter-bets{
+        margin-top:4rem;
+    }
     .cancel-filter-markets{
         font-size: 18px;
         text-shadow: 2px 2px 2px black;
@@ -1481,6 +1506,7 @@ img.nare-league {
         font-weight: 400;
     }
 
+
     .live-side-badge {
         float: right;
         color: rgb(255, 255, 255);
@@ -1585,8 +1611,8 @@ img.nare-league {
 
 @media (max-width: 1259px) {
     .sidebar-league-icon-small{
-        width:16px!important;
-        height:16px!important;
+        width:20px!important;
+        height:21px!important;
 
     }
     .text-small-sidebar {
@@ -1868,7 +1894,21 @@ img.nare-league {
 .mobile-menu-container table{
     width:100vw;
 }
+.deposit-modal-top-title{
+    margin-top:3rem!important;
+}
 @media (min-width: 992px) {
+    .flex-container.height-default-body{
+        margin-top:51px;
+    }
+    .close-history-filter.deposit-modal {
+        right: 89%;
+        top: 0px;
+    }
+    .deposit-modal-body .modal-30w{
+        width:28vw!important;
+    }
+
     .pro-sidebar .pro-menu a.active_link{
         color:var(--light) !important;
         opacity:1;
@@ -2191,8 +2231,84 @@ img.nare-league {
 .jp-tabs li button{
     color:var(--light) !important
 }
+.deposit-buttons-value.deposit-modal{
+    padding:2px 23px;
+}
+.close-history-filter.deposit-modal{
+    margin-left:-15px;
+}
 
+.filters-modal .modal-content, .filters-modal.exclude .modal-content{
+    background-color:var(--betnare-body-bg);
+}
+.bg-deposit-modal-btn.cancel-filter-markets{
+    background: none!important;
+    position:relative!important;
+    border:none!important;
+}
+.deposit-modal-body div .modal-content .modal-header {
+    border-top:none!important;
+    border-bottom:none!important;
+}
+
+.deposit-modal-footer.modal-footer{
+    border-top:none!important;
+}
+.size-all-markets .gz.home{
+    margin-bottom:5rem!important;
+
+}
+.deposit-buttons-value.deposit-modal {
+    border-radius: 24px!important;
+    height:34px!important;
+    max-height:34px!important;
+}
 @media (max-width: 991px) {
+    .deposit-buttons-value.deposit-modal {
+        padding:2px 20px!important;
+    }
+    .deposit-modal-alert-action.alert-position-betslip-top.alert-message-line-height{
+        position:relative!important;
+        top:0px!important;
+    }
+    .top-diff-pages{
+        margin-top:4rem!important;
+    }
+    .pro-menu.top-leagues-mobile > ul{
+        /*display:flex!important;*/
+        /*align-items:center;*/
+    }
+    .pro-menu.top-leagues-mobile > ul::-webkit-scrollbar {
+        display: none;
+    }
+        .text-sidebar-small-size{
+        font-size:var(--font-size-large-variation1)
+    }
+    .competition-mobile-top{
+        margin-top:11rem;
+    }
+    .close-history-filter.deposit-modal {
+        margin-left: -6px!important;
+        left: 0;
+        top: 0px;
+    }
+    .drag-icon.deposit-modal {
+        background: var(--always-white);
+        cursor: -webkit-grab;
+        cursor: grab;
+        cursor: pointer;
+        margin: auto;
+        padding: 2px 18px;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+    .deposit-modal.filters-modal .modal-content{
+        left:0px;
+    }
+    .top-nav.specific-nav {
+        min-height: 53px;
+        padding-left: 0px!important;
+    }
     .footer-custom .row{
         display:block!important;
     }
@@ -2313,8 +2429,10 @@ img.nare-league {
     }
     .filters-navigation {
         padding-top: 0px;
-        height: 27px;
+        height: 28.5px;
         padding-bottom:0px;
+        min-height: 28.5px!important;
+
     }
     .myButton.markets-button{
         line-height:2.1!important;
@@ -2408,8 +2526,7 @@ img.nare-league {
 
     .width-page-centric.register-page {
         box-shadow: none !important;
-        height: 84vh !important;
-
+        height: 78vh !important;
     }
 
     .logo-betnare {

@@ -8,12 +8,9 @@ import {Link} from "react-router-dom";
 import {setLocalStorage} from "../../utils/local-storage";
 import only18 from '../../../assets/img/auth/18only.png'
 import backgroundURL from '../../../assets/img/auth/img-17.webp'
-import {Navbar, Offcanvas} from "react-bootstrap";
-import Container from "react-bootstrap/Container";
+
 import {LazyLoadImage} from "react-lazy-load-image-component";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faBackspace} from "@fortawesome/free-solid-svg-icons";
-import SidebarMobile from "../../sidebar/awesome/SidebarMobile";
+
 import makeRequest from "../../utils/fetch-request";
 import {Form, Formik} from "formik";
 import {StoreContext } from "../../../context/store"
@@ -50,51 +47,7 @@ const VerifyAccount2 = React.memo(
 
         return (
             <div style={{height: '100vh', background: '#16202C'}}>
-                <div className={''}>
-                    <Navbar expand="md" className="mb-0 ck pc os app-navbar top-nav" fixed="top" variant="dark"
-                            style={{paddingLeft: '0px', paddingBottom: '0px', position: "fixed"}}>
-                        <Container fluid
-                                   className={'d-flex justify-content-between mobile-change top-login-background-img'}>
-                            <Navbar.Brand className="e logo align-self-start menu-control d-flex w-100" title="Betnare"
-                                          style={{paddingLeft: '0px', paddingBottom: '0px'}}>
-                                <div onClick={() => window.history.back()} className={'text-light'}
-                                     style={{cursor: "pointer"}}>
-                                    <FontAwesomeIcon icon={faBackspace}/>&nbsp; Back
-                                </div>
-                                <div
-                                    className="col-md-6  d-flex  right justify-content-end align-items-center w-change3 gap-2 top-login-background-img-bg-page"
-                                    style={{marginLeft: 'auto'}}>
-                                    <Link to={{pathname: "/"}} className=" resize-mobile">
-                                        <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"
-                                                       className={"image-size "}/>
-                                    </Link>
-                                </div>
 
-                            </Navbar.Brand>
-
-                            <Navbar.Offcanvas
-                                style={{width: "80%", height: "100%", zIndex: "9999", marginTop: "0px"}}
-                                className='off-canvas background-primary p-0 user-profile'
-                                id={`offcanvasNavbar-expand-${expand}`}
-                                aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-                                placement="start">
-                                <Offcanvas.Header closeButton className='text-white' closeVariant={"white"}>
-                                    <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                                        <div className="col-3">
-                                            <div>
-                                                <LazyLoadImage src={logo} alt="Betnare" title="Betnare" effects="blur"/>
-                                            </div>
-                                        </div>
-                                    </Offcanvas.Title>
-                                </Offcanvas.Header>
-                                <Offcanvas.Body className={('')}>
-                                    <SidebarMobile/>
-                                </Offcanvas.Body>
-                            </Navbar.Offcanvas>
-                        </Container>
-                    </Navbar>
-
-                </div>
                 <Row justify="center" className="align-items-stretch h-100">
 
                     <Col xs={0} sm={0} md={0} lg={8}>
@@ -145,7 +98,6 @@ const VerifyAccount2 = React.memo(
                                 <Row justify="center">
 
                                     <div className={'d-flex'}>
-                                        {/**/}
                                         <div>
 
                                             <div className={"d-flex flex-row justify-content-between"}>

@@ -17,7 +17,8 @@ const MainTabs = (props) => {
         let sportId = new URLSearchParams(window.location.search).get('sport_id') || '79'
         if(competition){
             url.pathname = `/${competition}`
-        }else{
+        }
+        else{
             url.pathname = `/${tab}`
         }
         url.searchParams.set('sport_id', sportId)
@@ -59,4 +60,4 @@ const MainTabs = (props) => {
 
 }
 
-export default MainTabs;
+export default React.memo(MainTabs);

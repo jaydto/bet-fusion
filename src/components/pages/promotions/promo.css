@@ -80,7 +80,15 @@ hr {
 .promo-image{
     opacity:0.99;
 }
+.promo-active-profile {
+    border-radius: 10px;
+}
 @media (max-width: 991px){
+    .promo-active-profile {
+
+        max-height: 120px;
+        width: 100vw;
+    }
     .container.text-data-promotions {
     white-space: normal !important;
 }

@@ -56,7 +56,7 @@ const Countries = React.memo(
             let sport_image;
             try {
                 sport_image = topLeagues
-                    ?`https://storage.googleapis.com/nareimages/flags/${sport_name}.svg`
+                    ? require(`../../assets/img/${folder}/${sport_name}.svg`)
                     :`https://storage.googleapis.com/nareimages/flags/${sport_name}.svg`;
             } catch (error) {
             }
@@ -68,6 +68,7 @@ const Countries = React.memo(
         };
 
         const targetSports = competitions?.all_sports.filter(sports =>Number(sports?.sport_id)===Number(sport_id));
+        let sport_active=useSelector((state)=>state.matchesData.active_sport);
 
 
         return (
@@ -96,21 +97,58 @@ const Countries = React.memo(
                                 key={index}
                                 title={"Countries"}
                                 >
-                                <div className={"d-flex gap-3 w-100 align-items-center px-3"}>
-                                    <LazyLoadImage
-                                        style={{
-                                            borderRadius: "50%",
-                                            height: "22px",
-                                            display: "block",
-                                            width:'22px'
-                                        }}
-                                        effect="blur"
-                                        src={getSportImageIcon(competition.sport_name)}
-                                    /> Countries
-                                </div>
 
-                                    <Menu
-                                        iconShape="circle" className="100vw"
+                                {((index === 0) && (typeof sport_active === 'string') && (sport_active.toLowerCase() === 'soccer')) && ( <p className={'text-light mb-0 px-3 pb-0 pt-1 d-lg-none d-md-block d-sm-block'} style={{opacity:'0.7', fontWeight:'var(--font-weight3'}}>
+                                    Top Leagues
+                                </p>   )}
+                                {((index === 0) && (typeof sport_active === 'string') && (sport_active.toLowerCase() === 'soccer')) && (
+                                    <div>
+                                        <Menu title={"Top Leagues"} key={index} defaultOpen={true} className={'d-lg-none d-md-block d-sm-block w-100 px-4 top-leagues-mobile'} style={{lineHeight:'1'}}>
+                                            {competitions?.top_soccer?.map((top_league, index) => (
+                                                <MenuItem
+                                                    key={`l_${index}`}
+                                                    className={'d-flex align-items-center'}
+                                                    style={{maxHeight:'27px'}}
+                                                    icon={
+                                                        <LazyLoadImage
+                                                            src={getSportImageIcon(
+                                                                top_league?.competition_name,
+                                                                "leagues",
+                                                                true
+                                                            )}
+                                                            className={'sidebar-league-icon-small '}
+                                                            style={{borderRadius: "50%", height: "23px", width: "23px"}}
+                                                        />
+                                                    }
+                                                >
+                                                    <Link
+                                                        className={'text-sidebar-small-size'}
+                                                        onClick={() =>
+                                                            gaEventTracker(
+                                                                `Top Leagues ${top_league?.competition_name}`
+                                                            )
+                                                        }
+                                                        to={`/competition/${top_league.sport_id}/${
+                                                            top_league.category_id
+                                                        }/${top_league.competition_id}?competition_league=${top_league?.competition_name}&sub_type_id=${
+                                                            getDefaultMarketsForSport(competition)}&sport_id=${
+                                                            competition.sport_id
+                                                        }`}
+                                                    >
+                                                        {top_league?.competition_name}
+                                                    </Link>
+                                                </MenuItem>
+                                            ))}
+                                        </Menu>
+                                    </div>
+
+                                )}
+
+                                <p className={'text-light mb-0 px-3 pb-0 pt-1'} style={{opacity:'0.7', fontWeight:'var(--font-weight3'}}>
+                                    Countries
+                                </p>
+                                <Menu
+                                        iconShape="circle" className="100vw px-4"
                                         title={"Countries"}
                                         style={{
                                             overflowY: "auto",

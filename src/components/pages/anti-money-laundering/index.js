@@ -28,8 +28,7 @@ const AntiMoneyLaundering = () => {
     const navigate=useNavigate()
     return (
         <div className={'flex-item'}>
-            <div className="item4"><Header/></div>
-            <div className="flex-container height-default-body">
+            <div className="flex-container height-default-body top-diff-pages">
                 <div className="item1"> <SideBar loadCompetitions/></div>
                 <div className="item2" style={{width:'100%'}}>
                     <div className="gz home w-100">

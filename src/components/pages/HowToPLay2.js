@@ -9,12 +9,10 @@ import {
 } from "react-accessible-accordion";
 import "react-accessible-accordion/dist/fancy-example.css";
 import '../test.css'
-import {StoreContext } from "../../context/store";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
 import {useNavigate} from "react-router-dom";
 
-const Header = React.lazy(() => import("../header/header"));
 const Footer = React.lazy(() => import("../footer/footer"));
 const SideBar = React.lazy(() => import("../sidebar/awesome/Sidebar"));
 const Right = React.lazy(() => import("../right/index"));
@@ -32,8 +30,7 @@ const  HowToPlay= React.memo(
         const navigate=useNavigate()
     return (
         <div className={'flex-item'}>
-            <div className="item4"><Header/></div>
-            <div className="flex-container height-default-body" >
+            <div className="flex-container height-default-body top-diff-pages" >
                 <div className="item1"> <SideBar loadCompetitions/></div>
                 <div className="item2" style={{width:'100%'}}>
                     <div className=" home" >
@@ -372,7 +369,7 @@ const  HowToPlay= React.memo(
                                                             <AccordionItem>
                                                                 <AccordionItemHeading>
                                                                     <AccordionItemButton className="accordion-button">
-                                                                        How do you play the DAILY HUSTLER Jackpot?
+                                                                        How do you play the Daily Jackpot?
                                                                     </AccordionItemButton>
                                                                 </AccordionItemHeading>
 

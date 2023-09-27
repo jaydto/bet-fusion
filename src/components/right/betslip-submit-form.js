@@ -1,7 +1,6 @@
 import React,{useCallback, useContext, useEffect, useRef, useState} from "react";
 import {StoreContext} from "../../context/store";
 import {
-    clearJackpotSlip,
     clearSlip,
     formatNumber,
     getBetslip,
@@ -32,6 +31,7 @@ import {
     removeSelected, removePickedData
 } from "../../redux/bettingSlice";
 import {setState} from "../../redux/dataSlice";
+import DepositModal from "../modals/DepositModal";
 
 const BetslipShareModal = React.lazy(() =>
     import("../modals/BetslipShareModal")
@@ -150,6 +150,10 @@ const BetslipSubmitForm = React.memo(
                 setBetslipKey("jackpotbetslip");
             }
         }, [jackpot]);
+        const clearMessage=()=>{
+
+            setMessage(null)
+        }
 
 
         const Alert = (props) => {
@@ -165,21 +169,27 @@ const BetslipSubmitForm = React.memo(
                 top: '0',
                 right: '0'
             }
-            return (<>{message?.status &&
+            return (<>{message &&
                 <div role="alert"
                      className={`fade alert alert-${c} show alert-dismissible d-flex justify-content-between align-items-center alert-message-line-height alert-position-betslip-top`}>
                     {message.message}
-                    <span aria-hidden="true" style={x_style} onClick={() => setMessage(null)}>&times;</span>
+                    <span aria-hidden="true" style={x_style} onClick={clearMessage}>&times;</span>
                 </div>}
             </>);
 
         };
         const getIpAddress = async () => {
-            let ip = await publicIp({
-                fallbackUrls: ["https://ifconfig.co/ip"],
-            });
+            try{
+                let ip = await publicIp({
+                    fallbackUrls: ["https://ifconfig.co/ip"],
+                });
+                setIpv4(ip);
+            }catch (e) {
+                console.log("ip error", e)
+            }
 
-            setIpv4(ip);
+
+
         }
         useEffect(() => {
             getIpAddress();
@@ -188,9 +198,11 @@ const BetslipSubmitForm = React.memo(
         const betItem = getBetslip()
         const sportBookLimits = settings?.sportsBookLimits
         const betslipLength = Object.keys(betItem || {}).length;
+
         useEffect(() => {
             dispatch({type: "SET", key: "betslipLength", payload: betslipLength});
         }, [betslipLength])
+
         const gaEventTracker = useAnalyticsEventTracker(live ? 'PlaceLiveBet' : 'PlacePrematchBet')
 
         const handlePlaceBet = (values,
@@ -236,6 +248,7 @@ const BetslipSubmitForm = React.memo(
             let endpoint = '/bet';
             let method = "GET"
             let use_jwt = true
+            dispatchRedux(setState('deposits_message', null))
 
 
             // const data = {
@@ -274,8 +287,8 @@ const BetslipSubmitForm = React.memo(
                         dispatchRedux(setMatchBetslip(betslip_data))
 
                     setLocalStorage('betslip_share_code', null)
-                    dispatchRedux(setState('stake_value',0))
-                    setLocalStorage('userStake', null)
+                    // dispatchRedux(setState('stake_value',0))
+                    // setLocalStorage('userStake', null)
 
                     updateUserOnHistory()
                     return width < 991 ? setTimeout(() => {
@@ -289,10 +302,11 @@ const BetslipSubmitForm = React.memo(
                     //     message: response?.message
                     // }
                     // gaEventTracker("Bet Placement Failed " + response?.message, data)
+                    const message_error=JSON.parse(response?.error?.message)
 
-                    let response_message = response?.error?.message;
+                    let response_message =message_error[0].message ;
                     if (response_message === "" || response_message === undefined) {
-                        response_message = response?.error?.message;
+                        response_message = message_error[0].message;
                         if (response_message === "" || response_message === undefined) {
                             response_message = "Something went wrong. Please try again later or contact support. 0701 087 777";
                         }
@@ -415,11 +429,12 @@ const BetslipSubmitForm = React.memo(
                 );
 
                 // dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
-                const match_items={
-                    match_selector:match_selector,
-                    ucn:"remove." + ucn
-                }
-                dispatchRedux(removeSlipSelection(match_items));
+                // const match_items={
+                //     match_selector:match_selector,
+                //     ucn:"remove." + ucn
+                // }
+                // dispatchRedux(removeSlipSelection(match_items));
+                dispatchRedux(removeSelected(match_selector))
                 dispatchRedux(removePickedData(""));
 
             });
@@ -431,8 +446,8 @@ const BetslipSubmitForm = React.memo(
             dispatchRedux(setMatchBetslip(betslip_data))
             setMessage(null);
             // setLocalStorage("winnings",null)
-            setLocalStorage('userStake', null)
-            dispatchRedux(setState('stake_value',0) )
+            // setLocalStorage('userStake', null)
+            // dispatchRedux(setState('stake_value',0) )
             setLocalStorage('betslip_share_code', null)
             return width < 991 ? navigate(-1) : ""
         }, []);
@@ -610,6 +625,9 @@ const BetslipSubmitForm = React.memo(
         const loadingShare=useSelector((state)=>state.matchesData.loading_bet_history)
         const [showShareModal, setShowShareModal] = useState(false);
         const [betSharePayload, setBetSharePayload] = useState({});
+        const show_deposit_modal=useSelector((state)=>state.betting.insufficient_balance)
+        const [showDepositModal, setShowDepositModal] = useState(false);
+
         const dispatchRedux=useDispatch()
 
         useEffect(()=>{
@@ -621,6 +639,16 @@ const BetslipSubmitForm = React.memo(
             }
 
         },[show_share_modal])
+
+        useEffect(()=>{
+            if(show_deposit_modal){
+                setShowDepositModal(show_deposit_modal)
+            }
+            return ()=>{
+                dispatchRedux(resetState("show_deposit_modal"))
+            }
+
+        },[show_deposit_modal])
 
         useEffect(()=>{
             if(share_bet){
@@ -771,6 +799,14 @@ const BetslipSubmitForm = React.memo(
                                 visible={showShareModal}
                                 payload={betSharePayload}
                                 setShowShareModal={setShowShareModal}
+                            />
+                        )}
+                        {showDepositModal && (
+                            <DepositModal
+                                visible={showDepositModal}
+                                payload={message?.message}
+                                setMessage={clearMessage}
+                                setShowShareModal={setShowDepositModal}
                             />
                         )}
                         <div>

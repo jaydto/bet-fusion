@@ -1,5 +1,7 @@
 const initialState = {
     data: {
+        show_menu:false,
+        navigation_link:null,
         print_title:'highlights',
         leader_board:null,
         active_link:'79',
@@ -36,6 +38,7 @@ const initialState = {
 
     }, // Initial state for the virtuals reducer
     betting: {
+        insufficient_balance:false,
         bet_placement_message:null,
         loading: false,
         error: null,
@@ -93,6 +96,7 @@ const initialState = {
 
         }, // Initial state for the nareLeague reducer
     matchesData:{
+        loading: true,
         search:null,
         active_sub_type:'1x2',
         active_sport:'Soccer',
@@ -101,6 +105,7 @@ const initialState = {
         searched_matches:null,
         visited_tabs:[],
         visited_sport_id:[],
+        visited_sport_league:[],
         jackpot_loading: false,
         error: null,
         user: null,
@@ -112,7 +117,6 @@ const initialState = {
         live_producer_down:null,
         fetching:null,
         live_fetching:null,
-        loading: true,
         sport_categories:null,
         sport_live_count:null,
         favorites_data:[],
@@ -139,6 +143,134 @@ const initialState = {
         match_size:10,
         live_match_size:0
     },// Initial state for the matches Slice reducer
+    scroll:{
+        position:0,
+        scroll: false,
+        scroll_past:false,
+        scroll_top:false
+
+    },
+    navigations:{
+        notShowMobileNav: [
+            'betslip-slip',
+            'betslip-nare',
+            'signup',
+            'leader-board',
+            'nare-league',
+            'results',
+            'my-bets',
+            'promotions',
+            'smart-soft',
+            'virtuals',
+            'standing',
+            'playouts',
+            'bet-history',
+            'nare-games',
+            'responsible-gambling',
+            'promo',
+            'smart-play',
+            'gameplay',
+            'fpl',
+            'FPL',
+            'how-to-play',
+            'cookie-policy',
+            'privacy-policy',
+            'dispute-resolution',
+            'anti-money-laundering',
+            'terms-and-conditions',
+            "profile",
+            'jackpot'
+        ],
+        showDownload: [
+            'nare-games',
+            'promo',
+            'bethistory',
+            'terms-and-conditions',
+            'gameplay',
+            'smart-play',
+            'betslip-slip',
+            'betslip-nare',
+            'betslip-jackpot',
+            'nare-league',
+            'bet-history',
+            'standing',
+            'results',
+            'jackpot',
+            'smart-soft',
+            'virtuals',
+            'competition',
+            'my-bets',
+            'profile',
+            'promotions',
+            'leader-board',
+            'responsible-gambling',
+            'match',
+            'smart-soft',
+            'casino',
+            'gameplay',
+            'fpl',
+            'FPL',
+            'how-to-play',
+            'privacy-policy',
+            'cookie-policy',
+            'dispute-resolution',
+            'anti-money-laundering',
+            'profile'
+        ],
+        changeMobileNav: [
+            'verify',
+            'signup',
+            'login',
+            'deposit',
+            'withdraw',
+            'points',
+            'reset-password'
+        ],
+        modifiedHeaderDesktop:[
+            'profile'
+        ],
+        navigations:[
+            'nare-games',
+            'promo',
+            'bethistory',
+            'smart-play',
+            'betslip-slip',
+            'betslip-nare',
+            'betslip-jackpot',
+            'jackpot',
+            'smart-soft',
+            'virtuals',
+            'competition',
+            'my-bets',
+            'promotions',
+            'leader-board',
+            'match',
+            'smart-soft',
+            'casino',
+            'gameplay',
+            'fpl',
+            'FPL',
+            'how-to-play',
+            'privacy-policy',
+            'cookie-policy',
+            'dispute-resolution',
+            'anti-money-laundering',
+            'terms-and-conditions',
+            'responsible-gambling',
+            'login',
+            'deposit',
+            'withdraw',
+            'points',
+            'reset_password',
+            'playouts',
+            'nare-league',
+            'bet-history',
+            'standing',
+            'results',
+        ],
+        top_navigations:[]
+
+    }
 
 };
 

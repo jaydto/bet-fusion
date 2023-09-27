@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, { useEffect, useState} from "react";
 import {Menu, MenuItem, ProSidebar, SidebarContent, SidebarHeader, SubMenu,} from "react-pro-sidebar";
 import "react-pro-sidebar/dist/css/styles.css";
 import {getFromLocalStorage} from "../../utils/local-storage";
@@ -27,16 +27,16 @@ const Sidebar = React.memo(
 
         },[availableCategories])
 
-        const [width, setWidth] = useState(window.innerWidth);
+        // const [width, setWidth] = useState(window.innerWidth);
 
-        const updateDimensions = () => {
-            setWidth(window.innerWidth);
-            if (width >= 768 && width <= 991) {
-                setCollapsed(true);
-            } else {
-                setCollapsed(false);
-            }
-        };
+        // const updateDimensions = () => {
+        //     setWidth(window.innerWidth);
+        //     if (width >= 768 && width <= 991) {
+        //         setCollapsed(true);
+        //     } else {
+        //         setCollapsed(false);
+        //     }
+        // };
         const updateSidebarState = () => {
             let sport_id = new URL(window.location.href).searchParams.get("sport_id");
             if (sport_id === null && window.location.pathname === "/") {
@@ -49,11 +49,11 @@ const Sidebar = React.memo(
             return Number(sport || 79) === Number(matchId);
         };
         useEffect(() => {
-            updateDimensions();
+            // updateDimensions();
             updateSidebarState();
-            window.addEventListener("resize", updateDimensions);
-            return () => window.removeEventListener("resize", updateDimensions);
-        }, [width]);
+            // window.addEventListener("resize", updateDimensions);
+            // return () => window.removeEventListener("resize", updateDimensions);
+        }, []);
 
         const getSportImageIcon = (
             sport_name,
@@ -80,7 +80,15 @@ const Sidebar = React.memo(
         const getDefaultMarketsForSport = (competition) => {
             return competition?.default_display_markets;
         };
+        let url = new URL(window.location.href)
+        const [sportId, setSportId]=useState()
 
+        useEffect(()=>{
+            let sport_id = url.searchParams.get('sport_id')
+            setSportId(sport_id)
+        },[window.location.search, window.location.href])
+
+        let sport_active=useSelector((state)=>state.matchesData.active_sport);
         return (
             <div
                 style={{
@@ -114,10 +122,10 @@ const Sidebar = React.memo(
                                         key={index}>
                                         {index === 0 && (
                                             <div >
-                                                <p className={'text-light'} style={{opacity:'0.8', fontWeight:'var(--font-weight3'}}>
+                                                <p className={'text-light mb-0'} style={{opacity:'0.8', fontWeight:'var(--font-weight3'}}>
                                                     Top Leagues
                                                 </p>
-                                                <MenuItem title={"Top Leagues"} defaultOpen={true} key={index}>
+                                                <Menu title={"Top Leagues"} key={index}>
                                                     {competitions?.top_soccer?.map((top_league, index) => (
                                                         <MenuItem
                                                             key={`l_${index}`}
@@ -142,17 +150,16 @@ const Sidebar = React.memo(
                                                                 }
                                                                 to={`/competition/${top_league.sport_id}/${
                                                                     top_league.category_id
-                                                                }/${top_league.competition_id}?sport_id=${
+                                                                }/${top_league.competition_id}?competition_league=${top_league?.competition_name}&sub_type_id=${
+                                                                    getDefaultMarketsForSport(competition)}&sport_id=${
                                                                     competition.sport_id
-                                                                }&sub_type_id=${getDefaultMarketsForSport(
-                                                                    competition
-                                                                )}`}
+                                                                }`}
                                                             >
                                                                 {top_league?.competition_name}
                                                             </Link>
                                                         </MenuItem>
                                                     ))}
-                                                </MenuItem>
+                                                </Menu>
                                             </div>
 
                                         )}
@@ -172,6 +179,7 @@ const Sidebar = React.memo(
                                             }
                                         >
                                             <Link
+                                                className={`${(sport_active.toLowerCase() === competition?.sport_name?.toLowerCase()) ? 'active_sport_link sport-sidebar' : ''}`}
                                                 to={`/highlights?sport_id=${competition?.sport_id}&sub_type_id=${getDefaultMarketsForSport(competition)}&sport_name=${competition?.sport_name}`}>
                                                 {competition?.sport_name}
                                             </Link>

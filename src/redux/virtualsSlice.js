@@ -1,8 +1,7 @@
 // matchesSlice.js
-import {createAction, createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import initialState from "./state"; // Import the initial state from state.js
 import makeRequest from "../components/utils/fetch-request";
-import {clearTrackingData, setLocalStorage} from "../components/utils/local-storage";
 // Async thunk for matches
 export const casinoList =
     createAsyncThunk("virtuals/casinoGames",

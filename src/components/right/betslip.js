@@ -7,7 +7,7 @@ import {getFromLocalStorage} from "../utils/local-storage";
 import DecodeCode from "./decode";
 import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {removeSlipSelection, setMatchBetslip} from "../../redux/bettingSlice";
+import {removePickedData, removeSelected, removeSlipSelection, setMatchBetslip} from "../../redux/bettingSlice";
 
 const clean_rep = (str) => {
     str = str.replace(/[^A-Za-z0-9\-]/g, "");
@@ -30,6 +30,13 @@ const BetSlip = React.memo(
         const [betslipsData, setBetslipsData] = useState(getBetslip());
 
         const slip_data=useSelector((state)=>state.betting.betslip)
+        const userData = useSelector((state) => state.auth.user)
+        const [user, setUser] = useState(getFromLocalStorage("user"))
+        useEffect(() => {
+            if (userData) {
+                setUser(userData || getFromLocalStorage("user"))
+            }
+        }, [userData])
 
         useEffect(()=>{
             setBetslipsData(slip_data||getBetslip())
@@ -142,12 +149,16 @@ const BetSlip = React.memo(
                 data:betslip
             }
             dispatchRedux(setMatchBetslip(betslip_data))
-            const match_items={
-                match_selector:match_selector,
-                ucn:"remove." + ucn
-            }
+            // const match_items={
+            //     match_selector:match_selector,
+            //     ucn:"remove." + ucn
+            // }
+            //
+            // dispatchRedux(removeSlipSelection(match_items));
+            dispatchRedux(removeSelected(match_selector))
 
-            dispatchRedux(removeSlipSelection(match_items));
+            dispatchRedux(removePickedData(""));
+
 
             if(Object.keys(betslip).length === 0){
                 navigate("/")
@@ -170,7 +181,7 @@ const BetSlip = React.memo(
 
             let message = "";
 
-            let userBonus = Number(state?.user?.bonus || 0);
+            let userBonus = Number(user?.bonus || 0);
 
             if ((totalGames < maxBonusGames) && (maxBonusGames > 1)) {
                 let remainingGames = Number(maxBonusGames) - Number(totalGames);
@@ -253,7 +264,7 @@ const BetSlip = React.memo(
 
         useEffect(() => {
 
-            const remainingScreenHeight = height - (jackpot ? state?.user ? 430 : 400 : state?.user ? 560 : 500);
+            const remainingScreenHeight = height - (jackpot ? user ? 430 : 400 : user ? 560 : 500);
             // Set the pop up component height to be 20% of the remaining screen height
             setPopUpHeight(remainingScreenHeight);
         }, []);
@@ -262,9 +273,9 @@ const BetSlip = React.memo(
             <div className="bet-body text-white">
                 {!jackpot && <BonusAlert/>}
                 <div
-                    className={`flow  slip-top ${state?.user ? jackpot ? 'slip-max' : 'slip-height slip-log-max' : 'slip-max'} overflow-auto`}>
+                    className={`flow  slip-top ${user ? jackpot ? 'slip-max' : 'slip-height slip-log-max' : 'slip-max'} overflow-auto`}>
                     <div
-                        className={`${pathLocation === '/betslip-slip' ? state?.user && !jackpot ? 'slip-bottom-betlip-active' : 'slip-bottom-betlip' : 'slip-bottom-space'}`}>
+                        className={`${pathLocation === '/betslip-slip' ? user && !jackpot ? 'slip-bottom-betlip-active' : 'slip-bottom-betlip' : 'slip-bottom-space'}`}>
                         <ul className={"slip-bottom-space-list"}>
                             {(betslipsData && Object.keys(betslipsData)?.length == 0) ||
                             betslipsData == null ? (

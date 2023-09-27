@@ -17,7 +17,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {jackpotById, jackpotHistoryData, matchesJackpot} from "../redux/matchesSlice";
 
 
-const Header = React.lazy(() => import('./header/header'));
 const Right = React.lazy(() => import('./right'));
 const Jackpot = React.memo(
     () => {
@@ -169,7 +168,6 @@ const Jackpot = React.memo(
         return (
             <div className={'flex-item jackpot-container'}>
                 <div className="item4">
-                    <Header jackpot={true}/>
                     <ToastContainer/>
                 </div>
                 <div className={`flex-container jackpot flex-column  top-spacing-page-no-download-jackpot`}>

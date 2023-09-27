@@ -7,7 +7,7 @@ import {addToSlip} from "../components/utils/betslip";
 // Async thunk for matches
 export const matchesPrematch =
     createAsyncThunk("matches/prematch",
-        async ({endpoint, method, data, search=false, active_sport=null, active_sub_type=null}, {getState}) => {
+        async ({endpoint, method, data, search=false, active_sport='Soccer', active_sub_type=null}, {getState}) => {
             const [status, response] = await makeRequest({
                 url: endpoint,
                 method: method,
@@ -54,14 +54,14 @@ export const matchesCompetition =
         });
 export const matchesSearch =
     createAsyncThunk("matches/matchesSearch",
-        async ({endpoint, method}) => {
+        async ({endpoint, method, active_sport}) => {
             const [status, response] = await makeRequest({
                 url: endpoint,
                 method: method,
                 data: [],
             });
             if (status === 200) {
-                return response;
+                return {response, active_sport};
             } else {
                 throw new Error(response?.error || "Search failed");
             }
@@ -314,8 +314,8 @@ export const matchesMorePrematchMarkets =
 
         }
     );
-export const setInitialLoadingState = createAction("matches/set", ({param_fetch_type="", tab="", sport_id="", filters="", match=""}) => {
-    return {payload: {param_fetch_type, tab, sport_id, filters, match}};
+export const setInitialLoadingState = createAction("matches/set", ({param_fetch_type="", tab="", sport_id="", filters="", match="", competition_league=''}) => {
+    return {payload: {param_fetch_type, tab, sport_id, filters, match, competition_league}};
 });
 
 export const setFetching = createAction("matches/setFetching", (type, status) => {
@@ -340,7 +340,7 @@ export const startFetchingMatches = ({endpoint, method, data, interval,
                                          live = false,
                                          competition = false,
                                          search=false,
-                                         active_sport=null,
+                                         active_sport='Soccer',
                                          active_sub_type=null
 
 
@@ -423,34 +423,39 @@ const matchesSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(matchesPrematch.pending, (state) => {
-                if (state.initialLoading) {
-                    state.loading = true; // Set loading to true only during the initial fetch
-                }
+            .addCase(matchesPrematch.pending, (state, action) => {
+
             })
             .addCase(matchesPrematch.fulfilled, (state, action) => {
                 state.isLoggedIn = true;
                 const newMatches = action.payload?.response.data;
-                const search_data=action.payload.searched_matches
 
                 const search=action.payload?.search
+                const active_sport=action.payload.active_sport
+                const active_sub_type=action.payload.active_sub_type
+
+
+                state.active_sport=active_sport
+
+                state.active_sub_type=active_sub_type
                 state.search=search
-                state.active_sport=action.payload.active_sport
-                state.active_sub_type=action.payload.active_sub_type
 
 
-                const mergedMatches = newMatches.length > 0 ? {...action.payload.matches_data, ...newMatches} : newMatches;
-                if(search){
-                    state.matches=newMatches
-                }else{
-                    if(search_data){
-                        state.matches=newMatches
-                        state.searched_matches=null
-                    }else{
-                        state.matches = mergedMatches;
-
-                    }
-                }
+                // const mergedMatches = newMatches.length > 0 ? {...action.payload.matches_data, ...newMatches} : newMatches;
+                // if(search){
+                //     state.matches=newMatches
+                // }else if(active_sport!=='Soccer'){
+                // }
+                // else{
+                //     if(search_data){
+                //         state.matches=newMatches
+                //         state.searched_matches=null
+                //     }else{
+                //         state.matches = mergedMatches;
+                //
+                //     }
+                // }
+                state.matches=newMatches
 
                 if (newMatches.slip_data) {
                     state.user_slip_validation = newMatches.slip_data
@@ -485,13 +490,14 @@ const matchesSlice = createSlice({
             .addCase(matchesSearch.fulfilled, (state, action) => {
                 state.isLoggedIn = true;
                 state.loading = false;
+                state.active_sport=action.payload.active_sport
 
-                const newMatches = action.payload?.data;
+                const newMatches = action.payload?.response.data;
                 state.searched_matches = newMatches;
                 if (newMatches.slip_data) {
                     state.user_slip_validation = newMatches.slip_data
                 }
-                state.producer_down = action.payload.producer_status === 1
+                state.producer_down = action.payload.response.producer_status === 1
                 // Reset initialLoading flag after initial fetch
                 if (state.initialLoading) {
                     state.initialLoading = false;
@@ -841,11 +847,12 @@ const matchesSlice = createSlice({
                 state.error = action.error.message;
             })
             .addCase(setInitialLoadingState, (state, action) => {
-                const {param_fetch_type, tab, sport_id, filters, match} = action.payload;
+                const {param_fetch_type, tab, sport_id, filters, match, competition_league} = action.payload;
                 // Append tab or sport_id to the list of visited tabs
 
                 if (param_fetch_type === "tabs") {
                     state.initialLoading = true
+                    state.loading=true
                     state.visited_tabs = Array.from(new Set([...state.visited_tabs, tab]));// Update initialLoading based on visitedTabs
 
                 }else if(param_fetch_type==="filters"){
@@ -854,10 +861,17 @@ const matchesSlice = createSlice({
 
                 } else if(param_fetch_type==="sport_id"){
                     state.initialLoading = true
+                    state.loading=true
                     state.visited_sport_id = Array.from(new Set([...state.visited_sport_id, sport_id]));
                     // Update initialLoading based on visitedTabs
 
-                }else if(param_fetch_type === "more_markets"){
+                }else if(param_fetch_type==="competition_league"){
+                    state.initialLoading = true
+                    state.visited_sport_league = Array.from(new Set([...state.visited_sport_league, competition_league]));
+                    // Update initialLoading based on visitedTabs
+
+                }
+                else if(param_fetch_type === "more_markets"){
                     state.initialLoading = true
                     state.visited_more_markets=   Array.from(new Set([...state.visited_more_markets, match]));
 

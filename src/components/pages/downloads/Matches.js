@@ -137,7 +137,6 @@ const styles = StyleSheet.create({
 export function PdfDocument(props) {
 
     const {matches, jackpot, title} = props
-    console.log("matches", matches)
 
     const getBothTeamsToScoreOdds = (match, key) => {
         let odds = match?.extra_odds;

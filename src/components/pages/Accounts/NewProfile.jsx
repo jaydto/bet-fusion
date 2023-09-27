@@ -8,12 +8,13 @@ import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
 import SidebarProfile from "../../sidebar/sidebarProfile";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import {useSelector} from "react-redux";
-const Header=React.lazy(()=>import('../../header/header'))
+import useWindowDimensions from "../../header/Dimensions";
 
 const NewProfile = React.memo(
     () => {
         const userData=useSelector((state)=>state.auth.user)
         const [user, setUser]=useState(getFromLocalStorage("user"))
+        const {width}=useWindowDimensions()
 
         useEffect(()=>{
             if(userData){
@@ -28,7 +29,6 @@ const NewProfile = React.memo(
         const navigate = useNavigate()
         return (
             <>
-                <Header profile={true}/>
                 <div>
                     <div className="profile-container-desktop d-flex">
                         <div className={' mobile-ipad-remove-profile stats-desktop'}>
@@ -73,6 +73,38 @@ const NewProfile = React.memo(
                                             </div>
                                         </div>
                                     </div>
+                                    <Link to={`/promo?id=12`}  style={{textDecoration: "none", color: "black"}}>
+                                        <div className="transaction d-flex align-items-center justify-content-between">
+                                            <div className="">
+                                                <div className="t-title gap-2 d-flex flex-column w-100">
+                                                    <div className={'promo-text-size text-center title-promo'}>{user?.promo_points?.title}</div>
+                                                    <div className={'d-flex justify-content-between points-promo-card px-3 mb-2'}>
+                                                        <div className="">
+                                                            <div className="t-title d-flex flex-column justify-content-between  align-content-between">
+                                                                <div className={'promo-text-size'}>End Date:</div>
+                                                                <div style={{color:'var(--faded-color)'}} className={'promo-text-actual'}>{user?.promo_points?.end_date}</div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div className="">
+                                                            <div className="t-title d-flex flex-column justify-content-between   align-content-between">
+                                                                <div className={'promo-text-size'}>Promo Entry Points:</div>
+                                                                <div className={'promo-text-actual dollar'}>Pts {user?.promo_points?.points}</div>
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <LazyLoadImage src={width>991?'https://cdn.betnare.com/carousel/chomokananduthi.webp':'https://cdn.betnare.com/carousel/chomokananduthimobile.webp'} effect={'blur'} className={'promo-active-profile-img'}/>
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+                                    </Link>
+
                                     <Link to="/deposit" style={{textDecoration: "none", color: "black"}}>
                                         <div className="transactions">
                                             <div className="transaction">

@@ -11,7 +11,6 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
 import {useNavigate} from "react-router-dom";
 
-const Header = React.lazy(() => import('../../header/header'));
 const Footer = React.lazy(() => import('../../footer/footer'));
 const SideBar = React.lazy(() => import('../../sidebar/awesome/Sidebar'));
 const Right = React.lazy(() => import('../../right/index'));
@@ -51,10 +50,9 @@ const TermsAndConditions = React.memo(
         return (
             <div className={'flex-item '}>
                 <div className="item4">
-                    <Header />
                     <ToastContainer/>
                 </div>
-                <div className="flex-container height-default-body">
+                <div className="flex-container height-default-body top-diff-pages">
                     <div className="item1" ><SideBar
                         loadCompetitions/></div>
                     <div className={`item2 `} >

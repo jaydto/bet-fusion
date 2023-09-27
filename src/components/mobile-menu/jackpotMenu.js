@@ -206,10 +206,11 @@ const JackpotMenu = React.memo(
                         //     message: response?.message
                         // }
                         // gaEventTracker("Bet Placement Failed " + response?.message, data)
+                        const message_error=JSON.parse(response?.error?.message)
 
-                        let response_message = response?.error?.message;
-                        if (response_message === "" || response_message === undefined) {
-                            response_message = response?.error?.message;
+                        let response_message = message_error[0].message ;
+                        if (response_message === "" || response_message  === undefined) {
+                            response_message = message_error[0].message ;
                             if (response_message === "" || response_message === undefined) {
                                 response_message = "Something went wrong. Please try again later or contact support. 0701 087 777";
                             }

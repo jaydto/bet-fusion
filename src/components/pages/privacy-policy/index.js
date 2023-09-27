@@ -8,7 +8,6 @@ import {
 import 'react-accessible-accordion/dist/fancy-example.css';
 import React, {useEffect} from "react";
 import Footer from '../../footer/footer'
-import Header from '../../header/header'
 import Right from '../../right/index'
 import SideBar from '../../sidebar/awesome/Sidebar'
 import '../../test.css'
@@ -28,8 +27,7 @@ const PrivacyPolicy = React.memo(
 
     return (
         <div className={'flex-item'}>
-            <div className="item4"><Header/></div>
-            <div className="flex-container height-default-body">
+            <div className="flex-container height-default-body top-diff-pages">
                 <div className="item1"> <SideBar loadCompetitions/></div>
                 <div className="item2" style={{width:'100%'}}>
                     <div className="gz home w-100">

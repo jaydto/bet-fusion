@@ -15,6 +15,7 @@ import {getBetslip, getJackpotBetslip, getKironSlip} from "../utils/betslip";
 import {StoreContext } from "../../context/store";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import {useSelector} from "react-redux";
+import {getFromLocalStorage} from "../utils/local-storage";
 
 const MobileMenu = React.memo((props) => {
 
@@ -26,7 +27,13 @@ const MobileMenu = React.memo((props) => {
     const { state, dispatch } = useContext(StoreContext);
     const navigate = useNavigate();
     const liveCount=useSelector((state)=>state.matchesData.sport_live_count)
-
+    const userData = useSelector((state) => state.auth.user)
+    const [user, setUser] = useState(getFromLocalStorage("user"))
+    useEffect(() => {
+        if (userData) {
+            setUser(userData || getFromLocalStorage("user"))
+        }
+    }, [userData])
     const [liveSports, setLiveSports] = useState()
     useEffect(()=>{
         setLiveSports(liveCount)
@@ -282,7 +289,7 @@ const MobileMenu = React.memo((props) => {
                                     </Link>
                                 </td>
 
-                                {state?.user ? (<td className={`bloc-icon ${pathname === "/profile" ? "active" : ""}`}>
+                                {user ? (<td className={`bloc-icon ${pathname === "/profile" ? "active" : ""}`}>
                                     <Link
                                         to={"/profile"}>
                                         <LazyLoadImage src={ProfileSvg}

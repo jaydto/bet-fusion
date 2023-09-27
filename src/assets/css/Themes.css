@@ -10,6 +10,8 @@
     --betnare-body-bg:#16202c;
     --hot:#f66203;
     --black:#000;
+    --faded-color:rgb(105, 129, 154);
+    --link-color:#3f9ad1;
     --text-value:#e95e0b;
     --odds-button: #23313d;
     --bet-history:#1e2b36;
@@ -24,6 +26,7 @@
     --font-size-small-variation1:12px;
     --font-size-small-variation2:10px;
     --font-size-small-variation3:9px;
+    --color-link-sports:#FFC428 ;
 
     --betnare-live:red;
     --slip-separator-color:rgb(51, 76, 92);

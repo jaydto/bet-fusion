@@ -2,6 +2,7 @@ import React from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faEnvelope} from "@fortawesome/free-solid-svg-icons";
 import {faFacebook, faInstagram} from "@fortawesome/free-brands-svg-icons"
+import {Link} from "react-router-dom";
 
 
 const Footer =React.memo(
@@ -17,17 +18,17 @@ const Footer =React.memo(
                                 P.O.BOX 00100 NAIROBI KENYA
                             </li>
                             <li className="">
-                                <a href="mailto:care@ke.betnare.com">
+                                <a href="mailto:care@ke.betnare.com" target={'_blank'}>
                                     <FontAwesomeIcon icon={faEnvelope}/> customercare@betnare.com
                                 </a>
                             </li>
                             <li className="footer-icon">
-                                <a href="http://facebook.com/Betnare-101164702604689">
+                                <a href="http://facebook.com/Betnare-101164702604689" target={'_blank'}>
                                     <FontAwesomeIcon icon={faFacebook}/> Facebook
                                 </a>
                             </li>
                             <li className="footer-icon">
-                                <a href="https://instagram.com/betnareke?igshid=YmMyMTA2M2Y=">
+                                <a href="https://instagram.com/betnareke?igshid=YmMyMTA2M2Y=" target={'_blank'}>
                                     <FontAwesomeIcon icon={faInstagram}/> Instagram
                                 </a>
                             </li>
@@ -37,19 +38,19 @@ const Footer =React.memo(
                         <h5 className={""}>TERMS AND CONDITIONS</h5>
                         <ul>
                             <li className="">
-                                <a href="/terms-and-conditions">Terms and Conditions</a>
+                                <Link to="/terms-and-conditions">Terms and Conditions</Link>
                             </li>
                             <li className="">
-                                <a href="/responsible-gambling">Responsible Gambling</a>
+                                <Link to="/responsible-gambling">Responsible Gambling</Link>
                             </li>
                             <li className="">
-                                <a href="/privacy-policy">Privacy Policy</a>
+                                <Link to="/privacy-policy">Privacy Policy</Link>
                             </li>
                             <li className="">
-                                <a href="/cookie-policy">Cookie Policy</a>
+                                <Link to="/cookie-policy">Cookie Policy</Link>
                             </li>
                             <li className="">
-                                <a href="/how-to-play">How To Play</a>
+                                <Link to="/how-to-play">How To Play</Link>
                             </li>
                         </ul>
                     </div>
@@ -60,10 +61,10 @@ const Footer =React.memo(
                                 You must be 18 Years+ to use this website.
                             </li>
                             <li className="">
-                                <a href="/dispute-resolution">Dispute Resolution</a>
+                                <Link to="/dispute-resolution">Dispute Resolution</Link>
                             </li>
                             <li className="">
-                                <a href="/anti-money-laundering">Anti-money Laundering</a>
+                                <Link to="/anti-money-laundering">Anti-money Laundering</Link>
                             </li>
                         </ul>
                     </div>

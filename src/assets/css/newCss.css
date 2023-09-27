@@ -2259,6 +2259,10 @@ img.nare-league {
 
 }
 @media (max-width: 991px) {
+    .deposit-modal-alert-action.alert-position-betslip-top.alert-message-line-height{
+        position:relative!important;
+        top:0px!important;
+    }
     .top-diff-pages{
         margin-top:4rem!important;
     }

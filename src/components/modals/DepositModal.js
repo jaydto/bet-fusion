@@ -75,7 +75,7 @@ const BetslipShareModal = React.memo(
         }
         useEffect(()=>{
             setSettings(appConfigs||getFromLocalStorage('settings'))
-        },[appConfigs])
+        },[appConfigs, getFromLocalStorage('settings')])
 
         const incrementDepositValue = (value) => {
             // Update the "amount" field in the formik values
@@ -102,7 +102,7 @@ const BetslipShareModal = React.memo(
             }
             return (<>{(payload||successMessage)&&
                 <div role="alert"
-                     className={`fade alert alert-${c} show alert-dismissible d-flex justify-content-between align-items-center alert-message-line-height alert-position-betslip-top`}>
+                     className={`fade alert alert-${c} deposit-modal-alert-action show alert-dismissible d-flex justify-content-between align-items-center alert-message-line-height alert-position-betslip-top`}>
                     {payload||successMessage}
                     <span aria-hidden="true" style={x_style} onClick={() => clearMessage()}>&times;</span>
                 </div>

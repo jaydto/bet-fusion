@@ -69,7 +69,7 @@ const PromoCards = () => {
                                 className={"d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"}
                                 style={{color: "#ea5d0b"}}
                                 onClick={() => {
-                                    navigate(`/promo?id=${ids[10]}`);
+                                    navigate(`/promo?id=${ids[11]}`);
                                     window.scrollTo(0, 0); // Scroll to the top of the page
                                 }}
                             >

@@ -306,10 +306,19 @@ a.text-logout{
     }
 }
 .points-promo-card{
-    box-shadow: 1px 0px 2px 1px #b9bdc1;
+    box-shadow: 1px 0px 2px 1px #f3eded;
     border-radius: 7px;
+    padding:8px;
 }
-@media (max-width:991px){
+.promo-active-profile-img {
+    border-radius: 10px;
+}
+@media (max-width: 991px){
+    .promo-active-profile-img {
+
+        max-height: 120px;
+        width: 100vw;
+    }
     .promo-text-size{
         font-size:var(--font-size-small);
     }

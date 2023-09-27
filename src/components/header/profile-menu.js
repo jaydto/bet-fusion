@@ -9,16 +9,27 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {formatNumber} from "../utils/betslip";
 import {Link} from "react-router-dom";
 import {Navbar} from "react-bootstrap";
-import {StoreContext} from "../../context/store";
 import {getFromLocalStorage} from "../utils/local-storage";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {setState} from "../../redux/dataSlice";
 
 const ProfileMenu = React.memo(
     (props) => {
         const {profile} = props;
-        const {state, dispatch} = useContext(StoreContext);
         const [themeLight, setThemeLight] = useState(false)
         const userData = useSelector((state) => state.auth.user)
+        const show=useSelector((state)=>state.data.show_menu)
+        const dispatchRedux=useDispatch()
+
+        const handleShow = () => {
+            dispatchRedux(setState('show_menu', true))
+        };
+        const handleClose = () => {
+            dispatchRedux(setState('show_menu', false))
+        };
+        const toggle = () => {
+            show?handleClose():handleShow()
+        };
 
         const [user, setUser] = useState(getFromLocalStorage("user"))
 
@@ -30,15 +41,9 @@ const ProfileMenu = React.memo(
         }, [userData])
 
 
-        const handleThemeChange = () => {
-            setThemeLight(!themeLight)
-            document.body.classList.toggle('light-theme');
-
-        }
 
         const urlPath = window.location.pathname
         const showBalance = (!urlPath.includes("nare-games") && !urlPath.includes("gameplay") && !urlPath.includes("smart-play"))
-
 
 
 
@@ -99,7 +104,7 @@ const ProfileMenu = React.memo(
 
                                 <div className="col-1 button-toggle space-button">
                                     <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"md"}`}
-                                                   className="px-3 py-3"/>
+                                                   className="px-3 py-3" onClick={toggle}/>
                                 </div>
                             </div>
                             {/*<div className="w-auto d-flex  text-white align-items-end"  title={'Theme'}>*/}

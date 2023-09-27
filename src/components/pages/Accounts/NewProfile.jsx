@@ -73,7 +73,7 @@ const NewProfile = React.memo(
                                             </div>
                                         </div>
                                     </div>
-                                    <div  style={{textDecoration: "none", color: "black"}}>
+                                    <Link to={`/promo?id=12`}  style={{textDecoration: "none", color: "black"}}>
                                         <div className="transaction d-flex align-items-center justify-content-between">
                                             <div className="">
                                                 <div className="t-title gap-2 d-flex flex-column w-100">
@@ -96,14 +96,14 @@ const NewProfile = React.memo(
                                                         </div>
                                                     </div>
 
-                                                    <LazyLoadImage src={width>991?'https://cdn.betnare.com/carousel/chomokananduthi.webp':'https://cdn.betnare.com/carousel/chomokananduthimobile.webp'} effect={'blur'} style={{borderRadius:'10px'}}/>
+                                                    <LazyLoadImage src={width>991?'https://cdn.betnare.com/carousel/chomokananduthi.webp':'https://cdn.betnare.com/carousel/chomokananduthimobile.webp'} effect={'blur'} className={'promo-active-profile-img'}/>
                                                 </div>
                                             </div>
 
 
 
                                         </div>
-                                    </div>
+                                    </Link>
 
                                     <Link to="/deposit" style={{textDecoration: "none", color: "black"}}>
                                         <div className="transactions">

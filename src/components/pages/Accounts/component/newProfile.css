@@ -305,7 +305,20 @@ a.text-logout{
         overflow: hidden;
     }
 }
+.points-promo-card{
+    box-shadow: 1px 0px 2px 1px var(--odds-button);
+    border-radius: 7px;
+}
 @media (max-width:991px){
+    .promo-text-size{
+        font-size:var(--font-size-small);
+    }
+    .promo-text-actual{
+        font-size:var(--font-size-small-variation1);
+    }
+    .title-promo{
+        font-weight:var(--font-weight2);
+    }
     .content{
         margin-top:3rem!important;
         top: 10rem;

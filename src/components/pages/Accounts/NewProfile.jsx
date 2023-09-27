@@ -8,6 +8,7 @@ import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
 import SidebarProfile from "../../sidebar/sidebarProfile";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import {useSelector} from "react-redux";
+import nduthika from "../../../assets/img/banner/products/ChomokaNaNduthi.webp";
 
 const NewProfile = React.memo(
     () => {
@@ -71,6 +72,39 @@ const NewProfile = React.memo(
                                             </div>
                                         </div>
                                     </div>
+                                    <div  style={{textDecoration: "none", color: "black"}}>
+                                        <div className="transaction d-flex align-items-center justify-content-between">
+                                            <div className="">
+                                                <div className="t-title gap-2 d-flex flex-column">
+                                                    <div className={'promo-text-size text-center title-promo'}>{user?.promo_points?.title}</div>
+                                                    <div className={'d-flex justify-content-between points-promo-card px-3 mb-2'}>
+                                                        <div className="">
+                                                            <div className="t-title d-flex flex-column justify-content-between  align-content-between">
+                                                                <div className={'promo-text-size'}>End Date:</div>
+                                                                <div style={{color:'var(--faded-color)'}} className={'promo-text-actual'}>{user?.promo_points?.end_date}</div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div className="">
+                                                            <div className="t-title d-flex flex-column justify-content-between   align-content-between">
+                                                                <div className={'promo-text-size'}>Promo Entry Points:</div>
+                                                                <div className={'promo-text-actual dollar'}>Pts {user?.promo_points?.points}</div>
+
+                                                            </div>
+
+
+                                                        </div>
+                                                    </div>
+
+                                                    <LazyLoadImage src={nduthika} effect={'blur'} style={{borderRadius:'10px'}}/>
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+                                    </div>
+
                                     <Link to="/deposit" style={{textDecoration: "none", color: "black"}}>
                                         <div className="transactions">
                                             <div className="transaction">

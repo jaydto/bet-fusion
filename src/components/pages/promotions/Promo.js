@@ -5,6 +5,7 @@ import firstDeposit from "../../../assets/img/banner/products/Firstdeposit.jpeg"
 import multibetCashback from "../../../assets/img/banner/products/Bet_Nare_100_Cashback_Mobile.webp";
 import karibuGiftWallet from "../../../assets/img/banner/products/Bet_Nare_3000_karibu_gift_Mobile.webp";
 import DepositBonus from "../../../assets/img/banner/products/365.webp";
+import nduthika from "../../../assets/img/banner/products/ChomokaNaNduthi.webp";
 import mia_sita_hamsini from "../../../assets/img/banner/products/FreeKickBonanzaWeb.webp";
 
 
@@ -31,6 +32,7 @@ const Promo = () => {
         {src: karibuGiftWallet, id: 1},
         {src: DepositBonus, id: 9},
         {src: mia_sita_hamsini, id: 10},
+        {src: nduthika, id: 12},
         {src: 'https://cdn.betnare.com/carousel/Mega%20Match%20Bonus%20Web.webp', id: 11},
     ];
 

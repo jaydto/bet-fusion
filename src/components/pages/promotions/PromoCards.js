@@ -2,6 +2,7 @@ import React from "react";
 import twentyPercentDepositBonus from "../../../assets/img/banner/products/Bet_Nare_gift_Mobile.webp";
 import firstDeposit from "../../../assets/img/banner/products/Firstdeposit.jpeg";
 import multibetCashback from "../../../assets/img/banner/products/Bet_Nare_100_Cashback_Mobile.webp";
+import nduthika from "../../../assets/img/banner/products/ChomokaNaNduthi.webp";
 import DepositBonus from "../../../assets/img/banner/products/365.webp";
 import karibuGiftWallet from "../../../assets/img/banner/products/Bet_Nare_3000_karibu_gift_Mobile.webp";
 import mia_sita_ham_sini from "../../../assets/img/banner/products/FreeKickBonanzaWeb.webp";
@@ -17,7 +18,7 @@ const PromoCards = () => {
     const gaEventTracker = useAnalyticsEventTracker('Promotions');
     const user = getFromLocalStorage('user')
 
-    let ids = [1, 2, 3, 4, 5, 6, 7, 8, 9,10,11];
+    let ids = [1, 2, 3, 4, 5, 6, 7, 8, 9,10,11, 12];
     const navigate = useNavigate()
 
     let message = {status: 401, message: 'This Promotion is for new Users', token: ''};
@@ -44,7 +45,7 @@ const PromoCards = () => {
             >
                 <div className="col-md-2 promo-styling shadow-lg promotion">
                     <div className="d-flex flex-column promo-inner">
-                        <img src={'https://cdn.betnare.com/carousel/MegaMatchBonusWeb.webp'} className={"rounded promo-image "}/>
+                        <img src={nduthika} className={"rounded promo-image "}/>
                         <h5
                             className="bold d-flex justify-content-center h4 pt-2"
                             style={{color: "#ea5d0b"}}

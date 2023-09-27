@@ -2260,8 +2260,8 @@ img.nare-league {
 }
 @media (max-width: 991px) {
     .pro-menu.top-leagues-mobile > ul{
-        display:flex!important;
-        align-items:center;
+        /*display:flex!important;*/
+        /*align-items:center;*/
     }
     .pro-menu.top-leagues-mobile > ul::-webkit-scrollbar {
         display: none;

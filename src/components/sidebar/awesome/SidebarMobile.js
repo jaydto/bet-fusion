@@ -19,9 +19,10 @@ import {
     faUser
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
+// import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 import {LazyLoadImage} from "react-lazy-load-image-component";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {setState} from "../../../redux/dataSlice";
 
 const SidebarMobile = React.memo(
     (props) => {
@@ -34,8 +35,13 @@ const SidebarMobile = React.memo(
                 setUser(userData||getFromLocalStorage("user"))
             }
         }, [userData])
+        const dispatchRedux=useDispatch()
 
-        const gaEventTracker = useAnalyticsEventTracker('Navigation');
+
+        // const gaEventTracker = useAnalyticsEventTracker('Navigation');
+        const handleClose = () => {
+            dispatchRedux(setState('show_menu', false))
+        };
 
         return (<ProSidebar
             className={'background-primary'}
@@ -46,7 +52,7 @@ const SidebarMobile = React.memo(
                     <MenuItem>
                         <div className={"d-flex gap-4 align-items-center"}>
                             <FontAwesomeIcon icon={faUser} className={'svg-mobile'} />
-                            <Link to={"/profile"}>User Profile</Link>
+                            <Link to={"/profile"} onClick={handleClose}>User Profile</Link>
                         </div>
 
                     </MenuItem>
@@ -56,7 +62,7 @@ const SidebarMobile = React.memo(
                     <MenuItem>
                         <div className={"d-flex gap-4 align-items-center"}>
                             <FontAwesomeIcon icon={faCloudDownloadAlt} className={'svg-mobile'} />
-                            <Link to={"/deposit"} className={""}>Deposit</Link>
+                            <Link to={"/deposit"} className={""} onClick={handleClose}>Deposit</Link>
                         </div>
 
                     </MenuItem>
@@ -67,7 +73,7 @@ const SidebarMobile = React.memo(
                     <MenuItem className={"d-flex justify-content-between"}>
                         <div className={"d-flex gap-4 align-items-center"}>
                             <FontAwesomeIcon icon={faQuestionCircle} className={'svg-mobile'} />
-                            <Link to={"/how-to-play"}>How to play</Link>
+                            <Link to={"/how-to-play"} onClick={handleClose}>How to play</Link>
                         </div>
                     </MenuItem>
                 </Menu>
@@ -76,7 +82,7 @@ const SidebarMobile = React.memo(
                         <div className={"d-flex gap-4 align-items-center"}>
                             <LazyLoadImage src={fpl} effect={"blur"}  style={{width:'15px'}} className={'svg-mobile'} />
 
-                            <Link to={"/fpl"}>FPL</Link>
+                            <Link to={"/fpl"} onClick={handleClose}>FPL</Link>
                         </div>
                     </MenuItem>
                 </Menu>
@@ -84,7 +90,7 @@ const SidebarMobile = React.memo(
                     <MenuItem className={"d-flex justify-content-between"}>
                         <div className={"d-flex gap-4 align-items-center"}>
                             <FontAwesomeIcon icon={faPrint} className={'svg-mobile'} />
-                            <Link to={"/print-matches"}>Print</Link>
+                            <Link to={"/print-matches"} onClick={handleClose}>Print</Link>
                         </div>
                     </MenuItem>
                 </Menu>
@@ -92,13 +98,13 @@ const SidebarMobile = React.memo(
                     <MenuItem className={"d-flex justify-content-between"}>
                         <div className={"d-flex gap-4 align-items-center"}>
                             <FontAwesomeIcon icon={faMobilePhone} className={'svg-mobile'} />
-                            <a href={"tel:0701087777"}>Call Customer Care</a>
+                            <a href={"tel:0701087777"} onClick={handleClose}>Call Customer Care</a>
                         </div>
                     </MenuItem>
                 </Menu>
                 <Menu>
                     <MenuItem className={"d-flex justify-content-between"}>
-                        <a className={"d-flex gap-4 align-items-center"} href={"https://wa.me/+254701087777"} target={"_blank"} rel="noreferrer">
+                        <a className={"d-flex gap-4 align-items-center"} href={"https://wa.me/+254701087777"} target={"_blank"} rel="noreferrer" onClick={handleClose}>
                             <LazyLoadImage src={whatsapp} effect={"blur"} style={{width:'15px'}} className={'svg-mobile'} />
                             Whatsapp Us
                         </a>
@@ -111,7 +117,7 @@ const SidebarMobile = React.memo(
                     <MenuItem className={"d-flex justify-content-between"}>
                         <div className={"d-flex gap-4 align-items-center"}>
                             <FontAwesomeIcon icon={faHome} className={'svg-mobile'} />
-                            <Link to={"/"}>Home</Link>
+                            <Link to={"/"} onClick={handleClose}>Home</Link>
                         </div>
                     </MenuItem>
 
@@ -122,7 +128,7 @@ const SidebarMobile = React.memo(
                     <MenuItem className={"d-flex justify-content-between"}>
                         <div className={"d-flex gap-4 align-items-center"}>
                             <FontAwesomeIcon icon={faStream} className={'svg-mobile'} />
-                            <Link to={"/live"}>Live</Link>
+                            <Link to={"/live"} onClick={handleClose}>Live</Link>
                         </div>
                     </MenuItem>
                 </Menu>
@@ -131,7 +137,7 @@ const SidebarMobile = React.memo(
                     <MenuItem className={"d-flex justify-content-between"}>
                         <div className={"d-flex gap-4 align-items-center"}>
                             <FontAwesomeIcon icon={faPlay} className={'svg-mobile'} />
-                            <Link to={"/virtuals"}>Virtuals</Link>
+                            <Link to={"/virtuals"} onClick={handleClose}>Virtuals</Link>
                         </div>
                     </MenuItem>
                 </Menu>
@@ -141,7 +147,7 @@ const SidebarMobile = React.memo(
                     <MenuItem className={"d-flex justify-content-between"}>
                         <div className={"d-flex gap-4 align-items-center"}>
                             <FontAwesomeIcon icon={faMagic} className={'svg-mobile'} />
-                            <Link to={"/promotions"}>Promotions</Link>
+                            <Link to={"/promotions"} onClick={handleClose}>Promotions</Link>
                         </div>
                     </MenuItem>
                 </Menu>
@@ -150,7 +156,7 @@ const SidebarMobile = React.memo(
                     <MenuItem className={"d-flex justify-content-between"}>
                         <div className={"d-flex gap-4 align-items-center"}>
                             <FontAwesomeIcon icon={faInfo} className={'svg-mobile'} />
-                            <Link to={"/livescore"}>Livescore</Link>
+                            <Link to={"/livescore"} onClick={handleClose}>Livescore</Link>
                         </div>
                     </MenuItem>
                 </Menu>
@@ -159,7 +165,7 @@ const SidebarMobile = React.memo(
             </SidebarContent>
             <SidebarFooter className={"background-primary"}>
                 {user ? <Menu className={"w-100 "}>
-                    <MenuItem className={"w-100 sidebar-mobile"}> <a className={"logout-btn mt-2"} href={"/logout"}>Logout</a> </MenuItem>
+                    <MenuItem className={"w-100 sidebar-mobile"}> <a className={"logout-btn mt-2"} href={"/logout"} onClick={handleClose}>Logout</a> </MenuItem>
                 </Menu> : ""}
                 <Footer/>
             </SidebarFooter>

@@ -27,7 +27,7 @@ const PrivacyPolicy = React.memo(
 
     return (
         <div className={'flex-item'}>
-            <div className="flex-container height-default-body">
+            <div className="flex-container height-default-body top-diff-pages">
                 <div className="item1"> <SideBar loadCompetitions/></div>
                 <div className="item2" style={{width:'100%'}}>
                     <div className="gz home w-100">

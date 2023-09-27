@@ -52,7 +52,7 @@ const TermsAndConditions = React.memo(
                 <div className="item4">
                     <ToastContainer/>
                 </div>
-                <div className="flex-container height-default-body">
+                <div className="flex-container height-default-body top-diff-pages">
                     <div className="item1" ><SideBar
                         loadCompetitions/></div>
                     <div className={`item2 `} >

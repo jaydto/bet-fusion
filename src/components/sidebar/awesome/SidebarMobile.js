@@ -34,13 +34,14 @@ const SidebarMobile = React.memo(
                 setUser(userData||getFromLocalStorage("user"))
             }
         }, [userData])
+
         const gaEventTracker = useAnalyticsEventTracker('Navigation');
+
         return (<ProSidebar
             className={'background-primary'}
             style={{width: "100%"}}
             image={false}>
             <SidebarHeader className={"background-primary"}>
-
                 {user ? <Menu>
                     <MenuItem>
                         <div className={"d-flex gap-4 align-items-center"}>

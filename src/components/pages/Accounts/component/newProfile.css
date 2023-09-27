@@ -306,7 +306,7 @@ a.text-logout{
     }
 }
 .points-promo-card{
-    box-shadow: 1px 0px 2px 1px var(--odds-button);
+    box-shadow: 1px 0px 2px 1px #b9bdc1;
     border-radius: 7px;
 }
 @media (max-width:991px){

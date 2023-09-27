@@ -8,12 +8,13 @@ import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
 import SidebarProfile from "../../sidebar/sidebarProfile";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import {useSelector} from "react-redux";
-import nduthika from "../../../assets/img/banner/products/ChomokaNaNduthi.webp";
+import useWindowDimensions from "../../header/Dimensions";
 
 const NewProfile = React.memo(
     () => {
         const userData=useSelector((state)=>state.auth.user)
         const [user, setUser]=useState(getFromLocalStorage("user"))
+        const {width}=useWindowDimensions()
 
         useEffect(()=>{
             if(userData){
@@ -75,7 +76,7 @@ const NewProfile = React.memo(
                                     <div  style={{textDecoration: "none", color: "black"}}>
                                         <div className="transaction d-flex align-items-center justify-content-between">
                                             <div className="">
-                                                <div className="t-title gap-2 d-flex flex-column">
+                                                <div className="t-title gap-2 d-flex flex-column w-100">
                                                     <div className={'promo-text-size text-center title-promo'}>{user?.promo_points?.title}</div>
                                                     <div className={'d-flex justify-content-between points-promo-card px-3 mb-2'}>
                                                         <div className="">
@@ -92,11 +93,10 @@ const NewProfile = React.memo(
 
                                                             </div>
 
-
                                                         </div>
                                                     </div>
 
-                                                    <LazyLoadImage src={nduthika} effect={'blur'} style={{borderRadius:'10px'}}/>
+                                                    <LazyLoadImage src={width>991?'https://cdn.betnare.com/carousel/chomokananduthi.webp':'https://cdn.betnare.com/carousel/chomokananduthimobile.webp'} effect={'blur'} style={{borderRadius:'10px'}}/>
                                                 </div>
                                             </div>
 

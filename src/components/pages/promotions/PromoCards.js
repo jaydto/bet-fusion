@@ -53,7 +53,8 @@ const PromoCards = () => {
                             CHOMOKA NA NDUTHI
                         </h5>
                         <p className="container mx-1 px-2 text-data-promotions">
-                            Place a  cash bet of KES 49/= and above on Sportsbook matches, to get an entry.                        </p>
+                            Place a  cash bet of KES 49/= and above on Sportsbook matches...
+                        </p>
                         <hr/>
 
                         <div className="d-flex justify-content-between my-2 mx-2">

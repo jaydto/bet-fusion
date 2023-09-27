@@ -88,7 +88,7 @@ const PromoCards = () => {
                             500 FOR 500 PROMOTION TERMS AND CONDITIONS
                         </h5>
                         <p className="container mx-1 px-2 text-data-promotions">
-                        Deposit 500 and Get 500 free bonus for your first and second deposit of the day
+                        Deposit 500/= and Get 500/= free bonus instantly!
                         </p>
                         <hr/>
 

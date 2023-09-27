@@ -6,10 +6,20 @@ import {faBackspace} from "@fortawesome/free-solid-svg-icons";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import SidebarMobile from "../sidebar/awesome/SidebarMobile";
 import React from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {setState} from "../../redux/dataSlice";
 
 const Header2 = React.memo(
 	() => {
 		const expand = "md"
+		const dispatchRedux=useDispatch()
+		const show=useSelector((state)=>state.data.show_menu)
+		const handleClose = () => {
+			dispatchRedux(setState('show_menu', false))
+		};
+		const handleShow = () => {
+			dispatchRedux(setState('show_menu', true))
+		};
 
 		return (
 			<div className={''}>
@@ -35,13 +45,15 @@ const Header2 = React.memo(
 
 						</Navbar.Brand>
 
-						<Navbar.Offcanvas
+						<Offcanvas
+							show={show}
+							onHide={handleClose}
 							style={{width: "80%", height: "100%", zIndex: "9999", marginTop: "0px"}}
 							className='off-canvas background-primary p-0 user-profile'
 							id={`offcanvasNavbar-expand-${expand}`}
 							aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
 							placement="start">
-							<Offcanvas.Header closeButton className='text-white' closeVariant={"white"}>
+							<Offcanvas.Header closeButton className='text-white' closeVariant={"white"} >
 								<Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
 									<div className="col-3">
 										<div>
@@ -53,7 +65,7 @@ const Header2 = React.memo(
 							<Offcanvas.Body className={('')}>
 								<SidebarMobile/>
 							</Offcanvas.Body>
-						</Navbar.Offcanvas>
+						</Offcanvas>
 					</Container>
 				</Navbar>
 

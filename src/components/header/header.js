@@ -35,8 +35,14 @@ const Header = React.memo(
         const {slip, scrollPosition, jackpot} = props
         const gaEventTracker = useAnalyticsEventTracker('Navigation');
         const {state, dispatch} = useContext(StoreContext);
-        const containerRef = useRef();
         const searchInputRef = useRef(null)
+        const show=useSelector((state)=>state.data.show_menu)
+        const handleClose = () => {
+            dispatchRedux(setState('show_menu', false))
+        };
+        const handleShow = () => {
+            dispatchRedux(setState('show_menu', true))
+        };
         const navigate = useNavigate()
         // Import the navigationConfig object
         const [isOpen, setIsOpen] = useState(false);
@@ -247,7 +253,7 @@ const Header = React.memo(
                                 <MobileNav1/>}
 
 
-                            <Navbar.Offcanvas
+                            <Offcanvas
                                 style={{
                                     width: "80%",
                                     height: "100%",
@@ -255,6 +261,8 @@ const Header = React.memo(
                                     marginTop: "0px",
                                     overflowY: "auto"
                                 }}
+                                onHide={handleClose}
+                                show={show}
                                 className='off-canvas background-primary p-0'
                                 id={`offcanvasNavbar-expand-${expand}`}
                                 aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
@@ -273,7 +281,7 @@ const Header = React.memo(
                                 <Offcanvas.Body>
                                     <SidebarMobile/>
                                 </Offcanvas.Body>
-                            </Navbar.Offcanvas>
+                            </Offcanvas>
 
                         </div>
                     </Navbar>

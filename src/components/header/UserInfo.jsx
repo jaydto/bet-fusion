@@ -7,7 +7,8 @@ import React, {useContext, useEffect, useState} from "react";
 import {getFromLocalStorage} from "../utils/local-storage";
 import {StoreContext} from "../../context/store";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {setState} from "../../redux/dataSlice";
 
 export const UserInfo = React.memo(
     (props) => {
@@ -15,10 +16,10 @@ export const UserInfo = React.memo(
         const pathname = window.location.pathname;
         const {state, dispatch} = useContext(StoreContext);
         const gaEventTracker = useAnalyticsEventTracker('Navigation');
-        const [isOpen, setIsOpen] = useState(false);
         const userData = useSelector((state) => state.auth.user)
 
         const [user, setUser] = useState(getFromLocalStorage("user"))
+
 
         useEffect(()=>{
             if(userData){
@@ -27,12 +28,18 @@ export const UserInfo = React.memo(
             }
         }, [userData])
 
+        const dispatchRedux=useDispatch()
 
+        const show=useSelector((state)=>state.data.show_menu)
 
-
-
+        const handleShow = () => {
+            dispatchRedux(setState('show_menu', true))
+        };
+        const handleClose = () => {
+            dispatchRedux(setState('show_menu', false))
+        };
         const toggle = () => {
-            setIsOpen(!isOpen);
+            show?handleClose():handleShow()
         };
         const urlPath = window.location.pathname
         const showBalance = (!urlPath.includes("nare-games") && !urlPath.includes("gameplay") && !urlPath.includes("smart-play"))
@@ -102,7 +109,8 @@ export const UserInfo = React.memo(
                         <div className="col-1 button-toggle space-button"
                              style={{width: "4.1rem", overflowY: "auto", marginLeft: '20px'}}>
                             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"lg"}`}
-                                           className="px-3 py-3" onClick={toggle}/>
+                                           className="px-3 py-3" onClick={toggle}
+                            />
                         </div>
                     </div>}
                 <>

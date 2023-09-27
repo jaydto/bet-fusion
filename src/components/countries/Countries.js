@@ -98,9 +98,9 @@ const Countries = React.memo(
                                 title={"Countries"}
                                 >
 
-                                <p className={'text-light mb-0 px-3 pb-0 pt-1 d-lg-none d-md-block d-sm-block'} style={{opacity:'0.7', fontWeight:'var(--font-weight3'}}>
+                                {((index === 0) && (typeof sport_active === 'string') && (sport_active.toLowerCase() === 'soccer')) && ( <p className={'text-light mb-0 px-3 pb-0 pt-1 d-lg-none d-md-block d-sm-block'} style={{opacity:'0.7', fontWeight:'var(--font-weight3'}}>
                                     Top Leagues
-                                </p>
+                                </p>   )}
                                 {((index === 0) && (typeof sport_active === 'string') && (sport_active.toLowerCase() === 'soccer')) && (
                                     <div>
                                         <Menu title={"Top Leagues"} key={index} defaultOpen={true} className={'d-lg-none d-md-block d-sm-block w-100 px-4 top-leagues-mobile'} style={{lineHeight:'1'}}>

@@ -2259,6 +2259,9 @@ img.nare-league {
 
 }
 @media (max-width: 991px) {
+    .deposit-buttons-value.deposit-modal {
+        padding:2px 20px!important;
+    }
     .deposit-modal-alert-action.alert-position-betslip-top.alert-message-line-height{
         position:relative!important;
         top:0px!important;

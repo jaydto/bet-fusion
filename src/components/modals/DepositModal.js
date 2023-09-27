@@ -145,11 +145,11 @@ const BetslipShareModal = React.memo(
                 <Modal.Body className={''}>
 
                     <Alert/>
-                    <div className={'d-flex'}>
+                    <div className={'d-flex justify-content-between align-items-center gap-2'}>
                         {settings?.betnareDeposit && settings?.betnareDeposit?.map((deposit, index) => {
-                            return (<div key={index} className={'col-3'}>
+                            return (<div key={index} className={''}>
                                     <button type="button" onClick={() => incrementDepositValue(deposit?.deposit_amount)}
-                                            className="deposit-buttons-value deposit-modal  m-2 gap-3 ">
+                                            className="deposit-buttons-value deposit-modal  ">
                                         <div className={'deposit-values'}>+&nbsp;{deposit?.deposit_amount}</div>
                                     </button>
                                 </div>

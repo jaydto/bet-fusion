@@ -20,7 +20,8 @@ import {betCancel, matchesRebet, matchesShareBet} from "../../../../redux/matche
 import {ToastContainer} from "react-toastify";
 import SkeletonMoreMarkets from "../../skeletonLoadersWeb/SkeletonMoreMarkets";
 
-const BetDetails = (props) => {
+const BetDetails = React.memo(
+    (props) => {
     const {bet_id} = props
 
     const FormatDate = (props) => {
@@ -138,8 +139,6 @@ const BetDetails = (props) => {
 
     const [betStatus, setBetStatus] = useState(getFromLocalStorage("bet_history_status") || null);
     const dispatchRedux=useDispatch()
-    const bet_can_cancel_status=useSelector((state)=>state.matchesData.bet_can_cancel_status)
-    const bet_cancel_end_time=useSelector((state)=>state.matchesData.bet_cancel_end_time)
     const bet_cancel_status=useSelector((state)=>state.matchesData.bet_cancel_status)
     const bet_cancel=useSelector((state)=>state.matchesData.bet_cancel)
     useEffect(()=>{
@@ -147,6 +146,7 @@ const BetDetails = (props) => {
             setBetStatus(bet_cancel_status||getFromLocalStorage("bet_history_status"))
         }
     },[bet_cancel_status])
+
 
 
     const cancelBet = (bet_id) => {
@@ -517,5 +517,5 @@ const BetDetails = (props) => {
 
         </>
     )
-}
+})
 export default React.memo(BetDetails)

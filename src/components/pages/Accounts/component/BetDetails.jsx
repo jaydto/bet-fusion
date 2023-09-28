@@ -52,14 +52,8 @@ const BetDetails = React.memo(
         const mybets_details = useSelector((state) => state.matchesData.bet_details)
         const fetching = useSelector((state) => state.matchesData.fetching)
         const bet_details_meta = useSelector((state) => state.matchesData.bet_details_meta)
-        const [activeParentMatchId, setActiveParentMatchId] = useState(null);
-        let match = mybets_details;
-        let sport;
-        let parent_match_id;
-        match?.map((bet) => {
-            sport = bet?.sport_id
-            parent_match_id = bet?.parent_match_id
-        })
+        const [, setActiveParentMatchId] = useState(null);
+
 
         let lmtIncludes = [79, 85, 82, 80, 107];
 
@@ -468,7 +462,7 @@ const BetDetails = React.memo(
                                                 </div>
                                             </div>
                                         </div>
-                                        {lmtIncludes.includes(sport) && < div className="d-flex flex-column col">
+                                        {lmtIncludes.includes(item?.sport_id) && < div className="d-flex flex-column col">
                                             <LMT parent_match_id={item?.parent_match_id}/>
 
                                             <ButtonGroup aria-label="stats button actions"

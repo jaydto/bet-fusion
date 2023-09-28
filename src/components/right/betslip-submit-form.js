@@ -202,8 +202,7 @@ const BetslipSubmitForm = React.memo(
 
         useEffect(() => {
 
-            dispatchRedux(setMatchBetslipOptions('betslip_options', {...betslip_options,...{betslipLength:betslipLength}}))
-
+            dispatchRedux(setMatchBetslipOptions('betslipLength', betslipLength))
 
         }, [betslipLength])
 
@@ -571,7 +570,7 @@ const BetslipSubmitForm = React.memo(
                     boost=0
                 }
 
-                if (boost > Number(settings?.betnareGifts?.maxGiftBoostAmount)) {
+                if (boost >= Number(settings?.betnareGifts?.maxGiftBoostAmount)) {
                     boost = Number(settings?.betnareGifts?.maxGiftBoostAmount);
                 }
                 if (boost >= 1) {
@@ -580,7 +579,7 @@ const BetslipSubmitForm = React.memo(
 
                     let boostedStake = Number(stake) + Number(boost);
                     boostedStake = formatNumber(boostedStake);
-                    dispatchRedux(setMatchBetslipOptions('betslip_options', {...betslip_options,...{hasBoost:false, alert_slip_color: 'valid', remaining_games: 0, multiboostmessage:"Congratulations! we have gifted you KES " +
+                    dispatchRedux(setMatchBetslipOptions('betslip_options', {...betslip_options,...{hasBoost:true, alert_slip_color: 'valid', remaining_games: 0, multiboostmessage:"Congratulations! we have gifted you KES " +
                                 boost +
                                 " on your stake. Your new stake is " +
                                 boostedStake }}))
@@ -820,7 +819,7 @@ const BetslipSubmitForm = React.memo(
                         <div>
                             {!jackpot && !message &&
                                 awardMultiGift &&
-                                Number(totalGames) > settings?.betnareBonus?.bonusBetLegs && (
+                                Number(totalGames) >= settings?.betnareBonus?.bonusBetLegs && (
                                     multiBoostMessage &&
                                     <div className={` slip-message-alert`}>
                                         <div colSpan="2" className={'d-flex col-2'} style={{width: '100%'}}>

@@ -15,9 +15,9 @@ import ListGroup from "react-bootstrap/ListGroup";
 import LoginSection from "./LoginSection";
 import {UserInfo} from "./UserInfo";
 import {useDispatch, useSelector} from "react-redux";
-import { setState} from "../../redux/dataSlice";
+import {configSettings, setState} from "../../redux/dataSlice";
 import { userBalance} from "../../redux/authSlice";
-import { matchesSearch} from "../../redux/matchesSlice";
+import {matchCategories, matchesSearch} from "../../redux/matchesSlice";
 import {
     checkDesktopTopNavigation,
     checkNavigation,
@@ -85,6 +85,79 @@ const Header = React.memo(
         }
 
 
+        const fetchData = async () => {
+            let cached_categories = getFromLocalStorage('sport_categories');
+
+            if (!cached_categories || cached_categories?.all_sports?.length === 0) {
+                dispatchRedux(matchCategories())
+            }
+
+        };
+        const appConfigs = useSelector((state) => state.data.app_config)
+        const sport_categories = useSelector((state) => state.matchesData.sport_categories)
+        const [settings, setSettings] = useState(getFromLocalStorage('settings'));
+        const [sportCategories, setSportCategories] = useState(getFromLocalStorage('sport_categories'));
+
+        const fetchAppConfigurations = async () => {
+
+            let cached_settings = getFromLocalStorage('settings');
+
+            if (!cached_settings||cached_settings===undefined) {
+                dispatchRedux(configSettings())
+            }
+        }
+
+        const cleanUpFuction = async () => {
+            await fetchAppConfigurations();
+
+            // Custom function to clear settings from localStorage
+            // const clearLocalStorageSettings = () => {
+            //     localStorage.removeItem('settings');
+            //     // Manually call fetchAppConfigurations to update the settings
+            //     fetchAppConfigurations();
+            // };
+
+            // Listen for the "storage" event to detect changes in "settings" localStorage
+            const handleStorageChange = (event) => {
+                if (event.key === 'settings') {
+                    fetchAppConfigurations();
+                }
+            };
+
+            // Listen for "beforeunload" event to handle clearing localStorage in the same tab
+            // const handleBeforeUnload = () => {
+            //     clearLocalStorageSettings();
+            // };
+
+            window?.addEventListener('storage', handleStorageChange);
+            // window?.addEventListener('beforeunload', handleBeforeUnload);
+
+            return () => {
+                // Clean up the event listeners when the component unmounts
+                window?.removeEventListener('storage', handleStorageChange);
+                // window?.removeEventListener('beforeunload', handleBeforeUnload);
+
+            };
+        }
+        const cleanUpFuctionSportCategories = async () => {
+            await fetchData();
+
+        }
+
+
+        useEffect(() => {
+            if (settings === undefined || settings === null ||appConfigs==null) {
+                cleanUpFuction()
+            }
+
+        }, [settings]);
+
+        useEffect(() => {
+            if (sportCategories === undefined || sportCategories === null || sportCategories?.all_sports?.length === 0|| sport_categories===null) {
+                cleanUpFuctionSportCategories()
+            }
+
+        }, [sportCategories]);
 
        const  active_sport_value=useSelector((state)=>state.matchesData.active_sport)
         const fetchMatches = async (search) => {

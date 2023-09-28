@@ -37,8 +37,7 @@ const Right = React.memo(
         const [settings,setSettings] = useState(getFromLocalStorage('settings'));
         const dispatchRedux=useDispatch()
         const stake_value=useSelector((state)=>state.data.stake_value)
-        // const betslipLength=useSelector((state)=>state.betting.betslipLength)
-        const betslip_options=useSelector((state)=>state.betting.betslip_options)
+        const betslipLength=useSelector((state)=>state.betting.betslipLength)
 
 
 
@@ -78,7 +77,7 @@ const Right = React.memo(
             ()=>{
             return (<Badge pill
                            bg="warning nav__betslip d-flex justify-content-center align-items-center">
-                {kiron?state?.betslipKironLength:betslip_options?.betslipLength}
+                {kiron?state?.betslipKironLength:betslipLength}
             </Badge>)
         })
 

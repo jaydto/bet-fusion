@@ -14,10 +14,12 @@ import {faXbox} from "@fortawesome/free-brands-svg-icons";
 import {useDispatch, useSelector} from "react-redux";
 import {betHistoryDetails, fullBetDetails, setFetching} from "../../../../redux/matchesSlice";
 import SkeletonLoaderMore from "../../skeletonLoadersWeb/SkeletonLoaderMore";
+import {setState} from "../../../../redux/dataSlice";
 
 const BetHistory = () => {
     const { state, dispatch } = useContext(StoreContext);
     const dispatchRedux=useDispatch()
+    const bet_history_details=useSelector((state)=>state.data.bet_history_details)
 
     const fetchData = async () => {
         dispatchRedux(fullBetDetails())
@@ -29,8 +31,9 @@ const BetHistory = () => {
         fetchData();
         dispatchRedux(setFetching("fetching", true))
         return ()=>{
-            dispatch({type: "SET", key: "bet_history_details", payload: false});
-            setLocalStorage("bet_history_details",null)
+            // dispatch({type: "SET", key: "bet_history_details", payload: false});
+            dispatchRedux(setState('bet_history_details', false))
+            // setLocalStorage("bet_history_details",null)
             abort.abort()
         }
     }, []);
@@ -127,13 +130,14 @@ const BetHistory = () => {
         };
 
         const swap = (bet_id) => {
-            dispatch({type: "SET", key: "bet_history_details", payload: bet_id});
+            // dispatch({type: "SET", key: "bet_history_details", payload: bet_id});
+            dispatchRedux(setState('bet_history_details', bet_id))
             dispatchRedux(setFetching("fetching", true))
             const payload={
                 "bet_id":bet_id
             }
             dispatchRedux(betHistoryDetails(payload))
-            setLocalStorage("bet_history_details",bet_id)
+            // setLocalStorage("bet_history_details",bet_id)
         }
         const mybets_data=useSelector((state)=>state.matchesData.full_bet_details)
         const [mybets, setMybets] = useState(state?.filteredHistoryGames || state?.bets_by_date|| mybets_data)
@@ -200,10 +204,11 @@ const BetHistory = () => {
     }
 
     const navigateBack = () => {
-        if (state?.bet_history_details||getFromLocalStorage("bet_history_details")) {
-            dispatch({type: "SET", key: "bet_history_details", payload: false});
-            setLocalStorage("bet_history_details",null)
-        } else if (state?.bet_history_details === false || state?.bet_history_details === null || state?.bet_history_details === undefined||getFromLocalStorage("bet_history_details")===null||getFromLocalStorage("bet_history_details")===undefined) {
+        if (bet_history_details) {
+            // dispatch({type: "SET", key: "bet_history_details", payload: false});
+            dispatchRedux(setState('bet_history_details', false))
+            // setLocalStorage("bet_history_details",null)
+        } else if (bet_history_details === false || bet_history_details === null || bet_history_details === undefined) {
             window.history.back()
         }
 
@@ -344,7 +349,7 @@ const BetHistory = () => {
                                     {fetching?<div className={`text-center mt-2 text-white d-block`}>
                                         <SkeletonLoaderMore/>
                                     </div>:<>
-                                        {!state?.bet_history_details == false || getFromLocalStorage("bet_history_details") == null &&
+                                        {bet_history_details == false &&
                                             <div
                                                 className="d-flex w-100 justify-content-between filter-buttons-bethistory px-4">
                                                 <div className={"filters button-filter text-capitalize"}
@@ -366,9 +371,9 @@ const BetHistory = () => {
                                                     </div>
                                                 </div>}
                                             </div>}
-                                        {state?.bet_history_details ?
+                                        {bet_history_details ?
                                             <BetDetails
-                                                bet_id={state?.bet_history_details || getFromLocalStorage("bet_history_details")}/> :
+                                                bet_id={bet_history_details}/> :
                                             <PageBody/>
                                         }
                                     </>}

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState} from 'react';
+import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
 import {Link, useNavigate} from "react-router-dom"
 import Row from 'react-bootstrap/Row';
 import {StoreContext} from "../../context/store";
@@ -95,17 +95,21 @@ const Header = React.memo(
         };
         const appConfigs = useSelector((state) => state.data.app_config)
         const sport_categories = useSelector((state) => state.matchesData.sport_categories)
-        const [settings, setSettings] = useState(getFromLocalStorage('settings'));
-        const [sportCategories, setSportCategories] = useState(getFromLocalStorage('sport_categories'));
 
-        const fetchAppConfigurations = async () => {
+
+        const cleanUpFuctionSportCategories = async () => {
+            await fetchData();
+
+        }
+
+        const fetchAppConfigurations = useCallback(async () => {
 
             let cached_settings = getFromLocalStorage('settings');
 
-            if (!cached_settings||cached_settings===undefined) {
+            if (!cached_settings) {
                 dispatchRedux(configSettings())
             }
-        }
+        })
 
         const cleanUpFuction = async () => {
             await fetchAppConfigurations();
@@ -139,25 +143,25 @@ const Header = React.memo(
 
             };
         }
-        const cleanUpFuctionSportCategories = async () => {
-            await fetchData();
-
-        }
 
 
         useEffect(() => {
-            if (settings === undefined || settings === null ||appConfigs==null) {
+            if(getFromLocalStorage('settings')==undefined||appConfigs==undefined){
                 cleanUpFuction()
             }
 
-        }, [settings]);
+        }, [getFromLocalStorage('settings'), appConfigs]);
+
+
 
         useEffect(() => {
-            if (sportCategories === undefined || sportCategories === null || sportCategories?.all_sports?.length === 0|| sport_categories===null) {
+            if (sport_categories?.all_sports?.length === 0|| sport_categories===null) {
                 cleanUpFuctionSportCategories()
             }
 
-        }, [sportCategories]);
+        }, [sport_categories, getFromLocalStorage('sport_categories')]);
+
+
 
        const  active_sport_value=useSelector((state)=>state.matchesData.active_sport)
         const fetchMatches = async (search) => {

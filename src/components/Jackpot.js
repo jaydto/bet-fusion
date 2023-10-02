@@ -325,7 +325,7 @@ const Jackpot = React.memo(
 
                         </div>
                     </div>
-                    {(activeTab === "home" && !jackpot_data?.meta?.length > 0) &&
+                    {(activeTab === "home" && jackpot_data?.data?.length > 0) &&
                         <div className="item3">
                         <Right jackpot={true} jackpotData={jackpot_data?.meta} test={true} matches={jackpot_data}/>
                     </div>

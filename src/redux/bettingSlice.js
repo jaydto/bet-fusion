@@ -173,7 +173,6 @@ const bettingSlice = createSlice({
             .addCase(bettingMatchesGames.rejected, (state, action) => {
                 state.loading = false;
                 const message=JSON.parse(action.error.message)
-                console.log("message", message)
                 state.error = message[0].message;
                 state.insufficient_balance = message[0].status_balance;
             })

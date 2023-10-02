@@ -8,7 +8,6 @@ import SlipTabs from "./tabs/slip-tabs";
 import KironSlip from "../../right/kironslip";
 import Header from "../../header/header";
 import {ToastContainer} from "react-toastify";
-import {StoreContext} from "../../../context/store";
 import {getFromLocalStorage} from "../../utils/local-storage";
 import {useDispatch, useSelector} from "react-redux";
 import {setState} from "../../../redux/dataSlice";
@@ -37,11 +36,8 @@ const BetslipPage = React.memo(
             let value=stake_value || getFromLocalStorage("userStake") || Number(settings?.sportsBookLimits?.defaultBetAmount)
             if(isNaN(value)){
                 dispatchRedux(setState('stake_value', 0))
-                // dispatch({type: "SET", key: "stakeValue", payload: 0});
             }else{
                 dispatchRedux(setState('stake_value', value))
-
-                // dispatch({type: "SET", key: "stakeValue", payload: value});
             }
         }, [settings])
 
@@ -118,12 +114,10 @@ const BetslipPage = React.memo(
                         </div>
                     </div>
                 </div>
-                {/*<footer>*/}
                 <div className={"styling-mobile-size"}>
                     <Right betslipValidationData={betslipValidationData} jackpotData={jackpotData}
                            jackpot={jackpot ? true : false} slipPage={true}/>
                 </div>
-                {/*</footer>*/}
             </>
         );
     });

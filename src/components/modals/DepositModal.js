@@ -103,7 +103,7 @@ const BetslipShareModal = React.memo(
             return (<>{(payload||successMessage)&&
                 <div role="alert"
                      className={`fade alert alert-${c} deposit-modal-alert-action show alert-dismissible d-flex justify-content-between align-items-center alert-message-line-height alert-position-betslip-top`}>
-                    {payload||successMessage}
+                    {successMessage||payload}
                     <span aria-hidden="true" style={x_style} onClick={() => clearMessage()}>&times;</span>
                 </div>
             }

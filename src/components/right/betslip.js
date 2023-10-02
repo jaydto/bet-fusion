@@ -17,7 +17,6 @@ const clean_rep = (str) => {
 const BetSlip = React.memo(
     (props) => {
         const {jackpot, betslipValidationData, jackpotData,live} = props;
-        const { state, dispatch } = useContext(StoreContext);
         const [message, setMessage] = useState(null);
         const [qualifiesBonus, setQualifiesBonus] = useState(false);
         const [settings,] = useState(getFromLocalStorage("settings"));
@@ -310,8 +309,7 @@ const BetSlip = React.memo(
                                                 >
 
                                                     <Link
-                                                        to={`${jackpot ? "#" :
-                                                            slip?.bet_type === "0"
+                                                        to={`${slip?.bet_type === "0"
                                                                 ? "/match/" + slip?.match_id
                                                                 : "/match/live/" + slip?.parent_match_id
                                                         }`}

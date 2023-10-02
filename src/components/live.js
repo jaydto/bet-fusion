@@ -89,7 +89,7 @@ const Live = React.memo(
             if (sportID !== new_sport_id) {
                 setSportID(new_sport_id)
             }
-        })
+        },[spid])
 
 
         const fetchAdditionalData=()=>{

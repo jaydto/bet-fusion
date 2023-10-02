@@ -1,5 +1,4 @@
-import React,{useCallback, useContext, useEffect, useRef, useState} from "react";
-import {StoreContext} from "../../context/store";
+import React,{useCallback, useEffect, useRef, useState} from "react";
 import {
     clearSlip,
     formatNumber,
@@ -25,12 +24,12 @@ import {matchesShareBet, resetState} from "../../redux/matchesSlice";
 import {userBalance} from "../../redux/authSlice";
 import {
     bettingMatchesGames,
-    removeSlipSelection,
     setMatchBetslip,
     resetStateBetslip,
     removeSelected, removePickedData
 } from "../../redux/bettingSlice";
 import {setState} from "../../redux/dataSlice";
+import {setState as setMatchBetslipOptions} from "../../redux/bettingSlice";
 import DepositModal from "../modals/DepositModal";
 
 const BetslipShareModal = React.lazy(() =>
@@ -81,19 +80,19 @@ const BetslipSubmitForm = React.memo(
         const [multiBoostAmount, setMultiBoostAmount] = useState(0);
         const [ipv4, setIpv4] = useState(null);
         const [message, setMessage] = useState(null);
-        const {state, dispatch} = useContext(StoreContext);
         const loading=useSelector((state)=>state.betting.loading)
         const [settings,] = useState(getFromLocalStorage("settings"));
         const stake_value=useSelector((state)=>state.data.stake_value)
         const [stake, setStake] = useState(jackpot ? parseInt(jackpotData?.bet_amount) : stake_value||getFromLocalStorage('userStake'));
 
-        const [stakeBoosted, setStakeBoosted] = useState(100);
 
         const [stakeAfterTax, setStakeAfterTax] = useState(0);
         const [stakeAfterTaxBoosted, setStakeAfterTaxBoosted] = useState(0);
 
         const [exciseTax, setExciseTax] = useState(0);
         const [exciseTaxBoosted, setExciseTaxBoosted] = useState(0);
+        const minStake=useSelector((state)=>state.betting.minStake)
+
 
         const [withholdingTax, setWithholdingTax] = useState(0);
         const [withholdingTaxBoosted, setWithholdingTaxBoosted] = useState(0);
@@ -198,15 +197,18 @@ const BetslipSubmitForm = React.memo(
         const betItem = getBetslip()
         const sportBookLimits = settings?.sportsBookLimits
         const betslipLength = Object.keys(betItem || {}).length;
+        // const gaEventTracker = useAnalyticsEventTracker(live ? 'PlaceLiveBet' : 'PlacePrematchBet')
+
 
         useEffect(() => {
-            dispatch({type: "SET", key: "betslipLength", payload: betslipLength});
+
+            dispatchRedux(setMatchBetslipOptions('betslipLength', betslipLength))
+
         }, [betslipLength])
 
-        const gaEventTracker = useAnalyticsEventTracker(live ? 'PlaceLiveBet' : 'PlacePrematchBet')
 
         const handlePlaceBet = (values,
-                                            {setSubmitting, resetForm, setStatus, setErrors}) => {
+                                {setSubmitting, resetForm, setStatus, setErrors}) => {
             let bs = Object.values(betslip || []);
 
             let slipHasOddsChange = false;
@@ -390,9 +392,14 @@ const BetslipSubmitForm = React.memo(
                 setStakeAfterTaxBoosted(stake_after_tax_boosted);
 
                 setNetWin(Float(nw, 2));
-                dispatch({type: "SET", key: "netWin", payload: Float(nw, 2)});
+
                 setNetWinBoosted(Float(nw_boosted, 2));
-                dispatch({type: "SET", key: "netWinBoosted", payload: Float(nw_boosted, 2)});
+                dispatchRedux(setMatchBetslipOptions('betslip_options', {...betslip_options,...{netWin:Float(nw,2),netWinBoosted:Float(nw_boosted,2) }}))
+
+
+                // dispatch({type: "SET", key: "netWinBoosted", payload: Float(nw_boosted, 2)});
+                // dispatchRedux(setMatchBetslipOptions('netWinBoosted', Float(nw_boosted,2)))
+
 
                 setPossibleWin(Float(raw_possible_win, 2));
                 setPossibleWinBoosted(Float(boosted_raw_possible_win, 2));
@@ -401,7 +408,9 @@ const BetslipSubmitForm = React.memo(
                 setWithholdingTaxBoosted(Float(wint_boosted, 2));
             } else {
                 setNetWin(0);
-                dispatch({type: "SET", key: "netWin", payload: 0})
+                dispatchRedux(setMatchBetslipOptions('betslip_options', {...betslip_options,...{netWin:0}}))
+
+
                 setWithholdingTax(0);
                 setExciseTax(0);
                 setPossibleWin(0);
@@ -508,7 +517,10 @@ const BetslipSubmitForm = React.memo(
 
             if (totalGames < giftMinGames) {
                 setHasMultiBetBoost(false);
-                dispatch({type: "SET", key: "hasBoost", payload: false});
+
+                dispatchRedux(setMatchBetslipOptions('betslip_options', {...betslip_options,...{hasBoost:false,  alert_slip_color:'not_qualified'}}))
+
+
             }
 
             let boost = 0;
@@ -531,7 +543,14 @@ const BetslipSubmitForm = React.memo(
             setAwardMultiGift(awardGifts);
             if (Number(giftQualificationOdds) < Number(giftMinGames)) {
                 let remainingGames = Number(giftMinGames) - Number(giftQualificationOdds);
-                dispatch({type: "SET", key: "remaining_games", payload: remainingGames});
+
+                dispatchRedux(setMatchBetslipOptions('betslip_options', {...betslip_options,...{remaining_games:remainingGames, hasBoost:false, alert_slip_color:'not_qualified', multiboostmessage: ` Add ${remainingGames} more game${
+                            remainingGames > 1 ? "s" : ""
+                        } with odds of  ${
+                            settings?.betnareGifts?.giftBoostMinOdds
+                        } or above to boost your winnings.`}}))
+
+
                 setMultiBoostMessage(
                     `Congratulations, you qualify for Nare Gift. Add ${remainingGames} more game${
                         remainingGames > 1 ? "s" : ""
@@ -541,18 +560,8 @@ const BetslipSubmitForm = React.memo(
                 );
 
                 setMultiBoostAmount(0)
-                dispatch({type: "SET", key: "hasBoost", payload: false});
 
 
-                dispatch({
-                    type: "SET",
-                    key: "multiboostmessage",
-                    payload: ` Add ${remainingGames} more game${
-                        remainingGames > 1 ? "s" : ""
-                    } with odds of  ${
-                        settings?.betnareGifts?.giftBoostMinOdds
-                    } or above to boost your winnings.`
-                });
 
             }
             else if (Number(giftQualificationOdds) >= Number(giftMinGames)) {
@@ -561,57 +570,51 @@ const BetslipSubmitForm = React.memo(
                     boost=0
                 }
 
-                if (boost > Number(settings?.betnareGifts?.maxGiftBoostAmount)) {
+                if (boost >= Number(settings?.betnareGifts?.maxGiftBoostAmount)) {
                     boost = Number(settings?.betnareGifts?.maxGiftBoostAmount);
                 }
                 if (boost >= 1) {
                     setMultiBoostAmount(boost);
                     setHasMultiBetBoost(true);
-                    dispatch({type: "SET", key: "hasBoost", payload: true});
+
                     let boostedStake = Number(stake) + Number(boost);
                     boostedStake = formatNumber(boostedStake);
+                    dispatchRedux(setMatchBetslipOptions('betslip_options', {...betslip_options,...{hasBoost:true, alert_slip_color: 'valid', remaining_games: 0, multiboostmessage:"Congratulations! we have gifted you KES " +
+                                boost +
+                                " on your stake. Your new stake is " +
+                                boostedStake }}))
                     setMultiBoostMessage(
                         "Congratulations! we have boosted you stake from KES " +
                         stake +
                         " to " +
                         boostedStake
                     );
-                    dispatch({type:"SET", ket:"alert_boost_color", payload:"valid"})
 
-                    dispatch({type: "SET", key: "remaining_games", payload: 0});
-
-
-                    dispatch({
-                        type: "SET", key: "multiboostmessage", payload: "Congratulations! we have gifted you KES " +
-                            boost +
-                            " on your stake. Your new stake is " +
-                            boostedStake
-                    })
 
                 }
                 else{
                     setMultiBoostAmount(boost);
                     setHasMultiBetBoost(true);
-                    dispatch({type: "SET", key: "hasBoost", payload: true});
+                    dispatchRedux(setMatchBetslipOptions('betslip_options', {...betslip_options,...{hasBoost:true,remaining_games: 0, alert_slip_color:'valid',multiboostmessage: "You Qualify for Nare Boost Minimum Stake is " +
+                                3 +
+                                " KES "  }}))
+
+
                     setMultiBoostMessage(
                         "You Qualify for a Nare Boost Minimum stake is " +
                         3 +
                         " KES "
                     );
-                    dispatch({type: "SET", key: "remaining_games", payload: 0});
-                    dispatch({type:"SET", ket:"alert_boost_color", payload:"invalid"})
 
 
-                    dispatch({
-                        type: "SET", key: "multiboostmessage", payload: "You Qualify for Nare Boost Minimum Stake is " +
-                            3 +
-                            " KES "
-                    })
                 }
             }
             else{
                 setMultiBoostAmount(0)
-                dispatch({type: "SET", key: "hasBoost", payload: false});
+
+                dispatchRedux(setMatchBetslipOptions('betslip_options', {...betslip_options,...{hasBoost:false, alert_slip_color:'not_qualified'}}))
+
+
                 setMultiBoostMessage("")
 
             }
@@ -623,9 +626,11 @@ const BetslipSubmitForm = React.memo(
         const show_share_modal=useSelector((state)=>state.matchesData.show_share_modal)
         const share_bet=useSelector((state)=>state.matchesData.share_bet)
         const loadingShare=useSelector((state)=>state.matchesData.loading_bet_history)
+
         const [showShareModal, setShowShareModal] = useState(false);
         const [betSharePayload, setBetSharePayload] = useState({});
         const show_deposit_modal=useSelector((state)=>state.betting.insufficient_balance)
+        const betslip_options=useSelector((state)=>state.betting.betslip_options)
         const [showDepositModal, setShowDepositModal] = useState(false);
 
         const dispatchRedux=useDispatch()
@@ -729,10 +734,12 @@ const BetslipSubmitForm = React.memo(
                             }
                             const minStake = sportBookLimits?.singleBetMinStake;
                             if (Number(value) < Number(minStake)) {
-                                dispatch({type: "SET", key: "minStake", payload: minStakeMessage});
+
+                                dispatchRedux(setMatchBetslipOptions('betslip_options', {...betslip_options,...{minStake:minStakeMessage}}))
                             } else {
-                                dispatch({type: "SET", key: "minStake", payload: null});
-                            }
+                                dispatchRedux(setMatchBetslipOptions('betslip_options', {...betslip_options,...{minStake:null}}))
+
+                                }
 
                             setFieldValue(field, newValue);
                             dispatchRedux(setState('stake_value', newValue))
@@ -812,7 +819,7 @@ const BetslipSubmitForm = React.memo(
                         <div>
                             {!jackpot && !message &&
                                 awardMultiGift &&
-                                Number(totalGames) > settings?.betnareBonus?.bonusBetLegs && (
+                                Number(totalGames) >= settings?.betnareBonus?.bonusBetLegs && (
                                     multiBoostMessage &&
                                     <div className={` slip-message-alert`}>
                                         <div colSpan="2" className={'d-flex col-2'} style={{width: '100%'}}>
@@ -910,8 +917,8 @@ const BetslipSubmitForm = React.memo(
                                         </div>
                                     </div>
                                     <div className={'w-100 justify-content-end p-1 d-flex min-skake-container'}>
-                                        {state?.minStake?.message && <span className={'min_stake_alert'}>
-                                                    {state?.minStake?.message}
+                                        {minStake?.message && <span className={'min_stake_alert'}>
+                                                    {minStake?.message}
                                                 </span>}
                                     </div>
                                     <br className={"ipad-show"}/>
@@ -956,8 +963,7 @@ const BetslipSubmitForm = React.memo(
                                                                 <span className="loader"></span>
                                                             </div>
                                                         ) : (
-                                                            <span>PLACE BET <FontAwesomeIcon icon={faFireAlt}/>
-</span>
+                                                            <span>PLACE BET <FontAwesomeIcon icon={faFireAlt}/></span>
                                                         )
                                                     }
                                                 ></SubmitButton>

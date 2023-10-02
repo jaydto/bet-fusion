@@ -14,31 +14,50 @@ import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {getBetslip, getJackpotBetslip, getKironSlip} from "../utils/betslip";
 import {StoreContext } from "../../context/store";
 import {LazyLoadImage} from "react-lazy-load-image-component";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {getFromLocalStorage} from "../utils/local-storage";
+import {setMatchBetslip, setState as setMatchBetslipOptions} from "../../redux/bettingSlice";
 
 const MobileMenu = React.memo((props) => {
 
     const betItems = getBetslip();
-    const {jackpot, kiron, jackpotData} = props;
+    const [kiron, setKiron]=useState()
+    const {state}=useContext((StoreContext))
+    const betslipLength=useSelector((state)=>state.betting.betslipLength)
+
     const [betSlipMobile, setBetSlipMobile] = useState(false);
     const gaEventTracker = useAnalyticsEventTracker("Navigation");
     const pathname = window.location.pathname;
-    const { state, dispatch } = useContext(StoreContext);
     const navigate = useNavigate();
     const liveCount=useSelector((state)=>state.matchesData.sport_live_count)
     const userData = useSelector((state) => state.auth.user)
     const [user, setUser] = useState(getFromLocalStorage("user"))
+    const remaining_games=useSelector((state)=>state.betting.remaining_games)
+    const betslip_options=useSelector((state)=>state.betting.betslip_options)
+    const dispatchRedux=useDispatch()
+
     useEffect(() => {
         if (userData) {
             setUser(userData || getFromLocalStorage("user"))
         }
     }, [userData])
+
     const [liveSports, setLiveSports] = useState()
+
     useEffect(()=>{
         setLiveSports(liveCount)
 
     },[liveCount])
+
+    useEffect(() => {
+        if(pathname.includes('nare')){
+            setKiron(true)
+        }else{
+            setKiron(false)
+        }
+
+    }, [pathname]);
+
 
     let totalCount = 0;
 
@@ -52,10 +71,10 @@ const MobileMenu = React.memo((props) => {
             sumOfOdds *= oddValue;
         }
     });
-    let winnings = sumOfOdds !== 0 ? (state?.hasBoost ? state?.netWinBoosted == 0 ? state?.netWin : state?.netWinBoosted : state?.netWin) : 0
-    let progressNow = state?.remaining_games;
+    let winnings = sumOfOdds !== 0 ? (betslip_options?.hasBoost ? betslip_options?.netWinBoosted == 0 ? betslip_options?.netWin : betslip_options?.netWinBoosted : betslip_options?.netWin) : 0
+    let progressNow = remaining_games;
     const percentageProgress = () => {
-        let remainingGames = state?.remaining_games;
+        let remainingGames = remaining_games;
         const boostRequirement = 4;
 
 
@@ -77,13 +96,11 @@ const MobileMenu = React.memo((props) => {
     useEffect(() => {
         if (sumOfOdds == 0) {
             winnings = 0
-            dispatch({type: "SET", key: "hasBoost", payload: false});
-            dispatch({type: "SET", key: "netWinBoost", payload: 0});
-            dispatch({type: "SET", key: "netWin", payload: 0});
-            dispatch({type: "SET", key: "multiboostmessage", payload: 0})
+            dispatchRedux(setMatchBetslipOptions('betslip_options', {...betslip_options,...{hasBoost:false, netWinBoosted: 0, netWin: 0, multiboostmessage: 0}}))
+
 
         } else {
-            winnings = sumOfOdds !== 0 ? (state?.hasBoost ? state?.netWinBoost == 0 ? state?.netWin : state?.netWinBoost : state?.netWin) : 0
+            winnings = sumOfOdds !== 0 ? (betslip_options?.hasBoost ? betslip_options?.netWinBoosted == 0 ? betslip_options?.netWin : betslip_options?.netWinBoosted : betslip_options?.netWin) : 0
         }
     }, [winnings])
     const pathSlipSummary = ["/betslip-slip",
@@ -98,9 +115,17 @@ const MobileMenu = React.memo((props) => {
         e.stopPropagation()
     }
 
-    const slip_condition = (!pathSlipSummary.includes(pathname) && state?.multiboostmessage && sumOfOdds > 1 && countInfo)
+    const slip_condition = (!pathSlipSummary.includes(pathname) && betslip_options?.multiboostmessage && sumOfOdds > 1 && countInfo)
+    const [flag, setFlag]=useState(true)
+    // cleanup/unmounting components fix
+    useEffect(()=>{
+        return ()=>{
+            setFlag(false)
+        }
+
+    },[])
     return (
-        <div>
+        flag?<div>
             <div
                 className={`fixed-bottom text-white d-block  shadow-lg betslip-container-mobile ${betSlipMobile ? "d-flex" : "d-none"}`}
                 style={{margin: "auto", marginBottom: "6.5rem"}}>
@@ -166,13 +191,8 @@ const MobileMenu = React.memo((props) => {
                                             pill
                                             bg="warning nav__betslip boost-message-count gap-3  d-flex justify-content-center align-items-center text-dark"
                                         >
-                                            {jackpot === true && jackpot != undefined || pathname == "/betslip-jackpot" ? getJackpotBetslip() != null ?
-                                                <strong>{Object.keys(getJackpotBetslip())?.length}</strong> : <strong
-                                                    className={'badge-font-weight'}>0</strong> : kiron == true || pathname == "/betslip-nare" ? getKironSlip() != null ? Object.keys(getKironSlip()).length :
-                                                <strong
-                                                    className={'badge-font-weight'}>0</strong> : getBetslip() ? Object.keys(betItems || {}).length <= 50 ?
-                                                <strong>{Object.keys(betItems || {}).length}</strong> :
-                                                <strong className={'badge-font-weight'}>50</strong> : <strong>0</strong>}
+                                            <strong className={'badge-font-weight'}>{kiron?state?.betslipKironLength:betslipLength}</strong>
+
                                         </Badge> <h4> <strong>Betslip</strong> </h4>
                                     </div>
 
@@ -202,7 +222,7 @@ const MobileMenu = React.memo((props) => {
                                                       color: "var(--dark)",
                                                       fontSize:"10px"
                                                   }}>
-								{state?.multiboostmessage}</span>
+								{betslip_options?.multiboostmessage}</span>
                                         </div>
                                     </div>
                                 </td>
@@ -256,21 +276,15 @@ const MobileMenu = React.memo((props) => {
                                 </td>
                                 <td className={` nav__betslip bloc-icon bet-slip-footer-toggle text-white`}>
                                     <Link to={{
-                                        pathname: `${jackpot ? "/betslip-jackpot" : kiron ? `/betslip-nare` : "/betslip-slip"}`,
-                                        search: `${jackpot !== undefined ? 'jackpot=' + jackpot : ''}${jackpotData !== undefined ? '&jackpotData=' + encodeURIComponent(JSON.stringify(jackpotData)) : ''}${kiron !== undefined ? 'nare-league=' + kiron : ''}`
+                                        pathname: `${ kiron ? `/betslip-nare` : "/betslip-slip"}`,
+                                        search: `${kiron !== undefined ? 'nare-league=' + kiron : ''}`
                                     }}>
                                         <Badge
                                             pill
                                             bg="warning nav__betslip d-flex justify-content-center align-items-center text-dark"
                                         >
+                                            <strong className={'badge-font-weight'}>{kiron?state?.betslipKironLength:betslipLength}</strong>
 
-                                            {jackpot === true && jackpot != undefined || pathname == "/betslip-jackpot" ? getJackpotBetslip() != null ?
-                                                <strong>{Object.keys(getJackpotBetslip())?.length}</strong> : <strong
-                                                    className={'badge-font-weight'}>0</strong> : kiron == true || pathname == "/betslip-nare" ? getKironSlip() != null ? Object.keys(getKironSlip()).length :
-                                                <strong
-                                                    className={'badge-font-weight'}>0</strong> : getBetslip() ? Object.keys(betItems || {}).length <= 50 ?
-                                                <strong>{Object.keys(betItems || {}).length}</strong> :
-                                                <strong className={'badge-font-weight'}>50</strong> : <strong>0</strong>}
                                         </Badge>
                                     </Link>
                                 </td>
@@ -317,6 +331,6 @@ const MobileMenu = React.memo((props) => {
 
 
             </table>
-        </div>);
+        </div>:null);
 });
 export default React.memo(MobileMenu);

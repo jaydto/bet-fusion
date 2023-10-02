@@ -817,10 +817,8 @@ const OddButton = React.memo(
 
                 if (referencedState === uc) {
                     setPicked("picked");
-                    // dispatchRedux(setPickedData("picked"));
                 } else {
                     setPicked("");
-                    // dispatchRedux(removePickedData(""));
                 }
 
             } else if (typeof referencedState !== "string") {

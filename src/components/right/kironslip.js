@@ -5,6 +5,7 @@ import {getFromLocalStorage} from "../utils/local-storage";
 import KironslipSubmitForm from "./kironslip-submit-form";
 import {Link, useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
+import useWindowDimensions from "../header/Dimensions";
 
 const clean_rep = (str) => {
     str = str.replace(/[^A-Za-z0-9\-]/g, "");
@@ -14,6 +15,7 @@ const clean_rep = (str) => {
 const KironSlip = React.memo(
     (props) => {
         const {kiron} = props;
+        const {width}=useWindowDimensions()
         const [betslipKey, setBetslipKey] = useState("kironbetslip");
         const [betslipsData, setBetslipsData] = useState(null);
         const { state, dispatch } = useContext(StoreContext);
@@ -104,7 +106,7 @@ const KironSlip = React.memo(
             dispatch({type: "SET", key: betslipKey, payload: betslip});
             dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
             if(Object.keys(betslip).length === 0){
-                navigate(-1)
+                width<991&&navigate(-1)
             }
         };
 

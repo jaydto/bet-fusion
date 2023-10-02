@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState} from 'react';
+import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
 import {Link, useNavigate} from "react-router-dom"
 import Row from 'react-bootstrap/Row';
 import {StoreContext} from "../../context/store";
@@ -15,9 +15,9 @@ import ListGroup from "react-bootstrap/ListGroup";
 import LoginSection from "./LoginSection";
 import {UserInfo} from "./UserInfo";
 import {useDispatch, useSelector} from "react-redux";
-import { setState} from "../../redux/dataSlice";
+import {configSettings, setState} from "../../redux/dataSlice";
 import { userBalance} from "../../redux/authSlice";
-import { matchesSearch} from "../../redux/matchesSlice";
+import {matchCategories, matchesSearch} from "../../redux/matchesSlice";
 import {
     checkDesktopTopNavigation,
     checkNavigation,
@@ -83,6 +83,74 @@ const Header = React.memo(
             dispatch({type: "SET", key: "searching", payload: false})
             setMatches([])
         }
+
+
+        const fetchData = async () => {
+            dispatchRedux(matchCategories())
+        };
+        const appConfigs = useSelector((state) => state.data.app_config)
+
+        const cleanUpFuctionSportCategories = async () => {
+            await fetchData();
+
+        }
+
+        const fetchAppConfigurations = useCallback(async () => {
+
+            let cached_settings = getFromLocalStorage('settings');
+
+            if (!cached_settings) {
+                dispatchRedux(configSettings())
+            }
+        })
+
+        const cleanUpFuction = async () => {
+            await fetchAppConfigurations();
+
+            // Custom function to clear settings from localStorage
+            // const clearLocalStorageSettings = () => {
+            //     localStorage.removeItem('settings');
+            //     // Manually call fetchAppConfigurations to update the settings
+            //     fetchAppConfigurations();
+            // };
+
+            // Listen for the "storage" event to detect changes in "settings" localStorage
+            const handleStorageChange = (event) => {
+                if (event.key === 'settings') {
+                    fetchAppConfigurations();
+                }
+            };
+
+            // Listen for "beforeunload" event to handle clearing localStorage in the same tab
+            // const handleBeforeUnload = () => {
+            //     clearLocalStorageSettings();
+            // };
+
+            window?.addEventListener('storage', handleStorageChange);
+            // window?.addEventListener('beforeunload', handleBeforeUnload);
+
+            return () => {
+                // Clean up the event listeners when the component unmounts
+                window?.removeEventListener('storage', handleStorageChange);
+                // window?.removeEventListener('beforeunload', handleBeforeUnload);
+
+            };
+        }
+
+
+        useEffect(() => {
+            if(getFromLocalStorage('settings')==undefined||appConfigs==undefined){
+                cleanUpFuction()
+            }
+
+        }, [getFromLocalStorage('settings'), appConfigs]);
+
+
+
+        useEffect(() => {
+                cleanUpFuctionSportCategories()
+
+        }, []);
 
 
 
@@ -155,17 +223,17 @@ const Header = React.memo(
                 {changeNav?<Header2/>:
                     <div className={'d-flex flex-column'}>
                     <div className={` optional-action ${showDownload ? 'd-none' : 'd-flex'}`}>
-                        <Link to={'/deposit?utm_source=mega-match-bonus'}
+                        <Link to={'/deposit?utm_source=chomoka-na-nduthi'}
                               target={"_self"}
                               title={''}
                               className={"lite-top d-flex flex-column"}
                               onClick={() => {
-                                  gaEventTracker('Mia Sita Hamusini Promotion');
+                                  gaEventTracker('Chomoka na Nduthi Promotion');
                               }}>
                             <div className={"app-download-link  d-flex flex-column"}>
-                                   <span className={"color-app-text flashy"}>Deposit
-                                       <strong style={{color: 'var(--gold'}}> 500/=</strong>  get
-                                       <strong style={{color: 'var(--gold'}}> 500/= </strong>Free Bonus!
+                                   <span className={"color-app-text flashy"}>
+                                       <strong style={{color: 'var(--gold'}}> Chomoka</strong>   na
+                                       <strong style={{color: 'var(--gold'}}> Nduthi </strong> Promotion !!!
                                    </span>
                             </div>
                         </Link>

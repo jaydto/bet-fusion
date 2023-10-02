@@ -3,10 +3,8 @@ import './test.css'
 import {useParams} from "react-router-dom";
 import {getBetslip} from "./utils/betslip";
 
-
 import {MarketList} from "./matches";
-import LiveSideBar from "./sidebar/live-sidebar";
-import {ToastContainer} from "react-toastify";
+
 import {
     favoriteMarkets,
     matchesMoreLiveMarkets,
@@ -21,9 +19,6 @@ import {setMatchBetslip, setSelected} from "../redux/bettingSlice";
 import {getFromLocalStorage} from "./utils/local-storage";
 import SkeletonLoaderMore from "./pages/skeletonLoadersWeb/SkeletonLoaderMore";
 
-const Footer = React.lazy(() => import('./footer/footer'));
-const Right = React.lazy(() => import('./right'));
-const SideBar = React.lazy(() => import('./sidebar/awesome/Sidebar'))
 const AllMarkets = React.memo(
     (props) => {
         const [allMarkets, ] = useState(true)

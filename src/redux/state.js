@@ -1,6 +1,7 @@
 const initialState = {
     data: {
         show_menu:false,
+        bet_history_details:false,
         navigation_link:null,
         print_title:'highlights',
         leader_board:null,
@@ -48,6 +49,15 @@ const initialState = {
         slip:null,
         betslip:null,
         jackpotbestlip:null,
+        minStake:null,
+        betslipLength:0,
+        netWin:0,
+        netWinBoosted:0,
+        hasBoost:false,
+        remaining_games:0,
+        multiboostmessage:null,
+        alert_boost_color:'',
+        betslip_options:null,
     },// Initial state for the betting Slice reducer
     auth: {
         isLoading: false,

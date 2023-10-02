@@ -314,6 +314,13 @@ a.text-logout{
     border-radius: 10px;
 }
 @media (max-width: 991px){
+    .content {
+        margin-top: 4rem!important;
+        top: 10rem;
+        position: sticky;
+        width: 100%;
+        height: 100%;
+    }
     .promo-active-profile-img {
 
         max-height: 120px;
@@ -327,14 +334,6 @@ a.text-logout{
     }
     .title-promo{
         font-weight:var(--font-weight2);
-    }
-    .content{
-        margin-top:3rem!important;
-        top: 10rem;
-        position: sticky;
-        width: 100%;
-        height: 100%;
-
     }
     .user-profile {
         height: 42px!important;

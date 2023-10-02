@@ -1,6 +1,6 @@
 import "./bethistory.css"
-import React, { useContext, useEffect, useState} from "react";
-import {StoreContext } from "../../../../context/store"
+import React, {useContext, useEffect, useState} from "react";
+import {StoreContext} from "../../../../context/store"
 
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft, faCaretDown} from "@fortawesome/free-solid-svg-icons";
@@ -14,10 +14,12 @@ import {faXbox} from "@fortawesome/free-brands-svg-icons";
 import {useDispatch, useSelector} from "react-redux";
 import {betHistoryDetails, fullBetDetails, setFetching} from "../../../../redux/matchesSlice";
 import SkeletonLoaderMore from "../../skeletonLoadersWeb/SkeletonLoaderMore";
+import {setState} from "../../../../redux/dataSlice";
 
 const BetHistory = () => {
-    const { state, dispatch } = useContext(StoreContext);
-    const dispatchRedux=useDispatch()
+    const {state, dispatch} = useContext(StoreContext);
+    const dispatchRedux = useDispatch()
+    const bet_history_details = useSelector((state) => state.data.bet_history_details)
 
     const fetchData = async () => {
         dispatchRedux(fullBetDetails())
@@ -25,12 +27,13 @@ const BetHistory = () => {
     };
 
     useEffect(() => {
-        const abort=new AbortController()
+        const abort = new AbortController()
         fetchData();
         dispatchRedux(setFetching("fetching", true))
-        return ()=>{
-            dispatch({type: "SET", key: "bet_history_details", payload: false});
-            setLocalStorage("bet_history_details",null)
+        return () => {
+            // dispatch({type: "SET", key: "bet_history_details", payload: false});
+            dispatchRedux(setState('bet_history_details', false))
+            // setLocalStorage("bet_history_details",null)
             abort.abort()
         }
     }, []);
@@ -47,11 +50,11 @@ const BetHistory = () => {
 
 
     const PageBody = () => {
-        const { state, dispatch } = useContext(StoreContext);
-        const dispatchRedux=useDispatch()
+        const {state, dispatch} = useContext(StoreContext);
+        const dispatchRedux = useDispatch()
 
         const CancelBetMarkup = (props) => {
-            const { bet_id, can_cancel, created } = props;
+            const {bet_id, can_cancel, created} = props;
             const [countdown, setCountdown] = useState(null);
             let cancelEndTime;
             let interval;
@@ -105,19 +108,19 @@ const BetHistory = () => {
                 return `${minutes}m ${seconds}s`;
             };
 
-            if (can_cancel && countdown && bet_id+"cancel_rq"!==getFromLocalStorage("bet_history_status")) {
+            if (can_cancel && countdown && bet_id + "cancel_rq" !== getFromLocalStorage("bet_history_status")) {
                 return (
                     <div className="col d-flex">
                         Cancel will End in: {countdown}
                     </div>
                 );
-            }else if(bet_id+"cancel_rq"===getFromLocalStorage("bet_history_status") && countdown){
-               return(
-                   <div className="col badge bg-dark rounded-4">
-                       CANCEL RQ
-                   </div>
-               )
-            }else {
+            } else if (bet_id + "cancel_rq" === getFromLocalStorage("bet_history_status") && countdown) {
+                return (
+                    <div className="col badge bg-dark rounded-4">
+                        CANCEL RQ
+                    </div>
+                )
+            } else {
                 return (
                     <div className="col badge bg-dark rounded-4">
                         PENDING
@@ -127,34 +130,35 @@ const BetHistory = () => {
         };
 
         const swap = (bet_id) => {
-            dispatch({type: "SET", key: "bet_history_details", payload: bet_id});
+            // dispatch({type: "SET", key: "bet_history_details", payload: bet_id});
+            dispatchRedux(setState('bet_history_details', bet_id))
             dispatchRedux(setFetching("fetching", true))
-            const payload={
-                "bet_id":bet_id
+            const payload = {
+                "bet_id": bet_id
             }
             dispatchRedux(betHistoryDetails(payload))
-            setLocalStorage("bet_history_details",bet_id)
+            // setLocalStorage("bet_history_details",bet_id)
         }
-        const mybets_data=useSelector((state)=>state.matchesData.full_bet_details)
-        const [mybets, setMybets] = useState(state?.filteredHistoryGames || state?.bets_by_date|| mybets_data)
+        const mybets_data = useSelector((state) => state.matchesData.full_bet_details)
+        const [mybets, setMybets] = useState(state?.filteredHistoryGames || state?.bets_by_date || mybets_data)
 
-        useEffect(()=>{
+        useEffect(() => {
 
-            if(state?.filteredHistoryGames){
-                if(!state?.bets_by_date) {
+            if (state?.filteredHistoryGames) {
+                if (!state?.bets_by_date) {
                     setMybets(state?.filteredHistoryGames)
-                }else{
-                        setMybets(state?.bets_by_date)
-            }
-            }else{
-                if(!state?.bets_by_date) {
+                } else {
+                    setMybets(state?.bets_by_date)
+                }
+            } else {
+                if (!state?.bets_by_date) {
                     setMybets(mybets_data)
-                }else{
+                } else {
                     setMybets(state?.bets_by_date)
                 }
             }
 
-        },[state?.filteredHistoryGames,state?.bets_by_date,getFromLocalStorage("bet_history_filter_category"),state?.selected_filter_category])
+        }, [state?.filteredHistoryGames, state?.bets_by_date, getFromLocalStorage("bet_history_filter_category"), state?.selected_filter_category])
 
 
         return (
@@ -168,7 +172,7 @@ const BetHistory = () => {
                                 #{bet?.bet_id}
                             </div>
                             <div className={"bet-history-items games badge "}>
-                                 <FontAwesomeIcon icon={faXbox}/>&nbsp;{bet?.total_matches}
+                                <FontAwesomeIcon icon={faXbox}/>&nbsp;{bet?.total_matches}
                             </div>
                             <div className={"bet-history-items amount"}>
                                 KES {bet?.bet_amount}
@@ -180,16 +184,17 @@ const BetHistory = () => {
                                 {bet?.created}
                             </div>
                             <div className={"bet-history-items status"}>
-                            { bet?.can_cancel == 0?<span
-                                className={` badge  ${bet?.status_desc == "LOST" ? "bg-dark text-warning" : bet?.status_desc == "WON" ? "bg-success" : bet?.status_desc == "PENDING" ? "bg-dark " : ""}`}
-                                style={{
-                                    color: "white",
-                                    marginTop: "10px",
-                                    borderRadius: "7px",
-                                    marginLeft: "1px",
-                                    padding: "2.9px 9px "
-                                }}>{bet?.status_desc == "LOST" ? "NOT WON" : bet?.status_desc}
-                              </span>:<CancelBetMarkup bet_id={bet?.bet_id} can_cancel={bet?.can_cancel} created={bet?.created}/>}
+                                {bet?.can_cancel == 0 ? <span
+                                    className={` badge  ${bet?.status_desc == "LOST" ? "bg-dark text-warning" : bet?.status_desc == "WON" ? "bg-success" : bet?.status_desc == "PENDING" ? "bg-dark " : ""}`}
+                                    style={{
+                                        color: "white",
+                                        marginTop: "10px",
+                                        borderRadius: "7px",
+                                        marginLeft: "1px",
+                                        padding: "2.9px 9px "
+                                    }}>{bet?.status_desc == "LOST" ? "NOT WON" : bet?.status_desc}
+                              </span> : <CancelBetMarkup bet_id={bet?.bet_id} can_cancel={bet?.can_cancel}
+                                                         created={bet?.created}/>}
                             </div>
 
                         </div>
@@ -200,10 +205,11 @@ const BetHistory = () => {
     }
 
     const navigateBack = () => {
-        if (state?.bet_history_details||getFromLocalStorage("bet_history_details")) {
-            dispatch({type: "SET", key: "bet_history_details", payload: false});
-            setLocalStorage("bet_history_details",null)
-        } else if (state?.bet_history_details === false || state?.bet_history_details === null || state?.bet_history_details === undefined||getFromLocalStorage("bet_history_details")===null||getFromLocalStorage("bet_history_details")===undefined) {
+        if (bet_history_details) {
+            // dispatch({type: "SET", key: "bet_history_details", payload: false});
+            dispatchRedux(setState('bet_history_details', false))
+            // setLocalStorage("bet_history_details",null)
+        } else if (bet_history_details === false || bet_history_details === null || bet_history_details === undefined) {
             window.history.back()
         }
 
@@ -216,16 +222,16 @@ const BetHistory = () => {
         }
     };
 
-    const [hideLost, setHideLost] = useState( getFromLocalStorage("remove_lost_bets")||false)
+    const [hideLost, setHideLost] = useState(getFromLocalStorage("remove_lost_bets") || false)
     const [showGameFilter, setShowGameFilter] = useState(false)
 
     const onSwitchChange = (e) => {
         setLocalStorage("remove_lost_bets", e?.target?.checked)
         setHideLost(e?.target?.checked)
     }
-    const mybets=useSelector((state)=>state.matchesData.full_bet_details)
+    const mybets = useSelector((state) => state.matchesData.full_bet_details)
 
-    const fetching=useSelector((state)=>state.matchesData.fetching)
+    const fetching = useSelector((state) => state.matchesData.fetching)
 
     const isSameDate = (date1, date2) => {
         return (
@@ -236,20 +242,20 @@ const BetHistory = () => {
     };
     // const currentDate = new Date();
     const filterGames = () => {
-        if (state?.selected_filter_category||getFromLocalStorage("bet_history_filter_category")) {
+        if (state?.selected_filter_category || getFromLocalStorage("bet_history_filter_category")) {
             // const filteredBets=state?.filteredHistoryGames?state?.filteredHistoryGames:mybets
-            let filteredGames =  mybets;
+            let filteredGames = mybets;
             const lost_history = getFromLocalStorage("remove_lost_bets") || hideLost;
 
             if (lost_history) {
                 filteredGames = filteredGames?.filter((game) => game?.status_desc !== 'LOST');
-                dispatch({ type: "SET", key: "filteredHistoryGames", payload: filteredGames });
+                dispatch({type: "SET", key: "filteredHistoryGames", payload: filteredGames});
             } else {
-                dispatch({ type: "SET", key: "filteredHistoryGames", payload: null });
+                dispatch({type: "SET", key: "filteredHistoryGames", payload: null});
             }
 
             if (state?.selected_filter_category) {
-                const filteredGames =  mybets;
+                const filteredGames = mybets;
                 const lostHistory = getFromLocalStorage("remove_lost_bets") || hideLost;
 
                 let filteredGamesByDate;
@@ -272,10 +278,9 @@ const BetHistory = () => {
                             const yesterday = new Date(currentDate);
                             yesterday.setDate(currentDate.getDate() - 1);
                             return isSameDate(createdDate, yesterday);
-                        }else if (state?.selected_filter_category === 'open') {
+                        } else if (state?.selected_filter_category === 'open') {
                             return game?.status_desc === 'PENDING';
-                        }
-                        else if (state?.selected_filter_category === 'week') {
+                        } else if (state?.selected_filter_category === 'week') {
                             const oneWeekAgo = new Date(currentDate);
                             oneWeekAgo.setDate(currentDate.getDate() - 7);
                             return createdDate >= oneWeekAgo && createdDate <= currentDate;
@@ -295,7 +300,7 @@ const BetHistory = () => {
                     });
                 }
 
-                dispatch({ type: "SET", key: "bets_by_date", payload: filteredGamesByDate });
+                dispatch({type: "SET", key: "bets_by_date", payload: filteredGamesByDate});
 
             }
         } else {
@@ -341,10 +346,10 @@ const BetHistory = () => {
                                                                         games={mybets}
                                                                         setShowGameFilter={setShowGameFilter}/>}
                                     <PageTitle/>
-                                    {fetching?<div className={`text-center mt-2 text-white d-block`}>
+                                    {fetching ? <div className={`text-center mt-2 text-white d-block`}>
                                         <SkeletonLoaderMore/>
-                                    </div>:<>
-                                        {!state?.bet_history_details == false || getFromLocalStorage("bet_history_details") == null &&
+                                    </div> : <>
+                                        {bet_history_details == false &&
                                             <div
                                                 className="d-flex w-100 justify-content-between filter-buttons-bethistory px-4">
                                                 <div className={"filters button-filter text-capitalize"}
@@ -352,23 +357,24 @@ const BetHistory = () => {
                                                     {(state?.selected_filter_category) || "All"}&nbsp;<FontAwesomeIcon
                                                     icon={faCaretDown}/>
                                                 </div>
-                                                {state?.selected_filter_category !== 'open'&&<div className={"filters"}>
+                                                {state?.selected_filter_category !== 'open' &&
+                                                    <div className={"filters"}>
 
-                                                    <div className={"odd-change-position"}>
-                                                        <Switch id={"hide_all_lost_bets"} {...label}
-                                                                className="slip-change-box"
-                                                                name={"hide_all_lost_bets"}
-                                                                checked={hideLost || false}
-                                                                color="primary"
-                                                                onChange={(e) => onSwitchChange(e)}/> {hideLost ? "Show " : "Hide "} lost
-                                                        bets
+                                                        <div className={"odd-change-position"}>
+                                                            <Switch id={"hide_all_lost_bets"} {...label}
+                                                                    className="slip-change-box"
+                                                                    name={"hide_all_lost_bets"}
+                                                                    checked={hideLost || false}
+                                                                    color="primary"
+                                                                    onChange={(e) => onSwitchChange(e)}/> {hideLost ? "Show " : "Hide "} lost
+                                                            bets
 
-                                                    </div>
-                                                </div>}
+                                                        </div>
+                                                    </div>}
                                             </div>}
-                                        {state?.bet_history_details ?
+                                        {bet_history_details ?
                                             <BetDetails
-                                                bet_id={state?.bet_history_details || getFromLocalStorage("bet_history_details")}/> :
+                                                bet_id={bet_history_details}/> :
                                             <PageBody/>
                                         }
                                     </>}

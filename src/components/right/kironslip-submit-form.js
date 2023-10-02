@@ -430,7 +430,7 @@ const KironslipSubmitForm = React.memo(
             if (!values.user_id) {
                 errors.user_id = "Kindly login to proceed";
                 setMessage({status: 400, message: errors.user_id});
-                return errors;
+                return navigate('/login');
             }
 
             if (!values.bet_amount || values.bet_amount < 1) {

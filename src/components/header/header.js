@@ -233,7 +233,7 @@ const Header = React.memo(
                             <div className={"app-download-link  d-flex flex-column"}>
                                    <span className={"color-app-text flashy"}>
                                        <strong style={{color: 'var(--gold'}}> Chomoka</strong>   na
-                                       <strong style={{color: 'var(--gold'}}> Nduthi </strong>
+                                       <strong style={{color: 'var(--gold'}}> Nduthi </strong> Promotion !!!
                                    </span>
                             </div>
                         </Link>

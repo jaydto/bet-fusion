@@ -21,8 +21,7 @@ import {setMatchBetslip, setState as setMatchBetslipOptions} from "../../redux/b
 const MobileMenu = React.memo((props) => {
 
     const betItems = getBetslip();
-    const [beslipItems,setBetSliptems]=useState()
-    const {kiron} = props;
+    const [kiron, setKiron]=useState()
     const {state}=useContext((StoreContext))
     const betslipLength=useSelector((state)=>state.betting.betslipLength)
 
@@ -50,13 +49,15 @@ const MobileMenu = React.memo((props) => {
 
     },[liveCount])
 
-    useEffect(()=>{
-        if(kiron||pathname.includes('betslip-nare')){
-            setBetSliptems(getFromLocalStorage('kironbetslip'))
+    useEffect(() => {
+        if(pathname.includes('nare')){
+            setKiron(true)
         }else{
-            setBetSliptems(getBetslip())
+            setKiron(false)
         }
-    },[getFromLocalStorage('kironbetslip'), kiron, getBetslip(), pathname])
+
+    }, [pathname]);
+
 
     let totalCount = 0;
 
@@ -115,8 +116,16 @@ const MobileMenu = React.memo((props) => {
     }
 
     const slip_condition = (!pathSlipSummary.includes(pathname) && betslip_options?.multiboostmessage && sumOfOdds > 1 && countInfo)
+    const [flag, setFlag]=useState(true)
+    // cleanup/unmounting components fix
+    useEffect(()=>{
+        return ()=>{
+            setFlag(false)
+        }
+
+    },[])
     return (
-        <div>
+        flag?<div>
             <div
                 className={`fixed-bottom text-white d-block  shadow-lg betslip-container-mobile ${betSlipMobile ? "d-flex" : "d-none"}`}
                 style={{margin: "auto", marginBottom: "6.5rem"}}>
@@ -322,6 +331,6 @@ const MobileMenu = React.memo((props) => {
 
 
             </table>
-        </div>);
+        </div>:null);
 });
 export default React.memo(MobileMenu);

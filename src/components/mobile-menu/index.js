@@ -23,6 +23,9 @@ const MobileMenu = React.memo((props) => {
     const betItems = getBetslip();
     const [beslipItems,setBetSliptems]=useState()
     const {kiron} = props;
+    const {state}=useContext((StoreContext))
+    const betslipLength=useSelector((state)=>state.betting.betslipLength)
+
     const [betSlipMobile, setBetSlipMobile] = useState(false);
     const gaEventTracker = useAnalyticsEventTracker("Navigation");
     const pathname = window.location.pathname;
@@ -179,9 +182,8 @@ const MobileMenu = React.memo((props) => {
                                             pill
                                             bg="warning nav__betslip boost-message-count gap-3  d-flex justify-content-center align-items-center text-dark"
                                         >
-                                            { !kiron ?
-                                                Object.keys(beslipItems || {}).length <= 50 ? <strong>{Object.keys(beslipItems || {}).length}</strong> :
-                                                    <strong className={'badge-font-weight'}>50</strong> : <strong>{Object.keys(beslipItems || {}).length}</strong>}
+                                            <strong className={'badge-font-weight'}>{kiron?state?.betslipKironLength:betslipLength}</strong>
+
                                         </Badge> <h4> <strong>Betslip</strong> </h4>
                                     </div>
 
@@ -272,9 +274,8 @@ const MobileMenu = React.memo((props) => {
                                             pill
                                             bg="warning nav__betslip d-flex justify-content-center align-items-center text-dark"
                                         >
-                                            { !kiron ?
-                                                Object.keys(beslipItems || {}).length <= 50 ? <strong>{Object.keys(beslipItems || {}).length}</strong> :
-                                                <strong className={'badge-font-weight'}>50</strong> : <strong>{Object.keys(beslipItems || {}).length}</strong>}
+                                            <strong className={'badge-font-weight'}>{kiron?state?.betslipKironLength:betslipLength}</strong>
+
                                         </Badge>
                                     </Link>
                                 </td>

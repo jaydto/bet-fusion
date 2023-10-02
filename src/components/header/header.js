@@ -223,17 +223,17 @@ const Header = React.memo(
                 {changeNav?<Header2/>:
                     <div className={'d-flex flex-column'}>
                     <div className={` optional-action ${showDownload ? 'd-none' : 'd-flex'}`}>
-                        <Link to={'/deposit?utm_source=mega-match-bonus'}
+                        <Link to={'/deposit?utm_source=chomoka-na-nduthi'}
                               target={"_self"}
                               title={''}
                               className={"lite-top d-flex flex-column"}
                               onClick={() => {
-                                  gaEventTracker('Mia Sita Hamusini Promotion');
+                                  gaEventTracker('Chomoka na Nduthi Promotion');
                               }}>
                             <div className={"app-download-link  d-flex flex-column"}>
-                                   <span className={"color-app-text flashy"}>Deposit
-                                       <strong style={{color: 'var(--gold'}}> 500/=</strong>  get
-                                       <strong style={{color: 'var(--gold'}}> 500/= </strong>Free Bonus!
+                                   <span className={"color-app-text flashy"}>
+                                       <strong style={{color: 'var(--gold'}}> Chomoka</strong>   na
+                                       <strong style={{color: 'var(--gold'}}> Nduthi </strong>
                                    </span>
                             </div>
                         </Link>

@@ -86,16 +86,9 @@ const Header = React.memo(
 
 
         const fetchData = async () => {
-            let cached_categories = getFromLocalStorage('sport_categories');
-
-            if (!cached_categories || cached_categories?.all_sports?.length === 0) {
-                dispatchRedux(matchCategories())
-            }
-
+            dispatchRedux(matchCategories())
         };
         const appConfigs = useSelector((state) => state.data.app_config)
-        const sport_categories = useSelector((state) => state.matchesData.sport_categories)
-
 
         const cleanUpFuctionSportCategories = async () => {
             await fetchData();
@@ -155,11 +148,9 @@ const Header = React.memo(
 
 
         useEffect(() => {
-            if (sport_categories?.all_sports?.length === 0|| sport_categories===null) {
                 cleanUpFuctionSportCategories()
-            }
 
-        }, [sport_categories, getFromLocalStorage('sport_categories')]);
+        }, []);
 
 
 

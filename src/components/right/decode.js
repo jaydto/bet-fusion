@@ -47,14 +47,14 @@ const DecodeCode = React.memo(
                     <div className="card card-radius decode-bg text-light p-0 mt-2">
                         <div className="card-body p-3" style={{overflow: "hidden"}}>
                             <form>
-                                <div className="form-group row d-flex justify-content-center ">
+                                <div className="form-group w-100 d-flex justify-content-center ">
                                     <div className="col-md-12">
                                         <label className={"text-bold h4 text-center mb-4"}> Enter betslip share code to
                                             load
                                             betslip </label>
-                                        <div className={"d-flex flex-column"}>
+                                        <div className={"d-flex flex-column w-100"}>
                                             <input
-                                                className="text-dark deposit-input form-control col input-field-decode"
+                                                className="text-dark deposit-input form-control col input-field-decode w-100"
                                                 id="code"
                                                 ref={inputRef}
                                                 onChange={(e) => handleChanges(e)}
@@ -64,9 +64,9 @@ const DecodeCode = React.memo(
                                                 style={{borderRadius: "0.3rem"}}
                                                 placeholder='eg. PWXfsxR'
                                             />
-                                            <div className="form-group row d-flex justify-content-left col mt-4"
+                                            <div className="form-group w-100 d-flex justify-content-left col mt-4"
                                                  style={{whiteSpace: "nowrap"}}>
-                                                <div className=" d-flex align-items-start">
+                                                <div className=" d-flex align-items-start w-100">
                                                     <button type={"button"} onClick={() => handleslip(code)}
                                                             disabled={loading}
                                                             className='btn btn-lg  w-100 deposit-withdraw-button  d-flex align-items-center justify-content-center'

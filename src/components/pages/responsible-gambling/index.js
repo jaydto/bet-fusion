@@ -8,7 +8,6 @@ import {
 } from 'react-accessible-accordion';
 import 'react-accessible-accordion/dist/fancy-example.css';
 import useWindowDimensions from "../../header/Dimensions";
-import {StoreContext} from "../../../context/store"
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import SelfExclusion from "../Accounts/component/SelfExclusion";
@@ -25,9 +24,19 @@ const Right = React.lazy(() => import('../../right/index'));
 const ResponsibleGambling = React.memo(
     () => {
         const {width} = useWindowDimensions();
-        const {state} = useContext(StoreContext);
         const navigate = useNavigate()
         const [activeTab, setActiveTab] = useState('responsible_gambling');
+        const userData = useSelector((state) => state.auth.user)
+        const [user, setUser] = useState(getFromLocalStorage("user"))
+        useEffect(() => {
+            if (userData) {
+                setUser(userData || getFromLocalStorage("user"))
+            }
+        }, [userData])
+
+        // Extract the fragment identifier
+        var fragmentIdentifier = window.location.hash;
+
         const handleTabSelect = (eventKey) => {
             setActiveTab(eventKey);
         }
@@ -37,13 +46,17 @@ const ResponsibleGambling = React.memo(
                 behavior: 'smooth'
             });
         }, []);
-        const userData = useSelector((state) => state.auth.user)
-        const [user, setUser] = useState(getFromLocalStorage("user"))
-        useEffect(() => {
-            if (userData) {
-                setUser(userData || getFromLocalStorage("user"))
+
+        useEffect(()=>{
+            if(fragmentIdentifier){
+                setActiveTab('self_exclusion');
             }
-        }, [userData])
+        },[fragmentIdentifier])
+
+
+        console.log('fragment', fragmentIdentifier)
+        console.log('tab', activeTab)
+
         return (
             <>
                 <div className={(width <= 575 ? user ? "user_logged responsible-gambling" : "amt" : "amt")}>
@@ -257,7 +270,7 @@ const ResponsibleGambling = React.memo(
                                             </Accordion>
                                         </div>
                                     </Tab>
-                                    <Tab eventKey="self_exclusinon" title="Self Exclusioin"
+                                    <Tab eventKey="self_exclusion" title="Self Exclusioin" id={'self_exclusion'}
                                          className={'background-primary'}>
                                         <SelfExclusion/>
                                     </Tab>

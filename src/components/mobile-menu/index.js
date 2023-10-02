@@ -21,7 +21,8 @@ import {setMatchBetslip, setState as setMatchBetslipOptions} from "../../redux/b
 const MobileMenu = React.memo((props) => {
 
     const betItems = getBetslip();
-    const {jackpot, kiron, jackpotData} = props;
+    const [beslipItems,setBetSliptems]=useState()
+    const {kiron} = props;
     const [betSlipMobile, setBetSlipMobile] = useState(false);
     const gaEventTracker = useAnalyticsEventTracker("Navigation");
     const pathname = window.location.pathname;
@@ -38,11 +39,21 @@ const MobileMenu = React.memo((props) => {
             setUser(userData || getFromLocalStorage("user"))
         }
     }, [userData])
+
     const [liveSports, setLiveSports] = useState()
+
     useEffect(()=>{
         setLiveSports(liveCount)
 
     },[liveCount])
+
+    useEffect(()=>{
+        if(kiron||pathname.includes('betslip-nare')){
+            setBetSliptems(getFromLocalStorage('kironbetslip'))
+        }else{
+            setBetSliptems(getBetslip())
+        }
+    },[getFromLocalStorage('kironbetslip'), kiron, getBetslip(), pathname])
 
     let totalCount = 0;
 
@@ -168,13 +179,9 @@ const MobileMenu = React.memo((props) => {
                                             pill
                                             bg="warning nav__betslip boost-message-count gap-3  d-flex justify-content-center align-items-center text-dark"
                                         >
-                                            {jackpot === true && jackpot != undefined || pathname == "/betslip-jackpot" ? getJackpotBetslip() != null ?
-                                                <strong>{Object.keys(getJackpotBetslip())?.length}</strong> : <strong
-                                                    className={'badge-font-weight'}>0</strong> : kiron == true || pathname == "/betslip-nare" ? getKironSlip() != null ? Object.keys(getKironSlip()).length :
-                                                <strong
-                                                    className={'badge-font-weight'}>0</strong> : getBetslip() ? Object.keys(betItems || {}).length <= 50 ?
-                                                <strong>{Object.keys(betItems || {}).length}</strong> :
-                                                <strong className={'badge-font-weight'}>50</strong> : <strong>0</strong>}
+                                            { !kiron ?
+                                                Object.keys(beslipItems || {}).length <= 50 ? <strong>{Object.keys(beslipItems || {}).length}</strong> :
+                                                    <strong className={'badge-font-weight'}>50</strong> : <strong>{Object.keys(beslipItems || {}).length}</strong>}
                                         </Badge> <h4> <strong>Betslip</strong> </h4>
                                     </div>
 
@@ -258,21 +265,16 @@ const MobileMenu = React.memo((props) => {
                                 </td>
                                 <td className={` nav__betslip bloc-icon bet-slip-footer-toggle text-white`}>
                                     <Link to={{
-                                        pathname: `${jackpot ? "/betslip-jackpot" : kiron ? `/betslip-nare` : "/betslip-slip"}`,
-                                        search: `${jackpot !== undefined ? 'jackpot=' + jackpot : ''}${jackpotData !== undefined ? '&jackpotData=' + encodeURIComponent(JSON.stringify(jackpotData)) : ''}${kiron !== undefined ? 'nare-league=' + kiron : ''}`
+                                        pathname: `${ kiron ? `/betslip-nare` : "/betslip-slip"}`,
+                                        search: `${kiron !== undefined ? 'nare-league=' + kiron : ''}`
                                     }}>
                                         <Badge
                                             pill
                                             bg="warning nav__betslip d-flex justify-content-center align-items-center text-dark"
                                         >
-
-                                            {jackpot === true && jackpot != undefined || pathname == "/betslip-jackpot" ? getJackpotBetslip() != null ?
-                                                <strong>{Object.keys(getJackpotBetslip())?.length}</strong> : <strong
-                                                    className={'badge-font-weight'}>0</strong> : kiron == true || pathname == "/betslip-nare" ? getKironSlip() != null ? Object.keys(getKironSlip()).length :
-                                                <strong
-                                                    className={'badge-font-weight'}>0</strong> : getBetslip() ? Object.keys(betItems || {}).length <= 50 ?
-                                                <strong>{Object.keys(betItems || {}).length}</strong> :
-                                                <strong className={'badge-font-weight'}>50</strong> : <strong>0</strong>}
+                                            { !kiron ?
+                                                Object.keys(beslipItems || {}).length <= 50 ? <strong>{Object.keys(beslipItems || {}).length}</strong> :
+                                                <strong className={'badge-font-weight'}>50</strong> : <strong>{Object.keys(beslipItems || {}).length}</strong>}
                                         </Badge>
                                     </Link>
                                 </td>

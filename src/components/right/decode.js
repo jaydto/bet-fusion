@@ -48,7 +48,7 @@ const DecodeCode = React.memo(
                         <div className="card-body p-3" style={{overflow: "hidden"}}>
                             <form>
                                 <div className="form-group w-100 d-flex justify-content-center ">
-                                    <div className="col-md-12">
+                                    <div className="col-md-12 w-100">
                                         <label className={"text-bold h4 text-center mb-4"}> Enter betslip share code to
                                             load
                                             betslip </label>

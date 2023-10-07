@@ -66,6 +66,35 @@ export const matchesSearch =
                 throw new Error(response?.error || "Search failed");
             }
         });
+export const betCashout =
+    createAsyncThunk("matches/betCashout",
+        async (cashout_payload) => {
+            const [status, response] = await makeRequest({
+                url: '/v1/cashout/offer',
+                method: 'POST',
+                data: cashout_payload,
+            });
+            if (status === 200) {
+                return response
+            } else {
+                throw new Error(response?.error || "Cashout Request failed");
+            }
+        });
+
+export const betCashoutConfirmation =
+        createAsyncThunk("matches/betCashoutConfirmation",
+            async (cashout_payload) => {
+                const [status, response] = await makeRequest({
+                    url: '/v1/cashout/confirm',
+                    method: 'POST',
+                    data: cashout_payload,
+                });
+                if (status === 200) {
+                    return response
+                } else {
+                    throw new Error(response?.error || "Cashout Confirmation Request failed");
+                }
+            });
 
 export const matchCategories =
     createAsyncThunk("matches/matchCategories",
@@ -565,9 +594,43 @@ const matchesSlice = createSlice({
                     addToSlip(match)
                 })
             })
+
             .addCase(matchesRebet.rejected, (state, action) => {
                 state.error = action.error.message
                 state.loading_bet_history = false
+            })
+
+            .addCase(betCashout.pending, (state) => {
+                state.error = null;
+                state.loading_cashout = true
+                state.cashout_response = null
+
+            })
+            .addCase(betCashout.fulfilled,(state, action) => {
+
+                state.loading_cashout = false
+                state.cashout_response=action.payload
+
+            })
+            .addCase(betCashout.rejected, (state, action) => {
+                state.error = action.error.message
+                state.loading_cashout = false
+            }) 
+            .addCase(betCashoutConfirmation.pending, (state) => {
+                state.error = null;
+                state.loading_cashout_confirmation = true
+                state.cashout_confirmation = null
+
+            })
+            .addCase(betCashoutConfirmation.fulfilled,(state, action) => {
+
+                state.loading_cashout_confirmation = false
+                state.cashout_confirmation=action.payload
+
+            })
+            .addCase(betCashoutConfirmation.rejected, (state, action) => {
+                state.error = action.error.message
+                state.loading_cashout_confirmation = false
             })
             .addCase(matchesShareBet.pending, (state) => {
                 state.error = null;

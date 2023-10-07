@@ -164,8 +164,7 @@ const BetSlip = React.memo(
             }
         };
 
-        const updateGiftState = () => {
-        };
+
 
         const updateBonusState = () => {
             let maxBonusGames = Number(settings?.betnareBonus?.bonusBetLegs);
@@ -258,7 +257,6 @@ const BetSlip = React.memo(
 
         useEffect(() => {
             updateBonusState();
-            updateGiftState();
         }, [totalOdds, totalGames]);
 
         useEffect(() => {

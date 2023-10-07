@@ -16,7 +16,7 @@ import {getFromLocalStorage, setLocalStorage} from "../../../utils/local-storage
 import {useNavigate} from "react-router-dom";
 import useWindowDimensions from "../../../header/Dimensions";
 import {useDispatch, useSelector} from "react-redux";
-import {betCancel, matchesRebet, matchesShareBet} from "../../../../redux/matchesSlice";
+import {betCancel, betCashout, matchesRebet, matchesShareBet} from "../../../../redux/matchesSlice";
 import {ToastContainer} from "react-toastify";
 import SkeletonMoreMarkets from "../../skeletonLoadersWeb/SkeletonMoreMarkets";
 
@@ -308,6 +308,13 @@ const BetDetails = React.memo(
             dispatchRedux(matchesShareBet(data))
         };
 
+        const cashoutRequest=(e,bet_id) =>{
+            const cashout_payload={
+                bet_id:bet_id
+            }
+            dispatchRedux(betCashout(cashout_payload    ))
+        }
+
         return (
             <> {showShareModal && (
                 <BetslipShareModal
@@ -370,6 +377,20 @@ const BetDetails = React.memo(
 
                                             </div>
                                         </div>)}
+                                        {item?.status == 1 && <div className="d-flex w-100 justify-content-around">
+
+                                            <div className={"bet-history-options"}
+                                                 style={{ fontSize:'medium',
+                                                     letterSpacing:'2px',
+                                                     background:'var(--bet-history)'
+                                                 }}
+                                                 onClick={() =>
+                                                     cashoutRequest(item?.bet_id)
+                                                    }>
+                                                Cashout
+                                            </div>
+
+                                        </div>}
                                         {item?.status == 1 && <div className="d-flex w-100 justify-content-around">
                                             {bet_details_meta?.bet_info.can_cancel !== true &&
                                                 <CancelBetMarkup bet_id={item?.bet_id}

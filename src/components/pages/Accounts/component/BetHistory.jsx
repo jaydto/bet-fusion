@@ -12,9 +12,10 @@ import moment from "moment";
 import {ToastContainer} from "react-toastify";
 import {faXbox} from "@fortawesome/free-brands-svg-icons";
 import {useDispatch, useSelector} from "react-redux";
-import {betHistoryDetails, fullBetDetails, setFetching} from "../../../../redux/matchesSlice";
+import {betCashout, betHistoryDetails, fullBetDetails, resetState, setFetching} from "../../../../redux/matchesSlice";
 import SkeletonLoaderMore from "../../skeletonLoadersWeb/SkeletonLoaderMore";
 import {setState} from "../../../../redux/dataSlice";
+import CashoutModal from "../../../modals/CashoutModal";
 
 const BetHistory = () => {
     const {state, dispatch} = useContext(StoreContext);
@@ -159,10 +160,46 @@ const BetHistory = () => {
             }
 
         }, [state?.filteredHistoryGames, state?.bets_by_date, getFromLocalStorage("bet_history_filter_category"), state?.selected_filter_category])
+        const cashout=useSelector((state)=>state.matchesData.cashout_response)
+
+
+        const cashoutRequest=(e,bet_id, amount) =>{
+            e.stopPropagation();
+            console.log('cashout_request',cashout)
+            const cashout_payload={
+                bet_id:bet_id
+            }
+            const cashout_request_data={bet_amount:amount, bet_id:bet_id}
+            setCashoutData(
+                cashout_request_data
+            )
+            dispatchRedux(betCashout(cashout_payload))
+        }
+
+        const show_cashout_modal=useSelector((state)=>state.matchesData.loading_cashout)
+        const [cashoutData, setCashoutData]=useState()
+
+        const [showCashoutModal, setShowCashoutModal] = useState(false);
+        useEffect(()=>{
+            if(show_cashout_modal){
+                setShowCashoutModal(show_cashout_modal)
+            }
+            return ()=>{
+                dispatchRedux(resetState("loading_cashout"))
+            }
+
+        },[show_cashout_modal])
 
 
         return (
             <>
+                {showCashoutModal && (
+                    <CashoutModal
+                        visible={showCashoutModal}
+                        payload={cashoutData}
+                        setShowCashoutModal={setShowCashoutModal}
+                    />
+                )}
                 {mybets && mybets.map((bet, index) => (
                     <div className="my-bets-bet-history" key={index} onClick={() => {
                         swap(bet?.bet_id)
@@ -198,6 +235,29 @@ const BetHistory = () => {
                             </div>
 
                         </div>
+                        {/*TODO bet?.status_desc==='PENDING'&&*/}
+                        {bet?.status_desc==='PENDING'&&<div className={"d-flex justify-content-end w-100 px-3"}>
+
+                            <div className={"bet-history-items status d-flex justify-content-end flex-column bet-cashout"}>
+                                <span className={'cashout-divider'}></span>
+                                <span
+                                    className={` badge`}
+                                    style={{
+                                        color: '#d3b277',
+                                        borderRadius: "7px",
+                                        marginLeft: "1px",
+                                        padding: "2.9px 9px ",
+                                        fontSize:'medium',
+                                        letterSpacing:'2px'
+                                    }} onClick={event => {
+                                    cashoutRequest(event,bet?.bet_id, bet?.bet_amount)
+                                }}>
+                                    Cashout
+                              </span>
+                            </div>
+
+                        </div>}
+
                     </div>
                 ))}
             </>

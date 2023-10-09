@@ -409,7 +409,8 @@ const BetDetails = React.memo(
                                             <div className={"bet-history-options"}
                                                  style={{ fontSize:'medium',
                                                      letterSpacing:'2px',
-                                                     background:'var(--bet-history)'
+                                                     background:'var(--bet-history)',
+                                                     color:'var(--betnare-button-login)'
                                                  }}
                                                  onClick={() =>
                                                      cashoutRequest(item?.bet_id,item?.bet_amount)

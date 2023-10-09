@@ -243,7 +243,7 @@ const BetHistory = () => {
                                 <span
                                     className={` badge`}
                                     style={{
-                                        color: '#d3b277',
+                                        color: 'var(--betnare-button-login)',
                                         borderRadius: "7px",
                                         marginLeft: "1px",
                                         padding: "2.9px 9px ",

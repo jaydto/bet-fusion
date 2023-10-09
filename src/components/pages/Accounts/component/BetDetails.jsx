@@ -372,7 +372,7 @@ const BetDetails = React.memo(
                                         borderRadius: "7px",
                                         marginLeft: "1px",
                                         padding: "2.9px 9px "
-                                    }}>{bet_details_meta?.bet_info?.status === 3 ? "NOT WON" : bet_details_meta?.bet_info?.status === 5 ? "WON" : "PENDING"}
+                                    }}>{bet_details_meta?.bet_info?.status === 3 ? "NOT WON" : bet_details_meta?.bet_info?.status === 5 ? "WON" :bet_details_meta?.bet_info?.status === 5 ?'CASHED OUT': "PENDING"}
 								</span>
                                         </div>
                                         {index === 0 && (<div className="d-flex history-details-padding gap-3 ">

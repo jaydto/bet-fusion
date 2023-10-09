@@ -604,17 +604,19 @@ const matchesSlice = createSlice({
                 state.error = null;
                 state.loading_cashout = true
                 state.cashout_response = null
+                state.cashout_confirmation = null
+
 
             })
             .addCase(betCashout.fulfilled,(state, action) => {
 
-                state.loading_cashout = false
+                // state.loading_cashout = false
                 state.cashout_response=action.payload
 
             })
             .addCase(betCashout.rejected, (state, action) => {
                 state.error = action.error.message
-                state.loading_cashout = false
+                // state.loading_cashout = false
             }) 
             .addCase(betCashoutConfirmation.pending, (state) => {
                 state.error = null;

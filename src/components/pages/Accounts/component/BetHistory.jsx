@@ -21,6 +21,7 @@ const BetHistory = () => {
     const {state, dispatch} = useContext(StoreContext);
     const dispatchRedux = useDispatch()
     const bet_history_details = useSelector((state) => state.data.bet_history_details)
+    
 
     const fetchData = async () => {
         dispatchRedux(fullBetDetails())
@@ -162,14 +163,17 @@ const BetHistory = () => {
         }, [state?.filteredHistoryGames, state?.bets_by_date, getFromLocalStorage("bet_history_filter_category"), state?.selected_filter_category])
         const cashout=useSelector((state)=>state.matchesData.cashout_response)
 
+        const [cashoutData, setCashoutData]=useState()
 
         const cashoutRequest=(e,bet_id, amount) =>{
             e.stopPropagation();
             console.log('cashout_request',cashout)
+            dispatchRedux(resetState("loading_cashout"));
+
             const cashout_payload={
                 bet_id:bet_id
             }
-            const cashout_request_data={bet_amount:amount, bet_id:bet_id}
+            const cashout_request_data={bet_amount:amount, bet_id:bet_id, bet_type:'full'}
             setCashoutData(
                 cashout_request_data
             )
@@ -177,7 +181,6 @@ const BetHistory = () => {
         }
 
         const show_cashout_modal=useSelector((state)=>state.matchesData.loading_cashout)
-        const [cashoutData, setCashoutData]=useState()
 
         const [showCashoutModal, setShowCashoutModal] = useState(false);
         useEffect(()=>{
@@ -222,7 +225,7 @@ const BetHistory = () => {
                             </div>
                             <div className={"bet-history-items status"}>
                                 {bet?.can_cancel == 0 ? <span
-                                    className={` badge  ${bet?.status_desc == "LOST" ? "bg-dark text-warning" : bet?.status_desc == "WON" ? "bg-success" : bet?.status_desc == "PENDING" ? "bg-dark " : ""}`}
+                                    className={` badge  ${bet?.status_desc == "LOST" ? "bg-dark text-warning" : bet?.status_desc == "WON" ? "bg-success" : bet?.status_desc == "PENDING" ? "bg-dark " :bet?.status_desc == "CASHED OUT" ? "bg-dark ": ""}`}
                                     style={{
                                         color: "white",
                                         marginTop: "10px",
@@ -241,7 +244,7 @@ const BetHistory = () => {
                             <div className={"bet-history-items status d-flex justify-content-end flex-column bet-cashout"}>
                                 <span className={'cashout-divider'}></span>
                                 <span
-                                    className={` badge`}
+                                    className={` badge cursor-pointer`}
                                     style={{
                                         color: 'var(--betnare-button-login)',
                                         borderRadius: "7px",

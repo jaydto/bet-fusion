@@ -309,29 +309,28 @@ const BetDetails = React.memo(
             dispatchRedux(matchesShareBet(data))
         };
         const cashout=useSelector((state)=>state.matchesData.cashout_response)
+        const [cashoutData, setCashoutData]=useState()
 
         const cashoutRequest=(bet_id, amount) =>{
-            console.log('cashout_request',cashout)
             const cashout_payload={
                 bet_id:bet_id
             }
-            const cashout_request_data={bet_amount:amount, bet_id:bet_id}
+            const cashout_request_data={bet_amount:amount, bet_id:bet_id, bet_type:'details'}
             setCashoutData(
                 cashout_request_data
             )
             dispatchRedux(betCashout(cashout_payload))
         }
         const show_cashout_modal=useSelector((state)=>state.matchesData.loading_cashout)
-        const [cashoutData, setCashoutData]=useState()
 
         const [showCashoutModal, setShowCashoutModal] = useState(false);
         useEffect(()=>{
             if(show_cashout_modal){
                 setShowCashoutModal(show_cashout_modal)
             }
-            return ()=>{
-                dispatchRedux(resetState("loading_cashout"))
-            }
+            // return ()=>{
+            //     dispatchRedux(resetState("loading_cashout"))
+            // }
 
         },[show_cashout_modal])
 
@@ -365,14 +364,14 @@ const BetDetails = React.memo(
                                         </div>
                                         <div className="status d-flex justify-content-between px-2 mb-3">
 								<span
-                                    className={` badge  ${bet_details_meta?.bet_info?.status == 3 ? "bg-dark text-warning" : bet_details_meta?.bet_info?.status == 5 ? "bg-success" : bet_details_meta?.bet_info?.status == 1 ? "bg-dark " : ""}`}
+                                    className={` badge  ${bet_details_meta?.bet_info?.status == 3 ? "bg-dark text-warning" : bet_details_meta?.bet_info?.status == 5 ? "bg-success" : bet_details_meta?.bet_info?.status == 1 ? "bg-dark " :bet_details_meta?.bet_info?.status == 15?'bg-dark': ""}`}
                                     style={{
                                         color: "white",
                                         marginTop: "10px",
                                         borderRadius: "7px",
                                         marginLeft: "1px",
                                         padding: "2.9px 9px "
-                                    }}>{bet_details_meta?.bet_info?.status === 3 ? "NOT WON" : bet_details_meta?.bet_info?.status === 5 ? "WON" :bet_details_meta?.bet_info?.status === 5 ?'CASHED OUT': "PENDING"}
+                                    }}>{bet_details_meta?.bet_info?.status === 3 ? "NOT WON" : bet_details_meta?.bet_info?.status === 5 ? "WON" :bet_details_meta?.bet_info?.status === 15 ?'CASHED OUT': "PENDING"}
 								</span>
                                         </div>
                                         {index === 0 && (<div className="d-flex history-details-padding gap-3 ">

@@ -49,7 +49,7 @@ const CashoutModal = React.memo(
         }
 
         const Alert = (props) => {
-            let c = cashout_confirmation?'success':'danger';
+            let c = cashout_confirmation?.status==200?'success':'danger';
             let x_style = {
                 float: "right",
                 display: "block",
@@ -61,10 +61,10 @@ const CashoutModal = React.memo(
                 top: '0',
                 right: '0'
             }
-            return (<>{(cashout_confirmation||cashout_error)&&
+            return (<>{(cashout_confirmation?.status==200||cashout_error)&&
                 <div role="alert"
                      className={`fade alert alert-${c} deposit-modal-alert-action show alert-dismissible d-flex justify-content-between align-items-center alert-message-line-height alert-position-betslip-top`}>
-                    {cashout_confirmation||cashout_error}
+                    {cashout_confirmation?.message||cashout_error}
                     {/* <span aria-hidden="true" style={x_style} onClick={() => clearMessage()}>&times;</span> */}
                 </div>
             }

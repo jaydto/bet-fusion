@@ -326,7 +326,7 @@ const dataSlice = createSlice({
                 state.loading = true;
             })
             .addCase(configSettings.fulfilled, (state, action) => {
-                state.app_config= action.payload;
+                state.app_config= action.payload.message;
                 state.loading = false;
                 state.error = null;
                 const status=action.payload?.status_code

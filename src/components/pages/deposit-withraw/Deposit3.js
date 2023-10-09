@@ -127,10 +127,12 @@ const Deposit3 = React.memo(
             )
         }
         
-        const Offer=()=>{
+        const Offer=React.memo(
+            ()=>{
             return (
                 <ul className={'paybill-offers-list-items'}>
-                {settings?.betnareDeposit && settings?.betnareDeposit?.map((deposit, index) => {
+                    {console.log('depositdata', settings.betnareDeposit)}
+                { settings?.betnareDeposit?.map((deposit, index) => {
                     return (
                         <li key={index}>{index + 1}.
                             Only pay
@@ -139,7 +141,7 @@ const Deposit3 = React.memo(
                 })}
             </ul>
             )
-        }
+        });
 
         const Alert = () => {
             let c = successMessage ? 'success' : 'danger';
@@ -270,7 +272,7 @@ const Deposit3 = React.memo(
                                                                         💰 Exclusive Offers 💰
                                                                     </span>
                                                                         <div className={'paybill-offers-list'}>
-                                                                            <Offer/>
+                                                                            <Offer />
                                                                             <br/>
                                                                             (Betnare will credit your Account with The
                                                                             offers above.)

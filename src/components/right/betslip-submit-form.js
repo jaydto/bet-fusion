@@ -623,6 +623,7 @@ const BetslipSubmitForm = React.memo(
         useEffect(() => {
             calculateMultiBetBoostAmount();
         }, [betslip, stake]);
+
         const show_share_modal=useSelector((state)=>state.matchesData.show_share_modal)
         const share_bet=useSelector((state)=>state.matchesData.share_bet)
         const loadingShare=useSelector((state)=>state.matchesData.loading_bet_history)

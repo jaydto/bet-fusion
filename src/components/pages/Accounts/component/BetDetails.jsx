@@ -16,9 +16,10 @@ import {getFromLocalStorage, setLocalStorage} from "../../../utils/local-storage
 import {useNavigate} from "react-router-dom";
 import useWindowDimensions from "../../../header/Dimensions";
 import {useDispatch, useSelector} from "react-redux";
-import {betCancel, betCashout, matchesRebet, matchesShareBet} from "../../../../redux/matchesSlice";
+import {betCancel, betCashout, matchesRebet, matchesShareBet, resetState} from "../../../../redux/matchesSlice";
 import {ToastContainer} from "react-toastify";
 import SkeletonMoreMarkets from "../../skeletonLoadersWeb/SkeletonMoreMarkets";
+import CashoutModal from "../../../modals/CashoutModal";
 
 const BetDetails = React.memo(
     (props) => {
@@ -307,16 +308,42 @@ const BetDetails = React.memo(
             }
             dispatchRedux(matchesShareBet(data))
         };
+        const cashout=useSelector((state)=>state.matchesData.cashout_response)
 
-        const cashoutRequest=(e,bet_id) =>{
+        const cashoutRequest=(bet_id, amount) =>{
+            console.log('cashout_request',cashout)
             const cashout_payload={
                 bet_id:bet_id
             }
-            dispatchRedux(betCashout(cashout_payload    ))
+            const cashout_request_data={bet_amount:amount, bet_id:bet_id}
+            setCashoutData(
+                cashout_request_data
+            )
+            dispatchRedux(betCashout(cashout_payload))
         }
+        const show_cashout_modal=useSelector((state)=>state.matchesData.loading_cashout)
+        const [cashoutData, setCashoutData]=useState()
+
+        const [showCashoutModal, setShowCashoutModal] = useState(false);
+        useEffect(()=>{
+            if(show_cashout_modal){
+                setShowCashoutModal(show_cashout_modal)
+            }
+            return ()=>{
+                dispatchRedux(resetState("loading_cashout"))
+            }
+
+        },[show_cashout_modal])
 
         return (
-            <> {showShareModal && (
+            <>  {showCashoutModal && (
+                <CashoutModal
+                    visible={showCashoutModal}
+                    payload={cashoutData}
+                    setShowCashoutModal={setShowCashoutModal}
+                />
+            )}
+                {showShareModal && (
                 <BetslipShareModal
                     visible={showShareModal}
                     payload={betSharePayload}
@@ -385,7 +412,7 @@ const BetDetails = React.memo(
                                                      background:'var(--bet-history)'
                                                  }}
                                                  onClick={() =>
-                                                     cashoutRequest(item?.bet_id)
+                                                     cashoutRequest(item?.bet_id,item?.bet_amount)
                                                     }>
                                                 Cashout
                                             </div>

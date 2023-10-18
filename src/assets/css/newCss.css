@@ -1921,7 +1921,7 @@ img.nare-league {
         opacity:1;
     }
     .link-inactive img{
-        opacity:0.5;
+        opacity: 0.5 ;
     }
     .pro-sidebar .pro-menu a.link-inactive{
         color:var(--light-inactive) !important;
@@ -2341,7 +2341,7 @@ img.nare-league {
         opacity:1;
     }
     .link-inactive img{
-        opacity:0.5;
+        opacity: 0.5 !important;
     }
     .pro-sidebar .pro-menu a.link-inactive{
         color:var(--light-inactive) !important;

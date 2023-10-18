@@ -10,6 +10,7 @@ import soccer from "../../assets/svg/sports/Soccer.svg"
 import casino1 from "../../assets/img/mobile/Casino.svg"
 import jackpot from "../../assets/img/mobile/Jackpot.svg"
 import promo from "../../assets/svg/fire.svg"
+import aviator from "../../../src/assets/img/aviator.webp"
 
 import {getFromLocalStorage} from "../utils/local-storage";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
@@ -37,6 +38,16 @@ const MobileNav1 = React.memo(
         const active_link=useSelector((state)=>state.data.active_link)
 
         const [competitions, setCompetitions] = useState(getFromLocalStorage("sport_categories"));
+
+        const userData = useSelector((state) => state.auth.user)
+        const [user, setUser] = useState(getFromLocalStorage("user"))
+
+        useEffect(() => {
+            if (userData) {
+                setUser(userData || getFromLocalStorage("user"))
+            }
+        }, [userData])
+
         const setActiveLink=(link)=>{
             dispatchRedux(setState('active_link',link ))
         }
@@ -70,6 +81,14 @@ const MobileNav1 = React.memo(
 
         },[])
 
+        const launchAviator=(status)=>{
+            if(status==="demo"){
+                navigate("/nare-games/aviator?status=demo")
+            }else{
+                navigate("/nare-games/aviator?status=live")
+            }
+            
+        }
 
 
         return (<div className="menu-wrapper mobile-nav-remove ">
@@ -78,11 +97,13 @@ const MobileNav1 = React.memo(
                 <tbody>
                 <tr className={"tr-style mobile-nav-top"} ref={scrollContainerRef}>
                     <td className={`menu-t m-auto   sport-check  ${pathname === "/" || Number(active_link) === 79 ? "active_link" : "link-inactive"}`}>
-                        <Link
+                        <div
                             className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center  `}
                             onClick={() => {
-                                gaEventTracker('Visit Home Page');setActiveLink(79)
-                            }} to={`/`}>
+                                gaEventTracker('Visit Home Page');
+                                setActiveLink(79);
+                                navigate('/')
+                            }}>
                             <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center`}>
 
                                 <div className="menu-img ">
@@ -91,22 +112,51 @@ const MobileNav1 = React.memo(
                                         src={soccer}
                                         alt=""
                                         effect='blur'
-                                        style={{height: "23px", marginTop: "-6px"}}
+                                        style={{height: "23px", marginTop: "-1px"}}
                                     />
                                 </div>
                                 <p style={{textAlign: "center", marginBottom: "unset"}}>
                                     Soccer
                                 </p>
                             </div>
-                        </Link>
+                        </div>
                     </td>
+
+                    <td className={`menu-t m-auto sport-check ${'/nare-games/aviator'===active_link ? " active_link" : "link-inactive"}`}>
+                        <div 
+                              className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `}
+                              onClick={() => {
+                                  gaEventTracker('Visit Aviator Page');
+                                  launchAviator(user?'live':'demo');
+                                  setActiveLink('/nare-games/aviator')
+                              }}>
+                            <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
+
+                                <div className="menu-img ">
+                                    <LazyLoadImage
+                                        className="side-icon "
+                                        src={aviator}
+                                        alt=""
+                                        style={{height: "26px", marginTop: "-1px", width:'41px'}}
+                                    />
+                                </div>
+                                <p style={{textAlign: "center", marginBottom: "unset"}}>
+                                    Aviator
+                                </p>
+                            </div>
+                        </div>
+
+                    </td>
+                    
                     <td className={`menu-t m-auto sport-check nare-league ${'/nare-league'===active_link ? "active_link" : "link-inactive"}`}>
-                        <Link
+                        <div
                             className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `}
                             onClick={() => {
                                 gaEventTracker('Visit Nare League Page');
-                                setActiveLink('/nare-league')
-                            }} to={`/nare-league`}>
+                                setActiveLink('/nare-league');
+                                navigate('/nare-league')
+                            }} 
+                            >
                             <div className={`inner-div  cg hot-alert ox anl url-link d-flex flex-column align-items-center  `}>
 
                                 <div className="menu-img  ">
@@ -115,7 +165,7 @@ const MobileNav1 = React.memo(
                                         src={league}
                                         alt=""
                                         effect='blur'
-                                        style={{height: "29px", marginTop: "-4px"}}
+                                        style={{height: "25px", marginTop: "0px"}}
                                     />
                                     <span className=" hot-alert-badge">HOT</span>
 
@@ -124,7 +174,7 @@ const MobileNav1 = React.memo(
                                     League
                                 </p>
                             </div>
-                        </Link>
+                        </div>
                     </td>
                     <td className={`menu-t m-auto sport-check ${'/jackpot'===active_link ? "active_link" : "link-inactive"} `}>
                         <div
@@ -138,11 +188,11 @@ const MobileNav1 = React.memo(
 
                                 <div className="menu-img ">
                                     <LazyLoadImage
-                                        className="side-icon football-x"
+                                        className="side-icon "
                                         src={jackpot}
                                         alt=""
                                         effect='blur'
-                                        style={{height: "23px", marginTop: "-6px"}}
+                                        style={{height: "32px", marginTop: "-3px"}}
                                     />
                                 </div>
                                 <p style={{textAlign: "center", marginBottom: "unset"}}>
@@ -152,7 +202,6 @@ const MobileNav1 = React.memo(
                         </div>
 
                     </td>
-
 
                     <td className={`menu-t m-auto sport-check ${'/casino' ===active_link ? " active_link" : "link-inactive"} `}>
                         <div
@@ -170,7 +219,7 @@ const MobileNav1 = React.memo(
                                         src={casino1}
                                         alt=""
                                         effect='blur'
-                                        style={{height: "23px", marginTop: "-6px"}}
+                                        style={{height: "29px", marginTop: "-2px"}}
                                     />
                                 </div>
                                 <p style={{textAlign: "center", marginBottom: "unset"}}>
@@ -181,19 +230,24 @@ const MobileNav1 = React.memo(
 
                     </td>
 
+                    
+                    
+
+                    
 
                     {competitions?.all_sports.map((allsports, index) => {
 
                         return allsports?.sport_id !== 79 && (
                             <td key={index}
                                 className={`menu-t m-auto sport-check ${Number(active_link) === Number(allsports?.sport_id) ? 'active_link' : "link-inactive"}`}>
-                                <Link
+                                <div
                                     className={`inner-div more-sports cg ox anl url-link d-flex flex-column align-items-center `}
                                     onClick={() => {
                                         gaEventTracker(`Visit ${state?.active_sport}/${state?.active_sport_name}  Page`);
-                                        setActiveLink(allsports?.sport_id)
+                                        setActiveLink(allsports?.sport_id);
+                                        navigate(`/highlights?sport_id=${allsports.sport_id}&sub_type_id=${getDefaultMarketsForSport(allsports)}&sport_name=${allsports.sport_name}`)
                                     }}
-                                    to={`/highlights?sport_id=${allsports.sport_id}&sub_type_id=${getDefaultMarketsForSport(allsports)}&sport_name=${allsports.sport_name}`}>
+                                    >
                                     <div className="inner-div cg ox anl url-link d-flex flex-column align-items-center">
                                         <div className="menu-img">
                                             <LazyLoadImage
@@ -201,24 +255,25 @@ const MobileNav1 = React.memo(
                                                 src={getSportImageIcon(allsports?.sport_name)}
                                                 alt=""
                                                 effect='blur'
-                                                style={{height: "23px", marginTop: "-6px"}}
+                                                style={{height: "23px", marginTop: "-1px"}}
                                             />
                                         </div>
                                         <p style={{textAlign: "center", marginBottom: "unset"}}>
                                             {allsports?.sport_name}
                                         </p>
                                     </div>
-                                </Link>
+                                </div>
                             </td>
                         );
                     })}
                     <td className={`menu-t m-auto sport-check ${'/promotions' === active_link ? "active_link" : "link-inactive"} `}>
-                        <Link
+                        <div
                             className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `}
                             onClick={() => {
                                 gaEventTracker('Visit Promotion Page');
-                                setActiveLink('/promotions')
-                            }} to={`/promotions`}>
+                                setActiveLink('/promotions');
+                                navigate(`/promotions`)
+                            }} >
                             <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
                                 <div className="menu-img ">
                                     <LazyLoadImage
@@ -232,11 +287,11 @@ const MobileNav1 = React.memo(
                                         7
                                 </span>
                                 </div>
-                                <p style={{textAlign: "center"}}>
+                                <p style={{textAlign: "center", marginBottom: "unset"}}>
                                     Promo
                                 </p>
                             </div>
-                        </Link>
+                        </div>
 
                     </td>
                 </tr>

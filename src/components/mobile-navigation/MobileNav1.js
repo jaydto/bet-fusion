@@ -138,7 +138,7 @@ const MobileNav1 = React.memo(
                                         src={league}
                                         alt=""
                                         effect='blur'
-                                        style={{height: "29px", marginTop: "-4px"}}
+                                        style={{height: "25px", marginTop: "0px"}}
                                     />
                                     <span className=" hot-alert-badge">HOT</span>
 

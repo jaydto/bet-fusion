@@ -280,7 +280,6 @@ const BetDetails = React.memo(
             Notify(message)
         }
 
-        console.log('rebetMatch', rebet_match)
         useEffect(() => {
             if (rebet_match) {
                 if(bet_details_meta?.bet_info?.status===9){

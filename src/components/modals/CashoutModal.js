@@ -6,13 +6,15 @@ import { setState } from "../../redux/bettingSlice";
 import {
   setState as setStateData,
   betCashoutConfirmation,
-  betHistoryDetails, fullBetDetails
+  betHistoryDetails,
+  fullBetDetails,
 } from "../../redux/matchesSlice";
 import { getFromLocalStorage, setTrackingData } from "../utils/local-storage";
 import { StoreContext } from "../../context/store";
 import { useFormik } from "formik";
 import { userDeposits } from "../../redux/dataSlice";
 import { error } from "logrocket";
+import moment from "moment/moment";
 
 const CashoutModal = React.memo((props) => {
   const cashout = useSelector((state) => state.matchesData.cashout_response);
@@ -29,49 +31,114 @@ const CashoutModal = React.memo((props) => {
   const [isOpen, setIsOpen] = useState(visible);
   const dispatchRedux = useDispatch();
 
+  const FormatDate = (props) => {
+    const { expires_at } = props;
+
+    const [dateString, timeString] = expires_at.split("T");
+    const [year, month, day] = dateString.split("-");
+    const [hour, minute] = timeString.split(":");
+
+    // Format the date and time
+    return `${month}/${day} ${hour}:${minute}`;
+  };
+
   const hideModal = () => {
     setIsOpen(false);
     setShowCashoutModal(false);
     dispatchRedux(setState("cashout_response", null));
     dispatchRedux(setState("loading_cashout", false));
-    if (cashout_confirmation?.status_code==200) {
-    if (payload?.bet_type === "details") {
-                const payload = {
-                  bet_id: payload.bet_id,
-                };
-                dispatchRedux(betHistoryDetails(payload));
-                
-              } else {
-                dispatchRedux(fullBetDetails());
-              }
-            }
+    if (cashout_confirmation?.status_code == 200) {
+      if (payload?.bet_type === "details") {
+        const payload = {
+          bet_id: payload.bet_id,
+        };
+        dispatchRedux(betHistoryDetails(payload));
+      } else {
+        dispatchRedux(fullBetDetails());
+      }
+    }
   };
 
   const handleSubmit = (values) => {
     console.log("called_submit");
     const cashout_data = {
       bet_id: payload?.bet_id,
-      cashout_value: cashout?.cashout_value,
     };
     dispatchRedux(betCashoutConfirmation(cashout_data));
   };
 
-//   useEffect(() => {
-//     if (cashout_confirmation?.status_code==200) {
-//       if (payload?.bet_type === "details") {
-//         const payload = {
-//           bet_id: payload.bet_id,
-//         };
-//         dispatchRedux(betHistoryDetails(payload));
-//       } else {
-//         dispatchRedux(fullBetDetails());
-//       }
-//     }
-//   }, [cashout_confirmation]);
+  const CountDownCashout = () => {
+    // Get the first match from the array
+    const first_match = "";
+    const [countdownDay, setCountdownDay] = useState("");
+    const [countdownHours, setCountdownHours] = useState("");
+    const [countdownMinutes, setCountdownMinutes] = useState("");
+    const [countdownSeconds, setCountdownSeconds] = useState("");
 
-  function clearMessage() {
-    console.log("clearmessage");
-  }
+    useEffect(() => {
+      const interval = setInterval(() => {
+        const now = moment();
+        const start = moment(first_match, "YYYY-MM-DDTHH:mm");
+        const diff = start.diff(now);
+        const countdown = moment.duration(diff);
+
+        const days = countdown.days();
+        const hours = countdown.hours();
+        const minutes = countdown.minutes();
+        const seconds = countdown.seconds();
+
+        // setCountdown(`${days} Days ${hours} Hours ${minutes} Minutes ${seconds} Seconds`);
+        setCountdownDay(days);
+        setCountdownSeconds(seconds);
+        setCountdownHours(hours);
+        setCountdownMinutes(minutes);
+        if (diff <= 0) {
+          clearInterval(interval);
+        }
+      }, 1000);
+
+      return () => clearInterval(interval);
+    }, []);
+
+    return (
+      <div>
+        {cashout?.status_code === 200 && (
+          <p className={"text-expiry-style"}>
+            Expires on&nbsp;
+            <FormatDate expires_at={cashout?.expires_at} />
+          </p>
+        )}
+        { (
+          <p className={"text-light count-down-cashout d-flex gap-4"}>
+            <span className="days d-flex flex-column">
+              <span className={"counter-cashout time-box__time"}>
+                {countdownDay}
+              </span>
+              <span className={"jackpot-text-info"}>Days</span>
+            </span>
+            <span className="hours d-flex flex-column">
+              <span className={"counter-cashout time-box__time"}>
+                {countdownHours}
+              </span>
+              <span className={"jackpot-text-info"}>Hours</span>
+            </span>
+            <span className="Minutes d-flex flex-column">
+              <span className={"counter-cashout time-box__time"}>
+                {countdownMinutes}
+              </span>
+              <span className={"cashout-text-info"}>Minutes</span>
+            </span>
+            <span className="Seconds d-flex flex-column">
+              <span className={"counter-cashout time-box__time"}>
+                {countdownSeconds}
+              </span>
+              <span className={"cashout-text-info"}>Seconds</span>
+            </span>
+          </p>
+        )}
+      </div>
+    );
+  };
 
   const Alert = (props) => {
     let c = cashout_confirmation?.status_code == 200 ? "success" : "danger";

@@ -385,10 +385,10 @@ const BetDetails = React.memo(
                                                 </div>
                                                 <div className="d-flex col-8 flex-column details-history-main">
                                                     <div className={"main-details-info-title"}>
-                                                        Possible Winnings
+                                                        {item.status===15?'Cashed out':'Possible'} Winnings
                                                     </div>
                                                     <div
-                                                        className="amount-value">{parseFloat(item.status===15?bet_details_meta?.bet_info?.cashout_value:item?.possible_win).toLocaleString()}</div>
+                                                        className="amount-value">{parseFloat(item.status===15?bet_details_meta?.bet_info?.cashout_amount:item?.possible_win).toLocaleString()}</div>
                                                 </div>
 
                                             </div>

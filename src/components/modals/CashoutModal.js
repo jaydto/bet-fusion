@@ -124,7 +124,7 @@ const CashoutModal = React.memo((props) => {
               </span>
             </span>
           </p>:
-          <span style={{fontSize:'var(--font-size-small-variation1)', color:'var(--faded-color)'}}>
+          <span style={{fontSize:'var(--font-size-small-variation1)', color:'var(--faded-color)', textAlign:'center'}}>
             Cashout has Expired please check for availability of other offers
           </span>):<></>
           }

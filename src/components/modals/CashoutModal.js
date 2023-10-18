@@ -150,7 +150,7 @@ const CashoutModal = React.memo((props) => {
         {(cashout_confirmation?.status_code == 200 || cashout_error) && (
           <div
             role="alert"
-            className={`fade alert alert-${c} deposit-modal-alert-action show alert-dismissible d-flex justify-content-between align-items-center alert-message-line-height alert-position-betslip-top justify-content-center`}
+            className={`fade alert alert-${c} deposit-modal-alert-action show alert-dismissible d-flex justify-content-center align-items-center alert-message-line-height alert-position-betslip-top justify-content-center`}
           >
             {cashout_confirmation?.status || cashout_error}
             {/* <span aria-hidden="true" style={x_style} onClick={() => clearMessage()}>&times;</span> */}
@@ -199,7 +199,7 @@ const CashoutModal = React.memo((props) => {
               className={"deposit-modal-top-title"}
             >
               Cashout
-              {!cashout_confirmation&&<CountDownCashout />}
+              {cashout_confirmation==null&&<CountDownCashout />}
             </strong>
           </div>
         </Modal.Title>

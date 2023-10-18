@@ -55,6 +55,14 @@ const HeaderNav = React.memo(
             gaEventTracker('Clicked on Search')
         }
 
+        const launchAviator=(status)=>{
+            if(status==="demo"){
+                navigate("/nare-games/aviator?status=demo")
+            }else{
+                navigate("/nare-games/aviator?status=live")
+            }
+            
+        }
         useEffect(()=>{
             setMatches(matchesData)
         },[matchesData])
@@ -119,19 +127,7 @@ const HeaderNav = React.memo(
                                     Jackpot</strong>
                             </Link>
                         </li>
-                        {/* <li className={pathname.includes('aviator') ? 'active live-bg' : ''}
-                            onClick={() => gaEventTracker('Aviator')}>
-                            <div className="url-link fm anl cg ox"
-                                 onClick={() => navigate("/nare-games/aviator")}
-                                 title="Aviator">
-                                <strong>
-                                    <div className={'d-flex menu-item'}>
-                                        Aviator
-
-                                    </div>
-                                </strong>
-                            </div>
-                        </li> */}
+                      
 
                         <li className={`${pathname === '/casino' ? 'active' : ''}`}>
                             <div className="url-link fm anl cg ox " title="Live Casino" onClick={() => {
@@ -141,6 +137,21 @@ const HeaderNav = React.memo(
                             <span>
                                 <strong>Casino</strong>
                             </span>
+                            </div>
+                        </li>
+
+                        <li className={pathname.includes('aviator') ? 'active live-bg' : ''}
+                            onClick={() => gaEventTracker('Aviator')}>
+                            <div className="url-link fm anl cg ox"
+                                 onClick={() =>{launchAviator(user?'live':'demo')}
+}
+                                 title="Aviator">
+                                <strong>
+                                    <div className={'d-flex menu-item'}>
+                                        Aviator
+
+                                    </div>
+                                </strong>
                             </div>
                         </li>
 

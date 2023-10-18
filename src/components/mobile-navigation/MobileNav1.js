@@ -216,7 +216,7 @@ const MobileNav1 = React.memo(
 
                                 <div className="menu-img ">
                                     <LazyLoadImage
-                                        className="side-icon aviator"
+                                        className="side-icon "
                                         src={aviator}
                                         alt=""
                                         style={{height: "26px", marginTop: "-1px", width:'41px'}}
@@ -284,7 +284,7 @@ const MobileNav1 = React.memo(
                                         7
                                 </span>
                                 </div>
-                                <p style={{textAlign: "center"}}>
+                                <p style={{textAlign: "center", marginBottom: "unset"}}>
                                     Promo
                                 </p>
                             </div>

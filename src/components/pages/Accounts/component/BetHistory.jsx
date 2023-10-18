@@ -239,7 +239,7 @@ const BetHistory = () => {
 
                         </div>
                         {/*TODO bet?.status_desc==='PENDING'&&*/}
-                        {bet?.status_desc==='PENDING'&&<div className={"d-flex justify-content-end w-100 px-3"}>
+                        {(bet?.status_desc==='PENDING'&& bet?.status!==9)&&<div className={"d-flex justify-content-end w-100 px-3"}>
 
                             <div className={"bet-history-items status d-flex justify-content-end flex-column bet-cashout"}>
                                 <span className={'cashout-divider'}></span>

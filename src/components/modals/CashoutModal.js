@@ -36,10 +36,10 @@ const CashoutModal = React.memo((props) => {
 
     const [dateString, timeString] = expires_at.split("T");
     const [year, month, day] = dateString.split("-");
-    const [hour, minute] = timeString.split(":");
+    const [hour, minute, seconds] = timeString.split(":");
 
     // Format the date and time
-    return `${month}/${day} ${hour}:${minute}`;
+    return `${month}/${day} ${hour}:${minute}:${seconds}`;
   };
 
   const hideModal = () => {
@@ -69,7 +69,7 @@ const CashoutModal = React.memo((props) => {
 
   const CountDownCashout = () => {
     // Get the first match from the array
-    const first_match = "";
+    const first_match = cashout?.expires_at;
     const [countdownDay, setCountdownDay] = useState("");
     const [countdownHours, setCountdownHours] = useState("");
     const [countdownMinutes, setCountdownMinutes] = useState("");
@@ -78,7 +78,7 @@ const CashoutModal = React.memo((props) => {
     useEffect(() => {
       const interval = setInterval(() => {
         const now = moment();
-        const start = moment(first_match, "YYYY-MM-DDTHH:mm");
+        const start = moment(first_match, "YYYY-MM-DDTHH:mm:ss");
         const diff = start.diff(now);
         const countdown = moment.duration(diff);
 
@@ -98,45 +98,37 @@ const CashoutModal = React.memo((props) => {
       }, 1000);
 
       return () => clearInterval(interval);
-    }, []);
+    }, [cashout?.expires_at]);
 
     return (
-      <div>
-        {cashout?.status_code === 200 && (
+      cashout?.status_code === 200 && (
+        <div className="d-flex  justify-content-between align-items-center flex-column">
           <p className={"text-expiry-style"}>
-            Expires on&nbsp;
+            Expires at&nbsp;
             <FormatDate expires_at={cashout?.expires_at} />
           </p>
-        )}
-        { (
-          <p className={"text-light count-down-cashout d-flex gap-4"}>
-            <span className="days d-flex flex-column">
-              <span className={"counter-cashout time-box__time"}>
-                {countdownDay}
-              </span>
-              <span className={"jackpot-text-info"}>Days</span>
-            </span>
-            <span className="hours d-flex flex-column">
-              <span className={"counter-cashout time-box__time"}>
-                {countdownHours}
-              </span>
-              <span className={"jackpot-text-info"}>Hours</span>
-            </span>
+          {console.log('countdown time', countdownSeconds)}
+          {countdownSeconds&&
+          (countdownSeconds>0?<p className={"text-light count-down-cashout d-flex gap-4"}>
             <span className="Minutes d-flex flex-column">
               <span className={"counter-cashout time-box__time"}>
-                {countdownMinutes}
+                {!isNaN(countdownMinutes) && countdownMinutes}
               </span>
-              <span className={"cashout-text-info"}>Minutes</span>
             </span>
+            <span style={{ fontSize: "16px", color: "var(--light" }}>:</span>
             <span className="Seconds d-flex flex-column">
               <span className={"counter-cashout time-box__time"}>
-                {countdownSeconds}
+                {!isNaN(countdownSeconds) && countdownSeconds}
               </span>
-              <span className={"cashout-text-info"}>Seconds</span>
             </span>
-          </p>
-        )}
-      </div>
+          </p>:
+          <span style={{fontSize:'var(--font-size-small-variation1)', color:'var(--faded-color)'}}>
+            Cashout has Expired please check for availability of other offers
+          </span>)
+          }
+          
+        </div>
+      )
     );
   };
 
@@ -207,6 +199,7 @@ const CashoutModal = React.memo((props) => {
               className={"deposit-modal-top-title"}
             >
               Cashout
+              {!cashout_confirmation&&<CountDownCashout />}
             </strong>
           </div>
         </Modal.Title>

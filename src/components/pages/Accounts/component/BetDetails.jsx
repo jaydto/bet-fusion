@@ -388,7 +388,7 @@ const BetDetails = React.memo(
                                                         Possible Winnings
                                                     </div>
                                                     <div
-                                                        className="amount-value">{parseFloat(item?.possible_win).toLocaleString()}</div>
+                                                        className="amount-value">{parseFloat(item.status===15?bet_details_meta?.bet_info?.cashout_value:item?.possible_win).toLocaleString()}</div>
                                                 </div>
 
                                             </div>
@@ -406,8 +406,9 @@ const BetDetails = React.memo(
                                         {item?.status == 1 && <div className="d-flex w-100 justify-content-around">
 
                                             <div className={"bet-history-options"}
-                                                 style={{ fontSize:'medium',
+                                                 style={{ fontSize:'large',
                                                      letterSpacing:'2px',
+                                                     fontWeight:'var(--font-weight3)',
                                                      background:'var(--bet-history)',
                                                      color:'var(--betnare-button-login)'
                                                  }}

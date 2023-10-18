@@ -127,17 +127,17 @@ const Header = React.memo(
             };
         
             // Listen for "beforeunload" event to handle clearing localStorage in the same tab
-            const handleBeforeUnload = () => {
-                clearLocalStorageSettings();
-            };
+            // const handleBeforeUnload = () => {
+            //     clearLocalStorageSettings();
+            // };
         
             window?.addEventListener("storage", handleStorageChange);
-            window?.addEventListener('beforeunload', handleBeforeUnload);
+            // window?.addEventListener('beforeunload', handleBeforeUnload);
         
             return () => {
               // Clean up the event listeners when the component unmounts
               window?.removeEventListener("storage", handleStorageChange);
-              window?.removeEventListener('beforeunload', handleBeforeUnload);
+            //   window?.removeEventListener('beforeunload', handleBeforeUnload);
             };
           };
         
@@ -148,7 +148,7 @@ const Header = React.memo(
             ) {
               cleanUpFuction();
             }
-          }, [settings]);
+          }, [appConfigs,getFromLocalStorage('settings')]);
 
 
 
@@ -267,7 +267,7 @@ const Header = React.memo(
                 
                   <span className={"color-app-text flashy col-12"}>
                     <span className="d-flex justify-content-center">
-                      {settings&&Object.keys(settings?.active_promotion?.mobile_promo)?.map(
+                      {Object.keys(settings?.active_promotion?.mobile_promo||{})?.map(
                         (key, index) => {
                           const promoValue =
                             settings.active_promotion.mobile_promo[key];

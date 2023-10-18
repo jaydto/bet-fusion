@@ -88,7 +88,12 @@ const Header = React.memo(
         const fetchData = async () => {
             dispatchRedux(matchCategories())
         };
-        const appConfigs = useSelector((state) => state.data.app_config)
+        const appConfigs = useSelector((state) => state.data.app_config);
+        const [settings, setSettings] = useState(getFromLocalStorage("settings"));
+      
+        useEffect(() => {
+          setSettings(appConfigs || getFromLocalStorage("settings"));
+        }, [appConfigs]);
 
         const cleanUpFuctionSportCategories = async () => {
             await fetchData();
@@ -106,44 +111,44 @@ const Header = React.memo(
 
         const cleanUpFuction = async () => {
             await fetchAppConfigurations();
-
+        
             // Custom function to clear settings from localStorage
-            // const clearLocalStorageSettings = () => {
-            //     localStorage.removeItem('settings');
-            //     // Manually call fetchAppConfigurations to update the settings
-            //     fetchAppConfigurations();
-            // };
-
+            const clearLocalStorageSettings = () => {
+                localStorage.removeItem('settings');
+                // Manually call fetchAppConfigurations to update the settings
+                fetchAppConfigurations();
+            };
+        
             // Listen for the "storage" event to detect changes in "settings" localStorage
             const handleStorageChange = (event) => {
-                if (event.key === 'settings') {
-                    fetchAppConfigurations();
-                }
+              if (event.key === "settings") {
+                fetchAppConfigurations();
+              }
             };
-
+        
             // Listen for "beforeunload" event to handle clearing localStorage in the same tab
-            // const handleBeforeUnload = () => {
-            //     clearLocalStorageSettings();
-            // };
-
-            window?.addEventListener('storage', handleStorageChange);
-            // window?.addEventListener('beforeunload', handleBeforeUnload);
-
-            return () => {
-                // Clean up the event listeners when the component unmounts
-                window?.removeEventListener('storage', handleStorageChange);
-                // window?.removeEventListener('beforeunload', handleBeforeUnload);
-
+            const handleBeforeUnload = () => {
+                clearLocalStorageSettings();
             };
-        }
-
-
-        useEffect(() => {
-            if(getFromLocalStorage('settings')==undefined||appConfigs==undefined){
-                cleanUpFuction()
+        
+            window?.addEventListener("storage", handleStorageChange);
+            window?.addEventListener('beforeunload', handleBeforeUnload);
+        
+            return () => {
+              // Clean up the event listeners when the component unmounts
+              window?.removeEventListener("storage", handleStorageChange);
+              window?.removeEventListener('beforeunload', handleBeforeUnload);
+            };
+          };
+        
+          useEffect(() => {
+            if (
+              getFromLocalStorage("settings") == undefined ||
+              appConfigs == undefined
+            ) {
+              cleanUpFuction();
             }
-
-        }, [getFromLocalStorage('settings'), appConfigs]);
+          }, [settings]);
 
 
 
@@ -198,6 +203,7 @@ const Header = React.memo(
         };
 
         const expand = "md"
+        const styles = { color: "var(--gold)" }; // Define your styles here
 
         useEffect(() => {
             if (pathname == 'nare-league') {
@@ -223,7 +229,7 @@ const Header = React.memo(
                 {changeNav?<Header2/>:
                     <div className={'d-flex flex-column'}>
                     <div className={` optional-action ${showDownload ? 'd-none' : 'd-flex'}`}>
-                        <Link to={'/deposit?utm_source=chomoka-na-nduthi'}
+                        {/* <Link to={'/deposit?utm_source=chomoka-na-nduthi'}
                               target={"_self"}
                               title={''}
                               className={"lite-top d-flex flex-column"}
@@ -236,7 +242,68 @@ const Header = React.memo(
                                        <strong style={{color: 'var(--gold'}}> Nduthi </strong> Promotion !!!
                                    </span>
                             </div>
-                        </Link>
+                        </Link> */}
+                        <div
+                title={"Promotion"}
+                className={"lite-top d-flex flex-column"}
+                onClick={() => {
+                  const activePromo = settings?.active_promotion?.app_promo;
+
+                  if (
+                    activePromo &&
+                    activePromo.promo_active === "1" &&
+                    activePromo.promo_url
+                  ) {
+                    gaEventTracker(activePromo?.promo_utm);
+                    navigate(`${activePromo?.promo_url}?utm_source=${activePromo?.promo_utm}`);
+                  }
+                }}
+              >
+                <div
+                  className={
+                    "app-download-link  d-flex justify-content-between w-100"
+                  }
+                >
+                
+                  <span className={"color-app-text flashy col-12"}>
+                    <span className="d-flex justify-content-center">
+                      {settings&&Object.keys(settings?.active_promotion?.mobile_promo)?.map(
+                        (key, index) => {
+                          const promoValue =
+                            settings.active_promotion.mobile_promo[key];
+
+                          if (key === "promo_message") {
+                            return promoValue
+                              .split(" ")
+                              .map((promoWord, indexWord) => {
+                                if (indexWord % 2 === 0) {
+                                  return (
+                                    <strong key={indexWord} style={styles}>
+                                      {promoWord}&nbsp;
+                                    </strong>
+                                  );
+                                } else if (
+                                  indexWord ===
+                                  promoValue.length - 1
+                                ) {
+                                  return (
+                                    <span key={indexWord}>{promoWord}</span>
+                                  );
+                                } else {
+                                  return (
+                                    <span key={indexWord}>
+                                      {promoWord}&nbsp;
+                                    </span>
+                                  );
+                                }
+                              });
+                          }
+                        }
+                      )}
+                    </span>
+                  </span>
+                </div>
+              </div>
 
                     </div>
                     <Navbar expand="md"

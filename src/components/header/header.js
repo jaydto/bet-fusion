@@ -223,31 +223,61 @@ const Header = React.memo(
             }
         }, [state?.searching]);
 
+        const PromoActive=()=>{
+            // console.log('appConfigs', appConfigs)
+            
+
+                return (settings||appConfigs)!==null?
+                
+                Object.keys(settings?.active_promotion?.mobile_promo||appConfigs?.active_promotion?.mobile_promo||{})?.map(
+                    (key, index) => {
+                      const promoValue =settings?
+                        settings.active_promotion.mobile_promo[key]:appConfigs?.active_promotion?.mobile_promo[key];
+
+                      if (key === "promo_message") {
+                        return promoValue
+                          .split(" ")
+                          .map((promoWord, indexWord) => {
+                            if (indexWord % 2 === 0) {
+                              return (
+                                <strong key={indexWord} style={styles}>
+                                  {promoWord}&nbsp;
+                                </strong>
+                              );
+                            } else if (
+                              indexWord ===
+                              promoValue.length - 1
+                            ) {
+                              return (
+                                <span key={indexWord}>{promoWord}</span>
+                              );
+                            } else {
+                              return (
+                                <span key={indexWord}>
+                                  {promoWord}&nbsp;
+                                </span>
+                              );
+                            }
+                          });
+                      }
+                    }
+                ): 
+             <></>
+          
+        }
+
 
         return (
             <>
                 {changeNav?<Header2/>:
                     <div className={'d-flex flex-column'}>
                     <div className={` optional-action ${showDownload ? 'd-none' : 'd-flex'}`}>
-                        {/* <Link to={'/deposit?utm_source=chomoka-na-nduthi'}
-                              target={"_self"}
-                              title={''}
-                              className={"lite-top d-flex flex-column"}
-                              onClick={() => {
-                                  gaEventTracker('Chomoka na Nduthi Promotion');
-                              }}>
-                            <div className={"app-download-link  d-flex flex-column"}>
-                                   <span className={"color-app-text flashy"}>
-                                       <strong style={{color: 'var(--gold'}}> Chomoka</strong>   na
-                                       <strong style={{color: 'var(--gold'}}> Nduthi </strong> Promotion !!!
-                                   </span>
-                            </div>
-                        </Link> */}
+                       
                         <div
                 title={"Promotion"}
                 className={"lite-top d-flex flex-column"}
                 onClick={() => {
-                  const activePromo = settings?.active_promotion?.app_promo;
+                  const activePromo = settings?settings?.active_promotion?.mobile_promo:appConfigs?.active_promotion?.mobile_promo;
 
                   if (
                     activePromo &&
@@ -267,39 +297,7 @@ const Header = React.memo(
                 
                   <span className={"color-app-text flashy col-12"}>
                     <span className="d-flex justify-content-center">
-                      {Object.keys(settings?.active_promotion?.mobile_promo||{})?.map(
-                        (key, index) => {
-                          const promoValue =
-                            settings.active_promotion.mobile_promo[key];
-
-                          if (key === "promo_message") {
-                            return promoValue
-                              .split(" ")
-                              .map((promoWord, indexWord) => {
-                                if (indexWord % 2 === 0) {
-                                  return (
-                                    <strong key={indexWord} style={styles}>
-                                      {promoWord}&nbsp;
-                                    </strong>
-                                  );
-                                } else if (
-                                  indexWord ===
-                                  promoValue.length - 1
-                                ) {
-                                  return (
-                                    <span key={indexWord}>{promoWord}</span>
-                                  );
-                                } else {
-                                  return (
-                                    <span key={indexWord}>
-                                      {promoWord}&nbsp;
-                                    </span>
-                                  );
-                                }
-                              });
-                          }
-                        }
-                      )}
+                      <PromoActive/>
                     </span>
                   </span>
                 </div>

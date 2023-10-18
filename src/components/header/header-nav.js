@@ -111,6 +111,21 @@ const HeaderNav = React.memo(
                                   title="Home"><strong>Home</strong></Link>
                         </li>
 
+                        <li className={pathname.includes('aviator') ? 'active live-bg' : ''}
+                            onClick={() => gaEventTracker('Aviator')}>
+                            <div className="url-link fm anl cg ox"
+                                 onClick={() =>{launchAviator(user?'live':'demo')}
+}
+                                 title="Aviator">
+                                <strong>
+                                    <div className={'d-flex menu-item'}>
+                                        Aviator
+
+                                    </div>
+                                </strong>
+                            </div>
+                        </li>
+
                         <li className={pathname.includes('live') && pathname.includes('casino') === false && pathname.includes('livescore') === false ? 'active' : ''}
                             onClick={() => gaEventTracker('Visit Live Page')}>
                             <Link className={`url-link fm anl cg ox `}
@@ -140,20 +155,7 @@ const HeaderNav = React.memo(
                             </div>
                         </li>
 
-                        <li className={pathname.includes('aviator') ? 'active live-bg' : ''}
-                            onClick={() => gaEventTracker('Aviator')}>
-                            <div className="url-link fm anl cg ox"
-                                 onClick={() =>{launchAviator(user?'live':'demo')}
-}
-                                 title="Aviator">
-                                <strong>
-                                    <div className={'d-flex menu-item'}>
-                                        Aviator
-
-                                    </div>
-                                </strong>
-                            </div>
-                        </li>
+                        
 
                         <li className={`${pathname === '/nare-league' ? 'active' : ''}`}>
                             <div className="url-link fm anl cg ox " onClick={() => {

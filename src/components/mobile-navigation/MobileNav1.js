@@ -121,6 +121,33 @@ const MobileNav1 = React.memo(
                             </div>
                         </div>
                     </td>
+
+                    <td className={`menu-t m-auto sport-check ${'/nare-games/aviator'===active_link ? " active_link" : "link-inactive"}`}>
+                        <div 
+                              className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `}
+                              onClick={() => {
+                                  gaEventTracker('Visit Aviator Page');
+                                  launchAviator(user?'live':'demo');
+                                  setActiveLink('/nare-games/aviator')
+                              }}>
+                            <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
+
+                                <div className="menu-img ">
+                                    <LazyLoadImage
+                                        className="side-icon "
+                                        src={aviator}
+                                        alt=""
+                                        style={{height: "26px", marginTop: "-1px", width:'41px'}}
+                                    />
+                                </div>
+                                <p style={{textAlign: "center", marginBottom: "unset"}}>
+                                    Aviator
+                                </p>
+                            </div>
+                        </div>
+
+                    </td>
+                    
                     <td className={`menu-t m-auto sport-check nare-league ${'/nare-league'===active_link ? "active_link" : "link-inactive"}`}>
                         <div
                             className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `}
@@ -204,31 +231,7 @@ const MobileNav1 = React.memo(
                     </td>
 
                     
-                    <td className={`menu-t m-auto sport-check ${'/nare-games/aviator'===active_link ? " active_link" : "link-inactive"}`}>
-                        <div 
-                              className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `}
-                              onClick={() => {
-                                  gaEventTracker('Visit Aviator Page');
-                                  launchAviator(user?'live':'demo');
-                                  setActiveLink('/nare-games/aviator')
-                              }}>
-                            <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
-
-                                <div className="menu-img ">
-                                    <LazyLoadImage
-                                        className="side-icon "
-                                        src={aviator}
-                                        alt=""
-                                        style={{height: "26px", marginTop: "-1px", width:'41px'}}
-                                    />
-                                </div>
-                                <p style={{textAlign: "center", marginBottom: "unset"}}>
-                                    Aviator
-                                </p>
-                            </div>
-                        </div>
-
-                    </td>
+                    
 
                     
 

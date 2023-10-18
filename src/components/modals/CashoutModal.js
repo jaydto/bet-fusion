@@ -108,14 +108,16 @@ const CashoutModal = React.memo((props) => {
             <FormatDate expires_at={cashout?.expires_at} />
           </p>
           {console.log('countdown time', countdownSeconds)}
-          {countdownSeconds&&
+          {countdownSeconds!==''?
           (countdownSeconds>0?<p className={"text-light count-down-cashout d-flex gap-4"}>
             <span className="Minutes d-flex flex-column">
               <span className={"counter-cashout time-box__time"}>
                 {!isNaN(countdownMinutes) && countdownMinutes}
               </span>
             </span>
-            <span style={{ fontSize: "16px", color: "var(--light" }}>:</span>
+            <span style={{ fontSize: "16px", color: "var(--light" }}>
+             {':'}
+            </span>
             <span className="Seconds d-flex flex-column">
               <span className={"counter-cashout time-box__time"}>
                 {!isNaN(countdownSeconds) && countdownSeconds}
@@ -124,7 +126,7 @@ const CashoutModal = React.memo((props) => {
           </p>:
           <span style={{fontSize:'var(--font-size-small-variation1)', color:'var(--faded-color)'}}>
             Cashout has Expired please check for availability of other offers
-          </span>)
+          </span>):<></>
           }
           
         </div>

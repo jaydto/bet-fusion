@@ -42,14 +42,14 @@ const NewProfile = React.memo(
                                         <div className="upper-row">
                                             <div className="card-item">
                                                 {/*todo balance*/}
-                                                <span>Cash Balance</span>
+                                                <span className='t-label'>Cash Balance</span>
                                                 <span>
 											<span className="dollar">Ksh {formatNumber(user?.balance) || 0}</span>
 										</span>
                                             </div>
                                             <div className="card-item">
                                                 {/*todo bonus*/}
-                                                <span>Bonus Balance</span>
+                                                <span className='t-label'>Bonus Balance</span>
                                                 <span>
 											<span className="dollar">Ksh {formatNumber(user?.bonus) || 0}</span>
 										</span>
@@ -58,23 +58,22 @@ const NewProfile = React.memo(
                                         <div className="upper-row">
                                             <div className="card-item">
                                                 {/*todo gift*/}
-                                                <span>Gift Balance</span>
+                                                <span className='t-label'>Gift Balance</span>
                                                 <span>
 											<span className="dollar">Ksh {formatNumber(user?.gift_balance) || 0}</span>
 										</span>
                                             </div>
                                             <div className="card-item">
                                                 {/*/todo nare poinsts*/}
-                                                <span>Nare Points</span>
+                                                <span className='t-label'>Nare Points</span>
                                                 <span>
-											<span
-                                                className="dollar"> Pts {formatNumber(user?.points_balance) || 0}</span>
+											<span className="dollar"> Pts {formatNumber(user?.points_balance) || 0}</span>
 										</span>
                                             </div>
                                         </div>
                                     </div>
                                     <Link to={`/promo?id=12`}  style={{textDecoration: "none", color: "black"}}>
-                                        <div className="transaction d-flex align-items-center justify-content-between">
+                                        <div className="transaction d-flex align-items-center justify-content-between mb-0">
                                             <div className="">
                                                 <div className="t-title gap-2 d-flex flex-column w-100">
                                                     <div className={'promo-text-size text-center title-promo'}>{user?.promo_points?.title}</div>

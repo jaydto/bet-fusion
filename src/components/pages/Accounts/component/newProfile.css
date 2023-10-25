@@ -76,7 +76,7 @@
 }
 .card {
     align-self: stretch;
-    background-color: white;
+    background-color: #1a252f;
     border-radius: 12px;
     display: flex;
     flex-direction:column;
@@ -97,6 +97,9 @@
     margin: 20px;
     display: flex;
     flex-direction: column;
+}
+.t-label{
+    color:var(--light);
 }
 .card-item span:first-child {
     font-size: 1.5rem;
@@ -166,7 +169,7 @@ a.text-logout{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: white;
+    background-color: #1a252f;
     box-shadow: 0 14px 28px rgba(0,0,0,0.02), 0 10px 10px rgba(0,0,0,0.0);
     border-radius: 12px;
     margin-bottom: 20px;
@@ -189,12 +192,16 @@ a.text-logout{
     font-size: 1.5rem;
     font-weight: bold;
     margin-bottom: 5px;
+    color:var(--light);
+
 }
 .t-time {
     font-size: 0.6rem;
     opacity: 0.6;
     font-weight: 300;
     letter-spacing: 1px;
+    color:var(--light);
+
 }
 .t-amount {
     font-size: 0.6rem;
@@ -265,7 +272,7 @@ a.text-logout{
 }
 @media (min-width:992px){
     .content {
-        margin-top: 4rem!important;
+        margin-top: 5rem!important;
         top: 12rem;
         position: sticky;
         width: 100%;
@@ -306,7 +313,7 @@ a.text-logout{
     }
 }
 .points-promo-card{
-    box-shadow: 1px 0px 2px 1px #f3eded;
+    box-shadow: 1px 0px 2px 1px #203040;
     border-radius: 7px;
     padding:8px;
 }
@@ -314,13 +321,6 @@ a.text-logout{
     border-radius: 10px;
 }
 @media (max-width: 991px){
-    .content {
-        margin-top: 4rem!important;
-        top: 10rem;
-        position: sticky;
-        width: 100%;
-        height: 100%;
-    }
     .promo-active-profile-img {
 
         max-height: 120px;
@@ -328,12 +328,25 @@ a.text-logout{
     }
     .promo-text-size{
         font-size:var(--font-size-small);
+        color:var(--light);
     }
     .promo-text-actual{
         font-size:var(--font-size-small-variation1);
+
     }
     .title-promo{
         font-weight:var(--font-weight2);
+        color:var(--light);
+    }
+    .content{
+        margin-top:5rem!important;
+        top: 10rem;
+        position: sticky;
+        width: 100%;
+        height: 100%;
+        color:var(--light);
+
+
     }
     .user-profile {
         height: 42px!important;

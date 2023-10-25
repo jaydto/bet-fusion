@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useRef, useState} from "react";
 import Header from "../../header/header";
 import Footer from "../../footer/footer";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import makeRequest from "../../utils/fetch-request";
 import Skeleton, {SkeletonTheme} from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
@@ -182,6 +182,20 @@ const GamePlay = React.memo(
 
         }, [])
 
+        const navigate=useNavigate()
+
+        
+
+        const navigateChecker=()=>{
+            if(user){
+                navigate("/nare-games/aviator?status=live")
+                window.location.reload()
+            }else{
+                navigate('/login');
+            }
+
+        }
+
 
         return (
             <div style={{position: 'relative'}}>
@@ -204,7 +218,7 @@ const GamePlay = React.memo(
                                         className={` ${isCustomFullscreen ? "active custom-fullscreen-wrapper" : ""}`}
                                     >
                                         {demo && (
-                                            <div className="alert alert-info">
+                                            <div className="alert alert-info" onClick={()=>navigateChecker()}>
                                                 This is {game} Demo. To play the real game, please Log In.
                                                 &nbsp;<FontAwesomeIcon icon={faFire} style={{color: "orangered"}}/>
                                             </div>

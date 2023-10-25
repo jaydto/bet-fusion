@@ -266,7 +266,11 @@ const BetDetails = React.memo(
         const rebet_match = useSelector((state) => state.matchesData.rebet_match)
         const rebetRequest = async (bet_id) => {
             let data = {
-                "bet_id": bet_id
+                'data':{
+                    "bet_id": bet_id
+                },
+                'bet_status':bet_details_meta?.bet_info?.status
+
             }
             let message = {
                 status: 200,
@@ -275,9 +279,14 @@ const BetDetails = React.memo(
             dispatchRedux(matchesRebet(data))
             Notify(message)
         }
+
         useEffect(() => {
             if (rebet_match) {
-                return width <= 991 ? window.location.href = "/betslip-slip" : navigate("/")
+                if(bet_details_meta?.bet_info?.status===9){
+                    return navigate("/jackpot")
+                }else{
+                    return width <= 991 ?  navigate("/betslip-slip") : navigate("/")
+                }
             }
 
         }, [rebet_match]);
@@ -377,7 +386,7 @@ const BetDetails = React.memo(
                                                                  created={bet_details_meta?.bet_info?.created}/>
                                             }
                                             <div className={"bet-history-options"}
-                                                 onClick={() => rebetRequest(item?.bet_id)}>
+                                                 onClick={() => rebetRequest(item?.bet_id,bet_details_meta?.bet_info?.status)}>
                                                 Rebet
                                             </div>
                                             <div className={"bet-history-options"}

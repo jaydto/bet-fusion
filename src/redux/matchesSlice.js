@@ -3,7 +3,7 @@ import {createAction, createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import initialState from "./state"; // Import the initial state from state.js
 import makeRequest from "../components/utils/fetch-request";
 import {setLocalStorage} from "../components/utils/local-storage";
-import {addToSlip} from "../components/utils/betslip";
+import {addToJackpotSlip, addToSlip} from "../components/utils/betslip";
 // Async thunk for matches
 export const matchesPrematch =
     createAsyncThunk("matches/prematch",
@@ -229,10 +229,10 @@ export const matchesRebet =
             const [status, response] = await makeRequest({
                 url: "/v1/rebet",
                 method: "POST",
-                data: data
+                data: data['data']
             });
             if (status === 200) {
-                return response;
+                return {response, bet_status: data['bet_status']};
             } else {
                 throw new Error(response?.error || "Rebet  failed");
             }
@@ -417,6 +417,10 @@ export const stopFetchingMatches = () => () => {
     }
 };
 
+export const setState = createAction("matches/setMatchesState", (stateToSet, data) => {
+    return { payload: { stateToSet, data } };
+  });
+
 const matchesSlice = createSlice({
     name: "matches",
     initialState,
@@ -555,16 +559,16 @@ const matchesSlice = createSlice({
 
             })
             .addCase(matchesRebet.fulfilled, (state, action) => {
-
-                state.loading_bet_history = false
-                const rebet_data = action.payload.success
-                state.rebet_match = action.payload
+                state.loading_bet_history = false;
+                const rebet_data = action.payload.response.success;
+                state.rebet_match = action.payload.response;
+                const status=action.payload.bet_status
                 Object.entries(rebet_data).map(([match_id, match]) => {
-                    match.live = Number(match?.live) !== 0
-                    match.bet_type = String(match?.bet_type)
-                    addToSlip(match)
-                })
-            })
+                  match.live = Number(match?.live) !== 0;
+                  match.bet_type = String(match?.bet_type);
+                  status===9?addToJackpotSlip(match): addToSlip(match);
+                });
+              })
             .addCase(matchesRebet.rejected, (state, action) => {
                 state.error = action.error.message
                 state.loading_bet_history = false
@@ -902,6 +906,13 @@ const matchesSlice = createSlice({
                 }
                 state.error = null;
             })
+            .addCase(setState, (state, action) => {
+                const { stateToSet, data } = action.payload;
+                if (state.hasOwnProperty(stateToSet)) {
+                  state[stateToSet] = data;
+                }
+                state.error = null;
+              })
     },
 });
 

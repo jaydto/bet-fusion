@@ -12,7 +12,7 @@ import moment from "moment";
 import {ToastContainer} from "react-toastify";
 import {faXbox} from "@fortawesome/free-brands-svg-icons";
 import {useDispatch, useSelector} from "react-redux";
-import {betHistoryDetails, fullBetDetails, setFetching} from "../../../../redux/matchesSlice";
+import {betHistoryDetails, fullBetDetails, setFetching, setState as setMatchesState} from "../../../../redux/matchesSlice";
 import SkeletonLoaderMore from "../../skeletonLoadersWeb/SkeletonLoaderMore";
 import {setState} from "../../../../redux/dataSlice";
 
@@ -30,6 +30,7 @@ const BetHistory = () => {
         const abort = new AbortController()
         fetchData();
         dispatchRedux(setFetching("fetching", true))
+        dispatchRedux(setMatchesState('rebet_match', null))
         return () => {
             // dispatch({type: "SET", key: "bet_history_details", payload: false});
             dispatchRedux(setState('bet_history_details', false))

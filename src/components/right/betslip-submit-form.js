@@ -444,7 +444,9 @@ const BetslipSubmitForm = React.memo(
                 // }
                 // dispatchRedux(removeSlipSelection(match_items));
                 dispatchRedux(removeSelected(match_selector))
-                dispatchRedux(removePickedData(""));
+                dispatchRedux(removeSelected(match_selector))
+                dispatchRedux(setMatchBetslipOptions('betslipLength', 0))
+
 
             });
 

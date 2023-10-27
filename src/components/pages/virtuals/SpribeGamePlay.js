@@ -219,7 +219,7 @@ const GamePlay = React.memo(
                                     >
                                         {demo && (
                                             <div className="alert alert-info" onClick={()=>navigateChecker()}>
-                                                This is {game} Demo. To play the real game, please Log In.
+                                                This is {game} Demo. To play the real game, please {user?'Click here':'Log In'}.
                                                 &nbsp;<FontAwesomeIcon icon={faFire} style={{color: "orangered"}}/>
                                             </div>
                                         )}

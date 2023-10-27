@@ -15,7 +15,7 @@ import {setInitialLoadingState, stopFetchingMatches} from "../redux/matchesSlice
 import Right from "./right";
 import useWindowDimensions from "./header/Dimensions";
 import {userBalance} from "../redux/authSlice";
-import {getFromLocalStorage} from "./utils/local-storage";
+import {getFromLocalStorage, setLocalStorage} from "./utils/local-storage";
 import MainTabs from "./header/main-tabs";
 import CarouselLoader from "./carousel";
 import {removeScrollPosition, setScrollPast, setScrollPosition, setScrollToTop} from "../redux/ScrollBehavior";
@@ -62,6 +62,32 @@ const DefaultPage = React.memo(
         const showBottomSheet = () => {
             dispatchRedux(setState('bottom_sheet', true))
         }
+
+        const setUtmCampaign = () => {
+            const utm_source = new URL(window.location).searchParams.get('utm_source')
+            const utm_campaign = new URL(window.location).searchParams.get('utm_campaign')
+            const btag = new URL(window.location).searchParams.get('btag')
+
+
+            if (utm_source) {
+                setLocalStorage("utm_source", utm_source)
+            }
+            if (utm_campaign) {
+                setLocalStorage("utm_campaign", utm_campaign)
+
+            }
+            if (btag) {
+                setLocalStorage("btag", btag)
+            }
+        }
+
+        useEffect(() => {
+            const abort = new AbortController();
+            setUtmCampaign()
+            return () => {
+                abort.abort(); // Cleanup function to abort the controller when the component unmounts.
+            };
+        }, [])
 
         const updateUserOnHistory = () => {
             if (!user) {

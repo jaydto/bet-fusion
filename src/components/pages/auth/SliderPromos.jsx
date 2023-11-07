@@ -7,7 +7,7 @@ const Slider = React.memo(
     (props) => {
         const { state } = useContext(StoreContext);
         const appConfig=useSelector((state)=>state.data.app_config)
-        const promosData = appConfig?.message?.accountConfiguration?.registrationPromos
+        const promosData = appConfig?.accountConfiguration?.registrationPromos
 
         const [slideIndex, setSlideIndex] = useState(0);
 

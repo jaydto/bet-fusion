@@ -104,6 +104,16 @@ const authSlice = createSlice({
                 state.loading = true;
                 state.error = null;
             })
+            .addCase(loginUser.fulfilled, (state, action) => {
+                state.isLoggedIn = true;
+                state.user = action.payload;
+                state.loading = false;
+                state.error = null;
+            })
+            .addCase(loginUser.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
             .addCase(userBalance.pending, (state) => {
                 state.loading = true;
             })
@@ -127,16 +137,7 @@ const authSlice = createSlice({
                 state.loading = false;
                 state.error = action.error.message;
             })
-            .addCase(loginUser.fulfilled, (state, action) => {
-                state.isLoggedIn = true;
-                state.user = action.payload;
-                state.loading = false;
-                state.error = null;
-            })
-            .addCase(loginUser.rejected, (state, action) => {
-                state.loading = false;
-                state.error = action.error.message;
-            })
+            
             .addCase(signupUser.pending, (state) => {
                 state.loading = true;
                 state.error = null;

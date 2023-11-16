@@ -16427,6 +16427,10 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 .casino-category-button:active{
     background: #f98f06!important;
 }
+.casino-category-button.active-category{
+    background: #f98f06!important;
+}
+
 .clearfix:before,
 .clearfix:after {
     display: table;

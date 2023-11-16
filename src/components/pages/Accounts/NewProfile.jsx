@@ -64,7 +64,7 @@ const NewProfile = React.memo(
 										</span>
                                             </div>
                                             <div className="card-item">
-                                                {/*/todo nare poinsts*/}
+                                                {/*/todo nare points*/}
                                                 <span className='t-label'>Nare Points</span>
                                                 <span>
 											<span className="dollar"> Pts {formatNumber(user?.points_balance) || 0}</span>

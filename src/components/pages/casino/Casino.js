@@ -81,15 +81,15 @@ const Casino = React.memo(
                                     <div className="col-md-12 casino-scroll">
                                         <div
                                             className="shadow-sm p-2 shadow-sm casino-category-container mt-2">
-                                             <Button bg="warning"
+                                             {/* <Button bg="warning"
                                                            
                                                            style={{marginRight: '2px'}}
                                                            className={`cursor-pointer text-center casino-category casino-category-button`}
                                                            onClick={() => navigate("/nare-games/aviator")}
                                                            >
                                                    Aviator
-                                                </Button>
-                                            
+                                                </Button> */}
+
                                             {categories?.map((category, index) => (
                                                 category?.game_type_id !== "rgs-vsb"
                                                 && <Button bg="warning"

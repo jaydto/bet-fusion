@@ -421,7 +421,7 @@ input.text-white {
 }
 
 .pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item {
-    padding: 0.5px 25px 0px 12px !important;
+    padding: 0.5px 5px 0px 5px !important;
 }
 
 .pc .navbar-nav > .active > a.live-bg {
@@ -498,6 +498,7 @@ input.text-white {
     min-height: 60px;
     padding: 1px 0px 5px 0px;
     background: var(--betnare-header-bg);
+    max-height: 104px;
 }
 
 .pc .navbar-nav > li > a {
@@ -3198,12 +3199,13 @@ img.nare-league {
         color: rgb(255, 255, 255);
         background-color: red;
         border-radius: 12px;
-        height: 15px;
-        width: 15px;
+        height: 18px;
+        width: 20px;
         display: flex !important;
         align-items: center !important;
         justify-content: center;
         margin-left: 10px;
+        /* padding: 5px; */
     }
 
 

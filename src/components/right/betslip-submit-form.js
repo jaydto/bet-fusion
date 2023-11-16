@@ -248,7 +248,7 @@ const BetslipSubmitForm = React.memo(
                 accept_all_odds_change: values.accept_all_odds_change
             };
             let endpoint = '/bet';
-            let method = "GET"
+            let method = "POST"
             let use_jwt = true
             dispatchRedux(setState('deposits_message', null))
 

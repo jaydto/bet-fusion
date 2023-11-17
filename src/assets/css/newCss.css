@@ -1519,9 +1519,9 @@ img.nare-league {
         float: right;
         color: rgb(255, 255, 255);
         background-color: red;
-        border-radius: 12px;
-        height: 15px;
-        width: 15px;
+        border-radius: 6px;
+        height: 13px;
+        width: 25px;
         display: flex !important;
         align-items: center !important;
         justify-content: center;
@@ -3208,7 +3208,7 @@ img.nare-league {
         color: #fff;
         display: flex!important;
         float: right;
-        height: 16px;
+        height: 13px;
         justify-content: center;
         margin-left: 10px;
         width: 28px;

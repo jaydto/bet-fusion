@@ -5,9 +5,22 @@ import {
     AccordionItemPanel,
 } from 'react-accessible-accordion';
 import 'react-accessible-accordion/dist/fancy-example.css';
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { setState } from '../../../redux/dataSlice';
 
 const TermAndTermination = () => {
+    const show=useSelector((state)=>state.data.show_menu)
+        const dispatchRedux=useDispatch()
+
+        const handleClose = () => {
+            dispatchRedux(setState('show_menu', false))
+        };
+       
+        useEffect(()=>{
+            if(show==true)
+            handleClose();
+        },[])
     return (
         <AccordionItem>
             <AccordionItemHeading>

@@ -7,20 +7,45 @@ import {formatNumber} from "../../utils/betslip";
 import {getFromLocalStorage, setLocalStorage} from "../../utils/local-storage";
 import SidebarProfile from "../../sidebar/sidebarProfile";
 import {LazyLoadImage} from "react-lazy-load-image-component";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import useWindowDimensions from "../../header/Dimensions";
+import { userPromoPoints } from '../../../redux/authSlice';
 
 const NewProfile = React.memo(
     () => {
         const userData=useSelector((state)=>state.auth.user)
         const [user, setUser]=useState(getFromLocalStorage("user"))
         const {width}=useWindowDimensions()
+        const dispatchRedux = useDispatch()
 
         useEffect(()=>{
             if(userData){
                 setUser(userData||getFromLocalStorage("user"))
             }
         }, [userData])
+
+        const updateUserOnHistory = () => {
+            if (!user) {
+                return false;
+            }
+            let udata = {
+                token: user.token
+            }
+            const userValues = {
+                udata: udata,
+                user: user
+            }
+
+            dispatchRedux(userPromoPoints(userValues))
+
+        };
+        useEffect(() => {
+            const abort = new AbortController()
+            updateUserOnHistory()
+            return () => {
+                abort.abort()
+            }
+        }, [])
         const clearHistory = () => {
             setLocalStorage("user", null)
             return window.location.href = "/logout"

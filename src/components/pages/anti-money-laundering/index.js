@@ -11,6 +11,8 @@ import 'react-accessible-accordion/dist/fancy-example.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
 import {useNavigate} from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setState } from "../../../redux/dataSlice";
 
 
 const Header = React.lazy(()=>import('../../header/header'));
@@ -25,6 +27,17 @@ const AntiMoneyLaundering = () => {
             behavior: 'smooth'
         });
     }, []);
+    const show=useSelector((state)=>state.data.show_menu)
+        const dispatchRedux=useDispatch()
+
+        const handleClose = () => {
+            dispatchRedux(setState('show_menu', false))
+        };
+       
+        useEffect(()=>{
+            if(show==true)
+            handleClose();
+        },[])
     const navigate=useNavigate()
     return (
         <div className={'flex-item'}>

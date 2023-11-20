@@ -164,7 +164,7 @@ const DisputeResolution = () => {
                         </div>
                     </div>
                 </div>
-                <div className="item3"><Right  test={true}/></div>
+                <div className="item3 mobile-remove"><Right  test={true}/></div>
 
             </div>
             <div className="item6"><div className={"footer-mobile-none"}>

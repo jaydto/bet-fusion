@@ -1,5 +1,5 @@
 *{
-    list-style:none;
+    /* list-style:none; */
     box-sizing: border-box;
     text-decoration: none;
 
@@ -3080,6 +3080,15 @@ p {
 }
 
 @media (min-width: 768px) {
+    ::-webkit-scrollbar {
+        width: 5px!important;
+    
+    }
+       
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #495666;
+    }
     .df {
         font-size: 21px;
     }
@@ -6855,6 +6864,21 @@ ul.sport {
 }
 
 @media (max-width: 767px) {
+    ::-webkit-scrollbar {
+        width: 1px!important;
+    
+    }
+    
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #16202c;
+    }
+    
+    
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background:#16202c;
+    }
     .to-tabview{
         display: none;
     }
@@ -7671,16 +7695,17 @@ ul.sport {
         position: relative;
     }
     .menu-wrapper {
-        /*max-width: 100vw;*/
+        /* max-width: 100vw; */
         width: 100vw;
-        /*max-width: 991px;*/
+        /* max-width: 991px; */
         display: inline-block;
         overflow-y: hidden;
         overflow-x: auto;
         background: #16202C!important;
         /* background: orange!important; */
         -webkit-overflow-scrolling: touch;
-        height:63px;
+        height: 55px;
+        padding-left: 4px;
     }
     .betslip td.tax-info {
         padding: 10px 4px!important;
@@ -16132,21 +16157,11 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     text-align: center !important;
 }
 
-::-webkit-scrollbar {
-    width: 1px!important;
-
-}
-
 /* Track */
 ::-webkit-scrollbar-track {
     background: #16202c;
 }
 
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-    background: #16202c;
-}
 
 
 .c-btn {
@@ -16426,6 +16441,10 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 .casino-category-button:active{
     background: #f98f06!important;
 }
+.casino-category-button.active-category{
+    background: #f98f06!important;
+}
+
 .clearfix:before,
 .clearfix:after {
     display: table;

@@ -14,8 +14,9 @@ import SelfExclusion from "../Accounts/component/SelfExclusion";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
 import {useNavigate} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {getFromLocalStorage} from "../../utils/local-storage";
+import { setState } from "../../../redux/dataSlice";
 
 const SideBar = React.lazy(() => import('../../sidebar/awesome/Sidebar'));
 const Footer = React.lazy(() => import('../../footer/footer'));
@@ -33,6 +34,17 @@ const ResponsibleGambling = React.memo(
                 setUser(userData || getFromLocalStorage("user"))
             }
         }, [userData])
+        const show=useSelector((state)=>state.data.show_menu)
+        const dispatchRedux=useDispatch()
+
+        const handleClose = () => {
+            dispatchRedux(setState('show_menu', false))
+        };
+       
+        useEffect(()=>{
+            if(show==true)
+            handleClose();
+        },[])
 
         // Extract the fragment identifier
         var fragmentIdentifier = window.location.hash;

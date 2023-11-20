@@ -839,15 +839,15 @@ const matchesSlice = createSlice({
                 state.error = action.error.message;
             })
             .addCase(jackpotById.pending, (state) => {
-                state.loading = true;
+                state.jackpot_loading = true;
             })
             .addCase(jackpotById.fulfilled, (state, action) => {
-                state.loading = false;
+                state.jackpot_loading = false;
                 state.error = null;
                 state.jackpot_by_id = action.payload;
             })
             .addCase(jackpotById.rejected, (state, action) => {
-                state.loading = false;
+                state.jackpot_loading = false;
                 state.error = action.error.message;
             })
             .addCase(setInitialLoadingState, (state, action) => {

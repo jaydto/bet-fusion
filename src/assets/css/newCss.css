@@ -421,7 +421,7 @@ input.text-white {
 }
 
 .pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item {
-    padding: 0.5px 25px 0px 12px !important;
+    padding: 0.5px 5px 0px 5px !important;
 }
 
 .pc .navbar-nav > .active > a.live-bg {
@@ -498,6 +498,7 @@ input.text-white {
     min-height: 60px;
     padding: 1px 0px 5px 0px;
     background: var(--betnare-header-bg);
+    max-height: 104px;
 }
 
 .pc .navbar-nav > li > a {
@@ -661,6 +662,13 @@ input {
     display: flex;
     justify-content: start;
     background: var(--betnare-body-bg);
+}
+ol.list-count-type{
+    list-style: circle!important;
+}
+.accordion-button:not(.collapsed)::after{
+    filter: brightness(2.5);
+    background-image: ;
 }
 .menu-t div.inner-div {
     /* background-color: #2D4352; */
@@ -1511,9 +1519,9 @@ img.nare-league {
         float: right;
         color: rgb(255, 255, 255);
         background-color: red;
-        border-radius: 12px;
-        height: 15px;
-        width: 15px;
+        border-radius: 6px;
+        height: 13px;
+        width: 25px;
         display: flex !important;
         align-items: center !important;
         justify-content: center;
@@ -3194,16 +3202,16 @@ img.nare-league {
     }
 
     .live-side-badge {
-        float: right;
-        color: rgb(255, 255, 255);
+        align-items: center!important;
         background-color: red;
-        border-radius: 12px;
-        height: 15px;
-        width: 15px;
-        display: flex !important;
-        align-items: center !important;
+        border-radius: 9px;
+        color: #fff;
+        display: flex!important;
+        float: right;
+        height: 13px;
         justify-content: center;
         margin-left: 10px;
+        width: 28px;
     }
 
 

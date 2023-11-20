@@ -15,6 +15,7 @@ import SkeletonMobileJackpot from "./pages/skeletonLoadersWeb/SkeletonLoaderJack
 import caution from '../assets/img/mobile/caution.png'
 import {useDispatch, useSelector} from "react-redux";
 import {jackpotById, jackpotHistoryData, matchesJackpot} from "../redux/matchesSlice";
+import SkeletonLoaderMore from "./pages/skeletonLoadersWeb/SkeletonLoaderMore";
 
 
 const Right = React.lazy(() => import('./right'));
@@ -282,6 +283,9 @@ const Jackpot = React.memo(
                                         </div>
 
                                         {(jackpot_by_id)?.data?.map((match, index) => (
+                                            loading? 
+                                            <SkeletonLoaderMore/>
+                                            :
                                             <div className={'matches full-width'} key={index}>
                                                 <div className={`${width <= 767 ? "w-100 px-2" : "web-element px-2"}`}>
                                                     <div

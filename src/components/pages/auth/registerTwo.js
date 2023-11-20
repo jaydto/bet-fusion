@@ -160,6 +160,7 @@ const SignupForm = () => {
   const { dispatch } = useContext(StoreContext);
   const initialValues = {
     msisdn: "",
+    agreementCheckbox: false,
   };
 
   const handleSubmit = (values) => {
@@ -207,6 +208,12 @@ const MySignupForm = (props) => {
     setFieldValue(field, value);
   };
 
+  const onCheckboxChanged = (ev) => {
+    const { name, checked } = ev.target;
+
+    setFieldValue(name, checked);
+  };
+
   const [settings, setSettings] = useState(getFromLocalStorage("settings"));
 
   useEffect(() => {
@@ -243,13 +250,13 @@ const MySignupForm = (props) => {
             <div className="col">
               <button
                 type={"submit"}
+                disabled={values?.agreementCheckbox == false ? true : false}
                 className=" btn btn-lg w-100 button-radius input-field btn-font cg login-button2 btn "
                 style={{ marginTop: "28px" }}
               >
                 <strong style={{ fontWeight: "800" }}>NEXT</strong>
               </button>
-              {settings?.accountConfiguration?.verificationEnabled !==
-                "0" && (
+              {settings?.accountConfiguration?.verificationEnabled !== "0" && (
                 <div
                   className={`d-flex justify-content-center w-100 mt-3 cursor-pointer`}
                   title="Verify"
@@ -265,6 +272,24 @@ const MySignupForm = (props) => {
                   </span>
                 </div>
               )}
+              <div className="d-flex align-items-start px-2 mt-2">
+                <input
+                  type="checkbox"
+                  //   value={values.agreementCheckbox}
+                  id="agreementCheckbox"
+                  checked={values.agreementCheckbox}
+                  name="agreementCheckbox" // Add the name attribute for Formik
+                  onChange={onCheckboxChanged}
+                  className="px-2 d-flex align-items-end mt-2"
+                />
+                <p className="mb-0">
+                  By clicking Register you confirm to have read in detail,
+                  understood and agreed to the{" "}
+                  <Link to="/terms-and-conditions">Terms and Conditions</Link>,
+                  the, <Link to="/privacy-policy">Privacy policy</Link>
+                  {" and also that you are over 18 years of age."}
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -519,16 +544,14 @@ const ReferalForm = React.memo((props) => {
         console.error("Error in handleSubmit:", error);
       });
   };
-  
-  console.log('appconfig', settings?.accountConfiguration?.verificationEnabled);
-  
+
+  console.log("appconfig", settings?.accountConfiguration?.verificationEnabled);
+
   useEffect(() => {
     let message = "";
     if (successMessage?.success?.status === 201) {
       const timeoutId = setTimeout(() => {
-        if (
-          settings?.accountConfiguration?.verificationEnabled !== "0"
-        ) {
+        if (settings?.accountConfiguration?.verificationEnabled !== "0") {
           navigate("/verify");
         } else {
           navigate("/login");

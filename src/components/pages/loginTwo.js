@@ -142,9 +142,9 @@ const LoginTwo = React.memo(
                                             {user ?
                                                 setTimeout(() => {
                                                         if (getFromLocalStorage('ActiveLink') == undefined || getFromLocalStorage('ActiveLink') == null) {
-                                                            return navigate(state?.page_view ? `${state?.page_view}` : '/')
+                                                            return navigate(state?.page_view ?state?.page_view ==='/signup'?'/': `${state?.page_view}` : '/')
                                                         } else {
-                                                            navigate(getFromLocalStorage('ActiveLink'))
+                                                            navigate(getFromLocalStorage('ActiveLink')==='/signup'?'/':getFromLocalStorage('ActiveLink'))
                                                             localStorage.removeItem('ActiveLink')
                                                         }
                                                     }

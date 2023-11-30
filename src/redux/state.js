@@ -1,6 +1,7 @@
 const initialState = {
     data: {
         show_menu:false,
+        show_menu_casino:false,
         bet_history_details:false,
         navigation_link:null,
         print_title:'highlights',
@@ -29,6 +30,7 @@ const initialState = {
 
     }, // Initial state for the data reducer
     virtuals: {
+        game_type:'pragmatic',
         loading:false,
         error:null,
         casino_games:null,

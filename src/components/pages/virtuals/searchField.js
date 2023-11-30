@@ -6,6 +6,8 @@ import {StoreContext } from "../../../context/store"
 const SearchComponent = React.memo(
     (props) => {
     const {data}=props
+
+    console.log('data ', data)
     const [searchTerm, setSearchTerm] = useState('');
     const { state, dispatch } = useContext(StoreContext);
 
@@ -36,16 +38,10 @@ const SearchComponent = React.memo(
             <input type="text" name="search" placeholder="Search..."
                    value={searchTerm}
                    onChange={handleSearch} className="search-input"/>
-            <a href="#" className="search-btn">
+            <div  className="search-btn cursor-pointer">
                 <FontAwesomeIcon icon={faSearch} />
-            </a>
-                {/*{console.log("filteredData", filteredData)}*/}
-                {/*{filteredData ? (*/}
-                {/*    <div>*/}
-                {/*        <h2>{filteredData.game_name}</h2>*/}
-                {/*        <img src={filteredData.game_icon} alt={filteredData.game_name} />*/}
-                {/*    </div>*/}
-                {/*) : null}*/}
+            </div>
+               
         </div>
 
         </div>

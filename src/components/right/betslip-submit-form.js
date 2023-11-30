@@ -801,7 +801,7 @@ const BetslipSubmitForm = React.memo(
 
 
                     return (<FormikForm name="betslip-submit-form">
-                        <Alert/>
+                        { !showDepositModal&& <Alert/>}
 
                         {showShareModal && (
                             <BetslipShareModal
@@ -818,8 +818,9 @@ const BetslipSubmitForm = React.memo(
                                 setShowShareModal={setShowDepositModal}
                             />
                         )}
-                        <div>
-                            {!jackpot && !message &&
+                      
+                       <div>
+                            {!jackpot && !message && 
                                 awardMultiGift &&
                                 Number(totalGames) >= settings?.betnareBonus?.bonusBetLegs && (
                                     multiBoostMessage &&

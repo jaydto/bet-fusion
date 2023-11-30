@@ -235,7 +235,7 @@ const CashoutModal = React.memo((props) => {
             {loadingCashout ? (
               <div className="loader"></div>
             ) : (
-              `Request Cashout`
+              ` Cashout  ${cashout?.cashout_value?`Kes ${cashout?.cashout_value}`:'' }`
             )}
           </button>
 

@@ -603,9 +603,7 @@ const BetslipSubmitForm = React.memo(
 
 
                     setMultiBoostMessage(
-                        "You Qualify for a Nare Boost Minimum stake is " +
-                        3 +
-                        " KES "
+                        "You  Have Qualified for a Nare Boost " 
                     );
 
 

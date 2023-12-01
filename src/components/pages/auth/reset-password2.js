@@ -283,7 +283,6 @@ const MyPasswordResetForm = React.memo(
                     <div className="form-group w-100 d-flex justify-content-left mb-4">
                         <div className="col">
                             <button type="submit"
-                                    onClick={submitForm}
                                     className='w-100 btn btn-lg btn-primary mt-5 col-md-12 deposit-withdraw-button button-page'>
                                 Reset Password
                             </button>

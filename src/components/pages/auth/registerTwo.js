@@ -13,7 +13,7 @@ import backgroundURL from "../../../assets/img/auth/img-17.webp";
 
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faEyeLowVision, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { Form, Formik } from "formik";
 import { StoreContext } from "../../../context/store";
 import SliderPromos from "./SliderPromos";
@@ -333,6 +333,11 @@ const MyPasswordForm = (props) => {
   const [showPassword, setShowPassword] = useState(false);
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
+  }; 
+
+  const [showPassword2, setShowPassword2] = useState(false);
+  const toggleShowPassword2 = () => {
+    setShowPassword2(!showPassword2);
   };
   const [showInput, setShowInput] = useState(false);
 
@@ -381,12 +386,12 @@ const MyPasswordForm = (props) => {
                     >
                       {showPassword ? (
                         <FontAwesomeIcon
-                          icon={faEyeSlash}
+                          icon={faEye}
                           style={{ color: "var(--light)", fontSize: "20px" }}
                         />
                       ) : (
                         <FontAwesomeIcon
-                          icon={faEye}
+                          icon={faEyeSlash}
                           style={{ color: "var(--light)", fontSize: "20px" }}
                         />
                       )}
@@ -412,7 +417,7 @@ const MyPasswordForm = (props) => {
                   id="confirm_password"
                   name="repeat_password"
                   autoComplete={"on"}
-                  type={showPassword ? "text" : "password"}
+                  type={showPassword2 ? "text" : "password"}
                   placeholder="Password"
                   onChange={(ev) => onFieldChanged(ev)}
                 />
@@ -422,16 +427,16 @@ const MyPasswordForm = (props) => {
                       style={{ height: "parent" }}
                       type="button"
                       className="btn btn-link text-decoration-none input-color-icon"
-                      onClick={toggleShowPassword}
+                      onClick={toggleShowPassword2}
                     >
-                      {showPassword ? (
+                      {showPassword2 ? (
                         <FontAwesomeIcon
-                          icon={faEyeSlash}
+                          icon={faEyeLowVision}
                           style={{ color: "var(--light)", fontSize: "20px" }}
                         />
                       ) : (
                         <FontAwesomeIcon
-                          icon={faEye}
+                          icon={faEyeSlash}
                           style={{ color: "var(--light)", fontSize: "20px" }}
                         />
                       )}

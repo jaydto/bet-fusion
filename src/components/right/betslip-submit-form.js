@@ -597,9 +597,8 @@ const BetslipSubmitForm = React.memo(
                 else{
                     setMultiBoostAmount(boost);
                     setHasMultiBetBoost(true);
-                    dispatchRedux(setMatchBetslipOptions('betslip_options', {...betslip_options,...{hasBoost:true,remaining_games: 0, alert_slip_color:'valid',multiboostmessage: "You Qualify for Nare Boost Minimum Stake is " +
-                                3 +
-                                " KES "  }}))
+                    dispatchRedux(setMatchBetslipOptions('betslip_options', {...betslip_options,...{hasBoost:true,remaining_games: 0, alert_slip_color:'valid',multiboostmessage: "You Have Qualified for a Nare Boost  " 
+                                }}))
 
 
                     setMultiBoostMessage(

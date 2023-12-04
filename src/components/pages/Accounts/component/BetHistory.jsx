@@ -165,7 +165,7 @@ const BetHistory = () => {
 
         const [cashoutData, setCashoutData]=useState()
 
-        const cashoutRequest=(e,bet_id, amount) =>{
+        const cashoutRequest=(e,bet_id, amount, possible_win) =>{
             e.stopPropagation();
             console.log('cashout_request',cashout)
             dispatchRedux(resetState("loading_cashout"));
@@ -173,7 +173,7 @@ const BetHistory = () => {
             const cashout_payload={
                 bet_id:bet_id
             }
-            const cashout_request_data={bet_amount:amount, bet_id:bet_id, bet_type:'full'}
+            const cashout_request_data={bet_amount:amount, bet_id:bet_id, bet_type:'full', possible_win:possible_win}
             setCashoutData(
                 cashout_request_data
             )
@@ -253,7 +253,7 @@ const BetHistory = () => {
                                         fontSize:'medium',
                                         letterSpacing:'2px'
                                     }} onClick={event => {
-                                    cashoutRequest(event,bet?.bet_id, bet?.bet_amount)
+                                    cashoutRequest(event,bet?.bet_id, bet?.bet_amount, bet.possible_win)
                                 }}>
                                     Cashout
                               </span>

@@ -221,7 +221,7 @@ const CashoutModal = React.memo((props) => {
               <div className={"d-flex flex-column"}>
                 <span className={"type"}>To Win</span>
                 <span className={"market-h"} style={{ fontSize: "medium" }}>
-                  KES {cashout?.cashout_value}
+                  KES {payload?.possible_win}
                 </span>
               </div>
             </div>

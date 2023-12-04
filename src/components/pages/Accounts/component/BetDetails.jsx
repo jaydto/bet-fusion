@@ -311,11 +311,11 @@ const BetDetails = React.memo(
         const cashout=useSelector((state)=>state.matchesData.cashout_response)
         const [cashoutData, setCashoutData]=useState()
 
-        const cashoutRequest=(bet_id, amount) =>{
+        const cashoutRequest=(bet_id, amount, possible_win) =>{
             const cashout_payload={
                 bet_id:bet_id
             }
-            const cashout_request_data={bet_amount:amount, bet_id:bet_id, bet_type:'details'}
+            const cashout_request_data={bet_amount:amount, bet_id:bet_id, bet_type:'details', possible_win:possible_win }
             setCashoutData(
                 cashout_request_data
             )
@@ -413,7 +413,7 @@ const BetDetails = React.memo(
                                                      color:'var(--betnare-button-login)'
                                                  }}
                                                  onClick={() =>
-                                                     cashoutRequest(item?.bet_id,item?.bet_amount)
+                                                     cashoutRequest(item?.bet_id,item?.bet_amount, item?.possible_wi)
                                                     }>
                                                 Cashout
                                             </div>

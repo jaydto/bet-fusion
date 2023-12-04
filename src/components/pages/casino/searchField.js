@@ -15,7 +15,6 @@ const SearchResults = React.memo(
         filterData(searchTerm);
     };
 
-    console.log('data from search context', data)
 
     const filterData = searchTerm => {
         console.log('searchTearm', searchTerm)
@@ -32,18 +31,18 @@ const SearchResults = React.memo(
     };
 
     return (
-        <div className={'w-100'}>
-            <div className="search-container my-2 ">
-            <input type="text" name="search" placeholder="Search..."
-                   value={searchTerm}
-                   onChange={handleSearch} className="search-input"/>
-            <a href="#" className="search-btn">
-                <FontAwesomeIcon icon={faSearch} />
-            </a>
-
+        <div className={"w-100"}>
+        <div className="search-container">
+        <input type="text" name="search" placeholder="Search..."
+               value={searchTerm}
+               onChange={handleSearch} className="search-input"/>
+        <div  className="search-btn cursor-pointer">
+            <FontAwesomeIcon icon={faSearch} />
         </div>
+           
+    </div>
 
-        </div>
+    </div>
 
 
     );

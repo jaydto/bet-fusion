@@ -22,7 +22,7 @@ import {
   casinoList,
   setState as setVirtualGame,
 } from "../../../redux/virtualsSlice";
-import SearchComponent from "../../pages/virtuals/searchField";
+import SearchResults from "../../pages/casino/searchField";
 import makeRequest from "../../utils/fetch-request";
 import { StoreContext } from "../../../context/store";
 
@@ -140,7 +140,7 @@ const SideBarCasino = React.memo((props) => {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="desktop-only-show">
-              <SearchComponent data={games} />
+              <SearchResults data={games} />
             </div>
           </MenuItem>
         </Menu>

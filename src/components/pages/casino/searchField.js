@@ -24,7 +24,7 @@ const SearchResults = React.memo(
 
         } else {
             const filteredData = data.filter(item =>
-                (item?.game_name??item?.gameName).toLowerCase().includes(searchTerm?.toLowerCase())
+                (item?.game_name??item?.gameName??item?.name).toLowerCase().includes(searchTerm?.toLowerCase())
             );
             dispatch({type:"SET", key:'casino_search', payload:filteredData});
 

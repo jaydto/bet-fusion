@@ -52,7 +52,7 @@ const CasinoOptions = () => {
 
   useEffect(() => {
     dispatchRedux(setVirtualGame("game_type", "pragmatic"));
-    dispatch({ type: "SET", key: "casino_search", payload: {}});
+    dispatch({ type: "SET", key: "casino_search", payload: {} });
 
     if (casino_games) {
       setGames(casino_games);
@@ -61,6 +61,10 @@ const CasinoOptions = () => {
       setCategories(casino_categories);
     }
   }, [casino_games, casino_categories]);
+
+  useEffect(() => {
+    setActiveCategory(game_type !== "pragmatic" ? "All" : "popular");
+  }, [game_type]);
 
   const fetchGames = async (category = "popular") => {
     let endpoint = "/v1/casino-games?game-type-id=" + category;
@@ -80,8 +84,9 @@ const CasinoOptions = () => {
 
   const filterGamesAvailable = (category) => {
     //filter games
+    setActiveCategory(category?.default_description??category); // Set the active category when clicked
     console.log("category info", category?.default_description);
-    if (category?.default_description === "All") {
+    if (activeCategory=== "All") {
       dispatch({ type: "SET", key: "casino_search", payload: games });
     } else {
       const filteredData = games?.filter((item) =>

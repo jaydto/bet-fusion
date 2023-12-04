@@ -77,7 +77,6 @@ const ProtectedRoute = React.lazy(
 
 const PrintMatches = React.lazy(() => import('./components/pages/downloads'))
 
-const Casino = React.lazy(() => import('./components/pages/casino/Casino'))
 const CasinoOptions = React.lazy(() => import('./components/pages/casino/CasinoOptions'))
 
 const LiveCasino = React.lazy(() => import('./components/pages/casino/LiveCasino'))
@@ -180,8 +179,7 @@ const App =
                         <Route exact path="/virtuals" element={<Virtuals/>}/>
                         <Route exact path="/livescore" element={<LiveScore/>}/>
                         <Route exact path="/404" element={<PageNotFound/>}/>
-                        <Route exact path="/casino" element={<Casino/>}/>
-                        <Route exact path="/casino2" element={<CasinoOptions/>}/>
+                        <Route exact path="/casino" element={<CasinoOptions/>}/>
                         <Route exact path="/live-casino" element={<LiveCasino/>}/>
                         <Route exact path="/gameplay/:game_id/:live" element={<CasinoGamePlay/>}/>
                         <Route exact path="/nare-games/:game" element={<SpribeGamePlay/>}/>

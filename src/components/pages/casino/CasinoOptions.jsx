@@ -85,7 +85,6 @@ const CasinoOptions = () => {
   const filterGamesAvailable = (category) => {
     //filter games
     setActiveCategory(category?.default_description??category); // Set the active category when clicked
-    console.log("category info", category?.default_description);
     if (activeCategory=== "All") {
       dispatch({ type: "SET", key: "casino_search", payload: games });
     } else {
@@ -104,8 +103,7 @@ const CasinoOptions = () => {
     gameCategory = "",
     provider = ""
   ) => {
-    console.log("provider", provider);
-    console.log("game_id", game_id);
+    
 
     const redirectToGameplay = () => {
       window.location.href = `/gameplay/${game_id}/${live ? "1" : "0"}`;
@@ -122,13 +120,10 @@ const CasinoOptions = () => {
         live ? "live" : "demo"
       }`;
     };
-    console.log("user1", user);
 
     if (user) {
       if (game_type !== "crash-games") {
-        console.log("provider3", provider);
-        console.log("game_id3", game_id);
-        console.log("game_type3", game_type);
+        
         switch (game_type) {
           case "pragmatic":
             redirectToGameplay();
@@ -141,9 +136,7 @@ const CasinoOptions = () => {
             break;
         }
       } else if (game_type === "crash-games") {
-        console.log("provider2", provider);
-        console.log("game_id2", game_id);
-        console.log("game_type2", game_type);
+        
 
         switch (provider) {
           case "pragmatic":
@@ -526,10 +519,7 @@ const CasinoOptions = () => {
                                     aria-label="Casino Games"
                                     className={"w-100"}
                                   >
-                                    {console.log(
-                                      "provider data",
-                                      game?.provider
-                                    )}
+                                    
                                     <Button
                                       variant="warning"
                                       onClick={() =>

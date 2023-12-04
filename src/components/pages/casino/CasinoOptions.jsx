@@ -13,7 +13,10 @@ import { useNavigate } from "react-router-dom";
 import SideBarCasino from "../../sidebar/awesome/SideBarCasino";
 import SearchComponent from "../virtuals/searchField";
 import { StoreContext } from "../../../context/store";
-import { casinoList } from "../../../redux/virtualsSlice";
+import {
+  casinoList,
+  setState as setVirtualGame,
+} from "../../../redux/virtualsSlice";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import aviator from "../../../assets/img/aviator.png";
 import { getFromLocalStorage } from "../../utils/local-storage";
@@ -48,6 +51,8 @@ const CasinoOptions = () => {
   }, [userData]);
 
   useEffect(() => {
+    dispatchRedux(setVirtualGame("game_type", "pragmatic"));
+
     if (casino_games) {
       setGames(casino_games);
     }
@@ -72,10 +77,72 @@ const CasinoOptions = () => {
     setActiveCategory(category?.game_type_id); // Set the active category when clicked
   };
 
-  const launchGame = (game_id, live = true, gameCategory='') => {
-    user
-      ? game_type=='pragmatic'?(window.location.href = `/gameplay/${game_id}/${live ? "1" : "0"}`): game_type=='spribe'?(window.location.href = `/nare-games/${game_id}${live ? '?status=demo': "?status=live"}`):(window.location.href = `/smart-play?game=${game_id}&category=${gameCategory}&status=${live ? 'live':'demo'}`)
-      : navigate("/login");
+  const launchGame = (
+    game_id,
+    live = true,
+    gameCategory = "",
+    provider = ""
+  ) => {
+    console.log("provider", provider);
+    console.log("game_id", game_id);
+
+    const redirectToGameplay = () => {
+      window.location.href = `/gameplay/${game_id}/${live ? "1" : "0"}`;
+    };
+
+    const redirectToNareGames = () => {
+      window.location.href = `/nare-games/${game_id}${
+        live ? "?status=live" : "?status=demo"
+      }`;
+    };
+
+    const redirectToSmartPlay = () => {
+      window.location.href = `/smart-play?game=${game_id}&category=${gameCategory}&status=${
+        live ? "live" : "demo"
+      }`;
+    };
+    console.log("user1", user);
+
+    if (user) {
+      if (game_type !== "crash-games") {
+        console.log("provider3", provider);
+        console.log("game_id3", game_id);
+        console.log("game_type3", game_type);
+        switch (game_type) {
+          case "pragmatic":
+            redirectToGameplay();
+            break;
+          case "spribe":
+            redirectToNareGames();
+            break;
+          case "smart-soft":
+            redirectToSmartPlay();
+            break;
+        }
+      }
+       else if(game_type === "crash-games") {
+        console.log("provider2", provider);
+        console.log("game_id2", game_id);
+        console.log("game_type2", game_type);
+        
+
+          switch (provider) {
+            case "pragmatic":
+              redirectToGameplay();
+              break;
+            case "spribe":
+              redirectToNareGames();
+              break;
+            case "smartsoft":
+              redirectToSmartPlay();
+              break;
+            default:
+              navigate("/login");
+          }
+      }
+    } else {
+      navigate("/login");
+    }
   };
 
   useEffect(() => {
@@ -89,8 +156,6 @@ const CasinoOptions = () => {
       navigate("/nare-games/aviator?status=live");
     }
   };
-
-
 
   const handleShow = () => {
     dispatchRedux(setState("show_menu_casino", true));
@@ -109,7 +174,7 @@ const CasinoOptions = () => {
       <div
         className={`flex-container  flex-column  top-spacing-page-no-download-casino`}
       >
-        <div className="item2">
+        <div className="item2 w-100">
           <div className="item2 size-all-markets casino-header-banner">
             <div className={"casino-banner-image"}></div>
           </div>
@@ -187,7 +252,11 @@ const CasinoOptions = () => {
                   </Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                <SideBarCasino games={games} setGames={setGames} setCategories={setCategories}/>
+                  <SideBarCasino
+                    games={games}
+                    setGames={setGames}
+                    setCategories={setCategories}
+                  />
                 </Offcanvas.Body>
               </Offcanvas>
             </div>
@@ -201,33 +270,40 @@ const CasinoOptions = () => {
                     category?.game_type_id !== "rgs-vsb" && (
                       <Button
                         bg={
-                          activeCategory === category?.game_type_id??category?.default_description
+                          activeCategory === category?.game_type_id ??
+                          category?.default_description
                             ? "warning"
                             : "default"
                         }
                         key={index}
                         style={{ marginRight: "2px" }}
                         className={`cursor-pointer text-center casino-category ${
-                          activeCategory === category?.game_type_id??category?.default_description
+                          activeCategory === category?.game_type_id ??
+                          category?.default_description
                             ? " active-category "
                             : ""
                         } casino-category-button`}
                         onClick={() => getCategoryGames(category)}
                       >
-                        {category?.game_type_description??category?.default_description}
+                        {category?.game_type_description ??
+                          category?.default_description}
                       </Button>
                     )
                 )}
               </div>
             </div>
 
-            <div className="d-flex">
-                <div className="desktop-only-show">
-                <SideBarCasino games={games} setGames={setGames} setCategories={setCategories}/>
-                </div>
+            <div className="d-flex col-12">
+              <div className="desktop-only-show col-lg-2 col-sm-0 col-md-0 side-casino-width">
+                <SideBarCasino
+                  games={games}
+                  setGames={setGames}
+                  setCategories={setCategories}
+                />
+              </div>
               <div
                 className={
-                  "row text-white p-2 shadow-sm justify-content-center"
+                  "row text-white p-2 shadow-sm justify-content-center col-lg-10 col-md-12 col-sm-12 body-casino-width"
                 }
               >
                 {state?.casino_search !== undefined &&
@@ -247,7 +323,14 @@ const CasinoOptions = () => {
                           >
                             <div
                               onClick={() =>
-                                launchGame(search_game?.game_id??search_game?.gameName??search_game?.key, true, search_game?.gameCategory)
+                                launchGame(
+                                  search_game?.game_id ??
+                                    search_game?.gameName ??
+                                    search_game?.key,
+                                  true,
+                                  search_game?.gameCategory,
+                                  search_game?.provider
+                                )
                               }
                               className=""
                               key={search_game.game_id}
@@ -261,7 +344,9 @@ const CasinoOptions = () => {
                               </p>
                               <LazyLoadImage
                                 effect={"blur"}
-                                src={`${search_game.game_icon??search_game.image_url}`}
+                                src={`${
+                                  search_game.game_icon ?? search_game.image_url
+                                }`}
                                 className={"virtual-game-image vw-100"}
                               />
                             </div>
@@ -270,7 +355,14 @@ const CasinoOptions = () => {
                                 <Button
                                   variant="warning"
                                   onClick={() =>
-                                    launchGame(search_game?.game_id??search_game?.gameName??search_game?.key, false, search_game?.gameCategory)
+                                    launchGame(
+                                      search_game?.game_id ??
+                                        search_game?.gameName ??
+                                        search_game?.key,
+                                      false,
+                                      search_game?.gameCategory,
+                                      search_game?.provider
+                                    )
                                   }
                                 >
                                   Play Demo
@@ -278,7 +370,14 @@ const CasinoOptions = () => {
                                 <Button
                                   variant="danger"
                                   onClick={() =>
-                                    launchGame(search_game?.game_id??search_game?.gameName??search_game?.key, true,search_game?.gameCategory )
+                                    launchGame(
+                                      search_game?.game_id ??
+                                        search_game?.gameName ??
+                                        search_game?.key,
+                                      true,
+                                      search_game?.gameCategory,
+                                      search_game?.provider
+                                    )
                                   }
                                 >
                                   Play Game
@@ -378,7 +477,9 @@ const CasinoOptions = () => {
                                     {game?.game_name}
                                   </p>
                                   <LazyLoadImage
-                                    src={`${game?.game_icon??game?.image_url}`}
+                                    src={`${
+                                      game?.game_icon ?? game?.image_url
+                                    }`}
                                     effect={"blur"}
                                     className={"virtual-game-image vw-100"}
                                   />
@@ -388,10 +489,21 @@ const CasinoOptions = () => {
                                     aria-label="Casino Games"
                                     className={"w-100"}
                                   >
+                                    {console.log(
+                                      "provider data",
+                                      game?.provider
+                                    )}
                                     <Button
                                       variant="warning"
                                       onClick={() =>
-                                        launchGame(game?.game_id??game?.gameName??game?.key, false, game?.gameCategory)
+                                        launchGame(
+                                          game?.game_id ??
+                                            game?.gameName ??
+                                            game?.key,
+                                          false,
+                                          game?.gameCategory,
+                                          game?.provider
+                                        )
                                       }
                                     >
                                       Play Demo
@@ -399,7 +511,14 @@ const CasinoOptions = () => {
                                     <Button
                                       variant="danger"
                                       onClick={() =>
-                                        launchGame(game?.game_id??game?.gameName??game?.key, true, game?.gameCategory)
+                                        launchGame(
+                                          game?.game_id ??
+                                            game?.gameName ??
+                                            game?.key,
+                                          true,
+                                          game?.gameCategory,
+                                          game?.provider
+                                        )
                                       }
                                     >
                                       Play Game
@@ -434,7 +553,7 @@ const CasinoOptions = () => {
                                   {game?.game_name}
                                 </p>
                                 <LazyLoadImage
-                                  src={`${game?.game_icon??game?.image_url}`}
+                                  src={`${game?.game_icon ?? game?.image_url}`}
                                   effect={"blur"}
                                   className={"virtual-game-image vw-100"}
                                 />
@@ -447,8 +566,14 @@ const CasinoOptions = () => {
                                   <Button
                                     variant="warning"
                                     onClick={() =>
-                                      launchGame(game?.game_id??game?.gameName??game?.key, false, game?.gameCategory)
-
+                                      launchGame(
+                                        game?.game_id ??
+                                          game?.gameName ??
+                                          game?.key,
+                                        false,
+                                        game?.gameCategory,
+                                        game?.provider
+                                      )
                                     }
                                   >
                                     Play Demo
@@ -456,8 +581,14 @@ const CasinoOptions = () => {
                                   <Button
                                     variant="danger"
                                     onClick={() =>
-                                      launchGame(game?.game_id??game?.gameName??game?.key, true, game?.gameCategory)
-
+                                      launchGame(
+                                        game?.game_id ??
+                                          game?.gameName ??
+                                          game?.key,
+                                        true,
+                                        game?.gameCategory,
+                                        game?.provider
+                                      )
                                     }
                                   >
                                     Play Game

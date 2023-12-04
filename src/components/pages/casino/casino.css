@@ -17,6 +17,14 @@
         font-size:20px;
 
     }
+    .side-casino-width{
+      width:16%!important;
+      margin-right: 10px!important;
+    }
+    .body-casino-width{
+      margin-left: 10px!important;
+      width:83%!important;
+    }
     .top-spacing-page-no-download-casino {
     margin-top: 5rem !important;
     /* position: fixed; */

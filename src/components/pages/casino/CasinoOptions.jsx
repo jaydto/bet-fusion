@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setState } from "../../../redux/dataSlice";
 import { useNavigate } from "react-router-dom";
 import SideBarCasino from "../../sidebar/awesome/SideBarCasino";
-import SearchComponent from "../virtuals/searchField";
+import SearchResults from "./searchField";
 import { StoreContext } from "../../../context/store";
 import {
   casinoList,
@@ -35,7 +35,7 @@ const CasinoOptions = () => {
   const [activeCategory, setActiveCategory] = useState("popular"); // Set the default active category
   const navigate = useNavigate();
 
-  const { state } = useContext(StoreContext);
+  const { state, dispatch } = useContext(StoreContext);
   // const loading=useSelector((state)=>state.virtuals.loading)
   const casino_games = useSelector((state) => state.virtuals.casino_games);
   const show = useSelector((state) => state.data.show_menu_casino);
@@ -52,6 +52,7 @@ const CasinoOptions = () => {
 
   useEffect(() => {
     dispatchRedux(setVirtualGame("game_type", "pragmatic"));
+    dispatch({ type: "SET", key: "casino_search", payload: {}});
 
     if (casino_games) {
       setGames(casino_games);
@@ -75,6 +76,21 @@ const CasinoOptions = () => {
     setGames([]);
     fetchGames(category?.game_type_id);
     setActiveCategory(category?.game_type_id); // Set the active category when clicked
+  };
+
+  const filterGamesAvailable = (category) => {
+    //filter games
+    console.log("category info", category?.default_description);
+    if (category?.default_description === "All") {
+      dispatch({ type: "SET", key: "casino_search", payload: games });
+    } else {
+      const filteredData = games?.filter((item) =>
+        item.gameCategory
+          .toLowerCase()
+          .includes(category?.default_description?.toLowerCase())
+      );
+      dispatch({ type: "SET", key: "casino_search", payload: filteredData });
+    }
   };
 
   const launchGame = (
@@ -119,26 +135,24 @@ const CasinoOptions = () => {
             redirectToSmartPlay();
             break;
         }
-      }
-       else if(game_type === "crash-games") {
+      } else if (game_type === "crash-games") {
         console.log("provider2", provider);
         console.log("game_id2", game_id);
         console.log("game_type2", game_type);
-        
 
-          switch (provider) {
-            case "pragmatic":
-              redirectToGameplay();
-              break;
-            case "spribe":
-              redirectToNareGames();
-              break;
-            case "smartsoft":
-              redirectToSmartPlay();
-              break;
-            default:
-              navigate("/login");
-          }
+        switch (provider) {
+          case "pragmatic":
+            redirectToGameplay();
+            break;
+          case "spribe":
+            redirectToNareGames();
+            break;
+          case "smartsoft":
+            redirectToSmartPlay();
+            break;
+          default:
+            navigate("/login");
+        }
       }
     } else {
       navigate("/login");
@@ -194,7 +208,7 @@ const CasinoOptions = () => {
                   title="Betnare"
                 >
                   <div className="px-2 w-75">
-                    <SearchComponent data={games} />
+                    <SearchResults data={games} />
                   </div>
 
                   <div
@@ -265,6 +279,20 @@ const CasinoOptions = () => {
           <div className="col-md-12 d-flex flex-column mt-2 ">
             <div className="col-md-12 casino-scroll">
               <div className="shadow-sm p-2 shadow-sm casino-category-container mt-2">
+                {game_type !== "pragmatic" && (
+                  <Button
+                    bg={activeCategory === "All" ? "warning" : "default"}
+                    style={{ marginRight: "2px" }}
+                    className={`cursor-pointer text-center casino-category ${
+                      activeCategory === "All" ? " active-category " : ""
+                    } casino-category-button`}
+                    onClick={() => {
+                      filterGamesAvailable({ default_description: "All" });
+                    }}
+                  >
+                    All
+                  </Button>
+                )}
                 {categories?.map(
                   (category, index) =>
                     category?.game_type_id !== "rgs-vsb" && (
@@ -283,7 +311,11 @@ const CasinoOptions = () => {
                             ? " active-category "
                             : ""
                         } casino-category-button`}
-                        onClick={() => getCategoryGames(category)}
+                        onClick={() => {
+                          game_type === "pragmatic"
+                            ? getCategoryGames(category)
+                            : filterGamesAvailable(category);
+                        }}
                       >
                         {category?.game_type_description ??
                           category?.default_description}

@@ -3,7 +3,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSearch} from "@fortawesome/free-solid-svg-icons";
 import {StoreContext } from "../../../context/store"
 
-const SearchComponent = React.memo(
+const SearchResults = React.memo(
     (props) => {
     const {data}=props
     const [searchTerm, setSearchTerm] = useState('');
@@ -15,13 +15,16 @@ const SearchComponent = React.memo(
         filterData(searchTerm);
     };
 
+    console.log('data from search context', data)
+
     const filterData = searchTerm => {
+        console.log('searchTearm', searchTerm)
         if (searchTerm.trim() === '') {
             dispatch({type:"SET", key:'casino_search', payload:[]});
 
         } else {
             const filteredData = data.filter(item =>
-                item.game_name.toLowerCase().includes(searchTerm.toLowerCase())
+                (item?.game_name??item?.gameName).toLowerCase().includes(searchTerm?.toLowerCase())
             );
             dispatch({type:"SET", key:'casino_search', payload:filteredData});
 
@@ -46,4 +49,4 @@ const SearchComponent = React.memo(
     );
 });
 
-export default React.memo(SearchComponent);
+export default React.memo(SearchResults);

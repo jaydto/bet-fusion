@@ -7,7 +7,7 @@ import {
   SidebarHeader,
 } from "react-pro-sidebar";
 import { getFromLocalStorage } from "../../utils/local-storage";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "react-pro-sidebar/dist/css/styles.css";
 import {
   faHelicopter,
@@ -24,12 +24,14 @@ import {
 } from "../../../redux/virtualsSlice";
 import SearchComponent from "../../pages/virtuals/searchField";
 import makeRequest from "../../utils/fetch-request";
+import { StoreContext } from "../../../context/store";
 
 const SideBarCasino = React.memo((props) => {
   const userData = useSelector((state) => state.auth.user);
   const [user, setUser] = useState(getFromLocalStorage("user"));
 
   const { games, setGames, setCategories } = props;
+  const { dispatch } = useContext(StoreContext);
 
   const casino_games = useSelector((state) => state.virtuals.casino_games);
   const default_choice = useSelector((state) => state.virtuals.game_type);
@@ -106,6 +108,8 @@ const SideBarCasino = React.memo((props) => {
 
     dispatchRedux(setVirtualGame("game_type", game));
     setActiveGame(game);
+    dispatch({ type: "SET", key: "casino_search", payload: {} });
+
 
     if (game === "pragmatic") {
       fetchGames().then(() => {

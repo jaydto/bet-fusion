@@ -137,7 +137,7 @@ const Logout = () => {
 
 const App =
     () => {
-        const scrollPosition = useSelector((state) => state.scroll.scroll)
+        // const scrollPosition = useSelector((state) => state.scroll.scroll)
         const [flag, setFlag]=useState(true)
         // cleanup/unmounting components fix
         useEffect(()=>{
@@ -149,7 +149,7 @@ const App =
         return (
            flag?
                <>
-                <Header scrollPosition={scrollPosition}/>
+                <Header />
                 <Suspense fallback={<></>}>
                     <Routes>
                         <Route path="*" element={<Navigate to="/404"/>}/>

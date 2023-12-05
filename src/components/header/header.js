@@ -9,7 +9,7 @@ import {Navbar, Offcanvas} from "react-bootstrap";
 import SidebarMobile from "../sidebar/awesome/SidebarMobile";
 import MobileNav1 from "../mobile-navigation/MobileNav1";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faTimes} from "@fortawesome/free-solid-svg-icons";
+import {faTimes, faXmark} from "@fortawesome/free-solid-svg-icons";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import ListGroup from "react-bootstrap/ListGroup";
 import LoginSection from "./LoginSection";
@@ -32,7 +32,7 @@ const HeaderNav = React.lazy(() => import('./header-nav'));
 
 const Header = React.memo(
     (props) => {
-        const {slip, scrollPosition, jackpot} = props
+        const {slip, jackpot} = props
         const gaEventTracker = useAnalyticsEventTracker('Navigation');
         const {state, dispatch} = useContext(StoreContext);
         const searchInputRef = useRef(null)
@@ -223,48 +223,60 @@ const Header = React.memo(
             }
         }, [state?.searching]);
 
-        const PromoActive=()=>{
-            // console.log('appConfigs', appConfigs)
-            
-
-                return (settings||appConfigs)!==null?
-                
-                Object.keys(settings?.active_promotion?.mobile_promo||appConfigs?.active_promotion?.mobile_promo||{})?.map(
-                    (key, index) => {
-                      const promoValue =settings?
-                        settings.active_promotion.mobile_promo[key]:appConfigs?.active_promotion?.mobile_promo[key];
-
-                      if (key === "promo_message") {
-                        return promoValue
-                          .split(" ")
-                          .map((promoWord, indexWord) => {
-                            if (indexWord % 2 === 0) {
-                              return (
-                                <strong key={indexWord} style={styles}>
-                                  {promoWord}&nbsp;
-                                </strong>
-                              );
-                            } else if (
-                              indexWord ===
-                              promoValue.length - 1
-                            ) {
-                              return (
-                                <span key={indexWord}>{promoWord}</span>
-                              );
-                            } else {
-                              return (
-                                <span key={indexWord}>
-                                  {promoWord}&nbsp;
-                                </span>
-                              );
-                            }
-                          });
-                      }
+        const PromoActive = () => {
+          // console.log('appConfigs', appConfigs)
+        
+          return (settings || appConfigs) !== null ? (
+            <div className={"app-download-link d-flex justify-content-between w-100"}>
+              <div className="col-1">
+                <FontAwesomeIcon
+                  icon={faXmark}
+                  className={"close-call-action"}
+                  onClick={(e) => handleCloseCallToAction(e)}
+                />
+              </div>
+        
+              <span className={"color-app-text flashy col-11"}>
+                <span className="d-flex justify-content-center">
+                  {Object.keys(
+                    settings?.active_promotion?.mobile_promo ||
+                      appConfigs?.active_promotion?.mobile_promo ||
+                      {}
+                  ).map((key, index) => {
+                    const promoValue = settings
+                      ? settings.active_promotion.mobile_promo[key]
+                      : appConfigs?.active_promotion?.mobile_promo[key];
+        
+                    if (key === "promo_message") {
+                      return promoValue.split(" ").map((promoWord, indexWord) => {
+                        if (indexWord % 2 === 0) {
+                          return (
+                            <strong key={indexWord} style={styles}>
+                              {promoWord}&nbsp;
+                            </strong>
+                          );
+                        } else if (indexWord === promoValue.length - 1) {
+                          return <span key={indexWord}>{promoWord}</span>;
+                        } else {
+                          return <span key={indexWord}>{promoWord}&nbsp;</span>;
+                        }
+                      });
+                    } else {
+                      return null; // Handle other cases if needed
                     }
-                ): 
-             <></>
-          
-        }
+                  })}
+                </span>
+              </span>
+            </div>
+          ) : <></>;
+        };
+        
+        
+        const handleCloseCallToAction = (e) => {
+          e.stopPropagation();
+          dispatchRedux(setState("call_to_action",true));
+        };
+      
 
 
         return (
@@ -289,23 +301,12 @@ const Header = React.memo(
                   }
                 }}
               >
-                <div
-                  className={
-                    "app-download-link  d-flex justify-content-between w-100"
-                  }
-                >
-                
-                  <span className={"color-app-text flashy col-12"}>
-                    <span className="d-flex justify-content-center">
-                      <PromoActive/>
-                    </span>
-                  </span>
-                </div>
+                 <PromoActive/>
               </div>
 
                     </div>
                     <Navbar expand="md"
-                            className={`${(scrollPosition || (showDownload)) && 'fixed-top-nav'} mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${(slip || showDownload) && "top-betslip-page-fix"} ${user ? 'top-nav-login' : 'top-nav-login'}`}
+                            className={`${((showDownload)) && 'fixed-top-nav'} mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${(slip || showDownload) && "top-betslip-page-fix"} ${user ? 'top-nav-login' : 'top-nav-login'}`}
                             fixed="top" variant="dark">
                         <div
                             className={'w-100 d-flex justify-content-between mobile-change desktop-ipad-size top-header-main'}>

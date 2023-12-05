@@ -18,7 +18,7 @@ import {userBalance} from "../redux/authSlice";
 import {getFromLocalStorage, setLocalStorage} from "./utils/local-storage";
 import MainTabs from "./header/main-tabs";
 import CarouselLoader from "./carousel";
-import {removeScrollPosition, setScrollPast, setScrollPosition, setScrollToTop} from "../redux/ScrollBehavior";
+// import {removeScrollPosition, setScrollPast, setScrollPosition, setScrollToTop} from "../redux/ScrollBehavior";
 import LiveSideBar from "./sidebar/live-sidebar";
 import Live from "./live";
 import AllMarkets from "./all-markets";
@@ -161,37 +161,37 @@ const DefaultPage = React.memo(
                 behavior: 'smooth'
             });
         }, []);
-        const scrolledPast=useSelector((state)=>state.scroll.scroll_past)
-        const scrolledToTop=useSelector((state)=>state.scroll.scroll_top)
+        // const scrolledPast=useSelector((state)=>state.scroll.scroll_past)
+        // const scrolledToTop=useSelector((state)=>state.scroll.scroll_top)
 
-        useEffect(() => {
-            const handleScroll = () => {
-                if (homePageRef.current) {
-                    const scrollPosition = homePageRef.current.scrollTop;
-                    if (!scrolledPast && scrollPosition > 10) {
-                        dispatchRedux(setScrollPosition())
-                        dispatchRedux(setScrollPast({scroll_past:true}))
-                        dispatchRedux(setScrollToTop({scroll_top:false}))
+        // useEffect(() => {
+        //     const handleScroll = () => {
+        //         if (homePageRef.current) {
+        //             const scrollPosition = homePageRef.current.scrollTop;
+        //             if (!scrolledPast && scrollPosition > 10) {
+        //                 dispatchRedux(setScrollPosition())
+        //                 dispatchRedux(setScrollPast({scroll_past:true}))
+        //                 dispatchRedux(setScrollToTop({scroll_top:false}))
 
-                    } else if (!scrolledToTop && scrollPosition <= 10) {
-                        dispatchRedux(removeScrollPosition())
-                        dispatchRedux(setScrollPast({scroll_past:false}))
-                        dispatchRedux(setScrollToTop({scroll_top:true}))
+        //             } else if (!scrolledToTop && scrollPosition <= 10) {
+        //                 dispatchRedux(removeScrollPosition())
+        //                 dispatchRedux(setScrollPast({scroll_past:false}))
+        //                 dispatchRedux(setScrollToTop({scroll_top:true}))
 
-                    }
-                }
-            };
+        //             }
+        //         }
+        //     };
 
-            if (homePageRef.current) {
-                homePageRef.current.addEventListener('scroll', handleScroll);
-            }
+        //     if (homePageRef.current) {
+        //         homePageRef.current.addEventListener('scroll', handleScroll);
+        //     }
 
-            return () => {
-                if (homePageRef.current) {
-                    homePageRef.current.removeEventListener('scroll', handleScroll);
-                }
-            };
-        }, [homePageRef, scrolledPast, scrolledToTop]);
+        //     return () => {
+        //         if (homePageRef.current) {
+        //             homePageRef.current.removeEventListener('scroll', handleScroll);
+        //         }
+        //     };
+        // }, [homePageRef, scrolledPast, scrolledToTop]);
 
         const updateSearchTerm = () => {
             const params = new URL(window.location).searchParams;

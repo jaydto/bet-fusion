@@ -20,7 +20,7 @@ const GiftWallet = () => {
     <li>
         Register and Get the BetNare Bet Booster of UPTO 3,000/= FREE
     </li>
-    <li>The client is set to receive Up to 3,000/= to Unlock their Gift Wallet once they REGISTER</li>
+    <li>The client is set to receive Up to 3,000/= to Unlock their Stake Booster Wallet once they REGISTER</li>
 </ol>
 
                 <br/>
@@ -53,7 +53,7 @@ const GiftWallet = () => {
                 </ol>
 
                 <p className="lead text-center">
-                    <strong>NB:> - Kindly Note that the Maximum Gift Bonus One can be topped up with is 40/=
+                    <strong>NB: - Kindly Note that the Maximum Stake Booster Bonus One can be topped up with is 40/=
                         PER TICKET.</strong>
                     <br/>
                     <strong>- Kindly Note that the BOOSTER wallet funds Do Not have an expiry date.</strong>
@@ -85,7 +85,7 @@ const GiftWallet = () => {
                         least 4 selections having Odds &gt; 1.5.
                     </li>
                     <li>
-                        Only 1 Booster Gift can be used in 1 Betslip.
+                        Only 1 Stake Booster  can be used in 1 Betslip.
                     </li>
                     <li>
                         In this promotion, BetNare only allows one chance to award Gifts per person /

@@ -97,7 +97,7 @@ const PromoCards = () => {
                             <button className={"profile-button border-0 h-25 rounded promo-button"}
                                     style={{background: "#ea5d0b"}} onClick={() => {
                                 checkIfUser();
-                                gaEventTracker('promo Gift Wallet');
+                                gaEventTracker('promo Stake Booster Wallet');
                                 setUtmSouceCampaignOnPromotions('promo_Gift_Wallet')
                             }}>Sign Up
                             </button>

@@ -18,16 +18,16 @@ const GiftWallet = () => {
             <AccordionItemPanel className='accordion-item-panel'>
 <ol>
     <li>
-        Register and Get the BetNare Bet Booster of UPTO 3,000/= FREE
+        Register and Get the BetNare Nare Booster of UPTO 3,000/= FREE
     </li>
     <li>The client is set to receive Up to 3,000/= to Unlock their Stake Booster Wallet once they REGISTER</li>
 </ol>
 
                 <br/>
-                <strong className="text-decoration-underline">HOW TO GET THE NARE BOOSTER GIFTS</strong>
+                <strong className="text-decoration-underline">HOW TO GET THE Stake Booster GIFTS</strong>
                 <ol>
                     <li>REGISTER on BetNare.</li>
-                    <li>Get UPTO 3,000 of registration as Free Nare Booster to be used on BetNare
+                    <li>Get UPTO 3,000 of registration as Free Stake Booster to be used on BetNare
                         when placing bets (in the Betslip)
                     </li>
                     <li>Start using your BOOSTERS immediately on your 1 st Cash Bet.
@@ -64,7 +64,7 @@ const GiftWallet = () => {
                 <br/>
                 <ol>
                     <li>
-                        One account one Nare Booster. Accounts with the same IP address and same
+                        One account one Stake Booster. Accounts with the same IP address and same
                         Password will be regarded as the same customer and will not be able to claim the
                         Booster Gift. First Deposit Gifts would be available only if a user makes a deposit
                         within the first 3 months of account opening.

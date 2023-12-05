@@ -11,6 +11,8 @@ import casino1 from "../../assets/img/mobile/Casino.svg"
 import jackpot from "../../assets/img/mobile/Jackpot.svg"
 import promo from "../../assets/svg/fire.svg"
 import aviator from "../../../src/assets/img/aviator.webp"
+import jetX from "../../../src/assets/img/mobile/jet.svg";
+
 
 import {getFromLocalStorage} from "../utils/local-storage";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
@@ -90,6 +92,10 @@ const MobileNav1 = React.memo(
             
         }
 
+        const launchJetX = () => {
+            navigate("/smart-play?game=JetX&category=JetX");
+          };
+
 
         return (<div className="menu-wrapper mobile-nav-remove ">
 
@@ -147,6 +153,42 @@ const MobileNav1 = React.memo(
                         </div>
 
                     </td>
+                    <td
+              className={`menu-t m-auto sport-check ${
+                "/smart-play?game=JetX&category=JetX" === active_link
+                  ? " active_link"
+                  : "link-inactive"
+              }`}
+            >
+              <div
+                className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `}
+                onClick={() => {
+                  gaEventTracker("Visit JetX Page");
+                  launchJetX();
+                  setActiveLink("/smart-play?game=JetX&category=JetX");
+                }}
+              >
+                <div
+                  className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}
+                >
+                  <div className="menu-img ">
+                    <LazyLoadImage
+                      className="side-icon "
+                      src={jetX}
+                      alt=""
+                      style={{
+                        height: "26px",
+                        marginTop: "-4px",
+                        width: "41px",
+                      }}
+                    />
+                  </div>
+                  <p style={{ textAlign: "center", marginBottom: "unset" }}>
+                    JetX
+                  </p>
+                </div>
+              </div>
+            </td>
                     
                     <td className={`menu-t m-auto sport-check nare-league ${'/nare-league'===active_link ? "active_link" : "link-inactive"}`}>
                         <div

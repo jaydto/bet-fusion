@@ -80,6 +80,10 @@ const HeaderNav = React.memo(
             checkEnvironment()
         })
 
+        const launchJetX = () => {
+            navigate("/smart-play?game=JetX&category=JetX");
+          };
+
         const LoginCheck = (game) => {
             {
                 if (user !== null) {
@@ -120,6 +124,20 @@ const HeaderNav = React.memo(
                                 <strong>
                                     <div className={'d-flex menu-item'}>
                                         Aviator
+
+                                    </div>
+                                </strong>
+                            </div>
+                        </li>
+                        <li className={pathname.includes('jetX') ? 'active live-bg' : ''}
+                            onClick={() => gaEventTracker('JetX')}>
+                            <div className="url-link fm anl cg ox"
+                                 onClick={() =>{launchJetX()}
+}
+                                 title="JetX">
+                                <strong>
+                                    <div className={'d-flex menu-item'}>
+                                        Jetx
 
                                     </div>
                                 </strong>

@@ -25,17 +25,18 @@ const PrivacyPolicy = React.memo(() => {
     });
   }, []);
   const navigate = useNavigate();
-  const show=useSelector((state)=>state.data.show_menu)
-        const dispatchRedux=useDispatch()
+  const show = useSelector((state) => state.data.show_menu);
+  const dispatchRedux = useDispatch();
 
-        const handleClose = () => {
-            dispatchRedux(setState('show_menu', false))
-        };
-       
-        useEffect(()=>{
-            if(show==true)
-            handleClose();
-        },[])
+  const handleClose = () => {
+    dispatchRedux(setState("show_menu", false));
+  };
+
+  useEffect(() => {
+    if (show == true) handleClose();
+  }, []);
+
+  const preExpandedItems = [1,2,3,4,5,6,7,8,9,10,11,12]; // Add all the keys here
 
 
   return (
@@ -74,8 +75,9 @@ const PrivacyPolicy = React.memo(() => {
                 <Accordion
                   allowMultipleExpanded={false}
                   allowZeroExpanded={true}
+                  preExpanded={preExpandedItems}
                 >
-                  <AccordionItem>
+                  <AccordionItem uuid={preExpandedItems[0]}>
                     <AccordionItemHeading>
                       <AccordionItemButton className="accordion-button">
                         PURPOSE
@@ -113,7 +115,7 @@ const PrivacyPolicy = React.memo(() => {
                       </p>
                     </AccordionItemPanel>
                   </AccordionItem>
-                  <AccordionItem>
+                  <AccordionItem uuid={preExpandedItems[1]}>
                     <AccordionItemHeading>
                       <AccordionItemButton className="accordion-button">
                         DEFINITIONS
@@ -182,7 +184,7 @@ const PrivacyPolicy = React.memo(() => {
                       </p>
                     </AccordionItemPanel>
                   </AccordionItem>
-                  <AccordionItem>
+                  <AccordionItem uuid={preExpandedItems[2]}>
                     <AccordionItemHeading>
                       <AccordionItemButton className="accordion-button">
                         SCOPE
@@ -209,7 +211,7 @@ const PrivacyPolicy = React.memo(() => {
                       </p>
                     </AccordionItemPanel>
                   </AccordionItem>
-                  <AccordionItem>
+                  <AccordionItem uuid={preExpandedItems[3]}>
                     <AccordionItemHeading>
                       <AccordionItemButton className="accordion-button">
                         DATA COLLECTED
@@ -224,7 +226,7 @@ const PrivacyPolicy = React.memo(() => {
                         upon your use of Our Site, we may collect, use, store,
                         and transfer some or all of the following data:
                       </p>
-                      <ol  className="list-count-type">
+                      <ol className="list-count-type">
                         <li>Phone Number</li>
                         <li>Name</li>
                         <li>IP address (automatically collected)</li>
@@ -247,7 +249,7 @@ const PrivacyPolicy = React.memo(() => {
                     </AccordionItemPanel>
                   </AccordionItem>
 
-                  <AccordionItem>
+                  <AccordionItem uuid={preExpandedItems[4]}>
                     <AccordionItemHeading>
                       <AccordionItemButton className="accordion-button">
                         DATA USAGE
@@ -261,7 +263,7 @@ const PrivacyPolicy = React.memo(() => {
                         experience and provide you with gambling services. This
                         encompasses:
                       </p>
-                      <ol  className="list-count-type">
+                      <ol className="list-count-type">
                         <li>Enrolling you as a new customer</li>
                         <li>Managing and overseeing your Account</li>
                         <li>
@@ -316,7 +318,7 @@ const PrivacyPolicy = React.memo(() => {
                         only process your personal data if at least one of the
                         following conditions applies;
                       </p>
-                      <ol  className="list-count-type">
+                      <ol className="list-count-type">
                         <li>
                           To provide services and products to you in alignment
                           with our Terms and Conditions or as outlined in this
@@ -338,7 +340,7 @@ const PrivacyPolicy = React.memo(() => {
                       </ol>
                     </AccordionItemPanel>
                   </AccordionItem>
-                  <AccordionItem>
+                  <AccordionItem uuid={preExpandedItems[5]}>
                     <AccordionItemHeading>
                       <AccordionItemButton className="accordion-button">
                         DATA STORAGE
@@ -392,7 +394,7 @@ const PrivacyPolicy = React.memo(() => {
                     </AccordionItemPanel>
                   </AccordionItem>
 
-                  <AccordionItem>
+                  <AccordionItem uuid={preExpandedItems[6]}>
                     <AccordionItemHeading>
                       <AccordionItemButton className="accordion-button">
                         RIGHT TO WITHHOLD INFORMATION AND YOUR RIGHT TO WITHDRAW
@@ -425,7 +427,7 @@ const PrivacyPolicy = React.memo(() => {
                       </p>
                     </AccordionItemPanel>
                   </AccordionItem>
-                  <AccordionItem>
+                  <AccordionItem uuid={preExpandedItems[7]}>
                     <AccordionItemHeading>
                       <AccordionItemButton className="accordion-button">
                         GDPR PRIVACY POLICY (DATA PROTECTION RIGHTS)
@@ -437,7 +439,7 @@ const PrivacyPolicy = React.memo(() => {
                         data protection rights. Each user is entitled to the
                         following:
                       </p>
-                      <ol  className="list-count-type">
+                      <ol className="list-count-type">
                         <li>
                           The right to access – You can request copies of your
                           personal data.
@@ -471,14 +473,14 @@ const PrivacyPolicy = React.memo(() => {
                       </ol>
                     </AccordionItemPanel>
                   </AccordionItem>
-                  <AccordionItem>
+                  <AccordionItem uuid={preExpandedItems[8]}>
                     <AccordionItemHeading>
                       <AccordionItemButton className="accordion-button">
                         CHILDREN INFORMATION
                       </AccordionItemButton>
                     </AccordionItemHeading>
                     <AccordionItemPanel className="accordion-item-panel">
-                      <ol  className="list-count-type">
+                      <ol className="list-count-type">
                         <li>
                           This Website is not intended for individuals under 18
                           years of age. No one under the age of 18 should submit
@@ -500,14 +502,14 @@ const PrivacyPolicy = React.memo(() => {
                       </ol>
                     </AccordionItemPanel>
                   </AccordionItem>
-                  <AccordionItem>
+                  <AccordionItem uuid={preExpandedItems[9]}>
                     <AccordionItemHeading>
                       <AccordionItemButton className="accordion-button">
                         CHANGES TO OUR PRIVACY POLICY
                       </AccordionItemButton>
                     </AccordionItemHeading>
                     <AccordionItemPanel className="accordion-item-panel">
-                      <ol  className="list-count-type">
+                      <ol className="list-count-type">
                         <li>
                           We reserve the right to modify this Policy as deemed
                           necessary periodically or as mandated by law. Any
@@ -520,6 +522,35 @@ const PrivacyPolicy = React.memo(() => {
                       </ol>
                     </AccordionItemPanel>
                   </AccordionItem>
+                  <AccordionItem uuid={preExpandedItems[10]}>
+                    <AccordionItemHeading>
+                      <AccordionItemButton className="accordion-button">
+                        ENTITY REFERENCE
+                      </AccordionItemButton>
+                    </AccordionItemHeading>
+                    <AccordionItemPanel className="accordion-item-panel">
+                      <p>
+                        This App is developed and maintained by [Betnare/Beyond
+                        InToch/John Jayd]. Reference to this entity can be found
+                        on the app's Google Play listing.
+                      </p>
+                    </AccordionItemPanel>
+                  </AccordionItem>
+                  <AccordionItem uuid={preExpandedItems[11]}>
+                    <AccordionItemHeading>
+                      <AccordionItemButton className="accordion-button">
+                        PRIVACY CONTACT
+                      </AccordionItemButton>
+                    </AccordionItemHeading>
+                    <AccordionItemPanel className="accordion-item-panel">
+                      <p>
+                      For any inquiries or concerns regarding this Privacy
+                        Policy or the handling of user data, please contact:
+                        [+254701087777, tech@betnare.com]
+                      </p>
+                    </AccordionItemPanel>
+                  </AccordionItem>
+                 
                 </Accordion>
               </div>
             </div>

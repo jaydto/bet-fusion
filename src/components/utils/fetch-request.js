@@ -4,6 +4,7 @@ import {
   removeItem,
   setLocalStorage,
 } from "./local-storage";
+import { notification } from "antd";
 
 const ENC_KEY = '2bdVweTeI42s5mkLdYHyklTMxQS5gLA7MDS6FA9cs1uobDXeruACDic0YSU3si04JGZe4Y';
 // export const BASE_URL = 'http://localhost:5000';
@@ -18,8 +19,7 @@ const instance = axios.create({
 });
 
 const navigate = async () => {
-  await removeItem("user");
-
+  await removeItem("user"); 
 };
 
 // Function to set the flag indicating user update
@@ -41,7 +41,14 @@ instance.interceptors.response.use(
       if (window.location.pathname !== "/login") {
         // Clear user data from local storage
         navigate().then(() => {
-          window.location.href = "/logout";
+          notification.error({
+            message: "Session expired",
+            description: "Please login again",
+          });
+           // Delay the redirection to the logout page (e.g., 3 seconds)
+           setTimeout(() => {
+            window.location.href = "/redirect";
+          }, 3000);
         });
       }
     }

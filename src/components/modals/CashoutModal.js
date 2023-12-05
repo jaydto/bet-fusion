@@ -9,11 +9,6 @@ import {
   betHistoryDetails,
   fullBetDetails,
 } from "../../redux/matchesSlice";
-import { getFromLocalStorage, setTrackingData } from "../utils/local-storage";
-import { StoreContext } from "../../context/store";
-import { useFormik } from "formik";
-import { userDeposits } from "../../redux/dataSlice";
-import { error } from "logrocket";
 import moment from "moment/moment";
 
 const CashoutModal = React.memo((props) => {
@@ -67,13 +62,15 @@ const CashoutModal = React.memo((props) => {
     dispatchRedux(betCashoutConfirmation(cashout_data));
   };
 
+   // Get the first match from the array
+   const first_match = cashout?.expires_at;
+   const [countdownDay, setCountdownDay] = useState("");
+   const [countdownHours, setCountdownHours] = useState("");
+   const [countdownMinutes, setCountdownMinutes] = useState("");
+   const [countdownSeconds, setCountdownSeconds] = useState("");
+
   const CountDownCashout = () => {
-    // Get the first match from the array
-    const first_match = cashout?.expires_at;
-    const [countdownDay, setCountdownDay] = useState("");
-    const [countdownHours, setCountdownHours] = useState("");
-    const [countdownMinutes, setCountdownMinutes] = useState("");
-    const [countdownSeconds, setCountdownSeconds] = useState("");
+   
 
     useEffect(() => {
       const interval = setInterval(() => {
@@ -210,7 +207,7 @@ const CashoutModal = React.memo((props) => {
         <Alert />
 
         <div className="col-12 text-center ">
-          {cashout && (
+          {cashout ? (
             <div className={"d-flex justify-content-around"}>
               <div className={"d-flex flex-column"}>
                 <span className={"type"}>Stake</span>
@@ -225,11 +222,15 @@ const CashoutModal = React.memo((props) => {
                 </span>
               </div>
             </div>
-          )}
+          ):<div className={"d-flex justify-content-around"}>
+          <div className={"d-flex flex-column my-5"}>
+            <div className="loader"></div>
+            </div></div>
+            }
           <button
             type="submit"
             className="btn btn-lg mt-4 w-100 deposit-button button-radius input-field btn-font cg login-button2 btn bold d-flex justify-content-center align-items-center button-text-choice1"
-            disabled={loadingCashout || cashout_error}
+            disabled={loadingCashout || cashout_error ||countdownSeconds<=0}
             onClick={() => handleSubmit()}
           >
             {loadingCashout ? (

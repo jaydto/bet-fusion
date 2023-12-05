@@ -221,6 +221,9 @@ const DefaultPage = React.memo(
         }
         const location = useLocation();
         const user_slip_validation_live=useSelector((state)=>state.matchesData.live_user_slip_validation)
+        const close_call_to_action = useSelector(
+            (state) => state.data.call_to_action
+          );
 
         return (
             <div className={'flex-item'}>
@@ -231,7 +234,8 @@ const DefaultPage = React.memo(
                     <div className={bottom_sheet ? 'pointer-event-handler item1' : "item1"}>
                         {pathname.includes('live')?<LiveSideBar spid={spid}/>:<SideBar loadCompetitions/>}
                     </div>
-                    <div className={bottom_sheet ? `pointer-event-handler item2` : `item2 ${pathname.includes('match')?' size-all-markets':pathname.includes('live')?' live-top':''}`}
+                    <div className={bottom_sheet ? `pointer-event-handler item2` : `item2 ${pathname.includes('match')?' size-all-markets':pathname.includes('live')?' live-top':''} ${
+                  close_call_to_action?pathname.includes("competition")?'':"top-position-mobile-view active":"top-position-mobile-view"}`}
                          style={bottom_sheet ? {opacity: '0.5', background: '#13171c'} : {}}>
                         <div className={`gz home match-overflow ${competitionpath&&'competition-mobile-top'} `}>
                             <div className={`homepage mobile-full-height ${pathname.includes('match')?' all-markets':''}`} ref={homePageRef} style={width < 991 ? {height: `${height}px`, overflowY: 'auto'} : {}}>

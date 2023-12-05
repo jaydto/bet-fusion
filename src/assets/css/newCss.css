@@ -2275,6 +2275,19 @@ img.nare-league {
     .deposit-buttons-value.deposit-modal {
         padding:2px 20px!important;
     }
+    .optional-action{
+        display: none;
+    }
+    .optional-action.active{
+        display: block;
+
+    }
+    .top-position-mobile-view{
+        margin-top:11rem;
+    }
+    .top-position-mobile-view.active{
+        margin-top:12rem;
+    }
     .deposit-modal-alert-action.alert-position-betslip-top.alert-message-line-height{
         position:relative!important;
         top:0px!important;
@@ -2293,7 +2306,7 @@ img.nare-league {
         font-size:var(--font-size-large-variation1)
     }
     .competition-mobile-top{
-        margin-top:11rem;
+        margin-top:10rem;
     }
     .close-history-filter.deposit-modal {
         margin-left: -6px!important;
@@ -2338,7 +2351,7 @@ img.nare-league {
         padding:0px!important;
     }
     .live-mobile-top{
-        margin-top:1.1rem!important;
+        /* margin-top:1.1rem!important; */
     }
     .pro-sidebar .pro-menu a.active_link{
         color:var(--light) !important;
@@ -3468,6 +3481,13 @@ img.nare-league {
 }
 
 @media (max-width: 767px) {
+    .top-position-mobile-view {
+        margin-top: 13.7rem;
+    }
+    
+    .top-position-mobile-view.active{
+        margin-top:10rem
+    }
     .shadow-sports-header.header-sports{
         max-height: 34px!important;
         display: flex;

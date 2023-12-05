@@ -6,14 +6,16 @@ import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import fire from "../../assets/svg/fire.svg"
 import {setLocalStorage} from '../utils/local-storage';
+
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {faEye, faEyeSlash} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import {Switch} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
 import {loginUser, resetState} from "../../redux/authSlice";
+
 import {StoreContext} from "../../context/store";
 
 export const Notify =
@@ -29,6 +31,7 @@ export const Notify =
             toastId: 673738 /* this is hack to prevent multiple toasts */
         }
         if (message.status === 200|| message.status === 201) {
+
             toast.success(`🚀 ${message.message}`, options);
         } else {
             toast(<div className={"d-flex"}>
@@ -49,6 +52,7 @@ const HeaderLogin = React.memo(
         const errorMessage = useSelector((state) => state.auth.error)
         const loading = useSelector((state) => state.auth.loading)
         const {dispatch}=useContext(StoreContext)
+
 
         const initialValues = {
             msisdn: "",
@@ -112,8 +116,6 @@ const HeaderLogin = React.memo(
                     console.error("Error in handleSubmit:", error);
                 });
         };
-
-
 
         const validate = values => {
 
@@ -221,6 +223,7 @@ const HeaderLogin = React.memo(
                                     disabled={loading}
                                     type="submit">
                                     {loading ? <div className="loader  position-top-buttons"></div> : <span>LOGIN</span>}
+
                                 </button>
                                 <Link className="cg register-button btn btn-warning" to={"/signup"} title="Join now"
                                       onClick={() => gaEventTracker('Register')} style={login && {display: 'none'}}>

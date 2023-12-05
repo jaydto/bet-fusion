@@ -84,8 +84,8 @@ const CasinoOptions = () => {
 
   const filterGamesAvailable = (category) => {
     //filter games
-    setActiveCategory(category?.default_description??category); // Set the active category when clicked
-    if (activeCategory=== "All") {
+    setActiveCategory(category?.default_description ?? category); // Set the active category when clicked
+    if (activeCategory === "All") {
       dispatch({ type: "SET", key: "casino_search", payload: games });
     } else {
       const filteredData = games?.filter((item) =>
@@ -103,8 +103,6 @@ const CasinoOptions = () => {
     gameCategory = "",
     provider = ""
   ) => {
-    
-
     const redirectToGameplay = () => {
       window.location.href = `/gameplay/${game_id}/${live ? "1" : "0"}`;
     };
@@ -123,7 +121,6 @@ const CasinoOptions = () => {
 
     if (user) {
       if (game_type !== "crash-games") {
-        
         switch (game_type) {
           case "pragmatic":
             redirectToGameplay();
@@ -136,8 +133,6 @@ const CasinoOptions = () => {
             break;
         }
       } else if (game_type === "crash-games") {
-        
-
         switch (provider) {
           case "pragmatic":
             redirectToGameplay();
@@ -429,133 +424,74 @@ const CasinoOptions = () => {
                         activeCategory === "popular"
                       ) {
                         // Include JSX block for Aviator at the beginning
-                        if (index === 0) {
-                          result.push(
-                            <div
-                              key="vs"
-                              className={
-                                "col-md-4 col-lg-3 col-sm-4 virtual-width"
-                              }
-                            >
-                              <div className={"virtual-game-container"}>
-                                <div
-                                  onClick={() =>
-                                    navigate("/nare-games/aviator")
-                                  }
-                                  className=""
-                                >
-                                  <p
-                                    className={
-                                      "text-center bold text-elipsis text-uppercase"
-                                    }
-                                  >
-                                    Aviator
-                                  </p>
-                                  <LazyLoadImage
-                                    effect={"blur"}
-                                    src={aviator}
-                                    className={"virtual-game-image vw-100"}
-                                  />
-                                </div>
-                                <div className="overlay shadow-sm w-100">
-                                  <ButtonGroup
-                                    aria-label="Casino Games"
-                                    className={"w-100"}
-                                  >
-                                    <Button
-                                      variant="warning"
-                                      onClick={() => launchAviator("demo")}
-                                    >
-                                      Play Demo
-                                    </Button>
-                                    <Button
-                                      variant="danger"
-                                      onClick={() => launchAviator("live")}
-                                    >
-                                      Play Game
-                                    </Button>
-                                  </ButtonGroup>
-                                </div>
-                              </div>
-                            </div>
-                          );
-                        } else {
-                          // Include JSX block for other "vs" games
-                          result.push(
+
+                        // Include JSX block for other "vs" games
+                        result.push(
+                          <div
+                            key={index}
+                            className={
+                              "col-md-4 col-lg-3 col-sm-4 virtual-width"
+                            }
+                          >
+                            {/*other "vs" games */}
                             <div
                               key={index}
-                              className={
-                                "col-md-4 col-lg-3 col-sm-4 virtual-width"
-                              }
+                              className={"virtual-game-container"}
                             >
-                              {/*other "vs" games */}
-                              <div
-                                key={index}
-                                className={"virtual-game-container"}
-                              >
-                                <div
-                                  onClick={() =>
-                                    navigate(`/nare-games/${game?.game_id}`)
+                              <div className="">
+                                <p
+                                  className={
+                                    "text-center bold text-elipsis text-uppercase"
                                   }
-                                  className=""
                                 >
-                                  <p
-                                    className={
-                                      "text-center bold text-elipsis text-uppercase"
+                                  {game?.game_name}
+                                </p>
+                                <LazyLoadImage
+                                  src={`${game?.game_icon ?? game?.image_url}`}
+                                  effect={"blur"}
+                                  className={"virtual-game-image vw-100"}
+                                />
+                              </div>
+                              <div className="overlay shadow-sm w-100">
+                                <ButtonGroup
+                                  aria-label="Casino Games"
+                                  className={"w-100"}
+                                >
+                                  <Button
+                                    variant="warning"
+                                    onClick={() =>
+                                      launchGame(
+                                        game?.game_id ??
+                                          game?.gameName ??
+                                          game?.key,
+                                        false,
+                                        game?.gameCategory,
+                                        game?.provider
+                                      )
                                     }
                                   >
-                                    {game?.game_name}
-                                  </p>
-                                  <LazyLoadImage
-                                    src={`${
-                                      game?.game_icon ?? game?.image_url
-                                    }`}
-                                    effect={"blur"}
-                                    className={"virtual-game-image vw-100"}
-                                  />
-                                </div>
-                                <div className="overlay shadow-sm w-100">
-                                  <ButtonGroup
-                                    aria-label="Casino Games"
-                                    className={"w-100"}
+                                    Play Demo
+                                  </Button>
+                                  <Button
+                                    variant="danger"
+                                    onClick={() =>
+                                      launchGame(
+                                        game?.game_id ??
+                                          game?.gameName ??
+                                          game?.key,
+                                        true,
+                                        game?.gameCategory,
+                                        game?.provider
+                                      )
+                                    }
                                   >
-                                    
-                                    <Button
-                                      variant="warning"
-                                      onClick={() =>
-                                        launchGame(
-                                          game?.game_id ??
-                                            game?.gameName ??
-                                            game?.key,
-                                          false,
-                                          game?.gameCategory,
-                                          game?.provider
-                                        )
-                                      }
-                                    >
-                                      Play Demo
-                                    </Button>
-                                    <Button
-                                      variant="danger"
-                                      onClick={() =>
-                                        launchGame(
-                                          game?.game_id ??
-                                            game?.gameName ??
-                                            game?.key,
-                                          true,
-                                          game?.gameCategory,
-                                          game?.provider
-                                        )
-                                      }
-                                    >
-                                      Play Game
-                                    </Button>
-                                  </ButtonGroup>
-                                </div>
+                                    Play Game
+                                  </Button>
+                                </ButtonGroup>
                               </div>
                             </div>
-                          );
-                        }
+                          </div>
+                        );
                       } else {
                         // JSX block for other games
                         result.push(
@@ -566,12 +502,7 @@ const CasinoOptions = () => {
                             }
                           >
                             <div className={"virtual-game-container"}>
-                              <div
-                                onClick={() =>
-                                  navigate(`/nare-games/${game?.game_id}`)
-                                }
-                                className=""
-                              >
+                              <div className="">
                                 <p
                                   className={
                                     "text-center bold text-elipsis text-uppercase"

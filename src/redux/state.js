@@ -1,6 +1,5 @@
 const initialState = {
     data: {
-        call_to_action: false,
         show_menu:false,
         bet_history_details:false,
         navigation_link:null,

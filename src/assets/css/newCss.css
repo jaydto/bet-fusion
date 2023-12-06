@@ -350,8 +350,8 @@ input.text-white {
 }
 
 .search-container {
-    background: #fff;
-    color: var(--dark) !important;
+    background: var(--betnare-input);
+    color: var(--light) !important;
     height: 30px;
     /*width: 100vw; */
     border-radius: 16px;
@@ -361,10 +361,10 @@ input.text-white {
     align-items: center;
     cursor: pointer;
     transition: 0.8s;
-    box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, .3),
+    /* box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, .3),
     -4px -4px 6px 0 rgba(116, 125, 136, .2),
     inset -4px -4px 6px 0 rgba(255, 255, 255, .2),
-    inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .2); */
 }
 
 .top-section-page {
@@ -378,7 +378,7 @@ input.text-white {
     font-weight: 500;
     font-size: 16px;
     transition: 0.8s;
-    color: var(--dark) !important;
+    color: var(--light) !important;
     width: 100%;
 }
 

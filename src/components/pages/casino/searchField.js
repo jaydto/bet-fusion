@@ -3,7 +3,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSearch} from "@fortawesome/free-solid-svg-icons";
 import {StoreContext } from "../../../context/store"
 
-const SearchComponent = React.memo(
+const SearchResults = React.memo(
     (props) => {
     const {data}=props
     const [searchTerm, setSearchTerm] = useState('');
@@ -15,13 +15,15 @@ const SearchComponent = React.memo(
         filterData(searchTerm);
     };
 
+
     const filterData = searchTerm => {
+        console.log('searchTearm', searchTerm)
         if (searchTerm.trim() === '') {
             dispatch({type:"SET", key:'casino_search', payload:[]});
 
         } else {
             const filteredData = data.filter(item =>
-                item.game_name.toLowerCase().includes(searchTerm.toLowerCase())
+                (item?.game_name??item?.gameName??item?.name).toLowerCase().includes(searchTerm?.toLowerCase())
             );
             dispatch({type:"SET", key:'casino_search', payload:filteredData});
 
@@ -29,21 +31,21 @@ const SearchComponent = React.memo(
     };
 
     return (
-        <div className={'w-100'}>
-            <div className="search-container my-2 ">
-            <input type="text" name="search" placeholder="Search..."
-                   value={searchTerm}
-                   onChange={handleSearch} className="search-input"/>
-            <a href="#" className="search-btn">
-                <FontAwesomeIcon icon={faSearch} />
-            </a>
-
+        <div className={"w-100"}>
+        <div className="search-container">
+        <input type="text" name="search" placeholder="Search..."
+               value={searchTerm}
+               onChange={handleSearch} className="search-input"/>
+        <div  className="search-btn cursor-pointer">
+            <FontAwesomeIcon icon={faSearch} />
         </div>
+           
+    </div>
 
-        </div>
+    </div>
 
 
     );
 });
 
-export default React.memo(SearchComponent);
+export default React.memo(SearchResults);

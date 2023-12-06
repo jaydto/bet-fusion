@@ -82,13 +82,13 @@ const HeaderNav = React.memo(
 
         const LoginCheck = (game) => {
             {
-                if (user !== null) {
-                    navigate("/casino")
-                } else {
+                // if (user !== null) {
+                //     navigate("/casino")
+                // } else {
                     setLocalStorage("ActiveLink", '/casino')
-                    navigate('/login')
+                    navigate('/casino')
 
-                }
+                // }
             }
         }
 

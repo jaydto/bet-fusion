@@ -15,6 +15,7 @@ const SmartPlay = React.memo(
     (props) => {
         const url = new URL(window.location)
         const game = url.searchParams.get('game')
+        const status = url.searchParams.get('status')
         const category = url.searchParams.get('category')
         const [gameUrl, setGameUrl] = useState('')
         const [, setUserToken] = useState('')
@@ -174,11 +175,15 @@ const SmartPlay = React.memo(
 
 
         useEffect(() => {
+            status==='demo'?
+            configureDemoGame():
             isLoggedIn ?
                 createToken() :
                 configureDemoGame()
 
-        }, [])
+        }, [status])
+
+        
 
         return (
             <>

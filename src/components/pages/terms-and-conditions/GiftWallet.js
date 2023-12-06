@@ -12,7 +12,7 @@ const GiftWallet = () => {
         <AccordionItem>
             <AccordionItemHeading>
                 <AccordionItemButton className='accordion-button'>
-                    KARIBU GIFT WALLET
+                    KARIBU STAKE BOOSTER
                 </AccordionItemButton>
             </AccordionItemHeading>
             <AccordionItemPanel className='accordion-item-panel'>
@@ -20,7 +20,7 @@ const GiftWallet = () => {
     <li>
         Register and Get the BetNare Bet Booster of UPTO 3,000/= FREE
     </li>
-    <li>The client is set to receive Up to 3,000/= to Unlock their Gift Wallet once they REGISTER</li>
+    <li>The client is set to receive Up to 3,000/= to Unlock their Stake Booster once they REGISTER</li>
 </ol>
 
                 <br/>

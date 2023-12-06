@@ -193,7 +193,7 @@ const PromoCards = () => {
                             className="bold d-flex justify-content-center h4 pt-2"
                             style={{color: "#ea5d0b"}}
                         >
-                            KARIBU
+                           KARIBU STAKE BOOSTER
                         </h5>
                         <p className="container mx-1 px-2 text-data-promotions">
                             Get Up to 3,000/= FREE Bet Booster once you register as a Free Stake Booster...
@@ -205,7 +205,7 @@ const PromoCards = () => {
                             <button className={"profile-button border-0 h-25 rounded promo-button"}
                                     style={{background: "#ea5d0b"}} onClick={() => {
                                 checkIfUser();
-                                gaEventTracker('promo Gift Wallet');
+                                gaEventTracker('promo Stake Booster');
                                 setUtmSouceCampaignOnPromotions('promo_Gift_Wallet')
                             }}>Sign Up
                             </button>

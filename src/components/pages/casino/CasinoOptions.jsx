@@ -63,7 +63,13 @@ const CasinoOptions = () => {
   }, [casino_games, casino_categories]);
 
   useEffect(() => {
-    setActiveCategory(game_type !== "pragmatic" ? "All" : "popular");
+    const firstItem=casino_categories?.types?.[0]?.game_type_id
+   
+    if(firstItem){
+      setActiveCategory(game_type !== "pragmatic" ? "All" : firstItem);
+    }else{
+      setActiveCategory(game_type !== "pragmatic" ? "All" : "popular");
+    }
   }, [game_type]);
 
   const fetchGames = async (category = "popular") => {

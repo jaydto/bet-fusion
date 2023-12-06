@@ -137,7 +137,7 @@ const HeaderNav = React.memo(
                                  title="JetX">
                                 <strong>
                                     <div className={'d-flex menu-item'}>
-                                        Jetx
+                                        JetX
 
                                     </div>
                                 </strong>

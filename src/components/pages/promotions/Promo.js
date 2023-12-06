@@ -3,7 +3,6 @@ import {useNavigate} from "react-router-dom";
 import twentyPercentDepositBonus from "../../../assets/img/banner/products/Bet_Nare_gift_Mobile.webp";
 import firstDeposit from "../../../assets/img/banner/products/Firstdeposit.jpeg";
 import multibetCashback from "../../../assets/img/banner/products/Bet_Nare_100_Cashback_Mobile.webp";
-import karibuGiftWallet from "../../../assets/img/banner/products/Bet_Nare_3000_karibu_gift_Mobile.webp";
 import DepositBonus from "../../../assets/img/banner/products/365.webp";
 import mia_sita_hamsini from "../../../assets/img/banner/products/FreeKickBonanzaWeb.webp";
 
@@ -28,7 +27,7 @@ const Promo = () => {
         {src: twentyPercentDepositBonus, id: 3},
         {src: firstDeposit, id: 2},
         {src: multibetCashback, id: 4},
-        {src: karibuGiftWallet, id: 1},
+        {src: 'https://cdn.betnare.com/carousel/StakeBooster.webp', id: 1},
         {src: DepositBonus, id: 9},
         {src: mia_sita_hamsini, id: 10},
         {src: 'https://cdn.betnare.com/carousel/chomokananduthi.webp', id: 12},

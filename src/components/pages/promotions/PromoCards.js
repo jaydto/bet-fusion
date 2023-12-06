@@ -3,7 +3,6 @@ import twentyPercentDepositBonus from "../../../assets/img/banner/products/Bet_N
 import firstDeposit from "../../../assets/img/banner/products/Firstdeposit.jpeg";
 import multibetCashback from "../../../assets/img/banner/products/Bet_Nare_100_Cashback_Mobile.webp";
 import DepositBonus from "../../../assets/img/banner/products/365.webp";
-import karibuGiftWallet from "../../../assets/img/banner/products/Bet_Nare_3000_karibu_gift_Mobile.webp";
 import mia_sita_ham_sini from "../../../assets/img/banner/products/FreeKickBonanzaWeb.webp";
 
 import {Link, useNavigate} from "react-router-dom";
@@ -80,7 +79,7 @@ const PromoCards = () => {
                 </div>
                 <div className="col-md-2 promo-styling shadow-lg promotion">
                     <div className="d-flex flex-column promo-inner">
-                        <img src={karibuGiftWallet} className={"rounded promo-image "}/>
+                        <img src={'https://cdn.betnare.com/carousel/StakeBooster.webp'} className={"rounded promo-image "}/>
                         <h5
                             className="bold d-flex justify-content-center h4 pt-2"
                             style={{color: "#ea5d0b"}}

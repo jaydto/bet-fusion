@@ -70,7 +70,7 @@ const GiftWallet = () => {
                         within the first 3 months of account opening.
                     </li>
                     <li>
-                        Once you REGISTER you get GIFT BOOSTER in total value of up to KES.3,000.
+                        Once you REGISTER you get Stake Booster in total value of up to KES.3,000.
                     </li>
                     <li>
                         You will receive all the gifts once you REGISTER . The gifts will become valid only

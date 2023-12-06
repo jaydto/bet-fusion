@@ -9,6 +9,12 @@
 .my-bets-bet-history{
     position:relative;
 }
+.bet-cashout{
+    gap: 1px;
+}
+.cashout-divider{
+    border: 1px solid #1f2e3c;
+}
 .type{
     font-weight: var(--font-weight3);
 }

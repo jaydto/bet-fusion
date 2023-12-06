@@ -14,7 +14,7 @@ import mpesa from "../../../assets/img/mpesa.png";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 import './deposit.css'
 import Header2 from "../../header/Header2";
-import { userDeposits, userDepositsConfirm} from "../../../redux/dataSlice";
+import { userDeposits, userDepositsConfirm, setState} from "../../../redux/dataSlice";
 import {userBalance} from "../../../redux/authSlice";
 
 import {useDispatch, useSelector} from "react-redux";
@@ -89,6 +89,7 @@ const Deposit3 = React.memo(
             const abort = new AbortController();
             setUtmCampaign()
             return () => {
+                dispatchRedux(setState('deposits_message', null))
                 abort.abort(); // Cleanup function to abort the controller when the component unmounts.
             };
         }, [settings])
@@ -125,7 +126,22 @@ const Deposit3 = React.memo(
                 </div>
             )
         }
-
+        
+        const Offer=React.memo(
+            ()=>{
+            return (
+                <ul className={'paybill-offers-list-items'}>
+                    {console.log('depositdata', settings.betnareDeposit)}
+                { settings?.betnareDeposit?.map((deposit, index) => {
+                    return (
+                        <li key={index}>{index + 1}.
+                            Only pay
+                            KES {deposit?.deposit_amount} to {deposit?.display_text}</li>
+                    )
+                })}
+            </ul>
+            )
+        });
 
         const Alert = () => {
             let c = successMessage ? 'success' : 'danger';
@@ -256,15 +272,7 @@ const Deposit3 = React.memo(
                                                                         💰 Exclusive Offers 💰
                                                                     </span>
                                                                         <div className={'paybill-offers-list'}>
-                                                                            <ul className={'paybill-offers-list-items'}>
-                                                                                {settings?.betnareDeposit && settings?.betnareDeposit?.map((deposit, index) => {
-                                                                                    return (
-                                                                                        <li key={index}>{index + 1}.
-                                                                                            Only pay
-                                                                                            KES {deposit?.deposit_amount} to {deposit?.display_text}</li>
-                                                                                    )
-                                                                                })}
-                                                                            </ul>
+                                                                            <Offer />
                                                                             <br/>
                                                                             (Betnare will credit your Account with The
                                                                             offers above.)

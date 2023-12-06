@@ -12,14 +12,16 @@ import moment from "moment";
 import {ToastContainer} from "react-toastify";
 import {faXbox} from "@fortawesome/free-brands-svg-icons";
 import {useDispatch, useSelector} from "react-redux";
-import {betHistoryDetails, fullBetDetails, setFetching, setState as setMatchesState} from "../../../../redux/matchesSlice";
+import {betCashout, betHistoryDetails, fullBetDetails, resetState, setFetching, setState as setMatchesState} from "../../../../redux/matchesSlice";
 import SkeletonLoaderMore from "../../skeletonLoadersWeb/SkeletonLoaderMore";
 import {setState} from "../../../../redux/dataSlice";
+import CashoutModal from "../../../modals/CashoutModal";
 
 const BetHistory = () => {
     const {state, dispatch} = useContext(StoreContext);
     const dispatchRedux = useDispatch()
     const bet_history_details = useSelector((state) => state.data.bet_history_details)
+    
 
     const fetchData = async () => {
         dispatchRedux(fullBetDetails())
@@ -160,10 +162,48 @@ const BetHistory = () => {
             }
 
         }, [state?.filteredHistoryGames, state?.bets_by_date, getFromLocalStorage("bet_history_filter_category"), state?.selected_filter_category])
+        const cashout=useSelector((state)=>state.matchesData.cashout_response)
+
+        const [cashoutData, setCashoutData]=useState()
+
+        const cashoutRequest=(e,bet_id, amount, possible_win) =>{
+            e.stopPropagation();
+            console.log('cashout_request',cashout)
+            dispatchRedux(resetState("loading_cashout"));
+
+            const cashout_payload={
+                bet_id:bet_id
+            }
+            const cashout_request_data={bet_amount:amount, bet_id:bet_id, bet_type:'full', possible_win:possible_win}
+            setCashoutData(
+                cashout_request_data
+            )
+            dispatchRedux(betCashout(cashout_payload))
+        }
+
+        const show_cashout_modal=useSelector((state)=>state.matchesData.loading_cashout)
+
+        const [showCashoutModal, setShowCashoutModal] = useState(false);
+        useEffect(()=>{
+            if(show_cashout_modal){
+                setShowCashoutModal(show_cashout_modal)
+            }
+            return ()=>{
+                dispatchRedux(resetState("loading_cashout"))
+            }
+
+        },[show_cashout_modal])
 
 
         return (
             <>
+                {showCashoutModal && (
+                    <CashoutModal
+                        visible={showCashoutModal}
+                        payload={cashoutData}
+                        setShowCashoutModal={setShowCashoutModal}
+                    />
+                )}
                 {mybets && mybets.map((bet, index) => (
                     <div className="my-bets-bet-history" key={index} onClick={() => {
                         swap(bet?.bet_id)
@@ -186,7 +226,7 @@ const BetHistory = () => {
                             </div>
                             <div className={"bet-history-items status"}>
                                 {bet?.can_cancel == 0 ? <span
-                                    className={` badge  ${bet?.status_desc == "LOST" ? "bg-dark text-warning" : bet?.status_desc == "WON" ? "bg-success" : bet?.status_desc == "PENDING" ? "bg-dark " : ""}`}
+                                    className={` badge  ${bet?.status_desc == "LOST" ? "bg-dark text-warning" : bet?.status_desc == "WON" ? "bg-success" : bet?.status_desc == "PENDING" ? "bg-dark " :bet?.status_desc == "CASHED OUT" ? "bg-dark ": ""}`}
                                     style={{
                                         color: "white",
                                         marginTop: "10px",
@@ -199,6 +239,29 @@ const BetHistory = () => {
                             </div>
 
                         </div>
+                        {/*TODO bet?.status_desc==='PENDING'&&*/}
+                        {(bet?.status_desc==='PENDING'&& bet?.status!==9)&&<div className={"d-flex justify-content-end w-100 px-3"}>
+
+                            <div className={"bet-history-items status d-flex justify-content-end flex-column bet-cashout"}>
+                                <span className={'cashout-divider'}></span>
+                                <span
+                                    className={` badge cursor-pointer`}
+                                    style={{
+                                        color: 'var(--betnare-button-login)',
+                                        borderRadius: "7px",
+                                        marginLeft: "1px",
+                                        padding: "2.9px 9px ",
+                                        fontSize:'medium',
+                                        letterSpacing:'2px'
+                                    }} onClick={event => {
+                                    cashoutRequest(event,bet?.bet_id, bet?.bet_amount, bet.possible_win)
+                                }}>
+                                    Cashout
+                              </span>
+                            </div>
+
+                        </div>}
+
                     </div>
                 ))}
             </>

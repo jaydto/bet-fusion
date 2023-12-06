@@ -16,9 +16,10 @@ import {getFromLocalStorage, setLocalStorage} from "../../../utils/local-storage
 import {useNavigate} from "react-router-dom";
 import useWindowDimensions from "../../../header/Dimensions";
 import {useDispatch, useSelector} from "react-redux";
-import {betCancel, matchesRebet, matchesShareBet} from "../../../../redux/matchesSlice";
+import {betCancel, betCashout, matchesRebet, matchesShareBet, resetState} from "../../../../redux/matchesSlice";
 import {ToastContainer} from "react-toastify";
 import SkeletonMoreMarkets from "../../skeletonLoadersWeb/SkeletonMoreMarkets";
+import CashoutModal from "../../../modals/CashoutModal";
 
 const BetDetails = React.memo(
     (props) => {
@@ -316,9 +317,41 @@ const BetDetails = React.memo(
             }
             dispatchRedux(matchesShareBet(data))
         };
+        const cashout=useSelector((state)=>state.matchesData.cashout_response)
+        const [cashoutData, setCashoutData]=useState()
+
+        const cashoutRequest=(bet_id, amount, possible_win) =>{
+            const cashout_payload={
+                bet_id:bet_id
+            }
+            const cashout_request_data={bet_amount:amount, bet_id:bet_id, bet_type:'details', possible_win:possible_win }
+            setCashoutData(
+                cashout_request_data
+            )
+            dispatchRedux(betCashout(cashout_payload))
+        }
+        const show_cashout_modal=useSelector((state)=>state.matchesData.loading_cashout)
+
+        const [showCashoutModal, setShowCashoutModal] = useState(false);
+        useEffect(()=>{
+            if(show_cashout_modal){
+                setShowCashoutModal(show_cashout_modal)
+            }
+            // return ()=>{
+            //     dispatchRedux(resetState("loading_cashout"))
+            // }
+
+        },[show_cashout_modal])
 
         return (
-            <> {showShareModal && (
+            <>  {showCashoutModal && (
+                <CashoutModal
+                    visible={showCashoutModal}
+                    payload={cashoutData}
+                    setShowCashoutModal={setShowCashoutModal}
+                />
+            )}
+                {showShareModal && (
                 <BetslipShareModal
                     visible={showShareModal}
                     payload={betSharePayload}
@@ -340,14 +373,14 @@ const BetDetails = React.memo(
                                         </div>
                                         <div className="status d-flex justify-content-between px-2 mb-3">
 								<span
-                                    className={` badge  ${bet_details_meta?.bet_info?.status == 3 ? "bg-dark text-warning" : bet_details_meta?.bet_info?.status == 5 ? "bg-success" : bet_details_meta?.bet_info?.status == 1 ? "bg-dark " : ""}`}
+                                    className={` badge  ${bet_details_meta?.bet_info?.status == 3 ? "bg-dark text-warning" : bet_details_meta?.bet_info?.status == 5 ? "bg-success" : bet_details_meta?.bet_info?.status == 1 ? "bg-dark " :bet_details_meta?.bet_info?.status == 15?'bg-dark': ""}`}
                                     style={{
                                         color: "white",
                                         marginTop: "10px",
                                         borderRadius: "7px",
                                         marginLeft: "1px",
                                         padding: "2.9px 9px "
-                                    }}>{bet_details_meta?.bet_info?.status === 3 ? "NOT WON" : bet_details_meta?.bet_info?.status === 5 ? "WON" : "PENDING"}
+                                    }}>{bet_details_meta?.bet_info?.status === 3 ? "NOT WON" : bet_details_meta?.bet_info?.status === 5 ? "WON" :bet_details_meta?.bet_info?.status === 15 ?'CASHED OUT': "PENDING"}
 								</span>
                                         </div>
                                         {index === 0 && (<div className="d-flex history-details-padding gap-3 ">
@@ -361,10 +394,10 @@ const BetDetails = React.memo(
                                                 </div>
                                                 <div className="d-flex col-8 flex-column details-history-main">
                                                     <div className={"main-details-info-title"}>
-                                                        Possible Winnings
+                                                        {item.status===15?'Cashed out':'Possible'} Winnings
                                                     </div>
                                                     <div
-                                                        className="amount-value">{parseFloat(item?.possible_win).toLocaleString()}</div>
+                                                        className="amount-value">{parseFloat(item.status===15?bet_details_meta?.bet_info?.cashout_amount:item?.possible_win).toLocaleString()}</div>
                                                 </div>
 
                                             </div>
@@ -379,6 +412,22 @@ const BetDetails = React.memo(
 
                                             </div>
                                         </div>)}
+                                        {item?.status == 1 && <div className="d-flex w-100 justify-content-around">
+
+                                            <div className={"bet-history-options"}
+                                                 style={{ fontSize:'large',
+                                                     letterSpacing:'2px',
+                                                     fontWeight:'var(--font-weight3)',
+                                                     background:'var(--bet-history)',
+                                                     color:'var(--betnare-button-login)'
+                                                 }}
+                                                 onClick={() =>
+                                                     cashoutRequest(item?.bet_id,item?.bet_amount, item?.possible_wi)
+                                                    }>
+                                                Cashout
+                                            </div>
+
+                                        </div>}
                                         {item?.status == 1 && <div className="d-flex w-100 justify-content-around">
                                             {bet_details_meta?.bet_info.can_cancel !== true &&
                                                 <CancelBetMarkup bet_id={item?.bet_id}

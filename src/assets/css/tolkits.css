@@ -6864,9 +6864,6 @@ ul.sport {
 }
 
 @media (max-width: 767px) {
-    .mobile-only{
-        display: flex;
-    }
     ::-webkit-scrollbar {
         width: 1px!important;
     
@@ -15745,7 +15742,9 @@ img.zoom-img {
 }
 
 @media (min-width: 767px) {
-   
+    .mobile-only{
+        display: flex;
+    }
 
     .visible-mobile {
         display: none;

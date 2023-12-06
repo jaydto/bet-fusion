@@ -80,7 +80,7 @@ body {
 .footer-custom {
     color: whitesmoke;
     border-bottom: 0px solid #fff;
-    font-size: 15px;
+    font-size: 14px;
     background: var(--betnare-footer);
     color: var(--footer-color);
     padding: 10px;

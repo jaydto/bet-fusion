@@ -145,7 +145,7 @@ const ResponsibleGambling = React.memo(() => {
                   <div className="col-md-12 mt-2 text-white accordion-container">
                     <Accordion
                       allowMultipleExpanded={true}
-                      allowZeroExpanded={false}
+                      allowZeroExpanded={true}
                       preExpanded={preExpandedItems}
                       //   defaultActiveKey={['1', '2', '3', '4', '5', '6', '7']} // Use the array of all keys
                     >

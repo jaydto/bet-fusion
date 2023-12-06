@@ -80,7 +80,7 @@ body {
 .footer-custom {
     color: whitesmoke;
     border-bottom: 0px solid #fff;
-    font-size: 14px;
+    font-size: 15px;
     background: var(--betnare-footer);
     color: var(--footer-color);
     padding: 10px;
@@ -350,8 +350,8 @@ input.text-white {
 }
 
 .search-container {
-    background: var(--betnare-input);
-    color: var(--light) !important;
+    background: #fff;
+    color: var(--dark) !important;
     height: 30px;
     /*width: 100vw; */
     border-radius: 16px;
@@ -361,10 +361,10 @@ input.text-white {
     align-items: center;
     cursor: pointer;
     transition: 0.8s;
-    /* box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, .3),
+    box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, .3),
     -4px -4px 6px 0 rgba(116, 125, 136, .2),
     inset -4px -4px 6px 0 rgba(255, 255, 255, .2),
-    inset 4px 4px 6px 0 rgba(0, 0, 0, .2); */
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
 }
 
 .top-section-page {
@@ -378,7 +378,7 @@ input.text-white {
     font-weight: 500;
     font-size: 16px;
     transition: 0.8s;
-    color: var(--light) !important;
+    color: var(--dark) !important;
     width: 100%;
 }
 
@@ -432,9 +432,6 @@ input.text-white {
     cursor: pointer;
 }
 
-div .cg.reset-text{
-    color:var(--dark)!important;
-}
 .text-expiry-style {
     font-weight: 600;
     opacity: 0.6;
@@ -892,16 +889,17 @@ input:placeholder-shown {
 }
 
 .live-side-badge {
-    float: right;
-    color: rgb(255, 255, 255);
+    align-items: center!important;
     background-color: red;
-    border-radius: 12px;
-    height: 15px;
-    width: 15px;
-    display: flex !important;
-    align-items: center !important;
+    border-radius: 9px;
+    color: #fff;
+    display: flex!important;
+    float: right;
+    height: 13px;
     justify-content: center;
-    margin-left: 10px;
+    margin-left: 4px;
+    width: 28px;
+    margin-right: 18px;
 }
 
 .width-page-centric.register-page {
@@ -3471,6 +3469,9 @@ img.nare-league {
 }
 
 @media (max-width: 767px) {
+    ul::-webkit-scrollbar {
+        display: none!important;
+    }
     .shadow-sports-header.header-sports{
         max-height: 34px!important;
         display: flex;
@@ -4176,6 +4177,5 @@ img.nare-league {
         opacity: 1;
     }
 }
-
 
 

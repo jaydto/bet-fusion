@@ -1,4 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
+
 import {
   Accordion,
   AccordionItem,
@@ -8,6 +10,7 @@ import {
 } from "react-accessible-accordion";
 import "react-accessible-accordion/dist/fancy-example.css";
 import useWindowDimensions from "../../header/Dimensions";
+import { StoreContext } from "../../../context/store";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import SelfExclusion from "../Accounts/component/SelfExclusion";
@@ -24,15 +27,18 @@ const Right = React.lazy(() => import("../../right/index"));
 
 const ResponsibleGambling = React.memo(() => {
   const { width } = useWindowDimensions();
+  const { state } = useContext(StoreContext);
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("responsible_gambling");
-  const userData = useSelector((state) => state.auth.user);
-  const [user, setUser] = useState(getFromLocalStorage("user"));
+  const handleTabSelect = (eventKey) => {
+    setActiveTab(eventKey);
+  };
   useEffect(() => {
-    if (userData) {
-      setUser(userData || getFromLocalStorage("user"));
-    }
-  }, [userData]);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
   const show = useSelector((state) => state.data.show_menu);
   const dispatchRedux = useDispatch();
 
@@ -43,28 +49,18 @@ const ResponsibleGambling = React.memo(() => {
   useEffect(() => {
     if (show == true) handleClose();
   }, []);
-
-  // Extract the fragment identifier
-  var fragmentIdentifier = window.location.hash;
-
-  const handleTabSelect = (eventKey) => {
-    setActiveTab(eventKey);
-  };
+  const userData = useSelector((state) => state.auth.user);
+  const [user, setUser] = useState(getFromLocalStorage("user"));
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  }, []);
-
-  useEffect(() => {
-    if (fragmentIdentifier) {
-      setActiveTab("self_exclusion");
+    if (userData) {
+      setUser(userData || getFromLocalStorage("user"));
     }
-  }, [fragmentIdentifier]);
+  }, [userData]);
 
-  console.log("fragment", fragmentIdentifier);
-  console.log("tab", activeTab);
+  const preExpandedItems = [1,2,3,4,5,6,7]; // Add all the keys here
+//   const generateUuid = () => uuidv4();
+
+//   const preExpandedItems = items.map(() => generateUuid()); // Generate UUIDs for preExpanded
 
   return (
     <>
@@ -77,7 +73,7 @@ const ResponsibleGambling = React.memo(() => {
             : "amt"
         }
       >
-        <div className="d-flex flex-row justify-content-between">
+        <div className="d-flex flex-row justify-content-between mt-5">
           <SideBar loadCompetitions />
           <div className="gz home">
             <div className="homepage">
@@ -116,6 +112,23 @@ const ResponsibleGambling = React.memo(() => {
                 assist them in making informed decisions. Other means are as
                 follows
               </div>
+              <div className="col-md-12 mt-2 text-white p-2 line-mobile-spacing">
+                <p style={{}} className="mt-1 ">
+                  This is a real-money gambling app. Please gamble responsibly
+                  and only bet what you can afford. For gambling addiction help
+                  and support, please contact CustomerCare at (+254701087777),
+                  or visit (
+                  <a
+                    href="https://responsiblegambling.or.ke/"
+                    target="_blank"
+                    style={{ color: "var(--aqua-text)" }}
+                  >
+                    {" "}
+                    Responsible Gambling Website
+                  </a>{" "}
+                  ).
+                </p>
+              </div>
               <Tabs
                 variant={"tabs"}
                 defaultActiveKey={activeTab}
@@ -131,10 +144,12 @@ const ResponsibleGambling = React.memo(() => {
                 >
                   <div className="col-md-12 mt-2 text-white accordion-container">
                     <Accordion
-                      allowMultipleExpanded={false}
+                      allowMultipleExpanded={true}
                       allowZeroExpanded={true}
+                      preExpanded={preExpandedItems}
+                      //   defaultActiveKey={['1', '2', '3', '4', '5', '6', '7']} // Use the array of all keys
                     >
-                      <AccordionItem>
+                      <AccordionItem uuid={preExpandedItems[0]}>
                         <AccordionItemHeading>
                           <AccordionItemButton className="accordion-button">
                             Protection of vulnerable gamblers
@@ -160,7 +175,7 @@ const ResponsibleGambling = React.memo(() => {
                           </p>
                         </AccordionItemPanel>
                       </AccordionItem>
-                      <AccordionItem>
+                      <AccordionItem uuid={preExpandedItems[1]}>
                         <AccordionItemHeading>
                           <AccordionItemButton className="accordion-button">
                             Prevention of underage gambling
@@ -183,7 +198,7 @@ const ResponsibleGambling = React.memo(() => {
                           </p>
                         </AccordionItemPanel>
                       </AccordionItem>
-                      <AccordionItem>
+                      <AccordionItem uuid={preExpandedItems[3]}>
                         <AccordionItemHeading>
                           <AccordionItemButton className="accordion-button">
                             Safety measures against criminal activities
@@ -204,7 +219,7 @@ const ResponsibleGambling = React.memo(() => {
                           </p>
                         </AccordionItemPanel>
                       </AccordionItem>
-                      <AccordionItem>
+                      <AccordionItem uuid={preExpandedItems[4]}>
                         <AccordionItemHeading>
                           <AccordionItemButton className="accordion-button">
                             Information privacy
@@ -225,7 +240,7 @@ const ResponsibleGambling = React.memo(() => {
                           </p>
                         </AccordionItemPanel>
                       </AccordionItem>
-                      <AccordionItem>
+                      <AccordionItem uuid={preExpandedItems[5]}>
                         <AccordionItemHeading>
                           <AccordionItemButton className="accordion-button">
                             Online payment protection
@@ -243,7 +258,7 @@ const ResponsibleGambling = React.memo(() => {
                           </p>
                         </AccordionItemPanel>
                       </AccordionItem>
-                      <AccordionItem>
+                      <AccordionItem uuid={preExpandedItems[6]}>
                         <AccordionItemHeading>
                           <AccordionItemButton className="accordion-button">
                             Ethical and responsible marketing
@@ -262,7 +277,7 @@ const ResponsibleGambling = React.memo(() => {
                           </p>
                         </AccordionItemPanel>
                       </AccordionItem>
-                      <AccordionItem>
+                      <AccordionItem uuid={preExpandedItems[7]}>
                         <AccordionItemHeading>
                           <AccordionItemButton className="accordion-button">
                             Support
@@ -280,9 +295,8 @@ const ResponsibleGambling = React.memo(() => {
                   </div>
                 </Tab>
                 <Tab
-                  eventKey="self_exclusion"
+                  eventKey="self_exclusinon"
                   title="Self Exclusioin"
-                  id={"self_exclusion"}
                   className={"background-primary"}
                 >
                   <SelfExclusion />

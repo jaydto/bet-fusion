@@ -9,7 +9,7 @@ import {StoreContext} from "../../context/store";
 import {useFormik} from "formik";
 import {userDeposits} from "../../redux/dataSlice";
 
-const BetslipShareModal = React.memo(
+const DepositModal = React.memo(
     (props) => {
         const appConfigs=useSelector((state)=>state.data.app_config)
         const [settings,setSettings] = useState(getFromLocalStorage('settings'));
@@ -192,8 +192,8 @@ const BetslipShareModal = React.memo(
 
 
                 </Modal.Body>
-                <Modal.Footer className={'text-center modal-width deposit-modal-footer'}>
-                    <Button className={'cancel-filter-markets bg-deposit-modal-btn'} onClick={hideModal} >
+                <Modal.Footer className={'text-center modal-width deposit-modal-footer'} style={{overflowX:'hidden'}}>
+                    <Button className={'cancel-filter-markets bg-deposit-modal-btn'} style={{overflowX:'hidden'}} onClick={hideModal} >
                         Cancel
                     </Button>
                 </Modal.Footer>
@@ -201,4 +201,4 @@ const BetslipShareModal = React.memo(
 
         );
     });
-export default React.memo(BetslipShareModal);
+export default React.memo(DepositModal);

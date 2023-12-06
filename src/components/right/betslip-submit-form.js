@@ -332,9 +332,9 @@ const BetslipSubmitForm = React.memo(
 
         const updateWinnings = useCallback(() => {
             if (betslip) {
-                let stake_after_tax = (Float(stake) / Float(112.5)) * 100;
+                let stake_after_tax = (Float(stake) / Float(112.5/100));
                 let stake_after_tax_boosted =
-                    ((Float(stake) + Float(multiBoostAmount)) / Float(112.5)) * 100;
+                    ((Float(stake) + Float(multiBoostAmount)) / Float(112.5/100));
 
                 let ext = Float(stake) - Float(stake_after_tax);
                 let ext_boosted =
@@ -597,15 +597,12 @@ const BetslipSubmitForm = React.memo(
                 else{
                     setMultiBoostAmount(boost);
                     setHasMultiBetBoost(true);
-                    dispatchRedux(setMatchBetslipOptions('betslip_options', {...betslip_options,...{hasBoost:true,remaining_games: 0, alert_slip_color:'valid',multiboostmessage: "You Qualify for Nare Boost Minimum Stake is " +
-                                3 +
-                                " KES "  }}))
+                    dispatchRedux(setMatchBetslipOptions('betslip_options', {...betslip_options,...{hasBoost:true,remaining_games: 0, alert_slip_color:'valid',multiboostmessage: "You Have Qualified for a Nare Boost  " 
+                                }}))
 
 
                     setMultiBoostMessage(
-                        "You Qualify for a Nare Boost Minimum stake is " +
-                        3 +
-                        " KES "
+                        "You  Have Qualified for a Nare Boost " 
                     );
 
 
@@ -775,7 +772,7 @@ const BetslipSubmitForm = React.memo(
                                 </tr>}
 
                                 <tr className="bet-win-tr hide-on-affix">
-                                    <td className={"bet-align-left tax-info"}> Excise Tax (12.5%)</td>
+                                    <td className={"bet-align-left tax-info"}> Excise Tax </td>
                                     <td className={"bet-align-right tax-info"}>KES. <span
                                         id="tax">{formatNumber(hasMultiBetBoost ? exciseTaxBoosted : exciseTax)}</span>
                                     </td>
@@ -784,7 +781,7 @@ const BetslipSubmitForm = React.memo(
                                     ''
                                 ) : (
                                     <tr className="bet-win-tr hide-on-affix">
-                                        <td className={"bet-align-left tax-info"}> Withholding (20%)</td>
+                                        <td className={"bet-align-left tax-info"}> Withholding </td>
                                         <td className={"bet-align-right tax-info"}>KES. <span
                                             id="tax">{formatNumber(hasMultiBetBoost ? withholdingTaxBoosted : withholdingTax)}</span>
                                         </td>
@@ -801,7 +798,7 @@ const BetslipSubmitForm = React.memo(
 
 
                     return (<FormikForm name="betslip-submit-form">
-                        <Alert/>
+                        { !showDepositModal&& <Alert/>}
 
                         {showShareModal && (
                             <BetslipShareModal
@@ -818,8 +815,9 @@ const BetslipSubmitForm = React.memo(
                                 setShowShareModal={setShowDepositModal}
                             />
                         )}
-                        <div>
-                            {!jackpot && !message &&
+                      
+                       <div>
+                            {!jackpot && !message && 
                                 awardMultiGift &&
                                 Number(totalGames) >= settings?.betnareBonus?.bonusBetLegs && (
                                     multiBoostMessage &&

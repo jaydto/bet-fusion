@@ -1,5 +1,5 @@
 import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
-import {Link, useNavigate} from "react-router-dom"
+import {Link, useLocation, useNavigate} from "react-router-dom"
 import Row from 'react-bootstrap/Row';
 import {StoreContext} from "../../context/store";
 import {getFromLocalStorage} from '../utils/local-storage';
@@ -46,7 +46,12 @@ const Header = React.memo(
         const navigate = useNavigate()
         // Import the navigationConfig object
         const [isOpen, setIsOpen] = useState(false);
-        const pathname = window.location.pathname;
+        // const pathname = window.location.pathname;
+        const path_origin=useLocation()
+        const search_param=path_origin?.search&&path_origin?.search
+        const pathname=`${path_origin?.pathname}${search_param}`
+
+        console.log('pathname_now', pathname)
         const dispatchRedux = useDispatch()
 
         const notShowMobileNav = dispatchRedux(shouldShowMobileNav(pathname));

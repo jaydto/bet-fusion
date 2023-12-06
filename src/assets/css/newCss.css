@@ -442,6 +442,9 @@ input.text-white {
     cursor: pointer;
 }
 
+div .cg.reset-text{
+    color:var(--dark)!important;
+}
 .text-expiry-style {
     font-weight: 600;
     opacity: 0.6;

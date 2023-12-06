@@ -152,8 +152,7 @@ const MyOtpForm = React.memo(
                     <div className="form-group row d-flex justify-content-left mb-4">
                         <div className="col">
                             <button type="submit"
-                                    onClick={submitForm}
-                                    className=' btn btn-lg w-100 button-radius input-field btn-font cg login-button btn button-page' style={{whiteSpace:'nowrap',fontSize:"12px",marginTop:"20px"}}>
+                                    className=' btn btn-lg w-100 button-radius input-field btn-font cg login-button btn button-page reset-text' style={{whiteSpace:'nowrap',fontSize:"12px",marginTop:"20px"}}>
                                 Send OTP
                             </button>
                         </div>
@@ -284,7 +283,6 @@ const MyPasswordResetForm = React.memo(
                     <div className="form-group w-100 d-flex justify-content-left mb-4">
                         <div className="col">
                             <button type="submit"
-                                    onClick={submitForm}
                                     className='w-100 btn btn-lg btn-primary mt-5 col-md-12 deposit-withdraw-button button-page'>
                                 Reset Password
                             </button>

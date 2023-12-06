@@ -88,7 +88,7 @@ const PromoCards = () => {
                             KARIBU
                         </h5>
                         <p className="container mx-1 px-2 text-data-promotions">
-                            Get Up to 3,000/= FREE Nare Booster once you register as a Free Stake Booster...
+                            Get Up to 3,000/= FREE Bet Booster once you register as a Free Nare Booster...
                         </p>
                         <hr/>
 
@@ -97,7 +97,7 @@ const PromoCards = () => {
                             <button className={"profile-button border-0 h-25 rounded promo-button"}
                                     style={{background: "#ea5d0b"}} onClick={() => {
                                 checkIfUser();
-                                gaEventTracker('promo Stake Booster Wallet');
+                                gaEventTracker('promo Gift Wallet');
                                 setUtmSouceCampaignOnPromotions('promo_Gift_Wallet')
                             }}>Sign Up
                             </button>
@@ -280,7 +280,7 @@ const PromoCards = () => {
                             FIRST DEPOSIT BOOSTER
                         </h5>
                         <div className="container mx-1  mb-2 px-2 text-data-promotions">
-                            Get 1500% BONUS on the FIRST ever deposit as Free Stake Booster now...
+                            Get 1500% BONUS on the FIRST ever deposit as Free Nare Booster now...
                         </div>
                         <hr/>
                         <div className="d-flex justify-content-between my-2 mx-2">

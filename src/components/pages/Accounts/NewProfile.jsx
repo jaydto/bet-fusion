@@ -83,7 +83,7 @@ const NewProfile = React.memo(
                                         <div className="upper-row">
                                             <div className="card-item">
                                                 {/*todo gift*/}
-                                                <span className='t-label'>Gift Balance</span>
+                                                <span className='t-label'>Stake Booster Balance</span>
                                                 <span>
 											<span className="dollar">Ksh {formatNumber(user?.gift_balance) || 0}</span>
 										</span>

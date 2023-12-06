@@ -892,16 +892,17 @@ input:placeholder-shown {
 }
 
 .live-side-badge {
-    float: right;
-    color: rgb(255, 255, 255);
+    align-items: center!important;
     background-color: red;
-    border-radius: 12px;
-    height: 15px;
-    width: 15px;
-    display: flex !important;
-    align-items: center !important;
+    border-radius: 9px;
+    color: #fff;
+    display: flex!important;
+    float: right;
+    height: 13px;
     justify-content: center;
-    margin-left: 10px;
+    margin-left: 4px;
+    width: 28px;
+    margin-right: 18px;
 }
 
 .width-page-centric.register-page {
@@ -3471,6 +3472,9 @@ img.nare-league {
 }
 
 @media (max-width: 767px) {
+    ul::-webkit-scrollbar {
+        display: none!important;
+    }
     .shadow-sports-header.header-sports{
         max-height: 34px!important;
         display: flex;

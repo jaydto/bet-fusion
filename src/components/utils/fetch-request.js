@@ -1,28 +1,82 @@
-// api.js
 import axios from "axios";
-import { getFromLocalStorage, setLocalStorage } from "./local-storage";
+import {
+  getFromLocalStorage,
+  removeItem,
+  setLocalStorage,
+} from "./local-storage";
+import { notification } from "antd";
 
-const ENC_KEY =
-  "2bdVweTeI42s5mkLdYHyklTMxQS5gLA7MDS6FA9cs1uobDXeruACDic0YSU3si04JGZe4Y";
-// export const BASE_URL = "http://localhost:5000";
-export const BASE_URL = 'https://api.betnare.com';
-// export const BASE_URL = 'https://testapi.betnare.co.ke';
+const ENC_KEY = '2bdVweTeI42s5mkLdYHyklTMxQS5gLA7MDS6FA9cs1uobDXeruACDic0YSU3si04JGZe4Y';
+// export const BASE_URL = 'http://localhost:5000';
+//  export const BASE_URL = 'https://testapi.betnare.co.ke';
+ export const BASE_URL = 'https://api.betnare.com';
+
+const instance = axios.create({
+  baseURL: BASE_URL,
+  headers: {
+    accept: "*/*",
+  },
+});
+
+const navigate = async () => {
+  await removeItem("user"); 
+};
+
+// Function to set the flag indicating user update
+const setSkipUserUpdateFlag = () => {
+  localStorage.setItem("skipUserUpdate", "true");
+};
+
+// Function to check if user update should be skipped
+const shouldSkipUserUpdate = () => {
+  return localStorage.getItem("skipUserUpdate") === "true";
+};
+
+instance.interceptors.response.use(
+  (response) => {
+    const status = response?.data.status;
+    if (status === 401) {
+      setSkipUserUpdateFlag();
+      // Redirect to the login page if not already on it
+      if (window.location.pathname !== "/login") {
+        // Clear user data from local storage
+        navigate().then(() => {
+          notification.error({
+            message: "Session expired",
+            description: "Please login again",
+          });
+           // Delay the redirection to the logout page (e.g., 3 seconds)
+           setTimeout(() => {
+            window.location.href = "/redirect";
+          }, 3000);
+        });
+      }
+    }
+    return response;
+  },
+  async (error) => {
+    const status = error.response?.status;
+    console.log("response_data", status);
+
+    if (status === 401) {
+      // Clear user data from local storage
+      // Redirect to the login page if not already on it
+      if (window.location.pathname !== "/login") {
+        // Clear user data from local storage
+        navigate().then(() => {
+          window.location.href = "/login";
+        });
+      }
+    }
+
+    return Promise.reject(error);
+  }
+);
 
 const makeRequest = async ({ url, method, data = null, use_jwt = false }) => {
-  url = BASE_URL + url;
-  let headers = {
-    accept: "*/*",
-  };
-
   let user = getFromLocalStorage("user");
 
-  const updateUserSession = () => {
-    if (user) {
-      setLocalStorage("user", user);
-    }
-  };
-
-  let jwt = null;
+  let headers = {};
 
   if (use_jwt) {
     const sign = require("jwt-encode");
@@ -31,28 +85,22 @@ const makeRequest = async ({ url, method, data = null, use_jwt = false }) => {
       iat: Math.floor(Date.now() / 1000) + 1 * 60,
     };
 
-    jwt = sign(payload, ENC_KEY);
-    // url += (url.match(/\?/g) ? '&' : '?') + 'token=' + jwt;
-
+    const jwt = sign(payload, ENC_KEY);
     url = url;
     const data_value = {
-        token: jwt,
-      }
+      token: jwt,
+    };
     data = data_value;
   } else {
-    headers = { ...headers, ...{ "content-type": "application/json" } };
+    headers = { "content-type": "application/json" };
   }
 
   const token = user?.token;
 
-  if (token) {
-    headers = { ...headers, ...{ Authorization: "Bearer " + token } };
-  }
-
-  // Add additional properties to headers
   headers = {
     ...headers,
-    referrerPolicy: "no-referrer", // Set referrerPolicy
+    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    referrerPolicy: "no-referrer",
     redirect: "follow",
     mode: "cors",
     cache: "no-cache",
@@ -60,7 +108,7 @@ const makeRequest = async ({ url, method, data = null, use_jwt = false }) => {
   };
 
   try {
-    const response = await axios({
+    const response = await instance({
       method: method,
       url: url,
       data: data,
@@ -68,14 +116,19 @@ const makeRequest = async ({ url, method, data = null, use_jwt = false }) => {
     });
 
     let result = response.data;
-    let status = response?.status;
+    let status = response.status;
     return [status, result];
   } catch (err) {
     let status = err.response?.status;
     let result = err.response?.data;
     return [status, result];
   } finally {
-    updateUserSession(user);
+    if (!shouldSkipUserUpdate()) {
+      setLocalStorage("user", user);
+    } else {
+      // Clear the skipUserUpdate flag for the next request
+      removeItem("skipUserUpdate");
+    }
   }
 };
 

@@ -300,4 +300,5 @@ const ResponsibleGambling = React.memo(
         )
     })
 
+    
 export default React.memo(ResponsibleGambling)

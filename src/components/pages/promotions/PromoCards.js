@@ -3,7 +3,6 @@ import twentyPercentDepositBonus from "../../../assets/img/banner/products/Bet_N
 import firstDeposit from "../../../assets/img/banner/products/Firstdeposit.jpeg";
 import multibetCashback from "../../../assets/img/banner/products/Bet_Nare_100_Cashback_Mobile.webp";
 import DepositBonus from "../../../assets/img/banner/products/365.webp";
-import karibuGiftWallet from "../../../assets/img/banner/products/Bet_Nare_3000_karibu_gift_Mobile.webp";
 import mia_sita_ham_sini from "../../../assets/img/banner/products/FreeKickBonanzaWeb.webp";
 
 import {Link, useNavigate} from "react-router-dom";
@@ -42,6 +41,115 @@ const PromoCards = () => {
                     "row text-white pt-2 border-0 d-flex promo-container d-flex align-self-start align-items-start"
                 }
             >
+                
+                <div className="col-md-2 promo-styling shadow-lg promotion">
+                    <div className="d-flex flex-column promo-inner">
+                        <img src={'https://cdn.betnare.com/carousel/LuckyHour.webp'} className={"rounded promo-image "}/>
+                        <h5
+                            className="bold d-flex justify-content-center h4 pt-2"
+                            style={{color: "#ea5d0b"}}
+                        >
+                           LUCKY HOUR BONUS
+                        </h5>
+                        <p className="container mx-1 px-2 text-data-promotions">
+                        The Lucky Hour Bonus applies to new and existing customers who Deposit and place a bet....
+                        </p>
+                        <hr/>
+
+                        <div className="d-flex justify-content-between my-2 mx-2">
+
+                            <button className={"profile-button border-0 h-25 rounded promo-button"}
+                                    style={{background: "#ea5d0b"}} onClick={() => {
+                                gaEventTracker('lucky_houra');
+                                navigate(`/deposit`);
+                                setUtmSouceCampaignOnPromotions('lucky_hour')
+                            }}>Deposit
+                            </button>
+                            <div
+                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"}
+                                style={{color: "#ea5d0b"}}
+                                onClick={() => {
+                                    navigate(`/promo?id=${ids[4]}`);
+                                    window.scrollTo(0, 0); // Scroll to the top of the page
+                                }}
+                            >
+                                Read More
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-md-2 promo-styling shadow-lg promotion">
+                    <div className="d-flex flex-column promo-inner">
+                        <img src={'https://cdn.betnare.com/carousel/Mbuzi.webp'} className={"rounded promo-image "}/>
+                        <h5
+                            className="bold d-flex justify-content-center h4 pt-2"
+                            style={{color: "#ea5d0b"}}
+                        >
+                            SHINDA MBUZI YA KRISI NA BETNARE!
+                        </h5>
+                        <p className="container mx-1 px-2 text-data-promotions">
+                        	Open to all new and existing customers....
+                        </p>
+                        <hr/>
+
+                        <div className="d-flex justify-content-between my-2 mx-2">
+
+                            <button className={"profile-button border-0 h-25 rounded promo-button"}
+                                    style={{background: "#ea5d0b"}} onClick={() => {
+                                gaEventTracker('mbuzi_ya_krisi');
+                                navigate(`/`);
+                                setUtmSouceCampaignOnPromotions('mbuzi_ya_krisi')
+                            }}>Bet now
+                            </button>
+                            <div
+                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"}
+                                style={{color: "#ea5d0b"}}
+                                onClick={() => {
+                                    navigate(`/promo?id=${ids[5]}`);
+                                    window.scrollTo(0, 0); // Scroll to the top of the page
+                                }}
+                            >
+                                Read More
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-md-2 promo-styling shadow-lg promotion">
+                    <div className="d-flex flex-column promo-inner">
+                        <img src={'https://cdn.betnare.com/carousel/DepositBonus.webp'} className={"rounded promo-image "}/>
+                        <h5
+                            className="bold d-flex justify-content-center h4 pt-2"
+                            style={{color: "#ea5d0b"}}
+                        >
+                            FIKA USHAGO NA MBAO
+                        </h5>
+                        <p className="container mx-1 px-2 text-data-promotions">
+                        For the next 30 days, every valid cash bet worth KES 20/= or more on Real Sports Will earn you one entry into the promotion ...
+                        </p>
+                        <hr/>
+
+                        <div className="d-flex justify-content-between my-2 mx-2">
+
+                            <button className={"profile-button border-0 h-25 rounded promo-button"}
+                                    style={{background: "#ea5d0b"}} onClick={() => {
+                                gaEventTracker('ushago_na_mbao');
+                                navigate(`/deposit`);
+                                setUtmSouceCampaignOnPromotions('ushago_na_mbao')
+                            }}>Deposit
+                            </button>
+                            <div
+                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"}
+                                style={{color: "#ea5d0b"}}
+                                onClick={() => {
+                                    navigate(`/promo?id=${ids[6]}`);
+                                    window.scrollTo(0, 0); // Scroll to the top of the page
+                                }}
+                            >
+                                Read More
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div className="col-md-2 promo-styling shadow-lg promotion">
                     <div className="d-flex flex-column promo-inner">
                         <img src={'https://cdn.betnare.com/carousel/chomokananduthi.webp'} className={"rounded promo-image "}/>
@@ -80,7 +188,7 @@ const PromoCards = () => {
                 </div>
                 <div className="col-md-2 promo-styling shadow-lg promotion">
                     <div className="d-flex flex-column promo-inner">
-                        <img src={karibuGiftWallet} className={"rounded promo-image "}/>
+                        <img src={'https://cdn.betnare.com/carousel/StakeBooster.webp'} className={"rounded promo-image "}/>
                         <h5
                             className="bold d-flex justify-content-center h4 pt-2"
                             style={{color: "#ea5d0b"}}
@@ -88,7 +196,7 @@ const PromoCards = () => {
                             KARIBU
                         </h5>
                         <p className="container mx-1 px-2 text-data-promotions">
-                            Get Up to 3,000/= FREE Bet Booster once you register as a Free Nare Booster...
+                            Get Up to 3,000/= FREE Bet Booster once you register as a Free Stake Booster...
                         </p>
                         <hr/>
 
@@ -280,7 +388,7 @@ const PromoCards = () => {
                             FIRST DEPOSIT BOOSTER
                         </h5>
                         <div className="container mx-1  mb-2 px-2 text-data-promotions">
-                            Get 1500% BONUS on the FIRST ever deposit as Free Nare Booster now...
+                            Get 1500% BONUS on the FIRST ever deposit as Free Stake Booster now...
                         </div>
                         <hr/>
                         <div className="d-flex justify-content-between my-2 mx-2">

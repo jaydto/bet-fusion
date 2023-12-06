@@ -134,10 +134,30 @@ const Logout = () => {
     return null
 }
 
+const Redirect = () => {
+    const {dispatch} = useContext(StoreContext);
+    const dispatchRedux = useDispatch();
+    let navigate = useNavigate();
+    setLocalStorage('user', null)
+    dispatchRedux(resetState("user"))
+    const out = useCallback(() => {
+        localStorage.clear();
+        dispatch({type: 'CLEAR_ALL_ITEMS'}); // Dispatch the action to clear all items
+
+        navigate("/login");
+    }, [navigate]);
+
+    useEffect(() => {
+        out();
+    }, [out]);
+
+    return null
+}
+
 
 const App =
     () => {
-        const scrollPosition = useSelector((state) => state.scroll.scroll)
+        // const scrollPosition = useSelector((state) => state.scroll.scroll)
         const [flag, setFlag]=useState(true)
         // cleanup/unmounting components fix
         useEffect(()=>{
@@ -149,7 +169,7 @@ const App =
         return (
            flag?
                <>
-                <Header scrollPosition={scrollPosition}/>
+                <Header />
                 <Suspense fallback={<></>}>
                     <Routes>
                         <Route path="*" element={<Navigate to="/404"/>}/>
@@ -219,6 +239,7 @@ const App =
                         <Route exact path="/reset-password" element={<ResetPassword/>}/>
                         <Route exact path="/verify" element={<VerifyAccount/>}/>
                         <Route exact path="/logout" element={<Logout/>}/>
+                        <Route exact path="/redirect" element={<Redirect/>}/>
                         <Route exact path="/print-matches" element={<PrintMatches/>}/>
                         <Route exact path="/promotions" element={<Promotions/>}/>
                         <Route exact path="/promo" element={<Promo/>}/>

@@ -97,7 +97,7 @@ const Index = React.memo(
             let search = (url.searchParams.get('search') ||false)
             const categories = getFromLocalStorage('sport_categories')
             let sport = categories?.all_sports?.filter((category) => Number(category.sport_id) === Number(sport_id))
-            const sport_type=sport != null ? sport?.[0]?.sport_name||'Soccer':"";
+            const sport_type=sport != null ? sport?.[0]?.sport_name||'Soccer':search?"":'Soccer';
 
             dispatchRedux(matchesPrematch({endpoint,method:"POST",data:betslip, search:search, active_sport:sport_type, active_sub_type:market_name})); // Dispatch matchesPrematch with the updated fetchParams
 

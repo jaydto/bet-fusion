@@ -16,7 +16,10 @@ body {
 .slip-dim-color-selections {
 
 }
-
+.cashout-close{
+    background: transparent!important;
+    border: none!important;
+}
 .line-on-slip-items {
     height: 1px;
     width: 100%;
@@ -1095,7 +1098,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .input-field-decode {
-    line-height: 33px;
+    line-height: 39px;
     border: none;
     color: #fff !important;
     font-weight: bold;
@@ -2403,6 +2406,7 @@ img.nare-league {
         align-items: center;
         display: flex;
         justify-content: center;
+        position: fixed!important;
     }
     .filters-modal.share-modal .modal-content{
         bottom:40% !important;
@@ -3150,7 +3154,7 @@ img.nare-league {
 
     .alert-position-betslip-top {
         position: fixed;
-        top: 10rem;
+        top: 14rem;
         width: 100%;
     }
 

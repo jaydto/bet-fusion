@@ -158,6 +158,7 @@ export const userSelfExclusion = createAsyncThunk(
 );
 export const resetState = createAction("data/reset", (stateToReset) => {
   return { payload: stateToReset };
+
 });
 
 export const userDepositsConfirm = createAsyncThunk(

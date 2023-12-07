@@ -95,6 +95,8 @@ const BetDetails = React.memo(
             }
         }
 
+        const [settings, setSettings] = useState(getFromLocalStorage("settings"));
+        const cashout_status=settings?.cashoutConfigs?.cashout_enabled
 
         const toggleCollapse = (index, parent_match_id) => {
             setActiveParentMatchId(parent_match_id)
@@ -414,7 +416,7 @@ const BetDetails = React.memo(
                                         </div>)}
                                         {item?.status == 1 && <div className="d-flex w-100 justify-content-around">
 
-                                            <div className={"bet-history-options"}
+                                           {cashout_status==='1'? <div className={"bet-history-options"}
                                                  style={{ fontSize:'large',
                                                      letterSpacing:'2px',
                                                      fontWeight:'var(--font-weight3)',
@@ -425,7 +427,17 @@ const BetDetails = React.memo(
                                                      cashoutRequest(item?.bet_id,item?.bet_amount, item?.possible_win)
                                                     }>
                                                 Cashout
-                                            </div>
+                                            </div>:<div className={"bet-history-options"}
+                                                 style={{ fontSize:'large',
+                                                     letterSpacing:'2px',
+                                                     fontWeight:'var(--font-weight3)',
+                                                     background:'var(--bet-history)',
+                                                     color:'var(--betnare-button-login)',
+                                                     opacity:'0.4'
+                                                 }}
+                                                 >
+                                                Cashout Unavailable
+                                            </div>}
 
                                         </div>}
                                         {item?.status == 1 && <div className="d-flex w-100 justify-content-around">

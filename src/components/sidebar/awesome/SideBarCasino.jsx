@@ -40,7 +40,7 @@ const SideBarCasino = React.memo((props) => {
   const default_choice = useSelector((state) => state.virtuals.game_type);
   const storedCategories = getFromLocalStorage("casino_categories");
 
-  const fetchGames = async (category = "popular") => {
+  const fetchGames = async (category ) => {
     let endpoint = "/v1/casino-games?game-type-id=" + category;
     let method = "GET";
     const data = {
@@ -111,7 +111,9 @@ const SideBarCasino = React.memo((props) => {
   }, [userData]);
   const dispatchRedux = useDispatch();
   const [activeGame, setActiveGame] = useState(default_choice ?? "pragmatic"); // Default active game
-
+  const casino_categories = useSelector(
+    (state) => state.virtuals.casino_categories
+  );
   const handleClose = () => {
     dispatchRedux(setState("show_menu_casino", false));
   };
@@ -122,9 +124,9 @@ const SideBarCasino = React.memo((props) => {
     dispatchRedux(setVirtualGame("game_type", game));
     setActiveGame(game);
     dispatch({ type: "SET", key: "casino_search", payload: {} });
-
+    const firstItem =  casino_categories?.[0];
     if (game === "pragmatic") {
-      fetchGames().then(() => {
+      fetchGames(firstItem?.game_type_id).then(() => {
         setGames(casino_games);
       });
     } else if (game === "smart-soft") {

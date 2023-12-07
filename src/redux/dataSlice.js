@@ -78,6 +78,21 @@ export const carouselImages = createAsyncThunk(
   }
 );
 
+export const casinoCarouselImages = createAsyncThunk(
+  "data/casinoCarouselImages",
+  async () => {
+    const [status, response] = await makeRequest({
+      url: "/v1/casino-carousel-images",
+      method: "GET",
+    });
+    if (status === 200) {
+      return response;
+    } else {
+      throw new Error(response?.error || "Fetching CAsino Carousel images failed");
+    }
+  }
+);
+
 export const userPoints = createAsyncThunk(
   "data/userPoints",
   async (values) => {
@@ -321,6 +336,22 @@ const dataSlice = createSlice({
         }
       })
       .addCase(carouselImages.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(casinoCarouselImages.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(casinoCarouselImages.fulfilled, (state, action) => {
+        state.casino_carousel_banners = action.payload.images;
+        state.loading = false;
+        state.error = null;
+        const status = action.payload.status;
+        if (status === 200) {
+          setLocalStorage("casino_carousel_banners", action.payload.images, 1800000);
+        }
+      })
+      .addCase(casinoCarouselImages.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       })

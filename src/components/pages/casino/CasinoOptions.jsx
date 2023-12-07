@@ -19,7 +19,8 @@ import {
 } from "../../../redux/virtualsSlice";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import aviator from "../../../assets/img/aviator.png";
-import { getFromLocalStorage } from "../../utils/local-storage";
+import { getFromLocalStorage, setLocalStorage } from "../../utils/local-storage";
+import CasinoCarouselLoader from "./CasinoCarouseld";
 
 const CasinoOptions = () => {
   const dispatchRedux = useDispatch();
@@ -32,8 +33,9 @@ const CasinoOptions = () => {
 
   const [games, setGames] = useState([]);
 
-  const [activeCategory, setActiveCategory] = useState("popular"); // Set the default active category
   const navigate = useNavigate();
+
+  const casino_local=getFromLocalStorage('casino_categories')
 
   const { state, dispatch } = useContext(StoreContext);
   // const loading=useSelector((state)=>state.virtuals.loading)
@@ -50,29 +52,30 @@ const CasinoOptions = () => {
     }
   }, [userData]);
 
+  const [activeCategory, setActiveCategory] = useState("jackpot"); // Set the default active category
+
   useEffect(() => {
     dispatchRedux(setVirtualGame("game_type", "pragmatic"));
     dispatch({ type: "SET", key: "casino_search", payload: {} });
-
+  
     if (casino_games) {
       setGames(casino_games);
     }
-    if (casino_categories) {
+  
+    const storedCategories = getFromLocalStorage('casino_categories');
+  
+    // Check if there is a change in casino_categories
+    if (casino_categories!==storedCategories&&casino_categories!==null) {
       setCategories(casino_categories);
+      setLocalStorage('casino_categories', casino_categories, 86400000);
     }
+  
   }, [casino_games, casino_categories]);
+  
 
-  useEffect(() => {
-    const firstItem=casino_categories?.types?.[0]?.game_type_id
-   
-    if(firstItem){
-      setActiveCategory(game_type !== "pragmatic" ? "All" : firstItem);
-    }else{
-      setActiveCategory(game_type !== "pragmatic" ? "All" : "popular");
-    }
-  }, [game_type]);
+ 
 
-  const fetchGames = async (category = "popular") => {
+  const fetchGames = async (category = "jackpot") => {
     let endpoint = "/v1/casino-games?game-type-id=" + category;
     let method = "GET";
     const data = {
@@ -81,6 +84,18 @@ const CasinoOptions = () => {
     };
     dispatchRedux(casinoList(data));
   };
+
+  useEffect(() => {
+    const firstItem =  casino_categories?.[0];
+    
+
+    if (firstItem) {
+      setActiveCategory(game_type !== "pragmatic" ? "All" : firstItem?.game_type_id);
+    } else {
+      setActiveCategory(game_type !== "pragmatic" ? "All" : "jackpot");
+    }
+
+  }, [game_type, casino_local]);
 
   const getCategoryGames = (category) => {
     setGames([]);
@@ -159,7 +174,7 @@ const CasinoOptions = () => {
   };
 
   useEffect(() => {
-    fetchGames();
+    fetchGames(activeCategory);
   }, []);
 
   const launchAviator = (status) => {
@@ -189,7 +204,9 @@ const CasinoOptions = () => {
       >
         <div className="item2 w-100">
           <div className="item2 size-all-markets casino-header-banner">
-            <div className={"casino-banner-image"}></div>
+            <div className={"casino-banner-image"}>
+            <CasinoCarouselLoader/>
+            </div>
           </div>
           <Navbar
             expand="md"
@@ -334,7 +351,7 @@ const CasinoOptions = () => {
               </div>
               <div
                 className={
-                  "row text-white p-2 shadow-sm justify-content-center col-lg-10 col-md-12 col-sm-12 body-casino-width"
+                  "row text-white p-2 shadow-sm justify-content-start col-lg-10 col-md-12 col-sm-12 body-casino-width"
                 }
               >
                 {state?.casino_search !== undefined &&

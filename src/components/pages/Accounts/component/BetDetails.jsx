@@ -337,9 +337,9 @@ const BetDetails = React.memo(
             if(show_cashout_modal){
                 setShowCashoutModal(show_cashout_modal)
             }
-            // return ()=>{
-            //     dispatchRedux(resetState("loading_cashout"))
-            // }
+            return ()=>{
+                dispatchRedux(resetState("loading_cashout"))
+            }
 
         },[show_cashout_modal])
 
@@ -422,7 +422,7 @@ const BetDetails = React.memo(
                                                      color:'var(--betnare-button-login)'
                                                  }}
                                                  onClick={() =>
-                                                     cashoutRequest(item?.bet_id,item?.bet_amount, item?.possible_wi)
+                                                     cashoutRequest(item?.bet_id,item?.bet_amount, item?.possible_win)
                                                     }>
                                                 Cashout
                                             </div>

@@ -49,6 +49,9 @@ const CasinoOptions = () => {
     (state) => state.virtuals.casino_categories
   );
 
+  const [settings, setSettings] = useState(getFromLocalStorage("settings"));
+  const defaultCasinoCategory = settings.casinoConfigs?.casino_default_category;
+
   useEffect(() => {
     if (userData) {
       setUser(userData || getFromLocalStorage("user"));
@@ -74,8 +77,10 @@ const CasinoOptions = () => {
     }
   }, [casino_games, casino_categories]);
 
-  const fetchGames = async (category ) => {
-    let endpoint = "/v1/casino-games?game-type-id=" + category;
+  const fetchGames = async (category) => {
+    let endpoint;
+    if (category) endpoint = "/v1/casino-games?game-type-id=" + category;
+    else endpoint = "/v1/casino-games";
     let method = "GET";
     const data = {
       endpoint: endpoint,
@@ -84,17 +89,15 @@ const CasinoOptions = () => {
     dispatchRedux(casinoList(data));
   };
 
-  useEffect(() => {
-    const firstItem = casino_categories?.[0];
-
-    if (firstItem) {
-      setActiveCategory(
-        game_type !== "pragmatic" ? "All" : firstItem?.game_type_id
-      );
-    } else {
-      setActiveCategory(game_type !== "pragmatic" && "All" );
-    }
-  }, [game_type]);
+  const fetchInitialGames = async (category) => {
+    let endpoint = "/v1/casino-games";
+    let method = "GET";
+    const data = {
+      endpoint: endpoint,
+      method: method,
+    };
+    dispatchRedux(casinoList(data));
+  };
 
   const getCategoryGames = (category) => {
     setGames([]);
@@ -116,6 +119,29 @@ const CasinoOptions = () => {
       dispatch({ type: "SET", key: "casino_search", payload: filteredData });
     }
   };
+
+  useEffect(() => {
+    const firstItem = casino_categories?.[0];
+
+    if (firstItem) {
+      setActiveCategory(
+        game_type !== "pragmatic" ? "All" : firstItem?.game_type_id
+      );
+    } else {
+      setActiveCategory(game_type !== "pragmatic" ? "All" : "jackpot");
+    }
+  }, [game_type]);
+
+  // const [hasFetchedGames, setHasFetchedGames] = useState(false);
+
+  useEffect(() => {
+    // if (game_type === "pragmatic"&&hasFetchedGames==false) {
+    // console.log('casinocategories',casino_categories )
+    fetchGames(defaultCasinoCategory);
+    // setHasFetchedGames(true);
+
+    // }
+  }, []);
 
   const launchGame = (
     game_id,
@@ -172,19 +198,13 @@ const CasinoOptions = () => {
     }
   };
 
-  useEffect(() => {
-    if (game_type === "pragmatic") {
-      fetchGames(activeCategory);
-    }
-  }, [activeCategory, game_type]);
-
-  const launchAviator = (status) => {
-    if (status === "demo") {
-      navigate("/nare-games/aviator?status=demo");
-    } else {
-      navigate("/nare-games/aviator?status=live");
-    }
-  };
+  // const launchAviator = (status) => {
+  //   if (status === "demo") {
+  //     navigate("/nare-games/aviator?status=demo");
+  //   } else {
+  //     navigate("/nare-games/aviator?status=live");
+  //   }
+  // };
 
   const handleShow = () => {
     dispatchRedux(setState("show_menu_casino", true));

@@ -19,7 +19,11 @@ import {
 } from "../../../redux/virtualsSlice";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import aviator from "../../../assets/img/aviator.png";
-import { getFromLocalStorage } from "../../utils/local-storage";
+import {
+  getFromLocalStorage,
+  setLocalStorage,
+} from "../../utils/local-storage";
+import CasinoCarouselLoader from "./CasinoCarouseld";
 
 const CasinoOptions = () => {
   const dispatchRedux = useDispatch();
@@ -32,8 +36,9 @@ const CasinoOptions = () => {
 
   const [games, setGames] = useState([]);
 
-  const [activeCategory, setActiveCategory] = useState("popular"); // Set the default active category
   const navigate = useNavigate();
+
+  const casino_local = getFromLocalStorage("casino_categories");
 
   const { state, dispatch } = useContext(StoreContext);
   // const loading=useSelector((state)=>state.virtuals.loading)
@@ -44,11 +49,16 @@ const CasinoOptions = () => {
     (state) => state.virtuals.casino_categories
   );
 
+  const [settings, setSettings] = useState(getFromLocalStorage("settings"));
+  const defaultCasinoCategory = settings.casinoConfigs?.casino_default_category;
+
   useEffect(() => {
     if (userData) {
       setUser(userData || getFromLocalStorage("user"));
     }
   }, [userData]);
+
+  const [activeCategory, setActiveCategory] = useState(); // Set the default active category
 
   useEffect(() => {
     dispatchRedux(setVirtualGame("game_type", "pragmatic"));
@@ -57,23 +67,30 @@ const CasinoOptions = () => {
     if (casino_games) {
       setGames(casino_games);
     }
-    if (casino_categories) {
+
+    const storedCategories = getFromLocalStorage("casino_categories");
+
+    // Check if there is a change in casino_categories
+    if (casino_categories !== storedCategories && casino_categories !== null) {
       setCategories(casino_categories);
+      setLocalStorage("casino_categories", casino_categories, 86400000);
     }
   }, [casino_games, casino_categories]);
 
-  useEffect(() => {
-    const firstItem=casino_categories?.types?.[0]?.game_type_id
-   
-    if(firstItem){
-      setActiveCategory(game_type !== "pragmatic" ? "All" : firstItem);
-    }else{
-      setActiveCategory(game_type !== "pragmatic" ? "All" : "popular");
-    }
-  }, [game_type]);
+  const fetchGames = async (category) => {
+    let endpoint;
+    if (category) endpoint = "/v1/casino-games?game-type-id=" + category;
+    else endpoint = "/v1/casino-games";
+    let method = "GET";
+    const data = {
+      endpoint: endpoint,
+      method: method,
+    };
+    dispatchRedux(casinoList(data));
+  };
 
-  const fetchGames = async (category = "popular") => {
-    let endpoint = "/v1/casino-games?game-type-id=" + category;
+  const fetchInitialGames = async (category) => {
+    let endpoint = "/v1/casino-games";
     let method = "GET";
     const data = {
       endpoint: endpoint,
@@ -102,6 +119,29 @@ const CasinoOptions = () => {
       dispatch({ type: "SET", key: "casino_search", payload: filteredData });
     }
   };
+
+  useEffect(() => {
+    const firstItem = casino_categories?.[0];
+
+    if (firstItem) {
+      setActiveCategory(
+        game_type !== "pragmatic" ? "All" : firstItem?.game_type_id
+      );
+    } else {
+      setActiveCategory(game_type !== "pragmatic" ? "All" : "jackpot");
+    }
+  }, [game_type]);
+
+  // const [hasFetchedGames, setHasFetchedGames] = useState(false);
+
+  useEffect(() => {
+    // if (game_type === "pragmatic"&&hasFetchedGames==false) {
+    // console.log('casinocategories',casino_categories )
+    fetchGames(defaultCasinoCategory);
+    // setHasFetchedGames(true);
+
+    // }
+  }, []);
 
   const launchGame = (
     game_id,
@@ -158,17 +198,13 @@ const CasinoOptions = () => {
     }
   };
 
-  useEffect(() => {
-    fetchGames();
-  }, []);
-
-  const launchAviator = (status) => {
-    if (status === "demo") {
-      navigate("/nare-games/aviator?status=demo");
-    } else {
-      navigate("/nare-games/aviator?status=live");
-    }
-  };
+  // const launchAviator = (status) => {
+  //   if (status === "demo") {
+  //     navigate("/nare-games/aviator?status=demo");
+  //   } else {
+  //     navigate("/nare-games/aviator?status=live");
+  //   }
+  // };
 
   const handleShow = () => {
     dispatchRedux(setState("show_menu_casino", true));
@@ -189,7 +225,9 @@ const CasinoOptions = () => {
       >
         <div className="item2 w-100">
           <div className="item2 size-all-markets casino-header-banner">
-            <div className={"casino-banner-image"}></div>
+            <div className={"casino-banner-image"}>
+              <CasinoCarouselLoader />
+            </div>
           </div>
           <Navbar
             expand="md"
@@ -334,7 +372,7 @@ const CasinoOptions = () => {
               </div>
               <div
                 className={
-                  "row text-white p-2 shadow-sm justify-content-center col-lg-10 col-md-12 col-sm-12 body-casino-width"
+                  "row text-white p-2 shadow-sm justify-content-start col-lg-10 col-md-12 col-sm-12 body-casino-width"
                 }
               >
                 {state?.casino_search !== undefined &&

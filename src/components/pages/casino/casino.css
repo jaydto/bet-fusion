@@ -1,52 +1,66 @@
 .casino-banner-image {
   max-height: 208px;
-  height: 208px;
+  height: 156px;
+}
+.carousel-item img.casino-banner-image-height {
+  max-height: 208px;
+  height: 156px!important;
+  width:100vw!important;
+
 }
 
 .casino-header-banner {
-    margin: auto;
-    width: 100%!important;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    /* padding-bottom: 32px; */
+  margin: auto;
+  width: 100% !important;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  /* padding-bottom: 32px; */
 }
 
 @media (min-width: 992px) {
-    .header-providers{
-        font-size:20px;
-
-    }
-    .side-casino-width{
-      width:16%!important;
-      margin-right: 10px!important;
-    }
-    .body-casino-width{
-      margin-left: 10px!important;
-      width:83%!important;
-    }
-    .top-spacing-page-no-download-casino {
+  .casino-banner-image {
+    margin-top: 1rem!important;}
+  .carousel-item img.casino-banner-image-height {
+    height: 167px!important;
+  }
+  .header-providers {
+    font-size: 20px;
+  }
+  .side-casino-width {
+    width: 16% !important;
+    margin-right: 10px !important;
+  }
+  .body-casino-width {
+    margin-left: 24px !important;
+    width: 81% !important;
+}
+  .top-spacing-page-no-download-casino {
     margin-top: 5rem !important;
     /* position: fixed; */
-    overflow-y: auto!important;
-    overflow-x: hidden  ;
-    height: 100vh!important;
-}
-    .item4.casino-options{
-        /* flex-grow: 0!important; */
-    }
+    overflow-y: auto !important;
+    overflow-x: hidden;
+    height: 100vh !important;
+  }
+  .item4.casino-options {
+    /* flex-grow: 0!important; */
+  }
   /* .casino-banner-image {
     background: radial-gradient(circle, transparent, #151e2a, #141d28),
       url("../../../assets/img/banner/products/drops-and-wins.jpg");
     width: 100%;
   } */
-  .casino-banner-image {
-    background:url("../../../assets/img/banner/products/drops-and-wins.jpg");
+  .carousel-item img.casino-banner-image-height {
     width: 100%;
     background-size: cover;
     background-position: center;
-
-}
+  }
+  /* .casino-banner-image {
+    background: url("../../../assets/img/banner/products/drops-and-wins.jpg");
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+  } */
 }
 
 @media (max-width: 991px) {
@@ -54,20 +68,19 @@
     max-height: 12rem;
     height: 12rem;
   }
-    .header-providers{
-        font-size:20px;
-    }
-    .flex-item.casino-options-container{
-        padding-bottom: 1px!important;
-
-    }
-    .top-spacing-page-no-download-casino {
-        margin-top: 10rem !important;
-        overflow-y: auto!important;
-        overflow-x: hidden  ;
-        height: 100vh!important;
-    }
-  .casino-banner-image {
+  .header-providers {
+    font-size: 20px;
+  }
+  .flex-item.casino-options-container {
+    padding-bottom: 1px !important;
+  }
+  .top-spacing-page-no-download-casino {
+    margin-top: 10rem !important;
+    overflow-y: auto !important;
+    overflow-x: hidden;
+    height: 100vh !important;
+  }
+  .carousel-item img.casino-banner-image-height {
     width: 100%;
     margin: 0 auto;
     height: 11.166667rem;
@@ -77,12 +90,22 @@
     background-repeat: no-repeat;
     width: 100%;
     background-size: cover !important;
-    background: url("../../../assets/img/banner/products/drops-and-wins.jpg");
+  }
+  /* .casino-banner-image { */
+    /* width: 100%;
+    margin: 0 auto;
+    height: 11.166667rem;
+    color: white;
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 100%;
+    background-size: cover !important;
+    background: url("../../../assets/img/banner/products/drops-and-wins.jpg"); */
+  /* } */
 }
-
-}
-.flex-item.casino-options-container{
-  padding-bottom: 0px!important;
+.flex-item.casino-options-container {
+  padding-bottom: 0px !important;
 }
 .flex-item.casino-options-container > div {
   background: var(--betnare-primary);
@@ -91,6 +114,6 @@
   height: max-content;
 }
 
-.active-casino{
-  color: var(--light)!important;
+.active-casino {
+  color: var(--light) !important;
 }

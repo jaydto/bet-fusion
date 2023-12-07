@@ -6,7 +6,10 @@ import {
   SidebarFooter,
   SidebarHeader,
 } from "react-pro-sidebar";
-import { getFromLocalStorage } from "../../utils/local-storage";
+import {
+  getFromLocalStorage,
+  setLocalStorage,
+} from "../../utils/local-storage";
 import React, { useContext, useEffect, useState } from "react";
 import "react-pro-sidebar/dist/css/styles.css";
 import {
@@ -35,8 +38,9 @@ const SideBarCasino = React.memo((props) => {
 
   const casino_games = useSelector((state) => state.virtuals.casino_games);
   const default_choice = useSelector((state) => state.virtuals.game_type);
+  const storedCategories = getFromLocalStorage("casino_categories");
 
-  const fetchGames = async (category = "popular") => {
+  const fetchGames = async (category ) => {
     let endpoint = "/v1/casino-games?game-type-id=" + category;
     let method = "GET";
     const data = {
@@ -55,7 +59,10 @@ const SideBarCasino = React.memo((props) => {
       ([status, result]) => {
         if (status === 200) {
           setGames(result?.games);
-          setCategories(result?.types);
+          if (result?.types !== storedCategories && result?.types !== null) {
+            setCategories(result?.types);
+            setLocalStorage("casino_categories", result?.types, 86400000);
+          }
         }
       }
     );
@@ -70,7 +77,10 @@ const SideBarCasino = React.memo((props) => {
       ([status, result]) => {
         if (status === 200) {
           setGames(result?.games);
-          setCategories(result?.types);
+          if (result?.types !== storedCategories && result?.types !== null) {
+            setCategories(result?.types);
+            setLocalStorage("casino_categories", result?.types, 86400000);
+          }
         }
       }
     );
@@ -85,7 +95,10 @@ const SideBarCasino = React.memo((props) => {
       ([status, result]) => {
         if (status === 200) {
           setGames(result?.games);
-          setCategories(result?.types);
+          if (result?.types !== storedCategories && result?.types !== null) {
+            setCategories(result?.types);
+            setLocalStorage("casino_categories", result?.types, 86400000);
+          }
         }
       }
     );
@@ -98,7 +111,9 @@ const SideBarCasino = React.memo((props) => {
   }, [userData]);
   const dispatchRedux = useDispatch();
   const [activeGame, setActiveGame] = useState(default_choice ?? "pragmatic"); // Default active game
-
+  const casino_categories = useSelector(
+    (state) => state.virtuals.casino_categories
+  );
   const handleClose = () => {
     dispatchRedux(setState("show_menu_casino", false));
   };
@@ -109,10 +124,9 @@ const SideBarCasino = React.memo((props) => {
     dispatchRedux(setVirtualGame("game_type", game));
     setActiveGame(game);
     dispatch({ type: "SET", key: "casino_search", payload: {} });
-
-
+    const firstItem =  casino_categories?.[0];
     if (game === "pragmatic") {
-      fetchGames().then(() => {
+      fetchGames(firstItem?.game_type_id).then(() => {
         setGames(casino_games);
       });
     } else if (game === "smart-soft") {

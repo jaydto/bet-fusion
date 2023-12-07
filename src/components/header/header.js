@@ -132,9 +132,9 @@ const Header = React.memo(
             };
         
             // Listen for "beforeunload" event to handle clearing localStorage in the same tab
-            // const handleBeforeUnload = () => {
-            //     clearLocalStorageSettings();
-            // };
+            const handleBeforeUnload = () => {
+                clearLocalStorageSettings();
+            };
         
             window?.addEventListener("storage", handleStorageChange);
             // window?.addEventListener('beforeunload', handleBeforeUnload);
@@ -142,7 +142,7 @@ const Header = React.memo(
             return () => {
               // Clean up the event listeners when the component unmounts
               window?.removeEventListener("storage", handleStorageChange);
-            //   window?.removeEventListener('beforeunload', handleBeforeUnload);
+              window?.removeEventListener('beforeunload', handleBeforeUnload);
             };
           };
         

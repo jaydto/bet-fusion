@@ -2,6 +2,10 @@
   max-height: 208px;
   height: 156px;
 }
+.casino-banner-image .carousel.slide{
+  max-height: 169px;
+    height: 156px;
+}
 .carousel-item img.casino-banner-image-height {
   max-height: 208px;
   height: 156px!important;
@@ -19,8 +23,12 @@
 }
 
 @media (min-width: 992px) {
+  /* .casino-banner-image .carousel.slide{
+    margin-top: 1rem!important;
+  } */
   .casino-banner-image {
     margin-top: 1rem!important;}
+    
   .carousel-item img.casino-banner-image-height {
     height: 167px!important;
   }
@@ -35,6 +43,7 @@
     margin-left: 24px !important;
     width: 81% !important;
 }
+
   .top-spacing-page-no-download-casino {
     margin-top: 5rem !important;
     /* position: fixed; */
@@ -55,6 +64,8 @@
     background-size: cover;
     background-position: center;
   }
+ 
+
   /* .casino-banner-image {
     background: url("../../../assets/img/banner/products/drops-and-wins.jpg");
     width: 100%;
@@ -90,6 +101,9 @@
     background-repeat: no-repeat;
     width: 100%;
     background-size: cover !important;
+  }
+  .casino-banner-image .carousel.slide{
+  height: 11.166667rem;
   }
   /* .casino-banner-image { */
     /* width: 100%;

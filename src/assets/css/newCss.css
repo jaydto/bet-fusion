@@ -2275,7 +2275,23 @@ img.nare-league {
     height:34px!important;
     max-height:34px!important;
 }
+.optional-action{
+    transition: display linear 0.7s;
+}
 @media (max-width: 991px) {
+    .optional-action{
+        display: none;
+    }
+    .optional-action.active{
+        display: block;
+
+    }
+    .top-position-mobile-view{
+        margin-top:10rem;
+    }
+    .top-position-mobile-view.active{
+        margin-top:11rem;
+    }
     .deposit-buttons-value.deposit-modal {
         padding:2px 20px!important;
     }
@@ -3473,6 +3489,13 @@ img.nare-league {
 }
 
 @media (max-width: 767px) {
+    .top-position-mobile-view{
+        margin-top:14rem;
+    }
+    
+    .top-position-mobile-view.active{
+        margin-top:10rem
+    }
     ul::-webkit-scrollbar {
         display: none!important;
     }
@@ -3492,7 +3515,7 @@ img.nare-league {
 
     .virtual-width {
         width: 50% !important;
-        margin: auto;
+        /* margin: auto; */
     }
 
     .odds-container-size {

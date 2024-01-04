@@ -414,7 +414,7 @@ const BetDetails = React.memo(
 
                                             </div>
                                         </div>)}
-                                        {item?.status == 1 && <div className="d-flex w-100 justify-content-around">
+                                        {item?.status == 1 && bet_details_meta?.bet_info?.status !== 9 && <div className="d-flex w-100 justify-content-around">
 
                                            {cashout_status==='1'? <div className={"bet-history-options"}
                                                  style={{ fontSize:'large',

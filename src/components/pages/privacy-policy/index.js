@@ -44,7 +44,7 @@ const PrivacyPolicy = React.memo(() => {
       <div className="flex-container height-default-body top-diff-pages">
         <div className="item1">
           {" "}
-          <SideBar loadCompetitions />
+          {/* <SideBar loadCompetitions /> */}
         </div>
         <div className="item2" style={{ width: "100%" }}>
           <div className="gz home w-100">
@@ -1082,9 +1082,7 @@ const PrivacyPolicy = React.memo(() => {
             </div>
           </div>
         </div>
-        <div className="item3 mobile-remove">
-          <Right test={true} />
-        </div>
+       
       </div>
       <div className="item6">
         <div className={"footer-mobile-none"}>

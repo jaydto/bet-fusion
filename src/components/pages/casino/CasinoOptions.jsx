@@ -50,7 +50,7 @@ const CasinoOptions = () => {
   );
 
   const [settings, setSettings] = useState(getFromLocalStorage("settings"));
-  const defaultCasinoCategory = settings.casinoConfigs?.casino_default_category;
+  const defaultCasinoCategory = settings?.casinoConfigs?.casino_default_category;
 
   useEffect(() => {
     if (userData) {
@@ -137,7 +137,7 @@ const CasinoOptions = () => {
   useEffect(() => {
     // if (game_type === "pragmatic"&&hasFetchedGames==false) {
     // console.log('casinocategories',casino_categories )
-    fetchGames(defaultCasinoCategory);
+    fetchGames(defaultCasinoCategory??'jackpot');
     // setHasFetchedGames(true);
 
     // }

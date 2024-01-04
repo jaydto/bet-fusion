@@ -55,7 +55,6 @@ const Header = React.memo((props) => {
   const search_param = path_origin?.search && path_origin?.search;
   const pathname = `${path_origin?.pathname}${search_param}`;
 
-  console.log("pathname_now", pathname);
   const dispatchRedux = useDispatch();
 
   const notShowMobileNav = dispatchRedux(shouldShowMobileNav(pathname));

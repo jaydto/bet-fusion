@@ -5,6 +5,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {carouselImages} from "../../redux/dataSlice";
+import useWindowDimensions from '../header/Dimensions';
 
 const CarouselLoader = React.memo(
     (props) => {
@@ -13,6 +14,8 @@ const CarouselLoader = React.memo(
         const getCarouselImages = async () => {
             dispatchRedux(carouselImages())
         }
+        const {width}=useWindowDimensions()
+
 
         useEffect(() => {
             const abort= new AbortController()
@@ -29,7 +32,8 @@ const CarouselLoader = React.memo(
         const navigate=useNavigate()
 
         return (
-            <Carousel indicators={false} controls={false}>
+            <Carousel indicators={false} 
+            controls={width>991?true:false}>
                 {banner_images?.map((banner, idx) => (
                     <Carousel.Item key={idx}>
                         <LazyLoadImage

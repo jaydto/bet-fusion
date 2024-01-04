@@ -32,6 +32,10 @@ const DefaultPage = React.memo(
         const {spid} = useParams();
         const bottomSheetRef = useRef()
         const bottom_sheet = useSelector((state) => state.data.bottom_sheet)
+        const appConfigs = useSelector((state) => state.data.app_config);
+
+        const [settings, setSettings] = useState(getFromLocalStorage("settings"));
+
 
         const user_slip_validation = useSelector((state) => state.matchesData.user_slip_validation)
         const {height,width} = useWindowDimensions();
@@ -54,6 +58,11 @@ const DefaultPage = React.memo(
         let sportValue = new URL(window.location).searchParams.get('sport_id')
         const userData = useSelector((state) => state.auth.user)
         const [user, setUser] = useState(getFromLocalStorage("user"))
+
+
+        useEffect(() => {
+            setSettings(appConfigs || getFromLocalStorage("settings"));
+          }, [appConfigs]);
 
 
         const filteredMarkets = markets.find((market) => market.sport_id === sportId);
@@ -224,6 +233,8 @@ const DefaultPage = React.memo(
         const location = useLocation();
         const user_slip_validation_live=useSelector((state)=>state.matchesData.live_user_slip_validation)
 
+
+    
         return (
             <div className={'flex-item'}>
                 <div className={bottom_sheet ? 'pointer-event-handler item4' : "item4"}>
@@ -234,7 +245,7 @@ const DefaultPage = React.memo(
                         {pathname.includes('live')?<LiveSideBar spid={spid}/>:<SideBar loadCompetitions/>}
                     </div>
                     <div className={bottom_sheet ? `pointer-event-handler item2` : `item2 ${pathname.includes('match')?' size-all-markets':pathname.includes('live')?' live-top':''}  ${
-                  close_call_to_action?pathname.includes("competition")?'':"top-position-mobile-view active":"top-position-mobile-view" }`}
+                  close_call_to_action?pathname.includes("competition")?'':settings?.active_promotion?.app_promo?.promo_active === "0"? "top-position-mobile-view active":"top-position-mobile-view active": pathname.includes("competition")?'':settings?.active_promotion?.app_promo?.promo_active === "0"?"top-position-mobile-view active":"top-position-mobile-view"}`}
                          style={bottom_sheet ? {opacity: '0.5', background: '#13171c'} : {}}>
                         <div className={`gz home match-overflow ${competitionpath&&'competition-mobile-top'} `}>
                             <div className={`homepage mobile-full-height ${pathname.includes('match')?' all-markets':''}`} ref={homePageRef} style={width < 991 ? {height: `${height}px`, overflowY: 'auto'} : {}}>

@@ -11,7 +11,9 @@
     "nb": "  - Kindly Note that the Maximum Gift Bonus One can be topped up with is 40/= PER TICKET.  - Kindly Note that the BOOSTER wallet funds Do Not have an expiry date",
     "termsHeading": "TERMS AND CONDITIONS",
     "termsContent": "✅ One account one Stake Booster. Accounts with the same IP address and same Password will be regarded as the same customer and will not be able to claim the Booster Gift. First Deposit Gifts would be available only if the user makes a deposit within the first 3 months of account opening. \n✅ Once you REGISTER you get Stake Booster in total value of up to KES.3,000. \n✅ You will receive all the gifts once you REGISTER . The gifts will become valid only on cash bets. \n✅ The Gifts can only be used for &quot;Real Sports&quot; and no on Virtuals , Jackpot an Casino. \n✅ These Free Bet Gifts can only be used to place bets with 4+ selections with at least 4 selections having Odds &gt; 1.5. \n✅ Only 1 Booster Gift can be used in 1 Betslip. \n✅ In this promotion, BetNare only allows one chance to award Gifts per person / mobile number/ IP address/device number. \n✅ Duplicate accounts will be closed and will not qualify for this offer. Any winnings obtained unlawfully from this bonus will be removed. Promotion and Gifts ar created in order to reward our most valued customers.",
-    "active": true
+    "active": true, "position":1,
+    "action":{"title":"Deposit","url":"/deposit", "utm_source":"lucky_hour" },
+    "read_info":{"title":"Read More","url":"/promo?id=1" }
   },
   {
     "id": 10,
@@ -23,7 +25,10 @@
     "termsHeading": "TERMS AND CONDITIONS",
     "termsContent":"1.\tThe bonus will be credited to the customer's account automatically once they have made their deposit.\n2.\tThe Bonus will be Awarded to any Deposit of the Day which will be an equivalent amount of 650/=.\n3.\tThe Bonus SHOULD be used within 13 days after depositing. All Bonuses and Bonus winnings accumulated during the Bonus Promotion period will be revoked at the end of the campaign period.\n4.\tTo use the bonus the customer will be required to have placed an equivalent Sports Cash Bet on Minimum odds of 1.9\n5.\tThe Bonus can only be used to place a Sports bet on a Minimum of 4 Games with a Minimum odd of 2.1 on each leg.\n6.\tThe Maximum Bonus Gross Winnings are 10,000 Kenya Shillings Less Initial Stake.\n7.\tCash Bet Cancellation will NOT be allowed when the customer has an ACTIVE bonus bet during this promotion.\n8.\tBetNare may limit or refuse to allow customers to take part in this or any other offer.\n9.\tBetNare reserves the right to review customer transaction records and logs for any reason. If, upon such review, it appears that a customer is using strategies which BetNare, at its sole discretion, deems to be abusive, BetNare reserves the right to revoke that customer's right to participate in the bonus program and void their bonus and or winnings.\n10.\tOnly ONE bonus is allowed per customer, family, address, shared computer, shared IP address. Any misuse of this bonus offer will lead to an account being closed.\n",
     "nb": "\uD83C\uDF87\tWithin the next 14 days, ONCE you DEPOSIT 650/=, BetNare Rewards you 650/= BONUS INSTANTLY.\nBetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.\nCustomers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeit of any bonuses/winnings.\nIf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\n",
-    "active":true
+    "active":false,
+    "position":2, 
+    "action":{"title":"Deposit","url":"/deposit", "utm_source":"650_ROMOTION" },
+    "read_info":{"title":"Read More","url":"/promo?id=2" }
 
   },
   {
@@ -49,7 +54,7 @@
     "termsHeading": "TERMS AND CONDITIONS",
     "termsContent":"1.\tEvery cash stake of KES 49/= on Sportsbook matches is equivalent to 1 entry. \nDaily and weekly Winners will be announced on our social media pages and will also be contacted by a member of the BetNare Staff.\nBetNare will display your total entries on the website, under your profile page .\nCanceled cash bets, Virtual bets and bonus bets will not count in this promotion.\nBetNare reserves the right to use the names, radio recordings, motion and still images of the winners for purposes of publicity, marketing campaigns and administering this promotion.\nBetNare may limit or refuse to allow customers to take part in this or any other promotion.\nBetNare reserves the right to review customer transaction records and logs for any reason. If, upon such review, it appears that a customer is using strategies which BetNare, at its sole discretion, deems to be abusive, BetNare reserves the right to revoke that customer's right to participate in the promotion.\nOnly one mobile number per customer is allowed to participate in the promotion.Any misuse of this promotion will lead to disqualification.\n\n",
     "nb": "\uD83C\uDF87\t\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.\nCustomers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nIf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\n\nBetNare General terms and conditions apply in this promotion .\n",
-    "active":true
+    "active":false
 
   },
 
@@ -129,6 +134,9 @@
     "termsContent": " This offer ONLY applies to returns on Pre-Match accumulators \n✅ The MAXIMUM BONUS that you can receive is KES250. \n✅ BetNare may, at any time reclaim any bonus amount; Free Bets, Nare Points and enhanced payments that you may have been awarded in error. \n✅ BetNare may at any time make minor amendments to this promotion to correct typographical errors or to improve on clarity of customer experience and may CANCEL this promotion for legal or regulatory reasons. \n✅ Bets placed with Bonuses DO NOT apply/qualify for this offer \n✅ The refund is paid in BONUS and BONUS RULES apply \n✅ Jackpot bets will not apply/ be considered for this promotion \n✅ Voided bets will not apply / be considered.",
     "exampleHeading": "EXAMPLE",
     "active": true,
+    "position":3,
+    "action":{"title":"Bet Now","url":"/", "utm_source":"multibet" },
+    "read_info":{"title":"Read More","url":"/promo?id=4" },
     "example": "✅ If I lose 1/5 and my stake was 100% THEN I will be awarded a BONUS of KES.30. \n✅ If I LOSE 1/10 folds and my STAKE was KES 100, THEN I will be awarded a bonus of KES.55. \n✅ If I LOSE 1/20 selections and my STAKE was 1000, THEN I will be awarded a bonus of KES250.",
     "tableData": {
       "headings": [
@@ -213,6 +221,20 @@
   },
   {
     "id": 7,
+    "name": "FREE  DEPOSIT OF ALL DEPOSITS!",
+    "heading": "FREE  DEPOSIT ON ALL DEPOSITS",
+    "intro": "All new and existing customers get to enjoy a free deposit bonus on your  all your deposits from 20bob and above!   ",
+    "description": "",
+    "termsHeading": "\nHow to participate",
+    "termsContent": "✅ •Deposit a valid amount of KES 20/= and above to get an entry.\n✅ •The more higher the entry, the higher the  bonus.\n✅All transactional charges will ge refunded\n✅Higher deposits higher bonus entries for higher chances of winning",
+    "headingBooster": "Terms of the promotion",
+    "active": true,
+    "nd": "",
+    "nb":"\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion .",
+    "boosterDescription": "\n✅•Every cash deposit of KES 20/= is equivalent to 1 entry.."
+  },
+  {
+    "id": 11,
     "name": "FIKA USHAGO NA MBAO",
     "heading": "Tufike Ushago na Mbao Christmas Campaign",
     "intro": "For the next 30 days, every valid cash bet worth KES 20/= or more on Real Sports Will earn you one entry into the promotion .You will then automatically enter into the draw to win Bus tickets daily",

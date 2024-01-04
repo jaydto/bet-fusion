@@ -97,7 +97,7 @@ const NewProfile = React.memo(
                                             </div>
                                         </div>
                                     </div>
-                                    <Link to={`/promo?id=12`}  style={{textDecoration: "none", color: "black"}}>
+                                    {/* <Link to={`/promo?id=12`}  style={{textDecoration: "none", color: "black"}}>
                                         <div className="transaction d-flex align-items-center justify-content-between mb-0">
                                             <div className="">
                                                 <div className="t-title gap-2 d-flex flex-column w-100">
@@ -127,7 +127,7 @@ const NewProfile = React.memo(
 
 
                                         </div>
-                                    </Link>
+                                    </Link> */}
 
                                     <Link to="/deposit" style={{textDecoration: "none", color: "black"}}>
                                         <div className="transactions">

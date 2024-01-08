@@ -63,6 +63,21 @@ const Index = React.memo(
             return values;
         };
 
+        useEffect(() => {    
+        
+            // Configure SIR
+            
+            // Register Adapter
+            window.SIR('registerAdapter', 'betnare');
+        
+            // Add Widget 1
+            window.SIR('addWidget', '.sr-widget-1', 'betRecommendation', {});
+        
+            // Add Widget 2
+            window.SIR('addWidget', '.sr-widget-2', 'betRecommendation.similarBets', { similarEventIds: [43232509] });
+          }); 
+        
+
 
 
         const fetchData = async () => {
@@ -174,6 +189,10 @@ const Index = React.memo(
                     {tab === 'countries' ? <SkeletonLoaderMore/> : <SkeletonLoaderMobile/>}
                 </div> : tab === 'countries' ? <Countries/> :
                     <div>
+                        <div className="widgets">
+            <div><div className="sr-widget sr-widget-1"></div></div>
+            {/* <div><div className="sr-widget sr-widget-2"></div></div> */}
+        </div>
                         <MatchList
                             live={false}
                             fetching={fetching}

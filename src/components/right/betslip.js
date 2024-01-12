@@ -268,20 +268,7 @@ const BetSlip = React.memo(
             // Set the pop up component height to be 20% of the remaining screen height
             setPopUpHeight(remainingScreenHeight);
         }, []);
-        // useEffect(() => {    
-        
-        //     // Configure SIR
-            
-        //     // Register Adapter
-        //     window.SIR('registerAdapter', 'betnare', { onBetSlipChanged: onBetSlipChanged });
-        
-        //     // Add Widget 1
-        //     window.SIR('addWidget', '.sr-widget-1', 'betRecommendation.similarBets', {maxRows:1,cardsLayout: "horizontal",similarEventIds: [43232509], onItemClick: onItemClick ,user:  user?.profile_id
-        //     , filters:{recommendationType:{available:["recommended"]}}});
-        
-        //     // Add Widget 2
-        //     // window.SIR('addWidget', '.sr-widget-2', 'betRecommendation.similarBets', { similarEventIds: [43232509] });
-        //   }); 
+     
 
         useEffect(() => {
             // Update similarEventIds based on the last item in betslipsData
@@ -306,7 +293,7 @@ const BetSlip = React.memo(
               maxRows: 1,
               cardsLayout: 'horizontal',
               similarEventIds: [user?parseInt(newSimilarEventIds):null],
-              onItemClick: onItemClick,
+              onItemClick: handleButtonOnClick,
               user: user?user?.profile_id:null,
               filters: { recommendationType: { available: ['recommended'] } },
             });
@@ -366,21 +353,28 @@ const BetSlip = React.memo(
 
         const handleButtonOnClick =
         (target,event) => {
+
+          console.log("checking what is the target", target)
+            console.log("checking what is the data", event)
+            if (target === 'externalOutcome') {
+
+              // console.log("target data", event.externalMarket.status.isActive)
             const attributes = {
-                parent_match_id: event.externalEvent.id,
+                parent_match_id: event?.externalEvent?.id,
                 // match_id: event.currentTarget.getAttribute("match_id"),
-                sub_type_id: event.event.externalMarket.id,
+                sub_type_id: event?.externalMarket?.id,
                 // special_bet_value: event.currentTarget.getAttribute("special_bet_value"),
-                odd_key: event.externalOutcome.name,
-                odd_value: event.externalOutcome.odds,
-                bet_type: event.externalEvent.isLive===false?"0":"1",
-                odd_type: event.externalMarket.name,
-                start_time: event.externalMarket.date,
-                home_team: event.event.externalMarket[0]?.name,
-                away_team: event.event.externalMarket[1]?.name,
-                sport_name: event.event.externalMarket.sport.name,
-                market_active: event.externalMarket.status.isActive,
+                odd_key: event?.externalOutcome?.name,
+                odd_value: event?.externalOutcome?.odds,
+                bet_type: event?.externalEvent?.isLive===false?"0":"1",
+                odd_type: event?.externalMarket?.name,
+                start_time: event?.externalEvent?.date,
+                home_team: event?.externalEvent?.teams[0]?.name,
+                away_team: event?.externalEvent?.teams[1]?.name,
+                sport_name: event?.externalEvent?.sport.name,
+                market_active: event?.externalMarket?.status.isActive,
             };
+
             let cstm = clear_rep(
                 attributes.match_id +
                 "" +
@@ -401,9 +395,9 @@ const BetSlip = React.memo(
             };
             const betItems = getBetslip();
             const slip = {
-                match_id: attributes.match_id,
+                match_id: attributes.match_id??attributes.parent_match_id,
                 parent_match_id: attributes.parent_match_id,
-                special_bet_value: attributes.special_bet_value,
+                special_bet_value: "",
                 sub_type_id: attributes.sub_type_id,
                 bet_pick: attributes.odd_key,
                 start_time: attributes.start_time,
@@ -415,21 +409,20 @@ const BetSlip = React.memo(
                 sport_name: attributes.sport_name,
                 live: live,
                 ucn: clear_rep(
-                    `${attributes.match_id}${attributes.sub_type_id}${attributes.odd_key}
-                    // {
-                    //     marketKey !== undefined ? marketKey : ""
-                    // }
+                    `${attributes.match_id??attributes.parent_match_id}${attributes.sub_type_id}${attributes.odd_key}
                     `
                 ),
                 market_active: attributes.market_active,
                 position: 0,
             };
+            console.log("target data", slip)
+
 
             // if (cstm === match?.ucn) {
                 let betslip;
                 const updateRedux = () => {
                     betslip =  addToSlip(slip);
-                    dispatchRedux( setSelected(event?.event.externalEvent.id+"_selected", cstm));
+                    dispatchRedux( setSelected(event.externalEvent.id+"_selected", cstm));
                     dispatchRedux( setPickedData(cstm));
                 };
 
@@ -449,7 +442,7 @@ const BetSlip = React.memo(
                 };
 
                 dispatchRedux(setMatchBetslip(betslip_data));
-            // }
+            }
         };
        
         const pathLocation = window.location.pathname

@@ -16,7 +16,7 @@ const PromoCards = () => {
     const gaEventTracker = useAnalyticsEventTracker('Promotions');
     const user = getFromLocalStorage('user')
 
-    let ids = [1, 2, 3, 4, 5, 6, 7, 8, 9,10,11, 12];
+    let ids = [1, 2, 3, 4, 5, 6, 7, 8, 9,10,11, 12, 13, 14,15];
     const navigate = useNavigate()
 
     let message = {status: 401, message: 'This Promotion is for new Users', token: ''};
@@ -38,10 +38,47 @@ const PromoCards = () => {
         <div className="col px-4 d-flex align-items-start align-self-start justify-content-start">
             <div
                 className={
-                    "row text-white pt-2 border-0 d-flex promo-container d-flex align-self-start align-items-start"
+                    "row text-white pt-2 border-0 d-flex promo-container-profile d-flex align-self-start align-items-start"
                 }
             >
                 <div className="col-md-2 promo-styling shadow-lg promotion">
+                    <div className="d-flex flex-column promo-inner">
+                        <img src={'https://cdn.betnare.com/carousel/AfconPromoBanner.webp'} className={"rounded promo-image "}/>
+                        <h5
+                            className="bold d-flex justify-content-center h4 pt-2"
+                            style={{color: "#ea5d0b"}}
+                        >
+                            MAMILLI YA NJAANUARY NA AFCON
+
+                        </h5>
+                        <p className="container-profile mx-1 px-2 text-data-promotions">
+                        Customers will be required to place a cash bet on sports book (single or multibet) using a stake of 99/= or more
+                        </p>                      
+                          <hr/>
+
+                        <div className="d-flex justify-content-between my-2 mx-2">
+
+                            <button className={"profile-button border-0 h-25 rounded promo-button"}
+                                    style={{background: "#ea5d0b"}} onClick={() => {
+                                gaEventTracker('mamili_afcon');
+                                navigate(`/competition/79/8085/21843?sport_id=79&sub_type_id=1`);
+                                setUtmSouceCampaignOnPromotions('mamili_afcon')
+                            }}>Place Bets
+                            </button>
+                            <div
+                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"}
+                                style={{color: "#ea5d0b"}}
+                                onClick={() => {
+                                    navigate(`/promo?id=${ids[14]}`);
+                                    window.scrollTo(0, 0); // Scroll to the top of the page
+                                }}
+                            >
+                                Read More
+                            </div>
+                        </div>
+                    </div>
+                </div
+                ><div className="col-md-2 promo-styling shadow-lg promotion">
                     <div className="d-flex flex-column promo-inner">
                         <img src={'https://cdn.betnare.com/carousel/DepositBonus.webp'} className={"rounded promo-image "}/>
                         <h5
@@ -50,7 +87,7 @@ const PromoCards = () => {
                         >
                             FREE  DEPOSIT OF ALL DEPOSITS!
                         </h5>
-                        <p className="container mx-1 px-2 text-data-promotions">
+                        <p className="container-profile mx-1 px-2 text-data-promotions">
                         All new and existing customers get to enjoy a free deposit bonus on your  all your deposit  from 20bob and above!                       </p>
                         <hr/>
 
@@ -85,7 +122,7 @@ const PromoCards = () => {
                         >
                            KARIBU STAKE BOOSTER
                         </h5>
-                        <p className="container mx-1 px-2 text-data-promotions">
+                        <p className="container-profile mx-1 px-2 text-data-promotions">
                             Get Up to 3,000/= FREE Bet Booster once you register as a Free Stake Booster...
                         </p>
                         <hr/>
@@ -123,7 +160,7 @@ const PromoCards = () => {
                                 {" "}
                                 100% MULTIBET LOST BONUS
                             </h5>
-                            <div className="container mx-1 px-2 text-data-promotions">
+                            <div className="container-profile mx-1 px-2 text-data-promotions">
                                 Place a pre-match Multibet of 5 or MORE selections...
                             </div>
                             <hr/>
@@ -162,7 +199,7 @@ const PromoCards = () => {
                         >
                            LUCKY HOUR BONUS
                         </h5>
-                        <p className="container mx-1 px-2 text-data-promotions">
+                        <p className="container-profile mx-1 px-2 text-data-promotions">
                         The Lucky Hour Bonus applies to new and existing customers who Deposit and place a bet....
                         </p>
                         <hr/>
@@ -199,7 +236,7 @@ const PromoCards = () => {
                         >
                             SHINDA MBUZI YA KRISI NA BETNARE!
                         </h5>
-                        <p className="container mx-1 px-2 text-data-promotions">
+                        <p className="container-profile mx-1 px-2 text-data-promotions">
                         	Open to all new and existing customers....
                         </p>
                         <hr/>
@@ -237,7 +274,7 @@ const PromoCards = () => {
                         >
                             CHOMOKA NA NDUTHI
                         </h5>
-                        <p className="container mx-1 px-2 text-data-promotions">
+                        <p className="container-profile mx-1 px-2 text-data-promotions">
                             Place a  cash bet of KES 49/= and above on Sportsbook matches...
                         </p>
                         <hr/>
@@ -275,7 +312,7 @@ const PromoCards = () => {
                         >
                             500 FOR 500 PROMOTION TERMS AND CONDITIONS
                         </h5>
-                        <p className="container mx-1 px-2 text-data-promotions">
+                        <p className="container-profile mx-1 px-2 text-data-promotions">
                             Deposit 500/= and Get 500/= free bonus instantly!
                         </p>
                         <hr/>
@@ -312,7 +349,7 @@ const PromoCards = () => {
                         >
                             650 FOR 650 PROMOTION TERMS AND CONDITIONS
                         </h5>
-                        <p className="container mx-1 px-2 text-data-promotions">
+                        <p className="container-profile mx-1 px-2 text-data-promotions">
                             Deposit 650 and Get 650 free bonus for your first and second deposit of the day
                         </p>
                         <hr/>
@@ -352,7 +389,7 @@ const PromoCards = () => {
                                 {" "}
                                 365 DEPOSIT BONUS
                             </h5>
-                            <div className="container mx-1 px-2 text-data-promotions">
+                            <div className="container-profile mx-1 px-2 text-data-promotions">
                                 Get 365/= Free When you deposit 365/=
                             </div>
                             <hr/>
@@ -391,7 +428,7 @@ const PromoCards = () => {
                         >
                             FIRST DEPOSIT BOOSTER
                         </h5>
-                        <div className="container mx-1  mb-2 px-2 text-data-promotions">
+                        <div className="container-profile mx-1  mb-2 px-2 text-data-promotions">
                             Get 1500% BONUS on the FIRST ever deposit as Free Stake Booster now...
                         </div>
                         <hr/>
@@ -428,7 +465,7 @@ const PromoCards = () => {
                             20% FIRST DAILY DEPOSIT BONUS{" "}
                         </h5>
 
-                        <div className="container mx-1 px-2 text-data-promotions">
+                        <div className="container-profile mx-1 px-2 text-data-promotions">
                             Get 20% daily deposit Boost on your 1st deposit of the day...
                         </div>
                         <hr/>
@@ -462,7 +499,7 @@ const PromoCards = () => {
                                 BETNARE NGWARE
                             </h5>
                             <hr/>
-                            <span className="container mx-1 px-2 text-data-promotions">
+                            <span className="container-profile mx-1 px-2 text-data-promotions">
                 Monday promotion. BetNare Ngware, anzisha Wiki na Thao.
               </span>
                             <hr/>
@@ -487,7 +524,7 @@ const PromoCards = () => {
                         <div className="d-flex flex-column">
                             <h5>LALA KICHAMPE</h5>
                             {/*<img src={lala} className={'rounded promo-image'}/>*/}
-                            <span className="container mx-1">
+                            <span className="container-profile mx-1">
                 This promotion will run on every Wednesday of the Month of
                 October, 8pm to 10pm.
               </span>
@@ -518,7 +555,7 @@ const PromoCards = () => {
                                 FURAHIA RUSH HOUR KIBETNARE
                             </h5>
                             <hr/>
-                            <div className="col-md-12 container mx-1">
+                            <div className="col-md-12 container-profile mx-1">
                                 ✅ This promotion will run every Friday for the Month Of October
                                 2022, 3pm to 7pm
                                 <br/>
@@ -555,7 +592,7 @@ const PromoCards = () => {
                                 ANGUKIA RENT
                             </h5>
                             {/*<img src={rent} className={'rounded promo-image'}/>*/}
-                            <div className="col-md-12 container mx-1">
+                            <div className="col-md-12 container-profile mx-1">
                                 ✅ The Angukia rent draw will be conducted on Monday 31st
                                 October.
                                 <br/>

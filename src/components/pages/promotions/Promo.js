@@ -36,6 +36,9 @@ const Promo = () => {
     {
       src: "https://cdn.betnare.com/carousel/Mega%20Match%20Bonus%20Web.webp",
       id: 11,
+    },{
+      src: "https://cdn.betnare.com/carousel/AfconPromoBanner.webp",
+      id: 15,
     },
   ];
 

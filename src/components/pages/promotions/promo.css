@@ -24,12 +24,15 @@
     outline: none !important;
     min-height: 21rem;
 }
-.container.text-data-promotions {
+.container-profile.text-data-promotions {
     white-space: nowrap;
     overflow: hidden;
     width: 95%;
     text-overflow: ellipsis;
     opacity:0.8;
+}
+.container-profile{
+    display: block;
 }
 .promo-inner-promo-item{
     box-shadow: none !important;
@@ -89,7 +92,7 @@ hr {
         max-height: 120px;
         width: 100vw;
     }
-    .container.text-data-promotions {
+    .container-profile.text-data-promotions {
     white-space: normal !important;
 }
     .promotions-app-top{

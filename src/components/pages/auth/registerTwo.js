@@ -296,7 +296,7 @@ const MySignupForm = (props) => {
                 }`}
                 placeholder={"712345678"}
                 onChange={(ev) => onFieldChanged(ev)}
-                value={values.msisdn.startsWith(values.countryCode) ? values.msisdn : values.countryCode + values.msisdn}
+                value={values.msisd}
                 />
                 </div>
 

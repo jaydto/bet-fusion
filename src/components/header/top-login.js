@@ -241,7 +241,7 @@ const HeaderLogin = React.memo(
                                        className={`w-50 input-field button-radius text-light deposit-input form-control col input-field-login  ${errors.msisdn && 'text-danger'}`}
                                        placeholder={"712345678"}
                                        onChange={ev => onFieldChanged(ev)}
-                                       value={values.msisdn.startsWith(values.countryCode) ? values.msisdn : values.countryCode + values.msisdn}
+                                       value={values.msisdn}
                                        />
                                 </div>
                                 {errors.msisdn && <div className='text-danger'> {errors.msisdn} </div>}

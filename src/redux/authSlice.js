@@ -167,6 +167,7 @@ const authSlice = createSlice({
           ...{
             promo_points: {
               points: promo_points?.points,
+              promo_image:promo_points?.promo_image,
               title: promo_points?.title,
               end_date: promo_points?.end_date,
             },

@@ -120,7 +120,7 @@ const NewProfile = React.memo(
                                                         </div>
                                                     </div>
 
-                                                    <LazyLoadImage src={width>991?'https://cdn.betnare.com/carousel/AfconPromoBanner.webp':'https://cdn.betnare.com/carousel/AfconPromoBanner.webp'} effect={'blur'} className={'promo-active-profile-img'}/>
+                                                    <LazyLoadImage src={width>991?user?.promo_points?.promo_image:user?.promo_points?.promo_image} effect={'blur'} className={'promo-active-profile-img'}/>
                                                 </div>
                                             </div>
 

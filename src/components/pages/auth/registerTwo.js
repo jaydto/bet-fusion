@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import { Row, Col } from "antd";
+import { Row, Col,} from "antd";
 import authImg from "../../../assets/img/Logo.webp";
 import "./stepper.css";
 import { Link, useNavigate } from "react-router-dom";
@@ -10,6 +10,8 @@ import {
 } from "../../utils/local-storage";
 import only18 from "../../../assets/img/auth/18only.png";
 import backgroundURL from "../../../assets/img/auth/img-17.webp";
+import kenyan from '../../../assets/svg/kenya.svg'
+
 
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -24,6 +26,7 @@ import { signupUser } from "../../../redux/authSlice";
 import { Notify } from "../../header/top-login";
 import { configSettings } from "../../../redux/dataSlice";
 import Header2 from "../../header/Header2";
+import { Dropdown } from "react-bootstrap";
 
 const backgroundStyle = {
   backgroundImage: `url(${backgroundURL})`,
@@ -182,7 +185,7 @@ const SignupForm = () => {
 
 
     if (!phoneNumber ||phoneNumber.length > 12|| !phoneNumber.match(/(254|0|)?[71]\d{8}/g)) {
-      errors.msisdn = "Please enter a valid phone number";
+      errors.msisdn = "Please enter a valid kenyan phone number";
     }
 
 
@@ -241,18 +244,47 @@ const MySignupForm = (props) => {
               <label>Mobile Number</label>
               <div  className="input-group input-color-icon w-100 "
                 style={{ display: "flex" }}>
-                    <div className=" col-3 input-group-append d-flex align-items-center justify-content-start">
+                    <div className=" col-3 input-group-append  align-items-center justify-content-start" style={{display:"contents"}}>
                   <div className="input-group-text  border-0 input-color-icon">
-                <select
-                style={{color:"var(--light)"}}
-                name="countryCode"
-                className="form-control btn btn-link text-decoration-none input-color-icon"
-                onChange={onFieldChanged}
-                value={values.countryCode}
-              >
-                <option value="254" style={{color:"var(--light)"}}>+254</option>
-                {/* Add more country codes as needed */}
-              </select>
+                  <Dropdown onSelect={(selectedOption) => onFieldChanged({ target: { name: 'countryCode', value: selectedOption } })}>
+            <Dropdown.Toggle
+              variant="link"
+              id="countryCode"
+              style={{ color: "var(--light)" }}
+            >
+              +{values.countryCode}
+              &nbsp; <img 
+                        className="image-kenya"
+                         src={kenyan}
+                         style={{
+                          width:'17px',
+                          height:'11px', marginTop:'2px'
+                         }}
+                         alt="Kenya"
+                         title="Kenya"
+                         effects="blur"
+                        />
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+              <Dropdown.Item eventKey="254" id="254">
+                +254&nbsp;
+                <img 
+                        className="image-kenya"
+                         src={kenyan}
+                         style={{
+                          width:'17px',
+                          height:'11px', marginTop:'2px'
+                         }}
+                         alt="Kenya"
+                         title="Kenya"
+                         effects="blur"
+                        />
+              </Dropdown.Item>
+              {/* Add more country codes as needed */}
+            </Dropdown.Menu>
+          </Dropdown>
+                
               </div>
               </div>
 
@@ -264,8 +296,8 @@ const MySignupForm = (props) => {
                 }`}
                 placeholder={"712345678"}
                 onChange={(ev) => onFieldChanged(ev)}
-                value={values.msisdn}
-              />
+                value={values.msisdn.startsWith(values.countryCode) ? values.msisdn : values.countryCode + values.msisdn}
+                />
                 </div>
 
               {errors.msisdn && (

@@ -15,6 +15,9 @@ import {Switch} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
 import {loginUser, resetState} from "../../redux/authSlice";
 import {StoreContext} from "../../context/store";
+import kenyan from '../../assets/svg/kenya.svg'
+import { Dropdown, Image } from 'react-bootstrap';
+
 
 export const Notify =
     (message) => {
@@ -133,7 +136,7 @@ const HeaderLogin = React.memo(
         
         
             if (!phoneNumber ||phoneNumber.length > 12|| !phoneNumber.match(/(254|0|)?[71]\d{8}/g)) {
-              errors.msisdn = "Invalid phone number";
+              errors.msisdn = "Please enter a valid kenyan phone number";
             }
         
             if (!values.password || values.password.length < 4) {
@@ -172,18 +175,65 @@ const HeaderLogin = React.memo(
                             <div className={`w-100 `}>
                             <div  className="input-group input-color-icon w-100 "
                 style={{ display: "flex" }}>
-                    <div className=" col-3 input-group-append d-flex align-items-center justify-content-start">
+                    <div className=" col-5 input-group-append  align-items-center justify-content-start" style={{display:"contents"}}>
                   <div className="input-group-text  border-0 input-color-icon">
-                <select
+                {/* <select
                 style={{color:"var(--light)"}}
                 name="countryCode"
                 className="form-control btn btn-link text-decoration-none input-color-icon"
                 onChange={onFieldChanged}
                 value={values.countryCode}
               >
-                <option value="254" style={{color:"var(--light)"}}>+254</option>
-                {/* Add more country codes as needed */}
-              </select>
+                <option value="254" style={{color:"var(--light)"}}>+254&nbsp; <img 
+                        className="image-kenya"
+                         src={kenyan}
+                         style={{
+                          width:'17px',
+                          height:'11px', marginTop:'2px'
+                         }}
+                         alt="Kenya"
+                         title="Kenya"
+                         effects="blur"
+                        /></option>
+              </select> */}
+              <Dropdown onSelect={(selectedOption) => onFieldChanged({ target: { name: 'countryCode', value: selectedOption } })}>
+            <Dropdown.Toggle
+              variant="link"
+              id="countryCode"
+              style={{ color: "var(--light)" }}
+            >
+              +{values.countryCode}
+              &nbsp; <img 
+                        className="image-kenya"
+                         src={kenyan}
+                         style={{
+                          width:'17px',
+                          height:'11px', marginTop:'2px'
+                         }}
+                         alt="Kenya"
+                         title="Kenya"
+                         effects="blur"
+                        />
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+              <Dropdown.Item eventKey="254" id="254">
+                +254&nbsp;
+                <img 
+                        className="image-kenya"
+                         src={kenyan}
+                         style={{
+                          width:'17px',
+                          height:'11px', marginTop:'2px'
+                         }}
+                         alt="Kenya"
+                         title="Kenya"
+                         effects="blur"
+                        />
+              </Dropdown.Item>
+              {/* Add more country codes as needed */}
+            </Dropdown.Menu>
+          </Dropdown>
               </div>
               </div>
                                 <input type="text"
@@ -191,8 +241,8 @@ const HeaderLogin = React.memo(
                                        className={`w-75 input-field button-radius text-light deposit-input form-control col input-field-login  ${errors.msisdn && 'text-danger'}`}
                                        placeholder={"712345678"}
                                        onChange={ev => onFieldChanged(ev)}
-                                       value={values.msisdn}
-                                />
+                                       value={values.msisdn.startsWith(values.countryCode) ? values.msisdn : values.countryCode + values.msisdn}
+                                       />
                                 </div>
                                 {errors.msisdn && <div className='text-danger'> {errors.msisdn} </div>}
                                 <br/>

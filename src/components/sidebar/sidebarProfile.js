@@ -98,10 +98,10 @@ const SidebarProfile = React.memo(
                     <MenuItem>
                         <div className={"d-flex gap-4 align-items-center px-3"}>
                             <FontAwesomeIcon icon={faMobile} style={{fontSize:'24px'}}/>
-                            <Link to={"/app"} className={'text-profile'} onClick={() => {
+                            <a href={"/https://cdn.betnare.com/betnareapp.apk"} className={'text-profile'} onClick={() => {
                                 gaEventTracker('Visit App Page');
                             }}>App
-                            </Link>
+                            </a>
                         </div>
                     </MenuItem>
                 </Menu>

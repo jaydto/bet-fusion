@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import { Row, Col } from "antd";
+import { Row, Col,} from "antd";
 import authImg from "../../../assets/img/Logo.webp";
 import "./stepper.css";
 import { Link, useNavigate } from "react-router-dom";
@@ -10,6 +10,8 @@ import {
 } from "../../utils/local-storage";
 import only18 from "../../../assets/img/auth/18only.png";
 import backgroundURL from "../../../assets/img/auth/img-17.webp";
+import kenyan from '../../../assets/svg/kenya.svg'
+
 
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -24,6 +26,7 @@ import { signupUser } from "../../../redux/authSlice";
 import { Notify } from "../../header/top-login";
 import { configSettings } from "../../../redux/dataSlice";
 import Header2 from "../../header/Header2";
+import { Dropdown } from "react-bootstrap";
 
 const backgroundStyle = {
   backgroundImage: `url(${backgroundURL})`,
@@ -159,12 +162,17 @@ const RegisterTwo = () => {
 const SignupForm = () => {
   const { dispatch } = useContext(StoreContext);
   const initialValues = {
+    countryCode:"254",
+
     msisdn: "",
     agreementCheckbox: false,
   };
 
   const handleSubmit = (values) => {
-    dispatch({ type: "SET", key: "signup_msisdn", payload: values?.msisdn });
+    const formattedMsisdn = values.msisdn.replace(/^(?:\+254|254|0)/, '');
+    const msisdn= values?.countryCode+formattedMsisdn
+
+    dispatch({ type: "SET", key: "signup_msisdn", payload: msisdn });
     // Call the function to navigate to the next step (step 2 in this case)
     dispatch({ type: "SET", key: "steps", payload: 2 });
     navigateToFormStep(2); // Step 6
@@ -172,10 +180,14 @@ const SignupForm = () => {
 
   const validate = (values) => {
     let errors = {};
+    const formattedMsisdn = values.msisdn.replace(/^(?:\+254|254|0)/, '');
+    const phoneNumber= values?.countryCode+formattedMsisdn
 
-    if (!values.msisdn || !values.msisdn.match(/(254|0|)?[71]\d{8}/g)) {
-      errors.msisdn = "Please enter a valid phone number";
+
+    if (!phoneNumber ||phoneNumber.length > 12|| !phoneNumber.match(/(254|0|)?[71]\d{8}/g)) {
+      errors.msisdn = "Please enter a valid kenyan phone number";
     }
+
 
     return errors;
   };
@@ -230,15 +242,63 @@ const MySignupForm = (props) => {
           <div className="form-group  w-100 d-flex justify-content-center mt-5">
             <div className="col-md-12 w-100">
               <label>Mobile Number</label>
+              <div  className="input-group input-color-icon w-100 "
+                style={{ display: "flex" }}>
+                    <div className=" col-5 input-group-append  align-items-center justify-content-start" style={{display:"contents"}}>
+                  <div className="input-group-text  border-0 input-color-icon codecCountry">
+                  <Dropdown onSelect={(selectedOption) => onFieldChanged({ target: { name: 'countryCode', value: selectedOption } })}>
+            <Dropdown.Toggle
+              variant="link"
+              id="countryCode"
+              style={{ color: "var(--light)" }}
+            >
+              +{values.countryCode}
+              &nbsp; <img 
+                        className="image-kenya"
+                         src={kenyan}
+                         style={{
+                          width:'17px',
+                          height:'11px', marginTop:'2px'
+                         }}
+                         alt="Kenya"
+                         title="Kenya"
+                         effects="blur"
+                        />
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+              <Dropdown.Item eventKey="254" id="254">
+                +254&nbsp;
+                <img 
+                        className="image-kenya"
+                         src={kenyan}
+                         style={{
+                          width:'17px',
+                          height:'11px', marginTop:'2px'
+                         }}
+                         alt="Kenya"
+                         title="Kenya"
+                         effects="blur"
+                        />
+              </Dropdown.Item>
+              {/* Add more country codes as needed */}
+            </Dropdown.Menu>
+          </Dropdown>
+                
+              </div>
+              </div>
+
               <input
-                value={values.msisdn}
-                className="text-light deposit-input form-control col-md-12 input-field input-bg-user"
-                id="msisdn"
-                name="msisdn"
                 type="text"
-                placeholder="+254712345678"
+                name="msisdn"
+                className={`w-50 input-field button-radius text-light deposit-input form-control col input-field-login ${
+                  errors.msisdn && "text-danger"
+                }`}
+                placeholder={"712345678"}
                 onChange={(ev) => onFieldChanged(ev)}
-              />
+                value={values.msisd}
+                />
+                </div>
 
               {errors.msisdn && (
                 <div className="text-danger"> {errors.msisdn} </div>

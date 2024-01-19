@@ -15,6 +15,9 @@ import {Switch} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
 import {loginUser, resetState} from "../../redux/authSlice";
 import {StoreContext} from "../../context/store";
+import kenyan from '../../assets/svg/kenya.svg'
+import { Dropdown, Image } from 'react-bootstrap';
+
 
 export const Notify =
     (message) => {
@@ -52,8 +55,9 @@ const HeaderLogin = React.memo(
 
         const initialValues = {
             msisdn: "",
-            password: ""
-        }
+            password: "",
+            countryCode:"254"
+          };
 
 
         const dispatchUser = useCallback(() => {
@@ -77,7 +81,15 @@ const HeaderLogin = React.memo(
         const gaEventTracker = useAnalyticsEventTracker("Login")
 
         const handleSubmit = values => {
-            dispatchRedux(loginUser(values))
+            const formattedMsisdn = values.msisdn.replace(/^(?:\+254|254|0)/, '');
+
+
+            const initialValues = {
+                msisdn: values?.countryCode+formattedMsisdn,
+                password: values?.password,
+                
+              };
+            dispatchRedux(loginUser(initialValues))
                 .then(() => {
                     let message =""
                     if (successMessage) {
@@ -115,20 +127,24 @@ const HeaderLogin = React.memo(
 
 
 
-        const validate = values => {
-
-            let errors = {}
-
-            if (!values.msisdn || !values.msisdn.match(/(254|0|)?[71]\d{8}/g)) {
-                errors.msisdn = 'Invalid phone number'
+        const validate = (values) => {
+            let errors = {};
+            
+        
+            const formattedMsisdn = values.msisdn.replace(/^(?:\+254|254|0)/, '');
+            const phoneNumber= values?.countryCode+formattedMsisdn
+        
+        
+            if (!phoneNumber ||phoneNumber.length > 12|| !phoneNumber.match(/(254|0|)?[71]\d{8}/g)) {
+              errors.msisdn = "Please enter a valid kenyan phone number";
             }
-
+        
             if (!values.password || values.password.length < 4) {
-                errors.password = "Invalid password";
+              errors.password = "Invalid password";
             }
-
-            return errors
-        }
+        
+            return errors;
+          };
 
 
         const MyLoginForm = (props) => {
@@ -157,13 +173,77 @@ const HeaderLogin = React.memo(
                         className={`ow right i web-element top-login-paddings   width-centric-page login-page top-login-background-img`}>
                         <Row className={`d-flex flex-column`}>
                             <div className={`w-100 `}>
+                            <div  className="input-group input-color-icon w-100 "
+                style={{ display: "flex" }}>
+                    <div className=" col-5 input-group-append  align-items-center justify-content-start" style={{display:"contents"}}>
+                  <div className="input-group-text  border-0 input-color-icon codecCountry">
+                {/* <select
+                style={{color:"var(--light)"}}
+                name="countryCode"
+                className="form-control btn btn-link text-decoration-none input-color-icon"
+                onChange={onFieldChanged}
+                value={values.countryCode}
+              >
+                <option value="254" style={{color:"var(--light)"}}>+254&nbsp; <img 
+                        className="image-kenya"
+                         src={kenyan}
+                         style={{
+                          width:'17px',
+                          height:'11px', marginTop:'2px'
+                         }}
+                         alt="Kenya"
+                         title="Kenya"
+                         effects="blur"
+                        /></option>
+              </select> */}
+              <Dropdown onSelect={(selectedOption) => onFieldChanged({ target: { name: 'countryCode', value: selectedOption } })} class="counrtryCodec">
+            <Dropdown.Toggle
+              variant="link"
+              id="countryCode"
+              style={{ color: "var(--light)" }}
+            >
+              +{values.countryCode}
+              &nbsp; <img 
+                        className="image-kenya"
+                         src={kenyan}
+                         style={{
+                          width:'17px',
+                          height:'11px', marginTop:'2px'
+                         }}
+                         alt="Kenya"
+                         title="Kenya"
+                         effects="blur"
+                        />
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu class="countryCode">
+              <Dropdown.Item eventKey="254" id="254">
+                +254&nbsp;
+                <img 
+                        className="image-kenya"
+                         src={kenyan}
+                         style={{
+                          width:'17px',
+                          height:'11px', marginTop:'2px'
+                         }}
+                         alt="Kenya"
+                         title="Kenya"
+                         effects="blur"
+                        />
+              </Dropdown.Item>
+              {/* Add more country codes as needed */}
+            </Dropdown.Menu>
+          </Dropdown>
+              </div>
+              </div>
                                 <input type="text"
                                        name="msisdn"
-                                       className={`w-100 input-field button-radius text-light deposit-input form-control col input-field-login  ${errors.msisdn && 'text-danger'}`}
-                                       placeholder={"+254712345678"}
+                                       className={`w-50 input-field button-radius text-light deposit-input form-control col input-field-login  ${errors.msisdn && 'text-danger'}`}
+                                       placeholder={"712345678"}
                                        onChange={ev => onFieldChanged(ev)}
                                        value={values.msisdn}
-                                />
+                                       />
+                                </div>
                                 {errors.msisdn && <div className='text-danger'> {errors.msisdn} </div>}
                                 <br/>
                                 <span

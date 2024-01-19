@@ -68,9 +68,12 @@ const PrivacyPolicy = React.memo(() => {
                   </span>
                   <h4 className="inline-block">PRIVACY POLICY</h4>
                 </div>
+
               </div>
               <div className="col-md-12 mt-2 text-white p-2 text-center"></div>
               <div className="col-md-12 mt-1 p-1 text-white accordion-container">
+              <p>Last updated: January 19, 2024</p>
+
                 <Accordion
                   allowMultipleExpanded={true}
                   allowZeroExpanded={true}
@@ -602,11 +605,14 @@ For more information on our safeguarding and security measures, please contact u
                       <p>Should you have any further queries or questions about the processing of your Personal Data, our full contact details are as follows:</p>
                       <ol className="list-count-type">
                         <li>
-                        Name: Email address:  
+                        Name: Betnare
                         </li>
-                        <li>Postal address: P.O. Box, Nairobi, Kenya</li>
-                        <li>Telephone number: </li>
-                        <li>Contact person: The Data Protection Officer</li>
+                        
+                          <li>Email address: operations@betnare.com </li>
+                        
+                        <li>Adress : Argwins Kothek Road Hurlingham</li>
+                        <li>Telephone number:0701 087777 </li>
+                        <li>Contact person:Betnare Data Protection Specialist</li>
                       </ol>
                     </AccordionItemPanel>
                   </AccordionItem>

@@ -159,12 +159,17 @@ const RegisterTwo = () => {
 const SignupForm = () => {
   const { dispatch } = useContext(StoreContext);
   const initialValues = {
+    countryCode:"254",
+
     msisdn: "",
     agreementCheckbox: false,
   };
 
   const handleSubmit = (values) => {
-    dispatch({ type: "SET", key: "signup_msisdn", payload: values?.msisdn });
+    const formattedMsisdn = values.msisdn.replace(/^(?:\+254|254|0)/, '');
+    const msisdn= values?.countryCode+formattedMsisdn
+
+    dispatch({ type: "SET", key: "signup_msisdn", payload: msisdn });
     // Call the function to navigate to the next step (step 2 in this case)
     dispatch({ type: "SET", key: "steps", payload: 2 });
     navigateToFormStep(2); // Step 6
@@ -172,10 +177,14 @@ const SignupForm = () => {
 
   const validate = (values) => {
     let errors = {};
+    const formattedMsisdn = values.msisdn.replace(/^(?:\+254|254|0)/, '');
+    const phoneNumber= values?.countryCode+formattedMsisdn
 
-    if (!values.msisdn || !values.msisdn.match(/(254|0|)?[71]\d{8}/g)) {
+
+    if (!phoneNumber ||phoneNumber.length > 12|| !phoneNumber.match(/(254|0|)?[71]\d{8}/g)) {
       errors.msisdn = "Please enter a valid phone number";
     }
+
 
     return errors;
   };
@@ -230,15 +239,34 @@ const MySignupForm = (props) => {
           <div className="form-group  w-100 d-flex justify-content-center mt-5">
             <div className="col-md-12 w-100">
               <label>Mobile Number</label>
+              <div  className="input-group input-color-icon w-100 "
+                style={{ display: "flex" }}>
+                    <div className=" col-3 input-group-append d-flex align-items-center justify-content-start">
+                  <div className="input-group-text  border-0 input-color-icon">
+                <select
+                style={{color:"var(--light)"}}
+                name="countryCode"
+                className="form-control btn btn-link text-decoration-none input-color-icon"
+                onChange={onFieldChanged}
+                value={values.countryCode}
+              >
+                <option value="254" style={{color:"var(--light)"}}>+254</option>
+                {/* Add more country codes as needed */}
+              </select>
+              </div>
+              </div>
+
               <input
-                value={values.msisdn}
-                className="text-light deposit-input form-control col-md-12 input-field input-bg-user"
-                id="msisdn"
-                name="msisdn"
                 type="text"
-                placeholder="+254712345678"
+                name="msisdn"
+                className={`w-75 input-field button-radius text-light deposit-input form-control col input-field-login ${
+                  errors.msisdn && "text-danger"
+                }`}
+                placeholder={"712345678"}
                 onChange={(ev) => onFieldChanged(ev)}
+                value={values.msisdn}
               />
+                </div>
 
               {errors.msisdn && (
                 <div className="text-danger"> {errors.msisdn} </div>

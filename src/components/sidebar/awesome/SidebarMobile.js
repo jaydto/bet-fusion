@@ -16,7 +16,8 @@ import {
     faPrint,
     faQuestionCircle,
     faStream,
-    faUser
+    faUser,
+    faMobileAndroid
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 // import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
@@ -99,6 +100,14 @@ const SidebarMobile = React.memo(
                         <div className={"d-flex gap-4 align-items-center"}>
                             <FontAwesomeIcon icon={faMobilePhone} className={'svg-mobile'} />
                             <a href={"tel:0701087777"} onClick={handleClose}>Call Customer Care</a>
+                        </div>
+                    </MenuItem>
+                </Menu>
+                <Menu>
+                    <MenuItem className={"d-flex justify-content-between"}>
+                        <div className={"d-flex gap-4 align-items-center"}>
+                            <FontAwesomeIcon icon={faMobileAndroid} className={'svg-mobile'} />
+                            <a href={"https://cdn.betnare.com/betnareapp.apk"} onClick={handleClose}>Download App </a>
                         </div>
                     </MenuItem>
                 </Menu>

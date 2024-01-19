@@ -2249,6 +2249,23 @@ img.nare-league {
 .close-history-filter.deposit-modal{
     margin-left:-15px;
 }
+button#countryCode{
+    color: var(--light);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+.codecCountry .dropdown .dropdown-menu{
+    color:var(--light);
+    background-color: var(--betnare-body-bg)!important;
+}
+.codecCountry .dropdown .dropdown-menu a{
+    color:var(--light);
+    display: flex;
+    gap: 5px;
+}
 
 .filters-modal .modal-content, .filters-modal.exclude .modal-content{
     background-color:var(--betnare-body-bg);

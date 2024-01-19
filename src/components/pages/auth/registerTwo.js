@@ -244,8 +244,8 @@ const MySignupForm = (props) => {
               <label>Mobile Number</label>
               <div  className="input-group input-color-icon w-100 "
                 style={{ display: "flex" }}>
-                    <div className=" col-3 input-group-append  align-items-center justify-content-start" style={{display:"contents"}}>
-                  <div className="input-group-text  border-0 input-color-icon">
+                    <div className=" col-5 input-group-append  align-items-center justify-content-start" style={{display:"contents"}}>
+                  <div className="input-group-text  border-0 input-color-icon codecCountry">
                   <Dropdown onSelect={(selectedOption) => onFieldChanged({ target: { name: 'countryCode', value: selectedOption } })}>
             <Dropdown.Toggle
               variant="link"
@@ -291,7 +291,7 @@ const MySignupForm = (props) => {
               <input
                 type="text"
                 name="msisdn"
-                className={`w-75 input-field button-radius text-light deposit-input form-control col input-field-login ${
+                className={`w-50 input-field button-radius text-light deposit-input form-control col input-field-login ${
                   errors.msisdn && "text-danger"
                 }`}
                 placeholder={"712345678"}

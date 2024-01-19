@@ -176,7 +176,7 @@ const HeaderLogin = React.memo(
                             <div  className="input-group input-color-icon w-100 "
                 style={{ display: "flex" }}>
                     <div className=" col-5 input-group-append  align-items-center justify-content-start" style={{display:"contents"}}>
-                  <div className="input-group-text  border-0 input-color-icon">
+                  <div className="input-group-text  border-0 input-color-icon codecCountry">
                 {/* <select
                 style={{color:"var(--light)"}}
                 name="countryCode"
@@ -196,7 +196,7 @@ const HeaderLogin = React.memo(
                          effects="blur"
                         /></option>
               </select> */}
-              <Dropdown onSelect={(selectedOption) => onFieldChanged({ target: { name: 'countryCode', value: selectedOption } })}>
+              <Dropdown onSelect={(selectedOption) => onFieldChanged({ target: { name: 'countryCode', value: selectedOption } })} class="counrtryCodec">
             <Dropdown.Toggle
               variant="link"
               id="countryCode"
@@ -216,7 +216,7 @@ const HeaderLogin = React.memo(
                         />
             </Dropdown.Toggle>
 
-            <Dropdown.Menu>
+            <Dropdown.Menu class="countryCode">
               <Dropdown.Item eventKey="254" id="254">
                 +254&nbsp;
                 <img 
@@ -238,7 +238,7 @@ const HeaderLogin = React.memo(
               </div>
                                 <input type="text"
                                        name="msisdn"
-                                       className={`w-75 input-field button-radius text-light deposit-input form-control col input-field-login  ${errors.msisdn && 'text-danger'}`}
+                                       className={`w-50 input-field button-radius text-light deposit-input form-control col input-field-login  ${errors.msisdn && 'text-danger'}`}
                                        placeholder={"712345678"}
                                        onChange={ev => onFieldChanged(ev)}
                                        value={values.msisdn.startsWith(values.countryCode) ? values.msisdn : values.countryCode + values.msisdn}

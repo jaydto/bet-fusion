@@ -70,9 +70,11 @@ const PrivacyPolicy = React.memo(() => {
                 </div>
 
               </div>
+
               <div className="col-md-12 mt-2 text-white p-2 text-center"></div>
+              <p class="text-white mx-2">Last updated: January 19, 2024</p>
+
               <div className="col-md-12 mt-1 p-1 text-white accordion-container">
-              <p>Last updated: January 19, 2024</p>
 
                 <Accordion
                   allowMultipleExpanded={true}

@@ -612,7 +612,7 @@ For more information on our safeguarding and security measures, please contact u
                         
                           <li>Email address: operations@betnare.com </li>
                         
-                        <li>Adress : Argwins Kothek Road Hurlingham</li>
+                          <li>Adress : Argwins Kothek Road , Hurlingham, Nairobi, Kenya</li>
                         <li>Telephone number:0701 087777 </li>
                         <li>Contact person:Betnare Data Protection Specialist</li>
                       </ol>

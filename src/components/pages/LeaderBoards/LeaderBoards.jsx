@@ -976,7 +976,7 @@ const LeaderBoards = () => {
                     <div className="title">
                         <h2 className="text-medium">
                             <div className={'congrats'}>
-                            Aim for a spot in the top to grab a share of the <span style={{color:'var(--gold'}}> Ksh. 500,000</span> cash prizes daily by getting the highest in-game multiplier.  <span style={{color:'var(--light'}}>KES&nbsp;</span><span style={{color:'var(--gold'}}>5,00,000!</span>
+                            Aim for a spot in the top to grab a share of the <span style={{color:'var(--gold'}}> Ksh. 500,000</span> cash prizes daily by getting the highest in-game multiplier.  <span style={{color:'var(--light'}}>KES&nbsp;</span><span style={{color:'var(--gold'}}>500,000!</span>
                             </div>
                             <strong>Leaderboard&nbsp;</strong></h2>
                         <div className="opacity-75">Ends {leaders?.end_date}</div>

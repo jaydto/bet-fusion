@@ -1007,7 +1007,6 @@ const LeaderBoards = () => {
 
                                         return <tr>
                                             <td>{indexValue}</td>
-                                            <td>{profile?.name}</td>
                                             <td>{profile?.msisdn}</td>
                                             <td>{profile?.total_odd}</td>
                                         </tr>

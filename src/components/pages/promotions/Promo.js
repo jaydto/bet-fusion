@@ -41,7 +41,7 @@ const Promo = () => {
       id: 15,
     },
     {
-      src: "https://cdn.betnare.com/carousel/AfconPromoBanner.webp",
+      src: "https://cdn.betnare.com/carousel/Pepea.webp",
       id: 16,
     }
   ];

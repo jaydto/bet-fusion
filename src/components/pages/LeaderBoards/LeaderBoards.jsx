@@ -44,7 +44,7 @@ const LeaderBoards = () => {
                         RUBANI
                         </strong>
                         <strong className={'aniversary-text text3'}>
-                            GiveAways
+                            Challenge
                         </strong>
                     </div>
 

@@ -26,7 +26,9 @@ const FullscreenButtonSpribe = ({ onClick, navigation, isCustomFullScreen }) => 
 												   color: 'var(--link-color)',
 												   fontWeight: '700',
 												   opacity: '0.7',
-												   paddingLeft:'11px'}}>Leader Board</Link>
+												//    border:'1px solid var(--light-color)',
+												//    borderRadius:'4px',
+												   paddingLeft:'11px'}}>~Leader Board~</Link>
 
 			<div className="fullscreen-button px-3" onClick={onClick}>
 				{isCustomFullScreen?'Exit':'View'} Fullscreen <FontAwesomeIcon icon={faExpand} />

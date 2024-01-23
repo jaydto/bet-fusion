@@ -81,7 +81,7 @@ const PromoCards = () => {
                 >
                 <div className="col-md-2 promo-styling shadow-lg promotion">
                     <div className="d-flex flex-column promo-inner">
-                        <img src={'https://cdn.betnare.com/carousel/AfconPromoBanner.webp'} className={"rounded promo-image "}/>
+                        <img src={'https://cdn.betnare.com/carousel/Pepea.webp'} className={"rounded promo-image "}/>
                         <h5
                             className="bold d-flex justify-content-center h4 pt-2"
                             style={{color: "#ea5d0b"}}

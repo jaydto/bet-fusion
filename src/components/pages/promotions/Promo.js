@@ -40,6 +40,10 @@ const Promo = () => {
       src: "https://cdn.betnare.com/carousel/AfconPromoBanner.webp",
       id: 15,
     },
+    {
+      src: "https://cdn.betnare.com/carousel/Pepea.webp",
+      id: 16,
+    }
   ];
 
   useEffect(() => {

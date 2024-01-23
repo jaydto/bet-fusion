@@ -260,5 +260,54 @@
     "nd": "",
     "nb":"\nNB:Promo runs from 13th January 2024 to 11 February 2024.\nBonus terms and conditions apply.\n General Betnare terms and conditions apply. .",
     "boosterDescription": ""
+  },
+  {
+    "id": 16,
+    "name": "RUBANI CHALLENGE",
+    "heading": "RUBANI CHALLENGE\n",
+    "intro": "\nAim for a spot in the top to grab a share of the Ksh. 500,000 cash prizes daily by getting the highest in-game multiplier. \nWeka ndege mafuta, Pepea, and Win!\nThe Promotion will start from 24.1.2024 to 6.2.2024",
+    "description": "",
+    "termsHeading": "\nHow it works",
+    "termsContent": "\na. The Promotion applies to cash bets placed on Betnare's 'Aviator' game.\n b. Only bets placed with a minimum stake of Ksh. 20 will apply ('Qualifying bet'). c. Only X2.5 game multipliers are valid for the competition. d. Every day, 5 customers with the highest in-game multiplier(s) will be awarded prizes as set out in the table below. \ne. A Customer can place as many Qualifying bets as possible to try to reach the highest possible in-game multiplier in order to win one of the prizes. Customers will get real-time updates on the ranking of their Qualifying Bets on the leaderboard published on Betnare website. \nf. In case of a tie, the prize for that particular position shall be shared equally among the players who have tied. \ng. The cash prize will be credited to the player’s Betnare wallet the following day at 10 am after the tally is complete by 23:59 PM every day.\n",
+    "tableData": {
+      "headings": [
+        "Winner",
+        "X multiplier",
+        "Prize"
+      ],
+      "rows": [
+        [
+          "07xx",
+          "xx",
+          "1000"
+        ],
+        [
+          "07xx",
+          "xx",
+          "750"
+        ],
+        [
+          "07xx",
+          "xx",
+          "500"
+        ],
+        [
+          "07xx",
+          "xx",
+          "250"
+        ],
+        [
+          "07xx",
+          "xx",
+          "100"
+        ]
+       
+      ]
+    },
+    "headingBooster": "Terms and Conditions",
+    "boosterDescription": "\n• The daily prize winners will be announced every day on Betnare social media pages.\n• A week will run from 0000hrs to 2359hrs daily.\n• Where there is a dispute regarding the selection of winners, the adjudication and decision of the Betnare management will be final.\n• Free bets, cancelled, and voided bets will not be eligible for this Promotion.\n• The Pepea game terms and conditions shall apply in the administration of this Promotion.\n• Where the system erroneously generates winnings in excess of the allowed maximum limit, any amount above this limit will be regarded as void and not validly due and payable.\n• Betnare reserves the right to conduct due diligence checks on Customer’s account activity and verify, with the relevant authorities, any identification document presented, before awarding any winnings.\n• Betnare reserves the right to void any winnings, at its sole discretion, and take any and all remedial action in instances including:\n\n\ta. System or software malfunction or error; or\n\tb. Suspicion that there are Prohibited Activities being undertaken.\n\n• Betnare does not guarantee the availability of the Promotion on all devices and channels or its availability all the time.\n• The Promotion terms may be amended from time to time by Betnare at its sole discretion.\n• The Promotion is subject to the General Terms and Conditions",
+    "active": false,
+    "nd": "",
+    "nb":"\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion ."
   }
 ]

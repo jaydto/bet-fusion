@@ -997,7 +997,7 @@ const LeaderBoards = () => {
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Name</th>
+                                    <th></th>
                                     <th>Mobile No.</th>
                                     <th>Entries</th>
                                 </tr>

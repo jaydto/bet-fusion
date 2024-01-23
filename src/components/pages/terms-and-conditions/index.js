@@ -53,8 +53,8 @@ const TermsAndConditions = React.memo(
                     <ToastContainer/>
                 </div>
                 <div className="flex-container height-default-body top-diff-pages">
-                    <div className="item1" ><SideBar
-                        loadCompetitions/></div>
+                    {/* <div className="item1" ><SideBar
+                        loadCompetitions/></div> */}
                     <div className={`item2 `} >
                         <div className="gz home match-overflow">
                             <div className="homepage mobile-full-height">
@@ -69,14 +69,14 @@ const TermsAndConditions = React.memo(
                                                  opacity: '0.7'
                                              }}/>
                                             </span>
-                                        <h4 className="inline-block">
+                                        <h4 className="inline-block ">
                                         TERMS AND CONDITIONS
                                     </h4>
                                     </div>
 
 
                                 </div>
-                                <div className="col-md-12 mt-2 text-white p-2">
+                                <div className="col-md-12 mt-2 text-white p-2 mx-3">
                                     These General Terms and Conditions are effective from 01.12.2021
                                 </div>
                                 <div className="col-md-12 mt-2 text-white accordion-container">
@@ -108,10 +108,10 @@ const TermsAndConditions = React.memo(
                             </div>
                         </div>
                     </div>
-                    <div className={"item3 mobile-remove"}>
+                    {/* <div className={"item3 mobile-remove"}>
                         <Right test={true}/>
 
-                    </div>
+                    </div> */}
                 </div>
                 <div className="item6">
                     <div className={"footer-mobile-none"}>

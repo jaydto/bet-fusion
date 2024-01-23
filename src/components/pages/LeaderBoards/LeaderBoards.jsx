@@ -41,7 +41,7 @@ const LeaderBoards = () => {
                             LeaderBoard
                         </strong>
                         <strong className={'aniversary-text text2'}>
-                            Week
+                        RUBANI
                         </strong>
                         <strong className={'aniversary-text text3'}>
                             GiveAways
@@ -976,7 +976,7 @@ const LeaderBoards = () => {
                     <div className="title">
                         <h2 className="text-medium">
                             <div className={'congrats'}>
-                                Place a bet of KES 100 to WIN  <span style={{color:'var(--light'}}>KES&nbsp;</span><span style={{color:'var(--gold'}}>1,000,000!</span>
+                            Aim for a spot in the top to grab a share of the <span style={{color:'var(--gold'}}> Ksh. 500,000</span> cash prizes daily by getting the highest in-game multiplier.  <span style={{color:'var(--light'}}>KES&nbsp;</span><span style={{color:'var(--gold'}}>5,00,000!</span>
                             </div>
                             <strong>Leaderboard&nbsp;</strong></h2>
                         <div className="opacity-75">Ends {leaders?.end_date}</div>
@@ -1010,7 +1010,7 @@ const LeaderBoards = () => {
                                             <td>{indexValue}</td>
                                             <td>{profile?.name}</td>
                                             <td>{profile?.msisdn}</td>
-                                            <td>{profile?.entries}</td>
+                                            <td>{profile?.total_odd}</td>
                                         </tr>
                                     }
                                 )}
@@ -1018,7 +1018,7 @@ const LeaderBoards = () => {
                             </table>
                         </div>
                     </Tab>
-                    <Tab eventKey="how_to_participate" title="How to Play"
+                    {/* <Tab eventKey="how_to_participate" title="How to Play"
                          className={'background-primary'}>
                         <div className={'d-flex w-100 flex-column how_to_play'}>
                             <div className={'header-leader d-flex w-100 justify-content-center mt-2'}>
@@ -1124,7 +1124,7 @@ const LeaderBoards = () => {
                             </div>
 
                         </div>
-                    </Tab>
+                    </Tab> */}
                 </Tabs>
 
             </div>

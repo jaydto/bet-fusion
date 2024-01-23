@@ -12,6 +12,7 @@ import useWindowDimensions from "../../header/Dimensions";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 import FullscreenButton from "../../shared/FullScreenButton";
 import {useSelector} from "react-redux";
+import FullscreenButtonSpribe from "../../shared/FullScreenSpribe";
 
 const GamePlay = React.memo(
     (props) => {
@@ -202,7 +203,7 @@ const GamePlay = React.memo(
                 <Header/>
                 <div
                     className={`virtuals-container-position ${(width <= 575 ? user ? "user_logged virtuals" : "amt-virtual" : "amt-virtual")}`}>
-                    <FullscreenButton onClick={() => toggleFullscreen()} navigation={'/'}
+                    <FullscreenButtonSpribe onClick={() => toggleFullscreen()} navigation={'/'}
                                       isCustomFullScreen={isCustomFullscreen}/>
                     <div className="d-flex flex-row justify-content-between">
                         <div className="col-md-12 w-100">

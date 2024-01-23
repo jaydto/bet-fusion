@@ -13,7 +13,7 @@ import SideBar from "../../sidebar/awesome/Sidebar";
 import "../../test.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setState } from "../../../redux/dataSlice";
 
@@ -98,7 +98,8 @@ const PrivacyPolicy = React.memo(() => {
                         regardless of where you visit it from, and tells you
                         about your privacy rights and how the law protects you.
                         This Privacy Policy should be read and applied together
-                        with the
+                        with the 
+                        {<Link to="/terms-and-conditions"> Betnare General Terms and Conditions </Link>} ("Terms and Conditions").
                       </p>
                     </AccordionItemPanel>
                   </AccordionItem>
@@ -607,14 +608,14 @@ For more information on our safeguarding and security measures, please contact u
                       <p>Should you have any further queries or questions about the processing of your Personal Data, our full contact details are as follows:</p>
                       <ol className="list-count-type">
                         <li>
-                        Name: Betnare
+                        Name: Beyond Intoch
                         </li>
                         
-                          <li>Email address: operations@betnare.com </li>
+                          <li>Email address:{ <a href="mailto:operations@betnare.com ">operations@betnare.com</a> }</li>
                         
                           <li>Adress : Argwins Kothek Road , Hurlingham, Nairobi, Kenya</li>
                         <li>Telephone number:0701 087777 </li>
-                        <li>Contact person:Betnare Data Protection Specialist</li>
+                        <li> Data Protection Officer</li>
                       </ol>
                     </AccordionItemPanel>
                   </AccordionItem>

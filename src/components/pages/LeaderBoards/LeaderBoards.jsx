@@ -38,13 +38,13 @@ const LeaderBoards = () => {
                 <div className="top">
                     <div className={'d-flex w-100 gap-3 justify-content-center'}>
                         <strong className={'aniversary-text text1'}>
-                            LeaderBoard
+                            Rubani 
                         </strong>
                         <strong className={'aniversary-text text2'}>
-                        RUBANI
+                        Challenge
                         </strong>
                         <strong className={'aniversary-text text3'}>
-                            Challenge
+                        Leader board
                         </strong>
                     </div>
 

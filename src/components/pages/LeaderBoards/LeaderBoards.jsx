@@ -997,7 +997,6 @@ const LeaderBoards = () => {
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th></th>
                                     <th>Mobile No.</th>
                                     <th>Cash Out Odd</th>
                                 </tr>

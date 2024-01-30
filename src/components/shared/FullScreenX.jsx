@@ -30,7 +30,7 @@ const FullscreenX = ({ onClick, navigation, isCustomFullScreen }) => {
                                                    display:"flex",
 												//    border:'1px solid var(--light-color)',
 												//    borderRadius:'4px',
-												   paddingLeft:'11px'}}>~Valentines <span class="desktop-only-show">na Jetx </span>Challenge~</Link>
+												   paddingLeft:'11px'}}>~Valentines <span class="desktop-only-show"> &nbsp;na Jetx &nbsp;</span> Challenge~</Link>
 
 			<div className="fullscreen-button px-3" onClick={onClick}>
 				{isCustomFullScreen?'Exit':'View'} Fullscreen <FontAwesomeIcon icon={faExpand} />

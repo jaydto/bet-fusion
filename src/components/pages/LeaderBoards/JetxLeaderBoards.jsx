@@ -41,7 +41,7 @@ const JetxLeaderBoards = () => {
                 <div className="top">
                     <div className={'d-flex w-100 gap-3 justify-content-center'}>
                         <strong className={'aniversary-text text1'}>
-                           Valentine na JetX
+                           Valentines <span class="desktop-only-show">na JetX</span>
                         </strong>
                         <strong className={'aniversary-text text2'}>
                         Challenge

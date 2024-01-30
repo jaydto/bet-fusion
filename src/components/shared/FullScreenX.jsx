@@ -26,9 +26,10 @@ const FullscreenX = ({ onClick, navigation, isCustomFullScreen }) => {
 												   color: 'var(--link-color)',
 												   fontWeight: '700',
 												   opacity: '0.7',
+                                                   whiteSpace:'nowrap',
 												//    border:'1px solid var(--light-color)',
 												//    borderRadius:'4px',
-												   paddingLeft:'11px'}}>~ValentineX Challenge~</Link>
+												   paddingLeft:'11px'}}>~Valentines <span class="desktop-only-show">na Jetx </span>Challenge~</Link>
 
 			<div className="fullscreen-button px-3" onClick={onClick}>
 				{isCustomFullScreen?'Exit':'View'} Fullscreen <FontAwesomeIcon icon={faExpand} />

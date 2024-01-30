@@ -81,8 +81,8 @@ const Casino = React.lazy(() => import('./components/pages/casino/CasinoOptions'
 
 const LiveCasino = React.lazy(() => import('./components/pages/casino/LiveCasino'))
 const FPL = React.lazy(() => import('./components/FPL'))
-const LeaderBoard = React.lazy(() => import('././components/pages/LeaderBoards/LeaderBoards'))
-const JetxLeaderBoard = React.lazy(() => import('././components/pages/LeaderBoards/JetxLeaderBoards'))
+const LeaderBoard = React.lazy(() => import('./components/pages/LeaderBoards/LeaderBoards'))
+const JetxLeaderBoard = React.lazy(() => import('./components/pages/LeaderBoards/JetxLeaderBoards'))
 
 const Virtuals = React.lazy(() => import('./components/pages/casino/Virtuals'))
 

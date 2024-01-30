@@ -1,17 +1,19 @@
 import React, {useEffect, useState} from 'react'
 import Header from "../../header/header";
 import './leader-boards.css'
+
+
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import makeRequest from "../../utils/fetch-request";
 import {useDispatch, useSelector} from "react-redux";
-import {leaderBoardData} from "../../../redux/dataSlice";
+import {leaderBoardxData} from "../../../redux/dataSlice";
 import { Link } from 'react-router-dom';
 
-const LeaderBoards = () => {
+const JetxLeaderBoards = () => {
     const [activeTab, setActiveTab] = useState('leaders_board');
     const dispatchRedux=useDispatch()
-    const leaders=useSelector((state)=>state.data.leader_board)
+    const leaders=useSelector((state)=>state.data.leader_boardx)
     const handleTabSelect = (eventKey) => {
         setActiveTab(eventKey);
     }
@@ -19,7 +21,7 @@ const LeaderBoards = () => {
 
 
     const fetchData = async () => {
-       dispatchRedux(leaderBoardData())
+       dispatchRedux(leaderBoardxData())
     }
 
 
@@ -39,7 +41,7 @@ const LeaderBoards = () => {
                 <div className="top">
                     <div className={'d-flex w-100 gap-3 justify-content-center'}>
                         <strong className={'aniversary-text text1'}>
-                            Rubani 
+                           Valentine na JetX
                         </strong>
                         <strong className={'aniversary-text text2'}>
                         Challenge
@@ -51,6 +53,7 @@ const LeaderBoards = () => {
 
                     <div className="awards">
                         <div className="t p-2">
+
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
                                 <path fill="#dff0fc"
                                       d="M22.994,19.91l4.487-0.207c1.126,0.01,1.73-0.004,1.897,0.944l0.973,7.033	c0.031,0.292,0.466,0.673,0.57,0.84c0.281-0.219,0.448-0.573,0.396-0.949l-0.813-6.516c-0.198-1.564-1.533-2.742-3.107-2.742h-4.246	h-0.147L22.994,19.91z"></path>
@@ -977,10 +980,9 @@ const LeaderBoards = () => {
                     <div className="title">
                         <h2 className="text-medium">
                             <div className={'congrats'}>
-                            Aim for a spot in the top to grab a share of the <span style={{color:'var(--gold'}}> Ksh. 500,000</span> cash prizes daily by getting the highest in-game multiplier.  <span style={{color:'var(--light'}}>KES&nbsp;</span><span style={{color:'var(--gold'}}>500,000!</span>
+                            Aim for a spot in the top to grab a share of the  <span style={{color:'var(--gold'}}> Ksh. 100,000 </span> cash prizes daily by getting the highest in-game multiplier on Jet X. <span style={{color:'var(--light'}}>KES&nbsp;</span><span style={{color:'var(--gold'}}>100,000!</span>
                             </div>
-                            <strong><Link to={'/promo?id=16'} style={{ color:"var(--aqua-text)"}}>How to Play!</Link></strong>
-                            </h2>
+                            <strong>							<Link to={'/promo?id=17'} style={{ color:"var(--aqua-text)"}}>How to Play!</Link></strong></h2>
                         <div className="opacity-75">Ends {leaders?.end_date}</div>
                     </div>
                 </div>
@@ -1131,4 +1133,4 @@ const LeaderBoards = () => {
         </>
     )
 }
-export default React.memo(LeaderBoards)
+export default React.memo(JetxLeaderBoards)

@@ -44,6 +44,10 @@ const Promo = () => {
       src: "https://cdn.betnare.com/carousel/Pepea.webp",
       id: 16,
     }
+    ,{
+      src: "https://cdn.betnare.com/carousel/ValentinesnaJETX.webp",
+      id: 17,
+    }
   ];
 
   useEffect(() => {

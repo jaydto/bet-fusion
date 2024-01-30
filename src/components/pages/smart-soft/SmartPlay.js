@@ -9,7 +9,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFire} from "@fortawesome/free-solid-svg-icons";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 import useWindowDimensions from "../../header/Dimensions";
-import FullscreenButton from "../../shared/FullScreenButton";
+import FullscreenButton from "../../shared/FullScreenX";
 
 const SmartPlay = React.memo(
     (props) => {

@@ -63,6 +63,20 @@ export const leaderBoardData = createAsyncThunk(
     }
   }
 );
+export const leaderBoardxData = createAsyncThunk(
+  "data/leaderBoardx",
+  async () => {
+    const [status, response] = await makeRequest({
+      url: "/v1//jetxleaderboard",
+      method: "POST",
+    });
+    if (status === 200) {
+      return response;
+    } else {
+      throw new Error(response?.error || "Fetching Leader Board Jetx failed");
+    }
+  }
+);
 export const carouselImages = createAsyncThunk(
   "data/carouselImages",
   async () => {
@@ -254,6 +268,20 @@ const dataSlice = createSlice({
         state.leader_board = action.payload;
       })
       .addCase(leaderBoardData.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(leaderBoardxData.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+        state.leader_boardx = null;
+      })
+      .addCase(leaderBoardxData.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.leader_boardx = action.payload;
+      })
+      .addCase(leaderBoardxData.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       })

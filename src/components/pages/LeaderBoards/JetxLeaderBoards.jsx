@@ -39,10 +39,15 @@ const JetxLeaderBoards = () => {
             <Header/>
             <div className="leaderboard shadow top-leader-board">
                 <div className="top">
-                    <div className={'d-flex w-100 gap-3 justify-content-center'}>
-                        <strong className={'aniversary-text text1'}>
-                           Valentines <span class="desktop-only-show">na JetX</span>
-                        </strong>
+                    <div className={'d-flex flex-wrap w-100 gap-3 justify-content-center'}>
+                        <span style={{display:"contents"}}>
+                       <span>
+                       <strong className={'aniversary-text text1'} style={{whiteSpace:"nowrap"}}>
+                           Valentines</strong>
+                        </span> 
+                            <span class="desktop-only-show"><b className={'aniversary-text text1'}>na JetX</b></span>
+                              </span>
+                        
                         <strong className={'aniversary-text text2'}>
                         Challenge
                         </strong>

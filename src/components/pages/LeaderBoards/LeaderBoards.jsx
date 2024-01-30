@@ -37,7 +37,7 @@ const LeaderBoards = () => {
             <Header/>
             <div className="leaderboard shadow top-leader-board">
                 <div className="top">
-                    <div className={'d-flex w-100 gap-3 justify-content-center'}>
+                    <div className={'d-flex flex-wrap w-100 gap-3 justify-content-center'}>
                         <strong className={'aniversary-text text1'}>
                             Rubani 
                         </strong>

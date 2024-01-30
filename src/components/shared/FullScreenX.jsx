@@ -7,7 +7,7 @@ import {Link, useNavigate} from "react-router-dom";
 const FullscreenX = ({ onClick, navigation, isCustomFullScreen }) => {
 	const navigate=useNavigate()
 	return (
-		<div className={` height-max-custom d-flex align-items-center justify-content-between ${isCustomFullScreen &&'full-screen-component'}`} >
+		<div className={` height-max-custom d-flex  align-items-center justify-content-between ${isCustomFullScreen &&'full-screen-component'}`} >
                         <span className={'px-3 '} onClick={() => navigate(navigation)}>
 
                                                 <FontAwesomeIcon icon={faAngleLeft} style={{
@@ -27,6 +27,7 @@ const FullscreenX = ({ onClick, navigation, isCustomFullScreen }) => {
 												   fontWeight: '700',
 												   opacity: '0.7',
                                                    whiteSpace:'nowrap',
+                                                   display:"flex",
 												//    border:'1px solid var(--light-color)',
 												//    borderRadius:'4px',
 												   paddingLeft:'11px'}}>~Valentines <span class="desktop-only-show">na Jetx </span>Challenge~</Link>

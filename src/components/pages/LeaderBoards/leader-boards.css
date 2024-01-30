@@ -83,7 +83,7 @@
 
 .congrats {
     color: var(--text-value);
-    font-size: 40px;
+    font-size: 36px;
     font-weight: 800;
 }
 
@@ -254,5 +254,10 @@
         line-height: 1.8!important;
         font-weight: 400;
         font-size: 14px!important;
+    }
+    .congrats {
+        color: var(--text-value);
+        font-size: 26px!important;
+       
     }
 }

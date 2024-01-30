@@ -16,7 +16,7 @@ const PromoCards = () => {
     const gaEventTracker = useAnalyticsEventTracker('Promotions');
     const user = getFromLocalStorage('user')
 
-    let ids = [1, 2, 3, 4, 5, 6, 7, 8, 9,10,11, 12, 13, 14,15,16];
+    let ids = [1, 2, 3, 4, 5, 6, 7, 8, 9,10,11, 12, 13, 14,15,16,17];
     const navigate = useNavigate()
 
     let message = {status: 401, message: 'This Promotion is for new Users', token: ''};
@@ -41,6 +41,44 @@ const PromoCards = () => {
                     "row text-white pt-2 border-0 d-flex promo-container-profile d-flex align-self-start align-items-start"
                 }
             >
+                 <div className="col-md-2 promo-styling shadow-lg promotion">
+                    <div className="d-flex flex-column promo-inner">
+                        <img src={'https://cdn.betnare.com/carousel/ValentinesnaJETX.webp'} className={"rounded promo-image "}/>
+                        <h5
+                            className="bold d-flex justify-content-center h4 pt-2"
+                            style={{color: "#ea5d0b"}}
+                        >
+                            VALENTINES NA JET-X
+
+                        </h5>
+                        <p className="container-profile mx-1 px-2 text-data-promotions">
+                        Aim for a spot in the top to grab a share of the Ksh. 100,000 cash prizes daily by getting the highest in-game multiplier on Jet X.
+                        </p>                       
+                           <hr/>
+
+                        <div className="d-flex justify-content-between my-2 mx-2">
+
+                            <button className={"profile-button border-0 h-25 rounded promo-button"}
+                                    style={{background: "#ea5d0b"}} onClick={() => {
+                                gaEventTracker('valentine_jetx');
+                                navigate(`/smart-play?game=JetX&category=JetX`);
+                                setUtmSouceCampaignOnPromotions('valentine_jetx')
+                            }}>Play Jetx
+                            </button>
+                            <div
+                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"}
+                                style={{color: "#ea5d0b"}}
+                                onClick={() => {
+                                    navigate(`/promo?id=${ids[16]}`);
+                                    window.scrollTo(0, 0); // Scroll to the top of the page
+                                }}
+                            >
+                                Read More
+                            </div>
+                        </div>
+                    </div>
+                </div
+                >
                 <div className="col-md-2 promo-styling shadow-lg promotion">
                     <div className="d-flex flex-column promo-inner">
                         <img src={'https://cdn.betnare.com/carousel/AfconPromoBanner.webp'} className={"rounded promo-image "}/>

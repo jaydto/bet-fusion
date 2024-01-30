@@ -7,6 +7,7 @@ const initialState = {
         navigation_link:null,
         print_title:'highlights',
         leader_board:null,
+        leader_boardx:null,
         active_link:'79',
         stake_value:0,
         active_live_link:'79',

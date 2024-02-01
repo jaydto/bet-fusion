@@ -649,7 +649,7 @@ const KironslipSubmitForm = React.memo(
                                awardMultiGift &&
                                  (
                                     multiBoostMessage &&
-                                    <div className={` slip-message-alert py-5`}>
+                                    <div className={` slip-message-alert`} style={{ fontSize:"12px", fontWeight:"300"}}>
                                         <div colSpan="2" className={'d-flex col-2'} style={{width: '100%'}}>
                                             <FontAwesomeIcon icon={faGift}/> {multiBoostMessage}
                                         </div>

@@ -469,7 +469,7 @@ const KironslipSubmitForm = React.memo(
         const calculateMultiBetBoostAmount = () => {
             let settings = getFromLocalStorage("settings");
 
-            let giftMinGames = Number(settings?.kironifts?.giftBoostMinLegs);
+            let giftMinGames = Number(settings?.kironGifts?.giftBoostMinLegs);
 
             if (totalGames < giftMinGames) {
                 setHasMultiBetBoost(false);

@@ -38,6 +38,8 @@ const MobileMenu = React.memo((props) => {
     const betslip_options=useSelector((state)=>state.betting.betslip_options)
     const kiron_betslip_options=useSelector((state)=>state.betting.kiron_betslip_options)
     const dispatchRedux=useDispatch()
+    let settings = getFromLocalStorage("settings");
+
 
     useEffect(() => {
         if (userData) {
@@ -172,6 +174,8 @@ const MobileMenu = React.memo((props) => {
                     </div>
                 </div>
             </div>
+            {console.log("betnare giftboost status information",(pathname.includes("nare-league")?Number(settings?.kironGifts?.awardGiftBoost)===1:
+                   Number(settings?.betnareGifts?.awardGiftBoost)===1) )}
 
             <table className={`${slip_condition ? "prematch-menu mobile-menu" : "mobile-menu"}`}
                    style={!pathSlipSummary.includes(pathname) ? sumOfOdds === 1 ? {height: "50px"} : countInfo ? {height: "92px"} : {height: "70px"} : {height: "50px"}}>

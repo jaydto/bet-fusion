@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import {Form as FormikForm, Formik, useFormikContext} from "formik";
 import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faFireAlt, faGift, faTrash,} from "@fortawesome/free-solid-svg-icons";
+import {faBolt, faFireAlt, faGift, faTrash,} from "@fortawesome/free-solid-svg-icons";
 
 import {getTime} from "../pages/Kiron/periods";
 import {useNavigate} from "react-router-dom";
@@ -15,6 +15,7 @@ import useWindowDimensions from "../header/Dimensions";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {userBalance} from "../../redux/authSlice";
 import {useDispatch, useSelector} from "react-redux";
+import {setState as setMatchBetslipOptions} from "../../redux/bettingSlice";
 
 const Float = (equation, precision = 4) => {
     return Math.round(equation * 10 ** precision) / 10 ** precision;
@@ -64,6 +65,8 @@ const KironslipSubmitForm = React.memo(
         const [betslipKey, setBetslipKey] = useState("kironbetslip");
         const dispatchRedux=useDispatch()
         const userData=useSelector((state)=>state.auth.user)
+        const betslip_options=useSelector((state)=>state.betting.kiron_betslip_options)
+
 
         const [user, setUser] = useState(getFromLocalStorage("user"));
         useEffect(()=>{
@@ -261,9 +264,12 @@ const KironslipSubmitForm = React.memo(
 
         const updateWinnings = useCallback(() => {
             if (betslip) {
-                let stake_after_tax = (Float(stake) / Float(112.5)) * 100;
+                // let stake_after_tax = (Float(stake) / Float(112.5)) * 100;
+                let stake_after_tax = Float(stake);
+                // let stake_after_tax_boosted =
+                //     ((Float(stake) + Float(multiBoostAmount)) / Float(112.5)) * 100;
                 let stake_after_tax_boosted =
-                    ((Float(stake) + Float(multiBoostAmount)) / Float(112.5)) * 100;
+                    (Float(stake) + Float(multiBoostAmount));
 
                 let ext = Float(stake) - Float(stake_after_tax);
                 let ext_boosted =
@@ -288,8 +294,10 @@ const KironslipSubmitForm = React.memo(
                 let wint = taxable_amount * 0.2;
                 let wint_boosted = taxable_amount_boosted * 0.2;
 
-                let nw = raw_possible_win - wint;
-                let nw_boosted = boosted_raw_possible_win - wint_boosted;
+                // let nw = raw_possible_win - wint;
+                // let nw_boosted = boosted_raw_possible_win - wint_boosted; 
+                let nw = raw_possible_win;
+                let nw_boosted = boosted_raw_possible_win ;
 
                 setExciseTax(Float(ext, 2));
                 setExciseTaxBoosted(Float(ext_boosted, 2));
@@ -299,6 +307,9 @@ const KironslipSubmitForm = React.memo(
 
                 setNetWin(Float(nw, 2));
                 setNetWinBoosted(Float(nw_boosted, 2));
+
+                dispatchRedux(setMatchBetslipOptions('kiron_betslip_options', {...betslip_options,...{netWin:Float(nw,2),netWinBoosted:Float(nw_boosted,2) }}))
+
 
                 setPossibleWin(Float(raw_possible_win, 2));
                 setPossibleWinBoosted(Float(boosted_raw_possible_win, 2));
@@ -330,6 +341,7 @@ const KironslipSubmitForm = React.memo(
                 dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
                 // dispatch({type: "SET", key: "betslip", payload: slip});
             });
+
             clearKironSlip()
             setMessage(null);
             setBetslipsData(null)
@@ -354,6 +366,7 @@ const KironslipSubmitForm = React.memo(
                 let diff = (firstRound - now);
                 let initialTime = Math.floor(diff / 1000);
                 let parent_match_id;
+                console.log("initial time data ", initialTime)
                 if (initialTime < 10) {
                     parent_match_id = match?.parent_match_id;
                 }
@@ -367,7 +380,7 @@ const KironslipSubmitForm = React.memo(
 
             setExpired(parentMatchId)
 
-            const status = initialTime.some((exp) => exp < 10);
+                const status = initialTime.some((exp) => exp < 10);
             setShowExpired(status);
 
             return {parentMatchId, initialTime};
@@ -452,6 +465,122 @@ const KironslipSubmitForm = React.memo(
             str = str.replace(/[^A-Za-z0-9\-]/g, "");
             return str.replace(/-+/g, "-");
         };
+
+        const calculateMultiBetBoostAmount = () => {
+            let settings = getFromLocalStorage("settings");
+
+            let giftMinGames = Number(settings?.kironifts?.giftBoostMinLegs);
+
+            if (totalGames < giftMinGames) {
+                setHasMultiBetBoost(false);
+
+                dispatchRedux(setMatchBetslipOptions('kiron_betslip_options', {...betslip_options,...{hasBoost:false,  alert_slip_color:'not_qualified'}}))
+
+
+            }
+
+            let boost = 0;
+
+            let betslips = getKironSlip() || {};
+
+            let odds = Object.values(betslips || [])?.filter(
+                (slip) =>
+                    slip.bet_type !== "1" &&
+                    Number(slip.odd_value) >= settings?.kironGifts?.giftBoostMinOdds
+            );
+
+            let giftQualificationOdds = odds.length;
+
+
+            let awardGifts =
+                Number(settings?.kironGifts?.awardGiftBoost) === 1 &&
+                Number(user?.gift_balance || 0) > 0;
+
+            setAwardMultiGift(awardGifts);
+            if (Number(giftQualificationOdds) < Number(giftMinGames)) {
+                let remainingGames = Number(giftMinGames) - Number(giftQualificationOdds);
+
+                dispatchRedux(setMatchBetslipOptions('kiron_betslip_options', {...betslip_options,...{remaining_games:remainingGames, hasBoost:false, alert_slip_color:'not_qualified', multiboostmessage: ` Add ${remainingGames} more game${
+                            remainingGames > 1 ? "s" : ""
+                        } with odds of  ${
+                            settings?.kironGifts?.giftBoostMinOdds
+                        } or above to boost your winnings.`}}))
+
+
+                setMultiBoostMessage(
+                    `Congratulations, you qualify for Nare Gift. Add ${remainingGames} more game${
+                        remainingGames > 1 ? "s" : ""
+                    } with odds of  ${
+                        settings?.kironGifts?.giftBoostMinOdds
+                    } or above to redeem your gift.`
+                );
+
+                setMultiBoostAmount(0)
+
+
+
+            }
+            else if (Number(giftQualificationOdds) >= Number(giftMinGames)) {
+                boost = Math.round(((Number(settings?.kironGifts?.giftBoostPercentage)||20)/ 100) * stake);
+                if(isNaN(boost)){
+                    boost=0
+                }
+
+                if (boost >= Number(settings?.kironGifts?.maxGiftBoostAmount)) {
+                    boost = Number(settings?.kironGifts?.maxGiftBoostAmount);
+                }
+                if (boost >= 1) {
+                    setMultiBoostAmount(boost);
+                    setHasMultiBetBoost(true);
+
+                    let boostedStake = Number(stake) + Number(boost);
+                    boostedStake = formatNumber(boostedStake);
+                    dispatchRedux(setMatchBetslipOptions('kiron_betslip_options', {...betslip_options,...{hasBoost:true, alert_slip_color: 'valid', remaining_games: 0, multiboostmessage:"Congratulations! we have gifted you KES " +
+                                boost +
+                                " on your stake. Your new stake is " +
+                                boostedStake }}))
+                    setMultiBoostMessage(
+                        "Congratulations! we have boosted you stake from KES " +
+                        stake +
+                        " to " +
+                        boostedStake
+                    );
+
+
+                }
+                else{
+                    setMultiBoostAmount(boost);
+                    setHasMultiBetBoost(true);
+                    dispatchRedux(setMatchBetslipOptions('kiron_betslip_options', {...betslip_options,...{hasBoost:true,remaining_games: 0, alert_slip_color:'valid',multiboostmessage: "You Have Qualified for a Nare Boost  " 
+                                }}))
+
+
+                    setMultiBoostMessage(
+                        "You  Have Qualified for a Nare Boost " 
+                    );
+
+
+                }
+            }
+            else{
+                setMultiBoostAmount(0)
+
+                dispatchRedux(setMatchBetslipOptions('kiron_betslip_options', {...betslip_options,...{hasBoost:false, alert_slip_color:'not_qualified'}}))
+
+
+                setMultiBoostMessage("")
+
+            }
+        };
+
+        useEffect(() => {
+            calculateMultiBetBoostAmount();
+        }, [betslip, stake]);
+
+
+        const closeAlert = () => {
+            setMultiBoostMessage(null)
+        }
 
         const SubmitButton = (props) => {
             const {title, disabled, ...rest} = props;
@@ -555,6 +684,19 @@ const KironslipSubmitForm = React.memo(
                                             </div>
                                         </div>
                                     )}
+                                     {user &&
+                                     <div
+                                        className="hide-on-affix d-flex justify-content-between p-lg-2 p-md-2 py-sm-0">
+                                        <div
+                                            className={"bet-align-left nare-boost-color d-flex align-items-center"}>Nare
+                                            Boost
+                                            &nbsp;<FontAwesomeIcon icon={faBolt} className={'boost-betslip'}/>
+                                        </div>
+                                        <div className={"bet-align-right nare-boost-color"}>
+                                            <b>{multiBoostAmount}</b>
+                                        </div>
+                                    </div>
+                                    }
 
                                     <div>
 

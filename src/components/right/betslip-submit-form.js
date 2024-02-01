@@ -885,7 +885,8 @@ const BetslipSubmitForm = React.memo(
                                             id="net-amount">{formatNumber(jackpot ? jackpotData?.jackpot_amount : (hasMultiBetBoost ? netWinBoosted : netWin))}</strong>
                                         </div>
                                     </div>
-                                    {user && !jackpot && <div
+                                    {user && !jackpot &&
+                                     <div
                                         className="hide-on-affix d-flex justify-content-between p-lg-2 p-md-2 py-sm-0">
                                         <div
                                             className={"bet-align-left nare-boost-color d-flex align-items-center"}>Nare

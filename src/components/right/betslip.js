@@ -7,7 +7,7 @@ import {getFromLocalStorage} from "../utils/local-storage";
 import DecodeCode from "./decode";
 import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {removePickedData, removeSelected, removeSlipSelection, setMatchBetslip} from "../../redux/bettingSlice";
+import {removePickedData, removeSelected,  setMatchBetslip} from "../../redux/bettingSlice";
 
 const clean_rep = (str) => {
     str = str.replace(/[^A-Za-z0-9\-]/g, "");

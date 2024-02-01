@@ -60,7 +60,7 @@ const KironslipSubmitForm = React.memo(
 
         const [settings, setSettings] = useState(getFromLocalStorage("settings"));
         const [multiBoostMessage, setMultiBoostMessage] = useState("");
-        const [awardMultiGift, setAwardMultiGift] = useState(false);
+        const [awardMultiGift, setAwardMultiGift] = useState( Number(settings?.kironGifts?.awardGiftBoost) === 1);
 
         const [betslipKey, setBetslipKey] = useState("kironbetslip");
         const dispatchRedux=useDispatch()
@@ -498,8 +498,10 @@ const KironslipSubmitForm = React.memo(
                 Number(user?.gift_balance || 0) > 0;
 
             setAwardMultiGift(awardGifts);
-            if(awardGifts===false){
+            if(!awardGifts){
                 setMultiBoostAmount(0)
+                setMultiBoostMessage("")
+                dispatchRedux(setMatchBetslipOptions('kiron_betslip_options',0))
 
             }
             else if (Number(giftQualificationOdds) < Number(giftMinGames)) {
@@ -644,7 +646,7 @@ const KironslipSubmitForm = React.memo(
                         <FormikForm name="betslip-submit-form">
                             <Alert/>
                             {!message && 
-                                Number(settings?.kironGifts?.awardGiftBoost) === 1 &&
+                               awardMultiGift &&
                                  (
                                     multiBoostMessage &&
                                     <div className={` slip-message-alert py-5`}>
@@ -698,7 +700,7 @@ const KironslipSubmitForm = React.memo(
                                             </div>
                                         </div>
                                     )}
-                                     {(user && Number(settings?.kironGifts?.awardGiftBoost) === 1)&&
+                                     {(user && awardMultiGift)&&
                                      <div
                                         className="hide-on-affix d-flex justify-content-between p-lg-2 p-md-2 py-sm-0">
                                         <div

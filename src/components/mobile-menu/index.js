@@ -178,7 +178,8 @@ const MobileMenu = React.memo((props) => {
                    Number(settings?.betnareGifts?.awardGiftBoost)===1) )}
 
             <table className={`${slip_condition ? "prematch-menu mobile-menu" : "mobile-menu"}`}
-                   style={!pathSlipSummary.includes(pathname) ? sumOfOdds === 1 ? {height: "50px"} : countInfo ? {height: "92px"} : {height: "70px"} : {height: "50px"}}>
+                   style={!pathSlipSummary.includes(pathname) ? sumOfOdds === 1 ? {height: "50px"} : countInfo&&(pathname.includes("nare-league")?Number(settings?.kironGifts?.awardGiftBoost)===1:
+                   Number(settings?.betnareGifts?.awardGiftBoost)===1) ? {height: "92px"} : {height: "70px"} : {height: "50px"}}>
                    <tbody>
                 {slip_condition ?
                     <tr className={"mobile-menu-container"} onClick={()=>navigate(pathname.includes("nare-league")?"/betslip-nare?nare-league=true":"/betslip-slip")}>

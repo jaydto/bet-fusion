@@ -142,6 +142,7 @@ const KironslipSubmitForm = React.memo(
                 <>
                     {message?.status && (
                         <div
+                            style={{lineHeight:'1.2'}}
                             role="alert"
                             className={`fade alert alert-${c} show alert-dismissible d-flex justify-content-between align-items-center`}
                         >

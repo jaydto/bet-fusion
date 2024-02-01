@@ -81,7 +81,11 @@ const BetDetails = React.memo(
 
         function getActivePossibleWin() {
             const possible_win=activeBetHistory?.filter((bet)=>Number(bet?.bet_id)===Number(betID))
-            return isNaN(parseFloat(possible_win?.[0]?.possible_win)?.toLocaleString())?'':possible_win?.[0]?.possible_win?.toLocaleString()
+            return possible_win?.[0]?.possible_win?.toLocaleString()==undefined?'':possible_win?.[0]?.possible_win?.toLocaleString()
+        }
+        function getActiveAmount() {
+            const bet_amount=activeBetHistory?.filter((bet)=>Number(bet?.bet_id)===Number(betID))
+            return bet_amount?.[0]?.bet_amount?.toLocaleString()==undefined?'':bet_amount?.[0]?.bet_amount?.toLocaleString()
         }
 
         return (
@@ -107,7 +111,7 @@ const BetDetails = React.memo(
                                             <div className={"main-details-info-title"}>
                                                 Amount
                                             </div>
-                                            <div className="amount-value">{bet.bet_amount}</div>
+                                            <div className="amount-value">{getActiveAmount()}</div>
                                         </div>
                                         <div className="d-flex col-8 flex-column details-history-main">
                                             <div className={"main-details-info-title"}>

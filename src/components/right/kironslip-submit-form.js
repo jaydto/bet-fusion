@@ -236,7 +236,7 @@ const KironslipSubmitForm = React.memo(
                             key: "kironbetslip",
                             payload: {},
                         });
-                        return width < 991 ? navigate(-1) : ""
+                        return width < 991 ? navigate(-1) : "/nare-league"
                     } else {
                         const data = {
                             event: 'place_kiron_bet',
@@ -497,7 +497,11 @@ const KironslipSubmitForm = React.memo(
                 Number(user?.gift_balance || 0) > 0;
 
             setAwardMultiGift(awardGifts);
-            if (Number(giftQualificationOdds) < Number(giftMinGames)) {
+            if(awardGifts===false){
+                setMultiBoostAmount(0)
+
+            }
+            else if (Number(giftQualificationOdds) < Number(giftMinGames)) {
                 let remainingGames = Number(giftMinGames) - Number(giftQualificationOdds);
 
                 dispatchRedux(setMatchBetslipOptions('kiron_betslip_options', {...betslip_options,...{remaining_games:remainingGames, hasBoost:false, alert_slip_color:'not_qualified', multiboostmessage: ` Add ${remainingGames} more game${
@@ -638,14 +642,23 @@ const KironslipSubmitForm = React.memo(
                     return (
                         <FormikForm name="betslip-submit-form">
                             <Alert/>
-                            {
-                                awardMultiGift &&
-                                Number(totalGames) > settings?.betnareBonus?.bonusBetLegs ? (
-                                    <div className={"alert alert-success"}>
-                                        <FontAwesomeIcon icon={faGift}/> {multiBoostMessage}
+                            {!message && 
+                                Number(settings?.kironGifts?.awardGiftBoost) === 1 &&
+                                 (
+                                    multiBoostMessage &&
+                                    <div className={` slip-message-alert py-5`}>
+                                        <div colSpan="2" className={'d-flex col-2'} style={{width: '100%'}}>
+                                            <FontAwesomeIcon icon={faGift}/> {multiBoostMessage}
+                                        </div>
+                                        <td colSpan={2} className={" bet-align-right betslip-alert-close"}>
+                                            <input
+                                                type="submit"
+                                                value="X"
+                                                onClick={() => closeAlert()}
+                                            />
+                                        </td>
+
                                     </div>
-                                ) : (
-                                    <></>
                                 )}
                             {totalGames > 0 && (
                                 <div className="bet-table w-100 box-shadow-table-submit-form ">
@@ -684,7 +697,7 @@ const KironslipSubmitForm = React.memo(
                                             </div>
                                         </div>
                                     )}
-                                     {user &&
+                                     {(user && Number(settings?.kironGifts?.awardGiftBoost) === 1)&&
                                      <div
                                         className="hide-on-affix d-flex justify-content-between p-lg-2 p-md-2 py-sm-0">
                                         <div

@@ -514,55 +514,169 @@ const BetslipSubmitForm = React.memo(
         };
 
 
-        const calculateMultiBetBoostAmount = () => {
+        // const calculateMultiBetBoostAmount = () => {
+        //     let settings = getFromLocalStorage("settings");
+
+        //     let giftMinGames = Number(settings?.betnareGifts?.giftBoostMinLegs);
+
+        //     if (totalGames < giftMinGames) {
+        //         setHasMultiBetBoost(false);
+
+        //         dispatchRedux(setMatchBetslipOptions('betslip_options', {...betslip_options,...{hasBoost:false,  alert_slip_color:'not_qualified'}}))
+
+
+        //     }
+
+        //     let boost = 0;
+
+        //     let betslips = getBetslip() || {};
+
+        //     let odds = Object.values(betslips || [])?.filter(
+        //         (slip) =>
+        //             slip.bet_type !== "1" &&
+        //             Number(slip.odd_value) >= settings?.betnareGifts?.giftBoostMinOdds
+        //     );
+
+        //     let giftQualificationOdds = odds.length;
+
+
+        //     let awardGifts =
+        //         Number(settings?.betnareGifts?.awardGiftBoost) === 1 &&
+        //         Number(user?.gift_balance || 0) > 0;
+
+        //         console.log("awargift criteria", awardGifts)
+        //         console.log("awargift criteria data", awardGifts)
+
+        //     // setAwardMultiGift(awardGifts);
+        //     // if(awardGifts===false){
+        //     //     setMultiBoostAmount(0)
+
+        //     // }
+        //     //  else
+        //       if  (Number(giftQualificationOdds) < Number(giftMinGames)) {
+        //         let remainingGames = Number(giftMinGames) - Number(giftQualificationOdds);
+
+        //         dispatchRedux(setMatchBetslipOptions('betslip_options', {...betslip_options,...{remaining_games:remainingGames, hasBoost:false, alert_slip_color:'not_qualified', multiboostmessage: ` Add ${remainingGames} more game${
+        //                     remainingGames > 1 ? "s" : ""
+        //                 } with odds of  ${
+        //                     settings?.betnareGifts?.giftBoostMinOdds
+        //                 } or above to boost your winnings.`}}))
+
+
+        //         setMultiBoostMessage(
+        //             `Congratulations, you qualify for Nare Gift. Add ${remainingGames} more game${
+        //                 remainingGames > 1 ? "s" : ""
+        //             } with odds of  ${
+        //                 settings?.betnareGifts?.giftBoostMinOdds
+        //             } or above to redeem your gift.`
+        //         );
+
+        //         setMultiBoostAmount(0)
+
+
+
+        //     }
+        //     else if (Number(giftQualificationOdds) >= Number(giftMinGames)) {
+        //         boost = Math.round(((Number(settings?.betnareGifts?.giftBoostPercentage)||20)/ 100) * stake);
+        //         if(isNaN(boost)){
+        //             boost=0
+        //         }
+
+        //         if (boost >= Number(settings?.betnareGifts?.maxGiftBoostAmount)) {
+        //             boost = Number(settings?.betnareGifts?.maxGiftBoostAmount);
+        //         }
+        //         if (boost >= 1) {
+        //             setMultiBoostAmount(boost);
+        //             setHasMultiBetBoost(true);
+
+        //             let boostedStake = Number(stake) + Number(boost);
+        //             boostedStake = formatNumber(boostedStake);
+        //             dispatchRedux(setMatchBetslipOptions('betslip_options', {...betslip_options,...{hasBoost:true, alert_slip_color: 'valid', remaining_games: 0, multiboostmessage:"Congratulations! we have gifted you KES " +
+        //                         boost +
+        //                         " on your stake. Your new stake is " +
+        //                         boostedStake }}))
+        //             setMultiBoostMessage(
+        //                 "Congratulations! we have boosted you stake from KES " +
+        //                 stake +
+        //                 " to " +
+        //                 boostedStake
+        //             );
+
+
+        //         }
+        //         else{
+        //             setMultiBoostAmount(boost);
+        //             setHasMultiBetBoost(true);
+        //             dispatchRedux(setMatchBetslipOptions('betslip_options', {...betslip_options,...{hasBoost:true,remaining_games: 0, alert_slip_color:'valid',multiboostmessage: "You Have Qualified for a Nare Boost  " 
+        //                         }}))
+
+
+        //             setMultiBoostMessage(
+        //                 "You  Have Qualified for a Nare Boost " 
+        //             );
+
+
+        //         }
+        //     }
+        //     else{
+        //         setMultiBoostAmount(0)
+
+        //         dispatchRedux(setMatchBetslipOptions('betslip_options', {...betslip_options,...{hasBoost:false, alert_slip_color:'not_qualified'}}))
+
+
+        //         setMultiBoostMessage("")
+
+        //     }
+        // };
+
+        // useEffect(() => {
+        //     calculateMultiBetBoostAmount();
+        // }, [betslip, stake, settings]);
+
+        const calculateMultiBetBoostAmountCallback = useCallback(() => {
             let settings = getFromLocalStorage("settings");
-
+        
             let giftMinGames = Number(settings?.betnareGifts?.giftBoostMinLegs);
-
+        
             if (totalGames < giftMinGames) {
                 setHasMultiBetBoost(false);
-
-                dispatchRedux(setMatchBetslipOptions('betslip_options', {...betslip_options,...{hasBoost:false,  alert_slip_color:'not_qualified'}}))
-
-
+        
+                dispatchRedux(setMatchBetslipOptions('betslip_options', { ...betslip_options, ...{ hasBoost: false, alert_slip_color: 'not_qualified' } }));
             }
-
+        
             let boost = 0;
-
+        
             let betslips = getBetslip() || {};
-
+        
             let odds = Object.values(betslips || [])?.filter(
                 (slip) =>
                     slip.bet_type !== "1" &&
                     Number(slip.odd_value) >= settings?.betnareGifts?.giftBoostMinOdds
             );
-
+        
             let giftQualificationOdds = odds.length;
-
-
+        
             let awardGifts =
                 Number(settings?.betnareGifts?.awardGiftBoost) === 1 &&
                 Number(user?.gift_balance || 0) > 0;
-
-                console.log("awargift criteria", awardGifts)
-                console.log("awargift criteria data", awardGifts)
-
+        
+            console.log("awargift criteria", awardGifts);
+            console.log("awargift criteria data", awardGifts);
             // setAwardMultiGift(awardGifts);
-            // if(awardGifts===false){
-            //     setMultiBoostAmount(0)
+            if(awardGifts===false){
+                setMultiBoostAmount(0)
 
-            // }
-            //  else
-              if  (Number(giftQualificationOdds) < Number(giftMinGames)) {
+            }
+             else
+            if (Number(giftQualificationOdds) < Number(giftMinGames)) {
                 let remainingGames = Number(giftMinGames) - Number(giftQualificationOdds);
-
-                dispatchRedux(setMatchBetslipOptions('betslip_options', {...betslip_options,...{remaining_games:remainingGames, hasBoost:false, alert_slip_color:'not_qualified', multiboostmessage: ` Add ${remainingGames} more game${
+        
+                dispatchRedux(setMatchBetslipOptions('betslip_options', { ...betslip_options, ...{ remaining_games: remainingGames, hasBoost: false, alert_slip_color: 'not_qualified', multiboostmessage: ` Add ${remainingGames} more game${
                             remainingGames > 1 ? "s" : ""
                         } with odds of  ${
                             settings?.betnareGifts?.giftBoostMinOdds
-                        } or above to boost your winnings.`}}))
-
-
+                        } or above to boost your winnings.` } }));
+        
                 setMultiBoostMessage(
                     `Congratulations, you qualify for Nare Gift. Add ${remainingGames} more game${
                         remainingGames > 1 ? "s" : ""
@@ -570,70 +684,55 @@ const BetslipSubmitForm = React.memo(
                         settings?.betnareGifts?.giftBoostMinOdds
                     } or above to redeem your gift.`
                 );
-
-                setMultiBoostAmount(0)
-
-
-
-            }
-            else if (Number(giftQualificationOdds) >= Number(giftMinGames)) {
-                boost = Math.round(((Number(settings?.betnareGifts?.giftBoostPercentage)||20)/ 100) * stake);
-                if(isNaN(boost)){
-                    boost=0
+        
+                setMultiBoostAmount(0);
+            } else if (Number(giftQualificationOdds) >= Number(giftMinGames)) {
+                boost = Math.round(((Number(settings?.betnareGifts?.giftBoostPercentage) || 20) / 100) * stake);
+                if (isNaN(boost)) {
+                    boost = 0;
                 }
-
+        
                 if (boost >= Number(settings?.betnareGifts?.maxGiftBoostAmount)) {
                     boost = Number(settings?.betnareGifts?.maxGiftBoostAmount);
                 }
+        
                 if (boost >= 1) {
                     setMultiBoostAmount(boost);
                     setHasMultiBetBoost(true);
-
+        
                     let boostedStake = Number(stake) + Number(boost);
                     boostedStake = formatNumber(boostedStake);
-                    dispatchRedux(setMatchBetslipOptions('betslip_options', {...betslip_options,...{hasBoost:true, alert_slip_color: 'valid', remaining_games: 0, multiboostmessage:"Congratulations! we have gifted you KES " +
+                    dispatchRedux(setMatchBetslipOptions('betslip_options', { ...betslip_options, ...{ hasBoost: true, alert_slip_color: 'valid', remaining_games: 0, multiboostmessage: "Congratulations! we have gifted you KES " +
                                 boost +
                                 " on your stake. Your new stake is " +
-                                boostedStake }}))
+                                boostedStake } }));
                     setMultiBoostMessage(
                         "Congratulations! we have boosted you stake from KES " +
                         stake +
                         " to " +
                         boostedStake
                     );
-
-
-                }
-                else{
+                } else {
                     setMultiBoostAmount(boost);
                     setHasMultiBetBoost(true);
-                    dispatchRedux(setMatchBetslipOptions('betslip_options', {...betslip_options,...{hasBoost:true,remaining_games: 0, alert_slip_color:'valid',multiboostmessage: "You Have Qualified for a Nare Boost  " 
-                                }}))
-
-
-                    setMultiBoostMessage(
-                        "You  Have Qualified for a Nare Boost " 
-                    );
-
-
-                }
-            }
-            else{
-                setMultiBoostAmount(0)
-
-                dispatchRedux(setMatchBetslipOptions('betslip_options', {...betslip_options,...{hasBoost:false, alert_slip_color:'not_qualified'}}))
-
-
-                setMultiBoostMessage("")
-
-            }
-        };
-
-        useEffect(() => {
-            calculateMultiBetBoostAmount();
-        }, [betslip, stake]);
-
+                    dispatchRedux(setMatchBetslipOptions('betslip_options', { ...betslip_options, ...{ hasBoost: true, remaining_games: 0, alert_slip_color: 'valid', multiboostmessage: "You Have Qualified for a Nare Boost  " } }));
         
+                    setMultiBoostMessage(
+                        "You  Have Qualified for a Nare Boost "
+                    );
+                }
+            } else {
+                setMultiBoostAmount(0);
+        
+                dispatchRedux(setMatchBetslipOptions('betslip_options', { ...betslip_options, ...{ hasBoost: false, alert_slip_color: 'not_qualified' } }));
+        
+                setMultiBoostMessage("");
+            }
+        }, [totalGames, betslip, stake, settings, setHasMultiBetBoost]);
+        
+        useEffect(() => {
+            calculateMultiBetBoostAmountCallback();
+        }, [calculateMultiBetBoostAmountCallback]);
 
     
 
@@ -832,11 +931,11 @@ const BetslipSubmitForm = React.memo(
                         )}
                       
                        <div>
-                            {!jackpot && !message && 
+                            {!jackpot && 
                                
-                                Number(totalGames) >= settings?.betnareBonus?.bonusBetLegs && (
+                                (
                                     multiBoostMessage &&
-                                    <div className={` slip-message-alert`}>
+                                    <div className={` slip-message-alert`} style={{fontSize:"12px", fontWeight:"300"}}>
                                         <div colSpan="2" className={'d-flex col-2'} style={{width: '100%'}}>
                                             <FontAwesomeIcon icon={faGift}/> {multiBoostMessage}
                                         </div>

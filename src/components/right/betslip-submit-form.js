@@ -103,7 +103,7 @@ const BetslipSubmitForm = React.memo(
         const [netWin, setNetWin] = useState(0);
         const [netWinBoosted, setNetWinBoosted] = useState(0);
         const [multiBoostMessage, setMultiBoostMessage] = useState("");
-        const [awardMultiGift, setAwardMultiGift] = useState(false);
+        // const [awardMultiGift, setAwardMultiGift] = useState( );
 
         const [, setBetslipKey] = useState("betslip");
 
@@ -252,7 +252,6 @@ const BetslipSubmitForm = React.memo(
             let use_jwt = true
             dispatchRedux(setState('deposits_message', null))
 
-            console.log("payload data", payload);
 
 
             // const data = {
@@ -478,6 +477,7 @@ const BetslipSubmitForm = React.memo(
             total_odd: totalOdds,
         };
 
+
         const validate = (values) => {
             let errors = {};
 
@@ -548,11 +548,12 @@ const BetslipSubmitForm = React.memo(
                 console.log("awargift criteria data", awardGifts)
 
             // setAwardMultiGift(awardGifts);
-            if(awardGifts===false){
-                setMultiBoostAmount(0)
+            // if(awardGifts===false){
+            //     setMultiBoostAmount(0)
 
-            }
-             else if  (Number(giftQualificationOdds) < Number(giftMinGames)) {
+            // }
+            //  else
+              if  (Number(giftQualificationOdds) < Number(giftMinGames)) {
                 let remainingGames = Number(giftMinGames) - Number(giftQualificationOdds);
 
                 dispatchRedux(setMatchBetslipOptions('betslip_options', {...betslip_options,...{remaining_games:remainingGames, hasBoost:false, alert_slip_color:'not_qualified', multiboostmessage: ` Add ${remainingGames} more game${
@@ -832,7 +833,7 @@ const BetslipSubmitForm = React.memo(
                       
                        <div>
                             {!jackpot && !message && 
-                                Number(settings?.betnareGifts?.awardGiftBoost) === 1 &&
+                               
                                 Number(totalGames) >= settings?.betnareBonus?.bonusBetLegs && (
                                     multiBoostMessage &&
                                     <div className={` slip-message-alert`}>
@@ -898,7 +899,7 @@ const BetslipSubmitForm = React.memo(
                                             id="net-amount">{formatNumber(jackpot ? jackpotData?.jackpot_amount : (hasMultiBetBoost ? netWinBoosted : netWin))}</strong>
                                         </div>
                                     </div>
-                                    {(user && !jackpot && Number(settings?.betnareGifts?.awardGiftBoost) === 1)&&
+                                   {(user && !jackpot )&&
                                      <div
                                         className="hide-on-affix d-flex justify-content-between p-lg-2 p-md-2 py-sm-0">
                                         <div

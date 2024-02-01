@@ -255,6 +255,8 @@ const BetSlip = React.memo(
             );
         };
 
+        console.log("bonusMessage data", message?.message);
+
         useEffect(() => {
             updateBonusState();
         }, [totalOdds, totalGames]);

@@ -118,33 +118,41 @@ const Header = React.memo((props) => {
   const cleanUpFuction = async () => {
     await fetchAppConfigurations();
 
-    // Custom function to clear settings from localStorage
-    const clearLocalStorageSettings = () => {
-      localStorage.removeItem("settings");
-      // Manually call fetchAppConfigurations to update the settings
-      fetchAppConfigurations();
-    };
 
-    // Listen for the "storage" event to detect changes in "settings" localStorage
     const handleStorageChange = (event) => {
       if (event.key === "settings") {
         fetchAppConfigurations();
       }
     };
 
-    // Listen for "beforeunload" event to handle clearing localStorage in the same tab
-    const handleBeforeUnload = () => {
-      clearLocalStorageSettings();
-    };
+      const abort = new AbortController();
 
-    window?.addEventListener("storage", handleStorageChange);
-    // window?.addEventListener('beforeunload', handleBeforeUnload);
+      window?.addEventListener("storage", handleStorageChange);
+      // window?.addEventListener('beforeunload', handleBeforeUnload);
 
-    return () => {
-      // Clean up the event listeners when the component unmounts
-      window?.removeEventListener("storage", handleStorageChange);
-      window?.removeEventListener("beforeunload", handleBeforeUnload);
-    };
+      const clearLocalStorageSettings = () => {
+        localStorage.removeItem("settings");
+        // Manually call fetchAppConfigurations to update the settings
+        // fetchAppConfigurations();
+      };
+
+      
+
+      // Listen for "beforeunload" event to handle clearing localStorage in the same tab
+      const handleBeforeUnload = () => {
+        clearLocalStorageSettings();
+      };
+
+      window?.addEventListener("storage", handleStorageChange);
+      window?.addEventListener("beforeunload", handleBeforeUnload);
+      // Listen for the "storage" event to detect changes in "settings" localStorage
+
+      return () => {
+        // Clean up the event listeners when the component unmounts
+        window?.removeEventListener("storage", handleStorageChange);
+        window?.removeEventListener("beforeunload", handleBeforeUnload);
+        abort.abort();
+      };
   };
 
   useEffect(() => {

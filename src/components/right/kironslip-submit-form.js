@@ -34,35 +34,37 @@ const KironslipSubmitForm = React.memo(
         const [showExpired, setShowExpired] = useState(false)
         const [hasMultiBetBoost, setHasMultiBetBoost] = useState(true);
         const [multiBoostAmount, setMultiBoostAmount] = useState(0);
-        const [showShareModal, setShowShareModal] = useState(false);
-        const [betSharePayload, setBetSharePayload] = useState({});
-        const [ipv4, setIpv4] = useState(null);
+        const [expiredParentMatchIds, setExpiredParentMatchIds] = useState([]);
+
+        // const [showShareModal, setShowShareModal] = useState(false);
+        // const [betSharePayload, setBetSharePayload] = useState({});
+        // const [ipv4, setIpv4] = useState(null);
         const [message, setMessage] = useState(null);
         const {state, dispatch} = useContext(StoreContext);
-        const [loadingShare, setLoadingShare] = useState(false);
+        // const [loadingShare, setLoadingShare] = useState(false);
 
         const [stake, setStake] = useState(100);
-        const [stakeAfterTax, setStakeAfterTax] = useState(0);
-        const [stakeAfterTaxBoosted, setStakeAfterTaxBoosted] = useState(0);
-        const {height, width} = useWindowDimensions();
+        // const [stakeAfterTax, setStakeAfterTax] = useState(0);
+        // const [stakeAfterTaxBoosted, setStakeAfterTaxBoosted] = useState(0);
+        const {width} = useWindowDimensions();
 
-        const [exciseTax, setExciseTax] = useState(0);
-        const [exciseTaxBoosted, setExciseTaxBoosted] = useState(0);
+        // const [exciseTax, setExciseTax] = useState(0);
+        // const [exciseTaxBoosted, setExciseTaxBoosted] = useState(0);
 
-        const [withholdingTax, setWithholdingTax] = useState(0);
-        const [withholdingTaxBoosted, setWithholdingTaxBoosted] = useState(0);
+        // const [withholdingTax, setWithholdingTax] = useState(0);
+        // const [withholdingTaxBoosted, setWithholdingTaxBoosted] = useState(0);
 
         const [possibleWin, setPossibleWin] = useState(0);
         const [possibleWinBoosted, setPossibleWinBoosted] = useState(0);
 
-        const [netWin, setNetWin] = useState(0);
-        const [netWinBoosted, setNetWinBoosted] = useState(0);
+        // const [netWin, setNetWin] = useState(0);
+        // const [netWinBoosted, setNetWinBoosted] = useState(0);
 
-        const [settings, setSettings] = useState(getFromLocalStorage("settings"));
+        const [settings, ] = useState(getFromLocalStorage("settings"));
         const [multiBoostMessage, setMultiBoostMessage] = useState("");
         const [awardMultiGift, setAwardMultiGift] = useState( Number(settings?.kironGifts?.awardGiftBoost) === 1);
 
-        const [betslipKey, setBetslipKey] = useState("kironbetslip");
+        // const [betslipKey, setBetslipKey] = useState("kironbetslip");
         const dispatchRedux=useDispatch()
         const userData=useSelector((state)=>state.auth.user)
         const betslip_options=useSelector((state)=>state.betting.kiron_betslip_options)
@@ -94,11 +96,11 @@ const KironslipSubmitForm = React.memo(
             updateUserOnHistory()
         }, [message?.message])
 
-        useEffect(() => {
-            if (kiron) {
-                setBetslipKey("kironbetslip");
-            }
-        }, [kiron]);
+        // useEffect(() => {
+        //     if (kiron) {
+        //         setBetslipKey("kironbetslip");
+        //     }
+        // }, [kiron]);
 
         const scrollToRef = useRef(null);
 
@@ -272,9 +274,9 @@ const KironslipSubmitForm = React.memo(
                 let stake_after_tax_boosted =
                     (Float(stake) + Float(multiBoostAmount));
 
-                let ext = Float(stake) - Float(stake_after_tax);
-                let ext_boosted =
-                    Float(stake) + Float(multiBoostAmount) - Float(stake_after_tax_boosted);
+                // let ext = Float(stake) - Float(stake_after_tax);
+                // let ext_boosted =
+                //     Float(stake) + Float(multiBoostAmount) - Float(stake_after_tax_boosted);
 
                 let raw_possible_win = Float(stake_after_tax) * Float(totalOdds);
                 let boosted_raw_possible_win =
@@ -288,26 +290,26 @@ const KironslipSubmitForm = React.memo(
                     boosted_raw_possible_win = 500000;
                 }
 
-                let taxable_amount = Float(raw_possible_win) - Float(stake_after_tax);
-                let taxable_amount_boosted =
-                    Float(boosted_raw_possible_win) - Float(stake_after_tax_boosted);
+                // let taxable_amount = Float(raw_possible_win) - Float(stake_after_tax);
+                // let taxable_amount_boosted =
+                //     Float(boosted_raw_possible_win) - Float(stake_after_tax_boosted);
 
-                let wint = taxable_amount * 0.2;
-                let wint_boosted = taxable_amount_boosted * 0.2;
+                // let wint = taxable_amount * 0.2;
+                // let wint_boosted = taxable_amount_boosted * 0.2;
 
                 // let nw = raw_possible_win - wint;
                 // let nw_boosted = boosted_raw_possible_win - wint_boosted; 
                 let nw = raw_possible_win;
                 let nw_boosted = boosted_raw_possible_win ;
 
-                setExciseTax(Float(ext, 2));
-                setExciseTaxBoosted(Float(ext_boosted, 2));
+                // setExciseTax(Float(ext, 2));
+                // setExciseTaxBoosted(Float(ext_boosted, 2));
 
-                setStakeAfterTax(stake_after_tax);
-                setStakeAfterTaxBoosted(stake_after_tax_boosted);
+                // setStakeAfterTax(stake_after_tax);
+                // setStakeAfterTaxBoosted(stake_after_tax_boosted);
 
-                setNetWin(Float(nw, 2));
-                setNetWinBoosted(Float(nw_boosted, 2));
+                // setNetWin(Float(nw, 2));
+                // setNetWinBoosted(Float(nw_boosted, 2));
 
                 dispatchRedux(setMatchBetslipOptions('kiron_betslip_options', {...betslip_options,...{netWin:Float(nw,2),netWinBoosted:Float(nw_boosted,2) }}))
 
@@ -315,14 +317,14 @@ const KironslipSubmitForm = React.memo(
                 setPossibleWin(Float(raw_possible_win, 2));
                 setPossibleWinBoosted(Float(boosted_raw_possible_win, 2));
 
-                setWithholdingTax(Float(wint, 2));
-                setWithholdingTaxBoosted(Float(wint_boosted, 2));
+                // setWithholdingTax(Float(wint, 2));
+                // setWithholdingTaxBoosted(Float(wint_boosted, 2));
             } else {
-                setNetWin(0);
-                setWithholdingTax(0);
-                setExciseTax(0);
+                // setNetWin(0);
+                // setWithholdingTax(0);
+                // setExciseTax(0);
                 setPossibleWin(0);
-                setStakeAfterTax(0);
+                // setStakeAfterTax(0);
             }
             if (message && message.status > 299) {
                 setMessage(null);
@@ -354,43 +356,90 @@ const KironslipSubmitForm = React.memo(
             return navigate("/nare-league")
         }, []);
 
+        // Todo check and create an array for my function 
+        // const showRemoveExpired = useCallback(() => {
+        //     let betslips = getKironSlip() || {};
 
-        const showRemoveExpired = useCallback(() => {
-            let betslips = getKironSlip() || {};
+        //     const data = Object.entries(betslips || {})?.map(([match_id, match]) => {
+        //         let start_time = match?.start_time;
+        //         let gettime = getTime(start_time);
+        //         let timePeriod = new Date(Date.parse(`${new Date().toDateString()} ${gettime}`));
+        //         let firstRound = timePeriod.getTime();
+        //         let now = new Date().getTime();
+        //         let diff = (firstRound - now);
+        //         let initialTime = Math.floor(diff / 1000);
+        //         let parent_match_id;
+        //         if (initialTime < 10) {
+        //             parent_match_id = match?.parent_match_id;
+        //         }
 
-            const data = Object.entries(betslips || {})?.map(([match_id, match]) => {
-                let start_time = match?.start_time;
-                let gettime = getTime(start_time);
-                let timePeriod = new Date(Date.parse(`${new Date().toDateString()} ${gettime}`));
-                let firstRound = timePeriod.getTime();
-                let now = new Date().getTime();
-                let diff = (firstRound - now);
-                let initialTime = Math.floor(diff / 1000);
-                let parent_match_id;
-                console.log("initial time data ", initialTime)
-                if (initialTime < 10) {
-                    parent_match_id = match?.parent_match_id;
-                }
+        //         return {parent_match_id, initialTime};
+        //     });
 
-                return {parent_match_id, initialTime};
-            });
+        //     let parentMatchId = data.map((item) => item.parent_match_id).filter(item => item !== undefined);
+        //     setExpiredParentMatchIds(parentMatchId);
 
-            let parentMatchId = data.map((item) => item.parent_match_id).filter(item => item !== undefined);
 
-            let initialTime = data.map((item) => item.initialTime);
+        //     let initialTime = data.map((item) => item.initialTime);
 
+        //     setExpired(parentMatchId)
+
+        //         const status = initialTime.some((exp) => exp < 10);
+        //     setShowExpired(status);
+
+        //     return {parentMatchId, initialTime};
+        // }, []);
+
+        // useEffect(() => {
+
+        //     showRemoveExpired()
+        // }, [Date.now()])
+
+
+    const showRemoveExpired = useCallback(() => {
+        let betslips = getKironSlip() || {};
+
+        const data = Object.entries(betslips || {}).map(([match_id, match]) => {
+            let start_time = match?.start_time;
+            let gettime = getTime(start_time);
+            let timePeriod = new Date(Date.parse(`${new Date().toDateString()} ${gettime}`));
+            let firstRound = timePeriod.getTime();
+            let now = new Date().getTime();
+            let diff = (firstRound - now);
+            let initialTime = Math.floor(diff / 1000);
+            let parent_match_id;
+            if (initialTime < 10) {
+                parent_match_id = match?.parent_match_id;
+            }
+
+            return { parent_match_id, initialTime };
+        });
+
+        let parentMatchId = data.map((item) => item.parent_match_id).filter(item => item !== undefined);
+
+
+        // Update expiredParentMatchIds only if it has changed
+        if (JSON.stringify(parentMatchId) !== JSON.stringify(expiredParentMatchIds)) {
+            setExpiredParentMatchIds(parentMatchId);
             setExpired(parentMatchId)
 
-                const status = initialTime.some((exp) => exp < 10);
-            setShowExpired(status);
+        }
 
-            return {parentMatchId, initialTime};
-        }, []);
+        const status = data.some((item) => item.initialTime < 10);
+        setShowExpired(status);
 
-        useEffect(() => {
+        return { parentMatchId, initialTime: data.map(item => item.initialTime) };
+    }, [getKironSlip, getTime, setExpiredParentMatchIds, setShowExpired, expiredParentMatchIds]);
 
-            showRemoveExpired()
-        }, [Date.now()])
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            showRemoveExpired();
+        }, 1000); // Update every second
+
+        return () => clearInterval(intervalId);
+    }, [showRemoveExpired]);
+
+
 
 
         const handleRemoveExpired = useCallback(() => {
@@ -422,6 +471,9 @@ const KironslipSubmitForm = React.memo(
 
 
             });
+            // clear the expired parent matchids on removal
+            setExpiredParentMatchIds([])
+            setExpired([])
 
         }, []);
 
@@ -472,7 +524,15 @@ const KironslipSubmitForm = React.memo(
 
             let giftMinGames = Number(settings?.kironGifts?.giftBoostMinLegs);
 
-            if (totalGames < giftMinGames) {
+            let betslips = getKironSlip() || {};
+
+             // Filter out expired matches based on your array of expired matches
+            const validBetslips = Object.entries(betslips || {}).filter(([match_id, match]) => !expiredParentMatchIds.includes(match_id));
+
+           
+
+            if (validBetslips.length < giftMinGames) {
+                
                 setHasMultiBetBoost(false);
 
                 dispatchRedux(setMatchBetslipOptions('kiron_betslip_options', {...betslip_options,...{hasBoost:false,  alert_slip_color:'not_qualified'}}))
@@ -482,13 +542,19 @@ const KironslipSubmitForm = React.memo(
 
             let boost = 0;
 
-            let betslips = getKironSlip() || {};
 
-            let odds = Object.values(betslips || [])?.filter(
-                (slip) =>
-                    slip.bet_type !== "1" &&
-                    Number(slip.odd_value) >= settings?.kironGifts?.giftBoostMinOdds
+            // let odds = Object.values(validBetslips || [])?.filter(
+            //     (slip) =>
+            //         slip.bet_type !== "1" &&
+            //         Number(slip.odd_value) >= settings?.kironGifts?.giftBoostMinOdds
+            // );
+            let odds = validBetslips?.filter(
+                ([match_id, slip]) => {
+                    return slip.bet_type !== "1" && Number(slip.odd_value) >= settings?.kironGifts?.giftBoostMinOdds;
+                }
             );
+
+           
 
             let giftQualificationOdds = odds.length;
 
@@ -582,7 +648,7 @@ const KironslipSubmitForm = React.memo(
 
         useEffect(() => {
             calculateMultiBetBoostAmount();
-        }, [betslip, stake]);
+        }, [betslip, stake, expiredParentMatchIds]);
 
 
         const closeAlert = () => {

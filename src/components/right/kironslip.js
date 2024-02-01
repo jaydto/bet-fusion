@@ -20,11 +20,10 @@ const KironSlip = React.memo(
         const [betslipsData, setBetslipsData] = useState(null);
         const { state, dispatch } = useContext(StoreContext);
         const totalGames = betslipsData ? Object.keys(betslipsData||{}).length : 0;
-        const [message, setMessage] = useState(null);
-        const [qualifiesBonus, setQualifiesBonus] = useState(false);
-        const [qualifiesGift, setQualifiesGift] = useState(false);
-        const [settings, setSettings] = useState(getFromLocalStorage("settings"));
-        const [expired, setExpired] = useState(false)
+        const [message, ] = useState(null);
+        const [qualifiesBonus, ] = useState(false);
+      
+        const [expired, setExpired] = useState([])
 
         const [totalOdds, setTotalOdds] = useState(1);
         const userData = useSelector((state) => state.auth.user)
@@ -51,7 +50,6 @@ const KironSlip = React.memo(
                 kiron && getKironSlip() !== null && Object.keys(getKironSlip()||{}).length == 0 ?
                     setBetslipsData(null) :
                     setBetslipsData(state[betslipKey]);
-                // console.log("size of slip",Object.keys(getJackpotBetslip).length )
             }
         }, [state[betslipKey]]);
 
@@ -114,103 +112,14 @@ const KironSlip = React.memo(
         const updateGiftState = () => {
         };
 
-        const updateBonusState = () => {
-            let maxBonusGames = Number(settings?.betnareBonus?.bonusBetLegs);
-
-            let perSlipBonusOdd = settings?.betnareBonus?.minBonusOdd;
-
-            let fixedOdd = settings?.betnareBonus?.fixedOdd === "1";
-
-            let perSlipMaxOdd = settings?.betnareBonus?.maxBonusOdd;
-
-            let bonusBetFixedAmount = settings?.betnareBonus?.bonusBetAmount;
-
-            let message = "";
-
-            let userBonus = Number(user?.bonus || 0);
-
-            if (totalGames < maxBonusGames) {
-                let remainingGames = Number(maxBonusGames) - Number(totalGames);
-                message = `Congratulations, you qualify for bonus. Add ${remainingGames} more game${
-                    remainingGames > 1 ? "s" : ""
-                } to place your bet using bonus.`;
-            } else if (totalGames === maxBonusGames) {
-                message =
-                    "Congratulations, you are eligible for a bonus bet. Allowed Bonus Bet Amount is KES " +
-                    bonusBetFixedAmount;
-            } else {
-                message = "";
-            }
-
-            let bonusBetEligible = false;
-
-            let bonusBetSportID = settings?.betnareBonus?.bonusSport;
-
-            if (fixedOdd) {
-                bonusBetEligible =
-                    Object.values(betslipsData || []).filter(
-                        (slip) =>
-                            Number(slip.odd_value) < Number(perSlipBonusOdd) ||
-                            slip.sub_type_id !== "1" ||
-                            slip.sport_id !== bonusBetSportID ||
-                            slip.bet_type !== "1"
-                    ).length < 1 && userBonus > 0;
-            } else {
-                bonusBetEligible =
-                    Object.values(betslipsData || []).filter(
-                        (slip) =>
-                            Number(slip.odd_value) < Number(perSlipBonusOdd) ||
-                            Number(slip.odd_value) > Number(perSlipMaxOdd) ||
-                            slip.sub_type_id !== "1" ||
-                            slip.sport_id !== bonusBetSportID ||
-                            slip.bet_type !== "1"
-                    ).length < 1 && userBonus > 0;
-            }
-
-            if (!bonusBetEligible) {
-                message = `To qualify for bonus bet, please select ${maxBonusGames} games each with odds ${
-                    Number(fixedOdd) === 1
-                        ? " of " + perSlipBonusOdd
-                        : " between " + perSlipBonusOdd + " and " + perSlipMaxOdd
-                }`;
-            }
-
-            if (userBonus < 1 || totalGames > maxBonusGames) {
-                message = "";
-            }
-
-            let alertMessage = {
-                status: bonusBetEligible ? 201 : 500,
-                message: message,
-            };
-
-            setMessage(alertMessage);
-            setQualifiesBonus(bonusBetEligible && totalGames <= maxBonusGames);
-        };
-
-        const BonusAlert = () => {
-            let c = message?.status === 201 ? "success" : "warning";
-            return (
-                <>
-                    {message?.status && message?.message && (
-                        <div
-                            className={`fade col shadow p-0 alert-${c} show position-sticky`}
-                        >
-                            {message.message}
-                        </div>
-                    )}
-                </>
-            );
-        };
+ 
 
         useEffect(() => {
-            updateBonusState();
             updateGiftState();
         }, [totalOdds, totalGames]);
 
         return (
             <div className="bet-body text-white">
-                {!kiron && <BonusAlert/>}
                 <div
                     className={`flow  slip-top ${user ? kiron ? 'slip-max' : 'slip-height slip-log-max' : 'slip-max'} overflow-auto`}>
                     <div className={"slip-bottom-space"}>

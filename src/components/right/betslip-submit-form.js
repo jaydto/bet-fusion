@@ -234,7 +234,7 @@ const BetslipSubmitForm = React.memo(
 
             let payload = {
                 bet_string: 'web',
-                app_name: 'desktop',
+                app_name: width <= 767 ? "mobile":width>767&&width<=967? "tablet":'desktop',
                 possible_win: possibleWin,
                 profile_id: values.user_id,
                 stake_amount: values.bet_amount,

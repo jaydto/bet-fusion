@@ -195,8 +195,10 @@ const KironslipSubmitForm = React.memo(
                 }));
 
                 let payload = {
+                    bet_string: 'web',
+                    channelID: 'web',
+                    app_name: width <= 767 ? "mobile":width>767&&width<=967? "tablet":'desktop',
                     amount: values.bet_amount,
-                    app_name: "desktop",
                     bet_data: betDataArray
                 }
 

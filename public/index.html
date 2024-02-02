@@ -63,6 +63,33 @@
 
 <script defer src="https://widgets.sir.sportradar.com/db1070bd52c9f321c66fd763a52e2af8/widgetloader"></script>
 
+<script>
+    <!--start of analytics-->
+    window.onload = function () {
+
+        var script = document.createElement("script");
+        script.defer = true;
+        
+        var firstScript = document.getElementsByTagName("script")[0];
+        firstScript.parentNode.insertBefore(script, firstScript);
+        // google analytics
+        var gAnalytics = document.createElement("script");
+        gAnalytics.defer = true;
+        gAnalytics.text = `
+  window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'G-5NLSN9BLN4');
+`;
+        firstScript.parentNode.insertBefore(gAnalytics, firstScript);
+
+
+ 
+    };
+
+</script>
+
 <!--<script async>-->
 <!--    setTimeout(function () {-->
 <!--        console.log("Timeout now called .... ")-->

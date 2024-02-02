@@ -24,7 +24,9 @@ const KironSlip = React.memo(
         const [qualifiesBonus, setQualifiesBonus] = useState(false);
         const [qualifiesGift, setQualifiesGift] = useState(false);
         const [settings, setSettings] = useState(getFromLocalStorage("settings"));
-        const [expired, setExpired] = useState(false)
+
+      
+        const [expired, setExpired] = useState([])
 
         const [totalOdds, setTotalOdds] = useState(1);
         const userData = useSelector((state) => state.auth.user)
@@ -51,7 +53,6 @@ const KironSlip = React.memo(
                 kiron && getKironSlip() !== null && Object.keys(getKironSlip()||{}).length == 0 ?
                     setBetslipsData(null) :
                     setBetslipsData(state[betslipKey]);
-                // console.log("size of slip",Object.keys(getJackpotBetslip).length )
             }
         }, [state[betslipKey]]);
 
@@ -113,7 +114,6 @@ const KironSlip = React.memo(
 
         const updateGiftState = () => {
         };
-
         const updateBonusState = () => {
             let maxBonusGames = Number(settings?.betnareBonus?.bonusBetLegs);
 
@@ -127,7 +127,7 @@ const KironSlip = React.memo(
 
             let message = "";
 
-            let userBonus = Number(user?.bonus || 0);
+            let userBonus = Number(state?.user?.bonus || 0);
 
             if (totalGames < maxBonusGames) {
                 let remainingGames = Number(maxBonusGames) - Number(totalGames);
@@ -187,7 +187,6 @@ const KironSlip = React.memo(
             setMessage(alertMessage);
             setQualifiesBonus(bonusBetEligible && totalGames <= maxBonusGames);
         };
-
         const BonusAlert = () => {
             let c = message?.status === 201 ? "success" : "warning";
             return (
@@ -202,6 +201,7 @@ const KironSlip = React.memo(
                 </>
             );
         };
+ 
 
         useEffect(() => {
             updateBonusState();
@@ -210,7 +210,8 @@ const KironSlip = React.memo(
 
         return (
             <div className="bet-body text-white">
-                {!kiron && <BonusAlert/>}
+                                {!kiron && <BonusAlert/>}
+
                 <div
                     className={`flow  slip-top ${user ? kiron ? 'slip-max' : 'slip-height slip-log-max' : 'slip-max'} overflow-auto`}>
                     <div className={"slip-bottom-space"}>

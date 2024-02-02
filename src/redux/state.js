@@ -62,6 +62,7 @@ const initialState = {
         multiboostmessage:null,
         alert_boost_color:'',
         betslip_options:null,
+        kiron_betslip_options:null,
     },// Initial state for the betting Slice reducer
     auth: {
         isLoading: false,

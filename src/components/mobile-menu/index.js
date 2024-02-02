@@ -20,21 +20,26 @@ import {setMatchBetslip, setState as setMatchBetslipOptions} from "../../redux/b
 
 const MobileMenu = React.memo((props) => {
 
-    const betItems = getBetslip();
+    const pathname = window.location.pathname;
+
+    const betItems = pathname.includes("nare-league")?getKironSlip() :getBetslip();
     const [kiron, setKiron]=useState()
     const {state}=useContext((StoreContext))
     const betslipLength=useSelector((state)=>state.betting.betslipLength)
 
     const [betSlipMobile, setBetSlipMobile] = useState(false);
     const gaEventTracker = useAnalyticsEventTracker("Navigation");
-    const pathname = window.location.pathname;
+    
     const navigate = useNavigate();
     const liveCount=useSelector((state)=>state.matchesData.sport_live_count)
     const userData = useSelector((state) => state.auth.user)
     const [user, setUser] = useState(getFromLocalStorage("user"))
     const remaining_games=useSelector((state)=>state.betting.remaining_games)
     const betslip_options=useSelector((state)=>state.betting.betslip_options)
+    const kiron_betslip_options=useSelector((state)=>state.betting.kiron_betslip_options)
     const dispatchRedux=useDispatch()
+    let settings = getFromLocalStorage("settings");
+
 
     useEffect(() => {
         if (userData) {
@@ -71,7 +76,20 @@ const MobileMenu = React.memo((props) => {
             sumOfOdds *= oddValue;
         }
     });
-    let winnings = sumOfOdds !== 0 ? (betslip_options?.hasBoost ? betslip_options?.netWinBoosted == 0 ? betslip_options?.netWin : betslip_options?.netWinBoosted : betslip_options?.netWin) : 0
+    let winnings = sumOfOdds !== 0 ?
+    pathname.includes("nare-league")? (
+        kiron_betslip_options?.hasBoost ?
+         kiron_betslip_options?.netWinBoosted == 0 ? 
+         kiron_betslip_options?.netWin : 
+         kiron_betslip_options?.netWinBoosted : 
+         kiron_betslip_options?.netWin):
+         
+         (betslip_options?.hasBoost ? 
+            betslip_options?.netWinBoosted == 0 ? 
+            betslip_options?.netWin : 
+            betslip_options?.netWinBoosted : 
+            betslip_options?.netWin) : 0
+
     let progressNow = remaining_games;
     const percentageProgress = () => {
         let remainingGames = remaining_games;
@@ -96,15 +114,17 @@ const MobileMenu = React.memo((props) => {
     useEffect(() => {
         if (sumOfOdds == 0) {
             winnings = 0
-            dispatchRedux(setMatchBetslipOptions('betslip_options', {...betslip_options,...{hasBoost:false, netWinBoosted: 0, netWin: 0, multiboostmessage: 0}}))
+
+            pathname.includes("nare-league")?dispatchRedux(setMatchBetslipOptions('kiron_betslip_options', {...kiron_betslip_options,...{hasBoost:false, netWinBoosted: 0, netWin: 0, multiboostmessage: 0}}))
+            :dispatchRedux(setMatchBetslipOptions('betslip_options', {...betslip_options,...{hasBoost:false, netWinBoosted: 0, netWin: 0, multiboostmessage: 0}}))
 
 
         } else {
-            winnings = sumOfOdds !== 0 ? (betslip_options?.hasBoost ? betslip_options?.netWinBoosted == 0 ? betslip_options?.netWin : betslip_options?.netWinBoosted : betslip_options?.netWin) : 0
+            winnings = sumOfOdds !== 0 ?pathname.includes("nare-league")?(kiron_betslip_options?.hasBoost ? kiron_betslip_options?.netWinBoosted == 0 ? kiron_betslip_options?.netWin : kiron_betslip_options?.netWinBoosted : kiron_betslip_options?.netWin): (betslip_options?.hasBoost ? betslip_options?.netWinBoosted == 0 ? betslip_options?.netWin : betslip_options?.netWinBoosted : betslip_options?.netWin) : 0
         }
     }, [winnings])
     const pathSlipSummary = ["/betslip-slip",
-        "/betslip-nare", "/betslip-nare", "/nare-league",
+        "/betslip-nare", "/betslip-nare",
         "standing", "bet-history", "/results",
         "/jackpot", "/casino", "/smart-soft",
         "/nare-games", "/promotions","/terms-and-conditions", "/profile"]
@@ -115,7 +135,7 @@ const MobileMenu = React.memo((props) => {
         e.stopPropagation()
     }
 
-    const slip_condition = (!pathSlipSummary.includes(pathname) && betslip_options?.multiboostmessage && sumOfOdds > 1 && countInfo)
+    const slip_condition = (!pathSlipSummary.includes(pathname) && (pathname.includes("nare-league")?kiron_betslip_options?.multiboostmessage:betslip_options?.multiboostmessage) && sumOfOdds > 1 && countInfo)
     const [flag, setFlag]=useState(true)
     // cleanup/unmounting components fix
     useEffect(()=>{
@@ -154,12 +174,15 @@ const MobileMenu = React.memo((props) => {
                     </div>
                 </div>
             </div>
+            {console.log("betnare giftboost status information",(pathname.includes("nare-league")?Number(settings?.kironGifts?.awardGiftBoost)===1:
+                   Number(settings?.betnareGifts?.awardGiftBoost)===1) )}
 
             <table className={`${slip_condition ? "prematch-menu mobile-menu" : "mobile-menu"}`}
-                   style={!pathSlipSummary.includes(pathname) ? sumOfOdds === 1 ? {height: "70px"} : countInfo ? {height: "92px"} : {height: "70px"} : {height: "55px"}}>
-                <tbody>
+                   style={!pathSlipSummary.includes(pathname) ? sumOfOdds === 1 ? {height: "50px"} : countInfo&&(pathname.includes("nare-league")?Number(settings?.kironGifts?.awardGiftBoost)===1:
+                   Number(settings?.betnareGifts?.awardGiftBoost)===1) ? {height: "92px"} : {height: "70px"} : {height: "50px"}}>
+                   <tbody>
                 {slip_condition ?
-                    <tr className={"mobile-menu-container"} onClick={()=>navigate("/betslip-slip")}>
+                    <tr className={"mobile-menu-container"} onClick={()=>navigate(pathname.includes("nare-league")?"/betslip-nare?nare-league=true":"/betslip-slip")}>
                         <table>
                             <tbody className={"slip-menu-prematch"}>
                             <tr>
@@ -184,7 +207,7 @@ const MobileMenu = React.memo((props) => {
                                 </td>
                              </tr>
                         {!pathSlipSummary.includes(pathname) &&
-                             <tr className={`${slip_condition ? "info_bet_alert" : "info-slip-bets"} d-flex w-100 justify-content-between px-3`} onClick={()=>navigate("/betslip-slip")}>
+                             <tr className={`${slip_condition ? "info_bet_alert" : "info-slip-bets"} d-flex w-100 justify-content-between px-3`} onClick={()=>navigate(pathname.includes("nare-league")?"/betslip-nare?nare-league=true":"/betslip-slip")}>
                                 <td className={"bet-align-left-slip"}>
                                     <div className={"d-flex justify-content-start align-items-center gap-2"}>
                                         <Badge
@@ -205,7 +228,7 @@ const MobileMenu = React.memo((props) => {
 
                                 </td>
                             </tr>}
-                             <tr className={"mt-3"} onClick={() => navigate("/betslip-slip")}>
+                             <tr className={"mt-3"} onClick={() => navigate(pathname.includes("nare-league")?"betslip-nare?nare-league=true":"/betslip-slip")}>
                             <td className={"bet-align-left w-100"}>
                                 <div className="progress mx-3 my-3 prematch-slip">
                                     <div className="progress-bar prematch" role="progressbar"
@@ -222,7 +245,10 @@ const MobileMenu = React.memo((props) => {
                                                       color: "var(--dark)",
                                                       fontSize:"10px"
                                                   }}>
-								{betslip_options?.multiboostmessage}</span>
+
+								{pathname.includes("nare-league")?kiron_betslip_options?.multiboostmessage:
+                                betslip_options?.multiboostmessage}
+                                </span>
                                         </div>
                                     </div>
                                 </td>
@@ -236,6 +262,7 @@ const MobileMenu = React.memo((props) => {
                         <table>
                             <tbody>
                             {!pathSlipSummary.includes(pathname) &&
+                            sumOfOdds>1 &&
                                 <tr className={"info-slip-bets d-flex w-100 justify-content-between px-3"}>
                                     <td className={"bet-align-left-slip"}>
                                         Odds {parseFloat(sumOfOdds).toFixed(2) || 1}

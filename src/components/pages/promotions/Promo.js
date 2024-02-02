@@ -47,6 +47,9 @@ const Promo = () => {
     ,{
       src: "https://cdn.betnare.com/carousel/ValentinesnaJETX.webp",
       id: 17,
+    },{
+      src: "https://cdn.betnare.com/carousel/14DaysofloveWeb.webp",
+      id: 18,
     }
   ];
 

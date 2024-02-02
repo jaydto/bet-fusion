@@ -7,7 +7,7 @@ import {getFromLocalStorage} from "../utils/local-storage";
 import DecodeCode from "./decode";
 import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {removePickedData, removeSelected, removeSlipSelection, setMatchBetslip} from "../../redux/bettingSlice";
+import {removePickedData, removeSelected,  setMatchBetslip} from "../../redux/bettingSlice";
 
 const clean_rep = (str) => {
     str = str.replace(/[^A-Za-z0-9\-]/g, "");
@@ -166,21 +166,100 @@ const BetSlip = React.memo(
 
 
 
-        const updateBonusState = () => {
+        // const updateBonusState = () => {
+        //     let maxBonusGames = Number(settings?.betnareBonus?.bonusBetLegs);
+
+        //     let perSlipBonusOdd = settings?.betnareBonus?.minBonusOdd;
+
+        //     let fixedOdd = settings?.betnareBonus?.fixedOdd === "1";
+
+        //     let perSlipMaxOdd = settings?.betnareBonus?.maxBonusOdd;
+
+        //     let bonusBetFixedAmount = settings?.betnareBonus?.bonusBetAmount;
+
+        //     let message = "";
+
+        //     let userBonus = Number(user?.bonus || 0);
+
+        //     if ((totalGames < maxBonusGames) && (maxBonusGames > 1)) {
+        //         let remainingGames = Number(maxBonusGames) - Number(totalGames);
+        //         message = `Congratulations, you qualify for bonus. Add ${remainingGames} more game${
+        //             remainingGames > 1 ? "s" : ""
+        //         } to place your bet using bonus.`;
+        //     } else if ((totalGames === maxBonusGames) && (maxBonusGames > 1)) {
+        //         message =
+        //             "Congratulations, you are eligible for a bonus bet. Allowed Bonus Bet Amount is KES " +
+        //             bonusBetFixedAmount;
+        //     } else {
+        //         message = "";
+        //     }
+
+        //     let bonusBetEligible = false;
+
+        //     let bonusBetSportID = settings?.betnareBonus?.bonusSport;
+
+        //     if (fixedOdd) {
+        //         bonusBetEligible =
+        //             Object.values(betslipsData || []).filter(
+        //                 (slip) =>
+        //                     Number(slip.odd_value) < Number(perSlipBonusOdd) ||
+        //                     slip.sub_type_id !== "1" ||
+        //                     slip.sport_id !== bonusBetSportID ||
+        //                     slip.bet_type !== "1"
+        //             ).length < 1 && userBonus > 0;
+        //     } else {
+        //         bonusBetEligible =
+        //             Object.values(betslipsData || []).filter(
+        //                 (slip) =>
+        //                     Number(slip.odd_value) < Number(perSlipBonusOdd) ||
+        //                     Number(slip.odd_value) > Number(perSlipMaxOdd) ||
+        //                     slip.sub_type_id !== "1" ||
+        //                     slip.sport_id !== bonusBetSportID ||
+        //                     slip.bet_type !== "1"
+        //             ).length < 1 && userBonus > 0;
+        //     }
+
+        //     if (!bonusBetEligible && (maxBonusGames > 1)) {
+        //         message = `To qualify for bonus bet, please select ${maxBonusGames} games each with odds ${
+        //             Number(fixedOdd) === 1
+        //                 ? " of " + perSlipBonusOdd
+        //                 : " between " + perSlipBonusOdd + " and " + perSlipMaxOdd
+        //         }`;
+        //     }
+
+        //     if (userBonus < 1 || totalGames > maxBonusGames) {
+        //         message = "";
+        //     }
+
+        //     let alertMessage = {
+        //         status: bonusBetEligible ? 201 : 500,
+        //         message: message,
+        //     };
+
+        //     setMessage(alertMessage);
+        //     setQualifiesBonus(bonusBetEligible && totalGames <= maxBonusGames);
+        // };
+        
+        // useEffect(() => {
+        //     updateBonusState();
+        //     }, 
+        //     [totalOdds, totalGames]);
+
+        const updateBonusStateCallback = useCallback(() => {
             let maxBonusGames = Number(settings?.betnareBonus?.bonusBetLegs);
-
+        
             let perSlipBonusOdd = settings?.betnareBonus?.minBonusOdd;
-
+        
             let fixedOdd = settings?.betnareBonus?.fixedOdd === "1";
-
+        
             let perSlipMaxOdd = settings?.betnareBonus?.maxBonusOdd;
-
+        
             let bonusBetFixedAmount = settings?.betnareBonus?.bonusBetAmount;
-
+        
             let message = "";
-
+        
             let userBonus = Number(user?.bonus || 0);
-
+        
             if ((totalGames < maxBonusGames) && (maxBonusGames > 1)) {
                 let remainingGames = Number(maxBonusGames) - Number(totalGames);
                 message = `Congratulations, you qualify for bonus. Add ${remainingGames} more game${
@@ -193,11 +272,11 @@ const BetSlip = React.memo(
             } else {
                 message = "";
             }
-
+        
             let bonusBetEligible = false;
-
+        
             let bonusBetSportID = settings?.betnareBonus?.bonusSport;
-
+        
             if (fixedOdd) {
                 bonusBetEligible =
                     Object.values(betslipsData || []).filter(
@@ -218,7 +297,7 @@ const BetSlip = React.memo(
                             slip.bet_type !== "1"
                     ).length < 1 && userBonus > 0;
             }
-
+        
             if (!bonusBetEligible && (maxBonusGames > 1)) {
                 message = `To qualify for bonus bet, please select ${maxBonusGames} games each with odds ${
                     Number(fixedOdd) === 1
@@ -226,20 +305,25 @@ const BetSlip = React.memo(
                         : " between " + perSlipBonusOdd + " and " + perSlipMaxOdd
                 }`;
             }
-
+        
             if (userBonus < 1 || totalGames > maxBonusGames) {
                 message = "";
             }
-
+        
             let alertMessage = {
                 status: bonusBetEligible ? 201 : 500,
                 message: message,
             };
-
+        
             setMessage(alertMessage);
             setQualifiesBonus(bonusBetEligible && totalGames <= maxBonusGames);
-        };
-
+        }, [totalGames, settings, user, betslipsData, setMessage, setQualifiesBonus]);
+        
+        useEffect(() => {
+            updateBonusStateCallback();
+        }, [updateBonusStateCallback]);
+            
+        
         const BonusAlert = () => {
             let c = message?.status === 201 ? "success" : "warning";
             return (
@@ -255,9 +339,9 @@ const BetSlip = React.memo(
             );
         };
 
-        useEffect(() => {
-            updateBonusState();
-        }, [totalOdds, totalGames]);
+        console.log("bonusMessage data", message?.message);
+
+       
 
         useEffect(() => {
 

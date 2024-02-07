@@ -307,80 +307,6 @@ const PromoCards = () => {
                     </div>
                 </div
                 >
-                <div className="col-md-2 promo-styling shadow-lg promotion">
-                    <div className="d-flex flex-column promo-inner  promo-inactive">
-                        <img src={'https://cdn.betnare.com/carousel/LuckyHour.webp'} className={"rounded promo-image "}/>
-                        <h5
-                            className="bold d-flex justify-content-center h4 pt-2"
-                            style={{color: "#ea5d0b"}}
-                        >
-                           LUCKY HOUR BONUS
-                        </h5>
-                        <p className="container-profile mx-1 px-2 text-data-promotions">
-                        The Lucky Hour Bonus applies to new and existing customers who Deposit and place a bet....
-                        </p>
-                        <hr/>
-
-                        <div className="d-flex justify-content-between my-2 mx-2">
-
-                            <button className={"profile-button border-0 h-25 rounded promo-button"}
-                           disabled={true}
-                                    style={{background: "#ea5d0b"}} onClick={() => {
-                                gaEventTracker('lucky_hour');
-                                navigate(`/deposit`);
-                                setUtmSouceCampaignOnPromotions('lucky_hour')
-                            }}>Deposit
-                            </button>
-                            <div
-                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"}
-                                style={{color: "#ea5d0b"}}
-                                onClick={() => {
-                                    navigate(`/promo?id=${ids[4]}`);
-                                    window.scrollTo(0, 0); // Scroll to the top of the page
-                                }}
-                            >
-                                Read More
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-md-2 promo-styling shadow-lg promotion">
-                    <div className="d-flex flex-column promo-inner  promo-inactive">
-                        <img src={'https://cdn.betnare.com/carousel/Mbuzi.webp'} className={"rounded promo-image "}/>
-                        <h5
-                            className="bold d-flex justify-content-center h4 pt-2"
-                            style={{color: "#ea5d0b"}}
-                        >
-                            SHINDA MBUZI YA KRISI NA BETNARE!
-                        </h5>
-                        <p className="container-profile mx-1 px-2 text-data-promotions">
-                        	Open to all new and existing customers....
-                        </p>
-                        <hr/>
-
-                        <div className="d-flex justify-content-between my-2 mx-2">
-
-                            <button className={"profile-button border-0 h-25 rounded promo-button"}
-                            disabled={true}
-                                    style={{background: "#ea5d0b"}} onClick={() => {
-                                gaEventTracker('mbuzi_ya_krisi');
-                                navigate(`/`);
-                                setUtmSouceCampaignOnPromotions('mbuzi_ya_krisi')
-                            }}>Bet now
-                            </button>
-                            <div
-                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"}
-                                style={{color: "#ea5d0b"}}
-                                onClick={() => {
-                                    navigate(`/promo?id=${ids[5]}`);
-                                    window.scrollTo(0, 0); // Scroll to the top of the page
-                                }}
-                            >
-                                Read More
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 
                 <div className="col-md-2 promo-styling shadow-lg promotion">
                     <div className="d-flex flex-column promo-inner  promo-inactive">
@@ -420,43 +346,7 @@ const PromoCards = () => {
                     </div>
                 </div>
                
-                <div className="col-md-2 promo-styling shadow-lg promotion promo-inactive">
-                    <div className="d-flex flex-column promo-inner">
-                        <img src={'https://cdn.betnare.com/carousel/MegaMatchBonusWeb.webp'} className={"rounded promo-image "}/>
-                        <h5
-                            className="bold d-flex justify-content-center h4 pt-2"
-                            style={{color: "#ea5d0b"}}
-                        >
-                            500 FOR 500 PROMOTION TERMS AND CONDITIONS
-                        </h5>
-                        <p className="container-profile mx-1 px-2 text-data-promotions">
-                            Deposit 500/= and Get 500/= free bonus instantly!
-                        </p>
-                        <hr/>
-
-                        <div className="d-flex justify-content-between my-2 mx-2">
-
-                            <button className={"profile-button border-0 h-25 rounded promo-button"}
-                                    disabled={true}
-                                    style={{background: "#ea5d0b"}} onClick={() => {
-                                gaEventTracker('promo Mia tano Hamsini');
-                                navigate(`/deposit`);
-                                setUtmSouceCampaignOnPromotions('booster-midmonth')
-                            }}>Deposit now
-                            </button>
-                            <div
-                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"}
-                                style={{color: "#ea5d0b"}}
-                                onClick={() => {
-                                    navigate(`/promo?id=${ids[10]}`);
-                                    window.scrollTo(0, 0); // Scroll to the top of the page
-                                }}
-                            >
-                                Read More
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              
                 <div className="col-md-2 promo-styling shadow-lg promotion">
                     <div className="d-flex flex-column promo-inner promo-inactive">
                         <img src={mia_sita_ham_sini} className={"rounded promo-image "}/>

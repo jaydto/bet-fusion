@@ -118,7 +118,7 @@ const PromoCards = () => {
                 >
                
                 <div className="col-md-2 promo-styling shadow-lg promotion">
-                    <div className="d-flex flex-column promo-inner">
+                    <div className="d-flex flex-column promo-inner promo-inactive">
                         <img src={'https://cdn.betnare.com/carousel/Pepea.webp'} className={"rounded promo-image "}/>
                         <h5
                             className="bold d-flex justify-content-center h4 pt-2"
@@ -134,7 +134,9 @@ const PromoCards = () => {
                         <div className="d-flex justify-content-between my-2 mx-2">
 
                             <button className={"profile-button border-0 h-25 rounded promo-button"}
-                                    style={{background: "#ea5d0b"}} onClick={() => {
+                                    style={{background: "#ea5d0b"}} 
+                                    disabled={true}
+                                    onClick={() => {
                                 gaEventTracker('rubani_challenge');
                                 navigate(`/nare-games/aviator?status=live`);
                                 setUtmSouceCampaignOnPromotions('rubani_challenge')
@@ -322,7 +324,7 @@ const PromoCards = () => {
                         <div className="d-flex justify-content-between my-2 mx-2">
 
                             <button className={"profile-button border-0 h-25 rounded promo-button"}
-                            disabled={true}
+                           disabled={true}
                                     style={{background: "#ea5d0b"}} onClick={() => {
                                 gaEventTracker('lucky_hour');
                                 navigate(`/deposit`);

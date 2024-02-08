@@ -977,7 +977,7 @@ const LeaderBoards = () => {
                     <div className="title">
                         <h2 className="text-medium">
                             <div className={'congrats'}>
-                            <span style={{color:'var(--gold'}}> Ksh 1.2 </span> Million is up for grabs. Highest Multiplier for the Qualifying day will win <span style={{color:'var(--gold'}}> Ksh. 15,000</span>.  Check other winnings in table below.    <span style={{color:'var(--light'}}>KES&nbsp;</span><span style={{color:'var(--gold'}}>1,200,000!</span>
+                            <span style={{color:'var(--gold'}}> Ksh 1.2 Million</span>  is up for grabs. Highest Multiplier for the Qualifying day will win <span style={{color:'var(--gold'}}> Ksh. 15,000</span>.  Check other winnings in table below.    <span style={{color:'var(--light'}}>KES&nbsp;</span><span style={{color:'var(--gold'}}>1,200,000!</span>
                             </div>
                             <strong><Link to={'/promo?id=19'} style={{ color:"var(--aqua-text)"}}>How to Play!</Link></strong>
                             </h2>

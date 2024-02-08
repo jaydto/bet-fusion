@@ -77,7 +77,11 @@ const PromoCards = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="d-flex flex-column promo-inner">
+                    
+                    
+                </div>
+                <div className="col-md-2 promo-styling shadow-lg promotion">
+                <div className="d-flex flex-column promo-inner">
                         <img src={'https://cdn.betnare.com/carousel/14DaysofloveWeb.webp'} className={"rounded promo-image "}/>
                         <h5
                             className="bold d-flex justify-content-center h4 pt-2"
@@ -111,9 +115,8 @@ const PromoCards = () => {
                             </div>
                         </div>
                     </div>
-                    
-                </div
-                > 
+                    </div>
+                
                  <div className="col-md-2 promo-styling shadow-lg promotion">
                     <div className="d-flex flex-column promo-inner">
                         <img src={'https://cdn.betnare.com/carousel/ValentinesnaJETX.webp'} className={"rounded promo-image "}/>

@@ -22,14 +22,14 @@
             content="Betnare, giving the experience of betting like no other"
     />
     <meta name="keywords"
-          content="Jetx , Aviator,Nare League, Football ,Football League, casino, slots, betting, virtuals, horse racing, Football X, Betnare, Space Man, bonuses | Rain Bets | Stake Booster "/>
+          content="Jetx , Aviator,Nare League, Football ,Football League, casino, slots, betting, virtuals, horse racing, Football X, Betnare, Space Man, bonuses | Rain Bets | Stake Booster , Jackpot, Rain Bets, Daily Jackpot, games, betting, bet, multibet, sure, prematch, live, virtual, virtualgames, betting, punter,tips,odds, bonus,competition,kenya, bclb, sports, pesa, deposit, tennis, football, soccer,fast, experience, penalty, goals, soccer, win"/>
 
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/fire2.png" type="image/png"/>
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <link rel="preload" as="style" href="./lite.css" type="text/css">
 
     <title>Betnare | Best Online Betting in Kenya | Aviator | Nare League | JetX | Casino Slots| Football X | Space Man
-        | Bonuses</title>
+        | Bonuses | Jackpot | Daily Jackpot | Bet | Soccer</title>
 
 </head>
 <!--onscroll="getScrollLength()"-->
@@ -64,31 +64,43 @@
 <script defer src="https://widgets.sir.sportradar.com/db1070bd52c9f321c66fd763a52e2af8/widgetloader"></script>
 
 <script>
-    <!--start of analytics-->
     window.onload = function () {
+        // Create the script element for Google Tag Manager
+        var gTagManager = document.createElement("script");
+        gTagManager.src = "https://www.googletagmanager.com/gtag/js?id=G-5NLSN9BLN4";
+        gTagManager.async = true;
 
-        var script = document.createElement("script");
-        script.defer = true;
-        
-        var firstScript = document.getElementsByTagName("script")[0];
-        firstScript.parentNode.insertBefore(script, firstScript);
-        // google analytics
-        var gAnalytics = document.createElement("script");
-        gAnalytics.defer = true;
-        gAnalytics.text = `
-  window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
+        // Append the Google Tag Manager script to the head
+        document.head.appendChild(gTagManager);
 
-gtag('config', 'G-5NLSN9BLN4');
-`;
-        firstScript.parentNode.insertBefore(gAnalytics, firstScript);
+        // Function to create and append the Google Analytics script
+        function appendGoogleAnalyticsScript() {
+            // Create the script element for Google Analytics
+            var gAnalytics = document.createElement("script");
+            gAnalytics.text = `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-5NLSN9BLN4');
+            `;
 
+            // Append the Google Analytics script to the head
+            document.head.appendChild(gAnalytics);
+        }
 
- 
+        // Call the function to append the Google Analytics script
+        appendGoogleAnalyticsScript();
     };
-
 </script>
+
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-5NLSN9BLN4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5NLSN9BLN4');
+</script> -->
 
 <!--<script async>-->
 <!--    setTimeout(function () {-->

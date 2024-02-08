@@ -39,7 +39,7 @@ const LeaderBoards = () => {
                 <div className="top">
                     <div className={'d-flex flex-wrap w-100 gap-3 justify-content-center'}>
                         <strong className={'aniversary-text text1'}>
-                            Rubani 
+                            How Long Can You Last
                         </strong>
                         <strong className={'aniversary-text text2'}>
                         Challenge
@@ -977,9 +977,9 @@ const LeaderBoards = () => {
                     <div className="title">
                         <h2 className="text-medium">
                             <div className={'congrats'}>
-                            Aim for a spot in the top to grab a share of the <span style={{color:'var(--gold'}}> Ksh. 500,000</span> cash prizes daily by getting the highest in-game multiplier.  <span style={{color:'var(--light'}}>KES&nbsp;</span><span style={{color:'var(--gold'}}>500,000!</span>
+                            <span style={{color:'var(--gold'}}> Ksh 1.2 Million</span>  is up for grabs. Highest Multiplier for the Qualifying day will win <span style={{color:'var(--gold'}}> Ksh. 15,000</span>.  Check other winnings in table below.    <span style={{color:'var(--light'}}>KES&nbsp;</span><span style={{color:'var(--gold'}}>1,200,000!</span>
                             </div>
-                            <strong><Link to={'/promo?id=16'} style={{ color:"var(--aqua-text)"}}>How to Play!</Link></strong>
+                            <strong><Link to={'/promo?id=19'} style={{ color:"var(--aqua-text)"}}>How to Play!</Link></strong>
                             </h2>
                         <div className="opacity-75">Ends {leaders?.end_date}</div>
                     </div>

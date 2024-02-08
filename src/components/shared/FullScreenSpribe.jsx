@@ -22,13 +22,13 @@ const FullscreenButtonSpribe = ({ onClick, navigation, isCustomFullScreen }) => 
 												   opacity: '0.7',
 												   paddingLeft:'11px'}}> Back</span>
                                             </span>
-                                            <Link to="/leader-board" style={{fontSize: "16px",
+                                            <Link to="/leader-board" class="leader-board-mobile"style={{fontSize: "14px",
 												   color: 'var(--link-color)',
 												   fontWeight: '700',
 												   opacity: '0.7',
 												//    border:'1px solid var(--light-color)',
 												//    borderRadius:'4px',
-												   paddingLeft:'11px'}}>~Rubani Challenge~</Link>
+												   paddingLeft:'11px'}}>~How Long Can You Last ~</Link>
 
 			<div className="fullscreen-button px-3" onClick={onClick}>
 				{isCustomFullScreen?'Exit':'View'} Fullscreen <FontAwesomeIcon icon={faExpand} />

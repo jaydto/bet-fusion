@@ -346,7 +346,7 @@ const PromoCards = () => {
                     </div>
                 </div
                 >
-                \
+                
                 <div className="col-md-2 promo-styling shadow-lg promotion">
                     <div className="d-flex flex-column promo-inner  promo-inactive">
                         <img src={'https://cdn.betnare.com/carousel/chomokananduthi.webp'} className={"rounded promo-image "}/>

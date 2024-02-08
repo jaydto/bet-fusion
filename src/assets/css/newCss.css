@@ -3509,6 +3509,9 @@ button#countryCode{
     .top-position-mobile-view{
         margin-top:14rem;
     }
+    .leader-board-mobile{
+        width:31%;
+    }
     
     .top-position-mobile-view.active{
         margin-top:10rem

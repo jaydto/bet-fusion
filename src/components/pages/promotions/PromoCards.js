@@ -63,7 +63,7 @@ const PromoCards = () => {
                                 gaEventTracker('how_long_can_you_last');
                                 navigate(`/nare-games/aviator?status=live`);
                                 setUtmSouceCampaignOnPromotions('how_long_can_you_last')
-                            }}>Play Avator!
+                            }}>Play Aviator!
                             </button>
                             <div
                                 className={"d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"}

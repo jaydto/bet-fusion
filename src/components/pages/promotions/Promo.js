@@ -50,6 +50,9 @@ const Promo = () => {
     },{
       src: "https://cdn.betnare.com/carousel/14DaysofloveWeb.webp",
       id: 18,
+    },{
+      src: "https://cdn.betnare.com/carousel/LastPromoFeb.webp",
+      id: 19,
     }
   ];
 

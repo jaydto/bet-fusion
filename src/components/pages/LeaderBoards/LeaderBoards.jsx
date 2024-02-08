@@ -39,7 +39,7 @@ const LeaderBoards = () => {
                 <div className="top">
                     <div className={'d-flex flex-wrap w-100 gap-3 justify-content-center'}>
                         <strong className={'aniversary-text text1'}>
-                            How Long Can YOu Last
+                            How Long Can You Last
                         </strong>
                         <strong className={'aniversary-text text2'}>
                         Challenge

@@ -1,0 +1,440 @@
+.section-container {
+  margin: 0 auto 20px;
+  max-width: 1580px;
+  width: 100%;
+}
+.section-white, .section-white .row {
+  --bs-gutter-x: 20px;
+}
+#app-container{
+
+}
+.filters {
+  list-style: none;
+  overflow: hidden;
+  overflow-x: auto;
+  padding: 0;
+  width: 100%;
+}
+
+.filters a {
+  color: #fff;
+  font-size: .75rem;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+}
+.filters .ico {
+  font-size: 22px;
+}
+.filters span {
+  display: block;
+  line-height: 1.1;
+  margin-top: 2px;
+  white-space:nowrap;;
+}
+.games-page .gamesInline {
+  margin-bottom: 10px;
+  width: 100%;
+  align-items: center;
+}
+.games-page .category-title {
+  color: var(--faded-color);
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0 2px 10px;
+  padding: 0;
+  align-items: center;
+}
+.gameThumb, .gameThumb img {
+  height: 100%;
+  width: 100%;
+}
+img, svg {
+  vertical-align: middle;
+}
+.gameAttributes {
+  bottom: 0;
+  display: flex;
+  flex-direction: column-reverse;
+  left: 0;
+  position: absolute;
+  transition: left .1s ease-in;
+  z-index: 1;
+}
+/* .games-page .category-title span {
+  background: linear-gradient(var(--betnare-button-login), var(--betnare-button-login));
+  border-radius: 4px;
+  color: var(--dark);
+  cursor: pointer;
+  font-size: 10px;
+  margin-right: 15px;
+  min-width: 80px;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+} */
+.games-page .category-title span {
+    /* background: linear-gradient(var(--betnare-button-login), var(--betnare-button-login)); */
+    /* border-radius: 4px; */
+    color: var(--betnare-button-login);
+    cursor: pointer;
+    font-size: 10px;
+    margin-right: 15px;
+    min-width: 80px;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: Terfens;
+
+}
+/* Common styles */
+.image-container {
+  position: relative;
+}
+
+.search-wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  margin: 0 18px 20px;
+  position: relative;
+}
+.search-wrapper .search-group {
+  max-width: 100%;
+  width: 100%;
+  height: 7rem;
+}
+.search-group {
+  margin: 0 auto;
+  max-width: 450px;
+  position: relative;
+}
+.search-wrapper .search-close {
+  bottom: 0;
+  color:var(--light);
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  left: 0;
+  letter-spacing: 1.5px;
+  position: absolute;
+}
+.ico {
+  speak: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: icons!important;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 1;
+  text-transform: none;
+}
+.search-group .search-input-group {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+.search-wrapper .search-advance {
+  background: linear-gradient(#1e2c379e, #111d239c);
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  line-height: 12px;
+  margin: 0 0 0 15px;
+  padding: 0 3.5px;
+  text-align: center;
+  white-space: normal;
+  width: 80px;
+  height: 50px;
+  padding: 5px;
+  align-items: center;
+  display: flex;
+}
+
+.search-wrapper .search-group input {
+  background-color: #fff;
+  background-image: none;
+  border: 0;
+  border-radius: 4px;
+  box-shadow: none;
+  color: #555;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 500;
+  height: 44px;
+  letter-spacing: 1.4px;
+  margin: 0;
+  outline-width: 0;
+  padding: 6px 12px;
+  pointer-events: all;
+  position: relative;
+  width: 100%;
+}
+.search-wrapper .search-group .search-input-group:after {
+  background: #fff;
+}
+.search-group .search-input-group:after {
+  background: #999;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 1px;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}
+.search-wrapper .search-advance .ico {
+  color: #fff;
+  display: block;
+  font-size: 32px;
+  line-height: 52px;
+}
+
+.overlay {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.filter-item[data-v-72be8539] {
+  align-items: center;
+  border-bottom: 1px solid #e3e6f7;
+  color: var(--light);
+  cursor: pointer;
+  display: flex;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 5px 20px 3px;
+  position: relative;
+  text-transform: uppercase;
+}
+.filter-item[data-v-72be8539]:not(.filter-action) {
+  justify-content: space-between;
+  white-space: nowrap;
+}
+.left-nav .menu-container .menu-item.active .ico-chevron-right {
+  display: block;
+}
+.filter-item .ico-chevron-down[data-v-72be8539], .filter-item .ico-chevron-right[data-v-72be8539] {
+  color: #a1a1a1;
+  font-size: 150%;
+  font-weight: 500;
+  overflow: visible;
+  text-align: right;
+  text-shadow: 0 0 20px #fff;
+  width: 27px;
+}
+.ico-chevron-right:before {
+  content: " ";
+}
+.filter-item .ico-chevron-down[data-v-72be8539], .filter-item .ico-chevron-right[data-v-72be8539] {
+  color: #a1a1a1;
+  font-size: 150%;
+  font-weight: 500;
+  overflow: visible;
+  text-align: right;
+  text-shadow: 0 0 20px #fff;
+  width: 27px;
+}
+.left-nav{
+  white-space: nowrap;
+}
+.left-nav .menu-container .menu-item.active, .left-nav .menu-container .menu-item:hover {
+  color: #99005a;
+  text-decoration: none;
+}
+.left-nav .menu-container .menu-item {
+  border-bottom: 1px solid #6464ff33;
+  color: #fff;
+  font-size: 14.4px;
+  font-weight: 700;
+  padding: 5px 10px;
+  position: relative;
+}
+.scroll-content {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+.left-nav .menu-container {
+  background-position: bottom;
+  background-repeat: no-repeat;
+  max-height: calc(100vh - 39px);
+  overflow: auto!important;
+  padding: 0 20px 20px;
+}
+[data-scrollbar] {
+  display: block;
+  position: relative;
+}
+/* .left-nav {
+  --left-nav-width: 229px;
+  background-color: #dfe2fe;
+  background-position: 0 0;
+  display: none;
+  height: 100%;
+  left: 0;
+  min-height: 100%;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 229px;
+  z-index: 25;
+} */
+.left-nav {
+  /* --left-nav-width: 229px; */
+  /* background-color: #dfe2fe; */
+  background-position: 0 0;
+  display: none;
+  height: 100vh;
+  /* min-height: 100%; */
+  /* overflow: hidden; */
+  position: fixed;
+  top: 10rem;
+  width: 229px;
+  /* z-index: 25; */
+}
+
+.overlay button {
+  margin: 4px;
+  white-space: nowrap;
+}
+.category-title{
+   font-family: Terfens;
+  
+}
+.right-body{
+  overflow-y: auto;
+}
+
+/* Show overlay on hover for desktop */
+@media (min-width: 768px) {
+  .size-images-casino:hover .overlay {
+    display: block;
+  }
+}
+
+/* Show overlay on click for mobile */
+@media (max-width: 767px) {
+  .size-images-casino.mobile-click .overlay {
+    display: block;
+  }
+  .games-page{
+    flex-direction: column;
+  }
+}
+
+@media (max-width:1239px) and (min-width:992px) {
+  .games-page{
+    margin-top:10rem;
+  }
+  .size-images-casino{
+    width:140px;
+    height: 140px;
+  }
+}
+@media (max-width:991px) {
+  .games-page{
+    margin-top:11rem;
+    flex-direction: column;
+  }
+  .size-images-casino{
+    width:115px;
+    height: 115px;
+  }
+}
+
+@media (min-width: 1240px){
+  .icons-size-direction-casino{
+    font-size:18px;
+  }
+  .filters-settings{
+    font-size:10px;
+  }
+  .overlay button {
+    
+    font-size: 12px;
+   
+}
+  .games-page .gamesInline{
+    justify-content:start;
+    gap: 10px;
+  }
+  .filters li {
+    align-self: auto;
+    background: linear-gradient(#1e2c379e, #111d239c);
+    border-radius: 4px;
+    /* display: flex; */
+    /* flex: 0 0 auto; */
+    /* font-family: Terfens; */
+    justify-content: center;
+    margin-right: 5px;
+    overflow: hidden;
+    padding: 18px;
+    position: relative;
+    /* width: 65px; */
+    display: flex;
+    align-items: center;
+}
+.left-nav {
+  display: block;
+}
+.right-body {
+  position: fixed;
+  width: 83%;
+  right: 0px;
+  top: 8rem;
+  overflow-y: auto;
+  display: block;
+  height: 100vh;
+}
+.right-body .casino-data{
+  margin-bottom: 6rem;
+  display: flex;
+  flex-direction: column;
+}
+}
+@media (max-width: 1239px){
+  .icons-size-direction-casino{
+    font-size:20px;
+  }
+  .overlay button {
+    
+    font-size: 7px;
+   
+}
+  .left-nav {
+display:none;
+}
+.games-page .gamesInline{
+  justify-content: space-between;
+}
+.filters li {
+  align-self: stretch;
+  background: linear-gradient(#1e2c379e, #111d239c);
+  border-radius: 4px;
+  display: flex;
+  flex: 0 0 auto;
+  /* font-family: Terfens; */
+  justify-content: center;
+  margin-right: 5px;
+  overflow: hidden;
+  padding: 6px;
+  position: relative;
+  width: 65px;
+  display: flex;
+  align-items: center;
+}
+}

@@ -35,7 +35,7 @@ const initialState = {
         game_type:'pragmatic',
         loading:false,
         error:null,
-        casino_games:null,
+        casino_games:[],
         show_modal:null,
         casino_categories:null,
         casino_game_url:null,

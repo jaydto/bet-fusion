@@ -5,13 +5,13 @@ import makeRequest from "../components/utils/fetch-request";
 // Async thunk for matches
 export const casinoList = createAsyncThunk(
   "virtuals/casinoGames",
-  async ({ endpoint, method }) => {
+  async ({ endpoint, method, category }) => {
     const [status, response] = await makeRequest({
       url: endpoint,
       method: method,
     });
     if (status === 200) {
-      return response;
+      return {response:response, category:category};
     } else {
       throw new Error(response?.error || "Fetching Casino failed");
     }
@@ -71,9 +71,40 @@ const virtualsSlice = createSlice({
       .addCase(casinoList.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.casino_games = action.payload?.data;
-        state.casino_categories = action.payload?.types;
+        const { response, category } = action.payload;
+        // console.log("casino_games_data", category);
+      
+        // Create a Set of existing categories
+        const existingCategories = new Set(state.casino_games.map(game => Object.keys(game)[0]));
+      
+        if (existingCategories.has(category)) {
+          // If the category already exists, update its data
+          state.casino_games = state.casino_games.map(game => {
+            const key = Object.keys(game)[0];
+            if (key === category) {
+              return { [category]: response.data };
+            }
+            return game;
+          });
+        } else {
+          // If the category doesn't exist, add it to casino_games
+          state.casino_games.push({ [category]: response.data });
+        }
+      
+        state.casino_categories = response.types;
       })
+      
+      // .addCase(casinoList.fulfilled, (state, action) => {
+      //   state.loading = false;
+      //   state.error = null;
+      //   // state.casino_games = action.payload?.data;
+      //   const { response, category } = action.payload;
+      //   console.log("casino_games_data", category)
+        
+
+      //   state.casino_games.push({ [category]: response.data });
+      //   state.casino_categories = response.types;
+      // })
       .addCase(casinoList.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;

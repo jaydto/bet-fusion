@@ -388,6 +388,10 @@ img, svg {
 }
 
 @media (min-width: 1240px){
+  .size-images-casino{
+    width:140px;
+    height: 140px;
+  }
   .icons-size-direction-casino{
     font-size:18px;
   }
@@ -405,7 +409,8 @@ img, svg {
   }
   .filters li {
     align-self: auto;
-    background: linear-gradient(#1e2c379e, #111d239c);
+    /* background: linear-gradient(#1e2c379e, #111d239c); */
+    background: linear-gradient(#1e2c379e, #0204059c);
     border-radius: 4px;
     /* display: flex; */
     /* flex: 0 0 auto; */
@@ -454,7 +459,8 @@ display:none;
 }
 .filters li {
   align-self: stretch;
-  background: linear-gradient(#1e2c379e, #111d239c);
+  /* background: linear-gradient(#1e2c379e, #111d239c); */
+  background: linear-gradient(#1e2c379e, #0204059c);
   border-radius: 4px;
   display: flex;
   flex: 0 0 auto;
@@ -462,7 +468,7 @@ display:none;
   justify-content: center;
   margin-right: 5px;
   overflow: hidden;
-  padding: 6px;
+  padding: 10px;
   position: relative;
   width: 65px;
   display: flex;

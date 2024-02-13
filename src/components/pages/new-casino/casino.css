@@ -222,8 +222,13 @@ img, svg {
   text-transform: uppercase;
 }
 .filter-item[data-v-72be8539]:not(.filter-action) {
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  color:var(--light);
   white-space: nowrap;
+}
+.filter-item[data-v-72be8539] a {
+  color:var(--light);
+
 }
 .left-nav .menu-container .menu-item.active .ico-chevron-right {
   display: block;
@@ -252,12 +257,29 @@ img, svg {
 .left-nav{
   white-space: nowrap;
 }
-.left-nav .menu-container .menu-item.active, .left-nav .menu-container .menu-item:hover {
+/* .left-nav .menu-container .menu-item.active, .left-nav .menu-container .menu-item:hover {
   color: #99005a;
+  text-decoration: none;
+} */
+.left-nav .menu-container .scroll-content .menu-item .menu-info {
+  border-bottom: 1px solid #6464ff33;
+  border-top: 1px solid #6464ff33;
+  /* /* color: #fff; */
+  font-size: 14.4px;
+  font-weight: 700;
+  padding: 5px 4px;
+  position: relative; 
+}
+.left-nav .menu-container .menu-item.active, .left-nav .menu-container .menu-item:hover {
+  color: var(--bs-cyan);
+  text-decoration: none;
+}
+.left-nav .menu-container .menu-item.active.recommended-casino {
+  color: var(--orange);
   text-decoration: none;
 }
 .left-nav .menu-container .menu-item {
-  border-bottom: 1px solid #6464ff33;
+  border-bottom: none;
   color: #fff;
   font-size: 14.4px;
   font-weight: 700;

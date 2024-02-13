@@ -6,6 +6,7 @@ import CasinoCarouselLoader from "./CasinoCarouseld";
 import {
   faAngleLeft,
   faAngleRight,
+  faCampground,
   faFire,
   faHome,
   faReceipt,
@@ -128,7 +129,7 @@ const NewCasino = () => {
           </div>
         </div>
       </MenuItem>
-          <MenuItem title="HOME" icon={faHome} color="">
+          <MenuItem title="CATEGORIES" icon={faCampground} color="">
         <div id="v-game-filters">
           <div className="sideFilters">
             <div className="filtersContainer">
@@ -222,7 +223,7 @@ const NewCasino = () => {
             <ul
               className={`filters ${
                 showFilters ? "d-flex" : "d-none"
-              } pb-3 pb-xl-0 mr-0 ml-0 mt-3 mb-3 mt-xl-5 mb-xl-1 align-items-center `}
+              } pb-3 pb-xl-0 mr-0 ml-0 mt-3 mb-3 mt-xl-3 mb-xl-1 align-items-center `}
             >
               <li className="ml-3 d-xl-none" id="v-search-mobile">
                 <a href="#" onClick={handleSearchClick}>

@@ -283,7 +283,7 @@ img, svg {
   color: #fff;
   font-size: 14.4px;
   font-weight: 700;
-  padding: 5px 10px;
+  /* padding: 5px 10px; */
   position: relative;
 }
 .scroll-content {
@@ -348,8 +348,17 @@ img, svg {
   }
 }
 
+@media (max-width: 400px) {
+  .casino-banner-image .carousel.slide{
+    height:auto!important;
+  }
+}
+
 /* Show overlay on click for mobile */
 @media (max-width: 767px) {
+  .casino-banner-image .carousel.slide{
+    height:auto!important;
+  }
   .size-images-casino.mobile-click .overlay {
     display: block;
   }

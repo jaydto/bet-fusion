@@ -118,7 +118,7 @@ const NewCasino = () => {
           style={{ overflow: "hidden", outline: "none" }}
         >
           <div class="scroll-content mb-3">
-          <MenuItem title="RECCOMENDED" icon={faRecordVinyl} color={"gold"}>
+          <MenuItem title="RECOMMENDED" icon={faRecordVinyl} color={"gold"}>
         <div id="v-game-filters">
           <div className="sideFilters">
             <div className="filtersContainer">
@@ -711,7 +711,7 @@ function MenuItem({ title,icon, children , color}) {
 
   return (
     <div className={`menu-item ${(color?.length>0&&color!=undefined)?' recommended-casino ':''} ${isOpen ? 'active' : 'not-active'}`}>
-      <div className="d-flex justify-content-between align-items-center menu-info" onClick={toggleCollapse} style={{ background: 'linear-gradient(to right, rgba(0, 0, 255, 0.5), transparent)' }}>
+      <div className="d-flex justify-content-between align-items-center menu-info" onClick={toggleCollapse} style={{ background: 'repeating-linear-gradient(45deg, #0d6efd, transparent 100px)' }}>
         <span className="text-start">
           <FontAwesomeIcon icon={icon} /> {title}
         </span>

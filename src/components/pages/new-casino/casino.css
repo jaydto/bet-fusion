@@ -271,11 +271,11 @@ img, svg {
   position: relative; 
 }
 .left-nav .menu-container .menu-item.active, .left-nav .menu-container .menu-item:hover {
-  color: var(--bs-cyan);
+  color: aliceblue;
   text-decoration: none;
 }
 .left-nav .menu-container .menu-item.active.recommended-casino {
-  color: var(--orange);
+  color: aliceblue;
   text-decoration: none;
 }
 .left-nav .menu-container .menu-item {

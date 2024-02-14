@@ -4,21 +4,15 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Button, ButtonGroup } from "react-bootstrap";
 import CasinoCarouselLoader from "./CasinoCarouseld";
 import {
-  faAngleLeft,
-  faAngleRight,
+ 
   faCampground,
   faFire,
-  faHome,
-  faReceipt,
   faRecordVinyl,
   faSmile,
   faSquareCaretLeft,
   faSquareCaretRight,
   faStar,
-  faStarAndCrescent,
-  faStarHalf,
-  faStarOfDavid,
-  faStarOfLife,
+ 
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch, useSelector } from "react-redux";

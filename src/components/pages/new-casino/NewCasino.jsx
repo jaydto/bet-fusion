@@ -61,7 +61,7 @@ const NewCasino = () => {
     setShowFilters(true);
   };
 
-  const categories_info = ["popular", "drops-n-wins", "vs", "cs", "lg", "crash"];
+  const categories_info = ["popular","crash", "drops-n-wins", "vs", "cs", "lg" ];
   // Define a mapping object for category display names
 const categoryDisplayNames = {
   popular: "Popular",
@@ -538,7 +538,7 @@ const Categories = ({ title, games, user }) => {
           className="gameInlineThumb image-container"
           style={{ marginRight: "calc(var(--bs-gutter-x) / 2)" }}
         >
-          <div
+         { (game?.game_icon??game?.image_url)&&<div
             className={`size-images-casino ${
               showButtons ===key && "mobile-click"
             }`}
@@ -550,7 +550,7 @@ const Categories = ({ title, games, user }) => {
               effect={"blur"}
               className=" ls-is-cached"
               // src="https://api-dk10.pragmaticplay.net/game_pic/square/200/vs40wildwest.png"
-              src={game?.game_icon??game?.image_url}
+              src={game?.game_icon??game?.image_url} alt={game?.game_name??game?.gameName}
             />
 
             <div className="overlay">
@@ -577,7 +577,7 @@ const Categories = ({ title, games, user }) => {
                   <span>NEW</span>
                 </div>
               </div> */}
-          </div>
+          </div>}
         </div>
           })
         }

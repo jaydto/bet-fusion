@@ -17,6 +17,7 @@ export const casinoList = createAsyncThunk(
     }
   }
 );
+
 export const casinoCreatePlayer = createAsyncThunk(
   "virtuals/casinoCreatePlayer",
   async () => {
@@ -82,13 +83,13 @@ const virtualsSlice = createSlice({
           state.casino_games = state.casino_games.map(game => {
             const key = Object.keys(game)[0];
             if (key === category) {
-              return { [category]: response.data };
+              return { [category]: response.data??response.games };
             }
             return game;
           });
         } else {
           // If the category doesn't exist, add it to casino_games
-          state.casino_games.push({ [category]: response.data });
+          state.casino_games.push({ [category]: response.data??response.games });
         }
       
         state.casino_categories = response.types;
@@ -105,11 +106,7 @@ const virtualsSlice = createSlice({
       //   state.casino_games.push({ [category]: response.data });
       //   state.casino_categories = response.types;
       // })
-      .addCase(casinoList.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error.message;
-        state.fetching = false;
-      })
+      
       .addCase(casinoGamePlay.pending, (state) => {
         state.loading = true;
         state.error = null;

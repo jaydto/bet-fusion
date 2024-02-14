@@ -16,11 +16,12 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch, useSelector } from "react-redux";
-import { getFromLocalStorage } from "../../utils/local-storage";
+import { getFromLocalStorage, setLocalStorage } from "../../utils/local-storage";
 import { casinoList } from "../../../redux/virtualsSlice";
 import { StoreContext } from "../../../context/store";
 import { Link, useNavigate } from "react-router-dom";
 import { faAffiliatetheme } from "@fortawesome/free-brands-svg-icons";
+import makeRequest from "../../utils/fetch-request";
 
 const NewCasino = () => {
   const dispatchRedux = useDispatch();
@@ -33,6 +34,7 @@ const NewCasino = () => {
 
   const [games, setGames] = useState([]);
   const [showFilters, setShowFilters] = useState(true);
+  const storedCategories = getFromLocalStorage("casino_categories");
 
   const casino_categories = useSelector(
     (state) => state.virtuals.casino_categories
@@ -59,7 +61,16 @@ const NewCasino = () => {
     setShowFilters(true);
   };
 
-  const categories_info = ["popular", "drops-n-wins", "vs", "cs", "lg"];
+  const categories_info = ["popular", "drops-n-wins", "vs", "cs", "lg", "crash"];
+  // Define a mapping object for category display names
+const categoryDisplayNames = {
+  popular: "Popular",
+  "drops-n-wins": "Jackpot",
+  vs: "Video Slots",
+  cs: "Classic Slots",
+  lg: "Live Games",
+  crash:"Crash Games"
+};
 
   const fetchGames = async (category) => {
     let endpoint;
@@ -73,10 +84,44 @@ const NewCasino = () => {
     };
     dispatchRedux(casinoList(data));
   };
+  const getCrashGames = async (category) => {
+    let endpoint = "/v1/crash-games";
 
+    let method = "POST";
+    const data = {
+      endpoint: endpoint,
+      method: method,
+      category: category,
+    };
+    dispatchRedux(casinoList(data));
+
+    // await makeRequest({ url: endpoint, method: method }).then(
+    //   ([status, result]) => {
+    //     if (status === 200) {
+    //       setGames(result?.games);
+    //       if (result?.types !== storedCategories && result?.types !== null) {
+    //         setCategories(result?.types);
+    //         setLocalStorage("casino_categories", result?.types, 86400000);
+    //       }
+    //     }
+    //   }
+    // );
+  };
+  // useEffect(() => {
+  //   categories_info.forEach((category) => fetchGames(category));
+  // }, []);
   useEffect(() => {
-    categories_info.forEach((category) => fetchGames(category));
+    categories_info.forEach((category) => {
+      if (category === "crash") {
+        // Call getCrashGames for "crash" category
+        getCrashGames(category);
+      } else {
+        // Call fetchGames for other categories
+        fetchGames(category);
+      }
+    });
   }, []);
+  
 
   const getCategoryGames = (category) => {
     setGames([]);
@@ -310,7 +355,7 @@ const NewCasino = () => {
             </div>
           </section>
 
-          {categories_info.map((category) => {
+          {/* {categories_info.map((category) => {
             // Find the category object in casino_games array
             const categoryGames = casino_games.find((game) => game[category]);
             const popularGames = categoryGames ? categoryGames[category] : [];
@@ -318,10 +363,25 @@ const NewCasino = () => {
               <Categories
                 user={user}
                 games={popularGames}
-                title={category?.toUpperCase()}
+                title={categoryDisplayNames[category]}
               />
             );
-          })}
+          })} */}
+          {categories_info.map((category) => {
+  const categoryGames = casino_games.find((game) => game[category]);
+  const popularGames = categoryGames ? categoryGames[category] : [];
+  if (popularGames.length > 0) {
+    return (
+      <Categories
+        user={user}
+        games={popularGames}
+        title={categoryDisplayNames[category]}
+      />
+    );
+  } else {
+    return null; // Skip rendering if popularGames is empty
+  }
+})}
 
           {/* <Categories user={user} games={[]} title={"new"} /> */}
         </div>
@@ -490,7 +550,7 @@ const Categories = ({ title, games, user }) => {
               effect={"blur"}
               className=" ls-is-cached"
               // src="https://api-dk10.pragmaticplay.net/game_pic/square/200/vs40wildwest.png"
-              src={game?.game_icon}
+              src={game?.game_icon??game?.image_url}
             />
 
             <div className="overlay">
@@ -521,52 +581,7 @@ const Categories = ({ title, games, user }) => {
         </div>
           })
         }
-        <div
-          key={1}
-          className="gameInlineThumb image-container"
-          style={{ marginRight: "calc(var(--bs-gutter-x) / 2)" }}
-        >
-          <div
-            className={`size-images-casino ${
-              showButtons == 1 && "mobile-click"
-            }`}
-            onMouseEnter={() => handleMouseEnter(1)}
-            onMouseLeave={handleMouseLeave}
-            onClick={() => handleMobileClick(1)}
-          >
-            <LazyLoadImage
-              effect={"blur"}
-              className=" ls-is-cached"
-              // src="https://api-dk10.pragmaticplay.net/game_pic/square/200/vs40wildwest.png"
-              src={games?.game_icon}
-            />
-
-            <div className="overlay">
-              <ButtonGroup aria-label="Casino Gaming Buttons">
-                <Button
-                  variant="warning"
-                  onClick={(event) => handleButtonClick(event)}
-                >
-                  Play Demo
-                </Button>
-                <Button
-                  variant="danger"
-                  onClick={(event) => handleButtonClick(event)}
-                >
-                  Play Game
-                </Button>
-              </ButtonGroup>
-            </div>
-
-            {/* <div className="gameAttributes">
-                <div
-                  className="new"
-                >
-                  <span>NEW</span>
-                </div>
-              </div> */}
-          </div>
-        </div>
+       
        
       </div>
     </section>

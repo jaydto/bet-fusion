@@ -42,7 +42,6 @@ const PromoCards = () => {
                 }
             > 
             <div className="col-md-2 promo-styling shadow-lg promotion">
-            <div className="col-md-2 promo-styling shadow-lg promotion">
                     <div className="d-flex flex-column promo-inner">
                         <img src={'https://cdn.betnare.com/carousel/DepositBonus.webp'} className={"rounded promo-image "}/>
                         <h5
@@ -154,7 +153,7 @@ const PromoCards = () => {
                     </div>
                 </div>
                 <div className="col-md-2 promo-styling shadow-lg promotion">
-                    <div className="d-flex flex-column promo-inner">
+                    <div className="d-flex flex-column promo-inner promo-inactive">
                         <img src={'https://cdn.betnare.com/carousel/AfconPromoBanner.webp'} className={"rounded promo-image "}/>
                         <h5
                             className="bold d-flex justify-content-center h4 pt-2"
@@ -171,7 +170,10 @@ const PromoCards = () => {
                         <div className="d-flex justify-content-between my-2 mx-2">
 
                             <button className={"profile-button border-0 h-25 rounded promo-button"}
-                                    style={{background: "#ea5d0b"}} onClick={() => {
+                                    style={{background: "#ea5d0b"}} 
+                                    disabled={true}
+                                    
+                                    onClick={() => {
                                 gaEventTracker('mamili_afcon');
                                 navigate(`/competition/79/8085/21843?sport_id=79&sub_type_id=1`);
                                 setUtmSouceCampaignOnPromotions('mamili_afcon')
@@ -191,8 +193,10 @@ const PromoCards = () => {
                     </div>
                 </div
                 >
+            <div className="col-md-2 promo-styling shadow-lg promotion">
+            
                
-            <div className="d-flex flex-column promo-inner">
+            <div className="d-flex flex-column promo-inner promo-inactive">
                         <img src={'https://cdn.betnare.com/carousel/LastPromoFeb.webp'} className={"rounded promo-image "}/>
                         <h5
                             className="bold d-flex justify-content-center h4 pt-2"
@@ -209,6 +213,7 @@ const PromoCards = () => {
                         <div className="d-flex justify-content-between my-2 mx-2">
 
                             <button className={"profile-button border-0 h-25 rounded promo-button"}
+                            disabled={true}
                                     style={{background: "#ea5d0b"}} onClick={() => {
                                 gaEventTracker('how_long_can_you_last');
                                 navigate(`/nare-games/aviator?status=live`);

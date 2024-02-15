@@ -43,40 +43,6 @@ const PromoCards = () => {
             > 
             <div className="col-md-2 promo-styling shadow-lg promotion">
                     <div className="d-flex flex-column promo-inner">
-                        <img src={'https://cdn.betnare.com/carousel/DepositBonus.webp'} className={"rounded promo-image "}/>
-                        <h5
-                            className="bold d-flex justify-content-center h4 pt-2"
-                            style={{color: "#ea5d0b"}}
-                        >
-                            FREE  DEPOSIT OF ALL DEPOSITS!
-                        </h5>
-                        <p className="container-profile mx-1 px-2 text-data-promotions">
-                        All new and existing customers get to enjoy a free deposit bonus on your  all your deposit  from 20bob and above!                       </p>
-                        <hr/>
-
-                        <div className="d-flex justify-content-between my-2 mx-2">
-
-                            <button className={"profile-button border-0 h-25 rounded promo-button"}
-                                    style={{background: "#ea5d0b"}} onClick={() => {
-                                gaEventTracker('ushago_na_mbao');
-                                navigate(`/deposit`);
-                                setUtmSouceCampaignOnPromotions('free_deposit_bonus')
-                            }}>Deposit
-                            </button>
-                            <div
-                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"}
-                                style={{color: "#ea5d0b"}}
-                                onClick={() => {
-                                    navigate(`/promo?id=${ids[6]}`);
-                                    window.scrollTo(0, 0); // Scroll to the top of the page
-                                }}
-                            >
-                                Read More
-                            </div>
-                        </div>
-                    </div>
-                </div><div className="col-md-2 promo-styling shadow-lg promotion">
-                    <div className="d-flex flex-column promo-inner">
                         <img src={'https://cdn.betnare.com/carousel/LuckyHourv2.webp'} className={"rounded promo-image "}/>
                         <h5
                             className="bold d-flex justify-content-center h4 pt-2"
@@ -110,6 +76,42 @@ const PromoCards = () => {
                         </div>
                     </div>
                 </div>
+            <div className="col-md-2 promo-styling shadow-lg promotion">
+                    <div className="d-flex flex-column promo-inner">
+                        <img src={'https://cdn.betnare.com/carousel/DepositBonus.webp'} className={"rounded promo-image "}/>
+                        <h5
+                            className="bold d-flex justify-content-center h4 pt-2"
+                            style={{color: "#ea5d0b"}}
+                        >
+                            FREE  DEPOSIT OF ALL DEPOSITS!
+                        </h5>
+                        <p className="container-profile mx-1 px-2 text-data-promotions">
+                        All new and existing customers get to enjoy a free deposit bonus on your  all your deposit  from 20bob and above!                       </p>
+                        <hr/>
+
+                        <div className="d-flex justify-content-between my-2 mx-2">
+
+                            <button className={"profile-button border-0 h-25 rounded promo-button"}
+                                    style={{background: "#ea5d0b"}} onClick={() => {
+                                gaEventTracker('ushago_na_mbao');
+                                navigate(`/deposit`);
+                                setUtmSouceCampaignOnPromotions('free_deposit_bonus')
+                            }}>Deposit
+                            </button>
+                            <div
+                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"}
+                                style={{color: "#ea5d0b"}}
+                                onClick={() => {
+                                    navigate(`/promo?id=${ids[6]}`);
+                                    window.scrollTo(0, 0); // Scroll to the top of the page
+                                }}
+                            >
+                                Read More
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
                 <div className="col-md-2 promo-styling shadow-lg promotion">
                     <div className="d-flex flex-column promo-inner">
                         <img src={'https://cdn.betnare.com/carousel/StakeBooster.webp'} className={"rounded promo-image "}/>

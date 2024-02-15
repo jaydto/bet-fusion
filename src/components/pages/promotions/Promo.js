@@ -26,7 +26,7 @@ const Promo = () => {
     { src: twentyPercentDepositBonus, id: 3 },
     { src: firstDeposit, id: 2 },
     { src: multibetCashback, id: 4 },
-    { src: "https://cdn.betnare.com/carousel/LuckyHour.webp", id: 5 },
+    { src: "https://cdn.betnare.com/carousel/LuckyHourv2.webp", id: 5 },
     { src: "https://cdn.betnare.com/carousel/Mbuzi.webp", id: 6 },
     { src: "https://cdn.betnare.com/carousel/DepositBonus.webp", id: 7 },
     { src: "https://cdn.betnare.com/carousel/StakeBooster.webp", id: 1 },

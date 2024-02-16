@@ -163,7 +163,7 @@ const GamePlay = React.memo(
             <>
                 <Header/>
                 <div className={(user ? "user_logged casino" : "amt-casino")}>
-                    <FullscreenButton onClick={()=>toggleFullscreen()} navigation={'/casino'} isCustomFullScreen={isCustomFullscreen}/>
+                    <FullscreenButton onClick={()=>toggleFullscreen()} navigation={'/new-casino'} isCustomFullScreen={isCustomFullscreen}/>
                     <div className="d-flex flex-row justify-content-between">
                         <div className="col-md-12 virtual-width-mobile">
                             <div className="homepage mt-2">

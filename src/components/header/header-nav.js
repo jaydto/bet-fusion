@@ -98,7 +98,7 @@ const HeaderNav = React.memo((props) => {
   const LoginCheck = (game) => {
     {
       // if (user !== null) {
-      navigate("/casino");
+      navigate("/new-casino");
       // } else {
       //     setLocalStorage("ActiveLink", '/casino')
       //     navigate('/login')
@@ -177,7 +177,7 @@ const HeaderNav = React.memo((props) => {
           <li
             className={
               pathname.includes("live") &&
-              pathname.includes("casino") === false &&
+              pathname.includes("new-casino") === false &&
               pathname.includes("livescore") === false
                 ? "active"
                 : ""
@@ -201,12 +201,12 @@ const HeaderNav = React.memo((props) => {
             </Link>
           </li>
 
-          <li className={`${pathname === "/casino" ? "active" : ""}`}>
+          <li className={`${pathname === "/new-casino" ? "active" : ""}`}>
             <div
               className="url-link fm anl cg ox "
-              title="Live Casino"
+              title="Casino"
               onClick={() => {
-                LoginCheck("casino");
+                LoginCheck("new-casino");
                 gaEventTracker("Visit Casino Page");
               }}
             >

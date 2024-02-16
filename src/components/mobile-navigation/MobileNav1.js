@@ -245,13 +245,13 @@ const MobileNav1 = React.memo(
 
                     </td>
 
-                    <td className={`menu-t m-auto sport-check ${'/casino' ===active_link ? " active_link" : "link-inactive"} `}>
+                    <td className={`menu-t m-auto sport-check ${'/new-casino' ===active_link ? " active_link" : "link-inactive"} `}>
                         <div
                             className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center `}
                             onClick={() => {
                                 gaEventTracker('Visit Casino Page')
-                                navigate('/casino');
-                                setActiveLink('/casino')
+                                navigate('/new-casino');
+                                setActiveLink('/new-casino')
                             }}>
                             <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
 

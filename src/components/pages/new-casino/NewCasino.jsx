@@ -1027,8 +1027,7 @@ const GameChoice = ({ title, games, user, provider }) => {
 
 const Categories = ({ title, games, user, provider }) => {
   const [showButtons, setShowButtons] = useState(null);
-  const show = useSelector((state) => state.data.show_menu_casino);
-  const game_type = useSelector((state) => state.virtuals.game_type);
+
   const navigate = useNavigate();
 
   const containerRef = useRef(null);
@@ -1071,7 +1070,8 @@ const Categories = ({ title, games, user, provider }) => {
       ${provider} 
       ${crash_provider} 
       `);
-    event.stopPropagation(); // Prevent event from propagating to parent element
+    event.stopPropagation(); 
+
     const redirectToGameplay = () => {
       window.location.href = `/gameplay/${game_id}/${live ? "1" : "0"}`;
     };
@@ -1194,10 +1194,10 @@ const Categories = ({ title, games, user, provider }) => {
         big="false"
         style={{ width: "100%", overflow: "auto hidden" }}
       >
-        {games?.map((game, key) => {
+        {games?.map((game, index) => {
           return (
             <div
-              key={key}
+              key={IDBIndex}
               style={{ marginRight: "calc(var(--bs-gutter-x) / 2)" }}
               className={`gameInlineThumb image-container ${
                 viewAll ? "casino-item" : ""
@@ -1206,11 +1206,11 @@ const Categories = ({ title, games, user, provider }) => {
               {(game?.game_icon ?? game?.image_url) && (
                 <div
                   className={`size-images-casino ${
-                    showButtons === key && "mobile-click"
+                    showButtons === index && "mobile-click"
                   }`}
                   onMouseEnter={() => handleMouseEnter(1)}
                   onMouseLeave={handleMouseLeave}
-                  onClick={() => handleMobileClick(1)}
+                  onClick={() => handleMobileClick(index)}
                 >
                   <LazyLoadImage
                     effect={"blur"}

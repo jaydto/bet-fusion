@@ -77,17 +77,14 @@ const ProtectedRoute = React.lazy(
 
 const PrintMatches = React.lazy(() => import('./components/pages/downloads'))
 
-const Casino = React.lazy(() => import('./components/pages/casino/CasinoOptions'))
 const NewCasino = React.lazy(() => import('./components/pages/new-casino/NewCasino'))
 
-const LiveCasino = React.lazy(() => import('./components/pages/casino/LiveCasino'))
 const FPL = React.lazy(() => import('./components/FPL'))
 const LeaderBoard = React.lazy(() => import('./components/pages/LeaderBoards/LeaderBoards'))
 const JetxLeaderBoard = React.lazy(() => import('./components/pages/LeaderBoards/JetxLeaderBoards'))
 
-const Virtuals = React.lazy(() => import('./components/pages/casino/Virtuals'))
 
-const CasinoGamePlay = React.lazy(() => import('./components/pages/casino/GamePlay'))
+const CasinoGamePlay = React.lazy(() => import('./components/pages/new-casino/GamePlay'))
 
 const SpribeGamePlay = React.lazy(() => import('./components/pages/virtuals/SpribeGamePlay'))
 
@@ -198,12 +195,9 @@ const App =
                         <Route exact path="/login" element={<Login/>}/>
                         <Route exact path="/fpl" element={<FPL/>}/>
                         <Route exact path="/share" element={<BetslipShareDecode/>}/>
-                        <Route exact path="/virtuals" element={<Virtuals/>}/>
                         <Route exact path="/livescore" element={<LiveScore/>}/>
                         <Route exact path="/404" element={<PageNotFound/>}/>
-                        <Route exact path="/casino" element={<Casino/>}/>
                         <Route exact path="/new-casino" element={<NewCasino/>}/>
-                        <Route exact path="/live-casino" element={<LiveCasino/>}/>
                         <Route exact path="/gameplay/:game_id/:live" element={<CasinoGamePlay/>}/>
                         <Route exact path="/nare-games/:game" element={<SpribeGamePlay/>}/>
                         <Route exact path="/nare-games" element={<SpribeGames/>}/>

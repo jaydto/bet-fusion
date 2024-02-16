@@ -5,13 +5,13 @@ import makeRequest from "../components/utils/fetch-request";
 // Async thunk for matches
 export const casinoList = createAsyncThunk(
   "virtuals/casinoGames",
-  async ({ endpoint, method, category }) => {
+  async ({ endpoint, method, category, provider }) => {
     const [status, response] = await makeRequest({
       url: endpoint,
       method: method,
     });
     if (status === 200) {
-      return {response:response, category:category};
+      return {response:response, category:category, provider:provider};
     } else {
       throw new Error(response?.error || "Fetching Casino failed");
     }
@@ -72,7 +72,7 @@ const virtualsSlice = createSlice({
       .addCase(casinoList.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        const { response, category } = action.payload;
+        const { response, category, provider } = action.payload;
         // console.log("casino_games_data", category);
       
         // Create a Set of existing categories
@@ -89,7 +89,7 @@ const virtualsSlice = createSlice({
           });
         } else {
           // If the category doesn't exist, add it to casino_games
-          state.casino_games.push({ [category]: response.data??response.games });
+          state.casino_games.push({ [category]: response.data??response.games, provider:provider });
         }
       
         state.casino_categories = response.types;

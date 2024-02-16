@@ -351,7 +351,6 @@ img, svg {
 }
 
 .casino-item {
-  width: calc(13% - 20px); /* 20% width with 20px margin between items */
   margin: 10px; /* Adjust as needed */
   box-sizing: border-box;
 }
@@ -445,6 +444,10 @@ img, svg {
 }
 
 @media (min-width: 1240px){
+  .casino-item{
+    width: calc(13% - 20px); /* 20% width with 20px margin between items */
+
+  }
   .size-images-casino{
     width:138px;
     height: 140px;

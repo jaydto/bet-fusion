@@ -549,7 +549,7 @@ display:none;
   overflow: hidden;
   padding: 10px;
   position: relative;
-  width: 65px;
+  /* width: 65px; */
   display: flex;
   align-items: center;
 }
@@ -572,7 +572,7 @@ display:none;
 }
 
 /* For screens with width between 301px and 374px */
-@media (min-width: 300px) and (max-width: 374px) {
+@media screen and (min-width: 300px) and (max-width: 374px) {
   .ls-is-cached{
     min-height:9rem;
   }
@@ -587,7 +587,7 @@ display:none;
 }
 
 /* For screens with width between 375px and 424px */
-@media (min-width: 375px) and (max-width: 424px) {
+@media screen and (min-width: 375px) and (max-width: 424px) {
   .ls-is-cached{
     min-height:12rem;
   }
@@ -601,7 +601,7 @@ display:none;
 }
 
 /* For screens with width between 425px and 575px */
-@media (min-width: 425px) and (max-width: 575px) {
+@media screen and (min-width: 425px) and (max-width: 575px) {
   .ls-is-cached{
     min-height:13.3rem;
   }
@@ -615,7 +615,7 @@ display:none;
 }
 
 /* For screens with width between 576px and 767px */
-@media (min-width: 576px) and (max-width: 767px) {
+@media screen and (min-width: 576px) and (max-width: 767px) {
   .ls-is-cached{
     min-height:13.7rem;
   }
@@ -629,7 +629,7 @@ display:none;
 }
 
 /* For screens with width between 768px and 1024px */
-@media (min-width: 768px) and (max-width: 991px) {
+@media screen and (min-width: 768px) and (max-width: 991px) {
   .ls-is-cached{
     min-height:17.7rem;
   }
@@ -640,7 +640,8 @@ display:none;
   .casino-item {
     width: calc(24.33% - 20px) !important; /* 20.33% width with 20px margin between items */
   }
-}@media (min-width: 992px) and (max-width: 1024px) {
+}
+@media screen and (min-width: 992px) and (max-width: 1024px) {
   .ls-is-cached{
     min-height:17.5rem;
   }
@@ -654,7 +655,7 @@ display:none;
 }
 
 /* For screens with width between 1025px and 1239px */
-@media (min-width: 1025px) and (max-width: 1239px) {
+@media screen and (min-width: 1025px) and (max-width: 1239px) {
   .ls-is-cached{
     min-height:20.1rem;
   }

@@ -1199,9 +1199,7 @@ const Categories = ({ title, games, user, provider }) => {
             <div
               key={IDBIndex}
               style={{ marginRight: "calc(var(--bs-gutter-x) / 2)" }}
-              className={`gameInlineThumb image-container ${
-                viewAll ? "casino-item" : ""
-              }"`}
+              className={`gameInlineThumb image-container  ${viewAll ? 'casino-item ' : ""} `}
             >
               {(game?.game_icon ?? game?.image_url) && (
                 <div

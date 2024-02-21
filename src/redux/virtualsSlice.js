@@ -91,8 +91,11 @@ const virtualsSlice = createSlice({
           // If the category doesn't exist, add it to casino_games
           state.casino_games.push({ [category]: response.data??response.games, provider:provider });
         }
+        if(provider.toLowerCase()=='pragmatic'){
+          state.casino_categories = response.types;
+        }
       
-        state.casino_categories = response.types;
+      
       })
       
       // .addCase(casinoList.fulfilled, (state, action) => {

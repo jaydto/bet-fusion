@@ -528,11 +528,7 @@ img, svg {
   .icons-size-direction-casino{
     font-size:20px;
   }
-  .overlay button {
-    
-    font-size: 7px;
-   
-}
+
   .left-nav {
 display:none;
 }
@@ -562,6 +558,11 @@ display:none;
 /* casino view all or specific view stylings and responsiveness */
 /* For screens with width up to 300px */
 @media (max-width: 299px) {
+  .overlay button {
+    
+    font-size: 7px;
+   
+}
   .casino-item {
     width: calc(30.33% - 20px) !important; /* 30.33% width with 20px margin between items */
   }
@@ -576,6 +577,11 @@ display:none;
 
 /* For screens with width between 301px and 374px */
 @media screen and (min-width: 300px) and (max-width: 374px) {
+  .overlay button {
+    
+    font-size: 7px;
+   
+}
   .ls-is-cached{
     min-height:9rem;
   }
@@ -591,6 +597,11 @@ display:none;
 
 /* For screens with width between 375px and 424px */
 @media screen and (min-width: 375px) and (max-width: 424px) {
+  .overlay button {
+    
+    font-size: 7px;
+   
+}
   .ls-is-cached{
     min-height:12rem;
   }
@@ -605,6 +616,11 @@ display:none;
 
 /* For screens with width between 425px and 575px */
 @media screen and (min-width: 425px) and (max-width: 575px) {
+  .overlay button {
+    
+    font-size: 10px;
+   
+}
   .ls-is-cached{
     min-height:13.3rem;
   }
@@ -619,6 +635,11 @@ display:none;
 
 /* For screens with width between 576px and 767px */
 @media screen and (min-width: 576px) and (max-width: 767px) {
+  .overlay button {
+    
+    font-size: 10px;
+   
+}
   .ls-is-cached{
     min-height:13.7rem;
   }
@@ -633,6 +654,11 @@ display:none;
 
 /* For screens with width between 768px and 1024px */
 @media screen and (min-width: 768px) and (max-width: 991px) {
+  .overlay button {
+    
+    font-size: 12px;
+   
+}
   .ls-is-cached{
     min-height:17.7rem;
   }
@@ -648,6 +674,11 @@ display:none;
   .ls-is-cached{
     min-height:17.5rem;
   }
+  .overlay button {
+    
+    font-size: 12px;
+   
+}
   .size-images-casino {
     width: 173px;
     height: 195px;
@@ -659,6 +690,11 @@ display:none;
 
 /* For screens with width between 1025px and 1239px */
 @media screen and (min-width: 1025px) and (max-width: 1239px) {
+  .overlay button {
+    
+    font-size: 13px;
+   
+}
   .ls-is-cached{
     min-height:20.1rem;
   }

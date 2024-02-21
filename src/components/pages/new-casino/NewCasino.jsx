@@ -78,7 +78,7 @@ const NewCasino = () => {
   // Define a mapping object for category display names
   const categoryDisplayNames = {
     popular: "Popular",
-    "drops-n-wins": "Jackpot",
+    "drops-n-wins": "Jackpot Casino",
     vs: "Video Slots",
     cs: "Classic Slots",
     lg: "Live Games",
@@ -384,7 +384,7 @@ const NewCasino = () => {
                         handleGameChoice({
                           game: "drops-n-wins",
                           provider: "pragmatic",
-                          gameId: "Jackpot",
+                          gameId: "jackpot_casino",
                         });
                         setActiveCategoryLink(null);
                       }
@@ -616,7 +616,7 @@ const NewCasino = () => {
                   handleGameChoice({
                     game: "drops-n-wins",
                     provider: "pragmatic",
-                    gameId: "Jackpot",
+                    gameId: "jackpot_casino",
                   })
                 }
               />
@@ -755,7 +755,7 @@ const CategoriesSection = ({
         </Link>
       </li>
       <li>
-        <Link to="?game_type=jackpot">
+        <Link to="?game_type=jackpot_casino">
           <i className="ico ico-jackpot"></i>
           <span className="filters-settings">JACKPOT PLAY</span>
         </Link>
@@ -949,22 +949,24 @@ const GameChoice = ({ title, games, user, provider }) => {
         big="false"
         style={{ width: "100%", overflow: "auto hidden" }}
       >
-        {games?.map((game, key) => {
+        {games?.map((game, index) => {
           return (
             <div
-              key={key}
+              key={index}
               className="gameInlineThumb image-container casino-item"
               style={{ marginRight: "calc(var(--bs-gutter-x) / 2)" }}
             >
               {(game?.game_icon ?? game?.image_url) && (
                 <div
                   className={`size-images-casino ${
-                    showButtons === key && "mobile-click"
+                    showButtons === index && "mobile-click"
                   }`}
-                  onMouseEnter={() => handleMouseEnter(1)}
+                  onMouseEnter={() => handleMouseEnter(index)}
                   onMouseLeave={handleMouseLeave}
-                  onClick={() => handleMobileClick(1)}
+                  onClick={() => handleMobileClick(index)}
                 >
+                  <div style={{position:"relative"}}>
+
                   <LazyLoadImage
                     effect={"blur"}
                     className=" ls-is-cached"
@@ -1006,6 +1008,7 @@ const GameChoice = ({ title, games, user, provider }) => {
                         Play Game
                       </Button>
                     </ButtonGroup>
+                  </div>
                   </div>
 
                   {/* <div className="gameAttributes">
@@ -1197,7 +1200,7 @@ const Categories = ({ title, games, user, provider }) => {
         {games?.map((game, index) => {
           return (
             <div
-              key={IDBIndex}
+              key={index}
               style={{ marginRight: "calc(var(--bs-gutter-x) / 2)" }}
               className={`gameInlineThumb image-container  ${viewAll ? 'casino-item ' : ""} `}
             >
@@ -1206,10 +1209,12 @@ const Categories = ({ title, games, user, provider }) => {
                   className={`size-images-casino ${
                     showButtons === index && "mobile-click"
                   }`}
-                  onMouseEnter={() => handleMouseEnter(1)}
+                  onMouseEnter={() => handleMouseEnter(index)}
                   onMouseLeave={handleMouseLeave}
                   onClick={() => handleMobileClick(index)}
                 >
+                  <div style={{position:"relative"}}>
+
                   <LazyLoadImage
                     effect={"blur"}
                     className=" ls-is-cached"
@@ -1251,6 +1256,7 @@ const Categories = ({ title, games, user, provider }) => {
                         Play Game
                       </Button>
                     </ButtonGroup>
+                  </div>
                   </div>
 
                   {/* <div className="gameAttributes">

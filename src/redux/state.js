@@ -180,7 +180,6 @@ const initialState = {
             'my-bets',
             'promotions',
             'smart-soft',
-            'virtuals',
             'standing',
             'playouts',
             'bet-history',

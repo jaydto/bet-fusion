@@ -4,6 +4,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Button, ButtonGroup } from "react-bootstrap";
 import CasinoCarouselLoader from "./CasinoCarouseld";
 import {
+  faAngleLeft,
   faCableCar,
   faCampground,
   faFire,
@@ -638,6 +639,10 @@ const NewCasino = () => {
             id="v-search"
           >
             <div className="search-wrapper">
+            <div className="search-close" onClick={handleBackClick}>
+                {/* <i className="ico ico-chevron-left"></i> BACK{" "} */}
+                <FontAwesomeIcon icon={faAngleLeft} style={{color:"white", fontSize:"20px"}}/> BACK{" "} 
+              </div>
               <div className="search-group">
                 <div className="search-input-group">
                   <span className="search-addon">
@@ -649,9 +654,7 @@ const NewCasino = () => {
                   </span>
                 </div>
               </div>
-              <span className="search-close" onClick={handleBackClick}>
-                <i className="ico ico-chevron-left"></i> BACK{" "}
-              </span>
+              
               <div className="search-advance">
                 <i className="ico ico-search"></i> ADVANCED SEARCH{" "}
               </div>
@@ -1162,19 +1165,21 @@ const Categories = ({ title, games, user, provider }) => {
 
   const toggleChoice = (index) => {
     setViewAll(!viewAll);
-
+  
     if (!viewAll && sectionRef.current) {
-      // Scroll to the top of the component when VIEW ALL is clicked
-      sectionRef.current.scrollIntoView({ behavior: "smooth" });
+      // Scroll to the top of the component when VIEW ALL is clicked with an offset of 30px
+      sectionRef.current.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
     }
   };
-
+  
   useEffect(() => {
     if (viewAll && sectionRef.current) {
-      // Scroll to the top of the component when VIEW ALL is true
-      sectionRef.current.scrollIntoView({ behavior: "smooth" });
+      // Scroll to the top of the component when VIEW ALL is true with an offset of 30px
+      sectionRef.current.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
     }
   }, [viewAll]);
+  
+  
 
   // console.log("games_data", games)
   return (

@@ -283,127 +283,132 @@ const NewCasino = () => {
                         setActiveCategoryLink(null);
                       }}
                     />
+                    <FilterItem
+                      title="CRASH GAMES"
+                      link="?game_type=crash-games"
+                      isActive={activeItem === "CRASH GAMES"}
+                      setActiveItem={setActiveItem}
+                      onClick={() => {
+                        handleGameChoice({
+                          game: "crash",
+                          provider: "crash-games",
+                          gameId: "Crash Games",
+                        });
+                        setActiveCategoryLink(null);
+                      }}
+                    />
 
                     <FilterItem
                       title="ROULETTE PLAY"
                       link="?game_type=roulette"
                       isActive={activeItem === "ROULETTE PLAY"}
                       setActiveItem={setActiveItem}
-                      onClick={() =>{
+                      onClick={() => {
                         handleGameChoice({
                           game: "rl",
                           provider: "pragmatic",
                           gameId: "Roulette",
                         });
                         setActiveCategoryLink(null);
-
-                      }
-                      }
+                      }}
                     />
                     <FilterItem
                       title="BLACKJACK"
                       link="?game_type=blackjack"
                       isActive={activeItem === "BLACKJACK"}
                       setActiveItem={setActiveItem}
-                      onClick={() =>{
+                      onClick={() => {
                         handleGameChoice({
                           game: "bj",
                           provider: "pragmatic",
                           gameId: "Black Jack",
                         });
                         setActiveCategoryLink(null);
-                      }
-                      }
+                      }}
                     />
                     <FilterItem
                       title="CARD PLAY"
                       link="?game_type=card_play"
                       isActive={activeItem === "CARD PLAY"}
                       setActiveItem={setActiveItem}
-                      onClick={() =>{
+                      onClick={() => {
                         handleGameChoice({
                           game: "sc",
                           provider: "pragmatic",
                           gameId: "Scratch Card",
                         });
                         setActiveCategoryLink(null);
-                      }
-                      }
+                      }}
                     />
                     <FilterItem
                       title="VIDEO POKER"
                       link="?game_type=video_poker"
                       isActive={activeItem === "VIDEO POKER"}
                       setActiveItem={setActiveItem}
-                      onClick={() =>{
+                      onClick={() => {
                         handleGameChoice({
                           game: "vp",
                           provider: "pragmatic",
                           gameId: "Video Poker",
                         });
                         setActiveCategoryLink(null);
-                      }
-                      }
+                      }}
                     />
                     <FilterItem
                       title="LIVE CASINO"
                       link="?game_type=live_casino"
                       isActive={activeItem === "LIVE CASINO"}
                       setActiveItem={setActiveItem}
-                      onClick={() =>{
+                      onClick={() => {
                         handleGameChoice({
                           game: "lg",
                           provider: "pragmatic",
                           gameId: "Live Games",
                         });
                         setActiveCategoryLink(null);
-                      }
-                      }
+                      }}
                     />
                     <FilterItem
                       title="POPULAR"
                       link="?game_type=popular_pragmatic"
                       isActive={activeItem === "POPULAR"}
                       setActiveItem={setActiveItem}
-                      onClick={() =>{
+                      onClick={() => {
                         handleGameChoice({
                           game: "popular",
                           provider: "pragmatic",
                           gameId: "Popular",
                         });
                         setActiveCategoryLink(null);
-                      }
-                      }
+                      }}
                     />
                     <FilterItem
                       title="JACKPOT"
                       link="?game_type=drops_and_wins"
                       isActive={activeItem === "JACKPOT"}
                       setActiveItem={setActiveItem}
-                      onClick={() =>{
+                      onClick={() => {
                         handleGameChoice({
                           game: "drops-n-wins",
                           provider: "pragmatic",
                           gameId: "jackpot_casino",
                         });
                         setActiveCategoryLink(null);
-                      }
-                      }
+                      }}
                     />
                     <FilterItem
                       title="VIRTUALS"
                       link="?game_type=virtuals"
                       isActive={activeItem === "VIRTUALS"}
                       setActiveItem={setActiveItem}
-                      onClick={() =>{
+                      onClick={() => {
                         handleGameChoice({
                           game: "rgs-vsb",
                           provider: "pragmatic",
                           gameId: "Virtuals",
                         });
                         setActiveCategoryLink(null);
-                      }
-                      }
+                      }}
                     />
                   </div>
                 </div>
@@ -413,13 +418,12 @@ const NewCasino = () => {
               <div id="v-game-filters">
                 <div className="sideFilters">
                   <div className="filtersContainer">
-                    
                     <FilterItem
                       title="SmartSoft"
                       link="?game_type=smart_soft"
                       isActive={activeItem === "SmartSoft"}
                       setActiveItem={setActiveItem}
-                      onClick={() =>{
+                      onClick={() => {
                         handleGameChoice({
                           game: "smart-soft",
                           provider: "smart-soft",
@@ -433,7 +437,7 @@ const NewCasino = () => {
                       link="?game_type=spribe"
                       isActive={activeItem === "Spribe"}
                       setActiveItem={setActiveItem}
-                      onClick={() =>{
+                      onClick={() => {
                         handleGameChoice({
                           game: "spribe",
                           provider: "spribe",
@@ -443,34 +447,38 @@ const NewCasino = () => {
                       }}
                     />
                     <MenuItem title="Pragmatic" icon={faCableCar} color="">
-              <div id="v-game-filters">
-                <div className="sideFilters">
-                  <div className="filtersContainer">
-                  {casino_categories?.map(
-                  (category, index) =>
-                    
-                    <FilterItem
-                    key={index}
-                      title={(category?.game_type_description?.toUpperCase()??
-                        category?.default_description?.toUpperCase())}
-                      isActive={activeItem === (category?.game_type_description ??
-                        category?.default_description)}
-                      setActiveItem={setActiveItem}
-                      link="?game_type=pragmatic"
-                      onClick={() =>{
-                        handleGameChoice({
-                          game: (category?.game_type_id ),
-                          provider: "pragmatic",
-                          gameId: (category?.game_type_description ??
-                            category?.default_description),
-                        });
-                        setActiveCategoryLink(null);
-                      }}
-                    />
-                  )}
-                    </div>
-                    </div>
-                    </div>
+                      <div id="v-game-filters">
+                        <div className="sideFilters">
+                          <div className="filtersContainer">
+                            {casino_categories?.map((category, index) => (
+                              <FilterItem
+                                key={index}
+                                title={
+                                  category?.game_type_description ??
+                                  category?.default_description
+                                }
+                                isActive={
+                                  activeItem ===
+                                  (category?.game_type_description ??
+                                    category?.default_description)
+                                }
+                                setActiveItem={setActiveItem}
+                                link="?game_type=pragmatic"
+                                onClick={() => {
+                                  handleGameChoice({
+                                    game: category?.game_type_id,
+                                    provider: "pragmatic",
+                                    gameId:
+                                      category?.game_type_description ??
+                                      category?.default_description,
+                                  });
+                                  setActiveCategoryLink(null);
+                                }}
+                              />
+                            ))}
+                          </div>
+                        </div>
+                      </div>
                     </MenuItem>
                   </div>
                 </div>
@@ -965,50 +973,49 @@ const GameChoice = ({ title, games, user, provider }) => {
                   onMouseLeave={handleMouseLeave}
                   onClick={() => handleMobileClick(index)}
                 >
-                  <div style={{position:"relative"}}>
+                  <div style={{ position: "relative" }}>
+                    <LazyLoadImage
+                      effect={"blur"}
+                      className=" ls-is-cached"
+                      // src="https://api-dk10.pragmaticplay.net/game_pic/square/200/vs40wildwest.png"
+                      src={game?.game_icon ?? game?.image_url}
+                      alt={game?.game_name ?? game?.gameName}
+                    />
 
-                  <LazyLoadImage
-                    effect={"blur"}
-                    className=" ls-is-cached"
-                    // src="https://api-dk10.pragmaticplay.net/game_pic/square/200/vs40wildwest.png"
-                    src={game?.game_icon ?? game?.image_url}
-                    alt={game?.game_name ?? game?.gameName}
-                  />
-
-                  <div className="overlay">
-                    <ButtonGroup aria-label="Casino Gaming Buttons">
-                      <Button
-                        variant="warning"
-                        onClick={(event) =>
-                          handleButtonClick(
-                            event,
-                            game?.game_id ?? game?.gameName ?? game?.key,
-                            false,
-                            game?.gameCategory,
-                            provider,
-                            game?.provider
-                          )
-                        }
-                      >
-                        Play Demo
-                      </Button>
-                      <Button
-                        variant="danger"
-                        onClick={(event) =>
-                          handleButtonClick(
-                            event,
-                            game?.game_id ?? game?.gameName ?? game?.key,
-                            true,
-                            game?.gameCategory,
-                            provider,
-                            game?.provider
-                          )
-                        }
-                      >
-                        Play Game
-                      </Button>
-                    </ButtonGroup>
-                  </div>
+                    <div className="overlay">
+                      <ButtonGroup aria-label="Casino Gaming Buttons">
+                        <Button
+                          variant="warning"
+                          onClick={(event) =>
+                            handleButtonClick(
+                              event,
+                              game?.game_id ?? game?.gameName ?? game?.key,
+                              false,
+                              game?.gameCategory,
+                              provider,
+                              game?.provider
+                            )
+                          }
+                        >
+                          Play Demo
+                        </Button>
+                        <Button
+                          variant="danger"
+                          onClick={(event) =>
+                            handleButtonClick(
+                              event,
+                              game?.game_id ?? game?.gameName ?? game?.key,
+                              true,
+                              game?.gameCategory,
+                              provider,
+                              game?.provider
+                            )
+                          }
+                        >
+                          Play Game
+                        </Button>
+                      </ButtonGroup>
+                    </div>
                   </div>
 
                   {/* <div className="gameAttributes">
@@ -1073,7 +1080,7 @@ const Categories = ({ title, games, user, provider }) => {
       ${provider} 
       ${crash_provider} 
       `);
-    event.stopPropagation(); 
+    event.stopPropagation();
 
     const redirectToGameplay = () => {
       window.location.href = `/gameplay/${game_id}/${live ? "1" : "0"}`;
@@ -1202,7 +1209,9 @@ const Categories = ({ title, games, user, provider }) => {
             <div
               key={index}
               style={{ marginRight: "calc(var(--bs-gutter-x) / 2)" }}
-              className={`gameInlineThumb image-container  ${viewAll ? 'casino-item ' : ""} `}
+              className={`gameInlineThumb image-container  ${
+                viewAll ? "casino-item " : ""
+              } `}
             >
               {(game?.game_icon ?? game?.image_url) && (
                 <div
@@ -1213,50 +1222,49 @@ const Categories = ({ title, games, user, provider }) => {
                   onMouseLeave={handleMouseLeave}
                   onClick={() => handleMobileClick(index)}
                 >
-                  <div style={{position:"relative"}}>
+                  <div style={{ position: "relative" }}>
+                    <LazyLoadImage
+                      effect={"blur"}
+                      className=" ls-is-cached"
+                      // src="https://api-dk10.pragmaticplay.net/game_pic/square/200/vs40wildwest.png"
+                      src={game?.game_icon ?? game?.image_url}
+                      alt={game?.game_name ?? game?.gameName}
+                    />
 
-                  <LazyLoadImage
-                    effect={"blur"}
-                    className=" ls-is-cached"
-                    // src="https://api-dk10.pragmaticplay.net/game_pic/square/200/vs40wildwest.png"
-                    src={game?.game_icon ?? game?.image_url}
-                    alt={game?.game_name ?? game?.gameName}
-                  />
-
-                  <div className="overlay">
-                    <ButtonGroup aria-label="Casino Gaming Buttons">
-                      <Button
-                        variant="warning"
-                        onClick={(event) =>
-                          handleButtonClick(
-                            event,
-                            game?.game_id ?? game?.gameName ?? game?.key,
-                            false,
-                            game?.gameCategory,
-                            provider,
-                            game?.provider
-                          )
-                        }
-                      >
-                        Play Demo
-                      </Button>
-                      <Button
-                        variant="danger"
-                        onClick={(event) =>
-                          handleButtonClick(
-                            event,
-                            game?.game_id ?? game?.gameName ?? game?.key,
-                            true,
-                            game?.gameCategory,
-                            provider,
-                            game?.provider
-                          )
-                        }
-                      >
-                        Play Game
-                      </Button>
-                    </ButtonGroup>
-                  </div>
+                    <div className="overlay">
+                      <ButtonGroup aria-label="Casino Gaming Buttons">
+                        <Button
+                          variant="warning"
+                          onClick={(event) =>
+                            handleButtonClick(
+                              event,
+                              game?.game_id ?? game?.gameName ?? game?.key,
+                              false,
+                              game?.gameCategory,
+                              provider,
+                              game?.provider
+                            )
+                          }
+                        >
+                          Play Demo
+                        </Button>
+                        <Button
+                          variant="danger"
+                          onClick={(event) =>
+                            handleButtonClick(
+                              event,
+                              game?.game_id ?? game?.gameName ?? game?.key,
+                              true,
+                              game?.gameCategory,
+                              provider,
+                              game?.provider
+                            )
+                          }
+                        >
+                          Play Game
+                        </Button>
+                      </ButtonGroup>
+                    </div>
                   </div>
 
                   {/* <div className="gameAttributes">
@@ -1294,7 +1302,7 @@ function MenuItem({ title, icon, children, color }) {
         onClick={toggleCollapse}
         style={{
           background:
-            "repeating-linear-gradient(45deg, #0d6efd, transparent 100px)",
+           title==='Pragmatic'?"repeating-linear-gradient(45deg, rgb(64 33 163), transparent 100px)": "repeating-linear-gradient(45deg, #0d6efd, transparent 100px)",
         }}
       >
         <span className="text-start">

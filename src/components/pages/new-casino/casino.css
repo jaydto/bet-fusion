@@ -88,7 +88,7 @@ img, svg {
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
-    font-family: Terfens;
+    /* font-family: Terfens; */
 
 }
 /* Common styles */
@@ -343,7 +343,7 @@ img, svg {
   white-space: nowrap;
 }
 .category-title{
-   font-family: Terfens;
+   /* font-family: Terfens; */
   
 }
 .right-body{

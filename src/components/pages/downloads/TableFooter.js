@@ -1,5 +1,6 @@
 import React from 'react';
 import { Document, Page, Image, StyleSheet, Text, View } from '@react-pdf/renderer';
+import PrintFooter from "../../../assets/img/banner/print-matches/FOOTER.jpg";
 
 const borderColor = '#90e5fc';
 const styles = StyleSheet.create({
@@ -53,7 +54,7 @@ const TableFooter = ({ items }) => {
                 <Text style={styles.companyName}>PAYBILL</Text>
                 <Text style={styles.companyAddress}>4087777</Text>
             </View>
-            <Image style={styles.logo} src={"https://cdn.betnare.com/logo-white.webp"} />
+            <Image style={styles.logo} src={PrintFooter} />
         </>
     );
 };

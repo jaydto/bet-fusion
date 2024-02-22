@@ -1,5 +1,6 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View} from '@react-pdf/renderer';
+import PrintHeader from "../../../assets/img/banner/print-matches/HEADER.jpg"
 
 const styles = StyleSheet.create({
     row: {
@@ -31,7 +32,7 @@ const styles = StyleSheet.create({
 const TableHeader = (props) => (
     <>
         <View style={styles.row}>
-            <Image style={styles.logo} src={'https://cdn.betnare.com/logo-white.webp'}/>
+            <Image style={styles.logo} src={PrintHeader}/>
         </View>
         <View style={styles.headerSection}>
             <Text style={styles.title}>

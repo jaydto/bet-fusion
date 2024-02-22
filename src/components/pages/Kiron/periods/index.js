@@ -224,7 +224,7 @@ const KironPeriods = React.memo(
                     
                     setTimeout(() => {
                         dispatchRedux(setState('time_set', false))
-                        fetchData();
+                        // fetchData();
                     }, 300);
                     //todo
                     

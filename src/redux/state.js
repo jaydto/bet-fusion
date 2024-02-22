@@ -77,6 +77,7 @@ const initialState = {
             error: null,
             isLoggedIn: false,
             user: null,
+            time_set: false,
             loading: false,
             time_left:null,
             play_time:null,

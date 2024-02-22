@@ -254,7 +254,7 @@ const nareLeagueSlice = createSlice({
                 state.error = action.error.message;
             })
             .addCase(nareLeaguePeriods.pending, (state) => {
-                state.loading = true;
+                // state.loading = true;
                 state.periods_ready=false
             })
             .addCase(nareLeaguePeriods.fulfilled, (state,action) => {
@@ -282,8 +282,9 @@ const nareLeagueSlice = createSlice({
                 state.periods_ready = true; // Set periods_ready to true
                 state.timeLeft = null; // Reset timeLeft when periods are fetched
                 state.timeAfter = null; // Reset timeAfter when periods are fetched
+                state.time_set = false; // Reset timeAfter when periods are fetched
                 state.isCountDownTimeActive = null; // Reset isCountDownTimeActive when periods are fetched
-                state.current_selection_period = null; // Reset current_selection_period when periods are fetched
+                // state.current_selection_period = null; // Reset current_selection_period when periods are fetched
                 state.inPlay = false; // Set inPlay to false when periods are fetched
             })
             .addCase(nareLeaguePeriods.rejected, (state, action) => {

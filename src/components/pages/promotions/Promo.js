@@ -53,6 +53,9 @@ const Promo = () => {
     },{
       src: "https://cdn.betnare.com/carousel/LastPromoFeb.webp",
       id: 19,
+    },{
+      src: "https://cdn.betnare.com/carousel/ClimaxWeb.webp",
+      id: 20,
     }
   ];
 

@@ -579,5 +579,121 @@
     "active": true,
     "nd": "",
     "nb":"\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion ."
+  },
+  {
+    "id": 20,
+    "name": "CLIMAX NA AVIATOR",
+    "heading": "CLIMAX NA AVIATOR\n",
+    "intro":"\nThe aim of this promotion is to get the highest odds from winners. Those with the highest in-game multiplier(s) to be awarded various cash prizes as stipulated below. \nThis Promotion runs for one week from 20th February to 27th February 2024 subject to extension and amendments.\n",
+    "description": "",
+    "termsHeading": "\nHow it works",
+    "termsContent": "\na. The Promotion applies to cash bets placed on Betnare’s “Aviator” game.\nb- 1.. Only bets placed with a minimum stake of Ksh. 20 or more will apply, 200 daily winners to win cash prizes ranging from Ksh 20k to Ksh 100.\nb – 2.. Alternatively stake Ksh 200 or more and stand a chance to win up to Ksh 250k. \nc. Minimum of  2.5 game multiplier is valid for the competition.\nd. Every day customers with the highest in-game multiplier(s) will be awarded prizes as set out in the table below. \ne. A Customer can place as many Qualifying bets as possible to try reach the highest possible in-game multiplier in order to win one of the prizes. Customers will get real-time updates on the ranking of their Qualifying Bets on the leaderboard published on Betnare website.\nf. Check our social media pages for daily winners list.\ng. Cash prize will be credited in the player’s Betnare account daily.\n",
+    "tableData": {
+      "headings": [
+        "Winner",
+        "stake",
+        "Prize"
+      ],
+      "rows": [
+        [
+          "1",
+          "20",
+          "20,000"
+        ],[
+          "2",
+          "20",
+          "15,000"
+        ],[
+          "3",
+          "20",
+          "10,000"
+        ],[
+          "4",
+          "20",
+          "5,000"
+        ],[
+          "5",
+          "20",
+          "2,500"
+        ],[
+          "6",
+          "20",
+          "1,500"
+        ],[
+          "7",
+          "20",
+          "1,250"
+        ],
+        [
+          "8",
+          "20",
+          "500"
+        ],
+        [
+          "9",
+          "20",
+          "250"
+        ],
+        [
+          "10",
+          "20",
+          "100"
+        ],
+        [
+          "1",
+          "200",
+          "250,000"
+        ],
+        [
+          "2",
+          "200",
+          "125,000"
+        ],
+        [
+          "3",
+          "200",
+          "70,000"
+        ],
+        [
+          "4",
+          "200",
+          "35,000"
+        ],
+        [
+          "5",
+          "200",
+          "20,000"
+        ],
+        [
+          "6",
+          "200",
+          "10,000"
+        ]
+        ,[
+          "7",
+          "200",
+          "5,000"
+        ],
+        [
+          "8",
+          "200",
+          "2,000"
+        ], [
+          "9",
+          "200",
+          "1,000"
+        ], [
+          "10",
+          "200",
+          "500"
+        ] 
+       
+      ]
+    },
+    "headingBooster": "Terms and Conditions",
+    "boostDescription":"• The daily prize winners will be announced every day on Betnare social media pages.\n• A week will run from 0000hrs to 2359hrs daily.\n• Where there is a dispute regarding the selection of winners, the adjudication and decision of the Betnare management will be final.\n• Free bets, cancelled and voided bets will not be eligible for this Promotion.\n• The Pepea game terms and conditions shall apply in the administration of this Promotion.\n• Where the system erroneously generates winnings in excess of the allowed maximum limit, any amount above this limit will be regarded as void and not validly due and payable.\n• Betnare reserves the right to conduct due diligence checks on Customer’s account activity and verify, with the relevant authorities, any identification document presented, before awarding any winnings.\n• Betnare reserves the right to void any winnings, at its sole discretion, and take any and all remedial action in instances including:\n  a. System or software malfunction or error; or\n  b. Suspicion that there are Prohibited Activities being undertaken.\n• Betnare does not guarantee the availability of the Promotion on all devices and channels or its availability all the time.\n• The Promotion terms may be amended from time to time by Betnare at its sole discretion.\n• The Promotion is subject to the General Terms and Conditions",
+"active": true,
+    "nd": "",
+    "nb":"\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion ."
   }
 ]

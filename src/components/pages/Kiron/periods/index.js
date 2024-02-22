@@ -105,7 +105,7 @@ const KironPeriods = React.memo(
             dispatchRedux(setState('inPlay', false));
         } else if (timeMapping > 0) {
             dispatchRedux(setState('inPlay', true));
-            dispatchRedux(resetState('playouts_data'));
+            // dispatchRedux(resetState('playouts_data'));
         }
 
         // Check if play_time and time_left are both null

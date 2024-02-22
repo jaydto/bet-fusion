@@ -105,6 +105,7 @@ const KironPeriods = React.memo(
             dispatchRedux(setState('inPlay', false));
         } else if (timeMapping > 0) {
             dispatchRedux(setState('inPlay', true));
+            dispatchRedux(resetState('playouts_data'));
         }
 
         // Check if play_time and time_left are both null
@@ -217,9 +218,16 @@ const KironPeriods = React.memo(
                 // set inPlay to true when time_left is less than 0
                 if (initialTimeLeft <= 0) {
                     dispatchRedux(setState('inPlay', true))
-                    //todo
+                    //todo check if this can be a fix for live
                     // dispatchRedux(resetState('ended'));
                     dispatchRedux(setState('close_spinner', false))
+                    
+                    setTimeout(() => {
+                        dispatchRedux(setState('time_set', false))
+                        fetchData();
+                    }, 300);
+                    //todo
+                    
 
                     clearInterval(timerInterval);
                 }

@@ -53,7 +53,7 @@ const TableFooter = ({ items }) => {
                 <Text style={styles.companyName}>PAYBILL</Text>
                 <Text style={styles.companyAddress}>4087777</Text>
             </View>
-            <Image style={styles.logo} src={"	https://cdn.betnare.com/logo-white.webp"} />
+            <Image style={styles.logo} src={"https://cdn.betnare.com/logo-white.webp"} />
         </>
     );
 };

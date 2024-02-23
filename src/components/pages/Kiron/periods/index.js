@@ -169,7 +169,7 @@ const KironPeriods = React.memo(
                     console.log("testing Match ended");
                     dispatchRedux(resetState('ended'));
                 } else {
-                    if (play_time <1){
+                    if (play_time <1&& play_time!=null){
                         return 
                     }
                     dispatchRedux(nareLeagueMatches(dataMatches)); // Dispatch nareLeagueMatches async thunk

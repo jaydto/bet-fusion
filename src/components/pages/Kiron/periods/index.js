@@ -105,7 +105,10 @@ const KironPeriods = React.memo(
             dispatchRedux(setState('inPlay', false));
         } else if (timeMapping > 0) {
             dispatchRedux(setState('inPlay', true));
-            // dispatchRedux(resetState('playouts_data'));
+            if(current_selection_period){
+                dispatchRedux(setState('time_set', false))
+            }
+                      
         }
 
         if(periodsReady){
@@ -120,15 +123,10 @@ const KironPeriods = React.memo(
             // Return cleanup function to clear the timeout
             return () => clearTimeout(timeoutId);
         } else {
-            // If play_time and time_left are not both null, set timeSet immediately
             
-            // const timeoutId = setTimeout(() => {
-                // Perform your desired action after the timeout
                 console.log('Timeout of 200 milliseconds else');
                              dispatchRedux(setState('time_set', true));
-            // }, 200);
-            // Return cleanup function to clear the timeout
-            // return () => clearTimeout(timeoutId);
+            
         }
 
         }
@@ -171,6 +169,9 @@ const KironPeriods = React.memo(
                     console.log("testing Match ended");
                     dispatchRedux(resetState('ended'));
                 } else {
+                    if (play_time <1){
+                        return 
+                    }
                     dispatchRedux(nareLeagueMatches(dataMatches)); // Dispatch nareLeagueMatches async thunk
                     console.log("testing calling the right item");
                 }
@@ -229,6 +230,7 @@ const KironPeriods = React.memo(
                 if (initialTimeLeft <= 0) {
                     dispatchRedux(setState('inPlay', true))
                     //todo check if this can be a fix for live
+                    
                     // dispatchRedux(resetState('ended'));
                     dispatchRedux(setState('close_spinner', false))
                     
@@ -319,11 +321,7 @@ const KironPeriods = React.memo(
             }
 
         },[current_selection_period])
-        // const handleLinkClick = (event) => {
-        //     const links = document.querySelectorAll('.link');
-        //     links?.forEach((link) => link.classList.remove('highlight'));
-        //     event.currentTarget.classList.add('highlight');
-        // }
+      
 
 
         const kironTabVisible = () => {

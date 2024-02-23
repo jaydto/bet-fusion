@@ -108,22 +108,32 @@ const KironPeriods = React.memo(
             // dispatchRedux(resetState('playouts_data'));
         }
 
-        // Check if play_time and time_left are both null
+        if(periodsReady){
+            // Check if play_time and time_left are both null
         if (play_time === null && time_left === null&&current_selection_period==null) {
             // Set a timeout of 500 milliseconds
             const timeoutId = setTimeout(() => {
                 // Perform your desired action after the timeout
                 console.log('Timeout of 500 milliseconds');
-        
-                                dispatchRedux(setState('time_set', true));
+             dispatchRedux(setState('time_set', true));
             }, 500);
             // Return cleanup function to clear the timeout
             return () => clearTimeout(timeoutId);
         } else {
             // If play_time and time_left are not both null, set timeSet immediately
-            console.log('Timeout of 500 milliseconds');
-            dispatchRedux(setState('time_set', true));
+            
+            // const timeoutId = setTimeout(() => {
+                // Perform your desired action after the timeout
+                console.log('Timeout of 200 milliseconds else');
+                             dispatchRedux(setState('time_set', true));
+            // }, 200);
+            // Return cleanup function to clear the timeout
+            // return () => clearTimeout(timeoutId);
         }
+
+        }
+
+        
     }, [periodsReady, inPlay, market_id, current_selection_period]);
 
     useEffect(() => {
@@ -166,7 +176,7 @@ const KironPeriods = React.memo(
                 }
             }
         }
-    }, [timeSet, current_selection_period,  market_id]);
+    }, [timeSet, current_selection_period,  market_id,inPlay]);
         
 
 
@@ -222,10 +232,10 @@ const KironPeriods = React.memo(
                     // dispatchRedux(resetState('ended'));
                     dispatchRedux(setState('close_spinner', false))
                     
-                    setTimeout(() => {
-                        dispatchRedux(setState('time_set', false))
-                        // fetchData();
-                    }, 300);
+                    // setTimeout(() => {
+                    //     dispatchRedux(setState('time_set', true))
+                    //     // fetchData();
+                    // }, 300);
                     //todo
                     
 
@@ -250,6 +260,7 @@ const KironPeriods = React.memo(
                 if (timeMapping < 0) {
                     // dispatchRedux(setState('ended', 'Ended'));
                     dispatchRedux(setState('inPlay', false));
+
                 }
 
                 const seconds = timeMapping;
@@ -265,6 +276,7 @@ const KironPeriods = React.memo(
                         // todo
                         // dispatchRedux(resetState('ended'));
                         dispatchRedux(resetState('inPlay'));
+                        dispatchRedux(setState('time_set', false));
                         dispatchRedux(resetState('playouts_data'));
                         dispatchRedux(resetState('active_market'));
                         fetchData();

@@ -32,6 +32,7 @@ const initialState = {
 
     }, // Initial state for the data reducer
     virtuals: {
+        favorites_data:[],
         game_type:'pragmatic',
         bottom_sheet:false,
         loading:false,

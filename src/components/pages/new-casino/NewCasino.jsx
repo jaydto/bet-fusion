@@ -231,6 +231,11 @@ const NewCasino = () => {
     };
   }, [game_type]);
 
+  useEffect(()=>{
+    dispatchRedux(favoriteCasinoApi())
+
+  },[user])
+
   const gameDefaults = () => {
     categories_info.forEach((category) => {
       if (category === "crash") {

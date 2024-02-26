@@ -95,14 +95,7 @@ const KironPeriods = React.memo((props) => {
       (moment().valueOf() - moment(startTime).valueOf()) / 1000;
     const timeMapping = Math.round(timeInPlay * (90 / 65));
 
-    if (timeMapping < 0) {
-      dispatchRedux(setState("inPlay", false));
-    } else if (timeMapping > 0) {
-      dispatchRedux(setState("inPlay", true));
-      if (current_selection_period) {
-        dispatchRedux(setState("time_set", false));
-      }
-    }
+  
 
     if (periodsReady) {
       // Check if play_time and time_left are both null
@@ -111,6 +104,14 @@ const KironPeriods = React.memo((props) => {
         time_left === null &&
         current_selection_period == null
       ) {
+        if (timeMapping < 0) {
+          dispatchRedux(setState("inPlay", false));
+        } else if (timeMapping > 0) {
+          dispatchRedux(setState("inPlay", true));
+          if (current_selection_period) {
+            dispatchRedux(setState("time_set", false));
+          }
+        }
         // Set a timeout of 500 milliseconds
         const timeoutId = setTimeout(() => {
           // Perform your desired action after the timeout
@@ -271,8 +272,9 @@ const KironPeriods = React.memo((props) => {
         dispatchRedux(setState("ended", "Ended"));
         clearInterval(timerVar);
         let timeoutId = null;
-
-        timeoutId = setTimeout(() => {
+        if(inPlay==true){
+          console.log("we are in play ")
+          timeoutId = setTimeout(() => {
             dispatchRedux(resetState('play_time'));
             dispatchRedux(resetState('periods_first'));
             dispatchRedux(resetState('inPlay'));
@@ -286,6 +288,10 @@ const KironPeriods = React.memo((props) => {
           // Cleanup: Clear the timeout if component unmounts or condition changes
           clearTimeout(timeoutId);
         };
+        }
+         
+
+        
       }
     }
 

@@ -2,6 +2,7 @@
 import { createAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import initialState from "./state"; // Import the initial state from state.js
 import makeRequest from "../components/utils/fetch-request";
+import { setLocalStorage } from "../components/utils/local-storage";
 // Async thunk for matches
 export const casinoList = createAsyncThunk(
   "virtuals/casinoGames",
@@ -47,6 +48,34 @@ export const casinoGamePlay = createAsyncThunk(
     }
   }
 );
+
+export const favoriteCasinoApi =
+    createAsyncThunk("matches/favoriteCasinoApi",
+        async () => {
+            const [status, response] = await makeRequest({
+                url: "/v1/fetch-casino-favorite-games",
+                method: "POST"
+            });
+            if (status === 200) {
+                return response;
+            } else {
+                throw new Error(response?.error || "Fetching Casino Favorites failed");
+            }
+        });
+export const favoriteCasinoData =
+    createAsyncThunk("matches/favoriteCasinoData",
+        async (favoriteCasinoData) => {
+            const [status, response] = await makeRequest({
+                url: "/v1/add-casino-favorite-games",
+                method: "POST",
+                data: favoriteCasinoData,
+            });
+            if (status === 200) {
+                return response;
+            } else {
+                throw new Error(response?.error || "Adding Casino Favorite failed");
+            }
+        });
 
 export const setState = createAction("virtuals/set", (stateToSet, data) => {
   return { payload: { stateToSet, data } };
@@ -132,7 +161,33 @@ const virtualsSlice = createSlice({
       })
       .addCase(casinoCreatePlayer.rejected, (state, action) => {
         state.error = action.error.message;
-      });
+      })
+      .addCase(favoriteCasinoApi.pending, (state) => {
+        state.loading = true;
+    })
+    .addCase(favoriteCasinoApi.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        const responsedata = action.payload?.data || [];
+        state.favorites_data = action.payload?.data || [];
+        // Update localStorage with the updated favorites
+        setLocalStorage('favorite_casino', responsedata);
+    })
+    .addCase(favoriteCasinoApi.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+    })
+    .addCase(favoriteCasinoData.pending, (state) => {
+        state.loading = true;
+    })
+    .addCase(favoriteCasinoData.fulfilled, (state) => {
+        state.loading = false;
+        state.error = null;
+    })
+    .addCase(favoriteCasinoData.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+    });
   },
 });
 

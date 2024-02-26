@@ -33,6 +33,7 @@ const initialState = {
     }, // Initial state for the data reducer
     virtuals: {
         game_type:'pragmatic',
+        bottom_sheet:false,
         loading:false,
         error:null,
         casino_games:[],

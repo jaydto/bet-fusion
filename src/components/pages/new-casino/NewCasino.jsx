@@ -1,4 +1,10 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import "./casino.css";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Button, ButtonGroup } from "react-bootstrap";
@@ -13,12 +19,15 @@ import {
   faSquareCaretLeft,
   faSquareCaretRight,
   faStar,
+  faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch, useSelector } from "react-redux";
 import { getFromLocalStorage } from "../../utils/local-storage";
 import {
   casinoList,
+  favoriteCasinoApi,
+  favoriteCasinoData,
   setState as setVirtualGame,
 } from "../../../redux/virtualsSlice";
 import { StoreContext } from "../../../context/store";
@@ -111,6 +120,45 @@ const NewCasino = () => {
     };
     dispatchRedux(casinoList(data));
   };
+  const getHotGames = async (category) => {
+    let endpoint = "/v1/fetch-casino-hot";
+
+    let method = "POST";
+
+    const data = {
+      endpoint: endpoint,
+      method: method,
+      category: category,
+      provider: "hot",
+    };
+    dispatchRedux(casinoList(data));
+  };
+  const getPopularGames = async (category) => {
+    let endpoint = "/v1/fetch-casino-popular";
+
+    let method = "POST";
+
+    const data = {
+      endpoint: endpoint,
+      method: method,
+      category: category,
+      provider: "popular",
+    };
+    dispatchRedux(casinoList(data));
+  };
+  const getFavoriteGames = async (category) => {
+    let endpoint = "/v1/fetch-casino-favorite-games";
+
+    let method = "POST";
+
+    const data = {
+      endpoint: endpoint,
+      method: method,
+      category: category,
+      provider: "favorites",
+    };
+    dispatchRedux(casinoList(data));
+  };
   const getFastGames = async (category) => {
     let endpoint = "/v2/fast-games";
 
@@ -155,6 +203,15 @@ const NewCasino = () => {
     } else if (provider === "smart-soft") {
       // Fetch Smart Soft games
       getSmartGames(game);
+    } else if (provider === "hot") {
+      // Fetch Crash games
+      getHotGames(game);
+    } else if (provider === "popular") {
+      // Fetch Crash games
+      getPopularGames(game);
+    } else if (provider === "favorites") {
+      // Fetch Crash games
+      getFavoriteGames(game);
     } else if (provider === "crash-games") {
       // Fetch Crash games
       getCrashGames(game);
@@ -223,6 +280,37 @@ const NewCasino = () => {
     console.log("we called this");
     setActiveItem(null);
   };
+  const bottomSheetRef = useRef();
+
+  const bottom_sheet = useSelector((state) => state.virtuals.bottom_sheet);
+  const showBottomSheet = () => {
+    dispatchRedux(setVirtualGame("bottom_sheet", true));
+  };
+
+  useEffect(() => {
+    /**
+     * Alert if clicked on outside of element
+     */
+    function handleClickOutside(event) {
+      if (
+        bottomSheetRef.current &&
+        !bottomSheetRef.current.contains(event.target)
+      ) {
+        dispatchRedux(setVirtualGame("bottom_sheet", false));
+      }
+    }
+
+    // Bind the event listener
+    document.addEventListener("mousedown", handleClickOutside);
+    // document.addEventListener("click", handleClickOutside);
+    return () => {
+      // Unbind the event listener on clean up
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [bottomSheetRef, bottom_sheet]);
+  const collapseBottomSheet = () => {
+    dispatchRedux(setVirtualGame("bottom_sheet", false));
+  };
 
   return (
     <div className="games-page d-flex">
@@ -233,8 +321,15 @@ const NewCasino = () => {
           tabIndex="-1"
           style={{ overflow: "hidden", outline: "none" }}
         >
-          <div className="scroll-content mb-3">
-            <MenuItem title="COMING SOON" icon={faRecordVinyl} color={"gold"}>
+          <GameFilters
+            activeItem={activeItem}
+            setActiveItem={setActiveItem}
+            handleGameChoice={handleGameChoice}
+            casino_categories={casino_categories}
+            setActiveCategoryLink={setActiveCategoryLink}
+          />
+          {/* <div className="scroll-content mb-3">
+            <MenuItem title="RECOMMENDED" icon={faRecordVinyl} color={"gold"}>
               <div id="v-game-filters">
                 <div className="sideFilters">
                   <div className="filtersContainer">
@@ -245,6 +340,14 @@ const NewCasino = () => {
                       icon_color="red"
                       isActive={activeItem === "Hot"}
                       setActiveItem={setActiveItem}
+                      onClick={() => {
+                        handleGameChoice({
+                          game: "hot",
+                          provider: "hot",
+                          gameId: "Hot",
+                        });
+                        setActiveCategoryLink(null);
+                      }}
                     />
                     <FilterItem
                       title="Popular"
@@ -253,6 +356,14 @@ const NewCasino = () => {
                       icon_color="gold"
                       isActive={activeItem === "Popular"}
                       setActiveItem={setActiveItem}
+                      onClick={() => {
+                        handleGameChoice({
+                          game: "popular",
+                          provider: "popular",
+                          gameId: "Popular",
+                        });
+                        setActiveCategoryLink(null);
+                      }}
                     />
                   </div>
                 </div>
@@ -262,14 +373,22 @@ const NewCasino = () => {
               <div id="v-game-filters">
                 <div className="sideFilters">
                   <div className="filtersContainer">
-                    {/* <FilterItem
+                    <FilterItem
                       title="Favorites"
                       link="?game_type=favorite"
                       icon={faStar}
                       icon_color="gold"
-                      isActive={activeItem === "Favorite"}
+                      isActive={activeItem === "Favorites"}
                       setActiveItem={setActiveItem}
-                    /> */}
+                      onClick={() => {
+                        handleGameChoice({
+                          game: "favorites",
+                          provider: "favorites",
+                          gameId: "Favorites",
+                        });
+                        setActiveCategoryLink(null);
+                      }}
+                    />
                     <FilterItem
                       title="SLOTS PLAY"
                       link="?game_type=slots"
@@ -486,42 +605,8 @@ const NewCasino = () => {
               </div>
             </MenuItem>
 
-            {/* <div className="menu-item not-active">
-              <Link to="/favorites/">
-                <i className="ico ico-kickers"></i> GAME PROVIDER{" "}
-                <i className="ico ico-chevron-right"></i>
-              </Link>
-              <div className="menu-item active">
-                <div id="v-game-filters">
-                  <div className="sideFilters" data-v-72be8539="">
-                    <div className="totalFound" data-v-72be8539="">
-                    0 PLAYS FOUND
-                  </div>
-                    <div className="filtersContainer" data-v-72be8539="">
-                      <div className="filter-item" data-v-72be8539="">
-                        Pragmatic
-                        <i className="ico ico-chevron-right" data-v-72be8539=""></i>
-                      </div>
-                      <div className="filter-item" data-v-72be8539="">
-                        SmartSoft
-                        <i className="ico ico-chevron-right" data-v-72be8539=""></i>
-                      </div>
-                      <div className="filter-item" data-v-72be8539="">
-                        Spribe
-                        <i className="ico ico-chevron-right" data-v-72be8539=""></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> */}
-
-            {/* <div className="menu-item not-active">
-              <Link to="/help/">
-                <i className="ico ico-help"></i>HELP{" "}
-              </Link>
-            </div> */}
-          </div>
+           
+          </div> */}
           <div
             className="scrollbar-track scrollbar-track-y show"
             style={{ display: "block" }}
@@ -639,9 +724,13 @@ const NewCasino = () => {
             id="v-search"
           >
             <div className="search-wrapper">
-            <div className="search-close" onClick={handleBackClick}>
+              <div className="search-close" onClick={handleBackClick}>
                 {/* <i className="ico ico-chevron-left"></i> BACK{" "} */}
-                <FontAwesomeIcon icon={faAngleLeft} style={{color:"white", fontSize:"20px"}}/> BACK{" "} 
+                <FontAwesomeIcon
+                  icon={faAngleLeft}
+                  style={{ color: "white", fontSize: "20px" }}
+                />{" "}
+                BACK{" "}
               </div>
               <div className="search-group">
                 <div className="search-input-group">
@@ -654,8 +743,8 @@ const NewCasino = () => {
                   </span>
                 </div>
               </div>
-              
-              <div className="search-advance">
+
+              <div className="search-advance" onClick={() => showBottomSheet()}>
                 <i className="ico ico-search"></i> ADVANCED SEARCH{" "}
               </div>
             </div>
@@ -679,19 +768,19 @@ const NewCasino = () => {
                   <GameChoice
                     user={user}
                     games={game[Object.keys(game)[0]]} // Pass the dynamic key's value as a prop to the GameChoice component
-                    provider={game[Object.keys(game)[1]]} // Pass the dynamic key's value as a prop to the GameChoice component
+                    provider={game?.provider} // Pass the dynamic key's value as a prop to the GameChoice component
                     title={game_type.toUpperCase()} // Assuming 'game_type_description' contains the title
                   />
                 </div>
               ))
             : categories_info.map((category, index) => {
-                const categoryGames = casino_games.find(
+                const categoryGames = casino_games?.find(
                   (game) => game[category]
                 );
                 const popularGames = categoryGames
                   ? categoryGames[category]
                   : [];
-                const provider = categoryGames ? categoryGames["provider"] : [];
+                const provider = categoryGames ? categoryGames?.provider : [];
 
                 if (popularGames.length > 0) {
                   return (
@@ -710,6 +799,46 @@ const NewCasino = () => {
 
           {/* <Categories user={user} games={[]} title={"new"} /> */}
         </div>
+        <div className={`${bottom_sheet ? "bottom-sheet casino show " : "d-none"}`}>
+          <div className="sheet-overlay"></div>
+          <div ref={bottomSheetRef} className="content">
+            <div className="header d-flex justify-content-between">
+              <div className="drag-icon">
+                <span></span>
+              </div>
+              <FontAwesomeIcon
+                icon={faXmark}
+                onClick={() => {
+                  collapseBottomSheet();
+                }}
+                className={"filter-close-icon"}
+              />
+            </div>
+            <div className="body d-flex flex-column gap-4">
+              
+              <GameFilters
+                activeItem={activeItem}
+                setActiveItem={setActiveItem}
+                handleGameChoice={handleGameChoice}
+                casino_categories={casino_categories}
+                setActiveCategoryLink={setActiveCategoryLink}
+                collapseBottomSheet={collapseBottomSheet}
+              />
+            </div>
+            <div style={{ position: "relative" }}>
+              <Button
+                onClick={() => {
+                  collapseBottomSheet();
+                }}
+                className={
+                  "text-light bold color-inherit btn border-0 cancel-filter-markets"
+                }
+              >
+                Cancel
+              </Button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -717,68 +846,376 @@ const NewCasino = () => {
 
 export default NewCasino;
 
-const CategoriesSection = ({
-  showFilters,
-  handleSearchClick,
-  gameDefaults,
-  onClick,
+const GameFilters = ({
+  activeItem,
+  setActiveItem,
+  handleGameChoice,
+  casino_categories,
+  setActiveCategoryLink,
+  collapseBottomSheet
 }) => {
   return (
-    <ul
-      className={`filters ${
-        showFilters ? "d-flex" : "d-none"
-      } pb-3 pb-xl-0 mr-0 ml-0 mt-3 mb-3 mt-xl-3 mb-xl-1 align-items-center `}
-    >
-      <li className="ml-3 d-xl-none" id="v-search-mobile">
-        <Link to="#" onClick={handleSearchClick}>
-          <i className="ico ico-search"></i>
-          <span className="filters-settings">SEARCH</span>
-        </Link>
-      </li>
-      <li>
-        <Link to="/new-casino" onClick={gameDefaults}>
-          <i className="ico ico-cardplay"></i>
-          <span className="filters-settings">HOME</span>
-        </Link>
-      </li>
-      <li>
-        <Link to="?game_type=slots">
-          <i className="ico ico-reels"></i>
-          <span className="filters-settings">SLOTS PLAY</span>
-        </Link>
-      </li>
-      <li>
-        <Link to="?game_type=roulette">
-          <i className="ico ico-roulette"></i>
-          <span className="filters-settings">ROULETTE PLAY</span>
-        </Link>
-      </li>
-      <li>
-        <Link to="?game_type=blackjack">
-          <i className="ico ico-blackjack"></i>
-          <span className="filters-settings">BLACKJACK</span>
-        </Link>
-      </li>
-      <li>
-        <Link to="?game_type=live-casino">
-          <i className="ico ico-livecasino"></i>
-          <span className="filters-settings">LIVE CASINO</span>
-        </Link>
-      </li>
-      <li>
-        <Link to="?game_type=jackpot_casino">
-          <i className="ico ico-jackpot"></i>
-          <span className="filters-settings">JACKPOT PLAY</span>
-        </Link>
-        <div id="v-total-jackpot"></div>
-      </li>
-      <li>
-        <Link to="?game_type=video-poker">
-          <i className="ico ico-cardplay"></i>
-          <span className="filters-settings">CARD PLAY</span>
-        </Link>
-      </li>
-    </ul>
+    <div className="scroll-content mb-3">
+      <MenuItem title="RECOMMENDED" icon={faRecordVinyl} color={"gold"}>
+        <div id="v-game-filters">
+          <div className="sideFilters">
+            <div className="filtersContainer">
+              <FilterItem
+                title="Hot"
+                link="?game_type=hot"
+                icon={faFire}
+                icon_color="red"
+                isActive={activeItem === "Hot"}
+                setActiveItem={setActiveItem}
+                onClick={() => {
+                  handleGameChoice({
+                    game: "hot",
+                    provider: "hot",
+                    gameId: "Hot",
+                  });
+                  setActiveCategoryLink(null);
+                  if (collapseBottomSheet) {
+                    collapseBottomSheet();
+                  }
+                }}
+              />
+              <FilterItem
+                title="Popular"
+                link="?game_type=popular"
+                icon={faSmile}
+                icon_color="gold"
+                isActive={activeItem === "Popular"}
+                setActiveItem={setActiveItem}
+                onClick={() => {
+                  handleGameChoice({
+                    game: "popular",
+                    provider: "popular",
+                    gameId: "Popular",
+                  });
+                  setActiveCategoryLink(null);
+                  if (collapseBottomSheet) {
+                    collapseBottomSheet();
+                  }
+                }}
+              />
+            </div>
+          </div>
+        </div>
+      </MenuItem>
+      <MenuItem title="CATEGORIES" icon={faCampground} color="">
+        <div id="v-game-filters">
+          <div className="sideFilters">
+            <div className="filtersContainer">
+              <FilterItem
+                title="Favorites"
+                link="?game_type=favorite"
+                icon={faStar}
+                icon_color="gold"
+                isActive={activeItem === "Favorites"}
+                setActiveItem={setActiveItem}
+                onClick={() => {
+                  handleGameChoice({
+                    game: "favorites",
+                    provider: "favorites",
+                    gameId: "Favorites",
+                  });
+                  setActiveCategoryLink(null);
+                  if (collapseBottomSheet) {
+                    collapseBottomSheet();
+                  };
+                }}
+              />
+              <FilterItem
+                title="SLOTS PLAY"
+                link="?game_type=slots"
+                isActive={activeItem === "SLOTS PLAY"}
+                setActiveItem={setActiveItem}
+                onClick={() => {
+                  handleGameChoice({
+                    game: "cs",
+                    provider: "pragmatic",
+                    gameId: "Classic Slots",
+                  });
+                  setActiveCategoryLink(null);
+                  if (collapseBottomSheet) {
+                    collapseBottomSheet();
+                  };
+                }}
+              />
+              <FilterItem
+                title="CRASH GAMES"
+                link="?game_type=crash-games"
+                isActive={activeItem === "CRASH GAMES"}
+                setActiveItem={setActiveItem}
+                onClick={() => {
+                  handleGameChoice({
+                    game: "crash",
+                    provider: "crash-games",
+                    gameId: "Crash Games",
+                  });
+                  setActiveCategoryLink(null);
+                  if (collapseBottomSheet) {
+                    collapseBottomSheet();
+                  };
+                }}
+              />
+
+              <FilterItem
+                title="ROULETTE PLAY"
+                link="?game_type=roulette"
+                isActive={activeItem === "ROULETTE PLAY"}
+                setActiveItem={setActiveItem}
+                onClick={() => {
+                  handleGameChoice({
+                    game: "rl",
+                    provider: "pragmatic",
+                    gameId: "Roulette",
+                  });
+                  setActiveCategoryLink(null);
+                  if (collapseBottomSheet) {
+                    collapseBottomSheet();
+                  };
+                }}
+              />
+              <FilterItem
+                title="BLACKJACK"
+                link="?game_type=blackjack"
+                isActive={activeItem === "BLACKJACK"}
+                setActiveItem={setActiveItem}
+                onClick={() => {
+                  handleGameChoice({
+                    game: "bj",
+                    provider: "pragmatic",
+                    gameId: "Black Jack",
+                  });
+                  setActiveCategoryLink(null);
+                  if (collapseBottomSheet) {
+                    collapseBottomSheet();
+                  };
+                }}
+              />
+              <FilterItem
+                title="CARD PLAY"
+                link="?game_type=card_play"
+                isActive={activeItem === "CARD PLAY"}
+                setActiveItem={setActiveItem}
+                onClick={() => {
+                  handleGameChoice({
+                    game: "sc",
+                    provider: "pragmatic",
+                    gameId: "Scratch Card",
+                  });
+                  setActiveCategoryLink(null);
+                  if (collapseBottomSheet) {
+                    collapseBottomSheet();
+                  };
+                }}
+              />
+              <FilterItem
+                title="VIDEO POKER"
+                link="?game_type=video_poker"
+                isActive={activeItem === "VIDEO POKER"}
+                setActiveItem={setActiveItem}
+                onClick={() => {
+                  handleGameChoice({
+                    game: "vp",
+                    provider: "pragmatic",
+                    gameId: "Video Poker",
+                  });
+                  setActiveCategoryLink(null);
+                  if (collapseBottomSheet) {
+                    collapseBottomSheet();
+                  };
+                }}
+              />
+              <FilterItem
+                title="LIVE CASINO"
+                link="?game_type=live_casino"
+                isActive={activeItem === "LIVE CASINO"}
+                setActiveItem={setActiveItem}
+                onClick={() => {
+                  handleGameChoice({
+                    game: "lg",
+                    provider: "pragmatic",
+                    gameId: "Live Games",
+                  });
+                  setActiveCategoryLink(null);
+                  if (collapseBottomSheet) {
+                    collapseBottomSheet();
+                  };
+                }}
+              />
+              <FilterItem
+                title="POPULAR"
+                link="?game_type=popular_pragmatic"
+                isActive={activeItem === "POPULAR"}
+                setActiveItem={setActiveItem}
+                onClick={() => {
+                  handleGameChoice({
+                    game: "popular",
+                    provider: "pragmatic",
+                    gameId: "Popular",
+                  });
+                  setActiveCategoryLink(null);
+                  if (collapseBottomSheet) {
+                    collapseBottomSheet();
+                  };
+                }}
+              />
+              <FilterItem
+                title="JACKPOT"
+                link="?game_type=drops_and_wins"
+                isActive={activeItem === "JACKPOT"}
+                setActiveItem={setActiveItem}
+                onClick={() => {
+                  handleGameChoice({
+                    game: "drops-n-wins",
+                    provider: "pragmatic",
+                    gameId: "jackpot_casino",
+                  });
+                  setActiveCategoryLink(null);
+                  if (collapseBottomSheet) {
+                    collapseBottomSheet();
+                  };
+                }}
+              />
+              <FilterItem
+                title="VIRTUALS"
+                link="?game_type=virtuals"
+                isActive={activeItem === "VIRTUALS"}
+                setActiveItem={setActiveItem}
+                onClick={() => {
+                  handleGameChoice({
+                    game: "rgs-vsb",
+                    provider: "pragmatic",
+                    gameId: "Virtuals",
+                  });
+                  setActiveCategoryLink(null);
+                  if (collapseBottomSheet) {
+                    collapseBottomSheet();
+                  };
+                }}
+              />
+            </div>
+          </div>
+        </div>
+      </MenuItem>
+      <MenuItem title="GAME PROVIDER" icon={faAffiliatetheme} color="">
+        <div id="v-game-filters">
+          <div className="sideFilters">
+            <div className="filtersContainer">
+              <FilterItem
+                title="SmartSoft"
+                link="?game_type=smart_soft"
+                isActive={activeItem === "SmartSoft"}
+                setActiveItem={setActiveItem}
+                onClick={() => {
+                  handleGameChoice({
+                    game: "smart-soft",
+                    provider: "smart-soft",
+                    gameId: "SmartSoft",
+                  });
+                  setActiveCategoryLink(null);
+                  if (collapseBottomSheet) {
+                    collapseBottomSheet();
+                  };
+                }}
+              />
+              <FilterItem
+                title="Spribe"
+                link="?game_type=spribe"
+                isActive={activeItem === "Spribe"}
+                setActiveItem={setActiveItem}
+                onClick={() => {
+                  handleGameChoice({
+                    game: "spribe",
+                    provider: "spribe",
+                    gameId: "Spribe",
+                  });
+                  setActiveCategoryLink(null);
+                  if (collapseBottomSheet) {
+                    collapseBottomSheet();
+                  };
+                }}
+              />
+              <MenuItem title="Pragmatic" icon={faCableCar} color="">
+                <div id="v-game-filters">
+                  <div className="sideFilters">
+                    <div className="filtersContainer">
+                      {casino_categories?.map((category, index) => (
+                        <FilterItem
+                          key={index}
+                          title={
+                            category?.game_type_description ??
+                            category?.default_description
+                          }
+                          isActive={
+                            activeItem ===
+                            (category?.game_type_description ??
+                              category?.default_description)
+                          }
+                          setActiveItem={setActiveItem}
+                          link="?game_type=pragmatic"
+                          onClick={() => {
+                            handleGameChoice({
+                              game: category?.game_type_id,
+                              provider: "pragmatic",
+                              gameId:
+                                category?.game_type_description ??
+                                category?.default_description,
+                            });
+                            setActiveCategoryLink(null);
+                            if (collapseBottomSheet) {
+                    collapseBottomSheet();
+                  };
+                          }}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </MenuItem>
+            </div>
+          </div>
+        </div>
+      </MenuItem>
+
+      {/* <div className="menu-item not-active">
+              <Link to="/favorites/">
+                <i className="ico ico-kickers"></i> GAME PROVIDER{" "}
+                <i className="ico ico-chevron-right"></i>
+              </Link>
+              <div className="menu-item active">
+                <div id="v-game-filters">
+                  <div className="sideFilters" data-v-72be8539="">
+                    <div className="totalFound" data-v-72be8539="">
+                    0 PLAYS FOUND
+                  </div>
+                    <div className="filtersContainer" data-v-72be8539="">
+                      <div className="filter-item" data-v-72be8539="">
+                        Pragmatic
+                        <i className="ico ico-chevron-right" data-v-72be8539=""></i>
+                      </div>
+                      <div className="filter-item" data-v-72be8539="">
+                        SmartSoft
+                        <i className="ico ico-chevron-right" data-v-72be8539=""></i>
+                      </div>
+                      <div className="filter-item" data-v-72be8539="">
+                        Spribe
+                        <i className="ico ico-chevron-right" data-v-72be8539=""></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> */}
+
+      {/* <div className="menu-item not-active">
+              <Link to="/help/">
+                <i className="ico ico-help"></i>HELP{" "}
+              </Link>
+            </div> */}
+    </div>
   );
 };
 
@@ -822,9 +1259,142 @@ const CasinoCategorySection = ({
 
 const GameChoice = ({ title, games, user, provider }) => {
   const [showButtons, setShowButtons] = useState(null);
-  const show = useSelector((state) => state.data.show_menu_casino);
-  const game_type = useSelector((state) => state.virtuals.game_type);
+  const dispatchRedux = useDispatch();
+
   const navigate = useNavigate();
+
+  console.log("provider information", provider);
+
+  const favoritesData = useSelector((state) => state.virtuals.favorites_data);
+
+  // Perform the conditional logic
+  const favoriteCasinoValue =
+    favoritesData?.length > 0
+      ? favoritesData
+      : getFromLocalStorage("favorite_casino") || [];
+
+  // console.log("favorite Casino Value", favoriteCasinoValue )
+  // console.log("data from local storage", favoriteCasinoValue )
+  const [userFavoriteCasino, setUserFavoriteCasino] = useState(() => {
+    return favoriteCasinoValue;
+  });
+
+  // Get favorite items from the API
+  // const getFavoriteCasino = useCallback(async () => {
+  //   dispatchRedux(favoriteCasinoApi());
+  // }, []);
+
+  // Loader
+  const [loadingMap, setLoadingMap] = useState({});
+
+  // Handle the click event for a specific casino games to be marked as favorite
+  const favoriteCasino = (
+    event,
+    game_id,
+    image_url,
+    game_name,
+    game_category,
+    provider,
+    type
+  ) => {
+    // Prevent the click event from propagating to the Accordion
+    event.stopPropagation();
+    setLoadingMap((prevLoadingMap) => ({
+      ...prevLoadingMap,
+      [game_id]: true, // Set loading to true for the specific game
+    }));
+
+    // Update favorite status on the server
+    setCasinoFavorite(
+      game_id,
+      image_url,
+      game_name,
+      game_category,
+      provider,
+      type
+    );
+  };
+
+  // Function to set favorite items on the server
+  const setCasinoFavorite = (
+    game_id,
+    image_url,
+    game_name,
+    game_category,
+    provider,
+    type
+  ) => {
+    const data = {
+      game_id: game_id,
+      image_url: image_url,
+      game_name: game_name,
+      game_category: game_category,
+      provider: provider,
+    };
+
+    // Check if the game_id is already in the userFavoriteCasino array
+    const isFavorite = userFavoriteCasino.some(
+      (favorite) => favorite.game_id === game_id
+    );
+
+    // Dispatch the favoriteCasinoData asyncThunk to set the favorite casino games on the server
+    dispatchRedux(favoriteCasinoData(data))
+      .then((response) => {
+        setLoadingMap((prevLoadingMap) => ({
+          ...prevLoadingMap,
+          [game_id]: false, // Set loading back to false for the specific game
+        }));
+        if (favoriteCasinoData.fulfilled.match(response)) {
+          if (isFavorite) {
+            // If already favorite, remove from favorites
+            setUserFavoriteCasino((prevFavorites) =>
+              prevFavorites.filter((fav) => fav.game_id !== game_id)
+            );
+          } else {
+            // If not favorite, add to favorites
+            setUserFavoriteCasino((prevFavorites) => [
+              ...prevFavorites,
+              { game_id: game_id },
+            ]);
+          }
+
+          // Immediately update the local state with the new favorite casino games (optimistically)
+          setUserFavoriteCasino((prevFavorites) => [...prevFavorites, game_id]);
+        }
+
+        // API call is successful (asynchronously), no need to update local state here again
+        // Fetch updated favorite markets from the API if needed
+        dispatchRedux(favoriteCasinoApi()).then((response) => {
+          if (favoriteCasinoApi.fulfilled.match(response)) {
+            console.log("what is my provider", type);
+            if (type === "favorites") {
+              console.log(
+                "we are checking how favorites work",
+                response.payload.data
+              );
+
+              dispatchRedux(
+                setVirtualGame("casino_games", [
+                  {
+                    favorites:
+                      response.payload.data ?? response.payload.games ?? [], // Assuming response contains the updated favorite games data
+                    provider: "favorites",
+                  },
+                ])
+              );
+            }
+          }
+        });
+      })
+      .catch((error) => {
+        // Handle error
+        console.error("Error setting favorite casino games:", error);
+        // API call failed, revert local state change
+        setUserFavoriteCasino((prevFavorites) =>
+          prevFavorites.filter((fav) => fav !== game_id)
+        );
+      });
+  };
 
   const containerRef = useRef(null);
 
@@ -1020,7 +1590,38 @@ const GameChoice = ({ title, games, user, provider }) => {
                       </ButtonGroup>
                     </div>
                   </div>
-
+                  <FontAwesomeIcon
+                    icon={faStar}
+                    style={{
+                      color: userFavoriteCasino?.some(
+                        (favorite) =>
+                          favorite.game_id ===
+                          (game?.game_id ?? game?.gameName ?? game?.key)
+                      )
+                        ? "gold"
+                        : "white",
+                    }}
+                    onClick={(event) =>
+                      favoriteCasino(
+                        event,
+                        game?.game_id ?? game?.gameName ?? game?.key,
+                        game?.game_icon ?? game?.image_url,
+                        game?.game_name ?? game?.gameName ?? game?.name,
+                        game?.gameCategory,
+                        game?.provider ?? provider,
+                        provider
+                      )
+                    }
+                    className={`${user ? "favorite" : "d-none"}`}
+                  />
+                  &nbsp;
+                  <span className="text-light">
+                    {game?.game_name ?? game?.gameName}
+                  </span>
+                  {loadingMap[game?.game_id ?? game?.gameName ?? game?.key] && (
+                    <LoadingIndicator />
+                  )}{" "}
+                  {/* Render loading indicator for the specific game */}
                   {/* <div className="gameAttributes">
                 <div
                   className="new"
@@ -1038,10 +1639,117 @@ const GameChoice = ({ title, games, user, provider }) => {
   );
 };
 
+const LoadingIndicator = () => {
+  return <div className="loading-indicator">Loading...</div>;
+};
+
 const Categories = ({ title, games, user, provider }) => {
   const [showButtons, setShowButtons] = useState(null);
+  // Loader
+  const [loadingMap, setLoadingMap] = useState({});
 
   const navigate = useNavigate();
+
+  const dispatchRedux = useDispatch();
+  const favoritesData = useSelector((state) => state.virtuals.favorites_data);
+
+  // Perform the conditional logic
+  const favoriteCasinoValue =
+    favoritesData?.length > 0
+      ? favoritesData
+      : getFromLocalStorage("favorite_casino") || [];
+
+  // console.log("favorite Casino Value", favoriteCasinoValue )
+  // console.log("data from local storage", favoriteCasinoValue )
+  const [userFavoriteCasino, setUserFavoriteCasino] = useState(() => {
+    return favoriteCasinoValue;
+  });
+
+  // Get favorite items from the API
+  const getFavoriteCasino = useCallback(async () => {
+    dispatchRedux(favoriteCasinoApi());
+  }, []);
+
+  // Handle the click event for a specific casino games to be marked as favorite
+  const favoriteCasino = (
+    event,
+    game_id,
+    image_url,
+    game_name,
+    game_category,
+    provider
+  ) => {
+    // Prevent the click event from propagating to the Accordion
+    event.stopPropagation();
+    setLoadingMap((prevLoadingMap) => ({
+      ...prevLoadingMap,
+      [game_id]: true, // Set loading to true for the specific game
+    }));
+
+    // Update favorite status on the server
+    setCasinoFavorite(game_id, image_url, game_name, game_category, provider);
+  };
+
+  // Function to set favorite items on the server
+  const setCasinoFavorite = (
+    game_id,
+    image_url,
+    game_name,
+    game_category,
+    provider
+  ) => {
+    const data = {
+      game_id: game_id,
+      image_url: image_url,
+      game_name: game_name,
+      game_category: game_category,
+      provider: provider,
+    };
+
+    // Check if the game_id is already in the userFavoriteCasino array
+    const isFavorite = userFavoriteCasino.some(
+      (favorite) => favorite.game_id === game_id
+    );
+    // console.log("isFavorite", isFavorite);
+
+    // Dispatch the favoriteCasinoData asyncThunk to set the favorite casino games on the server
+    dispatchRedux(favoriteCasinoData(data))
+      .then((response) => {
+        setLoadingMap((prevLoadingMap) => ({
+          ...prevLoadingMap,
+          [game_id]: false, // Set loading back to false for the specific game
+        }));
+        if (favoriteCasinoData.fulfilled.match(response)) {
+          if (isFavorite) {
+            // If already favorite, remove from favorites
+            setUserFavoriteCasino((prevFavorites) =>
+              prevFavorites.filter((fav) => fav.game_id !== game_id)
+            );
+          } else {
+            // If not favorite, add to favorites
+            setUserFavoriteCasino((prevFavorites) => [
+              ...prevFavorites,
+              { game_id: game_id },
+            ]);
+          }
+
+          // Immediately update the local state with the new favorite casino games (optimistically)
+          setUserFavoriteCasino((prevFavorites) => [...prevFavorites, game_id]);
+        }
+
+        // API call is successful (asynchronously), no need to update local state here again
+        // Fetch updated favorite markets from the API if needed
+        dispatchRedux(favoriteCasinoApi());
+      })
+      .catch((error) => {
+        // Handle error
+        console.error("Error setting favorite casino games:", error);
+        // API call failed, revert local state change
+        setUserFavoriteCasino((prevFavorites) =>
+          prevFavorites.filter((fav) => fav !== game_id)
+        );
+      });
+  };
 
   const containerRef = useRef(null);
 
@@ -1165,21 +1873,27 @@ const Categories = ({ title, games, user, provider }) => {
 
   const toggleChoice = (index) => {
     setViewAll(!viewAll);
-  
+
     if (!viewAll && sectionRef.current) {
       // Scroll to the top of the component when VIEW ALL is clicked with an offset of 30px
-      sectionRef.current.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+      sectionRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+        inline: "nearest",
+      });
     }
   };
-  
+
   useEffect(() => {
     if (viewAll && sectionRef.current) {
       // Scroll to the top of the component when VIEW ALL is true with an offset of 30px
-      sectionRef.current.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+      sectionRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+        inline: "nearest",
+      });
     }
   }, [viewAll]);
-  
-  
 
   // console.log("games_data", games)
   return (
@@ -1271,7 +1985,37 @@ const Categories = ({ title, games, user, provider }) => {
                       </ButtonGroup>
                     </div>
                   </div>
-
+                  <FontAwesomeIcon
+                    icon={faStar}
+                    style={{
+                      color: userFavoriteCasino?.some(
+                        (favorite) =>
+                          favorite.game_id ===
+                          (game?.game_id ?? game?.gameName ?? game?.key)
+                      )
+                        ? "gold"
+                        : "white",
+                    }}
+                    onClick={(event) =>
+                      favoriteCasino(
+                        event,
+                        game?.game_id ?? game?.gameName ?? game?.key,
+                        game?.game_icon ?? game?.image_url,
+                        game?.game_name ?? game?.gameName ?? game?.name,
+                        game?.gameCategory,
+                        provider ?? game?.provider
+                      )
+                    }
+                    className={`${user ? "favorite" : "d-none"}`}
+                  />
+                  &nbsp;
+                  <span className="text-light">
+                    {game?.game_name ?? game?.gameName}
+                  </span>
+                  {loadingMap[game?.game_id ?? game?.gameName ?? game?.key] && (
+                    <LoadingIndicator />
+                  )}{" "}
+                  {/* Render loading indicator for the specific game */}
                   {/* <div className="gameAttributes">
                 <div
                   className="new"
@@ -1307,7 +2051,9 @@ function MenuItem({ title, icon, children, color }) {
         onClick={toggleCollapse}
         style={{
           background:
-           title==='Pragmatic'?"repeating-linear-gradient(45deg, rgb(64 33 163), transparent 100px)": "repeating-linear-gradient(45deg, #0d6efd, transparent 100px)",
+            title === "Pragmatic"
+              ? "repeating-linear-gradient(45deg, rgb(64 33 163), transparent 100px)"
+              : "repeating-linear-gradient(45deg, #0d6efd, transparent 100px)",
         }}
       >
         <span className="text-start">

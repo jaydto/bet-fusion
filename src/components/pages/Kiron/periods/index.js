@@ -50,13 +50,7 @@ const KironPeriods = React.memo((props) => {
     await dispatchRedux(nareLeaguePeriods(newCompetition));
   }, [competition_id]);
 
-  useEffect(() => {
-    const abort = new AbortController();
-    fetchData();
-    return () => {
-      abort.abort();
-    };
-  }, []);
+  
 
   // track when competiton_id changes and resets for all previous states
   useEffect(() => {
@@ -338,7 +332,7 @@ const KironPeriods = React.memo((props) => {
             dispatchRedux(resetState("inPlay"));
             dispatchRedux(resetState("play_time"));
             dispatchRedux(resetState("active_market"));
-            fetchData();
+            // fetchData();
           }
         }
       }

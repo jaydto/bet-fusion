@@ -359,6 +359,11 @@ img, svg {
   color:var(--light);
 
 }
+
+.bottom-sheet.casino .content{
+  padding:12px 13px;
+  height: 50vh;
+}
 .category-title{
    /* font-family: Terfens; */
   

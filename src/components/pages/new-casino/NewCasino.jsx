@@ -1436,6 +1436,8 @@ const GameChoice = ({ title, games, user, provider }) => {
     crash_provider = ""
   ) => {
     event.stopPropagation(); // Prevent event from propagating to parent element
+
+    console.log("provider information", provider)
     const redirectToGameplay = () => {
       window.location.href = `/gameplay/${game_id}/${live ? "1" : "0"}`;
     };
@@ -1484,6 +1486,8 @@ const GameChoice = ({ title, games, user, provider }) => {
       navigate("/login");
     }
   };
+
+  const finalProvider = ['favorites', 'crash-games', 'hot', 'popular']
 
   const handleScrollButtons = () => {
     const container = containerRef.current;
@@ -1570,7 +1574,7 @@ const GameChoice = ({ title, games, user, provider }) => {
                               game?.game_id ?? game?.gameName ?? game?.key,
                               false,
                               game?.gameCategory,
-                              provider,
+                              finalProvider.includes(provider)? game?.provider:provider,
                               game?.provider
                             )
                           }
@@ -1585,7 +1589,7 @@ const GameChoice = ({ title, games, user, provider }) => {
                               game?.game_id ?? game?.gameName ?? game?.key,
                               true,
                               game?.gameCategory,
-                              provider,
+                              finalProvider.includes(provider)? game?.provider:provider,
                               game?.provider
                             )
                           }
@@ -1613,7 +1617,7 @@ const GameChoice = ({ title, games, user, provider }) => {
                         game?.game_icon ?? game?.image_url,
                         game?.game_name ?? game?.gameName ?? game?.name,
                         game?.gameCategory,
-                        game?.provider ?? provider,
+                        finalProvider.includes(provider)? game?.provider:provider,
                         provider
                       )
                     }
@@ -1657,6 +1661,7 @@ const Categories = ({ title, games, user, provider }) => {
 
   const dispatchRedux = useDispatch();
   const favoritesData = useSelector((state) => state.virtuals.favorites_data);
+  const finalProvider = ['favorites', 'crash-games', 'hot', 'popular']
 
   // Perform the conditional logic
   const favoriteCasinoValue =
@@ -1965,7 +1970,7 @@ const Categories = ({ title, games, user, provider }) => {
                               game?.game_id ?? game?.gameName ?? game?.key,
                               false,
                               game?.gameCategory,
-                              provider,
+                              finalProvider.includes(provider)? game?.provider:provider,
                               game?.provider
                             )
                           }
@@ -1980,7 +1985,7 @@ const Categories = ({ title, games, user, provider }) => {
                               game?.game_id ?? game?.gameName ?? game?.key,
                               true,
                               game?.gameCategory,
-                              provider,
+                              finalProvider.includes(provider)? game?.provider:provider,
                               game?.provider
                             )
                           }
@@ -2008,7 +2013,8 @@ const Categories = ({ title, games, user, provider }) => {
                         game?.game_icon ?? game?.image_url,
                         game?.game_name ?? game?.gameName ?? game?.name,
                         game?.gameCategory,
-                        provider ?? game?.provider
+                        finalProvider.includes(provider)? game?.provider:provider,
+
                       )
                     }
                     className={`${user ? "favorite" : "d-none"}`}

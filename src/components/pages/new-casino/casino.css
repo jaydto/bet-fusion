@@ -21,8 +21,8 @@
 
 .filters .casino-category-page-item {
   color: #fff;
-  font-size: .75rem;
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 600;
   text-align: center;
   text-decoration: none;
 }
@@ -123,7 +123,7 @@ img, svg {
 }
 .search-wrapper .search-close {
   /* bottom: 0; */
-  color:var(--light);
+  color:#283983;
   display: block;
   font-size: 15px;
   font-weight: 700;
@@ -191,21 +191,25 @@ img, svg {
   pointer-events: all;
   position: relative;
   width: 100%;
+  border-radius: 5px!important;
 }
 .search-wrapper .search-group .search-input-group:after {
-  background: #fff;
+  background: #0495e3;
 }
 .search-group .search-input-group:after {
   background: #999;
   bottom: 0;
   content: "";
   display: block;
-  height: 1px;
+  height: 2px;
   left: 0;
   margin: auto;
   position: absolute;
   width: 100%;
   z-index: 1;
+  border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+
 }
 .search-wrapper .search-advance .ico {
   color: #fff;
@@ -469,9 +473,10 @@ img, svg {
     overflow: hidden;
     /* padding: 18px; */
     position: relative;
-    min-width: 65px;
+    min-width: 75px;
     display: flex;
     align-items: center;
+    min-height:40px;
 }
   .games-page{
     margin-top:6rem;
@@ -488,6 +493,24 @@ img, svg {
     width: calc(13% - 20px); /* 20% width with 20px margin between items */
 
   }
+  /* .filters li#v-search-mobile{
+    border-radius:28px;
+    height: 40px;
+    width: 40px;
+    box-shadow:20px 20px 20px 20px purple;
+    margin-left:4px;
+    font-size: 20px;
+
+  } */
+  .filters li#v-search-mobile {
+    border-radius: 28px;
+    height: 40px;
+    width: 40px;
+    box-shadow: -7px 2px 1px 12px purple;
+    margin-left: 6px;
+    font-size: 20px;
+    margin-right: 14px;
+}
   .size-images-casino{
     width:138px;
     height: 180px;
@@ -564,6 +587,16 @@ img, svg {
 }
 }
 @media (max-width: 1239px){
+  .filters li#v-search-mobile {
+    border-radius: 36px;
+    height: 36px;
+    width: 36px;
+    box-shadow: -7px 1px 1px 2px purple;
+    margin-left: 6px;
+    font-size: 22px;
+    margin-right: 14px;
+    line-height: 3;
+}
   .scroll-content{
     width:inherit;
   }

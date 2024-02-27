@@ -38,6 +38,7 @@ const initialState = {
         loading:false,
         error:null,
         casino_games:[],
+        casino_search:[],
         show_modal:null,
         casino_categories:null,
         casino_game_url:null,

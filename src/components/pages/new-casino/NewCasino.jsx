@@ -196,7 +196,7 @@ const NewCasino = () => {
     // dispatchRedux(setVirtualGame("game_type", game));
 
     // todo Reset casino search
-    dispatch({ type: "SET", key: "casino_search", payload: {} });
+    // dispatch({ type: "SET", key: "casino_search", payload: {} });
 
     // Fetch games based on game and provider
     if (provider === "pragmatic") {
@@ -1014,7 +1014,11 @@ const CasinoCategorySection = ({
   isActive,
   activeCallback,
 }) => {
+  const dispatchRedux = useDispatch();
+
   const handleCategoryClick = () => {
+    dispatchRedux(setVirtualGame("casino_search", []));
+
     if (gameDefaults) {
       // Trigger gameDefaults if it exists
       gameDefaults();
@@ -2267,16 +2271,6 @@ function MenuItem({ title, icon, children, color }) {
   );
 }
 
-// function FilterItem({ title, icon, link, icon_color, onClick }) {
-//   return (
-//     <div className="filter-item" data-v-72be8539="" onClick={onClick}>
-//       {icon && <FontAwesomeIcon icon={icon} style={{ color: icon_color }} />}{" "}
-//       {/* Check if there is an icon and render it */}
-//       &nbsp;<Link className="casino-category-page-item" to={link}>{title}</Link>
-//       {!icon && <i className="ico ico-chevron-right" data-v-72be8539=""></i>}
-//     </div>
-//   );
-// }
 
 const FilterItem = ({
   title,
@@ -2287,7 +2281,11 @@ const FilterItem = ({
   isActive,
   setActiveItem,
 }) => {
+  const dispatchRedux = useDispatch();
+
   const handleItemClick = () => {
+    dispatchRedux(setVirtualGame("casino_search", []));
+
     if (onClick) {
       onClick(); // Trigger onClick if provided
     }

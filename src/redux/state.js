@@ -184,7 +184,7 @@ const initialState = {
             'my-bets',
             'promotions',
             'smart-soft',
-            'new-casino',
+            'casino',
             'standing',
             'playouts',
             'bet-history',

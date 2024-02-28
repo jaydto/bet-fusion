@@ -1109,7 +1109,6 @@ const GameChoice = ({ title, games, user, provider }) => {
 
   const navigate = useNavigate();
 
-  console.log("provider information", provider);
 
   const favoritesData = useSelector((state) => state.virtuals.favorites_data);
 

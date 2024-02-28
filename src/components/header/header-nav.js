@@ -98,7 +98,7 @@ const HeaderNav = React.memo((props) => {
   const LoginCheck = (game) => {
     {
       // if (user !== null) {
-      navigate("/new-casino");
+      navigate("/casino");
       // } else {
       //     setLocalStorage("ActiveLink", '/casino')
       //     navigate('/login')
@@ -201,7 +201,7 @@ const HeaderNav = React.memo((props) => {
             </Link>
           </li>
 
-          <li className={`${pathname === "/new-casino" ? "active" : ""}`}>
+          <li className={`${pathname === "/casino" ? "active" : ""}`}>
             <div
               className="url-link fm anl cg ox "
               title="Casino"

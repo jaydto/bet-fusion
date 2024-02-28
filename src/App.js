@@ -197,7 +197,7 @@ const App =
                         <Route exact path="/share" element={<BetslipShareDecode/>}/>
                         <Route exact path="/livescore" element={<LiveScore/>}/>
                         <Route exact path="/404" element={<PageNotFound/>}/>
-                        <Route exact path="/new-casino" element={<NewCasino/>}/>
+                        <Route exact path="/casino" element={<NewCasino/>}/>
                         <Route exact path="/gameplay/:game_id/:live" element={<CasinoGamePlay/>}/>
                         <Route exact path="/nare-games/:game" element={<SpribeGamePlay/>}/>
                         <Route exact path="/nare-games" element={<SpribeGames/>}/>

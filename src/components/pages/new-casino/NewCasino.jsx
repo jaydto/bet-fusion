@@ -252,8 +252,8 @@ const NewCasino = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Navigate to '/new-casino' when the component mounts
-    navigate("/new-casino");
+    // Navigate to '/casino' when the component mounts
+    navigate("/casino");
   }, []); // Empty dependency array to run the effect only once when the component mounts
 
   const getCategoryGames = (category) => {
@@ -1055,7 +1055,7 @@ const CasinoCategorySection = ({
     <Link
       to={`${
         title === "HOME"
-          ? "/new-casino"
+          ? "/casino"
           : `?game_type=${title.toLowerCase().replace(" ", "")}`
       }`}
       className={`${

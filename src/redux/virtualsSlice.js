@@ -123,6 +123,9 @@ const virtualsSlice = createSlice({
         if(provider.toLowerCase()=='pragmatic'){
           state.casino_categories = response.types;
         }
+        if(provider.toLowerCase()=='smart-soft'){
+          state.smartsoft_categories = response.types;
+        }
       
       
       })

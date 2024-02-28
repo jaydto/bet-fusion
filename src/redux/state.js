@@ -41,6 +41,7 @@ const initialState = {
         casino_search:[],
         show_modal:null,
         casino_categories:null,
+        smartsoft_categories:null,
         casino_game_url:null,
         fetching:null
 

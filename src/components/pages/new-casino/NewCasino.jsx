@@ -53,6 +53,7 @@ const NewCasino = () => {
   // );
   const casino_games = useSelector((state) => state.virtuals.casino_games);
   const casino_search = useSelector((state) => state.virtuals.casino_search);
+  const smartsoft_categories = useSelector((state) => state.virtuals.smartsoft_categories);
 
   // const [settings, setSettings] = useState(getFromLocalStorage("settings"));
   // const defaultCasinoCategory =
@@ -422,7 +423,24 @@ const NewCasino = () => {
                 isActive={activeCategoryLink === "HOME"}
                 activeCallback={() => handleCategoryClick("HOME")}
               />
-              <CasinoCategorySection
+              {
+                game_type==='smart_soft'?
+                <>
+                {smartsoft_categories?.map((value)=>{
+                  
+                 return  <SmartCategorySection
+                title={value.default_description}
+                isActive={activeCategoryLink === value.default_description}
+                activeCallback={() => handleCategoryClick(value.default_description)}
+                onClick={() =>
+                  filterData(value.default_description)
+                }
+              />
+                })}
+                </>
+                :
+                <>
+                <CasinoCategorySection
                 title="SLOTS"
                 isActive={activeCategoryLink === "SLOTS"}
                 activeCallback={() => handleCategoryClick("SLOTS")}
@@ -482,6 +500,10 @@ const NewCasino = () => {
                   })
                 }
               />
+
+                </>
+              }
+              
             </ul>
             {/* <CategoriesSection showFilters={showFilters} handleSearchClick={handleSearchClick} gameDefaults={gameDefaults} onClick={handleGameChoice} /> */}
           </section>
@@ -556,7 +578,7 @@ const NewCasino = () => {
                     user={user}
                     games={game[Object.keys(game)[0]]} // Pass the dynamic key's value as a prop to the GameChoice component
                     provider={game?.provider} // Pass the dynamic key's value as a prop to the GameChoice component
-                    title={game_type.toUpperCase()} // Assuming 'game_type_description' contains the title
+                    title={game_type.replace("_", " ").toUpperCase()} // Assuming 'game_type_description' contains the title
                   />
                 </div>
               ))
@@ -1046,6 +1068,38 @@ const CasinoCategorySection = ({
         <span className="filters-settings">{title}</span>
       </li>
     </Link>
+  );
+};
+
+const SmartCategorySection = ({
+  title,
+  gameDefaults,
+  onClick,
+  isActive,
+  activeCallback,
+}) => {
+  const dispatchRedux = useDispatch();
+
+  const handleCategoryClick = () => {
+    dispatchRedux(setVirtualGame("casino_search", []));
+
+    onClick();
+  
+    activeCallback();
+  };
+
+  return (
+    <div     
+      className={`${
+        isActive ? "active-casino-category" : "category-data"
+      } casino-category-page-item section-item-category `}
+      onClick={handleCategoryClick}
+    >
+      <li>
+        <i className="ico ico-cardplay"></i>
+        <span className="filters-settings">{title}</span>
+      </li>
+    </div>
   );
 };
 

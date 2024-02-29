@@ -428,64 +428,8 @@ svg {
   }
 }
 
-@media (max-width: 1239px) and (min-width: 992px) {
-  h3.category-title {
-    margin-top: 0ps;
-    margin-bottom: 0px;
-  }
-  .section-item-category {
-    align-self: auto;
-    /* background: linear-gradient(#1e2c379e, #111d239c); */
-    background: linear-gradient(#1e2c379e, #0204059c);
-    border-radius: 4px;
-    /* display: flex; */
-    /* flex: 0 0 auto; */
-    /* font-family: Terfens; */
-    justify-content: center;
-    margin-right: 5px;
-    overflow: hidden;
-    /* padding: 18px; */
-    position: relative;
-    /* width: 65px; */
-    display: flex;
-    align-items: center;
-  }
-  .games-page {
-    margin-top: 10rem;
-  }
-  .size-images-casino {
-    width: 140px;
-    height: 150px;
-  }
-}
-@media (max-width: 991px) {
-  .section-item-category {
-    align-self: auto;
-    /* background: linear-gradient(#1e2c379e, #111d239c); */
-    background: linear-gradient(#1e2c379e, #0204059c);
-    border-radius: 4px;
-    /* display: flex; */
-    /* flex: 0 0 auto; */
-    /* font-family: Terfens; */
-    justify-content: center;
-    margin-right: 5px;
-    overflow: hidden;
-    /* padding: 18px; */
-    position: relative;
-    min-width: 75px;
-    display: flex;
-    align-items: center;
-    min-height: 40px;
-  }
-  .games-page {
-    margin-top: 6rem;
-    flex-direction: column;
-  }
-  .size-images-casino {
-    width: 115px;
-    height: 120px;
-  }
-}
+/*  */
+
 
 @media (min-width: 1240px) {
   .casino-item {
@@ -625,7 +569,49 @@ svg {
     align-items: center;
   }
 }
+@media (max-width: 991px) {
+  .section-item-category {
+    align-self: auto;
+    /* background: linear-gradient(#1e2c379e, #111d239c); */
+    background: linear-gradient(#1e2c379e, #0204059c);
+    border-radius: 4px;
+    /* display: flex; */
+    /* flex: 0 0 auto; */
+    /* font-family: Terfens; */
+    justify-content: center;
+    margin-right: 5px;
+    overflow: hidden;
+    /* padding: 18px; */
+    position: relative;
+    min-width: 75px;
+    display: flex;
+    align-items: center;
+    min-height: 40px;
+  }
+  .games-page {
+    margin-top: 6rem;
+    flex-direction: column;
+  }
+  .size-images-casino {
+    width: 118px;
+    height: 162px;
+  }
+  .ls-is-cached {
+    min-height: 12rem;
+  }
+  
+}
 
+@media (max-width: 424px){
+  .size-images-casino {
+    width: 118px;
+    height: 162px;
+  }
+  .ls-is-cached {
+    min-height: 12rem;
+  }
+
+}
 /* casino view all or specific view stylings and responsiveness */
 /* For screens with width up to 300px */
 @media (max-width: 299px) {
@@ -647,7 +633,7 @@ svg {
 }
 
 /* For screens with width between 301px and 374px */
-@media screen and (min-width: 300px) and (max-width: 374px) {
+@media  screen and (max-width: 374px) and (min-width: 300px){
   .overlay button {
     font-size: 7px;
   }
@@ -667,7 +653,7 @@ svg {
 }
 
 /* For screens with width between 375px and 424px */
-@media screen and (min-width: 375px) and (max-width: 424px) {
+@media screen and (max-width: 424px) and (min-width: 375px) {
   .overlay button {
     font-size: 7px;
   }
@@ -675,18 +661,18 @@ svg {
     min-height: 12rem!important;
   }
   .size-images-casino {
-    width: 115px;
-    height: 162px;
+    width: 118px;
+    height: 162px!important;
   }
   .casino-item {
     width: calc(
-      33.33% - 20px
+      33.33% - 22px
     ) !important; /* 33.33% width with 20px margin between items */
   }
 }
 
 /* For screens with width between 425px and 575px */
-@media screen and (min-width: 425px) and (max-width: 575px) {
+@media screen and (max-width: 575px) and (min-width: 425px)  {
   .overlay button {
     font-size: 10px;
   }
@@ -705,7 +691,7 @@ svg {
 }
 
 /* For screens with width between 576px and 767px */
-@media screen and (min-width: 576px) and (max-width: 767px) {
+@media screen and (max-width: 767px) and (min-width: 576px)  {
   .overlay button {
     font-size: 10px;
   }
@@ -724,7 +710,7 @@ svg {
 }
 
 /* For screens with width between 768px and 1024px */
-@media screen and (min-width: 768px) and (max-width: 991px) {
+@media screen and (max-width: 991px) and (min-width: 768px){
   .overlay button {
     font-size: 12px;
   }
@@ -741,7 +727,7 @@ svg {
     ) !important; /* 20.33% width with 20px margin between items */
   }
 }
-@media screen and (min-width: 992px) and (max-width: 1024px) {
+@media  screen and (max-width: 1024px) and (min-width: 992px){
   .ls-is-cached {
     min-height: 17.5rem;
   }
@@ -760,7 +746,7 @@ svg {
 }
 
 /* For screens with width between 1025px and 1239px */
-@media screen and (min-width: 1025px) and (max-width: 1239px) {
+@media screen and (max-width: 1239px) and (min-width: 1025px) {
   .overlay button {
     font-size: 13px;
   }

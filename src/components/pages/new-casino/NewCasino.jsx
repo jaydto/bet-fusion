@@ -1398,7 +1398,7 @@ const GameChoice = ({ title, games, user, provider }) => {
                   <div style={{ position: "relative" }}>
                     <LazyLoadImage
                       effect={"blur"}
-                      className=" ls-is-cached"
+                      className="ls-is-cached"
                       // src="https://api-dk10.pragmaticplay.net/game_pic/square/200/vs40wildwest.png"
                       src={game?.game_icon ?? game?.image_url}
                       alt={game?.game_name ?? game?.gameName}
@@ -1792,7 +1792,7 @@ const GameSearch = ({ title, games, user }) => {
                   <div style={{ position: "relative" }}>
                     <LazyLoadImage
                       effect={"blur"}
-                      className=" ls-is-cached"
+                      className="ls-is-cached"
                       // src="https://api-dk10.pragmaticplay.net/game_pic/square/200/vs40wildwest.png"
                       src={game?.game?.game_icon ?? game?.game?.image_url}
                       alt={game?.game?.game_name ?? game?.game?.gameName}
@@ -2193,11 +2193,10 @@ const Categories = ({ title, games, user, provider }) => {
                   onMouseLeave={handleMouseLeave}
                   onClick={() => handleMobileClick(index)}
                 >
-                  <div style={{ position: "relative" }}>
+                  <div style={{ position: "relative" }} >
                     <LazyLoadImage
                       effect={"blur"}
-                      className=" ls-is-cached"
-                      // src="https://api-dk10.pragmaticplay.net/game_pic/square/200/vs40wildwest.png"
+                      className="ls-is-cached"
                       src={game?.game_icon ?? game?.image_url}
                       alt={game?.game_name ?? game?.gameName}
                     />

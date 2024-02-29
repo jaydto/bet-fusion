@@ -349,7 +349,7 @@ svg {
   /* overflow: hidden; */
   position: fixed;
   top: 10rem;
-  width: 229px;
+  width: 16%;
   /* z-index: 25; */
 }
 
@@ -457,6 +457,10 @@ svg {
     width: 138px;
     height: 180px;
   }
+  /* .size-images-casino {
+    width: 157px;
+    height: 173px;
+} */
   .icons-size-direction-casino {
     font-size: 18px;
   }

@@ -1359,8 +1359,8 @@ const GameChoice = ({ title, games, user, provider }) => {
   return (
     <section className="sections-container section-white ">
       <div id="app-container">
-        <div className="d-flex justify-content-between align-items-center mx-2 my-2">
-          <h3 className="category-title ml-3 ml-xl-0 d-flex d-xl-block justify-content-between newGames">
+        <div className="d-flex justify-content-between align-items-center mx-2 my-2 align-items-center" >
+          <h3 className="category-title ml-3 ml-xl-0 d-flex d-xl-block justify-content-between newGames align-items-center">
             {title}
             {/* <span>View ALL</span> */}
           </h3>

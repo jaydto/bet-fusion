@@ -2304,7 +2304,7 @@ function MenuItem({ title, icon, children, color }) {
       } ${isOpen ? "active" : "not-active"}`}
     >
       <div
-        className="d-flex justify-content-between align-items-center menu-info"
+        className="d-flex justify-content-between align-items-center menu-info categories-section-items"
         onClick={toggleCollapse}
         style={{
           background:

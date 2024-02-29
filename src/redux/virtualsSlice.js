@@ -112,7 +112,7 @@ const virtualsSlice = createSlice({
           state.casino_games = state.casino_games.map(game => {
             const key = Object.keys(game)[0];
             if (key === category) {
-              return { [category]: response.data??response.games };
+              return { [category]: response.data??response.games, provider:provider };
             }
             return game;
           });

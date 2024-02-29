@@ -473,7 +473,7 @@ svg {
     font-size: 10px;
   }
   .overlay button {
-    font-size: 11px;
+    font-size: 10px;
   }
   .games-page .gamesInline {
     justify-content: start;
@@ -506,7 +506,7 @@ svg {
     /* flex: 0 0 auto; */
     /* font-family: Terfens; */
     justify-content: center;
-    margin-right: 5px;
+    padding-right: 5px;
     overflow: hidden;
     padding: 18px;
     position: relative;
@@ -569,13 +569,14 @@ svg {
     flex: 0 0 auto;
     /* font-family: Terfens; */
     justify-content: center;
-    margin-right: 5px;
+    /* margin-right: 5px; */
     overflow: hidden;
     padding: 10px;
     position: relative;
     /* width: 65px; */
     display: flex;
     align-items: center;
+    width: -webkit-fill-available;
   }
 }
 @media (max-width: 991px) {

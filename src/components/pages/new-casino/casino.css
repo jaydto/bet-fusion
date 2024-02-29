@@ -672,7 +672,7 @@ svg {
     font-size: 7px;
   }
   .ls-is-cached {
-    min-height: 12rem;
+    min-height: 12rem!important;
   }
   .size-images-casino {
     width: 115px;

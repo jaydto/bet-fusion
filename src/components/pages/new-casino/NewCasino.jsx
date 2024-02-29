@@ -365,6 +365,7 @@ const NewCasino = () => {
           style={{ overflow: "hidden", outline: "none" }}
         >
           <GameFilters
+            user={user}
             activeItem={activeItem}
             setActiveItem={setActiveItem}
             handleGameChoice={handleGameChoice}
@@ -627,6 +628,7 @@ const NewCasino = () => {
             </div>
             <div className="body d-flex flex-column gap-4">
               <GameFilters
+              user={user}
                 activeItem={activeItem}
                 setActiveItem={setActiveItem}
                 handleGameChoice={handleGameChoice}
@@ -657,6 +659,7 @@ const NewCasino = () => {
 export default NewCasino;
 
 const GameFilters = ({
+  user,
   activeItem,
   setActiveItem,
   handleGameChoice,
@@ -716,7 +719,7 @@ const GameFilters = ({
         <div id="v-game-filters">
           <div className="sideFilters">
             <div className="filtersContainer">
-              <FilterItem
+            { user&& <FilterItem
                 title="Favorites"
                 link="?game_type=favorite"
                 icon={faStar}
@@ -734,7 +737,7 @@ const GameFilters = ({
                     collapseBottomSheet();
                   }
                 }}
-              />
+              />}
               <FilterItem
                 title="SLOTS PLAY"
                 link="?game_type=slots"

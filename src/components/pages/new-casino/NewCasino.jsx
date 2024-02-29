@@ -1359,7 +1359,7 @@ const GameChoice = ({ title, games, user, provider }) => {
   return (
     <section className="sections-container section-white ">
       <div id="app-container">
-        <div className="d-flex justify-content-between align-items-center mx-3 my-2">
+        <div className="d-flex justify-content-between align-items-center mx-2 my-2">
           <h3 className="category-title ml-3 ml-xl-0 d-flex d-xl-block justify-content-between newGames">
             {title}
             {/* <span>View ALL</span> */}
@@ -1750,7 +1750,7 @@ const GameSearch = ({ title, games, user }) => {
   return (
     <section className="sections-container section-white ">
       <div id="app-container">
-        <div className="d-flex justify-content-between align-items-center mx-3 my-2">
+        <div className="d-flex justify-content-between align-items-center mx-2 my-2">
           <h3 className="category-title ml-3 ml-xl-0 d-flex d-xl-block justify-content-between newGames">
             {title}
             {/* <span>View ALL</span> */}
@@ -2151,7 +2151,7 @@ const Categories = ({ title, games, user, provider }) => {
   return (
     <section className="sections-container section-white " ref={sectionRef}>
       <div id="app-container ">
-        <div className="d-flex justify-content-between align-items-center mx-3 my-2 flex-wrap">
+        <div className="d-flex justify-content-between align-items-center mx-2 my-2 flex-wrap">
           <h3 className="category-title ml-3 ml-xl-0 d-flex d-xl-block justify-content-between newGames ">
             {title}{" "}
             <span onClick={toggleChoice}>VIEW {viewAll ? "LESS" : "ALL"}</span>

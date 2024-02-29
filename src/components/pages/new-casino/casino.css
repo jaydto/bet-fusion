@@ -428,7 +428,7 @@ svg {
   }
 }
 
-@media (max-width: 1239px) and (min-width: 992px) {
+@media (min-width: 992px) and (max-width: 1239px) {
   h3.category-title {
     margin-top: 0ps;
     margin-bottom: 0px;
@@ -453,10 +453,10 @@ svg {
   .games-page {
     margin-top: 10rem;
   }
-  .size-images-casino {
+  /* .size-images-casino {
     width: 140px;
     height: 150px;
-  }
+  } */
 }
 @media (max-width: 991px) {
   .section-item-category {
@@ -481,10 +481,10 @@ svg {
     margin-top: 6rem;
     flex-direction: column;
   }
-  .size-images-casino {
+  /* .size-images-casino {
     width: 115px;
     height: 120px;
-  }
+  } */
 }
 
 @media (min-width: 1240px) {

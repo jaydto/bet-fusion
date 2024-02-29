@@ -679,7 +679,7 @@ svg {
   }
   .casino-item {
     width: calc(
-      33.33% - 22px
+      33.33% - 21px
     ) !important; /* 33.33% width with 20px margin between items */
   }
 }

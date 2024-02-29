@@ -1389,7 +1389,7 @@ const GameChoice = ({ title, games, user, provider }) => {
 
       <div
         ref={containerRef}
-        className="gamesInline d-flex justify-content-start pb-3 pl-2 flex-wrap"
+        className="gamesInline d-flex justify-content-start pb-1 pl-2 flex-wrap"
         title={title}
         all="false"
         overlay="false"
@@ -1801,7 +1801,7 @@ const GameSearch = ({ title, games, user }) => {
 
       <div
         ref={containerRef}
-        className="gamesInline d-flex justify-content-start pb-3 pl-2 flex-wrap"
+        className="gamesInline d-flex justify-content-start pb-1 pl-2 flex-wrap"
         title={title}
         all="false"
         overlay="false"
@@ -2225,7 +2225,7 @@ const Categories = ({ title, games, user, provider }) => {
 
       <div
         ref={containerRef}
-        className={`gamesInline d-flex justify-content-start pb-3 pl-2 ${
+        className={`gamesInline d-flex justify-content-start pb-1 pl-2 ${
           viewAll ? "flex-wrap" : ""
         } `}
         title={title}

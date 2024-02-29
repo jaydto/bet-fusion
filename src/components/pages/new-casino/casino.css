@@ -380,7 +380,7 @@ svg {
 }
 
 .casino-item {
-  margin: 10px; /* Adjust as needed */
+  margin: 6px; /* Adjust as needed */
   box-sizing: border-box;
 }
 
@@ -679,7 +679,7 @@ svg {
   }
   .casino-item {
     width: calc(
-      33.33% - 21px
+      33.33% - 18px
     ) !important; /* 33.33% width with 20px margin between items */
   }
 }

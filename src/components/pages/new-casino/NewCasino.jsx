@@ -20,6 +20,7 @@ import {
   faSquareCaretLeft,
   faSquareCaretRight,
   faStar,
+  faWarning,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -1127,10 +1128,7 @@ const GameChoice = ({ title, games, user, provider }) => {
     return favoriteCasinoValue;
   });
 
-  // Get favorite items from the API
-  // const getFavoriteCasino = useCallback(async () => {
-  //   dispatchRedux(favoriteCasinoApi());
-  // }, []);
+  
 
   // Loader
   const [loadingMap, setLoadingMap] = useState({});
@@ -1382,7 +1380,9 @@ const GameChoice = ({ title, games, user, provider }) => {
         big="false"
         style={{ width: "100%", overflow: "auto hidden" }}
       >
-        {games?.map((game, index) => {
+        {
+          (games.length>0)?
+          games?.map((game, index) => {
           return (
             <div
               key={index}
@@ -1488,10 +1488,20 @@ const GameChoice = ({ title, games, user, provider }) => {
                 </div>
               </div> */}
                 </div>
-              )}
+              )
+          
+              }
             </div>
           );
-        })}
+        }):title.toLowerCase()==='favorite'&&(
+          <div className={'no-casino-fav-text d-flex flex-column align-items-center justify-content-center w-100 gap-4'}>
+
+            <FontAwesomeIcon icon={faWarning} style={{color:'var(--faded-color)', fontSize:'32px'}}/>
+            <div>You do not have any favorite games yet
+              </div>
+            </div>
+
+        )}
       </div>
     </section>
   );

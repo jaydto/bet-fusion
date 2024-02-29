@@ -428,36 +428,7 @@ svg {
   }
 }
 
-@media (min-width: 992px) and (max-width: 1239px) {
-  h3.category-title {
-    margin-top: 0ps;
-    margin-bottom: 0px;
-  }
-  .section-item-category {
-    align-self: auto;
-    /* background: linear-gradient(#1e2c379e, #111d239c); */
-    background: linear-gradient(#1e2c379e, #0204059c);
-    border-radius: 4px;
-    /* display: flex; */
-    /* flex: 0 0 auto; */
-    /* font-family: Terfens; */
-    justify-content: center;
-    margin-right: 5px;
-    overflow: hidden;
-    /* padding: 18px; */
-    position: relative;
-    /* width: 65px; */
-    display: flex;
-    align-items: center;
-  }
-  .games-page {
-    margin-top: 10rem;
-  }
-  /* .size-images-casino {
-    width: 140px;
-    height: 150px;
-  } */
-}
+
 @media (max-width: 991px) {
   .section-item-category {
     align-self: auto;

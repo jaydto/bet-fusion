@@ -1278,13 +1278,13 @@ const GameChoice = ({ title, games, user, provider }) => {
   ) => {
     event.stopPropagation(); // Prevent event from propagating to parent element
 
-    console.log(`GameChoice information
-   provider ${provider} ,
-   game ${game_id},
-    live ${live }= true,
-   category  ${gameCategory} = "",
-   crash  ${crash_provider} = ""
-   event ${event}` );
+  //   console.log(`GameChoice information
+  //  provider ${provider} ,
+  //  game ${game_id},
+  //   live ${live }= true,
+  //  category  ${gameCategory} = "",
+  //  crash  ${crash_provider} = ""
+  //  event ${event}` );
 
     const redirectToGameplay = () => {
       window.location.href = `/gameplay/${game_id}/${live ? "1" : "0"}`;

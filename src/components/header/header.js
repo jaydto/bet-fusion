@@ -29,8 +29,10 @@ import {
   checkNavigation,
   shouldShowDownload,
   shouldShowMobileNav,
+  shouldShowHeader
 } from "../../redux/navigationAction";
 import Header2 from "./Header2";
+import useWindowDimensions from "./Dimensions";
 
 const ProfileMenu = React.lazy(() => import("./profile-menu"));
 const HeaderNav = React.lazy(() => import("./header-nav"));
@@ -56,8 +58,10 @@ const Header = React.memo((props) => {
   const pathname = `${path_origin?.pathname}${search_param}`;
 
   const dispatchRedux = useDispatch();
+  const {width}=useWindowDimensions()
 
   const notShowMobileNav = dispatchRedux(shouldShowMobileNav(pathname));
+  const notShowHeaderNav = dispatchRedux(shouldShowHeader(pathname));
   const showDownload = dispatchRedux(shouldShowDownload(pathname));
   const changeNav = dispatchRedux(checkNavigation(pathname));
   const checkDesktop = dispatchRedux(checkDesktopTopNavigation(pathname));
@@ -273,13 +277,16 @@ const Header = React.memo((props) => {
     dispatchRedux(setState("call_to_action",true));
   };
 
+  console.log("notshowHeader", notShowHeaderNav)
 
   return (
     <>
-      {changeNav ? (
+      {
+      changeNav ? (
         <Header2 />
-      ) : (
-        <div className={"d-flex flex-column"}>
+      ) :
+       (
+        notShowHeaderNav && <div className={"d-flex flex-column"}>
           <Navbar
             expand="md"
             className={`${

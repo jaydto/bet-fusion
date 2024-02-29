@@ -1156,7 +1156,7 @@ input[type="radio"], input[type="checkbox"] {
     max-height:max-content;
 }
 .height-max-custom{
-    max-height:16px;
+    max-height:35px;
 }
 .amt-virtual{
     margin-top:98px;
@@ -2502,7 +2502,7 @@ button#countryCode{
         background: var(--bet-history) !important;
     }
     .top-smartsoft.gameplay{
-        margin-top:6rem!important;
+        margin-top:1rem!important;
     }
     .user_logged.virtuals{
         margin-top: 6rem !important;
@@ -4101,7 +4101,7 @@ button#countryCode{
         margin-top: 7.7rem !important;
     }
     .user_logged.casino{
-        margin-top: 5.7rem !important;
+        margin-top: 0.7rem !important;
 
     }
     .highlight-logged-in-menu {

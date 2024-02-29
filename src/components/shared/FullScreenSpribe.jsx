@@ -8,10 +8,10 @@ const FullscreenButtonSpribe = ({ onClick, navigation, isCustomFullScreen }) => 
 	const navigate=useNavigate()
 	return (
 		<div className={` height-max-custom d-flex align-items-center justify-content-between ${isCustomFullScreen &&'full-screen-component'}`} >
-                        <span className={'px-3 '} onClick={() => navigate(navigation)}>
+                        <span className={'px-3 d-flex align-items-center'} onClick={() => navigate(navigation)}>
 
                                                 <FontAwesomeIcon icon={faAngleLeft} style={{
-													fontSize: "16px",
+													fontSize: "14px",
 													color: 'var(--light)',
 													fontWeight: '700',
 													opacity: '0.7'

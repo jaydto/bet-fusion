@@ -252,6 +252,12 @@ const initialState = {
         modifiedHeaderDesktop:[
             'profile'
         ],
+        notShowHeader:[
+            'gameplay', 
+            'smart-play',
+            'nare-games'
+
+        ],
         navigations:[
             'nare-games',
             'promo',

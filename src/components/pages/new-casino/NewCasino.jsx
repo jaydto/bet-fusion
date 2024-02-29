@@ -54,7 +54,9 @@ const NewCasino = () => {
   // );
   const casino_games = useSelector((state) => state.virtuals.casino_games);
   const casino_search = useSelector((state) => state.virtuals.casino_search);
-  const smartsoft_categories = useSelector((state) => state.virtuals.smartsoft_categories);
+  const smartsoft_categories = useSelector(
+    (state) => state.virtuals.smartsoft_categories
+  );
 
   // const [settings, setSettings] = useState(getFromLocalStorage("settings"));
   // const defaultCasinoCategory =
@@ -402,7 +404,7 @@ const NewCasino = () => {
             <ul
               className={`filters 
               ${showFilters ? "d-flex" : "d-none"} 
-              pb-3 pb-xl-0 mr-0 ml-0 mt-3 mb-3 mt-xl-3 mb-xl-1 align-items-center`}
+              pb-2 pb-xl-0 mr-0 ml-0 mt-3 mb-1 mt-xl-3 mb-xl-1 align-items-center`}
             >
               <li
                 className="ml-3"
@@ -425,87 +427,87 @@ const NewCasino = () => {
                 isActive={activeCategoryLink === "HOME"}
                 activeCallback={() => handleCategoryClick("HOME")}
               />
-              {
-                game_type==='smart_soft'?
+              {game_type === "smart_soft" ? (
                 <>
-                {smartsoft_categories?.map((value)=>{
-                  
-                 return  <SmartCategorySection
-                title={value.default_description}
-                isActive={activeCategoryLink === value.default_description}
-                activeCallback={() => handleCategoryClick(value.default_description)}
-                onClick={() =>
-                  filterData(value.default_description)
-                }
-              />
-                })}
+                  {smartsoft_categories?.map((value) => {
+                    return (
+                      <SmartCategorySection
+                        title={value.default_description}
+                        isActive={
+                          activeCategoryLink === value.default_description
+                        }
+                        activeCallback={() =>
+                          handleCategoryClick(value.default_description)
+                        }
+                        onClick={() => filterData(value.default_description)}
+                      />
+                    );
+                  })}
                 </>
-                :
+              ) : (
                 <>
-                <CasinoCategorySection
-                title="SLOTS"
-                isActive={activeCategoryLink === "SLOTS"}
-                activeCallback={() => handleCategoryClick("SLOTS")}
-                onClick={() =>
-                  handleGameChoice({
-                    game: "cs",
-                    provider: "pragmatic",
-                    gameId: "Classic Slots",
-                  })
-                }
-              />
-              <CasinoCategorySection
-                title="BLACKJACK"
-                isActive={activeCategoryLink === "BLACKJACK"}
-                activeCallback={() => handleCategoryClick("BLACKJACK")}
-                onClick={() =>
-                  handleGameChoice({
-                    game: "bj",
-                    provider: "pragmatic",
-                    gameId: "BlackJack",
-                  })
-                }
-              />
-              <CasinoCategorySection
-                title="LIVE CASINO"
-                isActive={activeCategoryLink === "LIVE CASINO"}
-                activeCallback={() => handleCategoryClick("LIVE CASINO")}
-                onClick={() =>
-                  handleGameChoice({
-                    game: "lg",
-                    provider: "pragmatic",
-                    gameId: "Live Games",
-                  })
-                }
-              />
-              <CasinoCategorySection
-                title="VIRTUALS"
-                isActive={activeCategoryLink === "VIRTUALS"}
-                activeCallback={() => handleCategoryClick("VIRTUALS")}
-                onClick={() =>
-                  handleGameChoice({
-                    game: "rgs-vsb",
-                    provider: "pragmatic",
-                    gameId: "Virtuals",
-                  })
-                }
-              />
-              <CasinoCategorySection
-                title="JACKPOT"
-                isActive={activeCategoryLink === "JACKPOT"}
-                activeCallback={() => handleCategoryClick("JACKPOT")}
-                onClick={() =>
-                  handleGameChoice({
-                    game: "drops-n-wins",
-                    provider: "pragmatic",
-                    gameId: "jackpot_casino",
-                  })
-                }
-              />
-
+                  <CasinoCategorySection
+                    title="SLOTS"
+                    isActive={activeCategoryLink === "SLOTS"}
+                    activeCallback={() => handleCategoryClick("SLOTS")}
+                    onClick={() =>
+                      handleGameChoice({
+                        game: "cs",
+                        provider: "pragmatic",
+                        gameId: "Classic Slots",
+                      })
+                    }
+                  />
+                  <CasinoCategorySection
+                    title="BLACKJACK"
+                    isActive={activeCategoryLink === "BLACKJACK"}
+                    activeCallback={() => handleCategoryClick("BLACKJACK")}
+                    onClick={() =>
+                      handleGameChoice({
+                        game: "bj",
+                        provider: "pragmatic",
+                        gameId: "BlackJack",
+                      })
+                    }
+                  />
+                  <CasinoCategorySection
+                    title="LIVE CASINO"
+                    isActive={activeCategoryLink === "LIVE CASINO"}
+                    activeCallback={() => handleCategoryClick("LIVE CASINO")}
+                    onClick={() =>
+                      handleGameChoice({
+                        game: "lg",
+                        provider: "pragmatic",
+                        gameId: "Live Games",
+                      })
+                    }
+                  />
+                  <CasinoCategorySection
+                    title="VIRTUALS"
+                    isActive={activeCategoryLink === "VIRTUALS"}
+                    activeCallback={() => handleCategoryClick("VIRTUALS")}
+                    onClick={() =>
+                      handleGameChoice({
+                        game: "rgs-vsb",
+                        provider: "pragmatic",
+                        gameId: "Virtuals",
+                      })
+                    }
+                  />
+                  <CasinoCategorySection
+                    title="JACKPOT"
+                    isActive={activeCategoryLink === "JACKPOT"}
+                    activeCallback={() => handleCategoryClick("JACKPOT")}
+                    onClick={() =>
+                      handleGameChoice({
+                        game: "drops-n-wins",
+                        provider: "pragmatic",
+                        gameId: "jackpot_casino",
+                      })
+                    }
+                  />
                 </>
-              }
-              
+              )}
             </ul>
             {/* <CategoriesSection showFilters={showFilters} handleSearchClick={handleSearchClick} gameDefaults={gameDefaults} onClick={handleGameChoice} /> */}
           </section>
@@ -562,51 +564,49 @@ const NewCasino = () => {
               />
             );
           })} */}
-          {casino_search?.length > 0
-            ? 
-                <div>
-                  <GameSearch
-                    user={user}
-                    games={casino_search} // Access the 'game' property directly
-                    // Access the 'provider' property directly
-                    title={"SEARCH FILTER"} // Assuming 'game_type_description' contains the title
-                  />
-                </div>
-              
-            : game_type
-            ? casino_games.map((game, index) => (
-                <div key={index}>
-                  <GameChoice
-                    user={user}
-                    games={game[Object.keys(game)[0]]} // Pass the dynamic key's value as a prop to the GameChoice component
-                    provider={game?.provider} // Pass the dynamic key's value as a prop to the GameChoice component
-                    title={game_type.replace("_", " ").toUpperCase()} // Assuming 'game_type_description' contains the title
-                  />
-                </div>
-              ))
-            : categories_info.map((category, index) => {
-                const categoryGames = casino_games?.find(
-                  (game) => game[category]
-                );
-                const popularGames = categoryGames
-                  ? categoryGames[category]
-                  : [];
-                const provider = categoryGames ? categoryGames?.provider : [];
+          {casino_search?.length > 0 ? (
+            <div>
+              <GameSearch
+                user={user}
+                games={casino_search} // Access the 'game' property directly
+                // Access the 'provider' property directly
+                title={"SEARCH FILTER"} // Assuming 'game_type_description' contains the title
+              />
+            </div>
+          ) : game_type ? (
+            casino_games.map((game, index) => (
+              <div key={index}>
+                <GameChoice
+                  user={user}
+                  games={game[Object.keys(game)[0]]} // Pass the dynamic key's value as a prop to the GameChoice component
+                  provider={game?.provider} // Pass the dynamic key's value as a prop to the GameChoice component
+                  title={game_type.replace("_", " ").toUpperCase()} // Assuming 'game_type_description' contains the title
+                />
+              </div>
+            ))
+          ) : (
+            categories_info.map((category, index) => {
+              const categoryGames = casino_games?.find(
+                (game) => game[category]
+              );
+              const popularGames = categoryGames ? categoryGames[category] : [];
+              const provider = categoryGames ? categoryGames?.provider : [];
 
-                if (popularGames.length > 0) {
-                  return (
-                    <Categories
-                      user={user}
-                      key={index}
-                      games={popularGames}
-                      title={categoryDisplayNames[category]}
-                      provider={provider}
-                    />
-                  );
-                } else {
-                  return null; // Skip rendering if popularGames is empty
-                }
-              })}
+              if (popularGames.length > 0) {
+                return (
+                  <Categories
+                    user={user}
+                    key={index}
+                    games={popularGames}
+                    title={categoryDisplayNames[category]}
+                    provider={provider}
+                  />
+                );
+              } else {
+                return null; // Skip rendering if popularGames is empty
+              }
+            })
+          )}
 
           {/* <Categories user={user} games={[]} title={"new"} /> */}
         </div>
@@ -629,7 +629,7 @@ const NewCasino = () => {
             </div>
             <div className="body d-flex flex-column gap-4">
               <GameFilters
-              user={user}
+                user={user}
                 activeItem={activeItem}
                 setActiveItem={setActiveItem}
                 handleGameChoice={handleGameChoice}
@@ -720,25 +720,27 @@ const GameFilters = ({
         <div id="v-game-filters">
           <div className="sideFilters">
             <div className="filtersContainer">
-            { user&& <FilterItem
-                title="Favorites"
-                link="?game_type=favorite"
-                icon={faStar}
-                icon_color="gold"
-                isActive={activeItem === "Favorites"}
-                setActiveItem={setActiveItem}
-                onClick={() => {
-                  handleGameChoice({
-                    game: "favorites",
-                    provider: "favorites",
-                    gameId: "Favorites",
-                  });
-                  setActiveCategoryLink(null);
-                  if (collapseBottomSheet) {
-                    collapseBottomSheet();
-                  }
-                }}
-              />}
+              {user && (
+                <FilterItem
+                  title="Favorites"
+                  link="?game_type=favorite"
+                  icon={faStar}
+                  icon_color="gold"
+                  isActive={activeItem === "Favorites"}
+                  setActiveItem={setActiveItem}
+                  onClick={() => {
+                    handleGameChoice({
+                      game: "favorites",
+                      provider: "favorites",
+                      gameId: "Favorites",
+                    });
+                    setActiveCategoryLink(null);
+                    if (collapseBottomSheet) {
+                      collapseBottomSheet();
+                    }
+                  }}
+                />
+              )}
               <FilterItem
                 title="SLOTS PLAY"
                 link="?game_type=slots"
@@ -1088,12 +1090,12 @@ const SmartCategorySection = ({
     dispatchRedux(setVirtualGame("casino_search", []));
 
     onClick();
-  
+
     activeCallback();
   };
 
   return (
-    <div     
+    <div
       className={`${
         isActive ? "active-casino-category" : "category-data"
       } casino-category-page-item section-item-category `}
@@ -1113,7 +1115,6 @@ const GameChoice = ({ title, games, user, provider }) => {
 
   const navigate = useNavigate();
 
-
   const favoritesData = useSelector((state) => state.virtuals.favorites_data);
 
   // Perform the conditional logic
@@ -1127,8 +1128,6 @@ const GameChoice = ({ title, games, user, provider }) => {
   const [userFavoriteCasino, setUserFavoriteCasino] = useState(() => {
     return favoriteCasinoValue;
   });
-
-  
 
   // Loader
   const [loadingMap, setLoadingMap] = useState({});
@@ -1268,6 +1267,7 @@ const GameChoice = ({ title, games, user, provider }) => {
       setShowButtons(showButtons === index ? null : index);
     }
   };
+
   const handleButtonClick = (
     event,
     game_id,
@@ -1281,25 +1281,34 @@ const GameChoice = ({ title, games, user, provider }) => {
     console.log(`GameChoice information
    provider ${provider} ,
    game ${game_id},
-    live ${live }= true,
+    live ${live}= true,
    category  ${gameCategory} = "",
    crash  ${crash_provider} = ""
-   event ${event}` );
+   event ${event}`);
 
     const redirectToGameplay = () => {
-      window.location.href = `/gameplay/${game_id}/${live ? "1" : "0"}`;
+      // window.location.href = `/gameplay/${game_id}/${live ? "1" : "0"}`;
+      navigate(`/gameplay/${game_id}/${live ? "1" : "0"}`);
     };
 
     const redirectToNareGames = () => {
-      window.location.href = `/nare-games/${game_id}${
-        live ? "?status=live" : "?status=demo"
-      }`;
+      // window.location.href = `/nare-games/${game_id}${
+      //   live ? "?status=live" : "?status=demo"
+      // }`;
+      navigate(
+        `/nare-games/${game_id}${live ? "?status=live" : "?status=demo"}`
+      );
     };
 
     const redirectToSmartPlay = () => {
-      window.location.href = `/smart-play?game=${game_id}&category=${gameCategory}&status=${
-        live ? "live" : "demo"
-      }`;
+      // window.location.href = `/smart-play?game=${game_id}&category=${gameCategory}&status=${
+      //   live ? "live" : "demo"
+      // }`;
+      navigate(
+        `/smart-play?game=${game_id}&category=${gameCategory}&status=${
+          live ? "live" : "demo"
+        }`
+      );
     };
 
     if (user) {
@@ -1367,7 +1376,7 @@ const GameChoice = ({ title, games, user, provider }) => {
   return (
     <section className="sections-container section-white ">
       <div id="app-container">
-        <div className="d-flex justify-content-between align-items-center mx-2 my-2 align-items-center" >
+        <div className="d-flex justify-content-between align-items-center mx-2 my-2 align-items-center">
           <h3 className="category-title ml-3 ml-xl-0 d-flex d-xl-block justify-content-between newGames align-items-center">
             {title}
             {/* <span>View ALL</span> */}
@@ -1387,128 +1396,130 @@ const GameChoice = ({ title, games, user, provider }) => {
         big="false"
         style={{ width: "100%", overflow: "auto hidden" }}
       >
-        {
-          (games.length>0)?
-          games?.map((game, index) => {
-          return (
-            <div
-              key={index}
-              className="gameInlineThumb image-container casino-item"
-              style={{ marginRight: "calc(var(--bs-gutter-x) / 2)" }}
-            >
-              {(game?.game_icon ?? game?.image_url) && (
+        {games.length > 0
+          ? games?.map((game, index) => {
+              return (
                 <div
-                  className={`size-images-casino ${
-                    showButtons === index && "mobile-click"
-                  }`}
-                  onMouseEnter={() => handleMouseEnter(index)}
-                  onMouseLeave={handleMouseLeave}
-                  onClick={() => handleMobileClick(index)}
+                  key={index}
+                  className="gameInlineThumb image-container casino-item"
+                  style={{ marginRight: "calc(var(--bs-gutter-x) / 2)" }}
                 >
-                  <div style={{ position: "relative" }}>
-                    <LazyLoadImage
-                      effect={"blur"}
-                      className="ls-is-cached"
-                      // src="https://api-dk10.pragmaticplay.net/game_pic/square/200/vs40wildwest.png"
-                      src={game?.game_icon ?? game?.image_url}
-                      alt={game?.game_name ?? game?.gameName}
-                    />
+                  {(game?.game_icon ?? game?.image_url) && (
+                    <div
+                      className={`size-images-casino ${
+                        showButtons === index && "mobile-click"
+                      }`}
+                      onMouseEnter={() => handleMouseEnter(index)}
+                      onMouseLeave={handleMouseLeave}
+                      onClick={() => handleMobileClick(index)}
+                    >
+                      <div style={{ position: "relative" }}>
+                        <LazyLoadImage
+                          effect={"blur"}
+                          className="ls-is-cached"
+                          // src="https://api-dk10.pragmaticplay.net/game_pic/square/200/vs40wildwest.png"
+                          src={game?.game_icon ?? game?.image_url}
+                          alt={game?.game_name ?? game?.gameName}
+                        />
 
-                    <div className="overlay">
-                      <ButtonGroup aria-label="Casino Gaming Buttons">
-                        <Button
-                          variant="warning"
-                          onClick={(event) =>
-                            handleButtonClick(
-                              event,
-                              game?.game_id ?? game?.gameName ?? game?.key,
-                              false,
-                              game?.gameCategory,
-                              finalProvider.includes(provider)
-                                ? game?.provider
-                                : provider,
-                              game?.provider
-                            )
-                          }
-                        >
-                          Play Demo
-                        </Button>
-                        <Button
-                          variant="danger"
-                          onClick={(event) =>
-                            handleButtonClick(
-                              event,
-                              game?.game_id ?? game?.gameName ?? game?.key,
-                              true,
-                              game?.gameCategory,
-                              finalProvider.includes(provider)
-                                ? game?.provider
-                                : provider,
-                              game?.provider
-                            )
-                          }
-                        >
-                          Play Game
-                        </Button>
-                      </ButtonGroup>
-                    </div>
-                  </div>
-                  <FontAwesomeIcon
-                    icon={faStar}
-                    style={{
-                      color: userFavoriteCasino?.some(
-                        (favorite) =>
-                          favorite.game_id ===
-                          (game?.game_id ?? game?.gameName ?? game?.key)
-                      )
-                        ? "gold"
-                        : "white",
-                    }}
-                    onClick={(event) =>
-                      favoriteCasino(
-                        event,
-                        game?.game_id ?? game?.gameName ?? game?.key,
-                        game?.game_icon ?? game?.image_url,
-                        game?.game_name ?? game?.gameName ?? game?.name,
-                        game?.gameCategory,
-                        finalProvider.includes(provider)
-                          ? game?.provider
-                          : provider,
-                        provider
-                      )
-                    }
-                    className={`${user ? "favorite" : "d-none"}`}
-                  />
-                  &nbsp;
-                  <span className="text-light">
-                    {game?.game_name ?? game?.gameName}
-                  </span>
-                  {loadingMap[game?.game_id ?? game?.gameName ?? game?.key] && (
-                    <LoadingIndicator />
-                  )}{" "}
-                  {/* Render loading indicator for the specific game */}
-                  {/* <div className="gameAttributes">
+                        <div className="overlay">
+                          <ButtonGroup aria-label="Casino Gaming Buttons">
+                            <Button
+                              variant="warning"
+                              onClick={(event) =>
+                                handleButtonClick(
+                                  event,
+                                  game?.game_id ?? game?.gameName ?? game?.key,
+                                  false,
+                                  game?.gameCategory,
+                                  finalProvider.includes(provider)
+                                    ? game?.provider
+                                    : provider,
+                                  game?.provider
+                                )
+                              }
+                            >
+                              Play Demo
+                            </Button>
+                            <Button
+                              variant="danger"
+                              onClick={(event) =>
+                                handleButtonClick(
+                                  event,
+                                  game?.game_id ?? game?.gameName ?? game?.key,
+                                  true,
+                                  game?.gameCategory,
+                                  finalProvider.includes(provider)
+                                    ? game?.provider
+                                    : provider,
+                                  game?.provider
+                                )
+                              }
+                            >
+                              Play Game
+                            </Button>
+                          </ButtonGroup>
+                        </div>
+                      </div>
+                      <FontAwesomeIcon
+                        icon={faStar}
+                        style={{
+                          color: userFavoriteCasino?.some(
+                            (favorite) =>
+                              favorite.game_id ===
+                              (game?.game_id ?? game?.gameName ?? game?.key)
+                          )
+                            ? "gold"
+                            : "white",
+                        }}
+                        onClick={(event) =>
+                          favoriteCasino(
+                            event,
+                            game?.game_id ?? game?.gameName ?? game?.key,
+                            game?.game_icon ?? game?.image_url,
+                            game?.game_name ?? game?.gameName ?? game?.name,
+                            game?.gameCategory,
+                            finalProvider.includes(provider)
+                              ? game?.provider
+                              : provider,
+                            provider
+                          )
+                        }
+                        className={`${user ? "favorite" : "d-none"}`}
+                      />
+                      &nbsp;
+                      <span className="text-light">
+                        {game?.game_name ?? game?.gameName}
+                      </span>
+                      {loadingMap[
+                        game?.game_id ?? game?.gameName ?? game?.key
+                      ] && <LoadingIndicator />}{" "}
+                      {/* Render loading indicator for the specific game */}
+                      {/* <div className="gameAttributes">
                 <div
                   className="new"
                 >
                   <span>NEW</span>
                 </div>
               </div> */}
+                    </div>
+                  )}
                 </div>
-              )
-          
-              }
-            </div>
-          );
-        }):title.toLowerCase()==='favorite'&&(
-          <div className={'no-casino-fav-text d-flex flex-column align-items-center justify-content-center w-100 gap-4'}>
-
-            <FontAwesomeIcon icon={faWarning} style={{color:'var(--faded-color)', fontSize:'32px'}}/>
-            <div>You do not have any favorite games yet
+              );
+            })
+          : title.toLowerCase() === "favorite" && (
+              <div
+                className={
+                  "no-casino-fav-text d-flex flex-column align-items-center justify-content-center w-100 gap-4"
+                }
+              >
+                <FontAwesomeIcon
+                  icon={faWarning}
+                  style={{ color: "var(--faded-color)", fontSize: "32px" }}
+                />
+                <div>You do not have any favorite games yet</div>
               </div>
-            </div>
-
-        )}
+            )}
       </div>
     </section>
   );
@@ -1519,7 +1530,6 @@ const GameSearch = ({ title, games, user }) => {
   const dispatchRedux = useDispatch();
 
   const navigate = useNavigate();
-
 
   const favoritesData = useSelector((state) => state.virtuals.favorites_data);
 
@@ -1688,21 +1698,29 @@ const GameSearch = ({ title, games, user }) => {
   ) => {
     event.stopPropagation(); // Prevent event from propagating to parent element
 
-    console.log("provider information", provider);
     const redirectToGameplay = () => {
-      window.location.href = `/gameplay/${game_id}/${live ? "1" : "0"}`;
+      // window.location.href = `/gameplay/${game_id}/${live ? "1" : "0"}`;
+      navigate(`/gameplay/${game_id}/${live ? "1" : "0"}`);
     };
 
     const redirectToNareGames = () => {
-      window.location.href = `/nare-games/${game_id}${
-        live ? "?status=live" : "?status=demo"
-      }`;
+      // window.location.href = `/nare-games/${game_id}${
+      //   live ? "?status=live" : "?status=demo"
+      // }`;
+      navigate(
+        `/nare-games/${game_id}${live ? "?status=live" : "?status=demo"}`
+      );
     };
 
     const redirectToSmartPlay = () => {
-      window.location.href = `/smart-play?game=${game_id}&category=${gameCategory}&status=${
-        live ? "live" : "demo"
-      }`;
+      // window.location.href = `/smart-play?game=${game_id}&category=${gameCategory}&status=${
+      //   live ? "live" : "demo"
+      // }`;
+      navigate(
+        `/smart-play?game=${game_id}&category=${gameCategory}&status=${
+          live ? "live" : "demo"
+        }`
+      );
     };
 
     if (user) {
@@ -1791,9 +1809,8 @@ const GameSearch = ({ title, games, user }) => {
         style={{ width: "100%", overflow: "auto hidden" }}
       >
         {games.map((game, index) => {
+          console.log("search_data", game);
 
-          console.log("search_data", game)
-          
           return (
             <div
               key={index}
@@ -1825,7 +1842,9 @@ const GameSearch = ({ title, games, user }) => {
                           onClick={(event) =>
                             handleButtonClick(
                               event,
-                              game?.game?.game_id ?? game?.game?.gameName ?? game?.game?.key,
+                              game?.game?.game_id ??
+                                game?.game?.gameName ??
+                                game?.game?.key,
                               false,
                               game?.game?.gameCategory,
                               finalProvider.includes(game.provider)
@@ -1842,7 +1861,9 @@ const GameSearch = ({ title, games, user }) => {
                           onClick={(event) =>
                             handleButtonClick(
                               event,
-                              game?.game?.game_id ?? game?.game?.gameName ?? game?.game?.key,
+                              game?.game?.game_id ??
+                                game?.game?.gameName ??
+                                game?.game?.key,
                               true,
                               game?.game?.gameCategory,
                               finalProvider.includes(game.provider)
@@ -1863,7 +1884,9 @@ const GameSearch = ({ title, games, user }) => {
                       color: userFavoriteCasino?.some(
                         (favorite) =>
                           favorite.game_id ===
-                          (game?.game?.game_id ?? game?.game?.gameName ?? game?.game?.key)
+                          (game?.game?.game_id ??
+                            game?.game?.gameName ??
+                            game?.game?.key)
                       )
                         ? "gold"
                         : "white",
@@ -1871,14 +1894,18 @@ const GameSearch = ({ title, games, user }) => {
                     onClick={(event) =>
                       favoriteCasino(
                         event,
-                        game?.game?.game_id ?? game?.game?.gameName ?? game?.game?.key,
+                        game?.game?.game_id ??
+                          game?.game?.gameName ??
+                          game?.game?.key,
                         game?.game?.game_icon ?? game?.game?.image_url,
-                        game?.game?.game_name ?? game?.game?.gameName ?? game?.game?.name,
+                        game?.game?.game_name ??
+                          game?.game?.gameName ??
+                          game?.game?.name,
                         game?.game?.gameCategory,
                         finalProvider.includes(game.provider)
                           ? game?.game?.provider
                           : game?.provider,
-                          game?.provider
+                        game?.provider
                       )
                     }
                     className={`${user ? "favorite" : "d-none"}`}
@@ -1887,9 +1914,11 @@ const GameSearch = ({ title, games, user }) => {
                   <span className="text-light">
                     {game?.game?.game_name ?? game?.game?.gameName}
                   </span>
-                  {loadingMap[game?.game?.game_id ?? game?.game?.gameName ?? game?.game?.key] && (
-                    <LoadingIndicator />
-                  )}{" "}
+                  {loadingMap[
+                    game?.game?.game_id ??
+                      game?.game?.gameName ??
+                      game?.game?.key
+                  ] && <LoadingIndicator />}{" "}
                   {/* Render loading indicator for the specific game */}
                   {/* <div className="gameAttributes">
                 <div
@@ -1902,13 +1931,11 @@ const GameSearch = ({ title, games, user }) => {
               )}
             </div>
           );
-            
-            })}
+        })}
       </div>
     </section>
   );
 };
-
 
 const LoadingIndicator = () => {
   return <div className="loading-indicator">Loading...</div>;
@@ -2066,19 +2093,28 @@ const Categories = ({ title, games, user, provider }) => {
     event.stopPropagation();
 
     const redirectToGameplay = () => {
-      window.location.href = `/gameplay/${game_id}/${live ? "1" : "0"}`;
+      // window.location.href = `/gameplay/${game_id}/${live ? "1" : "0"}`;
+      navigate(`/gameplay/${game_id}/${live ? "1" : "0"}`);
     };
 
     const redirectToNareGames = () => {
-      window.location.href = `/nare-games/${game_id}${
-        live ? "?status=live" : "?status=demo"
-      }`;
+      // window.location.href = `/nare-games/${game_id}${
+      //   live ? "?status=live" : "?status=demo"
+      // }`;
+      navigate(
+        `/nare-games/${game_id}${live ? "?status=live" : "?status=demo"}`
+      );
     };
 
     const redirectToSmartPlay = () => {
-      window.location.href = `/smart-play?game=${game_id}&category=${gameCategory}&status=${
-        live ? "live" : "demo"
-      }`;
+      // window.location.href = `/smart-play?game=${game_id}&category=${gameCategory}&status=${
+      //   live ? "live" : "demo"
+      // }`;
+      navigate(
+        `/smart-play?game=${game_id}&category=${gameCategory}&status=${
+          live ? "live" : "demo"
+        }`
+      );
     };
 
     if (user) {
@@ -2091,6 +2127,9 @@ const Categories = ({ title, games, user, provider }) => {
             redirectToNareGames();
             break;
           case "smart-soft":
+            redirectToSmartPlay();
+            break;
+          case "smartsoft":
             redirectToSmartPlay();
             break;
         }
@@ -2213,7 +2252,7 @@ const Categories = ({ title, games, user, provider }) => {
                   onMouseLeave={handleMouseLeave}
                   onClick={() => handleMobileClick(index)}
                 >
-                  <div style={{ position: "relative" }} >
+                  <div style={{ position: "relative" }}>
                     <LazyLoadImage
                       effect={"blur"}
                       className="ls-is-cached"
@@ -2342,7 +2381,6 @@ function MenuItem({ title, icon, children, color }) {
     </div>
   );
 }
-
 
 const FilterItem = ({
   title,

@@ -40,38 +40,6 @@ const KironPeriods = React.memo((props) => {
   const competition_id =
     Number(new URL(window.location).searchParams.get("competition_id")) ||
     competition;
-
-  const fetchData = useCallback(async () => {
-    const newCompetition = {
-      competition_id:
-        Number(new URL(window.location).searchParams.get("competition_id")) ||
-        Number(competition_id),
-    };
-    await dispatchRedux(nareLeaguePeriods(newCompetition));
-  }, [competition_id]);
-
-  
-
-  // track when competiton_id changes and resets for all previous states
-  useEffect(() => {
-    const links = document.querySelectorAll(".link");
-    links?.forEach((link) => link.classList.remove("highlight"));
-    clearInterval(timerVar);
-    clearInterval(timerInterval);
-    // dispatchRedux(resetState('current_selection_period'))
-    dispatchRedux(setState("close_spinner", false));
-    dispatchRedux(resetState("start_time"));
-    dispatchRedux(resetState("inPlay"));
-    dispatchRedux(resetState("playout_data"));
-    dispatchRedux(resetState("active_market"));
-    dispatchRedux(resetState("play_time"));
-    dispatchRedux(resetState("ended"));
-    dispatchRedux(resetState("time_left"));
-    dispatchRedux(resetState("playout_data"));
-    dispatchRedux(resetState("matches_data"));
-    fetchData();
-  }, [competition_id]);
-
   // Access the nareLeague period states
   const periodsData = useSelector((state) => state.nareLeague.periods_data);
   const periodsReady = useSelector((state) => state.nareLeague.periods_ready);
@@ -88,47 +56,79 @@ const KironPeriods = React.memo((props) => {
   const Ended = useSelector((state) => state.nareLeague.ended);
   const timeSet = useSelector((state) => state.nareLeague.time_set);
 
+  const fetchData = useCallback(async () => {
+    const newCompetition = {
+      competition_id:
+        Number(new URL(window.location).searchParams.get("competition_id")) ||
+        Number(competition_id),
+    };
+    await dispatchRedux(nareLeaguePeriods(newCompetition));
+  }, [competition_id]);
+
+  // track when competiton_id changes and resets for all previous states
   useEffect(() => {
+    const links = document.querySelectorAll(".link");
+    links?.forEach((link) => link.classList.remove("highlight"));
+    clearInterval(timerVar);
+    clearInterval(timerInterval);
+    // dispatchRedux(resetState('current_selection_period'))
+    dispatchRedux(setState("close_spinner", false));
+    dispatchRedux(resetState("start_time"));
+    dispatchRedux(resetState("inPlay"));
+
+    dispatchRedux(resetState("playout_data"));
+    dispatchRedux(resetState("active_market"));
+    dispatchRedux(resetState("play_time"));
+    dispatchRedux(resetState("ended"));
+    dispatchRedux(resetState("time_left"));
+    dispatchRedux(resetState("playout_data"));
+    dispatchRedux(resetState("matches_data"));
+    fetchData();
+  }, [competition_id]);
+
+  const handleTimeEffect = useCallback(() => {
     // todo initial calculations here
     const startTime = periodFirst;
     const timeInPlay =
       (moment().valueOf() - moment(startTime).valueOf()) / 1000;
     const timeMapping = Math.round(timeInPlay * (90 / 65));
 
-  
+    // if (periodsReady) {
+    // Check if play_time and time_left are both null
+    if (
+      play_time === null &&
+      time_left === null &&
+      current_selection_period == null
+    ) {
+      // dispatchRedux(setState("time_set", false));
 
-    if (periodsReady) {
-      // Check if play_time and time_left are both null
-      if (
-        play_time === null &&
-        time_left === null &&
-        current_selection_period == null
-      ) {
-        if (timeMapping < 0) {
-          dispatchRedux(setState("inPlay", false));
-        } else if (timeMapping > 0) {
-          dispatchRedux(setState("inPlay", true));
-          if (current_selection_period) {
-            dispatchRedux(setState("time_set", false));
-          }
-        }
-        // Set a timeout of 500 milliseconds
-        const timeoutId = setTimeout(() => {
-          // Perform your desired action after the timeout
-          console.log("Timeout of 500 milliseconds");
-          dispatchRedux(setState("time_set", true));
-        }, 500);
-        // Return cleanup function to clear the timeout
-        return () => clearTimeout(timeoutId);
-      } else {
-        console.log("Timeout of 200 milliseconds else");
-        dispatchRedux(setState("time_set", true));
+      if (timeMapping < 0) {
+        dispatchRedux(setState("inPlay", false));
+      } else if (timeMapping > 0) {
+        dispatchRedux(setState("inPlay", true));
+
+        // if (current_selection_period) {
+        // dispatchRedux(setState("time_set", false));
+        // }
       }
+      // Set a timeout of 500 milliseconds
+      const timeoutId = setTimeout(() => {
+        // Perform your desired action after the timeout
+        dispatchRedux(setState("time_set", true));
+      }, 500);
+      // Return cleanup function to clear the timeout
+      return () => clearTimeout(timeoutId);
+    } else {
+      dispatchRedux(setState("time_set", true));
     }
-  }, [periodsReady, inPlay, market_id, current_selection_period]);
+    // }
+  }, [periodsReady, inPlay, market_id, current_selection_period, timeSet]);
 
   useEffect(() => {
-    // Proceed with other conditions and logic once timeSet is true
+    handleTimeEffect();
+  }, [handleTimeEffect]);
+
+  const handleDataEffect = useCallback(() => {
     const data = {
       competition_id:
         Number(new URL(window.location).searchParams.get("competition_id")) ||
@@ -146,39 +146,41 @@ const KironPeriods = React.memo((props) => {
           : round_id,
       market_id: Number(market_id),
     };
+    if (play_time === null && time_left === null) {
+      dispatchRedux(setState("time_set", false));
+      return;
+    }
     if (timeSet) {
-      if (!inPlay && !current_selection_period) {
-        console.log("General test for market id");
+      if (inPlay && !current_selection_period) {
+        dispatchRedux(nareLeaguePlayouts(data)); // Dispatch nareLeaguePlayouts async thunk
+        dispatchRedux(resetState("matches_data"));
+      } else if (!inPlay && !current_selection_period) {
         dispatchRedux(nareLeagueMatches(dataMatches)); // Dispatch nareLeagueMatches async thunk
         dispatchRedux(resetState("playouts_data"));
         if (Ended) {
-          console.log("testing Match ended new");
           dispatchRedux(resetState("ended"));
         }
-      } else if (inPlay && !current_selection_period) {
-        console.log("we are doing this now");
-        dispatchRedux(nareLeaguePlayouts(data)); // Dispatch nareLeaguePlayouts async thunk
-        dispatchRedux(resetState("matches_data"));
       } else if (current_selection_period !== null) {
         // dispatchRedux(resetState('periods_ready'));
         dispatchRedux(resetState("playouts_data"));
         if (current_selection_period.start === periodFirst) {
           dispatchRedux(resetState("current_selection_period"));
         }
-        console.log("testing current selections and fetching matches");
         if (Ended) {
-          console.log("testing Match ended");
           dispatchRedux(resetState("ended"));
         } else {
-          if (play_time < 1 && time_left === '0:00') {
+          if (play_time < 1 && time_left === "0:00") {
             return;
           }
           dispatchRedux(nareLeagueMatches(dataMatches)); // Dispatch nareLeagueMatches async thunk
-          console.log("testing calling the right item");
         }
       }
     }
   }, [timeSet, current_selection_period, market_id, inPlay]);
+
+  useEffect(() => {
+    handleDataEffect();
+  }, [handleDataEffect]);
 
   const pathname = window.location.pathname;
 
@@ -229,13 +231,14 @@ const KironPeriods = React.memo((props) => {
       // set inPlay to true when time_left is less than 0
       if (initialTimeLeft <= 0) {
         dispatchRedux(setState("inPlay", true));
+
         //todo check if this can be a fix for live
 
         // dispatchRedux(resetState('ended'));
         dispatchRedux(setState("close_spinner", false));
 
         // setTimeout(() => {
-        //     dispatchRedux(setState('time_set', true))
+        // dispatchRedux(setState('time_set', false))
         //     // fetchData();
         // }, 300);
         //todo
@@ -272,26 +275,24 @@ const KironPeriods = React.memo((props) => {
         dispatchRedux(setState("ended", "Ended"));
         clearInterval(timerVar);
         let timeoutId = null;
-        if(inPlay==true){
-          console.log("we are in play ")
+        if (inPlay == true) {
           timeoutId = setTimeout(() => {
-            dispatchRedux(resetState('play_time'));
-            dispatchRedux(resetState('periods_first'));
-            dispatchRedux(resetState('inPlay'));
-            dispatchRedux(setState('time_set', false));
-            dispatchRedux(resetState('playouts_data'));
-            dispatchRedux(resetState('active_market'));
+            dispatchRedux(resetState("play_time"));
+            dispatchRedux(resetState("time_left"));
+            dispatchRedux(resetState("periods_first"));
+            dispatchRedux(resetState("inPlay"));
+
+            dispatchRedux(setState("time_set", false));
+            dispatchRedux(resetState("playouts_data"));
+            dispatchRedux(resetState("active_market"));
             fetchData();
-        }, 5000);
+          }, 5000);
 
-        return () => {
-          // Cleanup: Clear the timeout if component unmounts or condition changes
-          clearTimeout(timeoutId);
-        };
+          return () => {
+            // Cleanup: Clear the timeout if component unmounts or condition changes
+            clearTimeout(timeoutId);
+          };
         }
-         
-
-        
       }
     }
 
@@ -337,6 +338,8 @@ const KironPeriods = React.memo((props) => {
           if (time <= 0) {
             dispatchRedux(resetState("inPlay"));
             dispatchRedux(resetState("play_time"));
+            dispatchRedux(resetState("time_left"));
+
             dispatchRedux(resetState("active_market"));
             // fetchData();
           }

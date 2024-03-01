@@ -257,6 +257,7 @@ const nareLeagueSlice = createSlice({
                 // state.loading = true;
                 state.periods_ready=false
                 state.time_set = false; // Reset timeAfter when periods are fetched
+                state.inPlay=false
 
             })
             .addCase(nareLeaguePeriods.fulfilled, (state,action) => {

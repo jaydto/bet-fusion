@@ -320,13 +320,13 @@
     font-weight:800;
 }
 .more-market-button{
-    color:var(--light) !important;
+    color:var(--light) ;
 }
 .team-jersey img{
     width:25px!important;
 }
 .more-market-button:hover{
-    color:var(--light) !important;
+    color:var(--light);
 }
 .more-market-button.kiron-more-button-color{
     color:var(--dark) !important;

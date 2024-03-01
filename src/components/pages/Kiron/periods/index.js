@@ -329,28 +329,28 @@ const KironPeriods = React.memo((props) => {
     }
   }, [current_selection_period]);
 
-  const kironTabVisible = () => {
-    const time = (Date.parse(firstMatchEndTime) - new Date().getTime()) / 1000;
+  // const kironTabVisible = () => {
+  //   const time = (Date.parse(firstMatchEndTime) - new Date().getTime()) / 1000;
 
-    document.addEventListener("visibilitychange", (event) => {
-      if (document.visibilityState == "visible") {
-        if (window.location.pathname == "/nare-league") {
-          if (time <= 0) {
-            dispatchRedux(resetState("inPlay"));
-            dispatchRedux(resetState("play_time"));
-            dispatchRedux(resetState("time_left"));
+  //   document.addEventListener("visibilitychange", (event) => {
+  //     if (document.visibilityState == "visible") {
+  //       if (window.location.pathname == "/nare-league") {
+  //         if (time <= 0) {
+  //           dispatchRedux(resetState("inPlay"));
+  //           dispatchRedux(resetState("play_time"));
+  //           dispatchRedux(resetState("time_left"));
 
-            dispatchRedux(resetState("active_market"));
-            // fetchData();
-          }
-        }
-      }
-    });
-  };
+  //           dispatchRedux(resetState("active_market"));
+  //           // fetchData();
+  //         }
+  //       }
+  //     }
+  //   });
+  // };
 
-  useEffect(() => {
-    kironTabVisible();
-  }, []);
+  // useEffect(() => {
+  //   kironTabVisible();
+  // }, []);
 
   return (
     <div className={`  container-period `} style={{ background: " #162024" }}>

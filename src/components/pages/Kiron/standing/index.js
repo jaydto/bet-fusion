@@ -26,6 +26,13 @@ const Standing = () => {
         dispatchRedux(resetState('current_selection_period'))
     }, [newCompetition]);
 
+    useEffect(()=>{
+        // dispatchRedux(resetState('play_time'))
+        dispatchRedux(resetState('time_left'))
+
+    },[])
+
+
 
     return (
         <div>

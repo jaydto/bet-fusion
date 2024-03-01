@@ -3,7 +3,7 @@ import "./results.css"
 import {StoreContext} from "../../../../context/store"
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import {useDispatch, useSelector} from 'react-redux';
-import {nareLeaguePlayouts} from "../../../../redux/nareLeague"; // Import useDispatch hook
+import {nareLeaguePlayouts, resetState} from "../../../../redux/nareLeague"; // Import useDispatch hook
 
 
 const KironPlayouts = React.memo(
@@ -52,6 +52,12 @@ const KironPlayouts = React.memo(
 
 
         }, [loading])
+
+        useEffect(()=>{
+            // dispatchRedux(resetState('play_time'))
+            dispatchRedux(resetState('time_left'))
+
+        },[])
 
 
         const handleScore_home = (home_score, away_score) => {

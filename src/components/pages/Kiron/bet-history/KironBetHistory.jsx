@@ -128,6 +128,14 @@ const KironBetHistory = React.memo(
 
         }, [activeTab, betID]);
 
+        useEffect(()=>{
+            // dispatchRedux(resetState('play_time'))
+            dispatchRedux(resetState('time_left'))
+
+        },[])
+
+
+
         const activeBetHistory = useSelector((state) => state.nareLeague.bet_history_data)
         const oldBetHistory = useSelector((state) => state.nareLeague.old_bets_data)
 

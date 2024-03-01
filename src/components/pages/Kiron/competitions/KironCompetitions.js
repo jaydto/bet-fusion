@@ -62,6 +62,10 @@ const KironCompetitions = React.memo(
 
         const setActiveCompetition = (id) => {
             dispatchRedux(setState('competition_id', id))
+            dispatchRedux(setState('current_selection_period', null));
+            // dispatchRedux(setState('inPlay', false));
+            // dispatchRedux(setState('playouts_data',null));
+
         }
 
         return (

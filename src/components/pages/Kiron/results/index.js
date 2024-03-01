@@ -29,6 +29,12 @@ const KironResults =
             dispatchRedux(resetState('current_selection_period'))
         }, [newCompetition]);
 
+        useEffect(()=>{
+            // dispatchRedux(resetState('play_time'))
+            dispatchRedux(resetState('time_left'))
+
+        },[])
+
         const FormatTime=(props)=>{
             const {time}=props
             const [dateString, timeString] = time?.split(' ');

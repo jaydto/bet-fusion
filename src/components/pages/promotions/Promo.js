@@ -205,20 +205,7 @@ const Promo = () => {
                             </>
                           )}
 
-                          {item?.nb && (
-                            <p className={"text-center lead"}>
-                              <span>
-                                <u
-                                  className="bold  "
-                                  style={{ color: "#ea5d0b" }}
-                                >
-                                  {" "}
-                                  NB:
-                                </u>
-                              </span>
-                              {item?.nb}
-                            </p>
-                          )}
+                          
                         </ul>
                         <br />
                         {item?.tableData && (
@@ -278,6 +265,22 @@ const Promo = () => {
                                   <br />
                                 </React.Fragment>
                               ))}
+                          </div>
+                          <div>
+                          {item?.nb && (
+                            <p className={"text-center lead"}>
+                              <span>
+                                <u
+                                  className="bold  "
+                                  style={{ color: "#ea5d0b" }}
+                                >
+                                  {" "}
+                                  NB:
+                                </u>
+                              </span>
+                              {item?.nb}
+                            </p>
+                          )}
                           </div>
                         </div>
                       </div>

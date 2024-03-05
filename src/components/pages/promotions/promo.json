@@ -142,7 +142,7 @@
     "position": 3,
     "action": { "title": "Bet Now", "url": "/", "utm_source": "multibet" },
     "read_info": { "title": "Read More", "url": "/promo?id=4" },
-    "example": "✅ If I lose 1/5 and my stake was 100% THEN I will be awarded a BONUS of KES.30. \n✅ If I LOSE 1/10 folds and my STAKE was KES 100, THEN I will be awarded a bonus of KES.55. \n✅ If I LOSE 1/20 selections and my STAKE was 1000, THEN I will be awarded a bonus of KES250.",
+    "example": "\n✅ If I lose 1/5 and my stake was 100% THEN I will be awarded a BONUS of KES.30. \n✅ If I LOSE 1/10 folds and my STAKE was KES 100, THEN I will be awarded a bonus of KES.55. \n✅ If I LOSE 1/20 selections and my STAKE was 1000, THEN I will be awarded a bonus of KES250.",
     "tableData": {
       "headings": ["Types", "Bonus LOSS Breakdown Table", "Percentage"],
       "rows": [

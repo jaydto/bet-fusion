@@ -49,7 +49,7 @@ const PromoCards = () => {
                             className="bold d-flex justify-content-center h4 pt-2"
                             style={{color: "#ea5d0b"}}
                         >
-                            Mshipi!
+                            NIPOA KUFUNGA MSHIPI!
                         </h5>
                         <p className="container-profile mx-1 px-2 text-data-promotions">
                         Participants have the chance to win up to 50,000 Kenyan Shillings daily if their multi-bet of 5 games is successful.                              </p>
@@ -62,7 +62,7 @@ const PromoCards = () => {
                                 gaEventTracker('mshipi');
                                 navigate(`/`);
                                 setUtmSouceCampaignOnPromotions('mshipi')
-                            }}>Deposit
+                            }}>Play Now!
                             </button>
                             <div
                                 className={"d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"}

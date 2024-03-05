@@ -43,7 +43,7 @@ const NewCasino = () => {
   const [user, setUser] = useState(getFromLocalStorage("user"));
 
   // const [categories, setCategories] = useState([]);
-  const { state, dispatch } = useContext(StoreContext);
+  const { dispatch } = useContext(StoreContext);
 
   const [games, setGames] = useState([]);
   const [showFilters, setShowFilters] = useState(true);
@@ -57,10 +57,6 @@ const NewCasino = () => {
   const smartsoft_categories = useSelector(
     (state) => state.virtuals.smartsoft_categories
   );
-
-  // const [settings, setSettings] = useState(getFromLocalStorage("settings"));
-  // const defaultCasinoCategory =
-  //   settings?.casinoConfigs?.casino_default_category;
 
   // Tracking for casino_game_type
   let game_type = new URL(window.location).searchParams.get("game_type");
@@ -99,6 +95,29 @@ const NewCasino = () => {
     cs: "Classic Slots",
     lg: "Live Games",
     crash: "Crash Games",
+  };
+  const categoryGameTypes = {
+    popular: "popular",
+    popular_pragmatic: "popular",
+    "Jackpot Casino": "drops-n-wins",
+    jackpot: "drops-n-wins",
+    drops_and_wins: "drops-n-wins",
+    "Video Slots": "vs",
+    virtuals: "rgs-vsb",
+    live_casino: "lg",
+    roulette: "rl",
+    blackjack: "bj",
+    card_play: "sc",
+    video_poker: "vp",
+    slots: "cs",
+    livecasino: "lg",
+    "crash-games": "crash",
+    pragmatic: "popular",
+    "smart-soft": "smart-soft",
+    "smart_soft": "smart-soft",
+    spribe: "spribe",
+    hot: "hot",
+    favorites: "favorites",
   };
 
   const fetchGames = async (category) => {
@@ -197,11 +216,6 @@ const NewCasino = () => {
     // Dispatch action to set the game choice type
     dispatchRedux(setVirtualGame("casino_games", []));
 
-    // dispatchRedux(setVirtualGame("game_type", game));
-
-    // todo Reset casino search
-    // dispatch({ type: "SET", key: "casino_search", payload: {} });
-
     // Fetch games based on game and provider
     if (provider === "pragmatic") {
       // Fetch all Pragmatic games
@@ -227,15 +241,43 @@ const NewCasino = () => {
     }
   };
 
+  const getGamesByType = (gameType) => {
+    switch (gameType) {
+      case "crash":
+        getCrashGames(gameType);
+        break;
+      case "popular":
+        getPopularGames(gameType);
+        break;
+      case "smart-soft":
+        getSmartGames(gameType);
+        break;
+      case "spribe":
+        getFastGames(gameType);
+        break;
+      case "hot":
+        getHotGames(gameType);
+        break;
+      default:
+        fetchGames(gameType);
+        break;
+    }
+  };
+
   useEffect(() => {
-    if (game_type) return;
-    gameDefaults();
+    if (game_type && categoryGameTypes.hasOwnProperty(game_type)) {
+      const gameType = categoryGameTypes[game_type];
+      setActiveCategoryLink(game_type)
+      getGamesByType(gameType);
+    }else {
+      gameDefaults();
+    }
     const abortController = new AbortController();
 
     return () => {
       abortController.abort(); // Abort any pending fetch requests
     };
-  }, [game_type]);
+  }, []);
 
   useEffect(() => {
     dispatchRedux(favoriteCasinoApi());
@@ -252,33 +294,13 @@ const NewCasino = () => {
       }
     });
   };
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    // Navigate to '/casino' when the component mounts
-    navigate("/casino");
-  }, []); // Empty dependency array to run the effect only once when the component mounts
+  // useEffect(() => {
+  //   // Navigate to '/casino' when the component mounts
+  //   navigate("/casino");
+  // }, []); // Empty dependency array to run the effect only once when the component mounts
 
-  const getCategoryGames = (category) => {
-    setGames([]);
-    fetchGames(category?.game_type_id);
-    setActiveCategory(category?.game_type_id); // Set the active category when clicked
-  };
-
-  const filterGamesAvailable = (category) => {
-    //filter games
-    setActiveCategory(category?.default_description ?? category); // Set the active category when clicked
-    if (activeCategory === "All") {
-      dispatch({ type: "SET", key: "casino_search", payload: games });
-    } else {
-      const filteredData = games?.filter((item) =>
-        item.gameCategory
-          .toLowerCase()
-          .includes(category?.default_description?.toLowerCase())
-      );
-      dispatch({ type: "SET", key: "casino_search", payload: filteredData });
-    }
-  };
+ 
   const casino_categories = useSelector(
     (state) => state.virtuals.casino_categories
   );

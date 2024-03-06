@@ -816,7 +816,7 @@ const GameFilters = ({
               <FilterItem
                 title="Roulette Play"
                 link="?game_type=roulette"
-                isActive={activeItem === "ROULETTE PLAY"}
+                isActive={activeItem === "Roulette Play"}
                 setActiveItem={setActiveItem}
                 onClick={() => {
                   handleGameChoice({
@@ -2403,7 +2403,7 @@ function MenuItem({ title, icon, children, color }) {
         onClick={toggleCollapse}
         style={{
           background:
-            title === "Pragmatic"
+            title === "Pragmatic Play"
               ? "repeating-linear-gradient(45deg, rgb(64 33 163), transparent 100px)"
               : "repeating-linear-gradient(45deg, #0d6efd, transparent 100px)",
         }}

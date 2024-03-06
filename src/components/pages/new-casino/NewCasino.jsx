@@ -983,8 +983,9 @@ const GameFilters = ({
                         <FilterItem
                           key={index}
                           title={
-                            category?.game_type_description ??
-                            category?.default_description
+                           ( category?.game_type_description ??
+                            category?.default_description).toLowerCase()==='rgs-vsb'?'Virtuals':( category?.game_type_description ??
+                              category?.default_description)
                           }
                           isActive={
                             activeItem ===
@@ -1344,6 +1345,9 @@ const GameChoice = ({ title, games, user, provider }) => {
           case "smart-soft":
             redirectToSmartPlay();
             break;
+          case "smartsoft":
+            redirectToSmartPlay();
+            break;
         }
       } else if (provider === "crash-games") {
         switch (crash_provider) {
@@ -1354,6 +1358,9 @@ const GameChoice = ({ title, games, user, provider }) => {
             redirectToNareGames();
             break;
           case "smartsoft":
+            redirectToSmartPlay();
+            break;
+          case "smart-soft":
             redirectToSmartPlay();
             break;
           default:

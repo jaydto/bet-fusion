@@ -39,7 +39,7 @@ const LeaderBoards = () => {
                 <div className="top">
                     <div className={'d-flex flex-wrap w-100 gap-3 justify-content-center'}>
                         <strong className={'aniversary-text text1'}>
-                            How Long Can You Last
+                            Climax na Aviator
                         </strong>
                         <strong className={'aniversary-text text2'}>
                         Challenge
@@ -977,7 +977,8 @@ const LeaderBoards = () => {
                     <div className="title">
                         <h2 className="text-medium">
                             <div className={'congrats'}>
-                            <span style={{color:'var(--gold'}}> Ksh 1.2 Million</span>  is up for grabs. Highest Multiplier for the Qualifying day will win <span style={{color:'var(--gold'}}> Ksh. 15,000</span>.  Check other winnings in table below.    <span style={{color:'var(--light'}}>KES&nbsp;</span><span style={{color:'var(--gold'}}>1,200,000!</span>
+                            <span style={{color:'var(--gold'}}> Ksh 250,000</span>  is up for grabs for stakes of<span style={{color:'var(--gold'}}> 200 KES</span> and <span style={{color:'var(--gold'}}> Ksh. 20,000</span> for only <span style={{color:'var(--gold'}}>20 KES</span> Daily. 
+                            <br/>A total of  <span style={{color:'var(--light'}}>KES&nbsp;</span><span style={{color:'var(--gold'}}>500,000!</span> up for grabs
                             </div>
                             <strong><Link to={'/promo?id=19'} style={{ color:"var(--aqua-text)"}}>How to Play!</Link></strong>
                             </h2>

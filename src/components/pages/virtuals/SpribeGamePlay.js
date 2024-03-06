@@ -203,7 +203,9 @@ const GamePlay = React.memo(
                 <Header/>
                 <div
                     className={`virtuals-container-position ${(width <= 575 ? user ? "user_logged virtuals" : "amt-virtual" : "amt-virtual")}`}>
-                    <FullscreenButtonSpribe onClick={() => toggleFullscreen()} navigation={'/casino'}
+                    {/* <FullscreenButtonSpribe onClick={() => toggleFullscreen()} navigation={'/'}
+                                      isCustomFullScreen={isCustomFullscreen}/> */}
+                                      <FullscreenButton onClick={() => toggleFullscreen()} navigation={'/casino'}
                                       isCustomFullScreen={isCustomFullscreen}/>
                     <div className="d-flex flex-row justify-content-between">
                         <div className="col-md-12 w-100">

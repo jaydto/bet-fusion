@@ -16,7 +16,7 @@ const PromoCards = () => {
     const gaEventTracker = useAnalyticsEventTracker('Promotions');
     const user = getFromLocalStorage('user')
 
-    let ids = [1, 2, 3, 4, 5, 6, 7, 8, 9,10,11, 12, 13, 14,15,16,17,18,19];
+    let ids = [1, 2, 3, 4, 5, 6, 7, 8, 9,10,11, 12, 13, 14,15,16,17,18,19,20,21];
     const navigate = useNavigate()
 
     let message = {status: 401, message: 'This Promotion is for new Users', token: ''};
@@ -41,73 +41,34 @@ const PromoCards = () => {
                     "row text-white pt-2 border-0 d-flex promo-container-profile d-flex align-self-start align-items-start"
                 }
             > 
+            
             <div className="col-md-2 promo-styling shadow-lg promotion">
-            <div className="d-flex flex-column promo-inner">
-                        <img src={'https://cdn.betnare.com/carousel/LastPromoFeb.webp'} className={"rounded promo-image "}/>
+                    <div className="d-flex flex-column promo-inner">
+                        <img src={'https://cdn.betnare.com/carousel/Mshipi.webp'} className={"rounded promo-image "}/>
                         <h5
                             className="bold d-flex justify-content-center h4 pt-2"
                             style={{color: "#ea5d0b"}}
                         >
-                          HOW LONG CAN YOU LAST 
-
+                            NIPOA KUFUNGA MSHIPI!
                         </h5>
                         <p className="container-profile mx-1 px-2 text-data-promotions">
-                        This promotion shall run daily for seven days from 08 February to 15th February 2024 any extension ...
-                        </p>
-                                                   <hr/>
+                        Participants have the chance to win up to 50,000 Kenyan Shillings daily if their multi-bet of 5 games is successful.                              </p>
+                        <hr/>
 
                         <div className="d-flex justify-content-between my-2 mx-2">
 
                             <button className={"profile-button border-0 h-25 rounded promo-button"}
                                     style={{background: "#ea5d0b"}} onClick={() => {
-                                gaEventTracker('how_long_can_you_last');
-                                navigate(`/nare-games/aviator?status=live`);
-                                setUtmSouceCampaignOnPromotions('how_long_can_you_last')
-                            }}>Play Aviator!
-                            </button>
-                            <div
-                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"}
-                                style={{color: "#ea5d0b"}}
-                                onClick={() => {
-                                    navigate(`/promo?id=${ids[18]}`);
-                                    window.scrollTo(0, 0); // Scroll to the top of the page
-                                }}
-                            >
-                                Read More
-                            </div>
-                        </div>
-                    </div>
-                    
-                    
-                </div>
-                <div className="col-md-2 promo-styling shadow-lg promotion">
-                <div className="d-flex flex-column promo-inner">
-                        <img src={'https://cdn.betnare.com/carousel/14DaysofloveWeb.webp'} className={"rounded promo-image "}/>
-                        <h5
-                            className="bold d-flex justify-content-center h4 pt-2"
-                            style={{color: "#ea5d0b"}}
-                        >
-                            FOURTEEN DAYS OF LOVE NA BETNARE PROMOTION.
-
-                        </h5>
-                        <p className="container-profile mx-1 px-2 text-data-promotions">
-                        The aim is to place a multi bet of 5 games or more, with a stake of over Ksh 14 to stand a chance of winning Ksh 100 daily.                        </p>                       
-                           <hr/>
-
-                        <div className="d-flex justify-content-between my-2 mx-2">
-
-                            <button className={"profile-button border-0 h-25 rounded promo-button"}
-                                    style={{background: "#ea5d0b"}} onClick={() => {
-                                gaEventTracker('14_days_of_love');
+                                gaEventTracker('mshipi');
                                 navigate(`/`);
-                                setUtmSouceCampaignOnPromotions('14_days_of_love')
+                                setUtmSouceCampaignOnPromotions('mshipi')
                             }}>Play Now!
                             </button>
                             <div
                                 className={"d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"}
                                 style={{color: "#ea5d0b"}}
                                 onClick={() => {
-                                    navigate(`/promo?id=${ids[17]}`);
+                                    navigate(`/promo?id=${ids[20]}`);
                                     window.scrollTo(0, 0); // Scroll to the top of the page
                                 }}
                             >
@@ -115,37 +76,35 @@ const PromoCards = () => {
                             </div>
                         </div>
                     </div>
-                    </div>
+                </div>
                 
-                 <div className="col-md-2 promo-styling shadow-lg promotion">
+            <div className="col-md-2 promo-styling shadow-lg promotion">
                     <div className="d-flex flex-column promo-inner">
-                        <img src={'https://cdn.betnare.com/carousel/ValentinesnaJETX.webp'} className={"rounded promo-image "}/>
+                        <img src={'https://cdn.betnare.com/carousel/LuckyHourv2.webp'} className={"rounded promo-image "}/>
                         <h5
                             className="bold d-flex justify-content-center h4 pt-2"
                             style={{color: "#ea5d0b"}}
                         >
-                            VALENTINES NA JET-X
-
+                            Lucky Hour Bonus!
                         </h5>
                         <p className="container-profile mx-1 px-2 text-data-promotions">
-                        Aim for a spot in the top to grab a share of the Ksh. 100,000 cash prizes daily by getting the highest in-game multiplier on Jet X.
-                        </p>                       
-                           <hr/>
+                        The Lucky Hour Bonus applies to new and existing customers who Deposit and place a bet                   </p>
+                        <hr/>
 
                         <div className="d-flex justify-content-between my-2 mx-2">
 
                             <button className={"profile-button border-0 h-25 rounded promo-button"}
                                     style={{background: "#ea5d0b"}} onClick={() => {
-                                gaEventTracker('valentine_jetx');
-                                navigate(`/smart-play?game=JetX&category=JetX`);
-                                setUtmSouceCampaignOnPromotions('valentine_jetx')
-                            }}>Play Jetx
+                                gaEventTracker('lucky_hour_2');
+                                navigate(`/deposit`);
+                                setUtmSouceCampaignOnPromotions('lucky_hour_2')
+                            }}>Deposit
                             </button>
                             <div
                                 className={"d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"}
                                 style={{color: "#ea5d0b"}}
                                 onClick={() => {
-                                    navigate(`/promo?id=${ids[16]}`);
+                                    navigate(`/promo?id=${ids[4]}`);
                                     window.scrollTo(0, 0); // Scroll to the top of the page
                                 }}
                             >
@@ -153,50 +112,9 @@ const PromoCards = () => {
                             </div>
                         </div>
                     </div>
-                </div
-                >
-               
-               
-                <div className="col-md-2 promo-styling shadow-lg promotion">
-                    <div className="d-flex flex-column promo-inner">
-                        <img src={'https://cdn.betnare.com/carousel/AfconPromoBanner.webp'} className={"rounded promo-image "}/>
-                        <h5
-                            className="bold d-flex justify-content-center h4 pt-2"
-                            style={{color: "#ea5d0b"}}
-                        >
-                            MAMILLI YA NJAANUARY NA AFCON
-
-                        </h5>
-                        <p className="container-profile mx-1 px-2 text-data-promotions">
-                        Customers will be required to place a cash bet on sports book (single or multibet) using a stake of 99/= or more
-                        </p>                      
-                          <hr/>
-
-                        <div className="d-flex justify-content-between my-2 mx-2">
-
-                            <button className={"profile-button border-0 h-25 rounded promo-button"}
-                                    style={{background: "#ea5d0b"}} onClick={() => {
-                                gaEventTracker('mamili_afcon');
-                                navigate(`/competition/79/8085/21843?sport_id=79&sub_type_id=1`);
-                                setUtmSouceCampaignOnPromotions('mamili_afcon')
-                            }}>Place Bets
-                            </button>
-                            <div
-                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"}
-                                style={{color: "#ea5d0b"}}
-                                onClick={() => {
-                                    navigate(`/promo?id=${ids[14]}`);
-                                    window.scrollTo(0, 0); // Scroll to the top of the page
-                                }}
-                            >
-                                Read More
-                            </div>
-                        </div>
-                    </div>
-                </div
-                >
-               
-                <div className="col-md-2 promo-styling shadow-lg promotion">
+                </div>
+                
+            <div className="col-md-2 promo-styling shadow-lg promotion">
                     <div className="d-flex flex-column promo-inner">
                         <img src={'https://cdn.betnare.com/carousel/DepositBonus.webp'} className={"rounded promo-image "}/>
                         <h5
@@ -231,6 +149,7 @@ const PromoCards = () => {
                         </div>
                     </div>
                 </div>
+                
                 <div className="col-md-2 promo-styling shadow-lg promotion">
                     <div className="d-flex flex-column promo-inner">
                         <img src={'https://cdn.betnare.com/carousel/StakeBooster.webp'} className={"rounded promo-image "}/>
@@ -307,6 +226,209 @@ const PromoCards = () => {
                         </div>
                     </div>
                 </div>
+                <div className="col-md-2 promo-styling shadow-lg promotion">
+                    <div className="d-flex flex-column promo-inner promo-inactive">
+                        <img src={'https://cdn.betnare.com/carousel/ClimaxWeb.webp'} className={"rounded promo-image "}/>
+                        <h5
+                            className="bold d-flex justify-content-center h4 pt-2"
+                            style={{color: "#ea5d0b"}}
+                        >
+                            Climax Na Aviator!
+                        </h5>
+                        <p className="container-profile mx-1 px-2 text-data-promotions">
+                        The aim of this promotion is to get the highest odds from winners. Those with the highest in-game multiplier(s) to be awarded ...        
+                                 </p>
+                        <hr/>
+
+                        <div className="d-flex justify-content-between my-2 mx-2">
+
+                            <button className={"profile-button border-0 h-25 rounded promo-button"}
+                                    style={{background: "#ea5d0b"}} 
+                                    disabled={true}
+                                    onClick={() => {
+                                gaEventTracker('lclimax_ na_aviator');
+                                navigate(`/nare-games/aviator?status=live`);
+                                setUtmSouceCampaignOnPromotions('climax_na_aviator')
+                            }}>Play Aviator
+                            </button>
+                            <div
+                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"}
+                                style={{color: "#ea5d0b"}}
+                                onClick={() => {
+                                    navigate(`/promo?id=${ids[19]}`);
+                                    window.scrollTo(0, 0); // Scroll to the top of the page
+                                }}
+                            >
+                                Read More
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-md-2 promo-styling shadow-lg promotion">
+                    <div className="d-flex flex-column promo-inner promo-inactive">
+                        <img src={'https://cdn.betnare.com/carousel/AfconPromoBanner.webp'} className={"rounded promo-image "}/>
+                        <h5
+                            className="bold d-flex justify-content-center h4 pt-2"
+                            style={{color: "#ea5d0b"}}
+                        >
+                            MAMILLI YA NJAANUARY NA AFCON
+
+                        </h5>
+                        <p className="container-profile mx-1 px-2 text-data-promotions">
+                        Customers will be required to place a cash bet on sports book (single or multibet) using a stake of 99/= or more
+                        </p>                      
+                          <hr/>
+
+                        <div className="d-flex justify-content-between my-2 mx-2">
+
+                            <button className={"profile-button border-0 h-25 rounded promo-button"}
+                                    style={{background: "#ea5d0b"}} 
+                                    disabled={true}
+                                    
+                                    onClick={() => {
+                                gaEventTracker('mamili_afcon');
+                                navigate(`/competition/79/8085/21843?sport_id=79&sub_type_id=1`);
+                                setUtmSouceCampaignOnPromotions('mamili_afcon')
+                            }}>Place Bets
+                            </button>
+                            <div
+                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"}
+                                style={{color: "#ea5d0b"}}
+                                onClick={() => {
+                                    navigate(`/promo?id=${ids[14]}`);
+                                    window.scrollTo(0, 0); // Scroll to the top of the page
+                                }}
+                            >
+                                Read More
+                            </div>
+                        </div>
+                    </div>
+                </div
+                >
+            <div className="col-md-2 promo-styling shadow-lg promotion">
+            
+               
+            <div className="d-flex flex-column promo-inner promo-inactive">
+                        <img src={'https://cdn.betnare.com/carousel/LastPromoFeb.webp'} className={"rounded promo-image "}/>
+                        <h5
+                            className="bold d-flex justify-content-center h4 pt-2"
+                            style={{color: "#ea5d0b"}}
+                        >
+                          HOW LONG CAN YOU LAST 
+
+                        </h5>
+                        <p className="container-profile mx-1 px-2 text-data-promotions">
+                        This promotion shall run daily for seven days from 08 February to 15th February 2024 any extension ...
+                        </p>
+                                                   <hr/>
+
+                        <div className="d-flex justify-content-between my-2 mx-2">
+
+                            <button className={"profile-button border-0 h-25 rounded promo-button"}
+                            disabled={true}
+                                    style={{background: "#ea5d0b"}} onClick={() => {
+                                gaEventTracker('how_long_can_you_last');
+                                navigate(`/nare-games/aviator?status=live`);
+                                setUtmSouceCampaignOnPromotions('how_long_can_you_last')
+                            }}>Play Aviator!
+                            </button>
+                            <div
+                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"}
+                                style={{color: "#ea5d0b"}}
+                                onClick={() => {
+                                    navigate(`/promo?id=${ids[18]}`);
+                                    window.scrollTo(0, 0); // Scroll to the top of the page
+                                }}
+                            >
+                                Read More
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+                <div className="col-md-2 promo-styling shadow-lg promotion">
+                <div className="d-flex flex-column promo-inner promo-inactive">
+                        <img src={'https://cdn.betnare.com/carousel/14DaysofloveWeb.webp'} className={"rounded promo-image "}/>
+                        <h5
+                            className="bold d-flex justify-content-center h4 pt-2"
+                            style={{color: "#ea5d0b"}}
+                        >
+                            FOURTEEN DAYS OF LOVE NA BETNARE PROMOTION.
+
+                        </h5>
+                        <p className="container-profile mx-1 px-2 text-data-promotions">
+                        The aim is to place a multi bet of 5 games or more, with a stake of over Ksh 14 to stand a chance of winning Ksh 100 daily.                        </p>                       
+                           <hr/>
+
+                        <div className="d-flex justify-content-between my-2 mx-2">
+
+                            <button className={"profile-button border-0 h-25 rounded promo-button"}
+                                    style={{background: "#ea5d0b"}} 
+                                    disabled={true}
+                                    onClick={() => {
+                                gaEventTracker('14_days_of_love');
+                                navigate(`/`);
+                                setUtmSouceCampaignOnPromotions('14_days_of_love')
+                            }}>Play Now!
+                            </button>
+                            <div
+                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"}
+                                style={{color: "#ea5d0b"}}
+                                onClick={() => {
+                                    navigate(`/promo?id=${ids[17]}`);
+                                    window.scrollTo(0, 0); // Scroll to the top of the page
+                                }}
+                            >
+                                Read More
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                
+                 <div className="col-md-2 promo-styling shadow-lg promotion">
+                    <div className="d-flex flex-column promo-inner promo-inactive">
+                        <img src={'https://cdn.betnare.com/carousel/ValentinesnaJETX.webp'} className={"rounded promo-image "}/>
+                        <h5
+                            className="bold d-flex justify-content-center h4 pt-2"
+                            style={{color: "#ea5d0b"}}
+                        >
+                            VALENTINES NA JET-X
+
+                        </h5>
+                        <p className="container-profile mx-1 px-2 text-data-promotions">
+                        Aim for a spot in the top to grab a share of the Ksh. 100,000 cash prizes daily by getting the highest in-game multiplier on Jet X.
+                        </p>                       
+                           <hr/>
+
+                        <div className="d-flex justify-content-between my-2 mx-2">
+
+                            <button className={"profile-button border-0 h-25 rounded promo-button"}
+                                    disabled={true}
+                                    style={{background: "#ea5d0b"}} onClick={() => {
+                                gaEventTracker('valentine_jetx');
+                                navigate(`/smart-play?game=JetX&category=JetX`);
+                                setUtmSouceCampaignOnPromotions('valentine_jetx')
+                            }}>Play Jetx
+                            </button>
+                            <div
+                                className={"d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"}
+                                style={{color: "#ea5d0b"}}
+                                onClick={() => {
+                                    navigate(`/promo?id=${ids[16]}`);
+                                    window.scrollTo(0, 0); // Scroll to the top of the page
+                                }}
+                            >
+                                Read More
+                            </div>
+                        </div>
+                    </div>
+                </div
+                >
+               
+               
+               
+                
                 <div className="col-md-2 promo-styling shadow-lg promotion">
                     <div className="d-flex flex-column promo-inner promo-inactive">
                         <img src={'https://cdn.betnare.com/carousel/Pepea.webp'} className={"rounded promo-image "}/>

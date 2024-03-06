@@ -13,6 +13,11 @@
     justify-content: space-around;
 
 }
+.home-team.kiron-btn{
+    background: var(--kiron-odds-button);
+    border:none;
+
+}
 
 .checking-odds> button{
     height:55px!important;

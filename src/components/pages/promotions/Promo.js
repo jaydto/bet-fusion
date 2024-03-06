@@ -26,7 +26,7 @@ const Promo = () => {
     { src: twentyPercentDepositBonus, id: 3 },
     { src: firstDeposit, id: 2 },
     { src: multibetCashback, id: 4 },
-    { src: "https://cdn.betnare.com/carousel/LuckyHour.webp", id: 5 },
+    { src: "https://cdn.betnare.com/carousel/LuckyHourv2.webp", id: 5 },
     { src: "https://cdn.betnare.com/carousel/Mbuzi.webp", id: 6 },
     { src: "https://cdn.betnare.com/carousel/DepositBonus.webp", id: 7 },
     { src: "https://cdn.betnare.com/carousel/StakeBooster.webp", id: 1 },
@@ -36,24 +36,35 @@ const Promo = () => {
     {
       src: "https://cdn.betnare.com/carousel/Mega%20Match%20Bonus%20Web.webp",
       id: 11,
-    },{
+    },
+    {
       src: "https://cdn.betnare.com/carousel/AfconPromoBanner.webp",
       id: 15,
     },
     {
       src: "https://cdn.betnare.com/carousel/Pepea.webp",
       id: 16,
-    }
-    ,{
+    },
+    {
       src: "https://cdn.betnare.com/carousel/ValentinesnaJETX.webp",
       id: 17,
-    },{
+    },
+    {
       src: "https://cdn.betnare.com/carousel/14DaysofloveWeb.webp",
       id: 18,
-    },{
+    },
+    {
       src: "https://cdn.betnare.com/carousel/LastPromoFeb.webp",
       id: 19,
-    }
+    },
+    {
+      src: "https://cdn.betnare.com/carousel/ClimaxWeb.webp",
+      id: 20,
+    },
+    {
+      src: "https://cdn.betnare.com/carousel/Mshipi.webp",
+      id: 21,
+    },
   ];
 
   useEffect(() => {
@@ -198,21 +209,6 @@ const Promo = () => {
                                 ))}
                             </>
                           )}
-
-                          {item?.nb && (
-                            <p className={"text-center lead"}>
-                              <span>
-                                <u
-                                  className="bold  "
-                                  style={{ color: "#ea5d0b" }}
-                                >
-                                  {" "}
-                                  NB:
-                                </u>
-                              </span>
-                              {item?.nb}
-                            </p>
-                          )}
                         </ul>
                         <br />
                         {item?.tableData && (
@@ -250,7 +246,20 @@ const Promo = () => {
                                 {item.exampleHeading}
                               </u>
                             </h5>
-                            <p>{item?.example}</p>
+                            <p>
+                              {item?.example && (
+                                <>
+                                  {item?.example
+                                    ?.split("\n")
+                                    .map((line, index) => (
+                                      <React.Fragment key={index}>
+                                        {line}
+                                        <br />
+                                      </React.Fragment>
+                                    ))}
+                                </>
+                              )}
+                            </p>
                           </>
                         )}
 
@@ -272,6 +281,22 @@ const Promo = () => {
                                   <br />
                                 </React.Fragment>
                               ))}
+                          </div>
+                          <div>
+                            {item?.nb && (
+                              <p className={"text-center lead"}>
+                                <span>
+                                  <u
+                                    className="bold  "
+                                    style={{ color: "#ea5d0b" }}
+                                  >
+                                    {" "}
+                                    NB:
+                                  </u>
+                                </span>
+                                {item?.nb}
+                              </p>
+                            )}
                           </div>
                         </div>
                       </div>

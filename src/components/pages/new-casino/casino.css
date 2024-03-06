@@ -429,9 +429,112 @@ svg {
 }
 
 /*  */
+@media (min-width: 1600px) {
+  .casino-item {
+    width: calc(10% - 20px); /* 20% width with 20px margin between items */
+  }
+  /* .filters li#v-search-mobile{
+    border-radius:28px;
+    height: 40px;
+    width: 40px;
+    box-shadow:20px 20px 20px 20px purple;
+    margin-left:4px;
+    font-size: 20px;
+
+  } */
+  .filters li#v-search-mobile {
+    border-radius: 28px;
+    height: 40px;
+    width: 40px;
+    box-shadow: -7px 2px 1px 12px purple;
+    margin-left: 6px;
+    font-size: 20px;
+    margin-right: 14px;
+  }
+  .size-images-casino {
+    width: 138px;
+    height: 189px;
+  }
+  .no-casino-fav-text{
+    color:var(--light);
 
 
-@media (min-width: 1240px) {
+  }
+  /* .size-images-casino {
+    width: 157px;
+    height: 173px;
+} */
+  .icons-size-direction-casino {
+    font-size: 18px;
+  }
+  .filters-settings {
+    font-size: 10px;
+  }
+  .overlay button {
+    font-size: 10px;
+  }
+  .games-page .gamesInline {
+    justify-content: start;
+    gap: 10px;
+  }
+  .section-item-category {
+    align-self: auto;
+    /* background: linear-gradient(#1e2c379e, #111d239c); */
+    background: linear-gradient(#1e2c379e, #0204059c);
+    border-radius: 4px;
+    /* display: flex; */
+    /* flex: 0 0 auto; */
+    /* font-family: Terfens; */
+    justify-content: center;
+    margin-right: 5px;
+    overflow: hidden;
+    /* padding: 18px; */
+    position: relative;
+    /* width: 65px; */
+    display: flex;
+    align-items: center;
+  }
+
+  .filters li {
+    align-self: auto;
+    /* background: linear-gradient(#1e2c379e, #111d239c); */
+    background: linear-gradient(#1e2c379e, #0204059c);
+    border-radius: 4px;
+    /* display: flex; */
+    /* flex: 0 0 auto; */
+    /* font-family: Terfens; */
+    justify-content: center;
+    padding-right: 5px;
+    overflow: hidden;
+    padding: 18px;
+    position: relative;
+    /* width: 65px; */
+    display: flex;
+    align-items: center;
+  }
+  .left-nav {
+    display: block;
+  }
+  .right-body {
+    position: fixed;
+    width: 83%;
+    right: 0px;
+    top: 8rem;
+    overflow-y: auto;
+    display: block;
+    height: 100vh;
+  }
+  .ls-is-cached {
+    min-height: 14rem;
+  }
+  .right-body .casino-data {
+    margin-bottom: 8.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 1240px)and (max-width: 1599px) {
   .casino-item {
     width: calc(13% - 20px); /* 20% width with 20px margin between items */
   }

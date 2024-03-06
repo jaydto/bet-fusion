@@ -890,12 +890,12 @@ svg {
     min-height: 13.3rem;
   }
   .size-images-casino {
-    width: 132px;
+    width: 135px;
     height: 155px;
   }
   .casino-item {
     width: calc(
-      33.33% - 20px
+      33.33% - 16px
     ) !important; /* 28.33% width with 20px margin between items */
   }
 }

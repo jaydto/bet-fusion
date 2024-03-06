@@ -1484,7 +1484,8 @@ const GameChoice = ({ title, games, user, provider }) => {
                           </ButtonGroup>
                         </div>
                       </div>
-                      <FontAwesomeIcon
+                      <span className="d-flex align-items-center">
+                        <FontAwesomeIcon
                         icon={faStar}
                         style={{
                           color: userFavoriteCasino?.some(
@@ -1511,9 +1512,11 @@ const GameChoice = ({ title, games, user, provider }) => {
                         className={`${user ? "favorite" : "d-none"}`}
                       />
                       &nbsp;
-                      <span className="text-light">
+                      <span className="text-light casino-games-title ">
                         {game?.game_name ?? game?.gameName}
                       </span>
+                      </span>
+                      
                       {loadingMap[
                         game?.game_id ?? game?.gameName ?? game?.key
                       ] && <LoadingIndicator />}{" "}
@@ -1901,7 +1904,8 @@ const GameSearch = ({ title, games, user }) => {
                       </ButtonGroup>
                     </div>
                   </div>
-                  <FontAwesomeIcon
+                  <span className="d-flex align-items-center">
+                    <FontAwesomeIcon
                     icon={faStar}
                     style={{
                       color: userFavoriteCasino?.some(
@@ -1934,9 +1938,11 @@ const GameSearch = ({ title, games, user }) => {
                     className={`${user ? "favorite" : "d-none"}`}
                   />
                   &nbsp;
-                  <span className="text-light">
+                  <span className="text-light casino-games-title ">
                     {game?.game?.game_name ?? game?.game?.gameName}
                   </span>
+                  </span>
+                  
                   {loadingMap[
                     game?.game?.game_id ??
                       game?.game?.gameName ??
@@ -2323,7 +2329,8 @@ const Categories = ({ title, games, user, provider }) => {
                       </ButtonGroup>
                     </div>
                   </div>
-                  <FontAwesomeIcon
+                  <span className="d-flex align-items-center">
+                    <FontAwesomeIcon
                     icon={faStar}
                     style={{
                       color: userFavoriteCasino?.some(
@@ -2349,9 +2356,11 @@ const Categories = ({ title, games, user, provider }) => {
                     className={`${user ? "favorite" : "d-none"}`}
                   />
                   &nbsp;
-                  <span className="text-light">
+                  <span className="text-light casino-games-title ">
                     {game?.game_name ?? game?.gameName}
                   </span>
+                    </span>
+                  
                   {loadingMap[game?.game_id ?? game?.gameName ?? game?.key] && (
                     <LoadingIndicator />
                   )}{" "}

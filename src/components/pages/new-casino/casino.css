@@ -868,6 +868,16 @@ svg {
     ) !important; /* 25.33% width with 20px margin between items */
   }
 }
+
+.casino-games-title {
+  display: inline-block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  width: 151px;
+  word-break: break-all;
+}
 /* Loader */
 
 /* loading indicator */
@@ -882,6 +892,7 @@ svg {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   z-index: 9999; /* Ensure it appears above other content */
 }
+
 
 .loader-casino {
   transform: translateZ(1px);

@@ -979,12 +979,13 @@ const GameFilters = ({
                 <div id="v-game-filters">
                   <div className="sideFilters">
                     <div className="filtersContainer">
+                    
                       {casino_categories?.map((category, index) => (
                         <FilterItem
                           key={index}
                           title={
                            ( category?.game_type_description ??
-                            category?.default_description).toLowerCase()==='rgs-vsb'?'Virtuals':( category?.game_type_description ??
+                            category?.default_description)==='RGS - VSB'?'Virtuals':( category?.game_type_description ??
                               category?.default_description)
                           }
                           isActive={

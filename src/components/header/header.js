@@ -29,7 +29,8 @@ import {
   checkNavigation,
   shouldShowDownload,
   shouldShowMobileNav,
-  shouldShowHeader
+  shouldShowHeader,
+  shouldShowSearch
 } from "../../redux/navigationAction";
 import Header2 from "./Header2";
 import useWindowDimensions from "./Dimensions";
@@ -62,6 +63,7 @@ const Header = React.memo((props) => {
 
   const notShowMobileNav = dispatchRedux(shouldShowMobileNav(pathname));
   const notShowHeaderNav = dispatchRedux(shouldShowHeader(pathname));
+  const notShowSearch = dispatchRedux(shouldShowSearch(pathname));
   const showDownload = dispatchRedux(shouldShowDownload(pathname));
   const changeNav = dispatchRedux(checkNavigation(pathname));
   const checkDesktop = dispatchRedux(checkDesktopTopNavigation(pathname));
@@ -425,7 +427,7 @@ const Header = React.memo((props) => {
                         className="col-10  px-2"
                         style={{ marginLeft: "2vw" }}
                       >
-                        <input
+                       <input
                           type="text"
                           placeholder={"Start typing to search for team ..."}
                           autoFocus={true}

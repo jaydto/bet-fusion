@@ -6,12 +6,17 @@ export const shouldShowMobileNav = (pathname) => (dispatch, getState)=>{
 
     return !navigationConfig?.some(path => pathname.includes(path));
 };
+export const shouldShowSearch = (pathname) => (dispatch, getState)=>{
+    const state=getState()
+    const navigationConfig=state.navigations.notShowSearch
+    console.log("navigation for showing", !navigationConfig?.some(path => pathname.includes(path)))
+    return !navigationConfig?.some(path => pathname.includes(path));
+};
 export const shouldShowHeader = (pathname) => (dispatch, getState)=>{
     const state=getState()
     const {width}=useWindowDimensions()
     const navigationConfig=state.navigations.notShowHeader
-    console.log("width for showing", width)
-    console.log("navigation for showing", !navigationConfig?.some(path => pathname.includes(path)))
+    
 
     return (!navigationConfig?.some(path => pathname.includes(path))|| width>768);
 };

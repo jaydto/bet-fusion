@@ -174,6 +174,9 @@ const initialState = {
 
     },
     navigations:{
+        notShowSearch: [
+            'casino',
+            'nare-league',],
         notShowMobileNav: [
             'betslip-slip',
             'betslip-nare',

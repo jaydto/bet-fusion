@@ -692,7 +692,7 @@ const GameFilters = ({
 }) => {
   return (
     <div className="scroll-content mb-3">
-      <MenuItem title="RECOMMENDED" icon={faRecordVinyl} color={"gold"}>
+      <MenuItem title="FOR YOU" icon={faRecordVinyl} color={"gold"}>
         <div id="v-game-filters">
           <div className="sideFilters">
             <div className="filtersContainer">
@@ -759,7 +759,7 @@ const GameFilters = ({
           </div>
         </div>
       </MenuItem>
-      <MenuItem title="CATEGORIES" icon={faCampground} color="">
+      <MenuItem title="GAME TYPES" icon={faCampground} color="">
         <div id="v-game-filters">
           <div className="sideFilters">
             <div className="filtersContainer">
@@ -939,7 +939,7 @@ const GameFilters = ({
           </div>
         </div>
       </MenuItem>
-      <MenuItem title="GAME PROVIDER" icon={faAffiliatetheme} color="">
+      <MenuItem title="GAME PROVIDERS" icon={faAffiliatetheme} color="">
         <div id="v-game-filters">
           <div className="sideFilters">
             <div className="filtersContainer">

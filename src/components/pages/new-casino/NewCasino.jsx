@@ -97,6 +97,7 @@ const NewCasino = () => {
     cs: "Classic Slots",
     lg: "Live Games",
     crash: "Crash Games",
+    hot: "HOT",
   };
   const categoryGameTypes = {
     popular: "popular",
@@ -508,7 +509,7 @@ const NewCasino = () => {
                       })
                     }
                   />
-                  <CasinoCategorySection
+                  {/* <CasinoCategorySection
                     title="BLACKJACK"
                     isActive={activeCategoryLink === "BLACKJACK"}
                     activeCallback={() => handleCategoryClick("BLACKJACK")}
@@ -519,7 +520,7 @@ const NewCasino = () => {
                         gameId: "BlackJack",
                       })
                     }
-                  />
+                  /> */}
                    <CasinoCategorySection
                     title="HOT"
                     isActive={activeCategoryLink === "HOT"}

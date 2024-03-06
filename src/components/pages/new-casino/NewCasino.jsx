@@ -84,8 +84,10 @@ const NewCasino = () => {
     "crash",
     "drops-n-wins",
     "vs",
+    "hot",
     "cs",
     "lg",
+    
   ];
   // Define a mapping object for category display names
   const categoryDisplayNames = {
@@ -288,7 +290,10 @@ const NewCasino = () => {
       if (category === "crash") {
         // Call getCrashGames for "crash" category
         getCrashGames(category);
-      } else {
+      } else if (category === "hot") {
+        // Call getCrashGames for "crash" category
+        getHotGames(category);
+      }else {
         // Call fetchGames for other categories
         fetchGames(category);
       }
@@ -479,6 +484,30 @@ const NewCasino = () => {
                       })
                     }
                   />
+                   <CasinoCategorySection
+                    title="LIVE CASINO"
+                    isActive={activeCategoryLink === "LIVE CASINO"}
+                    activeCallback={() => handleCategoryClick("LIVE CASINO")}
+                    onClick={() =>
+                      handleGameChoice({
+                        game: "lg",
+                        provider: "pragmatic",
+                        gameId: "Live Games",
+                      })
+                    }
+                  />
+                  <CasinoCategorySection
+                    title="CRASH GAMES"
+                    isActive={activeCategoryLink === "CRASH GAMES"}
+                    activeCallback={() => handleCategoryClick("CRASJ GAMES")}
+                    onClick={() =>
+                      handleGameChoice({
+                        game: "crash",
+                        provider: "crash-games",
+                        gameId: "crash",
+                      })
+                    }
+                  />
                   <CasinoCategorySection
                     title="BLACKJACK"
                     isActive={activeCategoryLink === "BLACKJACK"}
@@ -491,18 +520,7 @@ const NewCasino = () => {
                       })
                     }
                   />
-                  <CasinoCategorySection
-                    title="LIVE CASINO"
-                    isActive={activeCategoryLink === "LIVE CASINO"}
-                    activeCallback={() => handleCategoryClick("LIVE CASINO")}
-                    onClick={() =>
-                      handleGameChoice({
-                        game: "lg",
-                        provider: "pragmatic",
-                        gameId: "Live Games",
-                      })
-                    }
-                  />
+                 
                   <CasinoCategorySection
                     title="VIRTUALS"
                     isActive={activeCategoryLink === "VIRTUALS"}

@@ -83,10 +83,11 @@ const NewCasino = () => {
     "popular",
     "crash",
     "drops-n-wins",
-    "vs",
+    "lg",
     "hot",
     "cs",
-    "lg",
+    "vs"
+    
     
   ];
   // Define a mapping object for category display names
@@ -112,7 +113,7 @@ const NewCasino = () => {
     blackjack: "bj",
     card_play: "sc",
     video_poker: "vp",
-    slots: "cs",
+    slots: "vs",
     livecasino: "lg",
     "crash-games": "crash",
     pragmatic: "popular",
@@ -494,7 +495,7 @@ const NewCasino = () => {
                     activeCallback={() => handleCategoryClick("SLOTS")}
                     onClick={() =>
                       handleGameChoice({
-                        game: "cs",
+                        game: "vs",
                         provider: "pragmatic",
                         gameId: "Classic Slots",
                       })
@@ -805,9 +806,9 @@ const GameFilters = ({
                 setActiveItem={setActiveItem}
                 onClick={() => {
                   handleGameChoice({
-                    game: "cs",
+                    game: "vs",
                     provider: "pragmatic",
-                    gameId: "Classic Slots",
+                    gameId: "Video Slots",
                   });
                   setActiveCategoryLink(null);
                   if (collapseBottomSheet) {

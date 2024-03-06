@@ -454,6 +454,18 @@ const NewCasino = () => {
                 isActive={activeCategoryLink === "HOME"}
                 activeCallback={() => handleCategoryClick("HOME")}
               />
+              {user && (<CasinoCategorySection
+                    title="FAVORITES"
+                    isActive={activeCategoryLink === "FAVORITES"}
+                    activeCallback={() => handleCategoryClick("FAVORITES")}
+                    onClick={() =>
+                      handleGameChoice({
+                        game: "favorites",
+                        provider: "favorites",
+                        gameId: "favorites",
+                      })
+                    }
+                  />)}
               {game_type === "smart_soft" ? (
                 <>
                   {smartsoft_categories?.map((value) => {
@@ -509,18 +521,7 @@ const NewCasino = () => {
                       })
                     }
                   />
-                  {/* <CasinoCategorySection
-                    title="BLACKJACK"
-                    isActive={activeCategoryLink === "BLACKJACK"}
-                    activeCallback={() => handleCategoryClick("BLACKJACK")}
-                    onClick={() =>
-                      handleGameChoice({
-                        game: "bj",
-                        provider: "pragmatic",
-                        gameId: "BlackJack",
-                      })
-                    }
-                  /> */}
+                  
                    <CasinoCategorySection
                     title="HOT"
                     isActive={activeCategoryLink === "HOT"}

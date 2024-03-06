@@ -498,18 +498,6 @@ const NewCasino = () => {
                     }
                   />
                    <CasinoCategorySection
-                    title="LIVE CASINO"
-                    isActive={activeCategoryLink === "LIVE CASINO"}
-                    activeCallback={() => handleCategoryClick("LIVE CASINO")}
-                    onClick={() =>
-                      handleGameChoice({
-                        game: "lg",
-                        provider: "pragmatic",
-                        gameId: "Live Games",
-                      })
-                    }
-                  />
-                  <CasinoCategorySection
                     title="CRASH GAMES"
                     isActive={activeCategoryLink === "CRASH GAMES"}
                     activeCallback={() => handleCategoryClick("CRASJ GAMES")}
@@ -521,6 +509,19 @@ const NewCasino = () => {
                       })
                     }
                   />
+                   <CasinoCategorySection
+                    title="LIVE CASINO"
+                    isActive={activeCategoryLink === "LIVE CASINO"}
+                    activeCallback={() => handleCategoryClick("LIVE CASINO")}
+                    onClick={() =>
+                      handleGameChoice({
+                        game: "lg",
+                        provider: "pragmatic",
+                        gameId: "Live Games",
+                      })
+                    }
+                  />
+                 
                   
                    <CasinoCategorySection
                     title="HOT"

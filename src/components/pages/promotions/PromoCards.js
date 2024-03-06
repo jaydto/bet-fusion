@@ -59,7 +59,7 @@ const PromoCards = () => {
               className="bold d-flex justify-content-center h4 pt-2"
               style={{ color: "#ea5d0b" }}
             >
-              SPIN & WIN ISTANT PRIZES WITH JETX!
+              SPIN & WIN INSTANT PRIZES WITH JETX!
             </h5>
             <p className="container-profile mx-1 px-2 text-data-promotions">
               Participating Games are Jetx, Balloon, PlinkoX, Multihot5,

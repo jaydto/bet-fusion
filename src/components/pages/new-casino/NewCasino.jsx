@@ -568,7 +568,7 @@ const NewCasino = () => {
                 className="search-advance d-xl-none"
                 onClick={() => showBottomSheet()}
               >
-                <i className="ico ico-search"></i> ADVANCED SEARCH{" "}
+                <i className="ico ico-search"></i> ADVANCED FILTERS{" "}
               </div>
             </div>
           </section>

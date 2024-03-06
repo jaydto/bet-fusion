@@ -1961,7 +1961,8 @@ const GameSearch = ({ title, games, user }) => {
 };
 
 const LoadingIndicator = () => {
-  return <div className="loading-indicator">Loading...</div>;
+  return <span class="loader-casino"></span>
+  // return <div className="loading-indicator">Loading...</div>;
 };
 
 const Categories = ({ title, games, user, provider }) => {

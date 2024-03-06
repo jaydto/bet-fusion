@@ -26,7 +26,7 @@ const Footer = React.memo((props) => {
             <li className="">P.O.BOX 00100 NAIROBI KENYA</li>
             <li className="">
               <a href="mailto:care@ke.betnare.com" target={"_blank"}>
-                <FontAwesomeIcon icon={faEnvelope} /> customercare@betnare.com
+                <FontAwesomeIcon icon={faEnvelope} />support@betnare.com
               </a>
             </li>
             <li className="footer-icon">

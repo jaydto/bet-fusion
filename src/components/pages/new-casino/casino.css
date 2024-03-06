@@ -502,6 +502,7 @@ svg {
     /* width: 65px; */
     display: flex;
     align-items: center;
+    text-transform: uppercase;
   }
   .left-nav {
     display: block;
@@ -601,6 +602,7 @@ svg {
   /* width: 65px; */
   display: flex;
   align-items: center;
+  text-transform: uppercase;
 }
 .left-nav {
   display: block;

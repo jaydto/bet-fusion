@@ -734,14 +734,6 @@ const GameFilters = ({
                   }
                 }}
               />
-            </div>
-          </div>
-        </div>
-      </MenuItem>
-      <MenuItem title="CATEGORIES" icon={faCampground} color="">
-        <div id="v-game-filters">
-          <div className="sideFilters">
-            <div className="filtersContainer">
               {user && (
                 <FilterItem
                   title="Favorites"
@@ -763,6 +755,15 @@ const GameFilters = ({
                   }}
                 />
               )}
+            </div>
+          </div>
+        </div>
+      </MenuItem>
+      <MenuItem title="CATEGORIES" icon={faCampground} color="">
+        <div id="v-game-filters">
+          <div className="sideFilters">
+            <div className="filtersContainer">
+              
               <FilterItem
                 title="SLOTS PLAY"
                 link="?game_type=slots"
@@ -976,7 +977,7 @@ const GameFilters = ({
                   }
                 }}
               />
-              <MenuItem title="Pragmatic" icon={faCableCar} color="">
+              <MenuItem title="Pragmatic Play" icon={faCableCar} color="">
                 <div id="v-game-filters">
                   <div className="sideFilters">
                     <div className="filtersContainer">

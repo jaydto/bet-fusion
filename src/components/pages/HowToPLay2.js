@@ -914,7 +914,7 @@ const HowToPlay = React.memo((props) => {
                               BetNare offers Customer Care support round the
                               clock. We are reachable via 0701087777 on Mobile,
                               WhatsApp Number – 0701087777. You can also reach
-                              us through E-Mail on customercare@betnare.com
+                              us through E-Mail onsupport@betnare.com
                             </p>
                           </AccordionItemPanel>
                         </AccordionItem>

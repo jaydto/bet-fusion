@@ -16,12 +16,16 @@ import { getFromLocalStorage, setLocalStorage } from "../utils/local-storage";
 import { matchesSearch } from "../../redux/matchesSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { setState } from "../../redux/dataSlice";
+import { shouldShowSearch } from "../../redux/navigationAction";
 
 const HeaderNav = React.memo((props) => {
   const gaEventTracker = useAnalyticsEventTracker("Navigation");
   const [test, setTest] = useState(false);
+
   const dispatchRedux = useDispatch();
+
   const pathname = window.location.pathname;
+  const notShowSearch = dispatchRedux(shouldShowSearch(pathname));
   const [searching, setSearching] = useState(false);
   const matchesData = useSelector(
     (state) => state.matchesData.searched_matches
@@ -177,7 +181,7 @@ const HeaderNav = React.memo((props) => {
           <li
             className={
               pathname.includes("live") &&
-              pathname.includes("casino") === false &&
+              pathname.includes("new-casino") === false &&
               pathname.includes("livescore") === false
                 ? "active"
                 : ""
@@ -204,9 +208,9 @@ const HeaderNav = React.memo((props) => {
           <li className={`${pathname === "/casino" ? "active" : ""}`}>
             <div
               className="url-link fm anl cg ox "
-              title="Live Casino"
+              title="Casino"
               onClick={() => {
-                LoginCheck("casino");
+                LoginCheck("new-casino");
                 gaEventTracker("Visit Casino Page");
               }}
             >
@@ -275,7 +279,7 @@ const HeaderNav = React.memo((props) => {
               pathname === "/print-matches" ? "spacing-end" : "spacing-end"
             }
           >
-            <div
+           {notShowSearch&& <div
               className="url-link fm anl cg ox fix-display cursor-pointer"
               title="Search"
               onClick={() => {
@@ -291,7 +295,7 @@ const HeaderNav = React.memo((props) => {
               <strong>
                 <span className={"hide2"}>Search </span>
               </strong>
-            </div>
+            </div>}
           </li>
           <li
             className={pathname === "/how-to-play" ? "active" : ""}
@@ -348,7 +352,7 @@ const HeaderNav = React.memo((props) => {
         >
           <div className="d-flex">
             <div className="col-md-10">
-              <input
+             {notShowSearch&& <input
                 type="text"
                 placeholder={"Start typing to search for team ..."}
                 autoFocus={true}
@@ -357,7 +361,7 @@ const HeaderNav = React.memo((props) => {
                 className={
                   "form-control input-field border-0 bg-dark text-white no-border-radius"
                 }
-              />
+              />}
             </div>
 
             <button

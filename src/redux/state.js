@@ -32,12 +32,16 @@ const initialState = {
 
     }, // Initial state for the data reducer
     virtuals: {
+        favorites_data:[],
         game_type:'pragmatic',
+        bottom_sheet:false,
         loading:false,
         error:null,
-        casino_games:null,
+        casino_games:[],
+        casino_search:[],
         show_modal:null,
         casino_categories:null,
+        smartsoft_categories:null,
         casino_game_url:null,
         fetching:null
 
@@ -171,6 +175,9 @@ const initialState = {
 
     },
     navigations:{
+        notShowSearch: [
+            'casino',
+            'nare-league',],
         notShowMobileNav: [
             'betslip-slip',
             'betslip-nare',
@@ -181,7 +188,7 @@ const initialState = {
             'my-bets',
             'promotions',
             'smart-soft',
-            'virtuals',
+            'casino',
             'standing',
             'playouts',
             'bet-history',
@@ -248,6 +255,12 @@ const initialState = {
         ],
         modifiedHeaderDesktop:[
             'profile'
+        ],
+        notShowHeader:[
+            'gameplay', 
+            'smart-play',
+            'nare-games'
+
         ],
         navigations:[
             'nare-games',

@@ -9,6 +9,7 @@ import {StoreContext} from "../../context/store";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {useDispatch, useSelector} from "react-redux";
 import {setState} from "../../redux/dataSlice";
+import { shouldShowSearch } from "../../redux/navigationAction";
 
 export const UserInfo = React.memo(
     (props) => {
@@ -29,6 +30,7 @@ export const UserInfo = React.memo(
         }, [userData])
 
         const dispatchRedux=useDispatch()
+        const notShowSearch = dispatchRedux(shouldShowSearch(pathname));
 
         const show=useSelector((state)=>state.data.show_menu)
 
@@ -92,7 +94,7 @@ export const UserInfo = React.memo(
                                           </span>
                             </Link>
                         </div>
-                        {!profile&&<div className='d-flex align-items-baseline'>
+                        {(!profile&&notShowSearch)&&<div className='d-flex align-items-baseline'>
                             <div className={` align-items-center  ${state?.searching ? 'd-none' : 'd-flex'}`}>
                                 <div className="cursor-pointer link_color"  title="Search"
                                       onClick={() => {

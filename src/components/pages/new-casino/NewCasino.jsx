@@ -261,6 +261,9 @@ const NewCasino = () => {
       case "hot":
         getHotGames(gameType);
         break;
+      case "favorites":
+        getFavoriteGames(gameType);
+        break;
       default:
         fetchGames(gameType);
         break;
@@ -769,7 +772,7 @@ const GameFilters = ({
               {user && (
                 <FilterItem
                   title="Favorites"
-                  link="?game_type=favorite"
+                  link="?game_type=favorites"
                   icon={faStar}
                   icon_color="gold"
                   isActive={activeItem === "Favorites"}

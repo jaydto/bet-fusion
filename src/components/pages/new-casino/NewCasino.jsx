@@ -520,6 +520,18 @@ const NewCasino = () => {
                       })
                     }
                   />
+                   <CasinoCategorySection
+                    title="HOT"
+                    isActive={activeCategoryLink === "HOT"}
+                    activeCallback={() => handleCategoryClick("HOT")}
+                    onClick={() =>
+                      handleGameChoice({
+                        game: "hot",
+                        provider: "hot",
+                        gameId: "hot",
+                      })
+                    }
+                  />
                  
                   <CasinoCategorySection
                     title="VIRTUALS"

@@ -65,6 +65,10 @@ const Promo = () => {
       src: "https://cdn.betnare.com/carousel/Mshipi.webp",
       id: 21,
     },
+    {
+      src: "https://cdn.betnare.com/carousel/Spin&WIn.webp",
+      id: 22,
+    }
   ];
 
   useEffect(() => {

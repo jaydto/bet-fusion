@@ -83,12 +83,11 @@ const NewCasino = () => {
     "popular",
     "crash",
     "drops-n-wins",
-    "lg",
+    "vs",
+    "lg", 
     "hot",
-    "cs",
-    "vs"
-    
-    
+    "cs"
+  
   ];
   // Define a mapping object for category display names
   const categoryDisplayNames = {

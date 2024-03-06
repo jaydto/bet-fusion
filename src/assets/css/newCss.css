@@ -3506,6 +3506,9 @@ button#countryCode{
 }
 
 @media (max-width: 767px) {
+    .user_logged.casino{
+        margin-top: 0.7rem !important;
+    }
     .top-position-mobile-view{
         margin-top:14rem;
     }

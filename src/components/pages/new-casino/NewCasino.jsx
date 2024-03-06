@@ -692,7 +692,7 @@ const GameFilters = ({
 }) => {
   return (
     <div className="scroll-content mb-3">
-      <MenuItem title="FOR YOU" icon={faRecordVinyl} color={"gold"}>
+      <MenuItem title="For You" icon={faRecordVinyl} color={"gold"}>
         <div id="v-game-filters">
           <div className="sideFilters">
             <div className="filtersContainer">
@@ -759,15 +759,15 @@ const GameFilters = ({
           </div>
         </div>
       </MenuItem>
-      <MenuItem title="GAME TYPES" icon={faCampground} color="">
+      <MenuItem title="Game Types" icon={faCampground} color="">
         <div id="v-game-filters">
           <div className="sideFilters">
             <div className="filtersContainer">
               
               <FilterItem
-                title="SLOTS PLAY"
+                title="Slots Play"
                 link="?game_type=slots"
-                isActive={activeItem === "SLOTS PLAY"}
+                isActive={activeItem === "Slots Play"}
                 setActiveItem={setActiveItem}
                 onClick={() => {
                   handleGameChoice({
@@ -782,9 +782,9 @@ const GameFilters = ({
                 }}
               />
               <FilterItem
-                title="CRASH GAMES"
+                title="Crash Games"
                 link="?game_type=crash-games"
-                isActive={activeItem === "CRASH GAMES"}
+                isActive={activeItem === "Crash Games"}
                 setActiveItem={setActiveItem}
                 onClick={() => {
                   handleGameChoice({
@@ -800,7 +800,7 @@ const GameFilters = ({
               />
 
               <FilterItem
-                title="ROULETTE PLAY"
+                title="Roulette Play"
                 link="?game_type=roulette"
                 isActive={activeItem === "ROULETTE PLAY"}
                 setActiveItem={setActiveItem}
@@ -817,9 +817,9 @@ const GameFilters = ({
                 }}
               />
               <FilterItem
-                title="BLACKJACK"
+                title="Blackjack"
                 link="?game_type=blackjack"
-                isActive={activeItem === "BLACKJACK"}
+                isActive={activeItem === "Blackjack"}
                 setActiveItem={setActiveItem}
                 onClick={() => {
                   handleGameChoice({
@@ -834,9 +834,9 @@ const GameFilters = ({
                 }}
               />
               <FilterItem
-                title="CARD PLAY"
+                title="Card Play"
                 link="?game_type=card_play"
-                isActive={activeItem === "CARD PLAY"}
+                isActive={activeItem === "Card Play"}
                 setActiveItem={setActiveItem}
                 onClick={() => {
                   handleGameChoice({
@@ -851,9 +851,9 @@ const GameFilters = ({
                 }}
               />
               <FilterItem
-                title="VIDEO POKER"
+                title="Video Poker"
                 link="?game_type=video_poker"
-                isActive={activeItem === "VIDEO POKER"}
+                isActive={activeItem === "Video Poker"}
                 setActiveItem={setActiveItem}
                 onClick={() => {
                   handleGameChoice({
@@ -868,9 +868,9 @@ const GameFilters = ({
                 }}
               />
               <FilterItem
-                title="LIVE CASINO"
+                title="Live Casino"
                 link="?game_type=live_casino"
-                isActive={activeItem === "LIVE CASINO"}
+                isActive={activeItem === "Live Casino"}
                 setActiveItem={setActiveItem}
                 onClick={() => {
                   handleGameChoice({
@@ -885,9 +885,9 @@ const GameFilters = ({
                 }}
               />
               <FilterItem
-                title="POPULAR"
+                title="Popula"
                 link="?game_type=popular_pragmatic"
-                isActive={activeItem === "POPULAR"}
+                isActive={activeItem === "Popular"}
                 setActiveItem={setActiveItem}
                 onClick={() => {
                   handleGameChoice({
@@ -902,9 +902,9 @@ const GameFilters = ({
                 }}
               />
               <FilterItem
-                title="JACKPOT"
+                title="Jackpot"
                 link="?game_type=drops_and_wins"
-                isActive={activeItem === "JACKPOT"}
+                isActive={activeItem === "Jackpot"}
                 setActiveItem={setActiveItem}
                 onClick={() => {
                   handleGameChoice({
@@ -919,9 +919,9 @@ const GameFilters = ({
                 }}
               />
               <FilterItem
-                title="VIRTUALS"
+                title="Virtuals"
                 link="?game_type=virtuals"
-                isActive={activeItem === "VIRTUALS"}
+                isActive={activeItem === "Virtuals"}
                 setActiveItem={setActiveItem}
                 onClick={() => {
                   handleGameChoice({
@@ -939,14 +939,14 @@ const GameFilters = ({
           </div>
         </div>
       </MenuItem>
-      <MenuItem title="GAME PROVIDERS" icon={faAffiliatetheme} color="">
+      <MenuItem title="Game Providers" icon={faAffiliatetheme} color="">
         <div id="v-game-filters">
           <div className="sideFilters">
             <div className="filtersContainer">
               <FilterItem
-                title="SmartSoft"
+                title="SmartSoft Gaming"
                 link="?game_type=smart_soft"
-                isActive={activeItem === "SmartSoft"}
+                isActive={activeItem === "SmartSoft Gaming"}
                 setActiveItem={setActiveItem}
                 onClick={() => {
                   handleGameChoice({
@@ -961,9 +961,9 @@ const GameFilters = ({
                 }}
               />
               <FilterItem
-                title="Spribe"
+                title="Spribe Gaming"
                 link="?game_type=spribe"
-                isActive={activeItem === "Spribe"}
+                isActive={activeItem === "Spribe Gaming"}
                 setActiveItem={setActiveItem}
                 onClick={() => {
                   handleGameChoice({
@@ -1513,7 +1513,7 @@ const GameChoice = ({ title, games, user, provider }) => {
                       />
                       &nbsp;
                       <span className="text-light casino-games-title ">
-                        {game?.game_name ?? game?.gameName}
+                        {game?.game_name ?? game?.gameName?? game.name}
                       </span>
                       </span>
                       

@@ -18,7 +18,7 @@ export const shouldShowHeader = (pathname) => (dispatch, getState)=>{
     const navigationConfig=state.navigations.notShowHeader
     
 
-    return (!navigationConfig?.some(path => pathname.includes(path))|| width>768);
+    return (!navigationConfig?.some(path => pathname.includes(path))|| width>992);
 };
 
 export const shouldShowDownload = (pathname) => (dispatch, getState)=>{

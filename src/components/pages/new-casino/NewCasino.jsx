@@ -114,7 +114,7 @@ const NewCasino = () => {
     "crash-games": "crash",
     pragmatic: "popular",
     "smart-soft": "smart-soft",
-    "smart_soft": "smart-soft",
+    smart_soft: "smart-soft",
     spribe: "spribe",
     hot: "hot",
     favorites: "favorites",
@@ -267,9 +267,9 @@ const NewCasino = () => {
   useEffect(() => {
     if (game_type && categoryGameTypes.hasOwnProperty(game_type)) {
       const gameType = categoryGameTypes[game_type];
-      setActiveCategoryLink(game_type)
+      setActiveCategoryLink(game_type);
       getGamesByType(gameType);
-    }else {
+    } else {
       gameDefaults();
     }
     const abortController = new AbortController();
@@ -300,7 +300,6 @@ const NewCasino = () => {
   //   navigate("/casino");
   // }, []); // Empty dependency array to run the effect only once when the component mounts
 
- 
   const casino_categories = useSelector(
     (state) => state.virtuals.casino_categories
   );
@@ -763,7 +762,6 @@ const GameFilters = ({
         <div id="v-game-filters">
           <div className="sideFilters">
             <div className="filtersContainer">
-              
               <FilterItem
                 title="Slots Play"
                 link="?game_type=slots"
@@ -798,7 +796,23 @@ const GameFilters = ({
                   }
                 }}
               />
-
+              <FilterItem
+                title="Live Casino"
+                link="?game_type=live_casino"
+                isActive={activeItem === "Live Casino"}
+                setActiveItem={setActiveItem}
+                onClick={() => {
+                  handleGameChoice({
+                    game: "lg",
+                    provider: "pragmatic",
+                    gameId: "Live Games",
+                  });
+                  setActiveCategoryLink(null);
+                  if (collapseBottomSheet) {
+                    collapseBottomSheet();
+                  }
+                }}
+              />
               <FilterItem
                 title="Roulette Play"
                 link="?game_type=roulette"
@@ -867,25 +881,9 @@ const GameFilters = ({
                   }
                 }}
               />
+
               <FilterItem
-                title="Live Casino"
-                link="?game_type=live_casino"
-                isActive={activeItem === "Live Casino"}
-                setActiveItem={setActiveItem}
-                onClick={() => {
-                  handleGameChoice({
-                    game: "lg",
-                    provider: "pragmatic",
-                    gameId: "Live Games",
-                  });
-                  setActiveCategoryLink(null);
-                  if (collapseBottomSheet) {
-                    collapseBottomSheet();
-                  }
-                }}
-              />
-              <FilterItem
-                title="Popula"
+                title="Popular"
                 link="?game_type=popular_pragmatic"
                 isActive={activeItem === "Popular"}
                 setActiveItem={setActiveItem}
@@ -1486,37 +1484,36 @@ const GameChoice = ({ title, games, user, provider }) => {
                       </div>
                       <span className="d-flex align-items-center">
                         <FontAwesomeIcon
-                        icon={faStar}
-                        style={{
-                          color: userFavoriteCasino?.some(
-                            (favorite) =>
-                              favorite.game_id ===
-                              (game?.game_id ?? game?.gameName ?? game?.key)
-                          )
-                            ? "gold"
-                            : "white",
-                        }}
-                        onClick={(event) =>
-                          favoriteCasino(
-                            event,
-                            game?.game_id ?? game?.gameName ?? game?.key,
-                            game?.game_icon ?? game?.image_url,
-                            game?.game_name ?? game?.gameName ?? game?.name,
-                            game?.gameCategory,
-                            finalProvider.includes(provider)
-                              ? game?.provider
-                              : provider,
-                            provider
-                          )
-                        }
-                        className={`${user ? "favorite" : "d-none"}`}
-                      />
-                      &nbsp;
-                      <span className="text-light casino-games-title ">
-                        {game?.game_name ?? game?.gameName?? game.name}
+                          icon={faStar}
+                          style={{
+                            color: userFavoriteCasino?.some(
+                              (favorite) =>
+                                favorite.game_id ===
+                                (game?.game_id ?? game?.gameName ?? game?.key)
+                            )
+                              ? "gold"
+                              : "white",
+                          }}
+                          onClick={(event) =>
+                            favoriteCasino(
+                              event,
+                              game?.game_id ?? game?.gameName ?? game?.key,
+                              game?.game_icon ?? game?.image_url,
+                              game?.game_name ?? game?.gameName ?? game?.name,
+                              game?.gameCategory,
+                              finalProvider.includes(provider)
+                                ? game?.provider
+                                : provider,
+                              provider
+                            )
+                          }
+                          className={`${user ? "favorite" : "d-none"}`}
+                        />
+                        &nbsp;
+                        <span className="text-light casino-games-title ">
+                          {game?.game_name ?? game?.gameName ?? game.name}
+                        </span>
                       </span>
-                      </span>
-                      
                       {loadingMap[
                         game?.game_id ?? game?.gameName ?? game?.key
                       ] && <LoadingIndicator />}{" "}
@@ -1906,43 +1903,42 @@ const GameSearch = ({ title, games, user }) => {
                   </div>
                   <span className="d-flex align-items-center">
                     <FontAwesomeIcon
-                    icon={faStar}
-                    style={{
-                      color: userFavoriteCasino?.some(
-                        (favorite) =>
-                          favorite.game_id ===
-                          (game?.game?.game_id ??
+                      icon={faStar}
+                      style={{
+                        color: userFavoriteCasino?.some(
+                          (favorite) =>
+                            favorite.game_id ===
+                            (game?.game?.game_id ??
+                              game?.game?.gameName ??
+                              game?.game?.key)
+                        )
+                          ? "gold"
+                          : "white",
+                      }}
+                      onClick={(event) =>
+                        favoriteCasino(
+                          event,
+                          game?.game?.game_id ??
                             game?.game?.gameName ??
-                            game?.game?.key)
-                      )
-                        ? "gold"
-                        : "white",
-                    }}
-                    onClick={(event) =>
-                      favoriteCasino(
-                        event,
-                        game?.game?.game_id ??
-                          game?.game?.gameName ??
-                          game?.game?.key,
-                        game?.game?.game_icon ?? game?.game?.image_url,
-                        game?.game?.game_name ??
-                          game?.game?.gameName ??
-                          game?.game?.name,
-                        game?.game?.gameCategory,
-                        finalProvider.includes(game.provider)
-                          ? game?.game?.provider
-                          : game?.provider,
-                        game?.provider
-                      )
-                    }
-                    className={`${user ? "favorite" : "d-none"}`}
-                  />
-                  &nbsp;
-                  <span className="text-light casino-games-title ">
-                    {game?.game?.game_name ?? game?.game?.gameName}
+                            game?.game?.key,
+                          game?.game?.game_icon ?? game?.game?.image_url,
+                          game?.game?.game_name ??
+                            game?.game?.gameName ??
+                            game?.game?.name,
+                          game?.game?.gameCategory,
+                          finalProvider.includes(game.provider)
+                            ? game?.game?.provider
+                            : game?.provider,
+                          game?.provider
+                        )
+                      }
+                      className={`${user ? "favorite" : "d-none"}`}
+                    />
+                    &nbsp;
+                    <span className="text-light casino-games-title ">
+                      {game?.game?.game_name ?? game?.game?.gameName}
+                    </span>
                   </span>
-                  </span>
-                  
                   {loadingMap[
                     game?.game?.game_id ??
                       game?.game?.gameName ??
@@ -1967,7 +1963,7 @@ const GameSearch = ({ title, games, user }) => {
 };
 
 const LoadingIndicator = () => {
-  return <span class="loader-casino"></span>
+  return <span class="loader-casino"></span>;
   // return <div className="loading-indicator">Loading...</div>;
 };
 
@@ -2331,36 +2327,35 @@ const Categories = ({ title, games, user, provider }) => {
                   </div>
                   <span className="d-flex align-items-center">
                     <FontAwesomeIcon
-                    icon={faStar}
-                    style={{
-                      color: userFavoriteCasino?.some(
-                        (favorite) =>
-                          favorite.game_id ===
-                          (game?.game_id ?? game?.gameName ?? game?.key)
-                      )
-                        ? "gold"
-                        : "white",
-                    }}
-                    onClick={(event) =>
-                      favoriteCasino(
-                        event,
-                        game?.game_id ?? game?.gameName ?? game?.key,
-                        game?.game_icon ?? game?.image_url,
-                        game?.game_name ?? game?.gameName ?? game?.name,
-                        game?.gameCategory,
-                        finalProvider.includes(provider)
-                          ? game?.provider
-                          : provider
-                      )
-                    }
-                    className={`${user ? "favorite" : "d-none"}`}
-                  />
-                  &nbsp;
-                  <span className="text-light casino-games-title ">
-                    {game?.game_name ?? game?.gameName}
-                  </span>
+                      icon={faStar}
+                      style={{
+                        color: userFavoriteCasino?.some(
+                          (favorite) =>
+                            favorite.game_id ===
+                            (game?.game_id ?? game?.gameName ?? game?.key)
+                        )
+                          ? "gold"
+                          : "white",
+                      }}
+                      onClick={(event) =>
+                        favoriteCasino(
+                          event,
+                          game?.game_id ?? game?.gameName ?? game?.key,
+                          game?.game_icon ?? game?.image_url,
+                          game?.game_name ?? game?.gameName ?? game?.name,
+                          game?.gameCategory,
+                          finalProvider.includes(provider)
+                            ? game?.provider
+                            : provider
+                        )
+                      }
+                      className={`${user ? "favorite" : "d-none"}`}
+                    />
+                    &nbsp;
+                    <span className="text-light casino-games-title ">
+                      {game?.game_name ?? game?.gameName}
                     </span>
-                  
+                  </span>
                   {loadingMap[game?.game_id ?? game?.gameName ?? game?.key] && (
                     <LoadingIndicator />
                   )}{" "}

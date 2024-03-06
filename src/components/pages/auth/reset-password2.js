@@ -56,7 +56,7 @@ const ResetPassword2 = React.memo(
                                     <LazyLoadImage className="img-fluid mb-5" src={authImg} alt=""/>
                                 </Link>
 
-                                <h1 className="text-white text-center" style={{fontSize:"30px"}}>Welcome to betNare</h1>
+                                <h1 className="text-white text-center" style={{fontSize:"30px"}}>Welcome to BetNare</h1>
 
                             </Col>
                         </Row>

@@ -87,7 +87,7 @@ const RegisterTwo = () => {
                     className="text-white text-center"
                     style={{ fontSize: "30px" }}
                   >
-                    Welcome to betNare
+                    Welcome to BetNare
                   </h1>
                 </Col>
               </Row>

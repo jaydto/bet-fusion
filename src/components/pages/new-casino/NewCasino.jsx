@@ -503,7 +503,7 @@ const NewCasino = () => {
                    <CasinoCategorySection
                     title="CRASH GAMES"
                     isActive={activeCategoryLink === "CRASH GAMES"}
-                    activeCallback={() => handleCategoryClick("CRASh GAMES")}
+                    activeCallback={() => handleCategoryClick("CRASH GAMES")}
                     onClick={() =>
                       handleGameChoice({
                         game: "crash",

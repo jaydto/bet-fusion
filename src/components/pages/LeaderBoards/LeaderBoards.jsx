@@ -980,7 +980,7 @@ const LeaderBoards = () => {
                             Upto<span style={{color:'var(--gold'}}> Ksh 50,000</span>  is up for grabs for stakes of<span style={{color:'var(--gold'}}> 20 KES</span>  
                             {/* <br/>A total of  <span style={{color:'var(--light'}}>KES&nbsp;</span><span style={{color:'var(--gold'}}>500,000!</span> up for grabs */}
                             </div>
-                            <strong><Link to={'/promo?id=19'} style={{ color:"var(--aqua-text)"}}>How to Play!</Link></strong>
+                            <strong><Link to={'/promo?id=23'} style={{ color:"var(--aqua-text)"}}>How to Play!</Link></strong>
                             </h2>
                         <div className="opacity-75">Ends {leaders?.end_date}</div>
                     </div>

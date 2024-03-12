@@ -28,7 +28,7 @@ const FullscreenButtonSpribe = ({ onClick, navigation, isCustomFullScreen }) => 
 												   opacity: '0.7',
 												//    border:'1px solid var(--light-color)',
 												//    borderRadius:'4px',
-												   paddingLeft:'11px'}}>~Climax na Aviator ~</Link>
+												   paddingLeft:'11px'}}>~Shikisha na Aviator ~</Link>
 
 			<div className="fullscreen-button px-3" onClick={onClick}>
 				{isCustomFullScreen?'Exit':'View'} Fullscreen <FontAwesomeIcon icon={faExpand} />

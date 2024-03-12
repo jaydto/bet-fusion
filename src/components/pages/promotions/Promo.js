@@ -68,6 +68,9 @@ const Promo = () => {
     {
       src: "https://cdn.betnare.com/carousel/Spin&WIn.webp",
       id: 22,
+    },{
+      src: "https://cdn.betnare.com/carousel/ShikishanaAviatorWeb.webp",
+      id: 23,
     }
   ];
 

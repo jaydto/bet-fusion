@@ -71,6 +71,9 @@ const Promo = () => {
     },{
       src: "https://cdn.betnare.com/carousel/ShikishanaAviatorWeb.webp",
       id: 23,
+    },{
+      src: "https://cdn.betnare.com/carousel/TheBigLeagueWeb.webp",
+      id: 24,
     }
   ];
 

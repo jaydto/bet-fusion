@@ -2194,6 +2194,7 @@ img.nare-league {
 }
 
 @media (min-width: 991px) {
+   
 
     .item2 {
         height: max-content;
@@ -2296,6 +2297,9 @@ button#countryCode{
     transition: display linear 0.7s;
 }
 @media (max-width: 991px) {
+    .amt-virtual{
+        margin-top:0.3rem!important;
+    }
     .optional-action{
         display: none;
     }

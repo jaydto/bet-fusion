@@ -93,6 +93,51 @@ const PromoCards = () => {
             </div>
           </div>
         </div> 
+        <div className="col-md-2 promo-styling shadow-lg promotion">
+          <div className="d-flex flex-column promo-inner ">
+            <img
+              src={"https://cdn.betnare.com/carousel/ShikishanaAviatorWeb.webp"}
+              className={"rounded promo-image "}
+            />
+            <h5
+              className="bold d-flex justify-content-center h4 pt-2"
+              style={{ color: "#ea5d0b" }}
+            >
+              SHIKISH ANA AVIATOR
+            </h5>
+            <p className="container-profile mx-1 px-2 text-data-promotions">
+            	The Promotion applies to cash bets placed on Betnare’s “Aviator” game...
+            </p>
+            <hr />
+
+            <div className="d-flex justify-content-between my-2 mx-2">
+              <button
+                className={"profile-button border-0 h-25 rounded promo-button"}
+                style={{ background: "#ea5d0b" }}
+                
+                onClick={() => {
+                  gaEventTracker("shikisha_na_aviator");
+                  navigate(`/nare-games/aviator?status=live`);
+                  setUtmSouceCampaignOnPromotions("shikisha_na_aviator");
+                }}
+              >
+                Play Aviator!
+              </button>
+              <div
+                className={
+                  "d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"
+                }
+                style={{ color: "#ea5d0b" }}
+                onClick={() => {
+                  navigate(`/promo?id=${ids[22]}`);
+                  window.scrollTo(0, 0); // Scroll to the top of the page
+                }}
+              >
+                Read More
+              </div>
+            </div>
+          </div>
+        </div> 
         
         <div className="col-md-2 promo-styling shadow-lg promotion">
           <div className="d-flex flex-column promo-inner">
@@ -141,51 +186,7 @@ const PromoCards = () => {
           </div>
         </div>
 
-        <div className="col-md-2 promo-styling shadow-lg promotion">
-          <div className="d-flex flex-column promo-inner">
-            <img
-              src={"https://cdn.betnare.com/carousel/Mshipi.webp"}
-              className={"rounded promo-image "}
-            />
-            <h5
-              className="bold d-flex justify-content-center h4 pt-2"
-              style={{ color: "#ea5d0b" }}
-            >
-              NIPOA KUFUNGA MSHIPI!
-            </h5>
-            <p className="container-profile mx-1 px-2 text-data-promotions">
-              Participants have the chance to win up to 50,000 Kenyan Shillings
-              daily if their multi-bet of 5 games is successful.{" "}
-            </p>
-            <hr />
-
-            <div className="d-flex justify-content-between my-2 mx-2">
-              <button
-                className={"profile-button border-0 h-25 rounded promo-button"}
-                style={{ background: "#ea5d0b" }}
-                onClick={() => {
-                  gaEventTracker("mshipi");
-                  navigate(`/`);
-                  setUtmSouceCampaignOnPromotions("mshipi");
-                }}
-              >
-                Play Now!
-              </button>
-              <div
-                className={
-                  "d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"
-                }
-                style={{ color: "#ea5d0b" }}
-                onClick={() => {
-                  navigate(`/promo?id=${ids[20]}`);
-                  window.scrollTo(0, 0); // Scroll to the top of the page
-                }}
-              >
-                Read More
-              </div>
-            </div>
-          </div>
-        </div>
+        
 
         <div className="col-md-2 promo-styling shadow-lg promotion">
           <div className="d-flex flex-column promo-inner">
@@ -324,6 +325,7 @@ const PromoCards = () => {
             </div>
           </div>
         </div>
+        
         <div className="col-md-2 promo-styling card shadow-lg promotion">
           <div className="d-flex flex-column  promo-inner">
             <div className="d-flex flex-column">
@@ -378,17 +380,18 @@ const PromoCards = () => {
         <div className="col-md-2 promo-styling shadow-lg promotion">
           <div className="d-flex flex-column promo-inner promo-inactive">
             <img
-              src={"https://cdn.betnare.com/carousel/ShikishanaAviatorWeb.webp"}
+              src={"https://cdn.betnare.com/carousel/Mshipi.webp"}
               className={"rounded promo-image "}
             />
             <h5
               className="bold d-flex justify-content-center h4 pt-2"
               style={{ color: "#ea5d0b" }}
             >
-              SHIKISH ANA AVIATOR
+              NIPOA KUFUNGA MSHIPI!
             </h5>
             <p className="container-profile mx-1 px-2 text-data-promotions">
-            	The Promotion applies to cash bets placed on Betnare’s “Aviator” game...
+              Participants have the chance to win up to 50,000 Kenyan Shillings
+              daily if their multi-bet of 5 games is successful.{" "}
             </p>
             <hr />
 
@@ -398,12 +401,12 @@ const PromoCards = () => {
                 style={{ background: "#ea5d0b" }}
                 disabled={true}
                 onClick={() => {
-                  gaEventTracker("shikisha_na_aviator");
-                  navigate(`/nare-games/aviator?status=live`);
-                  setUtmSouceCampaignOnPromotions("shikisha_na_aviator");
+                  gaEventTracker("mshipi");
+                  navigate(`/`);
+                  setUtmSouceCampaignOnPromotions("mshipi");
                 }}
               >
-                Play Aviator!
+                Play Now!
               </button>
               <div
                 className={
@@ -411,7 +414,7 @@ const PromoCards = () => {
                 }
                 style={{ color: "#ea5d0b" }}
                 onClick={() => {
-                  navigate(`/promo?id=${ids[22]}`);
+                  navigate(`/promo?id=${ids[20]}`);
                   window.scrollTo(0, 0); // Scroll to the top of the page
                 }}
               >
@@ -419,7 +422,8 @@ const PromoCards = () => {
               </div>
             </div>
           </div>
-        </div> 
+        </div>
+        
         <div className="col-md-2 promo-styling shadow-lg promotion">
           <div className="d-flex flex-column promo-inner promo-inactive">
             <img

@@ -20,7 +20,7 @@ const PromoCards = () => {
 
   let ids = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
-    22,23,24
+    22, 23, 24, 25, 26, 27
   ];
   const navigate = useNavigate();
 
@@ -52,17 +52,17 @@ const PromoCards = () => {
         <div className="col-md-2 promo-styling shadow-lg promotion">
           <div className="d-flex flex-column promo-inner">
             <img
-              src={"https://cdn.betnare.com/carousel/TheBigLeagueWeb.webp"}
+              src={"https://cdn.betnare.com/carousel/GoldRush.webp"}
               className={"rounded promo-image "}
             />
             <h5
               className="bold d-flex justify-content-center h4 pt-2"
               style={{ color: "#ea5d0b" }}
             >
-              THE BIG LEAGUE
+              RUSH HOUR RAINS
             </h5>
             <p className="container-profile mx-1 px-2 text-data-promotions">
-            Participants have the chance to win up to 49,000 Kenya Shillings daily if they play 3 games ...
+              During the Rush Hour Rains campaign ("the Campaign"), the multiplier for winnings is set at 1.5X the regular payout.
             </p>
             <hr />
 
@@ -71,54 +71,9 @@ const PromoCards = () => {
                 className={"profile-button border-0 h-25 rounded promo-button"}
                 style={{ background: "#ea5d0b" }}
                 onClick={() => {
-                  gaEventTracker("big_league");
-                  navigate(`/nare-league`);
-                  setUtmSouceCampaignOnPromotions("big_league");
-                }}
-              >
-                Play NareLeague!
-              </button>
-              <div
-                className={
-                  "d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"
-                }
-                style={{ color: "#ea5d0b" }}
-                onClick={() => {
-                  navigate(`/promo?id=${ids[23]}`);
-                  window.scrollTo(0, 0); // Scroll to the top of the page
-                }}
-              >
-                Read More
-              </div>
-            </div>
-          </div>
-        </div> 
-        <div className="col-md-2 promo-styling shadow-lg promotion">
-          <div className="d-flex flex-column promo-inner ">
-            <img
-              src={"https://cdn.betnare.com/carousel/ShikishanaAviatorWeb.webp"}
-              className={"rounded promo-image "}
-            />
-            <h5
-              className="bold d-flex justify-content-center h4 pt-2"
-              style={{ color: "#ea5d0b" }}
-            >
-              SHIKISH ANA AVIATOR
-            </h5>
-            <p className="container-profile mx-1 px-2 text-data-promotions">
-            	The Promotion applies to cash bets placed on Betnare’s “Aviator” game...
-            </p>
-            <hr />
-
-            <div className="d-flex justify-content-between my-2 mx-2">
-              <button
-                className={"profile-button border-0 h-25 rounded promo-button"}
-                style={{ background: "#ea5d0b" }}
-                
-                onClick={() => {
-                  gaEventTracker("shikisha_na_aviator");
+                  gaEventTracker("rush_hour_rains2");
                   navigate(`/nare-games/aviator?status=live`);
-                  setUtmSouceCampaignOnPromotions("shikisha_na_aviator");
+                  setUtmSouceCampaignOnPromotions("rush_hour_rains2");
                 }}
               >
                 Play Aviator!
@@ -129,7 +84,7 @@ const PromoCards = () => {
                 }
                 style={{ color: "#ea5d0b" }}
                 onClick={() => {
-                  navigate(`/promo?id=${ids[22]}`);
+                  navigate(`/promo?id=${ids[26]}`);
                   window.scrollTo(0, 0); // Scroll to the top of the page
                 }}
               >
@@ -137,8 +92,96 @@ const PromoCards = () => {
               </div>
             </div>
           </div>
-        </div> 
-        
+        </div>
+        <div className="col-md-2 promo-styling shadow-lg promotion">
+          <div className="d-flex flex-column promo-inner">
+            <img
+              src={"https://cdn.betnare.com/carousel/PunchyaSare.webp"}
+              className={"rounded promo-image "}
+            />
+            <h5
+              className="bold d-flex justify-content-center h4 pt-2"
+              style={{ color: "#ea5d0b" }}
+            >
+              PUNCH YA SARE
+            </h5>
+            <p className="container-profile mx-1 px-2 text-data-promotions">
+              Prizes will be awarded based on the highest multipliers achieved by the players within the specified time frame.
+            </p>
+            <hr />
+
+            <div className="d-flex justify-content-between my-2 mx-2">
+              <button
+                className={"profile-button border-0 h-25 rounded promo-button"}
+                style={{ background: "#ea5d0b" }}
+                onClick={() => {
+                  gaEventTracker("punch_ya_sare");
+                  navigate(`/nare-games/aviator?status=live`);
+                  setUtmSouceCampaignOnPromotions("punch_ya_sare");
+                }}
+              >
+                Play Aviator!
+              </button>
+              <div
+                className={
+                  "d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"
+                }
+                style={{ color: "#ea5d0b" }}
+                onClick={() => {
+                  navigate(`/promo?id=${ids[25]}`);
+                  window.scrollTo(0, 0); // Scroll to the top of the page
+                }}
+              >
+                Read More
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-md-2 promo-styling shadow-lg promotion">
+          <div className="d-flex flex-column promo-inner">
+            <img
+              src={"https://cdn.betnare.com/carousel/Kienyeji.webp"}
+              className={"rounded promo-image "}
+            />
+            <h5
+              className="bold d-flex justify-content-center h4 pt-2"
+              style={{ color: "#ea5d0b" }}
+            >
+              KIENYEJI PROMAX
+            </h5>
+            <p className="container-profile mx-1 px-2 text-data-promotions">
+              To qualify for the Campaign, players must place a bet of 99 bob or more on any of the following games: Aviator, JetX, Nare League, and Casino games.
+            </p>
+            <hr />
+
+            <div className="d-flex justify-content-between my-2 mx-2">
+              <button
+                className={"profile-button border-0 h-25 rounded promo-button"}
+                style={{ background: "#ea5d0b" }}
+                onClick={() => {
+                  gaEventTracker("kienyeji_promax");
+                  navigate(`/`);
+                  setUtmSouceCampaignOnPromotions("kienyeji_promax");
+                }}
+              >
+                Play Games!
+              </button>
+              <div
+                className={
+                  "d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"
+                }
+                style={{ color: "#ea5d0b" }}
+                onClick={() => {
+                  navigate(`/promo?id=${ids[24]}`);
+                  window.scrollTo(0, 0); // Scroll to the top of the page
+                }}
+              >
+                Read More
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="col-md-2 promo-styling shadow-lg promotion">
           <div className="d-flex flex-column promo-inner">
             <img
@@ -186,54 +229,9 @@ const PromoCards = () => {
           </div>
         </div>
 
+
+
         
-
-        <div className="col-md-2 promo-styling shadow-lg promotion">
-          <div className="d-flex flex-column promo-inner">
-            <img
-              src={"https://cdn.betnare.com/carousel/LuckyHourv2.webp"}
-              className={"rounded promo-image "}
-            />
-            <h5
-              className="bold d-flex justify-content-center h4 pt-2"
-              style={{ color: "#ea5d0b" }}
-            >
-              Lucky Hour Bonus!
-            </h5>
-            <p className="container-profile mx-1 px-2 text-data-promotions">
-              The Lucky Hour Bonus applies to new and existing customers who
-              Deposit and place a bet{" "}
-            </p>
-            <hr />
-
-            <div className="d-flex justify-content-between my-2 mx-2">
-              <button
-                className={"profile-button border-0 h-25 rounded promo-button"}
-                style={{ background: "#ea5d0b" }}
-                onClick={() => {
-                  gaEventTracker("lucky_hour_2");
-                  navigate(`/deposit`);
-                  setUtmSouceCampaignOnPromotions("lucky_hour_2");
-                }}
-              >
-                Deposit
-              </button>
-              <div
-                className={
-                  "d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"
-                }
-                style={{ color: "#ea5d0b" }}
-                onClick={() => {
-                  navigate(`/promo?id=${ids[4]}`);
-                  window.scrollTo(0, 0); // Scroll to the top of the page
-                }}
-              >
-                Read More
-              </div>
-            </div>
-          </div>
-        </div>
-
         <div className="col-md-2 promo-styling shadow-lg promotion">
           <div className="d-flex flex-column promo-inner">
             <img
@@ -325,7 +323,7 @@ const PromoCards = () => {
             </div>
           </div>
         </div>
-        
+
         <div className="col-md-2 promo-styling card shadow-lg promotion">
           <div className="d-flex flex-column  promo-inner">
             <div className="d-flex flex-column">
@@ -378,6 +376,144 @@ const PromoCards = () => {
           </div>
         </div>
         <div className="col-md-2 promo-styling shadow-lg promotion">
+          <div className="d-flex flex-column promo-inner promo-inactive ">
+            <img
+              src={"https://cdn.betnare.com/carousel/ShikishanaAviatorWeb.webp"}
+              className={"rounded promo-image "}
+            />
+            <h5
+              className="bold d-flex justify-content-center h4 pt-2"
+              style={{ color: "#ea5d0b" }}
+            >
+              SHIKISHA NA AVIATOR
+            </h5>
+            <p className="container-profile mx-1 px-2 text-data-promotions">
+              The Promotion applies to cash bets placed on Betnare’s “Aviator” game...
+            </p>
+            <hr />
+
+            <div className="d-flex justify-content-between my-2 mx-2">
+              <button
+                className={"profile-button border-0 h-25 rounded promo-button"}
+                style={{ background: "#ea5d0b" }}
+                disabled={true}
+                onClick={() => {
+                  gaEventTracker("shikisha_na_aviator");
+                  navigate(`/nare-games/aviator?status=live`);
+                  setUtmSouceCampaignOnPromotions("shikisha_na_aviator");
+                }}
+              >
+                Play Aviator!
+              </button>
+              <div
+                className={
+                  "d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"
+                }
+                style={{ color: "#ea5d0b" }}
+                onClick={() => {
+                  navigate(`/promo?id=${ids[22]}`);
+                  window.scrollTo(0, 0); // Scroll to the top of the page
+                }}
+              >
+                Read More
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-md-2 promo-styling shadow-lg promotion">
+          <div className="d-flex flex-column promo-inner promo-inactive">
+            <img
+              src={"https://cdn.betnare.com/carousel/TheBigLeagueWeb.webp"}
+              className={"rounded promo-image "}
+            />
+            <h5
+              className="bold d-flex justify-content-center h4 pt-2"
+              style={{ color: "#ea5d0b" }}
+            >
+              THE BIG LEAGUE
+            </h5>
+            <p className="container-profile mx-1 px-2 text-data-promotions">
+              Participants have the chance to win up to 49,000 Kenya Shillings daily if they play 3 games ...
+            </p>
+            <hr />
+
+            <div className="d-flex justify-content-between my-2 mx-2">
+              <button
+                className={"profile-button border-0 h-25 rounded promo-button"}
+                style={{ background: "#ea5d0b" }}
+                onClick={() => {
+                  gaEventTracker("big_league");
+                  navigate(`/nare-league`);
+                  setUtmSouceCampaignOnPromotions("big_league");
+                }}
+              >
+                Play NareLeague!
+              </button>
+              <div
+                className={
+                  "d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"
+                }
+                style={{ color: "#ea5d0b" }}
+                disabled={true}
+                onClick={() => {
+                  navigate(`/promo?id=${ids[23]}`);
+                  window.scrollTo(0, 0); // Scroll to the top of the page
+                }}
+              >
+                Read More
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-md-2 promo-styling shadow-lg promotion">
+          <div className="d-flex flex-column promo-inner promo-inactive">
+            <img
+              src={"https://cdn.betnare.com/carousel/LuckyHourv2.webp"}
+              className={"rounded promo-image "}
+            />
+            <h5
+              className="bold d-flex justify-content-center h4 pt-2"
+              style={{ color: "#ea5d0b" }}
+            >
+              Lucky Hour Bonus!
+            </h5>
+            <p className="container-profile mx-1 px-2 text-data-promotions">
+              The Lucky Hour Bonus applies to new and existing customers who
+              Deposit and place a bet{" "}
+            </p>
+            <hr />
+
+            <div className="d-flex justify-content-between my-2 mx-2">
+              <button
+                className={"profile-button border-0 h-25 rounded promo-button"}
+                style={{ background: "#ea5d0b" }}
+                deactivate={true}
+                onClick={() => {
+                  gaEventTracker("lucky_hour_2");
+                  navigate(`/deposit`);
+                  setUtmSouceCampaignOnPromotions("lucky_hour_2");
+                }}
+              >
+                Deposit
+              </button>
+              <div
+                className={
+                  "d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"
+                }
+                style={{ color: "#ea5d0b" }}
+                onClick={() => {
+                  navigate(`/promo?id=${ids[4]}`);
+                  window.scrollTo(0, 0); // Scroll to the top of the page
+                }}
+              >
+                Read More
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div className="col-md-2 promo-styling shadow-lg promotion">
           <div className="d-flex flex-column promo-inner promo-inactive">
             <img
               src={"https://cdn.betnare.com/carousel/Mshipi.webp"}
@@ -423,7 +559,7 @@ const PromoCards = () => {
             </div>
           </div>
         </div>
-        
+
         <div className="col-md-2 promo-styling shadow-lg promotion">
           <div className="d-flex flex-column promo-inner promo-inactive">
             <img

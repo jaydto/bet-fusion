@@ -74,6 +74,15 @@ const Promo = () => {
     },{
       src: "https://cdn.betnare.com/carousel/TheBigLeagueWeb.webp",
       id: 24,
+    },{
+      src: "https://cdn.betnare.com/carousel/Kienyeji.webp",
+      id: 25,
+    },{
+      src: "https://cdn.betnare.com/carousel/PunchyaSare.webp",
+      id: 26,
+    },{
+      src: "https://cdn.betnare.com/carousel/GoldRush.webp",
+      id: 27,
     }
   ];
 

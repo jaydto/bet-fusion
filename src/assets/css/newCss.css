@@ -1889,11 +1889,11 @@ img.nare-league {
 .deposit-modal-top-title {
   margin-top: 3rem !important;
 }
-@media (min-width: 993px) {
+/* @media (min-width: 993px) {
   .amt-virtual {
     margin-top: 98px;
   }
-}
+} */
 @media (min-width: 992px) {
   .flex-container.height-default-body {
     margin-top: 51px;
@@ -1940,6 +1940,13 @@ img.nare-league {
   }
   .user_logged.casino {
     margin-top: 9rem;
+  }
+  .user_logged.virtuals{
+    margin-top: 6rem;
+
+  }
+  .amt-virtual {
+    margin-top: 98px;
   }
   .team_category_game {
     display: flex;
@@ -2278,9 +2285,7 @@ button#countryCode {
   transition: display linear 0.7s;
 }
 @media (max-width: 991px) {
-  .amt-virtual {
-    margin-top: 0.3rem !important;
-  }
+ 
   .optional-action {
     display: none;
   }
@@ -2484,9 +2489,7 @@ button#countryCode {
   .top-smartsoft.gameplay {
     margin-top: 1rem !important;
   }
-  .user_logged.virtuals {
-    margin-top: 6rem !important;
-  }
+  
   .top-spacing-page-no-download.competitions-page {
     margin-top: 10.4rem !important;
   }
@@ -3483,6 +3486,13 @@ button#countryCode {
   .user_logged.casino {
     margin-top: 0.7rem !important;
   }
+  .user_logged.virtuals{
+    margin-top: 0.3rem;
+
+  }
+  .amt-virtual {
+    margin-top: 0.3rem !important;
+  }
   .top-position-mobile-view {
     margin-top: 14rem;
   }
@@ -3964,7 +3974,7 @@ button#countryCode {
   }
 
   .user_logged {
-    margin-top: 14.5rem !important;
+    margin-top: 14.5rem;
   }
 
   .sticky-logged-in-testimony {
@@ -4068,10 +4078,17 @@ button#countryCode {
   }
 
   .user_logged {
-    margin-top: 7.7rem !important;
+    margin-top: 7.7rem ;
   }
   .user_logged.casino {
     margin-top: 0.7rem !important;
+  }
+  .user_logged.virtuals{
+    margin-top: 0.3rem;
+
+  }
+  .amt-virtual {
+    margin-top: 0.3rem !important;
   }
   .highlight-logged-in-menu {
     top: 0px;

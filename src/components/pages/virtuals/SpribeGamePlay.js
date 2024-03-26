@@ -203,7 +203,7 @@ const GamePlay = React.memo(
                 <Header/>
                 <div
                     className={`virtuals-container-position ${(width <= 575 ? user ? "user_logged virtuals" : "amt-virtual" : "amt-virtual")}`}>
-                    <FullscreenButtonSpribe onClick={() => toggleFullscreen()} navigation={'/casino'}
+                    <FullscreenButton onClick={() => toggleFullscreen()} navigation={'/casino'}
                                       isCustomFullScreen={isCustomFullscreen}/>
                                       {/* <FullscreenButton onClick={() => toggleFullscreen()} navigation={'/casino'}
                                       isCustomFullScreen={isCustomFullscreen}/> */}

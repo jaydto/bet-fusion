@@ -49,139 +49,8 @@ const PromoCards = () => {
           "row text-white pt-2 border-0 d-flex promo-container-profile d-flex align-self-start align-items-start"
         }
       >
-        <div className="col-md-2 promo-styling shadow-lg promotion">
-          <div className="d-flex flex-column promo-inner">
-            <img
-              src={"https://cdn.betnare.com/carousel/GoldRush.webp"}
-              className={"rounded promo-image "}
-            />
-            <h5
-              className="bold d-flex justify-content-center h4 pt-2"
-              style={{ color: "#ea5d0b" }}
-            >
-              RUSH HOUR RAINS
-            </h5>
-            <p className="container-profile mx-1 px-2 text-data-promotions">
-              During the Rush Hour Rains campaign ("the Campaign"), the multiplier for winnings is set at 1.5X the regular payout.
-            </p>
-            <hr />
-
-            <div className="d-flex justify-content-between my-2 mx-2">
-              <button
-                className={"profile-button border-0 h-25 rounded promo-button"}
-                style={{ background: "#ea5d0b" }}
-                onClick={() => {
-                  gaEventTracker("rush_hour_rains2");
-                  navigate(`/nare-games/aviator?status=live`);
-                  setUtmSouceCampaignOnPromotions("rush_hour_rains2");
-                }}
-              >
-                Play Aviator!
-              </button>
-              <div
-                className={
-                  "d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"
-                }
-                style={{ color: "#ea5d0b" }}
-                onClick={() => {
-                  navigate(`/promo?id=${ids[26]}`);
-                  window.scrollTo(0, 0); // Scroll to the top of the page
-                }}
-              >
-                Read More
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-2 promo-styling shadow-lg promotion">
-          <div className="d-flex flex-column promo-inner">
-            <img
-              src={"https://cdn.betnare.com/carousel/PunchyaSare.webp"}
-              className={"rounded promo-image "}
-            />
-            <h5
-              className="bold d-flex justify-content-center h4 pt-2"
-              style={{ color: "#ea5d0b" }}
-            >
-              PUNCH YA SARE
-            </h5>
-            <p className="container-profile mx-1 px-2 text-data-promotions">
-              Prizes will be awarded based on the highest multipliers achieved by the players within the specified time frame.
-            </p>
-            <hr />
-
-            <div className="d-flex justify-content-between my-2 mx-2">
-              <button
-                className={"profile-button border-0 h-25 rounded promo-button"}
-                style={{ background: "#ea5d0b" }}
-                onClick={() => {
-                  gaEventTracker("punch_ya_sare");
-                  navigate(`/nare-games/aviator?status=live`);
-                  setUtmSouceCampaignOnPromotions("punch_ya_sare");
-                }}
-              >
-                Play Aviator!
-              </button>
-              <div
-                className={
-                  "d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"
-                }
-                style={{ color: "#ea5d0b" }}
-                onClick={() => {
-                  navigate(`/promo?id=${ids[25]}`);
-                  window.scrollTo(0, 0); // Scroll to the top of the page
-                }}
-              >
-                Read More
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-2 promo-styling shadow-lg promotion">
-          <div className="d-flex flex-column promo-inner">
-            <img
-              src={"https://cdn.betnare.com/carousel/Kienyeji.webp"}
-              className={"rounded promo-image "}
-            />
-            <h5
-              className="bold d-flex justify-content-center h4 pt-2"
-              style={{ color: "#ea5d0b" }}
-            >
-              KIENYEJI PROMAX
-            </h5>
-            <p className="container-profile mx-1 px-2 text-data-promotions">
-              To qualify for the Campaign, players must place a bet of 99 bob or more on any of the following games: Aviator, JetX, Nare League, and Casino games.
-            </p>
-            <hr />
-
-            <div className="d-flex justify-content-between my-2 mx-2">
-              <button
-                className={"profile-button border-0 h-25 rounded promo-button"}
-                style={{ background: "#ea5d0b" }}
-                onClick={() => {
-                  gaEventTracker("kienyeji_promax");
-                  navigate(`/`);
-                  setUtmSouceCampaignOnPromotions("kienyeji_promax");
-                }}
-              >
-                Play Games!
-              </button>
-              <div
-                className={
-                  "d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"
-                }
-                style={{ color: "#ea5d0b" }}
-                onClick={() => {
-                  navigate(`/promo?id=${ids[24]}`);
-                  window.scrollTo(0, 0); // Scroll to the top of the page
-                }}
-              >
-                Read More
-              </div>
-            </div>
-          </div>
-        </div>
-
+      
+       
         
 
 
@@ -330,6 +199,143 @@ const PromoCards = () => {
             </div>
           </div>
         </div>
+        <div className="col-md-2 promo-styling shadow-lg promotion">
+          <div className="d-flex flex-column promo-inner promo-inactive">
+            <img
+              src={"https://cdn.betnare.com/carousel/GoldRush.webp"}
+              className={"rounded promo-image "}
+            />
+            <h5
+              className="bold d-flex justify-content-center h4 pt-2"
+              style={{ color: "#ea5d0b" }}
+            >
+              RUSH HOUR RAINS
+            </h5>
+            <p className="container-profile mx-1 px-2 text-data-promotions">
+              During the Rush Hour Rains campaign ("the Campaign"), the multiplier for winnings is set at 1.5X the regular payout.
+            </p>
+            <hr />
+
+            <div className="d-flex justify-content-between my-2 mx-2">
+              <button
+                className={"profile-button border-0 h-25 rounded promo-button"}
+                style={{ background: "#ea5d0b" }}
+                disabled={true}
+                onClick={() => {
+                  gaEventTracker("rush_hour_rains2");
+                  navigate(`/nare-games/aviator?status=live`);
+                  setUtmSouceCampaignOnPromotions("rush_hour_rains2");
+                }}
+              >
+                Play Aviator!
+              </button>
+              <div
+                className={
+                  "d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"
+                }
+                style={{ color: "#ea5d0b" }}
+                onClick={() => {
+                  navigate(`/promo?id=${ids[26]}`);
+                  window.scrollTo(0, 0); // Scroll to the top of the page
+                }}
+              >
+                Read More
+              </div>
+            </div>
+          </div>
+        </div>
+       
+        <div className="col-md-2 promo-styling shadow-lg promotion">
+          <div className="d-flex flex-column promo-inner promo-inactive">
+            <img
+              src={"https://cdn.betnare.com/carousel/PunchyaSare.webp"}
+              className={"rounded promo-image "}
+            />
+            <h5
+              className="bold d-flex justify-content-center h4 pt-2"
+              style={{ color: "#ea5d0b" }}
+            >
+              PUNCH YA SARE
+            </h5>
+            <p className="container-profile mx-1 px-2 text-data-promotions">
+              Prizes will be awarded based on the highest multipliers achieved by the players within the specified time frame.
+            </p>
+            <hr />
+
+            <div className="d-flex justify-content-between my-2 mx-2">
+              <button
+                className={"profile-button border-0 h-25 rounded promo-button"}
+                style={{ background: "#ea5d0b" }}
+                disabled={true}
+                onClick={() => {
+                  gaEventTracker("punch_ya_sare");
+                  navigate(`/nare-games/aviator?status=live`);
+                  setUtmSouceCampaignOnPromotions("punch_ya_sare");
+                }}
+              >
+                Play Aviator!
+              </button>
+              <div
+                className={
+                  "d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"
+                }
+                style={{ color: "#ea5d0b" }}
+                onClick={() => {
+                  navigate(`/promo?id=${ids[25]}`);
+                  window.scrollTo(0, 0); // Scroll to the top of the page
+                }}
+              >
+                Read More
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-md-2 promo-styling shadow-lg promotion">
+          <div className="d-flex flex-column promo-inner promo-inactive">
+            <img
+              src={"https://cdn.betnare.com/carousel/Kienyeji.webp"}
+              className={"rounded promo-image "}
+            />
+            <h5
+              className="bold d-flex justify-content-center h4 pt-2"
+              style={{ color: "#ea5d0b" }}
+            >
+              KIENYEJI PROMAX
+            </h5>
+            <p className="container-profile mx-1 px-2 text-data-promotions">
+              To qualify for the Campaign, players must place a bet of 99 bob or more on any of the following games: Aviator, JetX, Nare League, and Casino games.
+            </p>
+            <hr />
+
+            <div className="d-flex justify-content-between my-2 mx-2">
+              <button
+                className={"profile-button border-0 h-25 rounded promo-button"}
+                style={{ background: "#ea5d0b" }}
+                disabled={true}
+                onClick={() => {
+                  gaEventTracker("kienyeji_promax");
+                  navigate(`/`);
+                  setUtmSouceCampaignOnPromotions("kienyeji_promax");
+                }}
+              >
+                Play Games!
+              </button>
+              <div
+                className={
+                  "d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"
+                }
+                style={{ color: "#ea5d0b" }}
+                onClick={() => {
+                  navigate(`/promo?id=${ids[24]}`);
+                  window.scrollTo(0, 0); // Scroll to the top of the page
+                }}
+              >
+                Read More
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="col-md-2 promo-styling shadow-lg promotion">
           <div className="d-flex flex-column promo-inner promo-inactive">
             <img

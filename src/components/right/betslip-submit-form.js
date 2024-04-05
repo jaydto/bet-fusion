@@ -552,7 +552,7 @@ const BetslipSubmitForm = React.memo(
             let giftQualificationOdds = odds.length;
         
             let awardGifts =
-                Number(settings?.betnareGifts?.awardGiftBoost) === 1 &&
+                Number(getFromLocalStorage('settings')?.betnareGifts?.awardGiftBoost) === 1 &&
                 Number(user?.gift_balance || 0) > 0;
         
             console.log("awargift criteria", awardGifts);
@@ -562,8 +562,7 @@ const BetslipSubmitForm = React.memo(
                 setMultiBoostAmount(0)
 
             }
-             else
-            if (Number(giftQualificationOdds) < Number(giftMinGames)) {
+             else if (Number(giftQualificationOdds) < Number(giftMinGames) ) {
                 let remainingGames = Number(giftMinGames) - Number(giftQualificationOdds);
         
                 dispatchRedux(setMatchBetslipOptions('betslip_options', { ...betslip_options, ...{ remaining_games: remainingGames, hasBoost: false, alert_slip_color: 'not_qualified', multiboostmessage: ` Add ${remainingGames} more game${
@@ -581,7 +580,8 @@ const BetslipSubmitForm = React.memo(
                 );
         
                 setMultiBoostAmount(0);
-            } else if (Number(giftQualificationOdds) >= Number(giftMinGames)) {
+            } 
+            else if (Number(giftQualificationOdds) >= Number(giftMinGames)) {
                 boost = Math.round(((Number(settings?.betnareGifts?.giftBoostPercentage) || 20) / 100) * stake);
                 if (isNaN(boost)) {
                     boost = 0;
@@ -897,8 +897,7 @@ const BetslipSubmitForm = React.memo(
                                      <div
                                         className="hide-on-affix d-flex justify-content-between p-lg-2 p-md-2 py-sm-0">
                                         <div
-                                            className={"bet-align-left nare-boost-color d-flex align-items-center"}>Nare
-                                            Boost
+                                            className={"bet-align-left nare-boost-color d-flex align-items-center"}>Nare Boost
                                             &nbsp;<FontAwesomeIcon icon={faBolt} className={'boost-betslip'}/>
                                         </div>
                                         <div className={"bet-align-right nare-boost-color"}>

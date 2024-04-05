@@ -126,6 +126,38 @@ export const marketChoiceOptions = () => {
     ];
 };
 
+export const virtualGameChoiceOptions = () => {
+    return [
+            {        
+           
+                    id: 'Aviator',
+                    name: 'Aviator',
+                    url: '/nare-games/aviator?status=live',
+                },
+                {        
+           
+                    id: 'JetX',
+                    name: 'JetX',
+                    url: '/smart-play?game=JetX&category=JetX',
+                },{        
+           
+                    id: 'Nare League',
+                    name: 'Nare League',
+                    url: '/nare-league',
+                },
+                {        
+           
+                    id: 'Casino',
+                    name: 'Casino',
+                    url: '/casino',
+                },
+                
+
+            ]
+        
+    
+};
+
 export const marketChoice = () => {
 
     return [

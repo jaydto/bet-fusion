@@ -83,6 +83,15 @@ const Promo = () => {
     },{
       src: "https://cdn.betnare.com/carousel/GoldRush.webp",
       id: 27,
+    },{
+      src: "https://cdn.betnare.com/carousel/Morningglory.webp",
+      id: 29,
+    },{
+      src: "https://cdn.betnare.com/carousel/Rasha.webp",
+      id: 28,
+    },{
+      src: "https://cdn.betnare.com/carousel/Mbuziyambogi.webp",
+      id: 30,
     }
   ];
 

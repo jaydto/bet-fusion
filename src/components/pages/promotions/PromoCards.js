@@ -89,7 +89,7 @@ const PromoCards = () => {
         <div className="col-md-2 promo-styling shadow-lg promotion">
           <div className="d-flex flex-column promo-inner">
             <img
-              src={"https://cdn.betnare.com/carousel/DepositBonus.webp"}
+              src={"https://cdn.betnare.com/carousel/Mbuziyambogi.webp"}
               className={"rounded promo-image "}
             />
             <h5
@@ -113,7 +113,7 @@ const PromoCards = () => {
                   setUtmSouceCampaignOnPromotions("mbuzi_ya_mbogi");
                 }}
               >
-                Play Sports!
+                Bet Now!
               </button>
               <div
                 className={

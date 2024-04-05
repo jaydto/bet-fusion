@@ -88,14 +88,16 @@ const BetslipSubmitForm = React.memo(
 
         const [stakeAfterTax, setStakeAfterTax] = useState(0);
         const [stakeAfterTaxBoosted, setStakeAfterTaxBoosted] = useState(0);
+        // todo check here sports status
 
         const [exciseTax, setExciseTax] = useState(0);
         const [exciseTaxBoosted, setExciseTaxBoosted] = useState(0);
-        const minStake=useSelector((state)=>state.betting.minStake)
-
 
         const [withholdingTax, setWithholdingTax] = useState(0);
         const [withholdingTaxBoosted, setWithholdingTaxBoosted] = useState(0);
+
+
+        const minStake=useSelector((state)=>state.betting.minStake)
 
         const [possibleWin, setPossibleWin] = useState(0);
         const [possibleWinBoosted, setPossibleWinBoosted] = useState(0);
@@ -111,6 +113,10 @@ const BetslipSubmitForm = React.memo(
         const {width} = useWindowDimensions();
         const userData=useSelector((state)=>state.auth.user)
         const [user, setUser]=useState(getFromLocalStorage("user"))
+
+        const exciseTaxStatus= Number(settings?.sportsBookLimits?.exciseTaxEnabled??0)
+
+        const withholdingTaxStatus= Number(settings?.sportsBookLimits?.withholdingTaxEnabled??0)
 
         useEffect(()=>{
             if(userData){
@@ -333,9 +339,14 @@ const BetslipSubmitForm = React.memo(
 
         const updateWinnings = useCallback(() => {
             if (betslip) {
-                let stake_after_tax = (Float(stake) / Float(112.5/100));
+                let exciseTaxStatus= Number(settings?.sportsBookLimits?.exciseTaxEnabled ?? 0)
+
+                let withholdingTaxStatus= Number(settings?.sportsBookLimits?.withholdingTaxEnabled ?? 0)
+
+                // todo check here taxes
+                let stake_after_tax = exciseTaxStatus?Float(stake):(Float(stake) / Float(112.5/100));
                 let stake_after_tax_boosted =
-                    ((Float(stake) + Float(multiBoostAmount)) / Float(112.5/100));
+                exciseTaxStatus?(Float(stake) + Float(multiBoostAmount)):((Float(stake) + Float(multiBoostAmount)) / Float(112.5/100));
 
                 let ext = Float(stake) - Float(stake_after_tax);
                 let ext_boosted =
@@ -514,124 +525,6 @@ const BetslipSubmitForm = React.memo(
         };
 
 
-        // const calculateMultiBetBoostAmount = () => {
-        //     let settings = getFromLocalStorage("settings");
-
-        //     let giftMinGames = Number(settings?.betnareGifts?.giftBoostMinLegs);
-
-        //     if (totalGames < giftMinGames) {
-        //         setHasMultiBetBoost(false);
-
-        //         dispatchRedux(setMatchBetslipOptions('betslip_options', {...betslip_options,...{hasBoost:false,  alert_slip_color:'not_qualified'}}))
-
-
-        //     }
-
-        //     let boost = 0;
-
-        //     let betslips = getBetslip() || {};
-
-        //     let odds = Object.values(betslips || [])?.filter(
-        //         (slip) =>
-        //             slip.bet_type !== "1" &&
-        //             Number(slip.odd_value) >= settings?.betnareGifts?.giftBoostMinOdds
-        //     );
-
-        //     let giftQualificationOdds = odds.length;
-
-
-        //     let awardGifts =
-        //         Number(settings?.betnareGifts?.awardGiftBoost) === 1 &&
-        //         Number(user?.gift_balance || 0) > 0;
-
-        //         console.log("awargift criteria", awardGifts)
-        //         console.log("awargift criteria data", awardGifts)
-
-        //     // setAwardMultiGift(awardGifts);
-        //     // if(awardGifts===false){
-        //     //     setMultiBoostAmount(0)
-
-        //     // }
-        //     //  else
-        //       if  (Number(giftQualificationOdds) < Number(giftMinGames)) {
-        //         let remainingGames = Number(giftMinGames) - Number(giftQualificationOdds);
-
-        //         dispatchRedux(setMatchBetslipOptions('betslip_options', {...betslip_options,...{remaining_games:remainingGames, hasBoost:false, alert_slip_color:'not_qualified', multiboostmessage: ` Add ${remainingGames} more game${
-        //                     remainingGames > 1 ? "s" : ""
-        //                 } with odds of  ${
-        //                     settings?.betnareGifts?.giftBoostMinOdds
-        //                 } or above to boost your winnings.`}}))
-
-
-        //         setMultiBoostMessage(
-        //             `Congratulations, you qualify for Nare Gift. Add ${remainingGames} more game${
-        //                 remainingGames > 1 ? "s" : ""
-        //             } with odds of  ${
-        //                 settings?.betnareGifts?.giftBoostMinOdds
-        //             } or above to redeem your gift.`
-        //         );
-
-        //         setMultiBoostAmount(0)
-
-
-
-        //     }
-        //     else if (Number(giftQualificationOdds) >= Number(giftMinGames)) {
-        //         boost = Math.round(((Number(settings?.betnareGifts?.giftBoostPercentage)||20)/ 100) * stake);
-        //         if(isNaN(boost)){
-        //             boost=0
-        //         }
-
-        //         if (boost >= Number(settings?.betnareGifts?.maxGiftBoostAmount)) {
-        //             boost = Number(settings?.betnareGifts?.maxGiftBoostAmount);
-        //         }
-        //         if (boost >= 1) {
-        //             setMultiBoostAmount(boost);
-        //             setHasMultiBetBoost(true);
-
-        //             let boostedStake = Number(stake) + Number(boost);
-        //             boostedStake = formatNumber(boostedStake);
-        //             dispatchRedux(setMatchBetslipOptions('betslip_options', {...betslip_options,...{hasBoost:true, alert_slip_color: 'valid', remaining_games: 0, multiboostmessage:"Congratulations! we have gifted you KES " +
-        //                         boost +
-        //                         " on your stake. Your new stake is " +
-        //                         boostedStake }}))
-        //             setMultiBoostMessage(
-        //                 "Congratulations! we have boosted you stake from KES " +
-        //                 stake +
-        //                 " to " +
-        //                 boostedStake
-        //             );
-
-
-        //         }
-        //         else{
-        //             setMultiBoostAmount(boost);
-        //             setHasMultiBetBoost(true);
-        //             dispatchRedux(setMatchBetslipOptions('betslip_options', {...betslip_options,...{hasBoost:true,remaining_games: 0, alert_slip_color:'valid',multiboostmessage: "You Have Qualified for a Nare Boost  " 
-        //                         }}))
-
-
-        //             setMultiBoostMessage(
-        //                 "You  Have Qualified for a Nare Boost " 
-        //             );
-
-
-        //         }
-        //     }
-        //     else{
-        //         setMultiBoostAmount(0)
-
-        //         dispatchRedux(setMatchBetslipOptions('betslip_options', {...betslip_options,...{hasBoost:false, alert_slip_color:'not_qualified'}}))
-
-
-        //         setMultiBoostMessage("")
-
-        //     }
-        // };
-
-        // useEffect(() => {
-        //     calculateMultiBetBoostAmount();
-        // }, [betslip, stake, settings]);
 
         const calculateMultiBetBoostAmountCallback = useCallback(() => {
             let settings = getFromLocalStorage("settings");
@@ -888,7 +781,7 @@ const BetslipSubmitForm = React.memo(
                                 <tr className="bet-win-tr hide-on-affix">
                                     <td className={"bet-align-left tax-info"}> Excise Tax </td>
                                     <td className={"bet-align-right tax-info"}>KES. <span
-                                        id="tax">{formatNumber(hasMultiBetBoost ? exciseTaxBoosted : exciseTax)}</span>
+                                        id="tax">{formatNumber(hasMultiBetBoost ? exciseTaxBoosted : exciseTaxStatus? exciseTax:0)}</span>
                                     </td>
                                 </tr>
                                 {jackpot ? (
@@ -897,7 +790,7 @@ const BetslipSubmitForm = React.memo(
                                     <tr className="bet-win-tr hide-on-affix">
                                         <td className={"bet-align-left tax-info"}> Withholding </td>
                                         <td className={"bet-align-right tax-info"}>KES. <span
-                                            id="tax">{formatNumber(hasMultiBetBoost ? withholdingTaxBoosted : withholdingTax)}</span>
+                                            id="tax">{formatNumber(hasMultiBetBoost ? withholdingTaxBoosted :withholdingTaxStatus? withholdingTax:0)}</span>
                                         </td>
                                     </tr>
                                 )}

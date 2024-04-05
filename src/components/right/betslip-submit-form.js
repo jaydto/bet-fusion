@@ -81,7 +81,8 @@ const BetslipSubmitForm = React.memo(
         const [ipv4, setIpv4] = useState(null);
         const [message, setMessage] = useState(null);
         const loading=useSelector((state)=>state.betting.loading)
-        const [settings,] = useState(getFromLocalStorage("settings"));
+        const appConfigs = useSelector((state) => state.data.app_config);
+        const [settings,] = useState(appConfigs??getFromLocalStorage("settings"));
         const stake_value=useSelector((state)=>state.data.stake_value)
         const [stake, setStake] = useState(jackpot ? parseInt(jackpotData?.bet_amount) : stake_value||getFromLocalStorage('userStake'));
 
@@ -122,6 +123,7 @@ const BetslipSubmitForm = React.memo(
         // const withholdingTaxStatus= Number(settings?.sportsBookLimits?.withholdingTaxEnabled??1)
 
         useEffect(()=>{
+            console.log("")
             setExciseTaxStatus(Number(settings?.sportsBookLimits?.exciseTaxEnabled??1))
             setWithholdingTaxStatus(Number(settings?.sportsBookLimits?.withholdingTaxEnabled??1))
 

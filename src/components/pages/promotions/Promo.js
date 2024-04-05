@@ -85,10 +85,10 @@ const Promo = () => {
       id: 27,
     },{
       src: "https://cdn.betnare.com/carousel/Morningglory.webp",
-      id: 28,
+      id: 29,
     },{
       src: "https://cdn.betnare.com/carousel/Rasha.webp",
-      id: 29,
+      id: 28,
     },{
       src: "https://cdn.betnare.com/carousel/Mbuziyambogi.webp",
       id: 30,

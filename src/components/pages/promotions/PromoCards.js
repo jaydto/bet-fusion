@@ -144,8 +144,7 @@ const PromoCards = () => {
               RASHA RASHA ZA AVIATOR!
             </h5>
             <p className="container-profile mx-1 px-2 text-data-promotions">
-              All new and existing customers get to enjoy a free deposit bonus
-              on your all your deposit from 20bob and above!{" "}
+              Place a minimum bet of KES 20 between 12:00 AM and 6:00 AM and receive kenyan shillings 500 airtime...{" "}
             </p>
             <hr />
 
@@ -190,7 +189,7 @@ const PromoCards = () => {
               MORNING GLORY
             </h5>
             <p className="container-profile mx-1 px-2 text-data-promotions">
-              Play between 6:00 AM and 9:00 AM are for 100 and stand a chance to
+              Play between 6:00 AM and 9:00 AM for a minimum stake of KES 100 and stand a chance to
               be awarded cash worth 1000 Kenyan shillings...{" "}
             </p>
             <hr />

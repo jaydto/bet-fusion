@@ -82,7 +82,7 @@ const BetslipSubmitForm = React.memo(
         const [message, setMessage] = useState(null);
         const loading=useSelector((state)=>state.betting.loading)
         const appConfigs = useSelector((state) => state.data.app_config);
-        const [settings,] = useState(appConfigs??getFromLocalStorage("settings"));
+        const [settings,] = useState(getFromLocalStorage("settings"));
         const stake_value=useSelector((state)=>state.data.stake_value)
         const [stake, setStake] = useState(jackpot ? parseInt(jackpotData?.bet_amount) : stake_value||getFromLocalStorage('userStake'));
 
@@ -115,19 +115,7 @@ const BetslipSubmitForm = React.memo(
         const userData=useSelector((state)=>state.auth.user)
         const [user, setUser]=useState(getFromLocalStorage("user"))
 
-        const [exciseTaxStatus, setExciseTaxStatus]=useState(null)
-        const [withholdingTaxStatus, setWithholdingTaxStatus]=useState(null)
-
-        // const exciseTaxStatus= Number(settings?.sportsBookLimits?.exciseTaxEnabled??1)
-
-        // const withholdingTaxStatus= Number(settings?.sportsBookLimits?.withholdingTaxEnabled??1)
-
-        useEffect(()=>{
-            console.log("")
-            setExciseTaxStatus(Number(settings?.sportsBookLimits?.exciseTaxEnabled??1))
-            setWithholdingTaxStatus(Number(settings?.sportsBookLimits?.withholdingTaxEnabled??1))
-
-        },[settings])
+    
 
         useEffect(()=>{
             if(userData){
@@ -350,9 +338,11 @@ const BetslipSubmitForm = React.memo(
 
         const updateWinnings = useCallback(() => {
             if (betslip) {
-                // let exciseTaxStatus= Number(settings?.sportsBookLimits?.exciseTaxEnabled ?? 1)
+                    console.log("excice tas information one ",settings?.sportsBookLimits )
+                    console.log("excice tas information two  ",getFromLocalStorage('settings')?.sportsBookLimits?.exciseTaxEnabled ?? settings?.sportsBookLimits?.exciseTaxEnabled )
+                let exciseTaxStatus= Number(getFromLocalStorage('settings')?.sportsBookLimits?.exciseTaxEnabled ?? settings?.sportsBookLimits?.exciseTaxEnabled??1 )
 
-                // let withholdingTaxStatus= Number(settings?.sportsBookLimits?.withholdingTaxEnabled ?? 1)
+                let withholdingTaxStatus= Number(getFromLocalStorage('settings')?.sportsBookLimits?.withholdingTaxEnabled  ?? settings?.sportsBookLimits?.withholdingTaxEnabled ?? 1)
 
                 // todo check here taxes
                 let stake_after_tax = exciseTaxStatus?(Float(stake) / Float(112.5/100)):Float(stake);
@@ -792,7 +782,7 @@ const BetslipSubmitForm = React.memo(
                                 <tr className="bet-win-tr hide-on-affix">
                                     <td className={"bet-align-left tax-info"}> Excise Tax </td>
                                     <td className={"bet-align-right tax-info"}>KES. <span
-                                        id="tax">{formatNumber(hasMultiBetBoost ? exciseTaxBoosted : exciseTaxStatus? exciseTax:0)}</span>
+                                        id="tax">{formatNumber(hasMultiBetBoost ? exciseTaxBoosted : Number(getFromLocalStorage('settings')?.sportsBookLimits?.exciseTaxEnabled ?? settings?.sportsBookLimits?.exciseTaxEnabled) ? exciseTax:0)}</span>
                                     </td>
                                 </tr>
                                 {jackpot ? (
@@ -801,7 +791,7 @@ const BetslipSubmitForm = React.memo(
                                     <tr className="bet-win-tr hide-on-affix">
                                         <td className={"bet-align-left tax-info"}> Withholding </td>
                                         <td className={"bet-align-right tax-info"}>KES. <span
-                                            id="tax">{formatNumber(hasMultiBetBoost ? withholdingTaxBoosted :withholdingTaxStatus? withholdingTax:0)}</span>
+                                            id="tax">{formatNumber(hasMultiBetBoost ? withholdingTaxBoosted : Number(getFromLocalStorage('settings')?.sportsBookLimits?.withholdingTaxEnabled ?? settings?.sportsBookLimits?.withholdingTaxEnabled) ? withholdingTax:0)}</span>
                                         </td>
                                     </tr>
                                 )}

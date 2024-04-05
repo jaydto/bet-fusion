@@ -555,8 +555,8 @@ const BetslipSubmitForm = React.memo(
                 Number(getFromLocalStorage('settings')?.betnareGifts?.awardGiftBoost) === 1 &&
                 Number(user?.gift_balance || 0) > 0;
         
-            console.log("awargift criteria", awardGifts);
-            console.log("awargift criteria data", awardGifts);
+            // console.log("awargift criteria", awardGifts);
+            // console.log("awargift criteria data", awardGifts);
             // setAwardMultiGift(awardGifts);
             if(awardGifts===false){
                 setMultiBoostAmount(0)

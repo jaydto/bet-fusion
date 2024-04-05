@@ -174,8 +174,8 @@ const MobileMenu = React.memo((props) => {
                     </div>
                 </div>
             </div>
-            {console.log("betnare giftboost status information",(pathname.includes("nare-league")?Number(settings?.kironGifts?.awardGiftBoost)===1:
-                   Number(settings?.betnareGifts?.awardGiftBoost)===1) )}
+            {/* {console.log("betnare giftboost status information",(pathname.includes("nare-league")?Number(settings?.kironGifts?.awardGiftBoost)===1:
+                   Number(settings?.betnareGifts?.awardGiftBoost)===1) )} */}
 
             <table className={`${slip_condition ? "prematch-menu mobile-menu" : "mobile-menu"}`}
                    style={!pathSlipSummary.includes(pathname) ? sumOfOdds === 1 ? {height: "50px"} : countInfo&&(pathname.includes("nare-league")?Number(settings?.kironGifts?.awardGiftBoost)===1:

@@ -112,6 +112,7 @@
     --font-tiny:8px;
     --font-weight-normal:normal;
     --always-white:#fff;
+    --viax-betslip-bg:#141c25;
     --box-shadow-sports: 0 0.5rem 0.2rem rgba(0,0,0,.175);
 }
 .shadow-sports-header{
@@ -136,6 +137,7 @@
     --betslip-header:#4c372a;
     --betnare-side-bg:#fff;
     --betnare-header-bg:#f0f0f0;
+    --viax-betslip-bg:#fff;
     --betslip-mybets:#fff;
     --button-radius:3px;
     --betnare-odds-body:#fff;

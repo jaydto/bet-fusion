@@ -45,6 +45,9 @@ const Right = React.memo(
             setSettings(appConfigs||getFromLocalStorage('settings'))
         },[appConfigs])
 
+
+        
+
         const fetchLiveData = () => {
             dispatchRedux(sportLiveCount())
             dispatchRedux(startFetchingLiveCount({interval:30000}) )

@@ -339,10 +339,11 @@ const BetslipSubmitForm = React.memo(
         const updateWinnings = useCallback(() => {
             if (betslip) {
                     console.log("excice tas information one ",settings?.sportsBookLimits )
-                    console.log("excice tas information two  ",getFromLocalStorage('settings')?.sportsBookLimits?.exciseTaxEnabled ?? settings?.sportsBookLimits?.exciseTaxEnabled )
-                let exciseTaxStatus= Number(getFromLocalStorage('settings')?.sportsBookLimits?.exciseTaxEnabled ?? settings?.sportsBookLimits?.exciseTaxEnabled??1 )
+                    console.log("excice tas information two  ",Number(getFromLocalStorage('settings')?.sportsBookLimits?.exciseTaxEnabled ?? settings?.sportsBookLimits?.exciseTaxEnabled ))
+                    console.log("excice tas information three  ", Number(getFromLocalStorage('settings')?.sportsBookLimits?.withholdingTaxEnabled ?? settings?.sportsBookLimits?.withholdingTaxEnabled ))
+                let exciseTaxStatus= Number(getFromLocalStorage('settings')?.sportsBookLimits?.exciseTaxEnabled ?? settings?.sportsBookLimits?.exciseTaxEnabled  )
 
-                let withholdingTaxStatus= Number(getFromLocalStorage('settings')?.sportsBookLimits?.withholdingTaxEnabled  ?? settings?.sportsBookLimits?.withholdingTaxEnabled ?? 1)
+                let withholdingTaxStatus= Number(getFromLocalStorage('settings')?.sportsBookLimits?.withholdingTaxEnabled  ?? settings?.sportsBookLimits?.withholdingTaxEnabled )
 
                 // todo check here taxes
                 let stake_after_tax = exciseTaxStatus?(Float(stake) / Float(112.5/100)):Float(stake);
@@ -392,8 +393,8 @@ const BetslipSubmitForm = React.memo(
                 let taxable_amount_boosted =
                     Float(boosted_raw_possible_win) - Float(stake_after_tax_boosted);
 
-                let wint =  withholdingTaxStatus?taxable_amount * 0.2:taxable_amount;
-                let wint_boosted =  withholdingTaxStatus?taxable_amount_boosted * 0.2:taxable_amount_boosted;
+                let wint =  withholdingTaxStatus?taxable_amount * 0.2:0;
+                let wint_boosted =  withholdingTaxStatus?taxable_amount_boosted * 0.2:0;
 
                 let nw =  withholdingTaxStatus?raw_possible_win - wint:raw_possible_win;
                 let nw_boosted = withholdingTaxStatus?  boosted_raw_possible_win - wint_boosted:boosted_raw_possible_win;

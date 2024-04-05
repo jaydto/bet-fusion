@@ -116,9 +116,9 @@ const Header = React.memo((props) => {
   const fetchAppConfigurations = useCallback(async () => {
     let cached_settings = getFromLocalStorage("settings");
 
-    if (!cached_settings) {
+    // if (!cached_settings) {
       dispatchRedux(configSettings());
-    }
+    // }
   });
 
   const cleanUpFuction = async () => {

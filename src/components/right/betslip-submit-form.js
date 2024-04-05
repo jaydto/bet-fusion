@@ -114,9 +114,9 @@ const BetslipSubmitForm = React.memo(
         const userData=useSelector((state)=>state.auth.user)
         const [user, setUser]=useState(getFromLocalStorage("user"))
 
-        const exciseTaxStatus= Number(settings?.sportsBookLimits?.exciseTaxEnabled??0)
+        const exciseTaxStatus= Number(settings?.sportsBookLimits?.exciseTaxEnabled??1)
 
-        const withholdingTaxStatus= Number(settings?.sportsBookLimits?.withholdingTaxEnabled??0)
+        const withholdingTaxStatus= Number(settings?.sportsBookLimits?.withholdingTaxEnabled??1)
 
         useEffect(()=>{
             if(userData){
@@ -339,14 +339,14 @@ const BetslipSubmitForm = React.memo(
 
         const updateWinnings = useCallback(() => {
             if (betslip) {
-                let exciseTaxStatus= Number(settings?.sportsBookLimits?.exciseTaxEnabled ?? 0)
+                let exciseTaxStatus= Number(settings?.sportsBookLimits?.exciseTaxEnabled ?? 1)
 
-                let withholdingTaxStatus= Number(settings?.sportsBookLimits?.withholdingTaxEnabled ?? 0)
+                let withholdingTaxStatus= Number(settings?.sportsBookLimits?.withholdingTaxEnabled ?? 1)
 
                 // todo check here taxes
-                let stake_after_tax = exciseTaxStatus?Float(stake):(Float(stake) / Float(112.5/100));
+                let stake_after_tax = exciseTaxStatus?(Float(stake) / Float(112.5/100)):Float(stake);
                 let stake_after_tax_boosted =
-                exciseTaxStatus?(Float(stake) + Float(multiBoostAmount)):((Float(stake) + Float(multiBoostAmount)) / Float(112.5/100));
+                exciseTaxStatus?((Float(stake) + Float(multiBoostAmount)) / Float(112.5/100)):(Float(stake) + Float(multiBoostAmount));
 
                 let ext = Float(stake) - Float(stake_after_tax);
                 let ext_boosted =
@@ -391,11 +391,11 @@ const BetslipSubmitForm = React.memo(
                 let taxable_amount_boosted =
                     Float(boosted_raw_possible_win) - Float(stake_after_tax_boosted);
 
-                let wint = taxable_amount * 0.2;
-                let wint_boosted = taxable_amount_boosted * 0.2;
+                let wint =  withholdingTaxStatus?taxable_amount * 0.2:taxable_amount;
+                let wint_boosted =  withholdingTaxStatus?taxable_amount_boosted * 0.2:taxable_amount_boosted;
 
-                let nw = raw_possible_win - wint;
-                let nw_boosted = boosted_raw_possible_win - wint_boosted;
+                let nw =  withholdingTaxStatus?raw_possible_win - wint:raw_possible_win;
+                let nw_boosted = withholdingTaxStatus?  boosted_raw_possible_win - wint_boosted:boosted_raw_possible_win;
 
                 setExciseTax(Float(ext, 2));
                 setExciseTaxBoosted(Float(ext_boosted, 2));

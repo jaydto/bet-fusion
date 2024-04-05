@@ -114,9 +114,18 @@ const BetslipSubmitForm = React.memo(
         const userData=useSelector((state)=>state.auth.user)
         const [user, setUser]=useState(getFromLocalStorage("user"))
 
-        const exciseTaxStatus= Number(settings?.sportsBookLimits?.exciseTaxEnabled??1)
+        const [exciseTaxStatus, setExciseTaxStatus]=useState(null)
+        const [withholdingTaxStatus, setWithholdingTaxStatus]=useState(null)
 
-        const withholdingTaxStatus= Number(settings?.sportsBookLimits?.withholdingTaxEnabled??1)
+        // const exciseTaxStatus= Number(settings?.sportsBookLimits?.exciseTaxEnabled??1)
+
+        // const withholdingTaxStatus= Number(settings?.sportsBookLimits?.withholdingTaxEnabled??1)
+
+        useEffect(()=>{
+            setExciseTaxStatus(Number(settings?.sportsBookLimits?.exciseTaxEnabled??1))
+            setExciseTaxStatus(Number(settings?.sportsBookLimits?.withholdingTaxEnabled??1))
+
+        },[settings])
 
         useEffect(()=>{
             if(userData){
@@ -339,16 +348,16 @@ const BetslipSubmitForm = React.memo(
 
         const updateWinnings = useCallback(() => {
             if (betslip) {
-                let exciseTaxStatus= Number(settings?.sportsBookLimits?.exciseTaxEnabled ?? 1)
+                // let exciseTaxStatus= Number(settings?.sportsBookLimits?.exciseTaxEnabled ?? 1)
 
-                let withholdingTaxStatus= Number(settings?.sportsBookLimits?.withholdingTaxEnabled ?? 1)
+                // let withholdingTaxStatus= Number(settings?.sportsBookLimits?.withholdingTaxEnabled ?? 1)
 
                 // todo check here taxes
                 let stake_after_tax = exciseTaxStatus?(Float(stake) / Float(112.5/100)):Float(stake);
                 let stake_after_tax_boosted =
                 exciseTaxStatus?((Float(stake) + Float(multiBoostAmount)) / Float(112.5/100)):(Float(stake) + Float(multiBoostAmount));
 
-                let ext = Float(stake) - Float(stake_after_tax);
+                let ext =  exciseTaxStatus? Float(stake) - Float(stake_after_tax):Float(stake);
                 let ext_boosted =
                     Float(stake) + Float(multiBoostAmount) - Float(stake_after_tax_boosted);
 

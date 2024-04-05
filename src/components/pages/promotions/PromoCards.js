@@ -99,7 +99,7 @@ const PromoCards = () => {
               MBUZI YA MBOGI!
             </h5>
             <p className="container-profile mx-1 px-2 text-data-promotions">
-            Place a bet on sportsbook with a minimum stake of 50 bob share with 3 friends and stand a chance to win a live goat(mbuzi ya mbogi) !{" "}
+            Place a bet on sportsbook with a minimum stake of 50 bob share with 5 friends and stand a chance to win a live goat(mbuzi ya mbogi) !{" "}
             </p>
             <hr />
 

@@ -139,11 +139,11 @@ input.text-white {
   color: var(--footer-color) !important;
 }
 /* todo check on this  */
-.styling-matches {
+/* .styling-matches {
   -webkit-box-shadow: 0px 4px 5px 0px rgba(40, 55, 78, 1);
   -moz-box-shadow: 0px 4px 5px 0px rgba(40, 55, 78, 1);
   box-shadow: 0px 4px 5px 0px rgba(40, 55, 78, 1);
-}
+} */
 .cg.login-button2 {
   color: var(--dark) !important;
 }

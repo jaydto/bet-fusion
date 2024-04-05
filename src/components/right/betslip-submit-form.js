@@ -123,7 +123,7 @@ const BetslipSubmitForm = React.memo(
 
         useEffect(()=>{
             setExciseTaxStatus(Number(settings?.sportsBookLimits?.exciseTaxEnabled??1))
-            setExciseTaxStatus(Number(settings?.sportsBookLimits?.withholdingTaxEnabled??1))
+            setWithholdingTaxStatus(Number(settings?.sportsBookLimits?.withholdingTaxEnabled??1))
 
         },[settings])
 

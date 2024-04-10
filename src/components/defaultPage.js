@@ -48,10 +48,10 @@ const DefaultPage = React.memo(
 
         let sub_type = (url.searchParams.get("sub_type_id") || "1")
         const [tab, setTab] = useState('highlights');
-        const [sportID, setSportID] = useState(79);
-        const [sportLeague, setSportLeague] = useState('');
+        // const [sportID, setSportID] = useState(79);
+        // const [sportLeague, setSportLeague] = useState('');
 
-        const {state, dispatch} = useContext(StoreContext);
+        const { dispatch} = useContext(StoreContext);
         const dispatchRedux = useDispatch()
         const markets = marketChoiceOptions();
         let sportId = new URLSearchParams(window.location.search).get('sport_id') || '79'
@@ -220,11 +220,11 @@ const DefaultPage = React.memo(
         // Split the pathname by "/competition/"
         let parts = c_pathname.split("/competition/");
         let competitionpath
-        let competition_filter;
+        // let competition_filter;
 // If there are parts after "/competition/", reconstruct the modified URL
         if (parts.length > 1) {
             competitionpath = "/competition/" + parts[1];
-            competition_filter = parts[0]
+            // competition_filter = parts[0]
 
         }
         const close_call_to_action = useSelector(

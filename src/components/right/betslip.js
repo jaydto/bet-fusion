@@ -1,4 +1,4 @@
-import React, {useCallback, useContext, useEffect, useState} from "react";
+import React, {useCallback, useContext, useEffect, useRef, useState} from "react";
 import BetslipSubmitForm from "./betslip-submit-form";
 import {StoreContext } from "../../context/store";
 import {addToSlip, getBetslip, getJackpotBetslip, removeFromJackpotSlip, removeFromSlip,} from "../utils/betslip";
@@ -23,6 +23,8 @@ const BetSlip = React.memo(
         const [settings,] = useState(getFromLocalStorage("settings"));
         const {height} = useWindowDimensions();
         const dispatchRedux=useDispatch()
+        const widgetRef = useRef(null);
+
 
         const [similarEventIds, setSimilarEventIds] = useState([]);
 
@@ -385,7 +387,7 @@ const BetSlip = React.memo(
               similarEventIds: [...similarEventIds, parseInt(newSimilarEventIds)], // Append newSimilarEventIds here
               onItemClick: handleButtonOnClick,
               user: user?user?.profile_id:null,
-              filters: { recommendationType: { available: ['recommended'] } },
+              // filters: { recommendationType: { available: ['recommended', 'trending'] } },
             });
         
             // Clean up: Remove the listener when the component is unmounted
@@ -534,6 +536,14 @@ const BetSlip = React.memo(
                 dispatchRedux(setMatchBetslip(betslip_data));
             }
         };
+
+
+        useEffect(() => {
+          // Scroll to the widget element when the component mounts
+          if (widgetRef.current) {
+              widgetRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+      }, []); 
        
         const pathLocation = window.location.pathname
         return (
@@ -683,9 +693,9 @@ const BetSlip = React.memo(
                     ""
                   ) 
                 ) : (
-                  <div className="widgets mt-3">
+                  <div className="widgets mt-3 mobile-widget-position" >
                     <div>
-                      <div className="sr-widget sr-widget-bets"></div>
+                      <div className="sr-widget sr-widget-bets" ></div>
                     </div>
                     {/* <div>
                       <div className="sr-widget sr-widget-2"></div>
@@ -693,9 +703,10 @@ const BetSlip = React.memo(
                     
                   </div>
                 )}
+                <div ref={widgetRef}></div>
               </div>
             </div>
-            <div className="bottom">
+            <div className="bottom" >
               <BetslipSubmitForm
                 jackpotData={jackpotData}
                 live={live}

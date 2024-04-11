@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./test.css";
 import "../assets/css/bottomSheet.css";
 import { Link, useLocation } from "react-router-dom";
-import { getBetslip } from "./utils/betslip";
+import { addToSlip, getBetslip } from "./utils/betslip";
 import MatchList, { MatchHeaderRow } from "./matches";
 import SkeletonLoaderMobile from "./pages/skeletonLoadersWeb/SkeletonLoaderMobile";
 import Countries from "./countries/Countries";
@@ -17,9 +17,10 @@ import {
   startFetchingMatches,
   stopFetchingMatches,
 } from "../redux/matchesSlice";
-import { setMatchBetslip } from "../redux/bettingSlice";
+import { removePickedData,setMatchBetslip, setPickedData, setSelected } from "../redux/bettingSlice";
 
 import SkeletonLoaderMore from "./pages/skeletonLoadersWeb/SkeletonLoaderMore";
+import Notify from "./utils/Notify";
 
 const Index = React.memo((props) => {
   const { tab } = props;
@@ -35,10 +36,22 @@ const Index = React.memo((props) => {
   const fetching = useSelector((state) => state.matchesData.fetching);
   const limit = useSelector((state) => state.matchesData.limit);
   const [newLimit, setNewLimit] = useState(10);
+  const userData = useSelector((state) => state.auth.user)
+  const [user, setUser] = useState(getFromLocalStorage("user"))
+  const [settings,] = useState(getFromLocalStorage("settings"));
+
+
 
   useEffect(() => {
     setNewLimit(limit);
   }, [limit]);
+
+  useEffect(() => {
+    if (userData) {
+        setUser(userData || getFromLocalStorage("user"))
+    }
+}, [userData])
+
 
   useEffect(() => {
     if (limit !== 10) {
@@ -70,13 +83,112 @@ const Index = React.memo((props) => {
     window.SIR("registerAdapter", "betnare");
 
     // Add Widget 1
-    window.SIR("addWidget", ".sr-widget-1", "betRecommendation", {});
+    window.SIR("addWidget", ".sr-widget-1", "betRecommendation", {
+      user:user?.profile_id??null,
+      count:6,
+      onItemClick: handleButtonOnClick,
 
-    // Add Widget 2
-    window.SIR("addWidget", ".sr-widget-2", "betRecommendation.similarBets", {
-      similarEventIds: [43232509],
     });
+
+    
   });
+
+  const clear_rep = (str) => {
+    return str.replace(/\s/g, "");
+};
+  const handleButtonOnClick =
+  (target,event) => {
+
+    console.log("checking what is the target", target)
+      console.log("checking what is the data", event)
+      if (target === 'externalOutcome') {
+
+        // console.log("target data", event.externalMarket.status.isActive)
+      const attributes = {
+          parent_match_id: event?.externalEvent?.id,
+          // match_id: event.currentTarget.getAttribute("match_id"),
+          sub_type_id: event?.externalMarket?.id,
+          // special_bet_value: event.currentTarget.getAttribute("special_bet_value"),
+          odd_key: event?.externalOutcome?.name,
+          odd_value: event?.externalOutcome?.odds,
+          bet_type: event?.externalEvent?.isLive===false?"0":"1",
+          odd_type: event?.externalMarket?.name,
+          start_time: event?.externalEvent?.date,
+          home_team: event?.externalEvent?.teams[0]?.name,
+          away_team: event?.externalEvent?.teams[1]?.name,
+          sport_name: event?.externalEvent?.sport.name,
+          market_active: event?.externalMarket?.status.isActive,
+      };
+
+      let cstm = clear_rep(
+          attributes.match_id +
+          "" +
+          attributes.sub_type_id +
+          attributes.odd_key
+          //  +
+          // (marketKey !== undefined ? marketKey : "")
+      );
+      const maxPickReached = () => {
+          // console.log("max_pick_reached")
+          dispatchRedux(removePickedData(" "))
+          // dispatchRedux(removePickedData(""));
+          Notify({
+              status: 401,
+              message: "Maximum selections reached",
+              token: "",
+          });
+      };
+      const betItems = getBetslip();
+      const slip = {
+          match_id: attributes.match_id??attributes.parent_match_id,
+          parent_match_id: attributes.parent_match_id,
+          special_bet_value: "",
+          sub_type_id: attributes.sub_type_id,
+          bet_pick: attributes.odd_key,
+          start_time: attributes.start_time,
+          odd_value: attributes.odd_value,
+          home_team: attributes.home_team,
+          away_team: attributes.away_team,
+          bet_type: attributes.bet_type,
+          odd_type: attributes.odd_type,
+          sport_name: attributes.sport_name,
+          live: 0,
+          ucn: clear_rep(
+              `${attributes.match_id??attributes.parent_match_id}${attributes.sub_type_id}${attributes.odd_key}
+              `
+          ),
+          market_active: attributes.market_active,
+          position: 0,
+      };
+      console.log("target data", slip)
+
+
+      // if (cstm === match?.ucn) {
+          let betslip;
+          const updateRedux = () => {
+              betslip =  addToSlip(slip);
+              dispatchRedux( setSelected(event.externalEvent.id+"_selected", cstm));
+              dispatchRedux( setPickedData(cstm));
+          };
+
+          
+              updateRedux();
+         
+              if (Object.keys(betItems || {}).length === Number(settings?.sportsBookLimits?.multiBetMaxSelections)) {
+                  maxPickReached();
+              } else {
+                  updateRedux();
+              }
+          
+
+          const betslip_data = {
+              betslip_type: "betslip",
+              data: betslip
+          };
+
+          dispatchRedux(setMatchBetslip(betslip_data));
+      }
+  };
 
   const fetchData = async () => {
     let tab = location.pathname.replace("/", "") || "highlights";
@@ -202,9 +314,9 @@ const Index = React.memo((props) => {
     <>
       <div className="widgets">
         {/* Todo return this parts only */}
-        {/* <div>
+        <div>
           <div className="sr-widget sr-widget-1"></div>
-        </div> */}
+        </div>
         {/* <div><div className="sr-widget sr-widget-2"></div></div> */}
       </div>
       {newMatches && tab !== "countries" && (

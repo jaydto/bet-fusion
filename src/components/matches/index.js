@@ -796,7 +796,7 @@ const OddButton = React.memo(
         const ref = useRef();
         const betslip_data_item = useSelector((state) => state.betting.betslip)
         const jackpot_slip_data_item = useSelector((state) => state.betting.jackpotbestlip)
-        let reference = jackpot ? "jp_" + match.match_id + "_selected" : match.match_id + "_selected";
+        let reference = jackpot ? "jp_" + match.match_id + "_selected" : match.parent_match_id + "_selected";
 
 
         const updatePicked = () => {
@@ -806,7 +806,7 @@ const OddButton = React.memo(
             if (typeof referencedState === 'string') { // Check if referencedState is a string
 
                 let uc = clear_rep(
-                    match.match_id +
+                    match.parent_match_id +
                     "" +
                     match.sub_type_id +
                     (match?.[mkt] || match?.odd_key || "draw")
@@ -863,7 +863,7 @@ const OddButton = React.memo(
                     market_active: event.currentTarget.getAttribute("market_active"),
                 };
                 let cstm = clear_rep(
-                    attributes.match_id +
+                    attributes.parent_match_id +
                     "" +
                     attributes.sub_type_id +
                     attributes.odd_key +
@@ -905,8 +905,8 @@ const OddButton = React.memo(
                     if (picked === "picked") {
                         betslip =
                             jackpot !== true
-                                ? removeFromSlip(attributes.match_id)
-                                : removeFromJackpotSlip(attributes.match_id);
+                                ? removeFromSlip(attributes.parent_match_id)
+                                : removeFromJackpotSlip(attributes.parent_match_id);
 
                         setPicked("");
                         dispatchRedux(removeSelected(reference))
@@ -938,7 +938,7 @@ const OddButton = React.memo(
             <button
                 ref={ref}
                 className={`home-team ${allMarkets ? "all-markets" : jackpot ? " jackpot-buttons-size" : ""} ${
-                    match.match_id
+                    match.parent_match_id
                 } ${match?.ucn} ${picked} c-btn`}
                 home_team={match.home_team}
                 odd_type={match?.name || match?.market_name || "1X2"}
@@ -979,7 +979,7 @@ const OddButton = React.memo(
 const MktOddsButton = React.memo(
     (props) => {
         const {match, mktodds, live, pdown, allMarkets} = props;
-        let reference = match.match_id + "_selected";
+        let reference = match.parent_match_id + "_selected";
         const dispatchRedux = useDispatch();
 
         // Calculate ucn directly
@@ -987,7 +987,7 @@ const MktOddsButton = React.memo(
             ...match,
             ...mktodds,
             ucn: clear_rep(
-                match.match_id + "" + mktodds.sub_type_id + (match?.['detail'] || mktodds.odd_key || "draw")
+                match.parent_match_id + "" + mktodds.sub_type_id + (match?.['detail'] || mktodds.odd_key || "draw")
             )
         }; // Append ucn to fullmatch
 
@@ -1177,7 +1177,7 @@ const getUpdatedMatchFromOdds = (props) => {
 
     // Calculate the ucn property based on the conditions
     const ucn = clear_rep(
-        newMatch.match_id + "" + newMatch.sub_type_id + (
+        newMatch.parent_match_id + "" + newMatch.sub_type_id + (
             odd_key
         )
     );
@@ -1492,9 +1492,9 @@ const MatchRow = React.memo(
                                         ? <OddButton match={{
                                             ...match,
                                             ucn: clear_rep(
-                                                jackpot ? ("jp_" + match.match_id + "" + match.sub_type_id +
+                                                jackpot ? ("jp_" + match.parent_match_id + "" + match.sub_type_id +
                                                         match?.home_team) :
-                                                    (match.match_id + "" + match.sub_type_id +
+                                                    (match.parent_match_id + "" + match.sub_type_id +
                                                         match?.home_team)
                                             )
                                         }} mkt="home_team" live={live} jackpot={jackpot}/>
@@ -1507,9 +1507,9 @@ const MatchRow = React.memo(
                                         ? <OddButton match={{
                                             ...match,
                                             ucn: clear_rep(
-                                                jackpot ? ("jp_" + match.match_id + "" + match.sub_type_id +
+                                                jackpot ? ("jp_" + match.parent_match_id + "" + match.sub_type_id +
                                                         'draw') :
-                                                    (match.match_id + "" + match.sub_type_id +
+                                                    (match.parent_match_id + "" + match.sub_type_id +
                                                         'draw')
                                             )
                                         }} mkt="draw" live={live} jackpot={jackpot}/>
@@ -1521,9 +1521,9 @@ const MatchRow = React.memo(
                                         ? <OddButton match={{
                                             ...match,
                                             ucn: clear_rep(
-                                                jackpot ? ("jp_" + match.match_id + "" + match.sub_type_id +
+                                                jackpot ? ("jp_" + match.parent_match_id + "" + match.sub_type_id +
                                                         match?.away_team) :
-                                                    (match.match_id + "" + match.sub_type_id +
+                                                    (match.parent_match_id + "" + match.sub_type_id +
                                                         match?.away_team)
                                             )
                                         }} mkt="away_team" live={live} jackpot={jackpot}/>
@@ -1853,7 +1853,7 @@ export const JackpotMatchList = React.memo(
             }
             Object.entries(betslip || {}).map(([matchId, match]) => {
 
-                let uc = clear_rep("jp_" + match?.match_id.toString() + match?.sub_type_id.toString() + (match?.bet_pick || "draw"));
+                let uc = clear_rep("jp_" + match?.parent_match_id.toString() + match?.sub_type_id.toString() + (match?.bet_pick || "draw"));
                 const reference = "jp_" + matchId + "_selected";
                 dispatchRedux(setSelected(reference, uc));
             });
@@ -1939,7 +1939,7 @@ const MatchList = React.memo(
             }
             Object.entries(betslip || {}).map(([matchId, match]) => {
                 let uc = clear_rep(
-                    match.match_id +
+                    match.parent_match_id +
                     "" +
                     match.sub_type_id +
                     (match?.bet_pick || "draw")

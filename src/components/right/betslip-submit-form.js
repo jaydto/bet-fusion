@@ -267,7 +267,7 @@ const BetslipSubmitForm = React.memo(
                         setMessage(response?.payload)
                         let betslips = getBetslip();
                         Object.entries(betslips).map(([match_id, match]) => {
-                            let match_selector = match.match_id + "_selected";
+                            let match_selector = match.parent_match_id + "_selected";
 
                             dispatchRedux(resetStateBetslip("betslip"))
                             dispatchRedux(removeSelected(match_selector))
@@ -431,9 +431,9 @@ const BetslipSubmitForm = React.memo(
                 jackpot ? removeFromJackpotSlip(match_id) :
                     removeFromSlip(match_id);
 
-                let match_selector = match.match_id + "_selected";
+                let match_selector = match.parent_match_id + "_selected";
                 let ucn = clean_rep(
-                    match.match_id
+                    match.parent_match_id
                     + "" + match.sub_type_id
                     + (match.bet_pick)
                 );

@@ -201,11 +201,12 @@ const Index = React.memo((props) => {
   return (
     <>
       <div className="widgets">
-        <div>
+        {/* Todo return this parts only */}
+        {/* <div>
           <div className="sr-widget sr-widget-1"></div>
-        </div>
+        </div> */}
         {/* <div><div className="sr-widget sr-widget-2"></div></div> */}
-      </div>\
+      </div>
       {newMatches && tab !== "countries" && (
         <MatchHeaderRow
           live={false}

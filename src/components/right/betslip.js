@@ -367,7 +367,13 @@ const BetSlip = React.memo(
 
             console.log("parent_match_id",typeof(newSimilarEventIds))
         
-            setSimilarEventIds(newSimilarEventIds);
+            // setSimilarEventIds(newSimilarEventIds);
+            setSimilarEventIds((prevSimilarEventIds) => {
+              const updatedSimilarEventIds = [...prevSimilarEventIds, parseInt(newSimilarEventIds)];
+              return updatedSimilarEventIds;
+            });
+
+            console.log("similar event_ids", similarEventIds)
         
             // Configure SIR here
             window.SIR('registerAdapter', 'betnare', { onBetSlipChanged: onBetSlipChanged });
@@ -376,7 +382,7 @@ const BetSlip = React.memo(
             window.SIR('addWidget', '.sr-widget-bets', 'betRecommendation.similarBets', {
               maxRows: 1,
               cardsLayout: 'horizontal',
-              similarEventIds: [user?parseInt(newSimilarEventIds):null],
+              similarEventIds: [...similarEventIds, parseInt(newSimilarEventIds)], // Append newSimilarEventIds here
               onItemClick: handleButtonOnClick,
               user: user?user?.profile_id:null,
               filters: { recommendationType: { available: ['recommended'] } },

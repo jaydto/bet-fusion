@@ -1894,6 +1894,39 @@ img.nare-league {
     margin-top: 98px;
   }
 } */
+
+@media (min-width:992px) and (max-width:1080px){
+  .slip-log-max {
+    overflow-y: auto;
+    max-height: 45vh;
+  }
+
+}
+@media (min-width: 1081px) and (max-width: 1280px) {
+  .slip-log-max {
+    overflow-y: auto;
+    max-height: 50vh;
+  }
+}
+@media (min-width: 1281px) and (max-width: 1440px) {
+  .slip-log-max {
+    overflow-y: auto;
+    max-height: 55vh;
+  }
+}
+@media (min-width: 1441px) and (max-width: 1680px) {
+  .slip-log-max {
+    overflow-y: auto;
+    max-height: 57vh;
+  }
+}
+@media (min-width: 1681px) {
+  .slip-log-max {
+    overflow-y: auto;
+    max-height: 60vh;
+  }
+}
+
 @media (min-width: 992px) {
   .flex-container.height-default-body {
     margin-top: 51px;
@@ -2134,18 +2167,14 @@ img.nare-league {
 
   .slip-top {
     overflow-y: auto;
-    max-height: 50vh;
+    /* max-height: 50vh; */
   }
 
   .slip-height {
     overflow-y: auto;
-    max-height: 50vh;
+    /* max-height: 50vh; */
   }
 
-  .slip-log-max {
-    overflow-y: auto;
-    max-height: 40vh;
-  }
 
   .size-all-markets {
     width: 110% !important;

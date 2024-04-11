@@ -160,7 +160,6 @@ const Index = React.memo((props) => {
           market_active: attributes.market_active,
           position: 0,
       };
-      console.log("target data", slip)
 
 
       // if (cstm === match?.ucn) {

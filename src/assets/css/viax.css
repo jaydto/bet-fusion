@@ -19,7 +19,12 @@ $base: #16202C;
 .sr-bb .sr-bb {
   background: none;
 }
-
+srct-br-outcome--selected{
+  background-color: var(--orange)!important;
+}
+srct-br-outcome{
+  background-color: var(--odds-button)!important;
+}
 .sr-bb .srt-base-1 {
   background-color: transparent;
   color: #ffffff;

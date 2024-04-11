@@ -296,7 +296,7 @@ const ResponsibleGambling = React.memo(() => {
                 </Tab>
                 <Tab
                   eventKey="self_exclusinon"
-                  title="Self Exclusioin"
+                  title="Self Exclusion"
                   className={"background-primary"}
                 >
                   <SelfExclusion />

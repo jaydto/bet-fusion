@@ -8,6 +8,29 @@ body {
 .line-on-slip-items-container {
   background: var(--betslip-list);
 }
+/* self-exclusion */
+.rdrInputRange{
+  display:none!important;
+}
+#reason-dropdown{
+  width: 100%;
+  background: var(--odds-button);
+  padding: 12px;
+  font-size:14px;
+  font-weight: bold;
+}
+#reason-dropdown-data{
+  width: 100%;
+  background: var(--odds-button);
+  padding: 11px;
+  color:#fff;
+}
+.form-group.self-exclusion_form div .dropdown-menu{
+  background: var(--odds-button);
+  width: 100%;
+
+}
+/* end self excluison */
 
 .link-color {
   color: var(--link-color) !important;

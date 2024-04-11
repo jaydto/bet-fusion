@@ -9,6 +9,9 @@ import ExclusionModal from "../../../modals/ExclusionModal";
 import {useFormik} from "formik";
 import {useDispatch, useSelector} from "react-redux";
 import {resetState, userSelfExclusion} from "../../../../redux/dataSlice";
+import { Dropdown, DropdownButton } from 'react-bootstrap';
+// import "../assets/css/bottomSheet.css"
+
 const SelfExclusion = () => {
     const navigate=useNavigate();
     const [showModal, setShowModal] = useState(false);
@@ -19,6 +22,13 @@ const SelfExclusion = () => {
     const exclusion_message=useSelector((state)=>state.data.self_exclsuion_message)
     const dispatchRedux=useDispatch()
     const [user, setUser]=useState(getFromLocalStorage("user"))
+    const [selectedReason, setSelectedReason] = useState(null);
+
+
+    const handleReasonSelect = (reason) => {
+        setSelectedReason(reason);
+        formik.setFieldValue('reason_for_self_exclusion', reason.title);
+    };
 
     useEffect(()=>{
         if(userData){
@@ -76,10 +86,15 @@ const SelfExclusion = () => {
 
     // Custom presets - only show "Today" preset
     const customPresets = {
-        'Today': {
-            startDate: today,
-            endDate: today,
-            key: 'today',
+        '3 months': {
+            startDate: today, // Set the start date to today
+            endDate: new Date(today.getFullYear(), today.getMonth() + 3, today.getDate()), // Set the end date to 3 months from today
+            key: '3months',
+        },
+        '6 months': {
+            startDate: today, // Set the start date to today
+            endDate: new Date(today.getFullYear(), today.getMonth() + 6, today.getDate()), // Set the end date to 6 months from today
+            key: '6months',
         },
     };
 
@@ -93,6 +108,9 @@ const SelfExclusion = () => {
             const elements = document.querySelectorAll('.rdrStaticRangeLabel[tabindex="-1"]');
             elements.forEach((element) => {
                 if (element.textContent === 'Yesterday') {
+                    element.style.display = 'none'; // Hide the element
+                }
+                if (element.textContent === 'Today') {
                     element.style.display = 'none'; // Hide the element
                 }
                 if(element.textContent==='Last Month'){
@@ -127,10 +145,24 @@ const SelfExclusion = () => {
         onSubmit: handleUpdate, // Submit the form on button click
     });
 
+    let reasons_for_self_exclusion = [
+        {"title": "Problem Gambling", "type": "Addiction", id:1},
+        {"title": "Financial Concerns", "type": "Financial", id:2},
+        {"title": "Emotional Distress", "type": "Mental Health", id:3},
+        {"title": "Relationship Strain", "type": "Interpersonal", id:4},
+        {"title": "Legal Issues", "type": "Legal", id:5},
+        {"title": "Employment or Education", "type": "Professional/Academic", id:6},
+        {"title": "Personal Integrity", "type": "Ethical", id:7},
+        {"title": "Seeking Help", "type": "Treatment", id:8},
+        {"title": "Protecting Assets", "type": "Financial", id:9},
+        {"title": "Regaining Control", "type": "Personal Growth", id:10}
+    ]
+    const dropdownTitle = selectedReason ? selectedReason.title : 'Select Reason';
+
 
     return (
         <div>
-            <h2 className={'text-light w-100 py-1 px-2 self-exclusion_form'}>Select a Date Range:</h2>
+            <h2 className={'text-light w-100 py-1 px-2 self-exclusion_form'}>Select Duration of Self Exclusion </h2>
             <DateRangePicker
                 ranges={[dateRange]}
                 onChange={handleDateRangeChange}
@@ -143,24 +175,22 @@ const SelfExclusion = () => {
                 showSelectionPreview={true}
             />
             <form onSubmit={formik.handleSubmit}>
-                <div className="form-group self-exclusion_form">
+                <div className="form-group self-exclusion_form mb-3">
                     <label htmlFor="reason_for_self_exclusion">Reason for Self Exclusion:</label>
-                    <textarea
-                        type="text"
-                        id="reason_for_self_exclusion"
-                        name="reason_for_self_exclusion"
-                        className="form-control"
-                        placeholder={'Reason for self Exclusion'}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.reason_for_self_exclusion}
-                    />
+                    
+                    <DropdownButton id="reason-dropdown" title={dropdownTitle}>
+                            {reasons_for_self_exclusion.map((reason) => (
+                    <Dropdown.Item key={reason.id} id="reason-dropdown-data" onClick={() => handleReasonSelect(reason)}>
+                        {reason.title}
+                    </Dropdown.Item>
+                ))}
+            </DropdownButton>
                     {formik.touched.reason_for_self_exclusion && formik.errors.reason_for_self_exclusion ? (
                         <div className="error-message">{formik.errors.reason_for_self_exclusion}</div>
                     ) : null}
                 </div>
                 <div className={'update_self_exclusion'}>
-                <button type="submit" className="update_button" disabled={loading}>
+                <button type="submit" className="update_button" disabled={loading} style={{width:"85%"}}>
                     {loading && <div className="loader"></div>}
                     Self Exclude
                 </button>

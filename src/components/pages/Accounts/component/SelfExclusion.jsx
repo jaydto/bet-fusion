@@ -326,6 +326,28 @@ const SelfExclusion = () => {
   // ]
   // const dropdownTitle = selectedReason ? selectedReason.title : 'Select Reason';
 
+  useEffect(() => {
+    /**
+     * Alert if clicked on outside of element
+     */
+    function handleClickOutside(event) {
+      if (
+        bottomSheetRef.current &&
+        !bottomSheetRef.current.contains(event.target)
+      ) {
+        dispatchRedux(setState("show_exclusion_modal", false));
+      }
+    }
+
+    // Bind the event listener
+    document.addEventListener("mousedown", handleClickOutside);
+    // document.addEventListener("click", handleClickOutside);
+    return () => {
+      // Unbind the event listener on clean up
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [bottomSheetRef, bottom_sheet]);
+
   const collapseBottomSheet = () => {
     dispatchRedux(setState("show_exclusion_modal", false));
   };

@@ -10,6 +10,9 @@ body {
 }
 
 /* self-exclusion */
+.rdrDefinedRangesWrapper{
+  display: none;
+}
 .rdrInputRange{
   display:none!important;
 }
@@ -350,7 +353,7 @@ input.text-white {
   padding: 4px 124px;
   margin: 5px;
   border-radius: 6px;
-  font-size: 19px;
+  font-size: 16px;
   font-weight: 600;
   background-color: var(--betnare-button-login);
 }
@@ -699,7 +702,7 @@ ol.list-count-type {
 }
 .accordion-button:not(.collapsed)::after {
   filter: brightness(2.5);
-  background-image: ;
+  /* background-image: ; */
 }
 .menu-t div.inner-div {
   /* background-color: #2D4352; */
@@ -1308,6 +1311,8 @@ img.nare-league {
 .self-exclusion_form {
   margin: auto;
   max-width: 900px;
+  display: flex;
+  justify-content: center;
 }
 
 /*back button*/
@@ -2544,6 +2549,7 @@ button#countryCode {
   .update_button {
     /* height: 41px; */
     padding: 9px 119px !important;
+    width:90%!important;
 }
   .desktop-only-show {
     display: none !important;

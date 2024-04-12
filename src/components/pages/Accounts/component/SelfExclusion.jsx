@@ -63,7 +63,63 @@ const SelfExclusion = () => {
   });
 
   const handleDateRangeChange = (ranges) => {
-    setDateRange(ranges.selection);
+    console.log("ranges data", ranges)
+    const elements = document.querySelectorAll(
+        '.rdrStaticRangeLabel[tabindex="-1"]'
+      );
+
+      elements.forEach((element) => {
+        
+        if (element.textContent === "6 months") {
+                const startDate = new Date();
+                    // Set end date to 6 months from today
+                    const endDate = new Date(
+                        startDate.getFullYear(),
+                        startDate.getMonth() + 6,
+                        startDate.getDate()
+                    );
+                    // Set key
+                    const key = "selection";
+                    setDateRange({ startDate, endDate, key });
+
+                    // Handle onClick behavior for '6 months' here
+                    console.log("Clicked on '6 months' element");
+                    console.log("Start Date:", startDate);
+                    console.log("End Date:", endDate);
+                    console.log("Key:", key);
+                // Handle onClick behavior for 'Last Week' here
+                console.log("Clicked on '6 months' element");
+
+        //   element.style.display = "none"; // Hide the element
+        }
+        if (element.textContent === "3 months") {
+                
+                const startDate = new Date();
+                // Set end date to 3 months from today
+                const endDate = new Date(
+                    startDate.getFullYear(),
+                    startDate.getMonth() + 3,
+                    startDate.getDate()
+                );
+
+                // Set key
+                const key = "selection";
+                            setDateRange({ startDate, endDate, key });
+
+                // Handle onClick behavior for '3 months' here
+                console.log("Clicked on '3 months' element");
+                console.log("Start Date:", startDate);
+                console.log("End Date:", endDate);
+                console.log("Key:", key);
+                // Handle onClick behavior for 'Last Week' here
+                console.log("Clicked on '3 months' element");
+
+        }
+        else{
+            setDateRange(ranges.selection);
+        }
+      });
+   
   };
 
   const handleUpdate = async () => {
@@ -154,7 +210,7 @@ const SelfExclusion = () => {
         today.getMonth() + 3,
         today.getDate()
       ), // Set the end date to 3 months from today
-      key: "3months",
+      key: "selection",
     },
     "6 months": {
       startDate: today, // Set the start date to today
@@ -163,7 +219,7 @@ const SelfExclusion = () => {
         today.getMonth() + 6,
         today.getDate()
       ), // Set the end date to 6 months from today
-      key: "6months",
+      key: "selection",
     },
   };
 
@@ -182,14 +238,54 @@ const SelfExclusion = () => {
           element.style.display = "none"; // Hide the element
         }
         if (element.textContent === "Today") {
-            element.textContent=""
+            // element.textContent="3 months"
           element.style.display = "none"; // Hide the element
         }
         if (element.textContent === "Last Month") {
+            // element.textContent="6 months"
+            // element.onclick = () => {
+            //     const startDate = new Date();
+            //         // Set end date to 6 months from today
+            //         const endDate = new Date(
+            //             startDate.getFullYear(),
+            //             startDate.getMonth() + 6,
+            //             startDate.getDate()
+            //         );
+            //         // Set key
+            //         const key = "selection";
+            //         setDateRange({ startDate, endDate, key });
+
+            //         // Handle onClick behavior for '6 months' here
+            //         console.log("Clicked on '6 months' element");
+            //         console.log("Start Date:", startDate);
+            //         console.log("End Date:", endDate);
+            //         console.log("Key:", key);
+            //     // Handle onClick behavior for 'Last Week' here
+            //     console.log("Clicked on '6 months' element");
+            // };
+
           element.style.display = "none"; // Hide the element
         }
         if (element.textContent === "Last Week") {
           element.style.display = "none"; // Hide the element
+            // element.textContent="3 months"
+            // element.onclick = () => {
+                
+            //     const startDate = new Date();
+            //     // Set end date to 3 months from today
+            //     const endDate = new Date(
+            //         startDate.getFullYear(),
+            //         startDate.getMonth() + 3,
+            //         startDate.getDate()
+            //     );
+
+            //     // Set key
+            //     const key = "selection";
+            //     setDateRange({ startDate, endDate, key });
+
+                
+            // };
+
         }
       });
     };
@@ -270,7 +366,7 @@ const SelfExclusion = () => {
             type="submit"
             className="update_button"
             disabled={loading}
-            style={{ width: "85%" }}
+            style={{ width: "63%" }}
           >
             {loading && <div className="loader"></div>}
             Self Exclude
@@ -296,10 +392,10 @@ const SelfExclusion = () => {
           <h2 className="text-warning"> Are You sure you want to continue?</h2>
 
           <div className="d-flex flex-column">
-          <p className="text-light">
-          Self-exclusion will log you out and restrict access to our platform. 
-          For further assistance or guidance please reach out to customer care @
-
+            <p className="text-light">
+              Self-exclusion will log you out and restrict access to our
+              platform. For further assistance or guidance please reach out to
+              customer care @
             </p>
             <p className="bold text-center text-light"> 0701087777</p>
           </div>
@@ -320,29 +416,30 @@ const SelfExclusion = () => {
               })}
             </div>
           </div>
-          <div
-            style={{ position: "relative" }}
-            className="d-flex justify-content-between align-items-center gap-5 mt-5"
-          >
-            <Button
-              onClick={() => {
-                handleConfirmation();
-              }}
-              className={"text-dark py-2 bold px-5  btn border-0 bg-warning"}
+          <div style={{ position: "relative" }}>
+            <div
+              className="d-flex justify-content-between align-items-center gap-5 mt-5"
             >
-              Continue
-            </Button>
+              <Button
+                onClick={() => {
+                  handleConfirmation();
+                }}
+                className={"text-dark py-2 bold px-5  btn border-0 bg-warning"}
+              >
+                Continue
+              </Button>
 
-            <Button
-              onClick={() => {
-                collapseBottomSheet();
-              }}
-              className={
-                "text-light bold bg-secondary py-2 px-5  btn border-0 "
-              }
-            >
-              Cancel
-            </Button>
+              <Button
+                onClick={() => {
+                  collapseBottomSheet();
+                }}
+                className={
+                  "text-light bold bg-secondary py-2 px-5  btn border-0 "
+                }
+              >
+                Cancel
+              </Button>
+            </div>
           </div>
         </div>
       </div>

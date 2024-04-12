@@ -90,7 +90,6 @@ const HeaderLogin = React.memo((props) => {
     dispatchRedux(loginUser(initialValues))
       .then((response) => {
         if (loginUser.rejected.match(response)) {
-          console.log("error message", response);
           message = {
             status: 401,
             message: response.error.message || "Error attempting to login",

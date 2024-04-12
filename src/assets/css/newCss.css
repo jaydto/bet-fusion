@@ -8,6 +8,7 @@ body {
 .line-on-slip-items-container {
   background: var(--betslip-list);
 }
+
 /* self-exclusion */
 .rdrInputRange{
   display:none!important;
@@ -162,11 +163,11 @@ input.text-white {
   color: var(--footer-color) !important;
 }
 
-. styling-matches {
+/* . styling-matches {
   -webkit-box-shadow: 0px 4px 5px 0px rgba(40, 55, 78, 1);
   -moz-box-shadow: 0px 4px 5px 0px rgba(40, 55, 78, 1);
   box-shadow: 0px 4px 5px 0px rgba(40, 55, 78, 1);
-}
+} */
 .cg.login-button2 {
   color: var(--dark) !important;
 }
@@ -1918,6 +1919,9 @@ img.nare-league {
   }
 } */
 @media (min-width: 992px) {
+  :where(.css-dev-only-do-not-override-42nv3w).ant-notification-topRight.ant-notification-stack>.ant-notification-notice-wrapper{
+        top: 100px!important;
+  }
   .flex-container.height-default-body {
     margin-top: 51px;
   }
@@ -2308,6 +2312,11 @@ button#countryCode {
   transition: display linear 0.7s;
 }
 @media (max-width: 991px) {
+  /* notification antd */
+:where(.css-dev-only-do-not-override-42nv3w).ant-notification-topRight.ant-notification-stack>.ant-notification-notice-wrapper
+{  top:50px!important;
+}
+/* end  notification */
  
   .optional-action {
     display: none;
@@ -2534,9 +2543,8 @@ button#countryCode {
 
   .update_button {
     /* height: 41px; */
-    padding: 10px 124px !important;
-  }
-
+    padding: 9px 119px !important;
+}
   .desktop-only-show {
     display: none !important;
   }

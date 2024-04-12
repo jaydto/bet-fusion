@@ -806,7 +806,7 @@ const OddButton = React.memo(
             if (typeof referencedState === 'string') { // Check if referencedState is a string
 
                 let uc = clear_rep(
-                    match.parent_match_id +
+                    (jackpot?match.match_id :match.parent_match_id )+
                     "" +
                     match.sub_type_id +
                     (match?.[mkt] || match?.odd_key || "draw")
@@ -863,7 +863,7 @@ const OddButton = React.memo(
                     market_active: event.currentTarget.getAttribute("market_active"),
                 };
                 let cstm = clear_rep(
-                    attributes.parent_match_id +
+                    (jackpot?attributes.match_id:attributes.parent_match_id) +
                     "" +
                     attributes.sub_type_id +
                     attributes.odd_key +
@@ -888,7 +888,7 @@ const OddButton = React.memo(
                     sport_name: attributes.sport_name,
                     live: live,
                     ucn: clear_rep(
-                        `${attributes.match_id}${attributes.sub_type_id}${attributes.odd_key}${
+                        `${jackpot?attributes.match_id:attributes.parent_match_id}${attributes.sub_type_id}${attributes.odd_key}${
                             marketKey !== undefined ? marketKey : ""
                         }`
                     ),
@@ -906,7 +906,7 @@ const OddButton = React.memo(
                         betslip =
                             jackpot !== true
                                 ? removeFromSlip(attributes.parent_match_id)
-                                : removeFromJackpotSlip(attributes.parent_match_id);
+                                : removeFromJackpotSlip(attributes.match_id);
 
                         setPicked("");
                         dispatchRedux(removeSelected(reference))
@@ -938,7 +938,7 @@ const OddButton = React.memo(
             <button
                 ref={ref}
                 className={`home-team ${allMarkets ? "all-markets" : jackpot ? " jackpot-buttons-size" : ""} ${
-                    match.parent_match_id
+                    jackpot?match.match_id:match.parent_match_id
                 } ${match?.ucn} ${picked} c-btn`}
                 home_team={match.home_team}
                 odd_type={match?.name || match?.market_name || "1X2"}
@@ -1492,7 +1492,7 @@ const MatchRow = React.memo(
                                         ? <OddButton match={{
                                             ...match,
                                             ucn: clear_rep(
-                                                jackpot ? ("jp_" + match.parent_match_id + "" + match.sub_type_id +
+                                                jackpot ? ("jp_" + match.match_id + "" + match.sub_type_id +
                                                         match?.home_team) :
                                                     (match.parent_match_id + "" + match.sub_type_id +
                                                         match?.home_team)
@@ -1507,7 +1507,7 @@ const MatchRow = React.memo(
                                         ? <OddButton match={{
                                             ...match,
                                             ucn: clear_rep(
-                                                jackpot ? ("jp_" + match.parent_match_id + "" + match.sub_type_id +
+                                                jackpot ? ("jp_" + match.match_id + "" + match.sub_type_id +
                                                         'draw') :
                                                     (match.parent_match_id + "" + match.sub_type_id +
                                                         'draw')
@@ -1521,7 +1521,7 @@ const MatchRow = React.memo(
                                         ? <OddButton match={{
                                             ...match,
                                             ucn: clear_rep(
-                                                jackpot ? ("jp_" + match.parent_match_id + "" + match.sub_type_id +
+                                                jackpot ? ("jp_" + match.match_id + "" + match.sub_type_id +
                                                         match?.away_team) :
                                                     (match.parent_match_id + "" + match.sub_type_id +
                                                         match?.away_team)

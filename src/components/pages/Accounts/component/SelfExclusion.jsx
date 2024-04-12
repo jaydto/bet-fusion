@@ -327,7 +327,7 @@ const SelfExclusion = () => {
   // const dropdownTitle = selectedReason ? selectedReason.title : 'Select Reason';
 
   const collapseBottomSheet = () => {
-    dispatchRedux(setState("bottom_sheet", false));
+    dispatchRedux(setState("show_exclusion_modal", false));
   };
 
   return (

@@ -27,18 +27,18 @@ const SelfExclusion = () => {
   // const exclusion_message=useSelector((state)=>state.data.self_exclsuion_message)
   const dispatchRedux = useDispatch();
   const [user, setUser] = useState(getFromLocalStorage("user"));
-  const [selectedReason, setSelectedReason] = useState(8);
+//   const [selectedReason, setSelectedReason] = useState(8);
   const bottomSheetRef = useRef();
-  const bottom_sheet = useSelector((state) => state.data.bottom_sheet);
+  const bottom_sheet = useSelector((state) => state.data.show_exclusion_modal);
   // const games = virtualGameChoiceOptions();
 
   const handleConfirmation = () => {
-    dispatchRedux(setState("bottom_sheet", false)); // Hide the confirmation bottom sheet
+    dispatchRedux(setState("show_exclusion_modal", false)); // Hide the confirmation bottom sheet
     handleUpdate(); // Call the handleUpdate function to submit the form
   };
 
   const handleShowModal = () => {
-    dispatchRedux(setState("bottom_sheet", true)); // Hide the confirmation bottom sheet
+    dispatchRedux(setState("show_exclusion_modal", true)); // Hide the confirmation bottom sheet
     
   };
   const navigate2 = async () => {
@@ -162,7 +162,7 @@ const SelfExclusion = () => {
                     });
                     //  Delay the redirection to the logout page (e.g., 3 seconds)
                      setTimeout(() => {
-                      window.location.href = "/redirect";
+                      window.location.href = "/logout";
                     }, 3000);
                   });
             }
@@ -376,7 +376,7 @@ const SelfExclusion = () => {
 
       <div className={`${bottom_sheet ? "bottom-sheet show " : "d-none"}`}>
         <div className="sheet-overlay"></div>
-        <div ref={bottomSheetRef} className="content gap-4">
+        <div ref={bottomSheetRef} className="content gap-2">
           <div className="header d-flex justify-content-between">
             <div className="drag-icon">
               <span></span>
@@ -395,13 +395,13 @@ const SelfExclusion = () => {
             <p className="text-light">
               Self-exclusion will log you out and restrict access to our
               platform. For further assistance or guidance please reach out to
-              customer care @
+              customer care
             </p>
-            <p className="bold text-center text-light"> 0701087777</p>
+            <p className="bold text-center text-light"> @ 0701087777</p>
           </div>
           <div className={"d-flex justify-content-center w-100 gap-2"}>
-            <strong style={{ color: "var(--red)" }}>Time</strong>{" "}
-            <div className="text-light d-flex align-items-center">
+            <strong style={{ color: "var(--orange)" }}>Time</strong>{" "}
+            <strong className="text-light d-flex align-items-center">
               :
               {dateRange?.startDate.toLocaleDateString("en-CA", {
                 year: "numeric",
@@ -414,19 +414,20 @@ const SelfExclusion = () => {
                 month: "2-digit",
                 day: "2-digit",
               })}
-            </div>
+            </strong>
           </div>
           <div style={{ position: "relative" }}>
             <div
-              className="d-flex justify-content-between align-items-center gap-5 mt-5"
+              className="d-flex justify-content-between align-items-center gap-5 mt-4"
             >
               <Button
                 onClick={() => {
                   handleConfirmation();
                 }}
-                className={"text-dark py-2 bold px-5  btn border-0 bg-warning"}
+                style={{background:'var(--red)'}}
+                className={"text-light py-2 bold px-5  btn border-0 "}
               >
-                Continue
+                Deactivate
               </Button>
 
               <Button

@@ -26,6 +26,7 @@ const initialState = {
         self_exclsuion_message:null,
         self_exclsuion_time:null,
         show_modal:null,
+        show_exclusion_modal:false,
         loaded:false,
         printed_data:null,
         print_jackpot_data:null,

@@ -114,6 +114,10 @@ const Promo = () => {
       src: "https://cdn.betnare.com/carousel/MidnightRainsWeb.webp",
       id: 35,
     }
+    ,{
+      src: "https://cdn.betnare.com/carousel/MidnightRainsWeb.webp",
+      id: 36,
+    }
   ];
 
   useEffect(() => {

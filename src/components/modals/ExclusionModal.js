@@ -13,12 +13,13 @@ const ExclusionModal = React.memo(
         const hideModal = () => {
             setIsOpen(false)
             setShowLoadingModal(false)
-            navigate('/logout')
+            // navigate('/redirect')
             // setLocalStorage("share-modal",0)
             // console.log("share_from_modal",getFromLocalStorage("share-modal"))
         }
         const handleExit = () => {
-            navigate('/logout')
+            // navigate('/')
+            setShowLoadingModal(false)
         }
 
         return (

@@ -9,6 +9,33 @@ body {
   background: var(--betslip-list);
 }
 
+/* self-exclusion */
+.rdrDefinedRangesWrapper{
+  display: none;
+}
+.rdrInputRange{
+  display:none!important;
+}
+#reason-dropdown{
+  width: 100%;
+  background: var(--odds-button);
+  padding: 12px;
+  font-size:14px;
+  font-weight: bold;
+}
+#reason-dropdown-data{
+  width: 100%;
+  background: var(--odds-button);
+  padding: 11px;
+  color:#fff;
+}
+.form-group.self-exclusion_form div .dropdown-menu{
+  background: var(--odds-button);
+  width: 100%;
+
+}
+/* end self excluison */
+
 .link-color {
   color: var(--link-color) !important;
 }
@@ -139,11 +166,11 @@ input.text-white {
   color: var(--footer-color) !important;
 }
 
-. styling-matches {
+/* . styling-matches {
   -webkit-box-shadow: 0px 4px 5px 0px rgba(40, 55, 78, 1);
   -moz-box-shadow: 0px 4px 5px 0px rgba(40, 55, 78, 1);
   box-shadow: 0px 4px 5px 0px rgba(40, 55, 78, 1);
-}
+} */
 .cg.login-button2 {
   color: var(--dark) !important;
 }
@@ -326,7 +353,7 @@ input.text-white {
   padding: 4px 124px;
   margin: 5px;
   border-radius: 6px;
-  font-size: 19px;
+  font-size: 16px;
   font-weight: 600;
   background-color: var(--betnare-button-login);
 }
@@ -675,7 +702,7 @@ ol.list-count-type {
 }
 .accordion-button:not(.collapsed)::after {
   filter: brightness(2.5);
-  background-image: ;
+  /* background-image: ; */
 }
 .menu-t div.inner-div {
   /* background-color: #2D4352; */
@@ -1284,6 +1311,8 @@ img.nare-league {
 .self-exclusion_form {
   margin: auto;
   max-width: 900px;
+  display: flex;
+  justify-content: center;
 }
 
 /*back button*/
@@ -1895,6 +1924,9 @@ img.nare-league {
   }
 } */
 @media (min-width: 992px) {
+  :where(.css-dev-only-do-not-override-42nv3w).ant-notification-topRight.ant-notification-stack>.ant-notification-notice-wrapper{
+        top: 100px!important;
+  }
   .flex-container.height-default-body {
     margin-top: 51px;
   }
@@ -2285,6 +2317,11 @@ button#countryCode {
   transition: display linear 0.7s;
 }
 @media (max-width: 991px) {
+  /* notification antd */
+:where(.css-dev-only-do-not-override-42nv3w).ant-notification-topRight.ant-notification-stack>.ant-notification-notice-wrapper
+{  top:50px!important;
+}
+/* end  notification */
  
   .optional-action {
     display: none;
@@ -2511,9 +2548,9 @@ button#countryCode {
 
   .update_button {
     /* height: 41px; */
-    padding: 10px 124px !important;
-  }
-
+    padding: 9px 119px !important;
+    width:90%!important;
+}
   .desktop-only-show {
     display: none !important;
   }

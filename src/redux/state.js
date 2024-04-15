@@ -12,6 +12,7 @@ const initialState = {
         stake_value:0,
         active_live_link:'79',
         bottom_sheet:false,
+        promo_bottom_sheet:false,
         loading:false,
         withdraw_loading:false,
         deposit_loading:false,

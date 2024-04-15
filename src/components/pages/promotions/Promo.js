@@ -89,9 +89,30 @@ const Promo = () => {
     },{
       src: "https://cdn.betnare.com/carousel/Rasha.webp",
       id: 28,
-    },{
+    },
+    {
       src: "https://cdn.betnare.com/carousel/Mbuziyambogi.webp",
       id: 30,
+    },
+    {
+      src: "https://cdn.betnare.com/carousel/Mzinga.webp",
+      id: 31,
+    },
+    {
+      src: "https://cdn.betnare.com/carousel/RaukaBonusWeb.webp",
+      id: 32,
+    }
+    ,{
+      src: "https://cdn.betnare.com/carousel/PullOutWebNew.webp",
+      id: 33,
+    },
+    {
+      src: "https://cdn.betnare.com/carousel/PepeaUshindeWeb.webp",
+      id: 34,
+    },
+    {
+      src: "https://cdn.betnare.com/carousel/MidnightRainsWeb.webp",
+      id: 35,
     }
   ];
 

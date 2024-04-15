@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import twentyPercentDepositBonus from "../../../assets/img/banner/products/Bet_Nare_gift_Mobile.webp";
 import firstDeposit from "../../../assets/img/banner/products/Firstdeposit.jpeg";
 import multibetCashback from "../../../assets/img/banner/products/Bet_Nare_100_Cashback_Mobile.webp";
@@ -25,12 +25,14 @@ const PromoCards = () => {
   const user = getFromLocalStorage("user");
   const dispatchRedux = useDispatch();
   const bottomSheetRef = useRef();
-  const bottom_sheet = useSelector((state) => state.data.bottom_sheet);
-  const games = virtualGameChoiceOptions();
+  const bottom_sheet = useSelector((state) => state.data.promo_bottom_sheet);
+  // const games = virtualGameChoiceOptions('morning_glory');
+  const [games, setGames] = useState([]);
+
 
   let ids = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
-    22, 23, 24, 25, 26, 27, 28, 29,30
+    22, 23, 24, 25, 26, 27, 28, 29,30, 31, 32,33, 34,35,36
   ];
   const navigate = useNavigate();
 
@@ -48,11 +50,13 @@ const PromoCards = () => {
     }
   };
 
-  const showBottomSheet = () => {
-    dispatchRedux(setState("bottom_sheet", true));
+  const showBottomSheet = (data) => {
+    const options = virtualGameChoiceOptions(data);
+    setGames(options);
+    dispatchRedux(setState("promo_bottom_sheet", true));
   };
   const collapseBottomSheet = () => {
-    dispatchRedux(setState("bottom_sheet", false));
+    dispatchRedux(setState("promo_bottom_sheet", false));
   };
 
   useEffect(() => {
@@ -64,7 +68,7 @@ const PromoCards = () => {
         bottomSheetRef.current &&
         !bottomSheetRef.current.contains(event.target)
       ) {
-        dispatchRedux(setState("bottom_sheet", false));
+        dispatchRedux(setState("promo_bottom_sheet", false));
       }
     }
 
@@ -86,21 +90,20 @@ const PromoCards = () => {
       <div
         className={`row text-white pt-2 border-0 d-flex promo-container-profile d-flex align-self-start align-items-start"`}
       >
-        <div className="col-md-2 promo-styling shadow-lg promotion">
+         <div className="col-md-2 promo-styling shadow-lg promotion">
           <div className="d-flex flex-column promo-inner">
             <img
-              src={"https://cdn.betnare.com/carousel/Mbuziyambogi.webp"}
+              src={"https://cdn.betnare.com/carousel/Mzinga.webp"}
               className={"rounded promo-image "}
             />
             <h5
               className="bold d-flex justify-content-center h4 pt-2"
               style={{ color: "#ea5d0b" }}
             >
-              MBUZI YA MBOGI!
+              MZINGA YA MBOGI!
             </h5>
             <p className="container-profile mx-1 px-2 text-data-promotions">
-            Place a bet on sportsbook with a minimum stake of 50 bob share with 5 friends and stand a chance to win a live goat(mbuzi ya mbogi) !{" "}
-            </p>
+            Mzinga worth 5,000 Kenyan Shillings (KES) if their betslip is shared with at least 5 friends.   </p>
             <hr />
 
             <div className="d-flex justify-content-between my-2 mx-2">
@@ -108,9 +111,9 @@ const PromoCards = () => {
                 className={"profile-button border-0 h-25 rounded promo-button"}
                 style={{ background: "#ea5d0b" }}
                 onClick={() => {
-                  gaEventTracker("mbuzi_ya_mbogi");
+                  gaEventTracker("mzinga_ya_mbogi");
                   navigate(`/`);
-                  setUtmSouceCampaignOnPromotions("mbuzi_ya_mbogi");
+                  setUtmSouceCampaignOnPromotions("mzinga_ya_mbogi");
                 }}
               >
                 Bet Now!
@@ -121,7 +124,7 @@ const PromoCards = () => {
                 }
                 style={{ color: "#ea5d0b" }}
                 onClick={() => {
-                  navigate(`/promo?id=${ids[29]}`);
+                  navigate(`/promo?id=${ids[30]}`);
                   window.scrollTo(0, 0); // Scroll to the top of the page
                 }}
               >
@@ -130,6 +133,182 @@ const PromoCards = () => {
             </div>
           </div>
         </div>
+         <div className="col-md-2 promo-styling shadow-lg promotion">
+          <div className="d-flex flex-column promo-inner">
+            <img
+              src={"https://cdn.betnare.com/carousel/RaukaBonusWeb.webp"}
+              className={"rounded promo-image "}
+            />
+            <h5
+              className="bold d-flex justify-content-center h4 pt-2"
+              style={{ color: "#ea5d0b" }}
+            >
+              RAUKA BONUS!
+            </h5>
+            <p className="container-profile mx-1 px-2 text-data-promotions">
+            Deposit of at least 100 Kenyan Shillings (KES) into their Betnare account between 6:00 AM and 9:00 AM ...   </p>
+            <hr />
+
+            <div className="d-flex justify-content-between my-2 mx-2">
+              <button
+                className={"profile-button border-0 h-25 rounded promo-button"}
+                style={{ background: "#ea5d0b" }}
+                onClick={() => {
+                  gaEventTracker("rauka_bonus");
+                  navigate(`/deposit`);
+                  setUtmSouceCampaignOnPromotions("rauka_bonus");
+                }}
+              >
+                Bet Now!
+              </button>
+              <div
+                className={
+                  "d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"
+                }
+                style={{ color: "#ea5d0b" }}
+                onClick={() => {
+                  navigate(`/promo?id=${ids[31]}`);
+                  window.scrollTo(0, 0); // Scroll to the top of the page
+                }}
+              >
+                Read More
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-md-2 promo-styling shadow-lg promotion">
+          <div className="d-flex flex-column promo-inner">
+            <img
+              src={"https://cdn.betnare.com/carousel/PullOutWebNew.webp"}
+              className={"rounded promo-image "}
+            />
+            <h5
+              className="bold d-flex justify-content-center h4 pt-2"
+              style={{ color: "#ea5d0b" }}
+            >
+              PULL-OUT KICHAMPE!
+            </h5>
+            <p className="container-profile mx-1 px-2 text-data-promotions">
+            Stake a minimum of 20 Kenyan Shillings (KES) on both the JETX and Aviator games during the Promotion Period..   </p>
+            <hr />
+
+            <div className="d-flex justify-content-between my-2 mx-2">
+              <button
+                className={"profile-button border-0 h-25 rounded promo-button"}
+                style={{ background: "#ea5d0b" }}
+                onClick={() => {
+                  gaEventTracker("pull_out_kichampe");
+                  // navigate(`/deposit`);
+                  showBottomSheet('pull_out');
+                  setUtmSouceCampaignOnPromotions("pull_out_kichampe");
+                }}
+              >
+                Play Games!
+              </button>
+              <div
+                className={
+                  "d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"
+                }
+                style={{ color: "#ea5d0b" }}
+                onClick={() => {
+                  navigate(`/promo?id=${ids[32]}`);
+                  window.scrollTo(0, 0); // Scroll to the top of the page
+                }}
+              >
+                Read More
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-md-2 promo-styling shadow-lg promotion">
+          <div className="d-flex flex-column promo-inner">
+            <img
+              src={"https://cdn.betnare.com/carousel/PepeaUshindeWeb.webp"}
+              className={"rounded promo-image "}
+            />
+            <h5
+              className="bold d-flex justify-content-center h4 pt-2"
+              style={{ color: "#ea5d0b" }}
+            >
+              PEPEA USHINDE FREE BETS!
+            </h5>
+            <p className="container-profile mx-1 px-2 text-data-promotions">
+            Win up to 1000 free bets every hour between 6:00 AM to 6:00 PM awards random it could be you ...
+               </p>
+            <hr />
+
+            <div className="d-flex justify-content-between my-2 mx-2">
+              <button
+                className={"profile-button border-0 h-25 rounded promo-button"}
+                style={{ background: "#ea5d0b" }}
+                onClick={() => {
+                  gaEventTracker("pepea_ushinde_free_bets");
+                  navigate(`/nare-games/aviator?status=live`);
+                  setUtmSouceCampaignOnPromotions("pepea_ushinde_free_bets");
+                }}
+              >
+                Play Aviator!
+              </button>
+              <div
+                className={
+                  "d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"
+                }
+                style={{ color: "#ea5d0b" }}
+                onClick={() => {
+                  navigate(`/promo?id=${ids[33]}`);
+                  window.scrollTo(0, 0); // Scroll to the top of the page
+                }}
+              >
+                Read More
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-md-2 promo-styling shadow-lg promotion">
+          <div className="d-flex flex-column promo-inner">
+            <img
+              src={"https://cdn.betnare.com/carousel/MidnightRainsWeb.webp"}
+              className={"rounded promo-image "}
+            />
+            <h5
+              className="bold d-flex justify-content-center h4 pt-2"
+              style={{ color: "#ea5d0b" }}
+            >
+              MIDNIGHT RAINS!
+            </h5>
+            <p className="container-profile mx-1 px-2 text-data-promotions">
+            Engage in betting activities on Betnare during the Promotion Period and win free bets ...
+               </p>
+            <hr />
+
+            <div className="d-flex justify-content-between my-2 mx-2">
+              <button
+                className={"profile-button border-0 h-25 rounded promo-button"}
+                style={{ background: "#ea5d0b" }}
+                onClick={() => {
+                  gaEventTracker("midnight_rains");
+                  navigate(`/nare-games/aviator?status=live`);
+                  setUtmSouceCampaignOnPromotions("midnight_rains");
+                }}
+              >
+                Play Aviator!
+              </button>
+              <div
+                className={
+                  "d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"
+                }
+                style={{ color: "#ea5d0b" }}
+                onClick={() => {
+                  navigate(`/promo?id=${ids[34]}`);
+                  window.scrollTo(0, 0); // Scroll to the top of the page
+                }}
+              >
+                Read More
+              </div>
+            </div>
+          </div>
+        </div>
+        
 
         <div className="col-md-2 promo-styling shadow-lg promotion">
           <div className="d-flex flex-column promo-inner">
@@ -176,52 +355,7 @@ const PromoCards = () => {
           </div>
         </div>
 
-        <div className="col-md-2 promo-styling shadow-lg promotion">
-          <div className="d-flex flex-column promo-inner">
-            <img
-              src={"https://cdn.betnare.com/carousel/Morningglory.webp"}
-              className={"rounded promo-image "}
-            />
-            <h5
-              className="bold d-flex justify-content-center h4 pt-2"
-              style={{ color: "#ea5d0b" }}
-            >
-              MORNING GLORY
-            </h5>
-            <p className="container-profile mx-1 px-2 text-data-promotions">
-              Play with a minimum of KES 100  between 6:00 AM and 9:00 AM and stand a chance to
-              be awarded cash worth 1000 Kenyan shillings...{" "}
-            </p>
-            <hr />
-
-            <div className="d-flex justify-content-between my-2 mx-2">
-              <button
-                className={"profile-button border-0 h-25 rounded promo-button"}
-                style={{ background: "#ea5d0b" }}
-                onClick={() => {
-                  gaEventTracker("morning_glory");
-                  // navigate(`/nare-games/aviator?status=live`);
-                  showBottomSheet();
-                  setUtmSouceCampaignOnPromotions("morning_glory");
-                }}
-              >
-                Play Games!
-              </button>
-              <div
-                className={
-                  "d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"
-                }
-                style={{ color: "#ea5d0b" }}
-                onClick={() => {
-                  navigate(`/promo?id=${ids[28]}`);
-                  window.scrollTo(0, 0); // Scroll to the top of the page
-                }}
-              >
-                Read More
-              </div>
-            </div>
-          </div>
-        </div>
+      
 
         <div className="col-md-2 promo-styling shadow-lg promotion">
           <div className="d-flex flex-column promo-inner">
@@ -362,6 +496,98 @@ const PromoCards = () => {
                 >
                   Read More
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-md-2 promo-styling shadow-lg promotion">
+          <div className="d-flex flex-column promo-inner promo-inactive">
+            <img
+              src={"https://cdn.betnare.com/carousel/Morningglory.webp"}
+              className={"rounded promo-image "}
+            />
+            <h5
+              className="bold d-flex justify-content-center h4 pt-2"
+              style={{ color: "#ea5d0b" }}
+            >
+              MORNING GLORY
+            </h5>
+            <p className="container-profile mx-1 px-2 text-data-promotions">
+              Play with a minimum of KES 100  between 6:00 AM and 9:00 AM and stand a chance to
+              be awarded cash worth 1000 Kenyan shillings...{" "}
+            </p>
+            <hr />
+
+            <div className="d-flex justify-content-between my-2 mx-2">
+              <button
+                className={"profile-button border-0 h-25 rounded promo-button"}
+                style={{ background: "#ea5d0b" }}
+                disabled={true}
+                onClick={() => {
+                  gaEventTracker("morning_glory");
+                  // navigate(`/nare-games/aviator?status=live`);
+                  showBottomSheet('morning_glory');
+                  setUtmSouceCampaignOnPromotions("morning_glory");
+                }}
+              >
+                Play Games!
+              </button>
+              <div
+                className={
+                  "d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"
+                }
+                style={{ color: "#ea5d0b" }}
+                onClick={() => {
+                  navigate(`/promo?id=${ids[28]}`);
+                  window.scrollTo(0, 0); // Scroll to the top of the page
+                }}
+              >
+                Read More
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-md-2 promo-styling shadow-lg promotion">
+          <div className="d-flex flex-column promo-inner promo-inactive">
+            <img
+              src={"https://cdn.betnare.com/carousel/Mbuziyambogi.webp"}
+              className={"rounded promo-image "}
+            />
+            <h5
+              className="bold d-flex justify-content-center h4 pt-2"
+              style={{ color: "#ea5d0b" }}
+            >
+              MBUZI YA MBOGI!
+            </h5>
+            <p className="container-profile mx-1 px-2 text-data-promotions">
+            Place a bet on sportsbook with a minimum stake of 50 bob share with 5 friends and stand a chance to win a live goat(mbuzi ya mbogi) !{" "}
+            </p>
+            <hr />
+
+            <div className="d-flex justify-content-between my-2 mx-2">
+              <button
+                className={"profile-button border-0 h-25 rounded promo-button"}
+                style={{ background: "#ea5d0b" }}
+                disabled={true}
+                onClick={() => {
+                  gaEventTracker("mbuzi_ya_mbogi");
+                  navigate(`/`);
+                  setUtmSouceCampaignOnPromotions("mbuzi_ya_mbogi");
+                }}
+              >
+                Bet Now!
+              </button>
+              <div
+                className={
+                  "d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"
+                }
+                style={{ color: "#ea5d0b" }}
+                onClick={() => {
+                  navigate(`/promo?id=${ids[29]}`);
+                  window.scrollTo(0, 0); // Scroll to the top of the page
+                }}
+              >
+                Read More
               </div>
             </div>
           </div>

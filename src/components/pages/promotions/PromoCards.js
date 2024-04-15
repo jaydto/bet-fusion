@@ -310,50 +310,7 @@ const PromoCards = () => {
         </div>
         
 
-        <div className="col-md-2 promo-styling shadow-lg promotion">
-          <div className="d-flex flex-column promo-inner">
-            <img
-              src={"https://cdn.betnare.com/carousel/Rasha.webp"}
-              className={"rounded promo-image "}
-            />
-            <h5
-              className="bold d-flex justify-content-center h4 pt-2"
-              style={{ color: "#ea5d0b" }}
-            >
-              RASHA RASHA ZA AVIATOR!
-            </h5>
-            <p className="container-profile mx-1 px-2 text-data-promotions">
-              Play with a minimum of KES 20 between 12:00 AM and 6:00 AM and receive kenyan shillings 500 airtime...{" "}
-            </p>
-            <hr />
-
-            <div className="d-flex justify-content-between my-2 mx-2">
-              <button
-                className={"profile-button border-0 h-25 rounded promo-button"}
-                style={{ background: "#ea5d0b" }}
-                onClick={() => {
-                  gaEventTracker("rasha_rasha_za_aviator");
-                  navigate(`/nare-games/aviator?status=live`);
-                  setUtmSouceCampaignOnPromotions("rasha_rasha_za_aviator");
-                }}
-              >
-                Play Aviator!
-              </button>
-              <div
-                className={
-                  "d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"
-                }
-                style={{ color: "#ea5d0b" }}
-                onClick={() => {
-                  navigate(`/promo?id=${ids[27]}`);
-                  window.scrollTo(0, 0); // Scroll to the top of the page
-                }}
-              >
-                Read More
-              </div>
-            </div>
-          </div>
-        </div>
+        
 
       
 
@@ -496,6 +453,51 @@ const PromoCards = () => {
                 >
                   Read More
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-md-2 promo-styling shadow-lg promotion">
+          <div className="d-flex flex-column promo-inner promo-inactive">
+            <img
+              src={"https://cdn.betnare.com/carousel/Rasha.webp"}
+              className={"rounded promo-image "}
+            />
+            <h5
+              className="bold d-flex justify-content-center h4 pt-2"
+              style={{ color: "#ea5d0b" }}
+            >
+              RASHA RASHA ZA AVIATOR!
+            </h5>
+            <p className="container-profile mx-1 px-2 text-data-promotions">
+              Play with a minimum of KES 20 between 12:00 AM and 6:00 AM and receive kenyan shillings 500 airtime...{" "}
+            </p>
+            <hr />
+
+            <div className="d-flex justify-content-between my-2 mx-2">
+              <button
+                className={"profile-button border-0 h-25 rounded promo-button"}
+                style={{ background: "#ea5d0b" }}
+                disabled={true}
+                onClick={() => {
+                  gaEventTracker("rasha_rasha_za_aviator");
+                  navigate(`/nare-games/aviator?status=live`);
+                  setUtmSouceCampaignOnPromotions("rasha_rasha_za_aviator");
+                }}
+              >
+                Play Aviator!
+              </button>
+              <div
+                className={
+                  "d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"
+                }
+                style={{ color: "#ea5d0b" }}
+                onClick={() => {
+                  navigate(`/promo?id=${ids[27]}`);
+                  window.scrollTo(0, 0); // Scroll to the top of the page
+                }}
+              >
+                Read More
               </div>
             </div>
           </div>

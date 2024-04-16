@@ -139,10 +139,10 @@ const BetSlip = React.memo(
         const handledRemoveSlip = (match) => {
             let betslip =
                 jackpot !== true
-                    ? removeFromSlip(match.match_id)
+                    ? removeFromSlip(match.parent_match_id)
                     : removeFromJackpotSlip(match.match_id);
 
-            let match_selector = match.match_id + "_selected";
+            let match_selector = jackpot?match.match_id + "_selected":match.parent_match_id + "_selected";
             let ucn = clean_rep(
                 match.match_id + "" + match.sub_type_id + match.bet_pick
             );
@@ -356,45 +356,62 @@ const BetSlip = React.memo(
         }, []);
      
 
-        useEffect(() => {
-            // Update similarEventIds based on the last item in betslipsData
-            const lastBetslip = Object.values(betslipsData || []).filter((slip) => slip.parent_match_id).pop();
+      //   useEffect(() => {
+      //     const lastBetslip = Object.values(slip_data || []).filter((slip) => slip.parent_match_id).pop();
+      //     const parentMatchId = lastBetslip?.parent_match_id || null;
+      
+      //     console.log(" similar_betslip_data", lastBetslip)
+      //     console.log(" similar_parent_match_ids", parentMatchId)
+      //     if (parentMatchId) {
+      //         setSimilarEventIds((prevSimilarEventIds) => {
+                  
+      //             const idSet = new Set(prevSimilarEventIds);
+      //           // Add the new parentMatchId to the set
+      //           idSet.add(parseInt(parentMatchId));
+      //           // Convert the set back to an array and return it
+      //           return Array.from(idSet);
+      //         });
+      //       console.log("similar event_ids", similarEventIds)
+      //         // Configure SIR and add Widget 1 with updated similarEventIds
+      //         window.SIR('registerAdapter', 'betnare', { onBetSlipChanged: onBetSlipChanged });
+      //         window.SIR('addWidget', '.sr-widget-bets', 'betRecommendation.similarBets', {
+      //             maxRows: 1,
+      //             cardsLayout: 'horizontal',
+      //             similarEventIds: [...similarEventIds, parseInt(parentMatchId)],
+      //             onItemClick: handleButtonOnClick,
+      //             user: user ? user.profile_id : null,
+      //         });
+      //     }
+      //     else if(parentMatchId==null){
+      //       setSimilarEventIds([])
+      //     }
+      
+      //     return () => {
+      //         // Clean up code here if needed
+      //     };
+      // }, [slip_data]);
 
-            console.log('lastBetslip', lastBetslip)
-            const parentMatchId = lastBetslip?.parent_match_id || null;
+      useEffect(() => {
+        // Extract all keys from slip_data and reverse the array
+        const allKeys = Object.keys(betslipsData || []).reverse();
+        // Set similarEventIds with the reversed array of keys
+        // setSimilarEventIds(allKeys);
         
-            // Assuming you have a function to fetch similarEventIds based on parentMatchId
-            // const newSimilarEventIds = fetchSimilarEventIds(parentMatchId);
-            const newSimilarEventIds = parentMatchId;
-
-            console.log("parent_match_id",typeof(newSimilarEventIds))
-        
-            // setSimilarEventIds(newSimilarEventIds);
-            setSimilarEventIds((prevSimilarEventIds) => {
-              const updatedSimilarEventIds = [...prevSimilarEventIds, parseInt(newSimilarEventIds)];
-              return updatedSimilarEventIds;
-            });
-
-            console.log("similar event_ids", similarEventIds)
-        
-            // Configure SIR here
-            window.SIR('registerAdapter', 'betnare', { onBetSlipChanged: onBetSlipChanged });
-        
-            // Add Widget 1 with updated similarEventIds
-            window.SIR('addWidget', '.sr-widget-bets', 'betRecommendation.similarBets', {
-              maxRows: 1,
-              cardsLayout: 'horizontal',
-              similarEventIds: [...similarEventIds, parseInt(newSimilarEventIds)], // Append newSimilarEventIds here
-              onItemClick: handleButtonOnClick,
-              user: user?user?.profile_id:null,
-              // filters: { recommendationType: { available: ['recommended', 'trending'] } },
-            });
-        
-            // Clean up: Remove the listener when the component is unmounted
-            return () => {
-              // Remove any event listeners or clean-up code as needed
-            };
-          }, [betslipsData]);
+        // Configure SIR and add Widget 1 with updated similarEventIds
+        window.SIR('registerAdapter', 'betnare', { onBetSlipChanged: onBetSlipChanged });
+        window.SIR('addWidget', '.sr-widget-bets', 'betRecommendation.similarBets', {
+            maxRows: 1,
+            cardsLayout: 'horizontal',
+            similarEventIds: allKeys, // Pass the reversed array directly
+            onItemClick: handleButtonOnClick,
+            user: user ? user.profile_id : null,
+        });
+    
+        return () => {
+            // Clean up code here if needed
+        };
+    }, [betslipsData]);
+      
 
           let betSlipState = {
             betslip: [],

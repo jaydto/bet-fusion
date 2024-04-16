@@ -87,6 +87,8 @@ const Index = React.memo((props) => {
       user:user?.profile_id??null,
       count:6,
       onItemClick: handleButtonOnClick,
+      filters: { sports: { available: ['1', '2'] } },
+
 
     });
 

@@ -3047,7 +3047,7 @@ button#countryCode {
 
   .slip-bottom-betlip-active {
     margin-bottom: 21rem !important;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
     position: sticky;
     top: 0px;
     width: 100%;
@@ -3136,7 +3136,7 @@ button#countryCode {
 
   .slip-bottom-betlip-active {
     margin-bottom: var(--slip-bottom-space) !important;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
     position: sticky;
     top: 0px;
     width: 100%;

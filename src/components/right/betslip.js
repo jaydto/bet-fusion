@@ -558,7 +558,7 @@ const BetSlip = React.memo(
         useEffect(() => {
           // Scroll to the widget element when the component mounts
           if (widgetRef.current) {
-              widgetRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            widgetRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
           }
       }, []); 
        
@@ -703,8 +703,7 @@ const BetSlip = React.memo(
                       }
                     )
                   )}
-                </ul>
-                {(betslipsData && Object.keys(betslipsData)?.length == 0) ||
+                   {(betslipsData && Object.keys(betslipsData)?.length == 0) ||
                 betslipsData == null ? (
                   (
                     ""
@@ -720,9 +719,13 @@ const BetSlip = React.memo(
                     
                   </div>
                 )}
-                <div ref={widgetRef}></div>
+
+                </ul>
+               
               </div>
             </div>
+            <div ref={widgetRef}></div>
+
             <div className="bottom" >
               <BetslipSubmitForm
                 jackpotData={jackpotData}

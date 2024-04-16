@@ -2315,7 +2315,7 @@ button#countryCode {
 }
 @media (max-width: 991px) {
   .mobile-widget-position{
-    position:absolute;
+    /* position:absolute; */
     width: 100%;
   }
  
@@ -3042,6 +3042,7 @@ button#countryCode {
   .bottom {
     position: sticky;
     bottom: 18rem;
+    background: var(--betnare-body-bg);
   }
 
   .slip-bottom-betlip-active {
@@ -3127,7 +3128,7 @@ button#countryCode {
 
   .slip-bottom-betlip {
     margin-bottom: var(--slip-bottom) !important;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
     position: sticky;
     top: 0px;
     width: 100%;
@@ -3718,7 +3719,8 @@ button#countryCode {
   } */
   .slip-top {
     top: 3rem;
-    height: 84vh;
+    /* height: 84vh; */
+    height: 80vh;
     overflow: auto;
     position: absolute;
     width: 100vw;

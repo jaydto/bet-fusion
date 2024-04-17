@@ -87,8 +87,10 @@ const Index = React.memo((props) => {
       user:user?.profile_id??null,
       count:6,
       onItemClick: handleButtonOnClick,
-      filters: { sport: { available: ['1', '2','3','4','5','6','7','8','9','10','12','13','15','16','20','21','22','23','26','29','32','117'] } },
-
+      filters: { sport: { hidden: false, available: ['1', '2','3','4','5','6','7','8','9','10','12','13','15','16','20','21','22','23','26','29','32','117'] } },
+      sportsMapping: {
+        "172":"10"
+      }
 
     });
 

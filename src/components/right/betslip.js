@@ -405,6 +405,9 @@ const BetSlip = React.memo(
             similarEventIds: allKeys, // Pass the reversed array directly
             onItemClick: handleButtonOnClick,
             user: user ? user.profile_id : null,
+            sportsMapping:{
+              172:10
+            }
         });
     
         return () => {

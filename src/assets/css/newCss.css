@@ -1436,7 +1436,13 @@ img.nare-league {
     display: grid;
     align-items: flex-start;
     height: 90vh !important;
+    max-width: 991px;
+    margin: auto;
   }
+  /* .slip-max-height div{
+    
+    width: 100%;
+  } */
 
   .share-button-styling {
     white-space: nowrap;

@@ -356,40 +356,22 @@ const BetSlip = React.memo(
         }, []);
      
 
-      //   useEffect(() => {
-      //     const lastBetslip = Object.values(slip_data || []).filter((slip) => slip.parent_match_id).pop();
-      //     const parentMatchId = lastBetslip?.parent_match_id || null;
+
+      let changeCallback = undefined;
+
+      // Function to register a callback for bet slip changes
+      function onBetSlipChanged(callback) {
+          changeCallback = callback;
+          changeCallback && changeCallback(betSlipState);
+      }
       
-      //     console.log(" similar_betslip_data", lastBetslip)
-      //     console.log(" similar_parent_match_ids", parentMatchId)
-      //     if (parentMatchId) {
-      //         setSimilarEventIds((prevSimilarEventIds) => {
-                  
-      //             const idSet = new Set(prevSimilarEventIds);
-      //           // Add the new parentMatchId to the set
-      //           idSet.add(parseInt(parentMatchId));
-      //           // Convert the set back to an array and return it
-      //           return Array.from(idSet);
-      //         });
-      //       console.log("similar event_ids", similarEventIds)
-      //         // Configure SIR and add Widget 1 with updated similarEventIds
-      //         window.SIR('registerAdapter', 'betnare', { onBetSlipChanged: onBetSlipChanged });
-      //         window.SIR('addWidget', '.sr-widget-bets', 'betRecommendation.similarBets', {
-      //             maxRows: 1,
-      //             cardsLayout: 'horizontal',
-      //             similarEventIds: [...similarEventIds, parseInt(parentMatchId)],
-      //             onItemClick: handleButtonOnClick,
-      //             user: user ? user.profile_id : null,
-      //         });
-      //     }
-      //     else if(parentMatchId==null){
-      //       setSimilarEventIds([])
-      //     }
+      // Initialize the betSlipState object
+      let betSlipState = {
+          betslip: [],
+          combinedOddsValue: undefined
+      };
       
-      //     return () => {
-      //         // Clean up code here if needed
-      //     };
-      // }, [slip_data]);
+      
 
       useEffect(() => {
         // Extract all keys from slip_data and reverse the array
@@ -398,7 +380,7 @@ const BetSlip = React.memo(
         // setSimilarEventIds(allKeys);
         
         // Configure SIR and add Widget 1 with updated similarEventIds
-        window.SIR('registerAdapter', 'betnare', { onBetSlipChanged: onBetSlipChanged });
+        window.SIR('registerAdapter', 'mockData', { onBetSlipChanged: onBetSlipChanged });
         window.SIR('addWidget', '.sr-widget-bets', 'betRecommendation.similarBets', {
             maxRows: 1,
             cardsLayout: 'horizontal',
@@ -416,51 +398,11 @@ const BetSlip = React.memo(
     }, [betslipsData]);
       
 
-          let betSlipState = {
-            betslip: [],
-            combinedOddsValue: undefined
-        };
-        let changeCallback = undefined;
 
-        // Function to register a callback for bet slip changes
-        function onBetSlipChanged(callback) {
-            changeCallback = callback;
-            changeCallback && changeCallback(betSlipState);
-        }
-
-          // Function to handle item click
-        function onItemClick(target, data) {
-
-            console.log("checking what is the target", target)
-            console.log("checking what is the data", data)
-            if (target === 'externalOutcome') {
-                // This is just an example of implementation.
-                // Change it with your own betSlip functionality
-                const newBet = {
-                    externalEventId: data.externalEvent.id,
-                    externalMarketId: data.externalMarket.id,
-                    externalOutcomeId: data.externalOutcome.id
-                };
-
-                betSlipState = {
-                    betslip: [...betSlipState.betslip, newBet],
-                    combinedOddsValue: '14.52' // Just an example, replace with your actual calculation
-                }
-
-                // Update the betSlipState by adding the new bet and the combinedOddsValue
-                changeCallback && changeCallback(betSlipState);
-
-                // Update the SIR widget with the new similarEventIds
-    window.SIR('updateWidgetConfig', '.sr-widget-bets', {
-        similarEventIds: Object.values(betslipsData || []).map((slip) => slip.externalEventId),
-      });
-            }
-        }
         const clear_rep = (str) => {
             return str.replace(/\s/g, "");
         };
 
-        const picked = useSelector((state) => state.betting.picked);
 
 
         const handleButtonOnClick =
@@ -486,6 +428,20 @@ const BetSlip = React.memo(
                 sport_name: event?.externalEvent?.sport.name,
                 market_active: event?.externalMarket?.status.isActive,
             };
+
+            const newBet = {
+              externalEventId: event?.externalEvent.id,
+              externalMarketId: event?.externalMarket.id,
+              externalOutcomeId: event?.externalOutcome.id
+          };
+      
+          betSlipState = {
+              betslip: [...betSlipState.betslip, newBet],
+              // combinedOddsValue: '14.52' // Just an example, replace with your actual calculation
+          }
+      
+          // Update the betSlipState by adding the new bet and the combinedOddsValue
+          changeCallback && changeCallback(betSlipState);
 
             let cstm = clear_rep(
                 attributes.match_id +

@@ -76,11 +76,28 @@ const Index = React.memo((props) => {
     return values;
   };
 
+  let changeCallback = undefined;
+
+// Function to register a callback for bet slip changes
+function onBetSlipChanged(callback) {
+    changeCallback = callback;
+    changeCallback && changeCallback(betSlipState);
+}
+
+// Initialize the betSlipState object
+let betSlipState = {
+    betslip: [],
+    combinedOddsValue: undefined
+};
+
+
+
   useEffect(() => {
     // Configure SIR
 
     // Register Adapter
-    window.SIR("registerAdapter", "betnare");
+    window.SIR("registerAdapter", "mockData", { onBetSlipChanged: onBetSlipChanged });
+    
 
     // Add Widget 1
     window.SIR("addWidget", ".sr-widget-1", "betRecommendation", {
@@ -97,10 +114,7 @@ const Index = React.memo((props) => {
     
   });
 
-  const clear_rep = (str) => {
-    return str.replace(/\s/g, "");
-};
-  const handleButtonOnClick =
+const handleButtonOnClick =
   (target,event) => {
 
     console.log("checking what is the target", target)
@@ -123,6 +137,20 @@ const Index = React.memo((props) => {
           sport_name: event?.externalEvent?.sport.name,
           market_active: event?.externalMarket?.status.isActive,
       };
+
+      const newBet = {
+        externalEventId: event?.externalEvent.id,
+        externalMarketId: event?.externalMarket.id,
+        externalOutcomeId: event?.externalOutcome.id
+    };
+
+    betSlipState = {
+        betslip: [...betSlipState.betslip, newBet],
+        // combinedOddsValue: '14.52' // Just an example, replace with your actual calculation
+    }
+
+    // Update the betSlipState by adding the new bet and the combinedOddsValue
+    changeCallback && changeCallback(betSlipState);
 
       let cstm = clear_rep(
           attributes.match_id +
@@ -192,6 +220,10 @@ const Index = React.memo((props) => {
           dispatchRedux(setMatchBetslip(betslip_data));
       }
   };
+  const clear_rep = (str) => {
+    return str.replace(/\s/g, "");
+};
+  
 
   const fetchData = async () => {
     let tab = location.pathname.replace("/", "") || "highlights";

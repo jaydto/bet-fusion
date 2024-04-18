@@ -11,7 +11,7 @@ const ProtectedRoute = React.memo(
 
         const path = window.location.pathname;
         setLocalStorage("ActiveLink", path)
-        return user?.token ? children : <Navigate to="/login"/>;
+        return user?.token ? children : <Navigate to="/redirect"/>;
     })
 
 export default React.memo(ProtectedRoute);

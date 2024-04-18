@@ -1924,13 +1924,13 @@ img.nare-league {
   }
 } */
 @media (min-width: 992px) {
-  :where(.css-dev-only-do-not-override-42nv3w).ant-notification-topRight.ant-notification-stack>.ant-notification-notice-wrapper{
+  .ant-notification-topRight.ant-notification-stack>.ant-notification-notice-wrapper{
         top: 100px!important;
   }
-  :where(.css-42nv3w).ant-notification-topRight.ant-notification-stack>.ant-notification-notice-wrapper{
+  .ant-notification-topRight.ant-notification-stack>.ant-notification-notice-wrapper{
     top:74px!important;
   }
-  :where(.css-1jr9qlj).ant-notification{
+  .ant-notification{
     top:100px!important;
   }
   .flex-container.height-default-body {
@@ -2324,13 +2324,13 @@ button#countryCode {
 }
 @media (max-width: 991px) {
   /* notification antd */
-:where(.css-dev-only-do-not-override-42nv3w).ant-notification-topRight.ant-notification-stack>.ant-notification-notice-wrapper
+.ant-notification-topRight.ant-notification-stack>.ant-notification-notice-wrapper
 {  top:119px!important;
 }
-:where(.css-42nv3w).ant-notification-topRight.ant-notification-stack>.ant-notification-notice-wrapper{
+.ant-notification-topRight.ant-notification-stack>.ant-notification-notice-wrapper{
   top:119px!important;
 }
-:where(.css-1jr9qlj).ant-notification{
+.ant-notification{
   top:119px!important;
 }
 /* end  notification */

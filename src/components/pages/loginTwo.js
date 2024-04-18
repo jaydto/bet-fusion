@@ -26,11 +26,11 @@ const LoginTwo = React.memo(
         const userData = useSelector((state) => state.auth.user)
         const [user, setUser] = useState(getFromLocalStorage("user"))
 
-        useEffect(() => {
-            if (userData) {
-                setUser(userData || getFromLocalStorage("user"))
-            }
-        }, [userData])
+        // useEffect(() => {
+        //     if (userData) {
+        //         setUser(userData || getFromLocalStorage("user"))
+        //     }
+        // }, [])
 
 
         const Notify = (message) => {
@@ -52,22 +52,7 @@ const LoginTwo = React.memo(
 
         };
 
-        const dispatchUser = useCallback(() => {
-            if (message !== null) {
-                Notify(message);
-
-                if (message.status == 200) {
-                    // 1 month
-                    setLocalStorage('user', message.user, 2629746000);
-                    // setUser(message.user);
-                }
-
-            }
-        }, [message])
-
-        useEffect(() => {
-            dispatchUser();
-        }, [dispatchUser]);
+       
 
 
         const FormTitle = () => {

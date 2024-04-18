@@ -62,6 +62,7 @@ const HeaderLogin = React.memo((props) => {
 
   const dispatchUser = useCallback(() => {
     if (successMessage !== null) {
+        // console.log("calling info here now user", successMessage)
       Notify(successMessage);
 
       if (successMessage.status == 200) {

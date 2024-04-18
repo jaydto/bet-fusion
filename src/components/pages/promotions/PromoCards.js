@@ -223,14 +223,14 @@ const PromoCards = () => {
         <div className="col-md-2 promo-styling shadow-lg promotion">
           <div className="d-flex flex-column promo-inner">
             <img
-              src={"https://cdn.betnare.com/carousel/PepeaUshindeWeb.webp"}
+              src={"https://cdn.betnare.com/carousel/DondokaWeb.jpeg"}
               className={"rounded promo-image "}
             />
             <h5
               className="bold d-flex justify-content-center h4 pt-2"
               style={{ color: "#ea5d0b" }}
             >
-              PEPEA USHINDE FREE BETS!
+              DONDOKA NA FREE BETS!
             </h5>
             <p className="container-profile mx-1 px-2 text-data-promotions">
             Win up to 1000 free bets every hour between 6:00 AM to 6:00 PM awards random it could be you ...
@@ -242,9 +242,9 @@ const PromoCards = () => {
                 className={"profile-button border-0 h-25 rounded promo-button"}
                 style={{ background: "#ea5d0b" }}
                 onClick={() => {
-                  gaEventTracker("pepea_ushinde_free_bets");
+                  gaEventTracker("dondoka_free_bets");
                   navigate(`/nare-games/aviator?status=live`);
-                  setUtmSouceCampaignOnPromotions("pepea_ushinde_free_bets");
+                  setUtmSouceCampaignOnPromotions("dondoka_free_bets");
                 }}
               >
                 Play Aviator!
@@ -363,17 +363,17 @@ const PromoCards = () => {
         <div className="col-md-2 promo-styling shadow-lg promotion">
           <div className="d-flex flex-column promo-inner">
             <img
-              src={"https://cdn.betnare.com/carousel/StakeBooster.webp"}
+              src={"https://cdn.betnare.com/carousel/30kStakeBoosterWeb.webp"}
               className={"rounded promo-image "}
             />
             <h5
               className="bold d-flex justify-content-center h4 pt-2"
               style={{ color: "#ea5d0b" }}
             >
-              KARIBU STAKE BOOSTER
+              KARIBU STAKE BOOSTER BONUS
             </h5>
             <p className="container-profile mx-1 px-2 text-data-promotions">
-              Get Up to 3,000/= FREE Bet Booster once you register as a Free
+              Get Up to 30,000/= FREE Bet Booster once you register as a Free
               Stake Booster...
             </p>
             <hr />

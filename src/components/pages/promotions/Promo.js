@@ -29,7 +29,7 @@ const Promo = () => {
     { src: "https://cdn.betnare.com/carousel/LuckyHourv2.webp", id: 5 },
     { src: "https://cdn.betnare.com/carousel/Mbuzi.webp", id: 6 },
     { src: "https://cdn.betnare.com/carousel/DepositBonus.webp", id: 7 },
-    { src: "https://cdn.betnare.com/carousel/StakeBooster.webp", id: 1 },
+    { src: "https://cdn.betnare.com/carousel/30kStakeBoosterWeb.webp", id: 1 },
     { src: DepositBonus, id: 9 },
     { src: mia_sita_hamsini, id: 10 },
     { src: "https://cdn.betnare.com/carousel/chomokananduthi.webp", id: 12 },
@@ -107,7 +107,7 @@ const Promo = () => {
       id: 33,
     },
     {
-      src: "https://cdn.betnare.com/carousel/PepeaUshindeWeb.webp",
+      src: "https://cdn.betnare.com/carousel/DondokaWeb.jpeg",
       id: 34,
     },
     {

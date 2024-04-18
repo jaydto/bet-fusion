@@ -1930,6 +1930,9 @@ img.nare-league {
   :where(.css-42nv3w).ant-notification-topRight.ant-notification-stack>.ant-notification-notice-wrapper{
     top:74px!important;
   }
+  :where(.css-1jr9qlj).ant-notification{
+    top:100px!important;
+  }
   .flex-container.height-default-body {
     margin-top: 51px;
   }
@@ -2325,6 +2328,9 @@ button#countryCode {
 {  top:119px!important;
 }
 :where(.css-42nv3w).ant-notification-topRight.ant-notification-stack>.ant-notification-notice-wrapper{
+  top:119px!important;
+}
+:where(.css-1jr9qlj).ant-notification{
   top:119px!important;
 }
 /* end  notification */

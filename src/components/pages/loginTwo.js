@@ -105,7 +105,7 @@ const LoginTwo = React.memo(
                                     </Link>
 
                                     <h1 className="text-white text-center" style={{fontSize: "30px"}}>Welcome to
-                                        betnare</h1>
+                                        BetNare</h1>
                                 </Col>
                             </Row>
                             <div className="d-flex justify-content-end pb-4">

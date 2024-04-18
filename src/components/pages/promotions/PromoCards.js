@@ -230,7 +230,7 @@ const PromoCards = () => {
               className="bold d-flex justify-content-center h4 pt-2"
               style={{ color: "#ea5d0b" }}
             >
-              DONDOKA FREE BETS!
+              DONDOKA NA FREE BETS!
             </h5>
             <p className="container-profile mx-1 px-2 text-data-promotions">
             Win up to 1000 free bets every hour between 6:00 AM to 6:00 PM awards random it could be you ...

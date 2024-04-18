@@ -370,7 +370,7 @@ const PromoCards = () => {
               className="bold d-flex justify-content-center h4 pt-2"
               style={{ color: "#ea5d0b" }}
             >
-              KARIBU STAKE BOOSTER
+              KARIBU STAKE BOOSTER BONUS
             </h5>
             <p className="container-profile mx-1 px-2 text-data-promotions">
               Get Up to 30,000/= FREE Bet Booster once you register as a Free

@@ -338,10 +338,11 @@ const BetslipSubmitForm = React.memo(
 
         const updateWinnings = useCallback(() => {
             if (betslip) {
-                    console.log("excice tas information one ",settings?.sportsBookLimits )
-                    console.log("excice tas information two  ",Number(getFromLocalStorage('settings')?.sportsBookLimits?.exciseTaxEnabled ?? settings?.sportsBookLimits?.exciseTaxEnabled ))
-                    console.log("excice tas information three  ", Number(getFromLocalStorage('settings')?.sportsBookLimits?.withholdingTaxEnabled ?? settings?.sportsBookLimits?.withholdingTaxEnabled ))
-                let exciseTaxStatus= Number(getFromLocalStorage('settings')?.sportsBookLimits?.exciseTaxEnabled ?? settings?.sportsBookLimits?.exciseTaxEnabled  )
+                    // console.log("excice tas information one ",settings?.sportsBookLimits )
+                    // console.log("excice tas information two  ",Number(getFromLocalStorage('settings')?.sportsBookLimits?.exciseTaxEnabled ?? settings?.sportsBookLimits?.exciseTaxEnabled ))
+                    // console.log("excice tas information three  ", Number(getFromLocalStorage('settings')?.sportsBookLimits?.withholdingTaxEnabled ?? settings?.sportsBookLimits?.withholdingTaxEnabled ))
+                
+                    let exciseTaxStatus= Number(getFromLocalStorage('settings')?.sportsBookLimits?.exciseTaxEnabled ?? settings?.sportsBookLimits?.exciseTaxEnabled  )
 
                 let withholdingTaxStatus= Number(getFromLocalStorage('settings')?.sportsBookLimits?.withholdingTaxEnabled  ?? settings?.sportsBookLimits?.withholdingTaxEnabled )
 

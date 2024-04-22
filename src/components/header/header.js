@@ -393,11 +393,11 @@ const Header = React.memo((props) => {
                   id="navbar-collapse-main "
                 >
                   <div className="col-md-11 col-sm-12 col-lg-7 right fix-view-2 disable-ipad to-navcheck justify-content-end pt-lg-0 pt-md-3">
-                    {user ? (
+                    {userData ? 
                       <ProfileMenu user={user} profile={checkDesktop} />
-                    ) : (
+                     :                  
                       <LoginSection />
-                    )}
+                  }
                   </div>
                 </div>
               </div>

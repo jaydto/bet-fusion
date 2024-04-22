@@ -29,7 +29,7 @@ const Promo = () => {
     { src: "https://cdn.betnare.com/carousel/LuckyHourv2.webp", id: 5 },
     { src: "https://cdn.betnare.com/carousel/Mbuzi.webp", id: 6 },
     { src: "https://cdn.betnare.com/carousel/DepositBonus.webp", id: 7 },
-    { src: "https://cdn.betnare.com/carousel/StakeBooster.webp", id: 1 },
+    { src: "https://cdn.betnare.com/carousel/30kStakeBoosterWeb.webp", id: 1 },
     { src: DepositBonus, id: 9 },
     { src: mia_sita_hamsini, id: 10 },
     { src: "https://cdn.betnare.com/carousel/chomokananduthi.webp", id: 12 },
@@ -83,6 +83,40 @@ const Promo = () => {
     },{
       src: "https://cdn.betnare.com/carousel/GoldRush.webp",
       id: 27,
+    },{
+      src: "https://cdn.betnare.com/carousel/Morningglory.webp",
+      id: 29,
+    },{
+      src: "https://cdn.betnare.com/carousel/Rasha.webp",
+      id: 28,
+    },
+    {
+      src: "https://cdn.betnare.com/carousel/Mbuziyambogi.webp",
+      id: 30,
+    },
+    {
+      src: "https://cdn.betnare.com/carousel/Mzinga.webp",
+      id: 31,
+    },
+    {
+      src: "https://cdn.betnare.com/carousel/RaukaBonusWeb.webp",
+      id: 32,
+    }
+    ,{
+      src: "https://cdn.betnare.com/carousel/PullOutWebNew.webp",
+      id: 33,
+    },
+    {
+      src: "https://cdn.betnare.com/carousel/DondokaWeb.jpeg",
+      id: 34,
+    },
+    {
+      src: "https://cdn.betnare.com/carousel/MidnightRainsWeb.webp",
+      id: 35,
+    }
+    ,{
+      src: "https://cdn.betnare.com/carousel/MidnightRainsWeb.webp",
+      id: 36,
     }
   ];
 

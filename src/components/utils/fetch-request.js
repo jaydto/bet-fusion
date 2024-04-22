@@ -74,7 +74,7 @@ instance.interceptors.response.use(
 );
 
 const makeRequest = async ({ url, method, data = null, use_jwt = false }) => {
-  let user = getFromLocalStorage("user");
+  let user = getFromLocalStorage("user") ?? null;
 
   let headers = {};
 

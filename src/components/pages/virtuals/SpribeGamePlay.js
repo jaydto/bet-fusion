@@ -250,18 +250,18 @@ const GamePlay = React.memo(
                                     }}>
                                         <div className={'card-body p-3'}>
                                             <h3 className={'text-center text-warning flashy'}>
-                                                WIN Upto 2,000,000/= na AVIATOR daily.
+                                                WIN Upto 4,000,000/= na AVIATOR daily.
                                             </h3>
                                             <br/>
                                             <h3 className={'text-center'}>How to Play Aviator</h3>
                                             <ul>
                                                 <li>
-                                                    Fly Aviator to WIN Upto 2,000,000/= Daily. Choose your bet amount
+                                                    Fly Aviator to WIN Upto 4,000,000/= per Round. Choose your bet amount
                                                     and
                                                     press confirm. Use AUTO-BET function for a guaranteed WIN. Minimum
                                                     Bet –
-                                                    KSH 10. Maximum Bet – KSH 10,000. Maximum Win per Bet is KSH
-                                                    2,000,000.
+                                                    KSH 10. Maximum Bet – KSH 20,000. Maximum Win per Round is KSH
+                                                    4,000,000.
                                                     Maximize your Winnings with the Double Bet feature by adding another
                                                     bet
                                                     anytime and set different values.

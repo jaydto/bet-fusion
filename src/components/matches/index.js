@@ -126,6 +126,48 @@ export const marketChoiceOptions = () => {
     ];
 };
 
+export const virtualGameChoiceOptions = (bottomSheetType) => {
+    if (bottomSheetType === 'pull_out') {
+      // Return options for pull_out
+      return [
+        {
+          id: 'Aviator',
+          name: 'Aviator',
+          url: '/nare-games/aviator?status=live',
+        },
+        {
+          id: 'JetX',
+          name: 'JetX',
+          url: '/smart-play?game=JetX&category=JetX',
+        },
+      ];
+    } else {
+      // Return options for morning_glory or any other type
+      return [
+        {
+          id: 'Aviator',
+          name: 'Aviator',
+          url: '/nare-games/aviator?status=live',
+        },
+        {
+          id: 'JetX',
+          name: 'JetX',
+          url: '/smart-play?game=JetX&category=JetX',
+        },
+        {
+          id: 'Nare League',
+          name: 'Nare League',
+          url: '/nare-league',
+        },
+        {
+          id: 'Casino',
+          name: 'Casino',
+          url: '/casino',
+        },
+      ];
+    }
+  };
+
 export const marketChoice = () => {
 
     return [

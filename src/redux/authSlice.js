@@ -15,7 +15,8 @@ export const loginUser = createAsyncThunk(
     if (status === 200) {
       return response;
     } else {
-      throw new Error(response?.error || "Login failed");
+      console.log("response information", response)
+      throw new Error(response?.message || "Login failed");
     }
   }
 );

@@ -9,6 +9,33 @@ body {
   background: var(--betslip-list);
 }
 
+/* self-exclusion */
+.rdrDefinedRangesWrapper{
+  display: none;
+}
+.rdrInputRange{
+  display:none!important;
+}
+#reason-dropdown{
+  width: 100%;
+  background: var(--odds-button);
+  padding: 12px;
+  font-size:14px;
+  font-weight: bold;
+}
+#reason-dropdown-data{
+  width: 100%;
+  background: var(--odds-button);
+  padding: 11px;
+  color:#fff;
+}
+.form-group.self-exclusion_form div .dropdown-menu{
+  background: var(--odds-button);
+  width: 100%;
+
+}
+/* end self excluison */
+
 .link-color {
   color: var(--link-color) !important;
 }
@@ -138,8 +165,13 @@ input.text-white {
 .text-white {
   color: var(--footer-color) !important;
 }
+<<<<<<< HEAD
 /* todo check on this  */
 /* .styling-matches {
+=======
+
+/* . styling-matches {
+>>>>>>> origin/main
   -webkit-box-shadow: 0px 4px 5px 0px rgba(40, 55, 78, 1);
   -moz-box-shadow: 0px 4px 5px 0px rgba(40, 55, 78, 1);
   box-shadow: 0px 4px 5px 0px rgba(40, 55, 78, 1);
@@ -326,7 +358,7 @@ input.text-white {
   padding: 4px 124px;
   margin: 5px;
   border-radius: 6px;
-  font-size: 19px;
+  font-size: 16px;
   font-weight: 600;
   background-color: var(--betnare-button-login);
 }
@@ -1284,6 +1316,8 @@ img.nare-league {
 .self-exclusion_form {
   margin: auto;
   max-width: 900px;
+  display: flex;
+  justify-content: center;
 }
 
 /*back button*/
@@ -1934,6 +1968,15 @@ img.nare-league {
 }
 
 @media (min-width: 992px) {
+  .ant-notification-topRight.ant-notification-stack>.ant-notification-notice-wrapper{
+        top: 100px!important;
+  }
+  .ant-notification-topRight.ant-notification-stack>.ant-notification-notice-wrapper{
+    top:74px!important;
+  }
+  .ant-notification{
+    top:100px!important;
+  }
   .flex-container.height-default-body {
     margin-top: 51px;
   }
@@ -2320,10 +2363,23 @@ button#countryCode {
   transition: display linear 0.7s;
 }
 @media (max-width: 991px) {
+
   .mobile-widget-position{
     /* position:absolute; */
     width: 100%;
   }
+
+  /* notification antd */
+.ant-notification-topRight.ant-notification-stack>.ant-notification-notice-wrapper
+{  top:119px!important;
+}
+.ant-notification-topRight.ant-notification-stack>.ant-notification-notice-wrapper{
+  top:119px!important;
+}
+.ant-notification{
+  top:119px!important;
+}
+/* end  notification */
  
   .optional-action {
     display: none;
@@ -2550,9 +2606,9 @@ button#countryCode {
 
   .update_button {
     /* height: 41px; */
-    padding: 10px 124px !important;
-  }
-
+    padding: 9px 119px !important;
+    width:90%!important;
+}
   .desktop-only-show {
     display: none !important;
   }

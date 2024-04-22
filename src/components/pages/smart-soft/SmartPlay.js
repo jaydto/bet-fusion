@@ -230,13 +230,13 @@ const SmartPlay = React.memo(
                                     }}>
                                         <div className={'card-body p-3'}>
                                             <h3 className={'text-center text-warning flashy'}>
-                                                WIN Upto 2,500,000/= with JetX the Money Multiplier daily
+                                                WIN Upto 4,000,000/= with JetX the Money Multiplier per Round
                                             </h3>
                                             <ul>
                                                 <li>
-                                                    Minimum Bet – KSH10, Maximum Stake per Bet is KES12,000. Maximum Win
+                                                    Minimum Bet – KSH10, Maximum Stake per Bet is KES20,000. Maximum Win
                                                     per
-                                                    Bet is KES 2,500,000.
+                                                    Round is KES 4,000,000.
                                                 </li>
                                                 <li>
                                                     Game on real-time events, Fast Plays for High and instant Pay-outs

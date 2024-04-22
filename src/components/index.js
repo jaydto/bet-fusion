@@ -92,134 +92,134 @@ let betSlipState = {
 
 
 
-  useEffect(() => {
-    // Configure SIR
+  // useEffect(() => {
+  //   // Configure SIR
 
-    // Register Adapter
-    window.SIR("registerAdapter", "mockData", { onBetSlipChanged: onBetSlipChanged });
+  //   // Register Adapter
+  //   window.SIR("registerAdapter", "mockData", { onBetSlipChanged: onBetSlipChanged });
     
 
-    // Add Widget 1
-    window.SIR("addWidget", ".sr-widget-1", "betRecommendation", {
-      user:user?.profile_id??null,
-      count:6,
-      onItemClick: handleButtonOnClick,
-      filters: { sport: { hidden: false, available: ['1', '2','3','4','5','6','7','8','9','10','12','13','15','16','20','21','22','23','26','29','32','117'] } },
-      sportsMapping: {
-        "172":"10"
-      }
+  //   // Add Widget 1
+  //   window.SIR("addWidget", ".sr-widget-1", "betRecommendation", {
+  //     user:user?.profile_id??null,
+  //     count:6,
+  //     onItemClick: handleButtonOnClick,
+  //     filters: { sport: { hidden: false, available: ['1', '2','3','4','5','6','7','8','9','10','12','13','15','16','20','21','22','23','26','29','32','117'] } },
+  //     sportsMapping: {
+  //       "172":"10"
+  //     }
 
-    });
+  //   });
 
     
-  });
+  // });
 
-const handleButtonOnClick =
-  (target,event) => {
+// const handleButtonOnClick =
+//   (target,event) => {
 
-    console.log("checking what is the target", target)
-      console.log("checking what is the data", event)
-      if (target === 'externalOutcome') {
+//     console.log("checking what is the target", target)
+//       console.log("checking what is the data", event)
+//       if (target === 'externalOutcome') {
 
-        // console.log("target data", event.externalMarket.status.isActive)
-      const attributes = {
-          parent_match_id: event?.externalEvent?.id,
-          // match_id: event.currentTarget.getAttribute("match_id"),
-          sub_type_id: event?.externalMarket?.id,
-          // special_bet_value: event.currentTarget.getAttribute("special_bet_value"),
-          odd_key: event?.externalOutcome?.name,
-          odd_value: event?.externalOutcome?.odds,
-          bet_type: event?.externalEvent?.isLive===false?"0":"1",
-          odd_type: event?.externalMarket?.name,
-          start_time: event?.externalEvent?.date,
-          home_team: event?.externalEvent?.teams[0]?.name,
-          away_team: event?.externalEvent?.teams[1]?.name,
-          sport_name: event?.externalEvent?.sport.name,
-          market_active: event?.externalMarket?.status.isActive,
-      };
+//         // console.log("target data", event.externalMarket.status.isActive)
+//       const attributes = {
+//           parent_match_id: event?.externalEvent?.id,
+//           // match_id: event.currentTarget.getAttribute("match_id"),
+//           sub_type_id: event?.externalMarket?.id,
+//           // special_bet_value: event.currentTarget.getAttribute("special_bet_value"),
+//           odd_key: event?.externalOutcome?.name,
+//           odd_value: event?.externalOutcome?.odds,
+//           bet_type: event?.externalEvent?.isLive===false?"0":"1",
+//           odd_type: event?.externalMarket?.name,
+//           start_time: event?.externalEvent?.date,
+//           home_team: event?.externalEvent?.teams[0]?.name,
+//           away_team: event?.externalEvent?.teams[1]?.name,
+//           sport_name: event?.externalEvent?.sport.name,
+//           market_active: event?.externalMarket?.status.isActive,
+//       };
 
-      const newBet = {
-        externalEventId: event?.externalEvent.id,
-        externalMarketId: event?.externalMarket.id,
-        externalOutcomeId: event?.externalOutcome.id
-    };
+//       const newBet = {
+//         externalEventId: event?.externalEvent.id,
+//         externalMarketId: event?.externalMarket.id,
+//         externalOutcomeId: event?.externalOutcome.id
+//     };
 
-    betSlipState = {
-        betslip: [...betSlipState.betslip, newBet],
-        // combinedOddsValue: '14.52' // Just an example, replace with your actual calculation
-    }
+//     betSlipState = {
+//         betslip: [...betSlipState.betslip, newBet],
+//         // combinedOddsValue: '14.52' // Just an example, replace with your actual calculation
+//     }
 
-    // Update the betSlipState by adding the new bet and the combinedOddsValue
-    changeCallback && changeCallback(betSlipState);
+//     // Update the betSlipState by adding the new bet and the combinedOddsValue
+//     changeCallback && changeCallback(betSlipState);
 
-      let cstm = clear_rep(
-          attributes.match_id +
-          "" +
-          attributes.sub_type_id +
-          attributes.odd_key
-          //  +
-          // (marketKey !== undefined ? marketKey : "")
-      );
-      const maxPickReached = () => {
-          // console.log("max_pick_reached")
-          dispatchRedux(removePickedData(" "))
-          // dispatchRedux(removePickedData(""));
-          Notify({
-              status: 401,
-              message: "Maximum selections reached",
-              token: "",
-          });
-      };
-      const betItems = getBetslip();
-      const slip = {
-          match_id: attributes.match_id??attributes.parent_match_id,
-          parent_match_id: attributes.parent_match_id,
-          special_bet_value: "",
-          sub_type_id: attributes.sub_type_id,
-          bet_pick: attributes.odd_key,
-          start_time: attributes.start_time,
-          odd_value: attributes.odd_value,
-          home_team: attributes.home_team,
-          away_team: attributes.away_team,
-          bet_type: attributes.bet_type,
-          odd_type: attributes.odd_type,
-          sport_name: attributes.sport_name,
-          live: 0,
-          ucn: clear_rep(
-              `${attributes.match_id??attributes.parent_match_id}${attributes.sub_type_id}${attributes.odd_key}
-              `
-          ),
-          market_active: attributes.market_active,
-          position: 0,
-      };
+//       let cstm = clear_rep(
+//           attributes.match_id +
+//           "" +
+//           attributes.sub_type_id +
+//           attributes.odd_key
+//           //  +
+//           // (marketKey !== undefined ? marketKey : "")
+//       );
+//       const maxPickReached = () => {
+//           // console.log("max_pick_reached")
+//           dispatchRedux(removePickedData(" "))
+//           // dispatchRedux(removePickedData(""));
+//           Notify({
+//               status: 401,
+//               message: "Maximum selections reached",
+//               token: "",
+//           });
+//       };
+//       const betItems = getBetslip();
+//       const slip = {
+//           match_id: attributes.match_id??attributes.parent_match_id,
+//           parent_match_id: attributes.parent_match_id,
+//           special_bet_value: "",
+//           sub_type_id: attributes.sub_type_id,
+//           bet_pick: attributes.odd_key,
+//           start_time: attributes.start_time,
+//           odd_value: attributes.odd_value,
+//           home_team: attributes.home_team,
+//           away_team: attributes.away_team,
+//           bet_type: attributes.bet_type,
+//           odd_type: attributes.odd_type,
+//           sport_name: attributes.sport_name,
+//           live: 0,
+//           ucn: clear_rep(
+//               `${attributes.match_id??attributes.parent_match_id}${attributes.sub_type_id}${attributes.odd_key}
+//               `
+//           ),
+//           market_active: attributes.market_active,
+//           position: 0,
+//       };
 
 
-      // if (cstm === match?.ucn) {
-          let betslip;
-          const updateRedux = () => {
-              betslip =  addToSlip(slip);
-              dispatchRedux( setSelected(event.externalEvent.id+"_selected", cstm));
-              dispatchRedux( setPickedData(cstm));
-          };
+//       // if (cstm === match?.ucn) {
+//           let betslip;
+//           const updateRedux = () => {
+//               betslip =  addToSlip(slip);
+//               dispatchRedux( setSelected(event.externalEvent.id+"_selected", cstm));
+//               dispatchRedux( setPickedData(cstm));
+//           };
 
           
-              updateRedux();
+//               updateRedux();
          
-              if (Object.keys(betItems || {}).length === Number(settings?.sportsBookLimits?.multiBetMaxSelections)) {
-                  maxPickReached();
-              } else {
-                  updateRedux();
-              }
+//               if (Object.keys(betItems || {}).length === Number(settings?.sportsBookLimits?.multiBetMaxSelections)) {
+//                   maxPickReached();
+//               } else {
+//                   updateRedux();
+//               }
           
 
-          const betslip_data = {
-              betslip_type: "betslip",
-              data: betslip
-          };
+//           const betslip_data = {
+//               betslip_type: "betslip",
+//               data: betslip
+//           };
 
-          dispatchRedux(setMatchBetslip(betslip_data));
-      }
-  };
+//           dispatchRedux(setMatchBetslip(betslip_data));
+//       }
+//   };
   const clear_rep = (str) => {
     return str.replace(/\s/g, "");
 };
@@ -347,13 +347,11 @@ const handleButtonOnClick =
 
   return (
     <>
-      <div className="widgets">
-        {/* Todo return this parts only */}
+      {/* <div className="widgets">
         <div>
           <div className="sr-widget sr-widget-1"></div>
         </div>
-        {/* <div><div className="sr-widget sr-widget-2"></div></div> */}
-      </div>
+      </div> */}
       {newMatches && tab !== "countries" && (
         <MatchHeaderRow
           live={false}

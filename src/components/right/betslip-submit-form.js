@@ -264,6 +264,9 @@ const BetslipSubmitForm = React.memo(
             //     data: payload
             // }
             // gaEventTracker("Bet Placed", data)
+
+            if(values.user_id===undefined)
+                return;
             dispatchRedux(bettingMatchesGames({endpoint:endpoint, method:method, data:payload, jackpot:jackpot, use_jwt:use_jwt})).then((response) => {
                 // Check if the action was fulfilled successfully
                 if (bettingMatchesGames.fulfilled.match(response)) {
@@ -493,8 +496,9 @@ const BetslipSubmitForm = React.memo(
 
         const validate = (values) => {
             let errors = {};
+            console.log("user_id information", values.user_id)
 
-            if (!values.user_id) {
+            if (!values.user_id || values.user_id?.length===0 || values.user_id === undefined) {
                 // errors.user_id = "Kindly login to proceed";
                 // setMessage({status: 400, message: errors.user_id});
                 // return errors;

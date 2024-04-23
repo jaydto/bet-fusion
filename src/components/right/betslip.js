@@ -380,7 +380,7 @@ const BetSlip = React.memo(
         // setSimilarEventIds(allKeys);
         
         // Configure SIR and add Widget 1 with updated similarEventIds
-        window.SIR('registerAdapter', 'mockData', { onBetSlipChanged: onBetSlipChanged });
+        window.SIR('registerAdapter', 'betnare', { onBetSlipChanged: onBetSlipChanged });
         window.SIR('addWidget', '.sr-widget-bets', 'betRecommendation.similarBets', {
             maxRows: 1,
             cardsLayout: 'horizontal',

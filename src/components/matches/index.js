@@ -722,7 +722,7 @@ const MktBtn = React.memo(
                     market_active: event.currentTarget.getAttribute("market_active"),
                 };
                 let cstm = clear_rep(
-                    attributes.match_id +
+                    attributes.parent_match_id +
                     "" +
                     attributes.sub_type_id +
                     attributes.odd_key +
@@ -746,7 +746,7 @@ const MktBtn = React.memo(
                     sport_name: attributes.sport_name,
                     live: live,
                     ucn: clear_rep(
-                        `${attributes.match_id}${attributes.sub_type_id}${attributes.odd_key}${
+                        `${attributes.parent_match_id}${attributes.sub_type_id}${attributes.odd_key}${
                             marketKey !== undefined ? marketKey : ""
                         }`
                     ),
@@ -758,7 +758,7 @@ const MktBtn = React.memo(
                 if (cstm === match?.ucn) {
                     let betslip;
                     const updateRedux = () => {
-                        betslip = picked === match?.ucn ? removeFromSlip(attributes.match_id) : addToSlip(slip);
+                        betslip = picked === match?.ucn ? removeFromSlip(attributes.parent_match_id) : addToSlip(slip);
                         dispatchRedux(picked === match?.ucn ? removePickedData("") : setSelected(reference, cstm));
                         dispatchRedux(removeSelected(reference));
                         dispatchRedux(picked === match?.ucn ? removePickedData("") : setPickedData(cstm));
@@ -785,7 +785,8 @@ const MktBtn = React.memo(
             },
             [match?.ucn, picked, settings, allMarkets]);
 
-        const buttonClass = `home-team ${allMarkets ? "all-markets" : ""} ${match.match_id} ${match?.ucn} ${picked.length > 0 && picked === match?.ucn ? 'picked' : ''} c-btn`
+
+        const buttonClass = `home-team ${allMarkets ? "all-markets" : ""} ${match.parent_match_id} ${match?.ucn} ${picked.length > 0 && picked === match?.ucn ? 'picked' : ''} c-btn`
 
         return (
             <button
@@ -1743,7 +1744,7 @@ export const MarketList = React.memo(
         useEffect(() => {
             const elements = matchwithmarkets?.data?.odds;
 
-            // Filter the markets based on the selectedMarketGroup
+            // Filter the markets based on the selectedMarketGroup 
             let filteredMarkets;
             if (selectedMarketGroup === "favorite") {
                 filteredMarkets = elements?.filter((market) => Number(market?.is_favorite) === 1)

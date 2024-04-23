@@ -59,12 +59,12 @@ const AllMarkets = React.memo(
             }
             Object.entries(betslip || {}).map(([matchId, match]) => {
                 let uc = clean(
-                    match.match_id +
+                    match.parent_match_id +
                     "" +
                     match.sub_type_id +
                     (match?.bet_pick || "draw")
                 );
-                const reference = matchId + "_selected";
+                const reference = matchId+ "_selected";
                 dispatchRedux(setSelected(reference, uc));
             });
 

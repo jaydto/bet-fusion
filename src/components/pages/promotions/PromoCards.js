@@ -32,7 +32,7 @@ const PromoCards = () => {
 
   let ids = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
-    22, 23, 24, 25, 26, 27, 28, 29,30, 31, 32,33,34,35,36,37
+    22, 23, 24, 25, 26, 27, 28, 29,30, 31, 32,33,34,35,36,37, 38,39
   ];
   const navigate = useNavigate();
 
@@ -91,6 +91,93 @@ const PromoCards = () => {
         className={`row text-white pt-2 border-0 d-flex promo-container-profile d-flex align-self-start align-items-start"`}
       >
          <div className="col-md-2 promo-styling shadow-lg promotion">
+          <div className="d-flex flex-column promo-inner">
+            <img
+              src={"https://cdn.betnare.com/carousel/EndMonthBonanzaWeb.webp"}
+              className={"rounded promo-image "}
+            />
+            <h5
+              className="bold d-flex justify-content-center h4 pt-2"
+              style={{ color: "#ea5d0b" }}
+            >
+              END MONTH BONANZA !
+            </h5>
+            <p className="container-profile mx-1 px-2 text-data-promotions">
+            Stake a minimum of 20 Kenyan Shillings on Aviator and win big prizes with the highest multiplier...
+                             </p>
+            <hr />
+
+            <div className="d-flex justify-content-between my-2 mx-2">
+              <button
+                className={"profile-button border-0 h-25 rounded promo-button"}
+                style={{ background: "#ea5d0b" }}
+                onClick={() => {
+                  gaEventTracker("end_month_bonanza");
+                  navigate(`/nare-games/aviator?status=live`);
+                  setUtmSouceCampaignOnPromotions("nd_month_bonanza");
+                }}
+              >
+                Play Aviator!
+              </button>
+              <div
+                className={
+                  "d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"
+                }
+                style={{ color: "#ea5d0b" }}
+                onClick={() => {
+                  navigate(`/promo?id=${ids[37]}`);
+                  window.scrollTo(0, 0); // Scroll to the top of the page
+                }}
+              >
+                Read More
+              </div>
+            </div>
+          </div>
+        </div>  
+        <div className="col-md-2 promo-styling shadow-lg promotion">
+          <div className="d-flex flex-column promo-inner">
+            <img
+              src={"https://cdn.betnare.com/carousel/GoalRushWeb.webp"}
+              className={"rounded promo-image "}
+            />
+            <h5
+              className="bold d-flex justify-content-center h4 pt-2"
+              style={{ color: "#ea5d0b" }}
+            >
+              GOAL RUSH!
+            </h5>
+            <p className="container-profile mx-1 px-2 text-data-promotions">
+            Stake a minimum of 49 Kenyan Shillings on a multi-bet comprising of at least 3 games  and be among the 20 winners being awarded 500 kes daily...          </p>
+            <hr />
+
+            <div className="d-flex justify-content-between my-2 mx-2">
+              <button
+                className={"profile-button border-0 h-25 rounded promo-button"}
+                style={{ background: "#ea5d0b" }}
+                onClick={() => {
+                  gaEventTracker("goal_rush");
+                  navigate(`/`);
+                  setUtmSouceCampaignOnPromotions("goal_rush");
+                }}
+              >
+                Bet Now!
+              </button>
+              <div
+                className={
+                  "d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"
+                }
+                style={{ color: "#ea5d0b" }}
+                onClick={() => {
+                  navigate(`/promo?id=${ids[36]}`);
+                  window.scrollTo(0, 0); // Scroll to the top of the page
+                }}
+              >
+                Read More
+              </div>
+            </div>
+          </div>
+        </div> 
+        <div className="col-md-2 promo-styling shadow-lg promotion">
           <div className="d-flex flex-column promo-inner">
             <img
               src={"https://cdn.betnare.com/carousel/Pambazuka.webp"}

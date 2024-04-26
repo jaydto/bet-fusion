@@ -124,6 +124,12 @@ const Promo = () => {
     {
       src: "https://cdn.betnare.com/carousel/Pambazuka.webp",
       id: 36,
+    }, {
+      src: "https://cdn.betnare.com/carousel/GoalRushWeb.webp",
+      id: 37,
+    },{
+      src: "https://cdn.betnare.com/carousel/EndMonthBonanzaWeb.webp",
+      id: 38,
     },
     
   ];

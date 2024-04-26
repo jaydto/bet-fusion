@@ -147,7 +147,7 @@ const PromoCards = () => {
               GOAL RUSH!
             </h5>
             <p className="container-profile mx-1 px-2 text-data-promotions">
-            Stake a minimum of 49 Kenyan Shillings on a multi-bet comprising of at least 3 games  and be among the 20 winners being awarder 500 kes daily...          </p>
+            Stake a minimum of 49 Kenyan Shillings on a multi-bet comprising of at least 3 games  and be among the 20 winners being awarded 500 kes daily...          </p>
             <hr />
 
             <div className="d-flex justify-content-between my-2 mx-2">

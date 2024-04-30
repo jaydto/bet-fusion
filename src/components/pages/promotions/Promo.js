@@ -68,25 +68,32 @@ const Promo = () => {
     {
       src: "https://cdn.betnare.com/carousel/Spin&WIn.webp",
       id: 22,
-    },{
+    },
+    {
       src: "https://cdn.betnare.com/carousel/ShikishanaAviatorWeb.webp",
       id: 23,
-    },{
+    },
+    {
       src: "https://cdn.betnare.com/carousel/TheBigLeagueWeb.webp",
       id: 24,
-    },{
+    },
+    {
       src: "https://cdn.betnare.com/carousel/Kienyeji.webp",
       id: 25,
-    },{
+    },
+    {
       src: "https://cdn.betnare.com/carousel/PunchyaSare.webp",
       id: 26,
-    },{
+    },
+    {
       src: "https://cdn.betnare.com/carousel/GoldRush.webp",
       id: 27,
-    },{
+    },
+    {
       src: "https://cdn.betnare.com/carousel/Morningglory.webp",
       id: 29,
-    },{
+    },
+    {
       src: "https://cdn.betnare.com/carousel/Rasha.webp",
       id: 28,
     },
@@ -101,8 +108,8 @@ const Promo = () => {
     {
       src: "https://cdn.betnare.com/carousel/RaukaBonusWeb.webp",
       id: 32,
-    }
-    ,{
+    },
+    {
       src: "https://cdn.betnare.com/carousel/PullOutWebNew.webp",
       id: 33,
     },
@@ -113,11 +120,18 @@ const Promo = () => {
     {
       src: "https://cdn.betnare.com/carousel/MidnightRainsWeb.webp",
       id: 35,
-    }
-    ,{
-      src: "https://cdn.betnare.com/carousel/MidnightRainsWeb.webp",
+    },
+    {
+      src: "https://cdn.betnare.com/carousel/Pambazuka.webp",
       id: 36,
-    }
+    }, {
+      src: "https://cdn.betnare.com/carousel/GoalRushWeb.webp",
+      id: 37,
+    },{
+      src: "https://cdn.betnare.com/carousel/EndMonthBonanzaWeb.webp",
+      id: 38,
+    },
+    
   ];
 
   useEffect(() => {

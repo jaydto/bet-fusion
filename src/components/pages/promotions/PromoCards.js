@@ -93,7 +93,7 @@ const PromoCards = () => {
          <div className="col-md-2 promo-styling shadow-lg promotion">
           <div className="d-flex flex-column promo-inner">
             <img
-              src={"https://cdn.betnare.com/carousel/EndMonthBonanzaWeb.webp"}
+              src={"https://cdn.betnare.com/carousel/WeekendBonanzawebnew.webp"}
               className={"rounded promo-image "}
             />
             <h5
@@ -137,7 +137,7 @@ const PromoCards = () => {
         <div className="col-md-2 promo-styling shadow-lg promotion">
           <div className="d-flex flex-column promo-inner">
             <img
-              src={"https://cdn.betnare.com/carousel/GoalRushWeb.webp"}
+              src={"https://cdn.betnare.com/carousel/GoalRushNew.webp"}
               className={"rounded promo-image "}
             />
             <h5

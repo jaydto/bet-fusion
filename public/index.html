@@ -1,30 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- start SEARCH CONSOLE SCRIPT -->
-    <meta name="google-site-verification" content="-QJuJPUSaY-7jcrPj255eQ2-OS9Tuyz5oHdtPad_UMI"/>
-    <meta name="google-site-verification" content="KuYuzSo0ORCQwefW5eLazhfnlHg5h2jwHZQejKIBN2w"/>
+    <meta name="google-site-verification" content="-QJuJPUSaY-7jcrPj255eQ2-OS9Tuyz5oHdtPad_UMI" />
+    <meta name="google-site-verification" content="KuYuzSo0ORCQwefW5eLazhfnlHg5h2jwHZQejKIBN2w" />
 
-    <meta property="og:image" content="/fire.png"/>
+    <meta property="og:image" content="/fire.png" />
 
     <!--end SEARCH CONSOLE SCRIPT -->
-    <meta charset="utf-8"/>
-    <link rel="icon" href="%PUBLIC_URL%/favicon.png" type="image/png"/>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.png" type="image/png" />
     <link rel="preconnect" href="https://api.betnare.com">
 
-    <meta
-            name="viewport"
-            content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
-    <meta name="theme-color" content="#000000"/>
-    <meta
-            name="description"
-            content="Betnare, giving the experience of betting like no other"
-    />
+    <meta name="viewport"
+        content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Betnare, giving the experience of betting like no other" />
     <meta name="keywords"
-          content="Jetx , Aviator,Nare League, Football ,Football League, casino, slots, betting, virtuals, horse racing, Football X, Betnare, Space Man, bonuses | Rain Bets | Stake Booster , Jackpot, Rain Bets, Daily Jackpot, games, betting, bet, multibet, sure, prematch, live, virtual, virtualgames, betting, punter,tips,odds, bonus,competition,kenya, bclb, sports, pesa, deposit, tennis, football, soccer,fast, experience, penalty, goals, soccer, win"/>
+        content="Jetx , Aviator,Nare League, Football ,Football League, casino, slots, betting, virtuals, horse racing, Football X, Betnare, Space Man, bonuses | Rain Bets | Stake Booster , Jackpot, Rain Bets, Daily Jackpot, games, betting, bet, multibet, sure, prematch, live, virtual, virtualgames, betting, punter,tips,odds, bonus,competition,kenya, bclb, sports, pesa, deposit, tennis, football, soccer,fast, experience, penalty, goals, soccer, win" />
 
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/fire2.png" type="image/png"/>
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/fire2.png" type="image/png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <link rel="preload" as="style" href="./lite.css" type="text/css">
 
@@ -33,10 +29,11 @@
 
 </head>
 <!--onscroll="getScrollLength()"-->
+
 <body>
 
-<!-- JavaScript to display the hidden text after 10 seconds -->
-<div id="app"></div>
+    <!-- JavaScript to display the hidden text after 10 seconds -->
+    <div id="app"></div>
 </body>
 
 <!--<noscript>-->
@@ -49,14 +46,14 @@
 <!--</noscript>-->
 <!-- End Google Tag Manager (noscript) -->
 <noscript><a href="https://lite.betnare.com" class="lite-version">
-    <div class="lite-div">
-        Whoops! It's us not you. Give us another chance by clicking here.💔
-    </div>
-</a></noscript>
+        <div class="lite-div">
+            Whoops! It's us not you. Give us another chance by clicking here.💔
+        </div>
+    </a></noscript>
 <!-- Google Tag Manager (noscript) -->
 <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PZ5V4GR"
-            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PZ5V4GR" height="0" width="0"
+        style="display:none;visibility:hidden"></iframe>
 </noscript>
 <!-- End Google Tag Manager (noscript) -->
 <!-- Hidden text that will be displayed after 10 seconds -->
@@ -73,6 +70,14 @@
         // Append the Google Tag Manager script to the head
         document.head.appendChild(gTagManager);
 
+
+        var gAds = document.createElement("script");
+        gAds.src = "https://www.googletagmanager.com/gtag/js?id=AW-10991240939";
+        gAds.async = true;
+
+        // Append the Google Adds script to the head
+        document.head.appendChild(gAds);
+
         // Function to create and append the Google Analytics script
         function appendGoogleAnalyticsScript() {
             // Create the script element for Google Analytics
@@ -88,8 +93,25 @@
             document.head.appendChild(gAnalytics);
         }
 
+        // Function to create and append the Google Tag Manager manager script
+        function appendGTMManagerScript() {
+            // Create the script element for Google Tag Manager manager
+            var gTMManager = document.createElement("script");
+            gTMManager.text = `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-10991240939');
+            `;
+
+            // Append the Google Tag Manager manager script to the head
+            document.head.appendChild(gTMManager);
+        }
+
         // Call the function to append the Google Analytics script
         appendGoogleAnalyticsScript();
+        appendGTMManagerScript();
+
     };
 </script>
 
@@ -113,6 +135,5 @@
          src="https://www.facebook.com/tr?id=1297171947681785&ev=PageView
 &noscript=1"/> -->
 </noscript>
+
 </html>
-
-

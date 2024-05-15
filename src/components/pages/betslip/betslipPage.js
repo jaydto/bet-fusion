@@ -32,8 +32,10 @@ const BetslipPage = React.memo(() => {
   const nareParams = url.searchParams.get("nare-league");
   const pathname = window.location.pathname;
   const stake_value = useSelector((state) => state.data.stake_value);
-  const slip_validated_data = useSelector((state) => state.betting.slip_validation_data);
-  const slip_data= useSelector((state) => state.betting.betslip);
+  const slip_validated_data = useSelector(
+    (state) => state.betting.slip_validation_data
+  );
+  const slip_data = useSelector((state) => state.betting.betslip);
   const dispatchRedux = useDispatch();
 
   const [settings] = useState(getFromLocalStorage("settings"));
@@ -60,11 +62,16 @@ const BetslipPage = React.memo(() => {
 
   const fetchData = async () => {
     let betslip = findPostableSlip();
+
+    if (betslip.length === 0) {
+      console.log("Betslip is empty. Skipping validation.");
+      return;
+    }
     let endpoint = "v1/betslip-validation";
 
     const hasLiveInterval = betslip.some((item) => item.live);
 
-    console.log("has live data ", hasLiveInterval)
+    console.log("has live data ", hasLiveInterval);
 
     // Define the interval duration based on whether any betslip has a live interval
     const interval = hasLiveInterval ? 10000 : 20000;
@@ -164,7 +171,9 @@ const BetslipPage = React.memo(() => {
                   ) : (
                     <Betslip
                       jackpot={jackpot ? true : false}
-                      betslipValidationData={slip_validated_data??betslipValidationData}
+                      betslipValidationData={
+                        slip_validated_data ?? betslipValidationData
+                      }
                       jackpotData={jackpotData}
                     />
                   )}
@@ -176,7 +185,7 @@ const BetslipPage = React.memo(() => {
       </div>
       <div className={"styling-mobile-size"}>
         <Right
-          betslipValidationData={betslipValidationData}
+          betslipValidationData={slip_validated_data??betslipValidationData}
           jackpotData={jackpotData}
           jackpot={jackpot ? true : false}
           slipPage={true}

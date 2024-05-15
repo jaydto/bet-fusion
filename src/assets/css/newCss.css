@@ -9,6 +9,19 @@ body {
   background: var(--betslip-list);
 }
 
+/* slip suspension options */
+.slip-optional-statuses{
+
+}
+.bet-option.warn {
+  background: var(--suspended)!important;
+  opacity: 0.7;
+}
+.slip-optional-statuses.warn{
+  background: var(--suspended)!important;
+  opacity: 0.7;
+}
+
 /* self-exclusion */
 .rdrDefinedRangesWrapper{
   display: none;

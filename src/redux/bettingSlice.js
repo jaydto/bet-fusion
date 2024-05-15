@@ -83,13 +83,20 @@ const findPostableSlip = () => {
     });
     return values;
   };
-
+const findPostableReduxSlip = (betslips={}) => {
+    
+    var values = Object.keys(betslips).map(function (key) {
+      return betslips[key];
+    });
+    console.log("values information")
+    return values;
+  };
 
   export const betslipValidation = createAsyncThunk(
     "betting/betslipValidation",
     async ({ endpoint, method, payload }, { getState }) => {
         const state = getState();
-        let dataToSend = payload && payload.length > 0 ? payload : state.betting.betslip  || [];
+        let dataToSend = payload && payload.length > 0 ? payload : findPostableReduxSlip(state.betting.betslip)  || {};
 
         const [status, response] = await makeRequest({
             url: endpoint,

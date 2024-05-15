@@ -327,7 +327,9 @@ const BetSlip = React.memo((props) => {
                   let no_odd_bg = odd === 1 ? "#f29f7a" : "";
                   // console.log(slip)
                   return (
-                    <div key={index} className={"d-flex slip-bg"}>
+                    <div key={index} className= {`d-flex slip-bg slip-optional-statuses ${
+                      slip?.disable ? "warn" : ""
+                    }`}>
                       <div className="bet-cancel">
                         <input
                           id={slip.match_id}

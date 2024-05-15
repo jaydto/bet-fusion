@@ -16,10 +16,12 @@ body {
 .bet-option.warn {
   background: var(--suspended)!important;
   opacity: 0.7;
+  color:white!important;
 }
 .slip-optional-statuses.warn{
   background: var(--suspended)!important;
   opacity: 0.7;
+  color:white!important;
 }
 
 /* self-exclusion */

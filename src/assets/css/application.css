@@ -527,7 +527,7 @@ li.bet-option {
 .bet-option-list li {
     padding-bottom: 3px !important;
     padding-top: 3px !important;
-    background: var(--betslip-list);
+    /* background: var(--betslip-list); */
     color: var(--light);
     padding: 4px;
     text-shadow: none;
@@ -629,6 +629,7 @@ li.bet-option {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis " [..]";
+    margin: auto;
 }
 
 .bet-cancel input {

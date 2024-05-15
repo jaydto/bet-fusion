@@ -2869,12 +2869,12 @@ nav .mobi {
 }
 
 .bet-option.warn {
-    background: #999999;
-    opacity: 0.7;
+    /* background: #999999;
+    opacity: 0.7; */
 }
 
 .bet-option .row .warn {
-    color: #a12000;
+    color: var(--red);
 }
 
 .bet-option form {

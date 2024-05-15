@@ -59,66 +59,6 @@ const BetSlip = React.memo((props) => {
     }
   }, [slip_data]);
 
-  //Handle db validation of betslip
-  //   const validateBetslipwithDbData = useCallback(() => {
-  //     if (betslipValidationData && betslipsData) {
-  //       let clone_slip = betslipsData;
-  //       Object.entries(betslipValidationData)?.forEach(([key, slipdata]) => {
-  //         let match_id = slipdata.match_id;
-  //         let slip = clone_slip[match_id];
-  //         if (slip) {
-  //           if (slipdata.odd_active !== 1) {
-  //             console.log("we are here evaluating", slipdata.odd_active)
-  //             slip.comment = "Option not active for betting";
-  //             slip.disable = true;
-  //           } else if (
-  //             slipdata.market_active === 0 ||
-  //             (slipdata.market_active !== "Active" &&
-  //               slipdata.market_active !== 1)
-  //           ) {
-  //             slip.comment =
-  //               "Betting on this market is " +
-  //               (slipdata.market_active === 0
-  //                 ? "suspended"
-  //                 : slipdata.market_active);
-  //             slip.disable = true;
-  //           } else if (
-  //             slipdata.event_status === "Suspended" ||
-  //             slipdata.event_status === "Deacticated" ||
-  //             slipdata.event_status === "Ended" ||
-  //             slipdata.event_status === "Abandoned" ||
-  //             slipdata.event_status === "Finished"
-  //           ) {
-  //             slip.comment = "This event is  " + slipdata.event_status;
-  //             slip.disable = true;
-  //           } else if (slipdata.active !== 1) {
-  //             slip.comment = "Market not active for betting";
-  //             slip.disable = true;
-  //           } else if (slip.odd_value !== slipdata.odd_value) {
-  //             slip.prev_odds = slip.odd_value;
-  //             slip.odd_value = slipdata.odd_value;
-  //             slip.comment = "The odds for this event have changed";
-  //             slip.disable = false;
-  //           } else {
-  //             if (slip.disable !== false) {
-  //               slip.comment = null;
-  //             }
-  //             slip.disable = false;
-  //           }
-  //           clone_slip[match_id] = slip;
-  //         }
-  //       });
-  //       const betslip_data = {
-  //         betslip_type: "betslip",
-  //         data: clone_slip,
-  //       };
-  //       dispatchRedux(setMatchBetslip(betslip_data));
-  //     }
-  //   }, []);
-
-  //   useEffect(() => {
-  //     validateBetslipwithDbData();
-  //   }, [validateBetslipwithDbData]);
 
   const validateBetslipwithDbData = useCallback(() => {
     if (betslipValidationData && betslipsData) {

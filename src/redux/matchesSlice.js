@@ -33,7 +33,7 @@ export const matchesPrematch = createAsyncThunk(
 
     console.log("slipvalidation", slip_validation);
 
-    if (betslip.length === 1 && !slip_validation) {
+    if (betslip.length >0 && !slip_validation) {
       dispatch(setMatchBetslipOptions("betslip_validation_status", true));
     }
     const [status, response] = await makeRequest({
@@ -74,7 +74,7 @@ export const matchesLive = createAsyncThunk(
 
     console.log("slipvalidation", slip_validation);
 
-    if (betslip.length === 1 && !slip_validation) {
+    if (betslip.length > 0 && !slip_validation) {
       dispatch(setMatchBetslipOptions("betslip_validation_status", true));
     }
     const [status, response] = await makeRequest({

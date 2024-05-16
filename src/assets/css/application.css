@@ -743,6 +743,11 @@ li.bet-option {
     border-radius: 0.7rem !important;
 }
 
+.remove_expired_btn, #remove_expired_btn{
+    background: #ffc428 !important;
+    border-radius: 7px!important;
+}
+
 #jp-nare-pick-button {
     color: #000000 !important;
     background-color: #fbd702 !important;

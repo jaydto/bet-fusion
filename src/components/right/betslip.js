@@ -8,7 +8,7 @@ import {
   removeFromSlip,
 } from "../utils/betslip";
 import useWindowDimensions from "../header/Dimensions";
-import { getFromLocalStorage } from "../utils/local-storage";
+import { getFromLocalStorage, setLocalStorage } from "../utils/local-storage";
 import DecodeCode from "./decode";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -59,7 +59,6 @@ const BetSlip = React.memo((props) => {
     }
   }, [slip_data]);
 
-
   const validateBetslipwithDbData = useCallback(() => {
     if (betslipValidationData && betslipsData) {
       let clone_slip = { ...betslipsData }; // Create a shallow clone of betslipsData
@@ -68,16 +67,16 @@ const BetSlip = React.memo((props) => {
         let match_id = slipdata.match_id;
         let slip = clone_slip[match_id];
         if (slip) {
-            console.log(" odd active values ", slipdata.odd_active)
-            
+          console.log(" odd active values ", slipdata.odd_active);
+
           if (slipdata.odd_active === 0) {
-            console.log(" slip info here ",slipdata.odd_active )
+            console.log(" slip info here ", slipdata.odd_active);
             slip = {
               ...slip,
               comment: "Option not active for betting",
               disable: true,
             }; // Create a new object with updated properties
-          } 
+          }
           if (
             slipdata.market_active === 0 ||
             (slipdata.market_active !== "Active" &&
@@ -113,7 +112,9 @@ const BetSlip = React.memo((props) => {
               disable: true,
             }; // Create a new object with updated properties
           } else if (slip.odd_value !== slipdata.odd_value) {
-            console.log(`slip odd value ${slip.odd_value}   slip valid${slipdata.odd_value}`)
+            console.log(
+              `slip odd value ${slip.odd_value}   slip valid${slipdata.odd_value}`
+            );
             slip = {
               ...slip,
               prev_odds: slip.odd_value,
@@ -135,6 +136,7 @@ const BetSlip = React.memo((props) => {
         betslip_type: "betslip",
         data: clone_slip,
       };
+      setLocalStorage("betslip", clone_slip);
       dispatchRedux(setMatchBetslip(betslip_data));
     }
   }, [betslipValidationData]);
@@ -327,9 +329,12 @@ const BetSlip = React.memo((props) => {
                   let no_odd_bg = odd === 1 ? "#f29f7a" : "";
                   // console.log(slip)
                   return (
-                    <div key={index} className= {`d-flex slip-bg slip-optional-statuses ${
-                      slip?.disable ? "warn" : ""
-                    }`}>
+                    <div
+                      key={index}
+                      className={`d-flex slip-bg slip-optional-statuses ${
+                        slip?.disable ? "warn" : ""
+                      }`}
+                    >
                       <div className="bet-cancel">
                         <input
                           id={slip.match_id}

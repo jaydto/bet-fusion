@@ -1,6 +1,8 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
+  addToSlip,
   clearSlip,
+  findPostableReduxSlip,
   findPostableSlip,
   formatNumber,
   getBetslip,
@@ -53,14 +55,14 @@ const Float = (equation, precision = 4) => {
 };
 
 export const SubmitButton = (props) => {
-  const { title, button_size, disabled, ...rest } = props;
+  const { title, button_size, disabled,expired, ...rest } = props;
   const { isSubmitting } = useFormikContext();
 
   return (
     <button
       type={button_size ? "button" : "submit"}
       {...rest}
-      id={"place_bet_button"}
+      id={`${expired?'remove_expired_btn':'place_bet_button'}`}
       style={
         button_size
           ? {
@@ -104,6 +106,7 @@ const BetslipSubmitForm = React.memo((props) => {
   const [message, setMessage] = useState(null);
   const loading = useSelector((state) => state.betting.loading);
   const appConfigs = useSelector((state) => state.data.app_config);
+  const slip_data = useSelector((state) => state.betting.betslip);
   const [settings] = useState(getFromLocalStorage("settings"));
   const stake_value = useSelector((state) => state.data.stake_value);
   const betslip_validation_status = useSelector(
@@ -141,27 +144,6 @@ const BetslipSubmitForm = React.memo((props) => {
   const { width } = useWindowDimensions();
   const userData = useSelector((state) => state.auth.user);
   const [user, setUser] = useState(getFromLocalStorage("user"));
-
-  
-
-//   useEffect(() => {
-//     // stop the fetchInterva;
-//     console.log("call page is mounted");
-
-//     const abortController = new AbortController();
-//     dispatchRedux(setMatchBetslipOptions("betslip_validation_status", true));
-//     console.log("call betslip validation status", betslip_validation_status);
-
-//     return () => {
-//       if (betslip_validation_status) {
-//         dispatchRedux(
-//           setMatchBetslipOptions("betslip_validation_status", false)
-//         );
-//         dispatchRedux(stopBetslipValidation());
-//         abortController.abort();
-//       }
-//     };
-//   }, [betslip_validation_status]);
 
   useEffect(() => {
     if (userData) {
@@ -538,41 +520,6 @@ const BetslipSubmitForm = React.memo((props) => {
 
   const navigate = useNavigate();
 
-  const handleRemoveAll = useCallback(() => {
-    let betslips = jackpot ? getJackpotBetslip() : getBetslip();
-    Object.entries(betslips).map(([match_id, match]) => {
-      // let slip=
-      jackpot ? removeFromJackpotSlip(match_id) : removeFromSlip(match_id);
-
-      let match_selector = match.match_id + "_selected";
-      let ucn = clean_rep(
-        match.match_id + "" + match.sub_type_id + match.bet_pick
-      );
-
-      // dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
-      // const match_items={
-      //     match_selector:match_selector,
-      //     ucn:"remove." + ucn
-      // }
-      // dispatchRedux(removeSlipSelection(match_items));
-      dispatchRedux(removeSelected(match_selector));
-      dispatchRedux(removeSelected(match_selector));
-      dispatchRedux(setMatchBetslipOptions("betslipLength", 0));
-    });
-
-    const betslip_data = {
-      betslip_type: "betslip",
-      data: {},
-    };
-    dispatchRedux(setMatchBetslip(betslip_data));
-    setMessage(null);
-    // setLocalStorage("winnings",null)
-    // setLocalStorage('userStake', null)
-    // dispatchRedux(setState('stake_value',0) )
-    setLocalStorage("betslip_share_code", null);
-    return width < 991 ? navigate(-1) : "";
-  }, []);
-
   useEffect(() => {
     updateWinnings();
   }, [updateWinnings]);
@@ -790,6 +737,7 @@ const BetslipSubmitForm = React.memo((props) => {
   );
   const betslip_options = useSelector((state) => state.betting.betslip_options);
   const [showDepositModal, setShowDepositModal] = useState(false);
+  const [hasExpiredItems, setHasExpiredItems] = useState(false);
 
   const dispatchRedux = useDispatch();
 
@@ -835,10 +783,75 @@ const BetslipSubmitForm = React.memo((props) => {
     setMultiBoostMessage(null);
   };
 
+  const handleRemoveAll = useCallback(() => {
+    let betslips = jackpot ? getJackpotBetslip() : getBetslip();
+    Object.entries(betslips).map(([match_id, match]) => {
+      // let slip=
+      jackpot ? removeFromJackpotSlip(match_id) : removeFromSlip(match_id);
+
+      let match_selector = match.match_id + "_selected";
+      let ucn = clean_rep(
+        match.match_id + "" + match.sub_type_id + match.bet_pick
+      );
+
+      // dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
+      // const match_items={
+      //     match_selector:match_selector,
+      //     ucn:"remove." + ucn
+      // }
+      // dispatchRedux(removeSlipSelection(match_items));
+      dispatchRedux(removeSelected(match_selector));
+      dispatchRedux(removeSelected(match_selector));
+      dispatchRedux(setMatchBetslipOptions("betslipLength", 0));
+    });
+
+    const betslip_data = {
+      betslip_type: "betslip",
+      data: {},
+    };
+    dispatchRedux(setMatchBetslip(betslip_data));
+    setMessage(null);
+    // setLocalStorage("winnings",null)
+    // setLocalStorage('userStake', null)
+    // dispatchRedux(setState('stake_value',0) )
+    setLocalStorage("betslip_share_code", null);
+    return width < 991 ? navigate(-1) : "";
+  }, []);
+
+  const handleRemoveExpired = () => {
+    // Filter out items with disabled set to true from the betslip
+    let betslips = getBetslip();
+
+    const updatedBetslip = Object.fromEntries(
+      Object.entries(betslips).filter(([key, slipdata]) => !slipdata.disable)
+    );
+
+    setLocalStorage("betslip", updatedBetslip);
+
+    const betslip_data = {
+      betslip_type: "betslip",
+      data: updatedBetslip,
+    };
+
+    dispatchRedux(setMatchBetslip(betslip_data));
+    setHasExpiredItems(false)
+
+    // Update the betslip with the filtered data
+  };
+
+  useEffect(() => {
+    const hasExpired = findPostableReduxSlip(slip_data ?? {}).some(
+      (item) => item.disable
+    );
+    if (hasExpired) {
+      setHasExpiredItems(true);
+    }
+  }, [slip_data]);
+
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={handlePlaceBet}
+      onSubmit={hasExpiredItems ? handleRemoveExpired : handlePlaceBet}
       validate={validate}
       validateOnChange={false}
       validateOnBlur={false}
@@ -1212,7 +1225,8 @@ const BetslipSubmitForm = React.memo((props) => {
                         <SubmitButton
                           style={{ whiteSpace: "nowrap" }}
                           id="place_bet_button_submit"
-                          className="place-bet-btn bold "
+                          expired={hasExpiredItems}
+                          className={`${hasExpiredItems?'remove_expired_btn':'place-bet-btn '} bold `}
                           disabled={loading}
                           title={
                             loading ? (
@@ -1226,7 +1240,10 @@ const BetslipSubmitForm = React.memo((props) => {
                               </div>
                             ) : (
                               <span>
-                                PLACE BET <FontAwesomeIcon icon={faFireAlt} />
+                                {hasExpiredItems
+                                  ? "REMOVE EXPIRED"
+                                  : " PLACE BET"} {" "}
+                                <FontAwesomeIcon icon={faFireAlt} />
                               </span>
                             )
                           }

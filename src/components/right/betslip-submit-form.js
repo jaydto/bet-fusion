@@ -845,6 +845,8 @@ const BetslipSubmitForm = React.memo((props) => {
     );
     if (hasExpired) {
       setHasExpiredItems(true);
+    }else{
+        setHasExpiredItems(false)
     }
   }, [slip_data]);
 

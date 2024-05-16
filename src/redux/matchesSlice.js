@@ -29,9 +29,9 @@ export const matchesPrematch = createAsyncThunk(
 
     const slip_validation = state.betting.betslip_validation_status;
 
-    console.log("call data games", betslip.length);
+    // console.log("call data games", betslip.length);
 
-    console.log("slipvalidation", slip_validation);
+    // console.log("slipvalidation", slip_validation);
 
     if (betslip.length >0 && !slip_validation) {
       dispatch(setMatchBetslipOptions("betslip_validation_status", true));

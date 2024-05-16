@@ -87,7 +87,7 @@ export const betslipValidation = createAsyncThunk(
         ? payload
         : findPostableReduxSlip(state.betting.betslip) || {};
 
-    console.log("call betlipvalidation", dataToSend);
+    // console.log("call betlipvalidation", dataToSend);
 
     if (dataToSend.length === 0) {
       dispatch(stopBetslipValidation());
@@ -146,13 +146,13 @@ let fetchInterval; // Declare the interval variable outside the action creator
 
 
 export const stopBetslipValidation = () => async (dispatch) => {
-  console.log("call stop betlslip validation", fetchInterval)
+  // console.log("call stop betlslip validation", fetchInterval)
 
   if (fetchInterval) {
     clearInterval(fetchInterval);
     fetchInterval = null; // Clear the reference to avoid potential issues
   }
-  console.log("call stop betlslip validation")
+  // console.log("call stop betlslip validation")
   dispatch(stopBetslipValidationAction());
   
 };

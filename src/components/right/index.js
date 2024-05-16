@@ -113,7 +113,7 @@ const Right = React.memo((props) => {
 
     const hasLiveInterval = betslip.some((item) => item.live);
 
-    console.log("call has live data ", hasLiveInterval);
+    // console.log("call has live data ", hasLiveInterval);
 
     // Define the interval duration based on whether any betslip has a live interval
     const interval = hasLiveInterval ? 10000 : 20000;

@@ -73,6 +73,21 @@ const BetSlip = React.memo((props) => {
         if (slip) {
           console.log(" odd active values ", slipdata.odd_active);
 
+          if (slipdata.live === 0 && producer_down) {
+            slip = {
+              ...slip,
+              comment: `Betting on this market is ${"suspended"}`,
+              disable: true,
+            }; // Create a new object with updated properties
+          }
+          if (slipdata.live === 1 && live_producer_down) {
+            slip = {
+              ...slip,
+              comment: `Betting on this market is ${"suspended"}`,
+              disable: true,
+            }; // Create a new object with updated properties
+          }
+
           if (slipdata.odd_active === 0) {
             console.log(" slip info here ", slipdata.odd_active);
             slip = {
@@ -81,20 +96,7 @@ const BetSlip = React.memo((props) => {
               disable: true,
             }; // Create a new object with updated properties
           }
-           if (slipdata.live === 0 && producer_down) {
-            slip = {
-              ...slip,
-              comment: `Betting on this market is ${"suspended"}`,
-              disable: true,
-            }; // Create a new object with updated properties
-          } 
-           if (slipdata.live === 1 && live_producer_down) {
-            slip = {
-              ...slip,
-              comment: `Betting on this market is ${"suspended"}`,
-              disable: true,
-            }; // Create a new object with updated properties
-          }
+
           if (
             slipdata.market_active === 0 ||
             (slipdata.market_active !== "Active" &&
@@ -109,7 +111,7 @@ const BetSlip = React.memo((props) => {
               }`,
               disable: true,
             }; // Create a new object with updated properties
-          }  else if (
+          } else if (
             [
               "Suspended",
               "Deacticated",
